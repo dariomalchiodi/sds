@@ -2,7 +2,16 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 #
 - file: intro
-- file: content
-  sections:
+  numbered: true
+
+- part: Statistica descrittiva
+  chapters:
+  - file: content
+    sections:
     - file: markdown
     - file: notebooks
+  - file: bibliography
+
+- part: Calcolo delle probabilità
+  chapters:
+  - file: content
