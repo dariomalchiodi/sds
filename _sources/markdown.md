@@ -1,15 +1,17 @@
+(markdown-files)=
 # Markdown Files
 
 Whether you write your book's content in Jupyter Notebooks (`.ipynb`) or
 in regular markdown files (`.md`), you'll write in the same flavor of markdown
-called **MyST Markdown**.
+called **MyST Markdown** [^1].
 
 ## What is MyST?
 
 MyST stands for "Markedly Structured Text". It
-is a slight variation on a flavor of markdown called "CommonMark" markdown,
+is a slight variation on a flavor of markdown (see [Chapter](markdown-files)).
+called "CommonMark" markdown,
 with small syntax extensions to allow you to write **roles** and **directives**
-in the Sphinx ecosystem.
+in the Sphinx ecosystem {cite}`perez2011python`.
 
 ## What are roles and directives?
 
@@ -123,3 +125,7 @@ in-line with the rest of your content.
 
 For more information about executing computational content with Jupyter Book,
 see [The MyST-NB documentation](https://myst-nb.readthedocs.io/).
+
+
+[^1]: This is a footnote.  
+
