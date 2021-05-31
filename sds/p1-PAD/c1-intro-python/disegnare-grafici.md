@@ -24,6 +24,25 @@ Va anche notato il fatto che se si tenta di trasporre un array monodimensionale 
 </div>
 
 ```{code-cell} ipython3
+import numpy as np
+
+def get_sorted_counts(sequence):
+    counts = {}
+
+    for x in sequence:
+        if x in counts:
+            counts[x] += 1
+        else:
+            counts[x] = 1
+
+    pairs = counts.items()
+    return sorted(pairs, key=lambda p:p[1], reverse=True)
+
+years = [1941, 1962, None, None, 1941,
+         1964, None, 1940, 1941, 1961,
+         None, 1963, None, 1963, 1981,
+         None, None, 1962, 1979]
+
 np.array(get_sorted_counts(years)).transpose()
 ```
 
@@ -51,6 +70,8 @@ Le due variabili `x` e `y` possono dunque essere passate come argomento al metod
 
 ```{code-cell} ipython3
 %matplotlib inline
+
+import matplotlib.pyplot as plt
 plt.rc('figure', figsize=(5.0, 2.0))
 plt.bar(x, y)
 plt.show()
@@ -67,10 +88,6 @@ La prima linea di codice fa riferimento a una caratteristica speciale di jupyter
 </div>
 
 +++
-
-
-
-
 
 <div id="h-12"></div>
 
