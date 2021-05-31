@@ -1,17 +1,37 @@
 # Table of content
 # Learn more at https://jupyterbook.org/customize/toc.html
 #
-- file: intro
+- file: landing
   numbered: true
+
+- part: Introduzione
+  chapters:
+  - file: p0-introduzione/presentazione
+  - file: p0-introduzione/un-esempio
+  - file: p0-introduzione/notazione
+
+- part: Programmazione per l'analisi dei dati
+  chapters:
+  - file: p1-PAD/c1-intro-python/introduzione-a-python
+    sections:
+    - file: p1-PAD/c1-intro-python/dati-semplici-e-operatori
+    - file: p1-PAD/c1-intro-python/dati-strutturati
+    - file: p1-PAD/c1-intro-python/strutture-di-controllo
+    - file: p1-PAD/c1-intro-python/funzioni
+    - file: p1-PAD/c1-intro-python/importare-moduli
+    - file: p1-PAD/c1-intro-python/disegnare-grafici
+    - file: p1-PAD/c1-intro-python/leggere-file
+  - file: p1-PAD/c2-pandas/pandas
 
 - part: Statistica descrittiva
   chapters:
-  - file: content
-    sections:
-    - file: markdown
-    - file: notebooks
-  - file: bibliography
+  - file: p2-SD/c1-dati-e-frequenze/dati-e-frequenze
 
 - part: Calcolo delle probabilità
+   chapters:
+  - file: p3-CP/c1-calcolo-combinatorio/calcolo-combinatorio
+
+- part: Bibliografia
   chapters:
-  - file: content
+  - file: bibliography
+

@@ -1,5 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Alike+Angular&family=Mate+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&display=swap');
+
 
 h1, h2, h3, h4, h5, h6, .reference-internal, .caption-text {
   font-family: 'Mate SC', serif;
@@ -9,3 +11,43 @@ p {
     text-align: justify;
     font-family: 'Alike angular', serif;
 }
+
+tt, code, kbd, samp, pre {
+  font-family: 'Fira Code', monospace !important;
+  color: salmon;
+}
+
+.table td, .table th {
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.margin p {
+  text-align: left !important;
+}
+
+.cell_input {
+  border-left-color: #a8332b !important;
+}
+
+bd-sidebar nav ul.nav a:hover, .bd-sidebar nav ul.nav li.active>a,
+.bd-sidebar nav ul.nav li.active>a:hover {
+  color: #a8332b !important;
+}
+
+main.bd-content #main-content a, main.bd-content #main-content a:visited {
+  color: #a8332b !important;
+}
+
+a {
+  color: #a8332b !important;
+}
+
+p.rubric {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+
