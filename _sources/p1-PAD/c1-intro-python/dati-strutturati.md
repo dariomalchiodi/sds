@@ -12,6 +12,7 @@ kernelspec:
   name: python3
 ---
 
+(dati-strutturati)=
 # I tipi di dati strutturati
 
 I tipi di dati strutturati, o più brevemente _strutture dati,_ permettono di aggregare più valori.
@@ -97,7 +98,16 @@ Questo esempio introduce, tra l'altro, l'uso delle stringhe, che saranno approfo
 
 ```{rubric} Operatori
 ```
-Python mette inoltre a disposizione l'operatore binario `in` che implementa la relazione di appartenenza: se `e` è un'espressione e `l` una lista, l'espressione `e in l` viene valutata vera se il valore dell'espressione occorre in una posizione qualsiasi della lista e falsa altrimenti.
+Alcuni degli operatori descritti nel {numref}`Paragrafo %s <dati-semplici>` mantengono la loro semantica quando vengono usate delle liste come operatori: per esempio `==` permette di verificare se due liste abbiano uguali contenuti (cioè contengano lo stesso numero di elementi, e gli elementi in una stessa posizione siano uguali). Altri tra questi operatori assumono invece una semantica diversa: in particolare
+
+- l'operatore `+` permette di concatenare due liste, creando una nuova lista che contiene un numero di elementi pari alla somma dei numeri di elementi contenuti nelle due liste usate come operando: in particolare, questa nuova lista conterrà tutti gli elementi del primo operando in testa e tutti quelli del secondo operando in coda;
+- per mantenere coerente la relazione tra gli operatori `+` e `*`, se `l` è una lista e `n` è un valore intero la valutazione dell'espressione `l * n` ha l'effetto di creare una nuova lista ottenuta concatenando `l` con se stessa esattamente `n` volte.
+
+```{margin}
+Vedremo che `in` e `del` mantengono la loro semantica anche quando vengono usati con altri tipi di strutture dati.
+```
+Sempre nel {numref}`Paragrafo %s <dati-semplici>` sono stati introdotti gli operatori speciali `in` e `del`.
+Il primo implementa essenzialmente la relazione di appartenenza: se `e` è un'espressione e `l` una lista, l'espressione `e in l` viene valutata come logicamente vera se il valore dell'espressione occorre in una posizione qualsiasi della lista, e come logicamente falsa altrimenti:
 
 ```{code-cell} ipython3
 'Thing' in names
@@ -107,35 +117,44 @@ Python mette inoltre a disposizione l'operatore binario `in` che implementa la r
 'Human Torch' in names
 ```
 
-Un altro operatore (unario) specifico per le liste è `del`, che permette di eliminare un elemento da una lista indicandone la relativa posizione: per esempio, eseguendo la cella seguente viene cancellata la stringa contenuta nella prima posizione di `names`.
+L'operatore `del` permette invece di eliminare un elemento da una lista, indicandone la relativa posizione: per esempio, eseguendo la cella seguente viene cancellata la stringa contenuta nella prima posizione di `names`:
 
 ```{code-cell} ipython3
 del names[0]
 ```
 
-Va sottolineato come `del` non restituisca un valore: successivamente alla sua esecuzione, la lista corrispondente avrà un elemento in meno, e in questo specifico caso quello che prima era il secondo elemento diventa ora il primo, e così via:
+Va sottolineato che `del` è un operatore dal comportamento quantomeno particolare, in quanto esso non restituisce alcun valore; la sua esecuzione ha però l'_effetto collaterale_ di eliminare l'elemento nella posizione specificata della lista usata come operando [^data-model]. Come conseguenza di questo effetto collaterale, nell'esempio precedente viene eliminato il primo elemento della lista, così che quello che prima era il secondo elemento diventa ora il primo, e così via, come si può facilmente verificare:
 
 ```{code-cell} ipython3
 names[0]
 ```
 
+```{admonition} Nota
+:class: note
+In realtà `del` è un operatore che può essere applicato a una vasta gamma di operandi, e che permette di eliminare il riferimento a un oggetto, liberando la memoria che questo occupa quando non ci sono più riferimenti che puntano a esso. Il fatto che le varie componenti di Python accessibili durante l'esecuzione di un programma siano più o meno esplicitamente associate a degli oggetti permette ad esempio di eliminare variabili, parti di strutture dati, ma anche altri elementi del linguaggio che vedremo più avanti, come funzioni e moduli.
+```
+
++++
+
 ```{rubric} Funzioni
 ```
-Python prevede inoltre alcune funzioni che elaborano liste, come per esempio `len` che restituisce il numero di elementi contenuti in una lista, a cui si fa di norma riferimento denotandolo come la _lunghezza_ della lista stessa:
+Alcune delle funzioni nel linguaggio base di Python sono pensate per elaborare liste. Per esempio `len` restituisce la _lunghezza_ della lista specificata come argomento, dove per lunghezza si intende il numero di elementi contenuti nella lista:
 
 ```{code-cell} ipython3
 len(names)
 ```
 
+Anche in questo caso, `len` è una funzione di carattere generale pensata per calcolare la lunghezza delle varie strutture dati implementate in Python.
+
 ```{rubric} Metodi
 ```
-Python è un linguaggio di programmazione che implementa (anche) il paradigma orientato a oggetti, e le liste (così come gli altri tipi di dati che vedremo più avanti) sono a tutti gli effetti oggetti su cui è possibile invocare metodi. Supponiamo di voler mettere in ordine alfabetico i nomi dei supereroi (la lista è quasi in ordine, l'unico elemento fuori posto è l'ultimo): la corrispondente operazione di ordinamento richiede di invocare sulla lista il metodo `sort` (usando la _dot notation tipica_ della programmazione orientata agli oggetti).
+Python è un linguaggio di programmazione che implementa (anche) il paradigma orientato a oggetti, e come abbiamo già visto le liste (così come gli altri tipi di dati) sono a tutti gli effetti oggetti, e quindi su di esse è possibile invocare dei metodi. Supponiamo per esempio di voler mettere in ordine alfabetico i nomi dei supereroi contenuti in `names` (la lista è quasi in ordine, l'unico elemento fuori posto è l'ultimo): uno dei modi in cui è possibile eseguire questa operazione è quella di invocare sulla lista il metodo `sort` (usando la _dot notation tipica_ della programmazione orientata agli oggetti).
 
 ```{code-cell} ipython3
 names.sort()
 ```
 
-Così come l'operatore `del`, tale metodo però non restituisce alcun valore, in quanto l'ordinamento è eseguito _in place_: dopo l'invocazione, gli elementi della lista saranno stati riposizionati in modo da riflettere l'ordinamento. Possiamo convincercene facilmente visualizzando per esempio gli ultimi cinque elementi di `names`:
+Così come l'operatore `del`, questo metodo non restituisce alcun valore, in quanto l'ordinamento è eseguito _in place_ [^sorted]: l'invocazione di `sort` ha come effetto collaterale il riposizionamento degli elementi all'interno della lista in modo da riflettere l'ordinamento [^ordinamento-eterogeneo]. Possiamo convincercene facilmente visualizzando per esempio gli ultimi cinque elementi di `names`:
 
 ```{code-cell} ipython3
 names[-5:]
@@ -283,6 +302,14 @@ Se si tenta di accedere in lettura a un dizionario specificando una chiave inesi
 L'operatore `in` introdotto per le liste può anche essere utilizzato per i dizionari: più precisamente, l'espressione `k in d` restituisce `True` se `k` è una chiave valida per il dizionario `d`.
 
 Anche nel caso dei dizionari il linguaggio mette a disposizione una serie di funzioni specifiche, e si può fare riferimento alla [documentazione ufficiale](https://docs.python.org/3/tutorial/datastructures.html#dictionaries) di python per approfondire l'argomento.
+
++++
+
+[^data-model]: I lettori attenti potrebbero avere notato un apparente incoerenza tra il modo in cui vengono valutate le espressioni e la semantica appena introdotta per l'operatore `del`. Consideriamo l'espressione `del names[0]` dell'esempio precedente: se questa fosse valutata in modo ususale, verrebbe innanzitutto valutato l'operando, dunque l'espressione `names[0]`. L'operatore `del` verrebbe quindi applicato al valore ottenuto, che nel nostro caso sarebbe la stringa `'Aquaman'`. Ora, l'istruzione `del 'Aquaman'` genererebbe un errore, perché `del` si può applicare solo a riferimenti e non a letterali. In realtà la valutazione di espressioni di questo tipo viene fatta in un modo diverso, perché `del names[0]` viene implicitamente convertita in un'altra espressione che equivale a invocare un particolare metodo dell'oggetto referenziato da `names`, passando il valore `0` come argomento. Senza addentrarsi in dettagli, è importante segnalare che Python è permeato da tecniche di questo tipo, che permettono tra l'altro di estendere l'uso della sintassi per i tipi _builtin_ anche a oggetti di classi definite dagli sviluppatori. Chi volesse approfondire questo spetto può studiare il cosiddeto [data model](https://docs.python.org/3/reference/datamodel.html) di Python (sebbene sarebbe prima importante imparare come definire e utilizzare nuove classi).
+
+[^sorted]: In realtà è disponibile anche la funzione `sorted`, che non modifica l'argomento e restituisce una nuova lista.
+
+[^ordinamento-eterogeneo]: Tenuto conto del fatto che le liste sono una struttura dati eterogenea ci si potrebbe chiedere quale sia la relazione d'ordine a cui fa riferimento Python quando viene invocato il metodo `sort`. Non approfondiremo questo aspetto: per quanto riguarda gli argomenti qui trattati è sufficiente dire che quando gli elementi della lista sono tutti dello stesso tipo viene sfruttata una relazione d'ordine canonica per questo tipo. Per esempio i valori numerici sono ordinati in modo non decrescente e per le stringhe viene utilizzato l'ordinamento lessicografico.
 
 ```{code-cell} ipython3
 

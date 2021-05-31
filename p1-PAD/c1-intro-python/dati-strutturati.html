@@ -350,7 +350,7 @@
               <div>
                 
   <div class="section" id="i-tipi-di-dati-strutturati">
-<h1><span class="section-number">1.2. </span>I tipi di dati strutturati<a class="headerlink" href="#i-tipi-di-dati-strutturati" title="Permalink to this headline">¶</a></h1>
+<span id="dati-strutturati"></span><h1><span class="section-number">1.2. </span>I tipi di dati strutturati<a class="headerlink" href="#i-tipi-di-dati-strutturati" title="Permalink to this headline">¶</a></h1>
 <p>I tipi di dati strutturati, o più brevemente <em>strutture dati,</em> permettono di aggregare più valori.
 Python supporta nativamente i seguenti tipi strutturati: le liste, le tuple, le stringhe, gli insiemi e i dizionari. A ognuno di questi tipi corrisponde una diversa classe, esattamente come per i tipi semplici. Come descritto nei paragrafi seguenti, la sintassi per accedere ai contenuti di una struttura dati è relativamente uniforme, mentre ovviamente il modo in cui viene effettuato l’accesso dipende dallo specifico tipo di struttura dati.</p>
 <p>In Python è possibile sia usare gli oggetti che corrispondono ai tipi di dati strutturati (ma anche gli altri tipi di dati descritti più avanti) come argomenti di operatori o funzioni, sia invocare metodi sugli oggetti stessi. Anche in questo caso vi sono operazioni di carattere più generale, effettuate utilizzando una sintassi comune, e operazioni specifiche che hanno una sintassi propria. Nel resto di questo paragrafo, senza pretesa di essere esaustivi, descrive le modalità di accesso e le operazioni principali per i tipi strutturati sopra elencati e fornisce dei puntatori alla documentazione ufficiale per chi volesse approfondire alcuni argomenti.</p>
@@ -456,7 +456,17 @@ Python supporta nativamente i seguenti tipi strutturati: le liste, le tuple, le 
 </div>
 <p>Questo esempio introduce, tra l’altro, l’uso delle stringhe, che saranno approfondite nel <a class="reference internal" href="#stringhe"><span class="std std-numref">Paragrafo 1.2.3</span></a>.</p>
 <p class="rubric">Operatori</p>
-<p>Python mette inoltre a disposizione l’operatore binario <code class="docutils literal notranslate"><span class="pre">in</span></code> che implementa la relazione di appartenenza: se <code class="docutils literal notranslate"><span class="pre">e</span></code> è un’espressione e <code class="docutils literal notranslate"><span class="pre">l</span></code> una lista, l’espressione <code class="docutils literal notranslate"><span class="pre">e</span> <span class="pre">in</span> <span class="pre">l</span></code> viene valutata vera se il valore dell’espressione occorre in una posizione qualsiasi della lista e falsa altrimenti.</p>
+<p>Alcuni degli operatori descritti nel <a class="reference internal" href="dati-semplici-e-operatori.html#dati-semplici"><span class="std std-numref">Paragrafo 1.1</span></a> mantengono la loro semantica quando vengono usate delle liste come operatori: per esempio <code class="docutils literal notranslate"><span class="pre">==</span></code> permette di verificare se due liste abbiano uguali contenuti (cioè contengano lo stesso numero di elementi, e gli elementi in una stessa posizione siano uguali). Altri tra questi operatori assumono invece una semantica diversa: in particolare</p>
+<ul class="simple">
+<li><p>l’operatore <code class="docutils literal notranslate"><span class="pre">+</span></code> permette di concatenare due liste, creando una nuova lista che contiene un numero di elementi pari alla somma dei numeri di elementi contenuti nelle due liste usate come operando: in particolare, questa nuova lista conterrà tutti gli elementi del primo operando in testa e tutti quelli del secondo operando in coda;</p></li>
+<li><p>per mantenere coerente la relazione tra gli operatori <code class="docutils literal notranslate"><span class="pre">+</span></code> e <code class="docutils literal notranslate"><span class="pre">*</span></code>, se <code class="docutils literal notranslate"><span class="pre">l</span></code> è una lista e <code class="docutils literal notranslate"><span class="pre">n</span></code> è un valore intero la valutazione dell’espressione <code class="docutils literal notranslate"><span class="pre">l</span> <span class="pre">*</span> <span class="pre">n</span></code> ha l’effetto di creare una nuova lista ottenuta concatenando <code class="docutils literal notranslate"><span class="pre">l</span></code> con se stessa esattamente <code class="docutils literal notranslate"><span class="pre">n</span></code> volte.</p></li>
+</ul>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Vedremo che <code class="docutils literal notranslate"><span class="pre">in</span></code> e <code class="docutils literal notranslate"><span class="pre">del</span></code> mantengono la loro semantica anche quando vengono usati con altri tipi di strutture dati.</p>
+</div>
+<p>Sempre nel <a class="reference internal" href="dati-semplici-e-operatori.html#dati-semplici"><span class="std std-numref">Paragrafo 1.1</span></a> sono stati introdotti gli operatori speciali <code class="docutils literal notranslate"><span class="pre">in</span></code> e <code class="docutils literal notranslate"><span class="pre">del</span></code>.
+Il primo implementa essenzialmente la relazione di appartenenza: se <code class="docutils literal notranslate"><span class="pre">e</span></code> è un’espressione e <code class="docutils literal notranslate"><span class="pre">l</span></code> una lista, l’espressione <code class="docutils literal notranslate"><span class="pre">e</span> <span class="pre">in</span> <span class="pre">l</span></code> viene valutata come logicamente vera se il valore dell’espressione occorre in una posizione qualsiasi della lista, e come logicamente falsa altrimenti:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Thing&#39;</span> <span class="ow">in</span> <span class="n">names</span>
@@ -481,7 +491,7 @@ Python supporta nativamente i seguenti tipi strutturati: le liste, le tuple, le 
 </div>
 </div>
 </div>
-<p>Un altro operatore (unario) specifico per le liste è <code class="docutils literal notranslate"><span class="pre">del</span></code>, che permette di eliminare un elemento da una lista indicandone la relativa posizione: per esempio, eseguendo la cella seguente viene cancellata la stringa contenuta nella prima posizione di <code class="docutils literal notranslate"><span class="pre">names</span></code>.</p>
+<p>L’operatore <code class="docutils literal notranslate"><span class="pre">del</span></code> permette invece di eliminare un elemento da una lista, indicandone la relativa posizione: per esempio, eseguendo la cella seguente viene cancellata la stringa contenuta nella prima posizione di <code class="docutils literal notranslate"><span class="pre">names</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -489,7 +499,7 @@ Python supporta nativamente i seguenti tipi strutturati: le liste, le tuple, le 
 </div>
 </div>
 </div>
-<p>Va sottolineato come <code class="docutils literal notranslate"><span class="pre">del</span></code> non restituisca un valore: successivamente alla sua esecuzione, la lista corrispondente avrà un elemento in meno, e in questo specifico caso quello che prima era il secondo elemento diventa ora il primo, e così via:</p>
+<p>Va sottolineato che <code class="docutils literal notranslate"><span class="pre">del</span></code> è un operatore dal comportamento quantomeno particolare, in quanto esso non restituisce alcun valore; la sua esecuzione ha però l’<em>effetto collaterale</em> di eliminare l’elemento nella posizione specificata della lista usata come operando <a class="footnote-reference brackets" href="#data-model" id="id1">1</a>. Come conseguenza di questo effetto collaterale, nell’esempio precedente viene eliminato il primo elemento della lista, così che quello che prima era il secondo elemento diventa ora il primo, e così via, come si può facilmente verificare:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -502,8 +512,12 @@ Python supporta nativamente i seguenti tipi strutturati: le liste, le tuple, le 
 </div>
 </div>
 </div>
+<div class="note admonition">
+<p class="admonition-title">Nota</p>
+<p>In realtà <code class="docutils literal notranslate"><span class="pre">del</span></code> è un operatore che può essere applicato a una vasta gamma di operandi, e che permette di eliminare il riferimento a un oggetto, liberando la memoria che questo occupa quando non ci sono più riferimenti che puntano a esso. Il fatto che le varie componenti di Python accessibili durante l’esecuzione di un programma siano più o meno esplicitamente associate a degli oggetti permette ad esempio di eliminare variabili, parti di strutture dati, ma anche altri elementi del linguaggio che vedremo più avanti, come funzioni e moduli.</p>
+</div>
 <p class="rubric">Funzioni</p>
-<p>Python prevede inoltre alcune funzioni che elaborano liste, come per esempio <code class="docutils literal notranslate"><span class="pre">len</span></code> che restituisce il numero di elementi contenuti in una lista, a cui si fa di norma riferimento denotandolo come la <em>lunghezza</em> della lista stessa:</p>
+<p>Alcune delle funzioni nel linguaggio base di Python sono pensate per elaborare liste. Per esempio <code class="docutils literal notranslate"><span class="pre">len</span></code> restituisce la <em>lunghezza</em> della lista specificata come argomento, dove per lunghezza si intende il numero di elementi contenuti nella lista:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
@@ -516,8 +530,9 @@ Python supporta nativamente i seguenti tipi strutturati: le liste, le tuple, le 
 </div>
 </div>
 </div>
+<p>Anche in questo caso, <code class="docutils literal notranslate"><span class="pre">len</span></code> è una funzione di carattere generale pensata per calcolare la lunghezza delle varie strutture dati implementate in Python.</p>
 <p class="rubric">Metodi</p>
-<p>Python è un linguaggio di programmazione che implementa (anche) il paradigma orientato a oggetti, e le liste (così come gli altri tipi di dati che vedremo più avanti) sono a tutti gli effetti oggetti su cui è possibile invocare metodi. Supponiamo di voler mettere in ordine alfabetico i nomi dei supereroi (la lista è quasi in ordine, l’unico elemento fuori posto è l’ultimo): la corrispondente operazione di ordinamento richiede di invocare sulla lista il metodo <code class="docutils literal notranslate"><span class="pre">sort</span></code> (usando la <em>dot notation tipica</em> della programmazione orientata agli oggetti).</p>
+<p>Python è un linguaggio di programmazione che implementa (anche) il paradigma orientato a oggetti, e come abbiamo già visto le liste (così come gli altri tipi di dati) sono a tutti gli effetti oggetti, e quindi su di esse è possibile invocare dei metodi. Supponiamo per esempio di voler mettere in ordine alfabetico i nomi dei supereroi contenuti in <code class="docutils literal notranslate"><span class="pre">names</span></code> (la lista è quasi in ordine, l’unico elemento fuori posto è l’ultimo): uno dei modi in cui è possibile eseguire questa operazione è quella di invocare sulla lista il metodo <code class="docutils literal notranslate"><span class="pre">sort</span></code> (usando la <em>dot notation tipica</em> della programmazione orientata agli oggetti).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
@@ -525,7 +540,7 @@ Python supporta nativamente i seguenti tipi strutturati: le liste, le tuple, le 
 </div>
 </div>
 </div>
-<p>Così come l’operatore <code class="docutils literal notranslate"><span class="pre">del</span></code>, tale metodo però non restituisce alcun valore, in quanto l’ordinamento è eseguito <em>in place</em>: dopo l’invocazione, gli elementi della lista saranno stati riposizionati in modo da riflettere l’ordinamento. Possiamo convincercene facilmente visualizzando per esempio gli ultimi cinque elementi di <code class="docutils literal notranslate"><span class="pre">names</span></code>:</p>
+<p>Così come l’operatore <code class="docutils literal notranslate"><span class="pre">del</span></code>, questo metodo non restituisce alcun valore, in quanto l’ordinamento è eseguito <em>in place</em> <a class="footnote-reference brackets" href="#sorted" id="id2">2</a>: l’invocazione di <code class="docutils literal notranslate"><span class="pre">sort</span></code> ha come effetto collaterale il riposizionamento degli elementi all’interno della lista in modo da riflettere l’ordinamento <a class="footnote-reference brackets" href="#ordinamento-eterogeneo" id="id3">3</a>. Possiamo convincercene facilmente visualizzando per esempio gli ultimi cinque elementi di <code class="docutils literal notranslate"><span class="pre">names</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span>
@@ -750,6 +765,18 @@ Va notato che la sintassi per la descrizione delle tuple diventa problematica qu
 <p>Se si tenta di accedere in lettura a un dizionario specificando una chiave inesistente viene lanciata un’eccezione (<code class="docutils literal notranslate"><span class="pre">KeyError</span></code>), mentre accedendovi in scrittura la specificazione di una chiave inesistente comporterà l’aggiunta della corrispondente coppia (chiave, valore) al dizionario.</p>
 <p>L’operatore <code class="docutils literal notranslate"><span class="pre">in</span></code> introdotto per le liste può anche essere utilizzato per i dizionari: più precisamente, l’espressione <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">in</span> <span class="pre">d</span></code> restituisce <code class="docutils literal notranslate"><span class="pre">True</span></code> se <code class="docutils literal notranslate"><span class="pre">k</span></code> è una chiave valida per il dizionario <code class="docutils literal notranslate"><span class="pre">d</span></code>.</p>
 <p>Anche nel caso dei dizionari il linguaggio mette a disposizione una serie di funzioni specifiche, e si può fare riferimento alla <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#dictionaries">documentazione ufficiale</a> di python per approfondire l’argomento.</p>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="data-model"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>I lettori attenti potrebbero avere notato un apparente incoerenza tra il modo in cui vengono valutate le espressioni e la semantica appena introdotta per l’operatore <code class="docutils literal notranslate"><span class="pre">del</span></code>. Consideriamo l’espressione <code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">names[0]</span></code> dell’esempio precedente: se questa fosse valutata in modo ususale, verrebbe innanzitutto valutato l’operando, dunque l’espressione <code class="docutils literal notranslate"><span class="pre">names[0]</span></code>. L’operatore <code class="docutils literal notranslate"><span class="pre">del</span></code> verrebbe quindi applicato al valore ottenuto, che nel nostro caso sarebbe la stringa <code class="docutils literal notranslate"><span class="pre">'Aquaman'</span></code>. Ora, l’istruzione <code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">'Aquaman'</span></code> genererebbe un errore, perché <code class="docutils literal notranslate"><span class="pre">del</span></code> si può applicare solo a riferimenti e non a letterali. In realtà la valutazione di espressioni di questo tipo viene fatta in un modo diverso, perché <code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">names[0]</span></code> viene implicitamente convertita in un’altra espressione che equivale a invocare un particolare metodo dell’oggetto referenziato da <code class="docutils literal notranslate"><span class="pre">names</span></code>, passando il valore <code class="docutils literal notranslate"><span class="pre">0</span></code> come argomento. Senza addentrarsi in dettagli, è importante segnalare che Python è permeato da tecniche di questo tipo, che permettono tra l’altro di estendere l’uso della sintassi per i tipi <em>builtin</em> anche a oggetti di classi definite dagli sviluppatori. Chi volesse approfondire questo spetto può studiare il cosiddeto <a class="reference external" href="https://docs.python.org/3/reference/datamodel.html">data model</a> di Python (sebbene sarebbe prima importante imparare come definire e utilizzare nuove classi).</p>
+</dd>
+<dt class="label" id="sorted"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>In realtà è disponibile anche la funzione <code class="docutils literal notranslate"><span class="pre">sorted</span></code>, che non modifica l’argomento e restituisce una nuova lista.</p>
+</dd>
+<dt class="label" id="ordinamento-eterogeneo"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>Tenuto conto del fatto che le liste sono una struttura dati eterogenea ci si potrebbe chiedere quale sia la relazione d’ordine a cui fa riferimento Python quando viene invocato il metodo <code class="docutils literal notranslate"><span class="pre">sort</span></code>. Non approfondiremo questo aspetto: per quanto riguarda gli argomenti qui trattati è sufficiente dire che quando gli elementi della lista sono tutti dello stesso tipo viene sfruttata una relazione d’ordine canonica per questo tipo. Per esempio i valori numerici sono ordinati in modo non decrescente e per le stringhe viene utilizzato l’ordinamento lessicografico.</p>
+</dd>
+</dl>
 </div>
 </div>
 

@@ -317,7 +317,7 @@
               <div>
                 
   <div class="section" id="tipi-di-dati-semplici">
-<h1><span class="section-number">1.1. </span>Tipi di dati semplici<a class="headerlink" href="#tipi-di-dati-semplici" title="Permalink to this headline">¶</a></h1>
+<span id="dati-semplici"></span><h1><span class="section-number">1.1. </span>Tipi di dati semplici<a class="headerlink" href="#tipi-di-dati-semplici" title="Permalink to this headline">¶</a></h1>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Il linguaggio è comunque fortemente tipizzato, ma il <em>type checking</em> viene fatto durante l’esecuzione.</p>
@@ -420,13 +420,13 @@
 <td class="text-align:center"><p>congiunzione logica</p></td>
 <td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">and</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p></p></td>
-<td class="text-align:center"><p></p></td>
+<tr class="row-even"><td class="text-align:center"><p>appartenenza a una struttura</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">in</span></code></p></td>
 <td class="text-align:center"><p>disgiunzione logica</p></td>
 <td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">or</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p></p></td>
-<td class="text-align:center"><p></p></td>
+<tr class="row-odd"><td class="text-align:center"><p>rimozione dalla memoria</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">del</span></code></p></td>
 <td class="text-align:center"><p>negazione logica</p></td>
 <td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">not</span></code></p></td>
 </tr>
@@ -438,8 +438,9 @@
 <li><p>È presente un operatore specifico per l’elevamento a potenza, che accetta anche esponenti negativi e decimali. Pertanto valutando <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">**</span> <span class="pre">0.5</span></code> e <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">**</span> <span class="pre">-1</span></code> si calcolano rispettivamente la radice quadrata e l’inverso del valore contenuto in <code class="docutils literal notranslate"><span class="pre">a</span></code>.</p></li>
 <li><p>L’operatore <code class="docutils literal notranslate"><span class="pre">is</span></code> verifica se due riferimenti puntano allo stesso oggetto, mentre <code class="docutils literal notranslate"><span class="pre">==</span></code> verifica l’uguaglianza tra quanto contenuto tra due oggetti, anche diversi.</p></li>
 <li><p>Gli operatori che corrispondono ai connettivi logici sono codificati tramite <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code> e <code class="docutils literal notranslate"><span class="pre">not</span></code>, dunque in modo esplicito rispetto alla sintassi di linguaggi come Java o C (che usano invece i simboli <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code>, <code class="docutils literal notranslate"><span class="pre">||</span></code> e <code class="docutils literal notranslate"><span class="pre">!</span></code> <a class="footnote-reference brackets" href="#operatori-bitwise" id="id4">4</a>).</p></li>
+<li><p>Gli operatori <code class="docutils literal notranslate"><span class="pre">in</span></code> e <code class="docutils literal notranslate"><span class="pre">del</span></code>, introdotti per completezza, sono in realtà tipicamente utilizzati insieme alle strutture dati (vedi <a class="reference internal" href="dati-strutturati.html#dati-strutturati"><span class="std std-numref">Paragrafo 1.2</span></a>).</p></li>
 </ul>
-<p>Sebbene la maggior parte degli operatori che considereremo sono di tipo binario, ne esistono anche di altri tipi: il simbolo <code class="docutils literal notranslate"><span class="pre">-</span></code> è un esempio di operatore <em>unario</em> che cambia il segno dell’espressione numerica che lo segue (esiste anche l’analogo, ma poco utile, operatore <code class="docutils literal notranslate"><span class="pre">+</span></code>); analogamente, <code class="docutils literal notranslate"><span class="pre">not</span></code> è un operatore unario. Vedremo più avanti che esiste anche uno speciale operatore <em>ternario</em>.</p>
+<p>Sebbene la maggior parte degli operatori che considereremo sono di tipo binario, ne esistono anche di altri tipi: il simbolo <code class="docutils literal notranslate"><span class="pre">-</span></code> è un esempio di operatore <em>unario</em> che cambia il segno dell’espressione numerica che lo segue (esiste anche l’analogo, ma poco utile, operatore <code class="docutils literal notranslate"><span class="pre">+</span></code>); analogamente, <code class="docutils literal notranslate"><span class="pre">not</span></code> e <code class="docutils literal notranslate"><span class="pre">del</span></code> sono degli operatori unari. Vedremo più avanti che esiste anche uno speciale operatore <em>ternario</em>.</p>
 <p>La conversione tra i tipi semplici si effettua, quando possibile, utilizzando il nome del tipo come funzione di conversione. Come accennato in precedenza, i valori dei tipi semplici sono sempre oggetti di una specifica classe, il cui nome coincide con quello del tipo. Vedremo più avanti come utilizzare gli oggetti in Python: per il momento è sufficiente dire che il nome di una classe funge anche da costruttore, e per i tipi semplici questo costruttore accetta come argomento un’espressione, che <em>tenta</em> di convertire nel tipo in oggetto. Se la conversione è possibile viene creato un nuovo oggetto, altrimenti viene emesso un errore. Ciò significa che è possibile usare indirettamente questi costruttori per convertire tra tipi: per esempio</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

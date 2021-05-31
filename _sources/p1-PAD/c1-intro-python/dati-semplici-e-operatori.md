@@ -12,6 +12,7 @@ kernelspec:
   name: python3
 ---
 
+(dati-semplici)=
 # Tipi di dati semplici
  
 ```{margin}
@@ -53,18 +54,18 @@ A partire da valori booleani, interi o a virgola mobile è possibile costruire e
 :name: elenco-operatori-per-tipi-semplici
 :align: center
 
-|  Operazione          | Simbolo | Operazione               | Simbolo |
-|:--------------------:|:-------:|:------------------------:|:-------:|
-| addizione            | `+`     | uguale (per riferimento) | `is`    |
-| sottrazione          | `-`     | uguale (per contenuto)   | `==`    |
-| moltiplicazione      | `*`     | diverso                  | `!=`    |
-| divisione (reale)    | `/`     | minore                   | `<`     |
-| divisione (intera)   | `//`    | minore o uguale          | `<=`    |
-| resto (modulo)       | `%`     | maggiore                 | `>`     |
-| elevamento a potenza | `**`    | maggiore o uguale        | `>=`    |
-|                      |         | congiunzione logica      | `and`   |
-|                      |         | disgiunzione logica      | `or`    |
-|                      |         | negazione logica         | `not`   |
+|  Operazione                  | Simbolo | Operazione               | Simbolo |
+|:----------------------------:|:-------:|:------------------------:|:-------:|
+| addizione                    | `+`     | uguale (per riferimento) | `is`    |
+| sottrazione                  | `-`     | uguale (per contenuto)   | `==`    |
+| moltiplicazione              | `*`     | diverso                  | `!=`    |
+| divisione (reale)            | `/`     | minore                   | `<`     |
+| divisione (intera)           | `//`    | minore o uguale          | `<=`    |
+| resto (modulo)               | `%`     | maggiore                 | `>`     |
+| elevamento a potenza         | `**`    | maggiore o uguale        | `>=`    |
+|                              |         | congiunzione logica      | `and`   |
+| appartenenza a una struttura | `in`    | disgiunzione logica      | `or`    |
+| rimozione dalla memoria      | `del`   | negazione logica         | `not`   |
 
 ```
 
@@ -74,8 +75,9 @@ Nella maggior parte dei casi gli operatori usano la stessa sintassi dei loro equ
 - È presente un operatore specifico per l'elevamento a potenza, che accetta anche esponenti negativi e decimali. Pertanto valutando `a ** 0.5` e `a ** -1` si calcolano rispettivamente la radice quadrata e l'inverso del valore contenuto in `a`.
 - L'operatore `is` verifica se due riferimenti puntano allo stesso oggetto, mentre `==` verifica l'uguaglianza tra quanto contenuto tra due oggetti, anche diversi.
 - Gli operatori che corrispondono ai connettivi logici sono codificati tramite `and`, `or` e `not`, dunque in modo esplicito rispetto alla sintassi di linguaggi come Java o C (che usano invece i simboli `&&`, `||` e `!` [^operatori-bitwise]).
+- Gli operatori `in` e `del`, introdotti per completezza, sono in realtà tipicamente utilizzati insieme alle strutture dati (vedi {numref}`Paragrafo %s <dati-strutturati>`).
 
-Sebbene la maggior parte degli operatori che considereremo sono di tipo binario, ne esistono anche di altri tipi: il simbolo `-` è un esempio di operatore _unario_ che cambia il segno dell'espressione numerica che lo segue (esiste anche l'analogo, ma poco utile, operatore `+`); analogamente, `not` è un operatore unario. Vedremo più avanti che esiste anche uno speciale operatore _ternario_.
+Sebbene la maggior parte degli operatori che considereremo sono di tipo binario, ne esistono anche di altri tipi: il simbolo `-` è un esempio di operatore _unario_ che cambia il segno dell'espressione numerica che lo segue (esiste anche l'analogo, ma poco utile, operatore `+`); analogamente, `not` e `del` sono degli operatori unari. Vedremo più avanti che esiste anche uno speciale operatore _ternario_.
 
 La conversione tra i tipi semplici si effettua, quando possibile, utilizzando il nome del tipo come funzione di conversione. Come accennato in precedenza, i valori dei tipi semplici sono sempre oggetti di una specifica classe, il cui nome coincide con quello del tipo. Vedremo più avanti come utilizzare gli oggetti in Python: per il momento è sufficiente dire che il nome di una classe funge anche da costruttore, e per i tipi semplici questo costruttore accetta come argomento un'espressione, che _tenta_ di convertire nel tipo in oggetto. Se la conversione è possibile viene creato un nuovo oggetto, altrimenti viene emesso un errore. Ciò significa che è possibile usare indirettamente questi costruttori per convertire tra tipi: per esempio
 
