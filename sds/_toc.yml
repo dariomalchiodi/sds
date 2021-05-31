@@ -28,7 +28,7 @@
   - file: p2-SD/c1-dati-e-frequenze/dati-e-frequenze
 
 - part: Calcolo delle probabilità
-   chapters:
+  chapters:
   - file: p3-CP/c1-calcolo-combinatorio/calcolo-combinatorio
 
 - part: Bibliografia
