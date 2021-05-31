@@ -3,3 +3,6 @@ matplotlib
 numpy
 ghp-import
 jupytext
+pandas
+scipy
+statmodels
