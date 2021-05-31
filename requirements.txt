@@ -5,4 +5,4 @@ ghp-import
 jupytext
 pandas
 scipy
-statmodels
+statsmodels
