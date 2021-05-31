@@ -12,13 +12,7 @@ kernelspec:
   name: python3
 ---
 
-
-
-
-
-<div id="h-8"></div>
-
-## Strutture di controllo
+# Strutture di controllo
 Python gestisce il flusso di esecuzione tramite le tipiche strutture di controllo di sequenza, selezione e iterazione. La sequenza viene implementata semplicemente indicando le istruzioni, una per riga, in ordine di esecuzione: per esempio la cella seguente crea due liste, una con nomi di supereroi e un'altra con i corrispondenti anni di prima apparizione, e le memorizza nelle variabili `names` e `years`.
 
 ```{code-cell} ipython3

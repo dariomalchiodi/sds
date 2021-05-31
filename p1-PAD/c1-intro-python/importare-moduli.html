@@ -266,11 +266,11 @@
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/dariomalchiodi/Superhero Data Science"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/dariomalchiodi/sds"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/dariomalchiodi/Superhero Data Science/issues/new?title=Issue%20on%20page%20%2Fp1-PAD/c1-intro-python/importare-moduli.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/dariomalchiodi/sds/issues/new?title=Issue%20on%20page%20%2Fp1-PAD/c1-intro-python/importare-moduli.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -291,7 +291,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/dariomalchiodi/Superhero Data Science/main?urlpath=tree/docs/p1-PAD/c1-intro-python/importare-moduli.md"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dariomalchiodi/sds/main?urlpath=tree/docs/p1-PAD/c1-intro-python/importare-moduli.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../../_static/images/logo_binder.svg"
@@ -352,19 +352,18 @@
 <p>importa il modulo corrispondente alla libreria <a class="reference external" href="http://www.numpy.org">numpy</a>, che mette a disposizione una struttura dati simile agli array (in cui l’omogeneità dei dati ivi contenuti permette di effettuare calcoli in modo più efficiente rispetto all’uso delle liste o delle tuple). Dopo che un modulo è stato importato, è possibile accedere a un suo generico elemento usando il nome del modulo, seguito da un punto e dal nome dell’elemento in questione. Per esempio, la cella successiva calcola il cosiddetto <em>argmax</em> della lista <code class="docutils literal notranslate"><span class="pre">index</span></code> (dopo averla modificata eliminando i valori <code class="docutils literal notranslate"><span class="pre">None</span></code> in essa presenti), e cioè l’indice in cui si trova un suo elemento massimo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">years</span> <span class="k">if</span> <span class="n">y</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1941</span><span class="p">,</span> <span class="mi">1962</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1941</span><span class="p">,</span>
+         <span class="mi">1964</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1940</span><span class="p">,</span> <span class="mi">1941</span><span class="p">,</span> <span class="mi">1961</span><span class="p">,</span>
+         <span class="kc">None</span><span class="p">,</span> <span class="mi">1963</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1963</span><span class="p">,</span> <span class="mi">1981</span><span class="p">,</span>
+         <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1962</span><span class="p">,</span> <span class="mi">1979</span><span class="p">]</span>
+
+<span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">years</span> <span class="k">if</span> <span class="n">y</span><span class="p">]</span>
 <span class="n">numpy</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">years</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">4</span><span class="o">-</span><span class="mf">8487e12807</span><span class="n">f6</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">years</span> <span class="k">if</span> <span class="n">y</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">numpy</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">years</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;years&#39; is not defined
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9
 </pre></div>
 </div>
 </div>

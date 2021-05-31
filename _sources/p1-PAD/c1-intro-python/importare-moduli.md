@@ -42,6 +42,11 @@ import numpy
 importa il modulo corrispondente alla libreria [numpy](http://www.numpy.org), che mette a disposizione una struttura dati simile agli array (in cui l'omogeneità dei dati ivi contenuti permette di effettuare calcoli in modo più efficiente rispetto all'uso delle liste o delle tuple). Dopo che un modulo è stato importato, è possibile accedere a un suo generico elemento usando il nome del modulo, seguito da un punto e dal nome dell'elemento in questione. Per esempio, la cella successiva calcola il cosiddetto _argmax_ della lista `index` (dopo averla modificata eliminando i valori `None` in essa presenti), e cioè l'indice in cui si trova un suo elemento massimo.
 
 ```{code-cell} ipython3
+years = [1941, 1962, None, None, 1941,
+         1964, None, 1940, 1941, 1961,
+         None, 1963, None, 1963, 1981,
+         None, None, 1962, 1979]
+
 years = [y for y in years if y]
 numpy.argmax(years)
 ```
