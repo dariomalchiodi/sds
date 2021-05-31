@@ -1,0 +1,471 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tipi di dati semplici &#8212; Superhero Data Science</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Superhero Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Introduzione
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Statistica descrittiva
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../content.html">
+   1. Content in Jupyter Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../markdown.html">
+     1.1. Markdown Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../notebooks.html">
+     1.2. Content with notebooks
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../bibliography.html">
+   2. Bibliography
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Calcolo delle probabilità
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../content.html">
+   1. Content in Jupyter Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../markdown.html">
+     1.1. Markdown Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../notebooks.html">
+     1.2. Content with notebooks
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../_sources/p1-PAD/c1-intro-python/dati-semplici-e-operatori.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/p1-PAD/c1-intro-python/dati-semplici-e-operatori.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/dariomalchiodi/Superhero Data Science"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/dariomalchiodi/Superhero Data Science/issues/new?title=Issue%20on%20page%20%2Fp1-PAD/c1-intro-python/dati-semplici-e-operatori.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dariomalchiodi/Superhero Data Science/main?urlpath=tree/docs/p1-PAD/c1-intro-python/dati-semplici-e-operatori.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="tipi-di-dati-semplici">
+<h1>Tipi di dati semplici<a class="headerlink" href="#tipi-di-dati-semplici" title="Permalink to this headline">¶</a></h1>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Il linguaggio è comunque fortemente tipizzato, ma il <em>type checking</em> viene fatto durante l’esecuzione.</p>
+</div>
+<p>In Python non è obbligatorio dichiarare il tipo di una variabile, anzi: nelle prime versioni del linguaggio la dichiarazione non era neppure possibile <a class="footnote-reference brackets" href="#type-hinting" id="id1">1</a>. Pertanto, il modo più semplice di procedere quando si vuole utilizzare una variabile è quello di assegnarle un valore: quest’ultimo determina automaticamente il tipo, e di conseguenza quali operazioni si possono effettuare sulla variabile stessa <a class="footnote-reference brackets" href="#duck-typing" id="id2">2</a>. Ovviamente questo vale solo fino a quando non viene modificato il contenuto della variabile.</p>
+<p>I tipi di dati semplici sono quello booleano (<code class="docutils literal notranslate"><span class="pre">bool</span></code>, che fa riferimento alle costanti <code class="docutils literal notranslate"><span class="pre">True</span></code> e <code class="docutils literal notranslate"><span class="pre">False</span></code>), quello intero (<code class="docutils literal notranslate"><span class="pre">int</span></code>) e quello a virgola mobile (<code class="docutils literal notranslate"><span class="pre">float</span></code>). Ciò significa dunque che in Python, a differenza di altri linguaggi, non esiste un tipo semplice per i caratteri: vedremo più avanti che le stringhe sono direttamente implementate come tipo strutturato. Il tipo di dato intero permette di memorizzare numeri interi, che si esprimono come successioni di una o più cifre eventualmente precedute da <code class="docutils literal notranslate"><span class="pre">+</span></code> (che si può omettere) o da <code class="docutils literal notranslate"><span class="pre">-</span></code> per indicarne il segno. Il tipo di dato a virgola mobile permette di memorizzare numeri decimali; anche in questo caso si utilizza di norma la notazione tipica in ambito informatico: si indica il segno, seguito dalle cifre della parte intera, dal carattere <code class="docutils literal notranslate"><span class="pre">.</span></code> e dalle cifre della parte decimale (ed è obbligatorio specificare sempre il carattere di punto decimale e almeno una tra le parti intera e decimale, mentre il resto è opzionale). Nel caso in cui si debbano specificare dei valori molto grandi o molto piccoli risulta però più pratico l’utilizzo della notazione <em>scientifica</em> o <em>esponenziale:</em> si indica un valore di <em>mantissa</em> (con o senza virgola) seguito dal carattere <code class="docutils literal notranslate"><span class="pre">E</span></code> (o <code class="docutils literal notranslate"><span class="pre">e</span></code>) e da un numero intero detto <em>esponente;</em> tale espressione genera il valore numerico pari al prodotto della mantissa per <code class="docutils literal notranslate"><span class="pre">10</span></code> elevato all’esponente. Pertanto <code class="docutils literal notranslate"><span class="pre">1E9</span></code> e <code class="docutils literal notranslate"><span class="pre">1E-9</span></code> indicano rispettivamente un miliardo e un miliardesimo.</p>
+<p>Va sottolineato che in Python non esiste una distinzione tra tipi primitivi e oggetti, come succede in linguaggi come Java e C++: anche i tipi semplici come <code class="docutils literal notranslate"><span class="pre">int</span></code> e <code class="docutils literal notranslate"><span class="pre">float</span></code> corrispondono a classi e dunque assegnare, per esempio, <code class="docutils literal notranslate"><span class="pre">42</span></code> a una variabile implica la creazione di un oggetto e la memorizzazione di un riferimento a quest’ultimo.</p>
+<p>Se avete dubbi sul tipo di un’espressione, la funzione <code class="docutils literal notranslate"><span class="pre">type</span></code> restituisce il tipo corrispondente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_appearance</span> <span class="o">=</span> <span class="mi">1971</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">first_appearance</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>int
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weight</span> <span class="o">=</span> <span class="mf">71.6</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">weight</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>float
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bool
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Va osservato che esistono varie convenzioni relative allo stile da adottare quando si scrive codice Python; questo libro fa riferimento alla <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">Style Guide for Python Code</a>.</p>
+</div>
+<p>In due delle celle precedenti è possibile vedere come l’assegnamento di un valore a una variabile segua la stessa sintassi di parecchi linguaggi di programmazione. Per formare i nomi delle variabili si possono utilizzare i caratteri alfabetici (maiuscoli o minuscoli, tenendo conto del fatto che l’intero linguaggio è <em>case sensitive</em>), le cifre e il simbolo di <em>underscore</em> (<code class="docutils literal notranslate"><span class="pre">_</span></code>), con l’unico vincolo di non usare una cifra come carattere iniziale del nome. È inoltre convenzione ampiamente adottata quella di utilizzare per le variabili i soli caratteri minuscoli, facendo uso dell’<em>underscore</em> per separare parole diverse in un nome (come in <code class="docutils literal notranslate"><span class="pre">first_appearance</span></code> nella cella precedente). L’uso di uno o più <em>underscore</em> all’inizio o alla fine di un nome è da evitare, perché in alcune situazioni particolari ciò può conferire un significato specifico al codice: questo non succederebbe in ogni caso negli esempi contenuti in questo libro, ma è meglio essere particolarmente attenti a questo aspetto già quando si imparano le basi del linguaggio <a class="footnote-reference brackets" href="#eccezione-underscore" id="id3">3</a>.</p>
+<p>A partire da valori booleani, interi o a virgola mobile è possibile costruire espressioni arbitrariamente complesse utilizzando degli <em>operatori</em>. La maggior parte di quelli che considereremo è di tipo <em>binario</em> (cioè si applicano a due argomenti) e  si utilizzano in modalità <em>infissa</em> (il che significa che l’operatore si indica in mezzo ai suoi due argomenti). Gli operatori vengono utilizzati nella maggior parte dei linguaggi per codificare le operazioni aritmetico/logiche e le relazioni aritmetiche (utilizzando <code class="docutils literal notranslate"><span class="pre">+</span></code> per l’addizione, <code class="docutils literal notranslate"><span class="pre">!=</span></code> per la relazione di non uguaglianza e così via). La <code class="xref std std-numref docutils literal notranslate"><span class="pre">Tabella</span> <span class="pre">%s</span></code> riassume i principali simboli utilizzati in Python per questo tipo di operatori binari.</p>
+<table class="colwidths-auto table" id="elenco-operatori-per-tipi-semplici">
+<caption><span class="caption-text">Elenco dei principali operatori per i tipi semplici</span><a class="headerlink" href="#elenco-operatori-per-tipi-semplici" title="Permalink to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Operazione</p></th>
+<th class="text-align:center head"><p>Simbolo</p></th>
+<th class="text-align:center head"><p>Operazione</p></th>
+<th class="text-align:center head"><p>Simbolo</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>addizione</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">+</span></code></p></td>
+<td class="text-align:center"><p>uguale (per riferimento)</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">is</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>sottrazione</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
+<td class="text-align:center"><p>uguale (per contenuto)</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">==</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>moltiplicazione</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">*</span></code></p></td>
+<td class="text-align:center"><p>diverso</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">!=</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>divisione (reale)</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">/</span></code></p></td>
+<td class="text-align:center"><p>minore</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>divisione (intera)</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">//</span></code></p></td>
+<td class="text-align:center"><p>minore o uguale</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&lt;=</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>resto (modulo)</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">%</span></code></p></td>
+<td class="text-align:center"><p>maggiore</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>elevamento a potenza</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">**</span></code></p></td>
+<td class="text-align:center"><p>maggiore o uguale</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p></p></td>
+<td class="text-align:center"><p></p></td>
+<td class="text-align:center"><p>congiunzione logica</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">and</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p></p></td>
+<td class="text-align:center"><p></p></td>
+<td class="text-align:center"><p>disgiunzione logica</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">or</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p></p></td>
+<td class="text-align:center"><p></p></td>
+<td class="text-align:center"><p>negazione logica</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">not</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Nella maggior parte dei casi gli operatori usano la stessa sintassi dei loro equivalenti nei principali linguaggi di programmazione, mantenendo inalterata anche la semantica. Vanno però fatte alcune importanti osservazioni, elencate di seguito.</p>
+<ul class="simple">
+<li><p>Esistono due diversi simboli per codificare la divisione tra numeri reali e quella tra numeri interi. In altre parole, la valutazione di <code class="docutils literal notranslate"><span class="pre">/</span></code> sarà sempre un numero in virgola mobile, anche nel caso in cui i due argomenti dovessero essere due interi e il primo fosse un multiplo del secondo. In molti linguaggi di programmazione (comprese le versioni di Python precedenti alla 3.0) viene invece utilizzato il simbolo <code class="docutils literal notranslate"><span class="pre">/</span></code> per entrambe le divisioni, e in fase di esecuzione è il tipo degli operandi a stabilire quali delle due verrà effettivamente calcolata.</p></li>
+<li><p>È presente un operatore specifico per l’elevamento a potenza, che accetta anche esponenti negativi e decimali. Pertanto valutando <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">**</span> <span class="pre">0.5</span></code> e <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">**</span> <span class="pre">-1</span></code> si calcolano rispettivamente la radice quadrata e l’inverso del valore contenuto in <code class="docutils literal notranslate"><span class="pre">a</span></code>.</p></li>
+<li><p>L’operatore <code class="docutils literal notranslate"><span class="pre">is</span></code> verifica se due riferimenti puntano allo stesso oggetto, mentre <code class="docutils literal notranslate"><span class="pre">==</span></code> verifica l’uguaglianza tra quanto contenuto tra due oggetti, anche diversi.</p></li>
+<li><p>Gli operatori che corrispondono ai connettivi logici sono codificati tramite <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code> e <code class="docutils literal notranslate"><span class="pre">not</span></code>, dunque in modo esplicito rispetto alla sintassi di linguaggi come Java o C (che usano invece i simboli <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code>, <code class="docutils literal notranslate"><span class="pre">||</span></code> e <code class="docutils literal notranslate"><span class="pre">!</span></code> <a class="footnote-reference brackets" href="#operatori-bitwise" id="id4">4</a>).</p></li>
+</ul>
+<p>Sebbene la maggior parte degli operatori che considereremo sono di tipo binario, ne esistono anche di altri tipi: il simbolo <code class="docutils literal notranslate"><span class="pre">-</span></code> è un esempio di operatore <em>unario</em> che cambia il segno dell’espressione numerica che lo segue (esiste anche l’analogo, ma poco utile, operatore <code class="docutils literal notranslate"><span class="pre">+</span></code>); analogamente, <code class="docutils literal notranslate"><span class="pre">not</span></code> è un operatore unario. Vedremo più avanti che esiste anche uno speciale operatore <em>ternario</em>.</p>
+<p>La conversione tra i tipi semplici si effettua, quando possibile, utilizzando il nome del tipo come funzione di conversione. Come accennato in precedenza, i valori dei tipi semplici sono sempre oggetti di una specifica classe, il cui nome coincide con quello del tipo. Vedremo più avanti come utilizzare gli oggetti in Python: per il momento è sufficiente dire che il nome di una classe funge anche da costruttore, e per i tipi semplici questo costruttore accetta come argomento un’espressione, che <em>tenta</em> di convertire nel tipo in oggetto. Se la conversione è possibile viene creato un nuovo oggetto, altrimenti viene emesso un errore. Ciò significa che è possibile usare indirettamente questi costruttori per convertire tra tipi: per esempio</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span><span class="p">(</span><span class="mf">3.14</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<p>effettua la conversione da <code class="docutils literal notranslate"><span class="pre">float</span></code> a <code class="docutils literal notranslate"><span class="pre">int</span></code> <a class="footnote-reference brackets" href="#letterali" id="id5">5</a>.</p>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="type-hinting"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>A partire dalla versione 3.5 Python permette di indicare il tipo di alcuni elementi del linguaggio (come ad esempio i parametri formali di una funzione, o il valore da essa restituito) utilizzando un formalismo chiamato <em>type hinting</em>. Va specificato che la tipizzazione resta comunque dinamica, ma in questo modo è possibile utilizzare degli strumenti esterni per effettuare il cosiddetto <em>type checking</em>, che consiste nel verificare <em>staticamente</em> (cioè sulla base di quanto scritto nel codice) che le variabili vengano utilizzate correttamente. <em>Editor</em> e IDE  possono per esempio trarre vantaggio dal <em>type hinting</em> per suggerire come completare il codice o per segnalare dei <em>warning</em>. Infine, l’uso del <em>type hinting</em> rappresenta anche un modo per alleggerire la documentazione.</p>
+</dd>
+<dt class="label" id="duck-typing"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>Se in un linguaggio è necessario dichiarare esplicitamente i tipi, si dice che la <em>tipizzazione</em> è <em>statica</em> e la dichiarazione determina che cosa si può fare con un oggetto; per esempio su un oggetto di tipo <code class="docutils literal notranslate"><span class="pre">Anatra</span></code> sarà possibile invocare i metodi <code class="docutils literal notranslate"><span class="pre">cammina</span></code>, <code class="docutils literal notranslate"><span class="pre">nuota</span></code> e <code class="docutils literal notranslate"><span class="pre">starnazza</span></code>. Senza entrare troppo nei dettagli, in Python la tipizzazione è <em>dinamica</em> e si assiste a un rovesciamento del concetto di <em>semantica</em>. Ciò è legato al fatto che sono i metodi invocabili a un dato momento della vita di un oggetto a individuarne il tipo. Pertanto, se è possibile invocare i metodi <code class="docutils literal notranslate"><span class="pre">cammina</span></code>, <code class="docutils literal notranslate"><span class="pre">nuota</span></code> e <code class="docutils literal notranslate"><span class="pre">starnazza</span></code> su un oggetto diremo che questo è equivalente a un’<code class="docutils literal notranslate"><span class="pre">Anatra</span></code>. Questo esempio non è fatto a caso: si utilizza infatti proprio il termine <em>duck typing</em> per descrivere questo tipo di tipizzazione dinamica, facendo riferimento a una frase attribuita al poeta americano James Whitcomb Riley: «when I see a bird that walks like a duck and swims like a duck and quacks like a duck, I call that bird a duck».</p>
+</dd>
+<dt class="label" id="eccezione-underscore"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>Ci sono due importanti eccezioni a questa regola che verranno introdotte più avanti.</p>
+</dd>
+<dt class="label" id="operatori-bitwise"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
+<dd><p>Rimangono invece invariati i simboli <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>, <code class="docutils literal notranslate"><span class="pre">|</span></code> e <code class="docutils literal notranslate"><span class="pre">!</span></code> per riferirsi agli operatori binari che vengono applicati “bit per bit” o “componente per componente”. Questi operatori risultano particolarmente utili da utilizzare insieme a pandas (vedi <code class="xref std std-numref docutils literal notranslate"><span class="pre">Capitolo</span> <span class="pre">%s</span></code>).</p>
+</dd>
+<dt class="label" id="letterali"><span class="brackets"><a class="fn-backref" href="#id5">5</a></span></dt>
+<dd><p>Ovviamente Python prevede l’uso dei <em>letterali</em> per scrivere i valori dei tipi fondamentali senza ricorrere esplicitamente all’uso dei costruttori, come abbiamo visto all’inizio di questo paragrafo.</p>
+</dd>
+</dl>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./p1-PAD/c1-intro-python"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dario Malchiodi<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

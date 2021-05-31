@@ -1,0 +1,1427 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dati e frequenze &#8212; Superhero Data Science</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Superhero Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Introduzione
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Statistica descrittiva
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../content.html">
+   1. Content in Jupyter Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../markdown.html">
+     1.1. Markdown Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../notebooks.html">
+     1.2. Content with notebooks
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../bibliography.html">
+   2. Bibliography
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Calcolo delle probabilità
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../content.html">
+   1. Content in Jupyter Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../markdown.html">
+     1.1. Markdown Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../notebooks.html">
+     1.2. Content with notebooks
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../_sources/p2-SD/c1-dati-e-frequenze/dati-e-frequenze.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/p2-SD/c1-dati-e-frequenze/dati-e-frequenze.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/dariomalchiodi/Superhero Data Science"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/dariomalchiodi/Superhero Data Science/issues/new?title=Issue%20on%20page%20%2Fp2-SD/c1-dati-e-frequenze/dati-e-frequenze.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dariomalchiodi/Superhero Data Science/main?urlpath=tree/docs/p2-SD/c1-dati-e-frequenze/dati-e-frequenze.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dati-quantitativi-e-qualitativi">
+   Dati quantitativi e qualitativi
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classificazione-dei-dati-qualitativi">
+     Classificazione dei dati qualitativi
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classificazione-dei-dati-quantitativi">
+     Classificazione dei dati quantitativi
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#frequenze-assolute-e-relative-e-loro-visualizzazione">
+   Frequenze assolute e relative e loro visualizzazione
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#frequenze-cumulate">
+   Frequenze cumulate
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#diagrammi-di-pareto">
+     Diagrammi di Pareto
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#frequenze-congiunte-e-marginali">
+   Frequenze congiunte e marginali
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#alcuni-approfondimenti-sulla-generazione-dei-grafici-sup-sup">
+   Alcuni approfondimenti sulla generazione dei grafici
+   <sup>
+    *
+   </sup>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#i-diagrammi-stelo-foglia-sup-sup">
+   I diagrammi stelo-foglia
+   <sup>
+    *
+   </sup>
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <h1>Table of Contents<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#Dati-e-frequenze" data-toc-modified-id="Dati-e-frequenze-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>Dati e frequenze</a></span><ul class="toc-item"><li><span><a href="#Dati-quantitativi-e-qualitativi" data-toc-modified-id="Dati-quantitativi-e-qualitativi-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>Dati quantitativi e qualitativi</a></span><ul class="toc-item"><li><span><a href="#Classificazione-dei-dati-qualitativi" data-toc-modified-id="Classificazione-dei-dati-qualitativi-1.1.1"><span class="toc-item-num">1.1.1&nbsp;&nbsp;</span>Classificazione dei dati qualitativi</a></span></li><li><span><a href="#Classificazione-dei-dati-quantitativi" data-toc-modified-id="Classificazione-dei-dati-quantitativi-1.1.2"><span class="toc-item-num">1.1.2&nbsp;&nbsp;</span>Classificazione dei dati quantitativi</a></span></li></ul></li><li><span><a href="#Frequenze-assolute-e-relative-e-loro-visualizzazione" data-toc-modified-id="Frequenze-assolute-e-relative-e-loro-visualizzazione-1.2"><span class="toc-item-num">1.2&nbsp;&nbsp;</span>Frequenze assolute e relative e loro visualizzazione</a></span></li><li><span><a href="#Frequenze-cumulate" data-toc-modified-id="Frequenze-cumulate-1.3"><span class="toc-item-num">1.3&nbsp;&nbsp;</span>Frequenze cumulate</a></span><ul class="toc-item"><li><span><a href="#Diagrammi-di-Pareto" data-toc-modified-id="Diagrammi-di-Pareto-1.3.1"><span class="toc-item-num">1.3.1&nbsp;&nbsp;</span>Diagrammi di Pareto</a></span></li></ul></li><li><span><a href="#Frequenze-congiunte-e-marginali" data-toc-modified-id="Frequenze-congiunte-e-marginali-1.4"><span class="toc-item-num">1.4&nbsp;&nbsp;</span>Frequenze congiunte e marginali</a></span></li><li><span><a href="#Alcuni-approfondimenti-sulla-generazione-dei-grafici-*" data-toc-modified-id="Alcuni-approfondimenti-sulla-generazione-dei-grafici-*-1.5"><span class="toc-item-num">1.5&nbsp;&nbsp;</span>Alcuni approfondimenti sulla generazione dei grafici <sup>*</sup></a></span></li><li><span><a href="#I-diagrammi-stelo-foglia-*" data-toc-modified-id="I-diagrammi-stelo-foglia-*-1.6"><span class="toc-item-num">1.6&nbsp;&nbsp;</span>I diagrammi stelo-foglia <sup>*</sup></a></span></li></ul></li></ul></div><div class="header">
+D. Malchiodi, Superhero data science. Vol 1: probabilità e statistica: Dati e frequenze.
+</div>
+<hr style="width: 90%;" align="left" /><div id="h-0"></div>
+<div class="section" id="dati-e-frequenze">
+<h1>Dati e frequenze<a class="headerlink" href="#dati-e-frequenze" title="Permalink to this headline">¶</a></h1>
+<p>Vedremo come esistano tipi differenti di dati, e come in funzione del loro tipo esistano diversi strumenti grafici che li descrivono. Studieremo inoltre in modo più approfondito e diversificato il concetto di <em>frequenza</em>.</p>
+<p>Come sempre, carichiamo le librerie e il dataset dei supereroi. Già che ci siamo, escludiamo l’unico record che fa riferimento al 2099 come anno di prima apparizione.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.constants</span> <span class="kn">import</span> <span class="n">golden</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;figure&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="o">/</span><span class="n">golden</span><span class="p">))</span>
+
+
+<span class="n">heroes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/heroes.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">heroes_with_year</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">2020</span><span class="p">]</span>
+
+<span class="n">heroes_with_year</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="mb">0b0</span><span class="mi">64</span><span class="n">b616935</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> 
+<span class="g g-Whitespace">     </span><span class="mi">11</span> 
+<span class="ne">---&gt; </span><span class="mi">12</span> <span class="n">heroes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/heroes.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">heroes_with_year</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">2020</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> 
+
+<span class="nn">/opt/hostedtoolcache/Python/3.8.10/x64/lib/python3.8/site-packages/pandas/io/parsers.py</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, dialect, error_bad_lines, warn_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">608</span>     <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">609</span> 
+<span class="ne">--&gt; </span><span class="mi">610</span>     <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">611</span> 
+<span class="g g-Whitespace">    </span><span class="mi">612</span> 
+
+<span class="nn">/opt/hostedtoolcache/Python/3.8.10/x64/lib/python3.8/site-packages/pandas/io/parsers.py</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">460</span> 
+<span class="g g-Whitespace">    </span><span class="mi">461</span>     <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">462</span>     <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">463</span> 
+<span class="g g-Whitespace">    </span><span class="mi">464</span>     <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.8.10/x64/lib/python3.8/site-packages/pandas/io/parsers.py</span> in <span class="ni">__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">817</span>             <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">818</span> 
+<span class="ne">--&gt; </span><span class="mi">819</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">820</span> 
+<span class="g g-Whitespace">    </span><span class="mi">821</span>     <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.8.10/x64/lib/python3.8/site-packages/pandas/io/parsers.py</span> in <span class="ni">_make_engine</span><span class="nt">(self, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1048</span>             <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1049</span>         <span class="c1"># error: Too many arguments for &quot;ParserBase&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1050</span>         <span class="k">return</span> <span class="n">mapping</span><span class="p">[</span><span class="n">engine</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">)</span>  <span class="c1"># type: ignore[call-arg]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1051</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1052</span>     <span class="k">def</span> <span class="nf">_failover_to_python</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.8.10/x64/lib/python3.8/site-packages/pandas/io/parsers.py</span> in <span class="ni">__init__</span><span class="nt">(self, src, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1865</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1866</span>         <span class="c1"># open handles</span>
+<span class="ne">-&gt; </span><span class="mi">1867</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_open_handles</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1868</span>         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1869</span>         <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="s2">&quot;compression&quot;</span><span class="p">):</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.8.10/x64/lib/python3.8/site-packages/pandas/io/parsers.py</span> in <span class="ni">_open_handles</span><span class="nt">(self, src, kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1360</span>         <span class="n">Let</span> <span class="n">the</span> <span class="n">readers</span> <span class="nb">open</span> <span class="n">IOHanldes</span> <span class="n">after</span> <span class="n">they</span> <span class="n">are</span> <span class="n">done</span> <span class="k">with</span> <span class="n">their</span> <span class="n">potential</span> <span class="n">raises</span><span class="o">.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1361</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1362</span><span class="s2">         self.handles = get_handle(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1363</span><span class="s2">             src,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1364</span><span class="s2">             &quot;r&quot;,</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.8.10/x64/lib/python3.8/site-packages/pandas/io/common.py</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">640</span><span class="s2">                 errors = &quot;replace&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">641</span><span class="s2">             # Encoding</span>
+<span class="ne">--&gt; </span><span class="mi">642</span><span class="s2">             handle = open(</span>
+<span class="g g-Whitespace">    </span><span class="mi">643</span><span class="s2">                 handle,</span>
+<span class="g g-Whitespace">    </span><span class="mi">644</span><span class="s2">                 ioargs.mode,</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;data/heroes.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div id="h-1"></div>
+<div class="section" id="dati-quantitativi-e-qualitativi">
+<h2>Dati quantitativi e qualitativi<a class="headerlink" href="#dati-quantitativi-e-qualitativi" title="Permalink to this headline">¶</a></h2>
+<p>Una delle principali distinzioni che si possono fare sui dati osservabili riguarda il modo in cui questi sono misurati:</p>
+<ul>
+  <li>si parla di dati _quantitativi_ se l'esito della misurazione è una quantità numerica;</li>
+  <li>si parla invece di dati _qualitativi_ (o categorici, o nominali) quando la misurazione è fatta scegliendo un'etichetta a partire da un insieme disponibili.</li>
+</ul>
+<p>Pertanto nel nostro dataset i caratteri <em>Height</em>, <em>Weight</em> e <em>Strength</em> saranno da considerare quantitativi, mentre i caratteri <em>Name</em>, <em>Identity</em>, <em>Birth place</em>, <em>Publisher</em>, <em>Gender</em>, <em>Eye color</em>, <em>Hair color</em> e <em>Intelligence</em> saranno sicuramente di tipo qualititativo (la differenza tra <em>Strength</em> e <em>Intelligence</em> è legata al fatto che il primo carattere è misurato tramite numeri che variano tra 0 e 100 mentre il secondo fa riferimento a una scala basata su etichette). La classificazione di <em>First appearance</em> è più sfumata e merita qualche riflessione in più: sebbene l’anno di prima apparizione sia misurato tramite un numero intero, il suo valore non indica prettamente una <em>quantità</em>, bensì <em>quando</em> è accaduto un evento. In tal senso, il calcolo di operazioni aritmetiche quali la somma o la divisione perde di significato, ed è per questo che spesso caratteri di questo tipo ricadono nella classe dei dati qualitativi. Cionondimeno, vedremo come sia possibile ragionare sul carattere <em>First appearance</em> anche in termini quantitativi quando per esempio parleremo della visualizzazione di istogrammi. Ci sono poi casi di caratteri espressi in termini temporali in cui viene misurato il tempo intercorso a partire da un dato istante iniziale (come per esempio il tempo di arrivo del primo cliente in un negozio, misurato in minuti dall’orario di apertura), di cui è chiara l’appartenenza alla classe dei dati quantitativi.</p>
+<div id="h-2"></div>
+<div class="section" id="classificazione-dei-dati-qualitativi">
+<h3>Classificazione dei dati qualitativi<a class="headerlink" href="#classificazione-dei-dati-qualitativi" title="Permalink to this headline">¶</a></h3>
+<p>I dati qualitativi vengono spesso ulteriormente classificati come binari/booleani, nominali oppure ordinali. Si parla di dati <em>binari</em> o <em>booleani</em> quando l’osservazione può avere solo due esiti tra loro non confrontabili (volendo si può parlare di dati booleani per enfatizzare che si sta valutando la presenza o l’assenza di una proprietà, e di dati binari quando esistono due possibili etichette): in tal senso, il carattere <em>Gender</em>, che può assumere solo i valori M e F, è quindi un carattere qualitativo binario. Anche nei dati <em>nominali</em> (detti anche sconnessi), di cui i dati binari rappresentano un caso particolare, i valori osservabili non sono tra loro confrontabili, sebbene non vi sia limite sul numero di diverse etichette. Saranno dunque dati qualitativi nominali, oltre al già considerato <em>Gender</em>, anche <em>Name</em>, <em>Identity</em>, <em>Birth place</em>, <em>Publisher</em>, <em>Gender</em>, <em>Eye color</em> e <em>Hair color</em>. Detto in altri termini, in questo tipo di dati (e quindi anche nel caso binario/booleano) è solo possibile stabilire una relazione di equivalenza tra i valori osservabili: pertanto, due osservazioni potranno avere valori uguali oppure diversi, e nulla più si potrà dire sul loro rapporto. Nei dati <em>ordinali</em>, invece, è possibile stabilire una relazione d’ordine tra i valori osservabili, e quindi quando due valori saranno diversi sarà anche possibile dire quale tra i due sia il più piccolo e quale il più grande. Nel nostro dataset, solo <em>Intelligence</em> è un dato qualitativo ordinale.</p>
+<div id="h-3"></div>
+</div>
+<div class="section" id="classificazione-dei-dati-quantitativi">
+<h3>Classificazione dei dati quantitativi<a class="headerlink" href="#classificazione-dei-dati-quantitativi" title="Permalink to this headline">¶</a></h3>
+<p>Per quanto riguarda i dati quantitativi, viene spesso fatto riferimento alla differenza tra dati <em>discreti</em> e <em>continui</em> in funzione del tipo di insieme di valori che questi possono assumere. Va in realtà notato che i dati che elaboriamo sono memorizzati su un computer e quindi i valori reali vengono approssimati tramite valori all’interno di un insieme finito (dunque discreto). Vale più la pena ragionare in termini di caratteri per cui ha senso dare significato a un singolo valore (come nel caso dell’anno di prima apparizione, in cui ha senso considerare gli eroi apparsi nel 1970) e di caratteri in cui di norma ha senso considerare un <em>intervallo</em> di valori (come nel caso dei rimanenti caratteri: ha di solito poco senso considerare, per esempio, un eroe alto esattamente 178 centimetri o con un indice di forza pari a 42).</p>
+<p>In alcuni casi si considerano diversi i caratteri quantitativi in funzione che abbia o meno senso considerare il <em>rapporto</em> tra i corrispondenti valori: sarebbe questo il caso dei caratteri <em>Height</em>, <em>Weight</em> e <em>Strength</em> nel nostro dataset.</p>
+<div id="h-4"></div>
+</div>
+</div>
+<div class="section" id="frequenze-assolute-e-relative-e-loro-visualizzazione">
+<h2>Frequenze assolute e relative e loro visualizzazione<a class="headerlink" href="#frequenze-assolute-e-relative-e-loro-visualizzazione" title="Permalink to this headline">¶</a></h2>
+<p>Abbiamo già incontrato il concetto di <em>frequenza assoluta</em>: si tratta del conteggio del numero di volte che una data osservazione occorre in un campione. Questo tipo di informazione è facilmente analizzabile quando il nuemro di differenti osservazioni non è troppo grande: ciò accade quasi sempre quando si analizzano caratteri qualitativi e relativamente meno spesso per i caratteri quantitativi. Prendiamo per esempio in considerazione il carattere <em>Publisher</em>, e calcoliamone le frequenze assolute usando il già introdotto metodo <code class="docutils literal notranslate"><span class="pre">value_counts</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Vi sono dunque, nel dataset che stiamo analizzando, dieci diversi valori possibili per l’editore: ciò rende l’insieme delle frequenze assolute facilmente visualizzabile in forma tabulare, costruendo la cosiddetta <em>tabella delle frequenze assolute</em> in cui si ha una riga per ogni possibile valore osservabile, e tale riga contiene il valore stesso e la corrispondente frequenza assoluta. In senso lato, già l’output di <code class="docutils literal notranslate"><span class="pre">value_counts</span></code> è una tabella delle frequenze assolute, anche se è possibile utilizzare la funzione <code class="docutils literal notranslate"><span class="pre">pd.crosstab</span></code> per ottenere una visualizzazione più elegante, in quanto tale funzione restituisce un <em>dataframe</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">publisher_freq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">],</span>
+                             <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Abs. freqence&#39;</span><span class="p">],</span>
+                             <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">])</span>
+<span class="n">publisher_freq</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-info">
+L'argomento essenziale di `pd.crosstab` è, in questo caso, `index`, che viene impostato alla serie di cui vanno calcolate le frequenze assolute; i due rimanenti argomenti influiscono solo sul modo in cui viene visualizzata la tabella delle frequenze: `columns` contiene una lista il cui unico elemento è l'intestazione della colonna delle frequenze, mentre `colnames` viene impostato a una lista contenente una stringa vuota al fine di non visualizzare un'ulteriore etichetta per l'intera tabella.
+</div>
+<p>Essendo l’output di <code class="docutils literal notranslate"><span class="pre">pd.crosstab</span></code> un <em>dataframe</em>, su esso si possono eseguire operazioni quali <em>slicing</em>, accesso basato su indice e su posizione e così via. Ciò permette di trasformare facilmente una tabella di frequenze relative nella corrispondente tabella delle <em>frequenze relative</em>, dove la frequenza relativa di un’osservazione è la frazione di casi in quell’osservazione occorre. L’uso delle frequenze relative permette di valutare più facilmente la grandezza dei valori in gioco, in quanto questi varieranno sempre tra 0 e 1, mentre le frequenze assolute non hanno a priori un valore massimo e quindi è meno facile valutare se una frequenza è «alta» o «bassa». Le frequenze relative si calcolano dividendo quelle assolute per il numero totale di casi; quest’ultimo è ovviamente uguale alla somma di tutte le frequenze assolute, quindi la tabella delle frequenze relative si può ottenere nel modo seguente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">publisher_abs_freq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">],</span>
+                                 <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Rel. freqence&#39;</span><span class="p">],</span>
+                                 <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">])</span>
+<span class="n">publisher_rel_freq</span> <span class="o">=</span> <span class="n">publisher_abs_freq</span> <span class="o">/</span> <span class="n">publisher_abs_freq</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="n">publisher_rel_freq</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In realtà è possibile creare direttamente la tabella delle frequenze relative specificando il valore <code class="docutils literal notranslate"><span class="pre">True</span></code> per l’argomento <code class="docutils literal notranslate"><span class="pre">normalize</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">publisher_rel_freq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">],</span>
+                                 <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Rel. freqence&#39;</span><span class="p">],</span>
+                                 <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">],</span>
+                                 <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">publisher_rel_freq</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La visualizzazione della tabella può essere migliorata riducendo il numero di cifre visualizzate, applicando ai suoi elementi la funzione <code class="docutils literal notranslate"><span class="pre">np.round</span></code> che arrotonda un valore floating point mantenendo un numero prefissato di cifre decimali:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">publisher_rel_freq</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Volendo visualizzare la frequenza relativa usando delle percentuali è possibile operare in modo simile: basta moltiplicare per 100 i valori una volta che questi sono stati arrotondati in modo da tener conto delle cifre decimali che si vogliono visualizzare. Nella cella seguente il risultato viene convertito in una serie di stringhe, così da poter effettuare un’ultima trasformazione che visualizza le percentuali utilizzando il simbolo <code class="docutils literal notranslate"><span class="pre">%</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">publisher_rel_freq</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">p</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+                   <span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+                   <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span> <span class="o">+</span> <span class="s1">&#39;%&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>L’ordine delle righe in una tabella delle frequenze è quello individuato dal suo indice, che tipicamente è legato all’ordinamento predefinito (non decrescente) dei suoi elementi: nel caso di stringhe, quindi, le righe saranno ordinate alfabeticamente per i valori della prima colonna.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gender_freq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">],</span>
+                          <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Abs. frequence&#39;</span><span class="p">],</span>
+                          <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">])</span>
+<span class="n">gender_freq</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Volendo modificare tale ordine è possibile accedere al <em>dataframe</em> corrispondente alla tabella tramite <code class="docutils literal notranslate"><span class="pre">loc</span></code> e specificando come secondo argomento una lista dei valori nell’ordine desiderato:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gender_freq</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Abbiamo già visto come utilizzando l’attributo <code class="docutils literal notranslate"><span class="pre">plot</span></code> di una serie sia possibile visualizzarne graficamente i contenuti. In particolare, per i dati di tipo qualitativo è tipicamente sensato utilizzare i grafici a barre:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Un grafico analogo si ottiene invocando sempre il metodo <code class="docutils literal notranslate"><span class="pre">plot.bar</span></code> sul <em>dataframe</em> corrispondente alla tabella delle frequenze:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">publisher_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Vi sono due principali differenze tra i grafici a barre ottenuti:</p>
+<ul class="simple">
+<li><p>nel primo le barre sono ordinate per frequenza non crescente, mentre nel secondo queste seguono l’ordinamento (in questo caso alfabetico) dei corrispondenti valori;</p></li>
+<li><p>il secondo grafico contiene una legenda ed etichetta l’asse delle ascisse con il nome del carattere considerato.</p></li>
+</ul>
+<p>Volendo eliminare la legenda è sufficiente rigenerare il grafico specificando il valore <code class="docutils literal notranslate"><span class="pre">False</span></code> per l’argomento <code class="docutils literal notranslate"><span class="pre">legend</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">publisher_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Volendo visualizzare le barre in un ordine differente è sufficiente riordinare il <em>dataframe</em> nello stesso già visto per le tabelle delle frequenze, prima di invocare <code class="docutils literal notranslate"><span class="pre">plt.plot</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">publisher_order</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Hanna-Barbera&#39;</span><span class="p">,</span> <span class="s1">&#39;ABC Studios&#39;</span><span class="p">,</span> <span class="s1">&#39;Dark Horse Comics&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;Image Comics&#39;</span><span class="p">,</span> <span class="s1">&#39;Marvel Comics&#39;</span><span class="p">,</span> <span class="s1">&#39;DC Comics&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;George Lucas&#39;</span><span class="p">,</span> <span class="s1">&#39;Rebellion&#39;</span><span class="p">,</span> 
+                   <span class="s1">&#39;Star Trek&#39;</span><span class="p">,</span> <span class="s1">&#39;Universal Studios&#39;</span><span class="p">]</span>
+
+<span class="n">publisher_rel_freq</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">publisher_order</span><span class="p">,:]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Oltre a modificare l’ordine delle barre, il grafico precedente visualizza le frequenze relative, ottenute in questo caso facendo riferimento alla tabella <code class="docutils literal notranslate"><span class="pre">publisher_rel_freq</span></code> precedentemente generata. Ovviamente il grafico che si ottiene è analogo a quello delle frequenze assolute: l’unica cosa che cambia è la scala dei valori sull’asse delle ascisse.</p>
+<p>L’uso delle frequenze relative permette anche di confrontare situazioni in cui il numero di osservazioni è variabile. Se per esempio volessimo comparare le frequenze della forza dei supereroi con quelle delle supereroine, ci troveremmo con due diversi numeri di osservazioni:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">male_strength_freq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;M&#39;</span><span class="p">,</span>
+                                                  <span class="s1">&#39;Strength&#39;</span><span class="p">],</span>
+                                 <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Abs. freq.&#39;</span><span class="p">)</span>
+<span class="n">female_strength_freq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;F&#39;</span><span class="p">,</span>
+                                                    <span class="s1">&#39;Strength&#39;</span><span class="p">],</span>
+                                   <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Abs. freq.&#39;</span><span class="p">)</span>
+
+<span class="n">num_male</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">male_strength_freq</span><span class="p">[</span><span class="s1">&#39;Abs. freq.&#39;</span><span class="p">])</span>
+<span class="n">num_female</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">female_strength_freq</span><span class="p">[</span><span class="s1">&#39;Abs. freq.&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ci sono </span><span class="si">{}</span><span class="s1"> supereroi e </span><span class="si">{}</span><span class="s1"> supereroine&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">num_male</span><span class="p">,</span> <span class="n">num_female</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sovrapporre quindi i grafici a barre delle frequenze assolute non avrebbe senso, perché le relative altezze non sarebbero confrontabili. Ha invece senso fare il confronto con le frequenze relative.  Già che ci siamo, utilizziamo l’argomento <code class="docutils literal notranslate"><span class="pre">color</span></code> per impostare rispettivamente a blu e rosa i colori dei settori che corrispondono a maschi e femmine (è un po’ sessista, ma aiuta a leggere il grafico a colpo d’occhio).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">male_strength_freq</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;M&#39;</span><span class="p">,</span>
+                                                   <span class="s1">&#39;Strength&#39;</span><span class="p">],</span>
+                                 <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Abs. freq.&#39;</span><span class="p">,</span>
+                                 <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                        <span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">&#39;Abs. freq.&#39;</span><span class="p">])</span>
+<span class="n">female_strength_freq</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;F&#39;</span><span class="p">,</span>
+                                                     <span class="s1">&#39;Strength&#39;</span><span class="p">],</span>
+                                   <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Abs. freq.&#39;</span><span class="p">,</span>
+                                   <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                          <span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">&#39;Abs. freq.&#39;</span><span class="p">])</span>
+
+<span class="n">male_strength_freq</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">female_strength_freq</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-warning">
+Se siete stati attenti avrete notato che le tabelle delle frequenze sono state accedute tramite `loc` al fine di estrarre le corrispondenti serie. Ciò è dovuto al fatto che in caso contrario matplotlib avrebbe prodotto due grafici separati. Quando più avanti parleremo delle frequenze congiunte vedremo un modo semplice per generare un'unica figura contenente i due grafici a barre.
+</div>
+<p>In effetti la cella precedente non genera un vero e proprio grafico a barre, perché per ogni valore della forza ci sarebbero due barre, relative ai due generi. Tali barre si sovrapporrebbero, con l’effetto di nascondere (parzialmente o totalmente) quella più bassa.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">male_strength_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">female_strength_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Un’alternativa è quella di specificare il parametro <code class="docutils literal notranslate"><span class="pre">alpha</span></code> nelle funzioni che generano i grafici: ciò permette di disegnare delle barre semi-trasparenti che evidenziano le loro sovrapposizioni.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">male_strength_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.7</span><span class="p">)</span>
+<span class="n">female_strength_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Una modalità alternativa per visualizzare le frequenze in caso di valori qualitativi, evidenziando inoltre le frazioni rispetto al numero totale dei casi è quella di utilizzare il metodo <code class="docutils literal notranslate"><span class="pre">pie</span></code> per produrre un diagramma a torta, o più tecnicamente un <em>aerogramma</em>, in cui un cerchio è diviso in tanti settori le cui aree sono proporzionali alle frequenze (pertanto il grafico ottenuto sarà indipendente dall’avere considerato le frequenze assolute oppure quelle relative). Per esempio, la cella seguente calcola il diagramma a torta delle frequenze relative al genere dei supereroi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gender_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Abs. frequence&#39;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ci sono alcune cose che vale la pena sottolineare, e che sono descritte di seguito.</p>
+<ul class="simple">
+<li><p>A differenza dei grafici generati fino a ora, qui è stato necessario specificare il nome della colonna nel <em>dataframe</em> corrispondente alla tabella delle frequenze. Ciò è legato al fatto che mentre metodi come <code class="docutils literal notranslate"><span class="pre">plot.bar</span></code> sono in grado di visualizzare più caratteri contemporaneamente (e più avanti vedremo come), quando si disegna un diagrama a torta è necessario utilizzare un solo carattere e quindi è necessario selezionarlo nel dataframe, anche in casi come questo in cui vi è effettivamente un solo carattere; In alternativa, è possibile estrarre la serie dal <em>dataframe</em> e invocare su di essa <code class="docutils literal notranslate"><span class="pre">plot.pie</span></code>: in altre parole l’istruzione seguente avrebbe generato un grafico analogo:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gender_freq</span><span class="p">[</span><span class="s1">&#39;Abs. frequence&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Mentre quando si crea un grafico a barre per un carattere ha ampiamente senso utilizzare lo stesso colore per tutte le barre, nel caso di un diagramma a torta tale scelta renderebbe il risultato illeggibile, ed è per questo che se si vogliono personalizzare i colori è necessario passare la lista dei corrispondenti nomi all’argomento <code class="docutils literal notranslate"><span class="pre">colors</span></code> (che è diverso dall’argomento <code class="docutils literal notranslate"><span class="pre">color</span></code> finora utilizzato).</p></li>
+</ul>
+<div class="alert alert-warning" role="warning">
+Se ottenete un grafico che contiene un'ellissi al posto di un cerchio, probabilmente state utilizzando una versione precedente di pandas, che prevede che le lunghezze sugli assi cartesiani nei grafici siano sempre misurate con unità di misura diverse. Il rapporto tra queste unità di misura è legato alla sezione aurea, e ciò ha di norma l'effetto di produrre grafici gradevoli da vedere, a parte casi come questo in cui i cerchi risultano "schiacciati". Per ovviare all'inconveniente basta invocare la funzione `plt.axis` specificando come argomento `'equal'`.
+</div><p>Consideriamo il caso particolare dell’anno di apparizione: se ne tracciamo il grafico a barre delle frequenze assolute, è appropriato posizionare le barre rispettando la relazione di ordine esistente tra i dati, utilizzando direttamente matplotlib come abbiamo visto nella lezione precedente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_app_freq</span> <span class="o">=</span> <span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">first_app_freq</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">first_app_freq</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Il risultato non è però ottimale perché le barre hanno uno spessore (sebbene in questo caso sia molto piccolo, a causa dell’elevato numero di barre) che può suggerire un’interpretazione fuorviante del grafico, secondo cui le frequenze non facciano riferimento a un anno, bensì a un in intervallo temporale centrato in un anno. Per evitare tale fraintendimento è più appropriato in casi come questo produrre un grafico <em>a bastoncini</em> in cui ogni punto è evidenziato, piuttosto che da una barra, da un segmento verticale che lo congiunge con l’asse delle ascisse (cosa che, peraltro, permette di non scambiare per nulle le frequenze relativamente basse):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">first_app_freq</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">first_app_freq</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>È anche possibile abbinare ogni segmento a un cerchio centrato sul punto che identifica un valore e la sua frequenza: basta generare il grafico precedente e sovrapporgli i singoli punti.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">first_app_freq</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">first_app_freq</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">first_app_freq</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">first_app_freq</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Infine, consideriamo il diagramma a bastoncini relativo al peso dei supereroi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weight_freq</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">weight_freq</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">weight_freq</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">weight_freq</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">weight_freq</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Due pesi, per dire, di 81.12 Kg e di 81.14 Kg vengono considerati in questo grafico come due valori differenti, ed è per questo che vi sono quasi esclusivamente bastoncini di altezza unitaria: quasi tutti i valori occorrono praticamente un’unica volta nel dataset. Ciò è dovuto al fatto che il peso è un dato quantitativo per cui non ha di norma senso considerare un singolo valore, e risulta più sensato calcolare le frequenze di <em>intervalli</em> di possibili valori osservabili. Il grafico corrispondente prende il nome di <em>istogramma</em>, e viene calcolato e visualizzato in pandas invocando il metodo <code class="docutils literal notranslate"><span class="pre">hist</span></code> sulla serie corrispondente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ovviamente il risultato ottenuto dipende da come sono stati scelti gli intervalli su cui calcolare le frequenze. Di norma si divide l’intervallo che contiene tutti i dati osservati in sotto-intervalli equiampi, il cui numero è individuato dall’argomento <code class="docutils literal notranslate"><span class="pre">bins</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Questo istogramma ci dice, a occhio, che i pesi variano perlopiù tra zero e duecento chilogrammi, sebbene esistano erori con pesi maggiori. In teoria è possibile utilizzare sotto-intervalli di ampiezze differenti: per esempio, ampiezze pari a 20 per i pesi inferiori a 200 kg., pari a 50 per pesi compresi tra 200 e 500 kg., e pari a 100 per i valori rimanenti.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
+                                      <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+                                      <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">100</span><span class="p">))))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Va notato come in questo caso le altezze delle barre non contino il numero di occorrenze nel corrispondente intervallo: per esempio, vi sono tre pesi superiori a 800 kg., ma la barra corrispondente ha altezza unitaria. Ciò è dovuto al fatto che in un istogramma è l’<em>area</em> di ogni barra a essere legata alla frequenza: se le barre hanno basi della stessa lunghezza, le aree sono proporzionali all’altezza, altrimenti no. È per questo, per esempio, che le due barre più a destra nell’ultimo istogramma hanno altezza unitaria: si riferiscono a tre osservazioni, e la loro area è il triplo dell’area di una barra di altezza unitaria nella parte sinistra del grafico, che invece farebbe riferimento a una sola osservazione.</p>
+<div class="alert alert-info">
+Nella cella precedente sono state utilizzate le funzioni `np.hstack`, che permette di giustapporre due o più array numpy, e `np.arange`, che crea un array i cui contenuti variano tra i valori indicati dai primi due argomenti, con incremento pari all'ultimo argomento.
+</div><div id="h-5"></div>
+</div>
+<div class="section" id="frequenze-cumulate">
+<h2>Frequenze cumulate<a class="headerlink" href="#frequenze-cumulate" title="Permalink to this headline">¶</a></h2>
+<p>Riconsideriamo l’anno di prima apparizione dei supereroi, e rispondiamo alle domande che seguono.</p>
+<ol class="simple">
+<li><p>Qual è il più recente tra gli anni di apparizione di un supereroe?</p></li>
+<li><p>E qual è il meno recente?</p></li>
+<li><p>Quanti supereroi hanno un anno di apparizione non superiore al 1970?</p></li>
+<li><p>Quanti hanno un anno di apparizione successivo al 1980?</p></li>
+</ol>
+<p>Per rispondere alle prime due domande basta selezionare la serie che corrisponde al carattere <code class="docutils literal notranslate"><span class="pre">first_appearance</span></code> e calcolarne il minimo e il massimo valore:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Per rispondere invece alle rimanenti domande potremmo estrarre tramite una <em>list comprehension</em> tutti gli anni in <code class="docutils literal notranslate"><span class="pre">heroes_with_year</span></code> che soddisfano i criteri indicati e calcolarne la lunghezza. Vale però la pena approfittarne per introdurre un nuovo strumento, che si rivelerà molto versatile: si tratta delle <em>frequenze cumulate</em>, che si possono calcolare quando esiste una relazione di ordine per i valori del carattere. Essenzialmente si tratta di considerare i valori del carattere dal più piccolo al più grande, di calcolare le relative frequenze e di cumularle in modo che al primo elemento sia associata la sua frequenza, al secondo la somma delle frequenze dei primi due elementi, al terzo la somma delle prime tre frequenze e così via.</p>
+<p>Per calcolare le frequenze cumulate, pandas mette a disposizione il metodo <code class="docutils literal notranslate"><span class="pre">cumsum</span></code> per gli oggetti di tipo serie e <em>dataframe</em>. Quando viene utilizzato sulla serie prodotta da <code class="docutils literal notranslate"><span class="pre">value_counts</span></code> è però necessario riordinare le frequenze prodotte rispetto al loro indice e infine si può invocare il metodo. Risulta invece più comodo calcolare generare il <em>dataframe</em> corrispondente alla tabella delle frequenze, che risulta già ordinato nel modo corretto, e su questo invocare <code class="docutils literal notranslate"><span class="pre">cumsum</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_app_freq_cumulate</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">],</span>
+                                       <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Cumulate freq.&#39;</span><span class="p">],</span>
+                                       <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">])</span>
+                             <span class="o">.</span><span class="n">cumsum</span><span class="p">())</span>
+<span class="n">first_app_freq_cumulate</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span> <span class="c1"># per brevità visualizziamo solo i primi dieci elementi</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Il grafico corrispondente mette in evidenza il fatto che le frequenze cumulate sono monotone crescenti e variano da 0 al numero totale di casi nel dataset considerato:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_app_freq_cumulate</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La frequenza cumulata corrispondente a 1970 rappresenta quindi il numero di casi nel dataset in cui l’anno di prima apparizione è minore o uguale al 1970, e dunque tale frequenza rappresenta la risposta alla terza domanda:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_app_freq_cumulate</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mf">1970.0</span><span class="p">,</span> <span class="s1">&#39;Cumulate freq.&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Per rispondere all’ultima domanda è possibile procedere in modo analogo: la frequenza cumulata di 1980 corrisponde al numero di casi in cui l’anno di apparizione è minore o uguale a 1980, e sottraendo tale valore al numero totale di casi si ottiene la risposta:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_app_freq_cumulate</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">first_app_freq_cumulate</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mf">1980.0</span><span class="p">,</span> <span class="s1">&#39;Cumulate freq.&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Va notato come il numero totale di casi corrisponda all’ultima delle frequenze cumulate. Infine, il concetto di frequenze cumulate si può applicare sia alle frequenze assolute, sia a quelle relative: nel secondo caso i valori ottenuti aumenteranno da 0 a 1. Nella cella seguente viene calcolata la tabella delle frequenze relative cumulate per l’anno di prima apparizione di cui, sempre per brevità, vengono mostrate le ultime dieci righe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_app_relfreq_cumulate</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">],</span>
+                              <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Cumulate freq.&#39;</span><span class="p">],</span>
+                              <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">],</span>
+                              <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">cumsum</span><span class="p">())</span>
+
+<span class="n">first_app_relfreq_cumulate</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La visualizzazione in forma grafica delle frequenze relative cumulate equivale a quella precedente: l’unica differenza consiste nei valori sull’asse delle ordinate, che risulteranno ovviamente scalati sull’intervallo <span class="math notranslate nohighlight">\([0, 1]\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_app_relfreq_cumulate</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Vale la pena notare come il grafico prodotto sia quello una funzione lineare a tratti: in parole povere, si tratta di una sequenza di segmenti in cui ogni elemento ha l’estremo destro coincidente con quello sinistro del segmento successivo. Possiamo evidenziare questa proprietà effettuando uno <em>zoom</em>, per esempio tra il 1980 e il 1990:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_app_relfreq_cumulate</span><span class="p">[</span><span class="mi">1980</span><span class="p">:</span><span class="mi">1990</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Quando i valori osservati sono di tipo numerico o ordinabile, uno strumento molto simile a quello delle frequenze relative cumulate è rappresentato dalla <em>funzione cumulativa empirica</em> (o <em>funzione di ripartizione empirica</em>), che dato un insieme di osservazioni <span class="math notranslate nohighlight">\(\{ x_1, \dots, x_n \}\)</span>, è definita come quella funzione <span class="math notranslate nohighlight">\(\hat F: \mathbb R \mapsto [0, 1]\)</span> tale che per ogni <span class="math notranslate nohighlight">\(x \in \mathbb R\)</span> assume un valore pari alla frequenza relativa delle osservazioni che risultano essere minori o uguali a <span class="math notranslate nohighlight">\(x\)</span>. Pertanto</p>
+<p>\begin{equation}
+\hat F(x) = \frac{# { x_i \leq x }}{n}
+= \frac{1}{n} \sum_{i=1}^n \mathrm I_{(-\infty, x]}(x_i) ,
+\end{equation}</p>
+<p>dove <span class="math notranslate nohighlight">\(\mathrm I_A: \mathbb R \mapsto \{0, 1\}\)</span> indica la <em>funzione indicatrice</em> dell’insieme <span class="math notranslate nohighlight">\(A\)</span>, che assume valore nullo in corrispondenza di tutti gli argomenti che non appartengono ad <span class="math notranslate nohighlight">\(A\)</span> e valore unitario altrimenti, e <span class="math notranslate nohighlight">\((-\infty, x]\)</span> indica l’intervallo semiaperto identificato da tutti i valori reali minori o uguali a <span class="math notranslate nohighlight">\(x\)</span>. Per un generico argomento <span class="math notranslate nohighlight">\(x\)</span>, la funzione cumulativa empirica assumerà pertanto come valore la frequenza relativa cumulata del più grande tra i valori osservati <span class="math notranslate nohighlight">\(x_i \leq x\)</span>. Dunque il suo grafico sarà quello di una funzione costante a tratti. In python è presente un’implementazione della funzione cumulativa empirica nel modulo <code class="docutils literal notranslate"><span class="pre">statmodels.api</span></code>: la funzione <code class="docutils literal notranslate"><span class="pre">distributions.ECDF</span></code> accetta come input un insieme di osservazioni e restituisce la corrispondente funzione cumulativa empirica. Possiamo quindi elaborare in tal senso gli anni di prima apparizione e visualizzare il grafico corrispondente agli anni tra il 1980 e il 1990, così da poter effettuare un confronto con l’analogo grafico precedentemente generato:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+
+<span class="n">ecdf</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">ECDF</span><span class="p">(</span><span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">])</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1980</span><span class="p">,</span> <span class="mi">1991</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">ecdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-info">
+In casi come questo è meglio usare `plt.step` piuttosto che `plt.plot`, altrimenti il grafico visualizzato, pur essendo molto simile al risultato appena ottenuto, non sarebbe tecnicamente parlando quello di una funzione costante a tratti.
+</div>
+<p>Va peraltro rimarcato che all’aumentare del numero di valori osservabili il grafico delle frequenze relative cumulate ottenute usando il metodo <code class="docutils literal notranslate"><span class="pre">plot</span></code> della corrispondente serie diventa indistinguibile da quello della funzione cumulativa empirica (sia che si sia utilizzato <code class="docutils literal notranslate"><span class="pre">plt.step</span></code>, sia che si sia utilizzato <code class="docutils literal notranslate"><span class="pre">plt.plot</span></code> per visualizzarlo). Per rendercene conto, possiamo visualizzare nuovamente la funzione di ripartizione empirica tenendo però conto di tutte le osservazioni per gli anni di prima apparizione.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">min_year</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">])</span>
+<span class="n">max_year</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">])</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">min_year</span><span class="p">,</span> <span class="n">max_year</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">ecdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div id="h-6"></div>
+<div class="section" id="diagrammi-di-pareto">
+<h3>Diagrammi di Pareto<a class="headerlink" href="#diagrammi-di-pareto" title="Permalink to this headline">¶</a></h3>
+<p>Frequenze e frequenze cumulate di una variabile categorica possono essere considerate congiuntamente per generare un <em>diagramma di Pareto</em> nel modo seguente: ordinando i dati per frequenza decrescente, su uno stesso sistema di riferimento in cui l’asse delle ascisse fa riferimento ai valori della variabile si sovrappongono il diagramma a barre delle frequenze e una linea spezzata che collega i valori delle frequenze cumulate. Consideriamo per esempio i colori degli occhi più frequenti nel nostro dataset (definiti per comodità come i colori che occorrono con frequenza relativa superiore a 0.02).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eye_color</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">]</span>
+<span class="n">eye_color_freq</span> <span class="o">=</span> <span class="n">eye_color</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">eye_color_freq</span><span class="p">[</span><span class="n">eye_color_freq</span><span class="o">&gt;</span><span class="mf">.02</span><span class="p">]</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">eye_color_freq</span><span class="p">[</span><span class="n">eye_color_freq</span><span class="o">&gt;</span><span class="mf">.02</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ovviamente per quanto riguarda il valore più a sinistra nel diagramma (e quindi quello avente la frequenza maggiore) frequenza e frequenza cumulata coincideranno sempre.</p>
+<p>Va notato come la linea spezzata nel precedente diagramma non arrivi all’ordinata 1, avendo considerato solo un sottoinsieme dei dati: possiamo verificarlo, oltre che visualmente, sommando le frequenze relative:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">eye_color_freq</span><span class="p">[</span><span class="n">eye_color_freq</span><span class="o">&gt;</span><span class="mf">.02</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se dividiamo tutte le frequenze per la somma ottenuta, apportiamo alle frequenze una correzione che fa sì che ora la loro somma sia esattamente uno (spesso si usa il termine <em>normalizzazione</em> per indicare un’operazione di questo tipo). Il diagramma di Pareto per i valori ottenuti considerando questa correzione si estende ora fino all’ordinata unitaria.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">norm_eye_color_freq</span> <span class="o">=</span> <span class="n">eye_color_freq</span><span class="p">[</span><span class="n">eye_color_freq</span><span class="o">&gt;</span><span class="mf">.02</span><span class="p">]</span><span class="o">/</span><span class="mf">0.92</span>
+<span class="n">norm_eye_color_freq</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">norm_eye_color_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In generale, un diagramma di Pareto permette di identificare gli elementi più rilevanti in termini di frequenze all’interno di un insieme di osservazioni, evidenziando simultaneamente il peso di ogni fattore, sia il loro peso cumulativo. Nel nostro caso, il grafico ottenuto mostra permette per esempio di verificare a colpo d’occhio come gli occhi blu, marroni e verdi identifichino l’80% dei supereroi. Va sottolineato però che questo dato numerico è in qualche modo influenzato dalla scelta di avere escluso tutti i colori con una frequenza relativa minore di 0.02. Implementiamo una funzione <code class="docutils literal notranslate"><span class="pre">my_pareto</span></code> che permette di impostare la soglia sulle frequenze e rigeneriamo il grafico, stavolta considerando tutti i dati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_pareto</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">renormalize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">freq</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">freq</span> <span class="o">=</span> <span class="n">freq</span><span class="p">[</span><span class="n">freq</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">renormalize</span><span class="p">:</span>
+        <span class="n">freq</span> <span class="o">=</span> <span class="n">freq</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span>
+    <span class="n">freq</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+    <span class="n">freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+
+<span class="n">my_pareto</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">],</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notate come il grafico ottenuto sia particolarmente poco leggibile, essendo popolato nella metà destra da colori che, presi singolarmente, hanno una frequenza non rilevabile nel diagramma a barre. Considerate cumulativamente, queste frequenze hanno però un effetto sul grafico: in effetti, se vogliamo considerare l’80% dei dati è necessario includere anche il colore rosso. La definizione della funzione <code class="docutils literal notranslate"><span class="pre">my_pareto</span></code> evita in effetti di correggere i dati, a meno che non venga specificamente indicato tramite l’argomento <code class="docutils literal notranslate"><span class="pre">renormalize</span></code>, così da ottenere un grafico più preciso.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_pareto</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">],</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.015</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Il corrispondente diagramma di Pareto si può generare manualmente oppure utilizzando la funzione <code class="docutils literal notranslate"><span class="pre">pareto</span></code> del package <code class="docutils literal notranslate"><span class="pre">paretochart</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">paretochart</span> <span class="kn">import</span> <span class="n">pareto</span>
+
+<span class="n">eye_color</span> <span class="o">=</span> <span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">]</span>
+<span class="n">eye_color_freq</span> <span class="o">=</span> <span class="n">eye_color</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">common_colors</span> <span class="o">=</span> <span class="n">eye_color_freq</span><span class="p">[</span><span class="n">eye_color_freq</span> <span class="o">&gt;</span> <span class="mf">.02</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+<span class="n">common_color_data</span> <span class="o">=</span> <span class="n">eye_color</span><span class="p">[</span><span class="n">eye_color</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">common_colors</span><span class="p">)]</span>
+
+<span class="n">pareto</span><span class="p">(</span><span class="n">common_color_data</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+       <span class="n">labels</span><span class="o">=</span><span class="n">common_colors</span><span class="p">)</span>
+       
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bisogna sottolineare che il package <code class="docutils literal notranslate"><span class="pre">paretochart</span></code> è, al momento, non ancora stato portato alla versione 3 di python. Quindi dopo la sua installazione, da effettuarsi preferibilmente tramite <code class="docutils literal notranslate"><span class="pre">pip</span></code> (il package non è attualmente disponibile in anaconda), è necessario eseguire lo script</p>
+<p>$ 2to3 -w *.py</p>
+<p>nella directory in cui è stato installato il package (tipicamente, la directory <code class="docutils literal notranslate"><span class="pre">site-packages/paretochart</span></code> all’interno della directory in cui risultano installate le librerie di python).</p>
+<div id="h-7"></div>
+</div>
+</div>
+<div class="section" id="frequenze-congiunte-e-marginali">
+<h2>Frequenze congiunte e marginali<a class="headerlink" href="#frequenze-congiunte-e-marginali" title="Permalink to this headline">¶</a></h2>
+<p>Spesso è utile analizzare un insieme di osservazioni prendendo in considerazione due caratteri al posto di uno, per esempio per vedere se i valori di tali caratteri tendano a essere più o meno collegati tra loro tramite una relazione. Il concetto di frequenza si specializza in questo caso andando a contare il numero di osservazioni in cui i due caratteri considerati assumono due determinati valori, ottenendo la cosiddetta <em>frequenza congiunta assoluta</em> (o equivalentemente la <em>frequenza congiunta relativa</em> nel caso in cui si calcolasse la frazione di osservazioni e non il suo numero). Nel caso in cui i possibili valori osservabili non siano parecchi, è possibile visualizzare queste frequenze tramite una <em>tabella delle frequenze congiunte</em> (detta anche <em>tabella di contingenza</em>), ottenuta estendendo il concetto di tabella delle frequenze precedentemente introdotto: ora le righe della tabella corrisponderanno ai possibili valori di uno dei caratteri considerati, le sue colonne corrisponderanno ai valori del rimanente carattere e gli elementi della tabella conterranno le frequenze congiunte (assolute o relative). La funzione <code class="docutils literal notranslate"><span class="pre">pd.crosstab</span></code> può essere utilizzata anche per produrre questo tipo di tabella: basta indicare le serie corrispondenti ai caratteri considerati come valori degli argomenti <code class="docutils literal notranslate"><span class="pre">index</span></code> e <code class="docutils literal notranslate"><span class="pre">columns</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">int_gender_freq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">],</span> 
+                              <span class="n">columns</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">])</span>
+
+<span class="n">int_gender_freq</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>L’ordine delle righe può essere modificato nello stesso modo visto per le tabelle delle frequenze: per modificare la tabella in modo che risulti ordinata per i valori di intelligenza piuttosto che in modo alfabetico sarà quindi sufficiente utilizzare in metodo <code class="docutils literal notranslate"><span class="pre">reindex</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">int_gender_freq</span> <span class="o">=</span> <span class="n">int_gender_freq</span><span class="o">.</span><span class="n">reindex</span><span class="p">([</span><span class="s1">&#39;low&#39;</span><span class="p">,</span> <span class="s1">&#39;moderate&#39;</span><span class="p">,</span>
+                                           <span class="s1">&#39;average&#39;</span><span class="p">,</span> <span class="s1">&#39;good&#39;</span><span class="p">,</span> <span class="s1">&#39;high&#39;</span><span class="p">])</span>
+<span class="n">int_gender_freq</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Siccome <code class="docutils literal notranslate"><span class="pre">crosstab</span></code> produce dei dataframe, per riordinare le colonne è sufficiente accedere alla tabella tramite <code class="docutils literal notranslate"><span class="pre">loc</span></code> e specificando come secondo argomento una lista dei valori nell’ordine desiderato:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">int_gender_freq</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In modo analogo è possibile visualizzare solo alcune righe oppure solo alcune colonne della tabella, come nella cella seguente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">int_gender_freq</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;moderate&#39;</span><span class="p">:</span><span class="s1">&#39;good&#39;</span><span class="p">,</span> <span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-warning">
+Va notato che quella appena ottenuta non è più una tabella delle frequenze, in quanto non fa riferimento a tutti i possibili valori in gioco.
+</div>
+<p>Sempre ipotizzando che il numero di valori osservabili non sia troppo elevato, la visualizzazione grafica delle frequenze congiunte può essere effettuata estendendo il concetto di diagramma a barre in modo che visualizzi due caratteri al posto di uno, <em>raggruppando</em> le barre che fanno riferimento a uno stesso valore per uno dei caratteri, e <em>colorandole</em> in funzione del valore che queste assumono per l’altro carattere in gioco. Il posizionamento delle barre viene normalmente fatto in due possibili modi:</p>
+<ul class="simple">
+<li><p>invocando il metodo <code class="docutils literal notranslate"><span class="pre">plot.bar</span></code> invocato sulla tabella, in modo che le barre relative a uno stesso valore risultino <em>affiancate</em></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">int_gender_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>specificando ulteriormente il valore <code class="docutils literal notranslate"><span class="pre">True</span></code> per l’argomento <code class="docutils literal notranslate"><span class="pre">stacked</span></code>, in modo da <em>sovrapporre</em> le barre che si riferiscono a uno stesso valore:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">int_gender_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">],</span> <span class="n">stacked</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nel caso in cui si volessero calcolare le frequenze congiunte e almeno uno dei caratteri fosse numerico, si rischierebbe di ricadere nello stesso problema descritto quando abbiamo parlato degli istogrammi: si consideri per esempio il tentativo di calcolare le frequenze congiunte di peso e genere:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]])</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">,:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Essenzialmente in ogni riga c’è un valore nullo e uno unitario, semplicemente perché succede quasi sempre che un particolare valore del peso specificato fino ai decigrammi occorra un’unica volta nelle osservazioni. È quindi opportuno raggruppare assieme pesi «vicini» tra loro. Ciò viene fatto utilizzando la funzione <code class="docutils literal notranslate"><span class="pre">pd.cut</span></code>, che converte una serie di valori numerici in una serie qualitativa i cui valori possibili sono gli intervalli di una partizione aventi per estremi i valori specificati in corrispondenza dell’argomento <code class="docutils literal notranslate"><span class="pre">bins</span></code>. Considerando questa nuova serie è possibile generare una tabella di frequenze congiunte più significativa.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">],</span>
+                         <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]),</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Le impostazioni predefinite di <code class="docutils literal notranslate"><span class="pre">pd.cut</span></code> fanno riferimento a intervalli aperti a sinistra e chiusi a destra, ma è possibile invertire l’apertura e la chiusura degli estremi utilizzando l’argomento opzionale <code class="docutils literal notranslate"><span class="pre">right</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">],</span>
+                         <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span>
+                         <span class="n">right</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Quando si genera una tabella di frequenze congiunte, è possibile specificare il valore <code class="docutils literal notranslate"><span class="pre">True</span></code> per l’argomento <code class="docutils literal notranslate"><span class="pre">margins</span></code> al fine di aggiungere una riga e una colonna che contengono i totali (calcolati rispettivamente sulle singole colonne e sulle singole righe). I valori ivi indicati prendono il nome di <em>frequenze marginali</em>, e corrispondono alle frequenze del carattere corrispondente. Per esempio, rigenerando la tabella delle frequenze congiunte di livello di intelligenza e genere con le colonne dei totali,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">],</span> 
+            <span class="n">columns</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">],</span> <span class="n">margins</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>la colonna <code class="docutils literal notranslate"><span class="pre">All</span></code> conterrà le frequenze assolute per il carattere Intelligence, e parimenti la righa <code class="docutils literal notranslate"><span class="pre">All</span></code> elencherà le frequenze assolute per il genere (escludendo ovviamente in entrambi i casi l’ultimo elemento che corrisponde al numero totale di osservazioni).</p>
+<p>Le frequenze congiunte a cui abbiamo fatto riferimento negli esempi visti finora erano frequenze assolute, ma è immediato estendere tale concetto a quello delle <em>frequenze congiunte relative</em>. Queste si possono calcolare dividendo le frequenze assolute per il numero totale di osservazioni, oppure utilizzando come in precedenza il parametro <code class="docutils literal notranslate"><span class="pre">normalize</span></code> in <code class="docutils literal notranslate"><span class="pre">pd.crosstab</span></code>, che però ora ha diversi valori possibili:</p>
+<ul class="simple">
+<li><p>specificando <code class="docutils literal notranslate"><span class="pre">'all'</span></code> vengono effettivamente calcolate le frequenze relative</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">],</span> 
+            <span class="n">columns</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">],</span>
+            <span class="n">margins</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">normalize</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>usando <code class="docutils literal notranslate"><span class="pre">'index'</span></code> si otterrà una tabella in cui i valori su ogni riga sommano a 1</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">],</span> 
+            <span class="n">columns</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">],</span>
+            <span class="n">margins</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">normalize</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>indicando invece <code class="docutils literal notranslate"><span class="pre">columns</span></code> viene generata una tabella in cui tutte le colonne sommano al valore unitario</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">],</span> 
+            <span class="n">columns</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">],</span>
+            <span class="n">margins</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">normalize</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La normalizzazione per colonne permette di ottenere una tabella che contiene le frequenze relative di due sotto-popolazioni come nel caso precedentemente visto, relativo alla forza di supereroi e supereroine. Invocando <code class="docutils literal notranslate"><span class="pre">plot</span></code> o <code class="docutils literal notranslate"><span class="pre">plot.bar</span></code> su questa tabella si ottiene in modo semplice un grafico che permette di confrontare visualmente tali frequenze.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">],</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]],</span>
+            <span class="n">normalize</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">],</span>
+                                          <span class="n">stacked</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Abbiamo visto in una lezione precedente come generare direttamente un grafico di una serie senza elaborarla (calcolando per esempio le sue frequenze) produce un risultato che non è normalmente informativo. Le cose sono diverse quando si considerano congiuntamente due serie con un medesimo indice: in tal caso per ogni elemento di questo indice (e dunque per ogni osservazione), i valori delle due serie possono essere utilizzati per individuare le coordinate di un punto nel piano. Visualizzando i punti corrispondenti a tutte le osservazioni si ottiene un <em>diagramma di dispersione</em> (o <em>scatter plot</em>). In pandas questo tipo di grafico si genera invocando il metodo <code class="docutils literal notranslate"><span class="pre">plot.scatter</span></code> sul <em>dataframe</em> che contiene le osservazioni, indicando come argomenti i nomi dei caratteri che devono essere considerati (il primo dei quali verrà visualizzato sull’asse delle ascisse, usando invece quello delle ordinate per il secondo). Per esempio nella cella seguente viene visualizzato il diagramma di dispersione dei caratteri relativi ad altezza e peso dei supereroi di genere maschile.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;M&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="s1">&#39;Weight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>I diagrammi di dispersione permettono di valutare visivamente se esistano delle relazioni che legano i due caratteri visualizzati. Per esempio nel grafico precedente si nota come tendenzialmente a un valore alto del peso corrisponda un valore alto per l’altezza e viceversa. Volendo è possibile aggiungere al grafico una retta che metta in evidenza tale tipo di relazione:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;M&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="s1">&#39;Weight&#39;</span><span class="p">)</span>
+
+<span class="n">trend</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="mi">1200</span> <span class="o">+</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">7</span>
+<span class="n">x_range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">170</span><span class="p">,</span> <span class="mi">300</span><span class="p">]</span>
+<span class="n">line</span><span class="p">,</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_range</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">trend</span><span class="p">,</span> <span class="n">x_range</span><span class="p">)),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">line</span><span class="o">.</span><span class="n">set_dashes</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">line</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In questo caso la retta è stata posizionata «a mano»: esistono metodi che ci permettono di determinarla in funzione delle osservazioni. Per il momento mettiamo in evidenza la possibilità di definire in modo formale una retta scelta in modo da minimizzare una sua distanza da tutti i punti, utilizzando il cosiddetto <em>metodo dei minimi quadrati</em>. La cella seguente mostra come determinare tale retta, avendo cura di lavorare su una copia del <em>dataframe</em> sulla quale invocare il metodo <code class="docutils literal notranslate"><span class="pre">dropna</span></code> che elimina le righe in cui è presente almeno un valore mancante.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
+
+<span class="n">regr</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">()</span>
+
+<span class="n">heroes_with_data</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;M&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">heroes_with_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">]]</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">heroes_with_data</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span>
+
+<span class="n">regr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+
+<span class="n">heroes</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;M&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="s1">&#39;Weight&#39;</span><span class="p">)</span>
+
+<span class="n">line</span><span class="p">,</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span> <span class="n">regr</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1000</span><span class="p">]]),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">line</span><span class="o">.</span><span class="n">set_dashes</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">line</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Anche in questo caso si rimanda alla <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html#sklearn.linear_model.LinearRegression">documentazione ufficiale</a> per gli approfondimenti del caso. Notiamo solo come la presenza dei tre valori estremi nella parte destra del grafico fa sì che la retta ottenuta sia sensibilmente diversa rispetto a quella tracciata a mano. Le cose cambiano se non si considerano questi tre valori.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes_with_data</span> <span class="o">=</span> <span class="n">heroes_with_data</span><span class="p">[</span><span class="n">heroes_with_data</span><span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">300</span><span class="p">]</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">heroes_with_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">]]</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">heroes_with_data</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span>
+
+<span class="n">regr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+
+<span class="n">heroes</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;M&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="s1">&#39;Weight&#39;</span><span class="p">)</span>
+
+<span class="n">line</span><span class="p">,</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">150</span><span class="p">,</span> <span class="mi">350</span><span class="p">],</span> <span class="n">regr</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">150</span><span class="p">],</span> <span class="p">[</span><span class="mi">350</span><span class="p">]]),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">line</span><span class="o">.</span><span class="n">set_dashes</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">line</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Va infine notato che le relazioni tra due caratteri non necessariamente hanno una forma lineare, ma approfondire questo aspetto esula dal carattere introduttivo di questo corso.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">male_heroes</span> <span class="o">=</span> <span class="n">heroes_with_data</span><span class="p">[</span><span class="n">heroes_with_data</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;M&#39;</span><span class="p">]</span>
+<span class="n">male_heroes</span><span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">male_heroes</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">male_heroes</span><span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">male_heroes</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div id="h-8"></div>
+</div>
+<div class="section" id="alcuni-approfondimenti-sulla-generazione-dei-grafici-sup-sup">
+<h2>Alcuni approfondimenti sulla generazione dei grafici <sup>*</sup><a class="headerlink" href="#alcuni-approfondimenti-sulla-generazione-dei-grafici-sup-sup" title="Permalink to this headline">¶</a></h2>
+<div class="alert alert-info">
+I paragrafi contrassegnati con un asterisco sono opzionali. È dunque possibile saltarli a meno che non si voglia approfondire gli argomenti ivi contenuti.
+</div>
+<p>Una cella grafica generata da matplotlib e visualizzata nel notebook contiene quella che viene definita una <em>figura</em> (tecnicamente, un oggetto della classe <code class="docutils literal notranslate"><span class="pre">plt.Figure</span></code>). Ogni figura può contenere uno o più <em>sistemi cartesiani</em> (oggetti della classe <code class="docutils literal notranslate"><span class="pre">plt.Axes</span></code>) i quali a loro volta contengono (nella maggior parte dei casi) due <em>assi cartesiani</em> (oggetti della classe <code class="docutils literal notranslate"><span class="pre">plt.Axis</span></code>, da non confondere con <code class="docutils literal notranslate"><span class="pre">plt.Axes</span></code>). Tutte le figure che abbiamo generato finora contenevano un unico sistema di assi cartesiani, su cui venivano eventualmente sovrapposti tutti i grafici che venivano creati. È però possibile ottenere figure in cui più sistemi cartesiani vengono affiancati su una griglia bidimensionale. Ciò permette per esempio di affiancare grafici diversi. La gestione di tale griglia è di norma demandata alla funzione <code class="docutils literal notranslate"><span class="pre">plt.subplot</span></code>, che accetta tre argomenti interi: i primi due indicano rispettivamente il numero di righe e di colonne nella griglia, e il terzo specifica una posizione nella griglia stessa (con la convenzione che in una griglia di <span class="math notranslate nohighlight">\(n\)</span> colonne 1 indica la posizione nella prima riga e nella prima colonna, 2 quella nella prima riga e nella seconda colonna e così via fino a <span class="math notranslate nohighlight">\(n\)</span> che indica l’ultima posizione nella prima riga; procedendo oltre si passa alla riga successiva, così che <span class="math notranslate nohighlight">\(n+1\)</span> individua la seconda riga e la prima colonna e via discorrendo. Una volta che <code class="docutils literal notranslate"><span class="pre">plt.subplot</span></code> è stato invocato, questo restituisce l’oggetto corrispondente al sistema cartesiano relativo, che conterrà (eventualmente sovrapponendoli) tutti i grafici generati fino alla successiva invocazione di <code class="docutils literal notranslate"><span class="pre">plt.subplot</span></code>. Questo è quello che succede per esempio quando si invocano i metodi di <code class="docutils literal notranslate"><span class="pre">plot</span></code> su una serie: nella cella seguente per esempio vengono affiancati i diagrammi a torta relativi alle frequenze di genere e livello di intelligenza.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">gender_freq</span><span class="p">[</span><span class="s1">&#39;Abs. frequence&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Gender&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pie</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Va notato che in questo caso l’invocazione di <code class="docutils literal notranslate"><span class="pre">plt.axis('equal')</span></code> non sortirebbe l’effetto desiderato di mostrare due cerchi, in quanto il metodo agisce sulla figura e non sui suoi assi. È quindi necessario impostare manualmente la dimensione della figura in modo che la base sia pari al doppio dell’altezza, così che entrambi i sistemi cartesiani risultino nei fatti essere dei quadrati. Ciò viene fatto grazie all’invocazione preliminare di <code class="docutils literal notranslate"><span class="pre">plt.figure</span></code>, che crea una figura di dimensioni specifiche piuttosto che ottenere una figura predefinita.</p>
+<div class="alert alert-info">
+Nella cella precedente va notata anche l'invocazione di `plt.xlabel` e `plt.ylabel` che spostano la descrizione dei diagrammi dall'asse delle ordinate a quello delle ascisse (per aumentare la leggibilità), inserendo nel contempo delle descrizioni più informative.
+</div>
+<p>Vi sono però alcuni casi in cui la generazione di un grafico implica la creazione di un nuovo sistema cartesiano nella figura: un esempio di questo comportamento si ha quando vengono generati dei grafici invocando i metodi di <code class="docutils literal notranslate"><span class="pre">plot</span></code> su un <em>dataframe</em> piuttosto che su una serie. I due diagrammi a barre non vengono sovrapposti, bensì affiancati uno sopra l’altro.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">male_strength_freq</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;M&#39;</span><span class="p">,</span><span class="s1">&#39;Strength&#39;</span><span class="p">],</span>
+                                  <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Abs. freq.&#39;</span><span class="p">,</span>
+                                  <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+<span class="n">female_strength_freq</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="s1">&#39;Strength&#39;</span><span class="p">],</span>
+                                    <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Abs. freq.&#39;</span><span class="p">,</span>
+                                    <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+<span class="n">male_strength_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">female_strength_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se si volessero affiancare i due grafici in modo orizzontale (cosa che peraltro aiuterebbe il confronto) è quindi necessario agire in modo diverso, notando che <code class="docutils literal notranslate"><span class="pre">plt.subplot</span></code> restituisce l’oggetto relativo al sistema cartesiano creato e che le funzioni di matplotlib accettano generalmente un argomento <code class="docutils literal notranslate"><span class="pre">ax</span></code> a cui passare il sistema in cui il risultato deve essere inserito.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">male_strength_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">female_strength_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Va notato come nei due grafici a barre siano stati impostati i limiti degli assi delle ascisse a un valore comune: in caso contrario il confronto tra le due immagini sarebbe potuto risultare sfalsato.</p>
+<div class="alert alert-info">
+I più attenti avranno notato che python distingue automaticamente i nomi formali dei parametri dai corrispondenti valori effettivi, cosa che permette di scrivere `ax=ax` nelle precedenti invocazioni di `plot.bar`.
+</div>
+<p>Infine, metodi come <code class="docutils literal notranslate"><span class="pre">plot</span></code> restituiscono il riferimento ai sistemi cartesiani su cui hanno operato: ciò permette di sovrapporre dei grafici anche invocando metodi il cui comportamento predefinito è quello di creare un nuovo sistema.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">male_strength_freq</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">female_strength_freq</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-info">
+Nella cella precedente è stato utilizzando il metodo `legend` per modificare le etichette indicate nella legenda.
+</div><div id="h-9"></div>
+</div>
+<div class="section" id="i-diagrammi-stelo-foglia-sup-sup">
+<h2>I diagrammi stelo-foglia <sup>*</sup><a class="headerlink" href="#i-diagrammi-stelo-foglia-sup-sup" title="Permalink to this headline">¶</a></h2>
+<p>Un <em>diagramma stelo-foglia</em> (o <em>diagramma ramo-foglia</em>, o secondo la terminologia inglese <em>diagramma stem and leaf</em>) si ottiene considerando delle osservazioni a valori numerici, ordinandole e suddividendo ogni osservazione in una parte <em>meno significativa</em> (rappresentata da un numero prefissato di cifre meno significative) e una parte <em>più significativa</em> (rappresentata dalle rimanenti cifre più significative). Le osservazioni aventi la medesima parte più significativa vengono raggruppate in uno stesso <em>stelo</em>, costituito da questa parte significativa seguita da una barra verticale e poi da tutte le parti meno significative (le <em>foglie</em>) separate da virgola. Per esempio il diagramma seguente descrive gli anni di prima apparizione dei primi cinquanta eroi del nostro dataset, dove le foglie sono costruite considerando la cifra meno significativa di ogni anno.</p>
+<pre style="margin-left:0; line-height:1em">
+194|1
+195|9
+196|5, 4, 3, 8, 5, 3, 0, 1, 8, 4, 2
+197|9, 2, 5, 7, 2, 7, 5
+198|5, 0, 6, 1, 4, 4, 1, 1, 0, 6, 4, 5, 2
+199|3, 5, 6, 4
+200|8, 7, 1, 5, 4, 5, 5, 4, 3, 4, 1
+201|1, 1
+</pre>
+<div class="alert alert-warning">
+Il resto di questo paragrafo richiede una discreta conoscenza della programmazione in python, per cui vale la pena tralasciarlo durante una lettura preliminare.
+</div>
+<p>Per non complicarci troppo la vita, assumiamo di avere a disposizione dei dati interi: già così la costruzione di un diagramma stelo-foglie richiede una certa dose di perizia. Innanzitutto è necessario eliminare i valori mancanti dai dati:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">][:</span><span class="mi">50</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">s</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>È poi necessario indicare il numero di cifre significative che comporranno le foglie. Memorizziamo nelle variabili <code class="docutils literal notranslate"><span class="pre">d</span></code> e <code class="docutils literal notranslate"><span class="pre">signif</span></code>, rispettivamente, tale numero e la corrispondente potenza di dieci.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">significant_digits</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">signif</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="n">significant_digits</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Il passo successivo consiste nel costruire tutti i possibili valori per gli steli. In teoria, il più piccolo di questi valori corrisponde al minimo elemento considerato a cui va tolta la parte meno significativa. Questa operazione richiede di convertire l’elemento in un valore intero e poi dividerlo per la potenza di 10 memorizzata in <code class="docutils literal notranslate"><span class="pre">signif</span></code> (che equivale a eliminare le <code class="docutils literal notranslate"><span class="pre">d</span></code> cifre meno significative).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="n">signif</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="n">signif</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Risulta ora possibile eliminare da <code class="docutils literal notranslate"><span class="pre">r</span></code> tutti i valori che non rappresentano uno stelo, che sono quelli in corrispondenza dei quali non vi è alcuna foglia.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">r</span>
+         <span class="k">if</span> <span class="nb">len</span><span class="p">([</span><span class="n">e</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">if</span> <span class="n">s</span><span class="o">*</span><span class="n">signif</span> <span class="o">&lt;=</span> <span class="n">e</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">s</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">signif</span><span class="p">])]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Il diagramma vero e proprio si ottiene costruendo per ogni stelo una coppia contenente il valore dello stelo e una lista di tutte le foglie corrispondenti. Per comodità, convertiremo già le foglie in stringhe, avendo cura di aggiungere eventuali zeri iniziali.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stem</span> <span class="o">=</span> <span class="p">[(</span><span class="n">s</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;{:0</span><span class="si">{width}</span><span class="s1">d}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="p">(</span><span class="n">s</span><span class="o">*</span><span class="n">signif</span><span class="p">)),</span> <span class="n">width</span><span class="o">=</span><span class="n">significant_digits</span><span class="p">)</span> <span class="k">if</span> <span class="n">s</span>
+                                                                                <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">if</span> <span class="n">signif</span><span class="o">*</span><span class="n">s</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">signif</span><span class="o">*</span><span class="n">s</span><span class="o">+</span><span class="n">signif</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">start</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La visualizzazione del diagramma richiede di convertire in stringa le coppie generate. Ciò può essere fatto invocando la funzione <code class="docutils literal notranslate"><span class="pre">format</span></code> su un’opportuna stringa di formattazione che ci permette di ottenere i vari rami nel formato richiesto e di inserirli in una lista, per poi concatenare gli elementi di quest’ultima separandoli tramite un carattere di <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">capo</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="s1">&#39;{:&gt;</span><span class="si">{width}</span><span class="s1">}|</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                                           <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+                                                           <span class="n">width</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">start</span><span class="p">)))),</span>
+                         <span class="n">stem</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Per poter generare velocemente altri diagrammi stelo-foglia, è opportuno riscrivere il codice qui sopra organizzandolo all’interno di una funzione.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">stem_leaf</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">significant_digits</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">s</span><span class="p">)]</span>
+    <span class="n">signif</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="n">significant_digits</span>
+
+    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="n">signif</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="n">signif</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">r</span> <span class="k">if</span> <span class="nb">len</span><span class="p">([</span><span class="n">e</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">if</span> <span class="n">s</span><span class="o">*</span><span class="n">signif</span> <span class="o">&lt;=</span> <span class="n">e</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">s</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">signif</span><span class="p">])]</span>
+    <span class="n">stem</span> <span class="o">=</span> <span class="p">[(</span><span class="n">s</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;{:0</span><span class="si">{width}</span><span class="s1">d}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="p">(</span><span class="n">s</span><span class="o">*</span><span class="n">signif</span><span class="p">)),</span> <span class="n">width</span><span class="o">=</span><span class="n">significant_digits</span><span class="p">)</span> <span class="k">if</span> <span class="n">s</span>
+                                                                                    <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+                 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">if</span> <span class="n">signif</span><span class="o">*</span><span class="n">s</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">signif</span><span class="o">*</span><span class="n">s</span><span class="o">+</span><span class="n">signif</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">start</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="s1">&#39;{:&gt;</span><span class="si">{width}</span><span class="s1">}|</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                                                <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+                                                                <span class="n">width</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">start</span><span class="p">)))),</span>
+                              <span class="n">stem</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ciò ci permette, per esempio, di calcolare il diagramma per un numero maggiore di osservazioni.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">stem_leaf</span><span class="p">(</span><span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">][:</span><span class="mi">150</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-info">
+Il codice sopra prodotto è basato su alcune funzionalità avanzate della funzione `format` invocabile sulle stringhe. In particolare, viene formattato dell'output forzando la conversione da numeri in stringhe in modo da garantire che il risultato contenga un numero minimo (ma variabile) di caratteri, aggiungendo ove necessario in un caso degli spazi e in un altro degli zeri. Per approfondire la tematica della formattazione dell'output si rimanda alla  [documentazione ufficiale](https://docs.python.org/2/tutorial/inputoutput.html).
+</div><hr style="width: 90%;" align="left" />
+<span style="font-size: 0.8rem;">D. Malchiodi, Superhero data science. Vol 1: probabilità e statistica: Dati e frequenze, 2017.</span>
+<br>
+<span style="font-size: 0.8rem;">Powered by <img src="img/jupyter-logo.png" style="height: 1rem; display: inline; margin-left: 0.5ex; margin-top: 0;" alt="Jupyter Notebook"></span>
+<div style="float: left; margin-top: 1ex;">
+<img src="http://mirrors.creativecommons.org/presskit/icons/cc.large.png" style="width: 1.5em; float: left; margin-right: 0.6ex; margin-top: 0;">
+<img src="http://mirrors.creativecommons.org/presskit/icons/by.large.png" style="width: 1.5em; float: left; margin-right: 0.6ex; margin-top: 0;">
+<img src="http://mirrors.creativecommons.org/presskit/icons/nc.large.png" style="width: 1.5em; float: left; margin-right: 0.6ex; margin-top: 0;">
+<img src="http://mirrors.creativecommons.org/presskit/icons/nd.large.png" style="width: 1.5em; float: left; margin-right: 0.6ex; margin-top: 0;">
+<span style="font-size: 0.7rem; line-height: 0.7rem; vertical-align: middle;">Quest'opera è distribuita con Licenza <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribuzione - Non commerciale - Non opere derivate 4.0 Internazionale</a></span>.
+</div></div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./p2-SD/c1-dati-e-frequenze"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dario Malchiodi<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

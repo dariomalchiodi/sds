@@ -1,0 +1,750 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>I tipi di dati strutturati &#8212; Superhero Data Science</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Superhero Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Introduzione
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Statistica descrittiva
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../content.html">
+   1. Content in Jupyter Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../markdown.html">
+     1.1. Markdown Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../notebooks.html">
+     1.2. Content with notebooks
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../bibliography.html">
+   2. Bibliography
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Calcolo delle probabilità
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../content.html">
+   1. Content in Jupyter Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../markdown.html">
+     1.1. Markdown Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../notebooks.html">
+     1.2. Content with notebooks
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../_sources/p1-PAD/c1-intro-python/dati-strutturati.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/p1-PAD/c1-intro-python/dati-strutturati.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/dariomalchiodi/Superhero Data Science"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/dariomalchiodi/Superhero Data Science/issues/new?title=Issue%20on%20page%20%2Fp1-PAD/c1-intro-python/dati-strutturati.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dariomalchiodi/Superhero Data Science/main?urlpath=tree/docs/p1-PAD/c1-intro-python/dati-strutturati.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#le-liste">
+   Le liste
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#le-tuple">
+   Le tuple
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#le-stringhe">
+   Le stringhe
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gli-insiemi">
+   Gli insiemi
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#i-dizionari">
+   I dizionari
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="i-tipi-di-dati-strutturati">
+<h1>I tipi di dati strutturati<a class="headerlink" href="#i-tipi-di-dati-strutturati" title="Permalink to this headline">¶</a></h1>
+<p>I tipi di dati strutturati, o più brevemente <em>strutture dati,</em> permettono di aggregare più valori.
+Python supporta nativamente i seguenti tipi strutturati: le liste, le tuple, le stringhe, gli insiemi e i dizionari. A ognuno di questi tipi corrisponde una diversa classe, esattamente come per i tipi semplici. Come descritto nei paragrafi seguenti, la sintassi per accedere ai contenuti di una struttura dati è relativamente uniforme, mentre ovviamente il modo in cui viene effettuato l’accesso dipende dallo specifico tipo di struttura dati.</p>
+<p>In Python è possibile sia usare gli oggetti che corrispondono ai tipi di dati strutturati (ma anche gli altri tipi di dati descritti più avanti) come argomenti di operatori o funzioni, sia invocare metodi sugli oggetti stessi. Anche in questo caso vi sono operazioni di carattere più generale, effettuate utilizzando una sintassi comune, e operazioni specifiche che hanno una sintassi propria. Nel resto di questo paragrafo, senza pretesa di essere esaustivi, descrive le modalità di accesso e le operazioni principali per i tipi strutturati sopra elencati e fornisce dei puntatori alla documentazione ufficiale per chi volesse approfondire alcuni argomenti.</p>
+<div class="section" id="le-liste">
+<h2>Le liste<a class="headerlink" href="#le-liste" title="Permalink to this headline">¶</a></h2>
+<p>Una lista è una struttura dati che permette di memorizzare una sequenza di elementi. Questi elementi possono essere di tipo diverso, e a ognuno di questi si può accedere in modo diretto specificandone la posizione all’interno della sequenza (si dice quindi che una lista è una struttura dati <em>eterogenea</em> e ad <em>accesso posizionale</em>).</p>
+<div class="warning admonition">
+<p class="admonition-title">Attenzione!</p>
+<p>Le liste non vanno confuse con gli <em>array</em> (o <em>vettori</em>), che sono invece delle strutture dati <em>omogenee</em> ad accesso posizionale: in altre parole, anche in questo caso vengono memorizzate delle sequenze di valori, ma questi valori devono essere tutti dello stesso tipo. Sebbene gli <em>array</em> non siano direttamente messi a disposizione in Python, è possibile utilizzarli facendo riferimento al <em>package</em> <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, descritto nel <code class="xref std std-numref docutils literal notranslate"><span class="pre">Paragrafo</span> <span class="pre">%s</span></code></p>
+</div>
+<p>Una lista si può indicare in modo <em>estensivo</em> separando i suoi elementi tramite virgola e racchiudendo il tutto tra parentesi quadre. La proprietà di eterogeneità ci permette per esempio di usare una lista per aggregare le informazioni che descrivono un supereroe:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iron_man</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Iron Man&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Tony Stark&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Long Island, New York&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Marvel Comics&#39;</span><span class="p">,</span>
+            <span class="mf">198.51</span><span class="p">,</span>
+            <span class="mf">191.85</span><span class="p">,</span>
+            <span class="s1">&#39;M&#39;</span><span class="p">,</span>
+            <span class="mi">1963</span><span class="p">,</span>
+            <span class="s1">&#39;Blue&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Black&#39;</span><span class="p">,</span>
+            <span class="mi">85</span><span class="p">,</span>
+           <span class="s1">&#39;high&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Quando però una lista è utilizzata per dati di tipo omogeneo, vale la pena considerare di sostituirla con un <em>array</em> per diminuire il tempo di esecuzione.</p>
+</div>
+<p>In effetti vedremo che ci sono modi molto più interessanti di codificare un <em>record</em> di informazioni, così come ci renderemo conto che nei fatti le liste contengono di norma valori di tipo omogeneo, ma per ora quello che ci interessa è semplicemente vedere quali sono le modalità principali di utilizzo di questo tipo di struttura dati.</p>
+<p>Per accedere a un elemento in una lista, basta specificare dopo una variabile che la referenzia (ma ovviamente si potrebbe utilizzare anche la lista stessa) una coppia di parentesi quadre contenente la posizione dell’elemento, conteggiata a partire da <code class="docutils literal notranslate"><span class="pre">0</span></code>, pertanto</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iron_man</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Tony Stark&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>permette di accedere al secondo elemento della lista memorizzata in <code class="docutils literal notranslate"><span class="pre">iron_man</span></code>. Se si specifica un valore negativo per la posizione, a questo viene automaticamente sommata la lunghezza della lista. Pertanto la posizione <code class="docutils literal notranslate"><span class="pre">-1</span></code> identifica l’ultimo elemento della lista, la posizione <code class="docutils literal notranslate"><span class="pre">-2</span></code> corrisponde al penultimo e così via:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iron_man</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>85
+</pre></div>
+</div>
+</div>
+</div>
+<p>È anche possibile indicare un intervallo di posizioni consecutive per recuperare la sottolista corrispondente: questa operazione, che prende il nome di <em>list slicing</em>, si effettua indicando tra parentesi quadre la posizione del primo elemento da inserire, seguita da un carattere di due punti e dalla posizione del primo elemento da escludere. Pertanto</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iron_man</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[198.51, 191.85]
+</pre></div>
+</div>
+</div>
+</div>
+<p>permette di accedere alla sottolista che contiene il peso e l’altezza di Tony Stark, essendo queste informazioni memorizzate in quinta e sesta posizione nella lista di partenza (ricordando che gli indici delle posizioni partono da zero). Il riferimento a un <em>list slicing</em> si può fare anche utilizzando indici negativi (o mescolando indici positivi e negativi):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iron_man</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Blue&#39;, &#39;Black&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Un’altra differenza tra liste e <em>array</em> è legata al fatto che questi ultimi rappresentano strutture dati <em>statiche</em>, nelle quali non è possibile aggiungere o rimuovere elementi, ma solo modificare quelli esistenti.</p>
+</div>
+<p>Dover specificare la posizione del primo elemento da escludere sembra controintuitivo rispetto alla scelta più naturale di indicare la posizione dell’ultimo elemento da includere. In realtà in questo modo risulta più facile scrivere codice che elabora porzioni successive in una lista. Le liste sono, infine, una struttura dati <em>dinamica</em>, nel senso che oltre a modificare gli elementi in essa contenuti è anche possibile rimuovere uno o più di tali elementi, oppure aggiungerne di nuovi.</p>
+<p>Python mette a dipsosizione varie operazioni che agiscono sulle liste: i paragrafi che seguono introducono alcuni esempi, ma il loro scopo è più quello di sottolineare la differenza tra i concetti di operatore, funzione e metodo. Per degli approfondimenti è possibile consultare la documentazione ufficiale, che contiene un <a class="reference external" href="https://docs.python.org/3/tutorial/introduction.html#lists">documento introudttivo</a> e uno <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html">più dettagliato</a> sull’uso delle liste in Python. Per esemplificare l’uso di questi tre tipi di strumenti conviene ragionare in termini di una lista utilizzata come se fosse un <em>array</em>, memorizzando dunque una successione di valori dello stesso tipo, per esempio i nomi di alcuni supereroi:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Aquaman&#39;</span><span class="p">,</span> <span class="s1">&#39;Ant-Man&#39;</span><span class="p">,</span> <span class="s1">&#39;Batman&#39;</span><span class="p">,</span> <span class="s1">&#39;Black Widow&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;Captain America&#39;</span><span class="p">,</span> <span class="s1">&#39;Daredavil&#39;</span><span class="p">,</span> <span class="s1">&#39;Elektra&#39;</span><span class="p">,</span> <span class="s1">&#39;Flash&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;Green Arrow&#39;</span><span class="p">,</span> <span class="s1">&#39;Human Torch&#39;</span><span class="p">,</span> <span class="s1">&#39;Hancock&#39;</span><span class="p">,</span> <span class="s1">&#39;Iron Man&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;Mystique&#39;</span><span class="p">,</span> <span class="s1">&#39;Professor X&#39;</span><span class="p">,</span> <span class="s1">&#39;Rogue&#39;</span><span class="p">,</span> <span class="s1">&#39;Superman&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;Spider-Man&#39;</span><span class="p">,</span> <span class="s1">&#39;Thor&#39;</span><span class="p">,</span> <span class="s1">&#39;Northstar&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Questo esempio introduce, tra l’altro, l’uso delle stringhe, che saranno approfondite nel <code class="xref std std-numref docutils literal notranslate"><span class="pre">Paragrafo</span> <span class="pre">%s</span></code>.</p>
+<p class="rubric">Operatori</p>
+<p>Python mette inoltre a disposizione l’operatore binario <code class="docutils literal notranslate"><span class="pre">in</span></code> che implementa la relazione di appartenenza: se <code class="docutils literal notranslate"><span class="pre">e</span></code> è un’espressione e <code class="docutils literal notranslate"><span class="pre">l</span></code> una lista, l’espressione <code class="docutils literal notranslate"><span class="pre">e</span> <span class="pre">in</span> <span class="pre">l</span></code> viene valutata vera se il valore dell’espressione occorre in una posizione qualsiasi della lista e falsa altrimenti.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Thing&#39;</span> <span class="ow">in</span> <span class="n">names</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Human Torch&#39;</span> <span class="ow">in</span> <span class="n">names</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Un altro operatore (unario) specifico per le liste è <code class="docutils literal notranslate"><span class="pre">del</span></code>, che permette di eliminare un elemento da una lista indicandone la relativa posizione: per esempio, eseguendo la cella seguente viene cancellata la stringa contenuta nella prima posizione di <code class="docutils literal notranslate"><span class="pre">names</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Va sottolineato come <code class="docutils literal notranslate"><span class="pre">del</span></code> non restituisca un valore: successivamente alla sua esecuzione, la lista corrispondente avrà un elemento in meno, e in questo specifico caso quello che prima era il secondo elemento diventa ora il primo, e così via:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Ant-Man&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p class="rubric">Funzioni</p>
+<p>Python prevede inoltre alcune funzioni che elaborano liste, come per esempio <code class="docutils literal notranslate"><span class="pre">len</span></code> che restituisce il numero di elementi contenuti in una lista, a cui si fa di norma riferimento denotandolo come la <em>lunghezza</em> della lista stessa:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>18
+</pre></div>
+</div>
+</div>
+</div>
+<p class="rubric">Metodi</p>
+<p>Python è un linguaggio di programmazione che implementa (anche) il paradigma orientato a oggetti, e le liste (così come gli altri tipi di dati che vedremo più avanti) sono a tutti gli effetti oggetti su cui è possibile invocare metodi. Supponiamo di voler mettere in ordine alfabetico i nomi dei supereroi (la lista è quasi in ordine, l’unico elemento fuori posto è l’ultimo): la corrispondente operazione di ordinamento richiede di invocare sulla lista il metodo <code class="docutils literal notranslate"><span class="pre">sort</span></code> (usando la <em>dot notation tipica</em> della programmazione orientata agli oggetti).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Così come l’operatore <code class="docutils literal notranslate"><span class="pre">del</span></code>, tale metodo però non restituisce alcun valore, in quanto l’ordinamento è eseguito <em>in place</em>: dopo l’invocazione, gli elementi della lista saranno stati riposizionati in modo da riflettere l’ordinamento. Possiamo convincercene facilmente visualizzando per esempio gli ultimi cinque elementi di <code class="docutils literal notranslate"><span class="pre">names</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Professor X&#39;, &#39;Rogue&#39;, &#39;Spider-Man&#39;, &#39;Superman&#39;, &#39;Thor&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>L’invocazione di metodi (e di funzioni) prevede in python anche la possibilità di specificare degli argomenti <em>opzionali</em>: si tratta di argomenti, identificati da un nome, che possono essere omessi, e in tal caso assumono un valore predefinito all’atto dell’invocazione. Per poterne specificare un valore diverso da quello predefinito è sufficiente indicare, dopo gli eventuali altri argomenti, un’espressione del tipo <code class="docutils literal notranslate"><span class="pre">&lt;nome&gt;=&lt;valore&gt;</span></code>, separando tramite virgola la specificazione di più argomenti opzionali. Per esempio il metodo <code class="docutils literal notranslate"><span class="pre">sort</span></code> effettua l’ordinamento in verso non decrescente, e l’argomento opzionale <code class="docutils literal notranslate"><span class="pre">reversed</span></code> permette di invertire tale verso:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Un’altra caratteristica di python è quella di poter specificare una funzione come argomento di un metodo (o di un’altra funzione); ciò si può fare o indicando il nome della funzione, oppure usando una <em>lambda function</em> o <em>funzione anonima</em>: una funzione che viene definita senza darle un nome ma definendo direttamente come i suoi argomenti devono essere trasformati nel valore da restituire. Più precisamente, la sintassi <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">x:</span> <span class="pre">&lt;espressione&gt;</span></code> definisce una funzione che ha un argomento il cui nome simbolico è <code class="docutils literal notranslate"><span class="pre">x</span></code> e che restituisce l’espressione dopo il carattere di due punti (che di norma dipenderà da <code class="docutils literal notranslate"><span class="pre">x</span></code>).</p>
+<p>Un esempio che mette insieme l’uso di argomenti opzionali e di funzioni anonime si trova nella cella seguente, in cui la lista dei nomi viene ordinata non in modo alfabetico, bensì in funzione della lunghezza dei nomi stessi, specificando tramite l’argomento opzionale <code class="docutils literal notranslate"><span class="pre">key</span></code> una funzione anonima che trasformerà ogni elemento della lista in un valore su cui basare l’ordinamento.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">successore</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">successore</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">names</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Thor&#39;,
+ &#39;Rogue&#39;,
+ &#39;Flash&#39;,
+ &#39;Batman&#39;,
+ &#39;Hancock&#39;,
+ &#39;Elektra&#39;,
+ &#39;Ant-Man&#39;,
+ &#39;Superman&#39;,
+ &#39;Mystique&#39;,
+ &#39;Iron Man&#39;,
+ &#39;Northstar&#39;,
+ &#39;Daredavil&#39;,
+ &#39;Spider-Man&#39;,
+ &#39;Professor X&#39;,
+ &#39;Human Torch&#39;,
+ &#39;Green Arrow&#39;,
+ &#39;Black Widow&#39;,
+ &#39;Captain America&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Un altro metodo invocabile su una lista è <code class="docutils literal notranslate"><span class="pre">insert</span></code>, che permette di aggiungere un elemento a una lista esistente, specificando rispettivamente come secondo e primo argomento l’elemento da aggiungere e la posizione in cui inserirlo: per esempio nella cella seguente viene re-inserito Aquaman in modo da mantenere <code class="docutils literal notranslate"><span class="pre">names</span></code> in orine</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;Aquaman&#39;</span><span class="p">)</span>
+<span class="n">names</span><span class="p">[:</span><span class="mi">6</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Thor&#39;, &#39;Rogue&#39;, &#39;Flash&#39;, &#39;Batman&#39;, &#39;Aquaman&#39;, &#39;Hancock&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="le-tuple">
+<h2>Le tuple<a class="headerlink" href="#le-tuple" title="Permalink to this headline">¶</a></h2>
+<p>Una tupla è una lista immutabile: una volta creata non è possibile modificare i suoi contenuti. Una tupla viene indicata in modo analogo a una lista, con l’unica differenza che i suoi contenuti sono delimitati da parentesi tonde.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rogue</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Rogue&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;Anna Marie&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;Caldecott County, Mississippi&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;Marvel Comics&#39;</span><span class="p">,</span>
+         <span class="mf">173.1</span><span class="p">,</span>
+         <span class="mf">54.39</span><span class="p">,</span>
+         <span class="s1">&#39;F&#39;</span><span class="p">,</span>
+         <span class="mi">1981</span><span class="p">,</span>
+         <span class="s1">&#39;Green&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;Brown / White&#39;</span><span class="p">,</span>
+         <span class="mi">10</span><span class="p">,</span>
+        <span class="s1">&#39;good&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>L’accesso a un elemento di una tupla viene fatto in modo posizionale usando la medesima sintassi introdotta per le liste:</p>
+<p>Qualora si tenti di modificare un elemento in una tupla, l’esecuzione verrà però bloccata emettendo un errore:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">rogue</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">70</span>
+<span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Non si possono modificare gli elementi di una tupla&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Non si possono modificare gli elementi di una tupla
+</pre></div>
+</div>
+</div>
+</div>
+<p>Va notato che in python gli errori di esecuzione vengono emessi utilizzando il meccanismo delle eccezioni, che nella cella precedente vengono gestite in modo analogo a quanto succede per esempio in Java: il blocco di istruzioni coinvolto è quello che segue la parola chiave <code class="docutils literal notranslate"><span class="pre">try</span></code>, e le istruzioni dopo <code class="docutils literal notranslate"><span class="pre">except</span></code> vengono eseguite solo se viene lanciata un eccezione del tipo specificato. A seguito di questo errore, la tupla manterrà i suoi valori originali, restando quindi effettivamente invariata:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rogue</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;Rogue&#39;,
+ &#39;Anna Marie&#39;,
+ &#39;Caldecott County, Mississippi&#39;,
+ &#39;Marvel Comics&#39;,
+ 173.1,
+ 54.39,
+ &#39;F&#39;,
+ 1981,
+ &#39;Green&#39;,
+ &#39;Brown / White&#39;,
+ 10,
+ &#39;good&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Una tupla può essere utilizzata facendo ri ferimento agli stessi operatori e alle stesse funzioni messi a disposizione per le liste (come per esempio <code class="docutils literal notranslate"><span class="pre">in</span></code> e <code class="docutils literal notranslate"><span class="pre">len</span></code>), escludendo ovviamente le operazioni che modificano la tupla stessa (come <code class="docutils literal notranslate"><span class="pre">sort</span></code>).</p>
+<p>L’immutabilità delle tuple le rende da preferire rispetto alle liste in tutti i casi in cui si vuole impedire che dei dati vengano modificati, per esempio a causa di un bug; inoltre la loro elaborazione è in molti casi più efficiente di quella delle liste.</p>
+<div class="alert alert-info">
+Va notato che la sintassi per la descrizione delle tuple diventa problematica quando si vuole indicare una tupla contenente un unico elemento, in quanto per esempio `(1)` viene interpretato come valore `1` tra parentesi tonde. La soluzione in casi come questi è quella di fare seguire l'unico elemento della tupla da una virgola, scrivendo per esempio `(1,)`. Come regola generale, infatti, è possibile aggiungere una virgola alla fine di una tupla (o di una lista) senza variarne i contenuti.
+</div></div>
+<div class="section" id="le-stringhe">
+<span id="stringhe"></span><h2>Le stringhe<a class="headerlink" href="#le-stringhe" title="Permalink to this headline">¶</a></h2>
+<p>Le stringhe sono implementate come tuple di caratteri, e quindi su di esse è possibile eseguire tutte le operazioni che si eseguono sulle tuple:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="n">rogue</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">name</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;a&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si verifica facilmente come si tratti di tuple e non di liste, in quanto i contenuti non sono modificabili:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;A&#39;</span>
+<span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Non si possono modificare i contenuti di una stringa&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Non si possono modificare i contenuti di una stringa
+</pre></div>
+</div>
+</div>
+</div>
+<p>Anche per quanto riguarda le liste è possibile approfondire l’argomento consultando la <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#string-methods">documentazione ufficiale</a>.</p>
+</div>
+<div class="section" id="gli-insiemi">
+<h2>Gli insiemi<a class="headerlink" href="#gli-insiemi" title="Permalink to this headline">¶</a></h2>
+<p>Python implementa direttamente un tipo di dato per gli insiemi, intesi come collezione finita di elementi tra loro distinguibili e non memorizzati in un ordine particolare. A differenza delle liste e delle tuple, gli elementi non sono quindi associati a una posizione e non è possibile che un insieme contenga più di un’istanza di un medesimo elemento. Non utilizzeremo questo tipo di dato, quindi si rimanda alla <a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#set">documentazione ufficiale</a> per un approfondimento.</p>
+</div>
+<div class="section" id="i-dizionari">
+<h2>I dizionari<a class="headerlink" href="#i-dizionari" title="Permalink to this headline">¶</a></h2>
+<p>I dizionari servono a memorizzare delle associazioni tra oggetti, in analogica con il concetto matematico di funzione. È quindi possibile pensare a essi come a insiemi di coppie (chiave, valore), dove una data chiave non occorre più di una volta.</p>
+<p>Un dizionario viene descritto indicando ogni coppia separando chiave e valore con il carattere di due punti, separando le varie coppie con delle virgole e racchiudendo il tutto tra parentesi graffe. Possiamo per esempio usare un dizionario per rappresentare un record in modo più elegante rispetto alla precedente scelta basata sulle liste:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rogue</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Rogue&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;identity&#39;</span><span class="p">:</span> <span class="s1">&#39;Anna Marie&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;birth_place&#39;</span><span class="p">:</span> <span class="s1">&#39;Caldecott County, Mississippi&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;publisher&#39;</span><span class="p">:</span> <span class="s1">&#39;Marvel Comics&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mf">173.1</span><span class="p">,</span>
+         <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="mf">54.39</span><span class="p">,</span>
+         <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;first_appearance&#39;</span><span class="p">:</span> <span class="mi">1981</span><span class="p">,</span>
+         <span class="s1">&#39;eye_color&#39;</span><span class="p">:</span> <span class="s1">&#39;Green&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;hair_color&#39;</span><span class="p">:</span> <span class="s1">&#39;Brown / White&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;strength&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+         <span class="s1">&#39;intelligence&#39;</span><span class="p">:</span> <span class="s1">&#39;good&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>L’accesso, in lettura o scrittura, agli elementi di un dizionario viene fatto con una notazione che ricorda quella di liste e tuple: si specifica all’interno di parentesi quadre la chiave per ottenere o modificare il valore corrispondente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rogue</span><span class="p">[</span><span class="s1">&#39;identity&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Anna Marie&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>È proprio questa modalità di accesso che fa sì che i dizionari rappresentino una scelta più elegante per memorizzare un record: <code class="docutils literal notranslate"><span class="pre">rogue['identity']</span></code> è sicuramente più leggibile di <code class="docutils literal notranslate"><span class="pre">rogue[1]</span></code>. Va notato che il prezzo da pagare per la leggibilità è un’efficienza potenzialmente minore nelle operazioni di accesso (normalmente le liste sono implementate con una logica simile a quella degli array e dunque hanno un tempo di accesso costante ai loro elementi, mentre i dizionari sono implementati tramite tabelle di hash, pertanto l’accesso è a tempo costante solo se non avvengono collisioni).</p>
+<p>Se si tenta di accedere in lettura a un dizionario specificando una chiave inesistente viene lanciata un’eccezione (<code class="docutils literal notranslate"><span class="pre">KeyError</span></code>), mentre accedendovi in scrittura la specificazione di una chiave inesistente comporterà l’aggiunta della corrispondente coppia (chiave, valore) al dizionario.</p>
+<p>L’operatore <code class="docutils literal notranslate"><span class="pre">in</span></code> introdotto per le liste può anche essere utilizzato per i dizionari: più precisamente, l’espressione <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">in</span> <span class="pre">d</span></code> restituisce <code class="docutils literal notranslate"><span class="pre">True</span></code> se <code class="docutils literal notranslate"><span class="pre">k</span></code> è una chiave valida per il dizionario <code class="docutils literal notranslate"><span class="pre">d</span></code>.</p>
+<p>Anche nel caso dei dizionari il linguaggio mette a disposizione una serie di funzioni specifiche, e si può fare riferimento alla <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#dictionaries">documentazione ufficiale</a> di python per approfondire l’argomento.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./p1-PAD/c1-intro-python"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dario Malchiodi<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

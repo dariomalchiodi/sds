@@ -1,0 +1,418 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leggere dati da file (e un po’ di trucchi) &#8212; Superhero Data Science</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Superhero Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Introduzione
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Statistica descrittiva
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../content.html">
+   1. Content in Jupyter Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../markdown.html">
+     1.1. Markdown Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../notebooks.html">
+     1.2. Content with notebooks
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../bibliography.html">
+   2. Bibliography
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Calcolo delle probabilità
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../content.html">
+   1. Content in Jupyter Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../markdown.html">
+     1.1. Markdown Files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../notebooks.html">
+     1.2. Content with notebooks
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../_sources/p1-PAD/c1-intro-python/leggere-file.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/p1-PAD/c1-intro-python/leggere-file.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/dariomalchiodi/Superhero Data Science"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/dariomalchiodi/Superhero Data Science/issues/new?title=Issue%20on%20page%20%2Fp1-PAD/c1-intro-python/leggere-file.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dariomalchiodi/Superhero Data Science/main?urlpath=tree/docs/p1-PAD/c1-intro-python/leggere-file.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="leggere-dati-da-file-e-un-po-di-trucchi">
+<h1>Leggere dati da file (e un po’ di trucchi)<a class="headerlink" href="#leggere-dati-da-file-e-un-po-di-trucchi" title="Permalink to this headline">¶</a></h1>
+<p>Di solito la quantità di dati da analizzare è tale che non è pensabile di poterli immettere manualmente in una o più lista come abbiamo fatto noi. Normalmente i dati sono memorizzati su un file ed è necessario leggerli. Prendiamo in considerazione il file di testo <code class="docutils literal notranslate"><span class="pre">heroes.csv</span></code> contenuto nella directory <code class="docutils literal notranslate"><span class="pre">data</span></code>: esso contiene 735 righe, ognuna con le informazioni relative a un supereroe, separate da virgola. Le prime tre righe del file sono indicate di seguito.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">name</span><span class="p">;</span><span class="n">identity</span><span class="p">;</span><span class="n">birth_place</span><span class="p">;</span><span class="n">publisher</span><span class="p">;</span><span class="n">height</span><span class="p">;</span><span class="n">weight</span><span class="p">;</span><span class="n">gender</span><span class="p">;</span><span class="n">first_appearance</span><span class="p">;</span><span class="n">eye_color</span><span class="p">;</span><span class="n">hair_color</span><span class="p">;</span><span class="n">strength</span>
+<span class="n">A</span><span class="o">-</span><span class="n">Bomb</span><span class="p">;</span><span class="n">Richard</span> <span class="n">Milhouse</span> <span class="n">Jones</span><span class="p">;</span><span class="n">Scarsdale</span><span class="p">,</span> <span class="n">Arizona</span><span class="p">;</span><span class="n">Marvel</span> <span class="n">Comics</span><span class="p">;</span><span class="mi">203</span><span class="p">;</span><span class="mi">441</span><span class="p">;</span><span class="n">M</span><span class="p">;</span><span class="mi">2008</span><span class="p">;</span><span class="n">Yellow</span><span class="p">;</span><span class="n">No</span> <span class="n">Hair</span><span class="p">;</span><span class="mi">100</span>
+<span class="n">Agent</span> <span class="n">Bob</span><span class="p">;</span><span class="n">Bob</span><span class="p">;;</span><span class="n">Marvel</span> <span class="n">Comics</span><span class="p">;</span><span class="mi">178</span><span class="p">;</span><span class="mi">81</span><span class="p">;</span><span class="n">M</span><span class="p">;</span><span class="mi">2007</span><span class="p">;</span><span class="n">Brown</span><span class="p">;</span><span class="n">Brown</span><span class="p">;</span><span class="mi">10</span>
+</pre></div>
+</div>
+<p>Il formato CSV (comma separated values) indica un record su ogni riga, separando i campi corrispondenti con un carattere speciale che di norma, ma non sempre, è la virgola. Come si può vedere, nel nostro caso la prima riga indica il tipo di dati presente in ogni riga (sono gli stessi a cui abbiamo fatto riferimento finora), viene usato il punto e virgola per separare i campi (ciò permette di inserire delle virgole nei luoghi di nascita, come nel primo record) e possono esistere dei valori mancanti (quali per esempio il luogo di nascita nel secondo record).</p>
+<p>La cella seguente legge i contenuti del file e li inserisce nella lista <code class="docutils literal notranslate"><span class="pre">heroes</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/heroes.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">heroes_file</span><span class="p">:</span>
+  <span class="n">heroes_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">heroes_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
+  <span class="n">heroes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">heroes_reader</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">adecd7e309f9</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">csv</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> 
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/heroes.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">heroes_file</span><span class="p">:</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>   <span class="n">heroes_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">heroes_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>   <span class="n">heroes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">heroes_reader</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;data/heroes.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nella cella:</p>
+<ul class="simple">
+<li><p>l’apertura del file è fatta utilizzando la parola chiave <code class="docutils literal notranslate"><span class="pre">with</span></code>: nelle istruzioni indentate che seguono è possibile usare <code class="docutils literal notranslate"><span class="pre">heroes_file</span></code> per fare riferimento all’oggetto che descrive il file, e quest’ultimo sarà automaticamente chiuso, anche nel caso in cui vengano lanciate eccezioni, all’uscita del corpo di <code class="docutils literal notranslate"><span class="pre">with</span></code>;</p></li>
+<li><p>la funzione che apre il file accetta come primo argomento il pathname corrispondente e come secondo una stringa che indica come effettuare l’accesso: <code class="docutils literal notranslate"><span class="pre">'rb'</span></code> indica lettura in modalità binaria, cosa che permette di non doversi preoccupare di dover gestire come il sistema operativo indica la fine linea nei file di testo;</p></li>
+<li><p>la lettura effettiva del file è demandata al modulo <code class="docutils literal notranslate"><span class="pre">csv</span></code> che si occupa direttamente di convertire dal formato CSV: la funzione <code class="docutils literal notranslate"><span class="pre">csv.reader</span></code> gestisce anche il fatto di avere un separatore diverso dalla virgola e permette di inserire un punto e virgola in un campo a patto di delimitare quest’ultimo tra doppi apici;</p></li>
+<li><p>la parola chiave <code class="docutils literal notranslate"><span class="pre">list</span></code> converte il contenuto del file in una lista, e da quest’ultima si esclude la prima riga (in quanto essa contiene le intestazioni dei campi).</p></li>
+</ul>
+<div class="alert alert-info">
+In generale usando il nome di un tipo come se fosse una funzione è possibile effettuare conversioni tra tipi di dati: per esempio `int('42')` converte una stringa in intero e `str(42)` effettua la conversione inversa.
+</div><p>Proviamo a visualizzare i primi due record (che corrispondono alle due righe sopra mostrate):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si vede che tutti i dati sono indicati come stringhe (vedremo più avanti un modo più efficiente di rilevare i diversi tipi di dati in modo corretto), e che la stringa vuota è usata per codificare i dati mancanti.</p>
+<p>Per poter generare il grafico delle frequenze assolute con i nuovi dati è necessario estrarre l’anno di prima apparizione da ogni record. Potremmo farlo anche in questo caso usando il trucco di trasporre il corrispondente array, ma c’è un modo molto più efficiente che prende il nome di <em>list comprehension</em>, una sintassi specifica di python. Invece di creare una lista in modo <em>estensivo</em> (cioè elencando i suoi elementi), la list comprehension permette di crearla in modo <em>intensivo</em>, specificando come trasformare gli elementi di un’altra lista che già abbiamo a disposizione. La sintassi di base di una <em>list comprehension</em> è</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">f</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">l</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>dove <code class="docutils literal notranslate"><span class="pre">f(e)</span></code> indica una funzione o un’espressione che dipende dalla variabile muta <code class="docutils literal notranslate"><span class="pre">e</span></code> e <code class="docutils literal notranslate"><span class="pre">l</span></code> è una lista di cui quindi <code class="docutils literal notranslate"><span class="pre">e</span></code> indica il generico elemento. Questa espressione permette di costruire una nuova lista in cui il primo elemento è il risultato del calcolo di <code class="docutils literal notranslate"><span class="pre">f</span></code> sul primo elemento di <code class="docutils literal notranslate"><span class="pre">l</span></code>, il secondo è il risultato di <code class="docutils literal notranslate"><span class="pre">f</span></code> secondo elemento di <code class="docutils literal notranslate"><span class="pre">l</span></code> e così via. È inoltre possibile utilizzre la sintassi <code class="docutils literal notranslate"><span class="pre">[f(e)</span> <span class="pre">for</span> <span class="pre">e</span> <span class="pre">in</span> <span class="pre">l</span> <span class="pre">if</span> <span class="pre">g(e)]</span></code>, che indica che nella creazione della nuova lista bisogna limitarsi a considerare gli elementi <code class="docutils literal notranslate"><span class="pre">e</span></code> della lista originale che rendono vera l’espressione <code class="docutils literal notranslate"><span class="pre">g(e)</span></code>. Pertanto</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">heroes</span> <span class="k">if</span> <span class="n">h</span><span class="p">[</span><span class="mi">7</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>assegna a <code class="docutils literal notranslate"><span class="pre">years</span></code> la lista che contiene l’anno di prima apparizione di ogni supereroe (che infatti occorre in ottava posizione), convertito da stringa a intero, ma senza considerare le stringhe vuote (in python la stringa vuota equivale a un’espressione logica falsa esattamente come <code class="docutils literal notranslate"><span class="pre">0</span></code> o <code class="docutils literal notranslate"><span class="pre">0.</span></code> in C, e le altre stringhe equivalgono a un’espressione logica vera), operazione necessaria altrimenti la conversione a intero di un dato mancante lancerebbe un’eccezione.</p>
+<p>A questo punto è possibile generare il grafico delle frequenze assolute:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span> <span class="o">=</span> <span class="n">get_sorted_counts</span><span class="p">(</span><span class="n">years</span><span class="p">)</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Il grafico appare “spostato” verso sinistra, a causa della presenza di una barra in prossimità dell’anno 2100. Potrebbe essere un supereroe effettivamente nato nel futuro, oppure si potrebbe trattare di un dato errato. Si tratta di una situazione più comune di quanto non si possa pensare: queste misurazioni affette da rumore prendono il nome di <em>dati fuori scala</em> o <em>outlier</em> e più avanti vedremo come gestirle. Per ora limitiamoci a vedere quale sia questo valore. Possiamo farlo usando una list comprehension appena più complicata di quella vista poco fa:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">year</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span> <span class="k">if</span> <span class="n">year</span> <span class="o">&gt;</span> <span class="mi">2020</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In soldoni, la presenza dell’anno 2099 causa lo spostamento del grafico. Potremmo eliminare il record corrispondente dal nostro dataset, ma così facendo perderemmo i valori per gli altri campi che non è detto siano anch’essi degli outlier. Un modo molto più pratico di procedere è quello di visualizzare il grafico restringendo le ascisse all’intervallo temporale che va dal 1950 al 2015: ciò viene fatto invocando la funzione <code class="docutils literal notranslate"><span class="pre">plt.xlim</span></code> e passandole una coppia con gli estremi di questo intervallo. Già che ci siamo, possiamo anche impostare l’ampiezza dell’asse delle ordinate in modo che ci sia un po’ di spazio sopra la barra che corrisponde alla frequenza massima:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="mi">1950</span><span class="p">,</span> <span class="mi">2015</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mf">18.5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-info">
+In teoria, una volta ottenuta la lista `counts`, è possibile generare il grafico (ridmensionamento dei suoi assi a parte) usando l'istruzione più compatta `plt.bar(*np.array(counts[1:]).T)` in cui
+<ul>
+<li>l'invocazione del metodo `transpose` è sostituita dall'utilizzo della _proprietà_ `T`: si tratta essenzialmente della stessa cosa, ma permette di essere più succinti;</li>
+<li>invece di assegnare a due variabili `x` e `y` le liste di ascisse e ordinate, si usa l'operatore `*` per effettuare un'altra forma di _unpacking_ delle liste in modo che i due elementi della lista restituita da `T` vengano rispettivamente usati come primo e secondo argomento di `np.bar`.</li>
+</ul>
+Va in ogni caso sottolineato che il minor numero di linee si paga con del codice più complesso e quindi meno facile da leggere e da correggere in caso di errore, quindi almeno fino a quando non si è abbastanza confidenti nel linguaggio è meglio non ricorrere a soluzioni troppo complicate.
+</div></div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./p1-PAD/c1-intro-python"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dario Malchiodi<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
