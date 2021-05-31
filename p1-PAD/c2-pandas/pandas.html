@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pandas &#8212; Superhero Data Science</title>
+    <title>2. Pandas &#8212; Superhero Data Science</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -52,6 +52,8 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1. Dati e frequenze" href="../../p2-SD/c1-dati-e-frequenze/dati-e-frequenze.html" />
+    <link rel="prev" title="1.7. Leggere dati da file (e un po’ di trucchi)" href="../c1-intro-python/leggere-file.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -83,8 +85,89 @@
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../intro.html">
-   Introduzione
+  <a class="reference internal" href="../../landing.html">
+   Superhero Data Science
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introduzione
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../p0-introduzione/presentazione.html">
+   1. Presentazione
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../p0-introduzione/un-esempio.html">
+   2. Un esempio
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../p0-introduzione/notazione.html">
+   3. Notazione
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Programmazione per l'analisi dei dati
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../c1-intro-python/introduzione-a-python.html">
+   1. Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c1-intro-python/dati-semplici-e-operatori.html">
+     1.1. Tipi di dati semplici
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c1-intro-python/dati-strutturati.html">
+     1.2. I tipi di dati strutturati
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c1-intro-python/strutture-di-controllo.html">
+     1.3. Strutture di controllo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c1-intro-python/funzioni.html">
+     1.4. Funzioni
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c1-intro-python/importare-moduli.html">
+     1.5. Importare moduli
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c1-intro-python/disegnare-grafici.html">
+     1.6. Disegnare grafici
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c1-intro-python/leggere-file.html">
+     1.7. Leggere dati da file (e un po’ di trucchi)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2. Pandas
   </a>
  </li>
 </ul>
@@ -94,31 +177,9 @@
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../content.html">
-   1. Content in Jupyter Book
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../markdown.html">
-     1.1. Markdown Files
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../notebooks.html">
-     1.2. Content with notebooks
-    </a>
-   </li>
-  </ul>
- </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../bibliography.html">
-   2. Bibliography
+  <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/dati-e-frequenze.html">
+   1. Dati e frequenze
   </a>
  </li>
 </ul>
@@ -128,27 +189,22 @@
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../content.html">
-   1. Content in Jupyter Book
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/calcolo-combinatorio.html">
+   1. Calcolo combinatorio
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../markdown.html">
-     1.1. Markdown Files
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../notebooks.html">
-     1.2. Content with notebooks
-    </a>
-   </li>
-  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Bibliografia
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../bibliography.html">
+   1. Bibliography
+  </a>
  </li>
 </ul>
 
@@ -259,22 +315,22 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#serie">
-   Serie
+   2.1. Serie
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#visualizzione-grafica-di-una-serie">
-   Visualizzione grafica di una serie
+   2.2. Visualizzione grafica di una serie
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#operazioni-con-le-serie">
-   Operazioni con le serie
+   2.3. Operazioni con le serie
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#dataframe">
-   Dataframe
+   2.4. Dataframe
   </a>
  </li>
 </ul>
@@ -289,7 +345,7 @@
               <div>
                 
   <div class="section" id="pandas">
-<span id="id1"></span><h1>Pandas<a class="headerlink" href="#pandas" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1><span class="section-number">2. </span>Pandas<a class="headerlink" href="#pandas" title="Permalink to this headline">¶</a></h1>
 <p>Vedremo come la libreria pandas faciliti le operazioni viste finora per caricare dati, organizzarli in opportune strutture e analizzarli. Per poter procedere dobbiamo ricaricare le librerie usate finora, nonché il file <code class="docutils literal notranslate"><span class="pre">heroes.csv</span></code>. Useremo anche la <em>matplotlib magic</em> che ci permette di visualizzare i grafici direttamente nel notebook.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -335,7 +391,7 @@
 <p>Utilizzando una versione diversa da questa, può capitare che il risultato ottenuto eseguendo alcune celle sia diverso da quello indicato. Alcune funzionalità potrebbero anche non essere implementate, deprecate o perfino rimosse. Se state invece utilizzando l’ambiente fornito tramite immagine Docker o tramite mybinder non dovreste avere problemi di questo genere.</p>
 <div id="h-1"></div>
 <div class="section" id="serie">
-<h2>Serie<a class="headerlink" href="#serie" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.1. </span>Serie<a class="headerlink" href="#serie" title="Permalink to this headline">¶</a></h2>
 <p>Una delle classi principali implementate in pandas è <code class="docutils literal notranslate"><span class="pre">Series</span></code>. Le sue istanze rappresentano serie di osservazioni di un certo carattere fatto su un insieme di individui. La cella seguente recupera dalla lista <code class="docutils literal notranslate"><span class="pre">heroes</span></code> precedentemente creata i nomi dei supereoi e il loro anno di prima apparizione e li utilizza per creare una serie:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -459,7 +515,7 @@ Tecnicamente, l'espressione `first_appearance > 2010` genera una nuova serie che
 <div id="h-2"></div>
 </div>
 <div class="section" id="visualizzione-grafica-di-una-serie">
-<h2>Visualizzione grafica di una serie<a class="headerlink" href="#visualizzione-grafica-di-una-serie" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.2. </span>Visualizzione grafica di una serie<a class="headerlink" href="#visualizzione-grafica-di-una-serie" title="Permalink to this headline">¶</a></h2>
 <p>Pandas mette a disposizione l’oggetto <code class="docutils literal notranslate"><span class="pre">plot</span></code> per visualizzare graficamente i contenuti di una serie, utilizzando matplotlib dietro le quinte; in particolare, il metodo <code class="docutils literal notranslate"><span class="pre">bar</span></code> visualizza un grafico a barre:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -512,7 +568,7 @@ Per generare il grafico precedente è necessario utilizzare alcune funzionalità
 <div id="h-3"></div>
 </div>
 <div class="section" id="operazioni-con-le-serie">
-<h2>Operazioni con le serie<a class="headerlink" href="#operazioni-con-le-serie" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.3. </span>Operazioni con le serie<a class="headerlink" href="#operazioni-con-le-serie" title="Permalink to this headline">¶</a></h2>
 <p>Consideriamo le seguenti domande:</p>
 <ol class="simple">
 <li><p>Quanti supereroi sono apparsi dopo il 1960?</p></li>
@@ -602,7 +658,7 @@ La funzione `sum` accetta come argomento liste, tuple e serie: in tutti i casi r
 <div id="h-4"></div>
 </div>
 <div class="section" id="dataframe">
-<h2>Dataframe<a class="headerlink" href="#dataframe" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.4. </span>Dataframe<a class="headerlink" href="#dataframe" title="Permalink to this headline">¶</a></h2>
 <p>Un <em>dataframe</em> è una collezione di serie che hanno lo stesso indice, ed è quindi un insieme di osservazioni di vari <em>caratteri</em> per una popolazione di individui. Tra i vari modi che sono disponibili in pandas per creare un <em>dataframe</em>, noi faremo riferimento al metodo <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> della classe <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code>, che permette di leggere i contenuti di un file in formato CSV e convertirli automaticamente in un <em>dataframe</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -760,6 +816,8 @@ In alternativa è possibile usare una sintassi basata su _dot notation_ in cui i
         
         <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="../c1-intro-python/leggere-file.html" title="previous page"><span class="section-number">1.7. </span>Leggere dati da file (e un po’ di trucchi)</a>
+    <a class='right-next' id="next-link" href="../../p2-SD/c1-dati-e-frequenze/dati-e-frequenze.html" title="next page"><span class="section-number">1. </span>Dati e frequenze</a>
 
         </div>
         
