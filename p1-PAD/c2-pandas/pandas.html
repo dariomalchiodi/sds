@@ -291,7 +291,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/dariomalchiodi/sds/main?urlpath=tree/docs/p1-PAD/c2-pandas/pandas.md"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dariomalchiodi/sds/main?urlpath=tree/sds/p1-PAD/c2-pandas/pandas.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../../_static/images/logo_binder.svg"
@@ -365,25 +365,16 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">c93edb81c713</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;figure&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">))</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> 
-<span class="ne">---&gt; </span><span class="mi">11</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/heroes.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">heroes_file</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span>   <span class="n">heroes_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">heroes_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span>   <span class="n">heroes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">heroes_reader</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;data/heroes.csv&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <p>Va notato come pandas (così come, in generale, gran parte del software open source dedicato all’analisi dei dati) sia caratterizzato da una comunità di sviluppatori molto attiva. Ciò significa che il tempo tra il rilascio di due release successive sia di norma breve: se avete effettuato l’installazione in modo autonomo è quindi possibile che stiate utilizzando una versione più (o meno) recente di quella più aggiornata quando è stato scritto questo documento. Per verificare quale sia la versione installata è sufficiente accedere alla proprietà <code class="docutils literal notranslate"><span class="pre">pd.__version__</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1.2.4&#39;
 </pre></div>
 </div>
 </div>
@@ -410,6 +401,22 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A-Bomb         2008.0
+Abraxas           NaN
+Abomination       NaN
+Adam Monroe       NaN
+Agent 13          NaN
+                ...  
+Alan Scott     1940.0
+Amazo          1960.0
+Ant-Man        1962.0
+Ajax           1998.0
+Alex Mercer       NaN
+Length: 735, dtype: float64
+</pre></div>
+</div>
+</div>
 </div>
 <p>La visualizzazione della serie (che in questo caso riporta solo i primi e gli ultimi elementi perché la serie è troppo lunga) termina indicando il tipo di dato usato per rappresentare le varie osservazioni. Nell’esempio precedente viene utilizzato il tipo <code class="docutils literal notranslate"><span class="pre">float64</span></code> (pandas utilizza internamente gli array di numpy, in cui è presente un’implementazione dei tipi in virgola mobile diversa da quella standard di python), nonostante i dati originari fossero numeri interi. Ciò è dovuto alla presenza di valori mancanti. Di norma vengono indicati con la sigla NA (dall’inglese “not available”), ma in pandas essi vengono rappresentati utilizzando il concetto di “not a number” dello standard IEEE per la virgola mobile: si noti come tutte le occorrenze di <code class="docutils literal notranslate"><span class="pre">None</span></code> nella lista originale siano state automaticamente convertite in <code class="docutils literal notranslate"><span class="pre">np.nan</span></code>.</p>
 <p>L’accesso ai dati contenuti in una serie può avvenire in due modi:</p>
@@ -419,6 +426,11 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">first_appearance</span><span class="p">[</span><span class="s1">&#39;Wonder Woman&#39;</span><span class="p">],</span> <span class="n">first_appearance</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Wonder Woman&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1941.0, 1941.0)
 </pre></div>
 </div>
 </div>
@@ -432,6 +444,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1992.0, 1992.0)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="alert alert-warning">
 Se l'indice di una serie è basato su valori interi, i valori tra parentesi quadre immediatamente dopo la serie faranno riferimento all'indice e non alla posizione: ciò potrebbe essere fuorviante se gli elementi dell'indice non partono da zero e non sono consecutivi.
@@ -439,6 +456,13 @@ Se l'indice di una serie è basato su valori interi, i valori tra parentesi quad
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_appearance</span><span class="p">[</span><span class="s1">&#39;Wonder Girl&#39;</span><span class="p">:</span><span class="s1">&#39;Wonder Woman&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wonder Girl     1996.0
+Wonder Woman    1941.0
+dtype: float64
 </pre></div>
 </div>
 </div>
@@ -450,11 +474,29 @@ Se l'indice di una serie è basato su valori interi, i valori tra parentesi quad
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vegeta         NaN
+Vixen       1981.0
+Valkyrie       NaN
+dtype: float64
+</pre></div>
+</div>
+</div>
 </div>
 <p>L’accesso posizionale può anche fare riferimento a numeri negativi, contando in analogia a liste e tuple a partire dall’ultimo elemento:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_appearance</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Alan Scott     1940.0
+Amazo          1960.0
+Ant-Man        1962.0
+Ajax           1998.0
+Alex Mercer       NaN
+dtype: float64
 </pre></div>
 </div>
 </div>
@@ -466,6 +508,18 @@ Se l'indice di una serie è basato su valori interi, i valori tra parentesi quad
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A-Bomb         2008.0
+Abraxas           NaN
+Abomination       NaN
+Adam Monroe       NaN
+Agent 13          NaN
+Air-Walker        NaN
+Agent Bob      2007.0
+dtype: float64
+</pre></div>
+</div>
+</div>
 </div>
 <p>L’accesso alle liste può anche essere fatto specificando una lista (ma non una tupla) di posizioni al posto di una sola posizione, con l’effetto di ottenere i corrispondenti elementi.</p>
 <div class="cell docutils container">
@@ -474,11 +528,46 @@ Se l'indice di una serie è basato su valori interi, i valori tra parentesi quad
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Abraxas     NaN
+Warbird     NaN
+Astro Boy   NaN
+dtype: float64
+</pre></div>
+</div>
+</div>
 </div>
 <p>Questo tipo di accesso può essere fatto anche specificando una lista di valori per l’indice. Infine, si può utilizzare una lista di valori booleani in cui <code class="docutils literal notranslate"><span class="pre">True</span></code> indica gli elementi da estrarre e <code class="docutils literal notranslate"><span class="pre">False</span></code> quelli da filtrare:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_appearance</span><span class="p">[[</span><span class="mi">1970</span> <span class="o">&lt;=</span> <span class="n">y</span> <span class="o">&lt;</span><span class="mi">1975</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">first_appearance</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Thundra               1972.0
+Swamp Thing           1972.0
+Shang-Chi             1973.0
+Rambo                 1972.0
+Ra&#39;s Al Ghul          1971.0
+Namorita              1972.0
+Mockingbird           1971.0
+Metron                1971.0
+Man-Bat               1970.0
+Man-Thing             1971.0
+Luke Cage             1972.0
+Jennifer Kale         1972.0
+Iron Fist             1974.0
+Ghost Rider           1972.0
+Etrigan               1972.0
+Drax the Destroyer    1973.0
+Diamondback           1972.0
+Doc Samson            1971.0
+Darkseid              1970.0
+Deathlok              1974.0
+Brother Voodoo        1973.0
+Blade                 1973.0
+dtype: float64
 </pre></div>
 </div>
 </div>
@@ -492,6 +581,24 @@ L'uso di questa modalità di accesso richiede che la lista di valori booleani ab
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Venompool        2011.0
+The Cape         2011.0
+Spider-Man       2011.0
+Simon Baz        2012.0
+Rey              2015.0
+Kylo Ren         2015.0
+Jyn Erso         2016.0
+K-2SO            2016.0
+Jessica Cruz     2013.0
+Garbage Man      2011.0
+Evil Deadpool    2011.0
+Captain Cold     2012.0
+Bloodhawk        2099.0
+dtype: float64
+</pre></div>
+</div>
+</div>
 </div>
 <div class="alert alert-info">
 Tecnicamente, l'espressione `first_appearance > 2010` genera una nuova serie che ha lo stesso indice di `first_appearance` e in cui i valori sono `True` in corrispondenza degli anni successivi al 2010 e `False` altrimenti. Questa nuova serie viene utilizzata per filtrare `first_appearance`.
@@ -502,12 +609,43 @@ Tecnicamente, l'espressione `first_appearance > 2010` genera una nuova serie che
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1963.0    18
+1964.0    18
+1965.0    14
+2004.0    11
+1994.0    10
+          ..
+1945.0     1
+1950.0     1
+1978.0     1
+2013.0     1
+1948.0     1
+Length: 71, dtype: int64
+</pre></div>
+</div>
+</div>
 </div>
 <p>Va notato come il tipo delle frequenze sia, correttamente, intero e come i valori mancanti siano automaticamente esclusi dal calcolo delle frequenze, mentre sono sempre presenti gli <em>outlier</em>.  Per ottenere una serie i cui elementi siano ordinati per valore non decrescente della voce nell’indice è sufficiente invocare il metodo <code class="docutils literal notranslate"><span class="pre">sort_index</span></code>; già che ci siamo, è un buon momento per eliminare i valori fuori scala dal conteggio effettuando una <em>query</em> sulla serie:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_app_freq</span> <span class="o">=</span> <span class="n">first_appearance</span><span class="p">[</span><span class="n">first_appearance</span> <span class="o">&lt;</span> <span class="mi">2090</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
 <span class="n">first_app_freq</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1933.0    1
+1939.0    1
+1940.0    9
+1941.0    7
+1943.0    2
+1944.0    2
+1945.0    1
+1947.0    2
+1948.0    1
+1950.0    1
+dtype: int64
 </pre></div>
 </div>
 </div>
@@ -526,6 +664,9 @@ Tecnicamente, l'espressione `first_appearance > 2010` genera una nuova serie che
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/pandas_35_0.png" src="../../_images/pandas_35_0.png" />
+</div>
 </div>
 <p>Il grafico ottenuto, diciamolo, fa schifo. Questo perché <code class="docutils literal notranslate"><span class="pre">bar</span></code> considera un punto per ogni elemento della serie, in cui le ascisse corrispondono alla posizione (zero per la prima osservazione, uno per la seconda e così via, sebbene nel grafico sull’asse delle ascisse vengano poi visualizzati i valori dell’indice) e le ordinate al valore osservato. Per ognuno dei punti così ottenuti viene poi tracciato un segmento che lo congiunge perpendicolarmente all’asse delle ascisse. Il risultato è decisamente poco informativo, sia da un punto di vista grafico (le etichette sull’asse delle ascisse si sovrappongono, così che non si riesce a leggere nulla), sia da un punto di vista analitico: le barre hanno altezze simili e quindi le loro differenze sono poco apprezzabili a colpo d’occhio; inoltre il grafico dipende per esempio dall’ordine in cui sono elencate le osservazioni e non ci permette di solito di trarre alcuna informazione sulla relazione che lega tra loro le osservazioni.</p>
 <p>Si ottengono dei risultati decisamente più interessanti se si visualizza un grafico analogo per le frequenze assolute:</p>
@@ -535,6 +676,9 @@ Tecnicamente, l'espressione `first_appearance > 2010` genera una nuova serie che
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/pandas_37_0.png" src="../../_images/pandas_37_0.png" />
 </div>
 </div>
 <p>Il grafico ottenuto è sicuramente migliore di quello precedente, ma rimane il problema di leggibilità dell’asse delle ascisse. Ciò è dovuto al fatto che pandas non inserisce le barre sul grafico nelle ascisse corrispondenti agli anni, ma le posiziona una accanto all’altra, come possiamo renderci conto visualizzando un po’ meglio solo alcune delle etichette (in prima istanza non è importante capire come venga generato questo grafico, ma se siete cursosi potete leggere l’approfondimento che trovate dopo il commento al grafico stesso):</p>
@@ -548,6 +692,9 @@ Tecnicamente, l'espressione `first_appearance > 2010` genera una nuova serie che
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/pandas_39_0.png" src="../../_images/pandas_39_0.png" />
 </div>
 </div>
 <p>Si può osservare che tra due valori successivi evidenziati nell’asse delle ascisse intercorre una distanza di dieci anni, ma le etichette non risultano equispaziate: ciò è dovuto al fatto che in realtà la prima barra ha ascissa 1, la seconda ha ascissa 2 e così via, mentre le etichette mostrate sull’asse delle ascisse corrispondono ai valori degli indici.</p>
@@ -563,6 +710,9 @@ Per generare il grafico precedente è necessario utilizzare alcune funzionalità
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/pandas_41_0.png" src="../../_images/pandas_41_0.png" />
 </div>
 </div>
 <div id="h-3"></div>
@@ -582,11 +732,76 @@ Per generare il grafico precedente è necessario utilizzare alcune funzionalità
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1960.0     8
+1961.0     3
+1962.0     4
+1963.0    18
+1964.0    18
+1965.0    14
+1966.0     6
+1967.0     8
+1968.0     5
+1969.0     2
+1970.0     2
+1971.0     5
+1972.0     9
+1973.0     4
+1974.0     2
+1975.0    10
+1976.0    10
+1977.0    10
+1978.0     1
+1979.0     9
+1980.0     9
+1981.0     8
+1982.0     2
+1983.0     1
+1984.0     6
+1985.0     9
+1986.0    10
+1987.0     9
+1988.0     1
+1989.0     5
+1990.0     4
+1991.0     5
+1992.0     9
+1993.0    10
+1994.0    10
+1995.0     5
+1996.0     2
+1997.0     4
+1998.0     4
+1999.0     5
+2000.0     3
+2001.0     3
+2003.0     4
+2004.0    11
+2005.0     7
+2006.0     7
+2007.0     5
+2008.0     6
+2009.0     1
+2010.0     4
+2011.0     5
+2012.0     2
+2013.0     1
+2015.0     2
+2016.0     2
+dtype: int64
+</pre></div>
+</div>
+</div>
 </div>
 <p>A questo punto è sufficiente invocare la funzione <code class="docutils literal notranslate"><span class="pre">sum</span></code> sulla sotto-serie individuata per ottenere la somma delle frequenze:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">first_app_freq</span><span class="p">[</span><span class="mi">1960</span><span class="p">:])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>329
 </pre></div>
 </div>
 </div>
@@ -598,11 +813,21 @@ Per generare il grafico precedente è necessario utilizzare alcune funzionalità
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>106
+</pre></div>
+</div>
+</div>
 </div>
 <p>Analogamente, all’ultima domanda si risponde selezionando gli anni dal 1970 in avanti:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">first_app_freq</span><span class="p">[:</span><span class="mi">1971</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>130
 </pre></div>
 </div>
 </div>
@@ -626,11 +851,41 @@ La funzione `sum` accetta come argomento liste, tuple e serie: in tutti i casi r
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A-Bomb         2.0321
+Abraxas           NaN
+Abomination    2.0304
+Adam Monroe       NaN
+Agent 13       1.7341
+Air-Walker     1.8859
+Agent Bob      1.7825
+Abe Sapien     1.9124
+Abin Sur       1.8552
+Angela            NaN
+dtype: float64
+</pre></div>
+</div>
+</div>
 </div>
 <p>Quando si considerano operazioni più complicate, è possibile utilizzare il metodo <code class="docutils literal notranslate"><span class="pre">apply</span></code> indicando come suo argomento la funzione da applicare agli elementi della serie. Per esempio, nella cella seguente viene creata una nuova serie ottenuta esprimendo le altezze dei supereroi in metri e successivamente elevando il risultato al quadrato.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">height</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">h</span><span class="p">:</span> <span class="p">(</span><span class="n">h</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A-Bomb         4.129430
+Abraxas             NaN
+Abomination    4.122524
+Adam Monroe         NaN
+Agent 13       3.007103
+Air-Walker     3.556619
+Agent Bob      3.177306
+Abe Sapien     3.657274
+Abin Sur       3.441767
+Angela              NaN
+dtype: float64
 </pre></div>
 </div>
 </div>
@@ -643,6 +898,26 @@ La funzione `sum` accetta come argomento liste, tuple e serie: in tutti i casi r
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Utgard-Loki     2501.321629
+Giganta         1607.124545
+Red Hulk         137.611973
+Darkseid         114.366701
+Machine Man      114.083519
+Thanos           109.414534
+Destroyer        107.579152
+Abomination      107.211015
+A-Bomb           107.024446
+Hulk             105.622909
+Bloodaxe         104.160435
+Juggernaut       103.216295
+King Kong        102.732873
+Sasquatch         96.810738
+Living Brain      91.318046
+dtype: float64
+</pre></div>
+</div>
+</div>
 </div>
 <p>A parte notare Hulk è solo il quindicesimo della classifica, va sottolinato che le operazioni fatte elemento per elemento allineano i vettori corrispondenti alle serie in base all’indice (e non alla posizione). Consideriamo per esempio la seguente cella, in cui vengono selezionati altezze e pesi più o meno plausibili per un essere umano, calcolando poi i corrispondenti BMI.</p>
 <div class="cell docutils container">
@@ -650,6 +925,26 @@ La funzione `sum` accetta come argomento liste, tuple e serie: in tutti i casi r
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">standard_weight</span> <span class="o">=</span> <span class="n">weight</span><span class="p">[(</span><span class="n">weight</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">weight</span> <span class="o">&gt;</span> <span class="mi">40</span><span class="p">)]</span>
 <span class="n">standard_height</span> <span class="o">=</span> <span class="n">height</span><span class="p">[(</span><span class="n">height</span> <span class="o">&lt;</span> <span class="mi">210</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">height</span> <span class="o">&gt;</span> <span class="mi">120</span><span class="p">)]</span><span class="o">/</span><span class="mi">100</span>
 <span class="p">(</span><span class="n">standard_weight</span> <span class="o">/</span> <span class="p">(</span><span class="n">standard_height</span><span class="o">**</span><span class="mi">2</span><span class="p">))[:</span><span class="mi">15</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A-Bomb                     NaN
+Abe Sapien           17.868501
+Abin Sur             26.410852
+Abomination                NaN
+Absorbing Man              NaN
+Adam Strange         25.952943
+Agent 13             20.295282
+Agent Bob            25.634923
+Agent Zero                 NaN
+Air-Walker                 NaN
+Ajax                 24.245355
+Alan Scott           27.725061
+Alfred Pennyworth    22.966566
+Ammo                       NaN
+Angel                20.589542
+dtype: float64
 </pre></div>
 </div>
 </div>
@@ -683,6 +978,11 @@ La funzione `sum` accetta come argomento liste, tuple e serie: in tutti i casi r
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;minnie&#39;, &#39;paperinick&#39;, &#39;paperino&#39;, &#39;zorro&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -690,6 +990,211 @@ La funzione `sum` accetta come argomento liste, tuple e serie: in tutti i casi r
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Identity</th>
+      <th>Birth place</th>
+      <th>Publisher</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Gender</th>
+      <th>First appearance</th>
+      <th>Eye color</th>
+      <th>Hair color</th>
+      <th>Strength</th>
+      <th>Intelligence</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>A-Bomb</th>
+      <td>Richard Milhouse Jones</td>
+      <td>Scarsdale, Arizona</td>
+      <td>Marvel Comics</td>
+      <td>203.21</td>
+      <td>441.95</td>
+      <td>M</td>
+      <td>2008.0</td>
+      <td>Yellow</td>
+      <td>No Hair</td>
+      <td>100.0</td>
+      <td>moderate</td>
+    </tr>
+    <tr>
+      <th>Abraxas</th>
+      <td>Abraxas</td>
+      <td>Within Eternity</td>
+      <td>Marvel Comics</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>M</td>
+      <td>NaN</td>
+      <td>Blue</td>
+      <td>Black</td>
+      <td>100.0</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>Abomination</th>
+      <td>Emil Blonsky</td>
+      <td>Zagreb, Yugoslavia</td>
+      <td>Marvel Comics</td>
+      <td>203.04</td>
+      <td>441.98</td>
+      <td>M</td>
+      <td>NaN</td>
+      <td>Green</td>
+      <td>No Hair</td>
+      <td>80.0</td>
+      <td>good</td>
+    </tr>
+    <tr>
+      <th>Adam Monroe</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NBC - Heroes</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>M</td>
+      <td>NaN</td>
+      <td>Blue</td>
+      <td>Blond</td>
+      <td>10.0</td>
+      <td>good</td>
+    </tr>
+    <tr>
+      <th>Agent 13</th>
+      <td>Sharon Carter</td>
+      <td>NaN</td>
+      <td>Marvel Comics</td>
+      <td>173.41</td>
+      <td>61.03</td>
+      <td>F</td>
+      <td>NaN</td>
+      <td>Blue</td>
+      <td>Blond</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>Alan Scott</th>
+      <td>Alan Ladd Wellington Scott</td>
+      <td>Gotham City</td>
+      <td>DC Comics</td>
+      <td>180.98</td>
+      <td>90.81</td>
+      <td>M</td>
+      <td>1940.0</td>
+      <td>Blue</td>
+      <td>Blond</td>
+      <td>80.0</td>
+      <td>good</td>
+    </tr>
+    <tr>
+      <th>Amazo</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>DC Comics</td>
+      <td>257.49</td>
+      <td>173.95</td>
+      <td>M</td>
+      <td>1960.0</td>
+      <td>Red</td>
+      <td>NaN</td>
+      <td>100.0</td>
+      <td>good</td>
+    </tr>
+    <tr>
+      <th>Ant-Man</th>
+      <td>Hank Pym</td>
+      <td>Elmsford, New York</td>
+      <td>Marvel Comics</td>
+      <td>211.74</td>
+      <td>122.44</td>
+      <td>M</td>
+      <td>1962.0</td>
+      <td>Blue</td>
+      <td>Blond</td>
+      <td>20.0</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>Ajax</th>
+      <td>Francis</td>
+      <td>NaN</td>
+      <td>Marvel Comics</td>
+      <td>193.34</td>
+      <td>90.63</td>
+      <td>M</td>
+      <td>1998.0</td>
+      <td>Brown</td>
+      <td>Black</td>
+      <td>50.0</td>
+      <td>average</td>
+    </tr>
+    <tr>
+      <th>Alex Mercer</th>
+      <td>Alexander J. Mercer</td>
+      <td>NaN</td>
+      <td>Wildstorm</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>M</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>80.0</td>
+      <td>average</td>
+    </tr>
+  </tbody>
+</table>
+<p>735 rows × 11 columns</p>
+</div></div></div>
 </div>
 <p>Ci riferiremo spesso alle righe e alle colonne di un <em>dataframe</em> per indicare rispettivamente le osservazioni e i caratteri. Per esempio la prima riga si riferisce all’osservazione relativa ad “A-Bomb”, mentre la prima colonna corrisponde al carattere “identity”. Vi sono molti modi per interagire con un <em>dataframe</em>:</p>
 <ul class="simple">
@@ -699,6 +1204,23 @@ La funzione `sum` accetta come argomento liste, tuple e serie: in tutti i casi r
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name
+A-Bomb         M
+Abraxas        M
+Abomination    M
+Adam Monroe    M
+Agent 13       F
+              ..
+Alan Scott     M
+Amazo          M
+Ant-Man        M
+Ajax           M
+Alex Mercer    M
+Name: Gender, Length: 735, dtype: object
 </pre></div>
 </div>
 </div>
@@ -714,11 +1236,105 @@ In alternativa è possibile usare una sintassi basata su _dot notation_ in cui i
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Identity</th>
+      <th>Birth place</th>
+      <th>Publisher</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Gender</th>
+      <th>First appearance</th>
+      <th>Eye color</th>
+      <th>Hair color</th>
+      <th>Strength</th>
+      <th>Intelligence</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Agent 13</th>
+      <td>Sharon Carter</td>
+      <td>NaN</td>
+      <td>Marvel Comics</td>
+      <td>173.41</td>
+      <td>61.03</td>
+      <td>F</td>
+      <td>NaN</td>
+      <td>Blue</td>
+      <td>Blond</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Air-Walker</th>
+      <td>Gabriel Lan</td>
+      <td>Xandar, a planet in the Tranta system, Androme...</td>
+      <td>Marvel Comics</td>
+      <td>188.59</td>
+      <td>108.23</td>
+      <td>M</td>
+      <td>NaN</td>
+      <td>Blue</td>
+      <td>White</td>
+      <td>85.0</td>
+      <td>average</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Queste modalità di accesso possono effettivamente creare confusione: usando una sintassi molto simile, specificando un valore si accede a una colonna e specificando uno <em>slice</em> si accede a un insieme di righe. Per scrivere codice più chiaro è meglio selezionare le righe utilizzando le proprietà <code class="docutils literal notranslate"><span class="pre">loc</span></code> e <code class="docutils literal notranslate"><span class="pre">iloc</span></code> nello stesso modo in cui queste funzionano per le serie, con la differenza che quando queste sono usate specificando un solo valore, viene restituita una serie, e quando sono utilizzate con uno <em>slice</em> o con una lista viene restituito un <em>dataframe</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Professor X&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Identity            Charles Francis Xavier
+Birth place             New York, New York
+Publisher                    Marvel Comics
+Height                              183.74
+Weight                               86.89
+Gender                                   M
+First appearance                    1963.0
+Eye color                             Blue
+Hair color                         No Hair
+Strength                              10.0
+Intelligence                          high
+Name: Professor X, dtype: object
 </pre></div>
 </div>
 </div>
@@ -729,11 +1345,124 @@ In alternativa è possibile usare una sintassi basata su _dot notation_ in cui i
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Identity</th>
+      <th>Birth place</th>
+      <th>Publisher</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Gender</th>
+      <th>First appearance</th>
+      <th>Eye color</th>
+      <th>Hair color</th>
+      <th>Strength</th>
+      <th>Intelligence</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Warbird</th>
+      <td>Carol Danvers</td>
+      <td>Boston, Massachusetts</td>
+      <td>Marvel Comics</td>
+      <td>180.56</td>
+      <td>54.75</td>
+      <td>F</td>
+      <td>NaN</td>
+      <td>Blue</td>
+      <td>Blond</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Wildfire</th>
+      <td>Drake Burroughs</td>
+      <td>NaN</td>
+      <td>DC Comics</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>M</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>35.0</td>
+      <td>average</td>
+    </tr>
+    <tr>
+      <th>Vulture</th>
+      <td>Adrian Toomes</td>
+      <td>Staten Island, New York City</td>
+      <td>Marvel Comics</td>
+      <td>180.61</td>
+      <td>79.63</td>
+      <td>M</td>
+      <td>NaN</td>
+      <td>Brown</td>
+      <td>No Hair</td>
+      <td>25.0</td>
+      <td>good</td>
+    </tr>
+    <tr>
+      <th>Warp</th>
+      <td>Emil LaSalle</td>
+      <td>NaN</td>
+      <td>DC Comics</td>
+      <td>173.42</td>
+      <td>67.42</td>
+      <td>M</td>
+      <td>1981.0</td>
+      <td>Brown</td>
+      <td>Black</td>
+      <td>10.0</td>
+      <td>moderate</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>È inoltre possibile selezionare una o più righe e visualizzare solo un sottoinsieme dei caratteri, passando a <code class="docutils literal notranslate"><span class="pre">loc</span></code> o <code class="docutils literal notranslate"><span class="pre">iloc</span></code> un secondo argomento in cui si specificano i caratteri da mostrare, utilizzando anche in questo caso un valore, una lista di valori oppure uno <em>slice</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Professor X&#39;</span><span class="p">,</span> <span class="s1">&#39;Height&#39;</span><span class="p">:</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Height    183.74
+Weight     86.89
+Name: Professor X, dtype: object
 </pre></div>
 </div>
 </div>
@@ -745,6 +1474,48 @@ In alternativa è possibile usare una sintassi basata su _dot notation_ in cui i
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Height</th>
+      <th>Weight</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Tempest</th>
+      <td>163.02</td>
+      <td>54.36</td>
+    </tr>
+    <tr>
+      <th>Supergirl</th>
+      <td>165.40</td>
+      <td>54.80</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Volendo accedere direttamente a un elemento è possibile utilizzare le proprietà <code class="docutils literal notranslate"><span class="pre">at</span></code> e <code class="docutils literal notranslate"><span class="pre">iat</span></code>:</p>
 <div class="cell docutils container">
@@ -753,10 +1524,20 @@ In alternativa è possibile usare una sintassi basata su _dot notation_ in cui i
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100.0
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;high&#39;
 </pre></div>
 </div>
 </div>
@@ -771,6 +1552,126 @@ In alternativa è possibile usare una sintassi basata su _dot notation_ in cui i
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Identity</th>
+      <th>Birth place</th>
+      <th>Publisher</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Gender</th>
+      <th>First appearance</th>
+      <th>Eye color</th>
+      <th>Hair color</th>
+      <th>Strength</th>
+      <th>Intelligence</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Sasquatch</th>
+      <td>Walter Langkowski</td>
+      <td>Edmonton, Alberta, Canada</td>
+      <td>Marvel Comics</td>
+      <td>305.02</td>
+      <td>900.70</td>
+      <td>M</td>
+      <td>NaN</td>
+      <td>Red</td>
+      <td>Orange</td>
+      <td>80.0</td>
+      <td>good</td>
+    </tr>
+    <tr>
+      <th>Juggernaut</th>
+      <td>Cain Marko</td>
+      <td>Berkeley, California</td>
+      <td>Marvel Comics</td>
+      <td>287.95</td>
+      <td>855.82</td>
+      <td>M</td>
+      <td>1965.0</td>
+      <td>Blue</td>
+      <td>Red</td>
+      <td>100.0</td>
+      <td>average</td>
+    </tr>
+    <tr>
+      <th>Darkseid</th>
+      <td>Uxas</td>
+      <td>NaN</td>
+      <td>DC Comics</td>
+      <td>267.37</td>
+      <td>817.57</td>
+      <td>M</td>
+      <td>1970.0</td>
+      <td>Red</td>
+      <td>No Hair</td>
+      <td>100.0</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>Hulk</th>
+      <td>Bruce Banner</td>
+      <td>Dayton, Ohio</td>
+      <td>Marvel Comics</td>
+      <td>244.40</td>
+      <td>630.90</td>
+      <td>M</td>
+      <td>1962.0</td>
+      <td>Green</td>
+      <td>Green</td>
+      <td>100.0</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>Giganta</th>
+      <td>Doris Zuel</td>
+      <td>NaN</td>
+      <td>DC Comics</td>
+      <td>62.65</td>
+      <td>630.80</td>
+      <td>F</td>
+      <td>1944.0</td>
+      <td>Green</td>
+      <td>Red</td>
+      <td>90.0</td>
+      <td>high</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -778,6 +1679,126 @@ In alternativa è possibile usare una sintassi basata su _dot notation_ in cui i
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Identity</th>
+      <th>Birth place</th>
+      <th>Publisher</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Gender</th>
+      <th>First appearance</th>
+      <th>Eye color</th>
+      <th>Hair color</th>
+      <th>Strength</th>
+      <th>Intelligence</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Yellowjacket II</th>
+      <td>Rita DeMara</td>
+      <td>NaN</td>
+      <td>Marvel Comics</td>
+      <td>165.58</td>
+      <td>52.36</td>
+      <td>F</td>
+      <td>NaN</td>
+      <td>Blue</td>
+      <td>Strawberry Blond</td>
+      <td>10.0</td>
+      <td>average</td>
+    </tr>
+    <tr>
+      <th>Ymir</th>
+      <td>Ymir</td>
+      <td>Niffleheim</td>
+      <td>Marvel Comics</td>
+      <td>304.63</td>
+      <td>NaN</td>
+      <td>M</td>
+      <td>NaN</td>
+      <td>White</td>
+      <td>No Hair</td>
+      <td>100.0</td>
+      <td>average</td>
+    </tr>
+    <tr>
+      <th>Yoda</th>
+      <td>Yoda</td>
+      <td>NaN</td>
+      <td>George Lucas</td>
+      <td>66.29</td>
+      <td>17.01</td>
+      <td>M</td>
+      <td>1980.0</td>
+      <td>Brown</td>
+      <td>White</td>
+      <td>55.0</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>Zatanna</th>
+      <td>Zatanna Zatara</td>
+      <td>NaN</td>
+      <td>DC Comics</td>
+      <td>170.29</td>
+      <td>57.77</td>
+      <td>F</td>
+      <td>NaN</td>
+      <td>Blue</td>
+      <td>Black</td>
+      <td>10.0</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>Zoom</th>
+      <td>Hunter Zolomon</td>
+      <td>NaN</td>
+      <td>DC Comics</td>
+      <td>185.90</td>
+      <td>81.93</td>
+      <td>M</td>
+      <td>NaN</td>
+      <td>Red</td>
+      <td>Brown</td>
+      <td>10.0</td>
+      <td>average</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Va notato che entrmabi i metodi restituiscono una copia del <em>dataframe</em>. Anche per i <em>dataframe</em> è possibile utilizzare una lista di valori booleani che identificano le righe da selezionare, e tale lista può essere prodotta effettuando una query. In questo caso però le condizioni possono riguardare le varie colonne, ognuna delle quali va specificata usando una delle due sintassi precedentemente introdotte (quella analoga ai dizionari oppure quella basata su <em>dot notation</em>). Per esempio possiamo selezionare gli eroi per cui l’anno di apparizione esiste e rappresenta un valore non fuori scala nel modo seguente:</p>
 <div class="cell docutils container">
@@ -787,6 +1808,126 @@ In alternativa è possibile usare una sintassi basata su _dot notation_ in cui i
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Identity</th>
+      <th>Birth place</th>
+      <th>Publisher</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Gender</th>
+      <th>First appearance</th>
+      <th>Eye color</th>
+      <th>Hair color</th>
+      <th>Strength</th>
+      <th>Intelligence</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>A-Bomb</th>
+      <td>Richard Milhouse Jones</td>
+      <td>Scarsdale, Arizona</td>
+      <td>Marvel Comics</td>
+      <td>203.21</td>
+      <td>441.95</td>
+      <td>M</td>
+      <td>2008.0</td>
+      <td>Yellow</td>
+      <td>No Hair</td>
+      <td>100.0</td>
+      <td>moderate</td>
+    </tr>
+    <tr>
+      <th>Agent Bob</th>
+      <td>Bob</td>
+      <td>NaN</td>
+      <td>Marvel Comics</td>
+      <td>178.25</td>
+      <td>81.45</td>
+      <td>M</td>
+      <td>2007.0</td>
+      <td>Brown</td>
+      <td>Brown</td>
+      <td>10.0</td>
+      <td>low</td>
+    </tr>
+    <tr>
+      <th>Abe Sapien</th>
+      <td>Abraham Sapien</td>
+      <td>NaN</td>
+      <td>Dark Horse Comics</td>
+      <td>191.24</td>
+      <td>65.35</td>
+      <td>M</td>
+      <td>1993.0</td>
+      <td>Blue</td>
+      <td>No Hair</td>
+      <td>30.0</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>Abin Sur</th>
+      <td>NaN</td>
+      <td>Ungara</td>
+      <td>DC Comics</td>
+      <td>185.52</td>
+      <td>90.90</td>
+      <td>M</td>
+      <td>1959.0</td>
+      <td>Blue</td>
+      <td>No Hair</td>
+      <td>90.0</td>
+      <td>average</td>
+    </tr>
+    <tr>
+      <th>Animal Man</th>
+      <td>Bernhard Baker</td>
+      <td>NaN</td>
+      <td>DC Comics</td>
+      <td>183.80</td>
+      <td>83.39</td>
+      <td>M</td>
+      <td>1965.0</td>
+      <td>Blue</td>
+      <td>Blond</td>
+      <td>50.0</td>
+      <td>average</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </div>
 </div>

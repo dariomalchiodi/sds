@@ -291,7 +291,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/dariomalchiodi/sds/main?urlpath=tree/docs/p1-PAD/c1-intro-python/disegnare-grafici.md"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dariomalchiodi/sds/main?urlpath=tree/sds/p1-PAD/c1-intro-python/disegnare-grafici.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../../_static/images/logo_binder.svg"
@@ -438,20 +438,6 @@ Questa caratteristica di python, nota con il nome di _unpacking_, permette per e
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="n">adecd7e309f9</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">csv</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> 
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/heroes.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">heroes_file</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>   <span class="n">heroes_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">heroes_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>   <span class="n">heroes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">heroes_reader</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;data/heroes.csv&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <p>Nella cella:</p>
 <ul class="simple">
@@ -466,6 +452,34 @@ In generale usando il nome di un tipo come se fosse una funzione è possibile ef
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[&#39;A-Bomb&#39;,
+  &#39;Richard Milhouse Jones&#39;,
+  &#39;Scarsdale, Arizona&#39;,
+  &#39;Marvel Comics&#39;,
+  &#39;203.21000000000001&#39;,
+  &#39;441.94999999999999&#39;,
+  &#39;M&#39;,
+  &#39;2008&#39;,
+  &#39;Yellow&#39;,
+  &#39;No Hair&#39;,
+  &#39;100&#39;,
+  &#39;moderate&#39;],
+ [&#39;Abraxas&#39;,
+  &#39;Abraxas&#39;,
+  &#39;Within Eternity &#39;,
+  &#39;Marvel Comics&#39;,
+  &#39;&#39;,
+  &#39;&#39;,
+  &#39;M&#39;,
+  &#39;&#39;,
+  &#39;Blue&#39;,
+  &#39;Black&#39;,
+  &#39;100&#39;,
+  &#39;high&#39;]]
 </pre></div>
 </div>
 </div>
@@ -494,11 +508,19 @@ In generale usando il nome di un tipo come se fosse una funzione è possibile ef
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/disegnare-grafici_21_0.png" src="../../_images/disegnare-grafici_21_0.png" />
+</div>
 </div>
 <p>Il grafico appare “spostato” verso sinistra, a causa della presenza di una barra in prossimità dell’anno 2100. Potrebbe essere un supereroe effettivamente nato nel futuro, oppure si potrebbe trattare di un dato errato. Si tratta di una situazione più comune di quanto non si possa pensare: queste misurazioni affette da rumore prendono il nome di <em>dati fuori scala</em> o <em>outlier</em> e più avanti vedremo come gestirle. Per ora limitiamoci a vedere quale sia questo valore. Possiamo farlo usando una list comprehension appena più complicata di quella vista poco fa:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">year</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span> <span class="k">if</span> <span class="n">year</span> <span class="o">&gt;</span> <span class="mi">2020</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2099]
 </pre></div>
 </div>
 </div>
@@ -512,6 +534,9 @@ In generale usando il nome di un tipo come se fosse una funzione è possibile ef
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/disegnare-grafici_25_0.png" src="../../_images/disegnare-grafici_25_0.png" />
 </div>
 </div>
 <div class="alert alert-info">

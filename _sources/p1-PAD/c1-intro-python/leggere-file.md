@@ -73,6 +73,21 @@ assegna a `years` la lista che contiene l'anno di prima apparizione di ogni supe
 A questo punto è possibile generare il grafico delle frequenze assolute:
 
 ```{code-cell} ipython3
+import numpy as np
+import matplotlib.pyplot as plt
+
+def get_sorted_counts(sequence):
+    counts = {}
+
+    for x in sequence:
+        if x in counts:
+            counts[x] += 1
+        else:
+            counts[x] = 1
+
+    pairs = counts.items()
+    return sorted(pairs, key=lambda p:p[1], reverse=True)
+
 counts = get_sorted_counts(years)
 x, y = np.array(counts).transpose()
 plt.bar(x, y)
