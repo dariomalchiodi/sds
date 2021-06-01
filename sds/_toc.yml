@@ -7,7 +7,7 @@
 - part: Introduzione
   chapters:
   - file: p0-introduzione/presentazione
-  - file: p0-introduzione/un-esempio
+  - file: p0-introduzione/un-esempio-introduttivo
   - file: p0-introduzione/notazione
 
 - part: Programmazione per l'analisi dei dati
@@ -26,6 +26,28 @@
 - part: Statistica descrittiva
   chapters:
   - file: p2-SD/c1-dati-e-frequenze/dati-e-frequenze
+    sections:
+    - file: p2-SD/c1-dati-e-frequenze/dati-quantitativi-e-qualitativi
+    - file: p2-SD/c1-dati-e-frequenze/frequenze-assolute-e-relative
+    - file: p2-SD/c1-dati-e-frequenze/frequenze-cumulate
+    - file: p2-SD/c1-dati-e-frequenze/frequenze-congiunte-e-marginali
+  - file: p2-SD/c2-indici-statistici/indici-statistici
+    sections:
+    - file: p2-SD/c2-indici-statistici/indici-di-posizione
+    - file: p2-SD/c2-indici-statistici/indici-di-dispersione
+    - file: p2-SD/c2-indici-statistici/quantili-campionari
+    - file: p2-SD/c2-indici-statistici/covarianza-e-correlazione
+    - file: p2-SD/c2-indici-statistici/eterogeneita
+    - file: p2-SD/c2-indici-statistici/concentrazione
+    - file: p2-SD/c2-indici-statistici/trasformazioni-dei-dati
+    - file: p2-SD/c2-indici-statistici/analisi-della-varianza
+  - file: p2-SD/c3-grafici/grafici
+    sections:
+      - file: p2-SD/c3-grafici/diagrammi-per-dati-discreti
+      - file: p2-SD/c3-grafici/diagrammi-per-dati-continui
+      - file: p2-SD/c3-grafici/diagrammi-per-dati-cumulati
+      - file: p2-SD/c3-grafici/diagrammi-per-dati-a-coppie
+      - file: p2-SD/c3-grafici/simmetria-e-normalita
 
 - part: Calcolo delle probabilità
   chapters:
@@ -34,4 +56,3 @@
 - part: Bibliografia
   chapters:
   - file: bibliography
-

@@ -1,0 +1,1 @@
+# Simmetria e normalità

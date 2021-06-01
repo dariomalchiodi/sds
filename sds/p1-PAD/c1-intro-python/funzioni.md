@@ -37,3 +37,10 @@ years = [1941, 1962, None, None, 1941,
 
 get_sorted_counts(years)
 ```
+
+(funzioni-anonime)=
+# Funzioni anonime
+
+Un'altra caratteristica di python è quella di poter specificare una funzione come argomento di un metodo (o di un'altra funzione); ciò si può fare o indicando il nome della funzione, oppure usando una _lambda function_ o _funzione anonima_: una funzione che viene definita senza darle un nome ma definendo direttamente come i suoi argomenti devono essere trasformati nel valore da restituire. Più precisamente, la sintassi `lambda x: <espressione>` definisce una funzione che ha un argomento il cui nome simbolico è `x` e che restituisce l'espressione dopo il carattere di due punti (che di norma dipenderà da `x`).
+
+Un esempio che mette insieme l'uso di argomenti opzionali e di funzioni anonime si trova nella cella seguente, in cui la lista dei nomi viene ordinata non in modo alfabetico, bensì in funzione della lunghezza dei nomi stessi, specificando tramite l'argomento opzionale `key` una funzione anonima che trasformerà ogni elemento della lista in un valore su cui basare l'ordinamento.

@@ -12,6 +12,7 @@ kernelspec:
   name: python3
 ---
 
+(disegnare-grafici)=
 # Disegnare grafici
 Il modulo `plt` può essere usato per produrre vari tipi di grafici. In generale le funzioni di questo modulo che generano un grafico basato su una serie di punti accettano come argomenti due liste contenenti rispettivamente le ascisse e le ordinate dei punti stessi. La funzione `get_sorted_counts` restituisce però una lista di coppie e non due liste di valori singoli. Se interpretiamo questa lista come una matrice, la trasposta di quest'ultima equivarrà a una lista che contiene esattamente le due liste che ci interessano. Per effettuare questa operazione risulta conveniente utilizzare il tipo di dato base messo a disposizione da numpy, `np.array`. Passando una lista (o una tupla, una lista di liste e così via) come argomento a `np.array` si crea un oggetto che corrisponde al corrispondente array. Su questo oggetto è possibile invocare il metodo `transpose` che restituisce il trasposto dell'array.
 

@@ -13,7 +13,7 @@ kernelspec:
 ---
 
 (dati-strutturati)=
-# I tipi di dati strutturati
+# Tipi di dati strutturati
 
 I tipi di dati strutturati, o più brevemente _strutture dati,_ permettono di aggregare più valori.
 Python supporta nativamente i seguenti tipi strutturati: le liste, le tuple, le stringhe, gli insiemi e i dizionari. A ognuno di questi tipi corrisponde una diversa classe, esattamente come per i tipi semplici. Come descritto nei paragrafi seguenti, la sintassi per accedere ai contenuti di una struttura dati è relativamente uniforme, mentre ovviamente il modo in cui viene effettuato l'accesso dipende dallo specifico tipo di struttura dati.
@@ -160,25 +160,44 @@ Così come l'operatore `del`, questo metodo non restituisce alcun valore, in qua
 names[-5:]
 ```
 
-L'invocazione di metodi (e di funzioni) prevede in python anche la possibilità di specificare degli argomenti _opzionali_: si tratta di argomenti, identificati da un nome, che possono essere omessi, e in tal caso assumono un valore predefinito all'atto dell'invocazione. Per poterne specificare un valore diverso da quello predefinito è sufficiente indicare, dopo gli eventuali altri argomenti, un'espressione del tipo `<nome>=<valore>`, separando tramite virgola la specificazione di più argomenti opzionali. Per esempio il metodo `sort` effettua l'ordinamento in verso non decrescente, e l'argomento opzionale `reversed` permette di invertire tale verso:
+In Python è possibile specificare valori per argomenti _opzionali_ quando si invoca un metodo (o una funzione): si tratta di argomenti identificati da un nome, che _possono_ essere omessi, e in tal caso assumono un valore predefinito. Per poter specificare un valore diverso da quello predefinito è necessario indicare, dopo _tutti_ gli eventuali argomenti non opzionali, un'espressione del tipo `<nome>=<valore>`, dove `<nome>` indica il nome dell'argomento opzionale in questione e `<valore>` è il relativo valore. Per esempio, il metodo `sort` effettua l'ordinamento in verso non decrescente, e l'argomento opzionale `reversed` permette di invertire tale verso:
 
 ```{code-cell} ipython3
 names.sort(reverse=True)
 ```
 
-Un'altra caratteristica di python è quella di poter specificare una funzione come argomento di un metodo (o di un'altra funzione); ciò si può fare o indicando il nome della funzione, oppure usando una _lambda function_ o _funzione anonima_: una funzione che viene definita senza darle un nome ma definendo direttamente come i suoi argomenti devono essere trasformati nel valore da restituire. Più precisamente, la sintassi `lambda x: <espressione>` definisce una funzione che ha un argomento il cui nome simbolico è `x` e che restituisce l'espressione dopo il carattere di due punti (che di norma dipenderà da `x`).
-
-Un esempio che mette insieme l'uso di argomenti opzionali e di funzioni anonime si trova nella cella seguente, in cui la lista dei nomi viene ordinata non in modo alfabetico, bensì in funzione della lunghezza dei nomi stessi, specificando tramite l'argomento opzionale `key` una funzione anonima che trasformerà ogni elemento della lista in un valore su cui basare l'ordinamento.
+Un'altra caratteristica di python è quella di poter specificare una funzione come argomento di un metodo (o di un'altra funzione) [^first-class]; ciò si può fare indicando il nome della funzione, oppure usando una _funzione anonima_ (vedi {numref}`Paragrafo %s <funzioni-anonime>`). Consideriamo ad esempio l'argomento opzionale `key` del metodo `sort`: esso permette di indicare un criterio alternativo per eseguire l'ordinamento, specificando come valore una funzione che trasforma gli elementi della lista in quantità numeriche su cui basare l'ordinamento (nel senso che elementi trasformati in numeri più bassi compariranno prima nella lista ordinata rispetto ad altri elementi trasformati in numeri più alti). Dunque è necessario fornire come valore di questo argomento opzionale il nome di una funzione che trasforma stringhe in numeri. Possiamo quindi utilizzare la funzione `len` precedentemente introdotta:
 
 ```{code-cell} ipython3
-successore = lambda n: n+1
-successore(9)
+names.sort(key=len)
 ```
 
+Invocare in questo modo il metodo `sort` equivale quindi a:
+
+- associare ogni nome di supereroe alla sua lunghezza,
+- ordinare le coppie ottenute in base alla lunghezza,
+- considerare solo i nomi, mantenendo questo nuovo ordinamento.
+
+In parole povere, abbiamo ordinato i nomi dal più breve al più lungo, come si può facilmente verificare:
+
 ```{code-cell} ipython3
-names.sort(key=lambda n:len(n))
 names
 ```
+
+Nel caso in cui si volessero specificare due o più argomenti opzionali all'atto dell'invocazione di un metodo, basta separarli usando le virgole esattamente come si procede per gli argomenti non opzionali. Per esempio
+
+```{code-cell} ipython3
+names.sort(key=lambda n:len(n), reverse=True)
+```
+
+riordina le stringhe contenute in `names` dalla più lunga alla più corta. Va anche notato che essendo gli argomenti opzionali univocamente individuati dal loro nome, non è necessario specificarli seguendo un ordine prefissato: pertanto si potrebbero scambiare le posizioni di `key` e `reverse` nell'invocazione precedente senza modificare la semantica dell'istruzione.
+
+```{admonition} Nota
+:class: note
+Gli argomenti opzionali vengono tipicamente utilizzati quando si ha a che fare con metodi o funzioni che implementano operazioni che prevedono svariate opzioni, sebbene nella maggior parte dei casi ognuna di queste opzioni venga usata sempre nello stesso modo, modificandone al più una oppure due. Si pensi al caso della produzione di grafici: sebbene in teoria sia possibile cambiare il colore o lo spessore degli assi cartesiani, o il corpo dei caratteri usati per etichettare questi ultimi, difficilmente si ricorre a tale possibilità. E anche quando si decide di modificare l'aspetto di un grafico, si agisce di norma solo su alcune delle molteplici possibilità. In assenza di argomenti opzionali, sarebbe quindi necessario specificare obbligatoriamente un elevato numero di valori (uno per ogni elemento stilistico personalizzabile), quasi sempre uguali e ricordandone l'ordine esatto. Vedremo nel {numref}`Paragrafo %s <disegnare-grafici>` che le librerie che useremo per produrre grafici sfruttano proprio gli argomenti opzionali per permettere di specificare solo le eventuali modifiche da apportare rispetto a uno stile predefinito per il risultato che si vuole ottenere.
+```
+
++++
 
 Un altro metodo invocabile su una lista è `insert`, che permette di aggiungere un elemento a una lista esistente, specificando rispettivamente come secondo e primo argomento l'elemento da aggiungere e la posizione in cui inserirlo: per esempio nella cella seguente viene re-inserito Aquaman in modo da mantenere `names` in orine
 
@@ -310,6 +329,8 @@ Anche nel caso dei dizionari il linguaggio mette a disposizione una serie di fun
 [^sorted]: In realtà è disponibile anche la funzione `sorted`, che non modifica l'argomento e restituisce una nuova lista.
 
 [^ordinamento-eterogeneo]: Tenuto conto del fatto che le liste sono una struttura dati eterogenea ci si potrebbe chiedere quale sia la relazione d'ordine a cui fa riferimento Python quando viene invocato il metodo `sort`. Non approfondiremo questo aspetto: per quanto riguarda gli argomenti qui trattati è sufficiente dire che quando gli elementi della lista sono tutti dello stesso tipo viene sfruttata una relazione d'ordine canonica per questo tipo. Per esempio i valori numerici sono ordinati in modo non decrescente e per le stringhe viene utilizzato l'ordinamento lessicografico.
+
+[^first-class]: Nel gergo tecnico in lingua inglese si dice che i nomi di funzione sono _first-class citizen_ per enfatizzare che vengono trattate in modo analogo ai nomi delle altre variabili: è possibile per esempio usarli per specificare argomenti, o come destinazione di un'operazione di assegnamento.
 
 ```{code-cell} ipython3
 
