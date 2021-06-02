@@ -310,6 +310,11 @@
    1. Calcolo combinatorio
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/teoria-insiemi.html">
+   2. Teoria degli insiemi
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -477,7 +482,7 @@ Python supporta nativamente i seguenti tipi strutturati: le liste, le tuple, le 
 <p class="admonition-title">Attenzione!</p>
 <p>Le liste non vanno confuse con gli <em>array</em> (o <em>vettori</em>), che sono invece delle strutture dati <em>omogenee</em> ad accesso posizionale: in altre parole, anche in questo caso vengono memorizzate delle sequenze di valori, ma questi valori devono essere tutti dello stesso tipo. Sebbene gli <em>array</em> non siano direttamente messi a disposizione in Python, è possibile utilizzarli facendo riferimento al <em>package</em> <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, descritto nel <a class="reference internal" href="importare-moduli.html#importare-moduli"><span class="std std-numref">Paragrafo 1.6</span></a></p>
 </div>
-<p>Una lista si può indicare in modo <em>estensivo</em> separando i suoi elementi tramite virgola e racchiudendo il tutto tra parentesi quadre. La proprietà di eterogeneità ci permette per esempio di usare una lista per aggregare le informazioni che descrivono un supereroe:</p>
+<p>Una lista si può indicare in modo <em>estensivo</em> (cioè elencando a uno a uno tutti i suoi contenuti) separando i suoi elementi tramite virgola e racchiudendo il tutto tra parentesi quadre <a class="footnote-reference brackets" href="#list-comprehension" id="id1">1</a>. Ciò vale anche per la <em>lista vuota</em>, che si può descrivere scrivendo semplicemente l’espressione <code class="docutils literal notranslate"><span class="pre">[]</span></code>. La proprietà di eterogeneità ci permette per esempio di usare una lista per aggregare le informazioni che descrivono un supereroe:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iron_man</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Iron Man&#39;</span><span class="p">,</span>
@@ -558,7 +563,7 @@ Python supporta nativamente i seguenti tipi strutturati: le liste, le tuple, le 
 <p>Un’altra differenza tra liste e <em>array</em> è legata al fatto che questi ultimi rappresentano strutture dati <em>statiche</em>, nelle quali non è possibile aggiungere o rimuovere elementi, ma solo modificare quelli esistenti.</p>
 </div>
 <p>Dover specificare la posizione del primo elemento da escludere sembra controintuitivo rispetto alla scelta più naturale di indicare la posizione dell’ultimo elemento da includere. In realtà in questo modo risulta più facile scrivere codice che elabora porzioni successive in una lista. Le liste sono, infine, una struttura dati <em>dinamica</em>, nel senso che oltre a modificare gli elementi in essa contenuti è anche possibile rimuovere uno o più di tali elementi, oppure aggiungerne di nuovi.</p>
-<p>Python mette a dipsosizione varie operazioni che agiscono sulle liste: i paragrafi che seguono introducono alcuni esempi, ma il loro scopo è più quello di sottolineare la differenza tra i concetti di operatore, funzione e metodo. Per degli approfondimenti è possibile consultare la documentazione ufficiale, che contiene un <a class="reference external" href="https://docs.python.org/3/tutorial/introduction.html#lists">documento introudttivo</a> e uno <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html">più dettagliato</a> sull’uso delle liste in Python. Per esemplificare l’uso di questi tre tipi di strumenti conviene ragionare in termini di una lista utilizzata come se fosse un <em>array</em>, memorizzando dunque una successione di valori dello stesso tipo, per esempio i nomi di alcuni supereroi:</p>
+<p>Sono dipsosizione varie operazioni che agiscono sulle liste, e queste operazioni sono implementate utilizzando diversi elementi del linguaggio: gli operatori, le funzioni e i metodi. I paragrafi che seguono introducono alcuni esempi, ma il loro scopo è quello di sottolineare la differenza tra i concetti di operatore, funzione e metodo in Python. Per degli approfondimenti è possibile consultare la documentazione ufficiale, che contiene un <a class="reference external" href="https://docs.python.org/3/tutorial/introduction.html#lists">documento introudttivo</a> e uno <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html">più dettagliato</a> sull’uso delle liste in Python. Per esemplificare l’uso di questi tre tipi di strumenti conviene ragionare in termini di una lista utilizzata come se fosse un <em>array</em>, memorizzando dunque una successione di valori dello stesso tipo, per esempio i nomi di alcuni supereroi:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Aquaman&#39;</span><span class="p">,</span> <span class="s1">&#39;Ant-Man&#39;</span><span class="p">,</span> <span class="s1">&#39;Batman&#39;</span><span class="p">,</span> <span class="s1">&#39;Black Widow&#39;</span><span class="p">,</span>
@@ -615,7 +620,7 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 </div>
 </div>
 </div>
-<p>Va sottolineato che <code class="docutils literal notranslate"><span class="pre">del</span></code> è un operatore dal comportamento quantomeno particolare, in quanto esso non restituisce alcun valore; la sua esecuzione ha però l’<em>effetto collaterale</em> di eliminare l’elemento nella posizione specificata della lista usata come operando <a class="footnote-reference brackets" href="#data-model" id="id1">1</a>. Come conseguenza di questo effetto collaterale, nell’esempio precedente viene eliminato il primo elemento della lista, così che quello che prima era il secondo elemento diventa ora il primo, e così via, come si può facilmente verificare:</p>
+<p>Va sottolineato che <code class="docutils literal notranslate"><span class="pre">del</span></code> è un operatore dal comportamento quantomeno particolare, in quanto esso non restituisce alcun valore; la sua esecuzione ha però l’<em>effetto collaterale</em> di eliminare l’elemento nella posizione specificata della lista usata come operando <a class="footnote-reference brackets" href="#data-model" id="id2">2</a>. Come conseguenza di questo effetto collaterale, nell’esempio precedente viene eliminato il primo elemento della lista, così che quello che prima era il secondo elemento diventa ora il primo, e così via, come si può facilmente verificare:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -656,7 +661,7 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 </div>
 </div>
 </div>
-<p>Così come l’operatore <code class="docutils literal notranslate"><span class="pre">del</span></code>, questo metodo non restituisce alcun valore, in quanto l’ordinamento è eseguito <em>in place</em> <a class="footnote-reference brackets" href="#sorted" id="id2">2</a>: l’invocazione di <code class="docutils literal notranslate"><span class="pre">sort</span></code> ha come effetto collaterale il riposizionamento degli elementi all’interno della lista in modo da riflettere l’ordinamento <a class="footnote-reference brackets" href="#ordinamento-eterogeneo" id="id3">3</a>. Possiamo convincercene facilmente visualizzando per esempio gli ultimi cinque elementi di <code class="docutils literal notranslate"><span class="pre">names</span></code>:</p>
+<p>Così come l’operatore <code class="docutils literal notranslate"><span class="pre">del</span></code>, questo metodo non restituisce alcun valore, in quanto l’ordinamento è eseguito <em>in place</em> <a class="footnote-reference brackets" href="#sorted" id="id3">3</a>: l’invocazione di <code class="docutils literal notranslate"><span class="pre">sort</span></code> ha come effetto collaterale il riposizionamento degli elementi all’interno della lista in modo da riflettere l’ordinamento <a class="footnote-reference brackets" href="#ordinamento-eterogeneo" id="id4">4</a>. Possiamo convincercene facilmente visualizzando per esempio gli ultimi cinque elementi di <code class="docutils literal notranslate"><span class="pre">names</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span>
@@ -677,7 +682,7 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 </div>
 </div>
 </div>
-<p>Un’altra caratteristica di python è quella di poter specificare una funzione come argomento di un metodo (o di un’altra funzione) <a class="footnote-reference brackets" href="#first-class" id="id4">4</a>; ciò si può fare indicando il nome della funzione, oppure usando una <em>funzione anonima</em> (vedi <a class="reference internal" href="funzioni.html#funzioni-anonime"><span class="std std-numref">Paragrafo 1.5</span></a>). Consideriamo ad esempio l’argomento opzionale <code class="docutils literal notranslate"><span class="pre">key</span></code> del metodo <code class="docutils literal notranslate"><span class="pre">sort</span></code>: esso permette di indicare un criterio alternativo per eseguire l’ordinamento, specificando come valore una funzione che trasforma gli elementi della lista in quantità numeriche su cui basare l’ordinamento (nel senso che elementi trasformati in numeri più bassi compariranno prima nella lista ordinata rispetto ad altri elementi trasformati in numeri più alti). Dunque è necessario fornire come valore di questo argomento opzionale il nome di una funzione che trasforma stringhe in numeri. Possiamo quindi utilizzare la funzione <code class="docutils literal notranslate"><span class="pre">len</span></code> precedentemente introdotta:</p>
+<p>Un’altra caratteristica di python è quella di poter specificare una funzione come argomento di un metodo (o di un’altra funzione) <a class="footnote-reference brackets" href="#first-class" id="id5">5</a>; ciò si può fare indicando il nome della funzione, oppure usando una <em>funzione anonima</em> (vedi <a class="reference internal" href="funzioni.html#funzioni-anonime"><span class="std std-numref">Paragrafo 1.5</span></a>). Consideriamo ad esempio l’argomento opzionale <code class="docutils literal notranslate"><span class="pre">key</span></code> del metodo <code class="docutils literal notranslate"><span class="pre">sort</span></code>: esso permette di indicare un criterio alternativo per eseguire l’ordinamento, specificando come valore una funzione che trasforma gli elementi della lista in quantità numeriche su cui basare l’ordinamento (nel senso che elementi trasformati in numeri più bassi compariranno prima nella lista ordinata rispetto ad altri elementi trasformati in numeri più alti). Dunque è necessario fornire come valore di questo argomento opzionale il nome di una funzione che trasforma stringhe in numeri. Possiamo quindi utilizzare la funzione <code class="docutils literal notranslate"><span class="pre">len</span></code> precedentemente introdotta:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">)</span>
@@ -734,29 +739,10 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 <p class="admonition-title">Nota</p>
 <p>Gli argomenti opzionali vengono tipicamente utilizzati quando si ha a che fare con metodi o funzioni che implementano operazioni che prevedono svariate opzioni, sebbene nella maggior parte dei casi ognuna di queste opzioni venga usata sempre nello stesso modo, modificandone al più una oppure due. Si pensi al caso della produzione di grafici: sebbene in teoria sia possibile cambiare il colore o lo spessore degli assi cartesiani, o il corpo dei caratteri usati per etichettare questi ultimi, difficilmente si ricorre a tale possibilità. E anche quando si decide di modificare l’aspetto di un grafico, si agisce di norma solo su alcune delle molteplici possibilità. In assenza di argomenti opzionali, sarebbe quindi necessario specificare obbligatoriamente un elevato numero di valori (uno per ogni elemento stilistico personalizzabile), quasi sempre uguali e ricordandone l’ordine esatto. Vedremo nel <a class="reference internal" href="disegnare-grafici.html#disegnare-grafici"><span class="std std-numref">Paragrafo 1.7</span></a> che le librerie che useremo per produrre grafici sfruttano proprio gli argomenti opzionali per permettere di specificare solo le eventuali modifiche da apportare rispetto a uno stile predefinito per il risultato che si vuole ottenere.</p>
 </div>
-<p>Un altro metodo invocabile su una lista è <code class="docutils literal notranslate"><span class="pre">insert</span></code>, che permette di aggiungere un elemento a una lista esistente, specificando rispettivamente come secondo e primo argomento l’elemento da aggiungere e la posizione in cui inserirlo: per esempio nella cella seguente viene re-inserito Aquaman in modo da mantenere <code class="docutils literal notranslate"><span class="pre">names</span></code> in orine</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;Aquaman&#39;</span><span class="p">)</span>
-<span class="n">names</span><span class="p">[:</span><span class="mi">6</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Captain America&#39;,
- &#39;Professor X&#39;,
- &#39;Human Torch&#39;,
- &#39;Green Arrow&#39;,
- &#39;Aquaman&#39;,
- &#39;Black Widow&#39;]
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="le-tuple">
 <h2><span class="section-number">1.2.2. </span>Le tuple<a class="headerlink" href="#le-tuple" title="Permalink to this headline">¶</a></h2>
-<p>Una tupla è una lista immutabile: una volta creata non è possibile modificare i suoi contenuti. Una tupla viene indicata in modo analogo a una lista, con l’unica differenza che i suoi contenuti sono delimitati da parentesi tonde.</p>
+<p>Una tupla è in tutto e per tutto una lista immutabile, nel senso che una volta che essa è stata creata non è possibile modificare i suoi contenuti. Una tupla viene indicata in modo analogo a una lista, con l’unica differenza che i suoi contenuti sono delimitati da parentesi tonde.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rogue</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Rogue&#39;</span><span class="p">,</span>
@@ -775,8 +761,7 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 </div>
 </div>
 </div>
-<p>L’accesso a un elemento di una tupla viene fatto in modo posizionale usando la medesima sintassi introdotta per le liste:</p>
-<p>Qualora si tenti di modificare un elemento in una tupla, l’esecuzione verrà però bloccata emettendo un errore:</p>
+<p>L’accesso a un elemento di una tupla viene fatto in modo posizionale usando la medesima sintassi introdotta per le liste, e anche in questo caso è possibile estrarre delle sotto-tuple utilizzando degli <em>slicing</em>. Quando però si tenta di modificare un elemento contenuto in una tupla, l’esecuzione verrà bloccata emettendo un errore:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
@@ -792,7 +777,8 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 </div>
 </div>
 </div>
-<p>Va notato che in python gli errori di esecuzione vengono emessi utilizzando il meccanismo delle eccezioni, che nella cella precedente vengono gestite in modo analogo a quanto succede per esempio in Java: il blocco di istruzioni coinvolto è quello che segue la parola chiave <code class="docutils literal notranslate"><span class="pre">try</span></code>, e le istruzioni dopo <code class="docutils literal notranslate"><span class="pre">except</span></code> vengono eseguite solo se viene lanciata un eccezione del tipo specificato. A seguito di questo errore, la tupla manterrà i suoi valori originali, restando quindi effettivamente invariata:</p>
+<p>Notiamo <em>en passant</em> che in Python gli errori di esecuzione sono basati sul meccanismo delle eccezioni, che nella cella precedente vengono gestite in modo analogo a quanto succede per esempio in Java: il blocco di istruzioni coinvolto è quello che segue la parola chiave <code class="docutils literal notranslate"><span class="pre">try</span></code>, e se durante l’esecuzione di tale blocco viene lanciata un eccezione del tipo <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>, quest’ultima viene gestita eseguendo le istruzioni dopo la linea di codice contenente la parola-chiave <code class="docutils literal notranslate"><span class="pre">except</span></code> (andrebbe anche specificato che l’indentazione del codice deve essere presente, ma di questo ci occuperemo nel <a class="reference internal" href="funzioni.html#funzioni"><span class="std std-numref">Paragrafo 1.4</span></a>).</p>
+<p>A seguito di questo errore, la tupla manterrà i suoi valori originali, restando quindi effettivamente invariata:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rogue</span>
@@ -818,9 +804,11 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 </div>
 <p>Una tupla può essere utilizzata facendo ri ferimento agli stessi operatori e alle stesse funzioni messi a disposizione per le liste (come per esempio <code class="docutils literal notranslate"><span class="pre">in</span></code> e <code class="docutils literal notranslate"><span class="pre">len</span></code>), escludendo ovviamente le operazioni che modificano la tupla stessa (come <code class="docutils literal notranslate"><span class="pre">sort</span></code>).</p>
 <p>L’immutabilità delle tuple le rende da preferire rispetto alle liste in tutti i casi in cui si vuole impedire che dei dati vengano modificati, per esempio a causa di un bug; inoltre la loro elaborazione è in molti casi più efficiente di quella delle liste.</p>
-<div class="alert alert-info">
-Va notato che la sintassi per la descrizione delle tuple diventa problematica quando si vuole indicare una tupla contenente un unico elemento, in quanto per esempio `(1)` viene interpretato come valore `1` tra parentesi tonde. La soluzione in casi come questi è quella di fare seguire l'unico elemento della tupla da una virgola, scrivendo per esempio `(1,)`. Come regola generale, infatti, è possibile aggiungere una virgola alla fine di una tupla (o di una lista) senza variarne i contenuti.
-</div></div>
+<div class="note admonition">
+<p class="admonition-title">Nota</p>
+<p>La sintassi per la descrizione delle tuple diventa problematica quando si vuole indicare una tupla contenente un unico elemento, in quanto per esempio l’espressione <code class="docutils literal notranslate"><span class="pre">(1)</span></code> viene interpretata come il valore intero <code class="docutils literal notranslate"><span class="pre">1</span></code> racchiuso tra parentesi tonde, ottenendo dunque il medesimo intero come risultato della valutazione. In casi come questo la soluzione è quella di fare seguire l’unico elemento della tupla da una virgola, scrivendo per esempio <code class="docutils literal notranslate"><span class="pre">(1,)</span></code>. Come regola generale, infatti, è sempre possibile aggiungere una virgola alla fine di una tupla (o di una lista) senza che ciò ne alteri i contenuti. È invece possibile utilizzare l’espressione <code class="docutils literal notranslate"><span class="pre">()</span></code> per indicare una tupla vuota.</p>
+</div>
+</div>
 <div class="section" id="le-stringhe">
 <span id="stringhe"></span><h2><span class="section-number">1.2.3. </span>Le stringhe<a class="headerlink" href="#le-stringhe" title="Permalink to this headline">¶</a></h2>
 <p>Le stringhe sono implementate come tuple di caratteri, e quindi su di esse è possibile eseguire tutte le operazioni che si eseguono sulle tuple:</p>
@@ -900,16 +888,19 @@ Va notato che la sintassi per la descrizione delle tuple diventa problematica qu
 <p>Anche nel caso dei dizionari il linguaggio mette a disposizione una serie di funzioni specifiche, e si può fare riferimento alla <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#dictionaries">documentazione ufficiale</a> di python per approfondire l’argomento.</p>
 <hr class="footnotes docutils" />
 <dl class="footnote brackets">
-<dt class="label" id="data-model"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dt class="label" id="list-comprehension"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Vedremo che esiste anche la possibilità di utilizzare un particolare formalismo, chiamato <em>list comprehension</em>, per definire una lista in termini di una <em>trasformazione</em> degli elementi di un’altra lista.</p>
+</dd>
+<dt class="label" id="data-model"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
 <dd><p>I lettori attenti potrebbero avere notato un apparente incoerenza tra il modo in cui vengono valutate le espressioni e la semantica appena introdotta per l’operatore <code class="docutils literal notranslate"><span class="pre">del</span></code>. Consideriamo l’espressione <code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">names[0]</span></code> dell’esempio precedente: se questa fosse valutata in modo ususale, verrebbe innanzitutto valutato l’operando, dunque l’espressione <code class="docutils literal notranslate"><span class="pre">names[0]</span></code>. L’operatore <code class="docutils literal notranslate"><span class="pre">del</span></code> verrebbe quindi applicato al valore ottenuto, che nel nostro caso sarebbe la stringa <code class="docutils literal notranslate"><span class="pre">'Aquaman'</span></code>. Ora, l’istruzione <code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">'Aquaman'</span></code> genererebbe un errore, perché <code class="docutils literal notranslate"><span class="pre">del</span></code> si può applicare solo a riferimenti e non a letterali. In realtà la valutazione di espressioni di questo tipo viene fatta in un modo diverso, perché <code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">names[0]</span></code> viene implicitamente convertita in un’altra espressione che equivale a invocare un particolare metodo dell’oggetto referenziato da <code class="docutils literal notranslate"><span class="pre">names</span></code>, passando il valore <code class="docutils literal notranslate"><span class="pre">0</span></code> come argomento. Senza addentrarsi in dettagli, è importante segnalare che Python è permeato da tecniche di questo tipo, che permettono tra l’altro di estendere l’uso della sintassi per i tipi <em>builtin</em> anche a oggetti di classi definite dagli sviluppatori. Chi volesse approfondire questo spetto può studiare il cosiddeto <a class="reference external" href="https://docs.python.org/3/reference/datamodel.html">data model</a> di Python (sebbene sarebbe prima importante imparare come definire e utilizzare nuove classi).</p>
 </dd>
-<dt class="label" id="sorted"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dt class="label" id="sorted"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
 <dd><p>In realtà è disponibile anche la funzione <code class="docutils literal notranslate"><span class="pre">sorted</span></code>, che non modifica l’argomento e restituisce una nuova lista.</p>
 </dd>
-<dt class="label" id="ordinamento-eterogeneo"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dt class="label" id="ordinamento-eterogeneo"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
 <dd><p>Tenuto conto del fatto che le liste sono una struttura dati eterogenea ci si potrebbe chiedere quale sia la relazione d’ordine a cui fa riferimento Python quando viene invocato il metodo <code class="docutils literal notranslate"><span class="pre">sort</span></code>. Non approfondiremo questo aspetto: per quanto riguarda gli argomenti qui trattati è sufficiente dire che quando gli elementi della lista sono tutti dello stesso tipo viene sfruttata una relazione d’ordine canonica per questo tipo. Per esempio i valori numerici sono ordinati in modo non decrescente e per le stringhe viene utilizzato l’ordinamento lessicografico.</p>
 </dd>
-<dt class="label" id="first-class"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
+<dt class="label" id="first-class"><span class="brackets"><a class="fn-backref" href="#id5">5</a></span></dt>
 <dd><p>Nel gergo tecnico in lingua inglese si dice che i nomi di funzione sono <em>first-class citizen</em> per enfatizzare che vengono trattate in modo analogo ai nomi delle altre variabili: è possibile per esempio usarli per specificare argomenti, o come destinazione di un’operazione di assegnamento.</p>
 </dd>
 </dl>

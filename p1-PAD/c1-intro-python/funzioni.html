@@ -310,6 +310,11 @@
    1. Calcolo combinatorio
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/teoria-insiemi.html">
+   2. Teoria degli insiemi
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -451,7 +456,7 @@
               <div>
                 
   <div class="section" id="funzioni">
-<h1><span class="section-number">1.4. </span>Funzioni<a class="headerlink" href="#funzioni" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1><span class="section-number">1.4. </span>Funzioni<a class="headerlink" href="#funzioni" title="Permalink to this headline">¶</a></h1>
 <p>Il calcolo delle frequenze è un’operazione che viene fatta molto spesso, quindi conviene scrivere una funzione che ci eviti di dover ricopiare ogni volta la decina di linee che abbiamo scritto (in realtà è solo una scusa per vedere come si definiscono le funzioni in python: più avanti vedremo come usare delle librerie per calcolare le frequenze). La definizione di una funzione in python (a parte il caso delle funzioni anonime) viene fatta utilizzando la parola chiave <code class="docutils literal notranslate"><span class="pre">def</span></code> seguita dal nome del metodo e dai nomi simbolici per i suoi argomenti, separati da virgole e racchiusi tra parentesi (fanno eccezione gli eventuali argomenti opzionali, ma di questo non parleremo). La definizione procede con un carattere di due punti e dal corpo della funzione le cui istruzioni devono essere indentate di un livello.</p>
 <p>La cella seguente riporta un esempio di semplice definizione di funzione che mette insieme il codice scritto finora in modo da accettare una generica lista e di restituirne le frequenze assolute ordinate dalla più grande alla più piccola.</p>
 <div class="cell docutils container">
@@ -493,7 +498,7 @@
 </div>
 </div>
 <div class="section" id="funzioni-anonime">
-<span id="id1"></span><h1><span class="section-number">1.5. </span>Funzioni anonime<a class="headerlink" href="#funzioni-anonime" title="Permalink to this headline">¶</a></h1>
+<span id="id2"></span><h1><span class="section-number">1.5. </span>Funzioni anonime<a class="headerlink" href="#funzioni-anonime" title="Permalink to this headline">¶</a></h1>
 <p>Un’altra caratteristica di python è quella di poter specificare una funzione come argomento di un metodo (o di un’altra funzione); ciò si può fare o indicando il nome della funzione, oppure usando una <em>lambda function</em> o <em>funzione anonima</em>: una funzione che viene definita senza darle un nome ma definendo direttamente come i suoi argomenti devono essere trasformati nel valore da restituire. Più precisamente, la sintassi <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">x:</span> <span class="pre">&lt;espressione&gt;</span></code> definisce una funzione che ha un argomento il cui nome simbolico è <code class="docutils literal notranslate"><span class="pre">x</span></code> e che restituisce l’espressione dopo il carattere di due punti (che di norma dipenderà da <code class="docutils literal notranslate"><span class="pre">x</span></code>).</p>
 <p>Un esempio che mette insieme l’uso di argomenti opzionali e di funzioni anonime si trova nella cella seguente, in cui la lista dei nomi viene ordinata non in modo alfabetico, bensì in funzione della lunghezza dei nomi stessi, specificando tramite l’argomento opzionale <code class="docutils literal notranslate"><span class="pre">key</span></code> una funzione anonima che trasformerà ogni elemento della lista in un valore su cui basare l’ordinamento.</p>
 </div>

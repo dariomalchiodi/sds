@@ -312,6 +312,11 @@
    1. Calcolo combinatorio
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/teoria-insiemi.html">
+   2. Teoria degli insiemi
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -685,10 +690,10 @@ Dark Horse Comics     12
 George Lucas          11
 ABC Studios            4
 Image Comics           3
-Universal Studios      1
-Star Trek              1
-Rebellion              1
 Hanna-Barbera          1
+Star Trek              1
+Universal Studios      1
+Rebellion              1
 Name: Publisher, dtype: int64
 </pre></div>
 </div>
@@ -1677,7 +1682,7 @@ Nella cella precedente sono state utilizzate le funzioni `np.hstack`, che permet
 </table>
 </div></div></div>
 </div>
-<p>La visualizzazione in forma grafica delle frequenze relative cumulate equivale a quella precedente: l’unica differenza consiste nei valori sull’asse delle ordinate, che risulteranno ovviamente scalati sull’intervallo $[0, 1]$:</p>
+<p>La visualizzazione in forma grafica delle frequenze relative cumulate equivale a quella precedente: l’unica differenza consiste nei valori sull’asse delle ordinate, che risulteranno ovviamente scalati sull’intervallo <span class="math notranslate nohighlight">\([0, 1]\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_app_relfreq_cumulate</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -1701,13 +1706,12 @@ Nella cella precedente sono state utilizzate le funzioni `np.hstack`, che permet
 <img alt="../../_images/dati-e-frequenze_69_0.png" src="../../_images/dati-e-frequenze_69_0.png" />
 </div>
 </div>
-<p>Quando i valori osservati sono di tipo numerico o ordinabile, uno strumento molto simile a quello delle frequenze relative cumulate è rappresentato dalla <em>funzione cumulativa empirica</em> (o <em>funzione di ripartizione empirica</em>), che dato un insieme di osservazioni ${ x_1, \dots, x_n }$, è definita come quella funzione $\hat F: \mathbb R \mapsto [0, 1]$ tale che per ogni $x \in \mathbb R$ assume un valore pari alla frequenza relativa delle osservazioni che risultano essere minori o uguali a $x$. Pertanto</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dee6a003-16fc-4ad6-997f-7a8348f58a34">
-<span class="eqno">(1.1)<a class="headerlink" href="#equation-dee6a003-16fc-4ad6-997f-7a8348f58a34" title="Permalink to this equation">¶</a></span>\[\begin{equation}
-\hat F(x) = \frac{\# \{ x_i \leq x \}}{n}
+<p>Quando i valori osservati sono di tipo numerico o ordinabile, uno strumento molto simile a quello delle frequenze relative cumulate è rappresentato dalla <em>funzione cumulativa empirica</em> (o <em>funzione di ripartizione empirica</em>), che dato un insieme di osservazioni <span class="math notranslate nohighlight">\(\{ x_1, \dots, x_n \}\)</span>, è definita come quella funzione <span class="math notranslate nohighlight">\(\hat F: \mathbb R \mapsto [0, 1]\)</span> tale che per ogni <span class="math notranslate nohighlight">\(x \in \mathbb R\)</span> assume un valore pari alla frequenza relativa delle osservazioni che risultano essere minori o uguali a <span class="math notranslate nohighlight">\(x\)</span>. Pertanto</p>
+<p>\begin{equation}
+\hat F(x) = \frac{# { x_i \leq x }}{n}
 = \frac{1}{n} \sum_{i=1}^n \mathrm I_{(-\infty, x]}(x_i) ,
-\end{equation}\]</div>
-<p>dove $\mathrm I_A: \mathbb R \mapsto {0, 1}$ indica la <em>funzione indicatrice</em> dell’insieme $A$, che assume valore nullo in corrispondenza di tutti gli argomenti che non appartengono ad $A$ e valore unitario altrimenti, e $(-\infty, x]$ indica l’intervallo semiaperto identificato da tutti i valori reali minori o uguali a $x$. Per un generico argomento $x$, la funzione cumulativa empirica assumerà pertanto come valore la frequenza relativa cumulata del più grande tra i valori osservati $x_i \leq x$. Dunque il suo grafico sarà quello di una funzione costante a tratti. In python è presente un’implementazione della funzione cumulativa empirica nel modulo <code class="docutils literal notranslate"><span class="pre">statmodels.api</span></code>: la funzione <code class="docutils literal notranslate"><span class="pre">distributions.ECDF</span></code> accetta come input un insieme di osservazioni e restituisce la corrispondente funzione cumulativa empirica. Possiamo quindi elaborare in tal senso gli anni di prima apparizione e visualizzare il grafico corrispondente agli anni tra il 1980 e il 1990, così da poter effettuare un confronto con l’analogo grafico precedentemente generato:</p>
+\end{equation}</p>
+<p>dove <span class="math notranslate nohighlight">\(\mathrm I_A: \mathbb R \mapsto \{0, 1\}\)</span> indica la <em>funzione indicatrice</em> dell’insieme <span class="math notranslate nohighlight">\(A\)</span>, che assume valore nullo in corrispondenza di tutti gli argomenti che non appartengono ad <span class="math notranslate nohighlight">\(A\)</span> e valore unitario altrimenti, e <span class="math notranslate nohighlight">\((-\infty, x]\)</span> indica l’intervallo semiaperto identificato da tutti i valori reali minori o uguali a <span class="math notranslate nohighlight">\(x\)</span>. Per un generico argomento <span class="math notranslate nohighlight">\(x\)</span>, la funzione cumulativa empirica assumerà pertanto come valore la frequenza relativa cumulata del più grande tra i valori osservati <span class="math notranslate nohighlight">\(x_i \leq x\)</span>. Dunque il suo grafico sarà quello di una funzione costante a tratti. In python è presente un’implementazione della funzione cumulativa empirica nel modulo <code class="docutils literal notranslate"><span class="pre">statmodels.api</span></code>: la funzione <code class="docutils literal notranslate"><span class="pre">distributions.ECDF</span></code> accetta come input un insieme di osservazioni e restituisce la corrispondente funzione cumulativa empirica. Possiamo quindi elaborare in tal senso gli anni di prima apparizione e visualizzare il grafico corrispondente agli anni tra il 1980 e il 1990, così da poter effettuare un confronto con l’analogo grafico precedentemente generato:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
@@ -2108,7 +2112,7 @@ Va notato che quella appena ottenuta non è più una tabella delle frequenze, in
 <div class="alert alert-info">
 I paragrafi contrassegnati con un asterisco sono opzionali. È dunque possibile saltarli a meno che non si voglia approfondire gli argomenti ivi contenuti.
 </div>
-<p>Una cella grafica generata da matplotlib e visualizzata nel notebook contiene quella che viene definita una <em>figura</em> (tecnicamente, un oggetto della classe <code class="docutils literal notranslate"><span class="pre">plt.Figure</span></code>). Ogni figura può contenere uno o più <em>sistemi cartesiani</em> (oggetti della classe <code class="docutils literal notranslate"><span class="pre">plt.Axes</span></code>) i quali a loro volta contengono (nella maggior parte dei casi) due <em>assi cartesiani</em> (oggetti della classe <code class="docutils literal notranslate"><span class="pre">plt.Axis</span></code>, da non confondere con <code class="docutils literal notranslate"><span class="pre">plt.Axes</span></code>). Tutte le figure che abbiamo generato finora contenevano un unico sistema di assi cartesiani, su cui venivano eventualmente sovrapposti tutti i grafici che venivano creati. È però possibile ottenere figure in cui più sistemi cartesiani vengono affiancati su una griglia bidimensionale. Ciò permette per esempio di affiancare grafici diversi. La gestione di tale griglia è di norma demandata alla funzione <code class="docutils literal notranslate"><span class="pre">plt.subplot</span></code>, che accetta tre argomenti interi: i primi due indicano rispettivamente il numero di righe e di colonne nella griglia, e il terzo specifica una posizione nella griglia stessa (con la convenzione che in una griglia di $n$ colonne 1 indica la posizione nella prima riga e nella prima colonna, 2 quella nella prima riga e nella seconda colonna e così via fino a $n$ che indica l’ultima posizione nella prima riga; procedendo oltre si passa alla riga successiva, così che $n+1$ individua la seconda riga e la prima colonna e via discorrendo. Una volta che <code class="docutils literal notranslate"><span class="pre">plt.subplot</span></code> è stato invocato, questo restituisce l’oggetto corrispondente al sistema cartesiano relativo, che conterrà (eventualmente sovrapponendoli) tutti i grafici generati fino alla successiva invocazione di <code class="docutils literal notranslate"><span class="pre">plt.subplot</span></code>. Questo è quello che succede per esempio quando si invocano i metodi di <code class="docutils literal notranslate"><span class="pre">plot</span></code> su una serie: nella cella seguente per esempio vengono affiancati i diagrammi a torta relativi alle frequenze di genere e livello di intelligenza.</p>
+<p>Una cella grafica generata da matplotlib e visualizzata nel notebook contiene quella che viene definita una <em>figura</em> (tecnicamente, un oggetto della classe <code class="docutils literal notranslate"><span class="pre">plt.Figure</span></code>). Ogni figura può contenere uno o più <em>sistemi cartesiani</em> (oggetti della classe <code class="docutils literal notranslate"><span class="pre">plt.Axes</span></code>) i quali a loro volta contengono (nella maggior parte dei casi) due <em>assi cartesiani</em> (oggetti della classe <code class="docutils literal notranslate"><span class="pre">plt.Axis</span></code>, da non confondere con <code class="docutils literal notranslate"><span class="pre">plt.Axes</span></code>). Tutte le figure che abbiamo generato finora contenevano un unico sistema di assi cartesiani, su cui venivano eventualmente sovrapposti tutti i grafici che venivano creati. È però possibile ottenere figure in cui più sistemi cartesiani vengono affiancati su una griglia bidimensionale. Ciò permette per esempio di affiancare grafici diversi. La gestione di tale griglia è di norma demandata alla funzione <code class="docutils literal notranslate"><span class="pre">plt.subplot</span></code>, che accetta tre argomenti interi: i primi due indicano rispettivamente il numero di righe e di colonne nella griglia, e il terzo specifica una posizione nella griglia stessa (con la convenzione che in una griglia di <span class="math notranslate nohighlight">\(n\)</span> colonne 1 indica la posizione nella prima riga e nella prima colonna, 2 quella nella prima riga e nella seconda colonna e così via fino a <span class="math notranslate nohighlight">\(n\)</span> che indica l’ultima posizione nella prima riga; procedendo oltre si passa alla riga successiva, così che <span class="math notranslate nohighlight">\(n+1\)</span> individua la seconda riga e la prima colonna e via discorrendo. Una volta che <code class="docutils literal notranslate"><span class="pre">plt.subplot</span></code> è stato invocato, questo restituisce l’oggetto corrispondente al sistema cartesiano relativo, che conterrà (eventualmente sovrapponendoli) tutti i grafici generati fino alla successiva invocazione di <code class="docutils literal notranslate"><span class="pre">plt.subplot</span></code>. Questo è quello che succede per esempio quando si invocano i metodi di <code class="docutils literal notranslate"><span class="pre">plot</span></code> su una serie: nella cella seguente per esempio vengono affiancati i diagrammi a torta relativi alle frequenze di genere e livello di intelligenza.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>

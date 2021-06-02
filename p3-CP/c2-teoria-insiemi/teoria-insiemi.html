@@ -1,0 +1,725 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2. Teoria degli insiemi &#8212; Superhero Data Science</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1. Bibliography" href="../../bibliography.html" />
+    <link rel="prev" title="1. Calcolo combinatorio" href="../c1-calcolo-combinatorio/calcolo-combinatorio.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Superhero Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../landing.html">
+   Superhero Data Science
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introduzione
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../p0-introduzione/presentazione.html">
+   1. Presentazione
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../p0-introduzione/un-esempio-introduttivo.html">
+   2. Un esempio
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../p0-introduzione/notazione.html">
+   3. Notazione
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Programmazione per l'analisi dei dati
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p1-PAD/c1-intro-python/introduzione-a-python.html">
+   1. Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-semplici-e-operatori.html">
+     1.1. Tipi di dati semplici
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-strutturati.html">
+     1.2. Tipi di dati strutturati
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/strutture-di-controllo.html">
+     1.3. Strutture di controllo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/funzioni.html">
+     1.4. Funzioni
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/importare-moduli.html">
+     1.6. Importare moduli
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/disegnare-grafici.html">
+     1.7. Disegnare grafici
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/leggere-file.html">
+     1.8. Leggere dati da file (e un po’ di trucchi)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../p1-PAD/c2-pandas/pandas.html">
+   2. Pandas
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Statistica descrittiva
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/dati-e-frequenze.html">
+   1. Dati e frequenze
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/dati-quantitativi-e-qualitativi.html">
+     1.6.1. Dati quantitativi e qualitativi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-assolute-e-relative.html">
+     1.6.2. Frequenze assolute e relative
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-cumulate.html">
+     1.6.3. Frequenze cumulate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-congiunte-e-marginali.html">
+     1.6.4. Frequenze congiunte e marginali
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p2-SD/c2-indici-statistici/indici-statistici.html">
+   2. Indici statistici
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/indici-di-posizione.html">
+     2.1. Indici di posizione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/indici-di-dispersione.html">
+     2.2. Indici di dipsersione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/quantili-campionari.html">
+     2.3. Quantili campionari
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/covarianza-e-correlazione.html">
+     2.4. Covarianza e correlazione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/eterogeneita.html">
+     2.5. Eterogeneità
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/concentrazione.html">
+     2.6. Concentrazione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/trasformazioni-dei-dati.html">
+     2.7. Trasformazioni dei dati
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/analisi-della-varianza.html">
+     2.8. Analisi della varianza
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p2-SD/c3-grafici/grafici.html">
+   3. Grafici
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c3-grafici/diagrammi-per-dati-discreti.html">
+     3.1. Dati discreti
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c3-grafici/diagrammi-per-dati-continui.html">
+     3.2. Dati continui
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c3-grafici/diagrammi-per-dati-cumulati.html">
+     3.3. Dati cumulati
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c3-grafici/diagrammi-per-dati-a-coppie.html">
+     3.4. Dati a coppie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c3-grafici/simmetria-e-normalita.html">
+     3.5. Simmetria e normalità
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Calcolo delle probabilità
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../c1-calcolo-combinatorio/calcolo-combinatorio.html">
+   1. Calcolo combinatorio
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2. Teoria degli insiemi
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Bibliografia
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../bibliography.html">
+   1. Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../_sources/p3-CP/c2-teoria-insiemi/teoria-insiemi.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/p3-CP/c2-teoria-insiemi/teoria-insiemi.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/dariomalchiodi/sds"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/dariomalchiodi/sds/issues/new?title=Issue%20on%20page%20%2Fp3-CP/c2-teoria-insiemi/teoria-insiemi.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dariomalchiodi/sds/main?urlpath=tree/sds/p3-CP/c2-teoria-insiemi/teoria-insiemi.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#che-cos-e-un-insieme">
+   2.1. Che cos’è un insieme?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#concetti-di-base">
+   2.2. Concetti di base
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#insiemi-finiti-e-infiniti">
+   2.3. Insiemi finiti e infiniti
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#relazioni-tra-insiemi">
+   2.4. Relazioni tra insiemi
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#operazioni-tra-insiemi">
+   2.5. Operazioni tra insiemi
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sequenze-di-insiemi">
+   2.6. Sequenze di insiemi
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gli-insiemi-in-python">
+   2.7. Gli insiemi in Python
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="teoria-degli-insiemi">
+<h1><span class="section-number">2. </span>Teoria degli insiemi<a class="headerlink" href="#teoria-degli-insiemi" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="che-cos-e-un-insieme">
+<h2><span class="section-number">2.1. </span>Che cos’è un insieme?<a class="headerlink" href="#che-cos-e-un-insieme" title="Permalink to this headline">¶</a></h2>
+<p>Nel 1895 Georg Cantor ha proposto una definizione che coglie particolarmente bene il concetto intuitivo di insieme <span id="id1">[<a class="reference internal" href="../../bibliography.html#id3"><span>Can83</span></a>]</span>: “per molteplicità o insieme intendo ogni molti che si può pensare come uno” <a class="footnote-reference brackets" href="#citazione-cantor" id="id2">1</a>. Secondo questa definizione, un insieme è essenzialmente un raggruppamento di oggetti che, sebbene tra loro distinti, sono accomunati da una qualche proprietà. Nel 1895 lo stesso Cantor riformulò la sua definizione come segue: “per ‘insieme’ intendiamo qualsiasi combinazione <span class="math notranslate nohighlight">\(M\)</span> di certi oggetti <span class="math notranslate nohighlight">\(m\)</span> ben differenziati nella nostra visione o del nostro pensiero (che sono detti ‘elementi’ di <span class="math notranslate nohighlight">\(M\)</span>)” <span id="id3">[<a class="reference internal" href="../../bibliography.html#id2"><span>Can95</span></a>]</span>. Pochi anni dopo i matematici hanno scoperto che fornire una definizione formalmente corretta di insieme richede molta più attenzione, tipicamente appoggiandosi a un approccio assiomatico <span id="id4">[<a class="reference internal" href="../../bibliography.html#id6"><span>Sup72</span></a>]</span>. Nonostante ciò, nel seguito faremo riferimento alle definizioni sopra indicate, e in particolare alla seconda, al fine di rendere la trattazione più semplice e più focalizzata rispetto allo scopo di questo libro. D’altronde, come ricorda Rudy Rucker, è significativo che la parola <em>set</em> abbia la definizione più lunga tra tutte le parole che compaiono nello Oxford English Dictionary <span id="id5">[<a class="reference internal" href="../../bibliography.html#id5"><span>Ruc82</span></a>]</span>.</p>
+</div>
+<div class="section" id="concetti-di-base">
+<h2><span class="section-number">2.2. </span>Concetti di base<a class="headerlink" href="#concetti-di-base" title="Permalink to this headline">¶</a></h2>
+<p>In accordo con la definizione sopra riportata, nonché con la comune notazione matematica, indicheremo di norma gli insiemi utilizzando le lettere maiuscole dell’alfabeto latino e i loro elementi usando le corrispondenti lettere minuscole. Per indicare che un elemento <span class="math notranslate nohighlight">\(a\)</span> appartiene a un insieme <span class="math notranslate nohighlight">\(A\)</span> scriveremo <span class="math notranslate nohighlight">\(a \in A\)</span>, mentre per indicare che un elemento <span class="math notranslate nohighlight">\(b\)</span> non appartiene all’insieme <span class="math notranslate nohighlight">\(A\)</span> scriveremo <span class="math notranslate nohighlight">\(b \notin A\)</span>.</p>
+<p>Un insieme può essere rappresentato:</p>
+<ul class="simple">
+<li><p><em>estensivamente</em>, cioé elencando tutti i suoi elementi tramite una sequenza: per esempio l’insieme <span class="math notranslate nohighlight">\(O\)</span> dei possibili esiti del lancio di un dado che corrispondono a un numero dispari si può indicare estensivamente come <span class="math notranslate nohighlight">\(O = \{ 1, 3, 5, 6 \}\)</span>;</p></li>
+<li><p><em>intensivamente</em>, specificando una proprietà matematica valida per tutti gli elementi dell’insieme: l’insieme descritto al punto precedente ammette la descrizione intensiva</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+O = \{ k \in \mathbb N \text{ tale che } 1 \leq k \leq 6 \text{ e } k \text{ è pari} \};
+\]</div>
+<ul class="simple">
+<li><p>tramite un <em>diagramma di Venn</em>, indicando gli elementi come punti in una porzione di piano e racchiudendoli dentro un’ellisse: l’insieme <span class="math notranslate nohighlight">\(O\)</span> descritto nei due punti precedenti può anche essere rappresentato tramite il diagramma di Venn illustrato in <a class="reference internal" href="#venn"><span class="std std-numref">Figura 2.1</span></a>.</p></li>
+</ul>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">patches</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+
+<span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">error</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span>
+<span class="n">errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">error</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">error</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="p">])</span>
+
+<span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="mf">.35</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="mf">.35</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+          <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">4</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+
+<span class="n">venn2_circles</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">coords</span> <span class="o">+</span> <span class="n">errors</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">.5</span><span class="p">,</span> <span class="mf">.5</span><span class="p">,</span> <span class="s1">&#39;$O$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">.8</span><span class="p">,</span> <span class="mf">.8</span><span class="p">)</span>
+
+
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;venn-picture&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-default" id="venn" style="width: 100%">
+<div class="cell_output docutils container">
+<img alt="../../_images/teoria-insiemi_2_2.png" src="../../_images/teoria-insiemi_2_2.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 2.1 </span><span class="caption-text">Un semplice diagramma di Venn per descrivere l’insieme <span class="math notranslate nohighlight">\(O = \{ 1, 3, 5, 6 \}\)</span>.</span><a class="headerlink" href="#venn" title="Permalink to this image">¶</a></p>
+</div>
+<p>In particolare, la descrizione tramite i diagrammi di Venn presuppone la conoscenza, in linea di principio, di tutti gli elementi che potrebbero far parte di un insieme. L’insieme di tutti i possibili elementi si indica in genere con il simbolo <span class="math notranslate nohighlight">\(\Omega\)</span> che viene chiamato <em>insieme universo</em>. Nell’esempio precedente facciamo ovviamente riferimento all’universo <span class="math notranslate nohighlight">\(\Omega = \{ 1, 2, 3, 4, 5, 6 \}\)</span>, il diagramma di Venn dell’insieme <span class="math notranslate nohighlight">\(O\)</span> è visualizzato in modo più corretto nella <a class="reference internal" href="#venn-universe"><span class="std std-numref">Figura 2.2</span></a>.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+
+<span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="mf">.25</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+          <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">4</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+
+<span class="n">venn2_circles</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">coords</span> <span class="o">+</span> <span class="n">errors</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+    
+<span class="n">venn2_circles</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">coords</span> <span class="o">+</span> <span class="n">errors</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+
+<span class="n">rect</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="o">-</span><span class="mf">.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">.7</span><span class="p">),</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                         <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+
+<span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">error</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">error</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">coords</span><span class="p">:</span>
+    <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">.7</span>
+
+<span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">coords</span> <span class="o">+</span> <span class="n">errors</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">.55</span><span class="p">,</span> <span class="mf">.4</span><span class="p">,</span> <span class="s1">&#39;$O$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">.95</span><span class="p">,</span> <span class="mf">.55</span><span class="p">,</span> <span class="s1">&#39;$\Omega$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">.8</span><span class="p">,</span> <span class="mf">.8</span><span class="p">)</span>
+
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;venn-universe-picture&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="figure align-default" id="venn-universe" style="width: 100%">
+<div class="cell_output docutils container">
+<img alt="../../_images/teoria-insiemi_5_0.png" src="../../_images/teoria-insiemi_5_0.png" />
+</div>
+<p class="caption"><span class="caption-number">Fig. 2.2 </span><span class="caption-text">Un diagramma di Venn per descrivere l’insieme <span class="math notranslate nohighlight">\(O\)</span> della <a class="reference internal" href="#venn"><span class="std std-numref">Figura 2.1</span></a> evidenziando il corrispondente insieme universo <span class="math notranslate nohighlight">\(\Omega\)</span>.</span><a class="headerlink" href="#venn-universe" title="Permalink to this image">¶</a></p>
+</div>
+<p>Così come l’insieme universo è tale da contenere qualunque elemento, è matematicamente rilevante pensare ad un insieme che dualmente, non contiene alcun elemento. Tale insieme viene chiamato insieme vuoto, e lo indicheremo scrivendo <span class="math notranslate nohighlight">\(\{\}\)</span> (anche se è comune l’uso del simbolo <span class="math notranslate nohighlight">\(\varnothing\)</span>), così che per qualsiasi elemento <span class="math notranslate nohighlight">\(a\)</span> si avrà <span class="math notranslate nohighlight">\(a \notin \{\}\)</span>.</p>
+</div>
+<div class="section" id="insiemi-finiti-e-infiniti">
+<h2><span class="section-number">2.3. </span>Insiemi finiti e infiniti<a class="headerlink" href="#insiemi-finiti-e-infiniti" title="Permalink to this headline">¶</a></h2>
+<p>È abbastanza facile farsi venire in mente degli insiemi che contengono un numero finito di elementi, come ad esempio l’insieme dei membri della Justice League, quello dei giorni della settimana e quello dei numeri primi minori di <span class="math notranslate nohighlight">\(100\)</span>. Diciamo che insiemi di questo tipo sono <em>finiti</em>. Esistono però anche insiemi che non contengono un numero finito di elementi, come l’insieme di tutte le frazioni, o anche l’insieme di tutti gli insiemi. Per questi insiemi <em>infiniti</em> si distinguono due casi:</p>
+<ul class="simple">
+<li><p>si dice che un insieme è <em>infinito numerabile</em> quando risulta possibile costruire una sequenza (infinita) <span class="math notranslate nohighlight">\(x_1, x_2, \dots\)</span> che contiene in qualche posizione ognuno dei suoi elementi: l’insieme <span class="math notranslate nohighlight">\(D\)</span> dei numeri dispari sopra introdotto è pertanto un insieme infinito numerabile;</p></li>
+<li><p>in tutti gli altri casi si dice che l’insieme è <em>infinito non numerabile:</em> l’insieme dei punti di una retta e l’insieme dei numeri reali sono entrambi infiniti e non numerabili.</p></li>
+</ul>
+<p>La modalità di descrizione estensiva non è, strettamente parlando, adottabile per gli insiemi infiniti, visto che per definizione non è possibile elencare tutti i loro elementi. Qaundo però si ha a che fare con un insieme infinito numerabile e quest’ultimo è associabile a una sequenza che si può intuitivamente continuare dopo avere visto solo alcuni tra i suoi elementi iniziali, risulta accettabile estendere la descrizione estensiva elencando solo questi elementi, aggiungendo dei punti di sospensione per enfatizzare la non finitezza dell’insieme. Ad esempio l’insieme dei numeri dispari si può indicare estensivamente come <span class="math notranslate nohighlight">\(D = \{1, 3, 5, 7, 9, ... \}\)</span>, sebbene la descrizione intensiva</p>
+<div class="math notranslate nohighlight">
+\[D = \{ x \in \mathbb N \text{ tale che }
+         x = 2n+1 \text{ per qualche } n \in \mathbb N \}\]</div>
+<p>sia decisamente più precisa. Ciò non vale invece per gli insiemi infiniti non numerabili, per i quali sono generalmente utilizzabili sono descrizioni di tipo intensivo.</p>
+</div>
+<div class="section" id="relazioni-tra-insiemi">
+<h2><span class="section-number">2.4. </span>Relazioni tra insiemi<a class="headerlink" href="#relazioni-tra-insiemi" title="Permalink to this headline">¶</a></h2>
+<p>Quando ogni elemento sappartenente a un insieme <span class="math notranslate nohighlight">\(S\)</span> risulta appartenente anche a un secondo insieme <span class="math notranslate nohighlight">\(T\)</span>, si dice che <span class="math notranslate nohighlight">\(S\)</span> è un <em>sottoinsieme</em> di <span class="math notranslate nohighlight">\(T\)</span> (o che <span class="math notranslate nohighlight">\(S\)</span> è <em>incluso</em> in <span class="math notranslate nohighlight">\(T\)</span>) e si indica questo fatto con la notazione <span class="math notranslate nohighlight">\(S \subseteq T\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ S \subseteq T \leftrightarrow \forall s (s \in S \rightarrow s \in T) \]</div>
+<p>Due insiemi si dicono <em>uguali</em> quando si includono mutuamente; conseguentemente, due insiemi si dicono diversi quando non sono uguali:</p>
+<div class="math notranslate nohighlight">
+\[ S = T \leftrightarrow S \subseteq T \wedge T \subseteq S \]</div>
+<p>Tra due insiemi sussiste la relazione di inclusione in senso stretto quando uno dei due è incluso nell’altro e in aggiunta i due insiemi non sono uguali:</p>
+<div class="math notranslate nohighlight">
+\[ S \subset T \leftrightarrow S \subseteq T \wedge T \neq S \]</div>
+<p>Si verifica facilmente come qualunque insieme risulti sempre incluso nell’insieme universo, e come analogamente l’insieme vuoto risulti sempre incluso in qualunque insieme:</p>
+<div class="math notranslate nohighlight">
+\[ \forall S \{\} \subseteq S \subseteq \Omega \]</div>
+<p>Questa relazione continua a valere se si considera la relazione di inclusione in senso stretto, a patto che <span class="math notranslate nohighlight">\(S\)</span> sia diverso dall’insieme vuoto (affinché valga la prima parte della relazione) e dall’insieme universo (affinché possa valere la sua seconda parte).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># FIGURA</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="operazioni-tra-insiemi">
+<h2><span class="section-number">2.5. </span>Operazioni tra insiemi<a class="headerlink" href="#operazioni-tra-insiemi" title="Permalink to this headline">¶</a></h2>
+<p>L’<em>unione</em> di due insiemi <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(T\)</span> è costituita dall’insieme <span class="math notranslate nohighlight">\(S \cup T\)</span> contenente tutti gli elementi che appartengono ad almeno uno di essi:</p>
+<div class="math notranslate nohighlight">
+\[ S \cup T = \{x \in \Omega | x \in S \vee x \in T \}\]</div>
+<p>FIGURA</p>
+<p>L’<em>intersezione</em> di due insiemi <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(T\)</span> è costituita dall’insieme <span class="math notranslate nohighlight">\(S \cap T\)</span> contenente tutti gli elementi comuni a <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(T\)</span>;</p>
+<div class="math notranslate nohighlight">
+\[ S \cap T = \{ x \in \Omega | x \in S \wedge x \in T \} \]</div>
+<p>FIGURA</p>
+<p>Si verifica facilmente come le operazioni di unione e intersezione siano</p>
+<ul class="simple">
+<li><p>commutative</p></li>
+<li><p>associative</p></li>
+</ul>
+<p>La <em>differenza</em> tra un insieme <span class="math notranslate nohighlight">\(S\)</span> e un insieme <span class="math notranslate nohighlight">\(T\)</span> è costituita dall’insieme <span class="math notranslate nohighlight">\(S \backslash T\)</span> contenente tutti gli elementi di <span class="math notranslate nohighlight">\(S\)</span> che non appartengono a <span class="math notranslate nohighlight">\(T\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ S \backslash T = \{ x \in \Omega | x \in S \wedge x \notin T \} \]</div>
+<p>FIGURA</p>
+<p>La <em>differenza simmetrica</em> tra due insiemi <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(T\)</span> è costituita dall’insieme <span class="math notranslate nohighlight">\(S \ominus T\)</span> contenente tutti gli elementi che appartengono solamente a <span class="math notranslate nohighlight">\(S\)</span> o solamente a <span class="math notranslate nohighlight">\(T\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ S \ominus T = \{ x \in \Omega | ( x \in S \wedge x \notin T ) \vee ( x \notin S \wedge x \in T) \} \]</div>
+<p>FIGURA</p>
+<p>Valgono le seguenti relazioni tra la differenza simmetrica, l’unione, l’intersezione e la differenza tra insiemi:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(S \ominus T = (S \backslash T) \cup (T \backslash S)\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(S \ominus T = (S \cup T) \backslash (S \cap T)\)</span>.</p></li>
+</ul>
+<p>Il <em>complemento</em> di un insieme <span class="math notranslate nohighlight">\(S\)</span> è costituito dall’insieme <span class="math notranslate nohighlight">\(\overline S\)</span> contenente tutti gli elementi dell’insieme universo che non appartengono a <span class="math notranslate nohighlight">\(S\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ \overline S = \{ x \in \Omega | x \notin S \} = \Omega \backslash S. \]</div>
+<p>FIGURA</p>
+</div>
+<div class="section" id="sequenze-di-insiemi">
+<h2><span class="section-number">2.6. </span>Sequenze di insiemi<a class="headerlink" href="#sequenze-di-insiemi" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="gli-insiemi-in-python">
+<h2><span class="section-number">2.7. </span>Gli insiemi in Python<a class="headerlink" href="#gli-insiemi-in-python" title="Permalink to this headline">¶</a></h2>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="citazione-cantor"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dd><p>Traduzione dal testo originale “Unter einer ‘Mannigfaltigkeit’ oder ‘Menge’ verstee ich nämlich allgemein jedes Viele, welches sich als Eines denken lässt”.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./p3-CP/c2-teoria-insiemi"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../c1-calcolo-combinatorio/calcolo-combinatorio.html" title="previous page"><span class="section-number">1. </span>Calcolo combinatorio</a>
+    <a class='right-next' id="next-link" href="../../bibliography.html" title="next page"><span class="section-number">1. </span>Bibliography</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dario Malchiodi<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
