@@ -14,7 +14,17 @@ kernelspec:
 
 # Python
 
-Questo capitolo descrive brevemente i principali strumenti che permettono di analizzare dati in modo esplorativo usando [Python](https://www.python.org) come linguaggio di programmazione, [jupyter](https://jupyter.org/) come ambiente di elaborazione e introducendo le principali librerie del cosiddetto _Python data science stack_ via via che queste si riveleranno necessarie.
+> Beautiful is better than ugly. <br/>
+> Explicit is better than implicit. <br/>
+> Simple is better than complex. <br/>
+> Complex is better than complicated. <br/>
+> Flat is better than nested. <br/>
+> Sparse is better than dense. <br/>
+> Readability counts.
+>
+> The Zen of Python, Tim Peters 
+
+Questo capitolo descrive brevemente i principali strumenti che permettono di analizzare dati in modo esplorativo usando [Python](https://www.python.org) come linguaggio di programmazione, [Jupyter](https://jupyter.org/) come ambiente di elaborazione e introducendo le principali librerie del cosiddetto _Python data science stack_ via via che queste si riveleranno necessarie.
 
 ```{code-cell} ipython3
 

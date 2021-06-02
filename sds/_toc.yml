@@ -52,6 +52,8 @@
 - part: Calcolo delle probabilità
   chapters:
   - file: p3-CP/c1-calcolo-combinatorio/calcolo-combinatorio
+  - file: p3-CP/c2-teoria-insiemi/teoria-insiemi
+
 
 - part: Bibliografia
   chapters:

@@ -12,6 +12,7 @@ kernelspec:
   name: python3
 ---
 
+(funzioni)=
 # Funzioni
 Il calcolo delle frequenze è un'operazione che viene fatta molto spesso, quindi conviene scrivere una funzione che ci eviti di dover ricopiare ogni volta la decina di linee che abbiamo scritto (in realtà è solo una scusa per vedere come si definiscono le funzioni in python: più avanti vedremo come usare delle librerie per calcolare le frequenze). La definizione di una funzione in python (a parte il caso delle funzioni anonime) viene fatta utilizzando la parola chiave `def` seguita dal nome del metodo e dai nomi simbolici per i suoi argomenti, separati da virgole e racchiusi tra parentesi (fanno eccezione gli eventuali argomenti opzionali, ma di questo non parleremo). La definizione procede con un carattere di due punti e dal corpo della funzione le cui istruzioni devono essere indentate di un livello.
 

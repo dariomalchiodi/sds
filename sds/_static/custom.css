@@ -50,4 +50,7 @@ p.rubric {
   font-size: 1.5em;
 }
 
+button.toggle-button.toggle-button-hidden:before {
+  left: -8.7em !important;
+}
 

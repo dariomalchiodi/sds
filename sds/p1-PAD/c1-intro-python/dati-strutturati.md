@@ -32,7 +32,7 @@ Le liste non vanno confuse con gli _array_ (o _vettori_), che sono invece delle 
 ```
 
 
-Una lista si può indicare in modo _estensivo_ separando i suoi elementi tramite virgola e racchiudendo il tutto tra parentesi quadre. La proprietà di eterogeneità ci permette per esempio di usare una lista per aggregare le informazioni che descrivono un supereroe:
+Una lista si può indicare in modo _estensivo_ (cioè elencando a uno a uno tutti i suoi contenuti) separando i suoi elementi tramite virgola e racchiudendo il tutto tra parentesi quadre [^list-comprehension]. Ciò vale anche per la _lista vuota_, che si può descrivere scrivendo semplicemente l'espressione `[]`. La proprietà di eterogeneità ci permette per esempio di usare una lista per aggregare le informazioni che descrivono un supereroe:
 
 ```{code-cell} ipython3
 iron_man = ['Iron Man',
@@ -83,7 +83,7 @@ Un'altra differenza tra liste e _array_ è legata al fatto che questi ultimi rap
 ```
 Dover specificare la posizione del primo elemento da escludere sembra controintuitivo rispetto alla scelta più naturale di indicare la posizione dell'ultimo elemento da includere. In realtà in questo modo risulta più facile scrivere codice che elabora porzioni successive in una lista. Le liste sono, infine, una struttura dati *dinamica*, nel senso che oltre a modificare gli elementi in essa contenuti è anche possibile rimuovere uno o più di tali elementi, oppure aggiungerne di nuovi.
 
-Python mette a dipsosizione varie operazioni che agiscono sulle liste: i paragrafi che seguono introducono alcuni esempi, ma il loro scopo è più quello di sottolineare la differenza tra i concetti di operatore, funzione e metodo. Per degli approfondimenti è possibile consultare la documentazione ufficiale, che contiene un [documento introudttivo](https://docs.python.org/3/tutorial/introduction.html#lists) e uno [più dettagliato](https://docs.python.org/3/tutorial/datastructures.html#) sull'uso delle liste in Python. Per esemplificare l'uso di questi tre tipi di strumenti conviene ragionare in termini di una lista utilizzata come se fosse un _array_, memorizzando dunque una successione di valori dello stesso tipo, per esempio i nomi di alcuni supereroi:
+Sono dipsosizione varie operazioni che agiscono sulle liste, e queste operazioni sono implementate utilizzando diversi elementi del linguaggio: gli operatori, le funzioni e i metodi. I paragrafi che seguono introducono alcuni esempi, ma il loro scopo è quello di sottolineare la differenza tra i concetti di operatore, funzione e metodo in Python. Per degli approfondimenti è possibile consultare la documentazione ufficiale, che contiene un [documento introudttivo](https://docs.python.org/3/tutorial/introduction.html#lists) e uno [più dettagliato](https://docs.python.org/3/tutorial/datastructures.html#) sull'uso delle liste in Python. Per esemplificare l'uso di questi tre tipi di strumenti conviene ragionare in termini di una lista utilizzata come se fosse un _array_, memorizzando dunque una successione di valori dello stesso tipo, per esempio i nomi di alcuni supereroi:
 
 ```{code-cell} ipython3
 names = ['Aquaman', 'Ant-Man', 'Batman', 'Black Widow',
@@ -199,18 +199,11 @@ Gli argomenti opzionali vengono tipicamente utilizzati quando si ha a che fare c
 
 +++
 
-Un altro metodo invocabile su una lista è `insert`, che permette di aggiungere un elemento a una lista esistente, specificando rispettivamente come secondo e primo argomento l'elemento da aggiungere e la posizione in cui inserirlo: per esempio nella cella seguente viene re-inserito Aquaman in modo da mantenere `names` in orine
-
-```{code-cell} ipython3
-names.insert(4, 'Aquaman')
-names[:6]
-```
-
 ## Le tuple
 
 +++
 
-Una tupla è una lista immutabile: una volta creata non è possibile modificare i suoi contenuti. Una tupla viene indicata in modo analogo a una lista, con l'unica differenza che i suoi contenuti sono delimitati da parentesi tonde.
+Una tupla è in tutto e per tutto una lista immutabile, nel senso che una volta che essa è stata creata non è possibile modificare i suoi contenuti. Una tupla viene indicata in modo analogo a una lista, con l'unica differenza che i suoi contenuti sono delimitati da parentesi tonde.
 
 ```{code-cell} ipython3
 rogue = ('Rogue',
@@ -227,11 +220,7 @@ rogue = ('Rogue',
         'good')
 ```
 
-L'accesso a un elemento di una tupla viene fatto in modo posizionale usando la medesima sintassi introdotta per le liste:
-
-+++
-
-Qualora si tenti di modificare un elemento in una tupla, l'esecuzione verrà però bloccata emettendo un errore:
+L'accesso a un elemento di una tupla viene fatto in modo posizionale usando la medesima sintassi introdotta per le liste, e anche in questo caso è possibile estrarre delle sotto-tuple utilizzando degli _slicing_. Quando però si tenta di modificare un elemento contenuto in una tupla, l'esecuzione verrà bloccata emettendo un errore:
 
 ```{code-cell} ipython3
 try:
@@ -240,7 +229,9 @@ except TypeError:
     print('Non si possono modificare gli elementi di una tupla')
 ```
 
-Va notato che in python gli errori di esecuzione vengono emessi utilizzando il meccanismo delle eccezioni, che nella cella precedente vengono gestite in modo analogo a quanto succede per esempio in Java: il blocco di istruzioni coinvolto è quello che segue la parola chiave `try`, e le istruzioni dopo `except` vengono eseguite solo se viene lanciata un eccezione del tipo specificato. A seguito di questo errore, la tupla manterrà i suoi valori originali, restando quindi effettivamente invariata:
+Notiamo _en passant_ che in Python gli errori di esecuzione sono basati sul meccanismo delle eccezioni, che nella cella precedente vengono gestite in modo analogo a quanto succede per esempio in Java: il blocco di istruzioni coinvolto è quello che segue la parola chiave `try`, e se durante l'esecuzione di tale blocco viene lanciata un eccezione del tipo `TypeError`, quest'ultima viene gestita eseguendo le istruzioni dopo la linea di codice contenente la parola-chiave `except` (andrebbe anche specificato che l'indentazione del codice deve essere presente, ma di questo ci occuperemo nel {numref}`Paragrafo %s <funzioni>`).
+
+A seguito di questo errore, la tupla manterrà i suoi valori originali, restando quindi effettivamente invariata:
 
 ```{code-cell} ipython3
 rogue
@@ -254,9 +245,10 @@ L'immutabilità delle tuple le rende da preferire rispetto alle liste in tutti i
 
 +++
 
-<div class="alert alert-info">
-Va notato che la sintassi per la descrizione delle tuple diventa problematica quando si vuole indicare una tupla contenente un unico elemento, in quanto per esempio `(1)` viene interpretato come valore `1` tra parentesi tonde. La soluzione in casi come questi è quella di fare seguire l'unico elemento della tupla da una virgola, scrivendo per esempio `(1,)`. Come regola generale, infatti, è possibile aggiungere una virgola alla fine di una tupla (o di una lista) senza variarne i contenuti.
-</div>
+```{admonition} Nota
+:class: note
+La sintassi per la descrizione delle tuple diventa problematica quando si vuole indicare una tupla contenente un unico elemento, in quanto per esempio l'espressione `(1)` viene interpretata come il valore intero `1` racchiuso tra parentesi tonde, ottenendo dunque il medesimo intero come risultato della valutazione. In casi come questo la soluzione è quella di fare seguire l'unico elemento della tupla da una virgola, scrivendo per esempio `(1,)`. Come regola generale, infatti, è sempre possibile aggiungere una virgola alla fine di una tupla (o di una lista) senza che ciò ne alteri i contenuti. È invece possibile utilizzare l'espressione `()` per indicare una tupla vuota.
+```
 
 +++
 
@@ -323,6 +315,8 @@ L'operatore `in` introdotto per le liste può anche essere utilizzato per i dizi
 Anche nel caso dei dizionari il linguaggio mette a disposizione una serie di funzioni specifiche, e si può fare riferimento alla [documentazione ufficiale](https://docs.python.org/3/tutorial/datastructures.html#dictionaries) di python per approfondire l'argomento.
 
 +++
+
+[^list-comprehension]: Vedremo che esiste anche la possibilità di utilizzare un particolare formalismo, chiamato _list comprehension_, per definire una lista in termini di una _trasformazione_ degli elementi di un'altra lista.
 
 [^data-model]: I lettori attenti potrebbero avere notato un apparente incoerenza tra il modo in cui vengono valutate le espressioni e la semantica appena introdotta per l'operatore `del`. Consideriamo l'espressione `del names[0]` dell'esempio precedente: se questa fosse valutata in modo ususale, verrebbe innanzitutto valutato l'operando, dunque l'espressione `names[0]`. L'operatore `del` verrebbe quindi applicato al valore ottenuto, che nel nostro caso sarebbe la stringa `'Aquaman'`. Ora, l'istruzione `del 'Aquaman'` genererebbe un errore, perché `del` si può applicare solo a riferimenti e non a letterali. In realtà la valutazione di espressioni di questo tipo viene fatta in un modo diverso, perché `del names[0]` viene implicitamente convertita in un'altra espressione che equivale a invocare un particolare metodo dell'oggetto referenziato da `names`, passando il valore `0` come argomento. Senza addentrarsi in dettagli, è importante segnalare che Python è permeato da tecniche di questo tipo, che permettono tra l'altro di estendere l'uso della sintassi per i tipi _builtin_ anche a oggetti di classi definite dagli sviluppatori. Chi volesse approfondire questo spetto può studiare il cosiddeto [data model](https://docs.python.org/3/reference/datamodel.html) di Python (sebbene sarebbe prima importante imparare come definire e utilizzare nuove classi).
 
