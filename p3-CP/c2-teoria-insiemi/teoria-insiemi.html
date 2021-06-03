@@ -618,9 +618,12 @@ O = \{ k \in \mathbb N \text{ tale che } 1 \leq k \leq 6 \text{ e } k \text{ è 
 </div>
 <div class="section" id="relazioni-tra-insiemi">
 <h2><span class="section-number">2.4. </span>Relazioni tra insiemi<a class="headerlink" href="#relazioni-tra-insiemi" title="Permalink to this headline">¶</a></h2>
-<p>Quando ogni elemento sappartenente a un insieme <span class="math notranslate nohighlight">\(S\)</span> risulta appartenente anche a un secondo insieme <span class="math notranslate nohighlight">\(T\)</span>, si dice che <span class="math notranslate nohighlight">\(S\)</span> è un <em>sottoinsieme</em> di <span class="math notranslate nohighlight">\(T\)</span> (o che <span class="math notranslate nohighlight">\(S\)</span> è <em>incluso</em> in <span class="math notranslate nohighlight">\(T\)</span>) e si indica questo fatto con la notazione <span class="math notranslate nohighlight">\(S \subseteq T\)</span> (vedi <a class="reference internal" href="#venn-subset"><span class="std std-numref">Fig. 2.3</span></a>):</p>
+<p>A partire dalla nozione di <em>sottoinsieme</em> è possibile derivare una serie di relazioni tra insiemi di carattere generale; più precisamente:</p>
+<ul class="simple">
+<li><p>quando ogni elemento sappartenente a un insieme <span class="math notranslate nohighlight">\(S\)</span> risulta appartenente anche a un secondo insieme <span class="math notranslate nohighlight">\(T\)</span>, si dice che <span class="math notranslate nohighlight">\(S\)</span> è un <em>sottoinsieme</em> di <span class="math notranslate nohighlight">\(T\)</span> (o che <span class="math notranslate nohighlight">\(S\)</span> è <em>incluso</em> in <span class="math notranslate nohighlight">\(T\)</span>) e si indica questo fatto con la notazione <span class="math notranslate nohighlight">\(S \subseteq T\)</span> (vedi <a class="reference internal" href="#venn-subset"><span class="std std-numref">Fig. 2.3</span></a>):</p></li>
+</ul>
 <div class="math notranslate nohighlight">
-\[ S \subseteq T \leftrightarrow \forall s (s \in S \rightarrow s \in T) \]</div>
+\[ S \subseteq T \leftrightarrow \forall s \in \Omega \ (s \in S \rightarrow s \in T) ;\]</div>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -660,25 +663,30 @@ O = \{ k \in \mathbb N \text{ tale che } 1 \leq k \leq 6 \text{ e } k \text{ è 
 </div>
 <p class="caption"><span class="caption-number">Fig. 2.3 </span><span class="caption-text">Un diagramma di Venn per descrivere due insiemi <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(T\)</span> tali che <span class="math notranslate nohighlight">\(S \subseteq T\)</span>.</span><a class="headerlink" href="#venn-subset" title="Permalink to this image">¶</a></p>
 </div>
-<p>Due insiemi si dicono <em>uguali</em> quando si includono mutuamente; conseguentemente, due insiemi si dicono diversi quando non sono uguali:</p>
+<ul class="simple">
+<li><p>due insiemi si dicono uguali quando si includono mutuamente:</p></li>
+</ul>
 <div class="math notranslate nohighlight">
-\[ S = T \leftrightarrow S \subseteq T \wedge T \subseteq S \]</div>
-<p>Tra due insiemi sussiste la relazione di inclusione in senso stretto quando uno dei due è incluso nell’altro e in aggiunta i due insiemi non sono uguali:</p>
+\[ S = T \leftrightarrow S \subseteq T \wedge T \subseteq S ;\]</div>
+<ul class="simple">
+<li><p>due insiemi si dicono diversi quando non sono uguali;</p></li>
+<li><p>tra due insiemi sussiste la relazione di inclusione <em>in senso stretto</em> quando uno dei due è incluso nell’altro e in aggiunta i due insiemi non sono uguali:</p></li>
+</ul>
 <div class="math notranslate nohighlight">
-\[ S \subset T \leftrightarrow S \subseteq T \wedge T \neq S \]</div>
+\[ S \subset T \leftrightarrow S \subseteq T \wedge T \neq S .\]</div>
 <p>Si verifica facilmente come qualunque insieme risulti sempre incluso nell’insieme universo, e come analogamente l’insieme vuoto risulti sempre incluso in qualunque insieme:</p>
 <div class="math notranslate nohighlight">
-\[ \forall S \{\} \subseteq S \subseteq \Omega \]</div>
-<p>Questa relazione continua a valere se si considera la relazione di inclusione in senso stretto, a patto che <span class="math notranslate nohighlight">\(S\)</span> sia diverso dall’insieme vuoto (affinché valga la prima parte della relazione) e dall’insieme universo (affinché possa valere la sua seconda parte).</p>
+\[ \forall S \subseteq \Omega \ \{\} \subseteq S \subseteq \Omega ,\]</div>
+<p>e questa relazione continua a valere se si considera la relazione di inclusione in senso stretto, a patto che <span class="math notranslate nohighlight">\(S\)</span> sia diverso dall’insieme vuoto (affinché valga la prima parte della relazione) e dall’insieme universo (affinché possa valere la sua seconda parte).</p>
 </div>
 <div class="section" id="operazioni-tra-insiemi">
 <h2><span class="section-number">2.5. </span>Operazioni tra insiemi<a class="headerlink" href="#operazioni-tra-insiemi" title="Permalink to this headline">¶</a></h2>
-<p>INSERIRE CAPPELLO INIZIALE</p>
+<p>Oltre alle relazioni descritte nel paragrafo precedente, è possibile costruire nuovi insiemi a partire da insiemi esistenti utilizzando le operazioni descritte di seguito.</p>
 <ul class="simple">
 <li><p>L’<em>unione</em> di due insiemi <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(T\)</span> (vedi <a class="reference internal" href="#venn-union"><span class="std std-numref">Fig. 2.4</span></a>) è costituita dall’insieme <span class="math notranslate nohighlight">\(S \cup T\)</span> contenente tutti gli elementi che appartengono ad almeno uno di essi:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[ S \cup T = \{x \in \Omega | x \in S \vee x \in T \}\]</div>
+\[ S \cup T = \{x \in \Omega | x \in S \vee x \in T \} .\]</div>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -719,10 +727,10 @@ O = \{ k \in \mathbb N \text{ tale che } 1 \leq k \leq 6 \text{ e } k \text{ è 
 <p class="caption"><span class="caption-number">Fig. 2.4 </span><span class="caption-text">Un diagramma di Venn per descrivere l’unione degli insiemi <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(T\)</span>.</span><a class="headerlink" href="#venn-union" title="Permalink to this image">¶</a></p>
 </div>
 <ul class="simple">
-<li><p>L’<em>intersezione</em> di due insiemi <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(T\)</span> (vedi <a class="reference internal" href="#venn-intersection"><span class="std std-numref">Fig. 2.5</span></a>) è costituita dall’insieme <span class="math notranslate nohighlight">\(S \cap T\)</span> contenente tutti gli elementi comuni a <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(T\)</span>;</p></li>
+<li><p>L’<em>intersezione</em> di due insiemi <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(T\)</span> (vedi <a class="reference internal" href="#venn-intersection"><span class="std std-numref">Fig. 2.5</span></a>) è costituita dall’insieme <span class="math notranslate nohighlight">\(S \cap T\)</span> contenente tutti gli elementi comuni a <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(T\)</span>:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[ S \cap T = \{ x \in \Omega | x \in S \wedge x \in T \} \]</div>
+\[ S \cap T = \{ x \in \Omega | x \in S \wedge x \in T \} .\]</div>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -771,7 +779,7 @@ O = \{ k \in \mathbb N \text{ tale che } 1 \leq k \leq 6 \text{ e } k \text{ è 
 <li><p>La <em>differenza</em> tra un insieme <span class="math notranslate nohighlight">\(S\)</span> e un insieme <span class="math notranslate nohighlight">\(T\)</span> (vedi <a class="reference internal" href="#venn-difference"><span class="std std-numref">Fig. 2.6</span></a> è costituita dall’insieme <span class="math notranslate nohighlight">\(S \backslash T\)</span> contenente tutti gli elementi di <span class="math notranslate nohighlight">\(S\)</span> che non appartengono a <span class="math notranslate nohighlight">\(T\)</span>:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[ S \backslash T = \{ x \in \Omega | x \in S \wedge x \notin T \} \]</div>
+\[ S \backslash T = \{ x \in \Omega | x \in S \wedge x \notin T \} .\]</div>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -822,7 +830,7 @@ O = \{ k \in \mathbb N \text{ tale che } 1 \leq k \leq 6 \text{ e } k \text{ è 
 <li><p>La <em>differenza simmetrica</em> tra due insiemi <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(T\)</span> (vedi <a class="reference internal" href="#venn-symm-difference"><span class="std std-numref">Fig. 2.7</span></a>) è costituita dall’insieme <span class="math notranslate nohighlight">\(S \ominus T\)</span> contenente tutti gli elementi che appartengono solamente a <span class="math notranslate nohighlight">\(S\)</span> o solamente a <span class="math notranslate nohighlight">\(T\)</span>:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[ S \ominus T = \{ x \in \Omega | ( x \in S \wedge x \notin T ) \vee ( x \notin S \wedge x \in T) \} \]</div>
+\[ S \ominus T = \{ x \in \Omega | ( x \in S \wedge x \notin T ) \vee ( x \notin S \wedge x \in T) \} .\]</div>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -910,14 +918,21 @@ O = \{ k \in \mathbb N \text{ tale che } 1 \leq k \leq 6 \text{ e } k \text{ è 
 </div>
 <p>Si verifica facilmente come le operazioni di unione e intersezione siano</p>
 <ul class="simple">
-<li><p>commutative</p></li>
-<li><p>associative</p></li>
+<li><p>commutative: vale sempre <span class="math notranslate nohighlight">\(S \cup T = T \cup S\)</span> e <span class="math notranslate nohighlight">\(S \cap T = T \cap S\)</span>, e quindi è possibile invertire due insiemi senza che cambino la loro unione o la loro intersezione;</p></li>
+<li><p>associative: <span class="math notranslate nohighlight">\(S \cup ( T \cup U ) = (S \cup T ) \cup U\)</span> e <span class="math notranslate nohighlight">\(S \cap ( T \cap U ) = (S \cap T ) \cap U\)</span>, il che significa che l’ordine con cui vengono eseguite due unioni (o due intersezioni) è ininfluente, pertanto è possibile scrivere per esempio <span class="math notranslate nohighlight">\(S \cup T \cup U\)</span> senza che l’espressione risultante sia ambigua.</p></li>
 </ul>
-<p>Valgono le seguenti relazioni tra la differenza simmetrica, l’unione, l’intersezione e la differenza tra insiemi:</p>
-<ul class="simple">
+<p>Valgono inoltre le cosiddette <em>leggi di De Morgan</em>:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(\overline{\left( S \cup T \right)} = \overline S \cap \overline T\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\overline{\left( S \cap T \right)} = \overline S \cup \overline T\)</span>.</p></li>
+</ol>
+<p>Le leggi di De Morgan ci dicono essenzialmente che è possibile “trasferire” l’operazione di complemento dall’unione di due insiemi ai due insiemi stessi, avendo cura di convertire l’uione in intersezione (e un’analoga operazione vale per il complemento di un’intersezione). Dimostriamo la prima delle due leggi: se <span class="math notranslate nohighlight">\(x \in \overline{\left( S \cup T \right)}\)</span>, per definizione di complemento <span class="math notranslate nohighlight">\(x \notin \left( S \cup T \right)\)</span>, il che implica <span class="math notranslate nohighlight">\(x \notin S\)</span> e <span class="math notranslate nohighlight">\(x \notin T\)</span>. Da questo fatto si ottiene, sempre sfruttando la definizione di complemento, che <span class="math notranslate nohighlight">\(x \in \overline S\)</span> e <span class="math notranslate nohighlight">\(x \in \overline T\)</span>, e dunque <span class="math notranslate nohighlight">\(x \in \overline S \cap \overline T\)</span>. Siccome non abbiamo fatto particolari ipotesi su <span class="math notranslate nohighlight">\(x\)</span> se non quella che fosse un elemento di <span class="math notranslate nohighlight">\(S\)</span>, abbiamo dunque dimostrato che <span class="math notranslate nohighlight">\(\overline{\left( S \cup T \right)} \subseteq \overline S \cap \overline T\)</span>. Procedendo in modo inverso (cioè partendo da <span class="math notranslate nohighlight">\(x \in \overline S \cap \overline T\)</span>) si può dimostrare che <span class="math notranslate nohighlight">\(\overline S \cap \overline T \subseteq \overline{\left( S \cup T \right)}\)</span>, ottenendo pertanto la prima legge di De Morgan. Un’analoga dimostrazione permette di ottenere la seconda legge.</p>
+<p>Valgono, infine, le seguenti relazioni tra la differenza simmetrica, l’unione, l’intersezione e la differenza tra insiemi:</p>
+<ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(S \ominus T = (S \backslash T) \cup (T \backslash S)\)</span>,</p></li>
 <li><p><span class="math notranslate nohighlight">\(S \ominus T = (S \cup T) \backslash (S \cap T)\)</span>.</p></li>
-</ul>
+</ol>
+<p>Guardando il diagramma di Venn della <a class="reference internal" href="#venn-symm-difference"><span class="std std-numref">Fig. 2.7</span></a> è facile convincersi della validità di queste due uguaglianze. Dimostriamo parzialmente la seconda ipotizzando valida la prima, adottando la stessa tecnica utilizzata per le leggi di De Morgan: se <span class="math notranslate nohighlight">\(x \in (S \cup T) \backslash (S \cap T)\)</span>, allora <span class="math notranslate nohighlight">\(x \in (S \cup T)\)</span> e <span class="math notranslate nohighlight">\(x \notin (S \cap T)\)</span>, il che implica <span class="math notranslate nohighlight">\((x \in S \vee x \in T) \wedge (x \notin S \cap T)\)</span>. Per la distribuzione della disgiunzione sulla congiunzione si ottiene <span class="math notranslate nohighlight">\((x \in S \wedge x \notin S \cap T) \vee (x \in T \wedge x \notin S \cap T)\)</span>. Pertanto <span class="math notranslate nohighlight">\(x \in S \backslash T \vee x \in T \backslash S\)</span>, e assumendo vera la prima delle due relazioni si ottiene <span class="math notranslate nohighlight">\(x \in S \ominus T\)</span>.</p>
 </div>
 <div class="section" id="gli-insiemi-in-python">
 <h2><span class="section-number">2.6. </span>Gli insiemi in Python<a class="headerlink" href="#gli-insiemi-in-python" title="Permalink to this headline">¶</a></h2>
