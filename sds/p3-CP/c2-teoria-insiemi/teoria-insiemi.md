@@ -22,7 +22,13 @@ import numpy as np
 from matplotlib_venn import venn2_circles, venn2
 from myst_nb import glue
 
-plt.xkcd()
+import matplotlib
+matplotlib.rcParams['mathtext.rm'] = 'Bitstream Vera Sans'
+matplotlib.rcParams['mathtext.it'] = 'Bitstream Vera Sans:italic'
+matplotlib.rcParams['mathtext.bf'] = 'Bitstream Vera Sans:bold'
+matplotlib.rcParams['mathtext.fontset'] = 'cm'
+font_size = 18
+matplotlib.rcParams['font.size'] = str(font_size)
 ```
 
 # Teoria degli insiemi
@@ -48,27 +54,40 @@ $$
 ```{code-cell} ipython3
 :tags: [hide-cell, remove-output]
 
-import matplotlib.patches as patches
+venn_set_color = '#cc0000'
+venn_set_edge= '#333333'
 
 fig = plt.figure()
 
-values = np.random.permutation((1, 3, 5))
+v = venn2(subsets=(3, 3, 0), set_labels=('$O$', ''))
+c = venn2_circles(subsets=(3, 3, 0))
 
-error = lambda x: (np.random.random() - 0.5) * 0.1
-errors = np.array([(error(v), error(v)) for v in values])
+for l in v.set_labels:
+    l.set_fontsize(font_size)
 
-coords = np.array([(.35 * math.cos(t), .35 * math.sin(t))
-          for t in np.linspace(0, 2 * math.pi, 4)[:-1]])
+for area in ['01', '10', '11']:
+    if area != '11':
+        #v.get_patch_by_id(area).set_color('skyblue')
+        #v.get_patch_by_id(area).set_alpha(1)
+        txt = v.get_label_by_id(area)
+        if txt:
+            txt.set_text('')
+        
+v.get_patch_by_id('10').set_color(venn_set_color)
+v.get_patch_by_id('10').set_alpha(1)
 
-venn2_circles((3, 0, 0))
-for v, c in zip(values, coords + errors):
-    plt.text(*c, str(v))
-    
-plt.text(-.5, .5, '$O$')
+v.get_patch_by_id('01').set_color('white')
+c[1].set_edgecolor('white')
 
-plt.xlim(-1, 2)
-plt.ylim(-.8, .8)
+#plt.gca().set_axis_on()
+plt.gca().set_facecolor('white')
 
+ymin, ymax = plt.gca().get_ylim()
+plt.ylim(ymin - 0.1, ymax)
+plt.text(-0.85, 0, '$1$', fontsize=30)
+plt.text(-0.55, 0.15, '$3$', fontsize=30)
+plt.text(-0.55, -0.2, '$5$', fontsize=30)
+plt.show()
 
 glue("venn-picture", fig, display=False)
 ```
@@ -89,36 +108,44 @@ In particolare, la descrizione tramite i diagrammi di Venn presuppone la conosce
 
 fig = plt.figure()
 
-coords = np.array([(.25 * math.cos(t), .5 * math.sin(t))
-          for t in np.linspace(0, 2 * math.pi, 4)[:-1]])
+v = venn2(subsets=(3, 3, 0), set_labels=('$O$', ''))
+c = venn2_circles(subsets=(3, 3, 0))
 
-venn2_circles((3, 0, 0))
-for v, c in zip(values, coords + errors):
-    plt.text(*c, str(v))
-    
-venn2_circles((3, 0, 0))
-for v, c in zip(values, coords + errors):
-    plt.text(*c, str(v))
+for l in v.set_labels:
+    l.set_fontsize(font_size)
 
-rect = patches.Rectangle((-.7, -.7), 1.8, 1.4, linewidth=2,
-                         edgecolor='gray', facecolor='none')
-plt.gca().add_patch(rect)
+for area in ['01', '10', '11']:
+    if area != '11':
+        #v.get_patch_by_id(area).set_color('skyblue')
+        #v.get_patch_by_id(area).set_alpha(1)
+        txt = v.get_label_by_id(area)
+        if txt:
+            txt.set_text('')
+        
+v.get_patch_by_id('10').set_color(venn_set_color)
+v.get_patch_by_id('10').set_alpha(1)
 
-values = np.random.permutation((2, 4, 6))
-errors = np.array([(error(v), error(v)) for v in values])
+v.get_patch_by_id('01').set_color('white')
+c[1].set_edgecolor('white')
 
-for c in coords:
-    c[0] += .7
+#plt.gca().set_axis_on()
+plt.gca().set_facecolor('white')
 
-for v, c in zip(values, coords + errors):
-    plt.text(*c, str(v))
-    plt.text(*c, str(v))
+ymin, ymax = plt.gca().get_ylim()
+plt.ylim(ymin - 0.1, ymax)
+plt.gca().set_facecolor('white')
+plt.gca().set_axis_on()
 
-plt.text(-.55, .4, '$O$')
-plt.text(.95, .55, '$\Omega$')
+plt.text(-0.85, 0, '$1$', fontsize=30)
+plt.text(-0.55, 0.15, '$3$', fontsize=30)
+plt.text(-0.55, -0.2, '$5$', fontsize=30)
 
-plt.xlim(-1, 2)
-plt.ylim(-.8, .8)
+plt.text(.6, .1, '$2$', fontsize=30)
+plt.text(.2, -0.1, '$4$', fontsize=30)
+plt.text(.5, -0.3, '$6$', fontsize=30)
+
+plt.text(0.95, 0.35, '$\Omega$')
+plt.show()
 
 glue("venn-universe-picture", fig, display=False)
 ```
@@ -129,6 +156,8 @@ glue("venn-universe-picture", fig, display=False)
 
 Un diagramma di Venn per descrivere l'insieme $O$ della {numref}`Figura %s <venn>` evidenziando il corrispondente insieme universo $\Omega$.
 ```
+
++++
 
 Così come l'insieme universo è tale da contenere qualunque elemento, è matematicamente rilevante pensare ad un insieme che dualmente, non contiene alcun elemento. Tale insieme viene chiamato insieme vuoto, e lo indicheremo scrivendo $\{\}$ (anche se è comune l'uso del simbolo $\varnothing$), così che per qualsiasi elemento $a$ si avrà $a \notin \{\}$.
 
@@ -147,9 +176,50 @@ sia decisamente più precisa. Ciò non vale invece per gli insiemi infiniti non 
 
 ## Relazioni tra insiemi
 
-Quando ogni elemento sappartenente a un insieme $S$ risulta appartenente anche a un secondo insieme $T$, si dice che $S$ è un _sottoinsieme_ di $T$ (o che $S$ è _incluso_ in $T$) e si indica questo fatto con la notazione $S \subseteq T$:
+Quando ogni elemento sappartenente a un insieme $S$ risulta appartenente anche a un secondo insieme $T$, si dice che $S$ è un _sottoinsieme_ di $T$ (o che $S$ è _incluso_ in $T$) e si indica questo fatto con la notazione $S \subseteq T$ (vedi {numref}`venn-subset`):
 
 $$ S \subseteq T \leftrightarrow \forall s (s \in S \rightarrow s \in T) $$
+
+```{code-cell} ipython3
+:tags: [hide-cell, remove-output]
+
+fig = plt.figure()
+
+v = venn2(subsets=(5, 0, 2), set_labels=('$T$', '$S$'))
+
+for l in v.set_labels:
+    l.set_fontsize(font_size)
+
+for area in ['01', '10', '11']:
+    v.get_patch_by_id(area).set_color(venn_set_color)
+    v.get_patch_by_id(area).set_edgecolor(venn_set_edge)
+    v.get_patch_by_id(area).set_alpha(1)
+    txt = v.get_label_by_id(area)
+    if txt:
+        txt.set_text('')
+
+v.set_labels[1].set_position((-0.2, 0.3))
+        
+plt.gca().set_axis_on()
+plt.gca().set_facecolor('white')
+ymin, ymax = plt.gca().get_ylim()
+plt.ylim(ymin - 0.1, ymax)
+
+plt.text(0.47, 0.5, '$\Omega$')
+
+plt.show()
+
+glue("venn-subset-picture", fig, display=False)
+```
+
+```{glue:figure} venn-subset-picture
+:figwidth: 100%
+:name: "venn-subset"
+
+Un diagramma di Venn per descrivere due insiemi $S$ e $T$ tali che $S \subseteq T$.
+```
+
++++
 
 Due insiemi si dicono _uguali_ quando si includono mutuamente; conseguentemente, due insiemi si dicono diversi quando non sono uguali:
 
@@ -165,55 +235,260 @@ $$ \forall S \{\} \subseteq S \subseteq \Omega $$
 
 Questa relazione continua a valere se si considera la relazione di inclusione in senso stretto, a patto che $S$ sia diverso dall'insieme vuoto (affinché valga la prima parte della relazione) e dall'insieme universo (affinché possa valere la sua seconda parte).
 
-```{code-cell} ipython3
-# FIGURA
-```
++++
 
 ## Operazioni tra insiemi
 
-L'_unione_ di due insiemi $S$ e $T$ è costituita dall'insieme $S \cup T$ contenente tutti gli elementi che appartengono ad almeno uno di essi:
+INSERIRE CAPPELLO INIZIALE
+
+- L'_unione_ di due insiemi $S$ e $T$ (vedi {numref}`venn-union`) è costituita dall'insieme $S \cup T$ contenente tutti gli elementi che appartengono ad almeno uno di essi:
 
 $$ S \cup T = \{x \in \Omega | x \in S \vee x \in T \}$$
 
-FIGURA
+```{code-cell} ipython3
+:tags: [hide-cell, remove-output]
 
-L'_intersezione_ di due insiemi $S$ e $T$ è costituita dall'insieme $S \cap T$ contenente tutti gli elementi comuni a $S$ e $T$;
+fig = plt.figure()
+
+v = venn2(subsets=(3, 3, 1), set_labels=('$S$', '$T$'))
+c = venn2_circles(subsets=(3, 3, 1))
+
+for l in v.set_labels:
+    l.set_fontsize(font_size)
+
+for contour in c:
+    contour.set_lw(1.4)
+    contour.set_edgecolor(venn_set_edge)
+
+for area in ['01', '10', '11']:
+    v.get_patch_by_id(area).set_color(venn_set_color)
+    v.get_patch_by_id(area).set_alpha(1)
+    txt = v.get_label_by_id(area)
+    if txt:
+        txt.set_text('')
+
+plt.gca().set_facecolor('white')
+plt.gca().set_axis_on()
+ymin, ymax = plt.gca().get_ylim()
+plt.ylim(ymin - 0.1, ymax)
+plt.text(0.7, 0.43, '$\Omega$')
+plt.show()
+
+glue("venn-union-picture", fig, display=False)
+```
+
+```{glue:figure} venn-union-picture
+:figwidth: 100%
+:name: "venn-union"
+
+Un diagramma di Venn per descrivere l'unione degli insiemi $S$ e $T$.
+```
+
++++
+
+- L'_intersezione_ di due insiemi $S$ e $T$ (vedi {numref}`venn-intersection`) è costituita dall'insieme $S \cap T$ contenente tutti gli elementi comuni a $S$ e $T$;
 
 $$ S \cap T = \{ x \in \Omega | x \in S \wedge x \in T \} $$
 
-FIGURA
+```{code-cell} ipython3
+:tags: [hide-cell, remove-output]
+
+fig = plt.figure()
+
+v = venn2(subsets=(3, 3, 1), set_labels=('$S$', '$T$'))
+c = venn2_circles(subsets=(3, 3, 1))
+
+for l in v.set_labels:
+    l.set_fontsize(font_size)
+
+for contour in c:
+    contour.set_lw(1.4)
+    contour.set_edgecolor(venn_set_edge)
+
+for area in ['01', '10', '11']:
+    v.get_patch_by_id(area).set_color(venn_set_color)
+    v.get_patch_by_id(area).set_alpha(1)
+    txt = v.get_label_by_id(area)
+    if txt:
+        txt.set_text('')
+
+v.get_patch_by_id('10').set_color('white')
+v.get_patch_by_id('11').set_color(venn_set_color)
+v.get_patch_by_id('11').set_alpha(1)
+v.get_patch_by_id('01').set_color('white')
+
+plt.gca().set_facecolor('white')
+plt.gca().set_axis_on()
+plt.text(0.7, 0.43, '$\Omega$')
+ymin, ymax = plt.gca().get_ylim()
+plt.ylim(ymin - 0.1, ymax)
+plt.show()
+
+glue("venn-intersection-picture", fig, display=False)
+```
+
+```{glue:figure} venn-intersection-picture
+:figwidth: 100%
+:name: "venn-intersection"
+
+Un diagramma di Venn per descrivere l'intersezione degli insiemi $S$ e $T$.
+```
+
++++
+
+- La _differenza_ tra un insieme $S$ e un insieme $T$ (vedi {numref}`venn-difference` è costituita dall'insieme $S \backslash T$ contenente tutti gli elementi di $S$ che non appartengono a $T$:
+
+$$ S \backslash T = \{ x \in \Omega | x \in S \wedge x \notin T \} $$
+
+```{code-cell} ipython3
+:tags: [hide-cell, remove-output]
+
+fig = plt.figure()
+
+v = venn2(subsets=(3, 3, 1), set_labels=('$S$', '$T$'))
+c = venn2_circles(subsets=(3, 3, 1))
+
+for l in v.set_labels:
+    l.set_fontsize(font_size)
+
+for contour in c:
+    contour.set_lw(1.4)
+    contour.set_edgecolor(venn_set_edge)
+
+v.get_patch_by_id('10').set_color('white')
+v.get_patch_by_id('11').set_color(venn_set_color)
+v.get_patch_by_id('11').set_alpha(.5)
+v.get_patch_by_id('01').set_color('white')
+
+
+for area in ['01', '10', '11']:
+    color = venn_set_color if area == '10' else "white"
+    v.get_patch_by_id(area).set_color(color)
+    v.get_patch_by_id(area).set_alpha(1)
+    txt = v.get_label_by_id(area)
+    if txt:
+        txt.set_text('')
+
+plt.gca().set_facecolor('white')
+plt.gca().set_axis_on()
+plt.text(0.7, 0.43, '$\Omega$')
+ymin, ymax = plt.gca().get_ylim()
+plt.ylim(ymin - 0.1, ymax)
+plt.show()
+
+glue("venn-difference-picture", fig, display=False)
+```
+
+```{glue:figure} venn-difference-picture
+:figwidth: 100%
+:name: "venn-difference"
+
+Un diagramma di Venn per descrivere la differenza tra l'insieme $S$ e l'insieme $T$.
+```
+
++++
+
+- La _differenza simmetrica_ tra due insiemi $S$ e $T$ (vedi {numref}`venn-symm-difference`) è costituita dall'insieme $S \ominus T$ contenente tutti gli elementi che appartengono solamente a $S$ o solamente a $T$:
+
+$$ S \ominus T = \{ x \in \Omega | ( x \in S \wedge x \notin T ) \vee ( x \notin S \wedge x \in T) \} $$
+
+```{code-cell} ipython3
+:tags: [hide-cell, remove-output]
+
+fig = plt.figure()
+
+v = venn2(subsets=(3, 3, 1), set_labels=('$S$', '$T$'))
+c = venn2_circles(subsets=(3, 3, 1))
+
+for l in v.set_labels:
+    l.set_fontsize(font_size)
+
+for contour in c:
+    contour.set_lw(1.4)
+    contour.set_edgecolor(venn_set_edge)
+
+
+for area in ['01', '10', '11']:
+    color = venn_set_color if area != '11' else "white"
+    v.get_patch_by_id(area).set_color(color)
+    v.get_patch_by_id(area).set_alpha(1)
+    txt = v.get_label_by_id(area)
+    if txt:
+        txt.set_text('')
+
+plt.gca().set_facecolor('white')
+plt.gca().set_axis_on()
+plt.text(0.7, 0.43, '$\Omega$')
+ymin, ymax = plt.gca().get_ylim()
+plt.ylim(ymin - 0.1, ymax)
+plt.show()
+
+glue("venn-symm-difference-picture", fig, display=False)
+```
+
+```{glue:figure} venn-symm-difference-picture
+:figwidth: 100%
+:name: "venn-symm-difference"
+
+Un diagramma di Venn per descrivere la differenza simmetrica degli insiemi $S$ e $T$.
+```
+
++++
+
+- Il _complemento_ di un insieme $S$ è costituito dall'insieme $\overline S$ (vedi {numref}`venn-complement`) contenente tutti gli elementi dell'insieme universo che non appartengono a $S$:
+
+$$ \overline S = \{ x \in \Omega | x \notin S \} = \Omega \backslash S. $$
+
+```{code-cell} ipython3
+:tags: [hide-cell, remove-output]
+
+fig = plt.figure()
+
+v = venn2(subsets=(3, 3, 1), set_labels=('$S$', '$T$'))
+c = venn2_circles(subsets=(3, 3, 1))
+
+for l in v.set_labels:
+    l.set_fontsize(font_size)
+
+for contour in c:
+    contour.set_lw(1.4)
+    contour.set_edgecolor(venn_set_edge)
+
+for area in ['01', '10', '11']:
+    color = venn_set_color if area == '01' else "white"
+    v.get_patch_by_id(area).set_color(color)
+    v.get_patch_by_id(area).set_alpha(1)
+    txt = v.get_label_by_id(area)
+    if txt: txt.set_text('')
+
+plt.gca().set_axis_on()
+plt.text(0.7, 0.43, '$\Omega$')
+plt.gca().set_facecolor(venn_set_color)
+ymin, ymax = plt.gca().get_ylim()
+plt.ylim(ymin - 0.1, ymax)
+plt.show()
+
+glue("venn-complement-picture", fig, display=False)
+```
+
+```{glue:figure} venn-complement-picture
+:figwidth: 100%
+:name: "venn-complement"
+
+Un diagramma di Venn per descrivere il complemento dell'insieme $S$.
+```
+
++++
 
 Si verifica facilmente come le operazioni di unione e intersezione siano
 
 - commutative
 - associative
 
-La _differenza_ tra un insieme $S$ e un insieme $T$ è costituita dall'insieme $S \backslash T$ contenente tutti gli elementi di $S$ che non appartengono a $T$:
-
-$$ S \backslash T = \{ x \in \Omega | x \in S \wedge x \notin T \} $$
-
-FIGURA
-
-La _differenza simmetrica_ tra due insiemi $S$ e $T$ è costituita dall'insieme $S \ominus T$ contenente tutti gli elementi che appartengono solamente a $S$ o solamente a $T$:
-
-$$ S \ominus T = \{ x \in \Omega | ( x \in S \wedge x \notin T ) \vee ( x \notin S \wedge x \in T) \} $$
-
-FIGURA
-
 Valgono le seguenti relazioni tra la differenza simmetrica, l'unione, l'intersezione e la differenza tra insiemi:
 
 - $S \ominus T = (S \backslash T) \cup (T \backslash S)$,
 - $S \ominus T = (S \cup T) \backslash (S \cap T)$.
-
-Il _complemento_ di un insieme $S$ è costituito dall'insieme $\overline S$ contenente tutti gli elementi dell'insieme universo che non appartengono a $S$:
-
-$$ \overline S = \{ x \in \Omega | x \notin S \} = \Omega \backslash S. $$
-
-FIGURA
-
-+++
-
-## Sequenze di insiemi
 
 +++
 
