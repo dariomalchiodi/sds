@@ -29,20 +29,20 @@ tt, code, kbd, samp, pre {
 }
 
 .cell_input {
-  border-left-color: #a8332b !important;
+  border-left-color: #cc0000 !important;
 }
 
 bd-sidebar nav ul.nav a:hover, .bd-sidebar nav ul.nav li.active>a,
 .bd-sidebar nav ul.nav li.active>a:hover {
-  color: #a8332b !important;
+  color: #cc0000 !important;
 }
 
 main.bd-content #main-content a, main.bd-content #main-content a:visited {
-  color: #a8332b !important;
+  color: #cc0000 !important;
 }
 
 a {
-  color: #a8332b !important;
+  color: #cc0000 !important;
 }
 
 p.rubric {
