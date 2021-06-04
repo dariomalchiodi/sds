@@ -53,6 +53,12 @@
   chapters:
   - file: p3-CP/c1-calcolo-combinatorio/calcolo-combinatorio
   - file: p3-CP/c2-teoria-insiemi/teoria-insiemi
+    sections:
+    - file: p3-CP/c2-teoria-insiemi/concetti-di-base
+    - file: p3-CP/c2-teoria-insiemi/insiemi-finiti-e-infiniti
+    - file: p3-CP/c2-teoria-insiemi/relazioni-tra-insiemi
+    - file: p3-CP/c2-teoria-insiemi/operazioni-tra-insiemi
+    - file: p3-CP/c2-teoria-insiemi/insiemi-in-python
 
 
 - part: Bibliografia
