@@ -16,22 +16,7 @@ kernelspec:
 :tags: [remove-cell]
 
 %matplotlib inline
-import matplotlib.pyplot as plt
-import math
-import numpy as np
-from matplotlib_venn import venn2_circles, venn2
-from myst_nb import glue
-
-import matplotlib
-matplotlib.rcParams['mathtext.rm'] = 'Bitstream Vera Sans'
-matplotlib.rcParams['mathtext.it'] = 'Bitstream Vera Sans:italic'
-matplotlib.rcParams['mathtext.bf'] = 'Bitstream Vera Sans:bold'
-matplotlib.rcParams['mathtext.fontset'] = 'cm'
-font_size = 18
-matplotlib.rcParams['font.size'] = str(font_size)
-
-venn_set_color = '#cc0000'
-venn_set_edge= '#333333'
+%run init.py
 ```
 
 # Operazioni tra insiemi
@@ -45,32 +30,7 @@ $$ S \cup T = \{x \in \Omega | x \in S \vee x \in T \} .$$
 ```{code-cell} ipython3
 :tags: [hide-cell, remove-output]
 
-fig = plt.figure()
-
-v = venn2(subsets=(3, 3, 1), set_labels=('$S$', '$T$'))
-c = venn2_circles(subsets=(3, 3, 1))
-
-for l in v.set_labels:
-    l.set_fontsize(font_size)
-
-for contour in c:
-    contour.set_lw(1.4)
-    contour.set_edgecolor(venn_set_edge)
-
-for area in ['01', '10', '11']:
-    v.get_patch_by_id(area).set_color(venn_set_color)
-    v.get_patch_by_id(area).set_alpha(1)
-    txt = v.get_label_by_id(area)
-    if txt:
-        txt.set_text('')
-
-plt.gca().set_facecolor('white')
-plt.gca().set_axis_on()
-ymin, ymax = plt.gca().get_ylim()
-plt.ylim(ymin - 0.1, ymax)
-plt.text(0.7, 0.43, '$\Omega$')
-plt.show()
-
+fig = venn_operations('union')
 glue("venn-union-picture", fig, display=False)
 ```
 
@@ -90,37 +50,7 @@ $$ S \cap T = \{ x \in \Omega | x \in S \wedge x \in T \} .$$
 ```{code-cell} ipython3
 :tags: [hide-cell, remove-output]
 
-fig = plt.figure()
-
-v = venn2(subsets=(3, 3, 1), set_labels=('$S$', '$T$'))
-c = venn2_circles(subsets=(3, 3, 1))
-
-for l in v.set_labels:
-    l.set_fontsize(font_size)
-
-for contour in c:
-    contour.set_lw(1.4)
-    contour.set_edgecolor(venn_set_edge)
-
-for area in ['01', '10', '11']:
-    v.get_patch_by_id(area).set_color(venn_set_color)
-    v.get_patch_by_id(area).set_alpha(1)
-    txt = v.get_label_by_id(area)
-    if txt:
-        txt.set_text('')
-
-v.get_patch_by_id('10').set_color('white')
-v.get_patch_by_id('11').set_color(venn_set_color)
-v.get_patch_by_id('11').set_alpha(1)
-v.get_patch_by_id('01').set_color('white')
-
-plt.gca().set_facecolor('white')
-plt.gca().set_axis_on()
-plt.text(0.7, 0.43, '$\Omega$')
-ymin, ymax = plt.gca().get_ylim()
-plt.ylim(ymin - 0.1, ymax)
-plt.show()
-
+fig = venn_operations('intersection')
 glue("venn-intersection-picture", fig, display=False)
 ```
 
@@ -140,39 +70,7 @@ $$ S \backslash T = \{ x \in \Omega | x \in S \wedge x \notin T \} .$$
 ```{code-cell} ipython3
 :tags: [hide-cell, remove-output]
 
-fig = plt.figure()
-
-v = venn2(subsets=(3, 3, 1), set_labels=('$S$', '$T$'))
-c = venn2_circles(subsets=(3, 3, 1))
-
-for l in v.set_labels:
-    l.set_fontsize(font_size)
-
-for contour in c:
-    contour.set_lw(1.4)
-    contour.set_edgecolor(venn_set_edge)
-
-v.get_patch_by_id('10').set_color('white')
-v.get_patch_by_id('11').set_color(venn_set_color)
-v.get_patch_by_id('11').set_alpha(.5)
-v.get_patch_by_id('01').set_color('white')
-
-
-for area in ['01', '10', '11']:
-    color = venn_set_color if area == '10' else "white"
-    v.get_patch_by_id(area).set_color(color)
-    v.get_patch_by_id(area).set_alpha(1)
-    txt = v.get_label_by_id(area)
-    if txt:
-        txt.set_text('')
-
-plt.gca().set_facecolor('white')
-plt.gca().set_axis_on()
-plt.text(0.7, 0.43, '$\Omega$')
-ymin, ymax = plt.gca().get_ylim()
-plt.ylim(ymin - 0.1, ymax)
-plt.show()
-
+fig = venn_operations('difference')
 glue("venn-difference-picture", fig, display=False)
 ```
 
@@ -192,34 +90,7 @@ $$ S \ominus T = \{ x \in \Omega | ( x \in S \wedge x \notin T ) \vee ( x \notin
 ```{code-cell} ipython3
 :tags: [hide-cell, remove-output]
 
-fig = plt.figure()
-
-v = venn2(subsets=(3, 3, 1), set_labels=('$S$', '$T$'))
-c = venn2_circles(subsets=(3, 3, 1))
-
-for l in v.set_labels:
-    l.set_fontsize(font_size)
-
-for contour in c:
-    contour.set_lw(1.4)
-    contour.set_edgecolor(venn_set_edge)
-
-
-for area in ['01', '10', '11']:
-    color = venn_set_color if area != '11' else "white"
-    v.get_patch_by_id(area).set_color(color)
-    v.get_patch_by_id(area).set_alpha(1)
-    txt = v.get_label_by_id(area)
-    if txt:
-        txt.set_text('')
-
-plt.gca().set_facecolor('white')
-plt.gca().set_axis_on()
-plt.text(0.7, 0.43, '$\Omega$')
-ymin, ymax = plt.gca().get_ylim()
-plt.ylim(ymin - 0.1, ymax)
-plt.show()
-
+fig = venn_operations('symdifference')
 glue("venn-symm-difference-picture", fig, display=False)
 ```
 
@@ -239,32 +110,7 @@ $$ \overline S = \{ x \in \Omega | x \notin S \} = \Omega \backslash S. $$
 ```{code-cell} ipython3
 :tags: [hide-cell, remove-output]
 
-fig = plt.figure()
-
-v = venn2(subsets=(3, 3, 1), set_labels=('$S$', '$T$'))
-c = venn2_circles(subsets=(3, 3, 1))
-
-for l in v.set_labels:
-    l.set_fontsize(font_size)
-
-for contour in c:
-    contour.set_lw(1.4)
-    contour.set_edgecolor(venn_set_edge)
-
-for area in ['01', '10', '11']:
-    color = venn_set_color if area == '01' else "white"
-    v.get_patch_by_id(area).set_color(color)
-    v.get_patch_by_id(area).set_alpha(1)
-    txt = v.get_label_by_id(area)
-    if txt: txt.set_text('')
-
-plt.gca().set_axis_on()
-plt.text(0.7, 0.43, '$\Omega$')
-plt.gca().set_facecolor(venn_set_color)
-ymin, ymax = plt.gca().get_ylim()
-plt.ylim(ymin - 0.1, ymax)
-plt.show()
-
+fig = venn_operations('complement')
 glue("venn-complement-picture", fig, display=False)
 ```
 

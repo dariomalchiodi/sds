@@ -16,19 +16,7 @@ kernelspec:
 :tags: [remove-cell]
 
 %matplotlib inline
-import matplotlib.pyplot as plt
-import math
-import numpy as np
-from matplotlib_venn import venn2_circles, venn2
-from myst_nb import glue
-
-import matplotlib
-matplotlib.rcParams['mathtext.rm'] = 'Bitstream Vera Sans'
-matplotlib.rcParams['mathtext.it'] = 'Bitstream Vera Sans:italic'
-matplotlib.rcParams['mathtext.bf'] = 'Bitstream Vera Sans:bold'
-matplotlib.rcParams['mathtext.fontset'] = 'cm'
-font_size = 18
-matplotlib.rcParams['font.size'] = str(font_size)
+%run init.py
 ```
 
 # Insiemi finiti e infiniti

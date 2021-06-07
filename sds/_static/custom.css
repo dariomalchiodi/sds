@@ -54,3 +54,7 @@ button.toggle-button.toggle-button-hidden:before {
   left: -8.7em !important;
 }
 
+caption {
+  display: grid;
+}
+
