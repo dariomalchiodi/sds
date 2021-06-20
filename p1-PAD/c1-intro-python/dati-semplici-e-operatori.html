@@ -43,11 +43,13 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -189,22 +191,22 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/dati-quantitativi-e-qualitativi.html">
-     1.6.1. Dati quantitativi e qualitativi
+     1.7. Dati quantitativi e qualitativi
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-assolute-e-relative.html">
-     1.6.2. Frequenze assolute e relative
+     1.8. Frequenze assolute e relative
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-cumulate.html">
-     1.6.3. Frequenze cumulate
+     1.9. Frequenze cumulate
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-congiunte-e-marginali.html">
-     1.6.4. Frequenze congiunte e marginali
+     1.10. Frequenze congiunte e marginali
     </a>
    </li>
   </ul>
@@ -452,6 +454,9 @@
         
         
         
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -528,59 +533,70 @@
 <thead>
 <tr class="row-odd"><th class="text-align:center head"><p>Operazione</p></th>
 <th class="text-align:center head"><p>Simbolo</p></th>
-<th class="text-align:center head"><p>Operazione</p></th>
-<th class="text-align:center head"><p>Simbolo</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td class="text-align:center"><p>addizione</p></td>
 <td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">+</span></code></p></td>
-<td class="text-align:center"><p>uguale (per riferimento)</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">is</span></code></p></td>
 </tr>
 <tr class="row-odd"><td class="text-align:center"><p>sottrazione</p></td>
 <td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
-<td class="text-align:center"><p>uguale (per contenuto)</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">==</span></code></p></td>
 </tr>
 <tr class="row-even"><td class="text-align:center"><p>moltiplicazione</p></td>
 <td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">*</span></code></p></td>
-<td class="text-align:center"><p>diverso</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">!=</span></code></p></td>
 </tr>
 <tr class="row-odd"><td class="text-align:center"><p>divisione (reale)</p></td>
 <td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">/</span></code></p></td>
-<td class="text-align:center"><p>minore</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code></p></td>
 </tr>
 <tr class="row-even"><td class="text-align:center"><p>divisione (intera)</p></td>
 <td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">//</span></code></p></td>
-<td class="text-align:center"><p>minore o uguale</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&lt;=</span></code></p></td>
 </tr>
 <tr class="row-odd"><td class="text-align:center"><p>resto (modulo)</p></td>
 <td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">%</span></code></p></td>
-<td class="text-align:center"><p>maggiore</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code></p></td>
 </tr>
 <tr class="row-even"><td class="text-align:center"><p>elevamento a potenza</p></td>
 <td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">**</span></code></p></td>
-<td class="text-align:center"><p>maggiore o uguale</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></p></td>
 </tr>
 <tr class="row-odd"><td class="text-align:center"><p></p></td>
 <td class="text-align:center"><p></p></td>
-<td class="text-align:center"><p>congiunzione logica</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">and</span></code></p></td>
 </tr>
 <tr class="row-even"><td class="text-align:center"><p>appartenenza a una struttura</p></td>
 <td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">in</span></code></p></td>
-<td class="text-align:center"><p>disgiunzione logica</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">or</span></code></p></td>
 </tr>
 <tr class="row-odd"><td class="text-align:center"><p>rimozione dalla memoria</p></td>
 <td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">del</span></code></p></td>
-<td class="text-align:center"><p>negazione logica</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p></p></td>
+<td class="text-align:center"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>uguale (per riferimento)</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">is</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>uguale (per contenuto)</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">==</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>diverso</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">!=</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>minore</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>minore o uguale</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&lt;=</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>maggiore</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>maggiore o uguale</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>congiunzione logica</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">and</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>disgiunzione logica</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">or</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>negazione logica</p></td>
 <td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">not</span></code></p></td>
 </tr>
 </tbody>
@@ -632,8 +648,8 @@
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "dariomalchiodi/sds",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",

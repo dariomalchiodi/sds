@@ -203,7 +203,7 @@ Gli argomenti opzionali vengono tipicamente utilizzati quando si ha a che fare c
 
 +++
 
-Una tupla è in tutto e per tutto una lista immutabile, nel senso che una volta che essa è stata creata non è possibile modificare i suoi contenuti. Una tupla viene indicata in modo analogo a una lista, con l'unica differenza che i suoi contenuti sono delimitati da parentesi tonde.
+Una tupla è in tutto e per tutto una lista immutabile, nel senso che una volta che essa è stata creata non è possibile modificare i suoi contenuti. Un letterale di tipo tupla viene indicato con una sintassi analoga a quella per le liste, con l'unica differenza che i suoi contenuti sono delimitati da parentesi tonde.
 
 ```{code-cell} ipython3
 rogue = ('Rogue',
@@ -229,7 +229,7 @@ except TypeError:
     print('Non si possono modificare gli elementi di una tupla')
 ```
 
-Notiamo _en passant_ che in Python gli errori di esecuzione sono basati sul meccanismo delle eccezioni, che nella cella precedente vengono gestite in modo analogo a quanto succede per esempio in Java: il blocco di istruzioni coinvolto è quello che segue la parola chiave `try`, e se durante l'esecuzione di tale blocco viene lanciata un eccezione del tipo `TypeError`, quest'ultima viene gestita eseguendo le istruzioni dopo la linea di codice contenente la parola-chiave `except` (andrebbe anche specificato che l'indentazione del codice deve essere presente, ma di questo ci occuperemo nel {numref}`Paragrafo %s <funzioni>`).
+Notiamo _en passant_ che in Python gli errori di esecuzione sono basati sul meccanismo delle eccezioni, che nella cella precedente vengono gestite in modo analogo a quanto succede per esempio in Java: il blocco di istruzioni coinvolto è quello che segue la parola chiave `try`, e se durante l'esecuzione di tale blocco viene lanciata un eccezione del tipo `TypeError`, quest'ultima viene gestita eseguendo le istruzioni dopo la linea di codice contenente la parola-chiave `except` (andrebbe anche specificato che l'indentazione del codice è obbligatoria, ma di questo ci occuperemo nel {numref}`Paragrafo %s <funzioni>`).
 
 A seguito di questo errore, la tupla manterrà i suoi valori originali, restando quindi effettivamente invariata:
 
@@ -255,14 +255,14 @@ La sintassi per la descrizione delle tuple diventa problematica quando si vuole 
 (stringhe)=
 ## Le stringhe
 
-Le stringhe sono implementate come tuple di caratteri, e quindi su di esse è possibile eseguire tutte le operazioni che si eseguono sulle tuple:
+Da un punto di vista strettamente funzionale, le stringhe sono assimilabili in Python a delle tuple di caratteri specializzate. Su di esse è infatti possibile eseguire tutte le operazioni che si eseguono sulle tuple, per esempio estraendo un carattere o una sottostringa rispettivamente attraverso l'accesso posizionale o il _list slicing:_
 
 ```{code-cell} ipython3
 name = rogue[1]
 name[3]
 ```
 
-Si verifica facilmente come si tratti di tuple e non di liste, in quanto i contenuti non sono modificabili:
+Si verifica facilmente come l'analogia sia da fare rispetto a tuple e non a liste, in quanto i contenuti di una stringa non sono modificabili:
 
 ```{code-cell} ipython3
 try:
@@ -271,19 +271,19 @@ except TypeError:
     print('Non si possono modificare i contenuti di una stringa')
 ```
 
-Anche per quanto riguarda le liste è possibile approfondire l'argomento consultando la [documentazione ufficiale](https://docs.python.org/3/library/stdtypes.html#string-methods).
+Oltre a operazioni analoghe a quelle delle tuple, il tipo `str` implementa anche metodi e operatori specifici per le stringhe. Anche in questo si rimanda alla [documentazione ufficiale](https://docs.python.org/3/library/stdtypes.html#string-methods).
 
 +++
 
 ## Gli insiemi
-Python implementa direttamente un tipo di dato per gli insiemi, intesi come collezione finita di elementi tra loro distinguibili e non memorizzati in un ordine particolare. A differenza delle liste e delle tuple, gli elementi non sono quindi associati a una posizione e non è possibile che un insieme contenga più di un'istanza di un medesimo elemento. Non utilizzeremo questo tipo di dato, quindi si rimanda alla [documentazione ufficiale](https://docs.python.org/2/library/stdtypes.html#set) per un approfondimento.
+Python implementa direttamente un tipo di dato per gli insiemi, intesi come collezione finita di elementi tra loro distinguibili e non memorizzati in un ordine particolare. A differenza delle liste e delle tuple, gli elementi non sono quindi associati a una posizione e non è possibile che un insieme contenga più di un'istanza di un medesimo elemento. La descrizione di questo tipo di dato è posticipata al {numref}`Paragrafo %s <insiemi-in-python>`, dopo avere richiamato le proprietà matematiche di base degli insiemi.
 
 +++
 
 ##  I dizionari
-I dizionari servono a memorizzare delle associazioni tra oggetti, in analogica con il concetto matematico di funzione. È quindi possibile pensare a essi come a insiemi di coppie (chiave, valore), dove una data chiave non occorre più di una volta.
+I dizionari servono a memorizzare delle associazioni tra oggetti, in analogia con il concetto matematico di funzione. È quindi possibile pensare a essi come a insiemi di coppie (chiave, valore), dove una data chiave non occorre più di una volta, e a ogni chiave corrisponde un unico valore.
 
-Un dizionario viene descritto indicando ogni coppia separando chiave e valore con il carattere di due punti, separando le varie coppie con delle virgole e racchiudendo il tutto tra parentesi graffe. Possiamo per esempio usare un dizionario per rappresentare un record in modo più elegante rispetto alla precedente scelta basata sulle liste:
+Un letterale di tipo dizionario viene descritto indicando ogni coppia separando chiave e valore con il carattere di due punti, separando le coppie con delle virgole e racchiudendo l'intero letterale tra parentesi graffe. Possiamo per esempio usare un dizionario per rappresentare un _record_ in modo più elegante rispetto a quanto fatto nel {}`Paragrafo %s <>` utilizzando le liste:
 
 ```{code-cell} ipython3
 rogue = {'name': 'Rogue',

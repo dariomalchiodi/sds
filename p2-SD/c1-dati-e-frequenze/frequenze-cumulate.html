@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>1.6.3. Frequenze cumulate &#8212; Superhero Data Science</title>
+    <title>1.9. Frequenze cumulate &#8212; Superhero Data Science</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -43,17 +43,19 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="1.6.4. Frequenze congiunte e marginali" href="frequenze-congiunte-e-marginali.html" />
-    <link rel="prev" title="1.6.2. Frequenze assolute e relative" href="frequenze-assolute-e-relative.html" />
+    <link rel="next" title="1.10. Frequenze congiunte e marginali" href="frequenze-congiunte-e-marginali.html" />
+    <link rel="prev" title="1.8. Frequenze assolute e relative" href="frequenze-assolute-e-relative.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -189,22 +191,22 @@
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="dati-quantitativi-e-qualitativi.html">
-     1.6.1. Dati quantitativi e qualitativi
+     1.7. Dati quantitativi e qualitativi
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="frequenze-assolute-e-relative.html">
-     1.6.2. Frequenze assolute e relative
+     1.8. Frequenze assolute e relative
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     1.6.3. Frequenze cumulate
+     1.9. Frequenze cumulate
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="frequenze-congiunte-e-marginali.html">
-     1.6.4. Frequenze congiunte e marginali
+     1.10. Frequenze congiunte e marginali
     </a>
    </li>
   </ul>
@@ -450,15 +452,15 @@
               <div>
                 
   <div class="section" id="frequenze-cumulate">
-<h1><span class="section-number">1.6.3. </span>Frequenze cumulate<a class="headerlink" href="#frequenze-cumulate" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">1.9. </span>Frequenze cumulate<a class="headerlink" href="#frequenze-cumulate" title="Permalink to this headline">¶</a></h1>
 </div>
 
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "dariomalchiodi/sds",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",
@@ -478,8 +480,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="frequenze-assolute-e-relative.html" title="previous page"><span class="section-number">1.6.2. </span>Frequenze assolute e relative</a>
-    <a class='right-next' id="next-link" href="frequenze-congiunte-e-marginali.html" title="next page"><span class="section-number">1.6.4. </span>Frequenze congiunte e marginali</a>
+    <a class='left-prev' id="prev-link" href="frequenze-assolute-e-relative.html" title="previous page"><span class="section-number">1.8. </span>Frequenze assolute e relative</a>
+    <a class='right-next' id="next-link" href="frequenze-congiunte-e-marginali.html" title="next page"><span class="section-number">1.10. </span>Frequenze congiunte e marginali</a>
 
         </div>
         

@@ -43,11 +43,13 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -189,22 +191,22 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/dati-quantitativi-e-qualitativi.html">
-     1.6.1. Dati quantitativi e qualitativi
+     1.7. Dati quantitativi e qualitativi
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-assolute-e-relative.html">
-     1.6.2. Frequenze assolute e relative
+     1.8. Frequenze assolute e relative
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-cumulate.html">
-     1.6.3. Frequenze cumulate
+     1.9. Frequenze cumulate
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-congiunte-e-marginali.html">
-     1.6.4. Frequenze congiunte e marginali
+     1.10. Frequenze congiunte e marginali
     </a>
    </li>
   </ul>
@@ -452,6 +454,9 @@
         
         
         
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -774,7 +779,7 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 </div>
 <div class="section" id="le-tuple">
 <h2><span class="section-number">1.2.2. </span>Le tuple<a class="headerlink" href="#le-tuple" title="Permalink to this headline">¶</a></h2>
-<p>Una tupla è in tutto e per tutto una lista immutabile, nel senso che una volta che essa è stata creata non è possibile modificare i suoi contenuti. Una tupla viene indicata in modo analogo a una lista, con l’unica differenza che i suoi contenuti sono delimitati da parentesi tonde.</p>
+<p>Una tupla è in tutto e per tutto una lista immutabile, nel senso che una volta che essa è stata creata non è possibile modificare i suoi contenuti. Un letterale di tipo tupla viene indicato con una sintassi analoga a quella per le liste, con l’unica differenza che i suoi contenuti sono delimitati da parentesi tonde.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rogue</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Rogue&#39;</span><span class="p">,</span>
@@ -809,7 +814,7 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 </div>
 </div>
 </div>
-<p>Notiamo <em>en passant</em> che in Python gli errori di esecuzione sono basati sul meccanismo delle eccezioni, che nella cella precedente vengono gestite in modo analogo a quanto succede per esempio in Java: il blocco di istruzioni coinvolto è quello che segue la parola chiave <code class="docutils literal notranslate"><span class="pre">try</span></code>, e se durante l’esecuzione di tale blocco viene lanciata un eccezione del tipo <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>, quest’ultima viene gestita eseguendo le istruzioni dopo la linea di codice contenente la parola-chiave <code class="docutils literal notranslate"><span class="pre">except</span></code> (andrebbe anche specificato che l’indentazione del codice deve essere presente, ma di questo ci occuperemo nel <a class="reference internal" href="funzioni.html#funzioni"><span class="std std-numref">Paragrafo 1.4</span></a>).</p>
+<p>Notiamo <em>en passant</em> che in Python gli errori di esecuzione sono basati sul meccanismo delle eccezioni, che nella cella precedente vengono gestite in modo analogo a quanto succede per esempio in Java: il blocco di istruzioni coinvolto è quello che segue la parola chiave <code class="docutils literal notranslate"><span class="pre">try</span></code>, e se durante l’esecuzione di tale blocco viene lanciata un eccezione del tipo <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>, quest’ultima viene gestita eseguendo le istruzioni dopo la linea di codice contenente la parola-chiave <code class="docutils literal notranslate"><span class="pre">except</span></code> (andrebbe anche specificato che l’indentazione del codice è obbligatoria, ma di questo ci occuperemo nel <a class="reference internal" href="funzioni.html#funzioni"><span class="std std-numref">Paragrafo 1.4</span></a>).</p>
 <p>A seguito di questo errore, la tupla manterrà i suoi valori originali, restando quindi effettivamente invariata:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -843,7 +848,7 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 </div>
 <div class="section" id="le-stringhe">
 <span id="stringhe"></span><h2><span class="section-number">1.2.3. </span>Le stringhe<a class="headerlink" href="#le-stringhe" title="Permalink to this headline">¶</a></h2>
-<p>Le stringhe sono implementate come tuple di caratteri, e quindi su di esse è possibile eseguire tutte le operazioni che si eseguono sulle tuple:</p>
+<p>Da un punto di vista strettamente funzionale, le stringhe sono assimilabili in Python a delle tuple di caratteri specializzate. Su di esse è infatti possibile eseguire tutte le operazioni che si eseguono sulle tuple, per esempio estraendo un carattere o una sottostringa rispettivamente attraverso l’accesso posizionale o il <em>list slicing:</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="n">rogue</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
@@ -857,7 +862,7 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 </div>
 </div>
 </div>
-<p>Si verifica facilmente come si tratti di tuple e non di liste, in quanto i contenuti non sono modificabili:</p>
+<p>Si verifica facilmente come l’analogia sia da fare rispetto a tuple e non a liste, in quanto i contenuti di una stringa non sono modificabili:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
@@ -873,16 +878,16 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 </div>
 </div>
 </div>
-<p>Anche per quanto riguarda le liste è possibile approfondire l’argomento consultando la <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#string-methods">documentazione ufficiale</a>.</p>
+<p>Oltre a operazioni analoghe a quelle delle tuple, il tipo <code class="docutils literal notranslate"><span class="pre">str</span></code> implementa anche metodi e operatori specifici per le stringhe. Anche in questo si rimanda alla <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#string-methods">documentazione ufficiale</a>.</p>
 </div>
 <div class="section" id="gli-insiemi">
 <h2><span class="section-number">1.2.4. </span>Gli insiemi<a class="headerlink" href="#gli-insiemi" title="Permalink to this headline">¶</a></h2>
-<p>Python implementa direttamente un tipo di dato per gli insiemi, intesi come collezione finita di elementi tra loro distinguibili e non memorizzati in un ordine particolare. A differenza delle liste e delle tuple, gli elementi non sono quindi associati a una posizione e non è possibile che un insieme contenga più di un’istanza di un medesimo elemento. Non utilizzeremo questo tipo di dato, quindi si rimanda alla <a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#set">documentazione ufficiale</a> per un approfondimento.</p>
+<p>Python implementa direttamente un tipo di dato per gli insiemi, intesi come collezione finita di elementi tra loro distinguibili e non memorizzati in un ordine particolare. A differenza delle liste e delle tuple, gli elementi non sono quindi associati a una posizione e non è possibile che un insieme contenga più di un’istanza di un medesimo elemento. La descrizione di questo tipo di dato è posticipata al <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/insiemi-in-python.html#insiemi-in-python"><span class="std std-numref">Paragrafo 2.5</span></a>, dopo avere richiamato le proprietà matematiche di base degli insiemi.</p>
 </div>
 <div class="section" id="i-dizionari">
 <h2><span class="section-number">1.2.5. </span>I dizionari<a class="headerlink" href="#i-dizionari" title="Permalink to this headline">¶</a></h2>
-<p>I dizionari servono a memorizzare delle associazioni tra oggetti, in analogica con il concetto matematico di funzione. È quindi possibile pensare a essi come a insiemi di coppie (chiave, valore), dove una data chiave non occorre più di una volta.</p>
-<p>Un dizionario viene descritto indicando ogni coppia separando chiave e valore con il carattere di due punti, separando le varie coppie con delle virgole e racchiudendo il tutto tra parentesi graffe. Possiamo per esempio usare un dizionario per rappresentare un record in modo più elegante rispetto alla precedente scelta basata sulle liste:</p>
+<p>I dizionari servono a memorizzare delle associazioni tra oggetti, in analogia con il concetto matematico di funzione. È quindi possibile pensare a essi come a insiemi di coppie (chiave, valore), dove una data chiave non occorre più di una volta, e a ogni chiave corrisponde un unico valore.</p>
+<p>Un letterale di tipo dizionario viene descritto indicando ogni coppia separando chiave e valore con il carattere di due punti, separando le coppie con delle virgole e racchiudendo l’intero letterale tra parentesi graffe. Possiamo per esempio usare un dizionario per rappresentare un <em>record</em> in modo più elegante rispetto a quanto fatto nel {}<code class="docutils literal notranslate"><span class="pre">Paragrafo</span> <span class="pre">%s</span> <span class="pre">&lt;&gt;</span></code> utilizzando le liste:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rogue</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Rogue&#39;</span><span class="p">,</span>
@@ -943,8 +948,8 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "dariomalchiodi/sds",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",

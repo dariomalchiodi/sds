@@ -43,13 +43,17 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="1. Bibliography" href="../../bibliography.html" />
@@ -189,22 +193,22 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/dati-quantitativi-e-qualitativi.html">
-     1.6.1. Dati quantitativi e qualitativi
+     1.7. Dati quantitativi e qualitativi
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-assolute-e-relative.html">
-     1.6.2. Frequenze assolute e relative
+     1.8. Frequenze assolute e relative
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-cumulate.html">
-     1.6.3. Frequenze cumulate
+     1.9. Frequenze cumulate
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-congiunte-e-marginali.html">
-     1.6.4. Frequenze congiunte e marginali
+     1.10. Frequenze congiunte e marginali
     </a>
    </li>
   </ul>
@@ -452,6 +456,9 @@
         
         
         
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -470,15 +477,109 @@
               <div>
                 
   <div class="section" id="gli-insiemi-in-python">
-<h1><span class="section-number">2.5. </span>Gli insiemi in Python<a class="headerlink" href="#gli-insiemi-in-python" title="Permalink to this headline">¶</a></h1>
+<span id="insiemi-in-python"></span><h1><span class="section-number">2.5. </span>Gli insiemi in Python<a class="headerlink" href="#gli-insiemi-in-python" title="Permalink to this headline">¶</a></h1>
+<p>Python mette a disposizione il tipo <code class="docutils literal notranslate"><span class="pre">set</span></code> per rappresentare insiemi finiti. Questi possono essere descritti</p>
+<ul class="simple">
+<li><p>tramite dei letterali di tipo insieme, delimitando tramite parentesi graffe una sequenza degli elementi dell’insieme da descrivere separati tramite virgole, oppure</p></li>
+<li><p>invocando il costruttore della classe <code class="docutils literal notranslate"><span class="pre">set</span></code> specificando come argomento un iterabile contenente gli elementi dell’insieme.</p></li>
+</ul>
+<div class="note admonition">
+<p class="admonition-title">Nota</p>
+<p>In Python si usano quindi le parentesi graffe per delimitare sia i letterali di tipo insieme che quelli di tipo dizionario. Ciò non comporta ambiguità nel linguaggio perché in un letterale di tipo insieme queste parentesi contengono una sequenza di valori, mentre nei letterali di tipo dizionario ciò che è contenuto è una sequenza di coppie <code class="docutils literal notranslate"><span class="pre">&lt;chiave&gt;:</span> <span class="pre">&lt;valore&gt;</span></code>. L’unica eccezione si ha per l’espressione <code class="docutils literal notranslate"><span class="pre">{}</span></code> che potrebbe indicare sia un dizionario vuoto, sia un insieme vuoto. L’ambiguità è risolta nel modo seguente: <code class="docutils literal notranslate"><span class="pre">{}</span></code> indica il dizionario vuoto, mentre per riferirsi a un insieme vuoto è necessario invocare il costruttore <code class="docutils literal notranslate"><span class="pre">set</span></code> senza specificare argomenti.</p>
+</div>
+<p>Pertanto le espressioni <code class="docutils literal notranslate"><span class="pre">{1,</span> <span class="pre">3,</span> <span class="pre">5}</span></code>, <code class="docutils literal notranslate"><span class="pre">set([1,</span> <span class="pre">3,</span> <span class="pre">5])</span></code> e <code class="docutils literal notranslate"><span class="pre">set((1,</span> <span class="pre">3,</span> <span class="pre">5))</span></code> corrispondono allo stesso oggetto di tipo insieme. Chiaramente tutte le tre espressioni precedenti individuano lo stesso insieme:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span> <span class="o">==</span> <span class="nb">set</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>L’espressione nella cella precedente e il relativo valore permettono di sottolineare due cose: la prima è che, coerentemente con la definizione di insieme, l’ordine con cui si specificano gli elementi è indifferente, e la seconda è che l’operatore di uguaglianza si può utilizzare mantenendone invariata la semantica quando i suoi argomenti sono oggetti di tipo insieme. La <a class="reference internal" href="#table-set-operators"><span class="std std-numref">Tabella 2.1</span></a> elenca la sintassi dei principali operatori che Python mette a disposizione per gli insiemi, e come si può vedere alcuni degli operatori introdotti per i tipi di dati semplici si estendono naturalmente agli insiemi, mantenendo dunque la loro semantica e la sintassi infissa <a class="footnote-reference brackets" href="#alternate-set-operations" id="id1">1</a>: è questo il caso delle relazioni di uguaglianza, differenza e appartenenza, così come dell’operazione di differenza. In altri casi viene modificata la semantica: per esempio <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code> rappresenta la relazione di sottoinsieme. Vi sono poi degli operatori specifici legati a intersezione, unione e differenza simmetrica <a class="footnote-reference brackets" href="#bitwise" id="id2">2</a>.</p>
+<table class="colwidths-auto table" id="table-set-operators">
+<caption><span class="caption-number">Table 2.1 </span><span class="caption-text">Sintassi delle principali relazioni tra insiemi utilizzabili in Python, indicando con <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(T\)</span> due insiemi e con <code>s</code> e <code>t</code> i corrispondenti oggetti.</span><a class="headerlink" href="#table-set-operators" title="Permalink to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Relazione/operazione</p></th>
+<th class="head"><p>Sintassi</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(S = T\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">==</span> <span class="pre">t</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(S \neq T\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">!=</span> <span class="pre">t</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(S \subseteq T\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">&lt;=</span> <span class="pre">t</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(S \subset T\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">&lt;</span> <span class="pre">t</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(S \supseteq T\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">&gt;=</span> <span class="pre">t</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(S \supset T\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">&gt;</span> <span class="pre">t</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(S \cup T\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">&lt;code&gt;&amp;#124;&lt;/code&gt;</span> <span class="pre">t</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(S \cap T\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">&amp;</span> <span class="pre">t</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(S \backslash T\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">-</span> <span class="pre">t</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(S \ominus T\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">^</span> <span class="pre">t</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(e \in S\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">e</span> <span class="pre">in</span> <span class="pre">s</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Oltre agli operatori, anche la funzione <code class="docutils literal notranslate"><span class="pre">len</span></code> mantiene inalterato il suo signifcato, restituendo la cardinalità dell’insieme, intesa come il numero di elementi in esso contenuti. Ovviamente l’accesso posizionale perde di significato per questo tipo di dato: le operazioni fondamentali per accedere a un insieme sono infatti:</p>
+<ul class="simple">
+<li><p>la verifica dell’appartenenza o meno di un elemento a un insieme, utilizzando l’operatore <code class="docutils literal notranslate"><span class="pre">in</span></code>,</p></li>
+<li><p>l’inserimento di un elemento in un insieme, invocando il metodo <code class="docutils literal notranslate"><span class="pre">add</span></code> <a class="footnote-reference brackets" href="#add-existing" id="id3">3</a>,</p></li>
+<li><p>l’eliminazione di un elemento in un insieme, invocando il metodo <code class="docutils literal notranslate"><span class="pre">discard</span></code> <a class="footnote-reference brackets" href="#remove-existing" id="id4">4</a>.</p></li>
+</ul>
+<p>Come gli altri tipi visti nel <a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-semplici-e-operatori.html#dati-semplici"><span class="std std-numref">Paragrafo 1.1</span></a>, anche per gli insiemi il linguaggio prevede un supporto molto più completo di quanto descritto in questo paragrafo. La <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set">documentazione ufficiale</a> descrive in modo estensivo operatori, funzioni e metodi a disposizione.</p>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="alternate-set-operations"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Gli operatori fanno in realtà a loro volta riferimento all’invocazione di particolari metodi della classe <code class="docutils literal notranslate"><span class="pre">set</span></code>: per esempio l’espressione <code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">&lt;=</span> <span class="pre">t</span></code> viene automaticamente tradotta in <code class="docutils literal notranslate"><span class="pre">s.issubset(t)</span></code>.</p>
+</dd>
+<dt class="label" id="bitwise"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>Gli operatori <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>, <code class="docutils literal notranslate"><span class="pre">|</span></code> e <code class="docutils literal notranslate"><span class="pre">^</span></code> sono utilizzabili anche con altri tipi di dati (in particolar modo con i valori interi) e fanno riferimento alle operazioni booleane eseguite bit per bit.</p>
+</dd>
+<dt class="label" id="add-existing"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>Questa operazione non modifica l’insieme nel caso in cui quest’ultimo includa già l’elemento che si sta tentando di aggiungere.</p>
+</dd>
+<dt class="label" id="remove-existing"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
+<dd><p>Anche in questo caso il metodo non ha effetto se l’insieme non contiene l’elemento da rimuovere; è anche possibile utilizzare il metodo alternativo <code class="docutils literal notranslate"><span class="pre">remove</span></code> che elimina un elemento da un insieme se quest’ultimo lo contiene, ed emette un’eccezione nei casi rimanenti.</p>
+</dd>
+</dl>
 </div>
 
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "dariomalchiodi/sds",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",

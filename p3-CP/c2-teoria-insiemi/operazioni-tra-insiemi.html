@@ -43,11 +43,13 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -191,22 +193,22 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/dati-quantitativi-e-qualitativi.html">
-     1.6.1. Dati quantitativi e qualitativi
+     1.7. Dati quantitativi e qualitativi
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-assolute-e-relative.html">
-     1.6.2. Frequenze assolute e relative
+     1.8. Frequenze assolute e relative
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-cumulate.html">
-     1.6.3. Frequenze cumulate
+     1.9. Frequenze cumulate
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-congiunte-e-marginali.html">
-     1.6.4. Frequenze congiunte e marginali
+     1.10. Frequenze congiunte e marginali
     </a>
    </li>
   </ul>
@@ -454,6 +456,9 @@
         
         
         
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -481,32 +486,7 @@
 \[ S \cup T = \{x \in \Omega | x \in S \vee x \in T \} .\]</div>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-
-<span class="n">v</span> <span class="o">=</span> <span class="n">venn2</span><span class="p">(</span><span class="n">subsets</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">set_labels</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;$S$&#39;</span><span class="p">,</span> <span class="s1">&#39;$T$&#39;</span><span class="p">))</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">venn2_circles</span><span class="p">(</span><span class="n">subsets</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-
-<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">set_labels</span><span class="p">:</span>
-    <span class="n">l</span><span class="o">.</span><span class="n">set_fontsize</span><span class="p">(</span><span class="n">font_size</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">contour</span> <span class="ow">in</span> <span class="n">c</span><span class="p">:</span>
-    <span class="n">contour</span><span class="o">.</span><span class="n">set_lw</span><span class="p">(</span><span class="mf">1.4</span><span class="p">)</span>
-    <span class="n">contour</span><span class="o">.</span><span class="n">set_edgecolor</span><span class="p">(</span><span class="n">venn_set_edge</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">area</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;01&#39;</span><span class="p">,</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="s1">&#39;11&#39;</span><span class="p">]:</span>
-    <span class="n">v</span><span class="o">.</span><span class="n">get_patch_by_id</span><span class="p">(</span><span class="n">area</span><span class="p">)</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">venn_set_color</span><span class="p">)</span>
-    <span class="n">v</span><span class="o">.</span><span class="n">get_patch_by_id</span><span class="p">(</span><span class="n">area</span><span class="p">)</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">txt</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">get_label_by_id</span><span class="p">(</span><span class="n">area</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">txt</span><span class="p">:</span>
-        <span class="n">txt</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_axis_on</span><span class="p">()</span>
-<span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ymin</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.43</span><span class="p">,</span> <span class="s1">&#39;$\Omega$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">venn_operations</span><span class="p">(</span><span class="s1">&#39;union&#39;</span><span class="p">)</span>
 <span class="n">glue</span><span class="p">(</span><span class="s2">&quot;venn-union-picture&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -514,7 +494,7 @@
 </div>
 <div class="figure align-default" id="venn-union" style="width: 100%">
 <div class="cell_output docutils container">
-<img alt="../../_images/operazioni-tra-insiemi_2_1.png" src="../../_images/operazioni-tra-insiemi_2_1.png" />
+<img alt="../../_images/operazioni-tra-insiemi_2_0.png" src="../../_images/operazioni-tra-insiemi_2_0.png" />
 </div>
 <p class="caption"><span class="caption-number">Fig. 2.4 </span><span class="caption-text">Un diagramma di Venn per descrivere l’unione degli insiemi <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(T\)</span>.</span><a class="headerlink" href="#venn-union" title="Permalink to this image">¶</a></p>
 </div>
@@ -525,37 +505,7 @@
 \[ S \cap T = \{ x \in \Omega | x \in S \wedge x \in T \} .\]</div>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-
-<span class="n">v</span> <span class="o">=</span> <span class="n">venn2</span><span class="p">(</span><span class="n">subsets</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">set_labels</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;$S$&#39;</span><span class="p">,</span> <span class="s1">&#39;$T$&#39;</span><span class="p">))</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">venn2_circles</span><span class="p">(</span><span class="n">subsets</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-
-<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">set_labels</span><span class="p">:</span>
-    <span class="n">l</span><span class="o">.</span><span class="n">set_fontsize</span><span class="p">(</span><span class="n">font_size</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">contour</span> <span class="ow">in</span> <span class="n">c</span><span class="p">:</span>
-    <span class="n">contour</span><span class="o">.</span><span class="n">set_lw</span><span class="p">(</span><span class="mf">1.4</span><span class="p">)</span>
-    <span class="n">contour</span><span class="o">.</span><span class="n">set_edgecolor</span><span class="p">(</span><span class="n">venn_set_edge</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">area</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;01&#39;</span><span class="p">,</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="s1">&#39;11&#39;</span><span class="p">]:</span>
-    <span class="n">v</span><span class="o">.</span><span class="n">get_patch_by_id</span><span class="p">(</span><span class="n">area</span><span class="p">)</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">venn_set_color</span><span class="p">)</span>
-    <span class="n">v</span><span class="o">.</span><span class="n">get_patch_by_id</span><span class="p">(</span><span class="n">area</span><span class="p">)</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">txt</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">get_label_by_id</span><span class="p">(</span><span class="n">area</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">txt</span><span class="p">:</span>
-        <span class="n">txt</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-
-<span class="n">v</span><span class="o">.</span><span class="n">get_patch_by_id</span><span class="p">(</span><span class="s1">&#39;10&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
-<span class="n">v</span><span class="o">.</span><span class="n">get_patch_by_id</span><span class="p">(</span><span class="s1">&#39;11&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">venn_set_color</span><span class="p">)</span>
-<span class="n">v</span><span class="o">.</span><span class="n">get_patch_by_id</span><span class="p">(</span><span class="s1">&#39;11&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">v</span><span class="o">.</span><span class="n">get_patch_by_id</span><span class="p">(</span><span class="s1">&#39;01&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_axis_on</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.43</span><span class="p">,</span> <span class="s1">&#39;$\Omega$&#39;</span><span class="p">)</span>
-<span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ymin</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">venn_operations</span><span class="p">(</span><span class="s1">&#39;intersection&#39;</span><span class="p">)</span>
 <span class="n">glue</span><span class="p">(</span><span class="s2">&quot;venn-intersection-picture&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -563,7 +513,7 @@
 </div>
 <div class="figure align-default" id="venn-intersection" style="width: 100%">
 <div class="cell_output docutils container">
-<img alt="../../_images/operazioni-tra-insiemi_5_1.png" src="../../_images/operazioni-tra-insiemi_5_1.png" />
+<img alt="../../_images/operazioni-tra-insiemi_5_0.png" src="../../_images/operazioni-tra-insiemi_5_0.png" />
 </div>
 <p class="caption"><span class="caption-number">Fig. 2.5 </span><span class="caption-text">Un diagramma di Venn per descrivere l’intersezione degli insiemi <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(T\)</span>.</span><a class="headerlink" href="#venn-intersection" title="Permalink to this image">¶</a></p>
 </div>
@@ -574,39 +524,7 @@
 \[ S \backslash T = \{ x \in \Omega | x \in S \wedge x \notin T \} .\]</div>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-
-<span class="n">v</span> <span class="o">=</span> <span class="n">venn2</span><span class="p">(</span><span class="n">subsets</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">set_labels</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;$S$&#39;</span><span class="p">,</span> <span class="s1">&#39;$T$&#39;</span><span class="p">))</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">venn2_circles</span><span class="p">(</span><span class="n">subsets</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-
-<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">set_labels</span><span class="p">:</span>
-    <span class="n">l</span><span class="o">.</span><span class="n">set_fontsize</span><span class="p">(</span><span class="n">font_size</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">contour</span> <span class="ow">in</span> <span class="n">c</span><span class="p">:</span>
-    <span class="n">contour</span><span class="o">.</span><span class="n">set_lw</span><span class="p">(</span><span class="mf">1.4</span><span class="p">)</span>
-    <span class="n">contour</span><span class="o">.</span><span class="n">set_edgecolor</span><span class="p">(</span><span class="n">venn_set_edge</span><span class="p">)</span>
-
-<span class="n">v</span><span class="o">.</span><span class="n">get_patch_by_id</span><span class="p">(</span><span class="s1">&#39;10&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
-<span class="n">v</span><span class="o">.</span><span class="n">get_patch_by_id</span><span class="p">(</span><span class="s1">&#39;11&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">venn_set_color</span><span class="p">)</span>
-<span class="n">v</span><span class="o">.</span><span class="n">get_patch_by_id</span><span class="p">(</span><span class="s1">&#39;11&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mf">.5</span><span class="p">)</span>
-<span class="n">v</span><span class="o">.</span><span class="n">get_patch_by_id</span><span class="p">(</span><span class="s1">&#39;01&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
-
-
-<span class="k">for</span> <span class="n">area</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;01&#39;</span><span class="p">,</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="s1">&#39;11&#39;</span><span class="p">]:</span>
-    <span class="n">color</span> <span class="o">=</span> <span class="n">venn_set_color</span> <span class="k">if</span> <span class="n">area</span> <span class="o">==</span> <span class="s1">&#39;10&#39;</span> <span class="k">else</span> <span class="s2">&quot;white&quot;</span>
-    <span class="n">v</span><span class="o">.</span><span class="n">get_patch_by_id</span><span class="p">(</span><span class="n">area</span><span class="p">)</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
-    <span class="n">v</span><span class="o">.</span><span class="n">get_patch_by_id</span><span class="p">(</span><span class="n">area</span><span class="p">)</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">txt</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">get_label_by_id</span><span class="p">(</span><span class="n">area</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">txt</span><span class="p">:</span>
-        <span class="n">txt</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_axis_on</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.43</span><span class="p">,</span> <span class="s1">&#39;$\Omega$&#39;</span><span class="p">)</span>
-<span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ymin</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">venn_operations</span><span class="p">(</span><span class="s1">&#39;difference&#39;</span><span class="p">)</span>
 <span class="n">glue</span><span class="p">(</span><span class="s2">&quot;venn-difference-picture&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -614,7 +532,7 @@
 </div>
 <div class="figure align-default" id="venn-difference" style="width: 100%">
 <div class="cell_output docutils container">
-<img alt="../../_images/operazioni-tra-insiemi_8_1.png" src="../../_images/operazioni-tra-insiemi_8_1.png" />
+<img alt="../../_images/operazioni-tra-insiemi_8_0.png" src="../../_images/operazioni-tra-insiemi_8_0.png" />
 </div>
 <p class="caption"><span class="caption-number">Fig. 2.6 </span><span class="caption-text">Un diagramma di Venn per descrivere la differenza tra l’insieme <span class="math notranslate nohighlight">\(S\)</span> e l’insieme <span class="math notranslate nohighlight">\(T\)</span>.</span><a class="headerlink" href="#venn-difference" title="Permalink to this image">¶</a></p>
 </div>
@@ -625,34 +543,7 @@
 \[ S \ominus T = \{ x \in \Omega | ( x \in S \wedge x \notin T ) \vee ( x \notin S \wedge x \in T) \} .\]</div>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-
-<span class="n">v</span> <span class="o">=</span> <span class="n">venn2</span><span class="p">(</span><span class="n">subsets</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">set_labels</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;$S$&#39;</span><span class="p">,</span> <span class="s1">&#39;$T$&#39;</span><span class="p">))</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">venn2_circles</span><span class="p">(</span><span class="n">subsets</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-
-<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">set_labels</span><span class="p">:</span>
-    <span class="n">l</span><span class="o">.</span><span class="n">set_fontsize</span><span class="p">(</span><span class="n">font_size</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">contour</span> <span class="ow">in</span> <span class="n">c</span><span class="p">:</span>
-    <span class="n">contour</span><span class="o">.</span><span class="n">set_lw</span><span class="p">(</span><span class="mf">1.4</span><span class="p">)</span>
-    <span class="n">contour</span><span class="o">.</span><span class="n">set_edgecolor</span><span class="p">(</span><span class="n">venn_set_edge</span><span class="p">)</span>
-
-
-<span class="k">for</span> <span class="n">area</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;01&#39;</span><span class="p">,</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="s1">&#39;11&#39;</span><span class="p">]:</span>
-    <span class="n">color</span> <span class="o">=</span> <span class="n">venn_set_color</span> <span class="k">if</span> <span class="n">area</span> <span class="o">!=</span> <span class="s1">&#39;11&#39;</span> <span class="k">else</span> <span class="s2">&quot;white&quot;</span>
-    <span class="n">v</span><span class="o">.</span><span class="n">get_patch_by_id</span><span class="p">(</span><span class="n">area</span><span class="p">)</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
-    <span class="n">v</span><span class="o">.</span><span class="n">get_patch_by_id</span><span class="p">(</span><span class="n">area</span><span class="p">)</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">txt</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">get_label_by_id</span><span class="p">(</span><span class="n">area</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">txt</span><span class="p">:</span>
-        <span class="n">txt</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_axis_on</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.43</span><span class="p">,</span> <span class="s1">&#39;$\Omega$&#39;</span><span class="p">)</span>
-<span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ymin</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">venn_operations</span><span class="p">(</span><span class="s1">&#39;symdifference&#39;</span><span class="p">)</span>
 <span class="n">glue</span><span class="p">(</span><span class="s2">&quot;venn-symm-difference-picture&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -660,7 +551,7 @@
 </div>
 <div class="figure align-default" id="venn-symm-difference" style="width: 100%">
 <div class="cell_output docutils container">
-<img alt="../../_images/operazioni-tra-insiemi_11_1.png" src="../../_images/operazioni-tra-insiemi_11_1.png" />
+<img alt="../../_images/operazioni-tra-insiemi_11_0.png" src="../../_images/operazioni-tra-insiemi_11_0.png" />
 </div>
 <p class="caption"><span class="caption-number">Fig. 2.7 </span><span class="caption-text">Un diagramma di Venn per descrivere la differenza simmetrica degli insiemi <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(T\)</span>.</span><a class="headerlink" href="#venn-symm-difference" title="Permalink to this image">¶</a></p>
 </div>
@@ -671,32 +562,7 @@
 \[ \overline S = \{ x \in \Omega | x \notin S \} = \Omega \backslash S. \]</div>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-
-<span class="n">v</span> <span class="o">=</span> <span class="n">venn2</span><span class="p">(</span><span class="n">subsets</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">set_labels</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;$S$&#39;</span><span class="p">,</span> <span class="s1">&#39;$T$&#39;</span><span class="p">))</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">venn2_circles</span><span class="p">(</span><span class="n">subsets</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-
-<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">set_labels</span><span class="p">:</span>
-    <span class="n">l</span><span class="o">.</span><span class="n">set_fontsize</span><span class="p">(</span><span class="n">font_size</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">contour</span> <span class="ow">in</span> <span class="n">c</span><span class="p">:</span>
-    <span class="n">contour</span><span class="o">.</span><span class="n">set_lw</span><span class="p">(</span><span class="mf">1.4</span><span class="p">)</span>
-    <span class="n">contour</span><span class="o">.</span><span class="n">set_edgecolor</span><span class="p">(</span><span class="n">venn_set_edge</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">area</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;01&#39;</span><span class="p">,</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="s1">&#39;11&#39;</span><span class="p">]:</span>
-    <span class="n">color</span> <span class="o">=</span> <span class="n">venn_set_color</span> <span class="k">if</span> <span class="n">area</span> <span class="o">==</span> <span class="s1">&#39;01&#39;</span> <span class="k">else</span> <span class="s2">&quot;white&quot;</span>
-    <span class="n">v</span><span class="o">.</span><span class="n">get_patch_by_id</span><span class="p">(</span><span class="n">area</span><span class="p">)</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
-    <span class="n">v</span><span class="o">.</span><span class="n">get_patch_by_id</span><span class="p">(</span><span class="n">area</span><span class="p">)</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">txt</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">get_label_by_id</span><span class="p">(</span><span class="n">area</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">txt</span><span class="p">:</span> <span class="n">txt</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_axis_on</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.43</span><span class="p">,</span> <span class="s1">&#39;$\Omega$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="n">venn_set_color</span><span class="p">)</span>
-<span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ymin</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">venn_operations</span><span class="p">(</span><span class="s1">&#39;complement&#39;</span><span class="p">)</span>
 <span class="n">glue</span><span class="p">(</span><span class="s2">&quot;venn-complement-picture&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -704,7 +570,7 @@
 </div>
 <div class="figure align-default" id="venn-complement" style="width: 100%">
 <div class="cell_output docutils container">
-<img alt="../../_images/operazioni-tra-insiemi_14_1.png" src="../../_images/operazioni-tra-insiemi_14_1.png" />
+<img alt="../../_images/operazioni-tra-insiemi_14_0.png" src="../../_images/operazioni-tra-insiemi_14_0.png" />
 </div>
 <p class="caption"><span class="caption-number">Fig. 2.8 </span><span class="caption-text">Un diagramma di Venn per descrivere il complemento dell’insieme <span class="math notranslate nohighlight">\(S\)</span>.</span><a class="headerlink" href="#venn-complement" title="Permalink to this image">¶</a></p>
 </div>
@@ -731,8 +597,8 @@
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "dariomalchiodi/sds",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",

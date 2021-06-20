@@ -43,18 +43,20 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="1.6.1. Dati quantitativi e qualitativi" href="dati-quantitativi-e-qualitativi.html" />
+    <link rel="next" title="1.7. Dati quantitativi e qualitativi" href="dati-quantitativi-e-qualitativi.html" />
     <link rel="prev" title="2. Pandas" href="../../p1-PAD/c2-pandas/pandas.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -191,22 +193,22 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="dati-quantitativi-e-qualitativi.html">
-     1.6.1. Dati quantitativi e qualitativi
+     1.7. Dati quantitativi e qualitativi
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="frequenze-assolute-e-relative.html">
-     1.6.2. Frequenze assolute e relative
+     1.8. Frequenze assolute e relative
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="frequenze-cumulate.html">
-     1.6.3. Frequenze cumulate
+     1.9. Frequenze cumulate
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="frequenze-congiunte-e-marginali.html">
-     1.6.4. Frequenze congiunte e marginali
+     1.10. Frequenze congiunte e marginali
     </a>
    </li>
   </ul>
@@ -454,6 +456,9 @@
         
         
         
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -722,10 +727,10 @@ Dark Horse Comics     12
 George Lucas          11
 ABC Studios            4
 Image Comics           3
-Rebellion              1
 Universal Studios      1
-Star Trek              1
 Hanna-Barbera          1
+Star Trek              1
+Rebellion              1
 Name: Publisher, dtype: int64
 </pre></div>
 </div>
@@ -2329,9 +2334,8 @@ Il codice sopra prodotto è basato su alcune funzionalità avanzate della funzio
 <img src="http://mirrors.creativecommons.org/presskit/icons/nc.large.png" style="width: 1.5em; float: left; margin-right: 0.6ex; margin-top: 0;">
 <img src="http://mirrors.creativecommons.org/presskit/icons/nd.large.png" style="width: 1.5em; float: left; margin-right: 0.6ex; margin-top: 0;">
 <span style="font-size: 0.7rem; line-height: 0.7rem; vertical-align: middle;">Quest'opera è distribuita con Licenza <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribuzione - Non commerciale - Non opere derivate 4.0 Internazionale</a></span>.
-</div>
+</div></div>
 <div class="toctree-wrapper compound">
-</div>
 </div>
 </div>
 
@@ -2339,8 +2343,8 @@ Il codice sopra prodotto è basato su alcune funzionalità avanzate della funzio
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "dariomalchiodi/sds",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",
@@ -2361,7 +2365,7 @@ Il codice sopra prodotto è basato su alcune funzionalità avanzate della funzio
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="../../p1-PAD/c2-pandas/pandas.html" title="previous page"><span class="section-number">2. </span>Pandas</a>
-    <a class='right-next' id="next-link" href="dati-quantitativi-e-qualitativi.html" title="next page"><span class="section-number">1.6.1. </span>Dati quantitativi e qualitativi</a>
+    <a class='right-next' id="next-link" href="dati-quantitativi-e-qualitativi.html" title="next page"><span class="section-number">1.7. </span>Dati quantitativi e qualitativi</a>
 
         </div>
         

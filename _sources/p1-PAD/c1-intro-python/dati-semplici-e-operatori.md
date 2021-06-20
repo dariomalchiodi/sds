@@ -54,18 +54,29 @@ A partire da valori booleani, interi o a virgola mobile è possibile costruire e
 :name: elenco-operatori-per-tipi-semplici
 :align: center
 
-|  Operazione                  | Simbolo | Operazione               | Simbolo |
-|:----------------------------:|:-------:|:------------------------:|:-------:|
-| addizione                    | `+`     | uguale (per riferimento) | `is`    |
-| sottrazione                  | `-`     | uguale (per contenuto)   | `==`    |
-| moltiplicazione              | `*`     | diverso                  | `!=`    |
-| divisione (reale)            | `/`     | minore                   | `<`     |
-| divisione (intera)           | `//`    | minore o uguale          | `<=`    |
-| resto (modulo)               | `%`     | maggiore                 | `>`     |
-| elevamento a potenza         | `**`    | maggiore o uguale        | `>=`    |
-|                              |         | congiunzione logica      | `and`   |
-| appartenenza a una struttura | `in`    | disgiunzione logica      | `or`    |
-| rimozione dalla memoria      | `del`   | negazione logica         | `not`   |
+|  Operazione                  | Simbolo |
+|:----------------------------:|:-------:|
+| addizione                    | `+`     |
+| sottrazione                  | `-`     |
+| moltiplicazione              | `*`     |
+| divisione (reale)            | `/`     |
+| divisione (intera)           | `//`    |
+| resto (modulo)               | `%`     |
+| elevamento a potenza         | `**`    |
+|                              |         |
+| appartenenza a una struttura | `in`    |
+| rimozione dalla memoria      | `del`   |
+|                              |         |
+| uguale (per riferimento)     | `is`    |
+| uguale (per contenuto)       | `==`    |
+| diverso                      | `!=`    |
+| minore                       | `<`     |
+| minore o uguale              | `<=`    |
+| maggiore                     | `>`     |
+| maggiore o uguale            | `>=`    |
+| congiunzione logica          | `and`   |
+| disgiunzione logica          | `or`    |
+| negazione logica             | `not`   |
 
 ```
 
