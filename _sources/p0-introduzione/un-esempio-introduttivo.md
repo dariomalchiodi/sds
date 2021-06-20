@@ -79,7 +79,7 @@ button = widgets.Button(
 )
 
 def displ(e):
-    print(e)
+    print("prova")
 
 button.on_click(displ)
 
@@ -98,4 +98,8 @@ my_hidden_variable = 'wow, it worked!'
 
 ```{code-cell} ipython3
 print(my_hidden_variable)
+```
+
+```{code-cell} ipython3
+
 ```
