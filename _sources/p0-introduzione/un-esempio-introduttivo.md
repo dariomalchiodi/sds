@@ -66,6 +66,23 @@ Nei nostri esperimento faremo riferimento a un _dataset_ ottenuto modificando un
 - un indice di intelligenza (in una scala qualitativa i cui valori sono _low_, _moderate_, _average_, _good_, e _high_).
 
 ```{code-cell} ipython3
+:tags: [hide-input, thebe-init]
+
+import ipywidgets as widgets
+
+button = widgets.Button(
+    description='Click me',
+    disabled=False,
+    button_style='', # 'success', 'info', 'warning', 'danger' or ''
+    tooltip='Click me',
+    icon='check' # (FontAwesome names without the `fa-` prefix)
+)
+
+def displ(e):
+    print(e)
+
+button.on_click(displ)
+
 button
 ```
 
