@@ -8,7 +8,7 @@ h1, h2, h3, h4, h5, h6, .reference-internal, .caption-text {
 }
 
 p {
-    text-align: justify;
+    /* text-align: justify; */
     font-family: 'Alike angular', serif;
 }
 

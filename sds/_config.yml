@@ -38,4 +38,7 @@ html:
   use_issues_button: true
   use_repository_button: true
 
-
+launch_buttons:
+  thebe: true
+  notebook_interface: "classic"
+  colab_url: "https://colab.research.google.com"
