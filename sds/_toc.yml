@@ -1,16 +1,14 @@
-# Table of content
-# Learn more at https://jupyterbook.org/customize/toc.html
-#
-- file: landing
+format: jb-book
+root: landing
+parts:
+- caption: Introduzione
   numbered: true
-
-- part: Introduzione
   chapters:
   - file: p0-introduzione/presentazione
   - file: p0-introduzione/un-esempio-introduttivo
   - file: p0-introduzione/notazione
-
-- part: Programmazione per l'analisi dei dati
+- caption: Programmazione per l'analisi dei dati
+  numbered: true
   chapters:
   - file: p1-PAD/c1-intro-python/introduzione-a-python
     sections:
@@ -22,8 +20,8 @@
     - file: p1-PAD/c1-intro-python/disegnare-grafici
     - file: p1-PAD/c1-intro-python/leggere-file
   - file: p1-PAD/c2-pandas/pandas
-
-- part: Statistica descrittiva
+- caption: Statistica descrittiva
+  numbered: true
   chapters:
   - file: p2-SD/c1-dati-e-frequenze/dati-e-frequenze
     sections:
@@ -43,13 +41,13 @@
     - file: p2-SD/c2-indici-statistici/analisi-della-varianza
   - file: p2-SD/c3-grafici/grafici
     sections:
-      - file: p2-SD/c3-grafici/diagrammi-per-dati-discreti
-      - file: p2-SD/c3-grafici/diagrammi-per-dati-continui
-      - file: p2-SD/c3-grafici/diagrammi-per-dati-cumulati
-      - file: p2-SD/c3-grafici/diagrammi-per-dati-a-coppie
-      - file: p2-SD/c3-grafici/simmetria-e-normalita
-
-- part: Calcolo delle probabilità
+    - file: p2-SD/c3-grafici/diagrammi-per-dati-discreti
+    - file: p2-SD/c3-grafici/diagrammi-per-dati-continui
+    - file: p2-SD/c3-grafici/diagrammi-per-dati-cumulati
+    - file: p2-SD/c3-grafici/diagrammi-per-dati-a-coppie
+    - file: p2-SD/c3-grafici/simmetria-e-normalita
+- caption: "Calcolo delle probabilit\xE0"
+  numbered: true
   chapters:
   - file: p3-CP/c1-calcolo-combinatorio/calcolo-combinatorio
   - file: p3-CP/c2-teoria-insiemi/teoria-insiemi
@@ -59,8 +57,7 @@
     - file: p3-CP/c2-teoria-insiemi/relazioni-tra-insiemi
     - file: p3-CP/c2-teoria-insiemi/operazioni-tra-insiemi
     - file: p3-CP/c2-teoria-insiemi/insiemi-in-python
-
-
-- part: Bibliografia
+- caption: Bibliografia
+  numbered: true
   chapters:
   - file: bibliography
