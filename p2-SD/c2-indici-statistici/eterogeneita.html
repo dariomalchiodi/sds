@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>2.5. Eterogeneità &#8212; Superhero Data Science</title>
+    <title>7.5. Indici di eterogeneità &#8212; Superhero Data Science</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
@@ -32,32 +32,39 @@
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="2.6. Concentrazione" href="concentrazione.html" />
-    <link rel="prev" title="2.4. Covarianza e correlazione" href="covarianza-e-correlazione.html" />
+    <link rel="next" title="7.6. Indici di concentrazione" href="concentrazione.html" />
+    <link rel="prev" title="7.4. Covarianza e correlazione" href="covarianza-e-correlazione.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -74,6 +81,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="../../_static/logo.png" class="logo" alt="logo">
       
       
@@ -83,7 +94,7 @@
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -92,7 +103,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Introduzione
  </span>
@@ -114,7 +125,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Programmazione per l'analisi dei dati
  </span>
@@ -122,7 +133,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../p1-PAD/c1-intro-python/introduzione-a-python.html">
-   1. Python
+   4. Python
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -132,48 +143,48 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-semplici-e-operatori.html">
-     1.1. Tipi di dati semplici
+     4.1. Tipi di dati semplici
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-strutturati.html">
-     1.2. Tipi di dati strutturati
+     4.2. Tipi di dati strutturati
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/strutture-di-controllo.html">
-     1.3. Strutture di controllo
+     4.3. Strutture di controllo
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/funzioni.html">
-     1.4. Funzioni
+     4.4. Funzioni
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/importare-moduli.html">
-     1.6. Importare moduli
+     4.6. Importare moduli
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/disegnare-grafici.html">
-     1.7. Disegnare grafici
+     4.7. Disegnare grafici
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/leggere-file.html">
-     1.8. Leggere dati da file (e un po’ di trucchi)
+     4.8. Leggere dati da file (e un po’ di trucchi)
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../p1-PAD/c2-pandas/pandas.html">
-   2. Pandas
+   5. Pandas
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Statistica descrittiva
  </span>
@@ -181,7 +192,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../c1-dati-e-frequenze/dati-e-frequenze.html">
-   1. Dati e frequenze
+   6. Dati e frequenze
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -191,29 +202,29 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../c1-dati-e-frequenze/dati-quantitativi-e-qualitativi.html">
-     1.7. Dati quantitativi e qualitativi
+     6.7. Dati quantitativi e qualitativi
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c1-dati-e-frequenze/frequenze-assolute-e-relative.html">
-     1.8. Frequenze assolute e relative
+     6.8. Frequenze assolute e relative
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c1-dati-e-frequenze/frequenze-cumulate.html">
-     1.9. Frequenze cumulate
+     6.9. Frequenze cumulate
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c1-dati-e-frequenze/frequenze-congiunte-e-marginali.html">
-     1.10. Frequenze congiunte e marginali
+     6.10. Frequenze congiunte e marginali
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="indici-statistici.html">
-   2. Indici statistici
+   7. Indici statistici
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -223,49 +234,49 @@
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="indici-di-posizione.html">
-     2.1. Indici di posizione
+     7.1. Indici di posizione
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="indici-di-dispersione.html">
-     2.2. Indici di dipsersione
+     7.2. Indici di dipsersione
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="quantili-campionari.html">
-     2.3. Quantili campionari
+     7.3. Quantili campionari
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="covarianza-e-correlazione.html">
-     2.4. Covarianza e correlazione
+     7.4. Covarianza e correlazione
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     2.5. Eterogeneità
+     7.5. Indici di eterogeneità
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="concentrazione.html">
-     2.6. Concentrazione
+     7.6. Indici di concentrazione
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="trasformazioni-dei-dati.html">
-     2.7. Trasformazioni dei dati
+     7.7. Trasformazioni dei dati
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="analisi-della-varianza.html">
-     2.8. Analisi della varianza
+     7.8. Analisi della varianza
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../c3-grafici/grafici.html">
-   3. Grafici
+   8. Grafici
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -275,33 +286,33 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../c3-grafici/diagrammi-per-dati-discreti.html">
-     3.1. Dati discreti
+     8.1. Dati discreti
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c3-grafici/diagrammi-per-dati-continui.html">
-     3.2. Dati continui
+     8.2. Dati continui
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c3-grafici/diagrammi-per-dati-cumulati.html">
-     3.3. Dati cumulati
+     8.3. Dati cumulati
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c3-grafici/diagrammi-per-dati-a-coppie.html">
-     3.4. Dati a coppie
+     8.4. Dati a coppie
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c3-grafici/simmetria-e-normalita.html">
-     3.5. Simmetria e normalità
+     8.5. Simmetria e normalità
     </a>
    </li>
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Calcolo delle probabilità
  </span>
@@ -309,12 +320,12 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/calcolo-combinatorio.html">
-   1. Calcolo combinatorio
+   9. Calcolo combinatorio
   </a>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/teoria-insiemi.html">
-   2. Teoria degli insiemi
+   10. Teoria degli insiemi
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
   <label for="toctree-checkbox-5">
@@ -324,33 +335,33 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/concetti-di-base.html">
-     2.1. Concetti di base
+     10.1. Concetti di base
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/insiemi-finiti-e-infiniti.html">
-     2.2. Insiemi finiti e infiniti
+     10.2. Insiemi finiti e infiniti
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/relazioni-tra-insiemi.html">
-     2.3. Relazioni tra insiemi
+     10.3. Relazioni tra insiemi
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/operazioni-tra-insiemi.html">
-     2.4. Operazioni tra insiemi
+     10.4. Operazioni tra insiemi
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/insiemi-in-python.html">
-     2.5. Gli insiemi in Python
+     10.5. Gli insiemi in Python
     </a>
    </li>
   </ul>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Bibliografia
  </span>
@@ -358,7 +369,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../bibliography.html">
-   1. Bibliography
+   11. Bibliography
   </a>
  </li>
 </ul>
@@ -400,14 +411,17 @@
 
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
-        
+        <a class="dropdown-buttons"
+            href="../../_sources/p2-SD/c2-indici-statistici/eterogeneita.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
         <!-- Download raw file -->
         <a class="dropdown-buttons" href="../../_sources/p2-SD/c2-indici-statistici/eterogeneita.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -438,21 +452,977 @@
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dariomalchiodi/sds/main?urlpath=tree/sds/p2-SD/c2-indici-statistici/eterogeneita.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#indice-di-eterogeneita-di-gini">
+   7.5.1. Indice di eterogeneità di Gini
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#entropia">
+   7.5.2. Entropia
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#alberi-di-decisione">
+   7.5.3. Alberi di decisione
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Indici di eterogeneità</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#indice-di-eterogeneita-di-gini">
+   7.5.1. Indice di eterogeneità di Gini
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#entropia">
+   7.5.2. Entropia
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#alberi-di-decisione">
+   7.5.3. Alberi di decisione
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
-  <div class="section" id="eterogeneita">
-<h1><span class="section-number">2.5. </span>Eterogeneità<a class="headerlink" href="#eterogeneita" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="indici-di-eterogeneita">
+<h1><span class="section-number">7.5. </span>Indici di eterogeneità<a class="headerlink" href="#indici-di-eterogeneita" title="Permalink to this headline">¶</a></h1>
+<p>Nel caso di variabili qualitative nominali la varianza e gli altri indici da
+essa derivati non si possono calcolare (infatti non sono calcolabili la media
+né la mediana né altri valori numerici di riferimento dai quali calcolare le
+distanze). È comunque necessario avere un indice che misuri la dispersione
+della distribuzione delle frequenze, detta <em>eterogeneità</em>. In particolare
+diremo che una variabile si distribuisce in modo eterogeneo se ogni suo
+valore si presenta con la stessa frequenza.</p>
+<div class="section" id="indice-di-eterogeneita-di-gini">
+<h2><span class="section-number">7.5.1. </span>Indice di eterogeneità di Gini<a class="headerlink" href="#indice-di-eterogeneita-di-gini" title="Permalink to this headline">¶</a></h2>
+<p>Dato un campione <span class="math notranslate nohighlight">\(\{ a_1, \dots, a_n \}\)</span> in cui occorrono i valori distinti
+<span class="math notranslate nohighlight">\(v_1, \dots, v_s\)</span> e indicando con <span class="math notranslate nohighlight">\(f_i\)</span> la frequenza relativa dell’elemento
+<span class="math notranslate nohighlight">\(v_i\)</span> per <span class="math notranslate nohighlight">\(i = 1, \dots, s\)</span>, la quantità</p>
+<p>\begin{equation}
+I = 1 - \sum_{i=1}^s f_i^2
+\end{equation}</p>
+<p>è detta <em>indice di eterogeneità di Gini</em>. Si noti che:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(0 \leq I &lt; 1\)</span>, in quanto:</p>
+<ul>
+<li><p>per almeno un <span class="math notranslate nohighlight">\(j\)</span> si ha <span class="math notranslate nohighlight">\(f_j^2 &gt; 0\)</span> e quindi <span class="math notranslate nohighlight">\(\sum f_i^2 &gt; 0\)</span>,
+il che implica <span class="math notranslate nohighlight">\(I &lt; 1\)</span>;</p></li>
+<li><p>per ogni <span class="math notranslate nohighlight">\(i\)</span> si ha <span class="math notranslate nohighlight">\(f_i^2 \leq f_i\)</span> essendo <span class="math notranslate nohighlight">\(0 \leq f_i \leq 1\)</span>, e dunque
+<span class="math notranslate nohighlight">\(\sum f_i^2 \leq \sum f_i = 1\)</span>, il che implica <span class="math notranslate nohighlight">\( I \geq 0\)</span>;</p></li>
+</ul>
+</li>
+<li><p>in caso di eterogeneità minima (o massima omogeneità), tutti gli elementi del
+campione assumono lo stesso valore, dunque esiste un solo <span class="math notranslate nohighlight">\(j\)</span> per cui
+<span class="math notranslate nohighlight">\(f_j = 1\)</span> e per ogni <span class="math notranslate nohighlight">\(i \neq j\)</span> si ha <span class="math notranslate nohighlight">\(f_i = 0\)</span>, pertanto <span class="math notranslate nohighlight">\(I = 1 - 1 = 0\)</span>;</p></li>
+<li><p>in caso di eterogeneità massima tutte le osservazioni hanno invece la
+medesima frequenza <span class="math notranslate nohighlight">\(f_i = \frac{1}{s}\)</span>, e quindi
+<span class="math notranslate nohighlight">\(I = 1 - \frac{1}{s} = \frac{s-1}{s}\)</span>.</p></li>
+</ul>
+<p>Nel caso in cui si voglia operare con un indice che assuma valori tra <span class="math notranslate nohighlight">\(0\)</span> e <span class="math notranslate nohighlight">\(1\)</span>,
+è possibile dividere l’indice di Gini per il valore massimo <span class="math notranslate nohighlight">\(\frac{s-1}{s}\)</span>,
+ottenendo il cosiddetto <em>indice di Gini normalizzato</em>:</p>
+<p>\begin{equation}
+I’ = \frac{s \cdot I}{s-1}
+\end{equation}</p>
+<p>Consideriamo il grafico seguente, che traccia l’andamento dell’indice di Gini
+nel caso di due valori distinti <span class="math notranslate nohighlight">\(v_1\)</span> e <span class="math notranslate nohighlight">\(v_2\)</span>, di cui indicheremo
+rispettivamente con <span class="math notranslate nohighlight">\(f\)</span> e <span class="math notranslate nohighlight">\(1-f\)</span> le frequenze relative.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.constants</span> <span class="kn">import</span> <span class="n">golden</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;figure&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="o">/</span><span class="n">golden</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">gini_2_val</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">f</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">f</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">,</span> <span class="mf">.01</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">gini_2_val</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/eterogeneita_1_0.png" src="../../_images/eterogeneita_1_0.png" />
+</div>
+</div>
+<p>Il grafico evidenzia come non solo l’indice di Gini assuma valori minimo e
+massimo rispettivamente in corrispondenza delle situazioni di minima e massima
+eterogeneità nel campione, ma effettivamente si abbia una crescita graduale del
+valore dell’indice man mano che l’eterogeneità nel campione aumenta, seguita da
+una sua riduzione man mano che questa ritorna a diminuire. In altre parole,
+questo indice cattura effettivamente il concetto di eterogeneità traducendolo
+in una quantità numerica.</p>
+<p>Per calcolare il valore dell’indice di Gini per i dati contenuti in una serie è
+necessario calcolare le corrispondenti frequenze relative tramite
+<code class="docutils literal notranslate"><span class="pre">value_counts</span></code>; per elevare queste ultime al quadrato risulta utile invocare
+sulla serie delle frequenze il metodo <code class="docutils literal notranslate"><span class="pre">map</span></code> e poi sommare i valori ottenuti e
+sottrarre da 1 il risultato.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gini</span><span class="p">(</span><span class="n">series</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">series</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                    <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Possiamo quindi utilizzare la funzione <code class="docutils literal notranslate"><span class="pre">gini</span></code> per valutare l’eterogeneità dei
+valori assunti dagli attributi <em>Publisher</em> (limitatamente a <code class="docutils literal notranslate"><span class="pre">'Marvel</span> <span class="pre">Comics'</span></code> e
+<code class="docutils literal notranslate"><span class="pre">'DC</span> <span class="pre">Comics'</span></code>) <em>Eye color</em>, <em>Hair color</em> (senza considerare in entrambi i casi
+i valori mancanti) e per i nomi dei supereroi (ottenuti a partire dall’indice
+del <em>dataframe</em>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">heroes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/heroes.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">publisher</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;Marvel Comics&#39;</span><span class="p">,</span>
+                                             <span class="s1">&#39;DC Comics&#39;</span><span class="p">])][</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span>
+<span class="n">eye_color</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">])][</span><span class="s1">&#39;Eye color&#39;</span><span class="p">]</span>
+<span class="n">hair_color</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">])][</span><span class="s1">&#39;Hair color&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">gini</span><span class="p">(</span><span class="n">publisher</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gini</span><span class="p">(</span><span class="n">eye_color</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gini</span><span class="p">(</span><span class="n">hair_color</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gini</span><span class="p">(</span><span class="n">heroes</span><span class="o">.</span><span class="n">index</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.45945353273979217
+0.77232789326401
+0.8370723950922644
+0.9985654125595816
+</pre></div>
+</div>
+</div>
+</div>
+<p>I risultati ottenuti ci dicono che l’attributo più omogeneo tra quelli
+considerati è quello relativo all’editore: ciò è dvuto al fatto che sono stati
+considerati solamente i due editori con il maggior numero di valori. Il nome
+dei supereroi risulta invece l’attributo più eterogeneo, e anche in questo caso
+si tratta di un risultato che ci potevamo aspettare, in quanto è ragionevole
+supporre che i valori assunti dal nome siano univoci. Per avere un quadro più
+preciso, calcoliamo anche la variante normalizzata dell’indice:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generalized_gini</span><span class="p">(</span><span class="n">series</span><span class="p">):</span>
+    <span class="n">freq</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">freq</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">**</span><span class="mi">2</span><span class="p">))))</span> <span class="o">*</span> <span class="n">s</span> <span class="o">/</span> <span class="p">(</span><span class="n">s</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">generalized_gini</span><span class="p">(</span><span class="n">publisher</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">generalized_gini</span><span class="p">(</span><span class="n">eye_color</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">generalized_gini</span><span class="p">(</span><span class="n">hair_color</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">generalized_gini</span><span class="p">(</span><span class="n">heroes</span><span class="o">.</span><span class="n">index</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9189070654795843
+0.8059073668841843
+0.866967837774131
+0.9999600569905307
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="entropia">
+<h2><span class="section-number">7.5.2. </span>Entropia<a class="headerlink" href="#entropia" title="Permalink to this headline">¶</a></h2>
+<p>Dato un campione <span class="math notranslate nohighlight">\(\{ a_1, \dots, a_n \}\)</span> in cui occorrono i valori distinti
+<span class="math notranslate nohighlight">\(v_1, \dots, v_s\)</span> e indicando con <span class="math notranslate nohighlight">\(f_i\)</span> la frequenza relativa dell’elemento
+<span class="math notranslate nohighlight">\(v_i\)</span> per <span class="math notranslate nohighlight">\(i = 1, \dots, s\)</span>, la quantità</p>
+<p>\begin{equation}
+H = \sum_{i=1}^s f_i \log \frac{1}{f_i} = - \sum_{i=1}^s f_i \log f_i
+\end{equation}</p>
+<p>è detta <em>indice di entropia</em> del campione.</p>
+<p>La funzione <span class="math notranslate nohighlight">\(p \mapsto \log \frac{1}{p}\)</span> è detta <em>autoinformazione</em>, e il suo
+andamento in <span class="math notranslate nohighlight">\((0,1]\)</span> è il seguente</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">f</span><span class="p">),</span> <span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/eterogeneita_9_0.png" src="../../_images/eterogeneita_9_0.png" />
+</div>
+</div>
+<p>In particolare la funzione vale <span class="math notranslate nohighlight">\(0\)</span> quando <span class="math notranslate nohighlight">\(p=1\)</span> e tende a infinito per <span class="math notranslate nohighlight">\(p\)</span> che
+tende a <span class="math notranslate nohighlight">\(0\)</span>. Il grafico dell’andamento di un generico addendo dell’entropia è
+il seguente.</p>
+<p>Il risultato ottenuto evidenzia come si possa estendere la definizione del
+generico addendo anche per <span class="math notranslate nohighlight">\(f_i = 0\)</span>, ponendolo uguale a <span class="math notranslate nohighlight">\(1\)</span>. Valgono inoltre
+le osservazioni che seguono.</p>
+<ul class="simple">
+<li><p>Per ogni <span class="math notranslate nohighlight">\(i\)</span> vale <span class="math notranslate nohighlight">\(- f_i \log f_i \geq 0\)</span>, dunque <span class="math notranslate nohighlight">\(H \geq 0\)</span>.</p></li>
+<li><p>Per ogni <span class="math notranslate nohighlight">\(i\)</span> vale <span class="math notranslate nohighlight">\(- f_i \log f_i = 0\)</span> se e solo se <span class="math notranslate nohighlight">\(f_i = 0\)</span> oppure
+<span class="math notranslate nohighlight">\(f_i = 1\)</span>, pertanto <span class="math notranslate nohighlight">\(H = 0\)</span> se e solo se ci si trova in condizione di massima
+omogeneità (e cioè tutti gli elementi del campione assumono lo stesso valore).</p></li>
+<li><p>In caso invece di massima eterogeneità si avrà <span class="math notranslate nohighlight">\(f_i=\frac{1}{s}\)</span> e quindi
+<span class="math notranslate nohighlight">\(H = \log s\)</span>, e si può dimostrare che in tal caso l’entropia assume il valore
+massimo.</p></li>
+</ul>
+<p>Si può pertanto definire l’<em>indice di entropia normalizzato</em></p>
+<p>\begin{equation}
+H’ = \frac{H}{\log s}
+\end{equation}</p>
+<p>i cui valori variano tra <span class="math notranslate nohighlight">\(0\)</span> e <span class="math notranslate nohighlight">\(1\)</span>. Se il logaritmo è in base <span class="math notranslate nohighlight">\(2\)</span> (come nel
+codice che abbiamo scritto) allora l’entropia si misura in <em>bit</em>; è però
+possibile usare altre basi: per esempio, il logaritmo naturale e quello in
+base 10 corrispondono rispettivamente a due unità chiamate <em>nat</em> e <em>hartley</em>.</p>
+<p>Analogamente a quanto visto per l’indice di Gini, è possibile visualizzare
+l’andamento dell’entropia nel caso di due valori possibili, mettendo in
+evidenza che anche questo indice tende ad aumentare all’aumentare
+dell’eterogeneità e a diminuire al diminuire di quest’ultima.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">entropy_2_val</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">f</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">else</span> <span class="o">-</span> <span class="n">f</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">f</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">f</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">,</span> <span class="mf">.01</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">entropy_2_val</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/eterogeneita_11_0.png" src="../../_images/eterogeneita_11_0.png" />
+</div>
+</div>
+<p>Calcolando il valore dell’entropia per gli attributi precedentemente
+considerati si verifica come non cambi il loro rapporto relativo in termini di
+eterogeneità.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">entropy</span><span class="p">(</span><span class="n">series</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">((</span><span class="n">series</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                      <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="o">-</span><span class="n">f</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">f</span><span class="p">))))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">entropy</span><span class="p">(</span><span class="n">publisher</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">entropy</span><span class="p">(</span><span class="n">eye_color</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">entropy</span><span class="p">(</span><span class="n">hair_color</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">entropy</span><span class="p">(</span><span class="n">heroes</span><span class="o">.</span><span class="n">index</span><span class="p">))</span>              
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9406863895967433
+2.7454093094041547
+3.1308603347354245
+9.470566732235026
+</pre></div>
+</div>
+</div>
+</div>
+<p>Come nel caso precedente, calcoliamo anche la variante normalizzata dell’indice.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">entropy</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">normalized</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">freq</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">freq</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="o">-</span><span class="n">f</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">f</span><span class="p">))))</span>
+    <span class="k">if</span> <span class="n">normalized</span><span class="p">:</span>
+        <span class="n">e</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">freq</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">e</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">entropy</span><span class="p">(</span><span class="n">publisher</span><span class="p">,</span> <span class="n">normalized</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">entropy</span><span class="p">(</span><span class="n">eye_color</span><span class="p">,</span> <span class="n">normalized</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">entropy</span><span class="p">(</span><span class="n">hair_color</span><span class="p">,</span> <span class="n">normalized</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">entropy</span><span class="p">(</span><span class="n">heroes</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">normalized</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9406863895967433
+0.5987855536380803
+0.6444776827813027
+0.9983910129552006
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="alberi-di-decisione">
+<h2><span class="section-number">7.5.3. </span>Alberi di decisione<a class="headerlink" href="#alberi-di-decisione" title="Permalink to this headline">¶</a></h2>
+<p>Gli indici di eterogeneità sono alla base della costruzione di un interessante
+classificatore chiamato <em>albero di decisione</em>. Un albero di decisione assegna
+<em>oggetti</em> a <em>classi</em>, dove un oggetto è descritto tramite un’osservazione che
+consiste, al solito, in un vettore di valori per degli attributi prefissati.
+Il procedimento di classificazione procede nel modo seguente: si considera la
+<em>radice</em> dell’albero, cioè l’unico nodo a cui non arrivano frecce (disposto di
+solito in alto nella rappresentazione dell’albero), e che è contrassegnato da
+una condizione che coinvolge i valori di uno o più attributi per l’oggetto
+che si vuole classificare. A seconda del valore di questa condizione, si
+percorre una delle due frecce partenti dalla radice. Se il nodo a cui si
+arriva è un nodo terminale (una <em>foglia</em> da cui non dipartono nuove frecce), in
+tale nodo è indicata la classe assegnata all’oggetto, altrimenti il nodo
+riporta un’altra condizione da valutare, iterando il comportamento precedente
+fino a che non si raggiunge una foglia e quindi si determina una classe per
+l’oggetto.</p>
+<p>Consideriamo per esempio l’albero riportato qui sotto, che fa riferimento a un
+dataset molto semplice che in funzione delle condizioni meteorologiche permette
+di capire se si può uscire a giocare. La radice richiede di iniziare valutando
+che tempo fa (attributo <em>Outlook</em>): se è nuvoloso (<em>overcast</em>) si arriva a una
+foglia che dice che si può uscire (<em>Yes</em>); se invece dovesse essere soleggiato
+viene richiesto di valutare se l’umidità abbia o meno un valore inferiore a 30;
+nel primo caso si potrebbe uscire, altrimenti no. Il processo di
+classificazione funziona in modo analogo nel caso di tempo piovoso (<em>rain</em>).</p>
+<p><img alt="Esempio di albero di decisione" src="p2-SD/c2-indici-statistici/img/decision-tree.png" /></p>
+<p>La costruzione di un albero di ricerca richiede innanzitutto di individuare un
+indice di eterogeneità. Facciamo un esempio selezioniamo l’indice di Gini e
+lavorando solo con due classi: i superori e i supercattivi, che indicheremo
+rispettivamente con le etichette <code class="docutils literal notranslate"><span class="pre">good_guy</span></code> e <code class="docutils literal notranslate"><span class="pre">bad_guy</span></code>. Il fatto di avere solo
+due etichette possibili semplifica notevolmente il calcolo dell’indice: basterà
+infatti specificare la frequenza relativa <span class="math notranslate nohighlight">\(f\)</span> di <code class="docutils literal notranslate"><span class="pre">good_guy</span></code>, così che la
+frequenza relativa di <code class="docutils literal notranslate"><span class="pre">bad_guy</span></code> sarà <span class="math notranslate nohighlight">\(1-f\)</span> e l’indice di Gini assumerà il
+valore <span class="math notranslate nohighlight">\(1 - f^2 - (1-f)^2\)</span>: potremo quindi riutilizzare la funzione
+<code class="docutils literal notranslate"><span class="pre">gini_2_val</span></code> precedentemente definita.</p>
+<p>Per mantenere l’albero di decisione di dimensioni compatte selezioniamo un
+numero relativamente basso di supererori e supercattivi (la scelta è stata
+fatta anche in modo da non avere a che fare con valori mancanti, che
+avrebbero complicato il processo di calcolo dell’albero).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">good_guys</span> <span class="o">=</span> <span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s1">&#39;Wonder Woman&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;Aquaman&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;Cyborg&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;Flash II&#39;</span><span class="p">]]</span>
+<span class="n">bad_guys</span> <span class="o">=</span> <span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s1">&#39;Black Manta&#39;</span><span class="p">,</span>
+                       <span class="s1">&#39;Penguin&#39;</span><span class="p">,</span>
+                       <span class="s1">&#39;Joker&#39;</span><span class="p">,</span>
+                       <span class="s1">&#39;Deathstroke&#39;</span><span class="p">,</span>
+                       <span class="s1">&#39;Bizarro&#39;</span><span class="p">]]</span>
+<span class="n">all_guys</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">good_guys</span><span class="p">,</span> <span class="n">bad_guys</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Estraiamo dal <em>dataframe</em> ottenuto gli attributi corrispondenti ad altezza,
+peso, genere, anno di prima apparizione, colore di occhi e capelli, forza e
+intelligenza, in quanto i rimanenti attributi sono o identici per tutti i casi
+selezionati o rappresentano valori univoci.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="s1">&#39;Weight&#39;</span><span class="p">,</span> <span class="s1">&#39;Gender&#39;</span><span class="p">,</span> <span class="s1">&#39;First appearance&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Hair color&#39;</span><span class="p">,</span> <span class="s1">&#39;Eye color&#39;</span><span class="p">,</span> <span class="s1">&#39;Strength&#39;</span><span class="p">,</span> <span class="s1">&#39;Intelligence&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">all_guys</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Il risultato, memorizzato in <code class="docutils literal notranslate"><span class="pre">X</span></code>, è visualizzato qui sotto.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Gender</th>
+      <th>First appearance</th>
+      <th>Hair color</th>
+      <th>Eye color</th>
+      <th>Strength</th>
+      <th>Intelligence</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Wonder Woman</th>
+      <td>183.13</td>
+      <td>74.74</td>
+      <td>F</td>
+      <td>1941.0</td>
+      <td>Black</td>
+      <td>Blue</td>
+      <td>100.0</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>Aquaman</th>
+      <td>185.71</td>
+      <td>146.96</td>
+      <td>M</td>
+      <td>1941.0</td>
+      <td>Blond</td>
+      <td>Blue</td>
+      <td>85.0</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>Cyborg</th>
+      <td>198.12</td>
+      <td>173.81</td>
+      <td>M</td>
+      <td>1980.0</td>
+      <td>Black</td>
+      <td>Brown</td>
+      <td>55.0</td>
+      <td>good</td>
+    </tr>
+    <tr>
+      <th>Flash II</th>
+      <td>183.41</td>
+      <td>88.32</td>
+      <td>M</td>
+      <td>1956.0</td>
+      <td>Blond</td>
+      <td>Blue</td>
+      <td>50.0</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>Black Manta</th>
+      <td>188.12</td>
+      <td>92.78</td>
+      <td>M</td>
+      <td>1967.0</td>
+      <td>No Hair</td>
+      <td>Black</td>
+      <td>30.0</td>
+      <td>good</td>
+    </tr>
+    <tr>
+      <th>Penguin</th>
+      <td>157.89</td>
+      <td>79.13</td>
+      <td>M</td>
+      <td>1941.0</td>
+      <td>Black</td>
+      <td>Blue</td>
+      <td>10.0</td>
+      <td>good</td>
+    </tr>
+    <tr>
+      <th>Joker</th>
+      <td>196.07</td>
+      <td>86.91</td>
+      <td>M</td>
+      <td>1940.0</td>
+      <td>Green</td>
+      <td>Green</td>
+      <td>10.0</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>Deathstroke</th>
+      <td>193.87</td>
+      <td>101.98</td>
+      <td>M</td>
+      <td>1980.0</td>
+      <td>White</td>
+      <td>Blue</td>
+      <td>30.0</td>
+      <td>good</td>
+    </tr>
+    <tr>
+      <th>Bizarro</th>
+      <td>191.00</td>
+      <td>155.57</td>
+      <td>M</td>
+      <td>1958.0</td>
+      <td>Black</td>
+      <td>Black</td>
+      <td>95.0</td>
+      <td>moderate</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>In corrispondenza di ogni osservazione in <code class="docutils literal notranslate"><span class="pre">X</span></code> è poi necessario indicare la
+relativa etichetta. Per comodità è meglio organizzare queste etichette in un
+<em>dataframe</em> separato che si può costruire facilmente: siccome i primi quattro
+elementi di <code class="docutils literal notranslate"><span class="pre">X</span></code> rappresentano supereroi mentre i rimanenti elementi
+rappresentano supercattivi, è sufficiente fondere insieme due <em>dataframe</em> dei
+quali il primo contiene tante copie dell’etichetta <code class="docutils literal notranslate"><span class="pre">good_guy</span></code> quanti sono i
+supereroi e il secondo è costruito in modo analogo ma considerando i
+supercattivi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="s1">&#39;good guy&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">good_guys</span><span class="p">),</span>
+                            <span class="n">index</span><span class="o">=</span><span class="n">good_guys</span><span class="o">.</span><span class="n">index</span><span class="p">),</span>
+               <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="s1">&#39;bad guy&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">bad_guys</span><span class="p">),</span>
+                            <span class="n">index</span><span class="o">=</span><span class="n">bad_guys</span><span class="o">.</span><span class="n">index</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ora che abbiamo organizzato i dati a disposizione, è necessario decidere la
+condizione da inserire nella radice dell’albero. La scelta viene fatta
+considerando una serie di possibili condizioni, valutando per ognuna il modo in
+cui i dati risulterebbero suddivisi nei due nodi sottostanti la radice.
+Consideriamo, per esempio, una condizione che valuti se l’attributo <em>Strength</em>
+assume un valore minore o uguale a 40 e visualizziamo le etichette delle
+osservazioni che soddisfano tale condizione.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">40</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Black Manta</th>
+      <td>bad guy</td>
+    </tr>
+    <tr>
+      <th>Penguin</th>
+      <td>bad guy</td>
+    </tr>
+    <tr>
+      <th>Joker</th>
+      <td>bad guy</td>
+    </tr>
+    <tr>
+      <th>Deathstroke</th>
+      <td>bad guy</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</pre></div>
+</div>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Black Manta</th>
+      <td>bad guy</td>
+    </tr>
+    <tr>
+      <th>Penguin</th>
+      <td>bad guy</td>
+    </tr>
+    <tr>
+      <th>Joker</th>
+      <td>bad guy</td>
+    </tr>
+    <tr>
+      <th>Deathstroke</th>
+      <td>bad guy</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>Il risultato è molto interessante in quanto le etichette sono tutte uguali, e quindi l’eventuale nodo successivo nell’albero sarebbe una foglia che etichetta i casi come <code class="docutils literal notranslate"><span class="pre">bad_guy</span></code>. Le cose cambiano, sebbene poco, se consideriamo le osservazioni che non soddisfano la condizione.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">40</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>In questo caso infatti vi è un solo caso di <code class="docutils literal notranslate"><span class="pre">bad_guy</span></code> e tutte le osservazioni
+rimanenti sono relative a <code class="docutils literal notranslate"><span class="pre">good_guy</span></code>. In altre parole, la condizione
+considerata è buona in quanto suddivide le osservazioni in due gruppi che
+tendono a essere omogenei rispetto all’etichetta assunta. Si può quindi
+utilizzare l’indice di Gini per quantificare quanto sia buona l’omogeneità:
+più l’indice sarà basso, più le osservazioni saranno omogenee. È dunque
+necessario calcolare la frequenza relativa delle due etichette nei due gruppi.
+Il calcolo di queste frequenze si può fare invocando <code class="docutils literal notranslate"><span class="pre">value_counts</span></code> sull’unica
+serie dei <em>dataframe</em> coinvolti. Una volta ottenuta la frequenza relativa di
+una delle due etichette è poi possibile calcolare il valore dell’indice di
+Gini. Per esempio, concentrandosi sul gruppo di casi per cui la forza è minore
+o uguale a 40 e ragionando in termini della frequenza di <code class="docutils literal notranslate"><span class="pre">'bad</span> <span class="pre">guy'</span></code> si
+otterrebbe il risultato seguente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">freq</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">40</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">freq_bad</span> <span class="o">=</span> <span class="n">freq</span><span class="p">[</span><span class="s1">&#39;bad guy&#39;</span><span class="p">]</span>
+<span class="n">gini_left</span> <span class="o">=</span> <span class="n">gini_2_val</span><span class="p">(</span><span class="n">freq_bad</span><span class="p">)</span>
+<span class="n">gini_left</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Il valore dell’indice per il rimanente gruppo di casi si ottiene in modo
+analogo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">freq</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">40</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">freq_bad</span> <span class="o">=</span> <span class="n">freq</span><span class="p">[</span><span class="s1">&#39;bad guy&#39;</span><span class="p">]</span>
+<span class="n">gini_right</span> <span class="o">=</span> <span class="n">gini_2_val</span><span class="p">(</span><span class="n">freq_bad</span><span class="p">)</span>
+<span class="n">gini_right</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.31999999999999984
+</pre></div>
+</div>
+</div>
+</div>
+<p>Per combinare insieme i due indici al fine di esprimere in un unico valore
+l’omogeneità media dei casi suddivisi nei sottogruppi si calcola una loro
+media, pesata in funzione della numerosità dei sottogruppi stessi.</p>
+<p>Tirando le somme, utilizzando la domanda: “la forza è minore o uguale a 40?”
+come criterio per la radice dell’albero si otterrebbe una suddivisione dei dati
+a disposizione in due gruppi con un’eterogeneità media pari a circa 0.17.
+Possiamo ora mantenere fisso l’attributo e considerare valori diversi per la
+soglia, al fine di trovare il valore che minimizza l’indice di Gini medio (e
+quindi corrisponde al caso di migliore omogeneità). Attrezziamoci per
+effettuare questo calcolo indipendentemente dalla scelta dell’attributo, del
+valore di soglia e dell’indice di eterogeneità.</p>
+<p>Ovviamente utilizzando la funzione <code class="docutils literal notranslate"><span class="pre">split_value</span></code> otteniamo lo stesso risultato
+se riconsideriamo una suddivisione in gruppi basata sulla soglia 40 per la
+forza.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">split_value</span><span class="p">(</span><span class="s1">&#39;Strength&#39;</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">gini_2_val</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [16],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">split_value</span><span class="p">(</span><span class="s1">&#39;Strength&#39;</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">gini_2_val</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;split_value&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ora siamo però in grado di effettuare in modo automatico lo stesso calcolo al
+variare dei possibili valori per la soglia.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_vals</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span>
+         <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">split_value</span><span class="p">(</span><span class="s1">&#39;Strength&#39;</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">gini_2_val</span><span class="p">),</span>
+                  <span class="n">x_vals</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>I risultati ottenuti ci dicono che un qualsiasi valore tra 30 e 49 massimizza
+l’omogeneità dei due sottogruppi generati. Avremmo ottenuto un risultato simile
+se come indice di eterogeneità avessimo utilizzato l’entropia.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span>
+         <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">split_value</span><span class="p">(</span><span class="s1">&#39;Strength&#39;</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">entropy_2_val</span><span class="p">),</span>
+                  <span class="n">x_vals</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">0.35</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Per proseguire con la creazione dell’albero di decisione bisognerebbe applicare
+nuovamente il processo di ottimizzazione al gruppo che non ha omogeneità
+massima. In realtà esistono già delle implementazioni che si occupano di
+costruire gli alberi di decisione: noi faremo riferimento alla libreria
+<code class="docutils literal notranslate"><span class="pre">sklearn</span></code>. Nonostante il calcolo degli indici di eterogeneità si possa
+effettuare anche su attributi a valori categorici, questa libreria richiede
+che i dati siano espressi utilizzando esclusivamente valori numerici. È dunque
+necessario convertire in numeri tutte le etichette categoriche. Questo
+procedimento può essere fatto automaticamente utilizzando gli oggetti della
+classe <code class="docutils literal notranslate"><span class="pre">LabelEncoder</span></code>, che una volta creati generano automaticamente il mapping
+tra etichette e valori numerici utilizzando il metodo <code class="docutils literal notranslate"><span class="pre">fit</span></code> a cui viene passato
+l’insieme delle osservazioni da convertire.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+
+<span class="n">gender_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">gender_encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">all_guys</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">])</span>
+
+<span class="n">eye_col_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">eye_col_encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">all_guys</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">])</span>
+
+<span class="n">hair_col_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">hair_col_encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">all_guys</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">])</span>
+
+<span class="n">intelligence_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">intelligence_encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">all_guys</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Una volta determinato questo mapping, il metodo <code class="docutils literal notranslate"><span class="pre">transform</span></code> lo utilizza per
+convertire la serie corrispondente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_guys</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gender_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">all_guys</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">])</span>
+<span class="n">all_guys</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">eye_col_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">all_guys</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">])</span>
+<span class="n">all_guys</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hair_col_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">all_guys</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">])</span>
+<span class="n">all_guys</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">intelligence_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">all_guys</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-info">
+La cella precedente mostra come sia possibile _modificare_ i contenuti di una
+colonna in un _dataframe_. Utilizzando una sintassi analoga è anche possibile
+_aggiungere_ a un _dataframe_ esistente una o più colonne.
+</div>
+<p>Possiamo ora visualizzare il nuovo <em>dataframe</em>, ora composto solo da valori
+numerici, limitatamente agli attributi cui siamo interessati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">all_guys</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
+<span class="n">X</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Usando questo <em>dataframe</em> modificato è possibile utilizzare un oggetto della
+classe <code class="docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code> per costruire l’albero di decisione, passando
+al metodo <code class="docutils literal notranslate"><span class="pre">fit</span></code> i <em>dataframe</em> che descrivono rispettivamente i supereroi e le
+loro etichette.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">tree</span>
+
+<span class="n">clf</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">()</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Una volta costruito, sull’oggetto corrispondente all’albero è possibile
+invocare il metodo <code class="docutils literal notranslate"><span class="pre">predict</span></code> per verificare quale etichetta venga associata
+agli oggetti di partenza.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">X</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="p">])</span>
+<span class="n">predictions</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>È inoltre possibile visualizzare l’albero di decisione in forma grafica,
+utilizzando la libreria <code class="docutils literal notranslate"><span class="pre">graphviz</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">graphviz</span>
+
+<span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">export_graphviz</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">out_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                    <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;bad guy&#39;</span><span class="p">,</span> <span class="s1">&#39;good guy&#39;</span><span class="p">],</span>
+                                    <span class="n">feature_names</span><span class="o">=</span><span class="n">features</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">predictions</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Infine, è in teoria possibile utilizzare l’albero ottenuto per ottenere una
+classificazione per supereroi non utilizzati per costruire l’albero stesso. Per
+far questo è però necessario tradurre i valori categorici in numeri,
+riutilizzando i <code class="docutils literal notranslate"><span class="pre">LabelEncoder</span></code> precedentemente preparati. Per comodità,
+costruiamo una funzione che si occupi di effettuare questa trasformazione.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">filter</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+    <span class="n">transformed_obj</span> <span class="o">=</span> <span class="n">obj</span><span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">:</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">]</span>
+    <span class="n">transformed_obj</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gender_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="n">transformed_obj</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]])[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">transformed_obj</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">eye_col_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="n">transformed_obj</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">]])[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">transformed_obj</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hair_col_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="n">transformed_obj</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">]])[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">transformed_obj</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">intelligence_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="n">transformed_obj</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">]])[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">transformed_obj</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Possiamo quindi trasformare, per esempio, un supereroe e verificare a quale
+etichetta esso viene associato.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="nb">filter</span><span class="p">(</span><span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Professor X&#39;</span><span class="p">])])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Il risultato ottenuto deve metterci in guardia: non necessariamente infatti un
+buon compoartamento degli alberi di decisione sui dati utilizzati per
+costruirli è associato a un analogo comportamento nell’<em>indurre</em> etichette per
+dati nuovi. Le tecniche da utilizzare per valutare la cosiddetta capacità di
+<em>generalizzazione</em> a nuovi casi esulano però dallo scopo del nostro corso.</p>
+<p>In linea di principio gli alberi di decisione si possono costruire utilizzando
+un qualsiasi indice che valuti l’eterogeneità: la libreria sklearn supporta la
+scelta di questo criterio attraverso l’argomento opzionale <code class="docutils literal notranslate"><span class="pre">criterion</span></code> passato
+al costruttore di <code class="docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code>. Il valore predefinito è <code class="docutils literal notranslate"><span class="pre">'gini'</span></code>,
+corrispondente ovviamente all’indice di Gini, ma è anche possibile specificare
+<code class="docutils literal notranslate"><span class="pre">'entropy'</span></code> nel caso in cui si volesse utilizzare l’entropia. Ovviamente
+l’albero ottenuto usando l’entropia non è necessariamente uguale a quello che
+si ottiene con l’indice di Gini. Per il nostro esempio, l’unica differenza
+risiede nel nodo di scelta al di sotto della radice, che sarebbe basato
+sull’attributo “Intelligence” invece che su “Eye color”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;entropy&#39;</span><span class="p">)</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">export_graphviz</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">out_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                    <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;bad guy&#39;</span><span class="p">,</span> <span class="s1">&#39;good guy&#39;</span><span class="p">],</span>
+                                    <span class="n">feature_names</span><span class="o">=</span><span class="n">features</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -477,34 +1447,42 @@
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="covarianza-e-correlazione.html" title="previous page"><span class="section-number">2.4. </span>Covarianza e correlazione</a>
-    <a class='right-next' id="next-link" href="concentrazione.html" title="next page"><span class="section-number">2.6. </span>Concentrazione</a>
-
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="covarianza-e-correlazione.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">7.4. </span>Covarianza e correlazione</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="concentrazione.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">7.6. </span>Indici di concentrazione</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Dario Malchiodi<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+    <footer class="footer">
+  <p>
+    
+      By Dario Malchiodi<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>
