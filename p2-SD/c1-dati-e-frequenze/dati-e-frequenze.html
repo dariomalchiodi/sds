@@ -239,7 +239,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c2-indici-statistici/indici-di-dispersione.html">
-     7.2. Indici di dipsersione
+     7.2. Calcolo della dispersione in pandas
     </a>
    </li>
    <li class="toctree-l2">
@@ -264,12 +264,17 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c2-indici-statistici/trasformazioni-dei-dati.html">
-     7.7. Trasformazioni dei dati
+     7.7. Trasformazione dei dati
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c2-indici-statistici/analisi-della-varianza.html">
      7.8. Analisi della varianza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-indici-statistici/analisi-di-classificatori.html">
+     7.9. Analisi di classificatori
     </a>
    </li>
   </ul>
@@ -1826,10 +1831,11 @@ Nella cella precedente sono state utilizzate le funzioni `np.hstack`, che permet
 </div>
 </div>
 <p>Quando i valori osservati sono di tipo numerico o ordinabile, uno strumento molto simile a quello delle frequenze relative cumulate è rappresentato dalla <em>funzione cumulativa empirica</em> (o <em>funzione di ripartizione empirica</em>), che dato un insieme di osservazioni <span class="math notranslate nohighlight">\(\{ x_1, \dots, x_n \}\)</span>, è definita come quella funzione <span class="math notranslate nohighlight">\(\hat F: \mathbb R \mapsto [0, 1]\)</span> tale che per ogni <span class="math notranslate nohighlight">\(x \in \mathbb R\)</span> assume un valore pari alla frequenza relativa delle osservazioni che risultano essere minori o uguali a <span class="math notranslate nohighlight">\(x\)</span>. Pertanto</p>
-<p>\begin{equation}
-\hat F(x) = \frac{# { x_i \leq x }}{n}
+<div class="amsmath math notranslate nohighlight" id="equation-8c4cf45d-0fac-4cac-b4cf-1a02c1f991b1">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-8c4cf45d-0fac-4cac-b4cf-1a02c1f991b1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\hat F(x) = \frac{\# \{ x_i \leq x \}}{n}
 = \frac{1}{n} \sum_{i=1}^n \mathrm I_{(-\infty, x]}(x_i) ,
-\end{equation}</p>
+\end{equation}\]</div>
 <p>dove <span class="math notranslate nohighlight">\(\mathrm I_A: \mathbb R \mapsto \{0, 1\}\)</span> indica la <em>funzione indicatrice</em> dell’insieme <span class="math notranslate nohighlight">\(A\)</span>, che assume valore nullo in corrispondenza di tutti gli argomenti che non appartengono ad <span class="math notranslate nohighlight">\(A\)</span> e valore unitario altrimenti, e <span class="math notranslate nohighlight">\((-\infty, x]\)</span> indica l’intervallo semiaperto identificato da tutti i valori reali minori o uguali a <span class="math notranslate nohighlight">\(x\)</span>. Per un generico argomento <span class="math notranslate nohighlight">\(x\)</span>, la funzione cumulativa empirica assumerà pertanto come valore la frequenza relativa cumulata del più grande tra i valori osservati <span class="math notranslate nohighlight">\(x_i \leq x\)</span>. Dunque il suo grafico sarà quello di una funzione costante a tratti. In python è presente un’implementazione della funzione cumulativa empirica nel modulo <code class="docutils literal notranslate"><span class="pre">statmodels.api</span></code>: la funzione <code class="docutils literal notranslate"><span class="pre">distributions.ECDF</span></code> accetta come input un insieme di osservazioni e restituisce la corrispondente funzione cumulativa empirica. Possiamo quindi elaborare in tal senso gli anni di prima apparizione e visualizzare il grafico corrispondente agli anni tra il 1980 e il 1990, così da poter effettuare un confronto con l’analogo grafico precedentemente generato:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

@@ -239,7 +239,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="indici-di-dispersione.html">
-     7.2. Indici di dipsersione
+     7.2. Calcolo della dispersione in pandas
     </a>
    </li>
    <li class="toctree-l2">
@@ -264,12 +264,17 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="trasformazioni-dei-dati.html">
-     7.7. Trasformazioni dei dati
+     7.7. Trasformazione dei dati
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="analisi-della-varianza.html">
      7.8. Analisi della varianza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="analisi-di-classificatori.html">
+     7.9. Analisi di classificatori
     </a>
    </li>
   </ul>
@@ -555,9 +560,10 @@ valore si presenta con la stessa frequenza.</p>
 <p>Dato un campione <span class="math notranslate nohighlight">\(\{ a_1, \dots, a_n \}\)</span> in cui occorrono i valori distinti
 <span class="math notranslate nohighlight">\(v_1, \dots, v_s\)</span> e indicando con <span class="math notranslate nohighlight">\(f_i\)</span> la frequenza relativa dell’elemento
 <span class="math notranslate nohighlight">\(v_i\)</span> per <span class="math notranslate nohighlight">\(i = 1, \dots, s\)</span>, la quantità</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 I = 1 - \sum_{i=1}^s f_i^2
-\end{equation}</p>
+\]</div>
 <p>è detta <em>indice di eterogeneità di Gini</em>. Si noti che:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(0 \leq I &lt; 1\)</span>, in quanto:</p>
@@ -578,9 +584,10 @@ medesima frequenza <span class="math notranslate nohighlight">\(f_i = \frac{1}{s
 <p>Nel caso in cui si voglia operare con un indice che assuma valori tra <span class="math notranslate nohighlight">\(0\)</span> e <span class="math notranslate nohighlight">\(1\)</span>,
 è possibile dividere l’indice di Gini per il valore massimo <span class="math notranslate nohighlight">\(\frac{s-1}{s}\)</span>,
 ottenendo il cosiddetto <em>indice di Gini normalizzato</em>:</p>
-<p>\begin{equation}
-I’ = \frac{s \cdot I}{s-1}
-\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[
+I' = \frac{s \cdot I}{s-1}
+\]</div>
 <p>Consideriamo il grafico seguente, che traccia l’andamento dell’indice di Gini
 nel caso di due valori distinti <span class="math notranslate nohighlight">\(v_1\)</span> e <span class="math notranslate nohighlight">\(v_2\)</span>, di cui indicheremo
 rispettivamente con <span class="math notranslate nohighlight">\(f\)</span> e <span class="math notranslate nohighlight">\(1-f\)</span> le frequenze relative.</p>
@@ -700,9 +707,10 @@ preciso, calcoliamo anche la variante normalizzata dell’indice:</p>
 <p>Dato un campione <span class="math notranslate nohighlight">\(\{ a_1, \dots, a_n \}\)</span> in cui occorrono i valori distinti
 <span class="math notranslate nohighlight">\(v_1, \dots, v_s\)</span> e indicando con <span class="math notranslate nohighlight">\(f_i\)</span> la frequenza relativa dell’elemento
 <span class="math notranslate nohighlight">\(v_i\)</span> per <span class="math notranslate nohighlight">\(i = 1, \dots, s\)</span>, la quantità</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 H = \sum_{i=1}^s f_i \log \frac{1}{f_i} = - \sum_{i=1}^s f_i \log f_i
-\end{equation}</p>
+\]</div>
 <p>è detta <em>indice di entropia</em> del campione.</p>
 <p>La funzione <span class="math notranslate nohighlight">\(p \mapsto \log \frac{1}{p}\)</span> è detta <em>autoinformazione</em>, e il suo
 andamento in <span class="math notranslate nohighlight">\((0,1]\)</span> è il seguente</p>
@@ -722,6 +730,21 @@ andamento in <span class="math notranslate nohighlight">\((0,1]\)</span> è il s
 <p>In particolare la funzione vale <span class="math notranslate nohighlight">\(0\)</span> quando <span class="math notranslate nohighlight">\(p=1\)</span> e tende a infinito per <span class="math notranslate nohighlight">\(p\)</span> che
 tende a <span class="math notranslate nohighlight">\(0\)</span>. Il grafico dell’andamento di un generico addendo dell’entropia è
 il seguente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="o">-</span><span class="n">f</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">f</span><span class="p">),</span> <span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/eterogeneita_11_0.png" src="../../_images/eterogeneita_11_0.png" />
+</div>
+</div>
 <p>Il risultato ottenuto evidenzia come si possa estendere la definizione del
 generico addendo anche per <span class="math notranslate nohighlight">\(f_i = 0\)</span>, ponendolo uguale a <span class="math notranslate nohighlight">\(1\)</span>. Valgono inoltre
 le osservazioni che seguono.</p>
@@ -735,9 +758,10 @@ omogeneità (e cioè tutti gli elementi del campione assumono lo stesso valore).
 massimo.</p></li>
 </ul>
 <p>Si può pertanto definire l’<em>indice di entropia normalizzato</em></p>
-<p>\begin{equation}
-H’ = \frac{H}{\log s}
-\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[
+H' = \frac{H}{\log s}
+\]</div>
 <p>i cui valori variano tra <span class="math notranslate nohighlight">\(0\)</span> e <span class="math notranslate nohighlight">\(1\)</span>. Se il logaritmo è in base <span class="math notranslate nohighlight">\(2\)</span> (come nel
 codice che abbiamo scritto) allora l’entropia si misura in <em>bit</em>; è però
 possibile usare altre basi: per esempio, il logaritmo naturale e quello in
@@ -760,7 +784,7 @@ dell’eterogeneità e a diminuire al diminuire di quest’ultima.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/eterogeneita_11_0.png" src="../../_images/eterogeneita_11_0.png" />
+<img alt="../../_images/eterogeneita_13_0.png" src="../../_images/eterogeneita_13_0.png" />
 </div>
 </div>
 <p>Calcolando il valore dell’entropia per gli attributi precedentemente
@@ -780,7 +804,7 @@ eterogeneità.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9406863895967433
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9406863895967432
 2.7454093094041547
 3.1308603347354245
 9.470566732235026
@@ -806,10 +830,10 @@ eterogeneità.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9406863895967433
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9406863895967432
 0.5987855536380803
 0.6444776827813027
-0.9983910129552006
+0.9983910129552008
 </pre></div>
 </div>
 </div>
@@ -840,7 +864,7 @@ foglia che dice che si può uscire (<em>Yes</em>); se invece dovesse essere sole
 viene richiesto di valutare se l’umidità abbia o meno un valore inferiore a 30;
 nel primo caso si potrebbe uscire, altrimenti no. Il processo di
 classificazione funziona in modo analogo nel caso di tempo piovoso (<em>rain</em>).</p>
-<p><img alt="Esempio di albero di decisione" src="p2-SD/c2-indici-statistici/img/decision-tree.png" /></p>
+<p><img alt="Esempio di albero di decisione" src="https://miro.medium.com/max/1400/0*PB7MYQfzyaLaTp1n" /></p>
 <p>La costruzione di un albero di ricerca richiede innanzitutto di individuare un
 indice di eterogeneità. Facciamo un esempio selezioniamo l’indice di Gini e
 lavorando solo con due classi: i superori e i supercattivi, che indicheremo
@@ -1112,52 +1136,6 @@ osservazioni che soddisfano tale condizione.</p>
 </table>
 </div></div></div>
 </div>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</pre></div>
-</div>
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Black Manta</th>
-      <td>bad guy</td>
-    </tr>
-    <tr>
-      <th>Penguin</th>
-      <td>bad guy</td>
-    </tr>
-    <tr>
-      <th>Joker</th>
-      <td>bad guy</td>
-    </tr>
-    <tr>
-      <th>Deathstroke</th>
-      <td>bad guy</td>
-    </tr>
-  </tbody>
-</table>
-</div>
 <p>Il risultato è molto interessante in quanto le etichette sono tutte uguali, e quindi l’eventuale nodo successivo nell’albero sarebbe una foglia che etichetta i casi come <code class="docutils literal notranslate"><span class="pre">bad_guy</span></code>. Le cose cambiano, sebbene poco, se consideriamo le osservazioni che non soddisfano la condizione.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">40</span><span class="p">]</span>
 </pre></div>
@@ -1210,6 +1188,20 @@ analogo.</p>
 <p>Per combinare insieme i due indici al fine di esprimere in un unico valore
 l’omogeneità media dei casi suddivisi nei sottogruppi si calcola una loro
 media, pesata in funzione della numerosità dei sottogruppi stessi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weight_left</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">40</span><span class="p">])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="n">weight_right</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">40</span><span class="p">])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="n">gini_left</span> <span class="o">*</span> <span class="n">weight_left</span> <span class="o">+</span> <span class="n">gini_right</span> <span class="o">*</span> <span class="n">weight_right</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.1777777777777777
+</pre></div>
+</div>
+</div>
+</div>
 <p>Tirando le somme, utilizzando la domanda: “la forza è minore o uguale a 40?”
 come criterio per la radice dell’albero si otterrebbe una suddivisione dei dati
 a disposizione in due gruppi con un’eterogeneità media pari a circa 0.17.
@@ -1218,6 +1210,22 @@ soglia, al fine di trovare il valore che minimizza l’indice di Gini medio (e
 quindi corrisponde al caso di migliore omogeneità). Attrezziamoci per
 effettuare questo calcolo indipendentemente dalla scelta dell’attributo, del
 valore di soglia e dell’indice di eterogeneità.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">split_value</span><span class="p">(</span><span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+    <span class="n">freq</span> <span class="o">=</span> <span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="n">attribute</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">value</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">freq_bad</span> <span class="o">=</span> <span class="n">freq</span><span class="p">[</span><span class="s1">&#39;bad guy&#39;</span><span class="p">]</span>
+    <span class="n">index_left</span> <span class="o">=</span> <span class="n">index</span><span class="p">(</span><span class="n">freq_bad</span><span class="p">)</span>
+    <span class="n">weight_left</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="n">attribute</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">value</span><span class="p">])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+    <span class="n">freq</span> <span class="o">=</span> <span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="n">attribute</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">value</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">freq_bad</span> <span class="o">=</span> <span class="n">freq</span><span class="p">[</span><span class="s1">&#39;bad guy&#39;</span><span class="p">]</span>
+    <span class="n">index_right</span> <span class="o">=</span> <span class="n">index</span><span class="p">(</span><span class="n">freq_bad</span><span class="p">)</span>
+    <span class="n">weight_right</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="n">attribute</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">value</span><span class="p">])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">index_left</span> <span class="o">*</span> <span class="n">weight_left</span> <span class="o">+</span> <span class="n">index_right</span> <span class="o">*</span> <span class="n">weight_right</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>Ovviamente utilizzando la funzione <code class="docutils literal notranslate"><span class="pre">split_value</span></code> otteniamo lo stesso risultato
 se riconsideriamo una suddivisione in gruppi basata sulla soglia 40 per la
 forza.</p>
@@ -1228,12 +1236,7 @@ forza.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">Input In [16],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">split_value</span><span class="p">(</span><span class="s1">&#39;Strength&#39;</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">gini_2_val</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;split_value&#39; is not defined
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.1777777777777777
 </pre></div>
 </div>
 </div>
@@ -1251,6 +1254,9 @@ variare dei possibili valori per la soglia.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/eterogeneita_39_0.png" src="../../_images/eterogeneita_39_0.png" />
+</div>
 </div>
 <p>I risultati ottenuti ci dicono che un qualsiasi valore tra 30 e 49 massimizza
 l’omogeneità dei due sottogruppi generati. Avremmo ottenuto un risultato simile
@@ -1264,6 +1270,9 @@ se come indice di eterogeneità avessimo utilizzato l’entropia.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/eterogeneita_41_0.png" src="../../_images/eterogeneita_41_0.png" />
 </div>
 </div>
 <p>Per proseguire con la creazione dell’albero di decisione bisognerebbe applicare
@@ -1323,6 +1332,149 @@ numerici, limitatamente agli attributi cui siamo interessati.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Gender</th>
+      <th>First appearance</th>
+      <th>Hair color</th>
+      <th>Eye color</th>
+      <th>Strength</th>
+      <th>Intelligence</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Wonder Woman</th>
+      <td>183.13</td>
+      <td>74.74</td>
+      <td>0</td>
+      <td>1941.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>100.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>Aquaman</th>
+      <td>185.71</td>
+      <td>146.96</td>
+      <td>1</td>
+      <td>1941.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>85.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>Cyborg</th>
+      <td>198.12</td>
+      <td>173.81</td>
+      <td>1</td>
+      <td>1980.0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>55.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Flash II</th>
+      <td>183.41</td>
+      <td>88.32</td>
+      <td>1</td>
+      <td>1956.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>50.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>Black Manta</th>
+      <td>188.12</td>
+      <td>92.78</td>
+      <td>1</td>
+      <td>1967.0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>30.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Penguin</th>
+      <td>157.89</td>
+      <td>79.13</td>
+      <td>1</td>
+      <td>1941.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>10.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Joker</th>
+      <td>196.07</td>
+      <td>86.91</td>
+      <td>1</td>
+      <td>1940.0</td>
+      <td>2</td>
+      <td>3</td>
+      <td>10.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>Deathstroke</th>
+      <td>193.87</td>
+      <td>101.98</td>
+      <td>1</td>
+      <td>1980.0</td>
+      <td>4</td>
+      <td>1</td>
+      <td>30.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Bizarro</th>
+      <td>191.00</td>
+      <td>155.57</td>
+      <td>1</td>
+      <td>1958.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>95.0</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Usando questo <em>dataframe</em> modificato è possibile utilizzare un oggetto della
 classe <code class="docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code> per costruire l’albero di decisione, passando
@@ -1348,6 +1500,16 @@ agli oggetti di partenza.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/sklearn/base.py:450: UserWarning: X does not have valid feature names, but DecisionTreeClassifier was fitted with feature names
+  warnings.warn(
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;good guy&#39;, &#39;good guy&#39;, &#39;good guy&#39;, &#39;good guy&#39;, &#39;bad guy&#39;,
+       &#39;bad guy&#39;, &#39;bad guy&#39;, &#39;bad guy&#39;, &#39;bad guy&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
 </div>
 <p>È inoltre possibile visualizzare l’albero di decisione in forma grafica,
 utilizzando la libreria <code class="docutils literal notranslate"><span class="pre">graphviz</span></code>.</p>
@@ -1361,6 +1523,142 @@ utilizzando la libreria <code class="docutils literal notranslate"><span class="
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/graphviz/backend/execute.py:83,</span> in <span class="ni">run_check</span><span class="nt">(cmd, input_lines, encoding, capture_output, quiet, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">82</span>     <span class="k">assert</span> <span class="nb">iter</span><span class="p">(</span><span class="n">input_lines</span><span class="p">)</span> <span class="ow">is</span> <span class="n">input_lines</span>
+<span class="ne">---&gt; </span><span class="mi">83</span>     <span class="n">proc</span> <span class="o">=</span> <span class="n">_run_input_lines</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">input_lines</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">84</span> <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/graphviz/backend/execute.py:103,</span> in <span class="ni">_run_input_lines</span><span class="nt">(cmd, input_lines, kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">102</span> <span class="k">def</span> <span class="nf">_run_input_lines</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">input_lines</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">103</span>     <span class="n">popen</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">stdin</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">105</span>     <span class="n">stdin_write</span> <span class="o">=</span> <span class="n">popen</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">write</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/subprocess.py:858,</span> in <span class="ni">Popen.__init__</span><span class="nt">(self, args, bufsize, executable, stdin, stdout, stderr, preexec_fn, close_fds, shell, cwd, env, universal_newlines, startupinfo, creationflags, restore_signals, start_new_session, pass_fds, encoding, errors, text)</span>
+<span class="g g-Whitespace">    </span><span class="mi">855</span>             <span class="bp">self</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">TextIOWrapper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">856</span>                     <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">858</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_execute_child</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">executable</span><span class="p">,</span> <span class="n">preexec_fn</span><span class="p">,</span> <span class="n">close_fds</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">859</span>                         <span class="n">pass_fds</span><span class="p">,</span> <span class="n">cwd</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">860</span>                         <span class="n">startupinfo</span><span class="p">,</span> <span class="n">creationflags</span><span class="p">,</span> <span class="n">shell</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">861</span>                         <span class="n">p2cread</span><span class="p">,</span> <span class="n">p2cwrite</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">862</span>                         <span class="n">c2pread</span><span class="p">,</span> <span class="n">c2pwrite</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">863</span>                         <span class="n">errread</span><span class="p">,</span> <span class="n">errwrite</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">864</span>                         <span class="n">restore_signals</span><span class="p">,</span> <span class="n">start_new_session</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">865</span> <span class="k">except</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">866</span>     <span class="c1"># Cleanup if the child failed starting.</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/subprocess.py:1704,</span> in <span class="ni">Popen._execute_child</span><span class="nt">(self, args, executable, preexec_fn, close_fds, pass_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore_signals, start_new_session)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1703</span>         <span class="n">err_msg</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">strerror</span><span class="p">(</span><span class="n">errno_num</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1704</span>     <span class="k">raise</span> <span class="n">child_exception_type</span><span class="p">(</span><span class="n">errno_num</span><span class="p">,</span> <span class="n">err_msg</span><span class="p">,</span> <span class="n">err_filename</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1705</span> <span class="k">raise</span> <span class="n">child_exception_type</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: PosixPath(&#39;dot&#39;)
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">ExecutableNotFound</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/IPython/core/formatters.py:973,</span> in <span class="ni">MimeBundleFormatter.__call__</span><span class="nt">(self, obj, include, exclude)</span>
+<span class="g g-Whitespace">    </span><span class="mi">970</span>     <span class="n">method</span> <span class="o">=</span> <span class="n">get_real_method</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_method</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">972</span>     <span class="k">if</span> <span class="n">method</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">973</span>         <span class="k">return</span> <span class="n">method</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="n">include</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">974</span>     <span class="k">return</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">975</span> <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/graphviz/jupyter_integration.py:98,</span> in <span class="ni">JupyterIntegration._repr_mimebundle_</span><span class="nt">(self, include, exclude, **_)</span>
+<span class="g g-Whitespace">     </span><span class="mi">96</span> <span class="n">include</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">include</span><span class="p">)</span> <span class="k">if</span> <span class="n">include</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_jupyter_mimetype</span><span class="p">}</span>
+<span class="g g-Whitespace">     </span><span class="mi">97</span> <span class="n">include</span> <span class="o">-=</span> <span class="nb">set</span><span class="p">(</span><span class="n">exclude</span> <span class="ow">or</span> <span class="p">[])</span>
+<span class="ne">---&gt; </span><span class="mi">98</span> <span class="k">return</span> <span class="p">{</span><span class="n">mimetype</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">)()</span>
+<span class="nn">     99         for mimetype, method_name</span> in <span class="ni">MIME_TYPES.items</span><span class="nt">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">100</span>         <span class="k">if</span> <span class="n">mimetype</span> <span class="ow">in</span> <span class="n">include</span><span class="p">}</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/graphviz/jupyter_integration.py:98,</span> in <span class="ni">&lt;dictcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">     </span><span class="mi">96</span> <span class="n">include</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">include</span><span class="p">)</span> <span class="k">if</span> <span class="n">include</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_jupyter_mimetype</span><span class="p">}</span>
+<span class="g g-Whitespace">     </span><span class="mi">97</span> <span class="n">include</span> <span class="o">-=</span> <span class="nb">set</span><span class="p">(</span><span class="n">exclude</span> <span class="ow">or</span> <span class="p">[])</span>
+<span class="ne">---&gt; </span><span class="mi">98</span> <span class="k">return</span> <span class="p">{</span><span class="n">mimetype</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">)()</span>
+<span class="nn">     99         for mimetype, method_name</span> in <span class="ni">MIME_TYPES.items</span><span class="nt">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">100</span>         <span class="k">if</span> <span class="n">mimetype</span> <span class="ow">in</span> <span class="n">include</span><span class="p">}</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/graphviz/jupyter_integration.py:112,</span> in <span class="ni">JupyterIntegration._repr_image_svg_xml</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">110</span> <span class="k">def</span> <span class="nf">_repr_image_svg_xml</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">111</span>     <span class="sd">&quot;&quot;&quot;Return the rendered graph as SVG string.&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">112</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;svg&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">SVG_ENCODING</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/graphviz/piping.py:99,</span> in <span class="ni">Pipe.pipe</span><span class="nt">(self, format, renderer, formatter, quiet, engine, encoding)</span>
+<span class="g g-Whitespace">     </span><span class="mi">52</span> <span class="k">def</span> <span class="nf">pipe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">53</span>          <span class="nb">format</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">54</span>          <span class="n">renderer</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">57</span>          <span class="n">engine</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">58</span>          <span class="n">encoding</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="g g-Whitespace">     </span><span class="mi">59</span>     <span class="sd">&quot;&quot;&quot;Return the source piped through the Graphviz layout command.</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">61</span><span class="sd">     Args:</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">     </span><span class="mi">97</span><span class="sd">         &#39;&lt;?xml version=&#39;</span>
+<span class="g g-Whitespace">     </span><span class="mi">98</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">99</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pipe_legacy</span><span class="p">(</span><span class="nb">format</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">100</span>                              <span class="n">renderer</span><span class="o">=</span><span class="n">renderer</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">101</span>                              <span class="n">formatter</span><span class="o">=</span><span class="n">formatter</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">102</span>                              <span class="n">quiet</span><span class="o">=</span><span class="n">quiet</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">103</span>                              <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">104</span>                              <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/graphviz/_tools.py:172,</span> in <span class="ni">deprecate_positional_args.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">163</span>     <span class="n">wanted</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">=</span><span class="si">{</span><span class="n">value</span><span class="si">!r}</span><span class="s1">&#39;</span>
+<span class="nn">    164                        for name, value</span> in <span class="ni">deprecated.items</span><span class="nt">())</span>
+<span class="g g-Whitespace">    </span><span class="mi">165</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The signature of </span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1"> will be reduced&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">166</span>                   <span class="sa">f</span><span class="s1">&#39; to </span><span class="si">{</span><span class="n">supported_number</span><span class="si">}</span><span class="s1"> positional args&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">167</span>                   <span class="sa">f</span><span class="s1">&#39; </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">supported</span><span class="p">)</span><span class="si">}</span><span class="s1">: pass </span><span class="si">{</span><span class="n">wanted</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">168</span>                   <span class="s1">&#39; as keyword arg(s)&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">169</span>                   <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">170</span>                   <span class="n">category</span><span class="o">=</span><span class="n">category</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">172</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/graphviz/piping.py:114,</span> in <span class="ni">Pipe._pipe_legacy</span><span class="nt">(self, format, renderer, formatter, quiet, engine, encoding)</span>
+<span class="g g-Whitespace">    </span><span class="mi">106</span> <span class="nd">@_tools</span><span class="o">.</span><span class="n">deprecate_positional_args</span><span class="p">(</span><span class="n">supported_number</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">107</span> <span class="k">def</span> <span class="nf">_pipe_legacy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">108</span>                  <span class="nb">format</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">112</span>                  <span class="n">engine</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">113</span>                  <span class="n">encoding</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="ne">--&gt; </span><span class="mi">114</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pipe_future</span><span class="p">(</span><span class="nb">format</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span>                              <span class="n">renderer</span><span class="o">=</span><span class="n">renderer</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span>                              <span class="n">formatter</span><span class="o">=</span><span class="n">formatter</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span>                              <span class="n">quiet</span><span class="o">=</span><span class="n">quiet</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span>                              <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">119</span>                              <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/graphviz/piping.py:139,</span> in <span class="ni">Pipe._pipe_future</span><span class="nt">(self, format, renderer, formatter, quiet, engine, encoding)</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span> <span class="k">if</span> <span class="n">encoding</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">137</span>     <span class="k">if</span> <span class="n">codecs</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="n">encoding</span><span class="p">)</span> <span class="ow">is</span> <span class="n">codecs</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">encoding</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">138</span>         <span class="c1"># common case: both stdin and stdout need the same encoding</span>
+<span class="ne">--&gt; </span><span class="mi">139</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pipe_lines_string</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">140</span>     <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">141</span>         <span class="n">raw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pipe_lines</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">input_encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/graphviz/backend/piping.py:196,</span> in <span class="ni">pipe_lines_string</span><span class="nt">(engine, format, input_lines, encoding, renderer, formatter, quiet)</span>
+<span class="g g-Whitespace">    </span><span class="mi">192</span> <span class="n">cmd</span> <span class="o">=</span> <span class="n">dot_command</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="n">engine</span><span class="p">,</span> <span class="nb">format</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">193</span>                           <span class="n">renderer</span><span class="o">=</span><span class="n">renderer</span><span class="p">,</span> <span class="n">formatter</span><span class="o">=</span><span class="n">formatter</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">194</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;input_lines&#39;</span><span class="p">:</span> <span class="n">input_lines</span><span class="p">,</span> <span class="s1">&#39;encoding&#39;</span><span class="p">:</span> <span class="n">encoding</span><span class="p">}</span>
+<span class="ne">--&gt; </span><span class="mi">196</span> <span class="n">proc</span> <span class="o">=</span> <span class="n">execute</span><span class="o">.</span><span class="n">run_check</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="n">quiet</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">197</span> <span class="k">return</span> <span class="n">proc</span><span class="o">.</span><span class="n">stdout</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/graphviz/backend/execute.py:88,</span> in <span class="ni">run_check</span><span class="nt">(cmd, input_lines, encoding, capture_output, quiet, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">86</span> <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">87</span>     <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">errno</span> <span class="o">==</span> <span class="n">errno</span><span class="o">.</span><span class="n">ENOENT</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">88</span>         <span class="k">raise</span> <span class="n">ExecutableNotFound</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
+<span class="g g-Whitespace">     </span><span class="mi">89</span>     <span class="k">raise</span>
+<span class="g g-Whitespace">     </span><span class="mi">91</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">quiet</span> <span class="ow">and</span> <span class="n">proc</span><span class="o">.</span><span class="n">stderr</span><span class="p">:</span>
+
+<span class="ne">ExecutableNotFound</span>: failed to execute PosixPath(&#39;dot&#39;), make sure the Graphviz executables are on your systems&#39; PATH
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;graphviz.sources.Source at 0x7f795de12880&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1368,6 +1666,76 @@ utilizzando la libreria <code class="docutils literal notranslate"><span class="
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Wonder Woman</td>
+      <td>Aquaman</td>
+      <td>Cyborg</td>
+      <td>Flash II</td>
+      <td>Black Manta</td>
+      <td>Penguin</td>
+      <td>Joker</td>
+      <td>Deathstroke</td>
+      <td>Bizarro</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>good guy</td>
+      <td>good guy</td>
+      <td>good guy</td>
+      <td>good guy</td>
+      <td>bad guy</td>
+      <td>bad guy</td>
+      <td>bad guy</td>
+      <td>bad guy</td>
+      <td>bad guy</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>good guy</td>
+      <td>good guy</td>
+      <td>good guy</td>
+      <td>good guy</td>
+      <td>bad guy</td>
+      <td>bad guy</td>
+      <td>bad guy</td>
+      <td>bad guy</td>
+      <td>bad guy</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Infine, è in teoria possibile utilizzare l’albero ottenuto per ottenere una
 classificazione per supereroi non utilizzati per costruire l’albero stesso. Per
@@ -1395,6 +1763,15 @@ etichetta esso viene associato.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/sklearn/base.py:450: UserWarning: X does not have valid feature names, but DecisionTreeClassifier was fitted with feature names
+  warnings.warn(
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;bad guy&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
 </div>
 <p>Il risultato ottenuto deve metterci in guardia: non necessariamente infatti un
 buon compoartamento degli alberi di decisione sui dati utilizzati per
@@ -1418,6 +1795,142 @@ sull’attributo “Intelligence” invece che su “Eye color”.</p>
 <span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">export_graphviz</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">out_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                     <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;bad guy&#39;</span><span class="p">,</span> <span class="s1">&#39;good guy&#39;</span><span class="p">],</span>
                                     <span class="n">feature_names</span><span class="o">=</span><span class="n">features</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/graphviz/backend/execute.py:83,</span> in <span class="ni">run_check</span><span class="nt">(cmd, input_lines, encoding, capture_output, quiet, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">82</span>     <span class="k">assert</span> <span class="nb">iter</span><span class="p">(</span><span class="n">input_lines</span><span class="p">)</span> <span class="ow">is</span> <span class="n">input_lines</span>
+<span class="ne">---&gt; </span><span class="mi">83</span>     <span class="n">proc</span> <span class="o">=</span> <span class="n">_run_input_lines</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">input_lines</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">84</span> <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/graphviz/backend/execute.py:103,</span> in <span class="ni">_run_input_lines</span><span class="nt">(cmd, input_lines, kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">102</span> <span class="k">def</span> <span class="nf">_run_input_lines</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">input_lines</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">103</span>     <span class="n">popen</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">stdin</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">105</span>     <span class="n">stdin_write</span> <span class="o">=</span> <span class="n">popen</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">write</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/subprocess.py:858,</span> in <span class="ni">Popen.__init__</span><span class="nt">(self, args, bufsize, executable, stdin, stdout, stderr, preexec_fn, close_fds, shell, cwd, env, universal_newlines, startupinfo, creationflags, restore_signals, start_new_session, pass_fds, encoding, errors, text)</span>
+<span class="g g-Whitespace">    </span><span class="mi">855</span>             <span class="bp">self</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">TextIOWrapper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">856</span>                     <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">858</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_execute_child</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">executable</span><span class="p">,</span> <span class="n">preexec_fn</span><span class="p">,</span> <span class="n">close_fds</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">859</span>                         <span class="n">pass_fds</span><span class="p">,</span> <span class="n">cwd</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">860</span>                         <span class="n">startupinfo</span><span class="p">,</span> <span class="n">creationflags</span><span class="p">,</span> <span class="n">shell</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">861</span>                         <span class="n">p2cread</span><span class="p">,</span> <span class="n">p2cwrite</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">862</span>                         <span class="n">c2pread</span><span class="p">,</span> <span class="n">c2pwrite</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">863</span>                         <span class="n">errread</span><span class="p">,</span> <span class="n">errwrite</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">864</span>                         <span class="n">restore_signals</span><span class="p">,</span> <span class="n">start_new_session</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">865</span> <span class="k">except</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">866</span>     <span class="c1"># Cleanup if the child failed starting.</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/subprocess.py:1704,</span> in <span class="ni">Popen._execute_child</span><span class="nt">(self, args, executable, preexec_fn, close_fds, pass_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore_signals, start_new_session)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1703</span>         <span class="n">err_msg</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">strerror</span><span class="p">(</span><span class="n">errno_num</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1704</span>     <span class="k">raise</span> <span class="n">child_exception_type</span><span class="p">(</span><span class="n">errno_num</span><span class="p">,</span> <span class="n">err_msg</span><span class="p">,</span> <span class="n">err_filename</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1705</span> <span class="k">raise</span> <span class="n">child_exception_type</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: PosixPath(&#39;dot&#39;)
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">ExecutableNotFound</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/IPython/core/formatters.py:973,</span> in <span class="ni">MimeBundleFormatter.__call__</span><span class="nt">(self, obj, include, exclude)</span>
+<span class="g g-Whitespace">    </span><span class="mi">970</span>     <span class="n">method</span> <span class="o">=</span> <span class="n">get_real_method</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_method</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">972</span>     <span class="k">if</span> <span class="n">method</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">973</span>         <span class="k">return</span> <span class="n">method</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="n">include</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">974</span>     <span class="k">return</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">975</span> <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/graphviz/jupyter_integration.py:98,</span> in <span class="ni">JupyterIntegration._repr_mimebundle_</span><span class="nt">(self, include, exclude, **_)</span>
+<span class="g g-Whitespace">     </span><span class="mi">96</span> <span class="n">include</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">include</span><span class="p">)</span> <span class="k">if</span> <span class="n">include</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_jupyter_mimetype</span><span class="p">}</span>
+<span class="g g-Whitespace">     </span><span class="mi">97</span> <span class="n">include</span> <span class="o">-=</span> <span class="nb">set</span><span class="p">(</span><span class="n">exclude</span> <span class="ow">or</span> <span class="p">[])</span>
+<span class="ne">---&gt; </span><span class="mi">98</span> <span class="k">return</span> <span class="p">{</span><span class="n">mimetype</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">)()</span>
+<span class="nn">     99         for mimetype, method_name</span> in <span class="ni">MIME_TYPES.items</span><span class="nt">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">100</span>         <span class="k">if</span> <span class="n">mimetype</span> <span class="ow">in</span> <span class="n">include</span><span class="p">}</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/graphviz/jupyter_integration.py:98,</span> in <span class="ni">&lt;dictcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">     </span><span class="mi">96</span> <span class="n">include</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">include</span><span class="p">)</span> <span class="k">if</span> <span class="n">include</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_jupyter_mimetype</span><span class="p">}</span>
+<span class="g g-Whitespace">     </span><span class="mi">97</span> <span class="n">include</span> <span class="o">-=</span> <span class="nb">set</span><span class="p">(</span><span class="n">exclude</span> <span class="ow">or</span> <span class="p">[])</span>
+<span class="ne">---&gt; </span><span class="mi">98</span> <span class="k">return</span> <span class="p">{</span><span class="n">mimetype</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">)()</span>
+<span class="nn">     99         for mimetype, method_name</span> in <span class="ni">MIME_TYPES.items</span><span class="nt">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">100</span>         <span class="k">if</span> <span class="n">mimetype</span> <span class="ow">in</span> <span class="n">include</span><span class="p">}</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/graphviz/jupyter_integration.py:112,</span> in <span class="ni">JupyterIntegration._repr_image_svg_xml</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">110</span> <span class="k">def</span> <span class="nf">_repr_image_svg_xml</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">111</span>     <span class="sd">&quot;&quot;&quot;Return the rendered graph as SVG string.&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">112</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;svg&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">SVG_ENCODING</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/graphviz/piping.py:99,</span> in <span class="ni">Pipe.pipe</span><span class="nt">(self, format, renderer, formatter, quiet, engine, encoding)</span>
+<span class="g g-Whitespace">     </span><span class="mi">52</span> <span class="k">def</span> <span class="nf">pipe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">53</span>          <span class="nb">format</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">54</span>          <span class="n">renderer</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">57</span>          <span class="n">engine</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">58</span>          <span class="n">encoding</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="g g-Whitespace">     </span><span class="mi">59</span>     <span class="sd">&quot;&quot;&quot;Return the source piped through the Graphviz layout command.</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">61</span><span class="sd">     Args:</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">     </span><span class="mi">97</span><span class="sd">         &#39;&lt;?xml version=&#39;</span>
+<span class="g g-Whitespace">     </span><span class="mi">98</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">99</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pipe_legacy</span><span class="p">(</span><span class="nb">format</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">100</span>                              <span class="n">renderer</span><span class="o">=</span><span class="n">renderer</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">101</span>                              <span class="n">formatter</span><span class="o">=</span><span class="n">formatter</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">102</span>                              <span class="n">quiet</span><span class="o">=</span><span class="n">quiet</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">103</span>                              <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">104</span>                              <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/graphviz/_tools.py:172,</span> in <span class="ni">deprecate_positional_args.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">163</span>     <span class="n">wanted</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">=</span><span class="si">{</span><span class="n">value</span><span class="si">!r}</span><span class="s1">&#39;</span>
+<span class="nn">    164                        for name, value</span> in <span class="ni">deprecated.items</span><span class="nt">())</span>
+<span class="g g-Whitespace">    </span><span class="mi">165</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The signature of </span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1"> will be reduced&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">166</span>                   <span class="sa">f</span><span class="s1">&#39; to </span><span class="si">{</span><span class="n">supported_number</span><span class="si">}</span><span class="s1"> positional args&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">167</span>                   <span class="sa">f</span><span class="s1">&#39; </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">supported</span><span class="p">)</span><span class="si">}</span><span class="s1">: pass </span><span class="si">{</span><span class="n">wanted</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">168</span>                   <span class="s1">&#39; as keyword arg(s)&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">169</span>                   <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">170</span>                   <span class="n">category</span><span class="o">=</span><span class="n">category</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">172</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/graphviz/piping.py:114,</span> in <span class="ni">Pipe._pipe_legacy</span><span class="nt">(self, format, renderer, formatter, quiet, engine, encoding)</span>
+<span class="g g-Whitespace">    </span><span class="mi">106</span> <span class="nd">@_tools</span><span class="o">.</span><span class="n">deprecate_positional_args</span><span class="p">(</span><span class="n">supported_number</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">107</span> <span class="k">def</span> <span class="nf">_pipe_legacy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">108</span>                  <span class="nb">format</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">112</span>                  <span class="n">engine</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">113</span>                  <span class="n">encoding</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="ne">--&gt; </span><span class="mi">114</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pipe_future</span><span class="p">(</span><span class="nb">format</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span>                              <span class="n">renderer</span><span class="o">=</span><span class="n">renderer</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span>                              <span class="n">formatter</span><span class="o">=</span><span class="n">formatter</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span>                              <span class="n">quiet</span><span class="o">=</span><span class="n">quiet</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span>                              <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">119</span>                              <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/graphviz/piping.py:139,</span> in <span class="ni">Pipe._pipe_future</span><span class="nt">(self, format, renderer, formatter, quiet, engine, encoding)</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span> <span class="k">if</span> <span class="n">encoding</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">137</span>     <span class="k">if</span> <span class="n">codecs</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="n">encoding</span><span class="p">)</span> <span class="ow">is</span> <span class="n">codecs</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">encoding</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">138</span>         <span class="c1"># common case: both stdin and stdout need the same encoding</span>
+<span class="ne">--&gt; </span><span class="mi">139</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pipe_lines_string</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">140</span>     <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">141</span>         <span class="n">raw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pipe_lines</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">input_encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/graphviz/backend/piping.py:196,</span> in <span class="ni">pipe_lines_string</span><span class="nt">(engine, format, input_lines, encoding, renderer, formatter, quiet)</span>
+<span class="g g-Whitespace">    </span><span class="mi">192</span> <span class="n">cmd</span> <span class="o">=</span> <span class="n">dot_command</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="n">engine</span><span class="p">,</span> <span class="nb">format</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">193</span>                           <span class="n">renderer</span><span class="o">=</span><span class="n">renderer</span><span class="p">,</span> <span class="n">formatter</span><span class="o">=</span><span class="n">formatter</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">194</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;input_lines&#39;</span><span class="p">:</span> <span class="n">input_lines</span><span class="p">,</span> <span class="s1">&#39;encoding&#39;</span><span class="p">:</span> <span class="n">encoding</span><span class="p">}</span>
+<span class="ne">--&gt; </span><span class="mi">196</span> <span class="n">proc</span> <span class="o">=</span> <span class="n">execute</span><span class="o">.</span><span class="n">run_check</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="n">quiet</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">197</span> <span class="k">return</span> <span class="n">proc</span><span class="o">.</span><span class="n">stdout</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/graphviz/backend/execute.py:88,</span> in <span class="ni">run_check</span><span class="nt">(cmd, input_lines, encoding, capture_output, quiet, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">86</span> <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">87</span>     <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">errno</span> <span class="o">==</span> <span class="n">errno</span><span class="o">.</span><span class="n">ENOENT</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">88</span>         <span class="k">raise</span> <span class="n">ExecutableNotFound</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
+<span class="g g-Whitespace">     </span><span class="mi">89</span>     <span class="k">raise</span>
+<span class="g g-Whitespace">     </span><span class="mi">91</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">quiet</span> <span class="ow">and</span> <span class="n">proc</span><span class="o">.</span><span class="n">stderr</span><span class="p">:</span>
+
+<span class="ne">ExecutableNotFound</span>: failed to execute PosixPath(&#39;dot&#39;), make sure the Graphviz executables are on your systems&#39; PATH
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;graphviz.sources.Source at 0x7f79661c3b50&gt;
 </pre></div>
 </div>
 </div>

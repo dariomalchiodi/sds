@@ -58,7 +58,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="7.7. Trasformazioni dei dati" href="trasformazioni-dei-dati.html" />
+    <link rel="next" title="7.7. Trasformazione dei dati" href="trasformazioni-dei-dati.html" />
     <link rel="prev" title="7.5. Indici di eterogeneità" href="eterogeneita.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -239,7 +239,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="indici-di-dispersione.html">
-     7.2. Indici di dipsersione
+     7.2. Calcolo della dispersione in pandas
     </a>
    </li>
    <li class="toctree-l2">
@@ -264,12 +264,17 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="trasformazioni-dei-dati.html">
-     7.7. Trasformazioni dei dati
+     7.7. Trasformazione dei dati
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="analisi-della-varianza.html">
      7.8. Analisi della varianza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="analisi-di-classificatori.html">
+     7.9. Analisi di classificatori
     </a>
    </li>
   </ul>
@@ -506,9 +511,10 @@ a un valore medio.</p>
 <p>Date <span class="math notranslate nohighlight">\(n\)</span> osservazioni, indichiamo con <span class="math notranslate nohighlight">\(a_1, \dots, a_n\)</span> il loro elenco una
 volta che queste sono state ordinate. Successivamente calcoliamone il valore
 medio</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 \bar a = \frac{1}{n} \sum_{i=1}^n a_i
-\end{equation}</p>
+\]</div>
 <p>e sommiamole, ottenendo <span class="math notranslate nohighlight">\(\mathrm{TOT} = n \bar a = \sum_{i=1}^n a_i\)</span>. Possiamo
 avere due situazioni estreme:</p>
 <ol class="simple">
@@ -677,14 +683,16 @@ situazione di concentrazione minima.</p>
 calcolato a partire dai dati, il cui valore possa facilmente essere confrontato
 con due estremi minimo e massino. In tal senso si definisce
 <em>indice di concentrazione (o coefficiente) di Gini</em> il rapporto</p>
-<p>\begin{equation}
-G = \frac{\sum_{i=1}^{n-1}F_i - Q_i}{\sum_{i=1}^{n-1}F_i}
-\end{equation}</p>
+<div class="math notranslate nohighlight">
+\[
+	G = \frac{\sum_{i=1}^{n-1}F_i - Q_i}{\sum_{i=1}^{n-1}F_i}
+\]</div>
 <p>tra la quantità <span class="math notranslate nohighlight">\(\sum_{i=1}^{n-1}F_i - Q_i\)</span> e il suo valore massimo</p>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 \sum_{i=1}^{n-1}F_i = \frac{1}{n} \sum_{i=1}^{n-1} i =
-\frac{1}{n} \frac{(n-1)n}{2} = \frac{(n-1)}{2}
-\end{equation}</p>
+                      \frac{1}{n} \frac{(n-1)n}{2} = \frac{(n-1)}{2}
+\]</div>
 <p>Per quanto appena visto,</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(0 \leq G \leq 1\)</span>, e</p></li>
@@ -747,7 +755,7 @@ forza debolmente concentrata su un sottoinsieme dei supereroi.</p>
     <a class='right-next' id="next-link" href="trasformazioni-dei-dati.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">7.7. </span>Trasformazioni dei dati</p>
+        <p class="prev-next-title"><span class="section-number">7.7. </span>Trasformazione dei dati</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

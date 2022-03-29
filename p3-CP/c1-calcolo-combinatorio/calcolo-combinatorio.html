@@ -239,7 +239,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p2-SD/c2-indici-statistici/indici-di-dispersione.html">
-     7.2. Indici di dipsersione
+     7.2. Calcolo della dispersione in pandas
     </a>
    </li>
    <li class="toctree-l2">
@@ -264,12 +264,17 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p2-SD/c2-indici-statistici/trasformazioni-dei-dati.html">
-     7.7. Trasformazioni dei dati
+     7.7. Trasformazione dei dati
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p2-SD/c2-indici-statistici/analisi-della-varianza.html">
      7.8. Analisi della varianza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/analisi-di-classificatori.html">
+     7.9. Analisi di classificatori
     </a>
    </li>
   </ul>
@@ -659,26 +664,32 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="header">
-D. Malchiodi, Superhero data science. Vol 1: probabilità e statistica: Calcolo combinatorio.
-</div>
-<hr style="width: 90%;" align="left" /><div id="h-0"></div>
-<div class="tex2jax_ignore mathjax_ignore section" id="calcolo-combinatorio">
+  <div class="tex2jax_ignore mathjax_ignore section" id="calcolo-combinatorio">
 <h1><span class="section-number">9. </span>Calcolo combinatorio<a class="headerlink" href="#calcolo-combinatorio" title="Permalink to this headline">¶</a></h1>
-<div id="h-1"></div>
 <div class="section" id="principio-fondamentale-del-calcolo-combinatorio">
 <h2><span class="section-number">9.1. </span>Principio fondamentale del calcolo combinatorio<a class="headerlink" href="#principio-fondamentale-del-calcolo-combinatorio" title="Permalink to this headline">¶</a></h2>
-<p><em>Principio fondamentale del calcolo combinatorio</em>: se ci sono <span class="math notranslate nohighlight">\(s_1\)</span> modi per operare una scelta e, per ciascuno di essi, ci sono <span class="math notranslate nohighlight">\(s_2\)</span> modi per operare una seconda scelta e, per ciascuno di essi ci sono <span class="math notranslate nohighlight">\(s_3\)</span> modi per operare una terza scelta e così via fino a <span class="math notranslate nohighlight">\(s_t\)</span> modi per operare la <span class="math notranslate nohighlight">\(t\)</span>-esima scelta, allora il numero delle sequenze di possibili scelte `e  <span class="math notranslate nohighlight">\(s_1\cdot s_2\cdot s_3\dots s_t\)</span>.</p>
-<p>Osserviamo che questo risultato corrisponde a calcolare il numero delle foglie di un albero di profondità <span class="math notranslate nohighlight">\(t\)</span> il cui primo livello ha <span class="math notranslate nohighlight">\(s_1\)</span> nodi, ciascuno dei quali ha <span class="math notranslate nohighlight">\(s_2\)</span> figli, ciascuno dei quali ha <span class="math notranslate nohighlight">\(s_3\)</span> figli e così via.</p>
-<div id="h-2"></div>
+<p><em>Principio fondamentale del calcolo combinatorio</em>: se ci sono <span class="math notranslate nohighlight">\(s_1\)</span> modi per
+operare una scelta e, per ciascuno di essi, ci sono <span class="math notranslate nohighlight">\(s_2\)</span> modi per operare
+una seconda scelta e, per ciascuno di essi ci sono <span class="math notranslate nohighlight">\(s_3\)</span> modi per operare una
+terza scelta e così via fino a <span class="math notranslate nohighlight">\(s_t\)</span> modi per operare la <span class="math notranslate nohighlight">\(t\)</span>-esima scelta,
+allora il numero delle sequenze di possibili scelte `e
+<span class="math notranslate nohighlight">\(s_1\cdot s_2\cdot s_3\dots s_t\)</span>.</p>
+<p>Osserviamo che questo risultato corrisponde a calcolare il numero delle
+foglie di un albero di profondità <span class="math notranslate nohighlight">\(t\)</span> il cui primo livello ha <span class="math notranslate nohighlight">\(s_1\)</span> nodi,
+ciascuno dei quali ha <span class="math notranslate nohighlight">\(s_2\)</span> figli, ciascuno dei quali ha <span class="math notranslate nohighlight">\(s_3\)</span> figli e così
+via.</p>
 </div>
 <div class="section" id="permutazioni">
 <h2><span class="section-number">9.2. </span>Permutazioni<a class="headerlink" href="#permutazioni" title="Permalink to this headline">¶</a></h2>
-<p>Consideriamo un insieme di <span class="math notranslate nohighlight">\(n\)</span> oggetti <span class="math notranslate nohighlight">\(A= \{ a_1,\dots a_n\}\)</span>. Chiamiamo <em>permutazione</em> degli <span class="math notranslate nohighlight">\(n\)</span> oggetti una sequenza ordinata in cui compaiono tutti gli oggetti.</p>
-<div id="h-3"></div>
+<p>Consideriamo un insieme di <span class="math notranslate nohighlight">\(n\)</span> oggetti <span class="math notranslate nohighlight">\(A= \{ a_1,\dots a_n\}\)</span>. Chiamiamo
+<em>permutazione</em> degli <span class="math notranslate nohighlight">\(n\)</span> oggetti una sequenza ordinata in cui compaiono tutti
+gli oggetti.</p>
 <div class="section" id="permutazioni-semplici">
 <h3><span class="section-number">9.2.1. </span>Permutazioni semplici<a class="headerlink" href="#permutazioni-semplici" title="Permalink to this headline">¶</a></h3>
-<p>Se gli <span class="math notranslate nohighlight">\(n\)</span> oggetti di <span class="math notranslate nohighlight">\(A\)</span> sono tutti distinguibili, allora si parla di <em>permutazione semplice</em>, o soltanto <em>permutazione</em>, degli <span class="math notranslate nohighlight">\(n\)</span> oggetti. Ad esempio, se <span class="math notranslate nohighlight">\(A= \{ a,b,c \}\)</span> allora tutte le permutazioni degli <span class="math notranslate nohighlight">\(n\)</span> oggetti sono:</p>
+<p>Se gli <span class="math notranslate nohighlight">\(n\)</span> oggetti di <span class="math notranslate nohighlight">\(A\)</span> sono tutti distinguibili, allora si parla di
+<em>permutazione semplice</em>, o soltanto <em>permutazione</em>, degli <span class="math notranslate nohighlight">\(n\)</span> oggetti. Ad
+esempio, se <span class="math notranslate nohighlight">\(A= \{ a,b,c \}\)</span> allora tutte le permutazioni degli <span class="math notranslate nohighlight">\(n\)</span> oggetti
+sono:</p>
 <table style="font-size: 1rem;">
   <tr>
     <td>a</td>
@@ -711,25 +722,62 @@ D. Malchiodi, Superhero data science. Vol 1: probabilità e statistica: Calcolo 
     <td>b</td>
   </tr>
 </table>
-<p>Quante sono le permutazioni di <span class="math notranslate nohighlight">\(n\)</span> oggetti? Per rispondere a questa domanda applichiamo il principio fondamentale del calcolo combinatorio:</p>
+<p>Quante sono le permutazioni di <span class="math notranslate nohighlight">\(n\)</span> oggetti? Per rispondere a questa domanda
+applichiamo il principio fondamentale del calcolo combinatorio:</p>
 <ul class="simple">
-<li><p>calcoliamo in quanti modi possiamo selezionare l’oggetto da inserire nella prima posizione: avendo a disposizione <span class="math notranslate nohighlight">\(n\)</span> oggetti, abbiamo <span class="math notranslate nohighlight">\(n\)</span> possibilità;</p></li>
-<li><p>per ciasuna delle <span class="math notranslate nohighlight">\(n\)</span> possibili scelte fatte al punto precedente, calcoliamo in quanti modi possiamo selezionare l’oggetto da inserire nella seconda posizione: avendo a disposizione <span class="math notranslate nohighlight">\(n-1\)</span> oggetti, abbiamo <span class="math notranslate nohighlight">\(n-1\)</span> possibilità; in totale abbiamo <span class="math notranslate nohighlight">\(n\dot(n-1)\)</span> modi differenti per scegliere il primo e il secondo elemento della sequenza;</p></li>
-<li><p>procediamo in modo analogo per tutte le altre posizioni, creando così un albero il cui livello <span class="math notranslate nohighlight">\(i\)</span> corrisponde alla scelta per riempire la posizione <span class="math notranslate nohighlight">\(i\)</span>-esima; se osserviamo che per riempire la posizione <span class="math notranslate nohighlight">\(i\)</span>-esima sono rimasti <span class="math notranslate nohighlight">\(n-(i-1)\)</span> elementi di <span class="math notranslate nohighlight">\(A\)</span> tra cui scegliere, possiamo dire che esistono <span class="math notranslate nohighlight">\(n\cdot(n-1)\dots \cdot(n-(i-1))\)</span> modi differenti per scegliere i primi <span class="math notranslate nohighlight">\(i\)</span> elementi della sequenza;</p></li>
-<li><p>in particolare, arrivati all’ultima posizione, è rimasto un solo elemento di <span class="math notranslate nohighlight">\(A\)</span> da scegliere, e abbiamo costruito un albero di profondità <span class="math notranslate nohighlight">\(n\)</span> che ha un numero di foglie pari a <span class="math notranslate nohighlight">\(n(n-1)(n-2)\dots 1=n!\)</span>.</p></li>
+<li><p>calcoliamo in quanti modi possiamo selezionare l’oggetto da inserire nella
+prima posizione: avendo a disposizione <span class="math notranslate nohighlight">\(n\)</span> oggetti, abbiamo <span class="math notranslate nohighlight">\(n\)</span>
+possibilità;</p></li>
+<li><p>per ciasuna delle <span class="math notranslate nohighlight">\(n\)</span> possibili scelte fatte al punto precedente,
+calcoliamo in quanti modi possiamo selezionare l’oggetto da inserire nella
+seconda posizione: avendo a disposizione <span class="math notranslate nohighlight">\(n-1\)</span> oggetti, abbiamo <span class="math notranslate nohighlight">\(n-1\)</span>
+possibilità; in totale abbiamo <span class="math notranslate nohighlight">\(n\dot(n-1)\)</span> modi differenti per scegliere
+il primo e il secondo elemento della sequenza;</p></li>
+<li><p>procediamo in modo analogo per tutte le altre posizioni, creando così un
+albero il cui livello <span class="math notranslate nohighlight">\(i\)</span> corrisponde alla scelta per riempire la posizione
+<span class="math notranslate nohighlight">\(i\)</span>-esima; se osserviamo che per riempire la posizione <span class="math notranslate nohighlight">\(i\)</span>-esima sono
+rimasti <span class="math notranslate nohighlight">\(n-(i-1)\)</span> elementi di <span class="math notranslate nohighlight">\(A\)</span> tra cui scegliere, possiamo dire che
+esistono <span class="math notranslate nohighlight">\(n\cdot(n-1)\dots \cdot(n-(i-1))\)</span> modi differenti per scegliere i
+primi <span class="math notranslate nohighlight">\(i\)</span> elementi della sequenza;</p></li>
+<li><p>in particolare, arrivati all’ultima posizione, è rimasto un solo elemento
+di <span class="math notranslate nohighlight">\(A\)</span> da scegliere, e abbiamo costruito un albero di profondità <span class="math notranslate nohighlight">\(n\)</span> che ha
+un numero di foglie pari a <span class="math notranslate nohighlight">\(n(n-1)(n-2)\dots 1=n!\)</span>.</p></li>
 </ul>
-<p>Quindi il numero di possibili permutazioni semplici di <span class="math notranslate nohighlight">\(n\)</span> oggetti è <span class="math notranslate nohighlight">\(n!\)</span>. Nell’esempio visto poc’anzi abbiamo elencato tutte le possibili <span class="math notranslate nohighlight">\(3! = 6\)</span> differenti permutazioni degli oggetti di <span class="math notranslate nohighlight">\(A\)</span>.</p>
-<div id="h-4"></div>
+<p>Quindi il numero di possibili permutazioni semplici di <span class="math notranslate nohighlight">\(n\)</span> oggetti è <span class="math notranslate nohighlight">\(n!\)</span>.
+Nell’esempio visto poc’anzi abbiamo elencato tutte le possibili <span class="math notranslate nohighlight">\(3! = 6\)</span>
+differenti permutazioni degli oggetti di <span class="math notranslate nohighlight">\(A\)</span>.</p>
 </div>
 <div class="section" id="permutazioni-di-oggetti-distinguibili-a-gruppi">
 <h3><span class="section-number">9.2.2. </span>Permutazioni di oggetti distinguibili a gruppi<a class="headerlink" href="#permutazioni-di-oggetti-distinguibili-a-gruppi" title="Permalink to this headline">¶</a></h3>
-<p>Se gli <span class="math notranslate nohighlight">\(n\)</span> oggetti di <span class="math notranslate nohighlight">\(A\)</span> non sono tutti distinguibili, ma sono distinguibili a gruppi di numerosità <span class="math notranslate nohighlight">\(n_1, n_2,\dots n_k\)</span> (ovviamente con <span class="math notranslate nohighlight">\(\sum_{i=1}^k n_i=n\)</span>), allora una sequenza ordinata di tali oggetti che sia distinguibile dalle altre è detta <em>permutazione di oggetti distinguibili a gruppi</em>.</p>
-<p>Ad esempio, immaginiamo che l’insieme <span class="math notranslate nohighlight">\(A= \{ a_1, a_2, b_1, b_2, b_3 \}\)</span> sia costituito da cinque caramelle di cui due (la <span class="math notranslate nohighlight">\(a_1\)</span> e la <span class="math notranslate nohighlight">\(a_2\)</span>) sono al gusto arancia e le altre tre sono al gusto banana. Dal punto di vista del gusto della caramella possiamo identificare due gruppi distinti di oggetti, uno di numerosità <span class="math notranslate nohighlight">\(n_1=2\)</span> e l’altro di numerosità  <span class="math notranslate nohighlight">\(n_2=3\)</span>.  Se ci interessa distinguere le sequenze di caramelle per i gusti che vi compaiono, allora la permutazione <span class="math notranslate nohighlight">\(a_1 a_2 b_1 b_2 b_3\)</span> è diversa da <span class="math notranslate nohighlight">\(a_1 b_1 b_2 b_3 a_2\)</span>, perché nella prima abbiamo due caramelle all’arancia iniziali e poi tre alla banana e nella seconda abbiamo una caramella all’arancia all’inizio e una alla fine della sequenza e le caramelle centrali sono alla banana. Al contrario, la permutazione
-<span class="math notranslate nohighlight">\(a_1 a_2 b_1 b_2 b_3\)</span> è indistinguibile dalla <span class="math notranslate nohighlight">\(a_2 a_1 b_1 b_2 b_3\)</span>, perché in entrambe le prime due caramelle sono all’arancia e le restanti tre sono alla banana.</p>
-<p>Quante sono dunque le permutazioni di <span class="math notranslate nohighlight">\(n\)</span> oggetti distinguibili a gruppi di numerosità <span class="math notranslate nohighlight">\(n_1, n_2,\dots n_k\)</span>?
-Torniamo al nostro esempio e fissiamo una configurazione di gusti, fissiamo cioè le posizioni in cui compare la caramella all’arancia e quelle in cui compare la caramella alla banana, per esempio la posizione 1 e la posizione 5 per l’arancia, la 2, la 3 e la 4 per la banana:</p>
+<p>Se gli <span class="math notranslate nohighlight">\(n\)</span> oggetti di <span class="math notranslate nohighlight">\(A\)</span> non sono tutti distinguibili, ma sono distinguibili
+a gruppi di numerosità <span class="math notranslate nohighlight">\(n_1, n_2,\dots n_k\)</span>
+(ovviamente con <span class="math notranslate nohighlight">\(\sum_{i=1}^k n_i=n\)</span>), allora una sequenza ordinata di tali
+oggetti che sia distinguibile dalle altre è detta <em>permutazione di oggetti
+distinguibili a gruppi</em>.</p>
+<p>Ad esempio, immaginiamo che l’insieme <span class="math notranslate nohighlight">\(A= \{ a_1, a_2, b_1, b_2, b_3 \}\)</span> sia
+costituito da cinque caramelle di cui due (la <span class="math notranslate nohighlight">\(a_1\)</span> e la <span class="math notranslate nohighlight">\(a_2\)</span>) sono al gusto
+arancia e le altre tre sono al gusto banana. Dal punto di vista del gusto
+della caramella possiamo identificare due gruppi distinti di oggetti, uno di
+numerosità <span class="math notranslate nohighlight">\(n_1=2\)</span> e l’altro di numerosità  <span class="math notranslate nohighlight">\(n_2=3\)</span>.  Se ci interessa
+distinguere le sequenze di caramelle per i gusti che vi compaiono, allora la
+permutazione <span class="math notranslate nohighlight">\(a_1 a_2 b_1 b_2 b_3\)</span> è diversa da <span class="math notranslate nohighlight">\(a_1 b_1 b_2 b_3 a_2\)</span>, perché
+nella prima abbiamo due caramelle all’arancia iniziali e poi tre alla banana
+e nella seconda abbiamo una caramella all’arancia all’inizio e una alla fine
+della sequenza e le caramelle centrali sono alla banana. Al contrario, la
+permutazione <span class="math notranslate nohighlight">\(a_1 a_2 b_1 b_2 b_3\)</span> è indistinguibile dalla
+<span class="math notranslate nohighlight">\(a_2 a_1 b_1 b_2 b_3\)</span>, perché in entrambe le prime due caramelle sono
+all’arancia e le restanti tre sono alla banana.</p>
+<p>Quante sono dunque le permutazioni di <span class="math notranslate nohighlight">\(n\)</span> oggetti distinguibili a gruppi di
+numerosità <span class="math notranslate nohighlight">\(n_1, n_2,\dots n_k\)</span>? Torniamo al nostro esempio e fissiamo una
+configurazione di gusti, fissiamo cioè le posizioni in cui compare la
+caramella all’arancia e quelle in cui compare la caramella alla banana, per
+esempio la posizione 1 e la posizione 5 per l’arancia, la 2, la 3 e la 4 per
+la banana:</p>
 <p style="text-align: center">arancia banana banana banana arancia</p>
-<p>In questo caso abbiamo solo due gruppi e quindi, fissate le posizioni di elementi del primo gruppo, automaticamente sono anche fissate quelle degli  elementi del secondo gruppo. Le permutazioni semplici che corrispondono a questa configurazione sono:</p>
+<p>In questo caso abbiamo solo due gruppi e quindi, fissate le posizioni di
+elementi del primo gruppo, automaticamente sono anche fissate quelle degli
+elementi del secondo gruppo. Le permutazioni semplici che corrispondono a
+questa configurazione sono:</p>
 <table style="font-size: 1rem;">
 <tr><td>$a_1$</td><td>$b_1$</td><td>$b_2$</td><td>$b_3$</td><td>$a_2$</td></tr>
 <tr><td>$a_1$</td><td>$b_3$</td><td>$b_1$</td><td>$b_2$</td><td>$a_2$</td></tr>
@@ -744,68 +792,125 @@ Torniamo al nostro esempio e fissiamo una configurazione di gusti, fissiamo cio�
 <tr><td>$a_2$</td><td>$b_2$</td><td>$b_1$</td><td>$b_3$</td><td>$a_1$</td></tr>
 <tr><td>$a_2$</td><td>$b_1$</td><td>$b_3$</td><td>$b_2$</td><td>$a_1$</td></tr>
 </table>
-<p>e le abbiamo ottenute lasciando fissati i gusti nelle posizioni scelte e permutando su tali posizioni le caramelle del gusto corrispondente. Utilizzando il principio fondamentale del calcolo combinatorio possiamo dire che alla singola configurazione</p>
+<p>e le abbiamo ottenute lasciando fissati i gusti nelle posizioni scelte e
+permutando su tali posizioni le caramelle del gusto corrispondente.
+Utilizzando il principio fondamentale del calcolo combinatorio possiamo dire
+che alla singola configurazione</p>
 <p style="text-align: center;">arancia banana banana banana arancia</p>
 <p>corrispondono <span class="math notranslate nohighlight">\(n_1! \cdot n_2! = 2! \cdot 3! = 12\)</span> permutazioni semplici.</p>
-<p>Se chiamiamo <span class="math notranslate nohighlight">\(P_{n; n_1,\dots, n_k}\)</span> il numero di configurazioni differenti e ricordiamo che il numero di permutazioni semplici è <span class="math notranslate nohighlight">\(n!\)</span>, possiamo scrivere:</p>
-<p>\begin{equation}
+<p>Se chiamiamo <span class="math notranslate nohighlight">\(P_{n; n_1,\dots, n_k}\)</span> il numero di configurazioni differenti e
+ricordiamo che il numero di permutazioni semplici è <span class="math notranslate nohighlight">\(n!\)</span>, possiamo scrivere:</p>
+<div class="math notranslate nohighlight">
+\[
 n! = P_{n; n_1,\dots, n_k} \cdot n_1! \cdot n_2! \dots n_k!,
-\end{equation}</p>
-<p>da cui segue che il numero delle permutazioni di <span class="math notranslate nohighlight">\(n\)</span> oggetti distinguibili a gruppi di numerosità <span class="math notranslate nohighlight">\(n_1, n_2,\dots n_k\)</span> è</p>
-<p>\begin{equation}
-P_{n; n_1, \dots, n_k}=\frac{n!}{n_1!\cdot n_2! \dots n_k!}=\binom{n}{n_1!, n_2!, \dots, n_k!}.
-\end{equation}</p>
+\]</div>
+<p>da cui segue che il numero delle permutazioni di <span class="math notranslate nohighlight">\(n\)</span> oggetti distinguibili a
+gruppi di numerosità <span class="math notranslate nohighlight">\(n_1, n_2,\dots n_k\)</span> è</p>
+<div class="math notranslate nohighlight">
+\[
+P_{n; n_1, \dots, n_k} = \frac{n!}{n_1!\cdot n_2! \dots n_k!}
+                       = \binom{n}{n_1!, n_2!, \dots, n_k!}.
+\]</div>
 <p>Questa quantità è detta anche <em>coefficiente multinomiale</em>.</p>
-<div id="h-5"></div>
 </div>
 </div>
 <div class="section" id="disposizioni-e-combinazioni">
 <h2><span class="section-number">9.3. </span>Disposizioni e combinazioni<a class="headerlink" href="#disposizioni-e-combinazioni" title="Permalink to this headline">¶</a></h2>
-<p>Consideriamo un insieme di <span class="math notranslate nohighlight">\(n\)</span> oggetti distinti <span class="math notranslate nohighlight">\(A= \{ a_1,\dots a_n \}\)</span> e selezioniamo <span class="math notranslate nohighlight">\(k\)</span> oggetti di questo insieme. Le modalit`a di selezione possono essere svariate.</p>
+<p>Consideriamo un insieme di <span class="math notranslate nohighlight">\(n\)</span> oggetti distinti <span class="math notranslate nohighlight">\(A= \{ a_1,\dots a_n \}\)</span> e
+selezioniamo <span class="math notranslate nohighlight">\(k\)</span> oggetti di questo insieme. Le modalit`a di selezione
+possono essere svariate.</p>
 <ul class="simple">
-<li><p>Se vogliamo distinguere le configurazioni contenenti gli stessi oggetti ma estratti in ordine differente allora pariamo di <em>disposizioni di <span class="math notranslate nohighlight">\(n\)</span> oggetti su k posti</em>, che sono configurazioni in cui sono importanti sia l’oggetto selezionato che la sua posizione. Specifichiamo una disposizione indicando tra parentesi tonde gli oggetti estratti. Ad esempio, fissato <span class="math notranslate nohighlight">\(k=3\)</span>, la disposizione <span class="math notranslate nohighlight">\((a_i, a_j, a_r)\)</span> è diversa dalla disposizione <span class="math notranslate nohighlight">\((a_r, a_j, a_i)\)</span> perché, sebbene gli oggetti selezionati siano gli stessi, essi compaiono in ordine differente.</p></li>
-<li><p>Se invece siamo solo interessati a quali oggetti sono stati estratti e non alla loro posizione nella sequenza, allora pariamo di <em>combinazioni di <span class="math notranslate nohighlight">\(n\)</span> oggetti presi <span class="math notranslate nohighlight">\(k\)</span> alla volta</em>. Specifichiamo una combinazione indicando tra parentesi graffe gli oggetti estratti. Ad esempio, fissato <span class="math notranslate nohighlight">\(k=3\)</span>, <span class="math notranslate nohighlight">\(\{ a_i, a_j, a_r \}\)</span> e <span class="math notranslate nohighlight">\(\{ a_r, a_j, a_i \}\)</span> sono la stessa combinazione.</p></li>
+<li><p>Se vogliamo distinguere le configurazioni contenenti gli stessi oggetti ma
+estratti in ordine differente allora pariamo di <em>disposizioni di <span class="math notranslate nohighlight">\(n\)</span>
+oggetti su k posti</em>, che sono configurazioni in cui sono importanti sia
+l’oggetto selezionato che la sua posizione. Specifichiamo una disposizione
+indicando tra parentesi tonde gli oggetti estratti. Ad esempio, fissato
+<span class="math notranslate nohighlight">\(k=3\)</span>, la disposizione <span class="math notranslate nohighlight">\((a_i, a_j, a_r)\)</span> è diversa dalla disposizione
+<span class="math notranslate nohighlight">\((a_r, a_j, a_i)\)</span> perché, sebbene gli oggetti selezionati siano gli stessi,
+essi compaiono in ordine differente.</p></li>
+<li><p>Se invece siamo solo interessati a quali oggetti sono stati estratti e non
+alla loro posizione nella sequenza, allora pariamo di <em>combinazioni di <span class="math notranslate nohighlight">\(n\)</span>
+oggetti presi <span class="math notranslate nohighlight">\(k\)</span> alla volta</em>. Specifichiamo una combinazione indicando tra
+parentesi graffe gli oggetti estratti. Ad esempio, fissato <span class="math notranslate nohighlight">\(k=3\)</span>,
+<span class="math notranslate nohighlight">\(\{ a_i, a_j, a_r \}\)</span> e <span class="math notranslate nohighlight">\(\{ a_r, a_j, a_i \}\)</span> sono la stessa combinazione.</p></li>
 </ul>
 <p>Inoltre:</p>
 <ul class="simple">
-<li><p>Se gli oggetti di <span class="math notranslate nohighlight">\(A\)</span> possono essere usati una sola volta, allora parliamo di disposizioni o combinazioni <em>senza ripetizione</em>. Gli esempi di disposizioni o combinazioni visti sopra sono senza ripetizione.</p></li>
-<li><p>Se invece immaginiamo che nel selezionare ciascuno dei <span class="math notranslate nohighlight">\(k\)</span> oggetti abbiamo a disposizione sempre l’insieme <span class="math notranslate nohighlight">\(A\)</span> completo, e quindi il singolo oggetto <span class="math notranslate nohighlight">\(a_i\)</span> può essere selezionato anche più di una volta, allora parliamo di disposizioni o combinazioni <em>con ripetizione</em>. Ad esempio, fissato <span class="math notranslate nohighlight">\(k=3\)</span>, la sequenza <span class="math notranslate nohighlight">\((a_r, a_i, a_i)\)</span> è una disposizione con ripetizione perché l’oggetto <span class="math notranslate nohighlight">\(a_i\)</span> ricorre due volte, e analogamente  <span class="math notranslate nohighlight">\(\{a_r, a_i, a_i\}\)</span> è una combinazione con ripetizione.</p></li>
+<li><p>Se gli oggetti di <span class="math notranslate nohighlight">\(A\)</span> possono essere usati una sola volta, allora parliamo
+di disposizioni o combinazioni <em>senza ripetizione</em>. Gli esempi di
+disposizioni o combinazioni visti sopra sono senza ripetizione.</p></li>
+<li><p>Se invece immaginiamo che nel selezionare ciascuno dei <span class="math notranslate nohighlight">\(k\)</span> oggetti abbiamo
+a disposizione sempre l’insieme <span class="math notranslate nohighlight">\(A\)</span> completo, e quindi il singolo oggetto
+<span class="math notranslate nohighlight">\(a_i\)</span> può essere selezionato anche più di una volta, allora parliamo di
+disposizioni o combinazioni <em>con ripetizione</em>. Ad esempio, fissato <span class="math notranslate nohighlight">\(k=3\)</span>,
+la sequenza <span class="math notranslate nohighlight">\((a_r, a_i, a_i)\)</span> è una disposizione con ripetizione perché
+l’oggetto <span class="math notranslate nohighlight">\(a_i\)</span> ricorre due volte, e analogamente  <span class="math notranslate nohighlight">\(\{a_r, a_i, a_i\}\)</span> è
+una combinazione con ripetizione.</p></li>
 </ul>
-<p>Abbiamo dunque quattro possibili modi di selezionare <span class="math notranslate nohighlight">\(k\)</span> oggetti da un insieme di <span class="math notranslate nohighlight">\(n\)</span> oggetti, che corrispondono a quattro tipi di configurazioni diverse:</p>
+<p>Abbiamo dunque quattro possibili modi di selezionare <span class="math notranslate nohighlight">\(k\)</span> oggetti da un
+insieme di <span class="math notranslate nohighlight">\(n\)</span> oggetti, che corrispondono a quattro tipi di configurazioni
+diverse:</p>
 <ul class="simple">
-<li><p>le <em>disposizioni senza ripetizione</em>, dette anche <em>disposizioni semplici</em>, che richiedono ovviamente che sia <span class="math notranslate nohighlight">\(k\leq n\)</span>,</p></li>
-<li><p>le <em>combinazioni senza ripetizione</em>, dette anche <em>combinazioni semplici</em>, con <span class="math notranslate nohighlight">\(k\leq n\)</span>,</p></li>
+<li><p>le <em>disposizioni senza ripetizione</em>, dette anche <em>disposizioni semplici</em>,
+che richiedono ovviamente che sia <span class="math notranslate nohighlight">\(k\leq n\)</span>,</p></li>
+<li><p>le <em>combinazioni senza ripetizione</em>, dette anche <em>combinazioni semplici</em>,
+con <span class="math notranslate nohighlight">\(k\leq n\)</span>,</p></li>
 <li><p>le <em>disposizioni con ripetizione</em>,</p></li>
 <li><p>le <em>combinazioni con ripetizione</em>.</p></li>
 </ul>
-<p>Vediamo ora come calcolare, data una particolare modalità di selezione, il numero di possibili scelte distinte.</p>
+<p>Vediamo ora come calcolare, data una particolare modalità di selezione, il
+numero di possibili scelte distinte.</p>
 <ul class="simple">
-<li><p>Per calcolare il numero <span class="math notranslate nohighlight">\(d_{n, k}\)</span> di possibili <em>disposizioni senza ripetizione di <span class="math notranslate nohighlight">\(n\)</span> oggetti distinti su <span class="math notranslate nohighlight">\(k\)</span> posti</em> procediamo in modo analogo a quanto fatto per le permutazioni semplici, fermandoci però alla posizione <span class="math notranslate nohighlight">\(k\)</span>-esima. L’albero costruito ha profondità <span class="math notranslate nohighlight">\(k\)</span> e un numero di foglie pari a:</p></li>
+<li><p>Per calcolare il numero <span class="math notranslate nohighlight">\(d_{n, k}\)</span> di possibili <em>disposizioni senza
+ripetizione di <span class="math notranslate nohighlight">\(n\)</span> oggetti distinti su <span class="math notranslate nohighlight">\(k\)</span> posti</em> procediamo in modo
+analogo a quanto fatto per le permutazioni semplici, fermandoci però alla
+posizione <span class="math notranslate nohighlight">\(k\)</span>-esima. L’albero costruito ha profondità <span class="math notranslate nohighlight">\(k\)</span> e un numero di
+foglie pari a:</p></li>
 </ul>
-<p>\begin{align}
-d_{n, k} &amp;= n (n-1) (n-2) \dots (n-k+1) \
-&amp;= n (n-1) (n-2) \dots (n-k+1) \cdot \left(\frac{(n-k)(n-k-1)\dots1}{(n-k)(n-k-1)\dots1}\right) \
-&amp;=\frac{n!}{(n-k)!}.
-\end{align}</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1a86689b-24b4-4085-aef9-5fcb20ef9b38">
+<span class="eqno">(9.1)<a class="headerlink" href="#equation-1a86689b-24b4-4085-aef9-5fcb20ef9b38" title="Permalink to this equation">¶</a></span>\[\begin{align}
+d_{n, k} &amp;= n (n-1) (n-2) \dots (n-k+1) \\
+         &amp;= n (n-1) (n-2) \dots (n-k+1) \cdot
+             \left(\frac{(n-k)(n-k-1)\dots1}{(n-k)(n-k-1)\dots1}\right) \\
+         &amp;=\frac{n!}{(n-k)!}.
+\end{align}\]</div>
 <ul class="simple">
-<li><p>Si osservi che, per <span class="math notranslate nohighlight">\(k=n\)</span>, nella disposizione si utilizzano tutti gli elementi di <span class="math notranslate nohighlight">\(A\)</span>, quindi le permutazioni semplici sono un caso particolare di disposizioni semplici.</p></li>
-<li><p>Per calcolare il numero <span class="math notranslate nohighlight">\(c_{n, k}\)</span> di possibili <em>combinazioni senza ripetizione di <span class="math notranslate nohighlight">\(n\)</span> oggetti distinti presi <span class="math notranslate nohighlight">\(k\)</span> alla volta</em> osserviamo che, fissati <span class="math notranslate nohighlight">\(k\)</span> oggetti, alla combinazione contenente quei <span class="math notranslate nohighlight">\(k\)</span> oggetti corrispondono <span class="math notranslate nohighlight">\(k!\)</span> distinte disposizioni contenenti gli stessi <span class="math notranslate nohighlight">\(k\)</span> oggetti. Quindi il numero totale di disposizioni semplici è uguale al numero di combinazioni moltiplicato per <span class="math notranslate nohighlight">\(k!\)</span>, cioè <span class="math notranslate nohighlight">\(d_{n,k} = c_{n,k} \cdot k!\)</span>, da cui segue che</p></li>
+<li><p>Si osservi che, per <span class="math notranslate nohighlight">\(k=n\)</span>, nella disposizione si utilizzano tutti gli
+elementi di <span class="math notranslate nohighlight">\(A\)</span>, quindi le permutazioni semplici sono un caso particolare
+di disposizioni semplici.</p></li>
+<li><p>Per calcolare il numero <span class="math notranslate nohighlight">\(c_{n, k}\)</span> di possibili <em>combinazioni senza
+ripetizione di <span class="math notranslate nohighlight">\(n\)</span> oggetti distinti presi <span class="math notranslate nohighlight">\(k\)</span> alla volta</em> osserviamo che,
+fissati <span class="math notranslate nohighlight">\(k\)</span> oggetti, alla combinazione contenente quei <span class="math notranslate nohighlight">\(k\)</span> oggetti
+corrispondono <span class="math notranslate nohighlight">\(k!\)</span> distinte disposizioni contenenti gli stessi <span class="math notranslate nohighlight">\(k\)</span> oggetti.
+Quindi il numero totale di disposizioni semplici è uguale al numero di
+combinazioni moltiplicato per <span class="math notranslate nohighlight">\(k!\)</span>, cioè <span class="math notranslate nohighlight">\(d_{n,k} = c_{n,k} \cdot k!\)</span>, da
+cui segue che</p></li>
 </ul>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 c_{n, k} = \frac{d_{n, k}}{k}! = \frac{n!}{(n-k)!k!} =\binom{n}{k}
-\end{equation}</p>
+\]</div>
 <ul class="simple">
-<li><p>Per calcolare il numero <span class="math notranslate nohighlight">\(D_{n, k}\)</span> di possibili <em>disposizioni con ripetizione di <span class="math notranslate nohighlight">\(n\)</span> oggetti distinti su <span class="math notranslate nohighlight">\(k\)</span> posti</em> procediamo in modo analogo a quanto fatto per le disposizioni senza ripetizione, tenendo presente però che in ciascun nodo dell’albero abbiamo sempre <span class="math notranslate nohighlight">\(n\)</span> possibili oggetti tra i quali scegliere, mentre la profondità dell’albero è, come in quel caso, ancora <span class="math notranslate nohighlight">\(k\)</span>. Quindi avremo</p></li>
+<li><p>Per calcolare il numero <span class="math notranslate nohighlight">\(D_{n, k}\)</span> di possibili <em>disposizioni con
+ripetizione di <span class="math notranslate nohighlight">\(n\)</span> oggetti distinti su <span class="math notranslate nohighlight">\(k\)</span> posti</em> procediamo in modo
+analogo a quanto fatto per le disposizioni senza ripetizione, tenendo
+presente però che in ciascun nodo dell’albero abbiamo sempre <span class="math notranslate nohighlight">\(n\)</span> possibili
+oggetti tra i quali scegliere, mentre la profondità dell’albero è, come in
+quel caso, ancora <span class="math notranslate nohighlight">\(k\)</span>. Quindi avremo</p></li>
 </ul>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 D_{n, k} = \underbrace{n \cdot n \dots \cdot n}_{k \text{ volte}} = n^k.
-\end{equation}</p>
+\]</div>
 <ul class="simple">
-<li><p>Si potrebbe infine dimostrare (ma non lo faremo) che il numero  <span class="math notranslate nohighlight">\(C_{n,k}\)</span> di <em>combinazioni con ripetizione di <span class="math notranslate nohighlight">\(n\)</span> oggetti distinti presi <span class="math notranslate nohighlight">\(k\)</span> alla volta</em> è</p></li>
+<li><p>Si potrebbe infine dimostrare (ma non lo faremo) che il numero  <span class="math notranslate nohighlight">\(C_{n,k}\)</span>
+di <em>combinazioni con ripetizione di <span class="math notranslate nohighlight">\(n\)</span> oggetti distinti presi <span class="math notranslate nohighlight">\(k\)</span> alla
+volta</em> è</p></li>
 </ul>
-<p>\begin{equation}
+<div class="math notranslate nohighlight">
+\[
 C_{n, k} = \binom{n+k-1}{k}
-\end{equation}</p>
+\]</div>
 <p>La Tabella seguente contiene uno schema riassuntivo dei casi considerati.</p>
 <table style="font-size: 1rem;">
     <tr>
@@ -823,68 +928,87 @@ C_{n, k} = \binom{n+k-1}{k}
         <td>DISPOSIZIONI: $D_{n,k}=n^k$</td>
         <td>COMBINAZIONI: $C_{n,k}=\binom{n+k-1}{k}$</td>
     </tr>
-</table><div id="h-6"></div>
+</table>
 </div>
 <div class="section" id="esercizi">
 <h2><span class="section-number">9.4. </span>Esercizi<a class="headerlink" href="#esercizi" title="Permalink to this headline">¶</a></h2>
-<div id="h-7"></div>
 <div class="section" id="esercizio-1">
 <h3><span class="section-number">9.4.1. </span>Esercizio 1<a class="headerlink" href="#esercizio-1" title="Permalink to this headline">¶</a></h3>
-<p>Dato l’insieme <span class="math notranslate nohighlight">\(A = \{ a_1,\dots a_n\}\)</span> e indicato con <span class="math notranslate nohighlight">\(\mathcal{P}(A)\)</span> l’insieme delle parti di <span class="math notranslate nohighlight">\(A\)</span>, calcolare la cardinalità di <span class="math notranslate nohighlight">\(\mathcal{P}(A)\)</span>.</p>
+<p>Dato l’insieme <span class="math notranslate nohighlight">\(A = \{ a_1,\dots a_n\}\)</span> e indicato con <span class="math notranslate nohighlight">\(\mathcal{P}(A)\)</span>
+l’insieme delle parti di <span class="math notranslate nohighlight">\(A\)</span>, calcolare la cardinalità di <span class="math notranslate nohighlight">\(\mathcal{P}(A)\)</span>.</p>
 <p><em>Soluzione 1</em></p>
-<p>Ricordiamo che l’insieme delle parti <span class="math notranslate nohighlight">\(\mathcal{P}(A)\)</span> è l’insieme di tutti i sottinsiemi propri e impropri di <span class="math notranslate nohighlight">\(A\)</span>: contiene l’insieme vuoto, tutti i sottinsiemi costituiti da un solo elemento di <span class="math notranslate nohighlight">\(A\)</span>, tutti i sottinsiemi costituiti da due soli elementi di <span class="math notranslate nohighlight">\(A\)</span> e così via, e contiene anche <span class="math notranslate nohighlight">\(A\)</span> stesso.</p>
-<p>Siccome il numero di sottinsiemi costituiti da <span class="math notranslate nohighlight">\(k\)</span> elementi è <span class="math notranslate nohighlight">\(c_{n,k}=\binom{n}{k}\)</span>, si ha  che la cardinalità di <span class="math notranslate nohighlight">\(\mathcal{P}(A)\)</span> è <span class="math notranslate nohighlight">\(|\mathcal{P}(A)| = 1 + \sum_{k=1}^{n} \binom{n}{k}\)</span>, dove il primo addendo è dovuto alla presenza dell’insieme vuoto. Sfruttando le propriet`a del coefficiente binomiale otteniamo</p>
-<p>\begin{equation}
-|\mathcal{P}(A)| = \sum_{k=0}^{n} \binom{n}{k} = \sum_{k=0}^{n}\binom{n}{k} 1^k 1^{n-k} = 2^n,
-\end{equation}</p>
-<p>dove nell’ultimo passaggio abbiamo utilizzato la formula del binomio di Newton: <span class="math notranslate nohighlight">\((a+b)^n = \sum_{k=0}^{n}\binom{n}{k}a^k b^{n-k}\)</span>, ponendo <span class="math notranslate nohighlight">\(a=1\)</span> e <span class="math notranslate nohighlight">\(b=1\)</span>.</p>
+<p>Ricordiamo che l’insieme delle parti <span class="math notranslate nohighlight">\(\mathcal{P}(A)\)</span> è l’insieme di tutti i
+sottinsiemi propri e impropri di <span class="math notranslate nohighlight">\(A\)</span>: contiene l’insieme vuoto, tutti i
+sottinsiemi costituiti da un solo elemento di <span class="math notranslate nohighlight">\(A\)</span>, tutti i sottinsiemi
+costituiti da due soli elementi di <span class="math notranslate nohighlight">\(A\)</span> e così via, e contiene anche <span class="math notranslate nohighlight">\(A\)</span>
+stesso.</p>
+<p>Siccome il numero di sottinsiemi costituiti da <span class="math notranslate nohighlight">\(k\)</span> elementi è
+<span class="math notranslate nohighlight">\(c_{n,k}=\binom{n}{k}\)</span>, si ha  che la cardinalità di <span class="math notranslate nohighlight">\(\mathcal{P}(A)\)</span> è
+<span class="math notranslate nohighlight">\(|\mathcal{P}(A)| = 1 + \sum_{k=1}^{n} \binom{n}{k}\)</span>, dove il primo addendo
+è dovuto alla presenza dell’insieme vuoto. Sfruttando le propriet`a del
+coefficiente binomiale otteniamo</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c4245e62-9118-473d-a6b9-6e6635108b3d">
+<span class="eqno">(9.2)<a class="headerlink" href="#equation-c4245e62-9118-473d-a6b9-6e6635108b3d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+|\mathcal{P}(A)| = \sum_{k=0}^{n} \binom{n}{k}
+                 = \sum_{k=0}^{n}\binom{n}{k} 1^k 1^{n-k} = 2^n,
+\end{equation}\]</div>
+<p>dove nell’ultimo passaggio abbiamo utilizzato la formula del binomio di
+Newton: <span class="math notranslate nohighlight">\((a+b)^n = \sum_{k=0}^{n}\binom{n}{k}a^k b^{n-k}\)</span>, ponendo <span class="math notranslate nohighlight">\(a=1\)</span> e
+<span class="math notranslate nohighlight">\(b=1\)</span>.</p>
 <p><em>Soluzione 2</em></p>
-<p>Se rappresentiamo ogni sottinsieme <span class="math notranslate nohighlight">\(S\)</span> di <span class="math notranslate nohighlight">\(A\)</span> come una <span class="math notranslate nohighlight">\(n\)</span>-upla di elementi binari in cui nella posizione <span class="math notranslate nohighlight">\(i\)</span>-esima compare il simbolo <span class="math notranslate nohighlight">\(1\)</span> se l’elemento <span class="math notranslate nohighlight">\(a_i\)</span> appartiene a <span class="math notranslate nohighlight">\(S\)</span>  e il simbolo <span class="math notranslate nohighlight">\(0\)</span> se l’elemento <span class="math notranslate nohighlight">\(a_i\)</span> non  vi appartiene, allora l’insieme delle parti <span class="math notranslate nohighlight">\(\mathcal{P}(A)\)</span> è l’insieme di tutte le <span class="math notranslate nohighlight">\(n\)</span>-uple che possiamo costruire a partire dai due simboli <span class="math notranslate nohighlight">\(0\)</span> e <span class="math notranslate nohighlight">\(1\)</span>. Quindi</p>
-<p>\begin{equation}
+<p>Se rappresentiamo ogni sottinsieme <span class="math notranslate nohighlight">\(S\)</span> di <span class="math notranslate nohighlight">\(A\)</span> come una <span class="math notranslate nohighlight">\(n\)</span>-upla di elementi
+binari in cui nella posizione <span class="math notranslate nohighlight">\(i\)</span>-esima compare il simbolo <span class="math notranslate nohighlight">\(1\)</span> se l’elemento
+<span class="math notranslate nohighlight">\(a_i\)</span> appartiene a <span class="math notranslate nohighlight">\(S\)</span>  e il simbolo <span class="math notranslate nohighlight">\(0\)</span> se l’elemento <span class="math notranslate nohighlight">\(a_i\)</span> non vi
+appartiene, allora l’insieme delle parti <span class="math notranslate nohighlight">\(\mathcal{P}(A)\)</span> è l’insieme di
+tutte le <span class="math notranslate nohighlight">\(n\)</span>-uple che possiamo costruire a partire dai due simboli <span class="math notranslate nohighlight">\(0\)</span> e <span class="math notranslate nohighlight">\(1\)</span>.
+Quindi</p>
+<div class="math notranslate nohighlight">
+\[
 |\mathcal{P}(A)| = D_{n,2}=2^n.
-\end{equation}</p>
-<div id="h-8"></div>
+\]</div>
 </div>
 <div class="section" id="esercizio-2">
 <h3><span class="section-number">9.4.2. </span>Esercizio 2<a class="headerlink" href="#esercizio-2" title="Permalink to this headline">¶</a></h3>
 <p>Quanti numeri telefonici di 7 cifre tutte diverse si possono avere?</p>
 <p><em>Soluzione</em>: <span class="math notranslate nohighlight">\(d_{10,7} = 604800\)</span>.</p>
-<div id="h-9"></div>
 </div>
 <div class="section" id="esercizio-3">
 <h3><span class="section-number">9.4.3. </span>Esercizio 3<a class="headerlink" href="#esercizio-3" title="Permalink to this headline">¶</a></h3>
 <p>Quante combinazioni di numeri si posso ottenere lanciando 3 dadi?</p>
 <p><em>Soluzione</em>: <span class="math notranslate nohighlight">\(C_{6,3} = 56\)</span>.</p>
-<div id="h-10"></div>
 </div>
 <div class="section" id="esercizio-4">
 <h3><span class="section-number">9.4.4. </span>Esercizio 4<a class="headerlink" href="#esercizio-4" title="Permalink to this headline">¶</a></h3>
 <p>In quanti modi lanciando 3 dadi possono uscire facce tutte diverse?</p>
-<p><em>Soluzione</em>: <span class="math notranslate nohighlight">\(d_{6,3}=120\)</span> se i dadi sono tra loro distinguibili e <span class="math notranslate nohighlight">\(c_{6,3}=20\)</span> se questi non sono distinguibili.</p>
-<div id="h-11"></div>
+<p><em>Soluzione</em>: <span class="math notranslate nohighlight">\(d_{6,3}=120\)</span> se i dadi sono tra loro distinguibili e
+<span class="math notranslate nohighlight">\(c_{6,3}=20\)</span> se questi non sono distinguibili.</p>
 </div>
 <div class="section" id="esercizio-5">
 <h3><span class="section-number">9.4.5. </span>Esercizio 5<a class="headerlink" href="#esercizio-5" title="Permalink to this headline">¶</a></h3>
 <p>Quanti sono gli anagrammi della parola ROMA?</p>
 <p><em>Soluzione</em>: le permutazioni semplici <span class="math notranslate nohighlight">\(d_{4,4} = 24\)</span>.</p>
-<div id="h-12"></div>
 </div>
 <div class="section" id="esercizio-6">
 <h3><span class="section-number">9.4.6. </span>Esercizio 6<a class="headerlink" href="#esercizio-6" title="Permalink to this headline">¶</a></h3>
 <p>Quanti sono gli anagrammi della parola MATEMATICA?</p>
-<p><em>Soluzione</em>: le permutazioni di oggetti distinguibili a gruppi <span class="math notranslate nohighlight">\(P_{10; 3, 2, 2, 1, 1, 1} = 151200\)</span>.</p>
-<div id="h-13"></div>
+<p><em>Soluzione</em>: le permutazioni di oggetti distinguibili a gruppi
+<span class="math notranslate nohighlight">\(P_{10; 3, 2, 2, 1, 1, 1} = 151200\)</span>.</p>
 </div>
 <div class="section" id="esercizio-7">
 <h3><span class="section-number">9.4.7. </span>Esercizio 7<a class="headerlink" href="#esercizio-7" title="Permalink to this headline">¶</a></h3>
 <p>In quanti modi 3 persone possono occupare 4 posti numerati?</p>
-<p><em>Soluzione</em>: nel numero di modi in cui posso assegnare <span class="math notranslate nohighlight">\(4\)</span> posti a <span class="math notranslate nohighlight">\(3\)</span> persone: <span class="math notranslate nohighlight">\(d_{4, 3} = 24\)</span>.</p>
-<div id="h-14"></div>
+<p><em>Soluzione</em>: nel numero di modi in cui posso assegnare <span class="math notranslate nohighlight">\(4\)</span> posti a <span class="math notranslate nohighlight">\(3\)</span>
+persone: <span class="math notranslate nohighlight">\(d_{4, 3} = 24\)</span>.</p>
 </div>
 </div>
 <div class="section" id="generazione-di-disposizioni-permutazioni-e-combinazioni">
 <h2><span class="section-number">9.5. </span>Generazione di disposizioni, permutazioni e combinazioni<a class="headerlink" href="#generazione-di-disposizioni-permutazioni-e-combinazioni" title="Permalink to this headline">¶</a></h2>
-<p>In python è abbastanza facile generare tutte le possibili disposizioni con ripetizione degli elementi in una lista in <span class="math notranslate nohighlight">\(k\)</span> posti: basta eseguire una list comprehension per ottenere una lista i cui elementi sono <span class="math notranslate nohighlight">\(k\)</span>-ple, e gli elementi di queste <span class="math notranslate nohighlight">\(k\)</span>-ple si ottengono iterando <span class="math notranslate nohighlight">\(k\)</span> volte sulla lista di partenza. Per esempio la cella seguente permette di generare tutte le <span class="math notranslate nohighlight">\(D'_{3, 2} = 9\)</span> coppie con ripetizione a partire da una lista di tre elementi</p>
+<p>In python è abbastanza facile generare tutte le possibili disposizioni con
+ripetizione degli elementi in una lista in <span class="math notranslate nohighlight">\(k\)</span> posti: basta eseguire una list
+comprehension per ottenere una lista i cui elementi sono <span class="math notranslate nohighlight">\(k\)</span>-ple, e gli
+elementi di queste <span class="math notranslate nohighlight">\(k\)</span>-ple si ottengono iterando <span class="math notranslate nohighlight">\(k\)</span> volte sulla lista di
+partenza. Per esempio la cella seguente permette di generare tutte le
+<span class="math notranslate nohighlight">\(D'_{3, 2} = 9\)</span> coppie con ripetizione a partire da una lista di tre elementi</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
@@ -900,7 +1024,14 @@ C_{n, k} = \binom{n+k-1}{k}
 </div>
 </div>
 </div>
-<p>Le disposizioni senza ripetizione si ottengono facilmente a partire da quelle con ripetizione: è sufficiente effettuare un’ulteriore list comprehension che ha il solo scopo di eliminare tutte le disposizioni che contengono uno stesso elemento più volte. Tale controllo si può effettuare verificando che l’insieme ottenuto a partire da una disposizione abbia lo stesso numero di elementi della disposizione stessa. Nella cella seguente utilizziamo questa tecnica per ottenere tutte le <span class="math notranslate nohighlight">\(D_{3, 2} = 6\)</span> coppie senza ripetizione a partire dalla stessa lista precedentemente considerata.</p>
+<p>Le disposizioni senza ripetizione si ottengono facilmente a partire da quelle
+con ripetizione: è sufficiente effettuare un’ulteriore list comprehension che
+ha il solo scopo di eliminare tutte le disposizioni che contengono uno stesso
+elemento più volte. Tale controllo si può effettuare verificando che
+l’insieme ottenuto a partire da una disposizione abbia lo stesso numero di
+elementi della disposizione stessa. Nella cella seguente utilizziamo questa
+tecnica per ottenere tutte le <span class="math notranslate nohighlight">\(D_{3, 2} = 6\)</span> coppie senza ripetizione a
+partire dalla stessa lista precedentemente considerata.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
@@ -917,7 +1048,11 @@ C_{n, k} = \binom{n+k-1}{k}
 </div>
 </div>
 </div>
-<p>Le permutazioni rappresentano un caso particolare delle disposizioni senza ripetizione, in cui il numero di posti è uguale al numero di oggetti. Pertanto si può adattare facilmente il codice della cella precedente per generare, per esempio, tutte le <span class="math notranslate nohighlight">\(P_3 = 6\)</span> permutazioni della lista considerata.</p>
+<p>Le permutazioni rappresentano un caso particolare delle disposizioni senza
+ripetizione, in cui il numero di posti è uguale al numero di oggetti.
+Pertanto si può adattare facilmente il codice della cella precedente per
+generare, per esempio, tutte le <span class="math notranslate nohighlight">\(P_3 = 6\)</span> permutazioni della lista
+considerata.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
@@ -934,7 +1069,17 @@ C_{n, k} = \binom{n+k-1}{k}
 </div>
 </div>
 </div>
-<p>La generazione di combinazioni è più complicata: si procede nello stesso modo visto per le disposizioni senza ripetizione, ma la seconda list comprehension non si limita a filtrare le coppie, bensì le trasforma anche in insiemi (tecnicamente, in istanze di <code class="docutils literal notranslate"><span class="pre">frozenset</span></code> che corrispondono a insiemi immutabili). Il risultato conterrà dei doppioni: per esempio le disposizioni <span class="math notranslate nohighlight">\((a, b)\)</span> e <span class="math notranslate nohighlight">\((b, a)\)</span> verrebbero trasformate nello stesso insieme. Per eliminare questi doppioni è sufficiente inserire tutti i risultati in un nuovo insieme. Già che ci siamo, possiamo trasformare tutti i <code class="docutils literal notranslate"><span class="pre">frozenset</span></code> ottenuti in normali insiemi, come nella cella seguente dove vengono costruite tutte le <span class="math notranslate nohighlight">\(C_{4, 2} = 6\)</span> combinazioni di quattro elementi in due posti.</p>
+<p>La generazione di combinazioni è più complicata: si procede nello stesso modo
+visto per le disposizioni senza ripetizione, ma la seconda list comprehension
+non si limita a filtrare le coppie, bensì le trasforma anche in insiemi
+(tecnicamente, in istanze di <code class="docutils literal notranslate"><span class="pre">frozenset</span></code> che corrispondono a insiemi
+immutabili). Il risultato conterrà dei doppioni: per esempio le
+disposizioni <span class="math notranslate nohighlight">\((a, b)\)</span> e <span class="math notranslate nohighlight">\((b, a)\)</span> verrebbero trasformate nello stesso
+insieme. Per eliminare questi doppioni è sufficiente inserire tutti i
+risultati in un nuovo insieme. Già che ci siamo, possiamo trasformare tutti
+i <code class="docutils literal notranslate"><span class="pre">frozenset</span></code> ottenuti in normali insiemi, come nella cella seguente dove
+vengono costruite tutte le <span class="math notranslate nohighlight">\(C_{4, 2} = 6\)</span> combinazioni di quattro elementi
+in due posti.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
@@ -952,10 +1097,24 @@ C_{n, k} = \binom{n+k-1}{k}
 </div>
 </div>
 <div class="alert alert-info">
-L'uso di `frozenset` nella cella precedente è fondamentale per poter eseguire l'ultima istruzione. Gli elementi che si inseriscono in un insieme (ma lo stesso varrebbe per le chiavi di un dizionario) devono essere infatti immutabili: ciò è legato agli algoritmi che vengono utilizzati per inserire gli elementi di un insieme in un'opportuna struttura dati che permetta di verificare successivamente se un generico elemento appartiene oppure no all'insieme.
-</div><p>Le generazioni di disposizioni, combinazioni e permutazioni fatte finora richiedono di fissare il numero di posti: non sarebbe altrimenti possibile scrivere le list comprehension alla base della costruzione delle disposizioni, che rappresentano il mattone fondamentale per ottenere tutti gli altri oggetti. Il modulo <code class="docutils literal notranslate"><span class="pre">itertools</span></code> contiene funzioni che permettono di superare questo ostacolo. Nella fattispecie:</p>
+L'uso di `frozenset` nella cella precedente è fondamentale per poter eseguire
+l'ultima istruzione. Gli elementi che si inseriscono in un insieme (ma lo
+stesso varrebbe per le chiavi di un dizionario) devono essere infatti
+immutabili: ciò è legato agli algoritmi che vengono utilizzati per inserire
+gli elementi di un insieme in un'opportuna struttura dati che permetta di
+verificare successivamente se un generico elemento appartiene oppure no
+all'insieme.
+</div>
+<p>Le generazioni di disposizioni, combinazioni e permutazioni fatte finora
+richiedono di fissare il numero di posti: non sarebbe altrimenti possibile
+scrivere le list comprehension alla base della costruzione delle
+disposizioni, che rappresentano il mattone fondamentale per ottenere tutti
+gli altri oggetti. Il modulo <code class="docutils literal notranslate"><span class="pre">itertools</span></code> contiene funzioni che permettono di
+superare questo ostacolo. Nella fattispecie:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">product</span></code> permette di generare le disposizioni con ripetizione, specificando la lista dei valori come primo elemento e il numero di posti tramite l’argomento opzionale <code class="docutils literal notranslate"><span class="pre">repeat</span></code>:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">product</span></code> permette di generare le disposizioni con ripetizione,
+specificando la lista dei valori come primo elemento e il numero di posti
+tramite l’argomento opzionale <code class="docutils literal notranslate"><span class="pre">repeat</span></code>:</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1013,18 +1172,9 @@ L'uso di `frozenset` nella cella precedente è fondamentale per poter eseguire l
 </div>
 </div>
 <div class="alert alert-info">
-Le funzioni di `itertools` che abbiamo considerato non restituiscono delle liste, bensì degli speciali oggetti che è necessario convertire esplicitamente in liste utilizzando la funzione `list`.
-</div><p><a class="reference external" href="Untitled5.ipynb#altra">try me!</a></p>
-<hr style="width: 90%;" align="left" />
-<span style="font-size: 0.8rem;">D. Malchiodi, Superhero data science. Vol 1: probabilità e statistica: Calcolo combinatorio, 2017.</span>
-<br>
-<span style="font-size: 0.8rem;">Powered by <img src="img/jupyter-logo.png" style="height: 1rem; display: inline; margin-left: 0.5ex; margin-top: 0;" alt="Jupyter Notebook"></span>
-<div style="float: left; margin-top: 1ex;">
-<img src="http://mirrors.creativecommons.org/presskit/icons/cc.large.png" style="width: 1.5em; float: left; margin-right: 0.6ex; margin-top: 0;">
-<img src="http://mirrors.creativecommons.org/presskit/icons/by.large.png" style="width: 1.5em; float: left; margin-right: 0.6ex; margin-top: 0;">
-<img src="http://mirrors.creativecommons.org/presskit/icons/nc.large.png" style="width: 1.5em; float: left; margin-right: 0.6ex; margin-top: 0;">
-<img src="http://mirrors.creativecommons.org/presskit/icons/nd.large.png" style="width: 1.5em; float: left; margin-right: 0.6ex; margin-top: 0;">
-<span style="font-size: 0.7rem; line-height: 0.7rem; vertical-align: middle;">Quest'opera è distribuita con Licenza <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribuzione - Non commerciale - Non opere derivate 4.0 Internazionale</a></span>.
+Le funzioni di `itertools` che abbiamo considerato non restituiscono delle
+liste, bensì degli speciali oggetti che è necessario convertire
+esplicitamente in liste utilizzando la funzione `list`.
 </div></div>
 </div>
 

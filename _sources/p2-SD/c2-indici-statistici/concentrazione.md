@@ -25,9 +25,9 @@ Date $n$ osservazioni, indichiamo con $a_1, \dots, a_n$ il loro elenco una
 volta che queste sono state ordinate. Successivamente calcoliamone il valore
 medio
 
-\begin{equation}
+$$
 \bar a = \frac{1}{n} \sum_{i=1}^n a_i
-\end{equation}
+$$
 
 e sommiamole, ottenendo $\mathrm{TOT} = n \bar a = \sum_{i=1}^n a_i$. Possiamo
 avere due situazioni estreme:
@@ -171,16 +171,16 @@ calcolato a partire dai dati, il cui valore possa facilmente essere confrontato
 con due estremi minimo e massino. In tal senso si definisce
 _indice di concentrazione (o coefficiente) di Gini_ il rapporto
 
-\begin{equation}
+$$
 	G = \frac{\sum_{i=1}^{n-1}F_i - Q_i}{\sum_{i=1}^{n-1}F_i}
-\end{equation}
+$$
 
 tra la quantità $\sum_{i=1}^{n-1}F_i - Q_i$ e il suo valore massimo
 
-\begin{equation}
+$$
 \sum_{i=1}^{n-1}F_i = \frac{1}{n} \sum_{i=1}^{n-1} i =
                       \frac{1}{n} \frac{(n-1)n}{2} = \frac{(n-1)}{2}
-\end{equation}
+$$
 
 Per quanto appena visto,
 
