@@ -27,9 +27,9 @@ Dato un campione $\{ a_1, \dots, a_n \}$ in cui occorrono i valori distinti
 $v_1, \dots, v_s$ e indicando con $f_i$ la frequenza relativa dell'elemento
 $v_i$ per $i = 1, \dots, s$, la quantità
 
-\begin{equation}
+$$
 I = 1 - \sum_{i=1}^s f_i^2
-\end{equation}
+$$
 
 è detta _indice di eterogeneità di Gini_. Si noti che:
 
@@ -49,9 +49,9 @@ Nel caso in cui si voglia operare con un indice che assuma valori tra $0$ e $1$,
 è possibile dividere l'indice di Gini per il valore massimo $\frac{s-1}{s}$,
 ottenendo il cosiddetto _indice di Gini normalizzato_:
 
-\begin{equation}
-        I' = \frac{s \cdot I}{s-1}
-\end{equation}
+$$
+I' = \frac{s \cdot I}{s-1}
+$$
 
 Consideriamo il grafico seguente, che traccia l'andamento dell'indice di Gini
 nel caso di due valori distinti $v_1$ e $v_2$, di cui indicheremo
@@ -148,9 +148,9 @@ Dato un campione $\{ a_1, \dots, a_n \}$ in cui occorrono i valori distinti
 $v_1, \dots, v_s$ e indicando con $f_i$ la frequenza relativa dell'elemento
 $v_i$ per $i = 1, \dots, s$, la quantità
 
-\begin{equation}
+$$
 H = \sum_{i=1}^s f_i \log \frac{1}{f_i} = - \sum_{i=1}^s f_i \log f_i
-\end{equation}
+$$
 
 è detta _indice di entropia_ del campione.
 
@@ -170,7 +170,7 @@ tende a $0$. Il grafico dell'andamento di un generico addendo dell'entropia è
 il seguente.
 
 
-```{coode-cell} ipython3
+```{code-cell} ipython3
 x = np.arange(0.001, 1.01, 0.01)
 y = list(map(lambda f: -f * np.log2(f), x))
 plt.plot(x, y)
@@ -193,9 +193,9 @@ le osservazioni che seguono.
 
 Si può pertanto definire l'_indice di entropia normalizzato_
 
-\begin{equation}
+$$
 H' = \frac{H}{\log s}
-\end{equation}
+$$
 
 i cui valori variano tra $0$ e $1$. Se il logaritmo è in base $2$ (come nel
   codice che abbiamo scritto) allora l'entropia si misura in _bit_; è però
@@ -277,7 +277,7 @@ viene richiesto di valutare se l'umidità abbia o meno un valore inferiore a 30;
 nel primo caso si potrebbe uscire, altrimenti no. Il processo di
 classificazione funziona in modo analogo nel caso di tempo piovoso (_rain_).
 
-![Esempio di albero di decisione](./img/decision-tree.png)
+![Esempio di albero di decisione](https://miro.medium.com/max/1400/0*PB7MYQfzyaLaTp1n)
 
 La costruzione di un albero di ricerca richiede innanzitutto di individuare un
 indice di eterogeneità. Facciamo un esempio selezioniamo l'indice di Gini e
@@ -352,57 +352,6 @@ osservazioni che soddisfano tale condizione.
 Y[X['Strength'] <= 40]
 ```
 
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Black Manta</th>
-      <td>bad guy</td>
-    </tr>
-    <tr>
-      <th>Penguin</th>
-      <td>bad guy</td>
-    </tr>
-    <tr>
-      <th>Joker</th>
-      <td>bad guy</td>
-    </tr>
-    <tr>
-      <th>Deathstroke</th>
-      <td>bad guy</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
 Il risultato è molto interessante in quanto le etichette sono tutte uguali, e quindi l'eventuale nodo successivo nell'albero sarebbe una foglia che etichetta i casi come `bad_guy`. Le cose cambiano, sebbene poco, se consideriamo le osservazioni che non soddisfano la condizione.
 
 
@@ -445,7 +394,7 @@ Per combinare insieme i due indici al fine di esprimere in un unico valore
 l'omogeneità media dei casi suddivisi nei sottogruppi si calcola una loro
 media, pesata in funzione della numerosità dei sottogruppi stessi.
 
-```{cell-code} ipython3
+```{code-cell} ipython3
 weight_left = len(Y[X['Strength'] <= 40]) / len(Y)
 weight_right = len(Y[X['Strength'] > 40]) / len(Y)
 gini_left * weight_left + gini_right * weight_right
@@ -460,7 +409,7 @@ quindi corrisponde al caso di migliore omogeneità). Attrezziamoci per
 effettuare questo calcolo indipendentemente dalla scelta dell'attributo, del
 valore di soglia e dell'indice di eterogeneità.
 
-```{cell-code} ipython3
+```{code-cell} ipython3
 def split_value(attribute, value, index):
     freq = (Y[X[attribute] <= value])[0].value_counts(normalize=True)
     freq_bad = freq['bad guy']

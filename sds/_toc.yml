@@ -39,6 +39,7 @@ parts:
     - file: p2-SD/c2-indici-statistici/concentrazione
     - file: p2-SD/c2-indici-statistici/trasformazioni-dei-dati
     - file: p2-SD/c2-indici-statistici/analisi-della-varianza
+    - file: p2-SD/c2-indici-statistici/analisi-di-classificatori
   - file: p2-SD/c3-grafici/grafici
     sections:
     - file: p2-SD/c3-grafici/diagrammi-per-dati-discreti

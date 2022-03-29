@@ -4,6 +4,8 @@ numpy
 ghp-import
 jupytext
 pandas
+graphviz
 scipy
+scikit-learn
 statsmodels
 matplotlib-venn
