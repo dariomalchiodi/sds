@@ -1,0 +1,1093 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>15. Classificatori naive Bayes &#8212; Superhero Data Science</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="16. Modelli discreti" href="../c4-modelli-discreti/modelli-discreti.html" />
+    <link rel="prev" title="14. Teoremi" href="prob-totali-e-naive-bayes.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Superhero Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../landing.html">
+   Superhero Data Science
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduzione
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../p0-introduzione/presentazione.html">
+   1. Presentazione
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../p0-introduzione/un-esempio-introduttivo.html">
+   2. Un esempio
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../p0-introduzione/notazione.html">
+   3. Notazione
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Programmazione per l'analisi dei dati
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p1-PAD/c1-intro-python/introduzione-a-python.html">
+   4. Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-semplici-e-operatori.html">
+     4.1. Tipi di dati semplici
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-strutturati.html">
+     4.2. Tipi di dati strutturati
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/strutture-di-controllo.html">
+     4.3. Strutture di controllo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/funzioni.html">
+     4.4. Funzioni
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/importare-moduli.html">
+     4.6. Importare moduli
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/disegnare-grafici.html">
+     4.7. Disegnare grafici
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/leggere-file.html">
+     4.8. Leggere dati da file (e un po’ di trucchi)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../p1-PAD/c2-pandas/pandas.html">
+   5. Pandas
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Statistica descrittiva
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/dati-e-frequenze.html">
+   6. Dati e frequenze
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/dati-quantitativi-e-qualitativi.html">
+     6.7. Dati quantitativi e qualitativi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-assolute-e-relative.html">
+     6.8. Frequenze assolute e relative
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-cumulate.html">
+     6.9. Frequenze cumulate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-congiunte-e-marginali.html">
+     6.10. Frequenze congiunte e marginali
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p2-SD/c2-indici-statistici/indici-statistici.html">
+   7. Indici statistici
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/indici-di-posizione.html">
+     7.1. Indici di posizione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/indici-di-dispersione.html">
+     7.2. Calcolo della dispersione in pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/quantili-campionari.html">
+     7.3. Quantili campionari
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/covarianza-e-correlazione.html">
+     7.4. Covarianza e correlazione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/eterogeneita.html">
+     7.5. Indici di eterogeneità
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/concentrazione.html">
+     7.6. Indici di concentrazione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/trasformazioni-dei-dati.html">
+     7.7. Trasformazione dei dati
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/analisi-della-varianza.html">
+     7.8. Analisi della varianza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/analisi-di-classificatori.html">
+     7.9. Analisi di classificatori
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p2-SD/c3-grafici/grafici.html">
+   8. Grafici
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c3-grafici/diagrammi-per-dati-discreti.html">
+     8.1. Dati discreti
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c3-grafici/diagrammi-per-dati-continui.html">
+     8.2. Dati continui
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c3-grafici/diagrammi-per-dati-cumulati.html">
+     8.3. Dati cumulati
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c3-grafici/diagrammi-per-dati-a-coppie.html">
+     8.4. Dati a coppie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c3-grafici/simmetria-e-normalita.html">
+     8.5. Simmetria e normalità
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Calcolo delle probabilità
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../c1-calcolo-combinatorio/calcolo-combinatorio.html">
+   9. Calcolo combinatorio
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../c2-teoria-insiemi/teoria-insiemi.html">
+   10. Teoria degli insiemi
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-teoria-insiemi/concetti-di-base.html">
+     10.1. Concetti di base
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-teoria-insiemi/insiemi-finiti-e-infiniti.html">
+     10.2. Insiemi finiti e infiniti
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-teoria-insiemi/relazioni-tra-insiemi.html">
+     10.3. Relazioni tra insiemi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-teoria-insiemi/operazioni-tra-insiemi.html">
+     10.4. Operazioni tra insiemi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-teoria-insiemi/insiemi-in-python.html">
+     10.5. Gli insiemi in Python
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="assiomi-kolmogorov.html">
+   11. Assiomi di Kolmogorov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="spazi-equiprobabili.html">
+   12. Spazi equiprobabili
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="probabilita-condizionata.html">
+   13. Probabilità condizionata
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prob-totali-e-naive-bayes.html">
+   14. Teoremi
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   15. Classificatori naive Bayes
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../c4-modelli-discreti/modelli-discreti.html">
+   16. Modelli discreti
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c4-modelli-discreti/modello-geometrico.html">
+     16.1. Il modello geometrico
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Bibliografia
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../bibliography.html">
+   17. Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../_sources/p3-CP/c3-probabilita/classificatori-naive-bayes.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/p3-CP/c3-probabilita/classificatori-naive-bayes.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/dariomalchiodi/sds"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/dariomalchiodi/sds/issues/new?title=Issue%20on%20page%20%2Fp3-CP/c3-probabilita/classificatori-naive-bayes.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dariomalchiodi/sds/main?urlpath=tree/sds/p3-CP/c3-probabilita/classificatori-naive-bayes.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Classificatori naive Bayes</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="classificatori-naive-bayes">
+<h1><span class="section-number">15. </span>Classificatori naive Bayes<a class="headerlink" href="#classificatori-naive-bayes" title="Permalink to this headline">¶</a></h1>
+<p>Una semplice applicazione del teorema di Bayes permette di costruire un
+particolare classificatore che prende il nome di <em>classificatore naive Bayes</em>.
+Consideriamo il caso più semplice possibile in cui abbiamo osservato in una
+serie di individui la presenza o l’assenza di una determinata proprietà,
+ottenendo per ognuno di essi un’osservazione <span class="math notranslate nohighlight">\(x_i \in \{ 0, 1 \}\)</span>. Ipotizziamo
+inoltre di avere associato a ogni individuo un’etichetta <span class="math notranslate nohighlight">\(y_i \in \{ 0, 1 \}\)</span>
+che denota l’appartenenza o meno a una data classe. Prendendo ad esempio il
+dataset dei supereroi, supponiamo che la proprietà osservata faccia riferimento
+all’avere oppure no gli occhi neri (indicando con <span class="math notranslate nohighlight">\(x_i = 1\)</span> il fatto di avere
+gli occhi neri e con <span class="math notranslate nohighlight">\(x_i = 0\)</span> il fatto di averli di un altro colore), e la
+classe considerata indichi se l’editore corrispondente sia o meno la Marvel
+Comics (anche in questo caso, denotando con <span class="math notranslate nohighlight">\(y_i = 1\)</span> il fatto di essere un
+supereroe Marvel e con <span class="math notranslate nohighlight">\(y_i = 0\)</span> il fatto di non esserlo).</p>
+<p>Indichiamo inoltre con <span class="math notranslate nohighlight">\(N\)</span> l’evento «un supereroe preso a caso ha gli occhi
+neri» e con <span class="math notranslate nohighlight">\(M\)</span> l’evento «un supereroe preso a caso è un supereroe Marvel»:
+grazie al teorema di Bayes sappiamo che vale</p>
+<div class="math notranslate nohighlight">
+\[
+\mathrm P(M|N) = \frac{\mathrm P(N|M) \mathrm P(M)}{\mathrm P(N)}.
+\]</div>
+<p>Ora, se a partire dal dataset fosse possibile ottenere una stima delle
+probabilità che compaiono al secondo membro di questa equazione, sarebbe quindi
+immediato ottenere una stima di <span class="math notranslate nohighlight">\(\mathrm P(M|N)\)</span> da utilizzare per dire
+qualcosa sul fatto che un generico supereroe con gli occhi neri sia oppure no
+un supereroe Marvel. In particolare, se il valore ottenuto fosse
+sufficientemente alto potremmo spingerci oltre e dire che d’ora in avanti
+potremo <em>classificare</em> tutti i supereroi con gli occhi neri di cui non
+conosciamo l’editore come supereroi Marvel. Allo stesso modo, se il valore
+ottenuto fosse particolarmente basso potremmo comportarci in modo analogo,
+concludendo però che gli occhi neri indicano un editore diverso dalla Marvel.</p>
+<p>Il fatto di poter azzardare l’editore potrebbe sembrare poco utile, visto che
+in fondo si tratta di una colonna del nostro dataset e quindi noi già sappiamo
+quali siano i valori per questo attributo. In realtà sappiamo che ci potrebbero
+essere dei valori mancanti, oppure potremmo in futuro avere a disposizione
+nuovi dati per i quali questa informazione non è disponibile.</p>
+<div class="alert alert-info">
+Va notato che la scelta di usare il colore degli occhi come proprietà osservata
+e la casa editrice come classe è assolutamente arbitraria. In modo analogo
+avremmo potuto ragionare in termini di come il fatto di essere un supereroe
+Marvel possa essere utilizzato per azzardare il colore degli occhi, scambiando
+gli eventi $M$ e $N$ nelle formule.
+</div>
+<p>Un modo semplice per stimare le probabilità indicate è quello di osservare con
+che frequenza gli eventi associati si verificano nel dataset a nostra
+disposizione. In particolare,</p>
+<ul class="simple">
+<li><p>la probabilità <span class="math notranslate nohighlight">\(\mathrm P(N|M)\)</span> può essere approssimata calcolando la
+frequenza relativa con cui un supereroe Marvel del dataset ha gli occhi neri;</p></li>
+<li><p>la probabilità <span class="math notranslate nohighlight">\(\mathrm P(M)\)</span> può essere approssimata calcolando la frequenza
+relativa con cui un supereroe del dataset è edito dalla Marvel;</p></li>
+<li><p>la probabilità <span class="math notranslate nohighlight">\(\mathrm P(N)\)</span> può essere approssimata calcolando la frequenza
+relativa con cui un supereroe del dataset ha gli occhi neri.</p></li>
+</ul>
+<p>Attrezziamoci quindi per poter calcolare queste frequenze, caricando il dataset
+e importando le librerie che utilizzeremo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">heroes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/heroes.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Possiamo ora approssimare la probabilità dell’evento <span class="math notranslate nohighlight">\(M\)</span> come la frequenza
+relativa del medesimo evento sul dataset, e quindi calcolando il rapporto tra
+il numero di supereroi Marvel e il totale dei supereroi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">marvel_heroes</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Marvel Comics&#39;</span><span class="p">]</span>
+<span class="n">p_marvel</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">marvel_heroes</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">heroes</span><span class="p">)</span>
+<span class="n">p_marvel</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.527891156462585
+</pre></div>
+</div>
+</div>
+</div>
+<p>Allo stesso modo, la probabilità <span class="math notranslate nohighlight">\(\mathrm P(N)\)</span> si approssima facilmente
+calcolando la frazione di supereroi del dataset che hanno gli occhi neri.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">black_eyes_heroes</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Black&#39;</span><span class="p">]</span>
+<span class="n">p_blackeyes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">black_eyes_heroes</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">heroes</span><span class="p">)</span>
+<span class="n">p_blackeyes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0326530612244898
+</pre></div>
+</div>
+</div>
+</div>
+<p>Infine, una stima della probabilità <span class="math notranslate nohighlight">\(\mathrm P(N|M)\)</span> si ottiene dividendo il
+numero di supereroi Marvel che hanno gli occhi neri per il numero totale di
+supereroi Marvel.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">blackeyes_and_marvel_heroes</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Marvel Comics&#39;</span><span class="p">)</span> <span class="o">&amp;</span> \
+                                     <span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Black&#39;</span><span class="p">)]</span>
+
+<span class="n">p_blackeyes_given_marvel</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">blackeyes_and_marvel_heroes</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">marvel_heroes</span><span class="p">)</span>
+<span class="n">p_blackeyes_given_marvel</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.028350515463917526
+</pre></div>
+</div>
+</div>
+</div>
+<p>Applicando il teorema di Bayes si ottiene quindi che la probabilità di trovarsi
+di fronte a un supereroe Marvel, dato che questo ha gli occhi neri, può essere
+approssimata come segue.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_blackeyes_given_marvel</span> <span class="o">*</span> <span class="n">p_marvel</span> <span class="o">/</span> <span class="n">p_blackeyes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.45833333333333326
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dunque sembrerebbe che gli occhi neri siano leggermente più probabili nei
+supereroi <strong>non</strong> Marvel. Ovviamente avremmo ottenuto un risultato coerente se
+avessimo applicato lo stesso procedimento per stimare la probabilità
+<span class="math notranslate nohighlight">\(\mathrm(\overline M|N)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nonmarvel_heroes</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span><span class="o">!=</span><span class="s1">&#39;Marvel Comics&#39;</span><span class="p">]</span>
+<span class="n">blackeyes_and_nonmarvel_heroes</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span><span class="o">!=</span><span class="s1">&#39;Marvel Comics&#39;</span><span class="p">)</span> <span class="o">&amp;</span> \
+                                        <span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Black&#39;</span><span class="p">)]</span>
+
+<span class="n">p_notmarvel</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nonmarvel_heroes</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">heroes</span><span class="p">)</span>
+<span class="n">p_blackeyes_given_notmarvel</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">blackeyes_and_nonmarvel_heroes</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">nonmarvel_heroes</span><span class="p">)</span>
+
+<span class="n">p_blackeyes_given_notmarvel</span> <span class="o">*</span> <span class="n">p_notmarvel</span> <span class="o">/</span> <span class="n">p_blackeyes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5416666666666665
+</pre></div>
+</div>
+</div>
+</div>
+<p>Visto che le due probabilità ottenute sono molto vicine a <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span>, ha
+senso valutare se l’uso di diverse proprietà da osservare <em>congiuntamente</em> ci
+possa portare a una procedura più precisa. Per esempio potremmo tener conto sia
+del colore degli occhi, sia di quello dei capelli, senza fissare un colore
+specifico. Consideriamo pertanto tutti i possibili valori
+<span class="math notranslate nohighlight">\(\{ o_1, o_2, \dots, o_n \}\)</span> per i colori degli occhi e scriviamo <span class="math notranslate nohighlight">\(O = o_i\)</span> per
+indicare l’evento «un supereroe a caso ha gli occhi del colore <span class="math notranslate nohighlight">\(o_i\)</span>».
+Procediamo in modo analogo per l’evento <span class="math notranslate nohighlight">\(C = c_j\)</span> che equivale a «un supereroe
+a caso ha i capelli del colore <span class="math notranslate nohighlight">\(c_j\)</span>», dove i valori possibili ora
+corrispondono all’insieme <span class="math notranslate nohighlight">\(\{ c_1, c_2, \dots, c_m \}\)</span>. Il teorema di Bayes
+permette in questo caso di scrivere</p>
+<div class="math notranslate nohighlight">
+\[
+\mathrm P(M|O = o_i \cap C = c_j) = \frac{\mathrm P(O = o_i \cap C = c_j | M)
+                              \mathrm P(M)}{\mathrm P((O = o_i \cap C = c_j)}.
+\]</div>
+<p>Pertanto si può pensare di estendere il ragionamento visto precedentemente:
+dato un supereroe di cui si conoscono i colori <span class="math notranslate nohighlight">\(o_i\)</span> e <span class="math notranslate nohighlight">\(c_j\)</span> di occhi e
+capelli, si approssimano le probabilità al secondo membro dell’equazione e in
+funzione del valore ottenuto si classifica il supereroe come «Marvel» oppure
+come «non Marvel». I classificatori <em>naive Bayes</em> semplificano il lavoro
+approssimando <span class="math notranslate nohighlight">\(\mathrm P(O = o_i \cap C = c_j | M)\)</span> con la quantità
+<span class="math notranslate nohighlight">\(\mathrm P(O = o_i | M) \mathrm P(C = c_j | M)\)</span>. Procedendo in questo modo, nel
+numeratore della frazione si calcoleranno al più <span class="math notranslate nohighlight">\(m + n\)</span> diverse probabilità al
+posto di <span class="math notranslate nohighlight">\(m n\)</span> (più avanti vedremo come evitare l’analogo problema quando si
+calcola il denominatore). L’aggettivo <em>naive</em> nel nome del classificatore
+sottolinea la semplicità dell’ipotesi adottata (<em>naive</em> significa infatti
+«ingenuo» in inglese).</p>
+<p>Concentriamoci per esempio su un supereroe con occhi e capelli neri: la
+probabilità che esso sia un supereroe Marvel sarà quindi calcolata da un
+classificatore naive Bayes come</p>
+<div class="math notranslate nohighlight">
+\[
+\mathrm P(M|O = \text{neri} \cap C = \text{neri}) \approx
+\frac{\mathrm P(O = \text{neri} | M) \mathrm P(C = \text{neri} | M)
+\mathrm P(M)}{\mathrm P((O = \text{neri} \cap C = \text{neri})}.
+\]</div>
+<p>Alcune delle probabilità coinvolte sono già state calcolate. Nella cella
+seguente quelle mancanti sono derivate in modo analogo, ottenendo come
+risultato una bassa probabilità di avere a che fare con un supereroe Marvel se
+i suoi occhi e i suoi capelli sono neri.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">black_eyes_and_hair_heroes</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Black&#39;</span><span class="p">)</span> <span class="o">&amp;</span> \
+                                    <span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Black&#39;</span><span class="p">)]</span>
+
+<span class="n">p_blackeyes_and_black_hair</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">black_eyes_and_hair_heroes</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">heroes</span><span class="p">)</span>
+
+<span class="n">blackhair_and_marvel_heroes</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Marvel Comics&#39;</span><span class="p">)</span> <span class="o">&amp;</span> \
+                                     <span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Black&#39;</span><span class="p">)]</span>
+<span class="n">p_blackhair_given_marvel</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">blackhair_and_marvel_heroes</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">marvel_heroes</span><span class="p">)</span>
+
+<span class="n">p_blackeyes_given_marvel</span> <span class="o">*</span> <span class="n">p_blackhair_given_marvel</span> <span class="o">*</span> <span class="n">p_marvel</span> \
+     <span class="o">/</span> <span class="n">p_blackeyes_and_black_hair</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2190721649484536
+</pre></div>
+</div>
+</div>
+</div>
+<p>Consideriamo infine il caso più generale in cui vi sono più di due classi su
+cui suddividere gli individui. Nell’esempio che stiamo considerando stiamo
+quindi dicendo che vi sono valori diversi <span class="math notranslate nohighlight">\(\{ e_1, \dots, e_o \}\)</span> per
+l’editore, e quindi saremo interessati a eventi della forma <span class="math notranslate nohighlight">\(E = e_k\)</span>.
+Idealmente, una volta osservato un supereroe di cui <span class="math notranslate nohighlight">\(o_j\)</span> e <span class="math notranslate nohighlight">\(c_j\)</span> indicano
+rispettivamente il colore di occhi e capelli sarà necessario calcolare
+<span class="math notranslate nohighlight">\(\mathrm P(E = e_k | O = o_i \cap C = c_j)\)</span> per tutti i possibili <span class="math notranslate nohighlight">\(e_k\)</span>: il più
+alto ottenuto individuerà l’editore da associare al supereroe. È però possibile
+semplificare ulteriormente il procedimento, notando che esso consiste nel
+determinare, al variare di <span class="math notranslate nohighlight">\(k\)</span>, il più alto tra i valori</p>
+<div class="math notranslate nohighlight">
+\[
+\mathrm P(E = e_k|O = o_i \cap C = c_j) \approx
+\frac{\mathrm P(O = o_i | E = e_k) \mathrm P(C = c_j | E = e_k)
+\mathrm P(E = e_k)}{\mathrm P((O = o_i \cap C = c_j)}.
+\]</div>
+<p>Ora, il denominatore è indipendente da <span class="math notranslate nohighlight">\(k\)</span> e quindi la classificazione si può
+effettuare trovando il valore <span class="math notranslate nohighlight">\(k\)</span> che massimizza la quantità</p>
+<div class="math notranslate nohighlight">
+\[
+\mathrm P(O = o_i | E = e_k) \mathrm P(C = c_j | E = e_k) \mathrm P(E = e_k).
+\]</div>
+<p>Riformuliamo il ragionamento effettuato in modo da renderlo il più generale
+possibile: immaginiamo che per un dato individuo si osservino congiuntamente i
+valori <span class="math notranslate nohighlight">\(x_1, \dots, x_n\)</span> per <span class="math notranslate nohighlight">\(n\)</span> proprietà <span class="math notranslate nohighlight">\(X_1, \dots, X_n\)</span>, e denotiamo con
+<span class="math notranslate nohighlight">\(X_1 = x_1, \dots, X_n=x_n\)</span> gli eventi corrispondenti. Supponiamo inoltre che
+vi siano <span class="math notranslate nohighlight">\(m\)</span> possibili classi che corrispondono agli eventi
+<span class="math notranslate nohighlight">\(Y = y_1, \dots, Y = y_m\)</span>. Per ognuna di queste classi vorremo calcolare</p>
+<div class="math notranslate nohighlight">
+\[
+\mathrm P(Y=y_k | X_1=x_1, \dots, X_n=x_n) =
+      \frac{\mathrm P(X_1=x_1, \dots, X_n=x_n | Y=y_k) \mathrm P(Y=y_k)}
+           {\mathrm P(X_1=x_1, \dots, X_n=x_n)}
+\]</div>
+<p>e assegnare l’individuo alla classe per cui tale probabilità è massima.
+L’approssimazione alla base del classificatore naive Bayes ci permette di
+scrivere</p>
+<div class="math notranslate nohighlight">
+\[
+\mathrm P(Y=y_k | X_1=x_1, \dots, X_n=x_n) \approx \frac{\mathrm P(Y=y_k)
+  \displaystyle\prod_{i=1}^n\mathrm P(X_i=x_i | Y=y_k)}
+                {\mathrm P(X_1=x_1, \dots, X_n=x_n)},
+\]</div>
+<p>e tenuto conto che anche in questo caso il denominatore non dipende da <span class="math notranslate nohighlight">\(k\)</span>,
+potremo associare l’individuo alla classe <span class="math notranslate nohighlight">\(y_{k^*}\)</span>, dove</p>
+<div class="math notranslate nohighlight">
+\[
+k^* = \arg\max_k \mathrm P(Y = y_k) \prod_{i=1}^n
+      \mathrm P(X_i = x_i | Y = y_k).
+\]</div>
+<p>In realtà non è necessario effettuare «a mano» i calcoli legati a un
+classificatore naive Bayes. Come già visto per gli alberi di decisione, la
+libreria sklearn mette a disposizione delle classi che permettono di ottenere
+direttamente un classificatore a partire dai dati iniziali. Per esemplificarne
+il funzionamento, estraiamo dal nostro dataset alcune colonne ed eliminiamo
+tutte le righe in cui occorre almeno un valore mancante.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="s1">&#39;Weight&#39;</span><span class="p">,</span> <span class="s1">&#39;Gender&#39;</span><span class="p">,</span> <span class="s1">&#39;First appearance&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Hair color&#39;</span><span class="p">,</span> <span class="s1">&#39;Eye color&#39;</span><span class="p">,</span> <span class="s1">&#39;Strength&#39;</span><span class="p">,</span> <span class="s1">&#39;Intelligence&#39;</span><span class="p">]</span>
+<span class="n">heroes_cleaned</span> <span class="o">=</span> <span class="n">heroes</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">heroes_cleaned</span><span class="p">[</span><span class="n">features</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Per gli stessi motivi visti quando abbiamo lavorato con gli alberi di
+decisione, è necessario utilizzare solamente dati numerici. Possiamo convertire
+gli attributi categorici che corrispondono a genere e colore di occhi e capelli
+riutilizzando le classi <code class="docutils literal notranslate"><span class="pre">LabelEncoder</span></code>. Procediamo poi a convertire i valori
+degli attributi rimanenti nel modo che segue: dividiamo innanzitutto
+l’intervallo di variazione dei corrispondenti valori in quattro intervalli,
+utilizzando i quattro quartili come estremi; associamo successivamente un
+diverso valore numerico a ogni intervallo ottenuto e trasformiamo ogni
+osservazione nel numero che corrisponde all’intervallo individuato. Questa
+operazione viene effettuata automaticamente dalla funzione <code class="docutils literal notranslate"><span class="pre">pd.qcut</span></code>, a cui
+passiamo le osservazioni, il numero di intervalli da considerare e i valori
+numerici da associare a questi ultimi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">X</span><span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">],</span> <span class="n">n</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">X</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">],</span> <span class="n">n</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+
+<span class="n">gender_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">gender_encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">])</span>
+<span class="n">X</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gender_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">])</span>
+
+<span class="n">X</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">],</span>
+                                <span class="n">n</span><span class="p">,</span>
+                                <span class="n">labels</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+
+<span class="n">hair_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">hair_encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">])</span>
+<span class="n">X</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hair_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">])</span>
+
+<span class="n">eye_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">eye_encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">])</span>
+<span class="n">X</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">eye_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">])</span>
+
+<span class="n">X</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">],</span> <span class="n">n</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">X</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">],</span> <span class="n">n</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>L’ultimo ingrediente mancante è l’insieme dei valori per le classi. Per
+semplificarci la vita, ritorniamo alla classificazione binaria inizialmente
+considerata: anche in questo caso è necessario lavorare con valori numerici,
+quindi costruiamo una serie i cui valori sono <code class="docutils literal notranslate"><span class="pre">1</span></code> in corrispondenza dei
+supereroi Marvel e <code class="docutils literal notranslate"><span class="pre">0</span></code> per tutti gli altri casi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span> <span class="o">=</span> <span class="p">(</span><span class="n">heroes_cleaned</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Marvel Comics&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span> \
+         <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In realtà sklearn implementa diverse varianti del classificatore naive Bayes,
+ognuna delle quali stima in modo diverso le probabilità
+<span class="math notranslate nohighlight">\(\mathrm P(X_i = x_i | Y = y_k)\)</span>. Consideriamo per esempio la classe
+<code class="docutils literal notranslate"><span class="pre">GaussianNB</span></code>, che ipotizza che tali probabilità si possano calcolare
+utilizzando una distribuzione gaussiana (uno dei modelli teorici che vedremo
+tra qualche lezione). La costruzione del classificatore viene fatta usando lo
+stesso procedimento visto per gli alberi di decisione: si crea un oggetto della
+classe <code class="docutils literal notranslate"><span class="pre">GaussianNB</span></code>, e poi si invoca su di esso il metodo <code class="docutils literal notranslate"><span class="pre">fit</span></code> specificando
+come argomenti le osservazioni e le corrispondenti etichette. Dopo sarà
+sufficiente invocare il metodo <code class="docutils literal notranslate"><span class="pre">predict</span></code> passando una lista di oggetti da
+classificare. Ricordando che per avere una valutazione imparziale di un
+classificatore è necessario utilizzare dati non utilizzati per costruire il
+classificatore stesso, per semplicità limitiamoci a verificare che cosa succeda
+con le osservazioni in <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1,
+       1, 1, 1, 1, 0, 1, 1, 1, 1, 1])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Il risultato non pare molto confortante, in quanto quasi tutti i casi vengono
+associati alla Marvel. Per analizzare meglio i risultati, vediamo separatamente
+come vengono classificati i supereroi delle due classi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">Y</span><span class="o">==</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">Y</span><span class="o">==</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1,
+       1, 1, 1])
+</pre></div>
+</div>
+</div>
+</div>
+<p>A partire dai vettori ottenuti è facile calcolare separatamente il numero di
+veri positivi, falsi positivi, falsi negativi e veri negativi. È anche
+possibile costruire un dataframe che contenga la corrispondente matrice di
+confusione.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">Y</span><span class="o">==</span><span class="mi">1</span><span class="p">]))</span>
+<span class="n">fn</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">Y</span><span class="o">==</span><span class="mi">1</span><span class="p">]))</span> <span class="o">-</span> <span class="n">tp</span>
+<span class="n">fp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">Y</span><span class="o">==</span><span class="mi">0</span><span class="p">]))</span>
+<span class="n">tn</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">Y</span><span class="o">==</span><span class="mi">0</span><span class="p">]))</span> <span class="o">-</span> <span class="n">fp</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="n">tp</span><span class="p">,</span> <span class="n">fn</span><span class="p">],</span>
+              <span class="p">[</span><span class="n">fp</span><span class="p">,</span> <span class="n">tn</span><span class="p">]],</span>
+              <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Etichetta positiva&#39;</span><span class="p">,</span> <span class="s1">&#39;Etichetta negativa&#39;</span><span class="p">],</span>
+              <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Classif. positiva&#39;</span><span class="p">,</span> <span class="s1">&#39;Classif. negativa&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Classif. positiva</th>
+      <th>Classif. negativa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Etichetta positiva</th>
+      <td>110</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>Etichetta negativa</th>
+      <td>28</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>La matrice evidenzia una buona classificazione dei supereroi Marvel e una
+performance molto bassa per quel che riguarda i rimanenti supereroi. Volendo
+riassumere in un unico indice la bontà del risultato ottenuto è possibile
+calcolare la percentuale di dati corretti.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">tn</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7816901408450704
+</pre></div>
+</div>
+</div>
+</div>
+<p>Tale percentuale di per sé ci dice che poco meno dell’80% dei casi è stata
+classificata correttamente. Ciò è dovuto al fatto che nel dataset considerato
+vi sono in proporzione molti più supereroi Marvel rispetto a quelli delle altre
+case editrici.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "dariomalchiodi/sds",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./p3-CP/c3-probabilita"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="prob-totali-e-naive-bayes.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">14. </span>Teoremi</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../c4-modelli-discreti/modelli-discreti.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">16. </span>Modelli discreti</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Dario Malchiodi<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

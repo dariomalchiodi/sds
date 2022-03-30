@@ -365,6 +365,48 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../p3-CP/c3-probabilita/assiomi-kolmogorov.html">
+   11. Assiomi di Kolmogorov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../p3-CP/c3-probabilita/spazi-equiprobabili.html">
+   12. Spazi equiprobabili
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../p3-CP/c3-probabilita/probabilita-condizionata.html">
+   13. Probabilità condizionata
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../p3-CP/c3-probabilita/prob-totali-e-naive-bayes.html">
+   14. Teoremi
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../p3-CP/c3-probabilita/classificatori-naive-bayes.html">
+   15. Classificatori naive Bayes
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p3-CP/c4-modelli-discreti/modelli-discreti.html">
+   16. Modelli discreti
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-modelli-discreti/modello-geometrico.html">
+     16.1. Il modello geometrico
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -374,7 +416,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../bibliography.html">
-   11. Bibliography
+   17. Bibliography
   </a>
  </li>
 </ul>
@@ -1831,8 +1873,8 @@ Nella cella precedente sono state utilizzate le funzioni `np.hstack`, che permet
 </div>
 </div>
 <p>Quando i valori osservati sono di tipo numerico o ordinabile, uno strumento molto simile a quello delle frequenze relative cumulate è rappresentato dalla <em>funzione cumulativa empirica</em> (o <em>funzione di ripartizione empirica</em>), che dato un insieme di osservazioni <span class="math notranslate nohighlight">\(\{ x_1, \dots, x_n \}\)</span>, è definita come quella funzione <span class="math notranslate nohighlight">\(\hat F: \mathbb R \mapsto [0, 1]\)</span> tale che per ogni <span class="math notranslate nohighlight">\(x \in \mathbb R\)</span> assume un valore pari alla frequenza relativa delle osservazioni che risultano essere minori o uguali a <span class="math notranslate nohighlight">\(x\)</span>. Pertanto</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8c4cf45d-0fac-4cac-b4cf-1a02c1f991b1">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-8c4cf45d-0fac-4cac-b4cf-1a02c1f991b1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3615d4c4-fc4e-4ebc-86cf-9122c8756d18">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-3615d4c4-fc4e-4ebc-86cf-9122c8756d18" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \hat F(x) = \frac{\# \{ x_i \leq x \}}{n}
 = \frac{1}{n} \sum_{i=1}^n \mathrm I_{(-\infty, x]}(x_i) ,
 \end{equation}\]</div>

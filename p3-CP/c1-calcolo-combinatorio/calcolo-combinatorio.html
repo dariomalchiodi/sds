@@ -365,6 +365,48 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../c3-probabilita/assiomi-kolmogorov.html">
+   11. Assiomi di Kolmogorov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../c3-probabilita/spazi-equiprobabili.html">
+   12. Spazi equiprobabili
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../c3-probabilita/probabilita-condizionata.html">
+   13. Probabilità condizionata
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../c3-probabilita/prob-totali-e-naive-bayes.html">
+   14. Teoremi
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../c3-probabilita/classificatori-naive-bayes.html">
+   15. Classificatori naive Bayes
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../c4-modelli-discreti/modelli-discreti.html">
+   16. Modelli discreti
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c4-modelli-discreti/modello-geometrico.html">
+     16.1. Il modello geometrico
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -374,7 +416,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../bibliography.html">
-   11. Bibliography
+   17. Bibliography
   </a>
  </li>
 </ul>
@@ -867,8 +909,8 @@ analogo a quanto fatto per le permutazioni semplici, fermandoci però alla
 posizione <span class="math notranslate nohighlight">\(k\)</span>-esima. L’albero costruito ha profondità <span class="math notranslate nohighlight">\(k\)</span> e un numero di
 foglie pari a:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-1a86689b-24b4-4085-aef9-5fcb20ef9b38">
-<span class="eqno">(9.1)<a class="headerlink" href="#equation-1a86689b-24b4-4085-aef9-5fcb20ef9b38" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e8e626d1-b018-476f-b1c8-073b4998d785">
+<span class="eqno">(9.1)<a class="headerlink" href="#equation-e8e626d1-b018-476f-b1c8-073b4998d785" title="Permalink to this equation">¶</a></span>\[\begin{align}
 d_{n, k} &amp;= n (n-1) (n-2) \dots (n-k+1) \\
          &amp;= n (n-1) (n-2) \dots (n-k+1) \cdot
              \left(\frac{(n-k)(n-k-1)\dots1}{(n-k)(n-k-1)\dots1}\right) \\
@@ -947,8 +989,8 @@ stesso.</p>
 <span class="math notranslate nohighlight">\(|\mathcal{P}(A)| = 1 + \sum_{k=1}^{n} \binom{n}{k}\)</span>, dove il primo addendo
 è dovuto alla presenza dell’insieme vuoto. Sfruttando le propriet`a del
 coefficiente binomiale otteniamo</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c4245e62-9118-473d-a6b9-6e6635108b3d">
-<span class="eqno">(9.2)<a class="headerlink" href="#equation-c4245e62-9118-473d-a6b9-6e6635108b3d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cf232261-9fca-4512-a649-52586b746a62">
+<span class="eqno">(9.2)<a class="headerlink" href="#equation-cf232261-9fca-4512-a649-52586b746a62" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 |\mathcal{P}(A)| = \sum_{k=0}^{n} \binom{n}{k}
                  = \sum_{k=0}^{n}\binom{n}{k} 1^k 1^{n-k} = 2^n,
 \end{equation}\]</div>
