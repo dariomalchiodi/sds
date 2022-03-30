@@ -12,7 +12,7 @@ kernelspec:
   name: python3
 ---
 
-## Indici di concentrazione
+# Indici di concentrazione
 
 In presenza di variabili che rappresentano beni condivisibili in una
 popolazione, come per esempio la ricchezza, ci si può chiedere quanto la

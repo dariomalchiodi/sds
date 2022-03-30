@@ -58,6 +58,14 @@ parts:
     - file: p3-CP/c2-teoria-insiemi/relazioni-tra-insiemi
     - file: p3-CP/c2-teoria-insiemi/operazioni-tra-insiemi
     - file: p3-CP/c2-teoria-insiemi/insiemi-in-python
+  - file: p3-CP/c3-probabilita/assiomi-kolmogorov
+  - file: p3-CP/c3-probabilita/spazi-equiprobabili
+  - file: p3-CP/c3-probabilita/probabilita-condizionata
+  - file: p3-CP/c3-probabilita/prob-totali-e-naive-bayes
+  - file: p3-CP/c3-probabilita/classificatori-naive-bayes
+  - file: p3-CP/c4-modelli-discreti/modelli-discreti
+    sections:
+    - file: p3-CP/c4-modelli-discreti/modello-geometrico
 - caption: Bibliografia
   numbered: true
   chapters:
