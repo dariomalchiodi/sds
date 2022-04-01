@@ -1,7 +1,6 @@
 # Superhero Data Science
 
 
-![DS logo](logo.png)
+![DS logo](images/logoface.png)
 
 Dario Malchiodi
-

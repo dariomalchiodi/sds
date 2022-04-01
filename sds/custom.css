@@ -5,6 +5,7 @@
 
 h1, h2, h3, h4, h5, h6, .reference-internal, .caption-text {
   font-family: 'Mate SC', serif;
+  color: #01579B !important;
 }
 
 p {
@@ -15,7 +16,7 @@ p {
 tt, code, kbd, samp, pre {
   font-family: 'Fira Code', monospace !important;
   font-weight: bold !important;
-  color: salmon;
+  color: #0288D1;
 }
 
 .table td, .table th {
@@ -30,20 +31,20 @@ tt, code, kbd, samp, pre {
 }
 
 .cell_input {
-  border-left-color: #cc0000 !important;
+  border-left-color: #0288D1 !important;
 }
 
 bd-sidebar nav ul.nav a:hover, .bd-sidebar nav ul.nav li.active>a,
 .bd-sidebar nav ul.nav li.active>a:hover {
-  color: #cc0000 !important;
+  color: #0288D1 !important;
 }
 
 main.bd-content #main-content a, main.bd-content #main-content a:visited {
-  color: #cc0000 !important;
+  color: #0288D1 !important;
 }
 
 a {
-  color: #cc0000 !important;
+  color: #0288D1 !important;
 }
 
 /*
@@ -73,4 +74,3 @@ button.toggle-button.toggle-button-hidden:before {
 caption {
   display: grid;
 }
-

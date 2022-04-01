@@ -1,21 +1,21 @@
 #######################################################################################
 # A default configuration that will be loaded for all jupyter books
-# See the documentation for help and more options: 
+# See the documentation for help and more options:
 # https://jupyterbook.org/customize/config.html
 
 #######################################################################################
 # Book settings
 title                       : Superhero Data Science  # The title of the book. Will be placed in the left navbar.
-author                      : Dario Malchiodi  # The author of the book
-copyright                   : "2021"  # Copyright year to be placed in the footer
-logo                        : logo.png  # A path to the book logo
+author                      : "<a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'><img height='24' width='24' src='_images/twitter.svg' alt='Twitter' style='width:24px'></a>"  # The author of the book
+copyright                   : "2021 &emdash; Licensed under CC-BY 4.0"  # Copyright year to be placed in the footer
+logo                        : images/logoface.png  # A path to the book logo
 exclude_patterns            : ["**.ipynb"]
 
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
-  execute_notebooks: force
+  execute_notebooks: auto
 
 # Define the name of the latex output file for PDF builds
 latex:
@@ -49,3 +49,15 @@ parse:
       # including those that are enabled by default!
       - amsmath
       - dollarmath
+
+html:
+  google_analytics_id: G-3Q6LDVNS0X
+  home_page_in_navbar: true
+  use_edit_page_button: true
+  use_repository_button: true
+  use_issues_button: true
+  baseurl: https://goodresearch.dev/
+  favicon: images/favicon.ico
+  use_fullscreen_button: false
+  comments:
+    hypothesis: false
