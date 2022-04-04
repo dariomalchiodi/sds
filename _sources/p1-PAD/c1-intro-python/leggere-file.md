@@ -40,13 +40,10 @@ Nella cella:
 * la lettura effettiva del file è demandata al modulo `csv` che si occupa direttamente di convertire dal formato CSV: la funzione `csv.reader` gestisce anche il fatto di avere un separatore diverso dalla virgola e permette di inserire un punto e virgola in un campo a patto di delimitare quest'ultimo tra doppi apici;
 * la parola chiave `list` converte il contenuto del file in una lista, e da quest'ultima si esclude la prima riga (in quanto essa contiene le intestazioni dei campi).
 
-+++
-
-<div class="alert alert-info">
+```{admonition} Nomenclatura
+:class: naming
 In generale usando il nome di un tipo come se fosse una funzione è possibile effettuare conversioni tra tipi di dati: per esempio `int('42')` converte una stringa in intero e `str(42)` effettua la conversione inversa.
-</div>
-
-+++
+```
 
 Proviamo a visualizzare i primi due record (che corrispondono alle due righe sopra mostrate):
 
@@ -75,6 +72,7 @@ A questo punto è possibile generare il grafico delle frequenze assolute:
 ```{code-cell} ipython3
 import numpy as np
 import matplotlib.pyplot as plt
+plt.style.use('sds.mplstyle')
 
 def get_sorted_counts(sequence):
     counts = {}
@@ -109,11 +107,12 @@ plt.ylim((0, 18.5))
 plt.show()
 ```
 
-<div class="alert alert-info">
+```{admonition} Nomenclatura
+:class: naming
 In teoria, una volta ottenuta la lista `counts`, è possibile generare il grafico (ridmensionamento dei suoi assi a parte) usando l'istruzione più compatta `plt.bar(*np.array(counts[1:]).T)` in cui
-<ul>
-<li>l'invocazione del metodo `transpose` è sostituita dall'utilizzo della _proprietà_ `T`: si tratta essenzialmente della stessa cosa, ma permette di essere più succinti;</li>
-<li>invece di assegnare a due variabili `x` e `y` le liste di ascisse e ordinate, si usa l'operatore `*` per effettuare un'altra forma di _unpacking_ delle liste in modo che i due elementi della lista restituita da `T` vengano rispettivamente usati come primo e secondo argomento di `np.bar`.</li>
-</ul>
+
+- l'invocazione del metodo `transpose` è sostituita dall'utilizzo della _proprietà_ `T`: si tratta essenzialmente della stessa cosa, ma permette di essere più succinti;
+- invece di assegnare a due variabili `x` e `y` le liste di ascisse e ordinate, si usa l'operatore `*` per effettuare un'altra forma di _unpacking_ delle liste in modo che i due elementi della lista restituita da `T` vengano rispettivamente usati come primo e secondo argomento di `np.bar`.
+
 Va in ogni caso sottolineato che il minor numero di linee si paga con del codice più complesso e quindi meno facile da leggere e da correggere in caso di errore, quindi almeno fino a quando non si è abbastanza confidenti nel linguaggio è meglio non ricorrere a soluzioni troppo complicate.
-</div>
+```

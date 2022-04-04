@@ -5,7 +5,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>6. Dati e frequenze &#8212; Superhero Data Science</title>
+    <title>6. Dati e frequenze &#8212; Superhero Data Science 
+ Probabilità e Statistica</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
   <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -28,7 +29,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/tufte.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
@@ -54,9 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="canonical" href="https://goodresearch.dev/p2-SD/c1-dati-e-frequenze/dati-e-frequenze.html" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -68,14 +68,6 @@ const thebe_selector_output = ".output, .cell_output"
 
     <!-- Google Analytics -->
     
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-3Q6LDVNS0X"></script>
-<script>
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){ dataLayer.push(arguments); }
-                    gtag('js', new Date());
-                    gtag('config', 'G-3Q6LDVNS0X');
-                </script>
-
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
@@ -98,7 +90,8 @@ const thebe_selector_output = ".output, .cell_output"
       <img src="../../_static/logoface.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Superhero Data Science</h1>
+      <h1 class="site-logo" id="site-title">Superhero Data Science 
+ Probabilità e Statistica</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
@@ -109,7 +102,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../landing.html">
-   Superhero Data Science
+   Superhero Data Science: Probabilità e Statistica
   </a>
  </li>
 </ul>
@@ -524,9 +517,6 @@ const thebe_selector_output = ".output, .cell_output"
         
         
         
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -680,27 +670,18 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <h1>Table of Contents<span class="tocSkip"></span></h1>
-<div class="toc"><ul class="toc-item"><li><span><a href="#Dati-e-frequenze" data-toc-modified-id="Dati-e-frequenze-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>Dati e frequenze</a></span><ul class="toc-item"><li><span><a href="#Dati-quantitativi-e-qualitativi" data-toc-modified-id="Dati-quantitativi-e-qualitativi-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>Dati quantitativi e qualitativi</a></span><ul class="toc-item"><li><span><a href="#Classificazione-dei-dati-qualitativi" data-toc-modified-id="Classificazione-dei-dati-qualitativi-1.1.1"><span class="toc-item-num">1.1.1&nbsp;&nbsp;</span>Classificazione dei dati qualitativi</a></span></li><li><span><a href="#Classificazione-dei-dati-quantitativi" data-toc-modified-id="Classificazione-dei-dati-quantitativi-1.1.2"><span class="toc-item-num">1.1.2&nbsp;&nbsp;</span>Classificazione dei dati quantitativi</a></span></li></ul></li><li><span><a href="#Frequenze-assolute-e-relative-e-loro-visualizzazione" data-toc-modified-id="Frequenze-assolute-e-relative-e-loro-visualizzazione-1.2"><span class="toc-item-num">1.2&nbsp;&nbsp;</span>Frequenze assolute e relative e loro visualizzazione</a></span></li><li><span><a href="#Frequenze-cumulate" data-toc-modified-id="Frequenze-cumulate-1.3"><span class="toc-item-num">1.3&nbsp;&nbsp;</span>Frequenze cumulate</a></span><ul class="toc-item"><li><span><a href="#Diagrammi-di-Pareto" data-toc-modified-id="Diagrammi-di-Pareto-1.3.1"><span class="toc-item-num">1.3.1&nbsp;&nbsp;</span>Diagrammi di Pareto</a></span></li></ul></li><li><span><a href="#Frequenze-congiunte-e-marginali" data-toc-modified-id="Frequenze-congiunte-e-marginali-1.4"><span class="toc-item-num">1.4&nbsp;&nbsp;</span>Frequenze congiunte e marginali</a></span></li><li><span><a href="#Alcuni-approfondimenti-sulla-generazione-dei-grafici-*" data-toc-modified-id="Alcuni-approfondimenti-sulla-generazione-dei-grafici-*-1.5"><span class="toc-item-num">1.5&nbsp;&nbsp;</span>Alcuni approfondimenti sulla generazione dei grafici <sup>*</sup></a></span></li><li><span><a href="#I-diagrammi-stelo-foglia-*" data-toc-modified-id="I-diagrammi-stelo-foglia-*-1.6"><span class="toc-item-num">1.6&nbsp;&nbsp;</span>I diagrammi stelo-foglia <sup>*</sup></a></span></li></ul></li></ul></div><div class="header">
-D. Malchiodi, Superhero data science. Vol 1: probabilità e statistica: Dati e frequenze.
-</div>
-<hr style="width: 90%;" align="left" /><div id="h-0"></div>
-<div class="tex2jax_ignore mathjax_ignore section" id="dati-e-frequenze">
+  <div class="tex2jax_ignore mathjax_ignore section" id="dati-e-frequenze">
 <h1><span class="section-number">6. </span>Dati e frequenze<a class="headerlink" href="#dati-e-frequenze" title="Permalink to this headline">¶</a></h1>
 <p>Vedremo come esistano tipi differenti di dati, e come in funzione del loro tipo esistano diversi strumenti grafici che li descrivono. Studieremo inoltre in modo più approfondito e diversificato il concetto di <em>frequenza</em>.</p>
 <p>Come sempre, carichiamo le librerie e il dataset dei supereroi. Già che ci siamo, escludiamo l’unico record che fa riferimento al 2099 come anno di prima apparizione.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">scipy.constants</span> <span class="kn">import</span> <span class="n">golden</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;figure&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="o">/</span><span class="n">golden</span><span class="p">))</span>
-
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;sds.mplstyle&#39;</span><span class="p">)</span>
 
 <span class="n">heroes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/heroes.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">heroes_with_year</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">2020</span><span class="p">]</span>
@@ -830,13 +811,12 @@ D. Malchiodi, Superhero data science. Vol 1: probabilità e statistica: Dati e f
 </table>
 </div></div></div>
 </div>
-<div id="h-1"></div>
 <div class="section" id="dati-quantitativi-e-qualitativi">
 <h2><span class="section-number">6.1. </span>Dati quantitativi e qualitativi<a class="headerlink" href="#dati-quantitativi-e-qualitativi" title="Permalink to this headline">¶</a></h2>
 <p>Una delle principali distinzioni che si possono fare sui dati osservabili riguarda il modo in cui questi sono misurati:</p>
-<ul>
-  <li>si parla di dati _quantitativi_ se l'esito della misurazione è una quantità numerica;</li>
-  <li>si parla invece di dati _qualitativi_ (o categorici, o nominali) quando la misurazione è fatta scegliendo un'etichetta a partire da un insieme disponibili.</li>
+<ul class="simple">
+<li><p>si parla di dati <em>quantitativi</em> se l’esito della misurazione è una quantità numerica;</p></li>
+<li><p>si parla invece di dati <em>qualitativi</em> (o categorici, o nominali) quando la misurazione è fatta scegliendo un’etichetta a partire da un insieme disponibili.</p></li>
 </ul>
 <p>Pertanto nel nostro dataset i caratteri <em>Height</em>, <em>Weight</em> e <em>Strength</em> saranno da considerare quantitativi, mentre i caratteri <em>Name</em>, <em>Identity</em>, <em>Birth place</em>, <em>Publisher</em>, <em>Gender</em>, <em>Eye color</em>, <em>Hair color</em> e <em>Intelligence</em> saranno sicuramente di tipo qualititativo (la differenza tra <em>Strength</em> e <em>Intelligence</em> è legata al fatto che il primo carattere è misurato tramite numeri che variano tra 0 e 100 mentre il secondo fa riferimento a una scala basata su etichette). La classificazione di <em>First appearance</em> è più sfumata e merita qualche riflessione in più: sebbene l’anno di prima apparizione sia misurato tramite un numero intero, il suo valore non indica prettamente una <em>quantità</em>, bensì <em>quando</em> è accaduto un evento. In tal senso, il calcolo di operazioni aritmetiche quali la somma o la divisione perde di significato, ed è per questo che spesso caratteri di questo tipo ricadono nella classe dei dati qualitativi. Cionondimeno, vedremo come sia possibile ragionare sul carattere <em>First appearance</em> anche in termini quantitativi quando per esempio parleremo della visualizzazione di istogrammi. Ci sono poi casi di caratteri espressi in termini temporali in cui viene misurato il tempo intercorso a partire da un dato istante iniziale (come per esempio il tempo di arrivo del primo cliente in un negozio, misurato in minuti dall’orario di apertura), di cui è chiara l’appartenenza alla classe dei dati quantitativi.</p>
 <div id="h-2"></div>
@@ -958,8 +938,9 @@ Name: Publisher, dtype: int64
 </table>
 </div></div></div>
 </div>
-<div class="alert alert-info">
-L'argomento essenziale di `pd.crosstab` è, in questo caso, `index`, che viene impostato alla serie di cui vanno calcolate le frequenze assolute; i due rimanenti argomenti influiscono solo sul modo in cui viene visualizzata la tabella delle frequenze: `columns` contiene una lista il cui unico elemento è l'intestazione della colonna delle frequenze, mentre `colnames` viene impostato a una lista contenente una stringa vuota al fine di non visualizzare un'ulteriore etichetta per l'intera tabella.
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>L’argomento essenziale di <code class="docutils literal notranslate"><span class="pre">pd.crosstab</span></code> è, in questo caso, <code class="docutils literal notranslate"><span class="pre">index</span></code>, che viene impostato alla serie di cui vanno calcolate le frequenze assolute; i due rimanenti argomenti influiscono solo sul modo in cui viene visualizzata la tabella delle frequenze: <code class="docutils literal notranslate"><span class="pre">columns</span></code> contiene una lista il cui unico elemento è l’intestazione della colonna delle frequenze, mentre <code class="docutils literal notranslate"><span class="pre">colnames</span></code> viene impostato a una lista contenente una stringa vuota al fine di non visualizzare un’ulteriore etichetta per l’intera tabella.</p>
 </div>
 <p>Essendo l’output di <code class="docutils literal notranslate"><span class="pre">pd.crosstab</span></code> un <em>dataframe</em>, su esso si possono eseguire operazioni quali <em>slicing</em>, accesso basato su indice e su posizione e così via. Ciò permette di trasformare facilmente una tabella di frequenze relative nella corrispondente tabella delle <em>frequenze relative</em>, dove la frequenza relativa di un’osservazione è la frazione di casi in quell’osservazione occorre. L’uso delle frequenze relative permette di valutare più facilmente la grandezza dei valori in gioco, in quanto questi varieranno sempre tra 0 e 1, mentre le frequenze assolute non hanno a priori un valore massimo e quindi è meno facile valutare se una frequenza è «alta» o «bassa». Le frequenze relative si calcolano dividendo quelle assolute per il numero totale di casi; quest’ultimo è ovviamente uguale alla somma di tutte le frequenze assolute, quindi la tabella delle frequenze relative si può ottenere nel modo seguente:</p>
 <div class="cell docutils container">
@@ -1388,7 +1369,7 @@ L'argomento essenziale di `pd.crosstab` è, in questo caso, `index`, che viene i
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dati-e-frequenze_21_0.png" src="../../_images/dati-e-frequenze_21_0.png" />
+<img alt="../../_images/dati-e-frequenze_19_0.png" src="../../_images/dati-e-frequenze_19_0.png" />
 </div>
 </div>
 <p>Un grafico analogo si ottiene invocando sempre il metodo <code class="docutils literal notranslate"><span class="pre">plot.bar</span></code> sul <em>dataframe</em> corrispondente alla tabella delle frequenze:</p>
@@ -1400,7 +1381,7 @@ L'argomento essenziale di `pd.crosstab` è, in questo caso, `index`, che viene i
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dati-e-frequenze_23_0.png" src="../../_images/dati-e-frequenze_23_0.png" />
+<img alt="../../_images/dati-e-frequenze_21_0.png" src="../../_images/dati-e-frequenze_21_0.png" />
 </div>
 </div>
 <p>Vi sono due principali differenze tra i grafici a barre ottenuti:</p>
@@ -1417,7 +1398,7 @@ L'argomento essenziale di `pd.crosstab` è, in questo caso, `index`, che viene i
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dati-e-frequenze_25_0.png" src="../../_images/dati-e-frequenze_25_0.png" />
+<img alt="../../_images/dati-e-frequenze_23_0.png" src="../../_images/dati-e-frequenze_23_0.png" />
 </div>
 </div>
 <p>Volendo visualizzare le barre in un ordine differente è sufficiente riordinare il <em>dataframe</em> nello stesso già visto per le tabelle delle frequenze, prima di invocare <code class="docutils literal notranslate"><span class="pre">plt.plot</span></code>.</p>
@@ -1425,7 +1406,7 @@ L'argomento essenziale di `pd.crosstab` è, in questo caso, `index`, che viene i
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">publisher_order</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Hanna-Barbera&#39;</span><span class="p">,</span> <span class="s1">&#39;ABC Studios&#39;</span><span class="p">,</span> <span class="s1">&#39;Dark Horse Comics&#39;</span><span class="p">,</span>
                    <span class="s1">&#39;Image Comics&#39;</span><span class="p">,</span> <span class="s1">&#39;Marvel Comics&#39;</span><span class="p">,</span> <span class="s1">&#39;DC Comics&#39;</span><span class="p">,</span>
-                   <span class="s1">&#39;George Lucas&#39;</span><span class="p">,</span> <span class="s1">&#39;Rebellion&#39;</span><span class="p">,</span> 
+                   <span class="s1">&#39;George Lucas&#39;</span><span class="p">,</span> <span class="s1">&#39;Rebellion&#39;</span><span class="p">,</span>
                    <span class="s1">&#39;Star Trek&#39;</span><span class="p">,</span> <span class="s1">&#39;Universal Studios&#39;</span><span class="p">]</span>
 
 <span class="n">publisher_rel_freq</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">publisher_order</span><span class="p">,:]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -1434,7 +1415,7 @@ L'argomento essenziale di `pd.crosstab` è, in questo caso, `index`, che viene i
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dati-e-frequenze_27_0.png" src="../../_images/dati-e-frequenze_27_0.png" />
+<img alt="../../_images/dati-e-frequenze_25_0.png" src="../../_images/dati-e-frequenze_25_0.png" />
 </div>
 </div>
 <p>Oltre a modificare l’ordine delle barre, il grafico precedente visualizza le frequenze relative, ottenute in questo caso facendo riferimento alla tabella <code class="docutils literal notranslate"><span class="pre">publisher_rel_freq</span></code> precedentemente generata. Ovviamente il grafico che si ottiene è analogo a quello delle frequenze assolute: l’unica cosa che cambia è la scala dei valori sull’asse delle ascisse.</p>
@@ -1482,11 +1463,12 @@ L'argomento essenziale di `pd.crosstab` è, in questo caso, `index`, che viene i
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dati-e-frequenze_31_0.png" src="../../_images/dati-e-frequenze_31_0.png" />
+<img alt="../../_images/dati-e-frequenze_29_0.png" src="../../_images/dati-e-frequenze_29_0.png" />
 </div>
 </div>
-<div class="alert alert-warning">
-Se siete stati attenti avrete notato che le tabelle delle frequenze sono state accedute tramite `loc` al fine di estrarre le corrispondenti serie. Ciò è dovuto al fatto che in caso contrario matplotlib avrebbe prodotto due grafici separati. Quando più avanti parleremo delle frequenze congiunte vedremo un modo semplice per generare un'unica figura contenente i due grafici a barre.
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>Se siete stati attenti avrete notato che le tabelle delle frequenze sono state accedute tramite <code class="docutils literal notranslate"><span class="pre">loc</span></code> al fine di estrarre le corrispondenti serie. Ciò è dovuto al fatto che in caso contrario matplotlib avrebbe prodotto due grafici separati. Quando più avanti parleremo delle frequenze congiunte vedremo un modo semplice per generare un’unica figura contenente i due grafici a barre.</p>
 </div>
 <p>In effetti la cella precedente non genera un vero e proprio grafico a barre, perché per ogni valore della forza ci sarebbero due barre, relative ai due generi. Tali barre si sovrapporrebbero, con l’effetto di nascondere (parzialmente o totalmente) quella più bassa.</p>
 <div class="cell docutils container">
@@ -1498,7 +1480,7 @@ Se siete stati attenti avrete notato che le tabelle delle frequenze sono state a
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dati-e-frequenze_33_0.png" src="../../_images/dati-e-frequenze_33_0.png" />
+<img alt="../../_images/dati-e-frequenze_31_0.png" src="../../_images/dati-e-frequenze_31_0.png" />
 </div>
 </div>
 <p>Un’alternativa è quella di specificare il parametro <code class="docutils literal notranslate"><span class="pre">alpha</span></code> nelle funzioni che generano i grafici: ciò permette di disegnare delle barre semi-trasparenti che evidenziano le loro sovrapposizioni.</p>
@@ -1511,7 +1493,7 @@ Se siete stati attenti avrete notato che le tabelle delle frequenze sono state a
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dati-e-frequenze_35_0.png" src="../../_images/dati-e-frequenze_35_0.png" />
+<img alt="../../_images/dati-e-frequenze_33_0.png" src="../../_images/dati-e-frequenze_33_0.png" />
 </div>
 </div>
 <p>Una modalità alternativa per visualizzare le frequenze in caso di valori qualitativi, evidenziando inoltre le frazioni rispetto al numero totale dei casi è quella di utilizzare il metodo <code class="docutils literal notranslate"><span class="pre">pie</span></code> per produrre un diagramma a torta, o più tecnicamente un <em>aerogramma</em>, in cui un cerchio è diviso in tanti settori le cui aree sono proporzionali alle frequenze (pertanto il grafico ottenuto sarà indipendente dall’avere considerato le frequenze assolute oppure quelle relative). Per esempio, la cella seguente calcola il diagramma a torta delle frequenze relative al genere dei supereroi.</p>
@@ -1523,7 +1505,7 @@ Se siete stati attenti avrete notato che le tabelle delle frequenze sono state a
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dati-e-frequenze_37_0.png" src="../../_images/dati-e-frequenze_37_0.png" />
+<img alt="../../_images/dati-e-frequenze_35_0.png" src="../../_images/dati-e-frequenze_35_0.png" />
 </div>
 </div>
 <p>Ci sono alcune cose che vale la pena sottolineare, e che sono descritte di seguito.</p>
@@ -1536,9 +1518,11 @@ Se siete stati attenti avrete notato che le tabelle delle frequenze sono state a
 <ul class="simple">
 <li><p>Mentre quando si crea un grafico a barre per un carattere ha ampiamente senso utilizzare lo stesso colore per tutte le barre, nel caso di un diagramma a torta tale scelta renderebbe il risultato illeggibile, ed è per questo che se si vogliono personalizzare i colori è necessario passare la lista dei corrispondenti nomi all’argomento <code class="docutils literal notranslate"><span class="pre">colors</span></code> (che è diverso dall’argomento <code class="docutils literal notranslate"><span class="pre">color</span></code> finora utilizzato).</p></li>
 </ul>
-<div class="alert alert-warning" role="warning">
-Se ottenete un grafico che contiene un'ellissi al posto di un cerchio, probabilmente state utilizzando una versione precedente di pandas, che prevede che le lunghezze sugli assi cartesiani nei grafici siano sempre misurate con unità di misura diverse. Il rapporto tra queste unità di misura è legato alla sezione aurea, e ciò ha di norma l'effetto di produrre grafici gradevoli da vedere, a parte casi come questo in cui i cerchi risultano "schiacciati". Per ovviare all'inconveniente basta invocare la funzione `plt.axis` specificando come argomento `'equal'`.
-</div><p>Consideriamo il caso particolare dell’anno di apparizione: se ne tracciamo il grafico a barre delle frequenze assolute, è appropriato posizionare le barre rispettando la relazione di ordine esistente tra i dati, utilizzando direttamente matplotlib come abbiamo visto nella lezione precedente.</p>
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>Se ottenete un grafico che contiene un’ellissi al posto di un cerchio, probabilmente state utilizzando una versione precedente di pandas, che prevede che le lunghezze sugli assi cartesiani nei grafici siano sempre misurate con unità di misura diverse. Il rapporto tra queste unità di misura è legato alla sezione aurea, e ciò ha di norma l’effetto di produrre grafici gradevoli da vedere, a parte casi come questo in cui i cerchi risultano “schiacciati”. Per ovviare all’inconveniente basta invocare la funzione <code class="docutils literal notranslate"><span class="pre">plt.axis</span></code> specificando come argomento <code class="docutils literal notranslate"><span class="pre">'equal'</span></code>.</p>
+</div>
+<p>Consideriamo il caso particolare dell’anno di apparizione: se ne tracciamo il grafico a barre delle frequenze assolute, è appropriato posizionare le barre rispettando la relazione di ordine esistente tra i dati, utilizzando direttamente matplotlib come abbiamo visto nella lezione precedente.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_app_freq</span> <span class="o">=</span> <span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
@@ -1548,7 +1532,7 @@ Se ottenete un grafico che contiene un'ellissi al posto di un cerchio, probabilm
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dati-e-frequenze_40_0.png" src="../../_images/dati-e-frequenze_40_0.png" />
+<img alt="../../_images/dati-e-frequenze_37_0.png" src="../../_images/dati-e-frequenze_37_0.png" />
 </div>
 </div>
 <p>Il risultato non è però ottimale perché le barre hanno uno spessore (sebbene in questo caso sia molto piccolo, a causa dell’elevato numero di barre) che può suggerire un’interpretazione fuorviante del grafico, secondo cui le frequenze non facciano riferimento a un anno, bensì a un in intervallo temporale centrato in un anno. Per evitare tale fraintendimento è più appropriato in casi come questo produrre un grafico <em>a bastoncini</em> in cui ogni punto è evidenziato, piuttosto che da una barra, da un segmento verticale che lo congiunge con l’asse delle ascisse (cosa che, peraltro, permette di non scambiare per nulle le frequenze relativamente basse):</p>
@@ -1560,7 +1544,7 @@ Se ottenete un grafico che contiene un'ellissi al posto di un cerchio, probabilm
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dati-e-frequenze_42_0.png" src="../../_images/dati-e-frequenze_42_0.png" />
+<img alt="../../_images/dati-e-frequenze_39_0.png" src="../../_images/dati-e-frequenze_39_0.png" />
 </div>
 </div>
 <p>È anche possibile abbinare ogni segmento a un cerchio centrato sul punto che identifica un valore e la sua frequenza: basta generare il grafico precedente e sovrapporgli i singoli punti.</p>
@@ -1573,7 +1557,7 @@ Se ottenete un grafico che contiene un'ellissi al posto di un cerchio, probabilm
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dati-e-frequenze_44_0.png" src="../../_images/dati-e-frequenze_44_0.png" />
+<img alt="../../_images/dati-e-frequenze_41_0.png" src="../../_images/dati-e-frequenze_41_0.png" />
 </div>
 </div>
 <p>Infine, consideriamo il diagramma a bastoncini relativo al peso dei supereroi.</p>
@@ -1588,7 +1572,7 @@ Se ottenete un grafico che contiene un'ellissi al posto di un cerchio, probabilm
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dati-e-frequenze_46_0.png" src="../../_images/dati-e-frequenze_46_0.png" />
+<img alt="../../_images/dati-e-frequenze_43_0.png" src="../../_images/dati-e-frequenze_43_0.png" />
 </div>
 </div>
 <p>Due pesi, per dire, di 81.12 Kg e di 81.14 Kg vengono considerati in questo grafico come due valori differenti, ed è per questo che vi sono quasi esclusivamente bastoncini di altezza unitaria: quasi tutti i valori occorrono praticamente un’unica volta nel dataset. Ciò è dovuto al fatto che il peso è un dato quantitativo per cui non ha di norma senso considerare un singolo valore, e risulta più sensato calcolare le frequenze di <em>intervalli</em> di possibili valori osservabili. Il grafico corrispondente prende il nome di <em>istogramma</em>, e viene calcolato e visualizzato in pandas invocando il metodo <code class="docutils literal notranslate"><span class="pre">hist</span></code> sulla serie corrispondente:</p>
@@ -1600,7 +1584,7 @@ Se ottenete un grafico che contiene un'ellissi al posto di un cerchio, probabilm
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dati-e-frequenze_48_0.png" src="../../_images/dati-e-frequenze_48_0.png" />
+<img alt="../../_images/dati-e-frequenze_45_0.png" src="../../_images/dati-e-frequenze_45_0.png" />
 </div>
 </div>
 <p>Ovviamente il risultato ottenuto dipende da come sono stati scelti gli intervalli su cui calcolare le frequenze. Di norma si divide l’intervallo che contiene tutti i dati osservati in sotto-intervalli equiampi, il cui numero è individuato dall’argomento <code class="docutils literal notranslate"><span class="pre">bins</span></code>.</p>
@@ -1612,7 +1596,7 @@ Se ottenete un grafico che contiene un'ellissi al posto di un cerchio, probabilm
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dati-e-frequenze_50_0.png" src="../../_images/dati-e-frequenze_50_0.png" />
+<img alt="../../_images/dati-e-frequenze_47_0.png" src="../../_images/dati-e-frequenze_47_0.png" />
 </div>
 </div>
 <p>Questo istogramma ci dice, a occhio, che i pesi variano perlopiù tra zero e duecento chilogrammi, sebbene esistano erori con pesi maggiori. In teoria è possibile utilizzare sotto-intervalli di ampiezze differenti: per esempio, ampiezze pari a 20 per i pesi inferiori a 200 kg., pari a 50 per pesi compresi tra 200 e 500 kg., e pari a 100 per i valori rimanenti.</p>
@@ -1626,13 +1610,14 @@ Se ottenete un grafico che contiene un'ellissi al posto di un cerchio, probabilm
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dati-e-frequenze_52_0.png" src="../../_images/dati-e-frequenze_52_0.png" />
+<img alt="../../_images/dati-e-frequenze_49_0.png" src="../../_images/dati-e-frequenze_49_0.png" />
 </div>
 </div>
 <p>Va notato come in questo caso le altezze delle barre non contino il numero di occorrenze nel corrispondente intervallo: per esempio, vi sono tre pesi superiori a 800 kg., ma la barra corrispondente ha altezza unitaria. Ciò è dovuto al fatto che in un istogramma è l’<em>area</em> di ogni barra a essere legata alla frequenza: se le barre hanno basi della stessa lunghezza, le aree sono proporzionali all’altezza, altrimenti no. È per questo, per esempio, che le due barre più a destra nell’ultimo istogramma hanno altezza unitaria: si riferiscono a tre osservazioni, e la loro area è il triplo dell’area di una barra di altezza unitaria nella parte sinistra del grafico, che invece farebbe riferimento a una sola osservazione.</p>
-<div class="alert alert-info">
-Nella cella precedente sono state utilizzate le funzioni `np.hstack`, che permette di giustapporre due o più array numpy, e `np.arange`, che crea un array i cui contenuti variano tra i valori indicati dai primi due argomenti, con incremento pari all'ultimo argomento.
-</div><div id="h-5"></div>
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>Nella cella precedente sono state utilizzate le funzioni <code class="docutils literal notranslate"><span class="pre">np.hstack</span></code>, che permette di giustapporre due o più array numpy, e <code class="docutils literal notranslate"><span class="pre">np.arange</span></code>, che crea un array i cui contenuti variano tra i valori indicati dai primi due argomenti, con incremento pari all’ultimo argomento.</p>
+</div>
 </div>
 <div class="section" id="frequenze-cumulate">
 <h2><span class="section-number">6.3. </span>Frequenze cumulate<a class="headerlink" href="#frequenze-cumulate" title="Permalink to this headline">¶</a></h2>
@@ -1748,7 +1733,7 @@ Nella cella precedente sono state utilizzate le funzioni `np.hstack`, che permet
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dati-e-frequenze_59_0.png" src="../../_images/dati-e-frequenze_59_0.png" />
+<img alt="../../_images/dati-e-frequenze_55_0.png" src="../../_images/dati-e-frequenze_55_0.png" />
 </div>
 </div>
 <p>La frequenza cumulata corrispondente a 1970 rappresenta quindi il numero di casi nel dataset in cui l’anno di prima apparizione è minore o uguale al 1970, e dunque tale frequenza rappresenta la risposta alla terza domanda:</p>
@@ -1869,7 +1854,7 @@ Nella cella precedente sono state utilizzate le funzioni `np.hstack`, che permet
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dati-e-frequenze_67_0.png" src="../../_images/dati-e-frequenze_67_0.png" />
+<img alt="../../_images/dati-e-frequenze_63_0.png" src="../../_images/dati-e-frequenze_63_0.png" />
 </div>
 </div>
 <p>Vale la pena notare come il grafico prodotto sia quello una funzione lineare a tratti: in parole povere, si tratta di una sequenza di segmenti in cui ogni elemento ha l’estremo destro coincidente con quello sinistro del segmento successivo. Possiamo evidenziare questa proprietà effettuando uno <em>zoom</em>, per esempio tra il 1980 e il 1990:</p>
@@ -1881,12 +1866,12 @@ Nella cella precedente sono state utilizzate le funzioni `np.hstack`, che permet
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dati-e-frequenze_69_0.png" src="../../_images/dati-e-frequenze_69_0.png" />
+<img alt="../../_images/dati-e-frequenze_65_0.png" src="../../_images/dati-e-frequenze_65_0.png" />
 </div>
 </div>
 <p>Quando i valori osservati sono di tipo numerico o ordinabile, uno strumento molto simile a quello delle frequenze relative cumulate è rappresentato dalla <em>funzione cumulativa empirica</em> (o <em>funzione di ripartizione empirica</em>), che dato un insieme di osservazioni <span class="math notranslate nohighlight">\(\{ x_1, \dots, x_n \}\)</span>, è definita come quella funzione <span class="math notranslate nohighlight">\(\hat F: \mathbb R \mapsto [0, 1]\)</span> tale che per ogni <span class="math notranslate nohighlight">\(x \in \mathbb R\)</span> assume un valore pari alla frequenza relativa delle osservazioni che risultano essere minori o uguali a <span class="math notranslate nohighlight">\(x\)</span>. Pertanto</p>
-<div class="amsmath math notranslate nohighlight" id="equation-07769e19-37d5-4fbf-be44-5fa2b19cc2da">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-07769e19-37d5-4fbf-be44-5fa2b19cc2da" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-aab36882-09b2-4201-a474-135909115875">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-aab36882-09b2-4201-a474-135909115875" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \hat F(x) = \frac{\# \{ x_i \leq x \}}{n}
 = \frac{1}{n} \sum_{i=1}^n \mathrm I_{(-\infty, x]}(x_i) ,
 \end{equation}\]</div>
@@ -1904,11 +1889,12 @@ Nella cella precedente sono state utilizzate le funzioni `np.hstack`, che permet
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dati-e-frequenze_71_0.png" src="../../_images/dati-e-frequenze_71_0.png" />
+<img alt="../../_images/dati-e-frequenze_67_0.png" src="../../_images/dati-e-frequenze_67_0.png" />
 </div>
 </div>
-<div class="alert alert-info">
-In casi come questo è meglio usare `plt.step` piuttosto che `plt.plot`, altrimenti il grafico visualizzato, pur essendo molto simile al risultato appena ottenuto, non sarebbe tecnicamente parlando quello di una funzione costante a tratti.
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>In casi come questo è meglio usare <code class="docutils literal notranslate"><span class="pre">plt.step</span></code> piuttosto che <code class="docutils literal notranslate"><span class="pre">plt.plot</span></code>, altrimenti il grafico visualizzato, pur essendo molto simile al risultato appena ottenuto, non sarebbe tecnicamente parlando quello di una funzione costante a tratti.</p>
 </div>
 <p>Va peraltro rimarcato che all’aumentare del numero di valori osservabili il grafico delle frequenze relative cumulate ottenute usando il metodo <code class="docutils literal notranslate"><span class="pre">plot</span></code> della corrispondente serie diventa indistinguibile da quello della funzione cumulativa empirica (sia che si sia utilizzato <code class="docutils literal notranslate"><span class="pre">plt.step</span></code>, sia che si sia utilizzato <code class="docutils literal notranslate"><span class="pre">plt.plot</span></code> per visualizzarlo). Per rendercene conto, possiamo visualizzare nuovamente la funzione di ripartizione empirica tenendo però conto di tutte le osservazioni per gli anni di prima apparizione.</p>
 <div class="cell docutils container">
@@ -1923,7 +1909,7 @@ In casi come questo è meglio usare `plt.step` piuttosto che `plt.plot`, altrime
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dati-e-frequenze_73_0.png" src="../../_images/dati-e-frequenze_73_0.png" />
+<img alt="../../_images/dati-e-frequenze_69_0.png" src="../../_images/dati-e-frequenze_69_0.png" />
 </div>
 </div>
 <div id="h-6"></div>
@@ -1942,7 +1928,7 @@ In casi come questo è meglio usare `plt.step` piuttosto che `plt.plot`, altrime
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dati-e-frequenze_75_0.png" src="../../_images/dati-e-frequenze_75_0.png" />
+<img alt="../../_images/dati-e-frequenze_71_0.png" src="../../_images/dati-e-frequenze_71_0.png" />
 </div>
 </div>
 <p>Ovviamente per quanto riguarda il valore più a sinistra nel diagramma (e quindi quello avente la frequenza maggiore) frequenza e frequenza cumulata coincideranno sempre.</p>
@@ -1970,7 +1956,7 @@ In casi come questo è meglio usare `plt.step` piuttosto che `plt.plot`, altrime
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dati-e-frequenze_80_0.png" src="../../_images/dati-e-frequenze_80_0.png" />
+<img alt="../../_images/dati-e-frequenze_75_0.png" src="../../_images/dati-e-frequenze_75_0.png" />
 </div>
 </div>
 <p>In generale, un diagramma di Pareto permette di identificare gli elementi più rilevanti in termini di frequenze all’interno di un insieme di osservazioni, evidenziando simultaneamente il peso di ogni fattore, sia il loro peso cumulativo. Nel nostro caso, il grafico ottenuto mostra permette per esempio di verificare a colpo d’occhio come gli occhi blu, marroni e verdi identifichino l’80% dei supereroi. Va sottolineato però che questo dato numerico è in qualche modo influenzato dalla scelta di avere escluso tutti i colori con una frequenza relativa minore di 0.02. Implementiamo una funzione <code class="docutils literal notranslate"><span class="pre">my_pareto</span></code> che permette di impostare la soglia sulle frequenze e rigeneriamo il grafico, stavolta considerando tutti i dati.</p>
@@ -1989,7 +1975,7 @@ In casi come questo è meglio usare `plt.step` piuttosto che `plt.plot`, altrime
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dati-e-frequenze_82_0.png" src="../../_images/dati-e-frequenze_82_0.png" />
+<img alt="../../_images/dati-e-frequenze_77_0.png" src="../../_images/dati-e-frequenze_77_0.png" />
 </div>
 </div>
 <p>Notate come il grafico ottenuto sia particolarmente poco leggibile, essendo popolato nella metà destra da colori che, presi singolarmente, hanno una frequenza non rilevabile nel diagramma a barre. Considerate cumulativamente, queste frequenze hanno però un effetto sul grafico: in effetti, se vogliamo considerare l’80% dei dati è necessario includere anche il colore rosso. La definizione della funzione <code class="docutils literal notranslate"><span class="pre">my_pareto</span></code> evita in effetti di correggere i dati, a meno che non venga specificamente indicato tramite l’argomento <code class="docutils literal notranslate"><span class="pre">renormalize</span></code>, così da ottenere un grafico più preciso.</p>
@@ -2000,13 +1986,13 @@ In casi come questo è meglio usare `plt.step` piuttosto che `plt.plot`, altrime
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dati-e-frequenze_84_0.png" src="../../_images/dati-e-frequenze_84_0.png" />
+<img alt="../../_images/dati-e-frequenze_79_0.png" src="../../_images/dati-e-frequenze_79_0.png" />
 </div>
 </div>
 <p>Il corrispondente diagramma di Pareto si può generare manualmente oppure utilizzando la funzione <code class="docutils literal notranslate"><span class="pre">pareto</span></code> del package <code class="docutils literal notranslate"><span class="pre">paretochart</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">paretochart</span> <span class="kn">import</span> <span class="n">pareto</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#from paretochart import pareto</span>
 
 <span class="n">eye_color</span> <span class="o">=</span> <span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">]</span>
 <span class="n">eye_color_freq</span> <span class="o">=</span> <span class="n">eye_color</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -2014,22 +2000,10 @@ In casi come questo è meglio usare `plt.step` piuttosto che `plt.plot`, altrime
 <span class="n">common_colors</span> <span class="o">=</span> <span class="n">eye_color_freq</span><span class="p">[</span><span class="n">eye_color_freq</span> <span class="o">&gt;</span> <span class="mf">.02</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
 <span class="n">common_color_data</span> <span class="o">=</span> <span class="n">eye_color</span><span class="p">[</span><span class="n">eye_color</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">common_colors</span><span class="p">)]</span>
 
-<span class="n">pareto</span><span class="p">(</span><span class="n">common_color_data</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-       <span class="n">labels</span><span class="o">=</span><span class="n">common_colors</span><span class="p">)</span>
-       
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="nn">Input In [41],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">paretochart</span> <span class="kn">import</span> <span class="n">pareto</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">eye_color</span> <span class="o">=</span> <span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">eye_color_freq</span> <span class="o">=</span> <span class="n">eye_color</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1">#pareto(common_color_data.value_counts(normalize=True),</span>
+<span class="c1">#       labels=common_colors)</span>
 
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;paretochart&#39;
+<span class="c1">#plt.show()</span>
 </pre></div>
 </div>
 </div>
@@ -2045,13 +2019,70 @@ In casi come questo è meglio usare `plt.step` piuttosto che `plt.plot`, altrime
 <p>Spesso è utile analizzare un insieme di osservazioni prendendo in considerazione due caratteri al posto di uno, per esempio per vedere se i valori di tali caratteri tendano a essere più o meno collegati tra loro tramite una relazione. Il concetto di frequenza si specializza in questo caso andando a contare il numero di osservazioni in cui i due caratteri considerati assumono due determinati valori, ottenendo la cosiddetta <em>frequenza congiunta assoluta</em> (o equivalentemente la <em>frequenza congiunta relativa</em> nel caso in cui si calcolasse la frazione di osservazioni e non il suo numero). Nel caso in cui i possibili valori osservabili non siano parecchi, è possibile visualizzare queste frequenze tramite una <em>tabella delle frequenze congiunte</em> (detta anche <em>tabella di contingenza</em>), ottenuta estendendo il concetto di tabella delle frequenze precedentemente introdotto: ora le righe della tabella corrisponderanno ai possibili valori di uno dei caratteri considerati, le sue colonne corrisponderanno ai valori del rimanente carattere e gli elementi della tabella conterranno le frequenze congiunte (assolute o relative). La funzione <code class="docutils literal notranslate"><span class="pre">pd.crosstab</span></code> può essere utilizzata anche per produrre questo tipo di tabella: basta indicare le serie corrispondenti ai caratteri considerati come valori degli argomenti <code class="docutils literal notranslate"><span class="pre">index</span></code> e <code class="docutils literal notranslate"><span class="pre">columns</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">int_gender_freq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">],</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">int_gender_freq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">],</span>
                               <span class="n">columns</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">])</span>
 
 <span class="n">int_gender_freq</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Gender</th>
+      <th>F</th>
+      <th>M</th>
+    </tr>
+    <tr>
+      <th>Intelligence</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>average</th>
+      <td>38</td>
+      <td>101</td>
+    </tr>
+    <tr>
+      <th>good</th>
+      <td>78</td>
+      <td>165</td>
+    </tr>
+    <tr>
+      <th>high</th>
+      <td>27</td>
+      <td>112</td>
+    </tr>
+    <tr>
+      <th>low</th>
+      <td>0</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>moderate</th>
+      <td>21</td>
+      <td>37</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>L’ordine delle righe può essere modificato nello stesso modo visto per le tabelle delle frequenze: per modificare la tabella in modo che risulti ordinata per i valori di intelligenza piuttosto che in modo alfabetico sarà quindi sufficiente utilizzare in metodo <code class="docutils literal notranslate"><span class="pre">reindex</span></code>.</p>
 <div class="cell docutils container">
@@ -2062,6 +2093,63 @@ In casi come questo è meglio usare `plt.step` piuttosto che `plt.plot`, altrime
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Gender</th>
+      <th>F</th>
+      <th>M</th>
+    </tr>
+    <tr>
+      <th>Intelligence</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>low</th>
+      <td>0</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>moderate</th>
+      <td>21</td>
+      <td>37</td>
+    </tr>
+    <tr>
+      <th>average</th>
+      <td>38</td>
+      <td>101</td>
+    </tr>
+    <tr>
+      <th>good</th>
+      <td>78</td>
+      <td>165</td>
+    </tr>
+    <tr>
+      <th>high</th>
+      <td>27</td>
+      <td>112</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Siccome <code class="docutils literal notranslate"><span class="pre">crosstab</span></code> produce dei dataframe, per riordinare le colonne è sufficiente accedere alla tabella tramite <code class="docutils literal notranslate"><span class="pre">loc</span></code> e specificando come secondo argomento una lista dei valori nell’ordine desiderato:</p>
 <div class="cell docutils container">
@@ -2070,6 +2158,63 @@ In casi come questo è meglio usare `plt.step` piuttosto che `plt.plot`, altrime
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Gender</th>
+      <th>M</th>
+      <th>F</th>
+    </tr>
+    <tr>
+      <th>Intelligence</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>low</th>
+      <td>13</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>moderate</th>
+      <td>37</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th>average</th>
+      <td>101</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <th>good</th>
+      <td>165</td>
+      <td>78</td>
+    </tr>
+    <tr>
+      <th>high</th>
+      <td>112</td>
+      <td>27</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>In modo analogo è possibile visualizzare solo alcune righe oppure solo alcune colonne della tabella, come nella cella seguente:</p>
 <div class="cell docutils container">
@@ -2078,9 +2223,57 @@ In casi come questo è meglio usare `plt.step` piuttosto che `plt.plot`, altrime
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Gender</th>
+      <th>F</th>
+      <th>M</th>
+    </tr>
+    <tr>
+      <th>Intelligence</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>moderate</th>
+      <td>21</td>
+      <td>37</td>
+    </tr>
+    <tr>
+      <th>average</th>
+      <td>38</td>
+      <td>101</td>
+    </tr>
+    <tr>
+      <th>good</th>
+      <td>78</td>
+      <td>165</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
-<div class="alert alert-warning">
-Va notato che quella appena ottenuta non è più una tabella delle frequenze, in quanto non fa riferimento a tutti i possibili valori in gioco.
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>Va notato che quella appena ottenuta non è più una tabella delle frequenze, in quanto non fa riferimento a tutti i possibili valori in gioco.</p>
 </div>
 <p>Sempre ipotizzando che il numero di valori osservabili non sia troppo elevato, la visualizzazione grafica delle frequenze congiunte può essere effettuata estendendo il concetto di diagramma a barre in modo che visualizzi due caratteri al posto di uno, <em>raggruppando</em> le barre che fanno riferimento a uno stesso valore per uno dei caratteri, e <em>colorandole</em> in funzione del valore che queste assumono per l’altro carattere in gioco. Il posizionamento delle barre viene normalmente fatto in due possibili modi:</p>
 <ul class="simple">
@@ -2093,6 +2286,9 @@ Va notato che quella appena ottenuta non è più una tabella delle frequenze, in
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/dati-e-frequenze_93_0.png" src="../../_images/dati-e-frequenze_93_0.png" />
+</div>
 </div>
 <ul class="simple">
 <li><p>specificando ulteriormente il valore <code class="docutils literal notranslate"><span class="pre">True</span></code> per l’argomento <code class="docutils literal notranslate"><span class="pre">stacked</span></code>, in modo da <em>sovrapporre</em> le barre che si riferiscono a uno stesso valore:</p></li>
@@ -2104,6 +2300,9 @@ Va notato che quella appena ottenuta non è più una tabella delle frequenze, in
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/dati-e-frequenze_95_0.png" src="../../_images/dati-e-frequenze_95_0.png" />
+</div>
 </div>
 <p>Nel caso in cui si volessero calcolare le frequenze congiunte e almeno uno dei caratteri fosse numerico, si rischierebbe di ricadere nello stesso problema descritto quando abbiamo parlato degli istogrammi: si consideri per esempio il tentativo di calcolare le frequenze congiunte di peso e genere:</p>
 <div class="cell docutils container">
@@ -2112,6 +2311,88 @@ Va notato che quella appena ottenuta non è più una tabella delle frequenze, in
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Gender</th>
+      <th>F</th>
+      <th>M</th>
+    </tr>
+    <tr>
+      <th>Weight</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2.34</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4.82</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>9.79</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>14.67</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>16.20</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>17.01</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>18.11</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>18.45</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>19.00</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>25.73</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Essenzialmente in ogni riga c’è un valore nullo e uno unitario, semplicemente perché succede quasi sempre che un particolare valore del peso specificato fino ai decigrammi occorra un’unica volta nelle osservazioni. È quindi opportuno raggruppare assieme pesi «vicini» tra loro. Ciò viene fatto utilizzando la funzione <code class="docutils literal notranslate"><span class="pre">pd.cut</span></code>, che converte una serie di valori numerici in una serie qualitativa i cui valori possibili sono gli intervalli di una partizione aventi per estremi i valori specificati in corrispondenza dell’argomento <code class="docutils literal notranslate"><span class="pre">bins</span></code>. Considerando questa nuova serie è possibile generare una tabella di frequenze congiunte più significativa.</p>
 <div class="cell docutils container">
@@ -2122,6 +2403,68 @@ Va notato che quella appena ottenuta non è più una tabella delle frequenze, in
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Gender</th>
+      <th>F</th>
+      <th>M</th>
+    </tr>
+    <tr>
+      <th>Weight</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>(30, 50]</th>
+      <td>4</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>(50, 80]</th>
+      <td>116</td>
+      <td>88</td>
+    </tr>
+    <tr>
+      <th>(80, 100]</th>
+      <td>5</td>
+      <td>111</td>
+    </tr>
+    <tr>
+      <th>(100, 200]</th>
+      <td>11</td>
+      <td>84</td>
+    </tr>
+    <tr>
+      <th>(200, 500]</th>
+      <td>5</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <th>(500, 1000]</th>
+      <td>1</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Le impostazioni predefinite di <code class="docutils literal notranslate"><span class="pre">pd.cut</span></code> fanno riferimento a intervalli aperti a sinistra e chiusi a destra, ma è possibile invertire l’apertura e la chiusura degli estremi utilizzando l’argomento opzionale <code class="docutils literal notranslate"><span class="pre">right</span></code>:</p>
 <div class="cell docutils container">
@@ -2133,15 +2476,147 @@ Va notato che quella appena ottenuta non è più una tabella delle frequenze, in
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Gender</th>
+      <th>F</th>
+      <th>M</th>
+    </tr>
+    <tr>
+      <th>Weight</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>[30, 50)</th>
+      <td>4</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>[50, 80)</th>
+      <td>116</td>
+      <td>88</td>
+    </tr>
+    <tr>
+      <th>[80, 100)</th>
+      <td>5</td>
+      <td>111</td>
+    </tr>
+    <tr>
+      <th>[100, 200)</th>
+      <td>11</td>
+      <td>84</td>
+    </tr>
+    <tr>
+      <th>[200, 500)</th>
+      <td>5</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <th>[500, 1000)</th>
+      <td>1</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Quando si genera una tabella di frequenze congiunte, è possibile specificare il valore <code class="docutils literal notranslate"><span class="pre">True</span></code> per l’argomento <code class="docutils literal notranslate"><span class="pre">margins</span></code> al fine di aggiungere una riga e una colonna che contengono i totali (calcolati rispettivamente sulle singole colonne e sulle singole righe). I valori ivi indicati prendono il nome di <em>frequenze marginali</em>, e corrispondono alle frequenze del carattere corrispondente. Per esempio, rigenerando la tabella delle frequenze congiunte di livello di intelligenza e genere con le colonne dei totali,</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">],</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">],</span>
             <span class="n">columns</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">],</span> <span class="n">margins</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Gender</th>
+      <th>F</th>
+      <th>M</th>
+      <th>All</th>
+    </tr>
+    <tr>
+      <th>Intelligence</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>average</th>
+      <td>38</td>
+      <td>101</td>
+      <td>139</td>
+    </tr>
+    <tr>
+      <th>good</th>
+      <td>78</td>
+      <td>165</td>
+      <td>243</td>
+    </tr>
+    <tr>
+      <th>high</th>
+      <td>27</td>
+      <td>112</td>
+      <td>139</td>
+    </tr>
+    <tr>
+      <th>low</th>
+      <td>0</td>
+      <td>13</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>moderate</th>
+      <td>21</td>
+      <td>37</td>
+      <td>58</td>
+    </tr>
+    <tr>
+      <th>All</th>
+      <td>164</td>
+      <td>428</td>
+      <td>592</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>la colonna <code class="docutils literal notranslate"><span class="pre">All</span></code> conterrà le frequenze assolute per il carattere Intelligence, e parimenti la righa <code class="docutils literal notranslate"><span class="pre">All</span></code> elencherà le frequenze assolute per il genere (escludendo ovviamente in entrambi i casi l’ultimo elemento che corrisponde al numero totale di osservazioni).</p>
 <p>Le frequenze congiunte a cui abbiamo fatto riferimento negli esempi visti finora erano frequenze assolute, ma è immediato estendere tale concetto a quello delle <em>frequenze congiunte relative</em>. Queste si possono calcolare dividendo le frequenze assolute per il numero totale di osservazioni, oppure utilizzando come in precedenza il parametro <code class="docutils literal notranslate"><span class="pre">normalize</span></code> in <code class="docutils literal notranslate"><span class="pre">pd.crosstab</span></code>, che però ora ha diversi valori possibili:</p>
@@ -2150,39 +2625,235 @@ Va notato che quella appena ottenuta non è più una tabella delle frequenze, in
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">],</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">],</span>
             <span class="n">columns</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">],</span>
             <span class="n">margins</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">normalize</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Gender</th>
+      <th>F</th>
+      <th>M</th>
+      <th>All</th>
+    </tr>
+    <tr>
+      <th>Intelligence</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>average</th>
+      <td>0.064189</td>
+      <td>0.170608</td>
+      <td>0.234797</td>
+    </tr>
+    <tr>
+      <th>good</th>
+      <td>0.131757</td>
+      <td>0.278716</td>
+      <td>0.410473</td>
+    </tr>
+    <tr>
+      <th>high</th>
+      <td>0.045608</td>
+      <td>0.189189</td>
+      <td>0.234797</td>
+    </tr>
+    <tr>
+      <th>low</th>
+      <td>0.000000</td>
+      <td>0.021959</td>
+      <td>0.021959</td>
+    </tr>
+    <tr>
+      <th>moderate</th>
+      <td>0.035473</td>
+      <td>0.062500</td>
+      <td>0.097973</td>
+    </tr>
+    <tr>
+      <th>All</th>
+      <td>0.277027</td>
+      <td>0.722973</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <ul class="simple">
 <li><p>usando <code class="docutils literal notranslate"><span class="pre">'index'</span></code> si otterrà una tabella in cui i valori su ogni riga sommano a 1</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">],</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">],</span>
             <span class="n">columns</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">],</span>
             <span class="n">margins</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">normalize</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Gender</th>
+      <th>F</th>
+      <th>M</th>
+    </tr>
+    <tr>
+      <th>Intelligence</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>average</th>
+      <td>0.273381</td>
+      <td>0.726619</td>
+    </tr>
+    <tr>
+      <th>good</th>
+      <td>0.320988</td>
+      <td>0.679012</td>
+    </tr>
+    <tr>
+      <th>high</th>
+      <td>0.194245</td>
+      <td>0.805755</td>
+    </tr>
+    <tr>
+      <th>low</th>
+      <td>0.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>moderate</th>
+      <td>0.362069</td>
+      <td>0.637931</td>
+    </tr>
+    <tr>
+      <th>All</th>
+      <td>0.277027</td>
+      <td>0.722973</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <ul class="simple">
 <li><p>indicando invece <code class="docutils literal notranslate"><span class="pre">columns</span></code> viene generata una tabella in cui tutte le colonne sommano al valore unitario</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">],</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">],</span>
             <span class="n">columns</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">],</span>
             <span class="n">margins</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">normalize</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Gender</th>
+      <th>F</th>
+      <th>M</th>
+      <th>All</th>
+    </tr>
+    <tr>
+      <th>Intelligence</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>average</th>
+      <td>0.231707</td>
+      <td>0.235981</td>
+      <td>0.234797</td>
+    </tr>
+    <tr>
+      <th>good</th>
+      <td>0.475610</td>
+      <td>0.385514</td>
+      <td>0.410473</td>
+    </tr>
+    <tr>
+      <th>high</th>
+      <td>0.164634</td>
+      <td>0.261682</td>
+      <td>0.234797</td>
+    </tr>
+    <tr>
+      <th>low</th>
+      <td>0.000000</td>
+      <td>0.030374</td>
+      <td>0.021959</td>
+    </tr>
+    <tr>
+      <th>moderate</th>
+      <td>0.128049</td>
+      <td>0.086449</td>
+      <td>0.097973</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>La normalizzazione per colonne permette di ottenere una tabella che contiene le frequenze relative di due sotto-popolazioni come nel caso precedentemente visto, relativo alla forza di supereroi e supereroine. Invocando <code class="docutils literal notranslate"><span class="pre">plot</span></code> o <code class="docutils literal notranslate"><span class="pre">plot.bar</span></code> su questa tabella si ottiene in modo semplice un grafico che permette di confrontare visualmente tali frequenze.</p>
 <div class="cell docutils container">
@@ -2195,6 +2866,9 @@ Va notato che quella appena ottenuta non è più una tabella delle frequenze, in
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/dati-e-frequenze_111_0.png" src="../../_images/dati-e-frequenze_111_0.png" />
+</div>
 </div>
 <p>Abbiamo visto in una lezione precedente come generare direttamente un grafico di una serie senza elaborarla (calcolando per esempio le sue frequenze) produce un risultato che non è normalmente informativo. Le cose sono diverse quando si considerano congiuntamente due serie con un medesimo indice: in tal caso per ogni elemento di questo indice (e dunque per ogni osservazione), i valori delle due serie possono essere utilizzati per individuare le coordinate di un punto nel piano. Visualizzando i punti corrispondenti a tutte le osservazioni si ottiene un <em>diagramma di dispersione</em> (o <em>scatter plot</em>). In pandas questo tipo di grafico si genera invocando il metodo <code class="docutils literal notranslate"><span class="pre">plot.scatter</span></code> sul <em>dataframe</em> che contiene le osservazioni, indicando come argomenti i nomi dei caratteri che devono essere considerati (il primo dei quali verrà visualizzato sull’asse delle ascisse, usando invece quello delle ordinate per il secondo). Per esempio nella cella seguente viene visualizzato il diagramma di dispersione dei caratteri relativi ad altezza e peso dei supereroi di genere maschile.</p>
 <div class="cell docutils container">
@@ -2203,6 +2877,9 @@ Va notato che quella appena ottenuta non è più una tabella delle frequenze, in
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/dati-e-frequenze_113_0.png" src="../../_images/dati-e-frequenze_113_0.png" />
 </div>
 </div>
 <p>I diagrammi di dispersione permettono di valutare visivamente se esistano delle relazioni che legano i due caratteri visualizzati. Per esempio nel grafico precedente si nota come tendenzialmente a un valore alto del peso corrisponda un valore alto per l’altezza e viceversa. Volendo è possibile aggiungere al grafico una retta che metta in evidenza tale tipo di relazione:</p>
@@ -2218,6 +2895,9 @@ Va notato che quella appena ottenuta non è più una tabella delle frequenze, in
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/dati-e-frequenze_115_0.png" src="../../_images/dati-e-frequenze_115_0.png" />
 </div>
 </div>
 <p>In questo caso la retta è stata posizionata «a mano»: esistono metodi che ci permettono di determinarla in funzione delle osservazioni. Per il momento mettiamo in evidenza la possibilità di definire in modo formale una retta scelta in modo da minimizzare una sua distanza da tutti i punti, utilizzando il cosiddetto <em>metodo dei minimi quadrati</em>. La cella seguente mostra come determinare tale retta, avendo cura di lavorare su una copia del <em>dataframe</em> sulla quale invocare il metodo <code class="docutils literal notranslate"><span class="pre">dropna</span></code> che elimina le righe in cui è presente almeno un valore mancante.</p>
@@ -2244,6 +2924,13 @@ Va notato che quella appena ottenuta non è più una tabella delle frequenze, in
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/sklearn/base.py:450: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+</pre></div>
+</div>
+<img alt="../../_images/dati-e-frequenze_117_1.png" src="../../_images/dati-e-frequenze_117_1.png" />
+</div>
 </div>
 <p>Anche in questo caso si rimanda alla <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html#sklearn.linear_model.LinearRegression">documentazione ufficiale</a> per gli approfondimenti del caso. Notiamo solo come la presenza dei tre valori estremi nella parte destra del grafico fa sì che la retta ottenuta sia sensibilmente diversa rispetto a quella tracciata a mano. Le cose cambiano se non si considerano questi tre valori.</p>
 <div class="cell docutils container">
@@ -2265,12 +2952,24 @@ Va notato che quella appena ottenuta non è più una tabella delle frequenze, in
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/sklearn/base.py:450: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+  warnings.warn(
+</pre></div>
+</div>
+<img alt="../../_images/dati-e-frequenze_119_1.png" src="../../_images/dati-e-frequenze_119_1.png" />
+</div>
 </div>
 <p>Va infine notato che le relazioni tra due caratteri non necessariamente hanno una forma lineare, ma approfondire questo aspetto esula dal carattere introduttivo di questo corso.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">male_heroes</span> <span class="o">=</span> <span class="n">heroes_with_data</span><span class="p">[</span><span class="n">heroes_with_data</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;M&#39;</span><span class="p">]</span>
 <span class="n">male_heroes</span><span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">male_heroes</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1817.2108845049506
 </pre></div>
 </div>
 </div>
@@ -2281,13 +2980,18 @@ Va notato che quella appena ottenuta non è più una tabella delle frequenze, in
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8268581935167995
+</pre></div>
 </div>
-<div id="h-8"></div>
+</div>
+</div>
 </div>
 <div class="section" id="alcuni-approfondimenti-sulla-generazione-dei-grafici-sup-sup">
 <h2><span class="section-number">6.5. </span>Alcuni approfondimenti sulla generazione dei grafici <sup>*</sup><a class="headerlink" href="#alcuni-approfondimenti-sulla-generazione-dei-grafici-sup-sup" title="Permalink to this headline">¶</a></h2>
-<div class="alert alert-info">
-I paragrafi contrassegnati con un asterisco sono opzionali. È dunque possibile saltarli a meno che non si voglia approfondire gli argomenti ivi contenuti.
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>I paragrafi contrassegnati con un asterisco sono opzionali. È dunque possibile saltarli a meno che non si voglia approfondire gli argomenti ivi contenuti.</p>
 </div>
 <p>Una cella grafica generata da matplotlib e visualizzata nel notebook contiene quella che viene definita una <em>figura</em> (tecnicamente, un oggetto della classe <code class="docutils literal notranslate"><span class="pre">plt.Figure</span></code>). Ogni figura può contenere uno o più <em>sistemi cartesiani</em> (oggetti della classe <code class="docutils literal notranslate"><span class="pre">plt.Axes</span></code>) i quali a loro volta contengono (nella maggior parte dei casi) due <em>assi cartesiani</em> (oggetti della classe <code class="docutils literal notranslate"><span class="pre">plt.Axis</span></code>, da non confondere con <code class="docutils literal notranslate"><span class="pre">plt.Axes</span></code>). Tutte le figure che abbiamo generato finora contenevano un unico sistema di assi cartesiani, su cui venivano eventualmente sovrapposti tutti i grafici che venivano creati. È però possibile ottenere figure in cui più sistemi cartesiani vengono affiancati su una griglia bidimensionale. Ciò permette per esempio di affiancare grafici diversi. La gestione di tale griglia è di norma demandata alla funzione <code class="docutils literal notranslate"><span class="pre">plt.subplot</span></code>, che accetta tre argomenti interi: i primi due indicano rispettivamente il numero di righe e di colonne nella griglia, e il terzo specifica una posizione nella griglia stessa (con la convenzione che in una griglia di <span class="math notranslate nohighlight">\(n\)</span> colonne 1 indica la posizione nella prima riga e nella prima colonna, 2 quella nella prima riga e nella seconda colonna e così via fino a <span class="math notranslate nohighlight">\(n\)</span> che indica l’ultima posizione nella prima riga; procedendo oltre si passa alla riga successiva, così che <span class="math notranslate nohighlight">\(n+1\)</span> individua la seconda riga e la prima colonna e via discorrendo. Una volta che <code class="docutils literal notranslate"><span class="pre">plt.subplot</span></code> è stato invocato, questo restituisce l’oggetto corrispondente al sistema cartesiano relativo, che conterrà (eventualmente sovrapponendoli) tutti i grafici generati fino alla successiva invocazione di <code class="docutils literal notranslate"><span class="pre">plt.subplot</span></code>. Questo è quello che succede per esempio quando si invocano i metodi di <code class="docutils literal notranslate"><span class="pre">plot</span></code> su una serie: nella cella seguente per esempio vengono affiancati i diagrammi a torta relativi alle frequenze di genere e livello di intelligenza.</p>
 <div class="cell docutils container">
@@ -2300,14 +3004,19 @@ I paragrafi contrassegnati con un asterisco sono opzionali. È dunque possibile 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pie</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/dati-e-frequenze_124_0.png" src="../../_images/dati-e-frequenze_124_0.png" />
+</div>
 </div>
 <p>Va notato che in questo caso l’invocazione di <code class="docutils literal notranslate"><span class="pre">plt.axis('equal')</span></code> non sortirebbe l’effetto desiderato di mostrare due cerchi, in quanto il metodo agisce sulla figura e non sui suoi assi. È quindi necessario impostare manualmente la dimensione della figura in modo che la base sia pari al doppio dell’altezza, così che entrambi i sistemi cartesiani risultino nei fatti essere dei quadrati. Ciò viene fatto grazie all’invocazione preliminare di <code class="docutils literal notranslate"><span class="pre">plt.figure</span></code>, che crea una figura di dimensioni specifiche piuttosto che ottenere una figura predefinita.</p>
-<div class="alert alert-info">
-Nella cella precedente va notata anche l'invocazione di `plt.xlabel` e `plt.ylabel` che spostano la descrizione dei diagrammi dall'asse delle ordinate a quello delle ascisse (per aumentare la leggibilità), inserendo nel contempo delle descrizioni più informative.
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>Nella cella precedente va notata anche l’invocazione di <code class="docutils literal notranslate"><span class="pre">plt.xlabel</span></code> e <code class="docutils literal notranslate"><span class="pre">plt.ylabel</span></code> che spostano la descrizione dei diagrammi dall’asse delle ordinate a quello delle ascisse (per aumentare la leggibilità), inserendo nel contempo delle descrizioni più informative.</p>
 </div>
 <p>Vi sono però alcuni casi in cui la generazione di un grafico implica la creazione di un nuovo sistema cartesiano nella figura: un esempio di questo comportamento si ha quando vengono generati dei grafici invocando i metodi di <code class="docutils literal notranslate"><span class="pre">plot</span></code> su un <em>dataframe</em> piuttosto che su una serie. I due diagrammi a barre non vengono sovrapposti, bensì affiancati uno sopra l’altro.</p>
 <div class="cell docutils container">
@@ -2326,6 +3035,10 @@ Nella cella precedente va notata anche l'invocazione di `plt.xlabel` e `plt.ylab
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/dati-e-frequenze_126_0.png" src="../../_images/dati-e-frequenze_126_0.png" />
+<img alt="../../_images/dati-e-frequenze_126_1.png" src="../../_images/dati-e-frequenze_126_1.png" />
+</div>
 </div>
 <p>Se si volessero affiancare i due grafici in modo orizzontale (cosa che peraltro aiuterebbe il confronto) è quindi necessario agire in modo diverso, notando che <code class="docutils literal notranslate"><span class="pre">plt.subplot</span></code> restituisce l’oggetto relativo al sistema cartesiano creato e che le funzioni di matplotlib accettano generalmente un argomento <code class="docutils literal notranslate"><span class="pre">ax</span></code> a cui passare il sistema in cui il risultato deve essere inserito.</p>
 <div class="cell docutils container">
@@ -2335,14 +3048,19 @@ Nella cella precedente va notata anche l'invocazione di `plt.xlabel` e `plt.ylab
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">female_strength_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/dati-e-frequenze_128_0.png" src="../../_images/dati-e-frequenze_128_0.png" />
+</div>
 </div>
 <p>Va notato come nei due grafici a barre siano stati impostati i limiti degli assi delle ascisse a un valore comune: in caso contrario il confronto tra le due immagini sarebbe potuto risultare sfalsato.</p>
-<div class="alert alert-info">
-I più attenti avranno notato che python distingue automaticamente i nomi formali dei parametri dai corrispondenti valori effettivi, cosa che permette di scrivere `ax=ax` nelle precedenti invocazioni di `plot.bar`.
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>I più attenti avranno notato che python distingue automaticamente i nomi formali dei parametri dai corrispondenti valori effettivi, cosa che permette di scrivere <code class="docutils literal notranslate"><span class="pre">ax=ax</span></code> nelle precedenti invocazioni di <code class="docutils literal notranslate"><span class="pre">plot.bar</span></code>.</p>
 </div>
 <p>Infine, metodi come <code class="docutils literal notranslate"><span class="pre">plot</span></code> restituiscono il riferimento ai sistemi cartesiani su cui hanno operato: ciò permette di sovrapporre dei grafici anche invocando metodi il cui comportamento predefinito è quello di creare un nuovo sistema.</p>
 <div class="cell docutils container">
@@ -2354,10 +3072,14 @@ I più attenti avranno notato che python distingue automaticamente i nomi formal
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/dati-e-frequenze_130_0.png" src="../../_images/dati-e-frequenze_130_0.png" />
 </div>
-<div class="alert alert-info">
-Nella cella precedente è stato utilizzando il metodo `legend` per modificare le etichette indicate nella legenda.
-</div><div id="h-9"></div>
+</div>
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>Nella cella precedente è stato utilizzando il metodo <code class="docutils literal notranslate"><span class="pre">legend</span></code> per modificare le etichette indicate nella legenda.</p>
+</div>
 </div>
 <div class="section" id="i-diagrammi-stelo-foglia-sup-sup">
 <h2><span class="section-number">6.6. </span>I diagrammi stelo-foglia <sup>*</sup><a class="headerlink" href="#i-diagrammi-stelo-foglia-sup-sup" title="Permalink to this headline">¶</a></h2>
@@ -2372,8 +3094,9 @@ Nella cella precedente è stato utilizzando il metodo `legend` per modificare le
 200|8, 7, 1, 5, 4, 5, 5, 4, 3, 4, 1
 201|1, 1
 </pre>
-<div class="alert alert-warning">
-Il resto di questo paragrafo richiede una discreta conoscenza della programmazione in python, per cui vale la pena tralasciarlo durante una lettura preliminare.
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>Il resto di questo paragrafo richiede una discreta conoscenza della programmazione in python, per cui vale la pena tralasciarlo durante una lettura preliminare.</p>
 </div>
 <p>Per non complicarci troppo la vita, assumiamo di avere a disposizione dei dati interi: già così la costruzione di un diagramma stelo-foglie richiede una certa dose di perizia. Innanzitutto è necessario eliminare i valori mancanti dai dati:</p>
 <div class="cell docutils container">
@@ -2431,6 +3154,18 @@ Il resto di questo paragrafo richiede una discreta conoscenza della programmazio
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>194.1|0
+195.1|8, 9
+196.1|4, 3, 2, 7, 4, 2, 0, 7, 3, 1
+197.1|9, 8, 9, 1, 4, 6, 1, 6, 4
+198.1|4, 5, 0, 3, 3, 0, 0, 5, 3, 4, 1
+199.1|2, 4, 5, 3
+200.1|7, 6, 0, 4, 3, 4, 4, 3, 2, 3, 0
+201.1|0, 0
+</pre></div>
+</div>
+</div>
 </div>
 <p>Per poter generare velocemente altri diagrammi stelo-foglia, è opportuno riscrivere il codice qui sopra organizzandolo all’interno di una funzione.</p>
 <div class="cell docutils container">
@@ -2461,20 +3196,24 @@ Il resto di questo paragrafo richiede una discreta conoscenza della programmazio
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>193.9|2, 1, 5, 1, 2, 9, 1, 2, 2, 0, 8
+194.9|6
+195.9|0, 6, 5, 4, 9, 6, 4, 1, 2, 9, 5, 3, 7, 6, 5, 5, 5, 4, 0, 6, 8, 5, 4, 9, 4, 4, 4, 4, 5, 6, 0, 4, 6, 5
+196.9|3, 6, 8, 3, 8, 6, 7, 8, 4, 8, 7, 3, 2, 7, 7, 6, 3, 6, 6, 6, 2, 2, 1
+197.9|6, 1, 7, 2, 5, 0, 5, 2, 2, 1, 7, 5, 6, 3, 1, 1, 0, 7, 2, 1, 2, 7, 8, 0, 6, 8, 6, 8, 8, 5
+198.9|4, 6, 7, 5, 4, 4, 4, 9, 3, 9, 3, 9, 6, 5, 0, 0, 1, 0, 7, 6, 8
+199.9|9, 8, 2, 6, 5, 6, 6, 5, 4, 5, 2, 0, 1, 0, 1, 9, 8, 5, 8, 5, 2, 1, 7, 5
+200.9|2, 2, 1, 2, 3, 6
+</pre></div>
 </div>
-<div class="alert alert-info">
-Il codice sopra prodotto è basato su alcune funzionalità avanzate della funzione `format` invocabile sulle stringhe. In particolare, viene formattato dell'output forzando la conversione da numeri in stringhe in modo da garantire che il risultato contenga un numero minimo (ma variabile) di caratteri, aggiungendo ove necessario in un caso degli spazi e in un altro degli zeri. Per approfondire la tematica della formattazione dell'output si rimanda alla  [documentazione ufficiale](https://docs.python.org/2/tutorial/inputoutput.html).
-</div><hr style="width: 90%;" align="left" />
-<span style="font-size: 0.8rem;">D. Malchiodi, Superhero data science. Vol 1: probabilità e statistica: Dati e frequenze, 2017.</span>
-<br>
-<span style="font-size: 0.8rem;">Powered by <img src="img/jupyter-logo.png" style="height: 1rem; display: inline; margin-left: 0.5ex; margin-top: 0;" alt="Jupyter Notebook"></span>
-<div style="float: left; margin-top: 1ex;">
-<img src="http://mirrors.creativecommons.org/presskit/icons/cc.large.png" style="width: 1.5em; float: left; margin-right: 0.6ex; margin-top: 0;">
-<img src="http://mirrors.creativecommons.org/presskit/icons/by.large.png" style="width: 1.5em; float: left; margin-right: 0.6ex; margin-top: 0;">
-<img src="http://mirrors.creativecommons.org/presskit/icons/nc.large.png" style="width: 1.5em; float: left; margin-right: 0.6ex; margin-top: 0;">
-<img src="http://mirrors.creativecommons.org/presskit/icons/nd.large.png" style="width: 1.5em; float: left; margin-right: 0.6ex; margin-top: 0;">
-<span style="font-size: 0.7rem; line-height: 0.7rem; vertical-align: middle;">Quest'opera è distribuita con Licenza <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribuzione - Non commerciale - Non opere derivate 4.0 Internazionale</a></span>.
-</div></div>
+</div>
+</div>
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>Il codice sopra prodotto è basato su alcune funzionalità avanzate della funzione <code class="docutils literal notranslate"><span class="pre">format</span></code> invocabile sulle stringhe. In particolare, viene formattato dell’output forzando la conversione da numeri in stringhe in modo da garantire che il risultato contenga un numero minimo (ma variabile) di caratteri, aggiungendo ove necessario in un caso degli spazi e in un altro degli zeri. Per approfondire la tematica della formattazione dell’output si rimanda alla  <a class="reference external" href="https://docs.python.org/2/tutorial/inputoutput.html">documentazione ufficiale</a>.</p>
+</div>
+</div>
 <div class="toctree-wrapper compound">
 </div>
 </div>
@@ -2483,8 +3222,8 @@ Il codice sopra prodotto è basato su alcune funzionalità avanzate della funzio
     {
         requestKernel: true,
         binderOptions: {
-            repo: "dariomalchiodi/sds",
-            ref: "main",
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
         },
         codeMirrorConfig: {
             theme: "abcdef",
@@ -2525,9 +3264,9 @@ Il codice sopra prodotto è basato su alcune funzionalità avanzate della funzio
     <footer class="footer">
   <p>
     
-      By <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'><img height='24' width='24' src='_images/twitter.svg' alt='Twitter' style='width:24px'></a><br/>
+      By <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a><br/>
     
-        &copy; Copyright 2021 &amp;emdash; Licensed under CC-BY 4.0.<br/>
+        &copy; Copyright 2021 — Licensed under CC-BY 4.0.<br/>
   </p>
 </footer>
 </main>

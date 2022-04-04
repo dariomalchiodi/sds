@@ -5,7 +5,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>4.8. Leggere dati da file (e un po’ di trucchi) &#8212; Superhero Data Science</title>
+    <title>4.8. Leggere dati da file (e un po’ di trucchi) &#8212; Superhero Data Science 
+ Probabilità e Statistica</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
   <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -28,7 +29,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/tufte.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
@@ -54,7 +55,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
-    <link rel="canonical" href="https://goodresearch.dev/p1-PAD/c1-intro-python/leggere-file.html" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -66,14 +66,6 @@ const thebe_selector_output = ".output, .cell_output"
 
     <!-- Google Analytics -->
     
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-3Q6LDVNS0X"></script>
-<script>
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){ dataLayer.push(arguments); }
-                    gtag('js', new Date());
-                    gtag('config', 'G-3Q6LDVNS0X');
-                </script>
-
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
@@ -96,7 +88,8 @@ const thebe_selector_output = ".output, .cell_output"
       <img src="../../_static/logoface.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Superhero Data Science</h1>
+      <h1 class="site-logo" id="site-title">Superhero Data Science 
+ Probabilità e Statistica</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
@@ -107,7 +100,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../landing.html">
-   Superhero Data Science
+   Superhero Data Science: Probabilità e Statistica
   </a>
  </li>
 </ul>
@@ -522,9 +515,6 @@ const thebe_selector_output = ".output, .cell_output"
         
         
         
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -580,9 +570,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>la lettura effettiva del file è demandata al modulo <code class="docutils literal notranslate"><span class="pre">csv</span></code> che si occupa direttamente di convertire dal formato CSV: la funzione <code class="docutils literal notranslate"><span class="pre">csv.reader</span></code> gestisce anche il fatto di avere un separatore diverso dalla virgola e permette di inserire un punto e virgola in un campo a patto di delimitare quest’ultimo tra doppi apici;</p></li>
 <li><p>la parola chiave <code class="docutils literal notranslate"><span class="pre">list</span></code> converte il contenuto del file in una lista, e da quest’ultima si esclude la prima riga (in quanto essa contiene le intestazioni dei campi).</p></li>
 </ul>
-<div class="alert alert-info">
-In generale usando il nome di un tipo come se fosse una funzione è possibile effettuare conversioni tra tipi di dati: per esempio `int('42')` converte una stringa in intero e `str(42)` effettua la conversione inversa.
-</div><p>Proviamo a visualizzare i primi due record (che corrispondono alle due righe sopra mostrate):</p>
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>In generale usando il nome di un tipo come se fosse una funzione è possibile effettuare conversioni tra tipi di dati: per esempio <code class="docutils literal notranslate"><span class="pre">int('42')</span></code> converte una stringa in intero e <code class="docutils literal notranslate"><span class="pre">str(42)</span></code> effettua la conversione inversa.</p>
+</div>
+<p>Proviamo a visualizzare i primi due record (che corrispondono alle due righe sopra mostrate):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
@@ -637,6 +629,7 @@ In generale usando il nome di un tipo come se fosse una funzione è possibile ef
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;sds.mplstyle&#39;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">get_sorted_counts</span><span class="p">(</span><span class="n">sequence</span><span class="p">):</span>
     <span class="n">counts</span> <span class="o">=</span> <span class="p">{}</span>
@@ -658,7 +651,7 @@ In generale usando il nome di un tipo come se fosse una funzione è possibile ef
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/leggere-file_9_0.png" src="../../_images/leggere-file_9_0.png" />
+<img alt="../../_images/leggere-file_7_0.png" src="../../_images/leggere-file_7_0.png" />
 </div>
 </div>
 <p>Il grafico appare “spostato” verso sinistra, a causa della presenza di una barra in prossimità dell’anno 2100. Potrebbe essere un supereroe effettivamente nato nel futuro, oppure si potrebbe trattare di un dato errato. Si tratta di una situazione più comune di quanto non si possa pensare: queste misurazioni affette da rumore prendono il nome di <em>dati fuori scala</em> o <em>outlier</em> e più avanti vedremo come gestirle. Per ora limitiamoci a vedere quale sia questo valore. Possiamo farlo usando una list comprehension appena più complicata di quella vista poco fa:</p>
@@ -685,24 +678,26 @@ In generale usando il nome di un tipo come se fosse una funzione è possibile ef
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/leggere-file_13_0.png" src="../../_images/leggere-file_13_0.png" />
+<img alt="../../_images/leggere-file_11_0.png" src="../../_images/leggere-file_11_0.png" />
 </div>
 </div>
-<div class="alert alert-info">
-In teoria, una volta ottenuta la lista `counts`, è possibile generare il grafico (ridmensionamento dei suoi assi a parte) usando l'istruzione più compatta `plt.bar(*np.array(counts[1:]).T)` in cui
-<ul>
-<li>l'invocazione del metodo `transpose` è sostituita dall'utilizzo della _proprietà_ `T`: si tratta essenzialmente della stessa cosa, ma permette di essere più succinti;</li>
-<li>invece di assegnare a due variabili `x` e `y` le liste di ascisse e ordinate, si usa l'operatore `*` per effettuare un'altra forma di _unpacking_ delle liste in modo che i due elementi della lista restituita da `T` vengano rispettivamente usati come primo e secondo argomento di `np.bar`.</li>
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>In teoria, una volta ottenuta la lista <code class="docutils literal notranslate"><span class="pre">counts</span></code>, è possibile generare il grafico (ridmensionamento dei suoi assi a parte) usando l’istruzione più compatta <code class="docutils literal notranslate"><span class="pre">plt.bar(*np.array(counts[1:]).T)</span></code> in cui</p>
+<ul class="simple">
+<li><p>l’invocazione del metodo <code class="docutils literal notranslate"><span class="pre">transpose</span></code> è sostituita dall’utilizzo della <em>proprietà</em> <code class="docutils literal notranslate"><span class="pre">T</span></code>: si tratta essenzialmente della stessa cosa, ma permette di essere più succinti;</p></li>
+<li><p>invece di assegnare a due variabili <code class="docutils literal notranslate"><span class="pre">x</span></code> e <code class="docutils literal notranslate"><span class="pre">y</span></code> le liste di ascisse e ordinate, si usa l’operatore <code class="docutils literal notranslate"><span class="pre">*</span></code> per effettuare un’altra forma di <em>unpacking</em> delle liste in modo che i due elementi della lista restituita da <code class="docutils literal notranslate"><span class="pre">T</span></code> vengano rispettivamente usati come primo e secondo argomento di <code class="docutils literal notranslate"><span class="pre">np.bar</span></code>.</p></li>
 </ul>
-Va in ogni caso sottolineato che il minor numero di linee si paga con del codice più complesso e quindi meno facile da leggere e da correggere in caso di errore, quindi almeno fino a quando non si è abbastanza confidenti nel linguaggio è meglio non ricorrere a soluzioni troppo complicate.
-</div></div>
+<p>Va in ogni caso sottolineato che il minor numero di linee si paga con del codice più complesso e quindi meno facile da leggere e da correggere in caso di errore, quindi almeno fino a quando non si è abbastanza confidenti nel linguaggio è meglio non ricorrere a soluzioni troppo complicate.</p>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
         binderOptions: {
-            repo: "dariomalchiodi/sds",
-            ref: "main",
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
         },
         codeMirrorConfig: {
             theme: "abcdef",
@@ -743,9 +738,9 @@ Va in ogni caso sottolineato che il minor numero di linee si paga con del codice
     <footer class="footer">
   <p>
     
-      By <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'><img height='24' width='24' src='_images/twitter.svg' alt='Twitter' style='width:24px'></a><br/>
+      By <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a><br/>
     
-        &copy; Copyright 2021 &amp;emdash; Licensed under CC-BY 4.0.<br/>
+        &copy; Copyright 2021 — Licensed under CC-BY 4.0.<br/>
   </p>
 </footer>
 </main>

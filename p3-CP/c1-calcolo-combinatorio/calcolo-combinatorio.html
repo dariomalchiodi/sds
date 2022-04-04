@@ -5,7 +5,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>9. Calcolo combinatorio &#8212; Superhero Data Science</title>
+    <title>9. Calcolo combinatorio &#8212; Superhero Data Science 
+ Probabilità e Statistica</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
   <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -28,7 +29,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/tufte.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
@@ -54,9 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="canonical" href="https://goodresearch.dev/p3-CP/c1-calcolo-combinatorio/calcolo-combinatorio.html" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -68,14 +68,6 @@ const thebe_selector_output = ".output, .cell_output"
 
     <!-- Google Analytics -->
     
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-3Q6LDVNS0X"></script>
-<script>
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){ dataLayer.push(arguments); }
-                    gtag('js', new Date());
-                    gtag('config', 'G-3Q6LDVNS0X');
-                </script>
-
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
@@ -98,7 +90,8 @@ const thebe_selector_output = ".output, .cell_output"
       <img src="../../_static/logoface.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Superhero Data Science</h1>
+      <h1 class="site-logo" id="site-title">Superhero Data Science 
+ Probabilità e Statistica</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
@@ -109,7 +102,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../landing.html">
-   Superhero Data Science
+   Superhero Data Science: Probabilità e Statistica
   </a>
  </li>
 </ul>
@@ -524,9 +517,6 @@ const thebe_selector_output = ".output, .cell_output"
         
         
         
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -744,7 +734,7 @@ gli oggetti.</p>
 <em>permutazione semplice</em>, o soltanto <em>permutazione</em>, degli <span class="math notranslate nohighlight">\(n\)</span> oggetti. Ad
 esempio, se <span class="math notranslate nohighlight">\(A= \{ a,b,c \}\)</span> allora tutte le permutazioni degli <span class="math notranslate nohighlight">\(n\)</span> oggetti
 sono:</p>
-<table style="font-size: 1rem;">
+<table style="font-size: 1.5rem;">
   <tr>
     <td>a</td>
     <td>b</td>
@@ -832,8 +822,8 @@ la banana:</p>
 elementi del primo gruppo, automaticamente sono anche fissate quelle degli
 elementi del secondo gruppo. Le permutazioni semplici che corrispondono a
 questa configurazione sono:</p>
-<table style="font-size: 1rem;">
-<tr><td>$a_1$</td><td>$b_1$</td><td>$b_2$</td><td>$b_3$</td><td>$a_2$</td></tr>
+<table style="font-size: 1.5rem;">
+<tr><td>  $a_1$  </td><td>$b_1$</td><td>$b_2$</td><td>$b_3$</td><td>$a_2$</td></tr>
 <tr><td>$a_1$</td><td>$b_3$</td><td>$b_1$</td><td>$b_2$</td><td>$a_2$</td></tr>
 <tr><td>$a_1$</td><td>$b_2$</td><td>$b_3$</td><td>$b_1$</td><td>$a_2$</td></tr>
 <tr><td>$a_1$</td><td>$b_3$</td><td>$b_2$</td><td>$b_1$</td><td>$a_2$</td></tr>
@@ -921,8 +911,8 @@ analogo a quanto fatto per le permutazioni semplici, fermandoci però alla
 posizione <span class="math notranslate nohighlight">\(k\)</span>-esima. L’albero costruito ha profondità <span class="math notranslate nohighlight">\(k\)</span> e un numero di
 foglie pari a:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-bf418896-f4ca-4f16-9a64-7f9e06f8b190">
-<span class="eqno">(9.1)<a class="headerlink" href="#equation-bf418896-f4ca-4f16-9a64-7f9e06f8b190" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e2ed693c-0d80-4034-aa86-85e7d3b0c8ee">
+<span class="eqno">(9.1)<a class="headerlink" href="#equation-e2ed693c-0d80-4034-aa86-85e7d3b0c8ee" title="Permalink to this equation">¶</a></span>\[\begin{align}
 d_{n, k} &amp;= n (n-1) (n-2) \dots (n-k+1) \\
          &amp;= n (n-1) (n-2) \dots (n-k+1) \cdot
              \left(\frac{(n-k)(n-k-1)\dots1}{(n-k)(n-k-1)\dots1}\right) \\
@@ -1001,8 +991,8 @@ stesso.</p>
 <span class="math notranslate nohighlight">\(|\mathcal{P}(A)| = 1 + \sum_{k=1}^{n} \binom{n}{k}\)</span>, dove il primo addendo
 è dovuto alla presenza dell’insieme vuoto. Sfruttando le propriet`a del
 coefficiente binomiale otteniamo</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e058a445-187c-43cf-a9ba-30d6318c2982">
-<span class="eqno">(9.2)<a class="headerlink" href="#equation-e058a445-187c-43cf-a9ba-30d6318c2982" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f972f917-9394-4a9c-8cfe-eaa26dd6d2d8">
+<span class="eqno">(9.2)<a class="headerlink" href="#equation-f972f917-9394-4a9c-8cfe-eaa26dd6d2d8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 |\mathcal{P}(A)| = \sum_{k=0}^{n} \binom{n}{k}
                  = \sum_{k=0}^{n}\binom{n}{k} 1^k 1^{n-k} = 2^n,
 \end{equation}\]</div>
@@ -1150,14 +1140,15 @@ in due posti.</p>
 </div>
 </div>
 </div>
-<div class="alert alert-info">
-L'uso di `frozenset` nella cella precedente è fondamentale per poter eseguire
-l'ultima istruzione. Gli elementi che si inseriscono in un insieme (ma lo
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>L’uso di <code class="docutils literal notranslate"><span class="pre">frozenset</span></code> nella cella precedente è fondamentale per poter eseguire
+l’ultima istruzione. Gli elementi che si inseriscono in un insieme (ma lo
 stesso varrebbe per le chiavi di un dizionario) devono essere infatti
 immutabili: ciò è legato agli algoritmi che vengono utilizzati per inserire
-gli elementi di un insieme in un'opportuna struttura dati che permetta di
+gli elementi di un insieme in un’opportuna struttura dati che permetta di
 verificare successivamente se un generico elemento appartiene oppure no
-all'insieme.
+all’insieme.</p>
 </div>
 <p>Le generazioni di disposizioni, combinazioni e permutazioni fatte finora
 richiedono di fissare il numero di posti: non sarebbe altrimenti possibile
@@ -1225,19 +1216,21 @@ tramite l’argomento opzionale <code class="docutils literal notranslate"><span
 </div>
 </div>
 </div>
-<div class="alert alert-info">
-Le funzioni di `itertools` che abbiamo considerato non restituiscono delle
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>Le funzioni di <code class="docutils literal notranslate"><span class="pre">itertools</span></code> che abbiamo considerato non restituiscono delle
 liste, bensì degli speciali oggetti che è necessario convertire
-esplicitamente in liste utilizzando la funzione `list`.
-</div></div>
+esplicitamente in liste utilizzando la funzione <code class="docutils literal notranslate"><span class="pre">list</span></code>.</p>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
         binderOptions: {
-            repo: "dariomalchiodi/sds",
-            ref: "main",
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
         },
         codeMirrorConfig: {
             theme: "abcdef",
@@ -1278,9 +1271,9 @@ esplicitamente in liste utilizzando la funzione `list`.
     <footer class="footer">
   <p>
     
-      By <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'><img height='24' width='24' src='_images/twitter.svg' alt='Twitter' style='width:24px'></a><br/>
+      By <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a><br/>
     
-        &copy; Copyright 2021 &amp;emdash; Licensed under CC-BY 4.0.<br/>
+        &copy; Copyright 2021 — Licensed under CC-BY 4.0.<br/>
   </p>
 </footer>
 </main>

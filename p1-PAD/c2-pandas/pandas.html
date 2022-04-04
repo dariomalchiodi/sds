@@ -5,7 +5,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>5. Pandas &#8212; Superhero Data Science</title>
+    <title>5. Pandas &#8212; Superhero Data Science 
+ Probabilità e Statistica</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
   <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -28,7 +29,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/tufte.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
@@ -54,7 +55,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
-    <link rel="canonical" href="https://goodresearch.dev/p1-PAD/c2-pandas/pandas.html" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -66,14 +66,6 @@ const thebe_selector_output = ".output, .cell_output"
 
     <!-- Google Analytics -->
     
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-3Q6LDVNS0X"></script>
-<script>
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){ dataLayer.push(arguments); }
-                    gtag('js', new Date());
-                    gtag('config', 'G-3Q6LDVNS0X');
-                </script>
-
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
@@ -96,7 +88,8 @@ const thebe_selector_output = ".output, .cell_output"
       <img src="../../_static/logoface.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Superhero Data Science</h1>
+      <h1 class="site-logo" id="site-title">Superhero Data Science 
+ Probabilità e Statistica</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
@@ -107,7 +100,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../landing.html">
-   Superhero Data Science
+   Superhero Data Science: Probabilità e Statistica
   </a>
  </li>
 </ul>
@@ -522,9 +515,6 @@ const thebe_selector_output = ".output, .cell_output"
         
         
         
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -613,15 +603,12 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Vedremo come la libreria pandas faciliti le operazioni viste finora per caricare dati, organizzarli in opportune strutture e analizzarli. Per poter procedere dobbiamo ricaricare le librerie usate finora, nonché il file <code class="docutils literal notranslate"><span class="pre">heroes.csv</span></code>. Useremo anche la <em>matplotlib magic</em> che ci permette di visualizzare i grafici direttamente nel notebook.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-
-<span class="kn">import</span> <span class="nn">csv</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;figure&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;sds.mplstyle&#39;</span><span class="p">)</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/heroes.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">heroes_file</span><span class="p">:</span>
   <span class="n">heroes_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">heroes_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
@@ -638,13 +625,12 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1.4.1&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1.4.2&#39;
 </pre></div>
 </div>
 </div>
 </div>
 <p>Utilizzando una versione diversa da questa, può capitare che il risultato ottenuto eseguendo alcune celle sia diverso da quello indicato. Alcune funzionalità potrebbero anche non essere implementate, deprecate o perfino rimosse. Se state invece utilizzando l’ambiente fornito tramite immagine Docker o tramite mybinder non dovreste avere problemi di questo genere.</p>
-<div id="h-1"></div>
 <div class="section" id="serie">
 <h2><span class="section-number">5.1. </span>Serie<a class="headerlink" href="#serie" title="Permalink to this headline">¶</a></h2>
 <p>Una delle classi principali implementate in pandas è <code class="docutils literal notranslate"><span class="pre">Series</span></code>. Le sue istanze rappresentano serie di osservazioni di un certo carattere fatto su un insieme di individui. La cella seguente recupera dalla lista <code class="docutils literal notranslate"><span class="pre">heroes</span></code> precedentemente creata i nomi dei supereoi e il loro anno di prima apparizione e li utilizza per creare una serie:</p>
@@ -714,9 +700,11 @@ Length: 735, dtype: float64
 </div>
 </div>
 </div>
-<div class="alert alert-warning">
-Se l'indice di una serie è basato su valori interi, i valori tra parentesi quadre immediatamente dopo la serie faranno riferimento all'indice e non alla posizione: ciò potrebbe essere fuorviante se gli elementi dell'indice non partono da zero e non sono consecutivi.
-</div><p>È inoltre possibile utilizzare una notazione simile al <em>list slicing</em> specificando valori dell’indice oppure posizioni. Va però notato che gli <em>slicing</em> basati su indice comprenderanno il primo e l’ultimo valore specificato:</p>
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>Se l’indice di una serie è basato su valori interi, i valori tra parentesi quadre immediatamente dopo la serie faranno riferimento all’indice e non alla posizione: ciò potrebbe essere fuorviante se gli elementi dell’indice non partono da zero e non sono consecutivi.</p>
+</div>
+<p>È inoltre possibile utilizzare una notazione simile al <em>list slicing</em> specificando valori dell’indice oppure posizioni. Va però notato che gli <em>slicing</em> basati su indice comprenderanno il primo e l’ultimo valore specificato:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_appearance</span><span class="p">[</span><span class="s1">&#39;Wonder Girl&#39;</span><span class="p">:</span><span class="s1">&#39;Wonder Woman&#39;</span><span class="p">]</span>
@@ -836,9 +824,11 @@ dtype: float64
 </div>
 </div>
 </div>
-<div class="alert alert-warning">
-L'uso di questa modalità di accesso richiede che la lista di valori booleani abbia la stessa lunghezza della serie. L'uso di liste di dimensioni minori l'accesso, che comporta un filtraggio effettuato solo nei primi elementi della serie, è deprecato e va quindi evitato.  
-</div><p>Infine, è possibile effettuare delle <em>query</em> su una serie specificando tra parentesi quadre un’espressione logica che indica quali elementi visualizzare, utilizzando la serie come simbolo che ne indica un suo generico elemento:</p>
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>L’uso di questa modalità di accesso richiede che la lista di valori booleani abbia la stessa lunghezza della serie. L’uso di liste di dimensioni minori l’accesso, che comporta un filtraggio effettuato solo nei primi elementi della serie, è deprecato e va quindi evitato.</p>
+</div>
+<p>Infine, è possibile effettuare delle <em>query</em> su una serie specificando tra parentesi quadre un’espressione logica che indica quali elementi visualizzare, utilizzando la serie come simbolo che ne indica un suo generico elemento:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_appearance</span><span class="p">[</span><span class="n">first_appearance</span> <span class="o">&gt;</span> <span class="mi">2010</span><span class="p">]</span>
@@ -864,9 +854,11 @@ dtype: float64
 </div>
 </div>
 </div>
-<div class="alert alert-info">
-Tecnicamente, l'espressione `first_appearance > 2010` genera una nuova serie che ha lo stesso indice di `first_appearance` e in cui i valori sono `True` in corrispondenza degli anni successivi al 2010 e `False` altrimenti. Questa nuova serie viene utilizzata per filtrare `first_appearance`.
-</div><p>Vediamo ora come utilizzando le serie sia molto più semplice calcolare e visualizzare le frequenze assolute: il metodo <code class="docutils literal notranslate"><span class="pre">value_counts</span></code> restituisce un’altra serie in cui gli indici sono i valori osservati e i valori le corrispondenti frequenze assolute, ordinate in senso non crescente.</p>
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>Tecnicamente, l’espressione <code class="docutils literal notranslate"><span class="pre">first_appearance</span> <span class="pre">&gt;</span> <span class="pre">2010</span></code> genera una nuova serie che ha lo stesso indice di <code class="docutils literal notranslate"><span class="pre">first_appearance</span></code> e in cui i valori sono <code class="docutils literal notranslate"><span class="pre">True</span></code> in corrispondenza degli anni successivi al 2010 e <code class="docutils literal notranslate"><span class="pre">False</span></code> altrimenti. Questa nuova serie viene utilizzata per filtrare <code class="docutils literal notranslate"><span class="pre">first_appearance</span></code>.</p>
+</div>
+<p>Vediamo ora come utilizzando le serie sia molto più semplice calcolare e visualizzare le frequenze assolute: il metodo <code class="docutils literal notranslate"><span class="pre">value_counts</span></code> restituisce un’altra serie in cui gli indici sono i valori osservati e i valori le corrispondenti frequenze assolute, ordinate in senso non crescente.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_appearance</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
@@ -929,7 +921,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/pandas_35_0.png" src="../../_images/pandas_35_0.png" />
+<img alt="../../_images/pandas_31_0.png" src="../../_images/pandas_31_0.png" />
 </div>
 </div>
 <p>Il grafico ottenuto, diciamolo, fa schifo. Questo perché <code class="docutils literal notranslate"><span class="pre">bar</span></code> considera un punto per ogni elemento della serie, in cui le ascisse corrispondono alla posizione (zero per la prima osservazione, uno per la seconda e così via, sebbene nel grafico sull’asse delle ascisse vengano poi visualizzati i valori dell’indice) e le ordinate al valore osservato. Per ognuno dei punti così ottenuti viene poi tracciato un segmento che lo congiunge perpendicolarmente all’asse delle ascisse. Il risultato è decisamente poco informativo, sia da un punto di vista grafico (le etichette sull’asse delle ascisse si sovrappongono, così che non si riesce a leggere nulla), sia da un punto di vista analitico: le barre hanno altezze simili e quindi le loro differenze sono poco apprezzabili a colpo d’occhio; inoltre il grafico dipende per esempio dall’ordine in cui sono elencate le osservazioni e non ci permette di solito di trarre alcuna informazione sulla relazione che lega tra loro le osservazioni.</p>
@@ -942,7 +934,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/pandas_37_0.png" src="../../_images/pandas_37_0.png" />
+<img alt="../../_images/pandas_33_0.png" src="../../_images/pandas_33_0.png" />
 </div>
 </div>
 <p>Il grafico ottenuto è sicuramente migliore di quello precedente, ma rimane il problema di leggibilità dell’asse delle ascisse. Ciò è dovuto al fatto che pandas non inserisce le barre sul grafico nelle ascisse corrispondenti agli anni, ma le posiziona una accanto all’altra, come possiamo renderci conto visualizzando un po’ meglio solo alcune delle etichette (in prima istanza non è importante capire come venga generato questo grafico, ma se siete cursosi potete leggere l’approfondimento che trovate dopo il commento al grafico stesso):</p>
@@ -958,12 +950,13 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/pandas_39_0.png" src="../../_images/pandas_39_0.png" />
+<img alt="../../_images/pandas_35_0.png" src="../../_images/pandas_35_0.png" />
 </div>
 </div>
 <p>Si può osservare che tra due valori successivi evidenziati nell’asse delle ascisse intercorre una distanza di dieci anni, ma le etichette non risultano equispaziate: ciò è dovuto al fatto che in realtà la prima barra ha ascissa 1, la seconda ha ascissa 2 e così via, mentre le etichette mostrate sull’asse delle ascisse corrispondono ai valori degli indici.</p>
-<div class="alert alert-info">
-Per generare il grafico precedente è necessario utilizzare alcune funzionalità avanzate delle librerie considerate: `np.arange` permette di costruire un array i cui valori vanno di dieci in dieci partendo da 1945 e arrivando a 2005; la proprietà `index` di una serie permette di estrarne l'indice e il metodo `get_loc` di quest'ultimo restituisce la posizione corrispondente a un dato valore dell'indice. Infine, il metodo `xticks` di matplotlib permette di specificare quali valori evidenziare sull'asse delle ascisse e quali etichette utilizzare.
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>Per generare il grafico precedente è necessario utilizzare alcune funzionalità avanzate delle librerie considerate: <code class="docutils literal notranslate"><span class="pre">np.arange</span></code> permette di costruire un array i cui valori vanno di dieci in dieci partendo da 1945 e arrivando a 2005; la proprietà <code class="docutils literal notranslate"><span class="pre">index</span></code> di una serie permette di estrarne l’indice e il metodo <code class="docutils literal notranslate"><span class="pre">get_loc</span></code> di quest’ultimo restituisce la posizione corrispondente a un dato valore dell’indice. Infine, il metodo <code class="docutils literal notranslate"><span class="pre">xticks</span></code> di matplotlib permette di specificare quali valori evidenziare sull’asse delle ascisse e quali etichette utilizzare.</p>
 </div>
 <p>Per ottenere un grafico simile in cui le ascisse siano effettivamente gli anni di prima apparizione è necessario tornare a utilizzare esplicitamente matplotlib, passando al metodo <code class="docutils literal notranslate"><span class="pre">bar</span></code> rispettivamente l’indice e i valori della serie, che si ottengono rispettivamente utilizzando la proprietà <code class="docutils literal notranslate"><span class="pre">index</span></code> e invocando il metodo <code class="docutils literal notranslate"><span class="pre">get_values</span></code>.</p>
 <div class="cell docutils container">
@@ -976,10 +969,9 @@ Per generare il grafico precedente è necessario utilizzare alcune funzionalità
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/pandas_41_0.png" src="../../_images/pandas_41_0.png" />
+<img alt="../../_images/pandas_37_0.png" src="../../_images/pandas_37_0.png" />
 </div>
 </div>
-<div id="h-3"></div>
 </div>
 <div class="section" id="operazioni-con-le-serie">
 <h2><span class="section-number">5.3. </span>Operazioni con le serie<a class="headerlink" href="#operazioni-con-le-serie" title="Permalink to this headline">¶</a></h2>
@@ -1096,8 +1088,9 @@ dtype: int64
 </div>
 </div>
 </div>
-<div class="alert alert-info">
-La funzione `sum` accetta come argomento liste, tuple e serie: in tutti i casi restituisce la somma dei valori in esse contenute.
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>La funzione <code class="docutils literal notranslate"><span class="pre">sum</span></code> accetta come argomento liste, tuple e serie: in tutti i casi restituisce la somma dei valori in esse contenute.</p>
 </div>
 <p>Un modo alternativo per calcolare la somma dei valori in una serie è quella di invocare su di essa l’omonimo metodo <code class="docutils literal notranslate"><span class="pre">sum</span></code>. Le serie sono inoltre in tutto e per tutto dei vettori, sui quali è possibile effettuare operazioni algebriche. Consideriamo per esempio le due serie contenenti altezza e peso dei supereroi:</p>
 <div class="cell docutils container">
@@ -1214,7 +1207,6 @@ dtype: float64
 </div>
 </div>
 <p>Si nota un numero relativamente elevato di <code class="docutils literal notranslate"><span class="pre">NaN</span></code>, e ciò è appunto dovuto al fatto che il rapporto alla base del calcolo del BMI viene fatto usando peso e altezza di valori che hanno lo stesso indice. Ora, non è detto che un supereroe che ha un peso plausibile abbia anche un’altezza plausibile, e viceversa. Quello che succede quando si esegue un’operazione tra due serie e solo una di essa è definita in corrispondenza di uno specifico valore dell’indice, il risultato conterrà <code class="docutils literal notranslate"><span class="pre">NaN</span></code> per quel valore.</p>
-<div id="h-4"></div>
 </div>
 <div class="section" id="dataframe">
 <h2><span class="section-number">5.4. </span>Dataframe<a class="headerlink" href="#dataframe" title="Permalink to this headline">¶</a></h2>
@@ -1489,9 +1481,11 @@ Name: Gender, Length: 735, dtype: object
 </div>
 </div>
 </div>
-<div class="alert alert-info">
-In alternativa è possibile usare una sintassi basata su _dot notation_ in cui il nome della colonna, senza essere racchiuso tra apici, segue il _dataframe_. In altre parole, `heroes['Gender']` e `heroes.Gender` sono equivalenti. Questa seconda notazione è però utilizzabile solamente se non vi sono spazi nei nomi delle colonne. Nel seguito utilizzeremo quindi sempre la prima delle due notazioni.
-</div><ul class="simple">
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>In alternativa è possibile usare una sintassi basata su <em>dot notation</em> in cui il nome della colonna, senza essere racchiuso tra apici, segue il <em>dataframe</em>. In altre parole, <code class="docutils literal notranslate"><span class="pre">heroes['Gender']</span></code> e <code class="docutils literal notranslate"><span class="pre">heroes.Gender</span></code> sono equivalenti. Questa seconda notazione è però utilizzabile solamente se non vi sono spazi nei nomi delle colonne. Nel seguito utilizzeremo quindi sempre la prima delle due notazioni.</p>
+</div>
+<ul class="simple">
 <li><p>tramite uno <em>slicing</em> sulle posizioni o sui valori dell’indice è possibile selezionare un sottoinsieme delle righe del <em>dataframe</em> (e come nel caso delle serie, l’estremo superiore è incluse se si usano gli indici ed escluso se si usano le posizioni):</p></li>
 </ul>
 <div class="cell docutils container">
@@ -1806,8 +1800,9 @@ Name: Professor X, dtype: object
 </div>
 </div>
 </div>
-<div class="alert alert-info">
-È anche possibile utilizzare `loc` e `iloc` per estrarre un singolo elemento: per esempio, `heroes.loc['Superman', 'Strength']` equivale alla prima delle due istruzioni appena elencate. Tuttavia, `at` e `iat` sono implementate in modo da essere più efficienti.
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>È anche possibile utilizzare <code class="docutils literal notranslate"><span class="pre">loc</span></code> e <code class="docutils literal notranslate"><span class="pre">iloc</span></code> per estrarre un singolo elemento: per esempio, <code class="docutils literal notranslate"><span class="pre">heroes.loc['Superman',</span> <span class="pre">'Strength']</span></code> equivale alla prima delle due istruzioni appena elencate. Tuttavia, <code class="docutils literal notranslate"><span class="pre">at</span></code> e <code class="docutils literal notranslate"><span class="pre">iat</span></code> sono implementate in modo da essere più efficienti.</p>
 </div>
 <p>È infine possibile riordinare le righe di un dataframe invocando i metodi <code class="docutils literal notranslate"><span class="pre">sort_values</span></code> e <code class="docutils literal notranslate"><span class="pre">sort_index</span></code>: il primo basa l’ordinamento sul valore di una colonna, il cui nome va specificato tramite l’argomento <code class="docutils literal notranslate"><span class="pre">by</span></code> e il secondo è invece basato sui valori dell’indice. È inoltre possibile indicare un valore booleano per l’argomento <code class="docutils literal notranslate"><span class="pre">ascending</span></code> che permette di ordinare in verso crescente o decrescente.</p>
 <div class="cell docutils container">
@@ -2200,8 +2195,8 @@ Name: Professor X, dtype: object
     {
         requestKernel: true,
         binderOptions: {
-            repo: "dariomalchiodi/sds",
-            ref: "main",
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
         },
         codeMirrorConfig: {
             theme: "abcdef",
@@ -2242,9 +2237,9 @@ Name: Professor X, dtype: object
     <footer class="footer">
   <p>
     
-      By <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'><img height='24' width='24' src='_images/twitter.svg' alt='Twitter' style='width:24px'></a><br/>
+      By <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a><br/>
     
-        &copy; Copyright 2021 &amp;emdash; Licensed under CC-BY 4.0.<br/>
+        &copy; Copyright 2021 — Licensed under CC-BY 4.0.<br/>
   </p>
 </footer>
 </main>

@@ -5,7 +5,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>7.9. Analisi di classificatori &#8212; Superhero Data Science</title>
+    <title>7.9. Analisi di classificatori &#8212; Superhero Data Science 
+ Probabilità e Statistica</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
   <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -28,7 +29,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/tufte.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
@@ -54,9 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="canonical" href="https://goodresearch.dev/p2-SD/c2-indici-statistici/analisi-di-classificatori.html" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -68,14 +68,6 @@ const thebe_selector_output = ".output, .cell_output"
 
     <!-- Google Analytics -->
     
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-3Q6LDVNS0X"></script>
-<script>
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){ dataLayer.push(arguments); }
-                    gtag('js', new Date());
-                    gtag('config', 'G-3Q6LDVNS0X');
-                </script>
-
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
@@ -98,7 +90,8 @@ const thebe_selector_output = ".output, .cell_output"
       <img src="../../_static/logoface.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Superhero Data Science</h1>
+      <h1 class="site-logo" id="site-title">Superhero Data Science 
+ Probabilità e Statistica</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
@@ -109,7 +102,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../landing.html">
-   Superhero Data Science
+   Superhero Data Science: Probabilità e Statistica
   </a>
  </li>
 </ul>
@@ -524,9 +517,6 @@ const thebe_selector_output = ".output, .cell_output"
         
         
         
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -852,9 +842,7 @@ stata evidenziata anche la diagonale del quadrato, che ci servierà come punto
 di riferimento.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
@@ -1104,6 +1092,8 @@ andamento tipico è visualizzato nella figura che segue.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
 
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;sds.mplstyle&#39;</span><span class="p">)</span>
+
 <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_informative</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">Xtrain</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="mi">9000</span><span class="p">]</span>
 <span class="n">Xtest</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">9000</span><span class="p">:]</span>
@@ -1120,8 +1110,8 @@ andamento tipico è visualizzato nella figura che segue.</p>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">])</span>
+<span class="c1">#plt.xlim([-0.01, 1])</span>
+<span class="c1">#plt.ylim([0, 1.01])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -1304,9 +1294,8 @@ consdierando i valori nelle due righe di questa tabella ripsettivamente come
 ascisse e ordinate di punti che andranno poi uniti.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;sds.mplstyle&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">.33</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
@@ -1341,12 +1330,13 @@ e ordinate dei punti da unire per ottenere la curva ROC.</p>
 <img alt="../../_images/analisi-di-classificatori_13_0.png" src="../../_images/analisi-di-classificatori_13_0.png" />
 </div>
 </div>
-<div class="alert alert-info">
-Come è possibile vedere analizzando il codice nella cella precedente, il
-metodo `roc_curve` restituisce tre valori: il terzo, non considerato nel
-nostro caso (il simbolo `_` ci permette di non dover creare una variabile
+<div class="naming admonition">
+<p class="admonition-title">Nota</p>
+<p>Come è possibile vedere analizzando il codice nella cella precedente, il
+metodo <code class="docutils literal notranslate"><span class="pre">roc_curve</span></code> restituisce tre valori: il terzo, non considerato nel
+nostro caso (il simbolo <code class="docutils literal notranslate"><span class="pre">_</span></code> ci permette di non dover creare una variabile
 fittizia che poi non verrebbe utilizzata) permette di ottenere i sopra
-citati valori di soglia selezionati dal metodo.
+citati valori di soglia selezionati dal metodo.</p>
 </div>
 <p>L’oggetto <code class="docutils literal notranslate"><span class="pre">metrics</span></code> permette anche di calcolare il valore AUC corrispondente
 all’area sotto la curva ROC, invocando il metodo <code class="docutils literal notranslate"><span class="pre">auc</span></code> a cui passare i due
@@ -1491,6 +1481,7 @@ corrispondente curva ROC.</p>
 <span class="n">preds</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)[:,</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">roc_curve</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
 
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;figure&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1512,7 +1503,7 @@ corrispondente valore di AUC.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5875
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.575
 </pre></div>
 </div>
 </div>
@@ -1559,8 +1550,8 @@ matrice più gradevole.</p>
     </tr>
     <tr>
       <th>1</th>
-      <td>3</td>
-      <td>37</td>
+      <td>4</td>
+      <td>36</td>
     </tr>
   </tbody>
 </table>
@@ -1573,8 +1564,8 @@ matrice più gradevole.</p>
     {
         requestKernel: true,
         binderOptions: {
-            repo: "dariomalchiodi/sds",
-            ref: "main",
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
         },
         codeMirrorConfig: {
             theme: "abcdef",
@@ -1615,9 +1606,9 @@ matrice più gradevole.</p>
     <footer class="footer">
   <p>
     
-      By <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'><img height='24' width='24' src='_images/twitter.svg' alt='Twitter' style='width:24px'></a><br/>
+      By <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a><br/>
     
-        &copy; Copyright 2021 &amp;emdash; Licensed under CC-BY 4.0.<br/>
+        &copy; Copyright 2021 — Licensed under CC-BY 4.0.<br/>
   </p>
 </footer>
 </main>

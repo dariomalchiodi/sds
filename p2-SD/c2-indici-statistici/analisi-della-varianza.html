@@ -5,7 +5,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>7.8. Analisi della varianza &#8212; Superhero Data Science</title>
+    <title>7.8. Analisi della varianza &#8212; Superhero Data Science 
+ Probabilità e Statistica</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
   <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -28,7 +29,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/tufte.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
@@ -54,9 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="canonical" href="https://goodresearch.dev/p2-SD/c2-indici-statistici/analisi-della-varianza.html" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -68,14 +68,6 @@ const thebe_selector_output = ".output, .cell_output"
 
     <!-- Google Analytics -->
     
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-3Q6LDVNS0X"></script>
-<script>
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){ dataLayer.push(arguments); }
-                    gtag('js', new Date());
-                    gtag('config', 'G-3Q6LDVNS0X');
-                </script>
-
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
@@ -98,7 +90,8 @@ const thebe_selector_output = ".output, .cell_output"
       <img src="../../_static/logoface.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Superhero Data Science</h1>
+      <h1 class="site-logo" id="site-title">Superhero Data Science 
+ Probabilità e Statistica</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
@@ -109,7 +102,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../landing.html">
-   Superhero Data Science
+   Superhero Data Science: Probabilità e Statistica
   </a>
  </li>
 </ul>
@@ -524,9 +517,6 @@ const thebe_selector_output = ".output, .cell_output"
         
         
         
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -655,8 +645,8 @@ giustificato);</p></li>
 segue) che
 <span class="math notranslate nohighlight">\(\mathrm{SS}_{\mathrm T} = \mathrm{SS}_{\mathrm W} + \mathrm{SS}_{\mathrm B}\)</span>,
 e quindi che</p>
-<div class="amsmath math notranslate nohighlight" id="equation-38b1df38-14b4-4a73-bd52-f2ddd14821b6">
-<span class="eqno">(7.1)<a class="headerlink" href="#equation-38b1df38-14b4-4a73-bd52-f2ddd14821b6" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-69ea06e5-fc12-43f4-bff1-e13eb93665e0">
+<span class="eqno">(7.1)<a class="headerlink" href="#equation-69ea06e5-fc12-43f4-bff1-e13eb93665e0" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \frac{\mathrm{SS}_{\mathrm T}}{n-1} &amp;= \frac{\mathrm{SS}_{\mathrm W}}{n-1} +\frac{\mathrm{SS}_{\mathrm B}}{n-1}, \\
 &amp;= \frac{n-G}{n-1} \frac{\mathrm{SS}_{\mathrm W}}{n-G} + \frac{G-1}{n-1} \frac{\mathrm{SS}_{\mathrm B}}{G-1}.
 \end{align}\]</div>
@@ -672,11 +662,12 @@ i gruppi assumono valori non troppo diversi tra loro (e dunque la varianza
 tra i gruppi risulta trascurabile), allora si confuta l’ipotesi; se al
 contrario la varianza tra i gruppi assume un valore elevato si può
 convalidare l’ipotesi.</p>
-<div class="bs-callout bs-callout-primary">
-In realtà per validare o confutare questi tipi di ipotesi esistono metodi
+<div class="naming admonition">
+<p class="admonition-title">Nota</p>
+<p>In realtà per validare o confutare questi tipi di ipotesi esistono metodi
 quantitativi basati sul calcolo di indici che coinvolgono le quantità che noi
-abbiamo confrontato in modo qualitativo. L'uso di questi metodi richiede però
-un approfondimento teorico che va al di là del programma del nostro corso.
+abbiamo confrontato in modo qualitativo. L’uso di questi metodi richiede però
+un approfondimento teorico che va al di là del programma del nostro corso.</p>
 </div>
 <p>Per applicare la tecnica di analisi della varianza selezionaniamo per esempio
 i due gruppi dei supereroi corrispondenti alle due case editrici più
@@ -696,11 +687,12 @@ forza.</p>
 </div>
 </div>
 </div>
-<div class="alert alert-info">
-La cella precedente mostra come effettuare un'operazione di selezione
-complessa su di un _dataframe_, basandosi sull'operatore `&` di congiungzione
-logica. Analogamente, l'operatore `|` permette di calcolare disgiunzioni
-logiche.
+<div class="naming admonition">
+<p class="admonition-title">Nota</p>
+<p>La cella precedente mostra come effettuare un’operazione di selezione
+complessa su di un <em>dataframe</em>, basandosi sull’operatore <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> di congiungzione
+logica. Analogamente, l’operatore <code class="docutils literal notranslate"><span class="pre">|</span></code> permette di calcolare disgiunzioni
+logiche.</p>
 </div>
 <p>Iniziamo calcolando <span class="math notranslate nohighlight">\(\mathrm{SS}_{\mathrm T}\)</span>.</p>
 <div class="cell docutils container">
@@ -883,8 +875,8 @@ valutando la differenza nella distribuzione del peso.</p>
 \sum_{i=1}^{n_g} x^g_i = n_g \overline x^g,
 \]</div>
 <p>e quindi</p>
-<div class="amsmath math notranslate nohighlight" id="equation-18c7512a-d813-4f4e-9935-a2f06f5291b9">
-<span class="eqno">(7.2)<a class="headerlink" href="#equation-18c7512a-d813-4f4e-9935-a2f06f5291b9" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-456dede4-8c03-4138-815c-19ff359f5cf9">
+<span class="eqno">(7.2)<a class="headerlink" href="#equation-456dede4-8c03-4138-815c-19ff359f5cf9" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \mathrm{SS}_{\mathrm T}  &amp;= \sum_{g=1}^G \sum_{i=1}^{n_g}
                             \left( \left(x^g_i\right)^2
                             - 2 \overline x x^g_i +
@@ -925,8 +917,8 @@ valutando la differenza nella distribuzione del peso.</p>
     {
         requestKernel: true,
         binderOptions: {
-            repo: "dariomalchiodi/sds",
-            ref: "main",
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
         },
         codeMirrorConfig: {
             theme: "abcdef",
@@ -967,9 +959,9 @@ valutando la differenza nella distribuzione del peso.</p>
     <footer class="footer">
   <p>
     
-      By <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'><img height='24' width='24' src='_images/twitter.svg' alt='Twitter' style='width:24px'></a><br/>
+      By <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a><br/>
     
-        &copy; Copyright 2021 &amp;emdash; Licensed under CC-BY 4.0.<br/>
+        &copy; Copyright 2021 — Licensed under CC-BY 4.0.<br/>
   </p>
 </footer>
 </main>

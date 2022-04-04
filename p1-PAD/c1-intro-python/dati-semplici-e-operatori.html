@@ -5,7 +5,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>4.1. Tipi di dati semplici &#8212; Superhero Data Science</title>
+    <title>4.1. Tipi di dati semplici &#8212; Superhero Data Science 
+ Probabilità e Statistica</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
   <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -28,7 +29,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/tufte.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
@@ -54,7 +55,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
-    <link rel="canonical" href="https://goodresearch.dev/p1-PAD/c1-intro-python/dati-semplici-e-operatori.html" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -66,14 +66,6 @@ const thebe_selector_output = ".output, .cell_output"
 
     <!-- Google Analytics -->
     
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-3Q6LDVNS0X"></script>
-<script>
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){ dataLayer.push(arguments); }
-                    gtag('js', new Date());
-                    gtag('config', 'G-3Q6LDVNS0X');
-                </script>
-
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
@@ -96,7 +88,8 @@ const thebe_selector_output = ".output, .cell_output"
       <img src="../../_static/logoface.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Superhero Data Science</h1>
+      <h1 class="site-logo" id="site-title">Superhero Data Science 
+ Probabilità e Statistica</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
@@ -107,7 +100,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../landing.html">
-   Superhero Data Science
+   Superhero Data Science: Probabilità e Statistica
   </a>
  </li>
 </ul>
@@ -522,9 +515,6 @@ const thebe_selector_output = ".output, .cell_output"
         
         
         
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -605,76 +595,65 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Va osservato che esistono varie convenzioni relative allo stile da adottare quando si scrive codice Python; questo libro fa riferimento alla <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">Style Guide for Python Code</a>.</p>
 </div>
 <p>In due delle celle precedenti è possibile vedere come l’assegnamento di un valore a una variabile segua la stessa sintassi di parecchi linguaggi di programmazione. Per formare i nomi delle variabili si possono utilizzare i caratteri alfabetici (maiuscoli o minuscoli, tenendo conto del fatto che l’intero linguaggio è <em>case sensitive</em>), le cifre e il simbolo di <em>underscore</em> (<code class="docutils literal notranslate"><span class="pre">_</span></code>), con l’unico vincolo di non usare una cifra come carattere iniziale del nome. È inoltre convenzione ampiamente adottata quella di utilizzare per le variabili i soli caratteri minuscoli, facendo uso dell’<em>underscore</em> per separare parole diverse in un nome (come in <code class="docutils literal notranslate"><span class="pre">first_appearance</span></code> nella cella precedente). L’uso di uno o più <em>underscore</em> all’inizio o alla fine di un nome è da evitare, perché in alcune situazioni particolari ciò può conferire un significato specifico al codice: questo non succederebbe in ogni caso negli esempi contenuti in questo libro, ma è meglio essere particolarmente attenti a questo aspetto già quando si imparano le basi del linguaggio <a class="footnote-reference brackets" href="#eccezione-underscore" id="id3">3</a>.</p>
-<p>A partire da valori booleani, interi o a virgola mobile è possibile costruire espressioni arbitrariamente complesse utilizzando degli <em>operatori</em>. La maggior parte di quelli che considereremo è di tipo <em>binario</em> (cioè si applicano a due argomenti) e  si utilizzano in modalità <em>infissa</em> (il che significa che l’operatore si indica in mezzo ai suoi due argomenti). Gli operatori vengono utilizzati nella maggior parte dei linguaggi per codificare le operazioni aritmetico/logiche e le relazioni aritmetiche (utilizzando <code class="docutils literal notranslate"><span class="pre">+</span></code> per l’addizione, <code class="docutils literal notranslate"><span class="pre">!=</span></code> per la relazione di non uguaglianza e così via). La <a class="reference internal" href="#elenco-operatori-per-tipi-semplici"><span class="std std-numref">Tabella 4.1</span></a> riassume i principali simboli utilizzati in Python per questo tipo di operatori binari.</p>
+<p>A partire da valori booleani, interi o a virgola mobile è possibile costruire espressioni arbitrariamente complesse utilizzando degli <em>operatori</em>. La maggior parte di quelli che considereremo è di tipo <em>binario</em> (cioè si applicano a due argomenti) e  si utilizzano in modalità <em>infissa</em> (il che significa che l’operatore si indica in mezzo ai suoi due argomenti). Gli operatori vengono utilizzati nella maggior parte dei linguaggi per codificare le operazioni aritmetico/logiche e le relazioni aritmetiche (utilizzando <code class="docutils literal notranslate"><span class="pre">+</span></code> per l’addizione, <code class="docutils literal notranslate"><span class="pre">!=</span></code> per la relazione di non uguaglianza e così via). La <a class="reference internal" href="#elenco-operatori-per-tipi-semplici"><span class="std std-numref">Table 4.1</span></a> riassume i principali simboli utilizzati in Python per questo tipo di operatori binari.</p>
 <table class="colwidths-auto table" id="elenco-operatori-per-tipi-semplici">
 <caption><span class="caption-number">Table 4.1 </span><span class="caption-text">Elenco dei principali operatori per i tipi semplici</span><a class="headerlink" href="#elenco-operatori-per-tipi-semplici" title="Permalink to this table">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="text-align:center head"><p>Operazione</p></th>
+<th class="text-align:center head"><p>Simbolo</p></th>
+<th class="text-align:left head"><p>Operazione</p></th>
 <th class="text-align:center head"><p>Simbolo</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td class="text-align:center"><p>addizione</p></td>
 <td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">+</span></code></p></td>
+<td class="text-align:left"><p>uguale (per riferimento)</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">is</span></code></p></td>
 </tr>
 <tr class="row-odd"><td class="text-align:center"><p>sottrazione</p></td>
 <td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
+<td class="text-align:left"><p>uguale (per contenuto)</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">==</span></code></p></td>
 </tr>
 <tr class="row-even"><td class="text-align:center"><p>moltiplicazione</p></td>
 <td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">*</span></code></p></td>
+<td class="text-align:left"><p>diverso</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">!=</span></code></p></td>
 </tr>
 <tr class="row-odd"><td class="text-align:center"><p>divisione (reale)</p></td>
 <td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">/</span></code></p></td>
+<td class="text-align:left"><p>minore</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code></p></td>
 </tr>
 <tr class="row-even"><td class="text-align:center"><p>divisione (intera)</p></td>
 <td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">//</span></code></p></td>
+<td class="text-align:left"><p>minore o uguale</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&lt;=</span></code></p></td>
 </tr>
 <tr class="row-odd"><td class="text-align:center"><p>resto (modulo)</p></td>
 <td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">%</span></code></p></td>
+<td class="text-align:left"><p>maggiore</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code></p></td>
 </tr>
 <tr class="row-even"><td class="text-align:center"><p>elevamento a potenza</p></td>
 <td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">**</span></code></p></td>
+<td class="text-align:left"><p>maggiore o uguale</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>appartenenza a una struttura</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">in</span></code></p></td>
+<td class="text-align:left"><p>congiunzione logica</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">and</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>rimozione dalla memoria</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">del</span></code></p></td>
+<td class="text-align:left"><p>disgiunzione logica</p></td>
+<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">or</span></code></p></td>
 </tr>
 <tr class="row-odd"><td class="text-align:center"><p></p></td>
 <td class="text-align:center"><p></p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p>appartenenza a una struttura</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">in</span></code></p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p>rimozione dalla memoria</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">del</span></code></p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p></p></td>
-<td class="text-align:center"><p></p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p>uguale (per riferimento)</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">is</span></code></p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p>uguale (per contenuto)</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">==</span></code></p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p>diverso</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">!=</span></code></p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p>minore</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code></p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p>minore o uguale</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&lt;=</span></code></p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p>maggiore</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code></p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p>maggiore o uguale</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p>congiunzione logica</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">and</span></code></p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p>disgiunzione logica</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">or</span></code></p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p>negazione logica</p></td>
+<td class="text-align:left"><p>negazione logica</p></td>
 <td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">not</span></code></p></td>
 </tr>
 </tbody>
@@ -726,8 +705,8 @@ const thebe_selector_output = ".output, .cell_output"
     {
         requestKernel: true,
         binderOptions: {
-            repo: "dariomalchiodi/sds",
-            ref: "main",
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
         },
         codeMirrorConfig: {
             theme: "abcdef",
@@ -768,9 +747,9 @@ const thebe_selector_output = ".output, .cell_output"
     <footer class="footer">
   <p>
     
-      By <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'><img height='24' width='24' src='_images/twitter.svg' alt='Twitter' style='width:24px'></a><br/>
+      By <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a><br/>
     
-        &copy; Copyright 2021 &amp;emdash; Licensed under CC-BY 4.0.<br/>
+        &copy; Copyright 2021 — Licensed under CC-BY 4.0.<br/>
   </p>
 </footer>
 </main>

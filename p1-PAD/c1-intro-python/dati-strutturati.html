@@ -5,7 +5,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>4.2. Tipi di dati strutturati &#8212; Superhero Data Science</title>
+    <title>4.2. Tipi di dati strutturati &#8212; Superhero Data Science 
+ Probabilità e Statistica</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
   <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -28,7 +29,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/tufte.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
@@ -54,7 +55,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
-    <link rel="canonical" href="https://goodresearch.dev/p1-PAD/c1-intro-python/dati-strutturati.html" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -66,14 +66,6 @@ const thebe_selector_output = ".output, .cell_output"
 
     <!-- Google Analytics -->
     
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-3Q6LDVNS0X"></script>
-<script>
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){ dataLayer.push(arguments); }
-                    gtag('js', new Date());
-                    gtag('config', 'G-3Q6LDVNS0X');
-                </script>
-
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
@@ -96,7 +88,8 @@ const thebe_selector_output = ".output, .cell_output"
       <img src="../../_static/logoface.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">Superhero Data Science</h1>
+      <h1 class="site-logo" id="site-title">Superhero Data Science 
+ Probabilità e Statistica</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
@@ -107,7 +100,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../landing.html">
-   Superhero Data Science
+   Superhero Data Science: Probabilità e Statistica
   </a>
  </li>
 </ul>
@@ -522,9 +515,6 @@ const thebe_selector_output = ".output, .cell_output"
         
         
         
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -626,8 +616,8 @@ Python supporta nativamente i seguenti tipi strutturati: le liste, le tuple, le 
 <div class="section" id="le-liste">
 <h2><span class="section-number">4.2.1. </span>Le liste<a class="headerlink" href="#le-liste" title="Permalink to this headline">¶</a></h2>
 <p>Una lista è una struttura dati che permette di memorizzare una sequenza di elementi. Questi elementi possono essere di tipo diverso, e a ognuno di questi si può accedere in modo diretto specificandone la posizione all’interno della sequenza (si dice quindi che una lista è una struttura dati <em>eterogenea</em> e ad <em>accesso posizionale</em>).</p>
-<div class="warning admonition">
-<p class="admonition-title">Attenzione!</p>
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
 <p>Le liste non vanno confuse con gli <em>array</em> (o <em>vettori</em>), che sono invece delle strutture dati <em>omogenee</em> ad accesso posizionale: in altre parole, anche in questo caso vengono memorizzate delle sequenze di valori, ma questi valori devono essere tutti dello stesso tipo. Sebbene gli <em>array</em> non siano direttamente messi a disposizione in Python, è possibile utilizzarli facendo riferimento al <em>package</em> <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, descritto nel <a class="reference internal" href="importare-moduli.html#importare-moduli"><span class="std std-numref">Paragrafo 4.6</span></a></p>
 </div>
 <p>Una lista si può indicare in modo <em>estensivo</em> (cioè elencando a uno a uno tutti i suoi contenuti) separando i suoi elementi tramite virgola e racchiudendo il tutto tra parentesi quadre <a class="footnote-reference brackets" href="#list-comprehension" id="id1">1</a>. Ciò vale anche per la <em>lista vuota</em>, che si può descrivere scrivendo semplicemente l’espressione <code class="docutils literal notranslate"><span class="pre">[]</span></code>. La proprietà di eterogeneità ci permette per esempio di usare una lista per aggregare le informazioni che descrivono un supereroe:</p>
@@ -1059,8 +1049,8 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
     {
         requestKernel: true,
         binderOptions: {
-            repo: "dariomalchiodi/sds",
-            ref: "main",
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
         },
         codeMirrorConfig: {
             theme: "abcdef",
@@ -1101,9 +1091,9 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
     <footer class="footer">
   <p>
     
-      By <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'><img height='24' width='24' src='_images/twitter.svg' alt='Twitter' style='width:24px'></a><br/>
+      By <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a><br/>
     
-        &copy; Copyright 2021 &amp;emdash; Licensed under CC-BY 4.0.<br/>
+        &copy; Copyright 2021 — Licensed under CC-BY 4.0.<br/>
   </p>
 </footer>
 </main>

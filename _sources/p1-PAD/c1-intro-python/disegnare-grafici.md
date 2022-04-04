@@ -16,13 +16,13 @@ kernelspec:
 # Disegnare grafici
 Il modulo `plt` può essere usato per produrre vari tipi di grafici. In generale le funzioni di questo modulo che generano un grafico basato su una serie di punti accettano come argomenti due liste contenenti rispettivamente le ascisse e le ordinate dei punti stessi. La funzione `get_sorted_counts` restituisce però una lista di coppie e non due liste di valori singoli. Se interpretiamo questa lista come una matrice, la trasposta di quest'ultima equivarrà a una lista che contiene esattamente le due liste che ci interessano. Per effettuare questa operazione risulta conveniente utilizzare il tipo di dato base messo a disposizione da numpy, `np.array`. Passando una lista (o una tupla, una lista di liste e così via) come argomento a `np.array` si crea un oggetto che corrisponde al corrispondente array. Su questo oggetto è possibile invocare il metodo `transpose` che restituisce il trasposto dell'array.
 
-+++
 
-<div class="alert alert-warning">
+```{admonition} Nomenclatura
+:class: naming
 Tecnicamente, il metodo `transpose` restituisce una **vista** dell'array originale in modo che questo appaia trasposto. Ciò significa che non viene creato un nuovo oggetto e quindi le modifiche fatte al valore restituito andranno ad alterare anche l'array di partenza.
 
 Va anche notato il fatto che se si tenta di trasporre un array monodimensionale `transpose` restituirà una vista identica all'argomento specificato.
-</div>
+```
 
 ```{code-cell} ipython3
 import numpy as np
@@ -61,19 +61,19 @@ a, b = (42, 102)
 x, y = np.array(get_sorted_counts(years)[1:]).transpose()
 ```
 
-<div class="alert alert-info">
+```{admonition} Nomenclatura
+:class: naming
 Questa caratteristica di python, nota con il nome di _unpacking_, permette per esempio di scambiare i contenuti di due variabili `a` e `b` senza ricorrere a una variabile temporanea, utilizzando l'assegnamento `a, b = b, a`.
-</div>
-
-+++
+```
 
 Le due variabili `x` e `y` possono dunque essere passate come argomento al metodo `plt.bar` per produrre un grafico a barre che visualizzi le frequenze assolute degli anni di prima apparizione:
 
+
 ```{code-cell} ipython3
-%matplotlib inline
 
 import matplotlib.pyplot as plt
-plt.rc('figure', figsize=(5.0, 2.0))
+plt.style.use('sds.mplstyle')
+
 plt.bar(x, y)
 plt.show()
 ```
@@ -82,15 +82,10 @@ Vale la pena commentare in modo approfondito le righe di codice appena eseguite,
 
 La prima linea di codice fa riferimento a una caratteristica speciale di jupyter: tutte le linee che iniziano con il carattere `%` vengono chiamate _line magic_ e permettono di effettuare operazioni accessorie, come per esempio l'interfacciamento con le operazioni di shell. In questo caso si tratta di una _matplotlib magic_ che specifica che i grafici prodotti da matplotlib devono essere visualizzati direttamente nel notebook (senza questa operazione i grafici non verrebbero mostrati automaticamente e sarebbe necessario invocare altri metodi di matplotlib, per esempio per salvare i grafici su file system). Infine, la seconda linea ci permette di impostare le dimensioni dei grafici: i valori predefiniti genererebbero infatti delle figure un po' troppo grandi.
 
-+++
-
-<div class="alert alert-info">
+```{admonition} Nomenclatura
+:class: naming
 È sufficiente specificare la matplotlib magic una sola volta, all'inizio del notebook oppure prima di produrre il primo grafico da visualizzare. Da quel punto in avanti tutti i grafici verranno automaticamente mostrati nel notebook.
-</div>
-
-+++
-
-<div id="h-12"></div>
+```
 
 ## Leggere dati da file (e un po' di trucchi)
 Di solito la quantità di dati da analizzare è tale che non è pensabile di poterli immettere manualmente in una o più lista come abbiamo fatto noi. Normalmente i dati sono memorizzati su un file ed è necessario leggerli. Prendiamo in considerazione il file di testo `heroes.csv` contenuto nella directory `data`: esso contiene 735 righe, ognuna con le informazioni relative a un supereroe, separate da virgola. Le prime tre righe del file sono indicate di seguito.
@@ -120,13 +115,10 @@ Nella cella:
 * la lettura effettiva del file è demandata al modulo `csv` che si occupa direttamente di convertire dal formato CSV: la funzione `csv.reader` gestisce anche il fatto di avere un separatore diverso dalla virgola e permette di inserire un punto e virgola in un campo a patto di delimitare quest'ultimo tra doppi apici;
 * la parola chiave `list` converte il contenuto del file in una lista, e da quest'ultima si esclude la prima riga (in quanto essa contiene le intestazioni dei campi).
 
-+++
-
-<div class="alert alert-info">
+```{admonition} Nomenclatura
+:class: naming
 In generale usando il nome di un tipo come se fosse una funzione è possibile effettuare conversioni tra tipi di dati: per esempio `int('42')` converte una stringa in intero e `str(42)` effettua la conversione inversa.
-</div>
-
-+++
+```
 
 Proviamo a visualizzare i primi due record (che corrispondono alle due righe sopra mostrate):
 
@@ -174,11 +166,12 @@ plt.ylim((0, 18.5))
 plt.show()
 ```
 
-<div class="alert alert-info">
+```{admonition} Nomenclatura
+:class: naming
 In teoria, una volta ottenuta la lista `counts`, è possibile generare il grafico (ridmensionamento dei suoi assi a parte) usando l'istruzione più compatta `plt.bar(*np.array(counts[1:]).T)` in cui
-<ul>
-<li>l'invocazione del metodo `transpose` è sostituita dall'utilizzo della _proprietà_ `T`: si tratta essenzialmente della stessa cosa, ma permette di essere più succinti;</li>
-<li>invece di assegnare a due variabili `x` e `y` le liste di ascisse e ordinate, si usa l'operatore `*` per effettuare un'altra forma di _unpacking_ delle liste in modo che i due elementi della lista restituita da `T` vengano rispettivamente usati come primo e secondo argomento di `np.bar`.</li>
-</ul>
+
+- l'invocazione del metodo `transpose` è sostituita dall'utilizzo della _proprietà_ `T`: si tratta essenzialmente della stessa cosa, ma permette di essere più succinti;
+- invece di assegnare a due variabili `x` e `y` le liste di ascisse e ordinate, si usa l'operatore `*` per effettuare un'altra forma di _unpacking_ delle liste in modo che i due elementi della lista restituita da `T` vengano rispettivamente usati come primo e secondo argomento di `np.bar`.
+
 Va in ogni caso sottolineato che il minor numero di linee si paga con del codice più complesso e quindi meno facile da leggere e da correggere in caso di errore, quindi almeno fino a quando non si è abbastanza confidenti nel linguaggio è meglio non ricorrere a soluzioni troppo complicate.
-</div>
+```

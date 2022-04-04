@@ -14,7 +14,7 @@ kernelspec:
 
 (dati-semplici)=
 # Tipi di dati semplici
- 
+
 ```{margin}
 Il linguaggio è comunque fortemente tipizzato, ma il _type checking_ viene fatto durante l'esecuzione.
 ```
@@ -47,37 +47,25 @@ Va osservato che esistono varie convenzioni relative allo stile da adottare quan
 ```
 In due delle celle precedenti è possibile vedere come l'assegnamento di un valore a una variabile segua la stessa sintassi di parecchi linguaggi di programmazione. Per formare i nomi delle variabili si possono utilizzare i caratteri alfabetici (maiuscoli o minuscoli, tenendo conto del fatto che l'intero linguaggio è _case sensitive_), le cifre e il simbolo di _underscore_ (`_`), con l'unico vincolo di non usare una cifra come carattere iniziale del nome. È inoltre convenzione ampiamente adottata quella di utilizzare per le variabili i soli caratteri minuscoli, facendo uso dell'_underscore_ per separare parole diverse in un nome (come in `first_appearance` nella cella precedente). L'uso di uno o più _underscore_ all'inizio o alla fine di un nome è da evitare, perché in alcune situazioni particolari ciò può conferire un significato specifico al codice: questo non succederebbe in ogni caso negli esempi contenuti in questo libro, ma è meglio essere particolarmente attenti a questo aspetto già quando si imparano le basi del linguaggio [^eccezione-underscore].
 
-A partire da valori booleani, interi o a virgola mobile è possibile costruire espressioni arbitrariamente complesse utilizzando degli _operatori_. La maggior parte di quelli che considereremo è di tipo _binario_ (cioè si applicano a due argomenti) e  si utilizzano in modalità _infissa_ (il che significa che l'operatore si indica in mezzo ai suoi due argomenti). Gli operatori vengono utilizzati nella maggior parte dei linguaggi per codificare le operazioni aritmetico/logiche e le relazioni aritmetiche (utilizzando `+` per l'addizione, `!=` per la relazione di non uguaglianza e così via). La {numref}`Tabella %s <elenco-operatori-per-tipi-semplici>` riassume i principali simboli utilizzati in Python per questo tipo di operatori binari.
+A partire da valori booleani, interi o a virgola mobile è possibile costruire espressioni arbitrariamente complesse utilizzando degli _operatori_. La maggior parte di quelli che considereremo è di tipo _binario_ (cioè si applicano a due argomenti) e  si utilizzano in modalità _infissa_ (il che significa che l'operatore si indica in mezzo ai suoi due argomenti). Gli operatori vengono utilizzati nella maggior parte dei linguaggi per codificare le operazioni aritmetico/logiche e le relazioni aritmetiche (utilizzando `+` per l'addizione, `!=` per la relazione di non uguaglianza e così via). La {numref}`elenco-operatori-per-tipi-semplici` riassume i principali simboli utilizzati in Python per questo tipo di operatori binari.
 
 
 ```{table} Elenco dei principali operatori per i tipi semplici
 :name: elenco-operatori-per-tipi-semplici
 :align: center
 
-|  Operazione                  | Simbolo |
-|:----------------------------:|:-------:|
-| addizione                    | `+`     |
-| sottrazione                  | `-`     |
-| moltiplicazione              | `*`     |
-| divisione (reale)            | `/`     |
-| divisione (intera)           | `//`    |
-| resto (modulo)               | `%`     |
-| elevamento a potenza         | `**`    |
-|                              |         |
-| appartenenza a una struttura | `in`    |
-| rimozione dalla memoria      | `del`   |
-|                              |         |
-| uguale (per riferimento)     | `is`    |
-| uguale (per contenuto)       | `==`    |
-| diverso                      | `!=`    |
-| minore                       | `<`     |
-| minore o uguale              | `<=`    |
-| maggiore                     | `>`     |
-| maggiore o uguale            | `>=`    |
-| congiunzione logica          | `and`   |
-| disgiunzione logica          | `or`    |
-| negazione logica             | `not`   |
-
+|  Operazione                  | Simbolo |  Operazione              | Simbolo |
+|:----------------------------:|:-------:| :------------------------|:-------:|
+| addizione                    | `+`     | uguale (per riferimento) | `is`    |
+| sottrazione                  | `-`     | uguale (per contenuto)   | `==`    |
+| moltiplicazione              | `*`     | diverso                  | `!=`    |
+| divisione (reale)            | `/`     | minore                   | `<`     |
+| divisione (intera)           | `//`    | minore o uguale          | `<=`    |
+| resto (modulo)               | `%`     | maggiore                 | `>`     |
+| elevamento a potenza         | `**`    | maggiore o uguale        | `>=`    |
+| appartenenza a una struttura | `in`    | congiunzione logica      | `and`   |
+| rimozione dalla memoria      | `del`   | disgiunzione logica      | `or`    |
+|                              |         | negazione logica         | `not`   |
 ```
 
 Nella maggior parte dei casi gli operatori usano la stessa sintassi dei loro equivalenti nei principali linguaggi di programmazione, mantenendo inalterata anche la semantica. Vanno però fatte alcune importanti osservazioni, elencate di seguito.

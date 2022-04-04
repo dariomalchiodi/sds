@@ -251,8 +251,6 @@ stata evidenziata anche la diagonale del quadrato, che ci servierà come punto
 di riferimento.
 
 ```{code-cell} ipython3
-%matplotlib inline
-
 import matplotlib.pyplot as plt
 
 plt.axis('equal')
@@ -499,6 +497,8 @@ andamento tipico è visualizzato nella figura che segue.
 from sklearn.datasets import make_classification
 from sklearn.linear_model import LogisticRegression
 
+plt.style.use('sds.mplstyle')
+
 X, y = make_classification(n_samples=10000, n_features=10, n_classes=2, n_informative=5)
 Xtrain = X[:9000]
 Xtest = X[9000:]
@@ -515,8 +515,8 @@ fpr, tpr, _ = metrics.roc_curve(ytest, preds)
 
 plt.plot(fpr, tpr)
 plt.plot([0, 1], [0, 1], dashes=[3, 3], color='gray')
-plt.xlim([-0.01, 1])
-plt.ylim([0, 1.01])
+#plt.xlim([-0.01, 1])
+#plt.ylim([0, 1.01])
 plt.axis('equal')
 plt.show()
 ```
@@ -699,9 +699,8 @@ consdierando i valori nelle due righe di questa tabella ripsettivamente come
 ascisse e ordinate di punti che andranno poi uniti.
 
 ```{code-cell} ipython3
-%matplotlib inline
-
 import matplotlib.pyplot as plt
+plt.style.use('sds.mplstyle')
 
 plt.plot([1, 1, 0.5, 0, 0, 0], [1, 1, 1, 1, .33, 0])
 plt.plot([0, 1], [0, 1], dashes=[3, 3], color='gray')
@@ -726,13 +725,14 @@ plt.plot([0, 1], [0, 1], dashes=[3, 3], color='gray')
 plt.show()
 ```
 
-<div class="alert alert-info">
+```{admonition} Nota
+:class: naming
 Come è possibile vedere analizzando il codice nella cella precedente, il
 metodo `roc_curve` restituisce tre valori: il terzo, non considerato nel
 nostro caso (il simbolo `_` ci permette di non dover creare una variabile
 fittizia che poi non verrebbe utilizzata) permette di ottenere i sopra
 citati valori di soglia selezionati dal metodo.
-</div>
+```
 
 L'oggetto `metrics` permette anche di calcolare il valore AUC corrispondente
 all'area sotto la curva ROC, invocando il metodo `auc` a cui passare i due
@@ -853,6 +853,7 @@ clf = clf.fit(X_train, Y_train)
 preds = clf.predict_proba(X_test)[:,1]
 fpr, tpr, _ = metrics.roc_curve(Y_test, preds)
 
+plt.rc('figure', figsize=(7.0, 7.0))
 plt.plot(fpr, tpr)
 plt.plot([0, 1], [0, 1], dashes=[3, 3], color='gray')
 plt.show()

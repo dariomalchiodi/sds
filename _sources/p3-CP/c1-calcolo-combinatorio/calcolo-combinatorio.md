@@ -46,7 +46,7 @@ _permutazione semplice_, o soltanto _permutazione_, degli $n$ oggetti. Ad
 esempio, se $A= \{ a,b,c \}$ allora tutte le permutazioni degli $n$ oggetti
 sono:
 
-<table style="font-size: 1rem;">
+<table style="font-size: 1.5rem;">
   <tr>
     <td>a</td>
     <td>b</td>
@@ -141,8 +141,8 @@ elementi del primo gruppo, automaticamente sono anche fissate quelle degli
 elementi del secondo gruppo. Le permutazioni semplici che corrispondono a
 questa configurazione sono:
 
-<table style="font-size: 1rem;">
-<tr><td>$a_1$</td><td>$b_1$</td><td>$b_2$</td><td>$b_3$</td><td>$a_2$</td></tr>
+<table style="font-size: 1.5rem;">
+<tr><td>  $a_1$  </td><td>$b_1$</td><td>$b_2$</td><td>$b_3$</td><td>$a_2$</td></tr>
 <tr><td>$a_1$</td><td>$b_3$</td><td>$b_1$</td><td>$b_2$</td><td>$a_2$</td></tr>
 <tr><td>$a_1$</td><td>$b_2$</td><td>$b_3$</td><td>$b_1$</td><td>$a_2$</td></tr>
 <tr><td>$a_1$</td><td>$b_3$</td><td>$b_2$</td><td>$b_1$</td><td>$a_2$</td></tr>
@@ -457,7 +457,8 @@ comb = [frozenset(d) for d in disp_rep if len(d)==len(set(d))]
 list(map(set, set(comb)))
 ```
 
-<div class="alert alert-info">
+```{admonition} Nomenclatura
+:class: naming
 L'uso di `frozenset` nella cella precedente è fondamentale per poter eseguire
 l'ultima istruzione. Gli elementi che si inseriscono in un insieme (ma lo
 stesso varrebbe per le chiavi di un dizionario) devono essere infatti
@@ -465,7 +466,7 @@ immutabili: ciò è legato agli algoritmi che vengono utilizzati per inserire
 gli elementi di un insieme in un'opportuna struttura dati che permetta di
 verificare successivamente se un generico elemento appartiene oppure no
 all'insieme.
-</div>
+```
 
 Le generazioni di disposizioni, combinazioni e permutazioni fatte finora
 richiedono di fissare il numero di posti: non sarebbe altrimenti possibile
@@ -499,8 +500,9 @@ list(itertools.permutations(range(3), 3))
 list(itertools.combinations(range(4), 2))
 ```
 
-<div class="alert alert-info">
+```{admonition} Nomenclatura
+:class: naming
 Le funzioni di `itertools` che abbiamo considerato non restituiscono delle
 liste, bensì degli speciali oggetti che è necessario convertire
 esplicitamente in liste utilizzando la funzione `list`.
-</div>
+```

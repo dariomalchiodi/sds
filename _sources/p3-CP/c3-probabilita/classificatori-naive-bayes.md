@@ -54,13 +54,14 @@ quali siano i valori per questo attributo. In realtà sappiamo che ci potrebbero
 essere dei valori mancanti, oppure potremmo in futuro avere a disposizione
 nuovi dati per i quali questa informazione non è disponibile.
 
-<div class="alert alert-info">
+```{admonition} Nota
+:class: naming
 Va notato che la scelta di usare il colore degli occhi come proprietà osservata
 e la casa editrice come classe è assolutamente arbitraria. In modo analogo
 avremmo potuto ragionare in termini di come il fatto di essere un supereroe
 Marvel possa essere utilizzato per azzardare il colore degli occhi, scambiando
 gli eventi $M$ e $N$ nelle formule.
-</div>
+```
 
 Un modo semplice per stimare le probabilità indicate è quello di osservare con
 che frequenza gli eventi associati si verificano nel dataset a nostra

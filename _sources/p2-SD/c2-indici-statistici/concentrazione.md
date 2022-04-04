@@ -65,15 +65,11 @@ retta $F = Q$: possiamo dunque dire che in questo caso $F_i - Q_i = 0$ per ogni
 $i$;
 
 ```{code-cell} ipython3
-%matplotlib inline
-
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-from scipy.constants import golden
 
-plt.style.use('fivethirtyeight')
-plt.rc('figure', figsize=(5.0, 5.0/golden))
+plt.style.use('sds.mplstyle')
 
 heroes = pd.read_csv('data/heroes.csv', sep=';', index_col=0)
 
