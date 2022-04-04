@@ -73,11 +73,11 @@ quando i valori osservati sono molto grandi e poco dispersi. Si osservi che:
 - il range, la distanza interquartile, la varianza e la deviazione standard
   dell'insieme traslato $Y$ rimangono invece gli stessi dell'insieme di partenza $X$.
 
-<div class="alert alert-success">
-<strong>Esercizio</strong>
+```{admonition} Esercizio
+:class: naming
 Utilizzando le definizione degli indici viste in precedenza, dimostrate le
 proprietà sopra elencate.
-</div>
+```
 
 Vediamo due esempi, caricndo innanzitutto il nostro dataset e estraendo da
 esso le osservazioni per anno di prima apparizione e indice di forza. Per
@@ -85,16 +85,11 @@ evitare di modificare i dati originali, lavoreremo su delle copie da cui
 elimineremo inoltre i valori mancanti.
 
 ```{code-cell} ipython3
-%matplotlib inline
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-from scipy.constants import golden
-
-plt.style.use('fivethirtyeight')
-plt.rc('figure', figsize=(5.0, 5.0/golden))
+plt.style.use('sds.mplstyle')
 
 heroes = pd.read_csv('data/heroes.csv', sep=';', index_col=0)
 
@@ -182,11 +177,11 @@ Si osservi che:
 - la varianza viene scalata di una quantità $\frac{1}{h^2}$ mentre la
   deviazione standard viene scalata di $\frac{1}{h}$.
 
-<div class="alert alert-success">
-<strong>Esercizio</strong>
+```{admonition} Esercizio
+:class: naming
 Anche in questo caso, dimostrare le proprietà sopra elencate utilizzando le
 definizioni degli indici coinvolti.
-</div>
+```
 
 Come nel caso delle traslazioni, anche per applicare un cambiamento di scala
 è sufficiente eseguire la corrispondente operazione aritmetica sulla serie
@@ -239,11 +234,11 @@ x \mapsto x' = c + \frac{d - c}{b - a} \cdot (x - a).
 $$
 
 
-<div class="alert alert-success">
-<strong>Esercizio</strong>
+```{admonition} Esercizio
+:class: naming
 Utilizzando la formula della retta passante per due punti dati, ricavate la
 trasformazione.
-</div>
+```
 
 Immaginiamo che risulti più pratico misurare la forza dei supereroi in una
 scala che va da $-10$ a $10$. La trasformazione relativa corrisponderà ai
@@ -300,10 +295,10 @@ La trasformazione di standardizzazione trasforma pertanto l'insieme dei
 valori in un altro insieme di valori la cui media è $0$ e la cui varianza è
 $1$.
 
-<div class="alert alert-success">
-<strong>Esercizio</strong>
+```{admonition} Esercizio
+:class: naming
 Si controlli che le proprietà sopra menzionate sono soddisfatte.
-</div>
+```
 
 L'operazione di standardizzazione dei valori di forza dà luogo alla serie
 seguente:

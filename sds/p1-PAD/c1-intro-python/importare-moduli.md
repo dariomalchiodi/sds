@@ -58,11 +58,10 @@ import numpy as np
 import pandas as pd
 ```
 
-<div class="alert alert-info">
+```{admonition} Nomenclatura
+:class: naming
 Questo modo di importare numpy e pandas usando i nomi alternativi `np` e `pd` fa riferimento a una convenzione molto diffusa tra gli sviluppatori. Vale la pena mantenre questa convenzione, così che chi legge il codice possa capire a colpo d'occhio a quale modulo si fa riferimento.
-</div>
-
-+++
+```
 
 I moduli più complessi sono organizzati in strutture gerarchiche chiamate _package_, in modo non dissimile a quanto avviene per esempio in Java. La seguente cella importa il modulo `pyplot` che è contenuto nel modulo `matplotlib` ([matplotlib](http://matplotlib.org) è la libreria di riferimento in python per la creazione di grafici).
 
@@ -71,6 +70,7 @@ import matplotlib.pyplot as plt
 plt.style.use('fivethirtyeight')
 ```
 
-<div class="alert alert-info">
+```{admonition} Nomenclatura
+:class: naming
 L'invocazione di `plt.style.use` ha uno scopo puramente estetico: serve infatti a impostare uno stile per la visualizzazione dei grafici prodotti con matplotlib.
-</div>
+```

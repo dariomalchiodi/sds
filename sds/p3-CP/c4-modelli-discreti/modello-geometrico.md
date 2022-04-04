@@ -28,14 +28,15 @@ esperimento bernoulliano che ha sempre successo: in tal caso, la variabile
 aleatoria che conteggia il numero di insuccessi prima del primo successo
 degenera nel valore costante pari a zero.
 
-<div class="alert alert-info">
+```{admonition} Nota
+:class: note
 In alternativa sarebbe possibile definire la distribuzione geometrica contando
 il numero totale di esperimenti necessari per ottenere il primo successo. In
 questo modo si conteggerebbe un esperimento in più rispetto a quanto visto
 (l'esperimento in cui si ottiene il successo). Ovviamente la distribuzione
 ottenuta avrebbe delle proprietà (come per esempio il valore atteso e la
   varianza) diversi da quelli che otterremo.
-</div>
+```
 
 Un modo intuitivo di simulare dei valori estratti da una distribuzione
 geometrica consiste nel simulare ripetutamente l'esecuzione del relativo
@@ -125,12 +126,11 @@ versione interattiva degli appunti è possibile modificare il valore di $p$
 rigenerando automaticamente il grafico.
 
 ```{code-cell} ipython3
-%matplotlib inline
-
 from ipywidgets import *
 import matplotlib.pyplot as plt
 import numpy as np
 
+plt.style.use('sds.mplstyle')
 
 def gr_geom_pdf(p):
     x = np.arange(0, 10, 1)
@@ -269,12 +269,7 @@ permette di modificare il valore di $p$ e ridisegnare automaticamente l'intero
 grafico.
 
 ```{code-cell} ipython3
-%matplotlib inline
-
-from ipywidgets import *
-import matplotlib.pyplot as plt
 import matplotlib.patches as patches
-import numpy as np
 
 def geom_pdf(x, p):
     assert p > 0 and p <= 1, '{} is not a valid parameter ' \

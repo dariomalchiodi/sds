@@ -26,8 +26,8 @@ In Python è possibile sia usare gli oggetti che corrispondono ai tipi di dati s
 
 Una lista è una struttura dati che permette di memorizzare una sequenza di elementi. Questi elementi possono essere di tipo diverso, e a ognuno di questi si può accedere in modo diretto specificandone la posizione all'interno della sequenza (si dice quindi che una lista è una struttura dati _eterogenea_ e ad _accesso posizionale_).
 
-```{admonition} Attenzione!
-:class: warning
+```{admonition} Nomenclatura
+:class: naming
 Le liste non vanno confuse con gli _array_ (o _vettori_), che sono invece delle strutture dati _omogenee_ ad accesso posizionale: in altre parole, anche in questo caso vengono memorizzate delle sequenze di valori, ma questi valori devono essere tutti dello stesso tipo. Sebbene gli _array_ non siano direttamente messi a disposizione in Python, è possibile utilizzarli facendo riferimento al _package_ `numpy`, descritto nel {numref}`Paragrafo %s <importare-moduli>`
 ```
 
@@ -308,7 +308,7 @@ rogue['identity']
 
 È proprio questa modalità di accesso che fa sì che i dizionari rappresentino una scelta più elegante per memorizzare un record: `rogue['identity']` è sicuramente più leggibile di `rogue[1]`. Va notato che il prezzo da pagare per la leggibilità è un'efficienza potenzialmente minore nelle operazioni di accesso (normalmente le liste sono implementate con una logica simile a quella degli array e dunque hanno un tempo di accesso costante ai loro elementi, mentre i dizionari sono implementati tramite tabelle di hash, pertanto l'accesso è a tempo costante solo se non avvengono collisioni).
 
-Se si tenta di accedere in lettura a un dizionario specificando una chiave inesistente viene lanciata un'eccezione (`KeyError`), mentre accedendovi in scrittura la specificazione di una chiave inesistente comporterà l'aggiunta della corrispondente coppia (chiave, valore) al dizionario. 
+Se si tenta di accedere in lettura a un dizionario specificando una chiave inesistente viene lanciata un'eccezione (`KeyError`), mentre accedendovi in scrittura la specificazione di una chiave inesistente comporterà l'aggiunta della corrispondente coppia (chiave, valore) al dizionario.
 
 L'operatore `in` introdotto per le liste può anche essere utilizzato per i dizionari: più precisamente, l'espressione `k in d` restituisce `True` se `k` è una chiave valida per il dizionario `d`.
 

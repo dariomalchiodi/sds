@@ -12,26 +12,6 @@ kernelspec:
   name: python3
 ---
 
-+++ {"toc": true}
-
-<h1>Table of Contents<span class="tocSkip"></span></h1>
-<div class="toc"><ul class="toc-item"><li><span><a href="#Dati-e-frequenze" data-toc-modified-id="Dati-e-frequenze-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>Dati e frequenze</a></span><ul class="toc-item"><li><span><a href="#Dati-quantitativi-e-qualitativi" data-toc-modified-id="Dati-quantitativi-e-qualitativi-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>Dati quantitativi e qualitativi</a></span><ul class="toc-item"><li><span><a href="#Classificazione-dei-dati-qualitativi" data-toc-modified-id="Classificazione-dei-dati-qualitativi-1.1.1"><span class="toc-item-num">1.1.1&nbsp;&nbsp;</span>Classificazione dei dati qualitativi</a></span></li><li><span><a href="#Classificazione-dei-dati-quantitativi" data-toc-modified-id="Classificazione-dei-dati-quantitativi-1.1.2"><span class="toc-item-num">1.1.2&nbsp;&nbsp;</span>Classificazione dei dati quantitativi</a></span></li></ul></li><li><span><a href="#Frequenze-assolute-e-relative-e-loro-visualizzazione" data-toc-modified-id="Frequenze-assolute-e-relative-e-loro-visualizzazione-1.2"><span class="toc-item-num">1.2&nbsp;&nbsp;</span>Frequenze assolute e relative e loro visualizzazione</a></span></li><li><span><a href="#Frequenze-cumulate" data-toc-modified-id="Frequenze-cumulate-1.3"><span class="toc-item-num">1.3&nbsp;&nbsp;</span>Frequenze cumulate</a></span><ul class="toc-item"><li><span><a href="#Diagrammi-di-Pareto" data-toc-modified-id="Diagrammi-di-Pareto-1.3.1"><span class="toc-item-num">1.3.1&nbsp;&nbsp;</span>Diagrammi di Pareto</a></span></li></ul></li><li><span><a href="#Frequenze-congiunte-e-marginali" data-toc-modified-id="Frequenze-congiunte-e-marginali-1.4"><span class="toc-item-num">1.4&nbsp;&nbsp;</span>Frequenze congiunte e marginali</a></span></li><li><span><a href="#Alcuni-approfondimenti-sulla-generazione-dei-grafici-*" data-toc-modified-id="Alcuni-approfondimenti-sulla-generazione-dei-grafici-*-1.5"><span class="toc-item-num">1.5&nbsp;&nbsp;</span>Alcuni approfondimenti sulla generazione dei grafici <sup>*</sup></a></span></li><li><span><a href="#I-diagrammi-stelo-foglia-*" data-toc-modified-id="I-diagrammi-stelo-foglia-*-1.6"><span class="toc-item-num">1.6&nbsp;&nbsp;</span>I diagrammi stelo-foglia <sup>*</sup></a></span></li></ul></li></ul></div>
-
-+++ {"header": true}
-
-<div class="header">
-D. Malchiodi, Superhero data science. Vol 1: probabilità e statistica: Dati e frequenze.
-</div>
-<hr style="width: 90%;" align="left" />
-
-+++
-
-
-
-
-
-<div id="h-0"></div>
-
 # Dati e frequenze
 
 Vedremo come esistano tipi differenti di dati, e come in funzione del loro tipo esistano diversi strumenti grafici che li descrivono. Studieremo inoltre in modo più approfondito e diversificato il concetto di _frequenza_.
@@ -39,16 +19,12 @@ Vedremo come esistano tipi differenti di dati, e come in funzione del loro tipo 
 Come sempre, carichiamo le librerie e il dataset dei supereroi. Già che ci siamo, escludiamo l'unico record che fa riferimento al 2099 come anno di prima apparizione.
 
 ```{code-cell} ipython3
-%matplotlib inline
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.constants import golden
 
-plt.style.use('fivethirtyeight')
-plt.rc('figure', figsize=(5.0, 5.0/golden))
-
+plt.style.use('sds.mplstyle')
 
 heroes = pd.read_csv('data/heroes.csv', sep=';', index_col=0)
 heroes_with_year = heroes[heroes['First appearance'] < 2020]
@@ -56,20 +32,12 @@ heroes_with_year = heroes[heroes['First appearance'] < 2020]
 heroes_with_year.head()
 ```
 
-
-
-
-
-<div id="h-1"></div>
-
 ## Dati quantitativi e qualitativi
 
 Una delle principali distinzioni che si possono fare sui dati osservabili riguarda il modo in cui questi sono misurati:
 
-<ul>
-  <li>si parla di dati _quantitativi_ se l'esito della misurazione è una quantità numerica;</li>
-  <li>si parla invece di dati _qualitativi_ (o categorici, o nominali) quando la misurazione è fatta scegliendo un'etichetta a partire da un insieme disponibili.</li>
-</ul>
+- si parla di dati _quantitativi_ se l'esito della misurazione è una quantità numerica;
+- si parla invece di dati _qualitativi_ (o categorici, o nominali) quando la misurazione è fatta scegliendo un'etichetta a partire da un insieme disponibili.
 
 Pertanto nel nostro dataset i caratteri _Height_, _Weight_ e _Strength_ saranno da considerare quantitativi, mentre i caratteri _Name_, _Identity_, _Birth place_, _Publisher_, _Gender_, _Eye color_, _Hair color_ e _Intelligence_ saranno sicuramente di tipo qualititativo (la differenza tra _Strength_ e _Intelligence_ è legata al fatto che il primo carattere è misurato tramite numeri che variano tra 0 e 100 mentre il secondo fa riferimento a una scala basata su etichette). La classificazione di _First appearance_ è più sfumata e merita qualche riflessione in più: sebbene l'anno di prima apparizione sia misurato tramite un numero intero, il suo valore non indica prettamente una _quantità_, bensì _quando_ è accaduto un evento. In tal senso, il calcolo di operazioni aritmetiche quali la somma o la divisione perde di significato, ed è per questo che spesso caratteri di questo tipo ricadono nella classe dei dati qualitativi. Cionondimeno, vedremo come sia possibile ragionare sul carattere _First appearance_ anche in termini quantitativi quando per esempio parleremo della visualizzazione di istogrammi. Ci sono poi casi di caratteri espressi in termini temporali in cui viene misurato il tempo intercorso a partire da un dato istante iniziale (come per esempio il tempo di arrivo del primo cliente in un negozio, misurato in minuti dall'orario di apertura), di cui è chiara l'appartenenza alla classe dei dati quantitativi.
 
@@ -119,11 +87,12 @@ publisher_freq = pd.crosstab(index=heroes_with_year['Publisher'],
 publisher_freq
 ```
 
-<div class="alert alert-info">
+```{admonition} Nomenclatura
+:class: naming
 L'argomento essenziale di `pd.crosstab` è, in questo caso, `index`, che viene impostato alla serie di cui vanno calcolate le frequenze assolute; i due rimanenti argomenti influiscono solo sul modo in cui viene visualizzata la tabella delle frequenze: `columns` contiene una lista il cui unico elemento è l'intestazione della colonna delle frequenze, mentre `colnames` viene impostato a una lista contenente una stringa vuota al fine di non visualizzare un'ulteriore etichetta per l'intera tabella.
-</div>
+```
 
-Essendo l'output di `pd.crosstab` un _dataframe_, su esso si possono eseguire operazioni quali _slicing_, accesso basato su indice e su posizione e così via. Ciò permette di trasformare facilmente una tabella di frequenze relative nella corrispondente tabella delle _frequenze relative_, dove la frequenza relativa di un'osservazione è la frazione di casi in quell'osservazione occorre. L'uso delle frequenze relative permette di valutare più facilmente la grandezza dei valori in gioco, in quanto questi varieranno sempre tra 0 e 1, mentre le frequenze assolute non hanno a priori un valore massimo e quindi è meno facile valutare se una frequenza è «alta» o «bassa». Le frequenze relative si calcolano dividendo quelle assolute per il numero totale di casi; quest'ultimo è ovviamente uguale alla somma di tutte le frequenze assolute, quindi la tabella delle frequenze relative si può ottenere nel modo seguente: 
+Essendo l'output di `pd.crosstab` un _dataframe_, su esso si possono eseguire operazioni quali _slicing_, accesso basato su indice e su posizione e così via. Ciò permette di trasformare facilmente una tabella di frequenze relative nella corrispondente tabella delle _frequenze relative_, dove la frequenza relativa di un'osservazione è la frazione di casi in quell'osservazione occorre. L'uso delle frequenze relative permette di valutare più facilmente la grandezza dei valori in gioco, in quanto questi varieranno sempre tra 0 e 1, mentre le frequenze assolute non hanno a priori un valore massimo e quindi è meno facile valutare se una frequenza è «alta» o «bassa». Le frequenze relative si calcolano dividendo quelle assolute per il numero totale di casi; quest'ultimo è ovviamente uguale alla somma di tutte le frequenze assolute, quindi la tabella delle frequenze relative si può ottenere nel modo seguente:
 
 ```{code-cell} ipython3
 publisher_abs_freq = pd.crosstab(index=heroes_with_year['Publisher'],
@@ -204,7 +173,7 @@ Volendo visualizzare le barre in un ordine differente è sufficiente riordinare 
 ```{code-cell} ipython3
 publisher_order = ['Hanna-Barbera', 'ABC Studios', 'Dark Horse Comics',
                    'Image Comics', 'Marvel Comics', 'DC Comics',
-                   'George Lucas', 'Rebellion', 
+                   'George Lucas', 'Rebellion',
                    'Star Trek', 'Universal Studios']
 
 publisher_rel_freq.loc[publisher_order,:].plot.bar(legend=False)
@@ -248,9 +217,10 @@ female_strength_freq.plot(marker='o', color='pink', legend=False)
 plt.show()
 ```
 
-<div class="alert alert-warning">
+```{admonition} Nomenclatura
+:class: naming
 Se siete stati attenti avrete notato che le tabelle delle frequenze sono state accedute tramite `loc` al fine di estrarre le corrispondenti serie. Ciò è dovuto al fatto che in caso contrario matplotlib avrebbe prodotto due grafici separati. Quando più avanti parleremo delle frequenze congiunte vedremo un modo semplice per generare un'unica figura contenente i due grafici a barre.
-</div>
+```
 
 In effetti la cella precedente non genera un vero e proprio grafico a barre, perché per ogni valore della forza ci sarebbero due barre, relative ai due generi. Tali barre si sovrapporrebbero, con l'effetto di nascondere (parzialmente o totalmente) quella più bassa.
 
@@ -285,11 +255,10 @@ gender_freq['Abs. frequence'].plot.pie(colors=['pink', 'blue'])
 
 - Mentre quando si crea un grafico a barre per un carattere ha ampiamente senso utilizzare lo stesso colore per tutte le barre, nel caso di un diagramma a torta tale scelta renderebbe il risultato illeggibile, ed è per questo che se si vogliono personalizzare i colori è necessario passare la lista dei corrispondenti nomi all'argomento `colors` (che è diverso dall'argomento `color` finora utilizzato).
 
-<div class="alert alert-warning" role="warning">
+```{admonition} Nomenclatura
+:class: naming
 Se ottenete un grafico che contiene un'ellissi al posto di un cerchio, probabilmente state utilizzando una versione precedente di pandas, che prevede che le lunghezze sugli assi cartesiani nei grafici siano sempre misurate con unità di misura diverse. Il rapporto tra queste unità di misura è legato alla sezione aurea, e ciò ha di norma l'effetto di produrre grafici gradevoli da vedere, a parte casi come questo in cui i cerchi risultano "schiacciati". Per ovviare all'inconveniente basta invocare la funzione `plt.axis` specificando come argomento `'equal'`.
-</div>
-
-+++
+```
 
 Consideriamo il caso particolare dell'anno di apparizione: se ne tracciamo il grafico a barre delle frequenze assolute, è appropriato posizionare le barre rispettando la relazione di ordine esistente tra i dati, utilizzando direttamente matplotlib come abbiamo visto nella lezione precedente.
 
@@ -349,17 +318,10 @@ plt.show()
 
 Va notato come in questo caso le altezze delle barre non contino il numero di occorrenze nel corrispondente intervallo: per esempio, vi sono tre pesi superiori a 800 kg., ma la barra corrispondente ha altezza unitaria. Ciò è dovuto al fatto che in un istogramma è l'_area_ di ogni barra a essere legata alla frequenza: se le barre hanno basi della stessa lunghezza, le aree sono proporzionali all'altezza, altrimenti no. È per questo, per esempio, che le due barre più a destra nell'ultimo istogramma hanno altezza unitaria: si riferiscono a tre osservazioni, e la loro area è il triplo dell'area di una barra di altezza unitaria nella parte sinistra del grafico, che invece farebbe riferimento a una sola osservazione.
 
-<div class="alert alert-info">
+```{admonition} Nomenclatura
+:class: naming
 Nella cella precedente sono state utilizzate le funzioni `np.hstack`, che permette di giustapporre due o più array numpy, e `np.arange`, che crea un array i cui contenuti variano tra i valori indicati dai primi due argomenti, con incremento pari all'ultimo argomento.
-</div>
-
-+++
-
-
-
-
-
-<div id="h-5"></div>
+```
 
 ## Frequenze cumulate
 
@@ -451,9 +413,10 @@ plt.step(x, y)
 plt.show()
 ```
 
-<div class="alert alert-info">
+```{admonition} Nomenclatura
+:class: naming
 In casi come questo è meglio usare `plt.step` piuttosto che `plt.plot`, altrimenti il grafico visualizzato, pur essendo molto simile al risultato appena ottenuto, non sarebbe tecnicamente parlando quello di una funzione costante a tratti.
-</div>
+```
 
 Va peraltro rimarcato che all'aumentare del numero di valori osservabili il grafico delle frequenze relative cumulate ottenute usando il metodo `plot` della corrispondente serie diventa indistinguibile da quello della funzione cumulativa empirica (sia che si sia utilizzato `plt.step`, sia che si sia utilizzato `plt.plot` per visualizzarlo). Per rendercene conto, possiamo visualizzare nuovamente la funzione di ripartizione empirica tenendo però conto di tutte le osservazioni per gli anni di prima apparizione.
 
@@ -470,7 +433,7 @@ plt.show()
 
 ### Diagrammi di Pareto ###
 
-Frequenze e frequenze cumulate di una variabile categorica possono essere considerate congiuntamente per generare un _diagramma di Pareto_ nel modo seguente: ordinando i dati per frequenza decrescente, su uno stesso sistema di riferimento in cui l'asse delle ascisse fa riferimento ai valori della variabile si sovrappongono il diagramma a barre delle frequenze e una linea spezzata che collega i valori delle frequenze cumulate. Consideriamo per esempio i colori degli occhi più frequenti nel nostro dataset (definiti per comodità come i colori che occorrono con frequenza relativa superiore a 0.02). 
+Frequenze e frequenze cumulate di una variabile categorica possono essere considerate congiuntamente per generare un _diagramma di Pareto_ nel modo seguente: ordinando i dati per frequenza decrescente, su uno stesso sistema di riferimento in cui l'asse delle ascisse fa riferimento ai valori della variabile si sovrappongono il diagramma a barre delle frequenze e una linea spezzata che collega i valori delle frequenze cumulate. Consideriamo per esempio i colori degli occhi più frequenti nel nostro dataset (definiti per comodità come i colori che occorrono con frequenza relativa superiore a 0.02).
 
 ```{code-cell} ipython3
 eye_color = heroes['Eye color']
@@ -483,7 +446,6 @@ plt.show()
 
 Ovviamente per quanto riguarda il valore più a sinistra nel diagramma (e quindi quello avente la frequenza maggiore) frequenza e frequenza cumulata coincideranno sempre.
 
-+++
 
 Va notato come la linea spezzata nel precedente diagramma non arrivi all'ordinata 1, avendo considerato solo un sottoinsieme dei dati: possiamo verificarlo, oltre che visualmente, sommando le frequenze relative:
 
@@ -523,7 +485,7 @@ my_pareto(heroes['Eye color'], threshold=0.015)
 Il corrispondente diagramma di Pareto si può generare manualmente oppure utilizzando la funzione `pareto` del package `paretochart`:
 
 ```{code-cell} ipython3
-from paretochart import pareto
+#from paretochart import pareto
 
 eye_color = heroes_with_year['Eye color']
 eye_color_freq = eye_color.value_counts(normalize=True)
@@ -531,16 +493,16 @@ eye_color_freq = eye_color.value_counts(normalize=True)
 common_colors = eye_color_freq[eye_color_freq > .02].index
 common_color_data = eye_color[eye_color.isin(common_colors)]
 
-pareto(common_color_data.value_counts(normalize=True),
-       labels=common_colors)
-       
-plt.show()
+#pareto(common_color_data.value_counts(normalize=True),
+#       labels=common_colors)
+
+#plt.show()
 ```
 
 Bisogna sottolineare che il package `paretochart` è, al momento, non ancora stato portato alla versione 3 di python. Quindi dopo la sua installazione, da effettuarsi preferibilmente tramite `pip` (il package non è attualmente disponibile in anaconda), è necessario eseguire lo script
 
    $ 2to3 -w *.py
-   
+
 nella directory in cui è stato installato il package (tipicamente, la directory `site-packages/paretochart` all'interno della directory in cui risultano installate le librerie di python).
 
 +++
@@ -558,7 +520,7 @@ nella directory in cui è stato installato il package (tipicamente, la directory
 Spesso è utile analizzare un insieme di osservazioni prendendo in considerazione due caratteri al posto di uno, per esempio per vedere se i valori di tali caratteri tendano a essere più o meno collegati tra loro tramite una relazione. Il concetto di frequenza si specializza in questo caso andando a contare il numero di osservazioni in cui i due caratteri considerati assumono due determinati valori, ottenendo la cosiddetta _frequenza congiunta assoluta_ (o equivalentemente la _frequenza congiunta relativa_ nel caso in cui si calcolasse la frazione di osservazioni e non il suo numero). Nel caso in cui i possibili valori osservabili non siano parecchi, è possibile visualizzare queste frequenze tramite una _tabella delle frequenze congiunte_ (detta anche _tabella di contingenza_), ottenuta estendendo il concetto di tabella delle frequenze precedentemente introdotto: ora le righe della tabella corrisponderanno ai possibili valori di uno dei caratteri considerati, le sue colonne corrisponderanno ai valori del rimanente carattere e gli elementi della tabella conterranno le frequenze congiunte (assolute o relative). La funzione `pd.crosstab` può essere utilizzata anche per produrre questo tipo di tabella: basta indicare le serie corrispondenti ai caratteri considerati come valori degli argomenti `index` e `columns`.
 
 ```{code-cell} ipython3
-int_gender_freq = pd.crosstab(index=heroes['Intelligence'], 
+int_gender_freq = pd.crosstab(index=heroes['Intelligence'],
                               columns=heroes['Gender'])
 
 int_gender_freq
@@ -584,9 +546,10 @@ In modo analogo è possibile visualizzare solo alcune righe oppure solo alcune c
 int_gender_freq.loc['moderate':'good', :]
 ```
 
-<div class="alert alert-warning">
+```{admonition} Nomenclatura
+:class: naming
 Va notato che quella appena ottenuta non è più una tabella delle frequenze, in quanto non fa riferimento a tutti i possibili valori in gioco.
-</div>
+```
 
 Sempre ipotizzando che il numero di valori osservabili non sia troppo elevato, la visualizzazione grafica delle frequenze congiunte può essere effettuata estendendo il concetto di diagramma a barre in modo che visualizzi due caratteri al posto di uno, _raggruppando_ le barre che fanno riferimento a uno stesso valore per uno dei caratteri, e _colorandole_ in funzione del valore che queste assumono per l'altro carattere in gioco. Il posizionamento delle barre viene normalmente fatto in due possibili modi:
 
@@ -630,7 +593,7 @@ pd.crosstab(index=pd.cut(heroes['Weight'],
 Quando si genera una tabella di frequenze congiunte, è possibile specificare il valore `True` per l'argomento `margins` al fine di aggiungere una riga e una colonna che contengono i totali (calcolati rispettivamente sulle singole colonne e sulle singole righe). I valori ivi indicati prendono il nome di _frequenze marginali_, e corrispondono alle frequenze del carattere corrispondente. Per esempio, rigenerando la tabella delle frequenze congiunte di livello di intelligenza e genere con le colonne dei totali,
 
 ```{code-cell} ipython3
-pd.crosstab(index=heroes['Intelligence'], 
+pd.crosstab(index=heroes['Intelligence'],
             columns=heroes['Gender'], margins=True)
 ```
 
@@ -641,7 +604,7 @@ Le frequenze congiunte a cui abbiamo fatto riferimento negli esempi visti finora
 - specificando `'all'` vengono effettivamente calcolate le frequenze relative
 
 ```{code-cell} ipython3
-pd.crosstab(index=heroes['Intelligence'], 
+pd.crosstab(index=heroes['Intelligence'],
             columns=heroes['Gender'],
             margins=True,
             normalize='all')
@@ -650,7 +613,7 @@ pd.crosstab(index=heroes['Intelligence'],
 - usando `'index'` si otterrà una tabella in cui i valori su ogni riga sommano a 1
 
 ```{code-cell} ipython3
-pd.crosstab(index=heroes['Intelligence'], 
+pd.crosstab(index=heroes['Intelligence'],
             columns=heroes['Gender'],
             margins=True,
             normalize='index')
@@ -659,7 +622,7 @@ pd.crosstab(index=heroes['Intelligence'],
 - indicando invece `columns` viene generata una tabella in cui tutte le colonne sommano al valore unitario
 
 ```{code-cell} ipython3
-pd.crosstab(index=heroes['Intelligence'], 
+pd.crosstab(index=heroes['Intelligence'],
             columns=heroes['Gender'],
             margins=True,
             normalize='columns')
@@ -748,17 +711,12 @@ male_heroes['Height'].cov(male_heroes['Weight'])
 male_heroes['Height'].corr(male_heroes['Weight'])
 ```
 
-
-
-
-
-<div id="h-8"></div>
-
 ## Alcuni approfondimenti sulla generazione dei grafici <sup>*</sup>
 
-<div class="alert alert-info">
+```{admonition} Nomenclatura
+:class: naming
 I paragrafi contrassegnati con un asterisco sono opzionali. È dunque possibile saltarli a meno che non si voglia approfondire gli argomenti ivi contenuti.
-</div>
+```
 
 Una cella grafica generata da matplotlib e visualizzata nel notebook contiene quella che viene definita una _figura_ (tecnicamente, un oggetto della classe `plt.Figure`). Ogni figura può contenere uno o più _sistemi cartesiani_ (oggetti della classe `plt.Axes`) i quali a loro volta contengono (nella maggior parte dei casi) due _assi cartesiani_ (oggetti della classe `plt.Axis`, da non confondere con `plt.Axes`). Tutte le figure che abbiamo generato finora contenevano un unico sistema di assi cartesiani, su cui venivano eventualmente sovrapposti tutti i grafici che venivano creati. È però possibile ottenere figure in cui più sistemi cartesiani vengono affiancati su una griglia bidimensionale. Ciò permette per esempio di affiancare grafici diversi. La gestione di tale griglia è di norma demandata alla funzione `plt.subplot`, che accetta tre argomenti interi: i primi due indicano rispettivamente il numero di righe e di colonne nella griglia, e il terzo specifica una posizione nella griglia stessa (con la convenzione che in una griglia di $n$ colonne 1 indica la posizione nella prima riga e nella prima colonna, 2 quella nella prima riga e nella seconda colonna e così via fino a $n$ che indica l'ultima posizione nella prima riga; procedendo oltre si passa alla riga successiva, così che $n+1$ individua la seconda riga e la prima colonna e via discorrendo. Una volta che `plt.subplot` è stato invocato, questo restituisce l'oggetto corrispondente al sistema cartesiano relativo, che conterrà (eventualmente sovrapponendoli) tutti i grafici generati fino alla successiva invocazione di `plt.subplot`. Questo è quello che succede per esempio quando si invocano i metodi di `plot` su una serie: nella cella seguente per esempio vengono affiancati i diagrammi a torta relativi alle frequenze di genere e livello di intelligenza.
 
@@ -771,14 +729,16 @@ plt.xlabel('Gender')
 plt.subplot(1, 2, 2)
 heroes['Intelligence'].value_counts().plot.pie()
 plt.ylabel('')
-_ = plt.xlabel('Intelligence')
+plt.xlabel('Intelligence')
+plt.show()
 ```
 
 Va notato che in questo caso l'invocazione di `plt.axis('equal')` non sortirebbe l'effetto desiderato di mostrare due cerchi, in quanto il metodo agisce sulla figura e non sui suoi assi. È quindi necessario impostare manualmente la dimensione della figura in modo che la base sia pari al doppio dell'altezza, così che entrambi i sistemi cartesiani risultino nei fatti essere dei quadrati. Ciò viene fatto grazie all'invocazione preliminare di `plt.figure`, che crea una figura di dimensioni specifiche piuttosto che ottenere una figura predefinita.
 
-<div class="alert alert-info">
+```{admonition} Nomenclatura
+:class: naming
 Nella cella precedente va notata anche l'invocazione di `plt.xlabel` e `plt.ylabel` che spostano la descrizione dei diagrammi dall'asse delle ordinate a quello delle ascisse (per aumentare la leggibilità), inserendo nel contempo delle descrizioni più informative.
-</div>
+```
 
 Vi sono però alcuni casi in cui la generazione di un grafico implica la creazione di un nuovo sistema cartesiano nella figura: un esempio di questo comportamento si ha quando vengono generati dei grafici invocando i metodi di `plot` su un _dataframe_ piuttosto che su una serie. I due diagrammi a barre non vengono sovrapposti, bensì affiancati uno sopra l'altro.
 
@@ -804,14 +764,16 @@ male_strength_freq.plot.bar(color='blue', legend=False, ax=ax, figsize=(10, 2))
 plt.ylim((0, 0.4))
 ax = plt.subplot(1, 2, 2)
 female_strength_freq.plot.bar(color='pink', legend=False, ax=ax, figsize=(10, 2))
-_ = plt.ylim((0, 0.4))
+plt.ylim((0, 0.4))
+plt.show()
 ```
 
 Va notato come nei due grafici a barre siano stati impostati i limiti degli assi delle ascisse a un valore comune: in caso contrario il confronto tra le due immagini sarebbe potuto risultare sfalsato.
 
-<div class="alert alert-info">
+```{admonition} Nomenclatura
+:class: naming
 I più attenti avranno notato che python distingue automaticamente i nomi formali dei parametri dai corrispondenti valori effettivi, cosa che permette di scrivere `ax=ax` nelle precedenti invocazioni di `plot.bar`.
-</div>
+```
 
 Infine, metodi come `plot` restituiscono il riferimento ai sistemi cartesiani su cui hanno operato: ciò permette di sovrapporre dei grafici anche invocando metodi il cui comportamento predefinito è quello di creare un nuovo sistema.
 
@@ -822,16 +784,10 @@ ax.legend(['F', 'M'])
 plt.show()
 ```
 
-<div class="alert alert-info">
+```{admonition} Nomenclatura
+:class: naming
 Nella cella precedente è stato utilizzando il metodo `legend` per modificare le etichette indicate nella legenda.
-</div>
-
-+++
-
-
-
-
-<div id="h-9"></div>
+```
 
 ## I diagrammi stelo-foglia <sup>*</sup>
 Un _diagramma stelo-foglia_ (o _diagramma ramo-foglia_, o secondo la terminologia inglese _diagramma stem and leaf_) si ottiene considerando delle osservazioni a valori numerici, ordinandole e suddividendo ogni osservazione in una parte _meno significativa_ (rappresentata da un numero prefissato di cifre meno significative) e una parte _più significativa_ (rappresentata dalle rimanenti cifre più significative). Le osservazioni aventi la medesima parte più significativa vengono raggruppate in uno stesso _stelo_, costituito da questa parte significativa seguita da una barra verticale e poi da tutte le parti meno significative (le _foglie_) separate da virgola. Per esempio il diagramma seguente descrive gli anni di prima apparizione dei primi cinquanta eroi del nostro dataset, dove le foglie sono costruite considerando la cifra meno significativa di ogni anno.
@@ -847,9 +803,10 @@ Un _diagramma stelo-foglia_ (o _diagramma ramo-foglia_, o secondo la terminologi
 201|1, 1
 </pre>
 
-<div class="alert alert-warning">
+```{admonition} Nomenclatura
+:class: naming
 Il resto di questo paragrafo richiede una discreta conoscenza della programmazione in python, per cui vale la pena tralasciarlo durante una lettura preliminare.
-</div>
+```
 
 Per non complicarci troppo la vita, assumiamo di avere a disposizione dei dati interi: già così la costruzione di un diagramma stelo-foglie richiede una certa dose di perizia. Innanzitutto è necessario eliminare i valori mancanti dai dati:
 
@@ -870,7 +827,7 @@ Il passo successivo consiste nel costruire tutti i possibili valori per gli stel
 r = np.arange(int(min(x))/signif, (int(max(x))/signif + 1))
 ```
 
-Risulta ora possibile eliminare da `r` tutti i valori che non rappresentano uno stelo, che sono quelli in corrispondenza dei quali non vi è alcuna foglia. 
+Risulta ora possibile eliminare da `r` tutti i valori che non rappresentano uno stelo, che sono quelli in corrispondenza dei quali non vi è alcuna foglia.
 
 ```{code-cell} ipython3
 start = [s for s in r
@@ -922,20 +879,7 @@ Ciò ci permette, per esempio, di calcolare il diagramma per un numero maggiore 
 print(stem_leaf(heroes_with_year['First appearance'][:150]))
 ```
 
-<div class="alert alert-info">
+```{admonition} Nomenclatura
+:class: naming
 Il codice sopra prodotto è basato su alcune funzionalità avanzate della funzione `format` invocabile sulle stringhe. In particolare, viene formattato dell'output forzando la conversione da numeri in stringhe in modo da garantire che il risultato contenga un numero minimo (ma variabile) di caratteri, aggiungendo ove necessario in un caso degli spazi e in un altro degli zeri. Per approfondire la tematica della formattazione dell'output si rimanda alla  [documentazione ufficiale](https://docs.python.org/2/tutorial/inputoutput.html).
-</div>
-
-+++ {"footer": true}
-
-<hr style="width: 90%;" align="left" />
-<span style="font-size: 0.8rem;">D. Malchiodi, Superhero data science. Vol 1: probabilità e statistica: Dati e frequenze, 2017.</span>
-<br>
-<span style="font-size: 0.8rem;">Powered by <img src="img/jupyter-logo.png" style="height: 1rem; display: inline; margin-left: 0.5ex; margin-top: 0;" alt="Jupyter Notebook"></span>
-<div style="float: left; margin-top: 1ex;">
-<img src="http://mirrors.creativecommons.org/presskit/icons/cc.large.png" style="width: 1.5em; float: left; margin-right: 0.6ex; margin-top: 0;">
-<img src="http://mirrors.creativecommons.org/presskit/icons/by.large.png" style="width: 1.5em; float: left; margin-right: 0.6ex; margin-top: 0;">
-<img src="http://mirrors.creativecommons.org/presskit/icons/nc.large.png" style="width: 1.5em; float: left; margin-right: 0.6ex; margin-top: 0;">
-<img src="http://mirrors.creativecommons.org/presskit/icons/nd.large.png" style="width: 1.5em; float: left; margin-right: 0.6ex; margin-top: 0;">
-<span style="font-size: 0.7rem; line-height: 0.7rem; vertical-align: middle;">Quest'opera è distribuita con Licenza <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribuzione - Non commerciale - Non opere derivate 4.0 Internazionale</a></span>.
-</div>
+```

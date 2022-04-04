@@ -22,16 +22,12 @@ solito, il nostro dataset e impostiamo lo stile per i grafici.
 
 
 ```{code-cell} ipython3
-%matplotlib inline
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.constants import golden
 
-plt.style.use('fivethirtyeight')
-plt.rc('figure', figsize=(5.0, 5.0/golden))
-
+plt.style.use('sds.mplstyle')
 
 heroes = pd.read_csv('data/heroes.csv', sep=';', index_col=0)
 ```

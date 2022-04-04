@@ -1,0 +1,22 @@
+
+axes.labelsize: 16
+axes.spines.top: False
+axes.spines.right: False
+axes.prop_cycle: cycler(color=['xkcd:sky blue', 'xkcd:lime green', 'xkcd:lavender', 'y'])
+
+boxplot.boxprops.color: C0
+boxplot.whiskerprops.color: C0
+boxplot.medianprops.linewidth: 2
+boxplot.medianprops.color: C1
+
+figure.figsize: 7.0, 3.0
+
+lines.markersize: 10
+lines.color: C4
+
+patch.facecolor: 'xkcd:baby blue'
+patch.edgecolor: 'xkcd:blue gray'
+patch.force_edgecolor: True
+
+xtick.labelsize: 16
+ytick.labelsize: 16

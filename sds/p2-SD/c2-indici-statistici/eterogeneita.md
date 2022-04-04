@@ -59,13 +59,11 @@ rispettivamente con $f$ e $1-f$ le frequenze relative.
 
 
 ```{code-cell} ipython3
-%matplotlib inline
-
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.constants import golden
 
-plt.style.use('fivethirtyeight')
+plt.style.use('sds.mplstyle')
 plt.rc('figure', figsize=(5.0, 5.0/golden))
 
 def gini_2_val(f):
@@ -493,11 +491,12 @@ all_guys['Hair color'] = hair_col_encoder.transform(all_guys['Hair color'])
 all_guys['Intelligence'] = intelligence_encoder.transform(all_guys['Intelligence'])
 ```
 
-<div class="alert alert-info">
+```{admonition} Nomenclatura
+:class: naming
 La cella precedente mostra come sia possibile _modificare_ i contenuti di una
 colonna in un _dataframe_. Utilizzando una sintassi analoga è anche possibile
 _aggiungere_ a un _dataframe_ esistente una o più colonne.
-</div>
+```
 
 Possiamo ora visualizzare il nuovo _dataframe_, ora composto solo da valori
 numerici, limitatamente agli attributi cui siamo interessati.

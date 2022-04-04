@@ -5,7 +5,7 @@
 >
 > Benjamin Franklin
 
-La citazione sopra riportata è tradotta da una lettera scritta nel 1789 da Benjamin Franklin (vedi {numref}`Figura %s <benjamin-franklin>`), uno dei padri fondatori degli Stati Uniti d'America [^citazione-franklin].
+La citazione sopra riportata è tradotta da una lettera scritta nel 1789 da Benjamin Franklin (vedi {numref}`benjamin-franklin`), uno dei padri fondatori degli Stati Uniti d'America [^citazione-franklin].
 
 
 ```{figure} https://live.staticflickr.com/2869/9544834557_b844c48e78_b.jpg

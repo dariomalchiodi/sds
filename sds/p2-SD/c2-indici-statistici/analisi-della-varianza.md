@@ -104,12 +104,13 @@ i gruppi assumono valori non troppo diversi tra loro (e dunque la varianza
   contrario la varianza tra i gruppi assume un valore elevato si può
   convalidare l'ipotesi.
 
-<div class="bs-callout bs-callout-primary">
+```{admonition} Nota
+:class: naming
 In realtà per validare o confutare questi tipi di ipotesi esistono metodi
 quantitativi basati sul calcolo di indici che coinvolgono le quantità che noi
 abbiamo confrontato in modo qualitativo. L'uso di questi metodi richiede però
 un approfondimento teorico che va al di là del programma del nostro corso.
-</div>
+```
 
 Per applicare la tecnica di analisi della varianza selezionaniamo per esempio
 i due gruppi dei supereroi corrispondenti alle due case editrici più
@@ -127,12 +128,13 @@ dc_strength = heroes[(heroes['Publisher'] == 'DC Comics') & \
                      (pd.notnull(heroes['Strength']))]['Strength']
 ```
 
-<div class="alert alert-info">
+```{admonition} Nota
+:class: naming
 La cella precedente mostra come effettuare un'operazione di selezione
 complessa su di un _dataframe_, basandosi sull'operatore `&` di congiungzione
 logica. Analogamente, l'operatore `|` permette di calcolare disgiunzioni
 logiche.
-</div>
+```
 
 Iniziamo calcolando $\mathrm{SS}_{\mathrm T}$.
 

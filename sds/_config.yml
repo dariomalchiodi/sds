@@ -5,9 +5,9 @@
 
 #######################################################################################
 # Book settings
-title                       : Superhero Data Science  # The title of the book. Will be placed in the left navbar.
-author                      : "<a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'><img height='24' width='24' src='_images/twitter.svg' alt='Twitter' style='width:24px'></a>"  # The author of the book
-copyright                   : "2021 &emdash; Licensed under CC-BY 4.0"  # Copyright year to be placed in the footer
+title                       : "Superhero Data Science \n Probabilità e Statistica"  # The title of the book. Will be placed in the left navbar.
+author                      : "<a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a>"  # The author of the book
+copyright                   : "2021 — Licensed under CC-BY 4.0"  # Copyright year to be placed in the footer
 logo                        : images/logoface.png  # A path to the book logo
 exclude_patterns            : ["**.ipynb"]
 
@@ -34,14 +34,16 @@ repository:
 
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
-html:
-  use_issues_button: true
-  use_repository_button: true
 
 launch_buttons:
   thebe: true
-  notebook_interface: "classic"
+  notebook_interface: classic
   colab_url: "https://colab.research.google.com"
+  binderhub_url             : https://mybinder.org  # The URL of the BinderHub (e.g., https://mybinder.org)
+  jupyterhub_url            : ""  # The URL of the JupyterHub (e.g., https://datahub.berkeley.edu)
+  thebe                     : false  # Add a thebe button to pages (requires the repository to run on Binder)
+  colab_url                 : "" # The URL of Google Colab (https://colab.research.google.com)
+
 
 parse:
     myst_enable_extensions:
@@ -51,13 +53,19 @@ parse:
       - dollarmath
 
 html:
-  google_analytics_id: G-3Q6LDVNS0X
   home_page_in_navbar: true
   use_edit_page_button: true
   use_repository_button: true
   use_issues_button: true
-  baseurl: https://goodresearch.dev/
   favicon: images/favicon.ico
-  use_fullscreen_button: false
+  use_fullscreen_button: true
   comments:
     hypothesis: false
+
+sphinx:
+  config:
+    mathjax_config:
+      "HTML-CSS": {
+        matchFontHeight: true,
+        scale: 380
+      }

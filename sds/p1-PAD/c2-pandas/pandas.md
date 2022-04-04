@@ -17,15 +17,12 @@ kernelspec:
 Vedremo come la libreria pandas faciliti le operazioni viste finora per caricare dati, organizzarli in opportune strutture e analizzarli. Per poter procedere dobbiamo ricaricare le librerie usate finora, nonché il file `heroes.csv`. Useremo anche la _matplotlib magic_ che ci permette di visualizzare i grafici direttamente nel notebook.
 
 ```{code-cell} ipython3
-%matplotlib inline
-
 import csv
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-plt.style.use('fivethirtyeight')
-plt.rc('figure', figsize=(5.0, 2.0))
+plt.style.use('sds.mplstyle')
 
 with open('data/heroes.csv', 'r') as heroes_file:
   heroes_reader = csv.reader(heroes_file, delimiter=';', quotechar='"')
@@ -39,13 +36,6 @@ pd.__version__
 ```
 
 Utilizzando una versione diversa da questa, può capitare che il risultato ottenuto eseguendo alcune celle sia diverso da quello indicato. Alcune funzionalità potrebbero anche non essere implementate, deprecate o perfino rimosse. Se state invece utilizzando l'ambiente fornito tramite immagine Docker o tramite mybinder non dovreste avere problemi di questo genere.
-
-+++
-
-
-
-
-<div id="h-1"></div>
 
 ## Serie
 Una delle classi principali implementate in pandas è `Series`. Le sue istanze rappresentano serie di osservazioni di un certo carattere fatto su un insieme di individui. La cella seguente recupera dalla lista `heroes` precedentemente creata i nomi dei supereoi e il loro anno di prima apparizione e li utilizza per creare una serie:
@@ -79,11 +69,11 @@ L'accesso ai dati contenuti in una serie può avvenire in due modi:
 (first_appearance[128], first_appearance.iloc[128])
 ```
 
-<div class="alert alert-warning">
+```{admonition} Nomenclatura
+:class: naming
 Se l'indice di una serie è basato su valori interi, i valori tra parentesi quadre immediatamente dopo la serie faranno riferimento all'indice e non alla posizione: ciò potrebbe essere fuorviante se gli elementi dell'indice non partono da zero e non sono consecutivi.
-</div>
+```
 
-+++
 
 È inoltre possibile utilizzare una notazione simile al _list slicing_ specificando valori dell'indice oppure posizioni. Va però notato che gli _slicing_ basati su indice comprenderanno il primo e l'ultimo valore specificato:
 
@@ -121,11 +111,10 @@ Questo tipo di accesso può essere fatto anche specificando una lista di valori 
 first_appearance[[1970 <= y <1975 for y in first_appearance]]
 ```
 
-<div class="alert alert-warning">
+```{admonition} Nomenclatura
+:class: naming
 L'uso di questa modalità di accesso richiede che la lista di valori booleani abbia la stessa lunghezza della serie. L'uso di liste di dimensioni minori l'accesso, che comporta un filtraggio effettuato solo nei primi elementi della serie, è deprecato e va quindi evitato.  
-</div>
-
-+++
+```
 
 Infine, è possibile effettuare delle _query_ su una serie specificando tra parentesi quadre un'espressione logica che indica quali elementi visualizzare, utilizzando la serie come simbolo che ne indica un suo generico elemento:
 
@@ -133,11 +122,10 @@ Infine, è possibile effettuare delle _query_ su una serie specificando tra pare
 first_appearance[first_appearance > 2010]
 ```
 
-<div class="alert alert-info">
+```{admonition} Nomenclatura
+:class: naming
 Tecnicamente, l'espressione `first_appearance > 2010` genera una nuova serie che ha lo stesso indice di `first_appearance` e in cui i valori sono `True` in corrispondenza degli anni successivi al 2010 e `False` altrimenti. Questa nuova serie viene utilizzata per filtrare `first_appearance`.
-</div>
-
-+++
+```
 
 Vediamo ora come utilizzando le serie sia molto più semplice calcolare e visualizzare le frequenze assolute: il metodo `value_counts` restituisce un'altra serie in cui gli indici sono i valori osservati e i valori le corrispondenti frequenze assolute, ordinate in senso non crescente.
 
@@ -189,9 +177,10 @@ plt.show()
 
 Si può osservare che tra due valori successivi evidenziati nell'asse delle ascisse intercorre una distanza di dieci anni, ma le etichette non risultano equispaziate: ciò è dovuto al fatto che in realtà la prima barra ha ascissa 1, la seconda ha ascissa 2 e così via, mentre le etichette mostrate sull'asse delle ascisse corrispondono ai valori degli indici.
 
-<div class="alert alert-info">
+```{admonition} Nomenclatura
+:class: naming
 Per generare il grafico precedente è necessario utilizzare alcune funzionalità avanzate delle librerie considerate: `np.arange` permette di costruire un array i cui valori vanno di dieci in dieci partendo da 1945 e arrivando a 2005; la proprietà `index` di una serie permette di estrarne l'indice e il metodo `get_loc` di quest'ultimo restituisce la posizione corrispondente a un dato valore dell'indice. Infine, il metodo `xticks` di matplotlib permette di specificare quali valori evidenziare sull'asse delle ascisse e quali etichette utilizzare.
-</div>
+```
 
 Per ottenere un grafico simile in cui le ascisse siano effettivamente gli anni di prima apparizione è necessario tornare a utilizzare esplicitamente matplotlib, passando al metodo `bar` rispettivamente l'indice e i valori della serie, che si ottengono rispettivamente utilizzando la proprietà `index` e invocando il metodo `get_values`.
 
@@ -202,10 +191,6 @@ plt.ylim(0, 18.5)
 plt.show()
 ```
 
-
-
-
-<div id="h-3"></div>
 
 ## Operazioni con le serie
 Consideriamo le seguenti domande:
@@ -238,9 +223,10 @@ Analogamente, all'ultima domanda si risponde selezionando gli anni dal 1970 in a
 sum(first_app_freq[:1971])
 ```
 
-<div class="alert alert-info">
+```{admonition} Nomenclatura
+:class: naming
 La funzione `sum` accetta come argomento liste, tuple e serie: in tutti i casi restituisce la somma dei valori in esse contenute.
-</div>
+```
 
 Un modo alternativo per calcolare la somma dei valori in una serie è quella di invocare su di essa l'omonimo metodo `sum`. Le serie sono inoltre in tutto e per tutto dei vettori, sui quali è possibile effettuare operazioni algebriche. Consideriamo per esempio le due serie contenenti altezza e peso dei supereroi:
 
@@ -278,12 +264,6 @@ standard_height = height[(height < 210) & (height > 120)]/100
 
 Si nota un numero relativamente elevato di `NaN`, e ciò è appunto dovuto al fatto che il rapporto alla base del calcolo del BMI viene fatto usando peso e altezza di valori che hanno lo stesso indice. Ora, non è detto che un supereroe che ha un peso plausibile abbia anche un'altezza plausibile, e viceversa. Quello che succede quando si esegue un'operazione tra due serie e solo una di essa è definita in corrispondenza di uno specifico valore dell'indice, il risultato conterrà `NaN` per quel valore.
 
-+++
-
-
-
-
-<div id="h-4"></div>
 
 ## Dataframe
 Un _dataframe_ è una collezione di serie che hanno lo stesso indice, ed è quindi un insieme di osservazioni di vari _caratteri_ per una popolazione di individui. Tra i vari modi che sono disponibili in pandas per creare un _dataframe_, noi faremo riferimento al metodo `read_csv` della classe `pd.DataFrame`, che permette di leggere i contenuti di un file in formato CSV e convertirli automaticamente in un _dataframe_.
@@ -324,11 +304,10 @@ Ci riferiremo spesso alle righe e alle colonne di un _dataframe_ per indicare ri
 heroes['Gender']
 ```
 
-<div class="alert alert-info">
+```{admonition} Nomenclatura
+:class: naming
 In alternativa è possibile usare una sintassi basata su _dot notation_ in cui il nome della colonna, senza essere racchiuso tra apici, segue il _dataframe_. In altre parole, `heroes['Gender']` e `heroes.Gender` sono equivalenti. Questa seconda notazione è però utilizzabile solamente se non vi sono spazi nei nomi delle colonne. Nel seguito utilizzeremo quindi sempre la prima delle due notazioni.
-</div>
-
-+++
+```
 
 - tramite uno _slicing_ sulle posizioni o sui valori dell'indice è possibile selezionare un sottoinsieme delle righe del _dataframe_ (e come nel caso delle serie, l'estremo superiore è incluse se si usano gli indici ed escluso se si usano le posizioni):
 
@@ -368,9 +347,10 @@ heroes.at['Superman', 'Strength']
 heroes.iat[500, -1]
 ```
 
-<div class="alert alert-info">
+```{admonition} Nomenclatura
+:class: naming
 È anche possibile utilizzare `loc` e `iloc` per estrarre un singolo elemento: per esempio, `heroes.loc['Superman', 'Strength']` equivale alla prima delle due istruzioni appena elencate. Tuttavia, `at` e `iat` sono implementate in modo da essere più efficienti.
-</div>
+```
 
 È infine possibile riordinare le righe di un dataframe invocando i metodi `sort_values` e `sort_index`: il primo basa l'ordinamento sul valore di una colonna, il cui nome va specificato tramite l'argomento `by` e il secondo è invece basato sui valori dell'indice. È inoltre possibile indicare un valore booleano per l'argomento `ascending` che permette di ordinare in verso crescente o decrescente.
 

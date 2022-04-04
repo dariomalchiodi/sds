@@ -12,7 +12,7 @@ matplotlib.rcParams['mathtext.fontset'] = 'cm'
 font_size = 18
 matplotlib.rcParams['font.size'] = str(font_size)
 
-venn_set_color = '#cc0000'
+venn_set_color = '#0071BC'
 venn_set_edge= '#333333'
 
 
