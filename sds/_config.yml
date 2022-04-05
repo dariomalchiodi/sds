@@ -64,7 +64,8 @@ html:
 
 sphinx:
   config:
-    mathjax_config:
+    bibtex_reference_style: author_year
+    mathjax3_config:
       "HTML-CSS": {
         matchFontHeight: true,
         scale: 380

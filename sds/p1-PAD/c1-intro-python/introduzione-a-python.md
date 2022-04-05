@@ -22,10 +22,27 @@ kernelspec:
 > Sparse is better than dense. <br/>
 > Readability counts.
 >
-> The Zen of Python, Tim Peters 
+> The Zen of Python, Tim Peters
 
-Questo capitolo descrive brevemente i principali strumenti che permettono di analizzare dati in modo esplorativo usando [Python](https://www.python.org) come linguaggio di programmazione, [Jupyter](https://jupyter.org/) come ambiente di elaborazione e introducendo le principali librerie del cosiddetto _Python data science stack_ via via che queste si riveleranno necessarie.
-
-```{code-cell} ipython3
-
+```{margin}
+I notebook possono essere eseguiti in vari ambienti di elaborazione, ma
+quelli più diffusi sono [Jupyter](https://jupyter.org/) e
+[Visual Studio Code](https://code.visualstudio.com/)
 ```
+
+Questo capitolo descrive brevemente i principali strumenti che permettono di
+analizzare dati in modo esplorativo usando [Python](https://www.python.org)
+come linguaggio di programmazione, i
+[notebook](https://en.wikipedia.org/wiki/Notebook_interface) per scrivere ed
+eseguire il codice e le principali librerie del cosiddetto
+_Python data science stack_, che saranno introdotte via via che queste si
+riveleranno necessarie.
+
+```{margin}
+L'acronimo FLOSS sta per «Free/Libre Open Source Software»
+```
+
+Tutti gli strumenti a cui faremo riferimento ricadono nella categoria del
+[FLOSS](https://it.wikipedia.org/wiki/Free_and_Open_Source_Software), e sono
+pertanto distribuiti con licenze che ne permettono, tra le altre cose, il
+libero utilizzo.

@@ -3,15 +3,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@wght@400;600&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Lora:wght@400;700&display=swap');
+
 :root {
   --pst-color-background: 255, 255, 255;
   --pst-color-primary: #01579B;
   --pst-color-secondary: #0071BC;
   --pst-color-complementary: #208050;
   --pst-color-evident: red;
+  --pst-font-text: 'Lora', serif;
+  --pst-font-title: 'Lato', sans-serif;
+  --pst-font-code: 'Fira Code', monospace;
+
+  /*
   --pst-font-text: 'Bitter', serif;
   --pst-font-title: 'Inter', serif;
-  --pst-font-code: 'Fira Code', monospace;
+  */
 }
 
 /* Tufte CSS styles */
@@ -229,8 +236,9 @@ a:visited {
 
 div.sidebar > :last-child {
   font-size: 1.1rem !important;
-  line-height: 1.3rem !important;
+  line-height: 1.4rem !important;
   color: dimgray;
+  margin-top: -1.1rem;
 }
 
 .toctree-l1 {
@@ -283,6 +291,10 @@ div.sidebar > :last-child {
   font-style: normal !important;
 }
 
+.table th p {
+  color: var(--pst-color-primary);
+}
+
 a.footnote-reference {
   font-size: 0.6em !important;
   margin-left: -0.2rem;
@@ -294,12 +306,25 @@ a.brackets:after, span.brackets > a:after {
   content: "";
 }
 
+.citation span.brackets:before {
+  content: "[";
+}
+
+.citation span.brackets:after {
+  content: "]";
+}
+
 a.fn-backref {
   font-weight: normal;
 }
 
+dl.footnote dd {
+  margin-left: 1.5rem !important;
+}
+
 p.caption {
   text-align: left;
+  line-height: 1.5rem;
 }
 
 p.rubric {
@@ -364,6 +389,7 @@ table.dataframe td {
 
 .admonition-title {
   color: var(--pst-color-secondary);
+  font-family: var(--pst-font-title);
   background-color: inherit !important;
   margin-left: 2rem !important;
   padding-left: 1.7rem !important;

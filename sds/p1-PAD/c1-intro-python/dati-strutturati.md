@@ -15,24 +15,54 @@ kernelspec:
 (dati-strutturati)=
 # Tipi di dati strutturati
 
-I tipi di dati strutturati, o più brevemente _strutture dati,_ permettono di aggregare più valori.
-Python supporta nativamente i seguenti tipi strutturati: le liste, le tuple, le stringhe, gli insiemi e i dizionari. A ognuno di questi tipi corrisponde una diversa classe, esattamente come per i tipi semplici. Come descritto nei paragrafi seguenti, la sintassi per accedere ai contenuti di una struttura dati è relativamente uniforme, mentre ovviamente il modo in cui viene effettuato l'accesso dipende dallo specifico tipo di struttura dati.
+I tipi di dati strutturati, o più brevemente _strutture dati,_ permettono di
+aggregare più valori. Python supporta nativamente i seguenti tipi strutturati:
+le liste, le tuple, le stringhe, gli insiemi e i dizionari. A ognuno di questi
+tipi corrisponde una diversa classe, esattamente come per i tipi semplici. Come
+descritto nei paragrafi seguenti, la sintassi per accedere ai contenuti di una
+struttura dati è relativamente uniforme, mentre ovviamente il modo in cui viene
+effettuato l'accesso dipende dallo specifico tipo di struttura dati.
 
-In Python è possibile sia usare gli oggetti che corrispondono ai tipi di dati strutturati (ma anche gli altri tipi di dati descritti più avanti) come argomenti di operatori o funzioni, sia invocare metodi sugli oggetti stessi. Anche in questo caso vi sono operazioni di carattere più generale, effettuate utilizzando una sintassi comune, e operazioni specifiche che hanno una sintassi propria. Nel resto di questo paragrafo, senza pretesa di essere esaustivi, descrive le modalità di accesso e le operazioni principali per i tipi strutturati sopra elencati e fornisce dei puntatori alla documentazione ufficiale per chi volesse approfondire alcuni argomenti.
-
-+++
+In Python è possibile sia usare gli oggetti che corrispondono ai tipi di dati
+strutturati (ma anche gli altri tipi di dati descritti più avanti) come
+argomenti di operatori o funzioni, sia invocare metodi sugli oggetti stessi.
+Anche in questo caso vi sono operazioni di carattere più generale, effettuate
+utilizzando una sintassi comune, e operazioni specifiche che hanno una sintassi
+propria. Nel resto di questo paragrafo, senza pretesa di essere esaustivi,
+descrive le modalità di accesso e le operazioni principali per i tipi
+strutturati sopra elencati e fornisce dei puntatori alla documentazione
+ufficiale per chi volesse approfondire alcuni argomenti.
 
 ## Le liste
 
-Una lista è una struttura dati che permette di memorizzare una sequenza di elementi. Questi elementi possono essere di tipo diverso, e a ognuno di questi si può accedere in modo diretto specificandone la posizione all'interno della sequenza (si dice quindi che una lista è una struttura dati _eterogenea_ e ad _accesso posizionale_).
+Una lista è una struttura dati che permette di memorizzare una sequenza di
+elementi. Questi elementi, che sono aggiungibili ed eliminabili dalla lista
+dopo che questa è stata creata, possono essere di tipo diverso, e a ognuno di
+essi si può accedere in modo diretto specificandone la posizione all'interno
+della sequenza. Si dice quindi che una lista è una struttura dati _dinamica_,
+_eterogenea_ e ad _accesso posizionale_).
 
 ```{admonition} Nomenclatura
 :class: naming
-Le liste non vanno confuse con gli _array_ (o _vettori_), che sono invece delle strutture dati _omogenee_ ad accesso posizionale: in altre parole, anche in questo caso vengono memorizzate delle sequenze di valori, ma questi valori devono essere tutti dello stesso tipo. Sebbene gli _array_ non siano direttamente messi a disposizione in Python, è possibile utilizzarli facendo riferimento al _package_ `numpy`, descritto nel {numref}`Paragrafo %s <importare-moduli>`
+Le liste non vanno confuse con gli _array_ (o _vettori_), che sono invece delle
+strutture dati _omogenee_ ad accesso posizionale: in altre parole, anche in
+questo caso vengono memorizzate delle sequenze di valori, ma questi valori
+devono essere tutti dello stesso tipo. Sebbene gli _array_ non siano
+direttamente messi a disposizione in Python, è possibile utilizzarli facendo
+riferimento al _modulo_ `numpy`, descritto nel {numref}`importare-moduli`.
 ```
 
-
-Una lista si può indicare in modo _estensivo_ (cioè elencando a uno a uno tutti i suoi contenuti) separando i suoi elementi tramite virgola e racchiudendo il tutto tra parentesi quadre [^list-comprehension]. Ciò vale anche per la _lista vuota_, che si può descrivere scrivendo semplicemente l'espressione `[]`. La proprietà di eterogeneità ci permette per esempio di usare una lista per aggregare le informazioni che descrivono un supereroe:
+```{margin}
+Vedremo che esiste anche la possibilità di utilizzare un particolare
+formalismo, chiamato _list comprehension_, per definire una lista in termini di
+una _trasformazione_ degli elementi di un'altra struttura dati.
+```
+Una lista si può indicare in modo _estensivo_, cioè elencando i suoi elementi
+dal primo all'ultimo, separandoli tramite virgole e racchiudendo il tutto tra
+parentesi quadre. Ciò vale anche per la _lista vuota_, che si può descrivere
+scrivendo semplicemente l'espressione `[]`. La proprietà di eterogeneità ci
+permette per esempio di usare una lista per aggregare le informazioni che
+descrivono un supereroe:
 
 ```{code-cell} ipython3
 iron_man = ['Iron Man',
@@ -50,40 +80,81 @@ iron_man = ['Iron Man',
 ```
 
 ```{margin}
-Quando però una lista è utilizzata per dati di tipo omogeneo, vale la pena considerare di sostituirla con un _array_ per diminuire il tempo di esecuzione.
+Quando però una lista è utilizzata per dati di tipo omogeneo, vale la pena
+considerare di sostituirla con un _array_ per diminuire i tempi di esecuzione
+e ridurre la possibilità di introdurre _bug_ nel codice.
 ```
-In effetti vedremo che ci sono modi molto più interessanti di codificare un _record_ di informazioni, così come ci renderemo conto che nei fatti le liste contengono di norma valori di tipo omogeneo, ma per ora quello che ci interessa è semplicemente vedere quali sono le modalità principali di utilizzo di questo tipo di struttura dati.
+In effetti vedremo che ci sono modi molto più interessanti di codificare un
+_record_ di informazioni, così come ci renderemo conto che nei fatti le liste
+contengono di norma valori di tipo omogeneo, ma per ora quello che ci interessa
+è semplicemente vedere quali sono le modalità principali di utilizzo di questo
+tipo di struttura dati.
 
-Per accedere a un elemento in una lista, basta specificare dopo una variabile che la referenzia (ma ovviamente si potrebbe utilizzare anche la lista stessa) una coppia di parentesi quadre contenente la posizione dell'elemento, conteggiata a partire da `0`, pertanto
+Per accedere a un elemento in una lista, basta specificare dopo una variabile
+che la referenzia (ma ovviamente si potrebbe utilizzare anche la lista stessa)
+una coppia di parentesi quadre contenente la posizione dell'elemento,
+conteggiata a partire da `0`, pertanto
 
 ```{code-cell} ipython3
 iron_man[1]
 ```
 
-permette di accedere al secondo elemento della lista memorizzata in `iron_man`. Se si specifica un valore negativo per la posizione, a questo viene automaticamente sommata la lunghezza della lista. Pertanto la posizione `-1` identifica l'ultimo elemento della lista, la posizione `-2` corrisponde al penultimo e così via:
+permette di accedere al secondo elemento della lista memorizzata in `iron_man`.
+Se si specifica un valore negativo per la posizione, a questo viene
+automaticamente sommata la lunghezza della lista. Pertanto la posizione `-1`
+identifica l'ultimo elemento della lista, la posizione `-2` corrisponde al
+penultimo e così via:
 
 ```{code-cell} ipython3
 iron_man[-2]
 ```
 
-È anche possibile indicare un intervallo di posizioni consecutive per recuperare la sottolista corrispondente: questa operazione, che prende il nome di *list slicing*, si effettua indicando tra parentesi quadre la posizione del primo elemento da inserire, seguita da un carattere di due punti e dalla posizione del primo elemento da escludere. Pertanto
+È anche possibile indicare un intervallo di posizioni consecutive per
+recuperare la sottolista corrispondente: questa operazione, che prende il nome
+di _list slicing_, si effettua indicando tra parentesi quadre la posizione del
+primo elemento da inserire, seguita da un carattere di due punti e dalla
+posizione del primo elemento da escludere. Pertanto
 
 ```{code-cell} ipython3
 iron_man[4:6]
 ```
 
-permette di accedere alla sottolista che contiene il peso e l'altezza di Tony Stark, essendo queste informazioni memorizzate in quinta e sesta posizione nella lista di partenza (ricordando che gli indici delle posizioni partono da zero). Il riferimento a un _list slicing_ si può fare anche utilizzando indici negativi (o mescolando indici positivi e negativi):
+permette di accedere alla sottolista che contiene il peso e l'altezza di Tony
+Stark, essendo queste informazioni memorizzate in quinta e sesta posizione
+nella lista di partenza (ricordando che gli indici delle posizioni partono da
+zero). Il riferimento a un _list slicing_ si può fare anche utilizzando indici
+negativi (o mescolando indici positivi e negativi):
 
 ```{code-cell} ipython3
 iron_man[-4:-2]
 ```
 
 ```{margin}
-Un'altra differenza tra liste e _array_ è legata al fatto che questi ultimi rappresentano strutture dati _statiche_, nelle quali non è possibile aggiungere o rimuovere elementi, ma solo modificare quelli esistenti.
+Un'altra differenza tra liste e _array_ è legata al fatto che questi ultimi
+rappresentano strutture dati _statiche_, nelle quali non è possibile aggiungere
+o rimuovere elementi, ma solo modificare quelli esistenti.
 ```
-Dover specificare la posizione del primo elemento da escludere sembra controintuitivo rispetto alla scelta più naturale di indicare la posizione dell'ultimo elemento da includere. In realtà in questo modo risulta più facile scrivere codice che elabora porzioni successive in una lista. Le liste sono, infine, una struttura dati *dinamica*, nel senso che oltre a modificare gli elementi in essa contenuti è anche possibile rimuovere uno o più di tali elementi, oppure aggiungerne di nuovi.
+Dover specificare la posizione del primo elemento da escludere sembra
+controintuitivo rispetto alla scelta più naturale di indicare la posizione
+dell'ultimo elemento da includere. In realtà in questo modo risulta più facile
+scrivere codice che elabora porzioni successive in una lista. Infine, come già
+detto le liste sono strutture dati _dinamiche_, nel senso che oltre a
+modificare gli elementi in essa contenuti è anche possibile rimuovere uno o più
+di tali elementi, oppure aggiungerne di nuovi.
 
-Sono dipsosizione varie operazioni che agiscono sulle liste, e queste operazioni sono implementate utilizzando diversi elementi del linguaggio: gli operatori, le funzioni e i metodi. I paragrafi che seguono introducono alcuni esempi, ma il loro scopo è quello di sottolineare la differenza tra i concetti di operatore, funzione e metodo in Python. Per degli approfondimenti è possibile consultare la documentazione ufficiale, che contiene un [documento introudttivo](https://docs.python.org/3/tutorial/introduction.html#lists) e uno [più dettagliato](https://docs.python.org/3/tutorial/datastructures.html#) sull'uso delle liste in Python. Per esemplificare l'uso di questi tre tipi di strumenti conviene ragionare in termini di una lista utilizzata come se fosse un _array_, memorizzando dunque una successione di valori dello stesso tipo, per esempio i nomi di alcuni supereroi:
+Sono dipsosizione varie operazioni che agiscono sulle liste, e queste
+operazioni sono implementate utilizzando diversi elementi del linguaggio:
+gli operatori, le funzioni e i metodi. I paragrafi che seguono, lungi
+dall'essere esaustivi, introducono alcuni esempi: il loro scopo è
+principalmente quello di sottolineare la differenza tra i concetti di
+operatore, funzione e metodo in Python. Per degli approfondimenti è possibile
+consultare la documentazione ufficiale, che contiene un [documento
+introudttivo](https://docs.python.org/3/tutorial/introduction.html#lists) e uno
+[più dettagliato](https://docs.python.org/3/tutorial/datastructures.html#)
+sull'uso delle liste. Per esemplificare l'uso di questi tre tipi di strumenti
+conviene ragionare in termini di una lista utilizzata come se fosse un _array_,
+memorizzando dunque una successione di valori dello stesso tipo, per esempio i
+nomi di alcuni supereroi:
 
 ```{code-cell} ipython3
 names = ['Aquaman', 'Ant-Man', 'Batman', 'Black Widow',
@@ -314,9 +385,6 @@ L'operatore `in` introdotto per le liste può anche essere utilizzato per i dizi
 
 Anche nel caso dei dizionari il linguaggio mette a disposizione una serie di funzioni specifiche, e si può fare riferimento alla [documentazione ufficiale](https://docs.python.org/3/tutorial/datastructures.html#dictionaries) di python per approfondire l'argomento.
 
-+++
-
-[^list-comprehension]: Vedremo che esiste anche la possibilità di utilizzare un particolare formalismo, chiamato _list comprehension_, per definire una lista in termini di una _trasformazione_ degli elementi di un'altra lista.
 
 [^data-model]: I lettori attenti potrebbero avere notato un apparente incoerenza tra il modo in cui vengono valutate le espressioni e la semantica appena introdotta per l'operatore `del`. Consideriamo l'espressione `del names[0]` dell'esempio precedente: se questa fosse valutata in modo ususale, verrebbe innanzitutto valutato l'operando, dunque l'espressione `names[0]`. L'operatore `del` verrebbe quindi applicato al valore ottenuto, che nel nostro caso sarebbe la stringa `'Aquaman'`. Ora, l'istruzione `del 'Aquaman'` genererebbe un errore, perché `del` si può applicare solo a riferimenti e non a letterali. In realtà la valutazione di espressioni di questo tipo viene fatta in un modo diverso, perché `del names[0]` viene implicitamente convertita in un'altra espressione che equivale a invocare un particolare metodo dell'oggetto referenziato da `names`, passando il valore `0` come argomento. Senza addentrarsi in dettagli, è importante segnalare che Python è permeato da tecniche di questo tipo, che permettono tra l'altro di estendere l'uso della sintassi per i tipi _builtin_ anche a oggetti di classi definite dagli sviluppatori. Chi volesse approfondire questo spetto può studiare il cosiddeto [data model](https://docs.python.org/3/reference/datamodel.html) di Python (sebbene sarebbe prima importante imparare come definire e utilizzare nuove classi).
 
@@ -325,7 +393,3 @@ Anche nel caso dei dizionari il linguaggio mette a disposizione una serie di fun
 [^ordinamento-eterogeneo]: Tenuto conto del fatto che le liste sono una struttura dati eterogenea ci si potrebbe chiedere quale sia la relazione d'ordine a cui fa riferimento Python quando viene invocato il metodo `sort`. Non approfondiremo questo aspetto: per quanto riguarda gli argomenti qui trattati è sufficiente dire che quando gli elementi della lista sono tutti dello stesso tipo viene sfruttata una relazione d'ordine canonica per questo tipo. Per esempio i valori numerici sono ordinati in modo non decrescente e per le stringhe viene utilizzato l'ordinamento lessicografico.
 
 [^first-class]: Nel gergo tecnico in lingua inglese si dice che i nomi di funzione sono _first-class citizen_ per enfatizzare che vengono trattate in modo analogo ai nomi delle altre variabili: è possibile per esempio usarli per specificare argomenti, o come destinazione di un'operazione di assegnamento.
-
-```{code-cell} ipython3
-
-```

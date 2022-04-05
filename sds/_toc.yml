@@ -5,8 +5,9 @@ parts:
   numbered: true
   chapters:
   - file: p0-introduzione/presentazione
-  - file: p0-introduzione/un-esempio-introduttivo
-  - file: p0-introduzione/notazione
+    sections:
+    - file: p0-introduzione/un-esempio-introduttivo
+    - file: p0-introduzione/notazione
 - caption: Programmazione per l'analisi dei dati
   numbered: true
   chapters:
@@ -20,6 +21,9 @@ parts:
     - file: p1-PAD/c1-intro-python/disegnare-grafici
     - file: p1-PAD/c1-intro-python/leggere-file
   - file: p1-PAD/c2-pandas/pandas
+    sections:
+    - file: p1-PAD/c2-pandas/serie
+    - file: p1-PAD/c2-pandas/dataframe
 - caption: Statistica descrittiva
   numbered: true
   chapters:
