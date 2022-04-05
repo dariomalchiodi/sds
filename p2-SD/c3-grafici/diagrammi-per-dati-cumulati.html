@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>8.3. Dati cumulati &#8212; Superhero Data Science 
+    <title>6.3. Dati cumulati &#8212; Superhero Data Science 
  Probabilità e Statistica</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -58,8 +58,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="8.4. Dati a coppie" href="diagrammi-per-dati-a-coppie.html" />
-    <link rel="prev" title="8.2. Dati continui" href="diagrammi-per-dati-continui.html" />
+    <link rel="next" title="6.4. Dati a coppie" href="diagrammi-per-dati-a-coppie.html" />
+    <link rel="prev" title="6.2. Dati continui" href="diagrammi-per-dati-continui.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -110,20 +110,27 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../p0-introduzione/presentazione.html">
    1. Presentazione
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../p0-introduzione/un-esempio-introduttivo.html">
-   2. Un esempio
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../p0-introduzione/notazione.html">
-   3. Notazione
-  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p0-introduzione/un-esempio-introduttivo.html">
+     1.1. Un esempio
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p0-introduzione/notazione.html">
+     1.2. Notazione
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
@@ -134,55 +141,72 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../p1-PAD/c1-intro-python/introduzione-a-python.html">
-   4. Python
+   2. Python
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-semplici-e-operatori.html">
-     4.1. Tipi di dati semplici
+     2.1. Tipi di dati semplici
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-strutturati.html">
-     4.2. Tipi di dati strutturati
+     2.2. Tipi di dati strutturati
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/strutture-di-controllo.html">
-     4.3. Strutture di controllo
+     2.3. Strutture di controllo
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/funzioni.html">
-     4.4. Funzioni
+     2.4. Funzioni
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/importare-moduli.html">
-     4.6. Importare moduli
+     2.6. Importare moduli
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/disegnare-grafici.html">
-     4.7. Disegnare grafici
+     2.7. Disegnare grafici
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/leggere-file.html">
-     4.8. Leggere dati da file (e un po’ di trucchi)
+     2.8. Leggere dati da file (e un po’ di trucchi)
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../p1-PAD/c2-pandas/pandas.html">
-   5. Pandas
+   3. Pandas
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c2-pandas/serie.html">
+     3.1. Serie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c2-pandas/dataframe.html">
+     3.2. Dataframe
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
@@ -193,126 +217,126 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../c1-dati-e-frequenze/dati-e-frequenze.html">
-   6. Dati e frequenze
+   4. Dati e frequenze
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../c1-dati-e-frequenze/dati-quantitativi-e-qualitativi.html">
-     6.7. Dati quantitativi e qualitativi
+     4.7. Dati quantitativi e qualitativi
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c1-dati-e-frequenze/frequenze-assolute-e-relative.html">
-     6.8. Frequenze assolute e relative
+     4.8. Frequenze assolute e relative
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c1-dati-e-frequenze/frequenze-cumulate.html">
-     6.9. Frequenze cumulate
+     4.9. Frequenze cumulate
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c1-dati-e-frequenze/frequenze-congiunte-e-marginali.html">
-     6.10. Frequenze congiunte e marginali
+     4.10. Frequenze congiunte e marginali
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../c2-indici-statistici/indici-statistici.html">
-   7. Indici statistici
+   5. Indici statistici
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../c2-indici-statistici/indici-di-posizione.html">
-     7.1. Indici di posizione
+     5.1. Indici di posizione
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c2-indici-statistici/indici-di-dispersione.html">
-     7.2. Calcolo della dispersione in pandas
+     5.2. Calcolo della dispersione in pandas
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c2-indici-statistici/quantili-campionari.html">
-     7.3. Quantili campionari
+     5.3. Quantili campionari
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c2-indici-statistici/covarianza-e-correlazione.html">
-     7.4. Covarianza e correlazione
+     5.4. Covarianza e correlazione
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c2-indici-statistici/eterogeneita.html">
-     7.5. Indici di eterogeneità
+     5.5. Indici di eterogeneità
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c2-indici-statistici/concentrazione.html">
-     7.6. Indici di concentrazione
+     5.6. Indici di concentrazione
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c2-indici-statistici/trasformazioni-dei-dati.html">
-     7.7. Trasformazione dei dati
+     5.7. Trasformazione dei dati
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c2-indici-statistici/analisi-della-varianza.html">
-     7.8. Analisi della varianza
+     5.8. Analisi della varianza
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c2-indici-statistici/analisi-di-classificatori.html">
-     7.9. Analisi di classificatori
+     5.9. Analisi di classificatori
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="grafici.html">
-   8. Grafici
+   6. Grafici
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="diagrammi-per-dati-discreti.html">
-     8.1. Dati discreti
+     6.1. Dati discreti
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="diagrammi-per-dati-continui.html">
-     8.2. Dati continui
+     6.2. Dati continui
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     8.3. Dati cumulati
+     6.3. Dati cumulati
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="diagrammi-per-dati-a-coppie.html">
-     8.4. Dati a coppie
+     6.4. Dati a coppie
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="simmetria-e-normalita.html">
-     8.5. Simmetria e normalità
+     6.5. Simmetria e normalità
     </a>
    </li>
   </ul>
@@ -326,84 +350,84 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/calcolo-combinatorio.html">
-   9. Calcolo combinatorio
+   7. Calcolo combinatorio
   </a>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/teoria-insiemi.html">
-   10. Teoria degli insiemi
+   8. Teoria degli insiemi
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/concetti-di-base.html">
-     10.1. Concetti di base
+     8.1. Concetti di base
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/insiemi-finiti-e-infiniti.html">
-     10.2. Insiemi finiti e infiniti
+     8.2. Insiemi finiti e infiniti
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/relazioni-tra-insiemi.html">
-     10.3. Relazioni tra insiemi
+     8.3. Relazioni tra insiemi
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/operazioni-tra-insiemi.html">
-     10.4. Operazioni tra insiemi
+     8.4. Operazioni tra insiemi
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/insiemi-in-python.html">
-     10.5. Gli insiemi in Python
+     8.5. Gli insiemi in Python
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../p3-CP/c3-probabilita/assiomi-kolmogorov.html">
-   11. Assiomi di Kolmogorov
+   9. Assiomi di Kolmogorov
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../p3-CP/c3-probabilita/spazi-equiprobabili.html">
-   12. Spazi equiprobabili
+   10. Spazi equiprobabili
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../p3-CP/c3-probabilita/probabilita-condizionata.html">
-   13. Probabilità condizionata
+   11. Probabilità condizionata
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../p3-CP/c3-probabilita/prob-totali-e-naive-bayes.html">
-   14. Teoremi
+   12. Teoremi
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../p3-CP/c3-probabilita/classificatori-naive-bayes.html">
-   15. Classificatori naive Bayes
+   13. Classificatori naive Bayes
   </a>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../p3-CP/c4-modelli-discreti/modelli-discreti.html">
-   16. Modelli discreti
+   14. Modelli discreti
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c4-modelli-discreti/modello-geometrico.html">
-     16.1. Il modello geometrico
+     14.1. Il modello geometrico
     </a>
    </li>
   </ul>
@@ -417,7 +441,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../bibliography.html">
-   17. Bibliography
+   15. Bibliography
   </a>
  </li>
 </ul>
@@ -523,7 +547,7 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="dati-cumulati">
-<h1><span class="section-number">8.3. </span>Dati cumulati<a class="headerlink" href="#dati-cumulati" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">6.3. </span>Dati cumulati<a class="headerlink" href="#dati-cumulati" title="Permalink to this headline">¶</a></h1>
 </div>
 
     <script type="text/x-thebe-config">
@@ -555,13 +579,13 @@ const thebe_selector_output = ".output, .cell_output"
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">8.2. </span>Dati continui</p>
+            <p class="prev-next-title"><span class="section-number">6.2. </span>Dati continui</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="diagrammi-per-dati-a-coppie.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">8.4. </span>Dati a coppie</p>
+        <p class="prev-next-title"><span class="section-number">6.4. </span>Dati a coppie</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

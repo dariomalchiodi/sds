@@ -1,0 +1,1592 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3.2. Dataframe &#8212; Superhero Data Science 
+ Probabilità e Statistica</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="4. Dati e frequenze" href="../../p2-SD/c1-dati-e-frequenze/dati-e-frequenze.html" />
+    <link rel="prev" title="3.1. Serie" href="serie.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logoface.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Superhero Data Science 
+ Probabilità e Statistica</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../landing.html">
+   Superhero Data Science: Probabilità e Statistica
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduzione
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p0-introduzione/presentazione.html">
+   1. Presentazione
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p0-introduzione/un-esempio-introduttivo.html">
+     1.1. Un esempio
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p0-introduzione/notazione.html">
+     1.2. Notazione
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Programmazione per l'analisi dei dati
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../c1-intro-python/introduzione-a-python.html">
+   2. Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c1-intro-python/dati-semplici-e-operatori.html">
+     2.1. Tipi di dati semplici
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c1-intro-python/dati-strutturati.html">
+     2.2. Tipi di dati strutturati
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c1-intro-python/strutture-di-controllo.html">
+     2.3. Strutture di controllo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c1-intro-python/funzioni.html">
+     2.4. Funzioni
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c1-intro-python/importare-moduli.html">
+     2.6. Importare moduli
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c1-intro-python/disegnare-grafici.html">
+     2.7. Disegnare grafici
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c1-intro-python/leggere-file.html">
+     2.8. Leggere dati da file (e un po’ di trucchi)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="pandas.html">
+   3. Pandas
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="serie.html">
+     3.1. Serie
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     3.2. Dataframe
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Statistica descrittiva
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/dati-e-frequenze.html">
+   4. Dati e frequenze
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/dati-quantitativi-e-qualitativi.html">
+     4.7. Dati quantitativi e qualitativi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-assolute-e-relative.html">
+     4.8. Frequenze assolute e relative
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-cumulate.html">
+     4.9. Frequenze cumulate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-congiunte-e-marginali.html">
+     4.10. Frequenze congiunte e marginali
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p2-SD/c2-indici-statistici/indici-statistici.html">
+   5. Indici statistici
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/indici-di-posizione.html">
+     5.1. Indici di posizione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/indici-di-dispersione.html">
+     5.2. Calcolo della dispersione in pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/quantili-campionari.html">
+     5.3. Quantili campionari
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/covarianza-e-correlazione.html">
+     5.4. Covarianza e correlazione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/eterogeneita.html">
+     5.5. Indici di eterogeneità
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/concentrazione.html">
+     5.6. Indici di concentrazione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/trasformazioni-dei-dati.html">
+     5.7. Trasformazione dei dati
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/analisi-della-varianza.html">
+     5.8. Analisi della varianza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/analisi-di-classificatori.html">
+     5.9. Analisi di classificatori
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p2-SD/c3-grafici/grafici.html">
+   6. Grafici
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c3-grafici/diagrammi-per-dati-discreti.html">
+     6.1. Dati discreti
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c3-grafici/diagrammi-per-dati-continui.html">
+     6.2. Dati continui
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c3-grafici/diagrammi-per-dati-cumulati.html">
+     6.3. Dati cumulati
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c3-grafici/diagrammi-per-dati-a-coppie.html">
+     6.4. Dati a coppie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c3-grafici/simmetria-e-normalita.html">
+     6.5. Simmetria e normalità
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Calcolo delle probabilità
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/calcolo-combinatorio.html">
+   7. Calcolo combinatorio
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/teoria-insiemi.html">
+   8. Teoria degli insiemi
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/concetti-di-base.html">
+     8.1. Concetti di base
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/insiemi-finiti-e-infiniti.html">
+     8.2. Insiemi finiti e infiniti
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/relazioni-tra-insiemi.html">
+     8.3. Relazioni tra insiemi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/operazioni-tra-insiemi.html">
+     8.4. Operazioni tra insiemi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/insiemi-in-python.html">
+     8.5. Gli insiemi in Python
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../p3-CP/c3-probabilita/assiomi-kolmogorov.html">
+   9. Assiomi di Kolmogorov
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../p3-CP/c3-probabilita/spazi-equiprobabili.html">
+   10. Spazi equiprobabili
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../p3-CP/c3-probabilita/probabilita-condizionata.html">
+   11. Probabilità condizionata
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../p3-CP/c3-probabilita/prob-totali-e-naive-bayes.html">
+   12. Teoremi
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../p3-CP/c3-probabilita/classificatori-naive-bayes.html">
+   13. Classificatori naive Bayes
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p3-CP/c4-modelli-discreti/modelli-discreti.html">
+   14. Modelli discreti
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-modelli-discreti/modello-geometrico.html">
+     14.1. Il modello geometrico
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Bibliografia
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../bibliography.html">
+   15. Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../_sources/p1-PAD/c2-pandas/dataframe.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/p1-PAD/c2-pandas/dataframe.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/dariomalchiodi/sds"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/dariomalchiodi/sds/issues/new?title=Issue%20on%20page%20%2Fp1-PAD/c2-pandas/dataframe.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/dariomalchiodi/sds/edit/main/sds/p1-PAD/c2-pandas/dataframe.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dariomalchiodi/sds/main?urlpath=tree/sds/p1-PAD/c2-pandas/dataframe.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Dataframe</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="dataframe">
+<h1><span class="section-number">3.2. </span>Dataframe<a class="headerlink" href="#dataframe" title="Permalink to this headline">¶</a></h1>
+<p>Un <em>dataframe</em> è una collezione di serie che hanno lo stesso indice, ed è quindi un insieme di osservazioni di vari <em>caratteri</em> per una popolazione di individui. Tra i vari modi che sono disponibili in pandas per creare un <em>dataframe</em>, noi faremo riferimento al metodo <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> della classe <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code>, che permette di leggere i contenuti di un file in formato CSV e convertirli automaticamente in un <em>dataframe</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">heroes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/heroes.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Usando lo stesso file a cui abbiamo fatto riferimento nei paragrafi precedenti, è stato necessario utilizzare l’argomento opzionle <code class="docutils literal notranslate"><span class="pre">sep</span></code> per indicare il carattere usato per separare i campi in ogni record. La visualizzazione dei dataframe viene automaticamente formattata in un formato tabellare facile da leggere se si utilizza jupyter:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Identity</th>
+      <th>Birth place</th>
+      <th>Publisher</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Gender</th>
+      <th>First appearance</th>
+      <th>Eye color</th>
+      <th>Hair color</th>
+      <th>Strength</th>
+      <th>Intelligence</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>A-Bomb</th>
+      <td>Richard Milhouse Jones</td>
+      <td>Scarsdale, Arizona</td>
+      <td>Marvel Comics</td>
+      <td>203.21</td>
+      <td>441.95</td>
+      <td>M</td>
+      <td>2008.0</td>
+      <td>Yellow</td>
+      <td>No Hair</td>
+      <td>100.0</td>
+      <td>moderate</td>
+    </tr>
+    <tr>
+      <th>Abraxas</th>
+      <td>Abraxas</td>
+      <td>Within Eternity</td>
+      <td>Marvel Comics</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>M</td>
+      <td>NaN</td>
+      <td>Blue</td>
+      <td>Black</td>
+      <td>100.0</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>Abomination</th>
+      <td>Emil Blonsky</td>
+      <td>Zagreb, Yugoslavia</td>
+      <td>Marvel Comics</td>
+      <td>203.04</td>
+      <td>441.98</td>
+      <td>M</td>
+      <td>NaN</td>
+      <td>Green</td>
+      <td>No Hair</td>
+      <td>80.0</td>
+      <td>good</td>
+    </tr>
+    <tr>
+      <th>Adam Monroe</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NBC - Heroes</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>M</td>
+      <td>NaN</td>
+      <td>Blue</td>
+      <td>Blond</td>
+      <td>10.0</td>
+      <td>good</td>
+    </tr>
+    <tr>
+      <th>Agent 13</th>
+      <td>Sharon Carter</td>
+      <td>NaN</td>
+      <td>Marvel Comics</td>
+      <td>173.41</td>
+      <td>61.03</td>
+      <td>F</td>
+      <td>NaN</td>
+      <td>Blue</td>
+      <td>Blond</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>Alan Scott</th>
+      <td>Alan Ladd Wellington Scott</td>
+      <td>Gotham City</td>
+      <td>DC Comics</td>
+      <td>180.98</td>
+      <td>90.81</td>
+      <td>M</td>
+      <td>1940.0</td>
+      <td>Blue</td>
+      <td>Blond</td>
+      <td>80.0</td>
+      <td>good</td>
+    </tr>
+    <tr>
+      <th>Amazo</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>DC Comics</td>
+      <td>257.49</td>
+      <td>173.95</td>
+      <td>M</td>
+      <td>1960.0</td>
+      <td>Red</td>
+      <td>NaN</td>
+      <td>100.0</td>
+      <td>good</td>
+    </tr>
+    <tr>
+      <th>Ant-Man</th>
+      <td>Hank Pym</td>
+      <td>Elmsford, New York</td>
+      <td>Marvel Comics</td>
+      <td>211.74</td>
+      <td>122.44</td>
+      <td>M</td>
+      <td>1962.0</td>
+      <td>Blue</td>
+      <td>Blond</td>
+      <td>20.0</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>Ajax</th>
+      <td>Francis</td>
+      <td>NaN</td>
+      <td>Marvel Comics</td>
+      <td>193.34</td>
+      <td>90.63</td>
+      <td>M</td>
+      <td>1998.0</td>
+      <td>Brown</td>
+      <td>Black</td>
+      <td>50.0</td>
+      <td>average</td>
+    </tr>
+    <tr>
+      <th>Alex Mercer</th>
+      <td>Alexander J. Mercer</td>
+      <td>NaN</td>
+      <td>Wildstorm</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>M</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>80.0</td>
+      <td>average</td>
+    </tr>
+  </tbody>
+</table>
+<p>735 rows × 11 columns</p>
+</div></div></div>
+</div>
+<p>Ci riferiremo spesso alle righe e alle colonne di un <em>dataframe</em> per indicare rispettivamente le osservazioni e i caratteri. Per esempio la prima riga si riferisce all’osservazione relativa ad “A-Bomb”, mentre la prima colonna corrisponde al carattere “identity”. Vi sono molti modi per interagire con un <em>dataframe</em>:</p>
+<ul class="simple">
+<li><p>l’insieme degli indici, dei caratteri e dei valori si ottengono, nell’ordine, alle proprietà <code class="docutils literal notranslate"><span class="pre">index</span></code>, <code class="docutils literal notranslate"><span class="pre">columns</span></code> e <code class="docutils literal notranslate"><span class="pre">values</span></code>;</p></li>
+<li><p>una serie corrispondente a una colonna/carattere può essere selezionata usando una sintassi simile a quella dei dizionari, specificando il nome del carattere come chiave:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name
+A-Bomb         M
+Abraxas        M
+Abomination    M
+Adam Monroe    M
+Agent 13       F
+              ..
+Alan Scott     M
+Amazo          M
+Ant-Man        M
+Ajax           M
+Alex Mercer    M
+Name: Gender, Length: 735, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>In alternativa è possibile usare una sintassi basata su <em>dot notation</em> in cui il nome della colonna, senza essere racchiuso tra apici, segue il <em>dataframe</em>. In altre parole, <code class="docutils literal notranslate"><span class="pre">heroes['Gender']</span></code> e <code class="docutils literal notranslate"><span class="pre">heroes.Gender</span></code> sono equivalenti. Questa seconda notazione è però utilizzabile solamente se non vi sono spazi nei nomi delle colonne. Nel seguito utilizzeremo quindi sempre la prima delle due notazioni.</p>
+</div>
+<ul class="simple">
+<li><p>tramite uno <em>slicing</em> sulle posizioni o sui valori dell’indice è possibile selezionare un sottoinsieme delle righe del <em>dataframe</em> (e come nel caso delle serie, l’estremo superiore è incluse se si usano gli indici ed escluso se si usano le posizioni):</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Agent 13&#39;</span><span class="p">:</span><span class="s1">&#39;Air-Walker&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Identity</th>
+      <th>Birth place</th>
+      <th>Publisher</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Gender</th>
+      <th>First appearance</th>
+      <th>Eye color</th>
+      <th>Hair color</th>
+      <th>Strength</th>
+      <th>Intelligence</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Agent 13</th>
+      <td>Sharon Carter</td>
+      <td>NaN</td>
+      <td>Marvel Comics</td>
+      <td>173.41</td>
+      <td>61.03</td>
+      <td>F</td>
+      <td>NaN</td>
+      <td>Blue</td>
+      <td>Blond</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Air-Walker</th>
+      <td>Gabriel Lan</td>
+      <td>Xandar, a planet in the Tranta system, Androme...</td>
+      <td>Marvel Comics</td>
+      <td>188.59</td>
+      <td>108.23</td>
+      <td>M</td>
+      <td>NaN</td>
+      <td>Blue</td>
+      <td>White</td>
+      <td>85.0</td>
+      <td>average</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Queste modalità di accesso possono effettivamente creare confusione: usando una sintassi molto simile, specificando un valore si accede a una colonna e specificando uno <em>slice</em> si accede a un insieme di righe. Per scrivere codice più chiaro è meglio selezionare le righe utilizzando le proprietà <code class="docutils literal notranslate"><span class="pre">loc</span></code> e <code class="docutils literal notranslate"><span class="pre">iloc</span></code> nello stesso modo in cui queste funzionano per le serie, con la differenza che quando queste sono usate specificando un solo valore, viene restituita una serie, e quando sono utilizzate con uno <em>slice</em> o con una lista viene restituito un <em>dataframe</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Professor X&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Identity            Charles Francis Xavier
+Birth place             New York, New York
+Publisher                    Marvel Comics
+Height                              183.74
+Weight                               86.89
+Gender                                   M
+First appearance                    1963.0
+Eye color                             Blue
+Hair color                         No Hair
+Strength                              10.0
+Intelligence                          high
+Name: Professor X, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">42</span><span class="p">:</span><span class="mi">46</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Identity</th>
+      <th>Birth place</th>
+      <th>Publisher</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Gender</th>
+      <th>First appearance</th>
+      <th>Eye color</th>
+      <th>Hair color</th>
+      <th>Strength</th>
+      <th>Intelligence</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Warbird</th>
+      <td>Carol Danvers</td>
+      <td>Boston, Massachusetts</td>
+      <td>Marvel Comics</td>
+      <td>180.56</td>
+      <td>54.75</td>
+      <td>F</td>
+      <td>NaN</td>
+      <td>Blue</td>
+      <td>Blond</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Wildfire</th>
+      <td>Drake Burroughs</td>
+      <td>NaN</td>
+      <td>DC Comics</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>M</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>35.0</td>
+      <td>average</td>
+    </tr>
+    <tr>
+      <th>Vulture</th>
+      <td>Adrian Toomes</td>
+      <td>Staten Island, New York City</td>
+      <td>Marvel Comics</td>
+      <td>180.61</td>
+      <td>79.63</td>
+      <td>M</td>
+      <td>NaN</td>
+      <td>Brown</td>
+      <td>No Hair</td>
+      <td>25.0</td>
+      <td>good</td>
+    </tr>
+    <tr>
+      <th>Warp</th>
+      <td>Emil LaSalle</td>
+      <td>NaN</td>
+      <td>DC Comics</td>
+      <td>173.42</td>
+      <td>67.42</td>
+      <td>M</td>
+      <td>1981.0</td>
+      <td>Brown</td>
+      <td>Black</td>
+      <td>10.0</td>
+      <td>moderate</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>È inoltre possibile selezionare una o più righe e visualizzare solo un sottoinsieme dei caratteri, passando a <code class="docutils literal notranslate"><span class="pre">loc</span></code> o <code class="docutils literal notranslate"><span class="pre">iloc</span></code> un secondo argomento in cui si specificano i caratteri da mostrare, utilizzando anche in questo caso un valore, una lista di valori oppure uno <em>slice</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Professor X&#39;</span><span class="p">,</span> <span class="s1">&#39;Height&#39;</span><span class="p">:</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Height    183.74
+Weight     86.89
+Name: Professor X, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Va notato che <code class="docutils literal notranslate"><span class="pre">loc</span></code> accetta solo valori simbolici, mentre <code class="docutils literal notranslate"><span class="pre">iloc</span></code> solamente posizioni, e ciò riguarda anche il loro secondo argomento:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">106</span><span class="p">,</span> <span class="mi">103</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Height</th>
+      <th>Weight</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Tempest</th>
+      <td>163.02</td>
+      <td>54.36</td>
+    </tr>
+    <tr>
+      <th>Supergirl</th>
+      <td>165.40</td>
+      <td>54.80</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Volendo accedere direttamente a un elemento è possibile utilizzare le proprietà <code class="docutils literal notranslate"><span class="pre">at</span></code> e <code class="docutils literal notranslate"><span class="pre">iat</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;Superman&#39;</span><span class="p">,</span> <span class="s1">&#39;Strength&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;high&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>È anche possibile utilizzare <code class="docutils literal notranslate"><span class="pre">loc</span></code> e <code class="docutils literal notranslate"><span class="pre">iloc</span></code> per estrarre un singolo elemento: per esempio, <code class="docutils literal notranslate"><span class="pre">heroes.loc['Superman',</span> <span class="pre">'Strength']</span></code> equivale alla prima delle due istruzioni appena elencate. Tuttavia, <code class="docutils literal notranslate"><span class="pre">at</span></code> e <code class="docutils literal notranslate"><span class="pre">iat</span></code> sono implementate in modo da essere più efficienti.</p>
+</div>
+<p>È infine possibile riordinare le righe di un dataframe invocando i metodi <code class="docutils literal notranslate"><span class="pre">sort_values</span></code> e <code class="docutils literal notranslate"><span class="pre">sort_index</span></code>: il primo basa l’ordinamento sul valore di una colonna, il cui nome va specificato tramite l’argomento <code class="docutils literal notranslate"><span class="pre">by</span></code> e il secondo è invece basato sui valori dell’indice. È inoltre possibile indicare un valore booleano per l’argomento <code class="docutils literal notranslate"><span class="pre">ascending</span></code> che permette di ordinare in verso crescente o decrescente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Weight&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Identity</th>
+      <th>Birth place</th>
+      <th>Publisher</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Gender</th>
+      <th>First appearance</th>
+      <th>Eye color</th>
+      <th>Hair color</th>
+      <th>Strength</th>
+      <th>Intelligence</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Sasquatch</th>
+      <td>Walter Langkowski</td>
+      <td>Edmonton, Alberta, Canada</td>
+      <td>Marvel Comics</td>
+      <td>305.02</td>
+      <td>900.70</td>
+      <td>M</td>
+      <td>NaN</td>
+      <td>Red</td>
+      <td>Orange</td>
+      <td>80.0</td>
+      <td>good</td>
+    </tr>
+    <tr>
+      <th>Juggernaut</th>
+      <td>Cain Marko</td>
+      <td>Berkeley, California</td>
+      <td>Marvel Comics</td>
+      <td>287.95</td>
+      <td>855.82</td>
+      <td>M</td>
+      <td>1965.0</td>
+      <td>Blue</td>
+      <td>Red</td>
+      <td>100.0</td>
+      <td>average</td>
+    </tr>
+    <tr>
+      <th>Darkseid</th>
+      <td>Uxas</td>
+      <td>NaN</td>
+      <td>DC Comics</td>
+      <td>267.37</td>
+      <td>817.57</td>
+      <td>M</td>
+      <td>1970.0</td>
+      <td>Red</td>
+      <td>No Hair</td>
+      <td>100.0</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>Hulk</th>
+      <td>Bruce Banner</td>
+      <td>Dayton, Ohio</td>
+      <td>Marvel Comics</td>
+      <td>244.40</td>
+      <td>630.90</td>
+      <td>M</td>
+      <td>1962.0</td>
+      <td>Green</td>
+      <td>Green</td>
+      <td>100.0</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>Giganta</th>
+      <td>Doris Zuel</td>
+      <td>NaN</td>
+      <td>DC Comics</td>
+      <td>62.65</td>
+      <td>630.80</td>
+      <td>F</td>
+      <td>1944.0</td>
+      <td>Green</td>
+      <td>Red</td>
+      <td>90.0</td>
+      <td>high</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Identity</th>
+      <th>Birth place</th>
+      <th>Publisher</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Gender</th>
+      <th>First appearance</th>
+      <th>Eye color</th>
+      <th>Hair color</th>
+      <th>Strength</th>
+      <th>Intelligence</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Yellowjacket II</th>
+      <td>Rita DeMara</td>
+      <td>NaN</td>
+      <td>Marvel Comics</td>
+      <td>165.58</td>
+      <td>52.36</td>
+      <td>F</td>
+      <td>NaN</td>
+      <td>Blue</td>
+      <td>Strawberry Blond</td>
+      <td>10.0</td>
+      <td>average</td>
+    </tr>
+    <tr>
+      <th>Ymir</th>
+      <td>Ymir</td>
+      <td>Niffleheim</td>
+      <td>Marvel Comics</td>
+      <td>304.63</td>
+      <td>NaN</td>
+      <td>M</td>
+      <td>NaN</td>
+      <td>White</td>
+      <td>No Hair</td>
+      <td>100.0</td>
+      <td>average</td>
+    </tr>
+    <tr>
+      <th>Yoda</th>
+      <td>Yoda</td>
+      <td>NaN</td>
+      <td>George Lucas</td>
+      <td>66.29</td>
+      <td>17.01</td>
+      <td>M</td>
+      <td>1980.0</td>
+      <td>Brown</td>
+      <td>White</td>
+      <td>55.0</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>Zatanna</th>
+      <td>Zatanna Zatara</td>
+      <td>NaN</td>
+      <td>DC Comics</td>
+      <td>170.29</td>
+      <td>57.77</td>
+      <td>F</td>
+      <td>NaN</td>
+      <td>Blue</td>
+      <td>Black</td>
+      <td>10.0</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>Zoom</th>
+      <td>Hunter Zolomon</td>
+      <td>NaN</td>
+      <td>DC Comics</td>
+      <td>185.90</td>
+      <td>81.93</td>
+      <td>M</td>
+      <td>NaN</td>
+      <td>Red</td>
+      <td>Brown</td>
+      <td>10.0</td>
+      <td>average</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Va notato che entrmabi i metodi restituiscono una copia del <em>dataframe</em>. Anche per i <em>dataframe</em> è possibile utilizzare una lista di valori booleani che identificano le righe da selezionare, e tale lista può essere prodotta effettuando una query. In questo caso però le condizioni possono riguardare le varie colonne, ognuna delle quali va specificata usando una delle due sintassi precedentemente introdotte (quella analoga ai dizionari oppure quella basata su <em>dot notation</em>). Per esempio possiamo selezionare gli eroi per cui l’anno di apparizione esiste e rappresenta un valore non fuori scala nel modo seguente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes_with_year</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1900</span><span class="p">]</span>
+<span class="n">heroes_with_year</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Identity</th>
+      <th>Birth place</th>
+      <th>Publisher</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Gender</th>
+      <th>First appearance</th>
+      <th>Eye color</th>
+      <th>Hair color</th>
+      <th>Strength</th>
+      <th>Intelligence</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>A-Bomb</th>
+      <td>Richard Milhouse Jones</td>
+      <td>Scarsdale, Arizona</td>
+      <td>Marvel Comics</td>
+      <td>203.21</td>
+      <td>441.95</td>
+      <td>M</td>
+      <td>2008.0</td>
+      <td>Yellow</td>
+      <td>No Hair</td>
+      <td>100.0</td>
+      <td>moderate</td>
+    </tr>
+    <tr>
+      <th>Agent Bob</th>
+      <td>Bob</td>
+      <td>NaN</td>
+      <td>Marvel Comics</td>
+      <td>178.25</td>
+      <td>81.45</td>
+      <td>M</td>
+      <td>2007.0</td>
+      <td>Brown</td>
+      <td>Brown</td>
+      <td>10.0</td>
+      <td>low</td>
+    </tr>
+    <tr>
+      <th>Abe Sapien</th>
+      <td>Abraham Sapien</td>
+      <td>NaN</td>
+      <td>Dark Horse Comics</td>
+      <td>191.24</td>
+      <td>65.35</td>
+      <td>M</td>
+      <td>1993.0</td>
+      <td>Blue</td>
+      <td>No Hair</td>
+      <td>30.0</td>
+      <td>high</td>
+    </tr>
+    <tr>
+      <th>Abin Sur</th>
+      <td>NaN</td>
+      <td>Ungara</td>
+      <td>DC Comics</td>
+      <td>185.52</td>
+      <td>90.90</td>
+      <td>M</td>
+      <td>1959.0</td>
+      <td>Blue</td>
+      <td>No Hair</td>
+      <td>90.0</td>
+      <td>average</td>
+    </tr>
+    <tr>
+      <th>Animal Man</th>
+      <td>Bernhard Baker</td>
+      <td>NaN</td>
+      <td>DC Comics</td>
+      <td>183.80</td>
+      <td>83.39</td>
+      <td>M</td>
+      <td>1965.0</td>
+      <td>Blue</td>
+      <td>Blond</td>
+      <td>50.0</td>
+      <td>average</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./p1-PAD/c2-pandas"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="serie.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">3.1. </span>Serie</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../../p2-SD/c1-dati-e-frequenze/dati-e-frequenze.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Dati e frequenze</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a><br/>
+    
+        &copy; Copyright 2021 — Licensed under CC-BY 4.0.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

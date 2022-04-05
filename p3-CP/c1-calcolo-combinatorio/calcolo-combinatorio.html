@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>9. Calcolo combinatorio &#8212; Superhero Data Science 
+    <title>7. Calcolo combinatorio &#8212; Superhero Data Science 
  Probabilità e Statistica</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -60,8 +60,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="10. Teoria degli insiemi" href="../c2-teoria-insiemi/teoria-insiemi.html" />
-    <link rel="prev" title="8.5. Simmetria e normalità" href="../../p2-SD/c3-grafici/simmetria-e-normalita.html" />
+    <link rel="next" title="8. Teoria degli insiemi" href="../c2-teoria-insiemi/teoria-insiemi.html" />
+    <link rel="prev" title="6.5. Simmetria e normalità" href="../../p2-SD/c3-grafici/simmetria-e-normalita.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -112,20 +112,27 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../p0-introduzione/presentazione.html">
    1. Presentazione
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../p0-introduzione/un-esempio-introduttivo.html">
-   2. Un esempio
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../p0-introduzione/notazione.html">
-   3. Notazione
-  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p0-introduzione/un-esempio-introduttivo.html">
+     1.1. Un esempio
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p0-introduzione/notazione.html">
+     1.2. Notazione
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
@@ -136,55 +143,72 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../p1-PAD/c1-intro-python/introduzione-a-python.html">
-   4. Python
+   2. Python
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-semplici-e-operatori.html">
-     4.1. Tipi di dati semplici
+     2.1. Tipi di dati semplici
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-strutturati.html">
-     4.2. Tipi di dati strutturati
+     2.2. Tipi di dati strutturati
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/strutture-di-controllo.html">
-     4.3. Strutture di controllo
+     2.3. Strutture di controllo
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/funzioni.html">
-     4.4. Funzioni
+     2.4. Funzioni
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/importare-moduli.html">
-     4.6. Importare moduli
+     2.6. Importare moduli
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/disegnare-grafici.html">
-     4.7. Disegnare grafici
+     2.7. Disegnare grafici
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/leggere-file.html">
-     4.8. Leggere dati da file (e un po’ di trucchi)
+     2.8. Leggere dati da file (e un po’ di trucchi)
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../p1-PAD/c2-pandas/pandas.html">
-   5. Pandas
+   3. Pandas
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c2-pandas/serie.html">
+     3.1. Serie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c2-pandas/dataframe.html">
+     3.2. Dataframe
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
@@ -195,96 +219,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/dati-e-frequenze.html">
-   6. Dati e frequenze
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/dati-quantitativi-e-qualitativi.html">
-     6.7. Dati quantitativi e qualitativi
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-assolute-e-relative.html">
-     6.8. Frequenze assolute e relative
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-cumulate.html">
-     6.9. Frequenze cumulate
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-congiunte-e-marginali.html">
-     6.10. Frequenze congiunte e marginali
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p2-SD/c2-indici-statistici/indici-statistici.html">
-   7. Indici statistici
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/indici-di-posizione.html">
-     7.1. Indici di posizione
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/indici-di-dispersione.html">
-     7.2. Calcolo della dispersione in pandas
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/quantili-campionari.html">
-     7.3. Quantili campionari
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/covarianza-e-correlazione.html">
-     7.4. Covarianza e correlazione
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/eterogeneita.html">
-     7.5. Indici di eterogeneità
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/concentrazione.html">
-     7.6. Indici di concentrazione
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/trasformazioni-dei-dati.html">
-     7.7. Trasformazione dei dati
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/analisi-della-varianza.html">
-     7.8. Analisi della varianza
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/analisi-di-classificatori.html">
-     7.9. Analisi di classificatori
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p2-SD/c3-grafici/grafici.html">
-   8. Grafici
+   4. Dati e frequenze
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -293,28 +228,117 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/dati-quantitativi-e-qualitativi.html">
+     4.7. Dati quantitativi e qualitativi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-assolute-e-relative.html">
+     4.8. Frequenze assolute e relative
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-cumulate.html">
+     4.9. Frequenze cumulate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-congiunte-e-marginali.html">
+     4.10. Frequenze congiunte e marginali
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p2-SD/c2-indici-statistici/indici-statistici.html">
+   5. Indici statistici
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/indici-di-posizione.html">
+     5.1. Indici di posizione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/indici-di-dispersione.html">
+     5.2. Calcolo della dispersione in pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/quantili-campionari.html">
+     5.3. Quantili campionari
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/covarianza-e-correlazione.html">
+     5.4. Covarianza e correlazione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/eterogeneita.html">
+     5.5. Indici di eterogeneità
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/concentrazione.html">
+     5.6. Indici di concentrazione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/trasformazioni-dei-dati.html">
+     5.7. Trasformazione dei dati
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/analisi-della-varianza.html">
+     5.8. Analisi della varianza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/analisi-di-classificatori.html">
+     5.9. Analisi di classificatori
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p2-SD/c3-grafici/grafici.html">
+   6. Grafici
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../p2-SD/c3-grafici/diagrammi-per-dati-discreti.html">
-     8.1. Dati discreti
+     6.1. Dati discreti
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p2-SD/c3-grafici/diagrammi-per-dati-continui.html">
-     8.2. Dati continui
+     6.2. Dati continui
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p2-SD/c3-grafici/diagrammi-per-dati-cumulati.html">
-     8.3. Dati cumulati
+     6.3. Dati cumulati
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p2-SD/c3-grafici/diagrammi-per-dati-a-coppie.html">
-     8.4. Dati a coppie
+     6.4. Dati a coppie
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p2-SD/c3-grafici/simmetria-e-normalita.html">
-     8.5. Simmetria e normalità
+     6.5. Simmetria e normalità
     </a>
    </li>
   </ul>
@@ -328,84 +352,84 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   9. Calcolo combinatorio
+   7. Calcolo combinatorio
   </a>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../c2-teoria-insiemi/teoria-insiemi.html">
-   10. Teoria degli insiemi
+   8. Teoria degli insiemi
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../c2-teoria-insiemi/concetti-di-base.html">
-     10.1. Concetti di base
+     8.1. Concetti di base
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c2-teoria-insiemi/insiemi-finiti-e-infiniti.html">
-     10.2. Insiemi finiti e infiniti
+     8.2. Insiemi finiti e infiniti
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c2-teoria-insiemi/relazioni-tra-insiemi.html">
-     10.3. Relazioni tra insiemi
+     8.3. Relazioni tra insiemi
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c2-teoria-insiemi/operazioni-tra-insiemi.html">
-     10.4. Operazioni tra insiemi
+     8.4. Operazioni tra insiemi
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c2-teoria-insiemi/insiemi-in-python.html">
-     10.5. Gli insiemi in Python
+     8.5. Gli insiemi in Python
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../c3-probabilita/assiomi-kolmogorov.html">
-   11. Assiomi di Kolmogorov
+   9. Assiomi di Kolmogorov
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../c3-probabilita/spazi-equiprobabili.html">
-   12. Spazi equiprobabili
+   10. Spazi equiprobabili
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../c3-probabilita/probabilita-condizionata.html">
-   13. Probabilità condizionata
+   11. Probabilità condizionata
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../c3-probabilita/prob-totali-e-naive-bayes.html">
-   14. Teoremi
+   12. Teoremi
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../c3-probabilita/classificatori-naive-bayes.html">
-   15. Classificatori naive Bayes
+   13. Classificatori naive Bayes
   </a>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../c4-modelli-discreti/modelli-discreti.html">
-   16. Modelli discreti
+   14. Modelli discreti
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../c4-modelli-discreti/modello-geometrico.html">
-     16.1. Il modello geometrico
+     14.1. Il modello geometrico
     </a>
    </li>
   </ul>
@@ -419,7 +443,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../bibliography.html">
-   17. Bibliography
+   15. Bibliography
   </a>
  </li>
 </ul>
@@ -533,76 +557,76 @@ const thebe_selector_output = ".output, .cell_output"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#principio-fondamentale-del-calcolo-combinatorio">
-   9.1. Principio fondamentale del calcolo combinatorio
+   7.1. Principio fondamentale del calcolo combinatorio
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#permutazioni">
-   9.2. Permutazioni
+   7.2. Permutazioni
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#permutazioni-semplici">
-     9.2.1. Permutazioni semplici
+     7.2.1. Permutazioni semplici
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#permutazioni-di-oggetti-distinguibili-a-gruppi">
-     9.2.2. Permutazioni di oggetti distinguibili a gruppi
+     7.2.2. Permutazioni di oggetti distinguibili a gruppi
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#disposizioni-e-combinazioni">
-   9.3. Disposizioni e combinazioni
+   7.3. Disposizioni e combinazioni
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#esercizi">
-   9.4. Esercizi
+   7.4. Esercizi
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#esercizio-1">
-     9.4.1. Esercizio 1
+     7.4.1. Esercizio 1
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#esercizio-2">
-     9.4.2. Esercizio 2
+     7.4.2. Esercizio 2
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#esercizio-3">
-     9.4.3. Esercizio 3
+     7.4.3. Esercizio 3
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#esercizio-4">
-     9.4.4. Esercizio 4
+     7.4.4. Esercizio 4
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#esercizio-5">
-     9.4.5. Esercizio 5
+     7.4.5. Esercizio 5
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#esercizio-6">
-     9.4.6. Esercizio 6
+     7.4.6. Esercizio 6
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#esercizio-7">
-     9.4.7. Esercizio 7
+     7.4.7. Esercizio 7
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#generazione-di-disposizioni-permutazioni-e-combinazioni">
-   9.5. Generazione di disposizioni, permutazioni e combinazioni
+   7.5. Generazione di disposizioni, permutazioni e combinazioni
   </a>
  </li>
 </ul>
@@ -627,76 +651,76 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#principio-fondamentale-del-calcolo-combinatorio">
-   9.1. Principio fondamentale del calcolo combinatorio
+   7.1. Principio fondamentale del calcolo combinatorio
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#permutazioni">
-   9.2. Permutazioni
+   7.2. Permutazioni
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#permutazioni-semplici">
-     9.2.1. Permutazioni semplici
+     7.2.1. Permutazioni semplici
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#permutazioni-di-oggetti-distinguibili-a-gruppi">
-     9.2.2. Permutazioni di oggetti distinguibili a gruppi
+     7.2.2. Permutazioni di oggetti distinguibili a gruppi
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#disposizioni-e-combinazioni">
-   9.3. Disposizioni e combinazioni
+   7.3. Disposizioni e combinazioni
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#esercizi">
-   9.4. Esercizi
+   7.4. Esercizi
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#esercizio-1">
-     9.4.1. Esercizio 1
+     7.4.1. Esercizio 1
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#esercizio-2">
-     9.4.2. Esercizio 2
+     7.4.2. Esercizio 2
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#esercizio-3">
-     9.4.3. Esercizio 3
+     7.4.3. Esercizio 3
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#esercizio-4">
-     9.4.4. Esercizio 4
+     7.4.4. Esercizio 4
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#esercizio-5">
-     9.4.5. Esercizio 5
+     7.4.5. Esercizio 5
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#esercizio-6">
-     9.4.6. Esercizio 6
+     7.4.6. Esercizio 6
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#esercizio-7">
-     9.4.7. Esercizio 7
+     7.4.7. Esercizio 7
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#generazione-di-disposizioni-permutazioni-e-combinazioni">
-   9.5. Generazione di disposizioni, permutazioni e combinazioni
+   7.5. Generazione di disposizioni, permutazioni e combinazioni
   </a>
  </li>
 </ul>
@@ -709,9 +733,9 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="calcolo-combinatorio">
-<h1><span class="section-number">9. </span>Calcolo combinatorio<a class="headerlink" href="#calcolo-combinatorio" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">7. </span>Calcolo combinatorio<a class="headerlink" href="#calcolo-combinatorio" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="principio-fondamentale-del-calcolo-combinatorio">
-<h2><span class="section-number">9.1. </span>Principio fondamentale del calcolo combinatorio<a class="headerlink" href="#principio-fondamentale-del-calcolo-combinatorio" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.1. </span>Principio fondamentale del calcolo combinatorio<a class="headerlink" href="#principio-fondamentale-del-calcolo-combinatorio" title="Permalink to this headline">¶</a></h2>
 <p><em>Principio fondamentale del calcolo combinatorio</em>: se ci sono <span class="math notranslate nohighlight">\(s_1\)</span> modi per
 operare una scelta e, per ciascuno di essi, ci sono <span class="math notranslate nohighlight">\(s_2\)</span> modi per operare
 una seconda scelta e, per ciascuno di essi ci sono <span class="math notranslate nohighlight">\(s_3\)</span> modi per operare una
@@ -724,12 +748,12 @@ ciascuno dei quali ha <span class="math notranslate nohighlight">\(s_2\)</span> 
 via.</p>
 </div>
 <div class="section" id="permutazioni">
-<h2><span class="section-number">9.2. </span>Permutazioni<a class="headerlink" href="#permutazioni" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.2. </span>Permutazioni<a class="headerlink" href="#permutazioni" title="Permalink to this headline">¶</a></h2>
 <p>Consideriamo un insieme di <span class="math notranslate nohighlight">\(n\)</span> oggetti <span class="math notranslate nohighlight">\(A= \{ a_1,\dots a_n\}\)</span>. Chiamiamo
 <em>permutazione</em> degli <span class="math notranslate nohighlight">\(n\)</span> oggetti una sequenza ordinata in cui compaiono tutti
 gli oggetti.</p>
 <div class="section" id="permutazioni-semplici">
-<h3><span class="section-number">9.2.1. </span>Permutazioni semplici<a class="headerlink" href="#permutazioni-semplici" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">7.2.1. </span>Permutazioni semplici<a class="headerlink" href="#permutazioni-semplici" title="Permalink to this headline">¶</a></h3>
 <p>Se gli <span class="math notranslate nohighlight">\(n\)</span> oggetti di <span class="math notranslate nohighlight">\(A\)</span> sono tutti distinguibili, allora si parla di
 <em>permutazione semplice</em>, o soltanto <em>permutazione</em>, degli <span class="math notranslate nohighlight">\(n\)</span> oggetti. Ad
 esempio, se <span class="math notranslate nohighlight">\(A= \{ a,b,c \}\)</span> allora tutte le permutazioni degli <span class="math notranslate nohighlight">\(n\)</span> oggetti
@@ -792,7 +816,7 @@ Nell’esempio visto poc’anzi abbiamo elencato tutte le possibili <span class=
 differenti permutazioni degli oggetti di <span class="math notranslate nohighlight">\(A\)</span>.</p>
 </div>
 <div class="section" id="permutazioni-di-oggetti-distinguibili-a-gruppi">
-<h3><span class="section-number">9.2.2. </span>Permutazioni di oggetti distinguibili a gruppi<a class="headerlink" href="#permutazioni-di-oggetti-distinguibili-a-gruppi" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">7.2.2. </span>Permutazioni di oggetti distinguibili a gruppi<a class="headerlink" href="#permutazioni-di-oggetti-distinguibili-a-gruppi" title="Permalink to this headline">¶</a></h3>
 <p>Se gli <span class="math notranslate nohighlight">\(n\)</span> oggetti di <span class="math notranslate nohighlight">\(A\)</span> non sono tutti distinguibili, ma sono distinguibili
 a gruppi di numerosità <span class="math notranslate nohighlight">\(n_1, n_2,\dots n_k\)</span>
 (ovviamente con <span class="math notranslate nohighlight">\(\sum_{i=1}^k n_i=n\)</span>), allora una sequenza ordinata di tali
@@ -859,7 +883,7 @@ P_{n; n_1, \dots, n_k} = \frac{n!}{n_1!\cdot n_2! \dots n_k!}
 </div>
 </div>
 <div class="section" id="disposizioni-e-combinazioni">
-<h2><span class="section-number">9.3. </span>Disposizioni e combinazioni<a class="headerlink" href="#disposizioni-e-combinazioni" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.3. </span>Disposizioni e combinazioni<a class="headerlink" href="#disposizioni-e-combinazioni" title="Permalink to this headline">¶</a></h2>
 <p>Consideriamo un insieme di <span class="math notranslate nohighlight">\(n\)</span> oggetti distinti <span class="math notranslate nohighlight">\(A= \{ a_1,\dots a_n \}\)</span> e
 selezioniamo <span class="math notranslate nohighlight">\(k\)</span> oggetti di questo insieme. Le modalit`a di selezione
 possono essere svariate.</p>
@@ -911,8 +935,8 @@ analogo a quanto fatto per le permutazioni semplici, fermandoci però alla
 posizione <span class="math notranslate nohighlight">\(k\)</span>-esima. L’albero costruito ha profondità <span class="math notranslate nohighlight">\(k\)</span> e un numero di
 foglie pari a:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-e2ed693c-0d80-4034-aa86-85e7d3b0c8ee">
-<span class="eqno">(9.1)<a class="headerlink" href="#equation-e2ed693c-0d80-4034-aa86-85e7d3b0c8ee" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-710f9b45-bbc6-41bb-bf1c-ed080ef64f4d">
+<span class="eqno">(7.1)<a class="headerlink" href="#equation-710f9b45-bbc6-41bb-bf1c-ed080ef64f4d" title="Permalink to this equation">¶</a></span>\[\begin{align}
 d_{n, k} &amp;= n (n-1) (n-2) \dots (n-k+1) \\
          &amp;= n (n-1) (n-2) \dots (n-k+1) \cdot
              \left(\frac{(n-k)(n-k-1)\dots1}{(n-k)(n-k-1)\dots1}\right) \\
@@ -975,9 +999,9 @@ C_{n, k} = \binom{n+k-1}{k}
 </table>
 </div>
 <div class="section" id="esercizi">
-<h2><span class="section-number">9.4. </span>Esercizi<a class="headerlink" href="#esercizi" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.4. </span>Esercizi<a class="headerlink" href="#esercizi" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="esercizio-1">
-<h3><span class="section-number">9.4.1. </span>Esercizio 1<a class="headerlink" href="#esercizio-1" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">7.4.1. </span>Esercizio 1<a class="headerlink" href="#esercizio-1" title="Permalink to this headline">¶</a></h3>
 <p>Dato l’insieme <span class="math notranslate nohighlight">\(A = \{ a_1,\dots a_n\}\)</span> e indicato con <span class="math notranslate nohighlight">\(\mathcal{P}(A)\)</span>
 l’insieme delle parti di <span class="math notranslate nohighlight">\(A\)</span>, calcolare la cardinalità di <span class="math notranslate nohighlight">\(\mathcal{P}(A)\)</span>.</p>
 <p><em>Soluzione 1</em></p>
@@ -991,8 +1015,8 @@ stesso.</p>
 <span class="math notranslate nohighlight">\(|\mathcal{P}(A)| = 1 + \sum_{k=1}^{n} \binom{n}{k}\)</span>, dove il primo addendo
 è dovuto alla presenza dell’insieme vuoto. Sfruttando le propriet`a del
 coefficiente binomiale otteniamo</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f972f917-9394-4a9c-8cfe-eaa26dd6d2d8">
-<span class="eqno">(9.2)<a class="headerlink" href="#equation-f972f917-9394-4a9c-8cfe-eaa26dd6d2d8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4fb416a1-be4c-4fc3-bec4-6012ce711ec2">
+<span class="eqno">(7.2)<a class="headerlink" href="#equation-4fb416a1-be4c-4fc3-bec4-6012ce711ec2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 |\mathcal{P}(A)| = \sum_{k=0}^{n} \binom{n}{k}
                  = \sum_{k=0}^{n}\binom{n}{k} 1^k 1^{n-k} = 2^n,
 \end{equation}\]</div>
@@ -1012,41 +1036,41 @@ Quindi</p>
 \]</div>
 </div>
 <div class="section" id="esercizio-2">
-<h3><span class="section-number">9.4.2. </span>Esercizio 2<a class="headerlink" href="#esercizio-2" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">7.4.2. </span>Esercizio 2<a class="headerlink" href="#esercizio-2" title="Permalink to this headline">¶</a></h3>
 <p>Quanti numeri telefonici di 7 cifre tutte diverse si possono avere?</p>
 <p><em>Soluzione</em>: <span class="math notranslate nohighlight">\(d_{10,7} = 604800\)</span>.</p>
 </div>
 <div class="section" id="esercizio-3">
-<h3><span class="section-number">9.4.3. </span>Esercizio 3<a class="headerlink" href="#esercizio-3" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">7.4.3. </span>Esercizio 3<a class="headerlink" href="#esercizio-3" title="Permalink to this headline">¶</a></h3>
 <p>Quante combinazioni di numeri si posso ottenere lanciando 3 dadi?</p>
 <p><em>Soluzione</em>: <span class="math notranslate nohighlight">\(C_{6,3} = 56\)</span>.</p>
 </div>
 <div class="section" id="esercizio-4">
-<h3><span class="section-number">9.4.4. </span>Esercizio 4<a class="headerlink" href="#esercizio-4" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">7.4.4. </span>Esercizio 4<a class="headerlink" href="#esercizio-4" title="Permalink to this headline">¶</a></h3>
 <p>In quanti modi lanciando 3 dadi possono uscire facce tutte diverse?</p>
 <p><em>Soluzione</em>: <span class="math notranslate nohighlight">\(d_{6,3}=120\)</span> se i dadi sono tra loro distinguibili e
 <span class="math notranslate nohighlight">\(c_{6,3}=20\)</span> se questi non sono distinguibili.</p>
 </div>
 <div class="section" id="esercizio-5">
-<h3><span class="section-number">9.4.5. </span>Esercizio 5<a class="headerlink" href="#esercizio-5" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">7.4.5. </span>Esercizio 5<a class="headerlink" href="#esercizio-5" title="Permalink to this headline">¶</a></h3>
 <p>Quanti sono gli anagrammi della parola ROMA?</p>
 <p><em>Soluzione</em>: le permutazioni semplici <span class="math notranslate nohighlight">\(d_{4,4} = 24\)</span>.</p>
 </div>
 <div class="section" id="esercizio-6">
-<h3><span class="section-number">9.4.6. </span>Esercizio 6<a class="headerlink" href="#esercizio-6" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">7.4.6. </span>Esercizio 6<a class="headerlink" href="#esercizio-6" title="Permalink to this headline">¶</a></h3>
 <p>Quanti sono gli anagrammi della parola MATEMATICA?</p>
 <p><em>Soluzione</em>: le permutazioni di oggetti distinguibili a gruppi
 <span class="math notranslate nohighlight">\(P_{10; 3, 2, 2, 1, 1, 1} = 151200\)</span>.</p>
 </div>
 <div class="section" id="esercizio-7">
-<h3><span class="section-number">9.4.7. </span>Esercizio 7<a class="headerlink" href="#esercizio-7" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">7.4.7. </span>Esercizio 7<a class="headerlink" href="#esercizio-7" title="Permalink to this headline">¶</a></h3>
 <p>In quanti modi 3 persone possono occupare 4 posti numerati?</p>
 <p><em>Soluzione</em>: nel numero di modi in cui posso assegnare <span class="math notranslate nohighlight">\(4\)</span> posti a <span class="math notranslate nohighlight">\(3\)</span>
 persone: <span class="math notranslate nohighlight">\(d_{4, 3} = 24\)</span>.</p>
 </div>
 </div>
 <div class="section" id="generazione-di-disposizioni-permutazioni-e-combinazioni">
-<h2><span class="section-number">9.5. </span>Generazione di disposizioni, permutazioni e combinazioni<a class="headerlink" href="#generazione-di-disposizioni-permutazioni-e-combinazioni" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.5. </span>Generazione di disposizioni, permutazioni e combinazioni<a class="headerlink" href="#generazione-di-disposizioni-permutazioni-e-combinazioni" title="Permalink to this headline">¶</a></h2>
 <p>In python è abbastanza facile generare tutte le possibili disposizioni con
 ripetizione degli elementi in una lista in <span class="math notranslate nohighlight">\(k\)</span> posti: basta eseguire una list
 comprehension per ottenere una lista i cui elementi sono <span class="math notranslate nohighlight">\(k\)</span>-ple, e gli
@@ -1254,13 +1278,13 @@ esplicitamente in liste utilizzando la funzione <code class="docutils literal no
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">8.5. </span>Simmetria e normalità</p>
+            <p class="prev-next-title"><span class="section-number">6.5. </span>Simmetria e normalità</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../c2-teoria-insiemi/teoria-insiemi.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">10. </span>Teoria degli insiemi</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Teoria degli insiemi</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

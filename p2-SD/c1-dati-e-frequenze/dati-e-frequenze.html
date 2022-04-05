@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>6. Dati e frequenze &#8212; Superhero Data Science 
+    <title>4. Dati e frequenze &#8212; Superhero Data Science 
  Probabilità e Statistica</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -60,8 +60,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="6.7. Dati quantitativi e qualitativi" href="dati-quantitativi-e-qualitativi.html" />
-    <link rel="prev" title="5. Pandas" href="../../p1-PAD/c2-pandas/pandas.html" />
+    <link rel="next" title="4.7. Dati quantitativi e qualitativi" href="dati-quantitativi-e-qualitativi.html" />
+    <link rel="prev" title="3.2. Dataframe" href="../../p1-PAD/c2-pandas/dataframe.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -112,20 +112,27 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../p0-introduzione/presentazione.html">
    1. Presentazione
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../p0-introduzione/un-esempio-introduttivo.html">
-   2. Un esempio
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../p0-introduzione/notazione.html">
-   3. Notazione
-  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p0-introduzione/un-esempio-introduttivo.html">
+     1.1. Un esempio
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p0-introduzione/notazione.html">
+     1.2. Notazione
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
@@ -136,55 +143,72 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../p1-PAD/c1-intro-python/introduzione-a-python.html">
-   4. Python
+   2. Python
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-semplici-e-operatori.html">
-     4.1. Tipi di dati semplici
+     2.1. Tipi di dati semplici
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-strutturati.html">
-     4.2. Tipi di dati strutturati
+     2.2. Tipi di dati strutturati
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/strutture-di-controllo.html">
-     4.3. Strutture di controllo
+     2.3. Strutture di controllo
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/funzioni.html">
-     4.4. Funzioni
+     2.4. Funzioni
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/importare-moduli.html">
-     4.6. Importare moduli
+     2.6. Importare moduli
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/disegnare-grafici.html">
-     4.7. Disegnare grafici
+     2.7. Disegnare grafici
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/leggere-file.html">
-     4.8. Leggere dati da file (e un po’ di trucchi)
+     2.8. Leggere dati da file (e un po’ di trucchi)
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../p1-PAD/c2-pandas/pandas.html">
-   5. Pandas
+   3. Pandas
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c2-pandas/serie.html">
+     3.1. Serie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c2-pandas/dataframe.html">
+     3.2. Dataframe
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
@@ -195,126 +219,126 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
   <a class="current reference internal" href="#">
-   6. Dati e frequenze
+   4. Dati e frequenze
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="dati-quantitativi-e-qualitativi.html">
-     6.7. Dati quantitativi e qualitativi
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="frequenze-assolute-e-relative.html">
-     6.8. Frequenze assolute e relative
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="frequenze-cumulate.html">
-     6.9. Frequenze cumulate
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="frequenze-congiunte-e-marginali.html">
-     6.10. Frequenze congiunte e marginali
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../c2-indici-statistici/indici-statistici.html">
-   7. Indici statistici
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c2-indici-statistici/indici-di-posizione.html">
-     7.1. Indici di posizione
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c2-indici-statistici/indici-di-dispersione.html">
-     7.2. Calcolo della dispersione in pandas
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c2-indici-statistici/quantili-campionari.html">
-     7.3. Quantili campionari
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c2-indici-statistici/covarianza-e-correlazione.html">
-     7.4. Covarianza e correlazione
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c2-indici-statistici/eterogeneita.html">
-     7.5. Indici di eterogeneità
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c2-indici-statistici/concentrazione.html">
-     7.6. Indici di concentrazione
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c2-indici-statistici/trasformazioni-dei-dati.html">
-     7.7. Trasformazione dei dati
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c2-indici-statistici/analisi-della-varianza.html">
-     7.8. Analisi della varianza
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c2-indici-statistici/analisi-di-classificatori.html">
-     7.9. Analisi di classificatori
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../c3-grafici/grafici.html">
-   8. Grafici
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="dati-quantitativi-e-qualitativi.html">
+     4.7. Dati quantitativi e qualitativi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="frequenze-assolute-e-relative.html">
+     4.8. Frequenze assolute e relative
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="frequenze-cumulate.html">
+     4.9. Frequenze cumulate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="frequenze-congiunte-e-marginali.html">
+     4.10. Frequenze congiunte e marginali
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../c2-indici-statistici/indici-statistici.html">
+   5. Indici statistici
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-indici-statistici/indici-di-posizione.html">
+     5.1. Indici di posizione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-indici-statistici/indici-di-dispersione.html">
+     5.2. Calcolo della dispersione in pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-indici-statistici/quantili-campionari.html">
+     5.3. Quantili campionari
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-indici-statistici/covarianza-e-correlazione.html">
+     5.4. Covarianza e correlazione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-indici-statistici/eterogeneita.html">
+     5.5. Indici di eterogeneità
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-indici-statistici/concentrazione.html">
+     5.6. Indici di concentrazione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-indici-statistici/trasformazioni-dei-dati.html">
+     5.7. Trasformazione dei dati
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-indici-statistici/analisi-della-varianza.html">
+     5.8. Analisi della varianza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-indici-statistici/analisi-di-classificatori.html">
+     5.9. Analisi di classificatori
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../c3-grafici/grafici.html">
+   6. Grafici
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
     <a class="reference internal" href="../c3-grafici/diagrammi-per-dati-discreti.html">
-     8.1. Dati discreti
+     6.1. Dati discreti
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c3-grafici/diagrammi-per-dati-continui.html">
-     8.2. Dati continui
+     6.2. Dati continui
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c3-grafici/diagrammi-per-dati-cumulati.html">
-     8.3. Dati cumulati
+     6.3. Dati cumulati
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c3-grafici/diagrammi-per-dati-a-coppie.html">
-     8.4. Dati a coppie
+     6.4. Dati a coppie
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c3-grafici/simmetria-e-normalita.html">
-     8.5. Simmetria e normalità
+     6.5. Simmetria e normalità
     </a>
    </li>
   </ul>
@@ -328,84 +352,84 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/calcolo-combinatorio.html">
-   9. Calcolo combinatorio
+   7. Calcolo combinatorio
   </a>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/teoria-insiemi.html">
-   10. Teoria degli insiemi
+   8. Teoria degli insiemi
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/concetti-di-base.html">
-     10.1. Concetti di base
+     8.1. Concetti di base
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/insiemi-finiti-e-infiniti.html">
-     10.2. Insiemi finiti e infiniti
+     8.2. Insiemi finiti e infiniti
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/relazioni-tra-insiemi.html">
-     10.3. Relazioni tra insiemi
+     8.3. Relazioni tra insiemi
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/operazioni-tra-insiemi.html">
-     10.4. Operazioni tra insiemi
+     8.4. Operazioni tra insiemi
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/insiemi-in-python.html">
-     10.5. Gli insiemi in Python
+     8.5. Gli insiemi in Python
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../p3-CP/c3-probabilita/assiomi-kolmogorov.html">
-   11. Assiomi di Kolmogorov
+   9. Assiomi di Kolmogorov
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../p3-CP/c3-probabilita/spazi-equiprobabili.html">
-   12. Spazi equiprobabili
+   10. Spazi equiprobabili
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../p3-CP/c3-probabilita/probabilita-condizionata.html">
-   13. Probabilità condizionata
+   11. Probabilità condizionata
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../p3-CP/c3-probabilita/prob-totali-e-naive-bayes.html">
-   14. Teoremi
+   12. Teoremi
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../p3-CP/c3-probabilita/classificatori-naive-bayes.html">
-   15. Classificatori naive Bayes
+   13. Classificatori naive Bayes
   </a>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../p3-CP/c4-modelli-discreti/modelli-discreti.html">
-   16. Modelli discreti
+   14. Modelli discreti
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c4-modelli-discreti/modello-geometrico.html">
-     16.1. Il modello geometrico
+     14.1. Il modello geometrico
     </a>
    </li>
   </ul>
@@ -419,7 +443,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../bibliography.html">
-   17. Bibliography
+   15. Bibliography
   </a>
  </li>
 </ul>
@@ -533,46 +557,46 @@ const thebe_selector_output = ".output, .cell_output"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#dati-quantitativi-e-qualitativi">
-   6.1. Dati quantitativi e qualitativi
+   4.1. Dati quantitativi e qualitativi
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#classificazione-dei-dati-qualitativi">
-     6.1.1. Classificazione dei dati qualitativi
+     4.1.1. Classificazione dei dati qualitativi
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#classificazione-dei-dati-quantitativi">
-     6.1.2. Classificazione dei dati quantitativi
+     4.1.2. Classificazione dei dati quantitativi
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#frequenze-assolute-e-relative-e-loro-visualizzazione">
-   6.2. Frequenze assolute e relative e loro visualizzazione
+   4.2. Frequenze assolute e relative e loro visualizzazione
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#frequenze-cumulate">
-   6.3. Frequenze cumulate
+   4.3. Frequenze cumulate
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#diagrammi-di-pareto">
-     6.3.1. Diagrammi di Pareto
+     4.3.1. Diagrammi di Pareto
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#frequenze-congiunte-e-marginali">
-   6.4. Frequenze congiunte e marginali
+   4.4. Frequenze congiunte e marginali
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#alcuni-approfondimenti-sulla-generazione-dei-grafici-sup-sup">
-   6.5. Alcuni approfondimenti sulla generazione dei grafici
+   4.5. Alcuni approfondimenti sulla generazione dei grafici
    <sup>
     *
    </sup>
@@ -580,7 +604,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#i-diagrammi-stelo-foglia-sup-sup">
-   6.6. I diagrammi stelo-foglia
+   4.6. I diagrammi stelo-foglia
    <sup>
     *
    </sup>
@@ -608,46 +632,46 @@ const thebe_selector_output = ".output, .cell_output"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#dati-quantitativi-e-qualitativi">
-   6.1. Dati quantitativi e qualitativi
+   4.1. Dati quantitativi e qualitativi
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#classificazione-dei-dati-qualitativi">
-     6.1.1. Classificazione dei dati qualitativi
+     4.1.1. Classificazione dei dati qualitativi
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#classificazione-dei-dati-quantitativi">
-     6.1.2. Classificazione dei dati quantitativi
+     4.1.2. Classificazione dei dati quantitativi
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#frequenze-assolute-e-relative-e-loro-visualizzazione">
-   6.2. Frequenze assolute e relative e loro visualizzazione
+   4.2. Frequenze assolute e relative e loro visualizzazione
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#frequenze-cumulate">
-   6.3. Frequenze cumulate
+   4.3. Frequenze cumulate
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#diagrammi-di-pareto">
-     6.3.1. Diagrammi di Pareto
+     4.3.1. Diagrammi di Pareto
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#frequenze-congiunte-e-marginali">
-   6.4. Frequenze congiunte e marginali
+   4.4. Frequenze congiunte e marginali
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#alcuni-approfondimenti-sulla-generazione-dei-grafici-sup-sup">
-   6.5. Alcuni approfondimenti sulla generazione dei grafici
+   4.5. Alcuni approfondimenti sulla generazione dei grafici
    <sup>
     *
    </sup>
@@ -655,7 +679,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#i-diagrammi-stelo-foglia-sup-sup">
-   6.6. I diagrammi stelo-foglia
+   4.6. I diagrammi stelo-foglia
    <sup>
     *
    </sup>
@@ -671,7 +695,7 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="dati-e-frequenze">
-<h1><span class="section-number">6. </span>Dati e frequenze<a class="headerlink" href="#dati-e-frequenze" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">4. </span>Dati e frequenze<a class="headerlink" href="#dati-e-frequenze" title="Permalink to this headline">¶</a></h1>
 <p>Vedremo come esistano tipi differenti di dati, e come in funzione del loro tipo esistano diversi strumenti grafici che li descrivono. Studieremo inoltre in modo più approfondito e diversificato il concetto di <em>frequenza</em>.</p>
 <p>Come sempre, carichiamo le librerie e il dataset dei supereroi. Già che ci siamo, escludiamo l’unico record che fa riferimento al 2099 come anno di prima apparizione.</p>
 <div class="cell docutils container">
@@ -812,7 +836,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div></div></div>
 </div>
 <div class="section" id="dati-quantitativi-e-qualitativi">
-<h2><span class="section-number">6.1. </span>Dati quantitativi e qualitativi<a class="headerlink" href="#dati-quantitativi-e-qualitativi" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.1. </span>Dati quantitativi e qualitativi<a class="headerlink" href="#dati-quantitativi-e-qualitativi" title="Permalink to this headline">¶</a></h2>
 <p>Una delle principali distinzioni che si possono fare sui dati osservabili riguarda il modo in cui questi sono misurati:</p>
 <ul class="simple">
 <li><p>si parla di dati <em>quantitativi</em> se l’esito della misurazione è una quantità numerica;</p></li>
@@ -821,19 +845,19 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Pertanto nel nostro dataset i caratteri <em>Height</em>, <em>Weight</em> e <em>Strength</em> saranno da considerare quantitativi, mentre i caratteri <em>Name</em>, <em>Identity</em>, <em>Birth place</em>, <em>Publisher</em>, <em>Gender</em>, <em>Eye color</em>, <em>Hair color</em> e <em>Intelligence</em> saranno sicuramente di tipo qualititativo (la differenza tra <em>Strength</em> e <em>Intelligence</em> è legata al fatto che il primo carattere è misurato tramite numeri che variano tra 0 e 100 mentre il secondo fa riferimento a una scala basata su etichette). La classificazione di <em>First appearance</em> è più sfumata e merita qualche riflessione in più: sebbene l’anno di prima apparizione sia misurato tramite un numero intero, il suo valore non indica prettamente una <em>quantità</em>, bensì <em>quando</em> è accaduto un evento. In tal senso, il calcolo di operazioni aritmetiche quali la somma o la divisione perde di significato, ed è per questo che spesso caratteri di questo tipo ricadono nella classe dei dati qualitativi. Cionondimeno, vedremo come sia possibile ragionare sul carattere <em>First appearance</em> anche in termini quantitativi quando per esempio parleremo della visualizzazione di istogrammi. Ci sono poi casi di caratteri espressi in termini temporali in cui viene misurato il tempo intercorso a partire da un dato istante iniziale (come per esempio il tempo di arrivo del primo cliente in un negozio, misurato in minuti dall’orario di apertura), di cui è chiara l’appartenenza alla classe dei dati quantitativi.</p>
 <div id="h-2"></div>
 <div class="section" id="classificazione-dei-dati-qualitativi">
-<h3><span class="section-number">6.1.1. </span>Classificazione dei dati qualitativi<a class="headerlink" href="#classificazione-dei-dati-qualitativi" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.1.1. </span>Classificazione dei dati qualitativi<a class="headerlink" href="#classificazione-dei-dati-qualitativi" title="Permalink to this headline">¶</a></h3>
 <p>I dati qualitativi vengono spesso ulteriormente classificati come binari/booleani, nominali oppure ordinali. Si parla di dati <em>binari</em> o <em>booleani</em> quando l’osservazione può avere solo due esiti tra loro non confrontabili (volendo si può parlare di dati booleani per enfatizzare che si sta valutando la presenza o l’assenza di una proprietà, e di dati binari quando esistono due possibili etichette): in tal senso, il carattere <em>Gender</em>, che può assumere solo i valori M e F, è quindi un carattere qualitativo binario. Anche nei dati <em>nominali</em> (detti anche sconnessi), di cui i dati binari rappresentano un caso particolare, i valori osservabili non sono tra loro confrontabili, sebbene non vi sia limite sul numero di diverse etichette. Saranno dunque dati qualitativi nominali, oltre al già considerato <em>Gender</em>, anche <em>Name</em>, <em>Identity</em>, <em>Birth place</em>, <em>Publisher</em>, <em>Gender</em>, <em>Eye color</em> e <em>Hair color</em>. Detto in altri termini, in questo tipo di dati (e quindi anche nel caso binario/booleano) è solo possibile stabilire una relazione di equivalenza tra i valori osservabili: pertanto, due osservazioni potranno avere valori uguali oppure diversi, e nulla più si potrà dire sul loro rapporto. Nei dati <em>ordinali</em>, invece, è possibile stabilire una relazione d’ordine tra i valori osservabili, e quindi quando due valori saranno diversi sarà anche possibile dire quale tra i due sia il più piccolo e quale il più grande. Nel nostro dataset, solo <em>Intelligence</em> è un dato qualitativo ordinale.</p>
 <div id="h-3"></div>
 </div>
 <div class="section" id="classificazione-dei-dati-quantitativi">
-<h3><span class="section-number">6.1.2. </span>Classificazione dei dati quantitativi<a class="headerlink" href="#classificazione-dei-dati-quantitativi" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.1.2. </span>Classificazione dei dati quantitativi<a class="headerlink" href="#classificazione-dei-dati-quantitativi" title="Permalink to this headline">¶</a></h3>
 <p>Per quanto riguarda i dati quantitativi, viene spesso fatto riferimento alla differenza tra dati <em>discreti</em> e <em>continui</em> in funzione del tipo di insieme di valori che questi possono assumere. Va in realtà notato che i dati che elaboriamo sono memorizzati su un computer e quindi i valori reali vengono approssimati tramite valori all’interno di un insieme finito (dunque discreto). Vale più la pena ragionare in termini di caratteri per cui ha senso dare significato a un singolo valore (come nel caso dell’anno di prima apparizione, in cui ha senso considerare gli eroi apparsi nel 1970) e di caratteri in cui di norma ha senso considerare un <em>intervallo</em> di valori (come nel caso dei rimanenti caratteri: ha di solito poco senso considerare, per esempio, un eroe alto esattamente 178 centimetri o con un indice di forza pari a 42).</p>
 <p>In alcuni casi si considerano diversi i caratteri quantitativi in funzione che abbia o meno senso considerare il <em>rapporto</em> tra i corrispondenti valori: sarebbe questo il caso dei caratteri <em>Height</em>, <em>Weight</em> e <em>Strength</em> nel nostro dataset.</p>
 <div id="h-4"></div>
 </div>
 </div>
 <div class="section" id="frequenze-assolute-e-relative-e-loro-visualizzazione">
-<h2><span class="section-number">6.2. </span>Frequenze assolute e relative e loro visualizzazione<a class="headerlink" href="#frequenze-assolute-e-relative-e-loro-visualizzazione" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.2. </span>Frequenze assolute e relative e loro visualizzazione<a class="headerlink" href="#frequenze-assolute-e-relative-e-loro-visualizzazione" title="Permalink to this headline">¶</a></h2>
 <p>Abbiamo già incontrato il concetto di <em>frequenza assoluta</em>: si tratta del conteggio del numero di volte che una data osservazione occorre in un campione. Questo tipo di informazione è facilmente analizzabile quando il nuemro di differenti osservazioni non è troppo grande: ciò accade quasi sempre quando si analizzano caratteri qualitativi e relativamente meno spesso per i caratteri quantitativi. Prendiamo per esempio in considerazione il carattere <em>Publisher</em>, e calcoliamone le frequenze assolute usando il già introdotto metodo <code class="docutils literal notranslate"><span class="pre">value_counts</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1620,7 +1644,7 @@ Name: Publisher, dtype: int64
 </div>
 </div>
 <div class="section" id="frequenze-cumulate">
-<h2><span class="section-number">6.3. </span>Frequenze cumulate<a class="headerlink" href="#frequenze-cumulate" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.3. </span>Frequenze cumulate<a class="headerlink" href="#frequenze-cumulate" title="Permalink to this headline">¶</a></h2>
 <p>Riconsideriamo l’anno di prima apparizione dei supereroi, e rispondiamo alle domande che seguono.</p>
 <ol class="simple">
 <li><p>Qual è il più recente tra gli anni di apparizione di un supereroe?</p></li>
@@ -1870,8 +1894,8 @@ Name: Publisher, dtype: int64
 </div>
 </div>
 <p>Quando i valori osservati sono di tipo numerico o ordinabile, uno strumento molto simile a quello delle frequenze relative cumulate è rappresentato dalla <em>funzione cumulativa empirica</em> (o <em>funzione di ripartizione empirica</em>), che dato un insieme di osservazioni <span class="math notranslate nohighlight">\(\{ x_1, \dots, x_n \}\)</span>, è definita come quella funzione <span class="math notranslate nohighlight">\(\hat F: \mathbb R \mapsto [0, 1]\)</span> tale che per ogni <span class="math notranslate nohighlight">\(x \in \mathbb R\)</span> assume un valore pari alla frequenza relativa delle osservazioni che risultano essere minori o uguali a <span class="math notranslate nohighlight">\(x\)</span>. Pertanto</p>
-<div class="amsmath math notranslate nohighlight" id="equation-aab36882-09b2-4201-a474-135909115875">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-aab36882-09b2-4201-a474-135909115875" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1820e9a5-5d87-4836-b569-c280c88e94e0">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-1820e9a5-5d87-4836-b569-c280c88e94e0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \hat F(x) = \frac{\# \{ x_i \leq x \}}{n}
 = \frac{1}{n} \sum_{i=1}^n \mathrm I_{(-\infty, x]}(x_i) ,
 \end{equation}\]</div>
@@ -1914,7 +1938,7 @@ Name: Publisher, dtype: int64
 </div>
 <div id="h-6"></div>
 <div class="section" id="diagrammi-di-pareto">
-<h3><span class="section-number">6.3.1. </span>Diagrammi di Pareto<a class="headerlink" href="#diagrammi-di-pareto" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.3.1. </span>Diagrammi di Pareto<a class="headerlink" href="#diagrammi-di-pareto" title="Permalink to this headline">¶</a></h3>
 <p>Frequenze e frequenze cumulate di una variabile categorica possono essere considerate congiuntamente per generare un <em>diagramma di Pareto</em> nel modo seguente: ordinando i dati per frequenza decrescente, su uno stesso sistema di riferimento in cui l’asse delle ascisse fa riferimento ai valori della variabile si sovrappongono il diagramma a barre delle frequenze e una linea spezzata che collega i valori delle frequenze cumulate. Consideriamo per esempio i colori degli occhi più frequenti nel nostro dataset (definiti per comodità come i colori che occorrono con frequenza relativa superiore a 0.02).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2015,7 +2039,7 @@ Name: Publisher, dtype: int64
 </div>
 </div>
 <div class="section" id="frequenze-congiunte-e-marginali">
-<h2><span class="section-number">6.4. </span>Frequenze congiunte e marginali<a class="headerlink" href="#frequenze-congiunte-e-marginali" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.4. </span>Frequenze congiunte e marginali<a class="headerlink" href="#frequenze-congiunte-e-marginali" title="Permalink to this headline">¶</a></h2>
 <p>Spesso è utile analizzare un insieme di osservazioni prendendo in considerazione due caratteri al posto di uno, per esempio per vedere se i valori di tali caratteri tendano a essere più o meno collegati tra loro tramite una relazione. Il concetto di frequenza si specializza in questo caso andando a contare il numero di osservazioni in cui i due caratteri considerati assumono due determinati valori, ottenendo la cosiddetta <em>frequenza congiunta assoluta</em> (o equivalentemente la <em>frequenza congiunta relativa</em> nel caso in cui si calcolasse la frazione di osservazioni e non il suo numero). Nel caso in cui i possibili valori osservabili non siano parecchi, è possibile visualizzare queste frequenze tramite una <em>tabella delle frequenze congiunte</em> (detta anche <em>tabella di contingenza</em>), ottenuta estendendo il concetto di tabella delle frequenze precedentemente introdotto: ora le righe della tabella corrisponderanno ai possibili valori di uno dei caratteri considerati, le sue colonne corrisponderanno ai valori del rimanente carattere e gli elementi della tabella conterranno le frequenze congiunte (assolute o relative). La funzione <code class="docutils literal notranslate"><span class="pre">pd.crosstab</span></code> può essere utilizzata anche per produrre questo tipo di tabella: basta indicare le serie corrispondenti ai caratteri considerati come valori degli argomenti <code class="docutils literal notranslate"><span class="pre">index</span></code> e <code class="docutils literal notranslate"><span class="pre">columns</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2988,7 +3012,7 @@ Name: Publisher, dtype: int64
 </div>
 </div>
 <div class="section" id="alcuni-approfondimenti-sulla-generazione-dei-grafici-sup-sup">
-<h2><span class="section-number">6.5. </span>Alcuni approfondimenti sulla generazione dei grafici <sup>*</sup><a class="headerlink" href="#alcuni-approfondimenti-sulla-generazione-dei-grafici-sup-sup" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.5. </span>Alcuni approfondimenti sulla generazione dei grafici <sup>*</sup><a class="headerlink" href="#alcuni-approfondimenti-sulla-generazione-dei-grafici-sup-sup" title="Permalink to this headline">¶</a></h2>
 <div class="naming admonition">
 <p class="admonition-title">Nomenclatura</p>
 <p>I paragrafi contrassegnati con un asterisco sono opzionali. È dunque possibile saltarli a meno che non si voglia approfondire gli argomenti ivi contenuti.</p>
@@ -3082,7 +3106,7 @@ Name: Publisher, dtype: int64
 </div>
 </div>
 <div class="section" id="i-diagrammi-stelo-foglia-sup-sup">
-<h2><span class="section-number">6.6. </span>I diagrammi stelo-foglia <sup>*</sup><a class="headerlink" href="#i-diagrammi-stelo-foglia-sup-sup" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.6. </span>I diagrammi stelo-foglia <sup>*</sup><a class="headerlink" href="#i-diagrammi-stelo-foglia-sup-sup" title="Permalink to this headline">¶</a></h2>
 <p>Un <em>diagramma stelo-foglia</em> (o <em>diagramma ramo-foglia</em>, o secondo la terminologia inglese <em>diagramma stem and leaf</em>) si ottiene considerando delle osservazioni a valori numerici, ordinandole e suddividendo ogni osservazione in una parte <em>meno significativa</em> (rappresentata da un numero prefissato di cifre meno significative) e una parte <em>più significativa</em> (rappresentata dalle rimanenti cifre più significative). Le osservazioni aventi la medesima parte più significativa vengono raggruppate in uno stesso <em>stelo</em>, costituito da questa parte significativa seguita da una barra verticale e poi da tutte le parti meno significative (le <em>foglie</em>) separate da virgola. Per esempio il diagramma seguente descrive gli anni di prima apparizione dei primi cinquanta eroi del nostro dataset, dove le foglie sono costruite considerando la cifra meno significativa di ogni anno.</p>
 <pre style="margin-left:0; line-height:1em">
 194|1
@@ -3243,17 +3267,17 @@ Name: Publisher, dtype: int64
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../../p1-PAD/c2-pandas/pandas.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../../p1-PAD/c2-pandas/dataframe.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">5. </span>Pandas</p>
+            <p class="prev-next-title"><span class="section-number">3.2. </span>Dataframe</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="dati-quantitativi-e-qualitativi.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">6.7. </span>Dati quantitativi e qualitativi</p>
+        <p class="prev-next-title"><span class="section-number">4.7. </span>Dati quantitativi e qualitativi</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
