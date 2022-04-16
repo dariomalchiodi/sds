@@ -1,0 +1,20 @@
+Colori supereroi:
+
+Mantello
+
+rosa: D385E0
+verde: 2BC755
+rosso: EC1313
+marrone: A7880A
+
+Costume
+
+giallo: DBD92D
+azzurro: 51A4F0
+nero:
+
+
+costruzione logo e immagini: freelogodesign.org
+
+stile jupyter book: sphinx book theme modified by Patrick Mineault
+https://github.com/patrickmineault/sphinx-book-theme

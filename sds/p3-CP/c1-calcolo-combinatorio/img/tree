@@ -1,0 +1,77 @@
+digraph { start[shape="egg" label=""]pink_cap[shape="egg",
+            image="./img/pink-cap.png",
+            label="",
+            width=.6 height=.6 fixedsize="true"]
+green_cap[shape="egg",
+            image="./img/green-cap.png",
+            label="",
+            width=.6 height=.6 fixedsize="true"]
+red_cap[shape="egg",
+            image="./img/red-cap.png",
+            label="",
+            width=.6 height=.6 fixedsize="true"]
+brown_cap[shape="egg",
+            image="./img/brown-cap.png",
+            label="",
+            width=.6 height=.6 fixedsize="true"]black_pink[shape="egg",
+            image="./img/sh-black-pink.png",
+            label="",
+            width=.6 height=.6 fixedsize="true"]
+blue_pink[shape="egg",
+            image="./img/sh-blue-pink.png",
+            label="",
+            width=.6 height=.6 fixedsize="true"]
+yellow_pink[shape="egg",
+            image="./img/sh-yellow-pink.png",
+            label="",
+            width=.6 height=.6 fixedsize="true"]
+black_green[shape="egg",
+            image="./img/sh-black-green.png",
+            label="",
+            width=.6 height=.6 fixedsize="true"]
+blue_green[shape="egg",
+            image="./img/sh-blue-green.png",
+            label="",
+            width=.6 height=.6 fixedsize="true"]
+yellow_green[shape="egg",
+            image="./img/sh-yellow-green.png",
+            label="",
+            width=.6 height=.6 fixedsize="true"]
+black_red[shape="egg",
+            image="./img/sh-black-red.png",
+            label="",
+            width=.6 height=.6 fixedsize="true"]
+blue_red[shape="egg",
+            image="./img/sh-blue-red.png",
+            label="",
+            width=.6 height=.6 fixedsize="true"]
+yellow_red[shape="egg",
+            image="./img/sh-yellow-red.png",
+            label="",
+            width=.6 height=.6 fixedsize="true"]
+black_brown[shape="egg",
+            image="./img/sh-black-brown.png",
+            label="",
+            width=.6 height=.6 fixedsize="true"]
+blue_brown[shape="egg",
+            image="./img/sh-blue-brown.png",
+            label="",
+            width=.6 height=.6 fixedsize="true"]
+yellow_brown[shape="egg",
+            image="./img/sh-yellow-brown.png",
+            label="",
+            width=.6 height=.6 fixedsize="true"]start -> pink_cap;
+start -> green_cap;
+start -> red_cap;
+start -> brown_cap;pink_cap -> black_pink;
+pink_cap -> blue_pink;
+pink_cap -> yellow_pink;
+green_cap -> black_green;
+green_cap -> blue_green;
+green_cap -> yellow_green;
+red_cap -> black_red;
+red_cap -> blue_red;
+red_cap -> yellow_red;
+brown_cap -> black_brown;
+brown_cap -> blue_brown;
+brown_cap -> yellow_brown;}
