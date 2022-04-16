@@ -108,11 +108,9 @@ aritmetico/logiche e le relazioni aritmetiche (utilizzando `+` per l'addizione,
 {numref}`elenco-operatori-per-tipi-semplici` riassume i principali simboli
 utilizzati in Python per questo tipo di operatori binari.
 
-
 ```{table} Elenco dei principali operatori per i tipi semplici
 :name: elenco-operatori-per-tipi-semplici
 :align: center
-
 |  Operazione                  | Simbolo |  Operazione              | Simbolo |
 |:----------------------------:|:-------:| :------------------------|:-------:|
 | addizione                    | `+`     | uguale (per riferimento) | `is`    |

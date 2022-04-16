@@ -51,6 +51,7 @@ parse:
       # including those that are enabled by default!
       - amsmath
       - dollarmath
+      - html_image
 
 html:
   home_page_in_navbar: true
@@ -64,9 +65,13 @@ html:
 
 sphinx:
   config:
+    language: it
+    smartquotes: False
     bibtex_reference_style: author_year
     mathjax3_config:
       "HTML-CSS": {
         matchFontHeight: true,
         scale: 380
       }
+  extra_extensions:
+  - sphinx_proof

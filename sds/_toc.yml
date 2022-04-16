@@ -27,34 +27,49 @@ parts:
 - caption: Statistica descrittiva
   numbered: true
   chapters:
-  - file: p2-SD/c1-dati-e-frequenze/dati-e-frequenze
+  - file: p2-SD/c1-dati-e-informazione/dati-e-informazione
     sections:
-    - file: p2-SD/c1-dati-e-frequenze/dati-quantitativi-e-qualitativi
-    - file: p2-SD/c1-dati-e-frequenze/frequenze-assolute-e-relative
-    - file: p2-SD/c1-dati-e-frequenze/frequenze-cumulate
-    - file: p2-SD/c1-dati-e-frequenze/frequenze-congiunte-e-marginali
-  - file: p2-SD/c2-indici-statistici/indici-statistici
+    - file: p2-SD/c1-dati-e-informazione/dati-quantitativi-e-qualitativi
+    - file: p2-SD/c1-dati-e-informazione/frequenze-assolute-e-relative
+    - file: p2-SD/c1-dati-e-informazione/frequenze-cumulate
+    - file: p2-SD/c1-dati-e-informazione/frequenze-congiunte-e-marginali
+  - file: p2-SD/c2-utilizzare-informazione/utilizzare-informazione
     sections:
-    - file: p2-SD/c2-indici-statistici/indici-di-posizione
-    - file: p2-SD/c2-indici-statistici/indici-di-dispersione
-    - file: p2-SD/c2-indici-statistici/quantili-campionari
-    - file: p2-SD/c2-indici-statistici/covarianza-e-correlazione
-    - file: p2-SD/c2-indici-statistici/eterogeneita
-    - file: p2-SD/c2-indici-statistici/concentrazione
-    - file: p2-SD/c2-indici-statistici/trasformazioni-dei-dati
-    - file: p2-SD/c2-indici-statistici/analisi-della-varianza
-    - file: p2-SD/c2-indici-statistici/analisi-di-classificatori
-  - file: p2-SD/c3-grafici/grafici
+    - file: p2-SD/c2-utilizzare-informazione/descrivere-popolazione
+    - file: p2-SD/c2-utilizzare-informazione/predire-informazione
+    - file: p2-SD/c2-utilizzare-informazione/classificazione
+    - file: p2-SD/c2-utilizzare-informazione/regressione
+  - file: p2-SD/c3-misurare-informazione/misurare-informazione
     sections:
-    - file: p2-SD/c3-grafici/diagrammi-per-dati-discreti
-    - file: p2-SD/c3-grafici/diagrammi-per-dati-continui
-    - file: p2-SD/c3-grafici/diagrammi-per-dati-cumulati
-    - file: p2-SD/c3-grafici/diagrammi-per-dati-a-coppie
-    - file: p2-SD/c3-grafici/simmetria-e-normalita
+    - file: p2-SD/c3-misurare-informazione/indici-di-posizione
+    - file: p2-SD/c3-misurare-informazione/indici-di-dispersione
+    - file: p2-SD/c3-misurare-informazione/quantili-campionari
+    - file: p2-SD/c3-misurare-informazione/eterogeneita
+    - file: p2-SD/c3-misurare-informazione/concentrazione
+    - file: p2-SD/c3-misurare-informazione/trasformazioni-dei-dati
+    - file: p2-SD/c3-misurare-informazione/analisi-della-varianza
+    - file: p2-SD/c3-misurare-informazione/analisi-di-classificatori
+  - file: p2-SD/c4-visualizzare-informazione/visualizzare-informazione
+    sections:
+    - file: p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-discreti
+    - file: p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-continui
+    - file: p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-cumulati
+    - file: p2-SD/c4-visualizzare-informazione/simmetria-e-normalita
+  - file: p2-SD/c5-analizzare-relazioni/analizzare-relazioni
+    sections:
+    - file: p2-SD/c5-analizzare-relazioni/diagrammi-per-dati-a-coppie
+    - file: p2-SD/c5-analizzare-relazioni/covarianza-e-correlazione
 - caption: "Calcolo delle probabilit\xE0"
   numbered: true
   chapters:
   - file: p3-CP/c1-calcolo-combinatorio/calcolo-combinatorio
+    sections:
+    - file: p3-CP/c1-calcolo-combinatorio/principio-fondamentale-calcolo-combinatorio
+    - file: p3-CP/c1-calcolo-combinatorio/permutazioni
+    - file: p3-CP/c1-calcolo-combinatorio/disposizioni
+    - file: p3-CP/c1-calcolo-combinatorio/combinazioni
+    - file: p3-CP/c1-calcolo-combinatorio/esercizi
+    - file: p3-CP/c1-calcolo-combinatorio/generazione
   - file: p3-CP/c2-teoria-insiemi/teoria-insiemi
     sections:
     - file: p3-CP/c2-teoria-insiemi/concetti-di-base
@@ -62,14 +77,55 @@ parts:
     - file: p3-CP/c2-teoria-insiemi/relazioni-tra-insiemi
     - file: p3-CP/c2-teoria-insiemi/operazioni-tra-insiemi
     - file: p3-CP/c2-teoria-insiemi/insiemi-in-python
-  - file: p3-CP/c3-probabilita/assiomi-kolmogorov
-  - file: p3-CP/c3-probabilita/spazi-equiprobabili
-  - file: p3-CP/c3-probabilita/probabilita-condizionata
-  - file: p3-CP/c3-probabilita/prob-totali-e-naive-bayes
-  - file: p3-CP/c3-probabilita/classificatori-naive-bayes
-  - file: p3-CP/c4-modelli-discreti/modelli-discreti
+  - file: p3-CP/c3-probabilita/calcolo-probabilita
     sections:
-    - file: p3-CP/c4-modelli-discreti/modello-geometrico
+    - file: p3-CP/c3-probabilita/concetto-di-probabilita
+    - file: p3-CP/c3-probabilita/esperimenti-esiti-eventi
+    - file: p3-CP/c3-probabilita/assiomi-kolmogorov
+    - file: p3-CP/c3-probabilita/spazi-equiprobabili
+    - file: p3-CP/c3-probabilita/probabilita-condizionata
+    - file: p3-CP/c3-probabilita/prob-totali-e-naive-bayes
+    - file: p3-CP/c3-probabilita/classificatori-naive-bayes
+    - file: p3-CP/c3-probabilita/indipendenza
+  - file: p3-CP/c4-variabili-aleatorie/intro
+    sections:
+    - file: p3-CP/c4-variabili-aleatorie/variabili-aleatorie
+    - file: p3-CP/c4-variabili-aleatorie/variabili-aleatorie-discrete
+    - file: p3-CP/c4-variabili-aleatorie/valore-atteso
+    - file: p3-CP/c4-variabili-aleatorie/varianza
+    - file: p3-CP/c4-variabili-aleatorie/momenti
+    - file: p3-CP/c4-variabili-aleatorie/variabili-multivariate
+    - file: p3-CP/c4-variabili-aleatorie/indipendenza
+    - file: p3-CP/c4-variabili-aleatorie/disuguaglianze-fondamentali
+    - file: p3-CP/c4-variabili-aleatorie/variabili-aleatorie-continue
+  - file: p3-CP/c5-modelli-discreti/modelli-discreti
+    sections:
+    - file: p3-CP/c5-modelli-discreti/bernoulli
+    - file: p3-CP/c5-modelli-discreti/binomiale
+    - file: p3-CP/c5-modelli-discreti/uniforme
+    - file: p3-CP/c5-modelli-discreti/geometrico
+    - file: p3-CP/c5-modelli-discreti/poisson
+    - file: p3-CP/c5-modelli-discreti/ipergeometrico
+  - file: p3-CP/c6-modelli-continui/modelli-continui
+    sections:
+    - file: p3-CP/c6-modelli-continui/uniforme
+    - file: p3-CP/c6-modelli-continui/esponenziale
+    - file: p3-CP/c6-modelli-continui/gaussiano
+    - file: p3-CP/c6-modelli-continui/altri-modelli
+- caption: "Statistica inferenziale"
+  numbered: true
+  chapters:
+  - file: p4-SI/c1-inferenza-puntuale/inferenza-puntuale
+    sections:
+    - file: p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima
+    - file: p4-SI/c1-inferenza-puntuale/media-campionaria
+    - file: p4-SI/c1-inferenza-puntuale/varianza-campionaria
+    - file: p4-SI/c1-inferenza-puntuale/errore-di-una-stima
+    - file: p4-SI/c1-inferenza-puntuale/teorema-centrale-limite
+    - file: p4-SI/c1-inferenza-puntuale/leggi-grandi-numeri
+    - file: p4-SI/c1-inferenza-puntuale/distribuzioni-campionarie
+    - file: p4-SI/c1-inferenza-puntuale/calcolo-dimensione-campione
+    - file: p4-SI/c1-inferenza-puntuale/processo-poisson
 - caption: Bibliografia
   numbered: true
   chapters:

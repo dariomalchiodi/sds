@@ -1,1 +1,0 @@
-# Indici statistici

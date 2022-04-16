@@ -50,7 +50,10 @@ Facciamo finta che...
 
 +++
 
-Nei nostri esperimento faremo riferimento a un _dataset_ ottenuto modificando un opportuno sottoinsieme del [Superhero database](http://www.superherodb.com). Gli esempi faranno quindi riferimento al mondo dei supereroi, ognuno dei quali sarà descritto tramite:
+Nei nostri esperimento faremo riferimento a un _dataset_ ottenuto modificando
+un opportuno sottoinsieme del [Superhero database](http://www.superherodb.com).
+Gli esempi faranno quindi riferimento al mondo dei supereroi, ognuno dei quali
+sarà descritto tramite:
 
 - il suo nome,
 - la sua identità,
@@ -63,7 +66,8 @@ Nei nostri esperimento faremo riferimento a un _dataset_ ottenuto modificando un
 - il colore degli occhi,
 - il colore dei capelli,
 - un indice di forza (in una scala quantitativa da 0 a 100),
-- un indice di intelligenza (in una scala qualitativa i cui valori sono _low_, _moderate_, _average_, _good_, e _high_).
+- un indice di intelligenza (in una scala qualitativa i cui valori sono _low_,
+  _moderate_, _average_, _good_, e _high_).
 
 ```{code-cell} ipython3
 :tags: [hide-input, thebe-init]
