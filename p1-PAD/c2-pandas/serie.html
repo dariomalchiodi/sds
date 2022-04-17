@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="it">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,6 +29,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
@@ -45,6 +46,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/translations.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -56,12 +58,12 @@ const thebe_selector_output = ".output, .cell_output"
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="index" title="Indice" href="../../genindex.html" />
+    <link rel="search" title="Cerca" href="../../search.html" />
     <link rel="next" title="3.2. Dataframe" href="dataframe.html" />
     <link rel="prev" title="3. Pandas" href="pandas.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
+    <meta name="docsearch:language" content="it">
     
 
     <!-- Google Analytics -->
@@ -94,13 +96,15 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Cerca in questo libro ..." aria-label="Cerca in questo libro ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../landing.html">
-   Superhero Data Science: Probabilità e Statistica
+   Superhero Data Science
+   <br/>
+   Probabilità e Statistica
   </a>
  </li>
 </ul>
@@ -181,7 +185,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c1-intro-python/leggere-file.html">
-     2.8. Leggere dati da file (e un po’ di trucchi)
+     2.8. Leggere dati da file (e un po' di trucchi)
     </a>
    </li>
   </ul>
@@ -216,8 +220,8 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/dati-e-frequenze.html">
-   4. Dati e frequenze
+  <a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/dati-e-informazione.html">
+   4. Dati e informazione
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -226,30 +230,30 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/dati-quantitativi-e-qualitativi.html">
+    <a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/dati-quantitativi-e-qualitativi.html">
      4.7. Dati quantitativi e qualitativi
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-assolute-e-relative.html">
+    <a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/frequenze-assolute-e-relative.html">
      4.8. Frequenze assolute e relative
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-cumulate.html">
+    <a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/frequenze-cumulate.html">
      4.9. Frequenze cumulate
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c1-dati-e-frequenze/frequenze-congiunte-e-marginali.html">
+    <a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/frequenze-congiunte-e-marginali.html">
      4.10. Frequenze congiunte e marginali
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p2-SD/c2-indici-statistici/indici-statistici.html">
-   5. Indici statistici
+  <a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/utilizzare-informazione.html">
+   5. Utilizzare l'informazione
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
   <label for="toctree-checkbox-5">
@@ -258,55 +262,30 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/indici-di-posizione.html">
-     5.1. Indici di posizione
+    <a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/descrivere-popolazione.html">
+     5.1. Descrivere una popolazione
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/indici-di-dispersione.html">
-     5.2. Calcolo della dispersione in pandas
+    <a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/predire-informazione.html">
+     5.2. Predire l'informazione
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/quantili-campionari.html">
-     5.3. Quantili campionari
+    <a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/classificazione.html">
+     5.3. Classificazione
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/covarianza-e-correlazione.html">
-     5.4. Covarianza e correlazione
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/eterogeneita.html">
-     5.5. Indici di eterogeneità
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/concentrazione.html">
-     5.6. Indici di concentrazione
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/trasformazioni-dei-dati.html">
-     5.7. Trasformazione dei dati
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/analisi-della-varianza.html">
-     5.8. Analisi della varianza
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c2-indici-statistici/analisi-di-classificatori.html">
-     5.9. Analisi di classificatori
+    <a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/regressione.html">
+     5.4. Regressione
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p2-SD/c3-grafici/grafici.html">
-   6. Grafici
+  <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/misurare-informazione.html">
+   6. Misurare l'informazione
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
   <label for="toctree-checkbox-6">
@@ -315,28 +294,97 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c3-grafici/diagrammi-per-dati-discreti.html">
-     6.1. Dati discreti
+    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/indici-di-posizione.html">
+     6.1. Indici di posizione
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c3-grafici/diagrammi-per-dati-continui.html">
-     6.2. Dati continui
+    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/indici-di-dispersione.html">
+     6.2. Calcolo della dispersione in pandas
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c3-grafici/diagrammi-per-dati-cumulati.html">
-     6.3. Dati cumulati
+    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/quantili-campionari.html">
+     6.3. Quantili campionari
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c3-grafici/diagrammi-per-dati-a-coppie.html">
-     6.4. Dati a coppie
+    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/eterogeneita.html">
+     6.4. Indici di eterogeneità
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c3-grafici/simmetria-e-normalita.html">
-     6.5. Simmetria e normalità
+    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/concentrazione.html">
+     6.5. Indici di concentrazione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/trasformazioni-dei-dati.html">
+     6.6. Trasformazione dei dati
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/analisi-della-varianza.html">
+     6.7. Analisi della varianza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/analisi-di-classificatori.html">
+     6.8. Analisi di classificatori
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/visualizzare-informazione.html">
+   7. Visualizzare l'informazione
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-discreti.html">
+     7.1. Dati discreti
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-continui.html">
+     7.2. Dati continui
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-cumulati.html">
+     7.3. Dati cumulati
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/simmetria-e-normalita.html">
+     7.4. Simmetria e normalità
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p2-SD/c5-analizzare-relazioni/analizzare-relazioni.html">
+   8. Analizzare le relazioni tra i dati
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c5-analizzare-relazioni/diagrammi-per-dati-a-coppie.html">
+     8.1. Dati a coppie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c5-analizzare-relazioni/covarianza-e-correlazione.html">
+     8.2. Covarianza e correlazione
     </a>
    </li>
   </ul>
@@ -348,86 +396,328 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/calcolo-combinatorio.html">
-   7. Calcolo combinatorio
+   9. Calcolo combinatorio
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/principio-fondamentale-calcolo-combinatorio.html">
+     9.1. Principio fondamentale del calcolo combinatorio
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/permutazioni.html">
+     9.2. Permutazioni
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/disposizioni.html">
+     9.3. Disposizioni e combinazioni
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/combinazioni.html">
+     9.4. Disposizioni e combinazioni
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/esercizi.html">
+     9.5. Esercizi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/generazione.html">
+     9.6. Generazione di disposizioni, permutazioni e combinazioni
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/teoria-insiemi.html">
-   8. Teoria degli insiemi
+   10. Teoria degli insiemi
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/concetti-di-base.html">
-     8.1. Concetti di base
+     10.1. Concetti di base
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/insiemi-finiti-e-infiniti.html">
-     8.2. Insiemi finiti e infiniti
+     10.2. Insiemi finiti e infiniti
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/relazioni-tra-insiemi.html">
-     8.3. Relazioni tra insiemi
+     10.3. Relazioni tra insiemi
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/operazioni-tra-insiemi.html">
-     8.4. Operazioni tra insiemi
+     10.4. Operazioni tra insiemi
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/insiemi-in-python.html">
-     8.5. Gli insiemi in Python
+     10.5. Gli insiemi in Python
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../p3-CP/c3-probabilita/assiomi-kolmogorov.html">
-   9. Assiomi di Kolmogorov
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../p3-CP/c3-probabilita/spazi-equiprobabili.html">
-   10. Spazi equiprobabili
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../p3-CP/c3-probabilita/probabilita-condizionata.html">
-   11. Probabilità condizionata
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../p3-CP/c3-probabilita/prob-totali-e-naive-bayes.html">
-   12. Teoremi
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../p3-CP/c3-probabilita/classificatori-naive-bayes.html">
-   13. Classificatori naive Bayes
-  </a>
- </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p3-CP/c4-modelli-discreti/modelli-discreti.html">
-   14. Modelli discreti
+  <a class="reference internal" href="../../p3-CP/c3-probabilita/calcolo-probabilita.html">
+   11. Calcolo delle probabilità
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c4-modelli-discreti/modello-geometrico.html">
-     14.1. Il modello geometrico
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/concetto-di-probabilita.html">
+     11.1. Il concetto di probabilità
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/esperimenti-esiti-eventi.html">
+     11.2. Esperimenti, esiti ed eventi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/assiomi-kolmogorov.html">
+     11.3. Assiomi di Kolmogorov
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/spazi-equiprobabili.html">
+     11.4. Spazi equiprobabili
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/probabilita-condizionata.html">
+     11.5. Probabilità condizionata
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/prob-totali-e-naive-bayes.html">
+     11.6. Teoremi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/classificatori-naive-bayes.html">
+     11.7. Classificatori naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/indipendenza.html">
+     11.8. Indipendenza
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/intro.html">
+   12. Variabili aleatorie
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-aleatorie.html">
+     12.1. Variabili aleatorie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-aleatorie-discrete.html">
+     12.2. Variabili aleatorie discrete
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/valore-atteso.html">
+     12.3. Valore atteso
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/varianza.html">
+     12.4. Varianza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/momenti.html">
+     12.5. momenti
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-multivariate.html">
+     12.6. Variabili aleatorie multivariate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/indipendenza.html">
+     12.7. Indipendenza di variabili aleatorie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/disuguaglianze-fondamentali.html">
+     12.8. Disuguaglianze fondamentali
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-aleatorie-continue.html">
+     12.9. Variabili aleatorie continue
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/modelli-discreti.html">
+   13. Modelli discreti
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/bernoulli.html">
+     13.1. Il modello di Bernoulli
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/binomiale.html">
+     13.2. Il modello binomiale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/uniforme.html">
+     13.3. Il modello uniforme discreto
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/geometrico.html">
+     13.4. Il modello geometrico
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/poisson.html">
+     13.5. Il modello di poisson
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/ipergeometrico.html">
+     13.6. Il modello ipergeometrico
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p3-CP/c6-modelli-continui/modelli-continui.html">
+   14. I modelli continui
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/uniforme.html">
+     14.1. Il modello uniforme continuo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/esponenziale.html">
+     14.2. Il modello esponenziale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/gaussiano.html">
+     14.3. Il modello gaussiano
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/altri-modelli.html">
+     14.4. Altri modelli continui
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Statistica inferenziale
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/inferenza-puntuale.html">
+   15. Inferenza puntuale
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima.html">
+     15.1. Popolazione, campione e stima
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/media-campionaria.html">
+     15.2. Media campionaria
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/varianza-campionaria.html">
+     15.3. Varianza campionaria
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/errore-di-una-stima.html">
+     15.4. Errore di una stima
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/teorema-centrale-limite.html">
+     15.5. Teorema del limite centrale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/leggi-grandi-numeri.html">
+     15.6. Leggi dei grandi numeri
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/distribuzioni-campionarie.html">
+     15.7. Distribuzioni campionarie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/calcolo-dimensione-campione.html">
+     15.8. Calcolo della dimensione del campione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/processo-poisson.html">
+     15.9. Processo di poisson
     </a>
    </li>
   </ul>
@@ -441,7 +731,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../bibliography.html">
-   15. Bibliography
+   16. Bibliografia
   </a>
  </li>
 </ul>
@@ -469,8 +759,8 @@ const thebe_selector_output = ".output, .cell_output"
             
             <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
                 data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                aria-expanded="true" aria-label="Attiva / disattiva la navigazione" aria-controls="site-navigation"
+                title="Attiva / disattiva la navigazione" data-toggle="tooltip" data-placement="left">
                 <i class="fas fa-bars"></i>
                 <i class="fas fa-arrow-left"></i>
                 <i class="fas fa-arrow-up"></i>
@@ -478,21 +768,21 @@ const thebe_selector_output = ".output, .cell_output"
             
             
 <div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Scarica questa pagina"><i
             class="fas fa-download"></i></button>
 
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
         <a class="dropdown-buttons"
             href="../../_sources/p1-PAD/c2-pandas/serie.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                class="btn btn-secondary topbarbtn" title="Scarica il file del taccuino" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download raw file -->
         <a class="dropdown-buttons" href="../../_sources/p1-PAD/c2-pandas/serie.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                class="btn btn-secondary topbarbtn" title="Scarica il file sorgente" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Stampa in PDF"
                 onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
@@ -505,23 +795,23 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
             href="https://github.com/dariomalchiodi/sds"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                data-toggle="tooltip" data-placement="left" title="Repository di origine"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
             href="https://github.com/dariomalchiodi/sds/issues/new?title=Issue%20on%20page%20%2Fp1-PAD/c2-pandas/serie.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+                title="Apri un problema"><i class="fas fa-lightbulb"></i>questione aperta</button></a>
         <a class="edit-button" href="https://github.com/dariomalchiodi/sds/edit/main/sds/p1-PAD/c2-pandas/serie.md"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+                title="Modifica questa pagina"><i class="fas fa-pencil-alt"></i>suggerisci modifica</button></a>
     </div>
 </div>
 
             <!-- Full screen (wrap in <a> to have style consistency -->
 
 <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modalità schermo intero"
+        title="Modalità schermo intero"><i
             class="fas fa-expand"></i></button></a>
 
             <!-- Launch buttons -->
@@ -532,7 +822,7 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="dropdown-buttons">
         
         <a class="binder-button" href="https://mybinder.org/v2/gh/dariomalchiodi/sds/main?urlpath=tree/sds/p1-PAD/c2-pandas/serie.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                class="btn btn-secondary topbarbtn" title="Lanciare Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../../_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
@@ -549,7 +839,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+                <i class="fas fa-list"></i> Contenuti
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
@@ -579,7 +869,7 @@ const thebe_selector_output = ".output, .cell_output"
                     <div id="jb-print-toc">
                         
                         <div>
-                            <h2> Contents </h2>
+                            <h2> Contenuti </h2>
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
@@ -603,8 +893,12 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="serie">
-<h1><span class="section-number">3.1. </span>Serie<a class="headerlink" href="#serie" title="Permalink to this headline">¶</a></h1>
-<p>Una delle classi principali implementate in pandas è <code class="docutils literal notranslate"><span class="pre">Series</span></code>. Le sue istanze rappresentano serie di osservazioni di un certo carattere fatto su un insieme di individui. La cella seguente recupera dalla lista <code class="docutils literal notranslate"><span class="pre">heroes</span></code> precedentemente creata i nomi dei supereoi e il loro anno di prima apparizione e li utilizza per creare una serie:</p>
+<h1><span class="section-number">3.1. </span>Serie<a class="headerlink" href="#serie" title="Link a questa intestazione">¶</a></h1>
+<p>Una delle classi principali implementate in pandas è <code class="docutils literal notranslate"><span class="pre">Series</span></code>. Le sue istanze
+rappresentano serie di osservazioni di un certo carattere fatto su un insieme
+di individui. La cella seguente recupera dalla lista <code class="docutils literal notranslate"><span class="pre">heroes</span></code> precedentemente
+creata i nomi dei supereoi e il loro anno di prima apparizione e li utilizza
+per creare una serie:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
@@ -625,8 +919,19 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<p>Nella creazione della lista <code class="docutils literal notranslate"><span class="pre">year</span></code> è stata utilizzata una list comprehension in cui l’espressione <code class="docutils literal notranslate"><span class="pre">int(h[7])</span> <span class="pre">if</span> <span class="pre">h[7]</span> <span class="pre">else</span> <span class="pre">None</span></code> utilizza un operatore ternario tramite cui la stringa vuota viene trasformata nel valore speciale <code class="docutils literal notranslate"><span class="pre">None</span></code>, mentre tutte le altre vengono convertite nel corrispondente intero.</p>
-<p>La differenza tra una serie e una lista o una tupla è legata alla possibilità di invocare su di essa delle funzioni specifiche. Inoltre a ogni serie è associato un <em>indice</em> che permette di identificare ogni elemento osservato. Nell’esempio sopra riportato, il primo argomento specificato nel costruttore è una lista (ma sarebbe andata bene anche una tupla) di anni che indicano la prima apparizione di un supereroe e il secondo rappresenta appunto l’indice, che in questo caso è la lista dei corrispondenti nomi. Quando si visualizza una serie, ogni osservazione viene associata al corrispondente elemento usando appunto l’indice:</p>
+<p>Nella creazione della lista <code class="docutils literal notranslate"><span class="pre">year</span></code> è stata utilizzata una list comprehension in
+cui l'espressione <code class="docutils literal notranslate"><span class="pre">int(h[7])</span> <span class="pre">if</span> <span class="pre">h[7]</span> <span class="pre">else</span> <span class="pre">None</span></code> utilizza un operatore ternario
+tramite cui la stringa vuota viene trasformata nel valore speciale <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+mentre tutte le altre vengono convertite nel corrispondente intero.</p>
+<p>La differenza tra una serie e una lista o una tupla è legata alla possibilità
+di invocare su di essa delle funzioni specifiche. Inoltre a ogni serie è
+associato un <em>indice</em> che permette di identificare ogni elemento osservato.
+Nell'esempio sopra riportato, il primo argomento specificato nel costruttore è
+una lista (ma sarebbe andata bene anche una tupla) di anni che indicano la
+prima apparizione di un supereroe e il secondo rappresenta appunto l'indice,
+che in questo caso è la lista dei corrispondenti nomi. Quando si visualizza
+una serie, ogni osservazione viene associata al corrispondente elemento usando
+appunto l'indice:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_appearance</span>
@@ -650,10 +955,21 @@ Length: 735, dtype: float64
 </div>
 </div>
 </div>
-<p>La visualizzazione della serie (che in questo caso riporta solo i primi e gli ultimi elementi perché la serie è troppo lunga) termina indicando il tipo di dato usato per rappresentare le varie osservazioni. Nell’esempio precedente viene utilizzato il tipo <code class="docutils literal notranslate"><span class="pre">float64</span></code> (pandas utilizza internamente gli array di numpy, in cui è presente un’implementazione dei tipi in virgola mobile diversa da quella standard di python), nonostante i dati originari fossero numeri interi. Ciò è dovuto alla presenza di valori mancanti. Di norma vengono indicati con la sigla NA (dall’inglese “not available”), ma in pandas essi vengono rappresentati utilizzando il concetto di “not a number” dello standard IEEE per la virgola mobile: si noti come tutte le occorrenze di <code class="docutils literal notranslate"><span class="pre">None</span></code> nella lista originale siano state automaticamente convertite in <code class="docutils literal notranslate"><span class="pre">np.nan</span></code>.</p>
-<p>L’accesso ai dati contenuti in una serie può avvenire in due modi:</p>
+<p>La visualizzazione della serie (che in questo caso riporta solo i primi e gli
+ultimi elementi perché la serie è troppo lunga) termina indicando il tipo di
+dato usato per rappresentare le varie osservazioni. Nell'esempio precedente
+viene utilizzato il tipo <code class="docutils literal notranslate"><span class="pre">float64</span></code> (pandas utilizza internamente gli array di
+numpy, in cui è presente un'implementazione dei tipi in virgola mobile diversa
+da quella standard di python), nonostante i dati originari fossero numeri
+interi. Ciò è dovuto alla presenza di valori mancanti. Di norma vengono
+indicati con la sigla NA (dall'inglese &quot;not available&quot;), ma in pandas essi
+vengono rappresentati utilizzando il concetto di &quot;not a number&quot; dello standard
+IEEE per la virgola mobile: si noti come tutte le occorrenze di <code class="docutils literal notranslate"><span class="pre">None</span></code> nella
+lista originale siano state automaticamente convertite in <code class="docutils literal notranslate"><span class="pre">np.nan</span></code>.</p>
+<p>L'accesso ai dati contenuti in una serie può avvenire in due modi:</p>
 <ul class="simple">
-<li><p>specificando un valore per l’indice tra parentesi quadre dopo la serie o dopo la sua proprietà <code class="docutils literal notranslate"><span class="pre">loc</span></code>:</p></li>
+<li><p>specificando un valore per l'indice tra parentesi quadre dopo la serie o dopo
+la sua proprietà <code class="docutils literal notranslate"><span class="pre">loc</span></code>:</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -668,7 +984,8 @@ Length: 735, dtype: float64
 </div>
 </div>
 <ul class="simple">
-<li><p>indicando un valore per la posizione tra parentesi quadre dopo la serie o dopo la sua proprietà <code class="docutils literal notranslate"><span class="pre">iloc</span></code>:</p></li>
+<li><p>indicando un valore per la posizione tra parentesi quadre dopo la serie o
+dopo la sua proprietà <code class="docutils literal notranslate"><span class="pre">iloc</span></code>:</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -684,9 +1001,15 @@ Length: 735, dtype: float64
 </div>
 <div class="naming admonition">
 <p class="admonition-title">Nomenclatura</p>
-<p>Se l’indice di una serie è basato su valori interi, i valori tra parentesi quadre immediatamente dopo la serie faranno riferimento all’indice e non alla posizione: ciò potrebbe essere fuorviante se gli elementi dell’indice non partono da zero e non sono consecutivi.</p>
+<p>Se l'indice di una serie è basato su valori interi, i valori tra parentesi
+quadre immediatamente dopo la serie faranno riferimento all'indice e non alla
+posizione: ciò potrebbe essere fuorviante se gli elementi dell'indice non
+partono da zero e non sono consecutivi.</p>
 </div>
-<p>È inoltre possibile utilizzare una notazione simile al <em>list slicing</em> specificando valori dell’indice oppure posizioni. Va però notato che gli <em>slicing</em> basati su indice comprenderanno il primo e l’ultimo valore specificato:</p>
+<p>È inoltre possibile utilizzare una notazione simile al <em>list slicing</em>
+specificando valori dell'indice oppure posizioni. Va però notato che gli
+<em>slicing</em> basati su indice comprenderanno il primo e l'ultimo valore
+specificato:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_appearance</span><span class="p">[</span><span class="s1">&#39;Wonder Girl&#39;</span><span class="p">:</span><span class="s1">&#39;Wonder Woman&#39;</span><span class="p">]</span>
@@ -701,7 +1024,7 @@ dtype: float64
 </div>
 </div>
 </div>
-<p>mentre gli <em>slice</em> basati su posizione escluderanno l’ultimo elemento:</p>
+<p>mentre gli <em>slice</em> basati su posizione escluderanno l'ultimo elemento:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_appearance</span><span class="p">[</span><span class="mi">60</span><span class="p">:</span><span class="mi">63</span><span class="p">]</span>
@@ -717,7 +1040,8 @@ dtype: float64
 </div>
 </div>
 </div>
-<p>L’accesso posizionale può anche fare riferimento a numeri negativi, contando in analogia a liste e tuple a partire dall’ultimo elemento:</p>
+<p>L'accesso posizionale può anche fare riferimento a numeri negativi, contando in
+analogia a liste e tuple a partire dall'ultimo elemento:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_appearance</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span>
@@ -735,7 +1059,9 @@ dtype: float64
 </div>
 </div>
 </div>
-<p>È possibile accedere ai primi e ultimi elementi di una serie anche utilizzando le funzioni <code class="docutils literal notranslate"><span class="pre">head</span></code> e <code class="docutils literal notranslate"><span class="pre">tail</span></code>, che mostrano rispettivamente solo le prime e le ultime righe:</p>
+<p>È possibile accedere ai primi e ultimi elementi di una serie anche utilizzando
+le funzioni <code class="docutils literal notranslate"><span class="pre">head</span></code> e <code class="docutils literal notranslate"><span class="pre">tail</span></code>, che mostrano rispettivamente solo le prime e le
+ultime righe:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_appearance</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
@@ -755,7 +1081,9 @@ dtype: float64
 </div>
 </div>
 </div>
-<p>L’accesso alle liste può anche essere fatto specificando una lista (ma non una tupla) di posizioni al posto di una sola posizione, con l’effetto di ottenere i corrispondenti elementi.</p>
+<p>L'accesso alle liste può anche essere fatto specificando una lista (ma non una
+tupla) di posizioni al posto di una sola posizione, con l'effetto di ottenere i
+corrispondenti elementi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_appearance</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">709</span><span class="p">]]</span>
@@ -771,7 +1099,9 @@ dtype: float64
 </div>
 </div>
 </div>
-<p>Questo tipo di accesso può essere fatto anche specificando una lista di valori per l’indice. Infine, si può utilizzare una lista di valori booleani in cui <code class="docutils literal notranslate"><span class="pre">True</span></code> indica gli elementi da estrarre e <code class="docutils literal notranslate"><span class="pre">False</span></code> quelli da filtrare:</p>
+<p>Questo tipo di accesso può essere fatto anche specificando una lista di valori
+per l'indice. Infine, si può utilizzare una lista di valori booleani in cui
+<code class="docutils literal notranslate"><span class="pre">True</span></code> indica gli elementi da estrarre e <code class="docutils literal notranslate"><span class="pre">False</span></code> quelli da filtrare:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_appearance</span><span class="p">[[</span><span class="mi">1970</span> <span class="o">&lt;=</span> <span class="n">y</span> <span class="o">&lt;</span><span class="mi">1975</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">first_appearance</span><span class="p">]]</span>
@@ -808,9 +1138,14 @@ dtype: float64
 </div>
 <div class="naming admonition">
 <p class="admonition-title">Nomenclatura</p>
-<p>L’uso di questa modalità di accesso richiede che la lista di valori booleani abbia la stessa lunghezza della serie. L’uso di liste di dimensioni minori l’accesso, che comporta un filtraggio effettuato solo nei primi elementi della serie, è deprecato e va quindi evitato.</p>
+<p>L'uso di questa modalità di accesso richiede che la lista di valori booleani
+abbia la stessa lunghezza della serie. L'uso di liste di dimensioni minori
+l'accesso, che comporta un filtraggio effettuato solo nei primi elementi della
+serie, è deprecato e va quindi evitato.</p>
 </div>
-<p>Infine, è possibile effettuare delle <em>query</em> su una serie specificando tra parentesi quadre un’espressione logica che indica quali elementi visualizzare, utilizzando la serie come simbolo che ne indica un suo generico elemento:</p>
+<p>Infine, è possibile effettuare delle <em>query</em> su una serie specificando tra
+parentesi quadre un'espressione logica che indica quali elementi visualizzare,
+utilizzando la serie come simbolo che ne indica un suo generico elemento:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_appearance</span><span class="p">[</span><span class="n">first_appearance</span> <span class="o">&gt;</span> <span class="mi">2010</span><span class="p">]</span>
@@ -838,9 +1173,15 @@ dtype: float64
 </div>
 <div class="naming admonition">
 <p class="admonition-title">Nomenclatura</p>
-<p>Tecnicamente, l’espressione <code class="docutils literal notranslate"><span class="pre">first_appearance</span> <span class="pre">&gt;</span> <span class="pre">2010</span></code> genera una nuova serie che ha lo stesso indice di <code class="docutils literal notranslate"><span class="pre">first_appearance</span></code> e in cui i valori sono <code class="docutils literal notranslate"><span class="pre">True</span></code> in corrispondenza degli anni successivi al 2010 e <code class="docutils literal notranslate"><span class="pre">False</span></code> altrimenti. Questa nuova serie viene utilizzata per filtrare <code class="docutils literal notranslate"><span class="pre">first_appearance</span></code>.</p>
+<p>Tecnicamente, l'espressione <code class="docutils literal notranslate"><span class="pre">first_appearance</span> <span class="pre">&gt;</span> <span class="pre">2010</span></code> genera una nuova serie
+che ha lo stesso indice di <code class="docutils literal notranslate"><span class="pre">first_appearance</span></code> e in cui i valori sono <code class="docutils literal notranslate"><span class="pre">True</span></code> in
+corrispondenza degli anni successivi al 2010 e <code class="docutils literal notranslate"><span class="pre">False</span></code> altrimenti. Questa nuova
+serie viene utilizzata per filtrare <code class="docutils literal notranslate"><span class="pre">first_appearance</span></code>.</p>
 </div>
-<p>Vediamo ora come utilizzando le serie sia molto più semplice calcolare e visualizzare le frequenze assolute: il metodo <code class="docutils literal notranslate"><span class="pre">value_counts</span></code> restituisce un’altra serie in cui gli indici sono i valori osservati e i valori le corrispondenti frequenze assolute, ordinate in senso non crescente.</p>
+<p>Vediamo ora come utilizzando le serie sia molto più semplice calcolare e
+visualizzare le frequenze assolute: il metodo <code class="docutils literal notranslate"><span class="pre">value_counts</span></code> restituisce
+un'altra serie in cui gli indici sono i valori osservati e i valori le
+corrispondenti frequenze assolute, ordinate in senso non crescente.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_appearance</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
@@ -864,7 +1205,13 @@ Length: 71, dtype: int64
 </div>
 </div>
 </div>
-<p>Va notato come il tipo delle frequenze sia, correttamente, intero e come i valori mancanti siano automaticamente esclusi dal calcolo delle frequenze, mentre sono sempre presenti gli <em>outlier</em>.  Per ottenere una serie i cui elementi siano ordinati per valore non decrescente della voce nell’indice è sufficiente invocare il metodo <code class="docutils literal notranslate"><span class="pre">sort_index</span></code>; già che ci siamo, è un buon momento per eliminare i valori fuori scala dal conteggio effettuando una <em>query</em> sulla serie:</p>
+<p>Va notato come il tipo delle frequenze sia, correttamente, intero e come i
+valori mancanti siano automaticamente esclusi dal calcolo delle frequenze,
+mentre sono sempre presenti gli <em>outlier</em>.  Per ottenere una serie i cui
+elementi siano ordinati per valore non decrescente della voce nell'indice è
+sufficiente invocare il metodo <code class="docutils literal notranslate"><span class="pre">sort_index</span></code>; già che ci siamo, è un buon
+momento per eliminare i valori fuori scala dal conteggio effettuando una
+<em>query</em> sulla serie:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_app_freq</span> <span class="o">=</span> <span class="n">first_appearance</span><span class="p">[</span><span class="n">first_appearance</span> <span class="o">&lt;</span> <span class="mi">2090</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
@@ -889,8 +1236,10 @@ dtype: int64
 </div>
 </div>
 <div class="section" id="visualizzione-grafica-di-una-serie">
-<h2><span class="section-number">3.1.1. </span>Visualizzione grafica di una serie<a class="headerlink" href="#visualizzione-grafica-di-una-serie" title="Permalink to this headline">¶</a></h2>
-<p>Pandas mette a disposizione l’oggetto <code class="docutils literal notranslate"><span class="pre">plot</span></code> per visualizzare graficamente i contenuti di una serie, utilizzando matplotlib dietro le quinte; in particolare, il metodo <code class="docutils literal notranslate"><span class="pre">bar</span></code> visualizza un grafico a barre:</p>
+<h2><span class="section-number">3.1.1. </span>Visualizzione grafica di una serie<a class="headerlink" href="#visualizzione-grafica-di-una-serie" title="Link a questa intestazione">¶</a></h2>
+<p>Pandas mette a disposizione l'oggetto <code class="docutils literal notranslate"><span class="pre">plot</span></code> per visualizzare graficamente i
+contenuti di una serie, utilizzando matplotlib dietro le quinte; in
+particolare, il metodo <code class="docutils literal notranslate"><span class="pre">bar</span></code> visualizza un grafico a barre:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Don&#39;t try this at home (men che meno all&#39;esame!)</span>
@@ -904,8 +1253,21 @@ dtype: int64
 <img alt="../../_images/serie_27_0.png" src="../../_images/serie_27_0.png" />
 </div>
 </div>
-<p>Il grafico ottenuto, diciamolo, fa schifo. Questo perché <code class="docutils literal notranslate"><span class="pre">bar</span></code> considera un punto per ogni elemento della serie, in cui le ascisse corrispondono alla posizione (zero per la prima osservazione, uno per la seconda e così via, sebbene nel grafico sull’asse delle ascisse vengano poi visualizzati i valori dell’indice) e le ordinate al valore osservato. Per ognuno dei punti così ottenuti viene poi tracciato un segmento che lo congiunge perpendicolarmente all’asse delle ascisse. Il risultato è decisamente poco informativo, sia da un punto di vista grafico (le etichette sull’asse delle ascisse si sovrappongono, così che non si riesce a leggere nulla), sia da un punto di vista analitico: le barre hanno altezze simili e quindi le loro differenze sono poco apprezzabili a colpo d’occhio; inoltre il grafico dipende per esempio dall’ordine in cui sono elencate le osservazioni e non ci permette di solito di trarre alcuna informazione sulla relazione che lega tra loro le osservazioni.</p>
-<p>Si ottengono dei risultati decisamente più interessanti se si visualizza un grafico analogo per le frequenze assolute:</p>
+<p>Il grafico ottenuto, diciamolo, fa schifo. Questo perché <code class="docutils literal notranslate"><span class="pre">bar</span></code> considera un
+punto per ogni elemento della serie, in cui le ascisse corrispondono alla
+posizione (zero per la prima osservazione, uno per la seconda e così via,
+sebbene nel grafico sull'asse delle ascisse vengano poi visualizzati i valori
+dell'indice) e le ordinate al valore osservato. Per ognuno dei punti così
+ottenuti viene poi tracciato un segmento che lo congiunge perpendicolarmente
+all'asse delle ascisse. Il risultato è decisamente poco informativo, sia da un
+punto di vista grafico (le etichette sull'asse delle ascisse si sovrappongono,
+così che non si riesce a leggere nulla), sia da un punto di vista analitico: le
+barre hanno altezze simili e quindi le loro differenze sono poco apprezzabili a
+colpo d'occhio; inoltre il grafico dipende per esempio dall'ordine in cui sono
+elencate le osservazioni e non ci permette di solito di trarre alcuna
+informazione sulla relazione che lega tra loro le osservazioni.</p>
+<p>Si ottengono dei risultati decisamente più interessanti se si visualizza un
+grafico analogo per le frequenze assolute:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_app_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
@@ -917,7 +1279,14 @@ dtype: int64
 <img alt="../../_images/serie_29_0.png" src="../../_images/serie_29_0.png" />
 </div>
 </div>
-<p>Il grafico ottenuto è sicuramente migliore di quello precedente, ma rimane il problema di leggibilità dell’asse delle ascisse. Ciò è dovuto al fatto che pandas non inserisce le barre sul grafico nelle ascisse corrispondenti agli anni, ma le posiziona una accanto all’altra, come possiamo renderci conto visualizzando un po’ meglio solo alcune delle etichette (in prima istanza non è importante capire come venga generato questo grafico, ma se siete cursosi potete leggere l’approfondimento che trovate dopo il commento al grafico stesso):</p>
+<p>Il grafico ottenuto è sicuramente migliore di quello precedente, ma rimane il
+problema di leggibilità dell'asse delle ascisse. Ciò è dovuto al fatto che
+pandas non inserisce le barre sul grafico nelle ascisse corrispondenti agli
+anni, ma le posiziona una accanto all'altra, come possiamo renderci conto
+visualizzando un po' meglio solo alcune delle etichette (in prima istanza non è
+importante capire come venga generato questo grafico, ma se siete curiosi
+potete leggere l'approfondimento che trovate dopo il commento al grafico
+stesso):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">years</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1945</span><span class="p">,</span> <span class="mi">2010</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
@@ -933,12 +1302,27 @@ dtype: int64
 <img alt="../../_images/serie_31_0.png" src="../../_images/serie_31_0.png" />
 </div>
 </div>
-<p>Si può osservare che tra due valori successivi evidenziati nell’asse delle ascisse intercorre una distanza di dieci anni, ma le etichette non risultano equispaziate: ciò è dovuto al fatto che in realtà la prima barra ha ascissa 1, la seconda ha ascissa 2 e così via, mentre le etichette mostrate sull’asse delle ascisse corrispondono ai valori degli indici.</p>
+<p>Si può osservare che tra due valori successivi evidenziati nell'asse delle
+ascisse intercorre una distanza di dieci anni, ma le etichette non risultano
+equispaziate: ciò è dovuto al fatto che in realtà la prima barra ha ascissa 1,
+la seconda ha ascissa 2 e così via, mentre le etichette mostrate sull'asse
+delle ascisse corrispondono ai valori degli indici.</p>
 <div class="naming admonition">
 <p class="admonition-title">Nomenclatura</p>
-<p>Per generare il grafico precedente è necessario utilizzare alcune funzionalità avanzate delle librerie considerate: <code class="docutils literal notranslate"><span class="pre">np.arange</span></code> permette di costruire un array i cui valori vanno di dieci in dieci partendo da 1945 e arrivando a 2005; la proprietà <code class="docutils literal notranslate"><span class="pre">index</span></code> di una serie permette di estrarne l’indice e il metodo <code class="docutils literal notranslate"><span class="pre">get_loc</span></code> di quest’ultimo restituisce la posizione corrispondente a un dato valore dell’indice. Infine, il metodo <code class="docutils literal notranslate"><span class="pre">xticks</span></code> di matplotlib permette di specificare quali valori evidenziare sull’asse delle ascisse e quali etichette utilizzare.</p>
+<p>Per generare il grafico precedente è necessario utilizzare alcune funzionalità
+avanzate delle librerie considerate: <code class="docutils literal notranslate"><span class="pre">np.arange</span></code> permette di costruire un array
+i cui valori vanno di dieci in dieci partendo da 1945 e arrivando a 2005; la
+proprietà <code class="docutils literal notranslate"><span class="pre">index</span></code> di una serie permette di estrarne l'indice e il metodo
+<code class="docutils literal notranslate"><span class="pre">get_loc</span></code> di quest'ultimo restituisce la posizione corrispondente a un dato
+valore dell'indice. Infine, il metodo <code class="docutils literal notranslate"><span class="pre">xticks</span></code> di matplotlib permette di
+specificare quali valori evidenziare sull'asse delle ascisse e quali etichette
+utilizzare.</p>
 </div>
-<p>Per ottenere un grafico simile in cui le ascisse siano effettivamente gli anni di prima apparizione è necessario tornare a utilizzare esplicitamente matplotlib, passando al metodo <code class="docutils literal notranslate"><span class="pre">bar</span></code> rispettivamente l’indice e i valori della serie, che si ottengono rispettivamente utilizzando la proprietà <code class="docutils literal notranslate"><span class="pre">index</span></code> e invocando il metodo <code class="docutils literal notranslate"><span class="pre">get_values</span></code>.</p>
+<p>Per ottenere un grafico simile in cui le ascisse siano effettivamente gli anni
+di prima apparizione è necessario tornare a utilizzare esplicitamente
+matplotlib, passando al metodo <code class="docutils literal notranslate"><span class="pre">bar</span></code> rispettivamente l'indice e i valori della
+serie, che si ottengono rispettivamente utilizzando la proprietà <code class="docutils literal notranslate"><span class="pre">index</span></code> e
+invocando il metodo <code class="docutils literal notranslate"><span class="pre">get_values</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">first_app_freq</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">first_app_freq</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
@@ -954,14 +1338,18 @@ dtype: int64
 </div>
 </div>
 <div class="section" id="operazioni-con-le-serie">
-<h2><span class="section-number">3.1.2. </span>Operazioni con le serie<a class="headerlink" href="#operazioni-con-le-serie" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.1.2. </span>Operazioni con le serie<a class="headerlink" href="#operazioni-con-le-serie" title="Link a questa intestazione">¶</a></h2>
 <p>Consideriamo le seguenti domande:</p>
 <ol class="simple">
 <li><p>Quanti supereroi sono apparsi dopo il 1960?</p></li>
 <li><p>Quanti tra il 1940 e il 1965?</p></li>
 <li><p>Quanti dopo il 1970?</p></li>
 </ol>
-<p>Per rispondere alla prima domanda dobbiamo isolare le frequenze che corrispondono agli anni di apparizione che vanno dal 1960 in avanti. Notiamo che l’indice della serie contiene i valori degli anni; è quindi possibile utilizzare l’accesso tramite <em>list slicing</em> per recuperare le frequenze degli anni di apparizione che vanno dal 1960 in avanti:</p>
+<p>Per rispondere alla prima domanda dobbiamo isolare le frequenze che
+corrispondono agli anni di apparizione che vanno dal 1960 in avanti. Notiamo
+che l'indice della serie contiene i valori degli anni; è quindi possibile
+utilizzare l'accesso tramite <em>list slicing</em> per recuperare le frequenze degli
+anni di apparizione che vanno dal 1960 in avanti:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_app_freq</span><span class="p">[</span><span class="mi">1960</span><span class="p">:]</span>
@@ -1029,7 +1417,8 @@ dtype: int64
 </div>
 </div>
 </div>
-<p>A questo punto è sufficiente invocare la funzione <code class="docutils literal notranslate"><span class="pre">sum</span></code> sulla sotto-serie individuata per ottenere la somma delle frequenze:</p>
+<p>A questo punto è sufficiente invocare la funzione <code class="docutils literal notranslate"><span class="pre">sum</span></code> sulla sotto-serie
+individuata per ottenere la somma delle frequenze:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">first_app_freq</span><span class="p">[</span><span class="mi">1960</span><span class="p">:])</span>
@@ -1042,7 +1431,8 @@ dtype: int64
 </div>
 </div>
 </div>
-<p>La seconda domanda trova risposta in modo analogo, filtrando le frequenze degli anni di apparizione tra il 1940 e il 1966:</p>
+<p>La seconda domanda trova risposta in modo analogo, filtrando le frequenze degli
+anni di apparizione tra il 1940 e il 1966:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">first_app_freq</span><span class="p">[</span><span class="mi">1940</span><span class="p">:</span><span class="mi">1966</span><span class="p">])</span>
@@ -1055,7 +1445,8 @@ dtype: int64
 </div>
 </div>
 </div>
-<p>Analogamente, all’ultima domanda si risponde selezionando gli anni dal 1970 in avanti:</p>
+<p>Analogamente, all'ultima domanda si risponde selezionando gli anni dal 1970 in
+avanti:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">first_app_freq</span><span class="p">[:</span><span class="mi">1971</span><span class="p">])</span>
@@ -1070,9 +1461,13 @@ dtype: int64
 </div>
 <div class="naming admonition">
 <p class="admonition-title">Nomenclatura</p>
-<p>La funzione <code class="docutils literal notranslate"><span class="pre">sum</span></code> accetta come argomento liste, tuple e serie: in tutti i casi restituisce la somma dei valori in esse contenute.</p>
+<p>La funzione <code class="docutils literal notranslate"><span class="pre">sum</span></code> accetta come argomento liste, tuple e serie: in tutti i casi
+restituisce la somma dei valori in esse contenute.</p>
 </div>
-<p>Un modo alternativo per calcolare la somma dei valori in una serie è quella di invocare su di essa l’omonimo metodo <code class="docutils literal notranslate"><span class="pre">sum</span></code>. Le serie sono inoltre in tutto e per tutto dei vettori, sui quali è possibile effettuare operazioni algebriche. Consideriamo per esempio le due serie contenenti altezza e peso dei supereroi:</p>
+<p>Un modo alternativo per calcolare la somma dei valori in una serie è quella di
+invocare su di essa l'omonimo metodo <code class="docutils literal notranslate"><span class="pre">sum</span></code>. Le serie sono inoltre in tutto e
+per tutto dei vettori, sui quali è possibile effettuare operazioni algebriche.
+Consideriamo per esempio le due serie contenenti altezza e peso dei supereroi:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">height</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span> <span class="k">if</span> <span class="n">h</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">heroes</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
@@ -1081,7 +1476,11 @@ dtype: int64
 </div>
 </div>
 </div>
-<p>Una prima categoria di operazioni è quella che si ottiene indicando il nome di una serie all’interno di un’espressione aritmetica: il risultato è una nuova serie ottenuta calcolando l’espressione su tutti gli elementi della serie di partenza. Per esempio, la cella seguente crea la serie contenente l’altezza degli eroi misurata in metri e ne visualizza i primi dieci elementi:</p>
+<p>Una prima categoria di operazioni è quella che si ottiene indicando il nome di
+una serie all'interno di un'espressione aritmetica: il risultato è una nuova
+serie ottenuta calcolando l'espressione su tutti gli elementi della serie di
+partenza. Per esempio, la cella seguente crea la serie contenente l'altezza
+degli eroi misurata in metri e ne visualizza i primi dieci elementi:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">height</span><span class="o">/</span><span class="mi">100</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span>
@@ -1104,7 +1503,11 @@ dtype: float64
 </div>
 </div>
 </div>
-<p>Quando si considerano operazioni più complicate, è possibile utilizzare il metodo <code class="docutils literal notranslate"><span class="pre">apply</span></code> indicando come suo argomento la funzione da applicare agli elementi della serie. Per esempio, nella cella seguente viene creata una nuova serie ottenuta esprimendo le altezze dei supereroi in metri e successivamente elevando il risultato al quadrato.</p>
+<p>Quando si considerano operazioni più complicate, è possibile utilizzare il
+metodo <code class="docutils literal notranslate"><span class="pre">apply</span></code> indicando come suo argomento la funzione da applicare agli
+elementi della serie. Per esempio, nella cella seguente viene creata una nuova
+serie ottenuta esprimendo le altezze dei supereroi in metri e successivamente
+elevando il risultato al quadrato.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">height</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">h</span><span class="p">:</span> <span class="p">(</span><span class="n">h</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span>
@@ -1127,7 +1530,14 @@ dtype: float64
 </div>
 </div>
 </div>
-<p>Un’altra importante categoria di operazioni è quella che vede due serie indicate come argomenti di un operatore aritmetico binario. In questo caso verrà ancora creata una nuova serie, in cui l’operazione viene calcolata elemento per elemento nelle serie indicate. Per esempio, la cella seguente crea una nuova serie <code class="docutils literal notranslate"><span class="pre">bmi</span></code> contenente l’indice di massa corporea (BMI) dei supereroi (ottenuto dividendo il peso specificato in chilogrammi per il quadrato dell’altezza misurata in metri), e mostra i quindici supereroi con il BMI più elevato.</p>
+<p>Un'altra importante categoria di operazioni è quella che vede due serie
+indicate come argomenti di un operatore aritmetico binario. In questo caso
+verrà ancora creata una nuova serie, in cui l'operazione viene calcolata
+elemento per elemento nelle serie indicate. Per esempio, la cella seguente
+crea una nuova serie <code class="docutils literal notranslate"><span class="pre">bmi</span></code> contenente l'indice di massa corporea (BMI) dei
+supereroi (ottenuto dividendo il peso specificato in chilogrammi per il
+quadrato dell'altezza misurata in metri), e mostra i quindici supereroi con
+il BMI più elevato.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bmi</span> <span class="o">=</span> <span class="n">weight</span> <span class="o">/</span> <span class="n">height</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">h</span><span class="p">:</span> <span class="p">(</span><span class="n">h</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
@@ -1156,7 +1566,11 @@ dtype: float64
 </div>
 </div>
 </div>
-<p>A parte notare Hulk è solo il quindicesimo della classifica, va sottolinato che le operazioni fatte elemento per elemento allineano i vettori corrispondenti alle serie in base all’indice (e non alla posizione). Consideriamo per esempio la seguente cella, in cui vengono selezionati altezze e pesi più o meno plausibili per un essere umano, calcolando poi i corrispondenti BMI.</p>
+<p>A parte notare Hulk è solo il quindicesimo della classifica, va sottolinato che
+le operazioni fatte elemento per elemento allineano i vettori corrispondenti
+alle serie in base all'indice (e non alla posizione). Consideriamo per esempio
+la seguente cella, in cui vengono selezionati altezze e pesi più o meno
+plausibili per un essere umano, calcolando poi i corrispondenti BMI.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">standard_weight</span> <span class="o">=</span> <span class="n">weight</span><span class="p">[(</span><span class="n">weight</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">weight</span> <span class="o">&gt;</span> <span class="mi">40</span><span class="p">)]</span>
@@ -1186,7 +1600,13 @@ dtype: float64
 </div>
 </div>
 </div>
-<p>Si nota un numero relativamente elevato di <code class="docutils literal notranslate"><span class="pre">NaN</span></code>, e ciò è appunto dovuto al fatto che il rapporto alla base del calcolo del BMI viene fatto usando peso e altezza di valori che hanno lo stesso indice. Ora, non è detto che un supereroe che ha un peso plausibile abbia anche un’altezza plausibile, e viceversa. Quello che succede quando si esegue un’operazione tra due serie e solo una di essa è definita in corrispondenza di uno specifico valore dell’indice, il risultato conterrà <code class="docutils literal notranslate"><span class="pre">NaN</span></code> per quel valore.</p>
+<p>Si nota un numero relativamente elevato di <code class="docutils literal notranslate"><span class="pre">NaN</span></code>, e ciò è appunto dovuto al
+fatto che il rapporto alla base del calcolo del BMI viene fatto usando peso e
+altezza di valori che hanno lo stesso indice. Ora, non è detto che un supereroe
+che ha un peso plausibile abbia anche un'altezza plausibile, e viceversa.
+Quello che succede quando si esegue un'operazione tra due serie e solo una di
+essa è definita in corrispondenza di uno specifico valore dell'indice, il
+risultato conterrà <code class="docutils literal notranslate"><span class="pre">NaN</span></code> per quel valore.</p>
 </div>
 </div>
 
@@ -1215,16 +1635,16 @@ dtype: float64
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="pandas.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="pandas.html" title="precedente pagina">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-subtitle">precedente</p>
             <p class="prev-next-title"><span class="section-number">3. </span>Pandas</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="dataframe.html" title="next page">
+    <a class='right-next' id="next-link" href="dataframe.html" title="successivo pagina">
     <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-subtitle">successivo</p>
         <p class="prev-next-title"><span class="section-number">3.2. </span>Dataframe</p>
     </div>
     <i class="fas fa-angle-right"></i>
@@ -1236,9 +1656,9 @@ dtype: float64
     <footer class="footer">
   <p>
     
-      By <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a><br/>
+      Di <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a><br/>
     
-        &copy; Copyright 2021 — Licensed under CC-BY 4.0.<br/>
+        &copy; Diritto d'autore 2021 — Licensed under CC-BY 4.0.<br/>
   </p>
 </footer>
 </main>

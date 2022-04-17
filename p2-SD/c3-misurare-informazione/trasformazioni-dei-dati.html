@@ -1,0 +1,1834 @@
+
+<!DOCTYPE html>
+
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>6.6. Trasformazione dei dati &#8212; Superhero Data Science 
+ Probabilità e Statistica</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Indice" href="../../genindex.html" />
+    <link rel="search" title="Cerca" href="../../search.html" />
+    <link rel="next" title="6.7. Analisi della varianza" href="analisi-della-varianza.html" />
+    <link rel="prev" title="6.5. Indici di concentrazione" href="concentrazione.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="it">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logoface.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Superhero Data Science 
+ Probabilità e Statistica</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Cerca in questo libro ..." aria-label="Cerca in questo libro ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../landing.html">
+   Superhero Data Science
+   <br/>
+   Probabilità e Statistica
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduzione
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p0-introduzione/presentazione.html">
+   1. Presentazione
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p0-introduzione/un-esempio-introduttivo.html">
+     1.1. Un esempio
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p0-introduzione/notazione.html">
+     1.2. Notazione
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Programmazione per l'analisi dei dati
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p1-PAD/c1-intro-python/introduzione-a-python.html">
+   2. Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-semplici-e-operatori.html">
+     2.1. Tipi di dati semplici
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-strutturati.html">
+     2.2. Tipi di dati strutturati
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/strutture-di-controllo.html">
+     2.3. Strutture di controllo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/funzioni.html">
+     2.4. Funzioni
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/importare-moduli.html">
+     2.6. Importare moduli
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/disegnare-grafici.html">
+     2.7. Disegnare grafici
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/leggere-file.html">
+     2.8. Leggere dati da file (e un po' di trucchi)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p1-PAD/c2-pandas/pandas.html">
+   3. Pandas
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c2-pandas/serie.html">
+     3.1. Serie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c2-pandas/dataframe.html">
+     3.2. Dataframe
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Statistica descrittiva
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../c1-dati-e-informazione/dati-e-informazione.html">
+   4. Dati e informazione
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c1-dati-e-informazione/dati-quantitativi-e-qualitativi.html">
+     4.7. Dati quantitativi e qualitativi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c1-dati-e-informazione/frequenze-assolute-e-relative.html">
+     4.8. Frequenze assolute e relative
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c1-dati-e-informazione/frequenze-cumulate.html">
+     4.9. Frequenze cumulate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c1-dati-e-informazione/frequenze-congiunte-e-marginali.html">
+     4.10. Frequenze congiunte e marginali
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../c2-utilizzare-informazione/utilizzare-informazione.html">
+   5. Utilizzare l'informazione
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-utilizzare-informazione/descrivere-popolazione.html">
+     5.1. Descrivere una popolazione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-utilizzare-informazione/predire-informazione.html">
+     5.2. Predire l'informazione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-utilizzare-informazione/classificazione.html">
+     5.3. Classificazione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-utilizzare-informazione/regressione.html">
+     5.4. Regressione
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="misurare-informazione.html">
+   6. Misurare l'informazione
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="indici-di-posizione.html">
+     6.1. Indici di posizione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="indici-di-dispersione.html">
+     6.2. Calcolo della dispersione in pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="quantili-campionari.html">
+     6.3. Quantili campionari
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="eterogeneita.html">
+     6.4. Indici di eterogeneità
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="concentrazione.html">
+     6.5. Indici di concentrazione
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     6.6. Trasformazione dei dati
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="analisi-della-varianza.html">
+     6.7. Analisi della varianza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="analisi-di-classificatori.html">
+     6.8. Analisi di classificatori
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../c4-visualizzare-informazione/visualizzare-informazione.html">
+   7. Visualizzare l'informazione
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c4-visualizzare-informazione/diagrammi-per-dati-discreti.html">
+     7.1. Dati discreti
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c4-visualizzare-informazione/diagrammi-per-dati-continui.html">
+     7.2. Dati continui
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c4-visualizzare-informazione/diagrammi-per-dati-cumulati.html">
+     7.3. Dati cumulati
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c4-visualizzare-informazione/simmetria-e-normalita.html">
+     7.4. Simmetria e normalità
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../c5-analizzare-relazioni/analizzare-relazioni.html">
+   8. Analizzare le relazioni tra i dati
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c5-analizzare-relazioni/diagrammi-per-dati-a-coppie.html">
+     8.1. Dati a coppie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c5-analizzare-relazioni/covarianza-e-correlazione.html">
+     8.2. Covarianza e correlazione
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Calcolo delle probabilità
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/calcolo-combinatorio.html">
+   9. Calcolo combinatorio
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/principio-fondamentale-calcolo-combinatorio.html">
+     9.1. Principio fondamentale del calcolo combinatorio
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/permutazioni.html">
+     9.2. Permutazioni
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/disposizioni.html">
+     9.3. Disposizioni e combinazioni
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/combinazioni.html">
+     9.4. Disposizioni e combinazioni
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/esercizi.html">
+     9.5. Esercizi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/generazione.html">
+     9.6. Generazione di disposizioni, permutazioni e combinazioni
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/teoria-insiemi.html">
+   10. Teoria degli insiemi
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/concetti-di-base.html">
+     10.1. Concetti di base
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/insiemi-finiti-e-infiniti.html">
+     10.2. Insiemi finiti e infiniti
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/relazioni-tra-insiemi.html">
+     10.3. Relazioni tra insiemi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/operazioni-tra-insiemi.html">
+     10.4. Operazioni tra insiemi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/insiemi-in-python.html">
+     10.5. Gli insiemi in Python
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p3-CP/c3-probabilita/calcolo-probabilita.html">
+   11. Calcolo delle probabilità
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/concetto-di-probabilita.html">
+     11.1. Il concetto di probabilità
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/esperimenti-esiti-eventi.html">
+     11.2. Esperimenti, esiti ed eventi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/assiomi-kolmogorov.html">
+     11.3. Assiomi di Kolmogorov
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/spazi-equiprobabili.html">
+     11.4. Spazi equiprobabili
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/probabilita-condizionata.html">
+     11.5. Probabilità condizionata
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/prob-totali-e-naive-bayes.html">
+     11.6. Teoremi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/classificatori-naive-bayes.html">
+     11.7. Classificatori naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/indipendenza.html">
+     11.8. Indipendenza
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/intro.html">
+   12. Variabili aleatorie
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-aleatorie.html">
+     12.1. Variabili aleatorie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-aleatorie-discrete.html">
+     12.2. Variabili aleatorie discrete
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/valore-atteso.html">
+     12.3. Valore atteso
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/varianza.html">
+     12.4. Varianza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/momenti.html">
+     12.5. momenti
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-multivariate.html">
+     12.6. Variabili aleatorie multivariate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/indipendenza.html">
+     12.7. Indipendenza di variabili aleatorie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/disuguaglianze-fondamentali.html">
+     12.8. Disuguaglianze fondamentali
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-aleatorie-continue.html">
+     12.9. Variabili aleatorie continue
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/modelli-discreti.html">
+   13. Modelli discreti
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/bernoulli.html">
+     13.1. Il modello di Bernoulli
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/binomiale.html">
+     13.2. Il modello binomiale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/uniforme.html">
+     13.3. Il modello uniforme discreto
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/geometrico.html">
+     13.4. Il modello geometrico
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/poisson.html">
+     13.5. Il modello di poisson
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/ipergeometrico.html">
+     13.6. Il modello ipergeometrico
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p3-CP/c6-modelli-continui/modelli-continui.html">
+   14. I modelli continui
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/uniforme.html">
+     14.1. Il modello uniforme continuo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/esponenziale.html">
+     14.2. Il modello esponenziale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/gaussiano.html">
+     14.3. Il modello gaussiano
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/altri-modelli.html">
+     14.4. Altri modelli continui
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Statistica inferenziale
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/inferenza-puntuale.html">
+   15. Inferenza puntuale
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima.html">
+     15.1. Popolazione, campione e stima
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/media-campionaria.html">
+     15.2. Media campionaria
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/varianza-campionaria.html">
+     15.3. Varianza campionaria
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/errore-di-una-stima.html">
+     15.4. Errore di una stima
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/teorema-centrale-limite.html">
+     15.5. Teorema del limite centrale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/leggi-grandi-numeri.html">
+     15.6. Leggi dei grandi numeri
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/distribuzioni-campionarie.html">
+     15.7. Distribuzioni campionarie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/calcolo-dimensione-campione.html">
+     15.8. Calcolo della dimensione del campione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/processo-poisson.html">
+     15.9. Processo di poisson
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Bibliografia
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../bibliography.html">
+   16. Bibliografia
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Attiva / disattiva la navigazione" aria-controls="site-navigation"
+                title="Attiva / disattiva la navigazione" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Scarica questa pagina"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../_sources/p2-SD/c3-misurare-informazione/trasformazioni-dei-dati.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Scarica il file del taccuino" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/p2-SD/c3-misurare-informazione/trasformazioni-dei-dati.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Scarica il file sorgente" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Stampa in PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/dariomalchiodi/sds"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Repository di origine"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/dariomalchiodi/sds/issues/new?title=Issue%20on%20page%20%2Fp2-SD/c3-misurare-informazione/trasformazioni-dei-dati.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Apri un problema"><i class="fas fa-lightbulb"></i>questione aperta</button></a>
+        <a class="edit-button" href="https://github.com/dariomalchiodi/sds/edit/main/sds/p2-SD/c3-misurare-informazione/trasformazioni-dei-dati.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Modifica questa pagina"><i class="fas fa-pencil-alt"></i>suggerisci modifica</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modalità schermo intero"
+        title="Modalità schermo intero"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dariomalchiodi/sds/main?urlpath=tree/sds/p2-SD/c3-misurare-informazione/trasformazioni-dei-dati.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Lanciare Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contenuti
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#trasformazioni-lineari">
+   6.6.1. Trasformazioni lineari
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cambiamento-di-origine-traslazione">
+     6.6.1.1. Cambiamento di origine (traslazione)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cambiamento-di-scala-dilatazione-o-contrazione">
+     6.6.1.2. Cambiamento di scala (dilatazione o contrazione)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cambiamento-di-origine-e-scala">
+     6.6.1.3. Cambiamento di origine e scala
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#standardizzazione">
+     6.6.1.4. Standardizzazione
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#trasformazioni-logaritmiche">
+     6.6.1.5. Trasformazioni logaritmiche
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Trasformazione dei dati</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contenuti </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#trasformazioni-lineari">
+   6.6.1. Trasformazioni lineari
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cambiamento-di-origine-traslazione">
+     6.6.1.1. Cambiamento di origine (traslazione)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cambiamento-di-scala-dilatazione-o-contrazione">
+     6.6.1.2. Cambiamento di scala (dilatazione o contrazione)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cambiamento-di-origine-e-scala">
+     6.6.1.3. Cambiamento di origine e scala
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#standardizzazione">
+     6.6.1.4. Standardizzazione
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#trasformazioni-logaritmiche">
+     6.6.1.5. Trasformazioni logaritmiche
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="trasformazione-dei-dati">
+<h1><span class="section-number">6.6. </span>Trasformazione dei dati<a class="headerlink" href="#trasformazione-dei-dati" title="Link a questa intestazione">¶</a></h1>
+<p>Può succedere di avere la necessità di trasformare i dati osservati per
+diverse ragioni: per poterli confrontare con altri riportandoli ad un
+intervallo predefinito, per poter confrontare la loro distribuzione di
+frequenza con quella di altri dati, oppure per renderli più facilmente
+leggibili.</p>
+<p>Consideriamo un insieme di valori osservati <span class="math notranslate nohighlight">\(X = \{ x_1, x_2, \dots, x_n \}\)</span>,
+con la rispettiva tabella di frequenze relative.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Valori originali</p></th>
+<th class="head"><p>Frequenze relative</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(x_1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(f_1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(x_2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(f_2\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(x_n\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(f_n\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>Consideriamo anche una trasformazione <span class="math notranslate nohighlight">\(g\)</span> che trasforma i valori di <span class="math notranslate nohighlight">\(X\)</span> in
+valori appartenenti all'insieme <span class="math notranslate nohighlight">\(Y=\{x_1',x_2',\dots, x_n'\}\)</span>: più
+precisamente <span class="math notranslate nohighlight">\(\forall i=1, \dots, n\)</span> si ha <span class="math notranslate nohighlight">\(g(x_i) = x_i'\)</span> (quando il nome
+della funzione si potrà omettere, scriveremo per brevità <span class="math notranslate nohighlight">\(x_i \mapsto x_i'\)</span>).
+Prenderemo in esame solo <em>trasformazioni iniettive</em> (per le quali cioè a
+qualsiasi valore trasformato in <span class="math notranslate nohighlight">\(Y\)</span> corrisponde un solo valore in <span class="math notranslate nohighlight">\(X\)</span>). Per
+questo tipo di trasformazioni i valori delle frequenze nella tabella delle
+frequenze per <span class="math notranslate nohighlight">\(Y\)</span> rimangono ovviamente i medesimi delle loro preimmagini.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Valori trasformati</p></th>
+<th class="head"><p>Frequenze relative</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(x'_1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(f_1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(x'_2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(f_2\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\vdots\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(x'_n\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(f_n\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>Cambieranno invece  alcuni indici descrittivi e di conseguenza il grafico
+della distribuzione: infatti ora i valori  osservati sono quelli dell'insieme
+<span class="math notranslate nohighlight">\(Y\)</span>.</p>
+<div class="section" id="trasformazioni-lineari">
+<h2><span class="section-number">6.6.1. </span>Trasformazioni lineari<a class="headerlink" href="#trasformazioni-lineari" title="Link a questa intestazione">¶</a></h2>
+<p>Consideriamo la famiglia delle trasformazioni che prevedono di applicare ai
+dati una funzione <em>lineare</em>. Fissate cioè due costanti <span class="math notranslate nohighlight">\(a, b \in \mathbb R\)</span>,
+il valore originale <span class="math notranslate nohighlight">\(x\)</span> verrà trasformato in un valore <span class="math notranslate nohighlight">\(x'\)</span> secondo la
+regola:</p>
+<div class="math notranslate nohighlight">
+\[
+x' = g(x) =a \cdot x +b
+\]</div>
+<div class="section" id="cambiamento-di-origine-traslazione">
+<h3><span class="section-number">6.6.1.1. </span>Cambiamento di origine (traslazione)<a class="headerlink" href="#cambiamento-di-origine-traslazione" title="Link a questa intestazione">¶</a></h3>
+<p>Se vogliamo traslare i dati di una quantità costante <span class="math notranslate nohighlight">\(k&gt;0\)</span> applichiamo la
+trasformazione <span class="math notranslate nohighlight">\(x \mapsto x'=x - k\)</span> per traslare verso sinistra e
+<span class="math notranslate nohighlight">\(x \mapsto x'=x + k\)</span> per traslare verso destra. Questa trasformazione è utile
+quando i valori osservati sono molto grandi e poco dispersi. Si osservi che:</p>
+<ul class="simple">
+<li><p>la media, la mediana e i quantili vengono traslati della stessa quantità
+<span class="math notranslate nohighlight">\(k\)</span> (nel medesimo verso);</p></li>
+<li><p>il range, la distanza interquartile, la varianza e la deviazione standard
+dell'insieme traslato <span class="math notranslate nohighlight">\(Y\)</span> rimangono invece gli stessi dell'insieme di partenza <span class="math notranslate nohighlight">\(X\)</span>.</p></li>
+</ul>
+<div class="naming admonition">
+<p class="admonition-title">Esercizio</p>
+<p>Utilizzando le definizione degli indici viste in precedenza, dimostrate le
+proprietà sopra elencate.</p>
+</div>
+<p>Vediamo due esempi, caricndo innanzitutto il nostro dataset e estraendo da
+esso le osservazioni per anno di prima apparizione e indice di forza. Per
+evitare di modificare i dati originali, lavoreremo su delle copie da cui
+elimineremo inoltre i valori mancanti.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;sds.mplstyle&#39;</span><span class="p">)</span>
+
+<span class="n">heroes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/heroes.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">year</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">year</span> <span class="o">=</span> <span class="n">year</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">year</span><span class="p">)]</span>
+
+<span class="n">strength</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">strength</span> <span class="o">=</span> <span class="n">strength</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">strength</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Per applicare una trasformazione a una serie di dati è di norma sufficiente
+scrivere la corrispondente espressione in funzione della serie stessa. Per
+esempio, la seguente cella applica agli anni di prima apparizione una
+funzione in modo che i dati trasformati partano da zero. In questo caso, la
+costante <span class="math notranslate nohighlight">\(k\)</span> coinciderà con il minimo dei valori osservati e la traslazione
+verrà fatta verso sinistra.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transformed_year</span> <span class="o">=</span> <span class="n">year</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+<span class="n">transformed_year</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name
+A-Bomb              75.0
+Agent Bob           74.0
+Abe Sapien          60.0
+Abin Sur            26.0
+Animal Man          32.0
+Angel Salvadore     68.0
+Lady Deathstrike    52.0
+Yoda                47.0
+Absorbing Man       31.0
+X-Man               62.0
+Name: First appearance, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Analogamente, impostando <span class="math notranslate nohighlight">\(k\)</span> alla media campionaria di una serie e traslando
+verso sinistra, i valori trasformati avranno media campionaria nulla. La
+cella seguente effettua tale operazione sugli indici di forza.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transformed_strength</span> <span class="o">=</span> <span class="n">strength</span> <span class="o">-</span> <span class="n">strength</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">transformed_strength</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name
+A-Bomb         54.99179
+Abraxas        54.99179
+Abomination    34.99179
+Adam Monroe   -35.00821
+Air-Walker     39.99179
+Agent Bob     -35.00821
+Abe Sapien    -15.00821
+Abin Sur       44.99179
+Angela         54.99179
+Animal Man      4.99179
+Name: Strength, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Come già sottolineato, la traslazione è una trasformazione iniettiva e quindi
+i dati osservati varieranno ma le loro frequenze resteranno uguali. Ciò è
+evidente se si visualizzano per esempio le tabelle delle frequenze assolute
+dei dati originali e di quelli trasformati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">strength</span><span class="p">,</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Abs. freqence&#39;</span><span class="p">],</span>
+            <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Original&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Original</th>
+      <th>Abs. freqence</th>
+    </tr>
+    <tr>
+      <th>Strength</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5.0</th>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>10.0</th>
+      <td>156</td>
+    </tr>
+    <tr>
+      <th>15.0</th>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>20.0</th>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>25.0</th>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>30.0</th>
+      <td>28</td>
+    </tr>
+    <tr>
+      <th>35.0</th>
+      <td>34</td>
+    </tr>
+    <tr>
+      <th>40.0</th>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>45.0</th>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>50.0</th>
+      <td>21</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">transformed_strength</span><span class="p">,</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Abs. freqence&#39;</span><span class="p">],</span>
+            <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Transformed&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Transformed</th>
+      <th>Abs. freqence</th>
+    </tr>
+    <tr>
+      <th>Strength</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>-40.00821</th>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>-35.00821</th>
+      <td>156</td>
+    </tr>
+    <tr>
+      <th>-30.00821</th>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>-25.00821</th>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>-20.00821</th>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>-15.00821</th>
+      <td>28</td>
+    </tr>
+    <tr>
+      <th>-10.00821</th>
+      <td>34</td>
+    </tr>
+    <tr>
+      <th>-5.00821</th>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>-0.00821</th>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>4.99179</th>
+      <td>21</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Analogamente, una visualizzazione grafica dei dati originali avrebbe la
+stessa forma di quella relativa ai dati trasformati: le frequenze sono
+infatti invariate, e l'unica differenza consisterebbe nei valori riportati
+sull'asse delle ascisse. Lo si vede facilmente affiancando per esempio gli
+istogrammi degli indici di forza originali e trasformati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">strength</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Original&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">transformed_strength</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Transformed&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/trasformazioni-dei-dati_10_0.png" src="../../_images/trasformazioni-dei-dati_10_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="cambiamento-di-scala-dilatazione-o-contrazione">
+<h3><span class="section-number">6.6.1.2. </span>Cambiamento di scala (dilatazione o contrazione)<a class="headerlink" href="#cambiamento-di-scala-dilatazione-o-contrazione" title="Link a questa intestazione">¶</a></h3>
+<p>Se vogliamo dilatare o contrarre i valori di un fattore costante
+<span class="math notranslate nohighlight">\(h \in \mathbb R^+\)</span> applichiamo la trasformazione
+<span class="math notranslate nohighlight">\(x \mapsto x' = \frac{x}{h}\)</span>. Se <span class="math notranslate nohighlight">\(h &gt; 1\)</span> il range dei valori risulta
+diminuito (è cioè stata applicata una contrazione), mentre se <span class="math notranslate nohighlight">\(h &lt; 1\)</span> si
+applica una dilatazione (il caso <span class="math notranslate nohighlight">\(h = 1\)</span> è poco interessante perché la
+funzione corrispondente lascia i dati inalterati). Inoltre, se <span class="math notranslate nohighlight">\(h\)</span> è minore
+del valore minimo, allora tutti i valori trasformati saranno maggiori di
+<span class="math notranslate nohighlight">\(1\)</span>, mentre se <span class="math notranslate nohighlight">\(h\)</span> è maggiore del valore massimo, tutti i valori
+trasformati saranno minori di <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<p>Si osservi che:</p>
+<ul class="simple">
+<li><p>la media, la mediana e i quantili vengono scalati della stessa quantità
+<span class="math notranslate nohighlight">\(\frac{1}{h}\)</span>;</p></li>
+<li><p>il range di variazione e la distanza interquartile vengono scalati della
+stessa quantità <span class="math notranslate nohighlight">\(\frac{1}{h}\)</span>;</p></li>
+<li><p>la varianza viene scalata di una quantità <span class="math notranslate nohighlight">\(\frac{1}{h^2}\)</span> mentre la
+deviazione standard viene scalata di <span class="math notranslate nohighlight">\(\frac{1}{h}\)</span>.</p></li>
+</ul>
+<div class="naming admonition">
+<p class="admonition-title">Esercizio</p>
+<p>Anche in questo caso, dimostrare le proprietà sopra elencate utilizzando le
+definizioni degli indici coinvolti.</p>
+</div>
+<p>Come nel caso delle traslazioni, anche per applicare un cambiamento di scala
+è sufficiente eseguire la corrispondente operazione aritmetica sulla serie
+coinvolta. Per esempio, nella cella seguente una copia degli indici di forza
+originali (da cui anche in questo caso vengono eliminati i valori mancanti)
+vengono contratti utilizzando un fattore per cui <span class="math notranslate nohighlight">\(h\)</span> corrisponde al massimo
+tra i valori originali. Tenuto conto del fatto che questi ultimi sono non
+negativi, ciò implica che i dati trasformati varieranno nell'intervallo
+<span class="math notranslate nohighlight">\([0, 1]\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">strength</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">strength</span> <span class="o">=</span> <span class="n">strength</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">strength</span><span class="p">)]</span>
+
+<span class="n">transformed_strength</span> <span class="o">=</span> <span class="n">strength</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="n">strength</span><span class="p">)</span>
+<span class="n">transformed_strength</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name
+A-Bomb         1.00
+Abraxas        1.00
+Abomination    0.80
+Adam Monroe    0.10
+Air-Walker     0.85
+Agent Bob      0.10
+Abe Sapien     0.30
+Abin Sur       0.90
+Angela         1.00
+Animal Man     0.50
+Name: Strength, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Anche in questo caso si verifica facilmente come la tabella delle frequenze
+varia solo relativamente ai valori osservati, così come gli istogrammi
+avranno la medesima forma e gli stessi valori sull'asse delle ordinate, ma
+varieranno su un intervallo diverso se si considera l'asse delle ascisse.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">transformed_strength</span><span class="p">,</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Abs. freqence&#39;</span><span class="p">],</span>
+            <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Transformed&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Transformed</th>
+      <th>Abs. freqence</th>
+    </tr>
+    <tr>
+      <th>Strength</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.05</th>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>0.10</th>
+      <td>156</td>
+    </tr>
+    <tr>
+      <th>0.15</th>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>0.20</th>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>0.25</th>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>0.30</th>
+      <td>28</td>
+    </tr>
+    <tr>
+      <th>0.35</th>
+      <td>34</td>
+    </tr>
+    <tr>
+      <th>0.40</th>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>0.45</th>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>0.50</th>
+      <td>21</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">strength</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Original&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">transformed_strength</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Transformed&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/trasformazioni-dei-dati_15_0.png" src="../../_images/trasformazioni-dei-dati_15_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="cambiamento-di-origine-e-scala">
+<h3><span class="section-number">6.6.1.3. </span>Cambiamento di origine e scala<a class="headerlink" href="#cambiamento-di-origine-e-scala" title="Link a questa intestazione">¶</a></h3>
+<p>Se abbiamo un insieme di valori nell'intervallo <span class="math notranslate nohighlight">\((a, b)\)</span> e vogliamo adattarli
+in modo che appartengano all'intervallo <span class="math notranslate nohighlight">\((c, d)\)</span>, la trasformazione da
+applicare sarà</p>
+<div class="math notranslate nohighlight">
+\[
+x \mapsto x' = c + \frac{d - c}{b - a} \cdot (x - a).
+\]</div>
+<div class="naming admonition">
+<p class="admonition-title">Esercizio</p>
+<p>Utilizzando la formula della retta passante per due punti dati, ricavate la
+trasformazione.</p>
+</div>
+<p>Immaginiamo che risulti più pratico misurare la forza dei supereroi in una
+scala che va da <span class="math notranslate nohighlight">\(-10\)</span> a <span class="math notranslate nohighlight">\(10\)</span>. La trasformazione relativa corrisponderà ai
+valori <span class="math notranslate nohighlight">\(c = -10\)</span>, <span class="math notranslate nohighlight">\(d = 10\)</span> e rispettivamente al minimo e al massimo dei
+valori originali per quanto riguarda <span class="math notranslate nohighlight">\(a\)</span> e <span class="math notranslate nohighlight">\(b\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">strength</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">strength</span> <span class="o">=</span> <span class="n">strength</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">strength</span><span class="p">)]</span>
+
+<span class="n">old_min</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">strength</span><span class="p">)</span>
+<span class="n">old_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">strength</span><span class="p">)</span>
+<span class="n">new_min</span> <span class="o">=</span> <span class="o">-</span><span class="mf">10.0</span>
+<span class="n">new_max</span> <span class="o">=</span> <span class="mf">10.0</span>
+
+<span class="n">transformed_strength</span> <span class="o">=</span> <span class="n">new_min</span> <span class="o">+</span> <span class="p">(</span><span class="n">new_max</span> <span class="o">-</span> <span class="n">new_min</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">old_max</span> <span class="o">-</span> <span class="n">old_min</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">strength</span> <span class="o">-</span> <span class="n">old_min</span><span class="p">)</span>
+<span class="n">transformed_strength</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name
+A-Bomb         10.000000
+Abraxas        10.000000
+Abomination     5.789474
+Adam Monroe    -8.947368
+Air-Walker      6.842105
+Agent Bob      -8.947368
+Abe Sapien     -4.736842
+Abin Sur        7.894737
+Angela         10.000000
+Animal Man     -0.526316
+Name: Strength, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ipotizziamo che i valori originali varino nell'intervallo [a,b] e
+consideriamo i seguenti casi particolari:</p>
+<ul class="simple">
+<li><p>vogliamo trasportare i valori in <span class="math notranslate nohighlight">\([0,1]\)</span>: in questo caso la trasformazione
+da applicare è</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+x \mapsto x' = \frac{x - a}{b - a};
+\]</div>
+<ul class="simple">
+<li><p>nel caso particolare <span class="math notranslate nohighlight">\(a = 0\)</span>, la trasformazione precedente consiste nel
+dividere i dati per il valore massimo <span class="math notranslate nohighlight">\(b\)</span>;</p></li>
+<li><p>vogliamo trasportare i valori nell'intervallo <span class="math notranslate nohighlight">\([-1,1]\)</span>; la trasformazione
+sarà pertanto</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+x \mapsto x' = 2 \cdot \frac{x - a}{b - a} - 1.
+\]</div>
+</div>
+<div class="section" id="standardizzazione">
+<h3><span class="section-number">6.6.1.4. </span>Standardizzazione<a class="headerlink" href="#standardizzazione" title="Link a questa intestazione">¶</a></h3>
+<p>La <em>standardizzazione</em> (o <em>normalizzazione</em>) è un caso particolare di
+cambiamento di origine e scala, e consiste nell'applicare una scala il cui
+fattore è uguale alla deviazione standard dei valori, per poi traslare verso
+sinistra rispetto alla media dei valori. Se indichiamo rispettivamente con
+<span class="math notranslate nohighlight">\(\overline x\)</span> e con <span class="math notranslate nohighlight">\(\sigma_x\)</span> la media campionaria e la deviazione standard
+campionaria dei valori, la trasformazione  sarà quindi</p>
+<div class="math notranslate nohighlight">
+\[
+x \mapsto x' = \frac{x - \overline x}{\sigma_x}.
+\]</div>
+<p>La trasformazione di standardizzazione trasforma pertanto l'insieme dei
+valori in un altro insieme di valori la cui media è <span class="math notranslate nohighlight">\(0\)</span> e la cui varianza è
+<span class="math notranslate nohighlight">\(1\)</span>.</p>
+<div class="naming admonition">
+<p class="admonition-title">Esercizio</p>
+<p>Si controlli che le proprietà sopra menzionate sono soddisfatte.</p>
+</div>
+<p>L'operazione di standardizzazione dei valori di forza dà luogo alla serie
+seguente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transformed_strength</span> <span class="o">=</span> <span class="p">(</span><span class="n">strength</span> <span class="o">-</span> <span class="n">strength</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">strength</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">transformed_strength</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name
+A-Bomb         1.664831
+Abraxas        1.664831
+Abomination    1.059347
+Adam Monroe   -1.059845
+Air-Walker     1.210718
+Agent Bob     -1.059845
+Abe Sapien    -0.454361
+Abin Sur       1.362089
+Angela         1.664831
+Animal Man     0.151122
+Name: Strength, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Questa trasformazione dovrebbe avere l'effetto di rendere nulla la media
+campionaria dei dati trasfromati.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">transformed_strength</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Il risultato non deve essere particolarmente sconcertante: il fatto di non
+aver ottenuto un valore <em>esattamente</em> nullo è dovuto al fatto che le
+operazioni fatte sulle variabili in virgola mobile richiedono di effettuare
+delle approssimazioni numeriche. In ogni caso, i dati originali hanno un
+ordine di grandezza che è quindici volte più grande del valore della media
+campionaria, per cui quest'ultima è per noi essenzialmente equivalente a
+zero.</p>
+</div>
+<div class="section" id="trasformazioni-logaritmiche">
+<h3><span class="section-number">6.6.1.5. </span>Trasformazioni logaritmiche<a class="headerlink" href="#trasformazioni-logaritmiche" title="Link a questa intestazione">¶</a></h3>
+<p>A volte i valori di una variabile osservata sono molto grandi oppure molto
+distanziati.
+In questi casi può essere utile considerare non tanto il valore originale ma,
+pensando a tale valore come potenza di una data base, ragionare in termini
+del relativo esponente. Ciò corrisponde ad applicare una
+<em>trasformazione lograritmica</em> del seguente tipo:</p>
+<div class="math notranslate nohighlight">
+\[
+x \mapsto x' = \log x.
+\]</div>
+<p>La scelta della base del logaritmo in questa trasformazione viene di norma
+fatta a seconda delle situazioni che si affrontano: scelte comunemente
+utilizzate sono 10, la costante di Napier <span class="math notranslate nohighlight">\(\mathrm e \approx 2.71\)</span> oppure 2.</p>
+<p>Nel caso i valori siano molto distanziati tra loro e caratterizzati da una
+distribuzione di frequenza unimodale fortemente asimmetrica, la
+trasformazione logaritmica permette di ottenere una distribuzione di
+frequenza pià simmetrica. Questo tipo di trasformazione ha molti altri
+vantaggi, dovuti al fatto che l'operazione di prodotto (o quoziente) tra due
+valori viene trasformata nella somma (o nella differenza) dei rispettivi
+logaritmi.</p>
+<p>Consideriamo per esempio i primi dieci anni di prima apparizione nel nostro
+dataset e applichiamo loro una trasformazione logaritmica usando 10 come
+base.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">year</span><span class="p">),</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Abs. freqence&#39;</span><span class="p">],</span>
+            <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Transformed&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Transformed</th>
+      <th>Abs. freqence</th>
+    </tr>
+    <tr>
+      <th>First appearance</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3.286232</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3.287578</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3.287802</th>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>3.288026</th>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>3.288473</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3.288696</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3.288920</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3.289366</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3.289589</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3.290035</th>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Anche in questo caso l'iniettività della trasformazione assicura che le
+frequenze di dati originali e dati trasformati coincidono.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">year</span><span class="p">,</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Abs. freqence&#39;</span><span class="p">],</span>
+            <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Original&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Original</th>
+      <th>Abs. freqence</th>
+    </tr>
+    <tr>
+      <th>First appearance</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1933.0</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1939.0</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1940.0</th>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>1941.0</th>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>1943.0</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1944.0</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1945.0</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1947.0</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1948.0</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1950.0</th>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./p2-SD/c3-misurare-informazione"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="concentrazione.html" title="precedente pagina">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">precedente</p>
+            <p class="prev-next-title"><span class="section-number">6.5. </span>Indici di concentrazione</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="analisi-della-varianza.html" title="successivo pagina">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">successivo</p>
+        <p class="prev-next-title"><span class="section-number">6.7. </span>Analisi della varianza</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      Di <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a><br/>
+    
+        &copy; Diritto d'autore 2021 — Licensed under CC-BY 4.0.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

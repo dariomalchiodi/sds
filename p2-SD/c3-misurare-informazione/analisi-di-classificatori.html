@@ -1,0 +1,1937 @@
+
+<!DOCTYPE html>
+
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>6.8. Analisi di classificatori &#8212; Superhero Data Science 
+ Probabilità e Statistica</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Indice" href="../../genindex.html" />
+    <link rel="search" title="Cerca" href="../../search.html" />
+    <link rel="next" title="7. Visualizzare l&#39;informazione" href="../c4-visualizzare-informazione/visualizzare-informazione.html" />
+    <link rel="prev" title="6.7. Analisi della varianza" href="analisi-della-varianza.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="it">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logoface.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Superhero Data Science 
+ Probabilità e Statistica</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Cerca in questo libro ..." aria-label="Cerca in questo libro ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../landing.html">
+   Superhero Data Science
+   <br/>
+   Probabilità e Statistica
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduzione
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p0-introduzione/presentazione.html">
+   1. Presentazione
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p0-introduzione/un-esempio-introduttivo.html">
+     1.1. Un esempio
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p0-introduzione/notazione.html">
+     1.2. Notazione
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Programmazione per l'analisi dei dati
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p1-PAD/c1-intro-python/introduzione-a-python.html">
+   2. Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-semplici-e-operatori.html">
+     2.1. Tipi di dati semplici
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-strutturati.html">
+     2.2. Tipi di dati strutturati
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/strutture-di-controllo.html">
+     2.3. Strutture di controllo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/funzioni.html">
+     2.4. Funzioni
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/importare-moduli.html">
+     2.6. Importare moduli
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/disegnare-grafici.html">
+     2.7. Disegnare grafici
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/leggere-file.html">
+     2.8. Leggere dati da file (e un po' di trucchi)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p1-PAD/c2-pandas/pandas.html">
+   3. Pandas
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c2-pandas/serie.html">
+     3.1. Serie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c2-pandas/dataframe.html">
+     3.2. Dataframe
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Statistica descrittiva
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../c1-dati-e-informazione/dati-e-informazione.html">
+   4. Dati e informazione
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c1-dati-e-informazione/dati-quantitativi-e-qualitativi.html">
+     4.7. Dati quantitativi e qualitativi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c1-dati-e-informazione/frequenze-assolute-e-relative.html">
+     4.8. Frequenze assolute e relative
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c1-dati-e-informazione/frequenze-cumulate.html">
+     4.9. Frequenze cumulate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c1-dati-e-informazione/frequenze-congiunte-e-marginali.html">
+     4.10. Frequenze congiunte e marginali
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../c2-utilizzare-informazione/utilizzare-informazione.html">
+   5. Utilizzare l'informazione
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-utilizzare-informazione/descrivere-popolazione.html">
+     5.1. Descrivere una popolazione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-utilizzare-informazione/predire-informazione.html">
+     5.2. Predire l'informazione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-utilizzare-informazione/classificazione.html">
+     5.3. Classificazione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-utilizzare-informazione/regressione.html">
+     5.4. Regressione
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="misurare-informazione.html">
+   6. Misurare l'informazione
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="indici-di-posizione.html">
+     6.1. Indici di posizione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="indici-di-dispersione.html">
+     6.2. Calcolo della dispersione in pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="quantili-campionari.html">
+     6.3. Quantili campionari
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="eterogeneita.html">
+     6.4. Indici di eterogeneità
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="concentrazione.html">
+     6.5. Indici di concentrazione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="trasformazioni-dei-dati.html">
+     6.6. Trasformazione dei dati
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="analisi-della-varianza.html">
+     6.7. Analisi della varianza
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     6.8. Analisi di classificatori
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../c4-visualizzare-informazione/visualizzare-informazione.html">
+   7. Visualizzare l'informazione
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c4-visualizzare-informazione/diagrammi-per-dati-discreti.html">
+     7.1. Dati discreti
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c4-visualizzare-informazione/diagrammi-per-dati-continui.html">
+     7.2. Dati continui
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c4-visualizzare-informazione/diagrammi-per-dati-cumulati.html">
+     7.3. Dati cumulati
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c4-visualizzare-informazione/simmetria-e-normalita.html">
+     7.4. Simmetria e normalità
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../c5-analizzare-relazioni/analizzare-relazioni.html">
+   8. Analizzare le relazioni tra i dati
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c5-analizzare-relazioni/diagrammi-per-dati-a-coppie.html">
+     8.1. Dati a coppie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c5-analizzare-relazioni/covarianza-e-correlazione.html">
+     8.2. Covarianza e correlazione
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Calcolo delle probabilità
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/calcolo-combinatorio.html">
+   9. Calcolo combinatorio
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/principio-fondamentale-calcolo-combinatorio.html">
+     9.1. Principio fondamentale del calcolo combinatorio
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/permutazioni.html">
+     9.2. Permutazioni
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/disposizioni.html">
+     9.3. Disposizioni e combinazioni
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/combinazioni.html">
+     9.4. Disposizioni e combinazioni
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/esercizi.html">
+     9.5. Esercizi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/generazione.html">
+     9.6. Generazione di disposizioni, permutazioni e combinazioni
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/teoria-insiemi.html">
+   10. Teoria degli insiemi
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/concetti-di-base.html">
+     10.1. Concetti di base
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/insiemi-finiti-e-infiniti.html">
+     10.2. Insiemi finiti e infiniti
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/relazioni-tra-insiemi.html">
+     10.3. Relazioni tra insiemi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/operazioni-tra-insiemi.html">
+     10.4. Operazioni tra insiemi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/insiemi-in-python.html">
+     10.5. Gli insiemi in Python
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p3-CP/c3-probabilita/calcolo-probabilita.html">
+   11. Calcolo delle probabilità
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/concetto-di-probabilita.html">
+     11.1. Il concetto di probabilità
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/esperimenti-esiti-eventi.html">
+     11.2. Esperimenti, esiti ed eventi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/assiomi-kolmogorov.html">
+     11.3. Assiomi di Kolmogorov
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/spazi-equiprobabili.html">
+     11.4. Spazi equiprobabili
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/probabilita-condizionata.html">
+     11.5. Probabilità condizionata
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/prob-totali-e-naive-bayes.html">
+     11.6. Teoremi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/classificatori-naive-bayes.html">
+     11.7. Classificatori naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/indipendenza.html">
+     11.8. Indipendenza
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/intro.html">
+   12. Variabili aleatorie
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-aleatorie.html">
+     12.1. Variabili aleatorie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-aleatorie-discrete.html">
+     12.2. Variabili aleatorie discrete
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/valore-atteso.html">
+     12.3. Valore atteso
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/varianza.html">
+     12.4. Varianza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/momenti.html">
+     12.5. momenti
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-multivariate.html">
+     12.6. Variabili aleatorie multivariate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/indipendenza.html">
+     12.7. Indipendenza di variabili aleatorie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/disuguaglianze-fondamentali.html">
+     12.8. Disuguaglianze fondamentali
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-aleatorie-continue.html">
+     12.9. Variabili aleatorie continue
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/modelli-discreti.html">
+   13. Modelli discreti
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/bernoulli.html">
+     13.1. Il modello di Bernoulli
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/binomiale.html">
+     13.2. Il modello binomiale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/uniforme.html">
+     13.3. Il modello uniforme discreto
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/geometrico.html">
+     13.4. Il modello geometrico
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/poisson.html">
+     13.5. Il modello di poisson
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/ipergeometrico.html">
+     13.6. Il modello ipergeometrico
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p3-CP/c6-modelli-continui/modelli-continui.html">
+   14. I modelli continui
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/uniforme.html">
+     14.1. Il modello uniforme continuo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/esponenziale.html">
+     14.2. Il modello esponenziale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/gaussiano.html">
+     14.3. Il modello gaussiano
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/altri-modelli.html">
+     14.4. Altri modelli continui
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Statistica inferenziale
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/inferenza-puntuale.html">
+   15. Inferenza puntuale
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima.html">
+     15.1. Popolazione, campione e stima
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/media-campionaria.html">
+     15.2. Media campionaria
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/varianza-campionaria.html">
+     15.3. Varianza campionaria
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/errore-di-una-stima.html">
+     15.4. Errore di una stima
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/teorema-centrale-limite.html">
+     15.5. Teorema del limite centrale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/leggi-grandi-numeri.html">
+     15.6. Leggi dei grandi numeri
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/distribuzioni-campionarie.html">
+     15.7. Distribuzioni campionarie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/calcolo-dimensione-campione.html">
+     15.8. Calcolo della dimensione del campione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/processo-poisson.html">
+     15.9. Processo di poisson
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Bibliografia
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../bibliography.html">
+   16. Bibliografia
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Attiva / disattiva la navigazione" aria-controls="site-navigation"
+                title="Attiva / disattiva la navigazione" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Scarica questa pagina"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../_sources/p2-SD/c3-misurare-informazione/analisi-di-classificatori.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Scarica il file del taccuino" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/p2-SD/c3-misurare-informazione/analisi-di-classificatori.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Scarica il file sorgente" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Stampa in PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/dariomalchiodi/sds"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Repository di origine"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/dariomalchiodi/sds/issues/new?title=Issue%20on%20page%20%2Fp2-SD/c3-misurare-informazione/analisi-di-classificatori.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Apri un problema"><i class="fas fa-lightbulb"></i>questione aperta</button></a>
+        <a class="edit-button" href="https://github.com/dariomalchiodi/sds/edit/main/sds/p2-SD/c3-misurare-informazione/analisi-di-classificatori.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Modifica questa pagina"><i class="fas fa-pencil-alt"></i>suggerisci modifica</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modalità schermo intero"
+        title="Modalità schermo intero"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dariomalchiodi/sds/main?urlpath=tree/sds/p2-SD/c3-misurare-informazione/analisi-di-classificatori.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Lanciare Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contenuti
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sensibilita-e-specificita">
+   6.8.1. Sensibilità e specificità
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classificatori-costanti">
+     6.8.1.1. Classificatori costanti
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classificatori-ideali">
+     6.8.1.2. Classificatori ideali
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classificatori-casuali">
+     6.8.1.3. Classificatori casuali
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classificatori-a-soglia">
+   6.8.2. Classificatori a soglia
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Analisi di classificatori</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contenuti </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sensibilita-e-specificita">
+   6.8.1. Sensibilità e specificità
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classificatori-costanti">
+     6.8.1.1. Classificatori costanti
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classificatori-ideali">
+     6.8.1.2. Classificatori ideali
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classificatori-casuali">
+     6.8.1.3. Classificatori casuali
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classificatori-a-soglia">
+   6.8.2. Classificatori a soglia
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="analisi-di-classificatori">
+<h1><span class="section-number">6.8. </span>Analisi di classificatori<a class="headerlink" href="#analisi-di-classificatori" title="Link a questa intestazione">¶</a></h1>
+<div class="section" id="sensibilita-e-specificita">
+<h2><span class="section-number">6.8.1. </span>Sensibilità e specificità<a class="headerlink" href="#sensibilita-e-specificita" title="Link a questa intestazione">¶</a></h2>
+<p>Immaginiamo di avere a disposizione un classificatore <em>binario</em>, costruito
+cioè per discriminare tra due classi che convenzionalmente indicheremo come
+<em>positiva</em> e <em>negativa</em>. A partire da un insieme di oggetti di cui è noto a
+priori l'esito della classificazione (useremo la dicitura <em>oggetti positivi</em>
+e <em>oggetti negativi</em> per indicare gli oggetti che appartengono alle due
+classi), possiamo valutare la bontà di questo classificatore calcolando
+il numero di casi (o la corrispondente frazione) che vengono classificati
+in modo errato. Notiamo però che ci sono due possibili modi di sbagliare
+la classificazione:</p>
+<ul class="simple">
+<li><p>un esempio positivo viene classificato come negativo, dando luogo a un
+cosiddetto <em>falso negativo</em>;</p></li>
+<li><p>un esempio negativo viene classificato come positivo, e in questo caso si
+parla di <em>falso positivo</em>.</p></li>
+</ul>
+<p>In alcuni casi il peso dato a un errore che coinvolge un falso positivo
+equivale a quello dato a un falso negativo, ma non è sempre così. Se per
+esempio il procedimento di classificazione mira a determinare i portatori di
+una grave malattia contagiosa, un falso positivo sta a indicare un individuo
+sano che viene erroneamente classificato come malato, e quindi posto
+ingiustamente in isolamento; un falso negativo corrisponde invece a un
+individuo contagioso classificato come sano e quindi a una falla nel
+contenimento di una potenziale epidemia. Un altro esempio, meno drammatico,
+è costituito dai cosiddetti <em>sistemi di raccomandazione</em> utilizzati dai
+rivenditori per suggerire servizi o prodotti ai propri clienti (quando si
+collegano al sito del rivenditore, o tramite mail, o con buoni stampati alla
+cassa). In questo caso un falso negativo corrisponde a un prodotto che
+interesserebbe al cliente ma che non gli viene consigliato (e, a patto che
+gli vengano consigliati altri prodotti sensati, ciò non costituisce di norma
+un errore grave), mentre un falso positivo indica un prodotto consigliato che
+però il cliente non gradisce, e quindi costituisce un errore sicuramente più
+grave rispetto al caso precedente.</p>
+<p>Tenuto anche conto del fatto che tipicamente è molto difficile riuscire a
+ottenere un buon classificatre in termine sia di falsi positivi, sia di falsi
+negativi, un modo efficace di valutare entrambi questi tipi di errore
+consiste nel disegnare la <em>matrice di confusione</em> (o <em>tabella di confusione</em>)
+che mostra il numero di falsi positivi e di falsi negativi unitamente al
+numero di casi correttamente classificati, a loro volta divisi in
+<em>veri positivi</em> e <em>veri negativi</em>.</p>
+<table class="table">
+  <caption>Matrice di confusione
+  di un classificatore binario</caption>
+  <tr style="background: none;">
+    <th style="border-top: none;"></th>
+    <th style="border-top: none;"></th>
+    <th colspan="2"
+        style="border-top: none; text-align: center;
+               font-weight: bold;">Valore effettivo</th>
+    <th style="border-top: none;"></th>
+  </tr>
+  <tr>
+    <td style="border-top: none;"></td>
+    <td style="border-top: none;"></td>
+    <td style="text-align: center;
+               font-weight: bold;">Positivo</td>
+    <td style="text-align: center;
+               font-weight: bold;">Negativo</td>
+  </tr>
+  <tr style="background: none;">
+    <th rowspan="2"
+        style="border-top: none; text-align: center;
+        vertical-align: middle;
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);">
+        Esito della classificazione</th>
+    <td style="text-align: center; font-weight: bold;
+        vertical-align: middle;">Positivo</td>
+    <td style="text-align: center;
+        vertical-align: middle;">Veri positivi (VP)</td>
+    <td style="text-align: center;
+               vertical-align: middle;">Falsi positivi (FP)</td>
+    <td style="text-align: center;">
+    Totale classificati come positivi</td>
+  </tr>
+  <tr>
+    <td style="text-align: center; font-weight: bold;
+               vertical-align: middle;">Negativo</td>
+    <td style="text-align: center;">Falsi negativi (FN)</td>
+    <td style="text-align: center;">Veri negativi (VN)</td>
+    <td style="text-align: center;">
+    Totale classificati come negativi</td>
+  </tr>
+  <tr style="background: none;">
+    <td></td>
+    <td></td>
+    <td style="text-align: center;">Totale positivi: (TP)</td>
+    <td style="text-align: center;">Totale negativi: (TN)</td>
+    <td style="text-align: center;">Totale casi</td>
+  </tr>
+</table>
+<p>A partire dalla matrice di confusione è possibile derivare due indici che
+valutano separatamente la capacità del classificatore a lavorare
+correttamente con gli oggetti positivi e con quelli negativi:</p>
+<ul class="simple">
+<li><p>la <em>sensibilità</em>, intesa come frazione degli oggetti positivi che vengono
+correttamente classificati</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\mathrm{sensibilità} = \frac{\mathrm{VP}}{\mathrm{TP}},
+\]</div>
+<ul class="simple">
+<li><p>la <em>specificità</em>, analaogamente intesa come frazione degli oggetti negativi
+che vengono correttamente classificati</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\mathrm{specificità} = \frac{\mathrm{VN}}{\mathrm{TN}}.
+\]</div>
+<p>Una volta calcolati i valori per questi due indici, è possibile valutare il
+classificatore in funzione della posizione assunta dal punto di coordinate
+<span class="math notranslate nohighlight">\((1 - \mathrm{specificità}, \mathrm{sensibilità})\)</span> sul piano cartesiano. In
+termini delle quantità sopra definite, le coordinate coincidono con
+<span class="math notranslate nohighlight">\(\left(1 - \frac{VN}{TN}, \frac{VP}{TP}\right)\)</span>, o equivalentemente con
+<span class="math notranslate nohighlight">\(\left(\frac{FP}{TN}, \frac{VP}{TP}\right)\)</span>. Vediamo nel seguito alcuni casi
+speciali.</p>
+<div class="section" id="classificatori-costanti">
+<h3><span class="section-number">6.8.1.1. </span>Classificatori costanti<a class="headerlink" href="#classificatori-costanti" title="Link a questa intestazione">¶</a></h3>
+<p>Consideriamo il classificatore <span class="math notranslate nohighlight">\(\mathrm{CP}\)</span> che associa indiscriminatamente
+gli oggetti nella classe positiva. La corrispondente matrice di confusione
+sarà la seguente.</p>
+<table class="table">
+  <caption>Matrice di confusione
+  del classificatore $\mathrm{CP}$</caption>
+  <tr style="background: none;">
+    <th style="border-top: none;"></th>
+    <th style="border-top: none;"></th>
+    <th colspan="2"
+        style="border-top: none; text-align: center;
+               font-weight: bold;">Valore effettivo</th>
+  </tr>
+  <tr>
+    <td style="border-top: none;"></td>
+    <td style="border-top: none;"></td>
+    <td style="text-align: center;
+               font-weight: bold;">Positivo</td>
+    <td style="text-align: center;
+               font-weight: bold;">Negativo</td>
+  </tr>
+  <tr style="background: none;">
+    <th rowspan="2"
+        style="border-top: none; text-align: center;
+        vertical-align: middle;
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);">
+        Esito della classificazione</th>
+    <td style="text-align: center; font-weight: bold;
+               vertical-align: middle;">Positivo</td>
+    <td style="text-align: center;vertical-align: middle;">TP</td>
+    <td style="text-align: center;vertical-align: middle;">TN</td>
+  </tr>
+  <tr>
+    <td style="text-align: center; font-weight: bold;
+               vertical-align: middle;">Negativo</td>
+    <td style="text-align: center;">0</td>
+    <td style="text-align: center;">0</td>
+  </tr>
+</table>
+<p>Tutti i <span class="math notranslate nohighlight">\(\mathrm{TP}\)</span> oggetti positivi verranno assegnati (correttamente)
+alla classe positiva, e tutti i <span class="math notranslate nohighlight">\(\mathrm{TN}\)</span> oggetti negativi saranno
+assegnati (erroneamente) alla classe positiva. Ciò significa che il numero di
+veri positivi sarà pari a <span class="math notranslate nohighlight">\(\mathrm{TP}\)</span> e il numero di veri negativi sarà
+zero: pertanto la sensibilità sarà uguale a <span class="math notranslate nohighlight">\(1\)</span> (com'è giusto che sia: tutti
+gli oggetti sono classificati come positivi e quindi il 100% degli oggetti
+positivi viene correttamente classificato) mentre la specificità sarà nulla
+(nessun oggetto negativo verrà classificato come tale). Il classificatore
+<span class="math notranslate nohighlight">\(\mathrm{CP}\)</span> individuerà quindi il punto di coordinate
+<span class="math notranslate nohighlight">\((1-\mathrm{specificità}, \mathrm{sensibilità}) = (1, 1)\)</span>.</p>
+<p>Il classificatore <span class="math notranslate nohighlight">\(\mathrm{CN}\)</span> che associa tutti gli oggetti alla classe
+negativa si comporta in modo duale rispetto a <span class="math notranslate nohighlight">\(\mathrm{CP}\)</span>, e la sua matrice
+di confusione è la seguente.</p>
+<table class="table">
+<caption>Matrice di confusione
+  del classificatore $\mathrm{CN}$</caption>
+  <tr style="background: none;">
+    <th style="border-top: none;"></th>
+    <th style="border-top: none;"></th>
+    <th colspan="2"
+        style="border-top: none; text-align: center;
+               font-weight: bold;">Valore effettivo</th>
+  </tr>
+  <tr>
+    <td style="border-top: none;"></td>
+    <td style="border-top: none;"></td>
+    <td style="text-align: center;
+               font-weight: bold;">Positivo</td>
+    <td style="text-align: center;
+               font-weight: bold;">Negativo</td>
+  </tr>
+  <tr style="background: none;">
+    <th rowspan="2"
+        style="border-top: none; text-align: center;
+        vertical-align: middle;
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);">
+        Esito della classificazione</th>
+    <td style="text-align: center; font-weight: bold;
+               vertical-align: middle;">Positivo</td>
+    <td style="text-align: center;vertical-align: middle;">0</td>
+    <td style="text-align: center;vertical-align: middle;">0</td>
+  </tr>
+  <tr>
+    <td style="text-align: center; font-weight: bold;
+               vertical-align: middle;">Negativo</td>
+    <td style="text-align: center;">TP</td>
+    <td style="text-align: center;">TN</td>
+  </tr>
+</table>
+<p>Così come risultano invertite le righe della matrice di confusione, si
+invertono anche i valori per gli indici considerati: la sensibilità si
+annulla e la specificità vale <span class="math notranslate nohighlight">\(1\)</span>, pertanto <span class="math notranslate nohighlight">\(\mathrm{CN}\)</span> individuerà il
+punto <span class="math notranslate nohighlight">\((0, 0)\)</span> sul piano cartesiano. I due classificatori costanti
+considerati si collocano quindi in corrispondenza di due dei quattro vertici
+del quadrato, come mostrato nella figura seguente all'interno della quale è
+stata evidenziata anche la diagonale del quadrato, che ci servierà come punto
+di riferimento.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">.07</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;$\mathrm</span><span class="si">{CN}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.07</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;$\mathrm</span><span class="si">{CP}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/analisi-di-classificatori_1_0.png" src="../../_images/analisi-di-classificatori_1_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="classificatori-ideali">
+<h3><span class="section-number">6.8.1.2. </span>Classificatori ideali<a class="headerlink" href="#classificatori-ideali" title="Link a questa intestazione">¶</a></h3>
+<p>Ha senso chiedersi se i due vertici del quadrato rimasti scoperti siano
+anch'essi in corrispondenza di classificatori particolari. Prendiamo per
+esempio in esame il vertice di coordinate <span class="math notranslate nohighlight">\((0, 1)\)</span>: per come sono state
+costruite queste coordinate sappiamo che la sensibilità e la specificità del
+classificatore dovranno essere entrambe uguali a <span class="math notranslate nohighlight">\(1\)</span>. Ciò significa che il
+100% dei valori positivi verrà correttamente classificata, e lo stesso varrà
+per gli oggetti negativi. Siamo in altre parole di fronte a un
+<em>classificatore ideale</em> che non commetta alcun errore, la cui matrice di
+confusione è illustrata qui sotto.</p>
+<table class="table">
+  <tr style="background: none;">
+    <th style="border-top: none;"></th>
+    <th style="border-top: none;"></th>
+    <th colspan="2" style="border-top: none; text-align: center; font-weight: bold;">Valore effettivo</th>
+  </tr>
+  <tr>
+    <td style="border-top: none;"></td>
+    <td style="border-top: none;"></td>
+    <td style="text-align: center; font-weight: bold;">Positivo</td>
+    <td style="text-align: center; font-weight: bold;">Negativo</td>
+  </tr>
+  <tr style="background: none;">
+    <td rowspan="2" style="border-top: none; text-align: center; vertical-align: middle;">Esito della classificazione</td>
+    <td style="text-align: center; font-weight: bold; vertical-align: middle;">Positivo</td>
+    <td style="text-align: center;vertical-align: middle;">TP</td>
+    <td style="text-align: center;vertical-align: middle;">0</td>
+  </tr>
+  <tr>
+    <td style="text-align: center; font-weight: bold; vertical-align: middle;">Negativo</td>
+    <td style="text-align: center;">0</td>
+    <td style="text-align: center;">TN</td>
+  </tr>
+</table>
+<p>Per quel che riguarda il vertice rimanente, l'ascissa unitaria e l'ordinata
+uguale a <span class="math notranslate nohighlight">\(0\)</span> corrisponderanno a un valore nullo sia per la specificità, sia
+per la sensibilità. Nessun punto verrà quindi correttamente classificato e
+tutti gli oggetti considerati daranno luogo ad errori di classificazione.
+La matrice di confusione che ne risulta è la seguente.</p>
+<table class="table">
+  <tr style="background: none;">
+    <th style="border-top: none;"></th>
+    <th style="border-top: none;"></th>
+    <th colspan="2" style="border-top: none; text-align: center; font-weight: bold;">Valore effettivo</th>
+  </tr>
+  <tr>
+    <td style="border-top: none;"></td>
+    <td style="border-top: none;"></td>
+    <td style="text-align: center; font-weight: bold;">Positivo</td>
+    <td style="text-align: center; font-weight: bold;">Negativo</td>
+  </tr>
+  <tr style="background: none;">
+    <td rowspan="2" style="border-top: none; text-align: center; vertical-align: middle;">Esito della classificazione</td>
+    <td style="text-align: center; font-weight: bold; vertical-align: middle;">Positivo</td>
+    <td style="text-align: center;vertical-align: middle;">0</td>
+    <td style="text-align: center;vertical-align: middle;">TN</td>
+  </tr>
+  <tr>
+    <td style="text-align: center; font-weight: bold; vertical-align: middle;">Negativo</td>
+    <td style="text-align: center;">TP</td>
+    <td style="text-align: center;">0</td>
+  </tr>
+</table>
+<p>Ci troviamo dunque di fronte a un classificatore totalmente errato, a partire
+dal quale è però sorprendentemente facile ottenere il classificatore ideale
+invertendo gli esiti della classificazione: ogni qual volta un oggetto
+verrebbe classificato come negativo lo si associa alla classe positiva e
+viceversa. Se indichiamo rispettivamente con <span class="math notranslate nohighlight">\(\mathrm{CI}\)</span> e <span class="math notranslate nohighlight">\(\mathrm{CE}\)</span> i
+classificatori ideale ed errato, possiamo aggiornare la rappresentazione sul
+piano cartesiano nel modo che segue.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">.07</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;$\mathrm</span><span class="si">{CN}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.07</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;$\mathrm</span><span class="si">{CP}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">.07</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;$\mathrm</span><span class="si">{CI}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.07</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;$\mathrm</span><span class="si">{CE}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/analisi-di-classificatori_3_0.png" src="../../_images/analisi-di-classificatori_3_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="classificatori-casuali">
+<h3><span class="section-number">6.8.1.3. </span>Classificatori casuali<a class="headerlink" href="#classificatori-casuali" title="Link a questa intestazione">¶</a></h3>
+<p>Prendiamo ora in considerazione un classificatore che corrisponde al punto
+<span class="math notranslate nohighlight">\((\frac{1}{2}, \frac{1}{2})\)</span>. Sensibilità e specificità sono entrambe uguali
+a <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span>, e dunque metà degli oggetti positivi e metà di quelli
+negativi vengono classificati correttamente (il che significa che le due
+rimanenti metà vengono classificate male). La matrice di confusione che ne
+segue è la seguente.</p>
+<table class="table">
+  <caption>Matrice di confusione
+  del classificatore $\mathrm{CC}_{1/2}$</caption>
+  <tr style="background: none;">
+    <th style="border-top: none;"></th>
+    <th style="border-top: none;"></th>
+    <th colspan="2" style="border-top: none; text-align: center; font-weight: bold;">Valore effettivo</th>
+  </tr>
+  <tr>
+    <td style="border-top: none;"></td>
+    <td style="border-top: none;"></td>
+    <td style="text-align: center; font-weight: bold;">Positivo</td>
+    <td style="text-align: center; font-weight: bold;">Negativo</td>
+  </tr>
+  <tr style="background: none;">
+    <td rowspan="2" style="border-top: none; text-align: center; vertical-align: middle;">Esito della classificazione</td>
+    <td style="text-align: center; font-weight: bold; vertical-align: middle;">Positivo</td>
+    <td style="text-align: center;vertical-align: middle;">$\frac{\mathrm{TP}}{2}$</td>
+    <td style="text-align: center;vertical-align: middle;">$\frac{\mathrm{TN}}{2}$</td>
+  </tr>
+  <tr>
+    <td style="text-align: center; font-weight: bold; vertical-align: middle;">Negativo</td>
+    <td style="text-align: center;">$\frac{\mathrm{TP}}{2}$</td>
+    <td style="text-align: center;">$\frac{\mathrm{TN}}{2}$</td>
+  </tr>
+</table>
+<p>Si può pertanto trarre la conclusione che dal punto di vista della sua
+bravura nell'assegnare gli oggetti alle due classi, questo classificatore è
+essenzialmente equivalente a un classificatore <span class="math notranslate nohighlight">\(\mathrm{CC}_{1/2}\)</span> che
+assegna un generico oggetto a una classe scelta uniformemente a caso, per
+esempio lanciando una moneta.</p>
+<p>Scegliamo un qualsiasi altro punto che giace sulla diagonale, per esempio
+quello di coordinate <span class="math notranslate nohighlight">\((\frac{4}{5}, \frac{4}{5})\)</span>. La sensibilità
+corrispondente sarà pari a <span class="math notranslate nohighlight">\(\frac{4}{5}\)</span>, mentre la specificità varrà
+<span class="math notranslate nohighlight">\(1 - \frac{4}{5} = \frac{1}{5}\)</span>. La matrice di confusione corrispondente
+sarà quella indicata di seguito.</p>
+<table class="table">
+  <caption>Matrice di confusione
+  del classificatore $\mathrm{CC}_{4/5}$</caption>
+  <tr style="background: none;">
+    <th style="border-top: none;"></th>
+    <th style="border-top: none;"></th>
+    <th colspan="2" style="border-top: none; text-align: center; font-weight: bold;">Valore effettivo</th>
+  </tr>
+  <tr>
+    <td style="border-top: none;"></td>
+    <td style="border-top: none;"></td>
+    <td style="text-align: center; font-weight: bold;">Positivo</td>
+    <td style="text-align: center; font-weight: bold;">Negativo</td>
+  </tr>
+  <tr style="background: none;">
+    <td rowspan="2" style="border-top: none; text-align: center; vertical-align: middle;">Esito della classificazione</td>
+    <td style="text-align: center; font-weight: bold; vertical-align: middle;">Positivo</td>
+    <td style="text-align: center;vertical-align: middle;">$\frac{4}{5}\mathrm{TP}$</td>
+    <td style="text-align: center;vertical-align: middle;">$\frac{4}{5}\mathrm{TN}$</td>
+  </tr>
+  <tr>
+    <td style="text-align: center; font-weight: bold; vertical-align: middle;">Negativo</td>
+    <td style="text-align: center;">$\frac{1}{5}\mathrm{TP}$</td>
+    <td style="text-align: center;">$\frac{1}{5}\mathrm{TN}$</td>
+  </tr>
+</table>
+<p>Ripetendo il ragionamento fatto per <span class="math notranslate nohighlight">\(\mathrm{CC}_{1/2}\)</span> si vede facilmente
+come il classificatore considerato sia equivalente a un classificatore
+<span class="math notranslate nohighlight">\(\mathrm{CC}_{4/5}\)</span> che assegna sempre casualmente gli oggetti alle due
+classi, con la differenza che ora la scelta non è fatta in modo uniforme:
+nell'80% dei casi verrà scelta la classe positiva e nel rimanente 20% gli
+esempi verranno associati a quella negativa.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">.5</span><span class="p">,</span> <span class="mf">.8</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">.5</span><span class="p">,</span> <span class="mf">.8</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">.07</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;$\mathrm</span><span class="si">{CN}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.07</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;$\mathrm</span><span class="si">{CP}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">.07</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;$\mathrm</span><span class="si">{CI}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.07</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;$\mathrm</span><span class="si">{CE}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">.6</span><span class="p">,</span> <span class="mf">.487</span><span class="p">,</span> <span class="s1">&#39;$\mathrm</span><span class="si">{CC}</span><span class="s1">_{1/2}$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">.9</span><span class="p">,</span> <span class="mf">.787</span><span class="p">,</span> <span class="s1">&#39;$\mathrm</span><span class="si">{CC}</span><span class="s1">_{4/5}$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/analisi-di-classificatori_5_0.png" src="../../_images/analisi-di-classificatori_5_0.png" />
+</div>
+</div>
+<p>Ovviamente nei casi reali non capiterà di imbattersi esattamente in questi
+classificatori, i quali ci permettono però di orientarci all'interno della
+rappresentazione grafica. Un classificatore sarà tanto più efficiente quanto
+più si colloca nella parte in alto a sinistra del quadrato. Eventuali
+classificatori che si collochino vicino al vertice in basso a destra possono
+facilmente essere convertiti in classificatori efficienti convertendo ogni
+classificazione positiva in una classificazione negativa e viceversa. Infine,
+classificatori che si collocano vicino alla diagonale sono essenzialmente
+indistinguibili da classificatori che effettuano la scelta tra le due classi
+in modo casuale.</p>
+</div>
+</div>
+<div class="section" id="classificatori-a-soglia">
+<h2><span class="section-number">6.8.2. </span>Classificatori a soglia<a class="headerlink" href="#classificatori-a-soglia" title="Link a questa intestazione">¶</a></h2>
+<p>Un <em>classificatore a soglia</em> effettua il procedimento di classificazione di
+un generico oggetto calcolando una quantità e verificando poi che
+quest'ultima sia superiore a una soglia prefissata. La quantità varierà
+ovviamente in funzione dell'oggetto considerato, mentre la soglia resterà
+uguale. Chiaramente, la costruzione di un tale tipo di classificatore
+richiede anche di fissare questo valore per la soglia. Gli indici di
+sensibilità e specificità possono essere utilizzati proprio per questo scopo:
+indicato con <span class="math notranslate nohighlight">\(\theta\)</span> un generico valore per la soglia e individuato un
+intervallo <span class="math notranslate nohighlight">\([\theta_\min, \theta_\max]\)</span> in cui il valore può variare, si può
+considerare un'opportuna discretizzazione finita di tale intervallo (a meno
+che l'insieme dei valori considerabili non sia già discreto, finito e
+ragionevolmente piccolo)
+<span class="math notranslate nohighlight">\(D = \{ \theta_0 = \theta_\min, \dots, \theta_n = \theta_\max \}\)</span>. Per ogni
+<span class="math notranslate nohighlight">\(\theta \in D\)</span> è poi possibile calcolare la sensibilità e la specificità del
+classificatore (va notato che è sufficiente costruire un'unica volta il
+classificatore a partire dai dati a disposizione, per poi variare via via la
+soglia) e disegnare sul piano cartesiano il punto corrispondente. Il
+risultato è una traiettoria che prende il nome di <em>curva ROC</em>, il cui
+andamento tipico è visualizzato nella figura che segue.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;sds.mplstyle&#39;</span><span class="p">)</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_informative</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">Xtrain</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="mi">9000</span><span class="p">]</span>
+<span class="n">Xtest</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">9000</span><span class="p">:]</span>
+<span class="n">ytrain</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="mi">9000</span><span class="p">]</span>
+<span class="n">ytest</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="mi">9000</span><span class="p">:]</span>
+
+<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xtrain</span><span class="p">,</span> <span class="n">ytrain</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+
+<span class="n">preds</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">Xtest</span><span class="p">)[:,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">roc_curve</span><span class="p">(</span><span class="n">ytest</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="c1">#plt.xlim([-0.01, 1])</span>
+<span class="c1">#plt.ylim([0, 1.01])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/analisi-di-classificatori_7_0.png" src="../../_images/analisi-di-classificatori_7_0.png" />
+</div>
+</div>
+<p>L'andamento di una curva ROC ha sempre l'origine e il punto <span class="math notranslate nohighlight">\((1, 1)\)</span> come
+estremi. Infatti quando la soglia assume rispettivamente i suoi valori minimo
+e massimo il classificatore ha un output costante: nel primo caso tutti gli
+esempi saranno associati alla classe positiva, nel secondo a quella negativa.
+Quindi si ottengono i classificatori <span class="math notranslate nohighlight">\(\mathrm{CP}\)</span> e <span class="math notranslate nohighlight">\(\mathrm{CN}\)</span> che si
+collocano appunto in corrispondenza di <span class="math notranslate nohighlight">\((0, 0)\)</span> e <span class="math notranslate nohighlight">\((1, 1)\)</span> nel grafico.
+Inoltre la curva è sempre monotona non decrescente, e ciò è dovuto al fatto
+che all'aumentare della soglia il numero di oggetti classificati
+positivamente può solo decrescere.</p>
+<p>Il valore di <span class="math notranslate nohighlight">\(\theta\)</span> può quindi essere scelto in modo da trovare un giusto
+compromesso tra sensibilità e specificità. Il grafico della curva ROC viene
+inoltre utilizzato per valutare la bontà del classificatore indipendentemente
+da uno specifico valore della soglia. Ciò viene fatto misurando l'area
+compresa tra l'asse delle ascisse e la curva stessa, area evidenziata nella
+figura che segue.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">tpr</span><span class="p">),</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightgray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/analisi-di-classificatori_9_0.png" src="../../_images/analisi-di-classificatori_9_0.png" />
+</div>
+</div>
+<p>Il valore di tale area viene indicato con la sigla AUC (che corrisponde ad
+&quot;Area Under the ROC Curve&quot;): più si avvicina a <span class="math notranslate nohighlight">\(1\)</span>, più il classificatore
+ha un comportamento che approssima quello del caso ideale <span class="math notranslate nohighlight">\(\mathrm{CI}\)</span>.</p>
+<p>Un caso speciale di classificatori a soglia è costituito dai cosiddetti
+<em>classificatori probabilistici</em> che associano a un oggetto una stima della
+<em>probabilità</em> che questo appartenga alle varie classi. Ancora non abbiamo
+approfondito che cosa sia la probabilità, ma per il momento possiamo
+affidarci all'accezione comune di tale termine: si tratta di una
+quantificazione numerica della confidenza con cui ci aspettiamo che si
+verifichi un evento. Nella maggior parte dei casi questa quantificazione è
+espressa tramite un numero che varia tra <span class="math notranslate nohighlight">\(0\)</span> e <span class="math notranslate nohighlight">\(1\)</span>, dove <span class="math notranslate nohighlight">\(0\)</span> indica la
+certezza assoluta che l'evento non si verificherà e <span class="math notranslate nohighlight">\(1\)</span> indica la situazione
+opposta in cui si ha certezza assoluta che l'evento si verificherà.</p>
+<p>Se nel problema considerato ci sono solo due classi (e in questi casi si
+parla di <em>classificazione binaria</em>), un classificatore probabilistico
+emetterà la sola probabilità di appartenenza alla classe positiva,
+nell'idea che l'appartenenza alla classe negativa si ottenga in modo
+complementare: se è bassa la probabilità che l'oggetto sia positivo, sarà
+alta quella di essere un oggetto negativo e viceversa.</p>
+<p>Ipotizziamo di avere utilizzato cinque oggetti <span class="math notranslate nohighlight">\(x_1, \dots, x_5\)</span>, dei quali
+solo il secondo e il quinto non appartengono alla classe considerata, per
+costruire un classificatore binario a soglia. Ipotizziamo anche che tale
+classificatore associ i cinque oggetti, rispettivamente, alle probabilità
+<span class="math notranslate nohighlight">\(0.7\)</span>, <span class="math notranslate nohighlight">\(0.4\)</span>, <span class="math notranslate nohighlight">\(0.8\)</span>, <span class="math notranslate nohighlight">\(0.7\)</span> e <span class="math notranslate nohighlight">\(0.3\)</span>. Se si vogliono convertire queste
+decisioni probabilistiche in associazioni esplicite degli oggetti alle
+classi, è possibile convertire il classificatore ottenuto in un
+classificatore a soglia, scegliendo un valore <span class="math notranslate nohighlight">\(s\)</span> e associando un oggetto
+alla classe positiva se e solo se la probabilità corrispondente è maggiore o
+uguale a <span class="math notranslate nohighlight">\(s\)</span>. La tabella che segue mostra quali sarebbero le associazioni per
+sei scelte diverse per <span class="math notranslate nohighlight">\(s\)</span> che corrispondono ai valori <span class="math notranslate nohighlight">\(0.2\)</span>, <span class="math notranslate nohighlight">\(0.4\)</span>, <span class="math notranslate nohighlight">\(0.6\)</span>,
+<span class="math notranslate nohighlight">\(0.8\)</span> e <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<table class="table">
+  <tr>
+    <th></th>
+    <th>$y$</th>
+    <th>$p$</th>
+    <th>$s=0$</th>
+    <th>$s=0.2$</th>
+    <th>$s=0.4$</th>
+    <th>$s=0.6$</th>
+    <th>$s=0.8$</th>
+    <th>$s=1$</th>
+  </tr>
+  <tr>
+    <td>$x_1$</td>
+    <td>$1$</td>
+    <td>$0.7$</td>
+    <td>$1$</td>
+    <td>$1$</td>
+    <td>$1$</td>
+    <td>$1$</td>
+    <td>$0$</td>
+    <td>$0$</td>
+  </tr>
+  <tr>
+    <td>$x_2$</td>
+    <td>$0$</td>
+    <td>$0.4$</td>
+    <td>$1$</td>
+    <td>$1$</td>
+    <td>$1$</td>
+    <td>$0$</td>
+    <td>$0$</td>
+    <td>$0$</td>
+  </tr>
+  <tr>
+    <td>$x_3$</td>
+    <td>$1$</td>
+    <td>$0.8$</td>
+    <td>$1$</td>
+    <td>$1$</td>
+    <td>$1$</td>
+    <td>$1$</td>
+    <td>$1$</td>
+    <td>$0$</td>
+  </tr>
+  <tr>
+    <td>$x_4$</td>
+    <td>$1$</td>
+    <td>$0.7$</td>
+    <td>$1$</td>
+    <td>$1$</td>
+    <td>$1$</td>
+    <td>$1$</td>
+    <td>$0$</td>
+    <td>$0$</td>
+  </tr>
+  <tr>
+    <td>$x_5$</td>
+    <td>$0$</td>
+    <td>$0.3$</td>
+    <td>$1$</td>
+    <td>$1$</td>
+    <td>$0$</td>
+    <td>$0$</td>
+    <td>$0$</td>
+    <td>$0$</td>
+  </tr>
+</table>
+<p>Osservando questa tabella è facile derivare le quantità alla base del calcolo
+di sensibilità e specificità. Il numero <span class="math notranslate nohighlight">\(\mathrm{TP}\)</span> e <span class="math notranslate nohighlight">\(\mathrm{TN}\)</span> degli
+oggetti positivi e negativi è pari rispettivamente al numero di <span class="math notranslate nohighlight">\(1\)</span> e di <span class="math notranslate nohighlight">\(0\)</span>
+nella colonna delle etichette <span class="math notranslate nohighlight">\(y\)</span>; inoltre, per un fissato valore di <span class="math notranslate nohighlight">\(s\)</span> il
+numero <span class="math notranslate nohighlight">\(\mathrm{VP}\)</span> di veri positivi è pari al numero di righe in cui
+l'etichetta e il valore della classificazione sono entrambi <span class="math notranslate nohighlight">\(1\)</span>, e
+analogamente il numero <span class="math notranslate nohighlight">\(\mathrm{FP}\)</span> di falsi positivi equivarrà al numero di
+righe in cui l'etichetta <span class="math notranslate nohighlight">\(y\)</span> vale <span class="math notranslate nohighlight">\(0\)</span> mentre l'esito della classificazione
+vale <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<table class="table">
+  <tr>
+    <th></th>
+    <th>$s=0$</th>
+    <th>$s=0.2$</th>
+    <th>$s=0.4$</th>
+    <th>$s=0.6$</th>
+    <th>$s=0.8$</th>
+    <th>$s=1$</th>
+  </tr>
+  <tr>
+    <th>$\frac{\mathrm{FP}}{\mathrm{TN}}$</th>
+    <td>$\frac{2}{2}$</td>
+    <td>$\frac{2}{2}$</td>
+    <td>$\frac{1}{2}$</td>
+    <td>$0$</td>
+    <td>$0$</td>
+    <td>$0$</td>
+  </tr>
+  <tr>
+    <th>$\frac{\mathrm{VP}}{\mathrm{TP}}$</th>
+    <td>$\frac{3}{3}$</td>
+    <td>$\frac{3}{3}$</td>
+    <td>$\frac{3}{3}$</td>
+    <td>$\frac{3}{3}$</td>
+    <td>$\frac{1}{3}$</td>
+    <td>$0$</td>
+  </tr>
+</table>
+<p>La visualizzazione della corrispondente curva ROC può essere effettuata
+consdierando i valori nelle due righe di questa tabella ripsettivamente come
+ascisse e ordinate di punti che andranno poi uniti.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;sds.mplstyle&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">.33</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/analisi-di-classificatori_11_0.png" src="../../_images/analisi-di-classificatori_11_0.png" />
+</div>
+</div>
+<p>In realtà non è necessario tracciare questo tipo di curve &quot;a mano&quot;. Il
+package sklearn mette a disposizione un oggetto <code class="docutils literal notranslate"><span class="pre">metrics</span></code> su cui invocare il
+metodo <code class="docutils literal notranslate"><span class="pre">roc_curve</span></code> che, in funzione delle etichette che individuano le classi
+degli oggetti e delle probabilità emesse dal classificatore determina
+automaticamente quali sono i valori sensati da considerare per la soglia
+sulla probabilità e restituisce due array contenente rispettivamente ascisse
+e ordinate dei punti da unire per ottenere la curva ROC.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">prob</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.7</span><span class="p">,</span> <span class="mf">.4</span><span class="p">,</span> <span class="mf">.8</span><span class="p">,</span> <span class="mf">.7</span><span class="p">,</span> <span class="mf">.3</span><span class="p">]</span>
+<span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">roc_curve</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">prob</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/analisi-di-classificatori_13_0.png" src="../../_images/analisi-di-classificatori_13_0.png" />
+</div>
+</div>
+<div class="naming admonition">
+<p class="admonition-title">Nota</p>
+<p>Come è possibile vedere analizzando il codice nella cella precedente, il
+metodo <code class="docutils literal notranslate"><span class="pre">roc_curve</span></code> restituisce tre valori: il terzo, non considerato nel
+nostro caso (il simbolo <code class="docutils literal notranslate"><span class="pre">_</span></code> ci permette di non dover creare una variabile
+fittizia che poi non verrebbe utilizzata) permette di ottenere i sopra
+citati valori di soglia selezionati dal metodo.</p>
+</div>
+<p>L'oggetto <code class="docutils literal notranslate"><span class="pre">metrics</span></code> permette anche di calcolare il valore AUC corrispondente
+all'area sotto la curva ROC, invocando il metodo <code class="docutils literal notranslate"><span class="pre">auc</span></code> a cui passare i due
+array precedentemente ottenuti.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metrics</span><span class="o">.</span><span class="n">auc</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span><span class="n">tpr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Il risultato ottenuto è coerente con il grafico della curva e con i valori di
+probabilità originali, che sono tutti coerenti con le etichette da predire.
+In effetti, la curva ottenuta ci indica che il classificatore è ideale e, di
+conseguenza, il valore di AUC è <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<p>Se i valori di probabilità per i medesimi oggetti fossero invece <span class="math notranslate nohighlight">\(0.2\)</span>,
+<span class="math notranslate nohighlight">\(0.4\)</span>, <span class="math notranslate nohighlight">\(0.8\)</span>, <span class="math notranslate nohighlight">\(0.7\)</span> e <span class="math notranslate nohighlight">\(0.7\)</span> (con una degradazione delle prestazioni
+relativamente al primo e all'ultimo oggetto), si otterrebbe ovviamente una
+diversa curva ROC.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">prob</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.2</span><span class="p">,</span> <span class="mf">.4</span><span class="p">,</span> <span class="mf">.8</span><span class="p">,</span> <span class="mf">.7</span><span class="p">,</span> <span class="mf">.7</span><span class="p">]</span>
+<span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">roc_curve</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">prob</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/analisi-di-classificatori_17_0.png" src="../../_images/analisi-di-classificatori_17_0.png" />
+</div>
+</div>
+<p>Il decadimento delle prestazioni si può osservare in maniera più diretta
+calcolando il valore per l'AUC, che in questo caso è non molto superiore al
+valore corrispondente a una scelta uniformemente casuale.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metrics</span><span class="o">.</span><span class="n">auc</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span><span class="n">tpr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5833333333333333
+</pre></div>
+</div>
+</div>
+</div>
+<p>Consideriamo un esempio più complesso, rivisitando quanto visto relativamente
+agli alberi di decisione. Iniziamo caricando il dataset dei supereroi,
+eliminando tutti i casi in cui l'editore non è <code class="docutils literal notranslate"><span class="pre">'Marvel</span> <span class="pre">Comics'</span></code> oppure
+<code class="docutils literal notranslate"><span class="pre">'DC</span> <span class="pre">Comics'</span></code>. Focalizziamo poi l'attenzione su alcune delle colonne,
+trasformando i valori categorici in valori numerici.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">heroes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/heroes.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">heroes</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;Marvel Comics&#39;</span><span class="p">,</span> <span class="s1">&#39;DC Comics&#39;</span><span class="p">])]</span>
+
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="s1">&#39;Weight&#39;</span><span class="p">,</span> <span class="s1">&#39;Gender&#39;</span><span class="p">,</span> <span class="s1">&#39;First appearance&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Hair color&#39;</span><span class="p">,</span> <span class="s1">&#39;Eye color&#39;</span><span class="p">,</span> <span class="s1">&#39;Strength&#39;</span><span class="p">,</span> <span class="s1">&#39;Intelligence&#39;</span><span class="p">]</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+
+<span class="n">gender_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">gender_encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">])</span>
+
+<span class="n">eye_col_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">eye_col_encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">])</span>
+
+<span class="n">hair_col_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">hair_col_encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">])</span>
+
+<span class="n">intelligence_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">intelligence_encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">])</span>
+
+<span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gender_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">])</span>
+<span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">eye_col_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">])</span>
+<span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hair_col_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">])</span>
+<span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">intelligence_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nell'idea di costruire un classificatore che associa i supereroi a una tra le
+due case editrici, estraiamo le colonne per ottenere l'insieme degli oggetti
+e parimenti costruiamo la serie delle etichette corrispondenti, i cui valori
+vanno trasformati da categorici a numerici.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span>
+
+<span class="n">publisher_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">publisher_encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">publisher_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Il passo successivo consiste nel dividere gli oggetti a disposizione e le
+corrispondenti etichette in due gruppi: uno per costruire il classificatore e
+uno per valutarne l'efficacia in termini di curva ROC. Usando infatti dei
+dati nuovi per valuare un classificatore si cattura meglio la sua capacità di
+funzionare correttamente quando questo verrà utilizzato su oggetti di cui non
+si conosce la classe di appartenenza.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_train</span> <span class="o">=</span> <span class="mi">90</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="n">num_train</span><span class="p">]</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">num_train</span><span class="p">:]</span>
+<span class="n">Y_train</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[:</span><span class="n">num_train</span><span class="p">]</span>
+<span class="n">Y_test</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="n">num_train</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Utilizzando la classe <code class="docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code> vista in precedenza è quindi
+possibile ottenere l'albero di decisione che ci interessa. Il risultato
+ottenuto può sia assegnare un oggetto a una specifica classe (cosa che
+abbiamo finora fatto invocando il metodo <code class="docutils literal notranslate"><span class="pre">predict</span></code>), sia stimare la
+probabilità che questo oggetto appartenga alle due classi considerate: ciò
+si ottiene invocando il metodo <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> che restituirà in questo
+caso una lista con due valori che corrispondono rispettivamente alla
+probabilità di essere editi da Marvel o da DC. Considerando solo il primo
+di questi due valori si può facilmente procedere come prima e tracciare la
+corrispondente curva ROC.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">tree</span>
+
+<span class="n">clf</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">()</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">)</span>
+
+<span class="n">preds</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)[:,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">roc_curve</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;figure&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/analisi-di-classificatori_27_0.png" src="../../_images/analisi-di-classificatori_27_0.png" />
+</div>
+</div>
+<p>Il risultato ottenuto è relativamente (ma non troppo) lontano dalla diagonale
+associata ai classificatori casuali, così come risulta anche evidenziato dal
+corrispondente valore di AUC.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">auc</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">auc</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span><span class="n">tpr</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">auc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5875
+</pre></div>
+</div>
+</div>
+</div>
+<p>L'oggetto <code class="docutils literal notranslate"><span class="pre">metrics</span></code> del modulo <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> permette anche di calcolare la
+matrice di confusione, invocando il metodo <code class="docutils literal notranslate"><span class="pre">confusion_matrix</span></code>. Nella cella
+seguente, l'array restituito da questo metodo è stato utilizzato per
+costruire un <em>DataFrame</em>, al fine di ottenere una visualizzazione della
+matrice più gradevole.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">preds</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3</td>
+      <td>37</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./p2-SD/c3-misurare-informazione"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="analisi-della-varianza.html" title="precedente pagina">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">precedente</p>
+            <p class="prev-next-title"><span class="section-number">6.7. </span>Analisi della varianza</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../c4-visualizzare-informazione/visualizzare-informazione.html" title="successivo pagina">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">successivo</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Visualizzare l'informazione</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      Di <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a><br/>
+    
+        &copy; Diritto d'autore 2021 — Licensed under CC-BY 4.0.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

@@ -277,6 +277,10 @@ div.sidebar > :last-child {
   margin-top: 0.5rem;
 }
 
+.topbar {
+  z-index: 20 !important;
+}
+
 .figure .caption-number,
 .figure .caption-text,
 .table .caption-number,
@@ -372,7 +376,7 @@ table.dataframe td {
 
 .amsmath,
 .math {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
 }
 
 .eqno {
@@ -391,7 +395,7 @@ table.dataframe td {
   color: var(--pst-color-secondary);
   font-family: var(--pst-font-title);
   background-color: inherit !important;
-  margin-left: 2rem !important;
+  margin-left: -.25rem !important;
   padding-left: 1.7rem !important;
   margin-top: 1rem !important;
 }
@@ -408,6 +412,90 @@ table.dataframe td {
 
 .note.admonition .admonition-title:before {
   content: 'pan_tool_alt' !important;
+}
+
+.proof .admonition-title {
+  background-color: transparent !important;
+}
+
+.proof {
+  border-radius: 0 !important;
+}
+
+.proof .proof {
+  box-shadow: 0 0;
+  background-color: transparent;
+  border: 0 !important;
+}
+
+.proof .proof > p:last-of-type::after {
+    border: 1px solid currentColor;
+    /* background-color: currentColor; */
+    content: '';
+    display: block;
+    float: right;
+    position: relative;
+
+    /* To be changed based on typeface */
+    height: 0.625em;
+    margin-left: 0.3em;
+    top: 0.3em;
+    width: 0.625em;
+}
+
+.table caption {
+  display: inherit;
+  caption-side: top;
+}
+
+.margin.sidebar {
+  padding: 2px !important;
+}
+
+#landing + h1 {
+  text-align: center;
+  line-height: 4rem;
+  font-weight: bold;
+}
+
+#cover-image {
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+}
+
+#author {
+  float: right;
+  color: var(--pst-color-secondary);
+  font-size: 1.6rem;
+}
+
+#name {
+  font-weight: bold;
+}
+
+#institution {
+  font-style: italic;
+}
+
+.cover-separator {
+  clear: both;
+}
+
+.output.stream pre {
+  line-height: 0.9rem;
+}
+
+td.text-align:center {
+  text-align: center !important;
+}
+
+.caption-text .std.std-numref {
+  font-size: 1.2rem !important;
+}
+
+.caption-text .math,
+.caption-text .amsmath {
+  font-size: 1.2rem !important;
 }
 
 #main-content a:link,

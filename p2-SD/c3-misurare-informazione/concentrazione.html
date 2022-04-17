@@ -1,0 +1,1137 @@
+
+<!DOCTYPE html>
+
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>6.5. Indici di concentrazione &#8212; Superhero Data Science 
+ Probabilità e Statistica</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Indice" href="../../genindex.html" />
+    <link rel="search" title="Cerca" href="../../search.html" />
+    <link rel="next" title="6.6. Trasformazione dei dati" href="trasformazioni-dei-dati.html" />
+    <link rel="prev" title="6.4. Indici di eterogeneità" href="eterogeneita.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="it">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logoface.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Superhero Data Science 
+ Probabilità e Statistica</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Cerca in questo libro ..." aria-label="Cerca in questo libro ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../landing.html">
+   Superhero Data Science
+   <br/>
+   Probabilità e Statistica
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduzione
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p0-introduzione/presentazione.html">
+   1. Presentazione
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p0-introduzione/un-esempio-introduttivo.html">
+     1.1. Un esempio
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p0-introduzione/notazione.html">
+     1.2. Notazione
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Programmazione per l'analisi dei dati
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p1-PAD/c1-intro-python/introduzione-a-python.html">
+   2. Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-semplici-e-operatori.html">
+     2.1. Tipi di dati semplici
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-strutturati.html">
+     2.2. Tipi di dati strutturati
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/strutture-di-controllo.html">
+     2.3. Strutture di controllo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/funzioni.html">
+     2.4. Funzioni
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/importare-moduli.html">
+     2.6. Importare moduli
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/disegnare-grafici.html">
+     2.7. Disegnare grafici
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/leggere-file.html">
+     2.8. Leggere dati da file (e un po' di trucchi)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p1-PAD/c2-pandas/pandas.html">
+   3. Pandas
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c2-pandas/serie.html">
+     3.1. Serie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c2-pandas/dataframe.html">
+     3.2. Dataframe
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Statistica descrittiva
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../c1-dati-e-informazione/dati-e-informazione.html">
+   4. Dati e informazione
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c1-dati-e-informazione/dati-quantitativi-e-qualitativi.html">
+     4.7. Dati quantitativi e qualitativi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c1-dati-e-informazione/frequenze-assolute-e-relative.html">
+     4.8. Frequenze assolute e relative
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c1-dati-e-informazione/frequenze-cumulate.html">
+     4.9. Frequenze cumulate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c1-dati-e-informazione/frequenze-congiunte-e-marginali.html">
+     4.10. Frequenze congiunte e marginali
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../c2-utilizzare-informazione/utilizzare-informazione.html">
+   5. Utilizzare l'informazione
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-utilizzare-informazione/descrivere-popolazione.html">
+     5.1. Descrivere una popolazione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-utilizzare-informazione/predire-informazione.html">
+     5.2. Predire l'informazione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-utilizzare-informazione/classificazione.html">
+     5.3. Classificazione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-utilizzare-informazione/regressione.html">
+     5.4. Regressione
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="misurare-informazione.html">
+   6. Misurare l'informazione
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="indici-di-posizione.html">
+     6.1. Indici di posizione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="indici-di-dispersione.html">
+     6.2. Calcolo della dispersione in pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="quantili-campionari.html">
+     6.3. Quantili campionari
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="eterogeneita.html">
+     6.4. Indici di eterogeneità
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     6.5. Indici di concentrazione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="trasformazioni-dei-dati.html">
+     6.6. Trasformazione dei dati
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="analisi-della-varianza.html">
+     6.7. Analisi della varianza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="analisi-di-classificatori.html">
+     6.8. Analisi di classificatori
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../c4-visualizzare-informazione/visualizzare-informazione.html">
+   7. Visualizzare l'informazione
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c4-visualizzare-informazione/diagrammi-per-dati-discreti.html">
+     7.1. Dati discreti
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c4-visualizzare-informazione/diagrammi-per-dati-continui.html">
+     7.2. Dati continui
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c4-visualizzare-informazione/diagrammi-per-dati-cumulati.html">
+     7.3. Dati cumulati
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c4-visualizzare-informazione/simmetria-e-normalita.html">
+     7.4. Simmetria e normalità
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../c5-analizzare-relazioni/analizzare-relazioni.html">
+   8. Analizzare le relazioni tra i dati
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c5-analizzare-relazioni/diagrammi-per-dati-a-coppie.html">
+     8.1. Dati a coppie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c5-analizzare-relazioni/covarianza-e-correlazione.html">
+     8.2. Covarianza e correlazione
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Calcolo delle probabilità
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/calcolo-combinatorio.html">
+   9. Calcolo combinatorio
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/principio-fondamentale-calcolo-combinatorio.html">
+     9.1. Principio fondamentale del calcolo combinatorio
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/permutazioni.html">
+     9.2. Permutazioni
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/disposizioni.html">
+     9.3. Disposizioni e combinazioni
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/combinazioni.html">
+     9.4. Disposizioni e combinazioni
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/esercizi.html">
+     9.5. Esercizi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/generazione.html">
+     9.6. Generazione di disposizioni, permutazioni e combinazioni
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/teoria-insiemi.html">
+   10. Teoria degli insiemi
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/concetti-di-base.html">
+     10.1. Concetti di base
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/insiemi-finiti-e-infiniti.html">
+     10.2. Insiemi finiti e infiniti
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/relazioni-tra-insiemi.html">
+     10.3. Relazioni tra insiemi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/operazioni-tra-insiemi.html">
+     10.4. Operazioni tra insiemi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/insiemi-in-python.html">
+     10.5. Gli insiemi in Python
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p3-CP/c3-probabilita/calcolo-probabilita.html">
+   11. Calcolo delle probabilità
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/concetto-di-probabilita.html">
+     11.1. Il concetto di probabilità
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/esperimenti-esiti-eventi.html">
+     11.2. Esperimenti, esiti ed eventi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/assiomi-kolmogorov.html">
+     11.3. Assiomi di Kolmogorov
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/spazi-equiprobabili.html">
+     11.4. Spazi equiprobabili
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/probabilita-condizionata.html">
+     11.5. Probabilità condizionata
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/prob-totali-e-naive-bayes.html">
+     11.6. Teoremi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/classificatori-naive-bayes.html">
+     11.7. Classificatori naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c3-probabilita/indipendenza.html">
+     11.8. Indipendenza
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/intro.html">
+   12. Variabili aleatorie
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-aleatorie.html">
+     12.1. Variabili aleatorie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-aleatorie-discrete.html">
+     12.2. Variabili aleatorie discrete
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/valore-atteso.html">
+     12.3. Valore atteso
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/varianza.html">
+     12.4. Varianza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/momenti.html">
+     12.5. momenti
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-multivariate.html">
+     12.6. Variabili aleatorie multivariate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/indipendenza.html">
+     12.7. Indipendenza di variabili aleatorie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/disuguaglianze-fondamentali.html">
+     12.8. Disuguaglianze fondamentali
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-aleatorie-continue.html">
+     12.9. Variabili aleatorie continue
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/modelli-discreti.html">
+   13. Modelli discreti
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/bernoulli.html">
+     13.1. Il modello di Bernoulli
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/binomiale.html">
+     13.2. Il modello binomiale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/uniforme.html">
+     13.3. Il modello uniforme discreto
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/geometrico.html">
+     13.4. Il modello geometrico
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/poisson.html">
+     13.5. Il modello di poisson
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/ipergeometrico.html">
+     13.6. Il modello ipergeometrico
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p3-CP/c6-modelli-continui/modelli-continui.html">
+   14. I modelli continui
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/uniforme.html">
+     14.1. Il modello uniforme continuo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/esponenziale.html">
+     14.2. Il modello esponenziale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/gaussiano.html">
+     14.3. Il modello gaussiano
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/altri-modelli.html">
+     14.4. Altri modelli continui
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Statistica inferenziale
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/inferenza-puntuale.html">
+   15. Inferenza puntuale
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima.html">
+     15.1. Popolazione, campione e stima
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/media-campionaria.html">
+     15.2. Media campionaria
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/varianza-campionaria.html">
+     15.3. Varianza campionaria
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/errore-di-una-stima.html">
+     15.4. Errore di una stima
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/teorema-centrale-limite.html">
+     15.5. Teorema del limite centrale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/leggi-grandi-numeri.html">
+     15.6. Leggi dei grandi numeri
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/distribuzioni-campionarie.html">
+     15.7. Distribuzioni campionarie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/calcolo-dimensione-campione.html">
+     15.8. Calcolo della dimensione del campione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/processo-poisson.html">
+     15.9. Processo di poisson
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Bibliografia
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../bibliography.html">
+   16. Bibliografia
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Attiva / disattiva la navigazione" aria-controls="site-navigation"
+                title="Attiva / disattiva la navigazione" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Scarica questa pagina"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../_sources/p2-SD/c3-misurare-informazione/concentrazione.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Scarica il file del taccuino" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/p2-SD/c3-misurare-informazione/concentrazione.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Scarica il file sorgente" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Stampa in PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/dariomalchiodi/sds"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Repository di origine"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/dariomalchiodi/sds/issues/new?title=Issue%20on%20page%20%2Fp2-SD/c3-misurare-informazione/concentrazione.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Apri un problema"><i class="fas fa-lightbulb"></i>questione aperta</button></a>
+        <a class="edit-button" href="https://github.com/dariomalchiodi/sds/edit/main/sds/p2-SD/c3-misurare-informazione/concentrazione.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Modifica questa pagina"><i class="fas fa-pencil-alt"></i>suggerisci modifica</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modalità schermo intero"
+        title="Modalità schermo intero"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dariomalchiodi/sds/main?urlpath=tree/sds/p2-SD/c3-misurare-informazione/concentrazione.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Lanciare Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Indici di concentrazione</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="indici-di-concentrazione">
+<h1><span class="section-number">6.5. </span>Indici di concentrazione<a class="headerlink" href="#indici-di-concentrazione" title="Link a questa intestazione">¶</a></h1>
+<p>In presenza di variabili che rappresentano beni condivisibili in una
+popolazione, come per esempio la ricchezza, ci si può chiedere quanto la
+variabile sia equamente distribuita tra gli individui della popolazione, oppure
+quanto sia concentrata solo su un numero ridotto di osservazioni. Questo
+concetto è diverso dalla varianza, che misura la dispersione dei valori intorno
+a un valore medio.</p>
+<p>Date <span class="math notranslate nohighlight">\(n\)</span> osservazioni, indichiamo con <span class="math notranslate nohighlight">\(a_1, \dots, a_n\)</span> il loro elenco una
+volta che queste sono state ordinate. Successivamente calcoliamone il valore
+medio</p>
+<div class="math notranslate nohighlight">
+\[
+\bar a = \frac{1}{n} \sum_{i=1}^n a_i
+\]</div>
+<p>e sommiamole, ottenendo <span class="math notranslate nohighlight">\(\mathrm{TOT} = n \bar a = \sum_{i=1}^n a_i\)</span>. Possiamo
+avere due situazioni estreme:</p>
+<ol class="simple">
+<li><p>in caso di concentrazione minima tutti gli elementi del campione assumono lo
+stesso valore: <span class="math notranslate nohighlight">\(a_1 = a_2 = \dots = a_n = \bar a\)</span>;</p></li>
+<li><p>in caso di concentrazione massima tutti gli elementi del campione assumono
+il valore <span class="math notranslate nohighlight">\(0\)</span>, a parte uno:  <span class="math notranslate nohighlight">\(a_1 = a_2 = \dots = a_{n-1} = 0\)</span> e
+<span class="math notranslate nohighlight">\(a_n = n \bar a\)</span>.</p></li>
+</ol>
+<p>In generale allora ci può interessare valutare un indice di concentrazione, che
+valga <span class="math notranslate nohighlight">\(0\)</span> oppure <span class="math notranslate nohighlight">\(1\)</span> nei casi rispettivamente di concentrazione minima e
+massima, e che sia negli altri casi sia un valore crescente in funzione della
+concentrazione. Consideriamo:</p>
+<ul class="simple">
+<li><p>la frequenza relativa cumulata fino all'<span class="math notranslate nohighlight">\(i\)</span>-esima osservazione:
+<span class="math notranslate nohighlight">\(F_i = \frac{i}{n}\)</span>, per <span class="math notranslate nohighlight">\(i = 1, \dots, n\)</span>, e</p></li>
+<li><p>la quantità relativa cumulata fino all'<span class="math notranslate nohighlight">\(i\)</span>-esima osservazione:
+<span class="math notranslate nohighlight">\(Q_i = \frac{\sum_{k=1}^i a_k}{\mathrm{TOT}}\)</span>.</p></li>
+</ul>
+<p>Si verifica facilmente che</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(0 \leq F_i \leq 1\)</span> e <span class="math notranslate nohighlight">\(0 \leq Q_i \leq 1\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(Q_i \leq F_i\)</span> dal momento che le osservazioni sono state ordinate in modo
+crescente;</p></li>
+<li><p><span class="math notranslate nohighlight">\(Q_i = F_i\)</span> nel caso di concentrazione minima;</p></li>
+<li><p><span class="math notranslate nohighlight">\(Q_n = F_n\)</span>.</p></li>
+</ul>
+<p>Per <span class="math notranslate nohighlight">\(i = 1, \dots,n\)</span> le coppie <span class="math notranslate nohighlight">\((F_i, Q_i)\)</span> indicano che il <span class="math notranslate nohighlight">\(100 F_i \%\)</span> della
+popolazione detiene il <span class="math notranslate nohighlight">\(100 Q_i \%\)</span> della quantità considerata. Se si
+considerano i punti sul piano che sono identificati da queste coppie:</p>
+<ul class="simple">
+<li><p>nel caso di concentrazione minima tutti i punti <span class="math notranslate nohighlight">\((F_i, Q_i)\)</span> giacciono sulla
+retta <span class="math notranslate nohighlight">\(F = Q\)</span>: possiamo dunque dire che in questo caso <span class="math notranslate nohighlight">\(F_i - Q_i = 0\)</span> per ogni
+<span class="math notranslate nohighlight">\(i\)</span>;</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;sds.mplstyle&#39;</span><span class="p">)</span>
+
+<span class="n">heroes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/heroes.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">tot</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">tot</span><span class="o">/</span><span class="n">n</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">/</span> <span class="n">tot</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/concentrazione_1_0.png" src="../../_images/concentrazione_1_0.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>nel caso di concentrazione massima i punti <span class="math notranslate nohighlight">\((F_i, Q_i)\)</span> per
+<span class="math notranslate nohighlight">\(i = 1, \dots, n-1\)</span> giacciono sulla retta <span class="math notranslate nohighlight">\(Q = 0\)</span>, tranne l'ultimo per cui
+<span class="math notranslate nohighlight">\(F_n = Q_n = 1\)</span>: dunque in questo caso <span class="math notranslate nohighlight">\(F_i - Q_i = F_i\)</span> per
+<span class="math notranslate nohighlight">\(i = 1, \dots, n-1\)</span> e <span class="math notranslate nohighlight">\(F_n - Q_n = 0\)</span>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tot</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">tot</span><span class="p">]</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">/</span> <span class="n">tot</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/concentrazione_3_0.png" src="../../_images/concentrazione_3_0.png" />
+</div>
+</div>
+<p>Nei casi intermedi si avrà dunque che i punti staranno su una curva &quot;sotto&quot; la
+retta <span class="math notranslate nohighlight">\(F = Q\)</span>, dato che <span class="math notranslate nohighlight">\(Q_i \leq F_i\)</span>, e più tale curva si &quot;allontana&quot; dalla
+retta, più la concentrazione è alta.</p>
+<p>L'area compresa tra la curva dei punti <span class="math notranslate nohighlight">\((F_i, Q_i)\)</span> (detta <em>curva di Lorentz</em>)
+e la retta di equidistribuzione (la retta a <span class="math notranslate nohighlight">\(45^{\circ}\)</span>) è detta
+<em>area di concentrazione</em> e può essere utilizzata come base per la definizione
+di appositi rapporti di concentrazione, di cui l'indice di Gini costituisce un
+esempio. Maggiore infatti è la concentrazione osservata, maggiore sarà tale
+area.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tot</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="n">tot</span><span class="o">/</span><span class="mi">100</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span> <span class="o">+</span> <span class="p">[</span><span class="n">tot</span><span class="o">*</span><span class="mi">4</span><span class="o">/</span><span class="mi">90</span><span class="p">]</span><span class="o">*</span><span class="mi">9</span> <span class="o">+</span> <span class="p">[</span><span class="n">tot</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">/</span> <span class="n">tot</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/concentrazione_5_0.png" src="../../_images/concentrazione_5_0.png" />
+</div>
+</div>
+<p>Verifichiamo quale sia la concentrazione dell'attributo <em>Strength</em>, nell'idea
+di verificare se la forza sia più o meno equamente distribuita tra i supereroi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">strength</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">])][</span><span class="s1">&#39;Strength&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Le quantità relative cumulate si ottengono ordinando i valori, calcolando le
+corrispondenti somme cumulate e dividendole per la &quot;quantità&quot; totale di forza.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span> <span class="o">=</span> <span class="n">strength</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">strength</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Le frequenze relative cumulate sono facili da calcolare: il loro vettore ha
+come componenti i valori che vanno da <span class="math notranslate nohighlight">\(\frac{1}{n}\)</span> a <span class="math notranslate nohighlight">\(1\)</span>, incrementandoli ogni
+volta di <span class="math notranslate nohighlight">\(\frac{1}{n}\)</span>, dove <span class="math notranslate nohighlight">\(n\)</span> indica il numero di valori osservati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">strength</span><span class="p">)</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pertanto il grafico che mostra l'area di concentrazione è il seguente, in cui a
+causa dell'elevato numero di osservazioni è più opportuno visualizzare le
+quantità relative cumulate (i valori di <span class="math notranslate nohighlight">\(Q\)</span>) usando una spezzata piuttosto che
+un insieme di punti.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/concentrazione_13_0.png" src="../../_images/concentrazione_13_0.png" />
+</div>
+</div>
+<p>Il risultato evidenzia una distribuzione della forza relativamente vicina alla
+situazione di concentrazione minima.</p>
+<p>I diagrammi come quello appena ottenuto devono essere analizzati
+<em>qualitativamente</em>, mentre spesso è più comodo avere un indice numerico
+calcolato a partire dai dati, il cui valore possa facilmente essere confrontato
+con due estremi minimo e massino. In tal senso si definisce
+<em>indice di concentrazione (o coefficiente) di Gini</em> il rapporto</p>
+<div class="math notranslate nohighlight">
+\[
+	G = \frac{\sum_{i=1}^{n-1}F_i - Q_i}{\sum_{i=1}^{n-1}F_i}
+\]</div>
+<p>tra la quantità <span class="math notranslate nohighlight">\(\sum_{i=1}^{n-1}F_i - Q_i\)</span> e il suo valore massimo</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^{n-1}F_i = \frac{1}{n} \sum_{i=1}^{n-1} i =
+                      \frac{1}{n} \frac{(n-1)n}{2} = \frac{(n-1)}{2}
+\]</div>
+<p>Per quanto appena visto,</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(0 \leq G \leq 1\)</span>, e</p></li>
+<li><p><span class="math notranslate nohighlight">\(G = \frac{2}{n-1} \sum_{i=1}^{n-1} F_i - Q_i\)</span></p></li>
+</ul>
+<p>Siamo ora in grado di calcolare indice di concentrazione di Gini per
+l'attributo <em>Strength</em>: sottraendo componente per componente il vettore delle
+quantità cumulate a quello delle frequenze cumulate, sommando i risultati e
+moltiplicando per <span class="math notranslate nohighlight">\(\frac{2}{n-1}\)</span> si ottiene il valore dell'indice di
+concentrazione.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">F</span> <span class="o">-</span> <span class="n">Q</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4118214635457669
+</pre></div>
+</div>
+</div>
+</div>
+<p>In accordo con il grafico precedentemente generato, <span class="math notranslate nohighlight">\(G\)</span> assume un valore
+intermedio tra i due possibili estremi, a indicare una distribuzione della
+forza debolmente concentrata su un sottoinsieme dei supereroi.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./p2-SD/c3-misurare-informazione"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="eterogeneita.html" title="precedente pagina">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">precedente</p>
+            <p class="prev-next-title"><span class="section-number">6.4. </span>Indici di eterogeneità</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="trasformazioni-dei-dati.html" title="successivo pagina">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">successivo</p>
+        <p class="prev-next-title"><span class="section-number">6.6. </span>Trasformazione dei dati</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      Di <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a><br/>
+    
+        &copy; Diritto d'autore 2021 — Licensed under CC-BY 4.0.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

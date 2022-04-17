@@ -1,0 +1,1369 @@
+
+<!DOCTYPE html>
+
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>9.2. Permutazioni &#8212; Superhero Data Science 
+ Probabilità e Statistica</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Indice" href="../../genindex.html" />
+    <link rel="search" title="Cerca" href="../../search.html" />
+    <link rel="next" title="9.3. Disposizioni e combinazioni" href="disposizioni.html" />
+    <link rel="prev" title="9.1. Principio fondamentale del calcolo combinatorio" href="principio-fondamentale-calcolo-combinatorio.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="it">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logoface.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Superhero Data Science 
+ Probabilità e Statistica</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Cerca in questo libro ..." aria-label="Cerca in questo libro ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../landing.html">
+   Superhero Data Science
+   <br/>
+   Probabilità e Statistica
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduzione
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p0-introduzione/presentazione.html">
+   1. Presentazione
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p0-introduzione/un-esempio-introduttivo.html">
+     1.1. Un esempio
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p0-introduzione/notazione.html">
+     1.2. Notazione
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Programmazione per l'analisi dei dati
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p1-PAD/c1-intro-python/introduzione-a-python.html">
+   2. Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-semplici-e-operatori.html">
+     2.1. Tipi di dati semplici
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-strutturati.html">
+     2.2. Tipi di dati strutturati
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/strutture-di-controllo.html">
+     2.3. Strutture di controllo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/funzioni.html">
+     2.4. Funzioni
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/importare-moduli.html">
+     2.6. Importare moduli
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/disegnare-grafici.html">
+     2.7. Disegnare grafici
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c1-intro-python/leggere-file.html">
+     2.8. Leggere dati da file (e un po' di trucchi)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p1-PAD/c2-pandas/pandas.html">
+   3. Pandas
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c2-pandas/serie.html">
+     3.1. Serie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p1-PAD/c2-pandas/dataframe.html">
+     3.2. Dataframe
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Statistica descrittiva
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/dati-e-informazione.html">
+   4. Dati e informazione
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/dati-quantitativi-e-qualitativi.html">
+     4.7. Dati quantitativi e qualitativi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/frequenze-assolute-e-relative.html">
+     4.8. Frequenze assolute e relative
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/frequenze-cumulate.html">
+     4.9. Frequenze cumulate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/frequenze-congiunte-e-marginali.html">
+     4.10. Frequenze congiunte e marginali
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/utilizzare-informazione.html">
+   5. Utilizzare l'informazione
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/descrivere-popolazione.html">
+     5.1. Descrivere una popolazione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/predire-informazione.html">
+     5.2. Predire l'informazione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/classificazione.html">
+     5.3. Classificazione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/regressione.html">
+     5.4. Regressione
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/misurare-informazione.html">
+   6. Misurare l'informazione
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/indici-di-posizione.html">
+     6.1. Indici di posizione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/indici-di-dispersione.html">
+     6.2. Calcolo della dispersione in pandas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/quantili-campionari.html">
+     6.3. Quantili campionari
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/eterogeneita.html">
+     6.4. Indici di eterogeneità
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/concentrazione.html">
+     6.5. Indici di concentrazione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/trasformazioni-dei-dati.html">
+     6.6. Trasformazione dei dati
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/analisi-della-varianza.html">
+     6.7. Analisi della varianza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/analisi-di-classificatori.html">
+     6.8. Analisi di classificatori
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/visualizzare-informazione.html">
+   7. Visualizzare l'informazione
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-discreti.html">
+     7.1. Dati discreti
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-continui.html">
+     7.2. Dati continui
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-cumulati.html">
+     7.3. Dati cumulati
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/simmetria-e-normalita.html">
+     7.4. Simmetria e normalità
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p2-SD/c5-analizzare-relazioni/analizzare-relazioni.html">
+   8. Analizzare le relazioni tra i dati
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c5-analizzare-relazioni/diagrammi-per-dati-a-coppie.html">
+     8.1. Dati a coppie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p2-SD/c5-analizzare-relazioni/covarianza-e-correlazione.html">
+     8.2. Covarianza e correlazione
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Calcolo delle probabilità
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="calcolo-combinatorio.html">
+   9. Calcolo combinatorio
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="principio-fondamentale-calcolo-combinatorio.html">
+     9.1. Principio fondamentale del calcolo combinatorio
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     9.2. Permutazioni
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="disposizioni.html">
+     9.3. Disposizioni e combinazioni
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="combinazioni.html">
+     9.4. Disposizioni e combinazioni
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="esercizi.html">
+     9.5. Esercizi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generazione.html">
+     9.6. Generazione di disposizioni, permutazioni e combinazioni
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../c2-teoria-insiemi/teoria-insiemi.html">
+   10. Teoria degli insiemi
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-teoria-insiemi/concetti-di-base.html">
+     10.1. Concetti di base
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-teoria-insiemi/insiemi-finiti-e-infiniti.html">
+     10.2. Insiemi finiti e infiniti
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-teoria-insiemi/relazioni-tra-insiemi.html">
+     10.3. Relazioni tra insiemi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-teoria-insiemi/operazioni-tra-insiemi.html">
+     10.4. Operazioni tra insiemi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c2-teoria-insiemi/insiemi-in-python.html">
+     10.5. Gli insiemi in Python
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../c3-probabilita/calcolo-probabilita.html">
+   11. Calcolo delle probabilità
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c3-probabilita/concetto-di-probabilita.html">
+     11.1. Il concetto di probabilità
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c3-probabilita/esperimenti-esiti-eventi.html">
+     11.2. Esperimenti, esiti ed eventi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c3-probabilita/assiomi-kolmogorov.html">
+     11.3. Assiomi di Kolmogorov
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c3-probabilita/spazi-equiprobabili.html">
+     11.4. Spazi equiprobabili
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c3-probabilita/probabilita-condizionata.html">
+     11.5. Probabilità condizionata
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c3-probabilita/prob-totali-e-naive-bayes.html">
+     11.6. Teoremi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c3-probabilita/classificatori-naive-bayes.html">
+     11.7. Classificatori naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c3-probabilita/indipendenza.html">
+     11.8. Indipendenza
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../c4-variabili-aleatorie/intro.html">
+   12. Variabili aleatorie
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c4-variabili-aleatorie/variabili-aleatorie.html">
+     12.1. Variabili aleatorie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c4-variabili-aleatorie/variabili-aleatorie-discrete.html">
+     12.2. Variabili aleatorie discrete
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c4-variabili-aleatorie/valore-atteso.html">
+     12.3. Valore atteso
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c4-variabili-aleatorie/varianza.html">
+     12.4. Varianza
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c4-variabili-aleatorie/momenti.html">
+     12.5. momenti
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c4-variabili-aleatorie/variabili-multivariate.html">
+     12.6. Variabili aleatorie multivariate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c4-variabili-aleatorie/indipendenza.html">
+     12.7. Indipendenza di variabili aleatorie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c4-variabili-aleatorie/disuguaglianze-fondamentali.html">
+     12.8. Disuguaglianze fondamentali
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c4-variabili-aleatorie/variabili-aleatorie-continue.html">
+     12.9. Variabili aleatorie continue
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../c5-modelli-discreti/modelli-discreti.html">
+   13. Modelli discreti
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c5-modelli-discreti/bernoulli.html">
+     13.1. Il modello di Bernoulli
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c5-modelli-discreti/binomiale.html">
+     13.2. Il modello binomiale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c5-modelli-discreti/uniforme.html">
+     13.3. Il modello uniforme discreto
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c5-modelli-discreti/geometrico.html">
+     13.4. Il modello geometrico
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c5-modelli-discreti/poisson.html">
+     13.5. Il modello di poisson
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c5-modelli-discreti/ipergeometrico.html">
+     13.6. Il modello ipergeometrico
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../c6-modelli-continui/modelli-continui.html">
+   14. I modelli continui
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c6-modelli-continui/uniforme.html">
+     14.1. Il modello uniforme continuo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c6-modelli-continui/esponenziale.html">
+     14.2. Il modello esponenziale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c6-modelli-continui/gaussiano.html">
+     14.3. Il modello gaussiano
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c6-modelli-continui/altri-modelli.html">
+     14.4. Altri modelli continui
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Statistica inferenziale
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/inferenza-puntuale.html">
+   15. Inferenza puntuale
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima.html">
+     15.1. Popolazione, campione e stima
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/media-campionaria.html">
+     15.2. Media campionaria
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/varianza-campionaria.html">
+     15.3. Varianza campionaria
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/errore-di-una-stima.html">
+     15.4. Errore di una stima
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/teorema-centrale-limite.html">
+     15.5. Teorema del limite centrale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/leggi-grandi-numeri.html">
+     15.6. Leggi dei grandi numeri
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/distribuzioni-campionarie.html">
+     15.7. Distribuzioni campionarie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/calcolo-dimensione-campione.html">
+     15.8. Calcolo della dimensione del campione
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/processo-poisson.html">
+     15.9. Processo di poisson
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Bibliografia
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../bibliography.html">
+   16. Bibliografia
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Attiva / disattiva la navigazione" aria-controls="site-navigation"
+                title="Attiva / disattiva la navigazione" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Scarica questa pagina"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../../_sources/p3-CP/c1-calcolo-combinatorio/permutazioni.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Scarica il file del taccuino" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/p3-CP/c1-calcolo-combinatorio/permutazioni.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Scarica il file sorgente" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Stampa in PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/dariomalchiodi/sds"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Repository di origine"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/dariomalchiodi/sds/issues/new?title=Issue%20on%20page%20%2Fp3-CP/c1-calcolo-combinatorio/permutazioni.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Apri un problema"><i class="fas fa-lightbulb"></i>questione aperta</button></a>
+        <a class="edit-button" href="https://github.com/dariomalchiodi/sds/edit/main/sds/p3-CP/c1-calcolo-combinatorio/permutazioni.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Modifica questa pagina"><i class="fas fa-pencil-alt"></i>suggerisci modifica</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modalità schermo intero"
+        title="Modalità schermo intero"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dariomalchiodi/sds/main?urlpath=tree/sds/p3-CP/c1-calcolo-combinatorio/permutazioni.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Lanciare Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contenuti
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#permutazioni-semplici">
+   9.2.1. Permutazioni semplici
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#permutazioni-con-ripetizione">
+   9.2.2. Permutazioni con ripetizione
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Permutazioni</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contenuti </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#permutazioni-semplici">
+   9.2.1. Permutazioni semplici
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#permutazioni-con-ripetizione">
+   9.2.2. Permutazioni con ripetizione
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="permutazioni">
+<h1><span class="section-number">9.2. </span>Permutazioni<a class="headerlink" href="#permutazioni" title="Link a questa intestazione">¶</a></h1>
+<p>Una permutazione di <span class="math notranslate nohighlight">\(n\)</span> oggetti rappresenta un modo possibile di elencare
+questi oggetti in qualche ordine. Pertanto, nel raggruppamento che
+corrisponde alle permutazioni risulta rilevante l'ordine utilizzato, e non è
+possibile utilizzare uno stesso oggetto più di una volta. La costruzione di una
+permutazione equivale all'applicazione di queste regole per inserire gli <span class="math notranslate nohighlight">\(n\)</span>
+oggetti in altrettanti posti, perché per definizione tutti gli oggetti devono
+essere utilizzati. Come vedremo nei due paragrafi che seguono, il ragionamento
+alla base del calcolo del numero di permutazioni dipende dal fatto che gli
+oggetti siano tra loro distinguibili oppure no.</p>
+<div class="section" id="permutazioni-semplici">
+<h2><span class="section-number">9.2.1. </span>Permutazioni semplici<a class="headerlink" href="#permutazioni-semplici" title="Link a questa intestazione">¶</a></h2>
+<p>Quando gli oggetti da permutare sono gli elementi di un insieme, per
+definizione devono essere tutti diversi (o in altre parole distinguibili) tra
+tra loro, e si parla di <em>permutazione semplice</em>, o soltanto di <em>permutazione</em>,
+come descritto dalla seguente definizione.</p>
+<div class="proof definition admonition" id="definition-0">
+<p class="admonition-title"><span class="caption-number">Definition 9.1 </span> (Permutazione semplice)</p>
+<div class="definition-content section" id="proof-content">
+<p>Consideriamo un insieme <span class="math notranslate nohighlight">\(A = \{ a_1,\dots a_n\}\)</span> contenente <span class="math notranslate nohighlight">\(n\)</span> oggetti.
+Chiamiamo <em>permutazione semplice</em> (o più brevemente <em>permutazione</em>) di questi
+oggetti una qualsiasi sequenza ordinata in cui compaiono tutti e soli gli <span class="math notranslate nohighlight">\(n\)</span>
+elementi di <span class="math notranslate nohighlight">\(A\)</span>.</p>
+</div>
+</div><div class="proof example admonition" id="example-1">
+<p class="admonition-title"><span class="caption-number">Example 9.1 </span> (I Fantastici 4)</p>
+<div class="example-content section" id="proof-content">
+<p>Consideriamo l'insieme <span class="math notranslate nohighlight">\(Q = \{ f, i, t, c \}\)</span> dei Fantastici 4: mister
+fantastic (<span class="math notranslate nohighlight">\(f\)</span>), la donna invisibile (<span class="math notranslate nohighlight">\(i\)</span>), la torcia umana (<span class="math notranslate nohighlight">\(t\)</span>) e la cosa
+(<span class="math notranslate nohighlight">\(c\)</span>): le possibili permutazioni semplici dei suoi oggetti sono elencate nella
+<a class="reference internal" href="#permutazioni-fantastici-quattro"><span class="std std-numref">Tabella 9.1</span></a>.</p>
+</div>
+</div><table class="colwidths-auto table" id="permutazioni-fantastici-quattro">
+<caption><span class="caption-number">Tabella 9.1 </span><span class="caption-text">Possibili permutazioni semplici dei membri dei Fantastici 4</span><a class="headerlink" href="#permutazioni-fantastici-quattro" title="Link a questa tabella">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>I elemento</p></th>
+<th class="text-align:center head"><p>II elemento</p></th>
+<th class="text-align:center head"><p>III elemento</p></th>
+<th class="text-align:center head"><p>IV elemento</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>Per calcolare in generale il numero <span class="math notranslate nohighlight">\(p_n\)</span> di differenti permutazioni di <span class="math notranslate nohighlight">\(n\)</span>
+oggetti possiamo applicare il principio fondamentale del calcolo combinatorio:</p>
+<ul class="simple">
+<li><p>calcoliamo in quanti modi possiamo selezionare l'oggetto da inserire nella
+prima posizione: avendo a disposizione <span class="math notranslate nohighlight">\(n\)</span> oggetti, abbiamo <span class="math notranslate nohighlight">\(n\)</span>
+possibilità;</p></li>
+<li><p>per ciasuna delle <span class="math notranslate nohighlight">\(n\)</span> possibili scelte fatte al punto precedente,
+calcoliamo in quanti modi possiamo selezionare l'oggetto da inserire nella
+seconda posizione: avendo a disposizione <span class="math notranslate nohighlight">\(n-1\)</span> oggetti, abbiamo <span class="math notranslate nohighlight">\(n-1\)</span>
+possibilità; in totale abbiamo dunque <span class="math notranslate nohighlight">\(n \cdot (n-1)\)</span> modi differenti per
+scegliere i primi due elementi della sequenza;</p></li>
+<li><p>procediamo in modo analogo per tutte le altre posizioni, creando così un
+albero il cui livello <span class="math notranslate nohighlight">\(i\)</span> corrisponde alla scelta per riempire l'<span class="math notranslate nohighlight">\(i\)</span>-esima
+posizione; se osserviamo che per riempire la posizione <span class="math notranslate nohighlight">\(i\)</span>-esima sono
+rimasti <span class="math notranslate nohighlight">\(n-(i-1)\)</span> elementi di <span class="math notranslate nohighlight">\(A\)</span> tra cui scegliere, possiamo dire che
+esistono <span class="math notranslate nohighlight">\(n\cdot(n-1) \cdot \ldots \cdot(n-(i-1))\)</span> modi differenti per
+scegliere i primi <span class="math notranslate nohighlight">\(i\)</span> elementi della sequenza;</p></li>
+<li><p>in particolare, arrivati all'ultima posizione, è rimasto un solo elemento
+di <span class="math notranslate nohighlight">\(A\)</span> da scegliere, e abbiamo costruito un albero di profondità <span class="math notranslate nohighlight">\(n\)</span> che ha
+un numero di foglie pari a <span class="math notranslate nohighlight">\(n(n-1)(n-2)\ldots 1=n!\)</span>.</p></li>
+</ul>
+<p>Quindi il numero di possibili permutazioni semplici di <span class="math notranslate nohighlight">\(n\)</span> oggetti è
+<span class="math notranslate nohighlight">\(p_n = n!\)</span>. Guardando ad esempio la <a class="reference internal" href="#permutazioni-fantastici-quattro"><span class="std std-numref">Tabella 9.1</span></a>,
+potete verificare molto facilmente che essa contiene tutte le possibili
+<span class="math notranslate nohighlight">\(4! = 24\)</span> permutazioni dei 4 oggetti di <span class="math notranslate nohighlight">\(Q\)</span>.</p>
+</div>
+<div class="section" id="permutazioni-con-ripetizione">
+<h2><span class="section-number">9.2.2. </span>Permutazioni con ripetizione<a class="headerlink" href="#permutazioni-con-ripetizione" title="Link a questa intestazione">¶</a></h2>
+<p>Quando gli <span class="math notranslate nohighlight">\(n\)</span> oggetti da permutare non sono tutti diversi tra loro, non
+possiamo più dire che essi fanno parte di un insieme. In casi come questo
+si parla piuttosto di un <em>multiinsieme</em>, inteso come sequenza non ordinata
+in cui ogni elemento può comparire una o più volte. In altre parole, gli <span class="math notranslate nohighlight">\(n\)</span>
+oggetti non sono a due a due distinguibili, bensì esistono <span class="math notranslate nohighlight">\(r \in \mathbb N\)</span>
+diversi oggetti, che possiamo indicare come <span class="math notranslate nohighlight">\(a_1, \ldots, a_r\)</span>, ognuno dei
+quali può occorrere anche più di una volta nella sequenza. Questi oggetti sono
+pertant <em>distinguibili a gruppi</em>: indichiamo con <span class="math notranslate nohighlight">\(n_1, n_2,\ldots n_k\)</span> le
+numerosità di questi gruppi, a significare che nel multiinsieme vi sono <span class="math notranslate nohighlight">\(n_1\)</span>
+occorrenze dell'elemento <span class="math notranslate nohighlight">\(a_1\)</span>, <span class="math notranslate nohighlight">\(n_2\)</span> occorrenze di <span class="math notranslate nohighlight">\(a_2\)</span> e così via
+(ovviamente con <span class="math notranslate nohighlight">\(\sum_{i=1}^k n_i=n\)</span>). In altre parole possiamo scrivere gli
+elementi del multiinsieme uno dopo l'altro ottenendo la sequenza</p>
+<div class="math notranslate nohighlight">
+\[\underbrace{a_1, \ldots, a_1}_{n_1 \text{volte}},
+\underbrace{a_2, \ldots, a_2}_{n_2 \text{volte}}, \ldots,
+\underbrace{a_r, \ldots, a_r}_{n_r \text{volte}}.\]</div>
+<p>Se cambiamo l'ordine degli elementi, non è detto che otterremo una sequenza
+diversa da quella di partenza: potremmo per esempio scambiare tra di loro
+due occorrenze di uno stesso simbolo, ottenendo una sequenza invariata. In
+casi come questo il concetto di permutazione, descritto dalla definizione che
+segue, prende in considerazione solamente le sequenze che sono diverse tra
+loro.</p>
+<div class="proof definition admonition" id="definition-2">
+<p class="admonition-title"><span class="caption-number">Definition 9.2 </span> (Permutazione con ripetizione)</p>
+<div class="definition-content section" id="proof-content">
+<p>Consideriamo un multiinsieme <span class="math notranslate nohighlight">\(A = \{ a_1,\dots a_n\}\)</span> contenente <span class="math notranslate nohighlight">\(n\)</span> oggetti
+distinguibili a gruppi di numerosità <span class="math notranslate nohighlight">\(n_1, \ldots, n_k\)</span>.
+Chiamiamo <em>permutazione di oggetti distinguibili a gruppi</em> (più semplicemente
+<em>permutazione con ripetizione</em>) di questi oggetti una qualsiasi loro sequenza
+ordinata che sia distinguibile dalle altre, e indichiamo con
+<span class="math notranslate nohighlight">\(P_{n; n_1, \ldots, n_k}\)</span> il numero di possibili permutazioni con ripetizione.</p>
+</div>
+</div><div class="proof example admonition" id="dupli-kate-multi-paul">
+<p class="admonition-title"><span class="caption-number">Example 9.2 </span> (Dupli-Kate e Multi-Paul)</p>
+<div class="example-content section" id="proof-content">
+<p>Consideriamo i gemelli Kate e Paul Cha di <em>Invincible Universe</em>,
+entrambi dotati del potere di autoreplicarsi a piacimento e noti come
+Dupli-Kate e Multi-Paul. In particolare, ogni versione di Dupli-Kate è
+contrassegnata da un numero intero progressivo che compare sul suo costume,
+così che possiamo indicare con <span class="math notranslate nohighlight">\(k_1\)</span>, <span class="math notranslate nohighlight">\(k_2\)</span> e così via le sue varianti
+esistenti in un dato momento. Immaginiamo che lo stesso valga per Multi-Paul,
+le cui repliche indicheremo con <span class="math notranslate nohighlight">\(p_1, p_2, \ldots\)</span>, e che di fronte a noi ci
+siano due versioni di Kate e tre di Paul, così che il quintetto risultante
+possa essere descritto dal multiinsieme <span class="math notranslate nohighlight">\(A= \{ k_1, k_2, p_1, p_2, p_3 \}\)</span>.</p>
+<p>Se volessimo calcolare in quanti modi possibili si possono mettere in fila
+queste cinque versioni di Kate e Paul, senza tenere conto del loro numero
+progressivo, ci troveremmo di fronte al calcolo del numero di permutazioni con
+ripetizione di <span class="math notranslate nohighlight">\(n = 5\)</span> oggetti divisi in due gruppi distinti, rispettivamente
+di numerosità <span class="math notranslate nohighlight">\(n_1 = 2\)</span> (quello di Kate) e <span class="math notranslate nohighlight">\(n_2 = 3\)</span> (quello di Paul). In
+questo contesto, <span class="math notranslate nohighlight">\(k_1, k_2, p_1, p_2, p_3\)</span> e <span class="math notranslate nohighlight">\(k_2, k_1, p_1, p_2, p_3\)</span> indicano
+due diverse permutazioni semplici a cui corrisponde però la stessa permutazione
+con ripetizione, in cui le prime due posizioni rappresentano varianti di
+Kate e le ultime tre rappresentano repliche di Paul; al contrario,
+<span class="math notranslate nohighlight">\(k_1, k_2, p_1, p_2, p_3\)</span> e <span class="math notranslate nohighlight">\(k_1, p_1, k_2, p_2, p_3\)</span> indicano permutazioni
+con ripetizione differenti (e dunque anche permutazioni semplici differenti)
+nelle quali la seconda e terza posizione sono occupate rispettivamente da Kate
+e Paul nel primo caso e da Paul e Kate nel secondo.</p>
+</div>
+</div><p>Prima di calcolare il numero totale di permutazioni con ripetizione di <span class="math notranslate nohighlight">\(n\)</span>
+oggetti distinguibili a gruppi di numerosità <span class="math notranslate nohighlight">\(n_1, n_2,\dots n_k\)</span>, analizziamo
+preliminarmente il caso speciale dell'<a class="reference internal" href="#dupli-kate-multi-paul">Example 9.2</a>.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>in questo caso, avendo solo due gruppi, quando si fissano le posizioni degli
+elementi del primo si determinano automaticamente anche quelle degli elementi
+del secondo gruppo</p>
+</div>
+<p>Concentriamoci su di una possibile permutazione con ripetizione, fissando
+le posizioni in cui compare Kate e quelle in cui si trova Paul. Per esempio,
+ipotizziamo che la prima e l'ultima posizione siano dedicate a Kate e quelle
+rimamenti a Paul:</p>
+<p style="text-align: center">Kate Paul Paul Paul Kate</p>
+<p>Ora, a questa permutazione con ripetizione corrispondono varie permutazioni
+semplici dei cinque oggetti che stiamo considerando (le due copie di Kate e le
+tre di Paul): più precisamente, la
+<a class="reference internal" href="#permutazioni-oggetti-indistinguibili"><span class="std std-numref">Tabella 9.2</span></a> elenca tutti i modi possibili di
+mettere in fila due Kate e tre Paul (le varie permutazioni semplici) in modo
+che Kate si trovi agli estremi della fila (la fissata permutazione con
+ripetizione).</p>
+<table class="colwidths-auto table" id="permutazioni-oggetti-indistinguibili">
+<caption><span class="caption-number">Tabella 9.2 </span><span class="caption-text">Possibili permutazioni semplici di oggetti in due gruppi distinguibili contenenti rispettivamente due duplicati <span class="math notranslate nohighlight">\(k_1\)</span> e <span class="math notranslate nohighlight">\(k_2\)</span> di Kate e tre duplicati <span class="math notranslate nohighlight">\(p_1\)</span>, <span class="math notranslate nohighlight">\(p_2\)</span> e <span class="math notranslate nohighlight">\(p_3\)</span> di Paul, in modo che Kate si trovi nella prima e nell'ultima posizione</span><a class="headerlink" href="#permutazioni-oggetti-indistinguibili" title="Link a questa tabella">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>I elemento</p></th>
+<th class="text-align:center head"><p>II elemento</p></th>
+<th class="text-align:center head"><p>III elemento</p></th>
+<th class="text-align:center head"><p>IV elemento</p></th>
+<th class="text-align:center head"><p>V elemento</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_2\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_2\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_2\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_2\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_2\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_2\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_2\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_2\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_1\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_2\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_2\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_1\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_2\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_2\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_1\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>Le righe della <a class="reference internal" href="#permutazioni-oggetti-indistinguibili"><span class="std std-numref">Tabella 9.2</span></a> sono state
+ottenute permutando le due copie di Kate nella prima e nell'ultima posizione e
+le tre copie di Paul nelle posizioni restanti. Se consideriamo Kate, abbiamo
+solo due possibilità: <span class="math notranslate nohighlight">\(k_1\)</span> e <span class="math notranslate nohighlight">\(k_2\)</span> rispettivamente in prima e ultima
+posizione, o viceversa, e queste due possibilità corrispondono alle <span class="math notranslate nohighlight">\(2!\)</span>
+permutazioni semplici delle due versioni di Kate. In altre parole, avremmo
+potuto considerare tutte le permutazioni semplici di queste due versioni e per
+ognuna di esse prendere il primo elemento e posizionarlo nella prima colonna
+della tabella, per poi inserire nell'ultima colonna il secondo elemento. In
+questo modo avremmo ottenuto due <em>template</em> per le righe della tabella,
+rispettivamente per quelle dalla prima alla sesta e per quelle dalla settima
+alla dodicesima. In entrambi i casi, le righe si possono completare effettuando
+un ragionamento analogo che coinvolge le <span class="math notranslate nohighlight">\(3!\)</span> possibili permutazioni semplici
+delle versioni di Paul. Possiamo ora applicare il principio fondamentale del
+calcolo combinatorio: siccome abbiamo <span class="math notranslate nohighlight">\(2!\)</span> modi di riempire le posizioni in
+testa e in coda e <span class="math notranslate nohighlight">\(3!\)</span> modi per riempire le posizioni centrali, alla singola
+configurazione considerata corrispondono <span class="math notranslate nohighlight">\(n_1! \cdot n_2! = 2! \cdot 3! = 12\)</span>
+permutazioni semplici dei cinque oggetti a disposizione.</p>
+<p>Il ragionamento che abbiamo fatto non dipende dalla particolare permutazione
+con ripetizione che abbiamo analizzato, pertanto a ognuna delle
+<span class="math notranslate nohighlight">\(P_{5; 2,3}\)</span> permutazioni con ripetizione corrispondono <span class="math notranslate nohighlight">\(2! \cdot 3! = 12\)</span>
+permutazioni semplici, e se consideriamo tutte queste permutazioni con
+ripetizione è facile vedere che esse individuano globalmente tutte le
+permutazioni semplici. Pertanto deve valere l'uguaglianza
+<span class="math notranslate nohighlight">\(P_{5; 2,3} \cdot 2! \cdot 3! = 5!\)</span>, il che ci permette di ricavare</p>
+<div class="math notranslate nohighlight">
+\[ P_{5; 2,3} = \frac{5!}{2! \cdot 3!} = 10. \]</div>
+<p>Va notato che <span class="math notranslate nohighlight">\(P_{5; 2,3} = \binom{5}{2}\)</span>, e in effetti il numero di
+permutazioni con ripetizione coincide con il numero di modi in cui si
+possono selezionare le due posizioni in cui inserire Kate tra le cinque a
+disposizione.</p>
+<p>Nel caso generale, avremo <span class="math notranslate nohighlight">\(n\)</span> oggetti divisi in <span class="math notranslate nohighlight">\(k\)</span> gruppi di numerosità
+<span class="math notranslate nohighlight">\(n_1, \ldots, n_k\)</span>, e ripetendo il ragionamento precedente si ottiene
+<span class="math notranslate nohighlight">\(n! = P_{n; n_1,\dots, n_k} \cdot n_1! \cdot n_2! \cdot \ldots \cdot n_k!\)</span>, che
+implica</p>
+<div class="math notranslate nohighlight">
+\[
+P_{n; n_1, \dots, n_k} = \frac{n!}{n_1!\cdot n_2! \cdot \ldots \cdot n_k!}.
+\]</div>
+<p>La quantità <span class="math notranslate nohighlight">\(P_{n; n_1, \dots, n_k}\)</span> è anche detta <em>coefficiente multinomiale</em>
+e indicata come</p>
+<div class="math notranslate nohighlight">
+\[
+P_{n; n_1, \dots, n_k} = \frac{n!}{n_1!\cdot n_2! \cdot \ldots \cdot n_k!}
+                       =: \binom{n}{n_1, n_2, \ldots, n_k},
+\]</div>
+<p>in quanto essa rappresenta una generalizzazione del coefficiente binomiale:
+in effetti, <span class="math notranslate nohighlight">\(\binom{n}{k} = \binom{n}{k, n-k}\)</span> indica in quanti modi è
+possibile suddividere <span class="math notranslate nohighlight">\(n\)</span> oggetti in due gruppi, rispettivamente contenenti
+<span class="math notranslate nohighlight">\(k\)</span> e <span class="math notranslate nohighlight">\(n-k\)</span> elementi; analogamente <span class="math notranslate nohighlight">\(\binom{n}{n_1, \ldots, n_k}\)</span> indica in
+quanti modi è possibile suddividere <span class="math notranslate nohighlight">\(n\)</span> oggetti in <span class="math notranslate nohighlight">\(k\)</span> gruppi nei quali il
+primo contiene <span class="math notranslate nohighlight">\(n_1\)</span> elementi, il secondo ne contiene <span class="math notranslate nohighlight">\(n_2\)</span> e così via.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./p3-CP/c1-calcolo-combinatorio"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="principio-fondamentale-calcolo-combinatorio.html" title="precedente pagina">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">precedente</p>
+            <p class="prev-next-title"><span class="section-number">9.1. </span>Principio fondamentale del calcolo combinatorio</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="disposizioni.html" title="successivo pagina">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">successivo</p>
+        <p class="prev-next-title"><span class="section-number">9.3. </span>Disposizioni e combinazioni</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      Di <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a><br/>
+    
+        &copy; Diritto d'autore 2021 — Licensed under CC-BY 4.0.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
