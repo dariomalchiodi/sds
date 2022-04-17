@@ -9,3 +9,4 @@ scipy
 scikit-learn
 statsmodels
 matplotlib-venn
+sphinx_proof
