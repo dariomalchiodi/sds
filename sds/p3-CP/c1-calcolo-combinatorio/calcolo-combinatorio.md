@@ -23,9 +23,12 @@ scelte delle abilità di un personaggio creato all'inizio di un video gioco
 oppure software da installare su un computer). Invece è necessario tenere in
 considerazione i seguenti aspetti.
 
+```{margin}
+Porsi questa domanda equivale a chiedersi se sia possibile o meno inserire in
+un raggruppamento un elemento che è già stato scelto.
+```
 - Gli elementi sono tutti diversi tra loro oppure ve ne sono alcuni che
   risultano _indistinguibili_?
-- È possibile inserire in un raggruppamento un elemento che è gia stato scelto?
 - Il raggruppamento dipende oppure no dall'ordine in cui si elencano gli
   elementi che lo compongono?
 
@@ -37,6 +40,6 @@ questo contiene. Normalmente si utilizza la metafora secondo cui gli $n$
 elementi sono degli _oggetti_ (indipendentemente dalla loro effettiva
 tangibilità) da inserire in $k$ _posti_. Nei paragrafi che seguono vedremo
 quali sono le principali modalità che si possono seguire per effettuare questi
-"inserimenti" ottenendo i vari tipi di raggruppamenti, e deriveremo le
+«inserimenti» ottenendo i vari tipi di raggruppamenti, e deriveremo le
 corrispondenti formule per contare quanti siano i possibili raggruppamento di
 ogni tipo.
