@@ -108,6 +108,18 @@ aritmetico/logiche e le relazioni aritmetiche (utilizzando `+` per l'addizione,
 {numref}`elenco-operatori-per-tipi-semplici` riassume i principali simboli
 utilizzati in Python per questo tipo di operatori binari.
 
+```{margin}
+Va notato che questo libro utilizza un particolare font con
+particolari [legature](https://it.wikipedia.org/wiki/Legatura_(tipografia)) per
+indicare alcuni operatori nel codice (nello specifico, il font
+[Fira code](https://github.com/tonsky/FiraCode)), e quindi alcuni simboli
+appaiono in forma diversa rispetto a ciò che è necessario scrivere per
+inserirli: per esempio `==`, `!=` e `<=` corrispondono alle sequenze
+<code style="font-family: monospace !important;">==</code>,
+<code style="font-family: monospace !important;">!=</code> e
+<code style="font-family: monospace !important;"><=</code>.
+```
+
 ```{table} Elenco dei principali operatori per i tipi semplici
 :name: elenco-operatori-per-tipi-semplici
 :align: center

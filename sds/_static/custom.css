@@ -384,6 +384,10 @@ table.dataframe td {
   font-size: inherit;
 }
 
+.margin.sidebar .footnote-reference {
+  margin-left: 0.1rem;
+}
+
 .eqno {
   font-size: 1.3rem !important;
 }

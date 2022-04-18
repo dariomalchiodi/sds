@@ -68,8 +68,8 @@ parts:
     - file: p3-CP/c1-calcolo-combinatorio/permutazioni
     - file: p3-CP/c1-calcolo-combinatorio/disposizioni
     - file: p3-CP/c1-calcolo-combinatorio/combinazioni
-    - file: p3-CP/c1-calcolo-combinatorio/esercizi
     - file: p3-CP/c1-calcolo-combinatorio/generazione
+    - file: p3-CP/c1-calcolo-combinatorio/esercizi
   - file: p3-CP/c2-teoria-insiemi/teoria-insiemi
     sections:
     - file: p3-CP/c2-teoria-insiemi/concetti-di-base
