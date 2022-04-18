@@ -131,3 +131,16 @@ graph.render('tree')
 L'albero che corrisponde alle scelte relative all'esempio illustrato nella
 {numref}`sh-combinations`.
 ```
+
+È importante notare come l'applicazione del principio fondamentale del
+calcolo combinatorio prescinda dal tipo degli oggetti considerati, siano essi
+mantelli, costumi, verdure, strumenti finanziari o altro. Se nell'esempio
+precedente avessimo dovuto abbinare tre colori a quattro modelli di automobile
+avremmo ottenuto lo stesso risultato numerico. In altre parole, i risultati
+che si ottengono applicando le regole del calcolo combinatorio prescindono
+dalla _natura_ degli oggetti, bensì dipendono solamente dalla loro numerosità
+ed eventualmente dal numero di posti da tenere in considerazione. Si parla
+infatti, ad esempio, delle _permutazioni_ di $n$ oggetti o delle
+_combinazioni_ di $n$ oggetti in $k$ posti. Nei paragrafi che seguono, in
+ogni caso, faremo spesso riferimento a oggetti specifici, per esemplificare
+i concetti che verranno man mano esposti.

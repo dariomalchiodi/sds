@@ -13,7 +13,7 @@ kernelspec:
 ---
 
 
-# Disposizioni e combinazioni
+# Combinazioni
 
 Consideriamo un insieme di $n$ oggetti distinti $A= \{ a_1,\dots a_n \}$ e
 selezioniamo $k$ oggetti di questo insieme. Le modalit\`a di selezione

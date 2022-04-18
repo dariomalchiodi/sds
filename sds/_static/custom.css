@@ -379,6 +379,11 @@ table.dataframe td {
   font-size: 1.4rem;
 }
 
+.margin.sidebar .math,
+.margin.sidebar .amsmath {
+  font-size: inherit;
+}
+
 .eqno {
   font-size: 1.3rem !important;
 }
