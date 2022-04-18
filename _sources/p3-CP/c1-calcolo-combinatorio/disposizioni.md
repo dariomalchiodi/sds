@@ -29,8 +29,15 @@ chiamandole disposizioni con e senza ripetizione.
 Nelle disposizioni con ripetizione è possibile utilizzare uno stesso oggetto
 più di una volta, come specificato dalla definizione che segue.
 
+```{margin}
+In questo caso il significato di _ripetizione_ è diverso da quello visto per
+le permutazioni, nelle quali siamo obbligati a ripetere ogni oggetto
+esattamente tante volte quanto questo occorre nel multiiniseme di partenza;
+nelle disposizioni possiamo invece ripetere uno stesso oggetto quante volte
+vogliamo.
+```
 ```{prf:definition} Disposizione con ripetizione
-:label: disposizioni-con-ripetizioni
+:label: def-disposizioni-con-ripetizione
 Consideriamo un insieme di $n$ oggetti $A= \{ a_1,\dots a_n \}$. Fissato un
 numero $k \in \mathbb N$, una _disposizione con ripetizione_ di questi oggetti
 in $k$ posti è una sequenza di $k$ elementi, ognuno dei quali equivale a uno
@@ -84,6 +91,7 @@ gli $n$ oggetti sono stati inseriti in una sequenza non ve ne sono altri
 che possono essere scelti ulteriormente.
 
 ```{prf:definition} Disposizione semplice
+:label: def-disposizioni-semplici
 Consideriamo un insieme $A \{ a_1, \ldots, a_n \}$ di $n$ oggetti. Fissato
 un numero intero $k \leq n$, una _disposizione semplice_ (detta anche
 _disposizione senza ripetizione_) è una sequenza di $k$ degli oggetti di $A$
