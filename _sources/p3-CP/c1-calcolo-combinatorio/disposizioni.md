@@ -38,17 +38,17 @@ vogliamo.
 ```
 ```{prf:definition} Disposizione con ripetizione
 :label: def-disposizioni-con-ripetizione
-Consideriamo un insieme di $n$ oggetti $A= \{ a_1,\dots a_n \}$. Fissato un
+Consideriamo un insieme di $n$ oggetti $A = \{ a_1,\dots a_n \}$. Fissato un
 numero $k \in \mathbb N$, una _disposizione con ripetizione_ di questi oggetti
-in $k$ posti è una sequenza di $k$ elementi, ognuno dei quali equivale a uno
-degli oggetti. Indicheremo con il simbolo $D_{n, k}$ il numero di differenti
+in $k$ posti è una sequenza ordinata di $k$ elementi distinti appartenenti ad
+$A$. Indicheremo con il simbolo $D_{n, k}$ il numero di differenti
 disposizioni con ripetizione di $n$ oggetti in $k$ posti.
 ```
 
 Indicheremo le disposizioni usando la stessa sintassi delle permutazioni.
 
 ```{prf:example} un esempio di disposizione con ripetizione
-:label: ex-disposizioni
+:label: ex-disposizioni-con-ripetizione
 TODO
 Ad esempio, fissato
 $k=3$, la disposizione $(a_i, a_j, a_r)$ è diversa dalla disposizione

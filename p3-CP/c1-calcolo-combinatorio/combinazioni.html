@@ -62,7 +62,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
     <link rel="search" title="Cerca" href="../../search.html" />
-    <link rel="next" title="9.5. Esercizi" href="esercizi.html" />
+    <link rel="next" title="9.5. Generazione di disposizioni, permutazioni e combinazioni" href="generazione.html" />
     <link rel="prev" title="9.3. Disposizioni" href="disposizioni.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="it">
@@ -429,13 +429,13 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="esercizi.html">
-     9.5. Esercizi
+    <a class="reference internal" href="generazione.html">
+     9.5. Generazione di disposizioni, permutazioni e combinazioni
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="generazione.html">
-     9.6. Generazione di disposizioni, permutazioni e combinazioni
+    <a class="reference internal" href="esercizi.html">
+     9.6. Esercizi
     </a>
    </li>
   </ul>
@@ -963,35 +963,155 @@ c_{n, k} = \frac{d_{n, k}}{k}! = \frac{n!}{(n-k)!k!} =\binom{n}{k}.
 \]</div>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>Come indicato in https://www.superherodb.com/powers/.</p>
+<p>Come indicato in <a class="reference external" href="https://www.superherodb.com/powers/">superherodb</a>.</p>
 </div>
 <p>Riprendendo l'esempio precedente, immaginiamo che vi siano in tutto <span class="math notranslate nohighlight">\(n = 477\)</span>
-possibili superpoteri, e che Peter Petrelli sia in grado di riprodurli tutti.
-In un dato istante sarà in grado di «ricordarsi» <span class="math notranslate nohighlight">\(\binom(477){3} = 17974950\)</span>
+possibili superpoteri, e che Peter Petrelli sia potenzialmente in grado di
+riprodurli tutti.
+In un dato istante sarà in grado di «ricordarsi» <span class="math notranslate nohighlight">\(\binom{477}{3} = \;\)</span>
+<span style="word-spacing: -0.1rem">17 974 950</span>
 diverse configurazioni di tre superpoteri.</p>
 </div>
 <div class="section" id="combinazioni-con-ripetizione">
 <h2><span class="section-number">9.4.2. </span>Combinazioni con ripetizione<a class="headerlink" href="#combinazioni-con-ripetizione" title="Link a questa intestazione">¶</a></h2>
+<p>Quando è possibile inserire uno stesso oggetto più volte in una combinazione,
+si dice che quest'ultima è una <em>combinazione con ripetizione</em>. In questo
+caso la costruzione di una combinazione è analogo alla costruzione di un
+multiinsieme</p>
+<div class="proof definition admonition" id="def-combinazione-con-ripetizione">
+<p class="admonition-title"><span class="caption-number">Definition 9.6 </span> (Combinazione con ripetizione)</p>
+<div class="definition-content section" id="proof-content">
+<p>Consideriamo un insieme <span class="math notranslate nohighlight">\(A = \{ a_1, \ldots, a_n \}\)</span> contenente <span class="math notranslate nohighlight">\(n\)</span> oggetti, e
+fissiamo un numero intero <span class="math notranslate nohighlight">\(k \in \mathbb N\)</span>. Una <em>combinazione con ripetizione</em>
+di questi oggetti in <span class="math notranslate nohighlight">\(k\)</span> posti è una sequenza non ordinata di <span class="math notranslate nohighlight">\(k\)</span> elementi
+(non necessariamente distinti) appartenenti ad <span class="math notranslate nohighlight">\(A\)</span>. Indicheremo con <span class="math notranslate nohighlight">\(C_{n, k}\)</span>
+il numero di combinazioni con ripetizione distinte di <span class="math notranslate nohighlight">\(n\)</span> oggetti in <span class="math notranslate nohighlight">\(k\)</span> posti.</p>
+</div>
+</div><p>Indicheremo le combinazioni con ripetizione usando la stessa sintassi adottata
+per quelle semplici, con la differenza che in questo caso la sequenza tra
+parentesi graffe potrà contenere degli elementi ripetuti.</p>
+<div class="proof example admonition" id="ex-combinazioni-con-ripetizione">
+<p class="admonition-title"><span class="caption-number">Example 9.6 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Immaginiamo che una stanza che
+può contenere fisicamente quattro persone sia piena di cloni di Dupli-Kate e
+Multi-Paul (vedi <a class="reference internal" href="permutazioni.html#dupli-kate-multi-paul">Example 9.2</a>), senza che entrambi i
+gemelli debbano necessariamente essere presenti. La
+<a class="reference internal" href="#tab-combinazioni-dk-mp"><span class="std std-numref">Tabella 9.3</span></a> elenca tutti i modi in cui
+la stanza può essere riempita, che corrispondono a tutte le combinazioni con
+ripetizione dei due oggetti <span class="math notranslate nohighlight">\(k\)</span> e <span class="math notranslate nohighlight">\(p\)</span> (Kate e Paul) in quattro posti.</p>
+</div>
+</div><table class="colwidths-auto table" id="tab-combinazioni-dk-mp">
+<caption><span class="caption-number">Tabella 9.3 </span><span class="caption-text">Possibili combinazioni con ripetizione di Dupli-Kate e Multi-Paul in quattro posti</span><a class="headerlink" href="#tab-combinazioni-dk-mp" title="Link a questa tabella">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Combinazione</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(\{ k, k, k, k \}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(\{ k, k, k, p \}\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(\{ k, k, p, p \}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(\{ k, p, p, p \}\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(\{ p, p, p, p \}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>Un modo possibile per calcolare <span class="math notranslate nohighlight">\(C_{n, k}\)</span> è quello di mettere in
+corrispondenza biunivoca le combinazioni con ripetizione e degli opportuni
+sottoinsiemi di <span class="math notranslate nohighlight">\(\mathbb N\)</span>. Più precisamente, iniziamo mettendo in
+corrispondenza biunivoca gli <span class="math notranslate nohighlight">\(n\)</span> oggetti a disposizione con l'insieme dei
+primi numeri naturali da <span class="math notranslate nohighlight">\(1\)</span> a <span class="math notranslate nohighlight">\(n\)</span>, ovvero costruiamo una funzione biunivoca
+<span class="math notranslate nohighlight">\(r: A \rightarrow \{ 1, \ldots, n \}\)</span>, dove <span class="math notranslate nohighlight">\(A\)</span> indica l'insieme degli
+oggetti da combinare. Fissato <span class="math notranslate nohighlight">\(k\)</span>, una qualunque combinazione con ripetizione
+equivale a una sequenza non ordinata <span class="math notranslate nohighlight">\(\sigma_A = \{ e_1, \ldots, e_k \}\)</span> tale
+che <span class="math notranslate nohighlight">\(\forall i = 1, \ldots, k \quad e_i \in A\)</span>. Consideriamo ora la sequenza di
+numeri interi <span class="math notranslate nohighlight">\(\sigma_N = \{r(e_1), \ldots, r(e_k) \}\)</span> ottenuta scambiando ogni
+elemento con la sua rappresentazione numerica attraverso <span class="math notranslate nohighlight">\(r\)</span> e ordiniamola in
+senso non decrescente. In questo modo siamo certi che:</p>
 <ul class="simple">
-<li><p>Se invece immaginiamo che nel selezionare ciascuno dei <span class="math notranslate nohighlight">\(k\)</span> oggetti abbiamo
-a disposizione sempre l'insieme <span class="math notranslate nohighlight">\(A\)</span> completo, e quindi il singolo oggetto
-<span class="math notranslate nohighlight">\(a_i\)</span> può essere selezionato anche più di una volta, allora parliamo di
-disposizioni o combinazioni <em>con ripetizione</em>. Ad esempio, fissato <span class="math notranslate nohighlight">\(k=3\)</span>,
-la sequenza <span class="math notranslate nohighlight">\((a_r, a_i, a_i)\)</span> è una disposizione con ripetizione perché
-l'oggetto <span class="math notranslate nohighlight">\(a_i\)</span> ricorre due volte, e analogamente  <span class="math notranslate nohighlight">\(\{a_r, a_i, a_i\}\)</span> è
-una combinazione con ripetizione.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma_N\)</span> non dipende dal particolare ordine in cui sono elencato gli
+elementi di <span class="math notranslate nohighlight">\(\sigma_A\)</span>;</p></li>
+<li><p>i <span class="math notranslate nohighlight">\(k\)</span> elementi di <span class="math notranslate nohighlight">\(\sigma_N\)</span> sono valori interi compresi tra <span class="math notranslate nohighlight">\(1\)</span> e <span class="math notranslate nohighlight">\(n\)</span>,
+estremi inclusi, ed è possibile che questa sequenza contenga valori contigui
+che sono identici.</p></li>
 </ul>
-<p>Vediamo ora come calcolare, data una particolare modalità di selezione, il
-numero di possibili scelte distinte.</p>
-<ul class="simple">
-<li><p>Si potrebbe infine dimostrare (ma non lo faremo) che il numero  <span class="math notranslate nohighlight">\(C_{n,k}\)</span>
-di <em>combinazioni con ripetizione di <span class="math notranslate nohighlight">\(n\)</span> oggetti distinti presi <span class="math notranslate nohighlight">\(k\)</span> alla
-volta</em> è</p></li>
-</ul>
+<p>Infine, indichiamo con <span class="math notranslate nohighlight">\(\sigma_N[i]\)</span> l'<span class="math notranslate nohighlight">\(i\)</span>-esimo elemento di <span class="math notranslate nohighlight">\(\sigma_N\)</span> e
+costruiamo un'ultima sequenza</p>
 <div class="math notranslate nohighlight">
 \[
-C_{n, k} = \binom{n+k-1}{k}
+\sigma_M = \{ \sigma_N[1] + 0, \sigma_N[1] + 1, \ldots, \sigma_N[k] + k - 1 \}.
 \]</div>
+<p>Anche <span class="math notranslate nohighlight">\(\sigma_M\)</span> conterrà <span class="math notranslate nohighlight">\(k\)</span> elementi, ma essi risultano ordinati in senso
+crescente, perché sono stati ottenuti incrementando di una quantità via via più
+grande gli elementi di <span class="math notranslate nohighlight">\(\sigma_N\)</span>, che è una sequenza non decrescente. Inoltre
+<span class="math notranslate nohighlight">\(\sigma_M\)</span> conterrà valori interi compresi tra <span class="math notranslate nohighlight">\(1\)</span> e <span class="math notranslate nohighlight">\(n + k - 1\)</span>, dunque essa
+può essere messa in corrispondenza biunivoca con un sottoinsieme di
+<span class="math notranslate nohighlight">\(M = \{ 1, \ldots, n + k - 1 \}\)</span> che contiene <span class="math notranslate nohighlight">\(k\)</span> elementi.
+Ricapitolando, ogni combinazione con ripetizione di <span class="math notranslate nohighlight">\(n\)</span> oggetti in <span class="math notranslate nohighlight">\(k\)</span> posti
+può essere messa in relazione con un sottoinsieme di <span class="math notranslate nohighlight">\(M\)</span> di cardinalità <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<p>D'altro canto, un generico sottoinsieme di <span class="math notranslate nohighlight">\(M\)</span> di cardinalità <span class="math notranslate nohighlight">\(k\)</span> può essere
+descritto scrivendo i suoi elementi ordinandoli in senso crescente, ottenendo
+dunque una sequenza <span class="math notranslate nohighlight">\(\sigma_M\)</span>. Se ora decrementiamo gli elementi di questa
+sequenza sottraendo zero al primo elemento, uno al secondo elemento, due al
+terzo elemento e così via, otteniamo una nuova sequenza <span class="math notranslate nohighlight">\(\sigma_N\)</span> ordinata in
+verso non decrescente e i cui valori (che possono essere ripetuti), sono
+compresi tra <span class="math notranslate nohighlight">\(1\)</span> e <span class="math notranslate nohighlight">\(n\)</span> (estremi inclusi). Considerando quindi le preimmagini di
+questi valori attraverso <span class="math notranslate nohighlight">\(r\)</span> si ottiene una combinazione con ripetizione di <span class="math notranslate nohighlight">\(k\)</span>
+oggetti di <span class="math notranslate nohighlight">\(A\)</span>. Dunque ogni sottoinsieme di <span class="math notranslate nohighlight">\(M\)</span> di <span class="math notranslate nohighlight">\(k\)</span> elementi può essere
+messo in relazione con una combinazione con ripetizione di <span class="math notranslate nohighlight">\(n\)</span> oggetti in <span class="math notranslate nohighlight">\(k\)</span>
+posti.</p>
+<p>Pertanto, le combinazioni con ripetizione di <span class="math notranslate nohighlight">\(n\)</span> oggetti in <span class="math notranslate nohighlight">\(k\)</span> posti sono in
+corrispondenza biunivoca con i sottoinsiemi di <span class="math notranslate nohighlight">\(M\)</span> di cardinalità <span class="math notranslate nohighlight">\(k\)</span>, e
+siccome vi sono <span class="math notranslate nohighlight">\(c_{n + k - 1, k}\)</span> diversi insiemi siffatti, possiamo
+concludere che</p>
+<div class="math notranslate nohighlight">
+\[ C_{n, k} = c_{n + k - 1, k} = \binom{n+k-1}{k}. \]</div>
+<div class="proof example admonition" id="combinazioni-DK-MP-2">
+<p class="admonition-title"><span class="caption-number">Example 9.7 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Riprendendo l'<a class="reference internal" href="#ex-combinazioni-con-ripetizione">Example 9.6</a>, abbiamo che l'insieme
+degli oggetti di partenza è <span class="math notranslate nohighlight">\(A = \{ k, p \}\)</span>, dove <span class="math notranslate nohighlight">\(k\)</span> e <span class="math notranslate nohighlight">\(p\)</span> indicano
+rispettivamente Kate e Paul, può essere messo in corrispondenza biunivoca con
+l'insieme <span class="math notranslate nohighlight">\(N = \{ 1, 2 \}\)</span> per esempio ponendo <span class="math notranslate nohighlight">\(r(k) = 2\)</span> e <span class="math notranslate nohighlight">\(r(p) = 1\)</span>. La
+<a class="reference internal" href="#tab-combinazioni-dk-mp-2"><span class="std std-numref">Tabella 9.4</span></a> mostra la corrispondenza tra tutte le
+combinazioni con ripetizione dei due oggetti in <span class="math notranslate nohighlight">\(A\)</span> in quattro posizioni e le
+sequenze <span class="math notranslate nohighlight">\(\sigma_N\)</span> e <span class="math notranslate nohighlight">\(\sigma_M\)</span>.</p>
+</div>
+</div><table class="colwidths-auto table" id="tab-combinazioni-dk-mp-2">
+<caption><span class="caption-number">Tabella 9.4 </span><span class="caption-text">Corrispondenza tra le combinazioni con ripetizione di Dupli-Kate e Multi-Paul in tre posti</span><a class="headerlink" href="#tab-combinazioni-dk-mp-2" title="Link a questa tabella">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Combinazione</p></th>
+<th class="text-align:center head"><p><span class="math notranslate nohighlight">\(\sigma_N\)</span></p></th>
+<th class="text-align:center head"><p><span class="math notranslate nohighlight">\(\sigma_M\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(\{ k, k, k, k \}\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\{ 2, 2, 2, 2 \}\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\{ 2, 3, 4, 5 \}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(\{ k, k, k, p \}\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\{ 1, 2, 2, 2 \}\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\{ 1, 3, 4, 5 \}\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(\{ k, k, p, p \}\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\{ 1, 1, 2, 2 \}\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\{ 1, 2, 4, 5 \}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(\{ k, p, p, p \}\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\{ 1, 1, 1, 2 \}\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\{ 1, 2, 3, 5 \}\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(\{ p, p, p, p \}\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\{ 1, 1, 1, 1 \}\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\{ 1, 2, 3, 4 \}\)</span></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 
@@ -1027,10 +1147,10 @@ C_{n, k} = \binom{n+k-1}{k}
             <p class="prev-next-title"><span class="section-number">9.3. </span>Disposizioni</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="esercizi.html" title="successivo pagina">
+    <a class='right-next' id="next-link" href="generazione.html" title="successivo pagina">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">successivo</p>
-        <p class="prev-next-title"><span class="section-number">9.5. </span>Esercizi</p>
+        <p class="prev-next-title"><span class="section-number">9.5. </span>Generazione di disposizioni, permutazioni e combinazioni</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
