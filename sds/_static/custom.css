@@ -266,7 +266,7 @@ div.sidebar > :last-child {
 }
 
 .toc-h2 {
-  margin-0.6rem 0;
+  margin: -0.6rem 0;
 }
 
 .navbar_extra_footer {
