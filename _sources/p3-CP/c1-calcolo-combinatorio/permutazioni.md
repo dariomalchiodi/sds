@@ -40,6 +40,10 @@ oggetti una qualsiasi sequenza ordinata in cui compaiono tutti e soli gli $n$
 elementi di $A$.
 ````
 
+In generale, descriveremo una permutazione elencando i suoi elementi nel
+corrispondente ordine, separandoli con delle virgole e delimitando l'elenco
+con delle parentesi tonde.
+
 ````{prf:example} I Fantastici 4
 Consideriamo l'insieme $Q = \{ f, i, t, c \}$ dei Fantastici 4: mister
 fantastic ($f$), la donna invisibile ($i$), la torcia umana ($t$) e la cosa
@@ -51,32 +55,20 @@ fantastic ($f$), la donna invisibile ($i$), la torcia umana ($t$) e la cosa
 :name: permutazioni-fantastici-quattro
 :align: center
 
-|  I elemento   |  II elemento  | III elemento  |  IV elemento  |
-| :-----------: | :-----------: | :-----------: | :-----------: |
-|      $f$      |      $i$      |      $t$      |      $c$      |
-|      $f$      |      $i$      |      $c$      |      $t$      |
-|      $f$      |      $t$      |      $i$      |      $c$      |
-|      $f$      |      $t$      |      $c$      |      $i$      |
-|      $f$      |      $c$      |      $i$      |      $t$      |
-|      $f$      |      $c$      |      $t$      |      $i$      |
-|      $i$      |      $f$      |      $t$      |      $c$      |
-|      $i$      |      $f$      |      $c$      |      $t$      |
-|      $i$      |      $t$      |      $f$      |      $c$      |
-|      $i$      |      $t$      |      $c$      |      $f$      |
-|      $i$      |      $c$      |      $f$      |      $t$      |
-|      $i$      |      $c$      |      $t$      |      $f$      |
-|      $t$      |      $f$      |      $i$      |      $c$      |
-|      $t$      |      $f$      |      $c$      |      $i$      |
-|      $t$      |      $i$      |      $f$      |      $c$      |
-|      $t$      |      $i$      |      $c$      |      $f$      |
-|      $t$      |      $c$      |      $f$      |      $i$      |
-|      $t$      |      $c$      |      $i$      |      $f$      |
-|      $c$      |      $f$      |      $i$      |      $t$      |
-|      $c$      |      $f$      |      $t$      |      $i$      |
-|      $c$      |      $i$      |      $f$      |      $t$      |
-|      $c$      |      $i$      |      $t$      |      $f$      |
-|      $c$      |      $t$      |      $f$      |      $i$      |
-|      $c$      |      $t$      |      $i$      |      $f$      |
+|  Permutazione  |  Permutazione  |
+| :------------: | :------------: |
+| $(f, i, t, c)$ | $(t, f, i, c)$ |
+| $(f, i, c, t)$ | $(t, f, c, i)$ |
+| $(f, t, i, c)$ | $(t, i, f, c)$ |
+| $(f, t, c, i)$ | $(t, i, c, f)$ |
+| $(f, c, i, t)$ | $(t, c, f, i)$ |
+| $(f, c, t, i)$ | $(t, c, i, f)$ |
+| $(i, f, t, c)$ | $(c, f, i, t)$ |
+| $(i, f, c, t)$ | $(c, f, t, i)$ |
+| $(i, t, f, c)$ | $(c, i, f, t)$ |
+| $(i, t, c, f)$ | $(c, i, t, f)$ |
+| $(i, c, f, t)$ | $(c, t, f, i)$ |
+| $(i, c, t, f)$ | $(c, t, i, f)$ |
 ```
 
 Per calcolare in generale il numero $p_n$ di differenti permutazioni di $n$
@@ -143,6 +135,10 @@ ordinata che sia distinguibile dalle altre, e indichiamo con
 $P_{n; n_1, \ldots, n_k}$ il numero di possibili permutazioni con ripetizione.
 ````
 
+Indicheremo le permutazioni con ripetizione usando la medesima sintassi di
+quelle semplici, separando dunque i loro elementi con virgole e usando delle
+parentesi tonde come delimitatori.
+
 ````{prf:example} Dupli-Kate e Multi-Paul
 :label: dupli-kate-multi-paul
 Consideriamo i gemelli Kate e Paul Cha di _Invincible Universe_,
@@ -160,11 +156,11 @@ queste cinque versioni di Kate e Paul, senza tenere conto del loro numero
 progressivo, ci troveremmo di fronte al calcolo del numero di permutazioni con
 ripetizione di $n = 5$ oggetti divisi in due gruppi distinti, rispettivamente
 di numerosità $n_1 = 2$ (quello di Kate) e $n_2 = 3$ (quello di Paul). In
-questo contesto, $k_1, k_2, p_1, p_2, p_3$ e $k_2, k_1, p_1, p_2, p_3$ indicano
-due diverse permutazioni semplici a cui corrisponde però la stessa permutazione
-con ripetizione, in cui le prime due posizioni rappresentano varianti di
-Kate e le ultime tre rappresentano repliche di Paul; al contrario,
-$k_1, k_2, p_1, p_2, p_3$ e $k_1, p_1, k_2, p_2, p_3$ indicano permutazioni
+questo contesto, $(k_1, k_2, p_1, p_2, p_3)$ e $(k_2, k_1, p_1, p_2, p_3)$
+indicano due diverse permutazioni semplici a cui corrisponde però la stessa
+permutazione con ripetizione, in cui le prime due posizioni rappresentano
+varianti di Kate e le ultime tre rappresentano repliche di Paul; al contrario,
+$(k_1, k_2, p_1, p_2, p_3)$ e $(k_1, p_1, k_2, p_2, p_3)$ indicano permutazioni
 con ripetizione differenti (e dunque anche permutazioni semplici differenti)
 nelle quali la seconda e terza posizione sono occupate rispettivamente da Kate
 e Paul nel primo caso e da Paul e Kate nel secondo.
@@ -197,20 +193,20 @@ che Kate si trovi agli estremi della fila (la fissata permutazione con
 :name: permutazioni-oggetti-indistinguibili
 :align: center
 
-| I elemento | II elemento | III elemento | IV elemento | V elemento |
-| :--------: | :---------: | :----------: | :---------: | :--------: |
-|    $k_1$   |    $p_1$    |     $p_2$    |    $p_3$    |   $k_2$    |
-|    $k_1$   |    $p_3$    |     $p_1$    |    $p_2$    |   $k_2$    |
-|    $k_1$   |    $p_2$    |     $p_3$    |    $p_1$    |   $k_2$    |
-|    $k_1$   |    $p_3$    |     $p_2$    |    $p_1$    |   $k_2$    |
-|    $k_1$   |    $p_2$    |     $p_1$    |    $p_3$    |   $k_2$    |
-|    $k_1$   |    $p_1$    |     $p_3$    |    $p_2$    |   $k_2$    |
-|    $k_2$   |    $p_1$    |     $p_2$    |    $p_3$    |   $k_1$    |
-|    $k_2$   |    $p_3$    |     $p_1$    |    $p_2$    |   $k_1$    |
-|    $k_2$   |    $p_2$    |     $p_3$    |    $p_1$    |   $k_1$    |
-|    $k_2$   |    $p_3$    |     $p_2$    |    $p_1$    |   $k_1$    |
-|    $k_2$   |    $p_2$    |     $p_1$    |    $p_3$    |   $k_1$    |
-|    $k_2$   |    $p_1$    |     $p_3$    |    $p_2$    |   $k_1$    |
+|         Permutazione        |
+| :-------------------------: |
+| $(k_1, p_1, p_2, p_3, k_2)$ |
+| $(k_1, p_3, p_1, p_2, k_2)$ |
+| $(k_1, p_2, p_3, p_1, k_2)$ |
+| $(k_1, p_3, p_2, p_1, k_2)$ |
+| $(k_1, p_2, p_1, p_3, k_2)$ |
+| $(k_1, p_1, p_3, p_2, k_2)$ |
+| $(k_2, p_1, p_2, p_3, k_1)$ |
+| $(k_2, p_3, p_1, p_2, k_1)$ |
+| $(k_2, p_2, p_3, p_1, k_1)$ |
+| $(k_2, p_3, p_2, p_1, k_1)$ |
+| $(k_2, p_2, p_1, p_3, k_1)$ |
+| $(k_2, p_1, p_3, p_2, k_1)$ |
 ```
 
 Le righe della {numref}`permutazioni-oggetti-indistinguibili` sono state

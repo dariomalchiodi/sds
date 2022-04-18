@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>9.3. Disposizioni e combinazioni &#8212; Superhero Data Science 
+    <title>9.3. Disposizioni &#8212; Superhero Data Science 
  Probabilità e Statistica</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -62,7 +62,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
     <link rel="search" title="Cerca" href="../../search.html" />
-    <link rel="next" title="9.4. Disposizioni e combinazioni" href="combinazioni.html" />
+    <link rel="next" title="9.4. Combinazioni" href="combinazioni.html" />
     <link rel="prev" title="9.2. Permutazioni" href="permutazioni.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="it">
@@ -420,12 +420,12 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     9.3. Disposizioni e combinazioni
+     9.3. Disposizioni
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="combinazioni.html">
-     9.4. Disposizioni e combinazioni
+     9.4. Combinazioni
     </a>
    </li>
    <li class="toctree-l2">
@@ -840,6 +840,24 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contenuti
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#disposizioni-con-ripetizione">
+   9.3.1. Disposizioni con ripetizione
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#disposizioni-senza-ripetizione">
+   9.3.2. Disposizioni senza ripetizione
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -847,132 +865,137 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Disposizioni e combinazioni</h1>
+                <h1>Disposizioni</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contenuti </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#disposizioni-con-ripetizione">
+   9.3.1. Disposizioni con ripetizione
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#disposizioni-senza-ripetizione">
+   9.3.2. Disposizioni senza ripetizione
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="disposizioni-e-combinazioni">
-<h1><span class="section-number">9.3. </span>Disposizioni e combinazioni<a class="headerlink" href="#disposizioni-e-combinazioni" title="Link a questa intestazione">¶</a></h1>
-<p>Consideriamo un insieme di <span class="math notranslate nohighlight">\(n\)</span> oggetti distinti <span class="math notranslate nohighlight">\(A= \{ a_1,\dots a_n \}\)</span> e
-selezioniamo <span class="math notranslate nohighlight">\(k\)</span> oggetti di questo insieme. Le modalit`a di selezione
-possono essere svariate.</p>
-<ul class="simple">
-<li><p>Se vogliamo distinguere le configurazioni contenenti gli stessi oggetti ma
-estratti in ordine differente allora pariamo di <em>disposizioni di <span class="math notranslate nohighlight">\(n\)</span>
-oggetti su k posti</em>, che sono configurazioni in cui sono importanti sia
-l'oggetto selezionato che la sua posizione. Specifichiamo una disposizione
-indicando tra parentesi tonde gli oggetti estratti. Ad esempio, fissato
+  <div class="tex2jax_ignore mathjax_ignore section" id="disposizioni">
+<h1><span class="section-number">9.3. </span>Disposizioni<a class="headerlink" href="#disposizioni" title="Link a questa intestazione">¶</a></h1>
+<p>Per disposizione di <span class="math notranslate nohighlight">\(n\)</span> oggetti distinti in <span class="math notranslate nohighlight">\(k\)</span> posti si intende una qualsiasi
+sequenza ordinata di <span class="math notranslate nohighlight">\(k\)</span> simboli, ognuno rappresentante uno degli oggetti.
+Pertanto il tipo di raggruppamento che corrisponde alle disposizioni dipende
+dall'ordine utilizzato e gli oggetti sono tra loro distinguibili. In funzione
+del fatto che in una stessa sequenza vi possano essere due o più simboli che
+si riferiscono a un medesimo oggetto oppure no, ha senso parlare di due
+diverse categorie di disposizioni, a cui ci riferisce rispettivamente
+chiamandole disposizioni con e senza ripetizione.</p>
+<div class="section" id="disposizioni-con-ripetizione">
+<h2><span class="section-number">9.3.1. </span>Disposizioni con ripetizione<a class="headerlink" href="#disposizioni-con-ripetizione" title="Link a questa intestazione">¶</a></h2>
+<p>Nelle disposizioni con ripetizione è possibile utilizzare uno stesso oggetto
+più di una volta, come specificato dalla definizione che segue.</p>
+<div class="proof definition admonition" id="disposizioni-con-ripetizioni">
+<p class="admonition-title"><span class="caption-number">Definition 9.3 </span> (Disposizione con ripetizione)</p>
+<div class="definition-content section" id="proof-content">
+<p>Consideriamo un insieme di <span class="math notranslate nohighlight">\(n\)</span> oggetti <span class="math notranslate nohighlight">\(A= \{ a_1,\dots a_n \}\)</span>. Fissato un
+numero <span class="math notranslate nohighlight">\(k \in \mathbb N\)</span>, una <em>disposizione con ripetizione</em> di questi oggetti
+in <span class="math notranslate nohighlight">\(k\)</span> posti è una sequenza di <span class="math notranslate nohighlight">\(k\)</span> elementi, ognuno dei quali equivale a uno
+degli oggetti. Indicheremo con il simbolo <span class="math notranslate nohighlight">\(D_{n, k}\)</span> il numero di differenti
+disposizioni con ripetizione di <span class="math notranslate nohighlight">\(n\)</span> oggetti in <span class="math notranslate nohighlight">\(k\)</span> posti.</p>
+</div>
+</div><p>Indicheremo le disposizioni usando la stessa sintassi delle permutazioni.</p>
+<div class="proof example admonition" id="ex-disposizioni">
+<p class="admonition-title"><span class="caption-number">Example 9.3 </span> (un esempio di disposizione con ripetizione)</p>
+<div class="example-content section" id="proof-content">
+<p>TODO
+Ad esempio, fissato
 <span class="math notranslate nohighlight">\(k=3\)</span>, la disposizione <span class="math notranslate nohighlight">\((a_i, a_j, a_r)\)</span> è diversa dalla disposizione
 <span class="math notranslate nohighlight">\((a_r, a_j, a_i)\)</span> perché, sebbene gli oggetti selezionati siano gli stessi,
-essi compaiono in ordine differente.</p></li>
-<li><p>Se invece siamo solo interessati a quali oggetti sono stati estratti e non
-alla loro posizione nella sequenza, allora pariamo di <em>combinazioni di <span class="math notranslate nohighlight">\(n\)</span>
-oggetti presi <span class="math notranslate nohighlight">\(k\)</span> alla volta</em>. Specifichiamo una combinazione indicando tra
-parentesi graffe gli oggetti estratti. Ad esempio, fissato <span class="math notranslate nohighlight">\(k=3\)</span>,
-<span class="math notranslate nohighlight">\(\{ a_i, a_j, a_r \}\)</span> e <span class="math notranslate nohighlight">\(\{ a_r, a_j, a_i \}\)</span> sono la stessa combinazione.</p></li>
-</ul>
-<p>Inoltre:</p>
-<ul class="simple">
-<li><p>Se gli oggetti di <span class="math notranslate nohighlight">\(A\)</span> possono essere usati una sola volta, allora parliamo
-di disposizioni o combinazioni <em>senza ripetizione</em>. Gli esempi di
-disposizioni o combinazioni visti sopra sono senza ripetizione.</p></li>
-<li><p>Se invece immaginiamo che nel selezionare ciascuno dei <span class="math notranslate nohighlight">\(k\)</span> oggetti abbiamo
-a disposizione sempre l'insieme <span class="math notranslate nohighlight">\(A\)</span> completo, e quindi il singolo oggetto
-<span class="math notranslate nohighlight">\(a_i\)</span> può essere selezionato anche più di una volta, allora parliamo di
-disposizioni o combinazioni <em>con ripetizione</em>. Ad esempio, fissato <span class="math notranslate nohighlight">\(k=3\)</span>,
+essi compaiono in ordine differente.</p>
+<p>Ad esempio, fissato <span class="math notranslate nohighlight">\(k=3\)</span>,
 la sequenza <span class="math notranslate nohighlight">\((a_r, a_i, a_i)\)</span> è una disposizione con ripetizione perché
 l'oggetto <span class="math notranslate nohighlight">\(a_i\)</span> ricorre due volte, e analogamente  <span class="math notranslate nohighlight">\(\{a_r, a_i, a_i\}\)</span> è
-una combinazione con ripetizione.</p></li>
-</ul>
-<p>Abbiamo dunque quattro possibili modi di selezionare <span class="math notranslate nohighlight">\(k\)</span> oggetti da un
-insieme di <span class="math notranslate nohighlight">\(n\)</span> oggetti, che corrispondono a quattro tipi di configurazioni
-diverse:</p>
+una combinazione con ripetizione.</p>
+</div>
+</div><p>Calcolare il numero <span class="math notranslate nohighlight">\(D_{n, k}\)</span> di possibili disposizioni con ripetizione
+è abbastanza facile, considerando il numero di scelte possibili per ognuno dei
+<span class="math notranslate nohighlight">\(k\)</span> posti:</p>
 <ul class="simple">
-<li><p>le <em>disposizioni senza ripetizione</em>, dette anche <em>disposizioni semplici</em>,
-che richiedono ovviamente che sia <span class="math notranslate nohighlight">\(k\leq n\)</span>,</p></li>
-<li><p>le <em>combinazioni senza ripetizione</em>, dette anche <em>combinazioni semplici</em>,
-con <span class="math notranslate nohighlight">\(k\leq n\)</span>,</p></li>
-<li><p>le <em>disposizioni con ripetizione</em>,</p></li>
-<li><p>le <em>combinazioni con ripetizione</em>.</p></li>
+<li><p>per selezionare l'oggetto da inserire nel primo posto abbiamo <span class="math notranslate nohighlight">\(n\)</span> scelte
+a disposizione;</p></li>
+<li><p>il numero di scelte continua a essere uguale a <span class="math notranslate nohighlight">\(n\)</span> anche per il secondo
+posto, tenuto conto del fatto che è eventualmente possibile riutilizzare
+l'oggetto scelto per la prima posizione;</p></li>
+<li><p>chiaramente, vi saranno <span class="math notranslate nohighlight">\(n\)</span> scelte possibili per tutti i rimanenti posti.</p></li>
 </ul>
-<p>Vediamo ora come calcolare, data una particolare modalità di selezione, il
-numero di possibili scelte distinte.</p>
-<ul class="simple">
-<li><p>Per calcolare il numero <span class="math notranslate nohighlight">\(d_{n, k}\)</span> di possibili <em>disposizioni senza
-ripetizione di <span class="math notranslate nohighlight">\(n\)</span> oggetti distinti su <span class="math notranslate nohighlight">\(k\)</span> posti</em> procediamo in modo
-analogo a quanto fatto per le permutazioni semplici, fermandoci però alla
-posizione <span class="math notranslate nohighlight">\(k\)</span>-esima. L'albero costruito ha profondità <span class="math notranslate nohighlight">\(k\)</span> e un numero di
-foglie pari a:</p></li>
-</ul>
-<div class="amsmath math notranslate nohighlight" id="equation-e8d43e03-5935-4a83-b327-914151d87245">
-<span class="eqno">(9.1)<a class="headerlink" href="#equation-e8d43e03-5935-4a83-b327-914151d87245" title="Permalink a questa equazione">¶</a></span>\[\begin{align}
-d_{n, k} &amp;= n (n-1) (n-2) \dots (n-k+1) \\
-         &amp;= n (n-1) (n-2) \dots (n-k+1) \cdot
-             \left(\frac{(n-k)(n-k-1)\dots1}{(n-k)(n-k-1)\dots1}\right) \\
-         &amp;=\frac{n!}{(n-k)!}.
-\end{align}\]</div>
-<ul class="simple">
-<li><p>Si osservi che, per <span class="math notranslate nohighlight">\(k=n\)</span>, nella disposizione si utilizzano tutti gli
-elementi di <span class="math notranslate nohighlight">\(A\)</span>, quindi le permutazioni semplici sono un caso particolare
-di disposizioni semplici.</p></li>
-<li><p>Per calcolare il numero <span class="math notranslate nohighlight">\(c_{n, k}\)</span> di possibili <em>combinazioni senza
-ripetizione di <span class="math notranslate nohighlight">\(n\)</span> oggetti distinti presi <span class="math notranslate nohighlight">\(k\)</span> alla volta</em> osserviamo che,
-fissati <span class="math notranslate nohighlight">\(k\)</span> oggetti, alla combinazione contenente quei <span class="math notranslate nohighlight">\(k\)</span> oggetti
-corrispondono <span class="math notranslate nohighlight">\(k!\)</span> distinte disposizioni contenenti gli stessi <span class="math notranslate nohighlight">\(k\)</span> oggetti.
-Quindi il numero totale di disposizioni semplici è uguale al numero di
-combinazioni moltiplicato per <span class="math notranslate nohighlight">\(k!\)</span>, cioè <span class="math notranslate nohighlight">\(d_{n,k} = c_{n,k} \cdot k!\)</span>, da
-cui segue che</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-c_{n, k} = \frac{d_{n, k}}{k}! = \frac{n!}{(n-k)!k!} =\binom{n}{k}
-\]</div>
-<ul class="simple">
-<li><p>Per calcolare il numero <span class="math notranslate nohighlight">\(D_{n, k}\)</span> di possibili <em>disposizioni con
-ripetizione di <span class="math notranslate nohighlight">\(n\)</span> oggetti distinti su <span class="math notranslate nohighlight">\(k\)</span> posti</em> procediamo in modo
-analogo a quanto fatto per le disposizioni senza ripetizione, tenendo
-presente però che in ciascun nodo dell'albero abbiamo sempre <span class="math notranslate nohighlight">\(n\)</span> possibili
-oggetti tra i quali scegliere, mentre la profondità dell'albero è, come in
-quel caso, ancora <span class="math notranslate nohighlight">\(k\)</span>. Quindi avremo</p></li>
-</ul>
+<p>Applicando il principio fondamentale del calcolo combinatorio si ottiene
+pertanto che</p>
 <div class="math notranslate nohighlight">
 \[
 D_{n, k} = \underbrace{n \cdot n \dots \cdot n}_{k \text{ volte}} = n^k.
 \]</div>
-<ul class="simple">
-<li><p>Si potrebbe infine dimostrare (ma non lo faremo) che il numero  <span class="math notranslate nohighlight">\(C_{n,k}\)</span>
-di <em>combinazioni con ripetizione di <span class="math notranslate nohighlight">\(n\)</span> oggetti distinti presi <span class="math notranslate nohighlight">\(k\)</span> alla
-volta</em> è</p></li>
-</ul>
+</div>
+<div class="section" id="disposizioni-senza-ripetizione">
+<h2><span class="section-number">9.3.2. </span>Disposizioni senza ripetizione<a class="headerlink" href="#disposizioni-senza-ripetizione" title="Link a questa intestazione">¶</a></h2>
+<p>Nelle disposizioni con ripetizione ogni oggetto può essere scelto un
+numero illimitato di volte per formare una sequenza. Quando invece la
+scelta di un oggetto può essere fatta al massimo per una volta, si parla
+di <em>disposizioni senza ripetizione</em>, dette anche <em>disposizioni semplici</em>.
+In questo caso è pertanto richiesto che <span class="math notranslate nohighlight">\(k \leq n\)</span>, perché dopo che tutti
+gli <span class="math notranslate nohighlight">\(n\)</span> oggetti sono stati inseriti in una sequenza non ve ne sono altri
+che possono essere scelti ulteriormente.</p>
+<div class="proof definition admonition" id="definition-2">
+<p class="admonition-title"><span class="caption-number">Definition 9.4 </span> (Disposizione semplice)</p>
+<div class="definition-content section" id="proof-content">
+<p>Consideriamo un insieme <span class="math notranslate nohighlight">\(A \{ a_1, \ldots, a_n \}\)</span> di <span class="math notranslate nohighlight">\(n\)</span> oggetti. Fissato
+un numero intero <span class="math notranslate nohighlight">\(k \leq n\)</span>, una <em>disposizione semplice</em> (detta anche
+<em>disposizione senza ripetizione</em>) è una sequenza di <span class="math notranslate nohighlight">\(k\)</span> degli oggetti di <span class="math notranslate nohighlight">\(A\)</span>
+nella quale non occorrono ripetizioni. Indicheremo con il simbolo <span class="math notranslate nohighlight">\(d_{n, k}\)</span>
+il numero di differenti disposizioni semplici di <span class="math notranslate nohighlight">\(n\)</span> oggetti in <span class="math notranslate nohighlight">\(k\)</span> posti.</p>
+</div>
+</div><div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Si osservi che, per <span class="math notranslate nohighlight">\(k=n\)</span>, nella disposizione si utilizzano tutti gli
+elementi di <span class="math notranslate nohighlight">\(A\)</span>, quindi le permutazioni semplici sono un caso particolare
+di disposizioni semplici.</p>
+</div>
+<p>La sintassi che useremo per indicare le disposizioni semplici è la stessa
+utilizzata per quelle con ripetizione, e dunque è identica a quella utilizzata
+per le permutazioni.</p>
+<div class="proof example admonition" id="example-3">
+<p class="admonition-title"><span class="caption-number">Example 9.4 </span></p>
+<div class="example-content section" id="proof-content">
+<p>TODO Esempio sulle disposizioni semplici</p>
+</div>
+</div><div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Notate che <span class="math notranslate nohighlight">\(d_{n, n} = n!/0! = n! = p_n\)</span>, in coerenza con la nota precedente.</p>
+</div>
+<p>Per calcolare <span class="math notranslate nohighlight">\(d_{n, k}\)</span> possiamo seguire lo stesso ragionamento fatto per le
+permutazioni semplici, fermandoci però dopo avere scelto <span class="math notranslate nohighlight">\(k\)</span> oggetti.
+Applicando il principio fondamentale del calcolo combinatorio si ottiene che</p>
+<div class="full-width center docutils">
 <div class="math notranslate nohighlight">
-\[
-C_{n, k} = \binom{n+k-1}{k}
-\]</div>
-<p>La Tabella seguente contiene uno schema riassuntivo dei casi considerati.</p>
-<table style="font-size: 1rem;">
-    <tr>
-        <th></th>
-        <th>sequenze (ordinate)</th>
-        <th>insiemi (non ordinati) </th>
-    </tr>
-    <tr>
-        <th>senza ripetizione</th>
-        <td>DISPOSIZIONI: $d_{n,k}=\frac{n!}{(n-k)!}$</td>
-        <td>COMBINAZIONI: $c_{n,k}=\binom{n}{k}$</td>
-    </tr>
-    <tr>
-        <th>con ripetizione </th>
-        <td>DISPOSIZIONI: $D_{n,k}=n^k$</td>
-        <td>COMBINAZIONI: $C_{n,k}=\binom{n+k-1}{k}$</td>
-    </tr>
-</table></div>
+\[d_{n, k} = n (n-1) \ldots (n-k+1) =
+n (n-1) \ldots (n-k+1) \cdot \frac{(n-k)!}{(n-k)!} =
+\frac{n!}{(n-k)!}.\]</div>
+</div>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -1009,7 +1032,7 @@ C_{n, k} = \binom{n+k-1}{k}
     <a class='right-next' id="next-link" href="combinazioni.html" title="successivo pagina">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">successivo</p>
-        <p class="prev-next-title"><span class="section-number">9.4. </span>Disposizioni e combinazioni</p>
+        <p class="prev-next-title"><span class="section-number">9.4. </span>Combinazioni</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

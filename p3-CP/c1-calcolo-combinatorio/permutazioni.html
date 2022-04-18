@@ -62,7 +62,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
     <link rel="search" title="Cerca" href="../../search.html" />
-    <link rel="next" title="9.3. Disposizioni e combinazioni" href="disposizioni.html" />
+    <link rel="next" title="9.3. Disposizioni" href="disposizioni.html" />
     <link rel="prev" title="9.1. Principio fondamentale del calcolo combinatorio" href="principio-fondamentale-calcolo-combinatorio.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="it">
@@ -420,12 +420,12 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="disposizioni.html">
-     9.3. Disposizioni e combinazioni
+     9.3. Disposizioni
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="combinazioni.html">
-     9.4. Disposizioni e combinazioni
+     9.4. Combinazioni
     </a>
    </li>
    <li class="toctree-l2">
@@ -919,7 +919,10 @@ Chiamiamo <em>permutazione semplice</em> (o più brevemente <em>permutazione</em
 oggetti una qualsiasi sequenza ordinata in cui compaiono tutti e soli gli <span class="math notranslate nohighlight">\(n\)</span>
 elementi di <span class="math notranslate nohighlight">\(A\)</span>.</p>
 </div>
-</div><div class="proof example admonition" id="example-1">
+</div><p>In generale, descriveremo una permutazione elencando i suoi elementi nel
+corrispondente ordine, separandoli con delle virgole e delimitando l'elenco
+con delle parentesi tonde.</p>
+<div class="proof example admonition" id="example-1">
 <p class="admonition-title"><span class="caption-number">Example 9.1 </span> (I Fantastici 4)</p>
 <div class="example-content section" id="proof-content">
 <p>Consideriamo l'insieme <span class="math notranslate nohighlight">\(Q = \{ f, i, t, c \}\)</span> dei Fantastici 4: mister
@@ -930,132 +933,46 @@ fantastic (<span class="math notranslate nohighlight">\(f\)</span>), la donna in
 </div><table class="colwidths-auto table" id="permutazioni-fantastici-quattro">
 <caption><span class="caption-number">Tabella 9.1 </span><span class="caption-text">Possibili permutazioni semplici dei membri dei Fantastici 4</span><a class="headerlink" href="#permutazioni-fantastici-quattro" title="Link a questa tabella">¶</a></caption>
 <thead>
-<tr class="row-odd"><th class="text-align:center head"><p>I elemento</p></th>
-<th class="text-align:center head"><p>II elemento</p></th>
-<th class="text-align:center head"><p>III elemento</p></th>
-<th class="text-align:center head"><p>IV elemento</p></th>
+<tr class="row-odd"><th class="text-align:center head"><p>Permutazione</p></th>
+<th class="text-align:center head"><p>Permutazione</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\((f, i, t, c)\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\((t, f, i, c)\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\((f, i, c, t)\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\((t, f, c, i)\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\((f, t, i, c)\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\((t, i, f, c)\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\((f, t, c, i)\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\((t, i, c, f)\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\((f, c, i, t)\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\((t, c, f, i)\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\((f, c, t, i)\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\((t, c, i, f)\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\((i, f, t, c)\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\((c, f, i, t)\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\((i, f, c, t)\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\((c, f, t, i)\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\((i, t, f, c)\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\((c, i, f, t)\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\((i, t, c, f)\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\((c, i, t, f)\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\((i, c, f, t)\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\((c, t, f, i)\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(t\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(i\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\((i, c, t, f)\)</span></p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\((c, t, i, f)\)</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -1119,7 +1036,10 @@ Chiamiamo <em>permutazione di oggetti distinguibili a gruppi</em> (più semplice
 ordinata che sia distinguibile dalle altre, e indichiamo con
 <span class="math notranslate nohighlight">\(P_{n; n_1, \ldots, n_k}\)</span> il numero di possibili permutazioni con ripetizione.</p>
 </div>
-</div><div class="proof example admonition" id="dupli-kate-multi-paul">
+</div><p>Indicheremo le permutazioni con ripetizione usando la medesima sintassi di
+quelle semplici, separando dunque i loro elementi con virgole e usando delle
+parentesi tonde come delimitatori.</p>
+<div class="proof example admonition" id="dupli-kate-multi-paul">
 <p class="admonition-title"><span class="caption-number">Example 9.2 </span> (Dupli-Kate e Multi-Paul)</p>
 <div class="example-content section" id="proof-content">
 <p>Consideriamo i gemelli Kate e Paul Cha di <em>Invincible Universe</em>,
@@ -1136,11 +1056,11 @@ queste cinque versioni di Kate e Paul, senza tenere conto del loro numero
 progressivo, ci troveremmo di fronte al calcolo del numero di permutazioni con
 ripetizione di <span class="math notranslate nohighlight">\(n = 5\)</span> oggetti divisi in due gruppi distinti, rispettivamente
 di numerosità <span class="math notranslate nohighlight">\(n_1 = 2\)</span> (quello di Kate) e <span class="math notranslate nohighlight">\(n_2 = 3\)</span> (quello di Paul). In
-questo contesto, <span class="math notranslate nohighlight">\(k_1, k_2, p_1, p_2, p_3\)</span> e <span class="math notranslate nohighlight">\(k_2, k_1, p_1, p_2, p_3\)</span> indicano
-due diverse permutazioni semplici a cui corrisponde però la stessa permutazione
-con ripetizione, in cui le prime due posizioni rappresentano varianti di
-Kate e le ultime tre rappresentano repliche di Paul; al contrario,
-<span class="math notranslate nohighlight">\(k_1, k_2, p_1, p_2, p_3\)</span> e <span class="math notranslate nohighlight">\(k_1, p_1, k_2, p_2, p_3\)</span> indicano permutazioni
+questo contesto, <span class="math notranslate nohighlight">\((k_1, k_2, p_1, p_2, p_3)\)</span> e <span class="math notranslate nohighlight">\((k_2, k_1, p_1, p_2, p_3)\)</span>
+indicano due diverse permutazioni semplici a cui corrisponde però la stessa
+permutazione con ripetizione, in cui le prime due posizioni rappresentano
+varianti di Kate e le ultime tre rappresentano repliche di Paul; al contrario,
+<span class="math notranslate nohighlight">\((k_1, k_2, p_1, p_2, p_3)\)</span> e <span class="math notranslate nohighlight">\((k_1, p_1, k_2, p_2, p_3)\)</span> indicano permutazioni
 con ripetizione differenti (e dunque anche permutazioni semplici differenti)
 nelle quali la seconda e terza posizione sono occupate rispettivamente da Kate
 e Paul nel primo caso e da Paul e Kate nel secondo.</p>
@@ -1169,85 +1089,33 @@ ripetizione).</p>
 <table class="colwidths-auto table" id="permutazioni-oggetti-indistinguibili">
 <caption><span class="caption-number">Tabella 9.2 </span><span class="caption-text">Possibili permutazioni semplici di oggetti in due gruppi distinguibili contenenti rispettivamente due duplicati <span class="math notranslate nohighlight">\(k_1\)</span> e <span class="math notranslate nohighlight">\(k_2\)</span> di Kate e tre duplicati <span class="math notranslate nohighlight">\(p_1\)</span>, <span class="math notranslate nohighlight">\(p_2\)</span> e <span class="math notranslate nohighlight">\(p_3\)</span> di Paul, in modo che Kate si trovi nella prima e nell'ultima posizione</span><a class="headerlink" href="#permutazioni-oggetti-indistinguibili" title="Link a questa tabella">¶</a></caption>
 <thead>
-<tr class="row-odd"><th class="text-align:center head"><p>I elemento</p></th>
-<th class="text-align:center head"><p>II elemento</p></th>
-<th class="text-align:center head"><p>III elemento</p></th>
-<th class="text-align:center head"><p>IV elemento</p></th>
-<th class="text-align:center head"><p>V elemento</p></th>
+<tr class="row-odd"><th class="text-align:center head"><p>Permutazione</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_1\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_2\)</span></p></td>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\((k_1, p_1, p_2, p_3, k_2)\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_1\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_2\)</span></p></td>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\((k_1, p_3, p_1, p_2, k_2)\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_1\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_2\)</span></p></td>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\((k_1, p_2, p_3, p_1, k_2)\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_1\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_2\)</span></p></td>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\((k_1, p_3, p_2, p_1, k_2)\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_1\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_2\)</span></p></td>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\((k_1, p_2, p_1, p_3, k_2)\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_1\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_2\)</span></p></td>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\((k_1, p_1, p_3, p_2, k_2)\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_2\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_1\)</span></p></td>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\((k_2, p_1, p_2, p_3, k_1)\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_2\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_1\)</span></p></td>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\((k_2, p_3, p_1, p_2, k_1)\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_2\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_1\)</span></p></td>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\((k_2, p_2, p_3, p_1, k_1)\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_2\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_1\)</span></p></td>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\((k_2, p_3, p_2, p_1, k_1)\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_2\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_1\)</span></p></td>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\((k_2, p_2, p_1, p_3, k_1)\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_2\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
-<td class="text-align:center"><p><span class="math notranslate nohighlight">\(k_1\)</span></p></td>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\((k_2, p_1, p_3, p_2, k_1)\)</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -1341,7 +1209,7 @@ primo contiene <span class="math notranslate nohighlight">\(n_1\)</span> element
     <a class='right-next' id="next-link" href="disposizioni.html" title="successivo pagina">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">successivo</p>
-        <p class="prev-next-title"><span class="section-number">9.3. </span>Disposizioni e combinazioni</p>
+        <p class="prev-next-title"><span class="section-number">9.3. </span>Disposizioni</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
