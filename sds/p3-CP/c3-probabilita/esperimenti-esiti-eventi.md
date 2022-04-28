@@ -110,9 +110,9 @@ implica anche le seguenti proprietà:
 In generale, un'algebra degli eventi rappresenta un insieme di eventi a cui
 si è interessati.
 
-Quando lo spazio degli esiti $\Omega$ è finito, l'unica algebra degli eventi
-sensata è l'insieme delle parti $2^\Omega$: più precisamente, se per ogni
-$\omega \in \Omega$ ha senso (come dovrebbe) ragionare in termini dell'_evento
+Quando lo spazio degli esiti $\Omega$ è finito, normalmente si utilizza come
+algebra degli eventi l'insieme delle parti $2^\Omega$: questo perché se per
+ogni $\omega \in \Omega$ si vuole poter calcolare la probabilità dell'_evento
 elementare_ $\{ \omega \}$, la sola proprietà di chiusura rispetto all'unione
 descritta nella {prf:ref}`def-algebra-degli-eventi` permette di dimostrare che
 ogni evento è contenuto in $\mathsf A$.
@@ -136,8 +136,10 @@ deve essere l'insieme delle parti di $\Omega$.
 ```
 
 Pertanto, gli esperimenti casuali $\mathscr P$, $\mathscr O$ e $\mathscr C$
-ammettono un'unica algebra degli eventi. Per quanto riguarda $\mathscr N$ e
-$\mathscr A$...
+saranno tipicamente associati a un'algebra degli eventi che coincide con
+la famiglia di tutti i possibili insiemi di eventi in $\Omega$. Va sottolineato
+che questo non significa che in questi casi $2^\Omega$ sia l'unica algebra
+possibile.
 
 Le cose si complicano quando lo spazio degli esiti è infinito, perché in
 questo caso è possibile costruire algebre degli eventi che sono anch'esse
@@ -150,20 +152,20 @@ eventi, come evidenziato nell'esempio che segue.
 ````{prf:example}
 :label: ex-controesempio-sigma-algebra
 Concentriamoci sull'esperimento casuale $\mathscr N$, e dal corrispondente
-spazio degli esiti $\Omega = \mathbb N$ costruiamo l'algebra
+spazio degli esiti $\Omega = \mathbb N$ costruiamo la seguente collezione di
+eventi:
 
 $$ \mathsf A = \{ E \subseteq \Omega
 \text{ tale che } E \text{ è finito oppure }
 \overline E \text{ è finito} \}. $$
 
-e in particolare
-sull'evento $P = \{ il numero di supereroi diversi nel fumetto è pari \}$ spazio degli esiti $\Omega = \mathbb N$ e sulla seguente
-collezione di eventi in questo spazio:
-
-
-
-Si verifica che $\mathsf A$ è un'algebra degli eventi, come dettagliato nei
-punti seguenti.
+Intuitivamente, indicato con $N$ il numero di supereroi diversi che compaiono
+in un fumetto, $\mathsf A$ ci permette di ragionare in termini di eventi come
+$E = \{ N = 42 \}$ oppure $F = \{ N \leq 4 \}$ (che appartengono all'algebra
+perché sono finiti: $E = \{ 42 \}$ e $F = \{ 0, 1, 2, 3, 4 \}$), ma anche
+dell'evento $G = \{ N > 10 \}$, in quanto il suo complementare è un evento
+finito. Possiamo verificare che $\mathsf A$ è un'algebra degli eventi, come
+dettagliato nei punti seguenti.
 
 1. $\Omega = \mathbb N \in \mathsf A$ in quanto il suo complemento è l'insieme
    vuoto, che è un insieme finito;
@@ -193,12 +195,14 @@ punti seguenti.
    all'unione.
 
 Consideriamo però la successione di insiemi definita da
-$ E_n = \{ 2 i, i = 1, \ldots, n \} $. In generale, $E_n$ è l'insieme dei primi
-$n$ numeri pari, e quindi contiene sempre un numero finito di elementi, il che
-implica $E_n \in \mathsf A$ per ogni $n$. L'unione
-$E = \cup_{n=1}^{+\infty} E_n$ è quindi l'insieme infinito dei numeri pari,
-e il suo complemento è l'insieme infinito dei numeri dispari. Pertanto
-$E \not\in \mathsf A$.
+$ P_n = \{ 2 i, i = 1, \ldots, n \} $. In generale, $P_n$ è l'evento che
+si verifica quando il numero di supereroi nel fumetto è pari e minore o uguale
+di $2 n$, e quindi contiene sempre un numero finito di elementi, il che
+implica $P_n \in \mathsf A$ per ogni $n$. L'evento
+$P = \cup_{n=1}^{+\infty} P_n$ si verifica quindi quando in un fumetto è
+presente un numero pari di supereroi, e il suo complemento si verificherà
+quando tale numero è dispari. Dunque sia $P$, sia il suo complemento sono
+infiniti e dunque $P \not\in \mathsf A$.
 ````
 
 Per garantire di poter calcolare la probabilità dell'unione di una quantità
