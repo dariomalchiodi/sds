@@ -960,9 +960,9 @@ degli eventi è chiusa rispetto all'unione di un numero <em>finito</em> di event
 </ul>
 <p>In generale, un'algebra degli eventi rappresenta un insieme di eventi a cui
 si è interessati.</p>
-<p>Quando lo spazio degli esiti <span class="math notranslate nohighlight">\(\Omega\)</span> è finito, l'unica algebra degli eventi
-sensata è l'insieme delle parti <span class="math notranslate nohighlight">\(2^\Omega\)</span>: più precisamente, se per ogni
-<span class="math notranslate nohighlight">\(\omega \in \Omega\)</span> ha senso (come dovrebbe) ragionare in termini dell'<em>evento
+<p>Quando lo spazio degli esiti <span class="math notranslate nohighlight">\(\Omega\)</span> è finito, normalmente si utilizza come
+algebra degli eventi l'insieme delle parti <span class="math notranslate nohighlight">\(2^\Omega\)</span>: questo perché se per
+ogni <span class="math notranslate nohighlight">\(\omega \in \Omega\)</span> si vuole poter calcolare la probabilità dell'<em>evento
 elementare</em> <span class="math notranslate nohighlight">\(\{ \omega \}\)</span>, la sola proprietà di chiusura rispetto all'unione
 descritta nella <a class="reference internal" href="#def-algebra-degli-eventi">Definition 11.4</a> permette di dimostrare che
 ogni evento è contenuto in <span class="math notranslate nohighlight">\(\mathsf A\)</span>.</p>
@@ -985,8 +985,10 @@ ad <span class="math notranslate nohighlight">\(\mathsf A\)</span> e dunque</p>
 deve essere l'insieme delle parti di <span class="math notranslate nohighlight">\(\Omega\)</span>.</p>
 </div>
 <p>Pertanto, gli esperimenti casuali <span class="math notranslate nohighlight">\(\mathscr P\)</span>, <span class="math notranslate nohighlight">\(\mathscr O\)</span> e <span class="math notranslate nohighlight">\(\mathscr C\)</span>
-ammettono un'unica algebra degli eventi. Per quanto riguarda <span class="math notranslate nohighlight">\(\mathscr N\)</span> e
-<span class="math notranslate nohighlight">\(\mathscr A\)</span>...</p>
+saranno tipicamente associati a un'algebra degli eventi che coincide con
+la famiglia di tutti i possibili insiemi di eventi in <span class="math notranslate nohighlight">\(\Omega\)</span>. Va sottolineato
+che questo non significa che in questi casi <span class="math notranslate nohighlight">\(2^\Omega\)</span> sia l'unica algebra
+possibile.</p>
 <p>Le cose si complicano quando lo spazio degli esiti è infinito, perché in
 questo caso è possibile costruire algebre degli eventi che sono anch'esse
 infinite (potremmo, per esempio, considerare <span class="math notranslate nohighlight">\(2^\Omega\)</span>). Abbiamo visto che la
@@ -998,16 +1000,19 @@ eventi, come evidenziato nell'esempio che segue.</p>
 <p class="admonition-title"><span class="caption-number">Example 11.1 </span></p>
 <div class="example-content section" id="proof-content">
 <p>Concentriamoci sull'esperimento casuale <span class="math notranslate nohighlight">\(\mathscr N\)</span>, e dal corrispondente
-spazio degli esiti <span class="math notranslate nohighlight">\(\Omega = \mathbb N\)</span> costruiamo l'algebra</p>
+spazio degli esiti <span class="math notranslate nohighlight">\(\Omega = \mathbb N\)</span> costruiamo la seguente collezione di
+eventi:</p>
 <div class="math notranslate nohighlight">
 \[ \mathsf A = \{ E \subseteq \Omega
 \text{ tale che } E \text{ è finito oppure }
 \overline E \text{ è finito} \}. \]</div>
-<p>e in particolare
-sull'evento <span class="math notranslate nohighlight">\(P = \{ il numero di supereroi diversi nel fumetto è pari \}\)</span> spazio degli esiti <span class="math notranslate nohighlight">\(\Omega = \mathbb N\)</span> e sulla seguente
-collezione di eventi in questo spazio:</p>
-<p>Si verifica che <span class="math notranslate nohighlight">\(\mathsf A\)</span> è un'algebra degli eventi, come dettagliato nei
-punti seguenti.</p>
+<p>Intuitivamente, indicato con <span class="math notranslate nohighlight">\(N\)</span> il numero di supereroi diversi che compaiono
+in un fumetto, <span class="math notranslate nohighlight">\(\mathsf A\)</span> ci permette di ragionare in termini di eventi come
+<span class="math notranslate nohighlight">\(E = \{ N = 42 \}\)</span> oppure <span class="math notranslate nohighlight">\(F = \{ N \leq 4 \}\)</span> (che appartengono all'algebra
+perché sono finiti: <span class="math notranslate nohighlight">\(E = \{ 42 \}\)</span> e <span class="math notranslate nohighlight">\(F = \{ 0, 1, 2, 3, 4 \}\)</span>), ma anche
+dell'evento <span class="math notranslate nohighlight">\(G = \{ N &gt; 10 \}\)</span>, in quanto il suo complementare è un evento
+finito. Possiamo verificare che <span class="math notranslate nohighlight">\(\mathsf A\)</span> è un'algebra degli eventi, come
+dettagliato nei punti seguenti.</p>
 <ol>
 <li><p><span class="math notranslate nohighlight">\(\Omega = \mathbb N \in \mathsf A\)</span> in quanto il suo complemento è l'insieme
 vuoto, che è un insieme finito;</p></li>
@@ -1041,12 +1046,14 @@ all'unione.</p>
 </li>
 </ol>
 <p>Consideriamo però la successione di insiemi definita da
-<span class="math notranslate nohighlight">\( E_n = \{ 2 i, i = 1, \ldots, n \} \)</span>. In generale, <span class="math notranslate nohighlight">\(E_n\)</span> è l'insieme dei primi
-<span class="math notranslate nohighlight">\(n\)</span> numeri pari, e quindi contiene sempre un numero finito di elementi, il che
-implica <span class="math notranslate nohighlight">\(E_n \in \mathsf A\)</span> per ogni <span class="math notranslate nohighlight">\(n\)</span>. L'unione
-<span class="math notranslate nohighlight">\(E = \cup_{n=1}^{+\infty} E_n\)</span> è quindi l'insieme infinito dei numeri pari,
-e il suo complemento è l'insieme infinito dei numeri dispari. Pertanto
-<span class="math notranslate nohighlight">\(E \not\in \mathsf A\)</span>.</p>
+<span class="math notranslate nohighlight">\( P_n = \{ 2 i, i = 1, \ldots, n \} \)</span>. In generale, <span class="math notranslate nohighlight">\(P_n\)</span> è l'evento che
+si verifica quando il numero di supereroi nel fumetto è pari e minore o uguale
+di <span class="math notranslate nohighlight">\(2 n\)</span>, e quindi contiene sempre un numero finito di elementi, il che
+implica <span class="math notranslate nohighlight">\(P_n \in \mathsf A\)</span> per ogni <span class="math notranslate nohighlight">\(n\)</span>. L'evento
+<span class="math notranslate nohighlight">\(P = \cup_{n=1}^{+\infty} P_n\)</span> si verifica quindi quando in un fumetto è
+presente un numero pari di supereroi, e il suo complemento si verificherà
+quando tale numero è dispari. Dunque sia <span class="math notranslate nohighlight">\(P\)</span>, sia il suo complemento sono
+infiniti e dunque <span class="math notranslate nohighlight">\(P \not\in \mathsf A\)</span>.</p>
 </div>
 </div><p>Per garantire di poter calcolare la probabilità dell'unione di una quantità
 infinita numerabile di eventi, è necessario estendere l'algebra degli eventi
