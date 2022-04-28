@@ -52,6 +52,7 @@ parse:
       - amsmath
       - dollarmath
       - html_image
+      - deflist
 
 html:
   home_page_in_navbar: true
