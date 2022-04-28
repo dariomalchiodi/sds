@@ -494,7 +494,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c3-probabilita/esperimenti-esiti-eventi.html">
-     11.2. Esperimenti, esiti ed eventi
+     11.2. Concetti fondamentali
     </a>
    </li>
    <li class="toctree-l2">
@@ -1064,12 +1064,6 @@ questi valori attraverso <span class="math notranslate nohighlight">\(r\)</span>
 oggetti di <span class="math notranslate nohighlight">\(A\)</span>. Dunque ogni sottoinsieme di <span class="math notranslate nohighlight">\(M\)</span> di <span class="math notranslate nohighlight">\(k\)</span> elementi può essere
 messo in relazione con una combinazione con ripetizione di <span class="math notranslate nohighlight">\(n\)</span> oggetti in <span class="math notranslate nohighlight">\(k\)</span>
 posti.</p>
-<p>Pertanto, le combinazioni con ripetizione di <span class="math notranslate nohighlight">\(n\)</span> oggetti in <span class="math notranslate nohighlight">\(k\)</span> posti sono in
-corrispondenza biunivoca con i sottoinsiemi di <span class="math notranslate nohighlight">\(M\)</span> di cardinalità <span class="math notranslate nohighlight">\(k\)</span>, e
-siccome vi sono <span class="math notranslate nohighlight">\(c_{n + k - 1, k}\)</span> diversi insiemi siffatti, possiamo
-concludere che</p>
-<div class="math notranslate nohighlight">
-\[ C_{n, k} = c_{n + k - 1, k} = \binom{n+k-1}{k}. \]</div>
 <div class="proof example admonition" id="combinazioni-DK-MP-2">
 <p class="admonition-title"><span class="caption-number">Example 9.7 </span></p>
 <div class="example-content section" id="proof-content">
@@ -1112,6 +1106,12 @@ sequenze <span class="math notranslate nohighlight">\(\sigma_N\)</span> e <span 
 </tr>
 </tbody>
 </table>
+<p>Concludendo, le combinazioni con ripetizione di <span class="math notranslate nohighlight">\(n\)</span> oggetti in <span class="math notranslate nohighlight">\(k\)</span> posti sono
+in corrispondenza biunivoca con i sottoinsiemi di <span class="math notranslate nohighlight">\(M\)</span> di cardinalità <span class="math notranslate nohighlight">\(k\)</span>, e
+siccome il numero di questi sottoinsiemi è uguale al numero di combinazioni
+senza ripetizione di <span class="math notranslate nohighlight">\(n + k - 1\)</span> oggetti in <span class="math notranslate nohighlight">\(k\)</span> posti, possiamo concludere che</p>
+<div class="math notranslate nohighlight">
+\[ C_{n, k} = c_{n + k - 1, k} = \binom{n+k-1}{k}. \]</div>
 </div>
 </div>
 

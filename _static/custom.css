@@ -6,7 +6,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Lora:wght@400;700&display=swap');
 
 :root {
-  --pst-color-background: 255, 255, 255;
+  --pst-color-background: #FFFFFF; /*255, 255, 255; */
   --pst-color-primary: #01579B;
   --pst-color-secondary: #0071BC;
   --pst-color-complementary: #208050;
@@ -241,6 +241,10 @@ div.sidebar > :last-child {
   margin-top: -1.1rem;
 }
 
+.topbar-contents {
+  background: var(--pst-color-background);
+}
+
 .toctree-l1 {
   font-size: 1.2rem;
   margin-bottom: -0.7rem;
@@ -269,6 +273,10 @@ div.sidebar > :last-child {
   margin: -0.6rem 0;
 }
 
+.bd-toc {
+  background: var(--pst-color-background);
+}
+
 .navbar_extra_footer {
   font-family: var(--pst-font-text);
 }
@@ -278,7 +286,7 @@ div.sidebar > :last-child {
 }
 
 .topbar {
-  z-index: 20 !important;
+  z-index: 4000 !important;
 }
 
 .figure .caption-number,
@@ -335,10 +343,12 @@ p.rubric {
   color: var(--pst-color-secondary);
 }
 
+ul,
 ul.simple {
   list-style-type: none;
 }
 
+ul li:before,
 ul.simple li:before {
   content: '–';
   position: absolute;
@@ -348,6 +358,32 @@ ul.simple li:before {
 ul.simple ul li {
   list-style-type: none;
 }
+
+li .math + p {
+  margin-top: 0;
+}
+
+ul.nav.bd-sidenav li::before {
+  content: '';
+}
+
+/* dt {
+  float: left;
+  margin-right: 10%;
+  max-width: 40%;
+  font-weight: bold;
+}
+
+dd {
+  margin-left: 50%;
+  margin-bottom: .5em;;
+}
+
+dd::after{
+  content: " ";
+  clear: left;
+  display: block;
+} */
 
 .table td {
   padding-top: 0.3rem;
@@ -386,6 +422,10 @@ table.dataframe td {
 
 .margin.sidebar .footnote-reference {
   margin-left: 0.1rem;
+}
+
+.margin.sidebar .pre {
+  font-size: 1rem;
 }
 
 .eqno {
@@ -437,7 +477,7 @@ table.dataframe td {
   border: 0 !important;
 }
 
-.proof .proof > p:last-of-type::after {
+#proof > p:last-of-type::after {
     border: 1px solid currentColor;
     /* background-color: currentColor; */
     content: '';
@@ -765,7 +805,7 @@ label.margin-toggle:not(.sidenote-number) {
     clear: both;
     width: 95%;
     margin: 1rem 2.5%;
-    vertical-align: baseline;
+    /* vertical-align: baseline; */
     position: relative;
   }
 

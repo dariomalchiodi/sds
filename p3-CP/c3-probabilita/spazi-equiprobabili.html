@@ -57,6 +57,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
     <link rel="search" title="Cerca" href="../../search.html" />
@@ -492,7 +494,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="esperimenti-esiti-eventi.html">
-     11.2. Esperimenti, esiti ed eventi
+     11.2. Concetti fondamentali
     </a>
    </li>
    <li class="toctree-l2">
@@ -773,7 +775,10 @@ const thebe_selector_output = ".output, .cell_output"
 
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
-        
+        <a class="dropdown-buttons"
+            href="../../_sources/p3-CP/c3-probabilita/spazi-equiprobabili.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Scarica il file del taccuino" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
         <!-- Download raw file -->
         <a class="dropdown-buttons" href="../../_sources/p3-CP/c3-probabilita/spazi-equiprobabili.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Scarica il file sorgente" data-toggle="tooltip"
@@ -813,6 +818,23 @@ const thebe_selector_output = ".output, .cell_output"
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dariomalchiodi/sds/main?urlpath=tree/sds/p3-CP/c3-probabilita/spazi-equiprobabili.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Lanciare Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
@@ -838,6 +860,194 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="spazi-equiprobabili">
 <h1><span class="section-number">11.4. </span>Spazi equiprobabili<a class="headerlink" href="#spazi-equiprobabili" title="Link a questa intestazione">¶</a></h1>
+<p>In molte situazioni, l'esperimento casuale alla base di uno spazio di
+probabilità ha la proprietà di assegnare un valore di probabilità costante
+a tutti gli eventi elementari. In casi come questo, si parla di <em>spazio
+equiprobabile di probabilità</em>, o più semplicemente di <em>spazio equiprobabile</em>.</p>
+<div class="proof definition admonition" id="def-spazio-equiprobabile">
+<p class="admonition-title"><span class="caption-number">Definition 11.7 </span> (Spazio equiprobabile di probabilità)</p>
+<div class="definition-content section" id="proof-content">
+<p>Sia <span class="math notranslate nohighlight">\((\Omega, \mathbb A, \mathbb P)\)</span> uno spazio di probabilità. Se esiste una
+costante <span class="math notranslate nohighlight">\(p \in [0, 1]\)</span> tale che <span class="math notranslate nohighlight">\(\mathbb P({w}) = p\)</span> per ogni <span class="math notranslate nohighlight">\(w \in \Omega\)</span>,
+si dice che <span class="math notranslate nohighlight">\((\Omega, \mathbb A, \mathbb P)\)</span> è uno <em>spazio equiprobabile di
+probabilità</em>, o più semplicemente uno <em>spazio equiprobabile</em>.</p>
+</div>
+</div><p>Pertanto, negli spazi di questo tipo l'equiprobabilità riguarda gli eventi
+elementari, e la loro probabilità è legata alla numerosità dell'insieme degli
+esiti, come illustrato nel seguente teorema.</p>
+<div class="proof theorem admonition" id="teo-prob-equiprobabile">
+<p class="admonition-title"><span class="caption-number">Theorem 11.4 </span></p>
+<div class="theorem-content section" id="proof-content">
+<p>In uno spazio equiprobabile, l'insieme degli esiti deve avere una cardinalità
+finita <span class="math notranslate nohighlight">\(n \in \mathbb N\)</span> e <span class="math notranslate nohighlight">\(p = \frac{1}{n}\)</span>.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Iniziamo mostrando che quando <span class="math notranslate nohighlight">\(\Omega\)</span> è finito e <span class="math notranslate nohighlight">\(n\)</span> indica la sua
+cardinalità, la probabilità di ogni evento elementare è uguale a <span class="math notranslate nohighlight">\(\frac{1}{n}\)</span>.
+Dalla definizione di cardinalità si ottiene necessariamente che devono esistere
+<span class="math notranslate nohighlight">\(n\)</span> esiti <span class="math notranslate nohighlight">\(w_1, \ldots, w_n\)</span> tali che <span class="math notranslate nohighlight">\(\Omega = \{ w_1, \ldots, w_n \}\)</span>, e
+l'ipotesi di equiprobabilità implica che <span class="math notranslate nohighlight">\(\mathbb P({w_i}) = p\)</span> per ogni
+<span class="math notranslate nohighlight">\(i = 1, \ldots, n\)</span>. Gli <span class="math notranslate nohighlight">\(n\)</span> eventi elementari possibili costituiscono una
+partizione di <span class="math notranslate nohighlight">\(\Omega\)</span>, nel senso che
+<span class="math notranslate nohighlight">\(\{ w_1 \} \cup \ldots \cup \{ w_n \} = \Omega\)</span> e
+<span class="math notranslate nohighlight">\(\{ w_i \} \cap \{ w_j \} = \{\}\)</span> ogni volta che <span class="math notranslate nohighlight">\(i \neq j\)</span>. Pertanto,
+applicando il secondo e il terzo assioma di Kolmogorov si ottiene che</p>
+<div class="math notranslate nohighlight">
+\[
+1 = \mathbb P(\Omega) = \mathbb P( \{ w_1 \} \cup \ldots \cup \{ w_n \} )
+= \sum_{i=1}^n \mathbb P(\{ w_i \}) = \sum_{i=1}^n p = np.
+\]</div>
+<p>Dunque <span class="math notranslate nohighlight">\(p = \frac{1}{n}\)</span>. Inoltre è impossibile che <span class="math notranslate nohighlight">\(\Omega\)</span> sia infinito,
+perché dalla formula precedente si vede come il valore di <span class="math notranslate nohighlight">\(p\)</span> diminuisca
+strettamente al crescere della cardinalità di <span class="math notranslate nohighlight">\(\Omega\)</span>, e quando questa tende
+all'infinito il valore di <span class="math notranslate nohighlight">\(p\)</span> dovrebbe tendere a zero. Ciò non può però
+verificarsi perché andrebbbe a contraddire gli assiomi di Kolmogorov: in
+particolare, in tal caso si avrebbe
+<span class="math notranslate nohighlight">\(\mathbb P(\Omega) = \sum_{i=1}^n P(\{ w_i \}) = \sum_{i=1}^n 0 = 0\)</span>.</p>
+</div>
+<p>Gli eventi non elementare, in generale, avranno probabilità diverse tra loro.
+Ma è facile vedere come anche queste probabilità dipendono da <span class="math notranslate nohighlight">\(p\)</span>, come
+evidenziato nel seguente teorema.</p>
+<div class="proof theorem admonition" id="theorem-2">
+<p class="admonition-title"><span class="caption-number">Theorem 11.5 </span></p>
+<div class="theorem-content section" id="proof-content">
+<p>Per ogni evento <span class="math notranslate nohighlight">\(E \subseteq \Omega\)</span> nello spazio equiprobabile
+<span class="math notranslate nohighlight">\((\Omega, \mathbb A, \mathbb P)\)</span> si ha</p>
+<div class="math notranslate nohighlight" id="equation-eq-prob-classica">
+<span class="eqno">(11.5)<a class="headerlink" href="#equation-eq-prob-classica" title="Permalink a questa equazione">¶</a></span>\[ \mathbb P(E) = \frac{|E|}{n}. \]</div>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Siccome per il <a class="reference internal" href="#teo-prob-equiprobabile">Theorem 11.4</a> lo spazio degli esiti <span class="math notranslate nohighlight">\(\Omega\)</span>
+deve avere una cardinalità finita <span class="math notranslate nohighlight">\(n\)</span>, per ogni <span class="math notranslate nohighlight">\(E \subseteq \Omega\)</span> devono
+esistere <span class="math notranslate nohighlight">\(k\)</span> esiti <span class="math notranslate nohighlight">\(w_1, \ldots, w_k\)</span>, con <span class="math notranslate nohighlight">\(k \leq n\)</span> tali che
+<span class="math notranslate nohighlight">\(E = \{ w_1, \ldots, w_k \}\)</span>, e quindi</p>
+<div class="math notranslate nohighlight">
+\[ \mathbb P(E) = \sum_{i=1}^k \mathbb P(\{ w_i \})
+   = \sum_{i=1}^k \frac{1}{n} = \frac{k}{n}. \]</div>
+<p>La tesi si ottiene notando che <span class="math notranslate nohighlight">\(|E| = k\)</span>.</p>
+</div>
+<p>Questo teorema fornisce un fondamento teorico alla cosiddetta
+<em>definizione classica della probabilità</em>, secondo la quale la probabilità di
+un evento si calcola come il rapporto tra il numero degli esiti favorevoli
+(intesi come esiti che sono contenuti nell'evento) e il numero di quelli
+possibili. Intuitivamente, questa regola ha senso quando il «peso» di ogni
+esito, favorevole o possibile che esso sia, è identico. Questa ipotesi è
+soddisfatta quando si può assumere una sorta di <em>uniformità</em> nell'incertezza
+dell'esperimento casuale che si vuole studiare, come per esempio quando</p>
+<ul class="simple">
+<li><p>si lanciano dadi o monete bilanciati,</p></li>
+<li><p>si pescano carte da un mazzo che è stato mischiato,</p></li>
+</ul>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Anche in questo caso <em>contenitore</em> e <em>oggetto</em> sono termini che prescindono
+dalla loro effettiva tangibilità</p>
+</div>
+<ul class="simple">
+<li><p>si effettuano estrazioni da un contenitore dopo che gli oggetti in esso
+inseriti sono stati mescolati.</p></li>
+</ul>
+<p>In casi come questo, le regole del calcolo combinatorio descritte nel
+<a class="reference internal" href="../c1-calcolo-combinatorio/calcolo-combinatorio.html#cap-calcolo-combinatorio"><span class="std std-numref">Capitolo 9</span></a> sono spesso di aiuto per
+calcolare numeratore e denominatore nella formula <a class="reference internal" href="#equation-eq-prob-classica">(11.5)</a>.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Se in questo esempio si sostituiscono gli anni di prima apparizione dei
+supereroi con il giorno di nascita di un gruppo di persone presenti in una
+stanza, si ottiene il cosiddetto <em>problema dei compleanni</em>.</p>
+</div>
+<div class="proof example admonition" id="ex-problema-compleanni">
+<p class="admonition-title"><span class="caption-number">Example 11.2 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Ipotizzando che l'anno di prima apparizione dei supereroi sia uniformemente
+distribuito tra i valori minimo e massimo, calcoliamo la probabilità di
+estrarre a caso <span class="math notranslate nohighlight">\(n\)</span> supereroi senza trovarne due che sono apparsi per la prima
+volta nello stesso anno.</p>
+<p>Indichiamo con <span class="math notranslate nohighlight">\(a\)</span> il numero di valori distinti per l'anno di prima
+apparizione. L'ipotesi di distribuzione uniforme dell'anno di prima apparizione
+ci permette di lavorare in uno spazio equiprobabile, nel senso che possiamo
+assumere come costante la probabilità che un supereroe estratto a caso dal
+<em>dataset</em> sia apparso per la prima volta in un dato anno, e dunque di applicare
+la definizione classica di probabilità come indicato di seguito.</p>
+<ul class="simple">
+<li><p>Un esito favorevole corrisponde all'estrazione di <span class="math notranslate nohighlight">\(n\)</span> supereroi, ognuno dei
+quali ha un anno di prima apparizione diverso dagli altri: possiamo quindi
+visualizzare questo esito come una sequenza di <span class="math notranslate nohighlight">\(n\)</span> anni tutti diversi tra
+loro, scegliendo ogni anno tra <span class="math notranslate nohighlight">\(a\)</span> valori distinti, che equivale a
+considerare una disposizione senza ripetizione di <span class="math notranslate nohighlight">\(a\)</span> oggetti in <span class="math notranslate nohighlight">\(n\)</span> posti.
+Pertanto il numero di esiti favorevoli è uguale a
+<span class="math notranslate nohighlight">\(D_{a, n} = \frac{a!}{(a-n)!}\)</span>.</p></li>
+<li><p>Un esito possibile corrisponde invece all'estrazione di <span class="math notranslate nohighlight">\(n\)</span> supereroi,
+indipendentemente dal loro anno di prima apparizione, e tale esito è
+codificabile come una sequenza di <span class="math notranslate nohighlight">\(n\)</span> anni, con eventuali ripetizioni. Dunque
+gli esiti possibili coincidono con le disposizioni con ripetizione di <span class="math notranslate nohighlight">\(a\)</span>
+oggetti in <span class="math notranslate nohighlight">\(n\)</span> posti, e il loro numero è <span class="math notranslate nohighlight">\(d_{a, n} = a^n\)</span>.</p></li>
+</ul>
+<p>Concludendo, la probabilità che estraendo a caso <span class="math notranslate nohighlight">\(n\)</span> supereroi non succeda mai
+che due di questi abbiano lo stesso anno di prima apparizione è pari a</p>
+<div class="math notranslate nohighlight">
+\[ \frac{D_{a, n}}{d_{a, n}} = \frac{a!}{(a-n)! a^n}. \]</div>
+</div>
+</div><p>Possiamo applicare i risultati ottenuti nell'esempio precedente ai dati a
+nostra disposizione: innanzitutto calcoliamo il valore di <span class="math notranslate nohighlight">\(a\)</span> in funzione della
+differenza tra i valori massimo e minimo per l'anno di prima apparizione.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>La conversione a <code class="docutils literal notranslate"><span class="pre">int</span></code> è necessaria perché la presenza di valori mancanti
+causa un'implicito utilizzo del tipo <code class="docutils literal notranslate"><span class="pre">float</span></code> per l'anno di apparizione quando
+il <em>dataset</em> viene caricato.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">heroes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/heroes.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">years</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">]</span>
+<span class="n">min_year</span><span class="p">,</span> <span class="n">max_year</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">years</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">years</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">max_year</span> <span class="o">-</span> <span class="n">min_year</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>167
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Il valore di questa probabilità è necessariamente uguale a 0 quando <span class="math notranslate nohighlight">\(n &gt; a\)</span>,
+ma si avvicina a 0 per valori relativamente piccoli di <span class="math notranslate nohighlight">\(n\)</span>, come si può vedere
+nel grafico qui sotto.</p>
+</div>
+<p>Ora possiamo calcolare la probabilità <span class="math notranslate nohighlight">\(p_{n, a}\)</span> che su <span class="math notranslate nohighlight">\(n\)</span> supereroi
+considerati a caso non ve ne siano nemmeno due che hanno in comune l'anno di
+prima apparizione, come indicato nella cella seguente, e graficare il valore
+ottenuto al variare di <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;sds.mplstyle&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">prob_no_common_year</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">a</span><span class="o">**</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">a</span><span class="o">//</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="p">[</span><span class="n">prob_no_common_year</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">p1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/spazi-equiprobabili_3_0.png" src="../../_images/spazi-equiprobabili_3_0.png" />
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">

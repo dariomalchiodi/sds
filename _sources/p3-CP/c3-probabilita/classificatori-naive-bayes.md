@@ -12,7 +12,6 @@ kernelspec:
   name: python3
 ---
 
-
 # Classificatori naive Bayes
 
 Una semplice applicazione del teorema di Bayes permette di costruire un

@@ -57,6 +57,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
     <link rel="search" title="Cerca" href="../../search.html" />
@@ -492,7 +494,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="esperimenti-esiti-eventi.html">
-     11.2. Esperimenti, esiti ed eventi
+     11.2. Concetti fondamentali
     </a>
    </li>
    <li class="toctree-l2">
@@ -818,6 +820,24 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contenuti
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#la-disuguaglianza-di-markov">
+   11.6.1. La disuguaglianza di Markov
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#disuguaglianza-di-bienayme-cebysev">
+   11.6.2. Disuguaglianza di Bienaymé-Čebyšëv
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -830,6 +850,24 @@ const thebe_selector_output = ".output, .cell_output"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contenuti </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#la-disuguaglianza-di-markov">
+   11.6.1. La disuguaglianza di Markov
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#disuguaglianza-di-bienayme-cebysev">
+   11.6.2. Disuguaglianza di Bienaymé-Čebyšëv
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -838,6 +876,83 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="teoremi">
 <h1><span class="section-number">11.6. </span>Teoremi<a class="headerlink" href="#teoremi" title="Link a questa intestazione">¶</a></h1>
+<div class="section" id="la-disuguaglianza-di-markov">
+<h2><span class="section-number">11.6.1. </span>La disuguaglianza di Markov<a class="headerlink" href="#la-disuguaglianza-di-markov" title="Link a questa intestazione">¶</a></h2>
+<div class="proof theorem admonition" id="teo-markov">
+<p class="admonition-title"><span class="caption-number">Theorem 11.6 </span> (Disuguaglianza di Markov)</p>
+<div class="theorem-content section" id="proof-content">
+<p>Sia <span class="math notranslate nohighlight">\(X\)</span> una variabile aleatoria che può assumere solo specificazioni non
+negative e avente valore atteso finito <span class="math notranslate nohighlight">\(\mathbb E(X)\)</span>.. Per ogni valore reale
+a \geq 0$ si ha</p>
+<div class="math notranslate nohighlight">
+\[ \mathbb P(X \leq a) \geq \frac{\mathbb E(X)}{a}. \]</div>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Ipotizziamo che <span class="math notranslate nohighlight">\(X\)</span> sia una variabile aleataoria continua, e indichiamo con
+<span class="math notranslate nohighlight">\(f\)</span> la sua funzione di densità di probabilità. Non avendo <span class="math notranslate nohighlight">\(X\)</span> specificazioni
+positive, è possibile esprimere il suo valore atteso come segue:</p>
+<div class="math notranslate nohighlight">
+\[ \mathbb E(X) = \int_0^a x f(x) \mathrm d x
+                  + \int_a^{+\infty} x f(x) \mathrm d x. \]</div>
+<p>Concentriamoci sui due integrali in questa formula: possiamo osservare che</p>
+<ul class="simple">
+<li><p>all'interno del primo possiamo sempre assumere <span class="math notranslate nohighlight">\(x \leq a\)</span>, e</p></li>
+<li><p>il secondo integrale deve avere un valore non negativo, perché la funzione
+integranda è uguale al prodotto di due fattori non negativi (<span class="math notranslate nohighlight">\(x\)</span> è una
+specificazione di una variabile aleatoria che non assume mai valori negativi
+e <span class="math notranslate nohighlight">\(f\)</span> è una funzione di densità di probabilità).</p></li>
+</ul>
+<p>Pertanto</p>
+<div class="math notranslate nohighlight">
+\[ \mathbb E(X) \leq \int_0^a x f(x) \mathrm d x
+                \leq a \int_0^a f(x) \mathrm d x = a \mathbb P(X \leq a). \]</div>
+<p>Dividendo membro a membro per <span class="math notranslate nohighlight">\(a\)</span>, non cambia il verso delle disuguaglianze
+e pertanto si ottiene la tesi.</p>
+</div>
+</div>
+<div class="section" id="disuguaglianza-di-bienayme-cebysev">
+<h2><span class="section-number">11.6.2. </span>Disuguaglianza di Bienaymé-Čebyšëv<a class="headerlink" href="#disuguaglianza-di-bienayme-cebysev" title="Link a questa intestazione">¶</a></h2>
+<p>La disuguaglianza di Bienaymé-Čebyšëv <a class="footnote-reference brackets" href="#traslitterazione-cebicev" id="id1">1</a></p>
+<div class="proof theorem admonition" id="theorem-1">
+<p class="admonition-title"><span class="caption-number">Theorem 11.7 </span> (disuguaglianza di Bienaymé-Čebyšëv)</p>
+<div class="theorem-content section" id="proof-content">
+<p>Sia <span class="math notranslate nohighlight">\(X\)</span> una variabile aleatoria. Se il valore atteso <span class="math notranslate nohighlight">\(\mu\)</span> e la varianza
+<span class="math notranslate nohighlight">\(\sigma^2\)</span> di <span class="math notranslate nohighlight">\(X\)</span> esistono e sono entrambi finiti, per ogni numero reale
+<span class="math notranslate nohighlight">\(\epsilon \geq 0\)</span></p>
+<div class="math notranslate nohighlight">
+\[ \mathbb P(| X - \mu | \leq \epsilon) \geq \frac{\sigma^2}{\epsilon^2}. \]</div>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Definiamo <span class="math notranslate nohighlight">\(Y := (X - \mu)^2\)</span>, e notiamo che per costruzione <span class="math notranslate nohighlight">\(Y\)</span> non assume mai
+specificazioni negative e il suo valore atteso è <span class="math notranslate nohighlight">\(\mathbb E(Y) = \sigma^2\)</span>,
+che per ipotesi esiste ed è finito. Essendo <span class="math notranslate nohighlight">\(\epsilon \geq 0\)</span>, gli eventi
+<span class="math notranslate nohighlight">\(| X - \mu | \leq \epsilon\)</span> e <span class="math notranslate nohighlight">\(Y \leq \epsilon^2\)</span> si equivalgono,
+pertanto</p>
+<div class="math notranslate nohighlight">
+\[ \mathbb P(| X - \mu | \leq \epsilon) =
+   \mathbb P(Y \leq \epsilon^2) \geq \frac{\mathbb E(Y)}{\epsilon^2} =
+   \frac{\sigma^2}{\epsilon^2}, \]</div>
+<p>dove la minorazione è legata all'applicazione della disuguaglianza di Markov
+alla variabile aleatoria <span class="math notranslate nohighlight">\(Y\)</span> (Notate che le ipotesi del <a class="reference internal" href="#teo-markov">Theorem 11.6</a>
+sono soddisfatte, come evidenziato dalle osservazioni fatte all'inizio della
+dimostrazione).</p>
+</div>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="traslitterazione-cebicev"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>La traslitterazione dal russo del cognome
+originale Чебышёв compare in forme diverse anche in funzione della lingua verso
+la quale viene effettuata la traslitterazione stessa. È per questo che anche
+negli articoli pubblicati da questo autore il suo cognome appare in molteplici
+forme, come per esempio Cebicev, Cebisceff o Chebyshev in italiano, Tchebychef
+o Tchébicheff in francese, Tschebychew o Tschebyscheff in tedesco e Chebyshev
+in inglese. Sebbene oggigiorno sia molto spesso utilizzata quest'ultima
+traslitterazione, io ho preferito fare riferimento allo standard
+<a class="reference external" href="https://it.wikipedia.org/wiki/Traslitterazione_scientifica_del_cirillico">ISO 9</a>
+e adottare Čebyšëv.</p>
+</dd>
+</dl>
+</div>
 </div>
 
     <script type="text/x-thebe-config">

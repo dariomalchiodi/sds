@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>11.2. Esperimenti, esiti ed eventi &#8212; Superhero Data Science 
+    <title>11.2. Concetti fondamentali &#8212; Superhero Data Science 
  Probabilità e Statistica</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
@@ -494,7 +494,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     11.2. Esperimenti, esiti ed eventi
+     11.2. Concetti fondamentali
     </a>
    </li>
    <li class="toctree-l2">
@@ -820,19 +820,6 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contenuti
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#algebra-degli-eventi">
-   11.2.1. Algebra degli eventi
-  </a>
- </li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -840,57 +827,243 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Esperimenti, esiti ed eventi</h1>
+                <h1>Concetti fondamentali</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contenuti </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#algebra-degli-eventi">
-   11.2.1. Algebra degli eventi
-  </a>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="esperimenti-esiti-ed-eventi">
-<h1><span class="section-number">11.2. </span>Esperimenti, esiti ed eventi<a class="headerlink" href="#esperimenti-esiti-ed-eventi" title="Link a questa intestazione">¶</a></h1>
-<div class="section" id="algebra-degli-eventi">
-<h2><span class="section-number">11.2.1. </span>Algebra degli eventi<a class="headerlink" href="#algebra-degli-eventi" title="Link a questa intestazione">¶</a></h2>
-<div class="proof definition admonition" id="algebra-degli-eventi">
-<p class="admonition-title"><span class="caption-number">Definition 11.1 </span></p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="concetti-fondamentali">
+<h1><span class="section-number">11.2. </span>Concetti fondamentali<a class="headerlink" href="#concetti-fondamentali" title="Link a questa intestazione">¶</a></h1>
+<p>Come descritto all'inizio di questo capitolo, alla base di ogni ragionamento
+di tipo probabilistico si trova un'esperienza non deterministica che chiameremo
+<em>esperimento casuale</em>, come formalizzato nella definizione seguente.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Gli esperimenti casuali saranno indicati utilizzando
+le lettere maiuscole corsive <span class="math notranslate nohighlight">\(\mathscr E\)</span>, <span class="math notranslate nohighlight">\(\mathscr F\)</span> e così via, scegliendo
+possibilmente una lettera legata al significato dell'esperimento stesso.</p>
+</div>
+<div class="proof definition admonition" id="def-esperimento-casuale">
+<p class="admonition-title"><span class="caption-number">Definition 11.1 </span> (Esperimento casuale)</p>
+<div class="definition-content section" id="proof-content">
+<p>Definiamo <em>esperimento casuale</em> (o <em>aleatorio</em>) una qualsiasi esperienza che
+può dare risultati differenti quando essa viene ripetuta più volte partendo da
+condizioni iniziali identiche.</p>
+</div>
+</div><p>Immaginiamo di acquistare tutte le settimane un nuovo numero di un fumetto dei
+Fantastici 4: ogni volta i contenuti saranno diversi, permettendoci di
+considerare per esempio gli esperimenti casuali <span class="math notranslate nohighlight">\(\mathscr P =\)</span> controllare se
+il numero totale di occorrenze della Donna invisibile è pari, <span class="math notranslate nohighlight">\(\mathscr O =\)</span>
+verificare quale sia il colore degli occhi del primo supereroe che compare nel
+numero, <span class="math notranslate nohighlight">\(\mathscr C =\)</span> elencare l'ordine di apparizione dei Fantastici 4,
+<span class="math notranslate nohighlight">\(\mathscr N =\)</span> contare il numero di diversi supereroi presenti e <span class="math notranslate nohighlight">\(\mathscr A =\)</span>
+misurare l'altezza (in cm.) dell'ultimo supereroe che compare nel fumetto.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Denoteremo gli esiti usando le lettere minuscole dell'alfabeto greco,
+utilizzando possibilmente <span class="math notranslate nohighlight">\(\omega\)</span> (omega minuscola) o alcune sue varianti.</p>
+</div>
+<div class="proof definition admonition" id="def-esito">
+<p class="admonition-title"><span class="caption-number">Definition 11.2 </span> (Esito)</p>
+<div class="definition-content section" id="proof-content">
+<p>Ogni possibile risultato <span class="math notranslate nohighlight">\(\omega\)</span> di un esperimento casuale <span class="math notranslate nohighlight">\(\mathscr E\)</span> prende
+il nome di <em>esito</em>.</p>
+</div>
+</div><p>Un esempio di esito è <span class="math notranslate nohighlight">\(\text{falso}\)</span> per <span class="math notranslate nohighlight">\(\mathscr P\)</span>, <span class="math notranslate nohighlight">\(\text{azzurro}\)</span> per
+<span class="math notranslate nohighlight">\(\mathscr O\)</span>, <span class="math notranslate nohighlight">\((\text{Torcia umana}, \text{Donna invisibile},
+\text{Mister Fantastic}, \text{Cosa})\)</span> per <span class="math notranslate nohighlight">\(\mathscr C\)</span>, <span class="math notranslate nohighlight">\(3\)</span> per <span class="math notranslate nohighlight">\(\mathscr N\)</span> e
+<span class="math notranslate nohighlight">\(183\)</span> per <span class="math notranslate nohighlight">\(\mathscr A\)</span>. L'insieme di tutti gli esiti di un esperimento casuale,
+che rappresenta il punto iniziale della modellazione matematica che useremo per
+il concetto di probabilità, prende il nome di <em>spazio degli esiti</em>.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Lo spazio degli esiti viene spesso anche chiamato <em>spazio campionario</em> o
+<em>insieme universo</em>, e in letteratura esistono notazioni alternative che lo
+denotano usando per esempio le lettere <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(U\)</span>.</p>
+</div>
+<div class="proof definition admonition" id="def-spazio-esiti">
+<p class="admonition-title"><span class="caption-number">Definition 11.3 </span> (Spazio degli esiti)</p>
+<div class="definition-content section" id="proof-content">
+<p>L'insieme di tutti i possibili esiti di un generico esperimento
+casuale <span class="math notranslate nohighlight">\(\mathcal E\)</span> viene chiamato <em>spazio degli esiti</em>, e lo si denota
+usualmente tramite la lettera <span class="math notranslate nohighlight">\(\Omega\)</span> (omega maiuscola).</p>
+</div>
+</div><p>L'elenco seguente descrive lo spazio degli esiti per ognuno degli esperimenti
+casuali presi precedentemente in considerazione.</p>
+<table class="colwidths-auto table" id="tab-esempi-spazi-esiti">
+<caption><span class="caption-number">Tabella 11.1 </span><span class="caption-text">Esempi di spazi degli esiti</span><a class="headerlink" href="#tab-esempi-spazi-esiti" title="Link a questa tabella">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Esperimento</p></th>
+<th class="head"><p>Spazio degli esiti</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathscr P\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\{ \text{vero}, \text{falso} \}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathscr O\)</span></p></td>
+<td><p>insieme di tutti i colori</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathscr C\)</span></p></td>
+<td><p>insieme di tutte le permutazioni degli elementi in  <span class="math notranslate nohighlight">\(\{ \text{Mister Fantastic}, \text{Donna invisibile}, \text{Torcia umana}, \text{Cosa}\}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathscr N\)</span></p></td>
+<td><p>insieme <span class="math notranslate nohighlight">\(\mathbb N\)</span> di tutti i numeri naturali</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mathscr A\)</span></p></td>
+<td><p>insieme <span class="math notranslate nohighlight">\(\mathbb R^+\)</span> di tutti i numeri reali positivi</p></td>
+</tr>
+</tbody>
+</table>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><span class="math notranslate nohighlight">\(2^\Omega\)</span> denota l'insieme delle parti di <span class="math notranslate nohighlight">\(\Omega\)</span>, pertanto un'algebra
+è un insieme di eventi, o equivalentemente un insieme di sottoinsiemi di
+<span class="math notranslate nohighlight">\(\Omega\)</span>.</p>
+</div>
+<div class="proof definition admonition" id="def-algebra-degli-eventi">
+<p class="admonition-title"><span class="caption-number">Definition 11.4 </span> (Algebra degli eventi)</p>
 <div class="definition-content section" id="proof-content">
 <p>Fissato uno spazio degli esiti <span class="math notranslate nohighlight">\(\Omega\)</span>, si definisce <em>algebra degli eventi</em>
-una qualsiasi collezione di eventi <span class="math notranslate nohighlight">\(\mathbb A \subseteq 2^\Omega\)</span> che
+una qualsiasi collezione di eventi <span class="math notranslate nohighlight">\(\mathsf A \subseteq 2^\Omega\)</span> che
 soddisfa le seguenti proprietà:</p>
 <div class="math notranslate nohighlight">
-\[ \Omega \in \mathbb A; \]</div>
+\[ \Omega \in \mathsf A; \]</div>
 <div class="math notranslate nohighlight">
-\[ \forall E \in \mathbb A \quad \overline E \in \mathbb A; \]</div>
+\[ \forall E \in \mathsf A \quad \overline E \in \mathsf A; \]</div>
 <div class="math notranslate nohighlight">
-\[ \forall E, F \in \mathbb A \quad E \cup F \in \mathbb A. \]</div>
+\[ \forall E, F \in \mathsf A \quad E \cup F \in \mathsf A. \]</div>
 </div>
-</div><div class="proof definition admonition" id="sigma-algebra-degli-eventi">
-<p class="admonition-title"><span class="caption-number">Definition 11.2 </span></p>
+</div><p>Dunque un'algebra degli eventi è una collezione di eventi chiusa rispetto
+alle operazioni di unione e complemento. La <a class="reference internal" href="#def-algebra-degli-eventi">Definition 11.4</a>
+implica anche le seguenti proprietà:</p>
+<ul>
+<li><p>tramite il principio di induzione si dimostra facilmente che un'algebra
+degli eventi è chiusa rispetto all'unione di un numero <em>finito</em> di eventi:</p>
+<div class="math notranslate nohighlight">
+\[ \forall E_1, \ldots, E_n \in \mathsf A \quad
+     \bigcup_{i=1}^n E_i \in \mathsf A; \]</div>
+</li>
+<li><p>come immediata conseguenza delle leggi di De Morgan si ottiene</p>
+<div class="my-class docutils">
+<div class="math notranslate nohighlight">
+\[ E \cap F = \overline{\overline E \cup \overline F}, \]</div>
+<p>dunque un'algebra risulta anche chiusa rispetto all'intersezione di eventi.</p>
+</div>
+</li>
+</ul>
+<p>In generale, un'algebra degli eventi rappresenta un insieme di eventi a cui
+si è interessati.</p>
+<p>Quando lo spazio degli esiti <span class="math notranslate nohighlight">\(\Omega\)</span> è finito, l'unica algebra degli eventi
+sensata è l'insieme delle parti <span class="math notranslate nohighlight">\(2^\Omega\)</span>: più precisamente, se per ogni
+<span class="math notranslate nohighlight">\(\omega \in \Omega\)</span> ha senso (come dovrebbe) ragionare in termini dell'<em>evento
+elementare</em> <span class="math notranslate nohighlight">\(\{ \omega \}\)</span>, la sola proprietà di chiusura rispetto all'unione
+descritta nella <a class="reference internal" href="#def-algebra-degli-eventi">Definition 11.4</a> permette di dimostrare che
+ogni evento è contenuto in <span class="math notranslate nohighlight">\(\mathsf A\)</span>.</p>
+<div class="proof theorem admonition" id="theorem-4">
+<p class="admonition-title"><span class="caption-number">Theorem 11.1 </span> (Algebra degli eventi di uno spazio degli esiti finito)</p>
+<div class="theorem-content section" id="proof-content">
+<p>Sia <span class="math notranslate nohighlight">\(\mathsf A\)</span> un'algebra degli eventi per uno spazio degli esiti finito
+<span class="math notranslate nohighlight">\(\Omega\)</span>. Se <span class="math notranslate nohighlight">\(\mathsf A\)</span> contiene tutti gli eventi elementari allora
+<span class="math notranslate nohighlight">\(\mathsf A = 2^\Omega\)</span>.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Un generico evento <span class="math notranslate nohighlight">\(E \subseteq \Omega\)</span> deve essere un insieme finito, essendo
+<span class="math notranslate nohighlight">\(\Omega\)</span> stesso finito. Quindi devono esistere <span class="math notranslate nohighlight">\(n\)</span> esiti
+<span class="math notranslate nohighlight">\(w_1, \ldots, w_n \in \Omega\)</span> tali che <span class="math notranslate nohighlight">\(E = \{ w_1, \ldots, w_n \}\)</span>. Per
+ipotesi, per ogni <span class="math notranslate nohighlight">\(i = 1, \ldots, n\)</span> l'evento elementare <span class="math notranslate nohighlight">\(\{ w_i \}\)</span> appartiene
+ad <span class="math notranslate nohighlight">\(\mathsf A\)</span> e dunque</p>
+<div class="math notranslate nohighlight">
+\[ E = \bigcup_{i=1}^n \{ E_i \} \in \mathsf A. \]</div>
+<p>Riassumendo, ogni <span class="math notranslate nohighlight">\(E \subseteq \Omega\)</span> appartiene ad <span class="math notranslate nohighlight">\(\mathsf A\)</span>, che quindi
+deve essere l'insieme delle parti di <span class="math notranslate nohighlight">\(\Omega\)</span>.</p>
+</div>
+<p>Pertanto, gli esperimenti casuali <span class="math notranslate nohighlight">\(\mathscr P\)</span>, <span class="math notranslate nohighlight">\(\mathscr O\)</span> e <span class="math notranslate nohighlight">\(\mathscr C\)</span>
+ammettono un'unica algebra degli eventi. Per quanto riguarda <span class="math notranslate nohighlight">\(\mathscr N\)</span> e
+<span class="math notranslate nohighlight">\(\mathscr A\)</span>...</p>
+<p>Le cose si complicano quando lo spazio degli esiti è infinito, perché in
+questo caso è possibile costruire algebre degli eventi che sono anch'esse
+infinite (potremmo, per esempio, considerare <span class="math notranslate nohighlight">\(2^\Omega\)</span>). Abbiamo visto che la
+<a class="reference internal" href="#def-algebra-degli-eventi">Definition 11.4</a> implica che queste algebre sono chiuse
+rispetto all'unione di un numero finito di eventi, ma la stessa proprietà
+potrebbe non valere quando consideriamo l'unione di una <em>famiglia infinita</em> di
+eventi, come evidenziato nell'esempio che segue.</p>
+<div class="proof example admonition" id="ex-controesempio-sigma-algebra">
+<p class="admonition-title"><span class="caption-number">Example 11.1 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Concentriamoci sull'esperimento casuale <span class="math notranslate nohighlight">\(\mathscr N\)</span>, e dal corrispondente
+spazio degli esiti <span class="math notranslate nohighlight">\(\Omega = \mathbb N\)</span> costruiamo l'algebra</p>
+<div class="math notranslate nohighlight">
+\[ \mathsf A = \{ E \subseteq \Omega
+\text{ tale che } E \text{ è finito oppure }
+\overline E \text{ è finito} \}. \]</div>
+<p>e in particolare
+sull'evento <span class="math notranslate nohighlight">\(P = \{ il numero di supereroi diversi nel fumetto è pari \}\)</span> spazio degli esiti <span class="math notranslate nohighlight">\(\Omega = \mathbb N\)</span> e sulla seguente
+collezione di eventi in questo spazio:</p>
+<p>Si verifica che <span class="math notranslate nohighlight">\(\mathsf A\)</span> è un'algebra degli eventi, come dettagliato nei
+punti seguenti.</p>
+<ol>
+<li><p><span class="math notranslate nohighlight">\(\Omega = \mathbb N \in \mathsf A\)</span> in quanto il suo complemento è l'insieme
+vuoto, che è un insieme finito;</p></li>
+<li><p>Se <span class="math notranslate nohighlight">\(E \in \mathsf A\)</span>, per definizione deve valere uno dei due casi seguenti:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(E\)</span> è un insieme finito, pertanto il complementare di <span class="math notranslate nohighlight">\(\overline E\)</span> è un
+insieme finito, dunque <span class="math notranslate nohighlight">\(\overline E \in \mathsf A\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\overline E\)</span> è un insieme finito, dunque <span class="math notranslate nohighlight">\(\overline E \in \mathsf A\)</span>,</p></li>
+</ul>
+<p>dunque <span class="math notranslate nohighlight">\(\mathsf A\)</span> è chiusa rispetto all'operazione di complemento.</p>
+</li>
+<li><p>Se <span class="math notranslate nohighlight">\(E, F \in \mathsf A\)</span> deve necessariamente essere verificato uno dei
+seguenti tre casi:</p>
+<ul class="simple">
+<li><p>entrambi gli eventi sono finiti, pertanto lo è anche <span class="math notranslate nohighlight">\(E \cup F\)</span>;</p></li>
+<li><p>entrambi gli eventi sono infiniti, ma sia <span class="math notranslate nohighlight">\(\overline E\)</span> che <span class="math notranslate nohighlight">\(\overline F\)</span>
+sono finiti, dunque
+<span class="math notranslate nohighlight">\(\overline{E \cup F} = \overline E \cap \overline F\)</span>,
+essendo interzione di due insiemi finiti, è esso stesso finito;</p></li>
+<li><p>uno dei due eventi è finito e l'altro è infinito, e senza ledere la
+generalità del ragionamento possiamo supporre che <span class="math notranslate nohighlight">\(E\)</span> sia finito e <span class="math notranslate nohighlight">\(F\)</span>
+sia infinito; <span class="math notranslate nohighlight">\(\overline F\)</span> deve però essere finito perché
+<span class="math notranslate nohighlight">\(F \in \mathsf A\)</span>, e siccome
+<span class="math notranslate nohighlight">\(\overline{E \cup F} = \overline E \cap \overline F \subseteq \overline F\)</span>,
+<span class="math notranslate nohighlight">\(\overline{E \cup F}\)</span> è finito perché è sottoinsieme di un insieme finito.</p></li>
+</ul>
+<p>In tutti i casi abbiamo dimostrato che <span class="math notranslate nohighlight">\(E \cup F\)</span> oppure
+<span class="math notranslate nohighlight">\(\overline{E \cup F}\)</span> è un insieme finito, pertanto
+<span class="math notranslate nohighlight">\(E \cup F \in \mathsf A\)</span>, il che significa che <span class="math notranslate nohighlight">\(\mathsf A\)</span> è chiusa rispetto
+all'unione.</p>
+</li>
+</ol>
+<p>Consideriamo però la successione di insiemi definita da
+<span class="math notranslate nohighlight">\( E_n = \{ 2 i, i = 1, \ldots, n \} \)</span>. In generale, <span class="math notranslate nohighlight">\(E_n\)</span> è l'insieme dei primi
+<span class="math notranslate nohighlight">\(n\)</span> numeri pari, e quindi contiene sempre un numero finito di elementi, il che
+implica <span class="math notranslate nohighlight">\(E_n \in \mathsf A\)</span> per ogni <span class="math notranslate nohighlight">\(n\)</span>. L'unione
+<span class="math notranslate nohighlight">\(E = \cup_{n=1}^{+\infty} E_n\)</span> è quindi l'insieme infinito dei numeri pari,
+e il suo complemento è l'insieme infinito dei numeri dispari. Pertanto
+<span class="math notranslate nohighlight">\(E \not\in \mathsf A\)</span>.</p>
+</div>
+</div><p>Per garantire di poter calcolare la probabilità dell'unione di una quantità
+infinita numerabile di eventi, è necessario estendere l'algebra degli eventi
+in una <em>sigma-algebra</em> come indicato nella definizione che segue.</p>
+<div class="proof definition admonition" id="def-sigma-algebra-degli-eventi">
+<p class="admonition-title"><span class="caption-number">Definition 11.5 </span> (Sigma-algebra degli eventi)</p>
 <div class="definition-content section" id="proof-content">
 <p>Ogni algebra degli eventi <span class="math notranslate nohighlight">\(\mathbb A\)</span> su uno spazio degli esiti <span class="math notranslate nohighlight">\(\Omega\)</span>
-è una <em>sigma-algebra</em> se, rispetta la seguente proprietà oltre a quelle della
-<code class="xref std std-numref docutils literal notranslate"><span class="pre">algebra-degli-eventi</span></code>:</p>
+è una <em>sigma-algebra</em> se rispetta la seguente proprietà oltre a quelle della
+<a class="reference internal" href="#def-algebra-degli-eventi">Definition 11.4</a>: per ogni successione infinita
+<span class="math notranslate nohighlight">\(E_1, E_2, \ldots\)</span> di eventi in <span class="math notranslate nohighlight">\(\mathsf A\)</span></p>
 <div class="math notranslate nohighlight">
-\[ \forall E_1, E_2, \dots \in \mathbb A \quad \union_i E_i \in \mathbb A. \]</div>
+\[ \bigcup_{n=1}^{+\infty} E_i \in \mathsf A. \]</div>
 </div>
-</div></div>
+</div><p>In generale si utilizza il termine <em>spazio misurabile</em> per indicare una
+coppia <span class="math notranslate nohighlight">\((\Omega, \mathsf A)\)</span> in cui <span class="math notranslate nohighlight">\(\mathsf A\)</span> indica un'algebra o una
+sigma-algebra degli eventi.</p>
 </div>
 
     <script type="text/x-thebe-config">

@@ -186,13 +186,6 @@ oggetti di $A$. Dunque ogni sottoinsieme di $M$ di $k$ elementi può essere
 messo in relazione con una combinazione con ripetizione di $n$ oggetti in $k$
 posti.
 
-Pertanto, le combinazioni con ripetizione di $n$ oggetti in $k$ posti sono in
-corrispondenza biunivoca con i sottoinsiemi di $M$ di cardinalità $k$, e
-siccome vi sono $c_{n + k - 1, k}$ diversi insiemi siffatti, possiamo
-concludere che
-
-$$ C_{n, k} = c_{n + k - 1, k} = \binom{n+k-1}{k}. $$
-
 ````{prf:example}
 :label: combinazioni-DK-MP-2
 Riprendendo l'{prf:ref}`ex-combinazioni-con-ripetizione`, abbiamo che l'insieme
@@ -216,3 +209,10 @@ sequenze $\sigma_N$ e $\sigma_M$.
 | $\{ k, p, p, p \}$ | $\{ 1, 1, 1, 2 \}$ | $\{ 1, 2, 3, 5 \}$ |
 | $\{ p, p, p, p \}$ | $\{ 1, 1, 1, 1 \}$ | $\{ 1, 2, 3, 4 \}$ |
 ```
+
+Concludendo, le combinazioni con ripetizione di $n$ oggetti in $k$ posti sono
+in corrispondenza biunivoca con i sottoinsiemi di $M$ di cardinalità $k$, e
+siccome il numero di questi sottoinsiemi è uguale al numero di combinazioni
+senza ripetizione di $n + k - 1$ oggetti in $k$ posti, possiamo concludere che
+
+$$ C_{n, k} = c_{n + k - 1, k} = \binom{n+k-1}{k}. $$

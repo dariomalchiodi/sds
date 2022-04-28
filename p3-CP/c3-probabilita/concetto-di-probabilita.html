@@ -57,10 +57,12 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
     <link rel="search" title="Cerca" href="../../search.html" />
-    <link rel="next" title="11.2. Esperimenti, esiti ed eventi" href="esperimenti-esiti-eventi.html" />
+    <link rel="next" title="11.2. Concetti fondamentali" href="esperimenti-esiti-eventi.html" />
     <link rel="prev" title="11. Calcolo delle probabilità" href="calcolo-probabilita.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="it">
@@ -492,7 +494,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="esperimenti-esiti-eventi.html">
-     11.2. Esperimenti, esiti ed eventi
+     11.2. Concetti fondamentali
     </a>
    </li>
    <li class="toctree-l2">
@@ -838,6 +840,33 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="il-concetto-di-probabilita">
 <h1><span class="section-number">11.1. </span>Il concetto di probabilità<a class="headerlink" href="#il-concetto-di-probabilita" title="Link a questa intestazione">¶</a></h1>
+<p>Spostare qui la definizione di esperimento aleatorio e di evento</p>
+<ul class="simple">
+<li><p>accezione classica: la probabilità di un evento è uguale al rapporto tra
+il numero di casi favorevoli e il numero di casi possibili (funziona solo
+per gli spazi equiprobabili)</p></li>
+<li><p>accezione soggettiva: la probabilità di un evento riflette la <em>fiducia</em>
+che un particolare soggetto ha relativamente al verificarsi dell'evento
+stesso (tipicamente, è il prezzo che questo soggetto ritiene giusto dover
+pagare per partecipare a una scommessa in cui a fronte di un'esecuzione
+dell'evento aleatorio si vince 1 € se l'evento si
+verifica e si perde tutto altrienti, senza sapere se in questa scommessa
+si svolgerà il ruolo dello scommettitore o del banco, per evitare che il
+soggetto bari)</p></li>
+</ul>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>In modo meno formale, si può semplicemente indicare la probabilità come il
+rapporto tra il numero di ripetizioni in cui l'evento si verifica ed <span class="math notranslate nohighlight">\(n\)</span>,
+per un valore «molto grande» di <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</div>
+<ul class="simple">
+<li><p>accezione frequentista: considerate <span class="math notranslate nohighlight">\(n\)</span> ripetizioni dell'evento aleatorio,
+la probabilità di un evento è uguale al limite del rapporto tra il numero
+di volte che l'evento si è verificato ed <span class="math notranslate nohighlight">\(n\)</span>, per <span class="math notranslate nohighlight">\(n \rightarrow +\infty\)</span></p></li>
+</ul>
+<p>Formalizzazione assiomatica che è indipendente dal <em>significato</em> che viene
+dato al concetto di probabilità</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -875,7 +904,7 @@ const thebe_selector_output = ".output, .cell_output"
     <a class='right-next' id="next-link" href="esperimenti-esiti-eventi.html" title="successivo pagina">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">successivo</p>
-        <p class="prev-next-title"><span class="section-number">11.2. </span>Esperimenti, esiti ed eventi</p>
+        <p class="prev-next-title"><span class="section-number">11.2. </span>Concetti fondamentali</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

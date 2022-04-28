@@ -57,6 +57,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
     <link rel="search" title="Cerca" href="../../search.html" />
@@ -492,7 +494,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="esperimenti-esiti-eventi.html">
-     11.2. Esperimenti, esiti ed eventi
+     11.2. Concetti fondamentali
     </a>
    </li>
    <li class="toctree-l2">
@@ -838,7 +840,38 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="probabilita-condizionata">
 <h1><span class="section-number">11.5. </span>Probabilità condizionata<a class="headerlink" href="#probabilita-condizionata" title="Link a questa intestazione">¶</a></h1>
+<p>Immaginiamo di fissare un esperimento casuale <span class="math notranslate nohighlight">\(\mathcal E\)</span> e definire il
+corrispondente spazio di proababilità <span class="math notranslate nohighlight">\((\Omega, \mathbb A, \mathbb P)\)</span>. Dato
+un generico evento <span class="math notranslate nohighlight">\(E \in \mathbb A\)</span>, se dopo che <span class="math notranslate nohighlight">\(\mathcal E\)</span> è stato eseguito
+noi sapessimo qual è l'esito <span class="math notranslate nohighlight">\(\omega \in \Omega\)</span> che è stato osservato,
+sapremmo automaticamente se <span class="math notranslate nohighlight">\(E\)</span> si è verificato oppure no. Immaginiamo di non
+conoscere con precisione <span class="math notranslate nohighlight">\(\omega\)</span>, ma di avere accesso a qualche forma
+<em>parziale</em> di informazione: più precisamente, immaginiamo di sapere che un
+altro evento <span class="math notranslate nohighlight">\(F\)</span> risulta verificato. La <em>probabilità condizionata</em> è uno
+strumento che ci permette di capire quanto questa informazione riduca
+l'incertezza sull'evento originale <span class="math notranslate nohighlight">\(E\)</span>.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Il requisito che impone <span class="math notranslate nohighlight">\(\mathbb P(F) \neq 0\)</span>, oltre a garantire che il
+rapporto <a class="reference internal" href="#equation-eq-prob-cond">(11.6)</a> non abbia un denominatore nullo e risulti
+indefinito, è strettamente legato al significato di probabilità condizionata:
+l'unico evento con probabilità nulla è quello impossibile, e dunque non ha
+senso ipotizzare che esso si sia verificato. In generale, si dice che la
+probabilità <span class="math notranslate nohighlight">\(\mathbb P(E | F)\)</span> è indefinita quando <span class="math notranslate nohighlight">\(\mathbb P(F) = 0\)</span>.</p>
 </div>
+<div class="proof definition admonition" id="definition-0">
+<p class="admonition-title"><span class="caption-number">Definition 11.8 </span> (Probabilità condizionata)</p>
+<div class="definition-content section" id="proof-content">
+<p>Siano <span class="math notranslate nohighlight">\(E, F \subseteq \Omega\)</span> due eventi in uno spazio di probabilità
+<span class="math notranslate nohighlight">\((\Omega, \mathbb A, \mathbb P)\)</span>: se <span class="math notranslate nohighlight">\(\mathbb P(F) \neq 0\)</span> si definisce
+<em>probabilità condizionata di <span class="math notranslate nohighlight">\(E\)</span> dato <span class="math notranslate nohighlight">\(F\)</span></em> (o, più brevemente, <em>proababilità di
+<span class="math notranslate nohighlight">\(E\)</span> dato <span class="math notranslate nohighlight">\(F\)</span></em>) il rapporto</p>
+<div class="math notranslate nohighlight" id="equation-eq-prob-cond">
+<span class="eqno">(11.6)<a class="headerlink" href="#equation-eq-prob-cond" title="Permalink a questa equazione">¶</a></span>\[
+\mathbb P(E | F) = \frac{\mathbb P(E \cap F)}{\mathbb P(F)}.
+\]</div>
+</div>
+</div></div>
 
     <script type="text/x-thebe-config">
     {

@@ -63,7 +63,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Indice" href="../../genindex.html" />
     <link rel="search" title="Cerca" href="../../search.html" />
     <link rel="next" title="11.4. Spazi equiprobabili" href="spazi-equiprobabili.html" />
-    <link rel="prev" title="11.2. Esperimenti, esiti ed eventi" href="esperimenti-esiti-eventi.html" />
+    <link rel="prev" title="11.2. Concetti fondamentali" href="esperimenti-esiti-eventi.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="it">
     
@@ -494,7 +494,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="esperimenti-esiti-eventi.html">
-     11.2. Esperimenti, esiti ed eventi
+     11.2. Concetti fondamentali
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -840,19 +840,36 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="assiomi-di-kolmogorov">
 <h1><span class="section-number">11.3. </span>Assiomi di Kolmogorov<a class="headerlink" href="#assiomi-di-kolmogorov" title="Link a questa intestazione">¶</a></h1>
-<p>A partire da un fissato spazio misurabile <span class="math notranslate nohighlight">\((\Omega, \mathbb A)\)</span>, definiamo
+<div class="proof definition admonition" id="def-assiomi-kolmogorov">
+<p class="admonition-title"><span class="caption-number">Definition 11.6 </span> (Assiomi di Kolmogorov)</p>
+<div class="definition-content section" id="proof-content">
+<p>A partire da un fissato spazio misurabile <span class="math notranslate nohighlight">\((\Omega, \mathsf A)\)</span>, definiamo
 <em>funzione di probabilità</em> ogni funzione
-<span class="math notranslate nohighlight">\(\mathbb P: \mathbb A \rightarrow \mathbb R\)</span> che soddisfa i seguenti assiomi,
+<span class="math notranslate nohighlight">\(\mathbb P: \mathsf A \rightarrow \mathbb R\)</span> che soddisfa i seguenti assiomi,
 detti <em>assiomi di Kolmogorov</em>:</p>
 <div class="math notranslate nohighlight" id="equation-kolmogorov-axiom-1">
 <span class="eqno">(11.1)<a class="headerlink" href="#equation-kolmogorov-axiom-1" title="Permalink a questa equazione">¶</a></span>\[\forall E \in \mathbb A \quad \mathbb P(E) \geq 0,\]</div>
 <div class="math notranslate nohighlight" id="equation-kolmogorov-axiom-2">
 <span class="eqno">(11.2)<a class="headerlink" href="#equation-kolmogorov-axiom-2" title="Permalink a questa equazione">¶</a></span>\[\mathbb P(\Omega) = 1,\]</div>
 <div class="math notranslate nohighlight" id="equation-kolmogorov-axiom-3">
-<span class="eqno">(11.3)<a class="headerlink" href="#equation-kolmogorov-axiom-3" title="Permalink a questa equazione">¶</a></span>\[\forall E, F \in \mathbb A \quad E \cap F \rightarrow \mathbb P(E \cup F) =
+<span class="eqno">(11.3)<a class="headerlink" href="#equation-kolmogorov-axiom-3" title="Permalink a questa equazione">¶</a></span>\[\forall E, F \in \mathbb A \quad E \cap F = \{\} \rightarrow \mathbb P(E \cup F) =
 \mathbb P(E) + \mathbb P(F).\]</div>
+<p>Nel caso in cui <span class="math notranslate nohighlight">\(\mathsf A\)</span> sia una sigma-algebra, quest'ultimo assioma assume
+una forma più complessa: per ogni successione infinita numerabile di eventi
+<span class="math notranslate nohighlight">\(E_1, E_2, \ldots\)</span> a due a due disgiunti deve valere</p>
+<div class="math notranslate nohighlight" id="equation-kolmogorov-axiom-3-sigma-algebra">
+<span class="eqno">(11.4)<a class="headerlink" href="#equation-kolmogorov-axiom-3-sigma-algebra" title="Permalink a questa equazione">¶</a></span>\[\bigcup_{n=1}^{+\infty} E_n \in \mathsf A.\]</div>
+</div>
+</div><p>Gli assiomi di Kolmogorov permettono di definire la funzione di probabilità
+per uno spazio misurabile (i) indipendentemente dal <em>significato</em> che viene
+dato al concetto stesso di probabilità e /ii) in modo da garantire che agli
+eventi vengano assegnate delle probabilità secondo uno schema <em>coerente</em>.</p>
+<p>Dato uno spazio misurabile <span class="math notranslate nohighlight">\((\Omega, \mathsf A)\)</span> e fissata una funzione di
+probabilità <span class="math notranslate nohighlight">\(\mathbb P\)</span> che soddisfa la <a class="reference internal" href="#def-assiomi-kolmogorov">Definition 11.6</a>,
+si dice che la terna <span class="math notranslate nohighlight">\((\Omega, \mathsf A, \mathbb P)\)</span> rappresenta uno
+<em>spazio di probabilità</em>.</p>
 <div class="proof theorem admonition" id="probabilita-evento-complementare">
-<p class="admonition-title"><span class="caption-number">Theorem 11.1 </span> (Probabilità dell'evento complementare)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 11.2 </span> (Probabilità dell'evento complementare)</p>
 <div class="theorem-content section" id="proof-content">
 <div class="math notranslate nohighlight">
 \[\forall E \subseteq \Omega \quad \mathbb P(\overline E) = 1 - \mathbb P(E).\]</div>
@@ -860,8 +877,8 @@ detti <em>assiomi di Kolmogorov</em>:</p>
 <p>Proof. Dato un generico <span class="math notranslate nohighlight">\(E \subseteq \Omega\)</span>, si ha <span class="math notranslate nohighlight">\(E \cup \overline E = \Omega\)</span> e
 <span class="math notranslate nohighlight">\(E \cap \overline E = \{\}\)</span>, pertanto</p>
 <div class="math notranslate nohighlight">
-\[1 \underset{(9.2)}{=} \mathbb P(\Omega) = \mathbb P(E \cup \overline E)
-   \underset{(9.3)}{=} \mathbb P(E) + \mathbb P(\overline E),\]</div>
+\[1 \underset{(11.2)}{=} \mathbb P(\Omega) = \mathbb P(E \cup \overline E)
+   \underset{(11.3)}{=} \mathbb P(E) + \mathbb P(\overline E),\]</div>
 <p>da cui si ottiene la tesi.</p>
 </div>
 </div>
@@ -871,12 +888,12 @@ detti <em>assiomi di Kolmogorov</em>:</p>
 <div class="math notranslate nohighlight">
 \[\mathbb P(\{\}) = 0\]</div>
 <div class="proof admonition" id="proof">
-<p>Proof. La tesi si ottiene dal <a class="reference internal" href="#probabilita-evento-complementare">Theorem 11.1</a>,
+<p>Proof. La tesi si ottiene dal <a class="reference internal" href="#probabilita-evento-complementare">Theorem 11.2</a>,
 quando <span class="math notranslate nohighlight">\(E = \Omega\)</span>.</p>
 </div>
 </div>
 </div><div class="proof theorem admonition" id="probabilita-unione-eventi">
-<p class="admonition-title"><span class="caption-number">Theorem 11.2 </span> (Probabilità dell'unione di eventi)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 11.3 </span> (Probabilità dell'unione di eventi)</p>
 <div class="theorem-content section" id="proof-content">
 <div class="math notranslate nohighlight">
 \[\forall E, F \subseteq \Omega \quad \mathbb P(E \cup F) =
@@ -940,7 +957,7 @@ all'unione di tre insiemi disgiunti si ha</p>
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">precedente</p>
-            <p class="prev-next-title"><span class="section-number">11.2. </span>Esperimenti, esiti ed eventi</p>
+            <p class="prev-next-title"><span class="section-number">11.2. </span>Concetti fondamentali</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="spazi-equiprobabili.html" title="successivo pagina">
