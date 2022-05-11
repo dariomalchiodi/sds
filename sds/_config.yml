@@ -36,12 +36,11 @@ repository:
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 
 launch_buttons:
-  thebe: true
   notebook_interface: classic
   colab_url: "https://colab.research.google.com"
   binderhub_url             : https://mybinder.org  # The URL of the BinderHub (e.g., https://mybinder.org)
   jupyterhub_url            : ""  # The URL of the JupyterHub (e.g., https://datahub.berkeley.edu)
-  thebe                     : false  # Add a thebe button to pages (requires the repository to run on Binder)
+  thebe                     : true  # Add a thebe button to pages (requires the repository to run on Binder)
   colab_url                 : "" # The URL of Google Colab (https://colab.research.google.com)
 
 
@@ -76,3 +75,4 @@ sphinx:
       }
   extra_extensions:
   - sphinx_proof
+  - sphinx_thebe

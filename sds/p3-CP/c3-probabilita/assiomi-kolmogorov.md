@@ -1,5 +1,5 @@
-# Assiomi di Kolmogorov
-
+(sec-assiomi-kolmogorov)=
+# Assiomi di Kolmogorov 
 
 ````{prf:definition} Assiomi di Kolmogorov
 :label: def-assiomi-kolmogorov
