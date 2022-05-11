@@ -831,6 +831,9 @@ const thebe_selector_output = ".output, .cell_output"
         
         
         
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Lanciare Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -865,7 +868,7 @@ probabilità ha la proprietà di assegnare un valore di probabilità costante
 a tutti gli eventi elementari. In casi come questo, si parla di <em>spazio
 equiprobabile di probabilità</em>, o più semplicemente di <em>spazio equiprobabile</em>.</p>
 <div class="proof definition admonition" id="def-spazio-equiprobabile">
-<p class="admonition-title"><span class="caption-number">Definition 11.7 </span> (Spazio equiprobabile di probabilità)</p>
+<p class="admonition-title"><span class="caption-number">Definition 11.8 </span> (Spazio equiprobabile di probabilità)</p>
 <div class="definition-content section" id="proof-content">
 <p>Sia <span class="math notranslate nohighlight">\((\Omega, \mathbb A, \mathbb P)\)</span> uno spazio di probabilità. Se esiste una
 costante <span class="math notranslate nohighlight">\(p \in [0, 1]\)</span> tale che <span class="math notranslate nohighlight">\(\mathbb P({w}) = p\)</span> per ogni <span class="math notranslate nohighlight">\(w \in \Omega\)</span>,
@@ -876,7 +879,7 @@ probabilità</em>, o più semplicemente uno <em>spazio equiprobabile</em>.</p>
 elementari, e la loro probabilità è legata alla numerosità dell'insieme degli
 esiti, come illustrato nel seguente teorema.</p>
 <div class="proof theorem admonition" id="teo-prob-equiprobabile">
-<p class="admonition-title"><span class="caption-number">Theorem 11.4 </span></p>
+<p class="admonition-title"><span class="caption-number">Theorem 11.7 </span></p>
 <div class="theorem-content section" id="proof-content">
 <p>In uno spazio equiprobabile, l'insieme degli esiti deve avere una cardinalità
 finita <span class="math notranslate nohighlight">\(n \in \mathbb N\)</span> e <span class="math notranslate nohighlight">\(p = \frac{1}{n}\)</span>.</p>
@@ -909,7 +912,7 @@ particolare, in tal caso si avrebbe
 Ma è facile vedere come anche queste probabilità dipendono da <span class="math notranslate nohighlight">\(p\)</span>, come
 evidenziato nel seguente teorema.</p>
 <div class="proof theorem admonition" id="theorem-2">
-<p class="admonition-title"><span class="caption-number">Theorem 11.5 </span></p>
+<p class="admonition-title"><span class="caption-number">Theorem 11.8 </span></p>
 <div class="theorem-content section" id="proof-content">
 <p>Per ogni evento <span class="math notranslate nohighlight">\(E \subseteq \Omega\)</span> nello spazio equiprobabile
 <span class="math notranslate nohighlight">\((\Omega, \mathbb A, \mathbb P)\)</span> si ha</p>
@@ -917,7 +920,7 @@ evidenziato nel seguente teorema.</p>
 <span class="eqno">(11.5)<a class="headerlink" href="#equation-eq-prob-classica" title="Permalink a questa equazione">¶</a></span>\[ \mathbb P(E) = \frac{|E|}{n}. \]</div>
 </div>
 </div><div class="proof admonition" id="proof">
-<p>Proof. Siccome per il <a class="reference internal" href="#teo-prob-equiprobabile">Theorem 11.4</a> lo spazio degli esiti <span class="math notranslate nohighlight">\(\Omega\)</span>
+<p>Proof. Siccome per il <a class="reference internal" href="#teo-prob-equiprobabile">Theorem 11.7</a> lo spazio degli esiti <span class="math notranslate nohighlight">\(\Omega\)</span>
 deve avere una cardinalità finita <span class="math notranslate nohighlight">\(n\)</span>, per ogni <span class="math notranslate nohighlight">\(E \subseteq \Omega\)</span> devono
 esistere <span class="math notranslate nohighlight">\(k\)</span> esiti <span class="math notranslate nohighlight">\(w_1, \ldots, w_k\)</span>, con <span class="math notranslate nohighlight">\(k \leq n\)</span> tali che
 <span class="math notranslate nohighlight">\(E = \{ w_1, \ldots, w_k \}\)</span>, e quindi</p>
@@ -1054,8 +1057,8 @@ ottenuto al variare di <span class="math notranslate nohighlight">\(n\)</span>.<
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "dariomalchiodi/sds",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",

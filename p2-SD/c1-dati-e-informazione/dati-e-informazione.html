@@ -831,6 +831,9 @@ const thebe_selector_output = ".output, .cell_output"
         
         
         
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Lanciare Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -2426,8 +2429,8 @@ dato un insieme di osservazioni <span class="math notranslate nohighlight">\(\{ 
 funzione <span class="math notranslate nohighlight">\(\hat F: \mathbb R \mapsto [0, 1]\)</span> tale che per ogni <span class="math notranslate nohighlight">\(x \in \mathbb R\)</span>
 assume un valore pari alla frequenza relativa delle osservazioni che risultano
 essere minori o uguali a <span class="math notranslate nohighlight">\(x\)</span>. Pertanto</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f0698fa9-7301-428e-b88c-0469ae2cc326">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-f0698fa9-7301-428e-b88c-0469ae2cc326" title="Permalink a questa equazione">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-45aae42d-49ae-43f0-970f-a468e3ed7b5d">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-45aae42d-49ae-43f0-970f-a468e3ed7b5d" title="Permalink a questa equazione">¶</a></span>\[\begin{equation}
 \hat F(x) = \frac{\# \{ x_i \leq x \}}{n}
 = \frac{1}{n} \sum_{i=1}^n \mathrm I_{(-\infty, x]}(x_i) ,
 \end{equation}\]</div>
@@ -4022,8 +4025,8 @@ approfondire la tematica della formattazione dell'output si rimanda alla
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "dariomalchiodi/sds",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",

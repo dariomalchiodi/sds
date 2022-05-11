@@ -839,9 +839,9 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="assiomi-di-kolmogorov">
-<h1><span class="section-number">11.3. </span>Assiomi di Kolmogorov<a class="headerlink" href="#assiomi-di-kolmogorov" title="Link a questa intestazione">¶</a></h1>
+<span id="sec-assiomi-kolmogorov"></span><h1><span class="section-number">11.3. </span>Assiomi di Kolmogorov<a class="headerlink" href="#assiomi-di-kolmogorov" title="Link a questa intestazione">¶</a></h1>
 <div class="proof definition admonition" id="def-assiomi-kolmogorov">
-<p class="admonition-title"><span class="caption-number">Definition 11.6 </span> (Assiomi di Kolmogorov)</p>
+<p class="admonition-title"><span class="caption-number">Definition 11.7 </span> (Assiomi di Kolmogorov)</p>
 <div class="definition-content section" id="proof-content">
 <p>A partire da un fissato spazio misurabile <span class="math notranslate nohighlight">\((\Omega, \mathsf A)\)</span>, definiamo
 <em>funzione di probabilità</em> ogni funzione
@@ -865,11 +865,11 @@ per uno spazio misurabile (i) indipendentemente dal <em>significato</em> che vie
 dato al concetto stesso di probabilità e /ii) in modo da garantire che agli
 eventi vengano assegnate delle probabilità secondo uno schema <em>coerente</em>.</p>
 <p>Dato uno spazio misurabile <span class="math notranslate nohighlight">\((\Omega, \mathsf A)\)</span> e fissata una funzione di
-probabilità <span class="math notranslate nohighlight">\(\mathbb P\)</span> che soddisfa la <a class="reference internal" href="#def-assiomi-kolmogorov">Definition 11.6</a>,
+probabilità <span class="math notranslate nohighlight">\(\mathbb P\)</span> che soddisfa la <a class="reference internal" href="#def-assiomi-kolmogorov">Definition 11.7</a>,
 si dice che la terna <span class="math notranslate nohighlight">\((\Omega, \mathsf A, \mathbb P)\)</span> rappresenta uno
 <em>spazio di probabilità</em>.</p>
 <div class="proof theorem admonition" id="probabilita-evento-complementare">
-<p class="admonition-title"><span class="caption-number">Theorem 11.2 </span> (Probabilità dell'evento complementare)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 11.5 </span> (Probabilità dell'evento complementare)</p>
 <div class="theorem-content section" id="proof-content">
 <div class="math notranslate nohighlight">
 \[\forall E \subseteq \Omega \quad \mathbb P(\overline E) = 1 - \mathbb P(E).\]</div>
@@ -888,12 +888,12 @@ si dice che la terna <span class="math notranslate nohighlight">\((\Omega, \math
 <div class="math notranslate nohighlight">
 \[\mathbb P(\{\}) = 0\]</div>
 <div class="proof admonition" id="proof">
-<p>Proof. La tesi si ottiene dal <a class="reference internal" href="#probabilita-evento-complementare">Theorem 11.2</a>,
+<p>Proof. La tesi si ottiene dal <a class="reference internal" href="#probabilita-evento-complementare">Theorem 11.5</a>,
 quando <span class="math notranslate nohighlight">\(E = \Omega\)</span>.</p>
 </div>
 </div>
 </div><div class="proof theorem admonition" id="probabilita-unione-eventi">
-<p class="admonition-title"><span class="caption-number">Theorem 11.3 </span> (Probabilità dell'unione di eventi)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 11.6 </span> (Probabilità dell'unione di eventi)</p>
 <div class="theorem-content section" id="proof-content">
 <div class="math notranslate nohighlight">
 \[\forall E, F \subseteq \Omega \quad \mathbb P(E \cup F) =
@@ -932,8 +932,8 @@ all'unione di tre insiemi disgiunti si ha</p>
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "dariomalchiodi/sds",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",

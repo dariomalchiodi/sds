@@ -831,6 +831,9 @@ const thebe_selector_output = ".output, .cell_output"
         
         
         
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Lanciare Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -961,8 +964,8 @@ stesso.</p>
 <span class="math notranslate nohighlight">\(|\mathcal{P}(A)| = 1 + \sum_{k=1}^{n} \binom{n}{k}\)</span>, dove il primo addendo
 è dovuto alla presenza dell'insieme vuoto. Sfruttando le propriet`a del
 coefficiente binomiale otteniamo</p>
-<div class="amsmath math notranslate nohighlight" id="equation-eeb4c10b-4289-491b-b434-3e4b5fb36287">
-<span class="eqno">(9.1)<a class="headerlink" href="#equation-eeb4c10b-4289-491b-b434-3e4b5fb36287" title="Permalink a questa equazione">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-db2af755-9016-4d05-9fde-1a2fa5af605e">
+<span class="eqno">(9.1)<a class="headerlink" href="#equation-db2af755-9016-4d05-9fde-1a2fa5af605e" title="Permalink a questa equazione">¶</a></span>\[\begin{equation}
 |\mathcal{P}(A)| = \sum_{k=0}^{n} \binom{n}{k}
                  = \sum_{k=0}^{n}\binom{n}{k} 1^k 1^{n-k} = 2^n,
 \end{equation}\]</div>
@@ -1020,8 +1023,8 @@ persone: <span class="math notranslate nohighlight">\(d_{4, 3} = 24\)</span>.</p
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "dariomalchiodi/sds",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",

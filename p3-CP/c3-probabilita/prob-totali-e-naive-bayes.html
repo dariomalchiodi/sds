@@ -879,7 +879,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="la-disuguaglianza-di-markov">
 <h2><span class="section-number">11.6.1. </span>La disuguaglianza di Markov<a class="headerlink" href="#la-disuguaglianza-di-markov" title="Link a questa intestazione">¶</a></h2>
 <div class="proof theorem admonition" id="teo-markov">
-<p class="admonition-title"><span class="caption-number">Theorem 11.6 </span> (Disuguaglianza di Markov)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 11.9 </span> (Disuguaglianza di Markov)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Sia <span class="math notranslate nohighlight">\(X\)</span> una variabile aleatoria che può assumere solo specificazioni non
 negative e avente valore atteso finito <span class="math notranslate nohighlight">\(\mathbb E(X)\)</span>.. Per ogni valore reale
@@ -914,7 +914,7 @@ e pertanto si ottiene la tesi.</p>
 <h2><span class="section-number">11.6.2. </span>Disuguaglianza di Bienaymé-Čebyšëv<a class="headerlink" href="#disuguaglianza-di-bienayme-cebysev" title="Link a questa intestazione">¶</a></h2>
 <p>La disuguaglianza di Bienaymé-Čebyšëv <a class="footnote-reference brackets" href="#traslitterazione-cebicev" id="id1">1</a></p>
 <div class="proof theorem admonition" id="theorem-1">
-<p class="admonition-title"><span class="caption-number">Theorem 11.7 </span> (disuguaglianza di Bienaymé-Čebyšëv)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 11.10 </span> (disuguaglianza di Bienaymé-Čebyšëv)</p>
 <div class="theorem-content section" id="proof-content">
 <p>Sia <span class="math notranslate nohighlight">\(X\)</span> una variabile aleatoria. Se il valore atteso <span class="math notranslate nohighlight">\(\mu\)</span> e la varianza
 <span class="math notranslate nohighlight">\(\sigma^2\)</span> di <span class="math notranslate nohighlight">\(X\)</span> esistono e sono entrambi finiti, per ogni numero reale
@@ -933,7 +933,7 @@ pertanto</p>
    \mathbb P(Y \leq \epsilon^2) \geq \frac{\mathbb E(Y)}{\epsilon^2} =
    \frac{\sigma^2}{\epsilon^2}, \]</div>
 <p>dove la minorazione è legata all'applicazione della disuguaglianza di Markov
-alla variabile aleatoria <span class="math notranslate nohighlight">\(Y\)</span> (Notate che le ipotesi del <a class="reference internal" href="#teo-markov">Theorem 11.6</a>
+alla variabile aleatoria <span class="math notranslate nohighlight">\(Y\)</span> (Notate che le ipotesi del <a class="reference internal" href="#teo-markov">Theorem 11.9</a>
 sono soddisfatte, come evidenziato dalle osservazioni fatte all'inizio della
 dimostrazione).</p>
 </div>
@@ -959,8 +959,8 @@ e adottare Čebyšëv.</p>
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "dariomalchiodi/sds",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",

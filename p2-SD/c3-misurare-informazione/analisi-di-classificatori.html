@@ -831,6 +831,9 @@ const thebe_selector_output = ".output, .cell_output"
         
         
         
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Lanciare Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -1817,7 +1820,7 @@ corrispondente valore di AUC.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6625
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6375
 </pre></div>
 </div>
 </div>
@@ -1864,8 +1867,8 @@ matrice più gradevole.</p>
     </tr>
     <tr>
       <th>1</th>
-      <td>2</td>
-      <td>38</td>
+      <td>4</td>
+      <td>36</td>
     </tr>
   </tbody>
 </table>
@@ -1878,8 +1881,8 @@ matrice più gradevole.</p>
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "dariomalchiodi/sds",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",
