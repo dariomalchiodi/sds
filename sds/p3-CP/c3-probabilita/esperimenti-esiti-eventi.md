@@ -55,20 +55,52 @@ casuale $\mathcal E$ viene chiamato _spazio degli esiti_, e lo si denota
 usualmente tramite la lettera $\Omega$ (omega maiuscola).
 ````
 
-L'elenco seguente descrive lo spazio degli esiti per ognuno degli esperimenti
-casuali presi precedentemente in considerazione.
+La {numref}`tab-esempi-spazi-esiti` descrive lo spazio degli esiti per ognuno
+degli esperimenti casuali presi precedentemente in considerazione.
 
-```{table} Esempi di spazi degli esiti
+```{margin}
+In questo caso, la scelta per $\Omega_\mathscr O$ è arbitraria.
+```
+````{table} Esempi di spazi degli esiti per gli esperimenti casuali $\mathscr P$, $\mathscr O$, $\mathscr C$, $\mathscr N$ e $\mathscr A$.
 :name: tab-esempi-spazi-esiti
 
 | Esperimento | Spazio degli esiti |
 |--------------|-----------------------------------|
-| $\mathscr P$ | $\{ \text{vero}, \text{falso} \}$ |
-| $\mathscr O$ | insieme di tutti i colori |
-| $\mathscr C$ | insieme di tutte le permutazioni degli elementi in  $\{ \text{Mister Fantastic}, \text{Donna invisibile}, \text{Torcia umana}, \text{Cosa}\}$|
-| $\mathscr N$ | insieme $\mathbb N$ di tutti i numeri naturali |
-| $\mathscr A$ | insieme $\mathbb R^+$ di tutti i numeri reali positivi |
+| $\mathscr P$ | $\Omega_\mathscr P = \{ \text{vero}, \text{falso} \}$ |
+| $\mathscr O$ | $\Omega_\mathscr O = \{ \text{azzurro}, \text {marrone}, \text{nero},\text{verde} \}$ |
+| $\mathscr C$ | $\Omega_\mathscr C = $ insieme di tutte le permutazioni degli elementi in  $\{ \text{Mister Fantastic}, \text{Donna invisibile}, \text{Torcia umana}, \text{Cosa}\}$|
+| $\mathscr N$ | $\Omega_\mathscr N = \mathbb N$ |
+| $\mathscr A$ | $\Omega_\mathscr A = \mathbb R^+$ |
+````
+
+```{margin}
+In alcune fonti il termine _evento elementare_ è sinonimo di _esito_.
 ```
+````{prf:definition} Evento ed evento elementare
+:label: def-evento
+Fissato uno spazio degli esiti $\Omega$, un _evento_ è un sottoinsieme
+$E \subseteq \Omega$. In particolare, se $E = \{ \omega \}$ per qualche
+$\omega \in \Omega$ si dice che $E$ è un _evento elementare_. Se dopo che
+l'esperimento casuale alla base di $\Omega$ è stato eseguito ed è stato
+ottenuto un esito $\omega \in E$, si diche che l'evento si è _verificato_.
+In caso contrario si dice che $E$ non si è verificato.
+````
+
+Nella {prf:ref}`def-evento` il concetto di sottoinsieme è inteso anche in
+senso improprio, includendo cioè $\{\}$ e $\Omega$ tra i possibili
+sottoinsiemi. In realtà questi sottoinsiemi individuano due eventi
+particolarmente rilevanti:
+- $\{\}$ per definizione non contiene alcun esito, dunque rappresenta un
+  evento che, indipendentemente dal risultato dell'esperimento casuale, non
+  potrà mai verificarsi, e pertanto è detto _evento impossibile_;
+- al contrario, $\Omega$ contiene tutti i possibili esiti dell'esperimento,
+  e quindi è un evento che si verificherà sempre, detto _evento certo_.
+
+Vedremo nel {numref}`sec-assiomi-kolmogorov` che il calcolo della probabilità
+di un evento è legato alla valutazione di una funzione di cui l'evento stesso
+è un argomento. Il dominio di questa funzione, che raccoglie dunque gli eventi
+di cui vogliamo poter calcolare la probabilità, viene chiamato
+_algebra degli eventi_.
 
 ```{margin}
 $2^\Omega$ denota l'insieme delle parti di $\Omega$, pertanto un'algebra
@@ -91,24 +123,66 @@ $$ \forall E, F \in \mathsf A \quad E \cup F \in \mathsf A. $$
 
 Dunque un'algebra degli eventi è una collezione di eventi chiusa rispetto
 alle operazioni di unione e complemento. La {prf:ref}`def-algebra-degli-eventi`
-implica anche le seguenti proprietà:
+implica una serie di altre proprietà che sono dimostrate di seguito.
 
-- tramite il principio di induzione si dimostra facilmente che un'algebra
-  degli eventi è chiusa rispetto all'unione di un numero _finito_ di eventi:
+````{prf:theorem}
+:label: insieme-vuoto-in-algebra
+Un'algebra degli eventi contiene sempre l'evento impossibile.
+````
+````{prf:proof}
+Sia $\mathsf A$ un'algebra degli eventi. La {prf:ref}`def-algebra-degli-eventi`
+assicura che $\Omega \in \mathsf A$, e applicando la proprietà di chiusura
+rispetto al complemento si ottiene $\{\} = \overline \Omega \in \mathsf A$.
+````
 
-  $$ \forall E_1, \ldots, E_n \in \mathsf A \quad
-     \bigcup_{i=1}^n E_i \in \mathsf A; $$
-- come immediata conseguenza delle leggi di De Morgan si ottiene
+````{prf:theorem}
+:label: teo-chiusura-unione-n-eventi
+Un'algebra degli eventi è chiusa rispetto all'unione di un numero finito di
+eventi.
+````
+````{prf:proof}
+Fissato $n \in \mathbb N$, consideriamo $n$ eventi
+$E_1, \ldots, E_n$ in un'algebra $\mathsf A$ e per ogni $r = 1, \ldots, n$
+definiamo $U_r = \cup_{i=1}^r E_i$. Per ottenere la tesi si può applicare il
+principio di induzione per dimostrare che $U_r \in \mathsf A$ per ogni $r$. La
+base dell'induzione è banalmente vera: $U_1$ coincide con $E_1$ e dunque
+appartiene all'algebra. Ipotizziamo ora che per un generico $r$ valga
+$U_r \in \mathsf A$: siccome $U_{r+1} = U_r \cup E_{r+1}$, la chiusura di
+$\mathsf A$ rispetto all'unione di due insiemi implica $U_{r+1} \in \mathsf A$.
+````
 
-  ```{div} my-class
-  $$ E \cap F = \overline{\overline E \cup \overline F}, $$   
+```{prf:theorem}
+:label: teo-chiusura-intersezione
+Un'algebra degli eventi è chiusa rispetto all'intersezione di un numero finito
+di eventi.
+```
+```{prf:proof}
+Sia $\mathsf A$ una generica algebra degli eventi e siano $E$ ed $F$ due suoi
+elementi. Applicando le leggi di De Morgan si ottiene
 
-  dunque un'algebra risulta anche chiusa rispetto all'intersezione di eventi.
+$$ E \cap F = \overline{\overline E \cup \overline F}, $$   
 
-  ```
+pertanto le proprietà di chiusura rispetto a unione e complemento implicano che
+$\mathsf A$ risulta anche chiusa rispetto all'intersezione di due suoi eventi.
+Per estendere questa proprietà all'intersezione di un numero finito di eventi
+si può applicare il principio di induzione in modo analogo a quanto fatto nella
+dimostrazione del {prf:ref}`teo-chiusura-unione-n-eventi`.
+```
 
-In generale, un'algebra degli eventi rappresenta un insieme di eventi a cui
-si è interessati.
+In generale, l'algebra degli eventi deve essere abbastanza grande da
+comprendere tutti gli eventi dei quali potremmo volere ragionevolmente
+calcolare la probabilità, ma, nel contempo, più l'algebra è grande e più
+può diventare difficile associare a tutti i suoi elementi dei valori di
+probabilità in modo
+
+- corretto, così da riflettere l'effettiva incertezza degli eventi, e
+```{margin}
+Vedremo nel {numref}`sec-assiomi-kolmogorov` che il concetto di coerenza è
+matematicamente catturato dagli assiomi di Kolmogorov.
+```
+- coerente con le relazioni che esistono tra gli eventi (per esempio, se
+  un evento è molto probabile allora intuitivamente il suo complemento
+  dovrà essere poco probabile).
 
 Quando lo spazio degli esiti $\Omega$ è finito, normalmente si utilizza come
 algebra degli eventi l'insieme delle parti $2^\Omega$: questo perché se per
@@ -139,11 +213,31 @@ Pertanto, gli esperimenti casuali $\mathscr P$, $\mathscr O$ e $\mathscr C$
 saranno tipicamente associati a un'algebra degli eventi che coincide con
 la famiglia di tutti i possibili insiemi di eventi in $\Omega$. Va sottolineato
 che questo non significa che in questi casi $2^\Omega$ sia l'unica algebra
-possibile.
+possibile. Per esempio:
 
+```{margin}
+Come è facilmente intuibile, $\{ \}$ e $\Omega$ sono rispettivamente l'evento
+che non si verifica mai e quello che si verifica sempre.
+```
+- indipendentemente da $\Omega$, \mathsf A_0 = \{ \{\}, \Omega \}$ è sempre
+  un'algebra degli eventi, probabilmente poco interessante perché si focalizza
+  solo su due eventi particolari, ma essa ha la proprietà di essere contenuta
+  in tutte le  possibili algebre, e dunque di essere la più piccola algebra
+  costruibile;
+- se consideriamo l'esperimento casuale $\mathscr O$ e il corrispondente
+  spazio degli esiti $\Omega = \{ \text{Azzurro}, \text{Marrone}, \text{Nero},
+  \text{Verde}\}$, la collezione di eventi $\mathsf A = \{ \{\},
+  \{ \text{Azzurro}, \text{Verde}\}, \{ \text{Marrone}, \text{Nero} \},
+  \Omega \}$ è un'algebra, più grande di $\mathsf A_0$ e più piccola di
+  $2^\Omega$, che si focalizza sugli eventi relativi a colori chiari e scuri
+  degli occhi.
+
+```{margin}
+Potremmo, per esempio, considerare $2^\Omega$.
+```
 Le cose si complicano quando lo spazio degli esiti è infinito, perché in
 questo caso è possibile costruire algebre degli eventi che sono anch'esse
-infinite (potremmo, per esempio, considerare $2^\Omega$). Abbiamo visto che la
+infinite. Abbiamo visto che la
 {prf:ref}`def-algebra-degli-eventi` implica che queste algebre sono chiuse
 rispetto all'unione di un numero finito di eventi, ma la stessa proprietà
 potrebbe non valere quando consideriamo l'unione di una _famiglia infinita_ di
