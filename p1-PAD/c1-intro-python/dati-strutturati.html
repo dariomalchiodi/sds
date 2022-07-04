@@ -4,12 +4,14 @@
 <html lang="it">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>2.2. Tipi di dati strutturati &#8212; Superhero Data Science 
  Probabilità e Statistica</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,22 +21,18 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -42,13 +40,14 @@
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/translations.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -69,7 +68,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -78,9 +91,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -96,19 +110,18 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Cerca in questo libro ..." aria-label="Cerca in questo libro ..." autocomplete="off" >
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../landing.html">
-   Superhero Data Science
-   <br/>
-   Probabilità e Statistica
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../landing.html">
+                    Superhero Data Science <br/> Probabilità e Statistica</h1>
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Introduzione
  </span>
@@ -737,115 +750,261 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Attiva / disattiva la navigazione" aria-controls="site-navigation"
-                title="Attiva / disattiva la navigazione" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Scarica questa pagina"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../../_sources/p1-PAD/c1-intro-python/dati-strutturati.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Scarica il file del taccuino" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/p1-PAD/c1-intro-python/dati-strutturati.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Scarica il file sorgente" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Stampa in PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/dariomalchiodi/sds"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Repository di origine"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/dariomalchiodi/sds/issues/new?title=Issue%20on%20page%20%2Fp1-PAD/c1-intro-python/dati-strutturati.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Apri un problema"><i class="fas fa-lightbulb"></i>questione aperta</button></a>
-        <a class="edit-button" href="https://github.com/dariomalchiodi/sds/edit/main/sds/p1-PAD/c1-intro-python/dati-strutturati.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Modifica questa pagina"><i class="fas fa-pencil-alt"></i>suggerisci modifica</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modalità schermo intero"
-        title="Modalità schermo intero"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/dariomalchiodi/sds/main?urlpath=tree/sds/p1-PAD/c1-intro-python/dati-strutturati.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Lanciare Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Lanciare Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contenuti
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/dariomalchiodi/sds/main?urlpath=tree/sds/p1-PAD/c1-intro-python/dati-strutturati.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/dariomalchiodi/sds"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/dariomalchiodi/sds/issues/new?title=Issue%20on%20page%20%2Fp1-PAD/c1-intro-python/dati-strutturati.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/dariomalchiodi/sds/edit/main/sds/p1-PAD/c1-intro-python/dati-strutturati.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/p1-PAD/c1-intro-python/dati-strutturati.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../../_sources/p1-PAD/c1-intro-python/dati-strutturati.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#le-liste">
    2.2.1. Le liste
@@ -873,12 +1032,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Tipi di dati strutturati</h1>
@@ -887,7 +1045,7 @@ const thebe_selector_output = ".output, .cell_output"
                     <div id="jb-print-toc">
                         
                         <div>
-                            <h2> Contenuti </h2>
+                            <h2> Contents </h2>
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
@@ -922,11 +1080,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="tipi-di-dati-strutturati">
-<span id="dati-strutturati"></span><h1><span class="section-number">2.2. </span>Tipi di dati strutturati<a class="headerlink" href="#tipi-di-dati-strutturati" title="Link a questa intestazione">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="tipi-di-dati-strutturati">
+<span id="dati-strutturati"></span><h1><span class="section-number">2.2. </span>Tipi di dati strutturati<a class="headerlink" href="#tipi-di-dati-strutturati" title="Link a questa intestazione">#</a></h1>
 <p>I tipi di dati strutturati, o più brevemente <em>strutture dati,</em> permettono di
 aggregare più valori. Python supporta nativamente i seguenti tipi strutturati:
 le liste, le tuple, le stringhe, gli insiemi e i dizionari. A ognuno di questi
@@ -943,8 +1102,8 @@ propria. Nel resto di questo paragrafo, senza pretesa di essere esaustivi,
 descrive le modalità di accesso e le operazioni principali per i tipi
 strutturati sopra elencati e fornisce dei puntatori alla documentazione
 ufficiale per chi volesse approfondire alcuni argomenti.</p>
-<div class="section" id="le-liste">
-<h2><span class="section-number">2.2.1. </span>Le liste<a class="headerlink" href="#le-liste" title="Link a questa intestazione">¶</a></h2>
+<section id="le-liste">
+<h2><span class="section-number">2.2.1. </span>Le liste<a class="headerlink" href="#le-liste" title="Link a questa intestazione">#</a></h2>
 <p>Una lista è una struttura dati che permette di memorizzare una sequenza di
 elementi. Questi elementi, che sono aggiungibili ed eliminabili dalla lista
 dopo che questa è stata creata, possono essere di tipo diverso, e a ognuno di
@@ -960,12 +1119,12 @@ devono essere tutti dello stesso tipo. Sebbene gli <em>array</em> non siano
 direttamente messi a disposizione in Python, è possibile utilizzarli facendo
 riferimento al <em>modulo</em> <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, descritto nel <a class="reference internal" href="importare-moduli.html#importare-moduli"><span class="std std-numref">Sezione 2.6</span></a>.</p>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Vedremo che esiste anche la possibilità di utilizzare un particolare
 formalismo, chiamato <em>list comprehension</em>, per definire una lista in termini di
 una <em>trasformazione</em> degli elementi di un'altra struttura dati.</p>
-</div>
+</aside>
 <p>Una lista si può indicare in modo <em>estensivo</em>, cioè elencando i suoi elementi
 dal primo all'ultimo, separandoli tramite virgole e racchiudendo il tutto tra
 parentesi quadre. Ciò vale anche per la <em>lista vuota</em>, che si può descrivere
@@ -990,12 +1149,12 @@ descrivono un supereroe:</p>
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Quando però una lista è utilizzata per dati di tipo omogeneo, vale la pena
 considerare di sostituirla con un <em>array</em> per diminuire i tempi di esecuzione
 e ridurre la possibilità di introdurre <em>bug</em> nel codice.</p>
-</div>
+</aside>
 <p>In effetti vedremo che ci sono modi molto più interessanti di codificare un
 <em>record</em> di informazioni, così come ci renderemo conto che nei fatti le liste
 contengono di norma valori di tipo omogeneo, ma per ora quello che ci interessa
@@ -1068,12 +1227,12 @@ negativi (o mescolando indici positivi e negativi):</p>
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Un'altra differenza tra liste e <em>array</em> è legata al fatto che questi ultimi
 rappresentano strutture dati <em>statiche</em>, nelle quali non è possibile aggiungere
 o rimuovere elementi, ma solo modificare quelli esistenti.</p>
-</div>
+</aside>
 <p>Dover specificare la posizione del primo elemento da escludere sembra
 controintuitivo rispetto alla scelta più naturale di indicare la posizione
 dell'ultimo elemento da includere. In realtà in questo modo risulta più facile
@@ -1112,10 +1271,10 @@ nomi di alcuni supereroi:</p>
 <li><p>l'operatore <code class="docutils literal notranslate"><span class="pre">+</span></code> permette di concatenare due liste, creando una nuova lista che contiene un numero di elementi pari alla somma dei numeri di elementi contenuti nelle due liste usate come operando: in particolare, questa nuova lista conterrà tutti gli elementi del primo operando in testa e tutti quelli del secondo operando in coda;</p></li>
 <li><p>per mantenere coerente la relazione tra gli operatori <code class="docutils literal notranslate"><span class="pre">+</span></code> e <code class="docutils literal notranslate"><span class="pre">*</span></code>, se <code class="docutils literal notranslate"><span class="pre">l</span></code> è una lista e <code class="docutils literal notranslate"><span class="pre">n</span></code> è un valore intero la valutazione dell'espressione <code class="docutils literal notranslate"><span class="pre">l</span> <span class="pre">*</span> <span class="pre">n</span></code> ha l'effetto di creare una nuova lista ottenuta concatenando <code class="docutils literal notranslate"><span class="pre">l</span></code> con se stessa esattamente <code class="docutils literal notranslate"><span class="pre">n</span></code> volte.</p></li>
 </ul>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Vedremo che <code class="docutils literal notranslate"><span class="pre">in</span></code> e <code class="docutils literal notranslate"><span class="pre">del</span></code> mantengono la loro semantica anche quando vengono usati con altri tipi di strutture dati.</p>
-</div>
+</aside>
 <p>Sempre nel <a class="reference internal" href="dati-semplici-e-operatori.html#dati-semplici"><span class="std std-numref">Paragrafo 2.1</span></a> sono stati introdotti gli operatori speciali <code class="docutils literal notranslate"><span class="pre">in</span></code> e <code class="docutils literal notranslate"><span class="pre">del</span></code>.
 Il primo implementa essenzialmente la relazione di appartenenza: se <code class="docutils literal notranslate"><span class="pre">e</span></code> è un'espressione e <code class="docutils literal notranslate"><span class="pre">l</span></code> una lista, l'espressione <code class="docutils literal notranslate"><span class="pre">e</span> <span class="pre">in</span> <span class="pre">l</span></code> viene valutata come logicamente vera se il valore dell'espressione occorre in una posizione qualsiasi della lista, e come logicamente falsa altrimenti:</p>
 <div class="cell docutils container">
@@ -1269,9 +1428,9 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 <p class="admonition-title">Nota</p>
 <p>Gli argomenti opzionali vengono tipicamente utilizzati quando si ha a che fare con metodi o funzioni che implementano operazioni che prevedono svariate opzioni, sebbene nella maggior parte dei casi ognuna di queste opzioni venga usata sempre nello stesso modo, modificandone al più una oppure due. Si pensi al caso della produzione di grafici: sebbene in teoria sia possibile cambiare il colore o lo spessore degli assi cartesiani, o il corpo dei caratteri usati per etichettare questi ultimi, difficilmente si ricorre a tale possibilità. E anche quando si decide di modificare l'aspetto di un grafico, si agisce di norma solo su alcune delle molteplici possibilità. In assenza di argomenti opzionali, sarebbe quindi necessario specificare obbligatoriamente un elevato numero di valori (uno per ogni elemento stilistico personalizzabile), quasi sempre uguali e ricordandone l'ordine esatto. Vedremo nel <a class="reference internal" href="disegnare-grafici.html#disegnare-grafici"><span class="std std-numref">Paragrafo 2.7</span></a> che le librerie che useremo per produrre grafici sfruttano proprio gli argomenti opzionali per permettere di specificare solo le eventuali modifiche da apportare rispetto a uno stile predefinito per il risultato che si vuole ottenere.</p>
 </div>
-</div>
-<div class="section" id="le-tuple">
-<h2><span class="section-number">2.2.2. </span>Le tuple<a class="headerlink" href="#le-tuple" title="Link a questa intestazione">¶</a></h2>
+</section>
+<section id="le-tuple">
+<h2><span class="section-number">2.2.2. </span>Le tuple<a class="headerlink" href="#le-tuple" title="Link a questa intestazione">#</a></h2>
 <p>Una tupla è in tutto e per tutto una lista immutabile, nel senso che una volta che essa è stata creata non è possibile modificare i suoi contenuti. Un letterale di tipo tupla viene indicato con una sintassi analoga a quella per le liste, con l'unica differenza che i suoi contenuti sono delimitati da parentesi tonde.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1338,9 +1497,9 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 <p class="admonition-title">Nota</p>
 <p>La sintassi per la descrizione delle tuple diventa problematica quando si vuole indicare una tupla contenente un unico elemento, in quanto per esempio l'espressione <code class="docutils literal notranslate"><span class="pre">(1)</span></code> viene interpretata come il valore intero <code class="docutils literal notranslate"><span class="pre">1</span></code> racchiuso tra parentesi tonde, ottenendo dunque il medesimo intero come risultato della valutazione. In casi come questo la soluzione è quella di fare seguire l'unico elemento della tupla da una virgola, scrivendo per esempio <code class="docutils literal notranslate"><span class="pre">(1,)</span></code>. Come regola generale, infatti, è sempre possibile aggiungere una virgola alla fine di una tupla (o di una lista) senza che ciò ne alteri i contenuti. È invece possibile utilizzare l'espressione <code class="docutils literal notranslate"><span class="pre">()</span></code> per indicare una tupla vuota.</p>
 </div>
-</div>
-<div class="section" id="le-stringhe">
-<span id="stringhe"></span><h2><span class="section-number">2.2.3. </span>Le stringhe<a class="headerlink" href="#le-stringhe" title="Link a questa intestazione">¶</a></h2>
+</section>
+<section id="le-stringhe">
+<span id="stringhe"></span><h2><span class="section-number">2.2.3. </span>Le stringhe<a class="headerlink" href="#le-stringhe" title="Link a questa intestazione">#</a></h2>
 <p>Da un punto di vista strettamente funzionale, le stringhe sono assimilabili in Python a delle tuple di caratteri specializzate. Su di esse è infatti possibile eseguire tutte le operazioni che si eseguono sulle tuple, per esempio estraendo un carattere o una sottostringa rispettivamente attraverso l'accesso posizionale o il <em>list slicing:</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1372,13 +1531,13 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 </div>
 </div>
 <p>Oltre a operazioni analoghe a quelle delle tuple, il tipo <code class="docutils literal notranslate"><span class="pre">str</span></code> implementa anche metodi e operatori specifici per le stringhe. Anche in questo si rimanda alla <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#string-methods">documentazione ufficiale</a>.</p>
-</div>
-<div class="section" id="gli-insiemi">
-<h2><span class="section-number">2.2.4. </span>Gli insiemi<a class="headerlink" href="#gli-insiemi" title="Link a questa intestazione">¶</a></h2>
+</section>
+<section id="gli-insiemi">
+<h2><span class="section-number">2.2.4. </span>Gli insiemi<a class="headerlink" href="#gli-insiemi" title="Link a questa intestazione">#</a></h2>
 <p>Python implementa direttamente un tipo di dato per gli insiemi, intesi come collezione finita di elementi tra loro distinguibili e non memorizzati in un ordine particolare. A differenza delle liste e delle tuple, gli elementi non sono quindi associati a una posizione e non è possibile che un insieme contenga più di un'istanza di un medesimo elemento. La descrizione di questo tipo di dato è posticipata al <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/insiemi-in-python.html#insiemi-in-python"><span class="std std-numref">Paragrafo 10.5</span></a>, dopo avere richiamato le proprietà matematiche di base degli insiemi.</p>
-</div>
-<div class="section" id="i-dizionari">
-<h2><span class="section-number">2.2.5. </span>I dizionari<a class="headerlink" href="#i-dizionari" title="Link a questa intestazione">¶</a></h2>
+</section>
+<section id="i-dizionari">
+<h2><span class="section-number">2.2.5. </span>I dizionari<a class="headerlink" href="#i-dizionari" title="Link a questa intestazione">#</a></h2>
 <p>I dizionari servono a memorizzare delle associazioni tra oggetti, in analogia con il concetto matematico di funzione. È quindi possibile pensare a essi come a insiemi di coppie (chiave, valore), dove una data chiave non occorre più di una volta, e a ogni chiave corrisponde un unico valore.</p>
 <p>Un letterale di tipo dizionario viene descritto indicando ogni coppia separando chiave e valore con il carattere di due punti, separando le coppie con delle virgole e racchiudendo l'intero letterale tra parentesi graffe. Possiamo per esempio usare un dizionario per rappresentare un <em>record</em> in modo più elegante rispetto a quanto fatto nel {}<code class="docutils literal notranslate"><span class="pre">Paragrafo</span> <span class="pre">%s</span> <span class="pre">&lt;&gt;</span></code> utilizzando le liste:</p>
 <div class="cell docutils container">
@@ -1431,8 +1590,8 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 <dd><p>Nel gergo tecnico in lingua inglese si dice che i nomi di funzione sono <em>first-class citizen</em> per enfatizzare che vengono trattate in modo analogo ai nomi delle altre variabili: è possibile per esempio usarli per specificare argomenti, o come destinazione di un'operazione di assegnamento.</p>
 </dd>
 </dl>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1456,9 +1615,11 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="dati-semplici-e-operatori.html" title="precedente pagina">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1474,24 +1635,28 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a><br/>
+  
+      &copy; Copyright 2021 — Licensed under CC-BY 4.0.<br/>
+</p>
+        </footer>
+    </div>
     
-      Di <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a><br/>
-    
-        &copy; Diritto d'autore 2021 — Licensed under CC-BY 4.0.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

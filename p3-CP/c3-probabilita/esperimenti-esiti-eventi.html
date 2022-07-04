@@ -4,12 +4,14 @@
 <html lang="it">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>11.2. Concetti fondamentali &#8212; Superhero Data Science 
  Probabilità e Statistica</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,22 +21,18 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -42,13 +40,14 @@
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/translations.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -71,7 +70,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -80,9 +93,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -98,19 +112,18 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Cerca in questo libro ..." aria-label="Cerca in questo libro ..." autocomplete="off" >
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../landing.html">
-   Superhero Data Science
-   <br/>
-   Probabilità e Statistica
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../landing.html">
+                    Superhero Data Science <br/> Probabilità e Statistica</h1>
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Introduzione
  </span>
@@ -739,12 +752,17 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
 </div>
 
 
@@ -752,79 +770,167 @@ const thebe_selector_output = ".output, .cell_output"
 
 
           
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
     
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Attiva / disattiva la navigazione" aria-controls="site-navigation"
-                title="Attiva / disattiva la navigazione" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Scarica questa pagina"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
+    <div class="header-article row sticky-top noprint">
         
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/p3-CP/c3-probabilita/esperimenti-esiti-eventi.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Scarica il file sorgente" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Stampa in PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/dariomalchiodi/sds"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/dariomalchiodi/sds/issues/new?title=Issue%20on%20page%20%2Fp3-CP/c3-probabilita/esperimenti-esiti-eventi.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/dariomalchiodi/sds/edit/main/sds/p3-CP/c3-probabilita/esperimenti-esiti-eventi.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/p3-CP/c3-probabilita/esperimenti-esiti-eventi.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
     </div>
 </div>
 
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/dariomalchiodi/sds"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Repository di origine"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/dariomalchiodi/sds/issues/new?title=Issue%20on%20page%20%2Fp3-CP/c3-probabilita/esperimenti-esiti-eventi.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Apri un problema"><i class="fas fa-lightbulb"></i>questione aperta</button></a>
-        <a class="edit-button" href="https://github.com/dariomalchiodi/sds/edit/main/sds/p3-CP/c3-probabilita/esperimenti-esiti-eventi.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Modifica questa pagina"><i class="fas fa-pencil-alt"></i>suggerisci modifica</button></a>
-    </div>
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
 </div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modalità schermo intero"
-        title="Modalità schermo intero"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-        </div>
     </div>
-</div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Concetti fondamentali</h1>
@@ -835,27 +941,28 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="concetti-fondamentali">
-<h1><span class="section-number">11.2. </span>Concetti fondamentali<a class="headerlink" href="#concetti-fondamentali" title="Link a questa intestazione">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="concetti-fondamentali">
+<h1><span class="section-number">11.2. </span>Concetti fondamentali<a class="headerlink" href="#concetti-fondamentali" title="Link a questa intestazione">#</a></h1>
 <p>Come descritto all'inizio di questo capitolo, alla base di ogni ragionamento
 di tipo probabilistico si trova un'esperienza non deterministica che chiameremo
 <em>esperimento casuale</em>, come formalizzato nella definizione seguente.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Gli esperimenti casuali saranno indicati utilizzando
 le lettere maiuscole corsive <span class="math notranslate nohighlight">\(\mathscr E\)</span>, <span class="math notranslate nohighlight">\(\mathscr F\)</span> e così via, scegliendo
 possibilmente una lettera legata al significato dell'esperimento stesso.</p>
-</div>
+</aside>
 <div class="proof definition admonition" id="def-esperimento-casuale">
 <p class="admonition-title"><span class="caption-number">Definition 11.1 </span> (Esperimento casuale)</p>
-<div class="definition-content section" id="proof-content">
+<section class="definition-content" id="proof-content">
 <p>Definiamo <em>esperimento casuale</em> (o <em>aleatorio</em>) una qualsiasi esperienza che
 può dare risultati differenti quando essa viene ripetuta più volte partendo da
 condizioni iniziali identiche.</p>
-</div>
+</section>
 </div><p>Immaginiamo di acquistare tutte le settimane un nuovo numero di un fumetto dei
 Fantastici 4: ogni volta i contenuti saranno diversi, permettendoci di
 considerare per esempio gli esperimenti casuali <span class="math notranslate nohighlight">\(\mathscr P =\)</span> controllare se
@@ -864,44 +971,44 @@ verificare quale sia il colore degli occhi del primo supereroe che compare nel
 numero, <span class="math notranslate nohighlight">\(\mathscr C =\)</span> elencare l'ordine di apparizione dei Fantastici 4,
 <span class="math notranslate nohighlight">\(\mathscr N =\)</span> contare il numero di diversi supereroi presenti e <span class="math notranslate nohighlight">\(\mathscr A =\)</span>
 misurare l'altezza (in cm.) dell'ultimo supereroe che compare nel fumetto.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Denoteremo gli esiti usando le lettere minuscole dell'alfabeto greco,
 utilizzando possibilmente <span class="math notranslate nohighlight">\(\omega\)</span> (omega minuscola) o alcune sue varianti.</p>
-</div>
+</aside>
 <div class="proof definition admonition" id="def-esito">
 <p class="admonition-title"><span class="caption-number">Definition 11.2 </span> (Esito)</p>
-<div class="definition-content section" id="proof-content">
+<section class="definition-content" id="proof-content">
 <p>Ogni possibile risultato <span class="math notranslate nohighlight">\(\omega\)</span> di un esperimento casuale <span class="math notranslate nohighlight">\(\mathscr E\)</span> prende
 il nome di <em>esito</em>.</p>
-</div>
+</section>
 </div><p>Un esempio di esito è <span class="math notranslate nohighlight">\(\text{falso}\)</span> per <span class="math notranslate nohighlight">\(\mathscr P\)</span>, <span class="math notranslate nohighlight">\(\text{azzurro}\)</span> per
 <span class="math notranslate nohighlight">\(\mathscr O\)</span>, <span class="math notranslate nohighlight">\((\text{Torcia umana}, \text{Donna invisibile},
 \text{Mister Fantastic}, \text{Cosa})\)</span> per <span class="math notranslate nohighlight">\(\mathscr C\)</span>, <span class="math notranslate nohighlight">\(3\)</span> per <span class="math notranslate nohighlight">\(\mathscr N\)</span> e
 <span class="math notranslate nohighlight">\(183\)</span> per <span class="math notranslate nohighlight">\(\mathscr A\)</span>. L'insieme di tutti gli esiti di un esperimento casuale,
 che rappresenta il punto iniziale della modellazione matematica che useremo per
 il concetto di probabilità, prende il nome di <em>spazio degli esiti</em>.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Lo spazio degli esiti viene spesso anche chiamato <em>spazio campionario</em> o
 <em>insieme universo</em>, e in letteratura esistono notazioni alternative che lo
 denotano usando per esempio le lettere <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(U\)</span>.</p>
-</div>
+</aside>
 <div class="proof definition admonition" id="def-spazio-esiti">
 <p class="admonition-title"><span class="caption-number">Definition 11.3 </span> (Spazio degli esiti)</p>
-<div class="definition-content section" id="proof-content">
+<section class="definition-content" id="proof-content">
 <p>L'insieme di tutti i possibili esiti di un generico esperimento
 casuale <span class="math notranslate nohighlight">\(\mathcal E\)</span> viene chiamato <em>spazio degli esiti</em>, e lo si denota
 usualmente tramite la lettera <span class="math notranslate nohighlight">\(\Omega\)</span> (omega maiuscola).</p>
-</div>
+</section>
 </div><p>La <a class="reference internal" href="#tab-esempi-spazi-esiti"><span class="std std-numref">Tabella 11.1</span></a> descrive lo spazio degli esiti per ognuno
 degli esperimenti casuali presi precedentemente in considerazione.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>In questo caso, la scelta per <span class="math notranslate nohighlight">\(\Omega_\mathscr O\)</span> è arbitraria.</p>
-</div>
+</aside>
 <table class="colwidths-auto table" id="tab-esempi-spazi-esiti">
-<caption><span class="caption-number">Tabella 11.1 </span><span class="caption-text">Esempi di spazi degli esiti per gli esperimenti casuali <span class="math notranslate nohighlight">\(\mathscr P\)</span>, <span class="math notranslate nohighlight">\(\mathscr O\)</span>, <span class="math notranslate nohighlight">\(\mathscr C\)</span>, <span class="math notranslate nohighlight">\(\mathscr N\)</span> e <span class="math notranslate nohighlight">\(\mathscr A\)</span>.</span><a class="headerlink" href="#tab-esempi-spazi-esiti" title="Link a questa tabella">¶</a></caption>
+<caption><span class="caption-number">Tabella 11.1 </span><span class="caption-text">Esempi di spazi degli esiti per gli esperimenti casuali <span class="math notranslate nohighlight">\(\mathscr P\)</span>, <span class="math notranslate nohighlight">\(\mathscr O\)</span>, <span class="math notranslate nohighlight">\(\mathscr C\)</span>, <span class="math notranslate nohighlight">\(\mathscr N\)</span> e <span class="math notranslate nohighlight">\(\mathscr A\)</span>.</span><a class="headerlink" href="#tab-esempi-spazi-esiti" title="Link a questa tabella">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Esperimento</p></th>
 <th class="head"><p>Spazio degli esiti</p></th>
@@ -925,20 +1032,20 @@ degli esperimenti casuali presi precedentemente in considerazione.</p>
 </tr>
 </tbody>
 </table>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>In alcune fonti il termine <em>evento elementare</em> è sinonimo di <em>esito</em>.</p>
-</div>
+</aside>
 <div class="proof definition admonition" id="def-evento">
 <p class="admonition-title"><span class="caption-number">Definition 11.4 </span> (Evento ed evento elementare)</p>
-<div class="definition-content section" id="proof-content">
+<section class="definition-content" id="proof-content">
 <p>Fissato uno spazio degli esiti <span class="math notranslate nohighlight">\(\Omega\)</span>, un <em>evento</em> è un sottoinsieme
 <span class="math notranslate nohighlight">\(E \subseteq \Omega\)</span>. In particolare, se <span class="math notranslate nohighlight">\(E = \{ \omega \}\)</span> per qualche
 <span class="math notranslate nohighlight">\(\omega \in \Omega\)</span> si dice che <span class="math notranslate nohighlight">\(E\)</span> è un <em>evento elementare</em>. Se dopo che
 l'esperimento casuale alla base di <span class="math notranslate nohighlight">\(\Omega\)</span> è stato eseguito ed è stato
 ottenuto un esito <span class="math notranslate nohighlight">\(\omega \in E\)</span>, si diche che l'evento si è <em>verificato</em>.
 In caso contrario si dice che <span class="math notranslate nohighlight">\(E\)</span> non si è verificato.</p>
-</div>
+</section>
 </div><p>Nella <a class="reference internal" href="#def-evento">Definition 11.4</a> il concetto di sottoinsieme è inteso anche in
 senso improprio, includendo cioè <span class="math notranslate nohighlight">\(\{\}\)</span> e <span class="math notranslate nohighlight">\(\Omega\)</span> tra i possibili
 sottoinsiemi. In realtà questi sottoinsiemi individuano due eventi
@@ -955,15 +1062,15 @@ di un evento è legato alla valutazione di una funzione di cui l'evento stesso
 è un argomento. Il dominio di questa funzione, che raccoglie dunque gli eventi
 di cui vogliamo poter calcolare la probabilità, viene chiamato
 <em>algebra degli eventi</em>.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p><span class="math notranslate nohighlight">\(2^\Omega\)</span> denota l'insieme delle parti di <span class="math notranslate nohighlight">\(\Omega\)</span>, pertanto un'algebra
 è un insieme di eventi, o equivalentemente un insieme di sottoinsiemi di
 <span class="math notranslate nohighlight">\(\Omega\)</span>.</p>
-</div>
+</aside>
 <div class="proof definition admonition" id="def-algebra-degli-eventi">
 <p class="admonition-title"><span class="caption-number">Definition 11.5 </span> (Algebra degli eventi)</p>
-<div class="definition-content section" id="proof-content">
+<section class="definition-content" id="proof-content">
 <p>Fissato uno spazio degli esiti <span class="math notranslate nohighlight">\(\Omega\)</span>, si definisce <em>algebra degli eventi</em>
 una qualsiasi collezione di eventi <span class="math notranslate nohighlight">\(\mathsf A \subseteq 2^\Omega\)</span> che
 soddisfa le seguenti proprietà:</p>
@@ -973,15 +1080,15 @@ soddisfa le seguenti proprietà:</p>
 \[ \forall E \in \mathsf A \quad \overline E \in \mathsf A; \]</div>
 <div class="math notranslate nohighlight">
 \[ \forall E, F \in \mathsf A \quad E \cup F \in \mathsf A. \]</div>
-</div>
+</section>
 </div><p>Dunque un'algebra degli eventi è una collezione di eventi chiusa rispetto
 alle operazioni di unione e complemento. La <a class="reference internal" href="#def-algebra-degli-eventi">Definition 11.5</a>
 implica una serie di altre proprietà che sono dimostrate di seguito.</p>
 <div class="proof theorem admonition" id="insieme-vuoto-in-algebra">
 <p class="admonition-title"><span class="caption-number">Theorem 11.1 </span></p>
-<div class="theorem-content section" id="proof-content">
+<section class="theorem-content" id="proof-content">
 <p>Un'algebra degli eventi contiene sempre l'evento impossibile.</p>
-</div>
+</section>
 </div><div class="proof admonition" id="proof">
 <p>Proof. Sia <span class="math notranslate nohighlight">\(\mathsf A\)</span> un'algebra degli eventi. La <a class="reference internal" href="#def-algebra-degli-eventi">Definition 11.5</a>
 assicura che <span class="math notranslate nohighlight">\(\Omega \in \mathsf A\)</span>, e applicando la proprietà di chiusura
@@ -989,10 +1096,10 @@ rispetto al complemento si ottiene <span class="math notranslate nohighlight">\(
 </div>
 <div class="proof theorem admonition" id="teo-chiusura-unione-n-eventi">
 <p class="admonition-title"><span class="caption-number">Theorem 11.2 </span></p>
-<div class="theorem-content section" id="proof-content">
+<section class="theorem-content" id="proof-content">
 <p>Un'algebra degli eventi è chiusa rispetto all'unione di un numero finito di
 eventi.</p>
-</div>
+</section>
 </div><div class="proof admonition" id="proof">
 <p>Proof. Fissato <span class="math notranslate nohighlight">\(n \in \mathbb N\)</span>, consideriamo <span class="math notranslate nohighlight">\(n\)</span> eventi
 <span class="math notranslate nohighlight">\(E_1, \ldots, E_n\)</span> in un'algebra <span class="math notranslate nohighlight">\(\mathsf A\)</span> e per ogni <span class="math notranslate nohighlight">\(r = 1, \ldots, n\)</span>
@@ -1005,10 +1112,10 @@ appartiene all'algebra. Ipotizziamo ora che per un generico <span class="math no
 </div>
 <div class="proof theorem admonition" id="teo-chiusura-intersezione">
 <p class="admonition-title"><span class="caption-number">Theorem 11.3 </span></p>
-<div class="theorem-content section" id="proof-content">
+<section class="theorem-content" id="proof-content">
 <p>Un'algebra degli eventi è chiusa rispetto all'intersezione di un numero finito
 di eventi.</p>
-</div>
+</section>
 </div><div class="proof admonition" id="proof">
 <p>Proof. Sia <span class="math notranslate nohighlight">\(\mathsf A\)</span> una generica algebra degli eventi e siano <span class="math notranslate nohighlight">\(E\)</span> ed <span class="math notranslate nohighlight">\(F\)</span> due suoi
 elementi. Applicando le leggi di De Morgan si ottiene</p>
@@ -1028,11 +1135,11 @@ probabilità in modo</p>
 <ul class="simple">
 <li><p>corretto, così da riflettere l'effettiva incertezza degli eventi, e</p></li>
 </ul>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Vedremo nel <a class="reference internal" href="assiomi-kolmogorov.html#sec-assiomi-kolmogorov"><span class="std std-numref">Sezione 11.3</span></a> che il concetto di coerenza è
 matematicamente catturato dagli assiomi di Kolmogorov.</p>
-</div>
+</aside>
 <ul class="simple">
 <li><p>coerente con le relazioni che esistono tra gli eventi (per esempio, se
 un evento è molto probabile allora intuitivamente il suo complemento
@@ -1046,11 +1153,11 @@ descritta nella <a class="reference internal" href="#def-algebra-degli-eventi">D
 ogni evento è contenuto in <span class="math notranslate nohighlight">\(\mathsf A\)</span>.</p>
 <div class="proof theorem admonition" id="theorem-8">
 <p class="admonition-title"><span class="caption-number">Theorem 11.4 </span> (Algebra degli eventi di uno spazio degli esiti finito)</p>
-<div class="theorem-content section" id="proof-content">
+<section class="theorem-content" id="proof-content">
 <p>Sia <span class="math notranslate nohighlight">\(\mathsf A\)</span> un'algebra degli eventi per uno spazio degli esiti finito
 <span class="math notranslate nohighlight">\(\Omega\)</span>. Se <span class="math notranslate nohighlight">\(\mathsf A\)</span> contiene tutti gli eventi elementari allora
 <span class="math notranslate nohighlight">\(\mathsf A = 2^\Omega\)</span>.</p>
-</div>
+</section>
 </div><div class="proof admonition" id="proof">
 <p>Proof. Un generico evento <span class="math notranslate nohighlight">\(E \subseteq \Omega\)</span> deve essere un insieme finito, essendo
 <span class="math notranslate nohighlight">\(\Omega\)</span> stesso finito. Quindi devono esistere <span class="math notranslate nohighlight">\(n\)</span> esiti
@@ -1067,11 +1174,11 @@ saranno tipicamente associati a un'algebra degli eventi che coincide con
 la famiglia di tutti i possibili insiemi di eventi in <span class="math notranslate nohighlight">\(\Omega\)</span>. Va sottolineato
 che questo non significa che in questi casi <span class="math notranslate nohighlight">\(2^\Omega\)</span> sia l'unica algebra
 possibile. Per esempio:</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Come è facilmente intuibile, <span class="math notranslate nohighlight">\(\{ \}\)</span> e <span class="math notranslate nohighlight">\(\Omega\)</span> sono rispettivamente l'evento
 che non si verifica mai e quello che si verifica sempre.</p>
-</div>
+</aside>
 <ul class="simple">
 <li><p>indipendentemente da <span class="math notranslate nohighlight">\(\Omega\)</span>, \mathsf A_0 = { {}, \Omega }$ è sempre
 un'algebra degli eventi, probabilmente poco interessante perché si focalizza
@@ -1086,10 +1193,10 @@ spazio degli esiti <span class="math notranslate nohighlight">\(\Omega = \{ \tex
 <span class="math notranslate nohighlight">\(2^\Omega\)</span>, che si focalizza sugli eventi relativi a colori chiari e scuri
 degli occhi.</p></li>
 </ul>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Potremmo, per esempio, considerare <span class="math notranslate nohighlight">\(2^\Omega\)</span>.</p>
-</div>
+</aside>
 <p>Le cose si complicano quando lo spazio degli esiti è infinito, perché in
 questo caso è possibile costruire algebre degli eventi che sono anch'esse
 infinite. Abbiamo visto che la
@@ -1099,7 +1206,7 @@ potrebbe non valere quando consideriamo l'unione di una <em>famiglia infinita</e
 eventi, come evidenziato nell'esempio che segue.</p>
 <div class="proof example admonition" id="ex-controesempio-sigma-algebra">
 <p class="admonition-title"><span class="caption-number">Example 11.1 </span></p>
-<div class="example-content section" id="proof-content">
+<section class="example-content" id="proof-content">
 <p>Concentriamoci sull'esperimento casuale <span class="math notranslate nohighlight">\(\mathscr N\)</span>, e dal corrispondente
 spazio degli esiti <span class="math notranslate nohighlight">\(\Omega = \mathbb N\)</span> costruiamo la seguente collezione di
 eventi:</p>
@@ -1155,24 +1262,24 @@ implica <span class="math notranslate nohighlight">\(P_n \in \mathsf A\)</span> 
 presente un numero pari di supereroi, e il suo complemento si verificherà
 quando tale numero è dispari. Dunque sia <span class="math notranslate nohighlight">\(P\)</span>, sia il suo complemento sono
 infiniti e dunque <span class="math notranslate nohighlight">\(P \not\in \mathsf A\)</span>.</p>
-</div>
+</section>
 </div><p>Per garantire di poter calcolare la probabilità dell'unione di una quantità
 infinita numerabile di eventi, è necessario estendere l'algebra degli eventi
 in una <em>sigma-algebra</em> come indicato nella definizione che segue.</p>
 <div class="proof definition admonition" id="def-sigma-algebra-degli-eventi">
 <p class="admonition-title"><span class="caption-number">Definition 11.6 </span> (Sigma-algebra degli eventi)</p>
-<div class="definition-content section" id="proof-content">
+<section class="definition-content" id="proof-content">
 <p>Ogni algebra degli eventi <span class="math notranslate nohighlight">\(\mathbb A\)</span> su uno spazio degli esiti <span class="math notranslate nohighlight">\(\Omega\)</span>
 è una <em>sigma-algebra</em> se rispetta la seguente proprietà oltre a quelle della
 <a class="reference internal" href="#def-algebra-degli-eventi">Definition 11.5</a>: per ogni successione infinita
 <span class="math notranslate nohighlight">\(E_1, E_2, \ldots\)</span> di eventi in <span class="math notranslate nohighlight">\(\mathsf A\)</span></p>
 <div class="math notranslate nohighlight">
 \[ \bigcup_{n=1}^{+\infty} E_i \in \mathsf A. \]</div>
-</div>
+</section>
 </div><p>In generale si utilizza il termine <em>spazio misurabile</em> per indicare una
 coppia <span class="math notranslate nohighlight">\((\Omega, \mathsf A)\)</span> in cui <span class="math notranslate nohighlight">\(\mathsf A\)</span> indica un'algebra o una
 sigma-algebra degli eventi.</p>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1196,9 +1303,11 @@ sigma-algebra degli eventi.</p>
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="concetto-di-probabilita.html" title="precedente pagina">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1214,24 +1323,28 @@ sigma-algebra degli eventi.</p>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a><br/>
+  
+      &copy; Copyright 2021 — Licensed under CC-BY 4.0.<br/>
+</p>
+        </footer>
+    </div>
     
-      Di <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a><br/>
-    
-        &copy; Diritto d'autore 2021 — Licensed under CC-BY 4.0.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

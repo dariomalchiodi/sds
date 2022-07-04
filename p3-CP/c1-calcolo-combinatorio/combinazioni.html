@@ -4,12 +4,14 @@
 <html lang="it">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>9.4. Combinazioni &#8212; Superhero Data Science 
  Probabilità e Statistica</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,22 +21,18 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -42,13 +40,14 @@
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/translations.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -71,7 +70,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -80,9 +93,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -98,19 +112,18 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Cerca in questo libro ..." aria-label="Cerca in questo libro ..." autocomplete="off" >
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../landing.html">
-   Superhero Data Science
-   <br/>
-   Probabilità e Statistica
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../landing.html">
+                    Superhero Data Science <br/> Probabilità e Statistica</h1>
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Introduzione
  </span>
@@ -739,115 +752,261 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Attiva / disattiva la navigazione" aria-controls="site-navigation"
-                title="Attiva / disattiva la navigazione" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Scarica questa pagina"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../../_sources/p3-CP/c1-calcolo-combinatorio/combinazioni.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Scarica il file del taccuino" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/p3-CP/c1-calcolo-combinatorio/combinazioni.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Scarica il file sorgente" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Stampa in PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/dariomalchiodi/sds"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Repository di origine"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/dariomalchiodi/sds/issues/new?title=Issue%20on%20page%20%2Fp3-CP/c1-calcolo-combinatorio/combinazioni.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Apri un problema"><i class="fas fa-lightbulb"></i>questione aperta</button></a>
-        <a class="edit-button" href="https://github.com/dariomalchiodi/sds/edit/main/sds/p3-CP/c1-calcolo-combinatorio/combinazioni.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Modifica questa pagina"><i class="fas fa-pencil-alt"></i>suggerisci modifica</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Modalità schermo intero"
-        title="Modalità schermo intero"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/dariomalchiodi/sds/main?urlpath=tree/sds/p3-CP/c1-calcolo-combinatorio/combinazioni.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Lanciare Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Lanciare Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contenuti
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/dariomalchiodi/sds/main?urlpath=tree/sds/p3-CP/c1-calcolo-combinatorio/combinazioni.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/dariomalchiodi/sds"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/dariomalchiodi/sds/issues/new?title=Issue%20on%20page%20%2Fp3-CP/c1-calcolo-combinatorio/combinazioni.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/dariomalchiodi/sds/edit/main/sds/p3-CP/c1-calcolo-combinatorio/combinazioni.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/p3-CP/c1-calcolo-combinatorio/combinazioni.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../../_sources/p3-CP/c1-calcolo-combinatorio/combinazioni.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#combinazioni-semplici">
    9.4.1. Combinazioni semplici
@@ -860,12 +1019,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Combinazioni</h1>
@@ -874,7 +1032,7 @@ const thebe_selector_output = ".output, .cell_output"
                     <div id="jb-print-toc">
                         
                         <div>
-                            <h2> Contenuti </h2>
+                            <h2> Contents </h2>
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
@@ -894,11 +1052,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="combinazioni">
-<h1><span class="section-number">9.4. </span>Combinazioni<a class="headerlink" href="#combinazioni" title="Link a questa intestazione">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="combinazioni">
+<h1><span class="section-number">9.4. </span>Combinazioni<a class="headerlink" href="#combinazioni" title="Link a questa intestazione">#</a></h1>
 <p>Analogamente alle disposizioni, anche le combinazioni descrivono delle
 sequenze di lunghezza prefissata costituite da oggetti scelti da un insieme di
 partenza. In questo caso, però, le sequenze <em>non sono ordinate</em>, e in effetti
@@ -907,39 +1066,39 @@ partenza. Pertanto nel raggruppamento che corrisponde alle combinazioni
 non è rilevante l'ordine, ma possiamo scegliere di potere ripetere gli
 oggetti oppure no. Le due categorie di combinazioni risultanti sono descritte
 nei paragrafi che seguono.</p>
-<div class="section" id="combinazioni-semplici">
-<h2><span class="section-number">9.4.1. </span>Combinazioni semplici<a class="headerlink" href="#combinazioni-semplici" title="Link a questa intestazione">¶</a></h2>
-<div class="margin sidebar">
+<section id="combinazioni-semplici">
+<h2><span class="section-number">9.4.1. </span>Combinazioni semplici<a class="headerlink" href="#combinazioni-semplici" title="Link a questa intestazione">#</a></h2>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>È anche possibile parlare della costruzione di <em>insiemi</em> a partire da un
 <em>universo</em> che contiene gli oggetti considerati.</p>
-</div>
+</aside>
 <p>Quando non è possibile inserire nella sequenza non ordinata uno stesso oggetto
 più di una volta, possiamo a tutti gli effetti dire che vi è corrispondenza
 tra le combinazioni, che vengono dette <em>semplici</em>, e i sottoinsiemi
 dell'insieme di partenza.</p>
 <div class="proof definition admonition" id="def-combinazioni">
 <p class="admonition-title"><span class="caption-number">Definition 9.5 </span></p>
-<div class="definition-content section" id="proof-content">
+<section class="definition-content" id="proof-content">
 <p>Consideriamo un insieme <span class="math notranslate nohighlight">\(A = \{ a_1, \ldots, a_n \}\)</span> di <span class="math notranslate nohighlight">\(n\)</span> oggetti e
 fissiamo un numero naturale <span class="math notranslate nohighlight">\(k \leq n\)</span>. Una <em>combinazione semplice</em> (o più
 semplicemente <em>combinazione</em>) degli <span class="math notranslate nohighlight">\(n\)</span> oggetti in <span class="math notranslate nohighlight">\(k\)</span> posti è una sequenza
 di questi oggetti che individua un sottoinsieme <span class="math notranslate nohighlight">\(B \subseteq A\)</span> di cardinalità
 uguale a <span class="math notranslate nohighlight">\(k\)</span>. Indicheremo con <span class="math notranslate nohighlight">\(c_{n, k}\)</span> il numero di differenti combinazioni
 semplici di <span class="math notranslate nohighlight">\(n\)</span> oggetti in <span class="math notranslate nohighlight">\(k\)</span> posti.</p>
-</div>
-</div><div class="margin sidebar">
+</section>
+</div><aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>L'uso delle parentesi graffe è anche direttamente collegato alla sintassi
 utilizzata per descrivere gli insiemi in modo estensivo.</p>
-</div>
+</aside>
 <p>Indicheremo le combinazioni utilizzando una sintassi simile a quella delle
 permutazioni e delle disposizioni, ma in questo caso useremo le parentesi
 graffe come delimitatori, per sottolineare che si tratta di sequenze non
 ordinate.</p>
 <div class="proof example admonition" id="ex-peter-petrelli">
 <p class="admonition-title"><span class="caption-number">Example 9.5 </span> (Peter Petrelli)</p>
-<div class="example-content section" id="proof-content">
+<section class="example-content" id="proof-content">
 <p>Peter Petrelli è uno dei protagonisti della serie Heroes, dotato di una
 straordinaria forma di <em>empatia</em> che gli permette di riprodurre i poteri
 degli altri supereroi che si trovano nelle sue vicinanze.
@@ -951,7 +1110,7 @@ medesima sequenza ordinata, e dunque uno stesso sottoinsiemi e
 una sola combinazione semplice di <span class="math notranslate nohighlight">\(k = 3\)</span> superpoteri. In questo caso l'insieme
 da cui estraiamo gli oggetti è l'insieme di tutti i superpoteri, ed è poco
 rilevante determinarne la cardinalità <span class="math notranslate nohighlight">\(n\)</span>.</p>
-</div>
+</section>
 </div><p>Per calcolare <span class="math notranslate nohighlight">\(c_{n, k}\)</span> possiamo utilizzare un ragionamento analogo a quello
 seguito per calcolare il numero di permutazioni con ripetizione: basta
 osservare che l'insieme delle dispozioni senza ripetizione di <span class="math notranslate nohighlight">\(n\)</span> oggetti in
@@ -964,38 +1123,38 @@ ottenute permutando i <span class="math notranslate nohighlight">\(k\)</span> og
 \[
 c_{n, k} = \frac{d_{n, k}}{k}! = \frac{n!}{(n-k)!k!} =\binom{n}{k}.
 \]</div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Come indicato in <a class="reference external" href="https://www.superherodb.com/powers/">superherodb</a>.</p>
-</div>
+</aside>
 <p>Riprendendo l'esempio precedente, immaginiamo che vi siano in tutto <span class="math notranslate nohighlight">\(n = 477\)</span>
 possibili superpoteri, e che Peter Petrelli sia potenzialmente in grado di
 riprodurli tutti.
 In un dato istante sarà in grado di «ricordarsi» <span class="math notranslate nohighlight">\(\binom{477}{3} = \;\)</span>
 <span style="word-spacing: -0.1rem">17 974 950</span>
 diverse configurazioni di tre superpoteri.</p>
-</div>
-<div class="section" id="combinazioni-con-ripetizione">
-<h2><span class="section-number">9.4.2. </span>Combinazioni con ripetizione<a class="headerlink" href="#combinazioni-con-ripetizione" title="Link a questa intestazione">¶</a></h2>
+</section>
+<section id="combinazioni-con-ripetizione">
+<h2><span class="section-number">9.4.2. </span>Combinazioni con ripetizione<a class="headerlink" href="#combinazioni-con-ripetizione" title="Link a questa intestazione">#</a></h2>
 <p>Quando è possibile inserire uno stesso oggetto più volte in una combinazione,
 si dice che quest'ultima è una <em>combinazione con ripetizione</em>. In questo
 caso la costruzione di una combinazione è analogo alla costruzione di un
 multiinsieme</p>
 <div class="proof definition admonition" id="def-combinazione-con-ripetizione">
 <p class="admonition-title"><span class="caption-number">Definition 9.6 </span> (Combinazione con ripetizione)</p>
-<div class="definition-content section" id="proof-content">
+<section class="definition-content" id="proof-content">
 <p>Consideriamo un insieme <span class="math notranslate nohighlight">\(A = \{ a_1, \ldots, a_n \}\)</span> contenente <span class="math notranslate nohighlight">\(n\)</span> oggetti, e
 fissiamo un numero intero <span class="math notranslate nohighlight">\(k \in \mathbb N\)</span>. Una <em>combinazione con ripetizione</em>
 di questi oggetti in <span class="math notranslate nohighlight">\(k\)</span> posti è una sequenza non ordinata di <span class="math notranslate nohighlight">\(k\)</span> elementi
 (non necessariamente distinti) appartenenti ad <span class="math notranslate nohighlight">\(A\)</span>. Indicheremo con <span class="math notranslate nohighlight">\(C_{n, k}\)</span>
 il numero di combinazioni con ripetizione distinte di <span class="math notranslate nohighlight">\(n\)</span> oggetti in <span class="math notranslate nohighlight">\(k\)</span> posti.</p>
-</div>
+</section>
 </div><p>Indicheremo le combinazioni con ripetizione usando la stessa sintassi adottata
 per quelle semplici, con la differenza che in questo caso la sequenza tra
 parentesi graffe potrà contenere degli elementi ripetuti.</p>
 <div class="proof example admonition" id="ex-combinazioni-con-ripetizione">
 <p class="admonition-title"><span class="caption-number">Example 9.6 </span></p>
-<div class="example-content section" id="proof-content">
+<section class="example-content" id="proof-content">
 <p>Immaginiamo che una stanza che
 può contenere fisicamente quattro persone sia piena di cloni di Dupli-Kate e
 Multi-Paul (vedi <a class="reference internal" href="permutazioni.html#dupli-kate-multi-paul">Example 9.2</a>), senza che entrambi i
@@ -1003,9 +1162,9 @@ gemelli debbano necessariamente essere presenti. La
 <a class="reference internal" href="#tab-combinazioni-dk-mp"><span class="std std-numref">Tabella 9.3</span></a> elenca tutti i modi in cui
 la stanza può essere riempita, che corrispondono a tutte le combinazioni con
 ripetizione dei due oggetti <span class="math notranslate nohighlight">\(k\)</span> e <span class="math notranslate nohighlight">\(p\)</span> (Kate e Paul) in quattro posti.</p>
-</div>
+</section>
 </div><table class="colwidths-auto table" id="tab-combinazioni-dk-mp">
-<caption><span class="caption-number">Tabella 9.3 </span><span class="caption-text">Possibili combinazioni con ripetizione di Dupli-Kate e Multi-Paul in quattro posti</span><a class="headerlink" href="#tab-combinazioni-dk-mp" title="Link a questa tabella">¶</a></caption>
+<caption><span class="caption-number">Tabella 9.3 </span><span class="caption-text">Possibili combinazioni con ripetizione di Dupli-Kate e Multi-Paul in quattro posti</span><a class="headerlink" href="#tab-combinazioni-dk-mp" title="Link a questa tabella">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="text-align:center head"><p>Combinazione</p></th>
 </tr>
@@ -1069,7 +1228,7 @@ messo in relazione con una combinazione con ripetizione di <span class="math not
 posti.</p>
 <div class="proof example admonition" id="combinazioni-DK-MP-2">
 <p class="admonition-title"><span class="caption-number">Example 9.7 </span></p>
-<div class="example-content section" id="proof-content">
+<section class="example-content" id="proof-content">
 <p>Riprendendo l'<a class="reference internal" href="#ex-combinazioni-con-ripetizione">Example 9.6</a>, abbiamo che l'insieme
 degli oggetti di partenza è <span class="math notranslate nohighlight">\(A = \{ k, p \}\)</span>, dove <span class="math notranslate nohighlight">\(k\)</span> e <span class="math notranslate nohighlight">\(p\)</span> indicano
 rispettivamente Kate e Paul, può essere messo in corrispondenza biunivoca con
@@ -1077,9 +1236,9 @@ l'insieme <span class="math notranslate nohighlight">\(N = \{ 1, 2 \}\)</span> p
 <a class="reference internal" href="#tab-combinazioni-dk-mp-2"><span class="std std-numref">Tabella 9.4</span></a> mostra la corrispondenza tra tutte le
 combinazioni con ripetizione dei due oggetti in <span class="math notranslate nohighlight">\(A\)</span> in quattro posizioni e le
 sequenze <span class="math notranslate nohighlight">\(\sigma_N\)</span> e <span class="math notranslate nohighlight">\(\sigma_M\)</span>.</p>
-</div>
+</section>
 </div><table class="colwidths-auto table" id="tab-combinazioni-dk-mp-2">
-<caption><span class="caption-number">Tabella 9.4 </span><span class="caption-text">Corrispondenza tra le combinazioni con ripetizione di Dupli-Kate e Multi-Paul in tre posti</span><a class="headerlink" href="#tab-combinazioni-dk-mp-2" title="Link a questa tabella">¶</a></caption>
+<caption><span class="caption-number">Tabella 9.4 </span><span class="caption-text">Corrispondenza tra le combinazioni con ripetizione di Dupli-Kate e Multi-Paul in tre posti</span><a class="headerlink" href="#tab-combinazioni-dk-mp-2" title="Link a questa tabella">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="text-align:center head"><p>Combinazione</p></th>
 <th class="text-align:center head"><p><span class="math notranslate nohighlight">\(\sigma_N\)</span></p></th>
@@ -1115,8 +1274,8 @@ siccome il numero di questi sottoinsiemi è uguale al numero di combinazioni
 senza ripetizione di <span class="math notranslate nohighlight">\(n + k - 1\)</span> oggetti in <span class="math notranslate nohighlight">\(k\)</span> posti, possiamo concludere che</p>
 <div class="math notranslate nohighlight">
 \[ C_{n, k} = c_{n + k - 1, k} = \binom{n+k-1}{k}. \]</div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1140,9 +1299,11 @@ senza ripetizione di <span class="math notranslate nohighlight">\(n + k - 1\)</s
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="disposizioni.html" title="precedente pagina">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1158,24 +1319,28 @@ senza ripetizione di <span class="math notranslate nohighlight">\(n + k - 1\)</s
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a><br/>
+  
+      &copy; Copyright 2021 — Licensed under CC-BY 4.0.<br/>
+</p>
+        </footer>
+    </div>
     
-      Di <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a><br/>
-    
-        &copy; Diritto d'autore 2021 — Licensed under CC-BY 4.0.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>
