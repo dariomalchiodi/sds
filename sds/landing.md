@@ -2,7 +2,7 @@
 # Superhero Data Science <br/> Probabilità e Statistica</h1>
 
 <div align="center">
-<img src="_images/logoface.png" alt="DS logo" id="cover-image" />
+<img src="_static/images/logoface.png" alt="DS logo" id="cover-image" />
 </div>
 
 <div id="author">
