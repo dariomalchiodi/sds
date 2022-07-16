@@ -30,7 +30,7 @@ jobs:
         pip uninstall -y sphinx-proof && \
         git clone https://github.com/dariomalchiodi/sphinx-proof.git && \
         cd sphinx-proof && \
-        python sphinx-proof/translations/_convert.py && \
+        python sphinx_proof/translations/_convert.py && \
         python setup.py install
 
     # Build the book
