@@ -27,6 +27,7 @@ jobs:
         pip install -r requirements.txt
     - name: Fix sphinx-proof
       run: |
+        apt-get install gettext && \
         pip uninstall -y sphinx-proof && \
         git clone https://github.com/dariomalchiodi/sphinx-proof.git && \
         cd sphinx-proof && \
