@@ -25,6 +25,13 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
+    - name: Fix sphinx-proof
+      run: |
+        pip uninstall -y sphinx-proof && \
+        git clone https://github.com/dariomalchiodi/sphinx-proof.git && \
+        cd sphinx-proof && \
+        python sphinx-proof/translations/_convert.py && \
+        python setup.py install
 
     # Build the book
     - name: Build the book
