@@ -28,6 +28,7 @@ jobs:
     - name: Fix sphinx-proof
       run: |
         sudo apt-get install gettext && \
+        ls -lsa /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/sphinx_proof && \
         git clone https://github.com/dariomalchiodi/sphinx-proof.git && \
         cd sphinx-proof && \
         ls sphinx_proof/translations && \
