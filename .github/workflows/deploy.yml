@@ -35,12 +35,12 @@ jobs:
         echo "generating mo files" && \
         python sphinx_proof/translations/_convert.py && \
         ls sphinx_proof/translations && \
-        cp -r sphinx_proof/translations /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/sphinx_proof/sphinx_proof/translations && \
-        ls -lsa /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/sphinx_proof/sphinx_proof && \
-        ls -lsa /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/sphinx_proof/sphinx_proof/translations && \
-        ls -lsa /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/sphinx_proof/sphinx_proof/translations/locales && \
-        ls -lsa /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/sphinx_proof/sphinx_proof/translations/locales/it/LC_MESSAGES && \
-        cat /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/sphinx_proof/sphinx_proof/translations/locales/it/LC_MESSAGES/proof.mo
+        cp -r sphinx_proof/translations /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/sphinx_proof/translations && \
+        ls -lsa /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/sphinx_proof && \
+        ls -lsa /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/sphinx_proof/translations && \
+        ls -lsa /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/sphinx_proof/translations/locales && \
+        ls -lsa /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/sphinx_proof/translations/locales/it/LC_MESSAGES && \
+        cat /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/sphinx_proof/translations/locales/it/LC_MESSAGES/proof.mo
 
     # Build the book
     - name: Build the book
