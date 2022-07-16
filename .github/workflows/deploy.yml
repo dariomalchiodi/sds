@@ -28,11 +28,11 @@ jobs:
     - name: Fix sphinx-proof
       run: |
         sudo apt-get install gettext && \
-        pip uninstall -y sphinx-proof && \
         git clone https://github.com/dariomalchiodi/sphinx-proof.git && \
         cd sphinx-proof && \
         python sphinx_proof/translations/_convert.py && \
-        python setup.py install
+        cp -r sphinx_proof/translations/locales &&
+          /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/sphinx_proof/sphinx_proof/translations
 
     # Build the book
     - name: Build the book
