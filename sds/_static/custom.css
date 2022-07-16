@@ -177,14 +177,14 @@ blockquote footer {
 section > p,
 section > footer,
 section > table {
-  width: 55%;
+  width: 100%;
 }
 
 /* 50 + 5 == 55, to be the same width as paragraph */
 section > dl,
 section > ol,
 section > ul {
-  width: 50%;
+  /*width: 50%;*/
   -webkit-padding-start: 5%;
 }
 
@@ -199,22 +199,38 @@ figure {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  max-width: 55%;
+  /*max-width: 55%;*/
   -webkit-margin-start: 0;
   -webkit-margin-end: 0;
-  margin: 0 0 3em 0;
+  margin: 3em 0 3em 0;
+}
+
+figure.align-default {
+  text-align: left;
+}
+
+figure img {
+  margin: auto;
+  display: block;
+  width: 90% !important;
 }
 
 figcaption {
-  float: right;
-  clear: right;
+  /*float: right;
+  clear: right;*/
   margin-top: 0;
   margin-bottom: 0;
   font-size: 1.1rem;
   line-height: 1.6;
   vertical-align: baseline;
   position: relative;
-  max-width: 40%;
+  /*max-width: 40%;*/
+}
+
+figcaption span.caption-text,
+figcaption span.caption-number {
+  font-size: 80%;
+  font-style: normal;
 }
 
 figure.fullwidth figcaption {
@@ -234,11 +250,11 @@ a:visited {
 
 /* My customizations */
 
-div.sidebar > :last-child {
+aside.sidebar > :last-child {
   font-size: 1.1rem !important;
-  line-height: 1.4rem !important;
+  line-height: 1.3rem !important;
   color: dimgray;
-  margin-top: -1.1rem;
+  margin-top: -1.3rem;
 }
 
 .topbar-contents {
@@ -493,7 +509,6 @@ table.dataframe td {
 }
 
 .table caption {
-  display: inherit;
   caption-side: top;
 }
 
@@ -770,6 +785,10 @@ label.margin-toggle:not(.sidenote-number) {
 
   figure {
     max-width: 90%;
+  }
+
+  figure.align-default {
+    text-align: left;
   }
 
   figcaption,
