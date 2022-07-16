@@ -27,7 +27,8 @@ jobs:
         pip install -r requirements.txt
     - name: Fix sphinx-proof
       run: |
-        ls -lsa /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/ && \
+        ls -lsa /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/sphinx_proof-0.1.3.dist-info && \
+        sudo apt-get install gettext && \
         git clone https://github.com/dariomalchiodi/sphinx-proof.git && \
         cd sphinx-proof && \
         python sphinx_proof/translations/_convert.py && \
