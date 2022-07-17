@@ -493,6 +493,19 @@ table.dataframe td {
   border: 0 !important;
 }
 
+.proof p {
+  margin-top: 0;
+}
+
+.proof section {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.proof .caption-number {
+  margin-right: 0.3rem;
+}
+
 #proof > p:last-of-type::after {
     border: 1px solid currentColor;
     /* background-color: currentColor; */
