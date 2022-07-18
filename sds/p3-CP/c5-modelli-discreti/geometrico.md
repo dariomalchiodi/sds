@@ -126,6 +126,7 @@ versione interattiva degli appunti è possibile modificare il valore di $p$
 rigenerando automaticamente il grafico.
 
 ```{code-cell} ipython3
+:tags: [thebe-init]
 from ipywidgets import *
 import matplotlib.pyplot as plt
 import numpy as np

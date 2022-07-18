@@ -231,7 +231,7 @@ Così come l'operatore `del`, questo metodo non restituisce alcun valore, in qua
 names[-5:]
 ```
 
-In Python è possibile specificare valori per argomenti _opzionali_ quando si invoca un metodo (o una funzione): si tratta di argomenti identificati da un nome, che _possono_ essere omessi, e in tal caso assumono un valore predefinito. Per poter specificare un valore diverso da quello predefinito è necessario indicare, dopo _tutti_ gli eventuali argomenti non opzionali, un'espressione del tipo `<nome>=<valore>`, dove `<nome>` indica il nome dell'argomento opzionale in questione e `<valore>` è il relativo valore. Per esempio, il metodo `sort` effettua l'ordinamento in verso non decrescente, e l'argomento opzionale `reversed` permette di invertire tale verso:
+In Python è possibile specificare valori per argomenti _opzionali_ quando si invoca un metodo (o una funzione): si tratta di argomenti identificati da un nome, che _possono_ essere omessi, e in tal caso assumono un valore predefinito [^argomenti-opzionali]. Per poter specificare un valore diverso da quello predefinito è necessario indicare, dopo _tutti_ gli eventuali argomenti non opzionali, un'espressione del tipo `<nome>=<valore>`, dove `<nome>` indica il nome dell'argomento opzionale in questione e `<valore>` è il relativo valore. Per esempio, il metodo `sort` effettua l'ordinamento in verso non decrescente, e l'argomento opzionale `reversed` permette di invertire tale verso:
 
 ```{code-cell} ipython3
 names.sort(reverse=True)
@@ -263,17 +263,13 @@ names.sort(key=lambda n:len(n), reverse=True)
 
 riordina le stringhe contenute in `names` dalla più lunga alla più corta. Va anche notato che essendo gli argomenti opzionali univocamente individuati dal loro nome, non è necessario specificarli seguendo un ordine prefissato: pertanto si potrebbero scambiare le posizioni di `key` e `reverse` nell'invocazione precedente senza modificare la semantica dell'istruzione.
 
-```{admonition} Nota
-:class: note
-Gli argomenti opzionali vengono tipicamente utilizzati quando si ha a che fare con metodi o funzioni che implementano operazioni che prevedono svariate opzioni, sebbene nella maggior parte dei casi ognuna di queste opzioni venga usata sempre nello stesso modo, modificandone al più una oppure due. Si pensi al caso della produzione di grafici: sebbene in teoria sia possibile cambiare il colore o lo spessore degli assi cartesiani, o il corpo dei caratteri usati per etichettare questi ultimi, difficilmente si ricorre a tale possibilità. E anche quando si decide di modificare l'aspetto di un grafico, si agisce di norma solo su alcune delle molteplici possibilità. In assenza di argomenti opzionali, sarebbe quindi necessario specificare obbligatoriamente un elevato numero di valori (uno per ogni elemento stilistico personalizzabile), quasi sempre uguali e ricordandone l'ordine esatto. Vedremo nel {numref}`Paragrafo %s <disegnare-grafici>` che le librerie che useremo per produrre grafici sfruttano proprio gli argomenti opzionali per permettere di specificare solo le eventuali modifiche da apportare rispetto a uno stile predefinito per il risultato che si vuole ottenere.
-```
 
-+++
 
 ## Le tuple
 
-+++
-
+```{margin}
+La sintassi per la descrizione delle tuple diventa problematica quando si vuole indicare una tupla contenente un unico elemento, in quanto per esempio l'espressione `(1)` viene interpretata come il valore intero `1` racchiuso tra parentesi tonde, ottenendo dunque il medesimo intero come risultato della valutazione. In casi come questo la soluzione è quella di fare seguire l'unico elemento della tupla da una virgola, scrivendo per esempio `(1,)`. Come regola generale, infatti, è sempre possibile aggiungere una virgola alla fine di una tupla (o di una lista) senza che ciò ne alteri i contenuti. È invece possibile utilizzare l'espressione `()` per indicare una tupla vuota.
+```
 Una tupla è in tutto e per tutto una lista immutabile, nel senso che una volta che essa è stata creata non è possibile modificare i suoi contenuti. Un letterale di tipo tupla viene indicato con una sintassi analoga a quella per le liste, con l'unica differenza che i suoi contenuti sono delimitati da parentesi tonde.
 
 ```{code-cell} ipython3
@@ -313,15 +309,6 @@ Una tupla può essere utilizzata facendo ri ferimento agli stessi operatori e al
 +++
 
 L'immutabilità delle tuple le rende da preferire rispetto alle liste in tutti i casi in cui si vuole impedire che dei dati vengano modificati, per esempio a causa di un bug; inoltre la loro elaborazione è in molti casi più efficiente di quella delle liste.
-
-+++
-
-```{admonition} Nota
-:class: note
-La sintassi per la descrizione delle tuple diventa problematica quando si vuole indicare una tupla contenente un unico elemento, in quanto per esempio l'espressione `(1)` viene interpretata come il valore intero `1` racchiuso tra parentesi tonde, ottenendo dunque il medesimo intero come risultato della valutazione. In casi come questo la soluzione è quella di fare seguire l'unico elemento della tupla da una virgola, scrivendo per esempio `(1,)`. Come regola generale, infatti, è sempre possibile aggiungere una virgola alla fine di una tupla (o di una lista) senza che ciò ne alteri i contenuti. È invece possibile utilizzare l'espressione `()` per indicare una tupla vuota.
-```
-
-+++
 
 (stringhe)=
 ## Le stringhe
@@ -391,5 +378,7 @@ Anche nel caso dei dizionari il linguaggio mette a disposizione una serie di fun
 [^sorted]: In realtà è disponibile anche la funzione `sorted`, che non modifica l'argomento e restituisce una nuova lista.
 
 [^ordinamento-eterogeneo]: Tenuto conto del fatto che le liste sono una struttura dati eterogenea ci si potrebbe chiedere quale sia la relazione d'ordine a cui fa riferimento Python quando viene invocato il metodo `sort`. Non approfondiremo questo aspetto: per quanto riguarda gli argomenti qui trattati è sufficiente dire che quando gli elementi della lista sono tutti dello stesso tipo viene sfruttata una relazione d'ordine canonica per questo tipo. Per esempio i valori numerici sono ordinati in modo non decrescente e per le stringhe viene utilizzato l'ordinamento lessicografico.
+
+[^argomenti-opzionali]: Gli argomenti opzionali vengono tipicamente utilizzati quando si ha a che fare con metodi o funzioni che implementano operazioni che prevedono svariate opzioni, sebbene nella maggior parte dei casi ognuna di queste opzioni venga usata sempre nello stesso modo, modificandone al più una oppure due. Si pensi al caso della produzione di grafici: sebbene in teoria sia possibile cambiare il colore o lo spessore degli assi cartesiani, o il corpo dei caratteri usati per etichettare questi ultimi, difficilmente si ricorre a tale possibilità. E anche quando si decide di modificare l'aspetto di un grafico, si agisce di norma solo su alcune delle molteplici possibilità. In assenza di argomenti opzionali, sarebbe quindi necessario specificare obbligatoriamente un elevato numero di valori (uno per ogni elemento stilistico personalizzabile), quasi sempre uguali e ricordandone l'ordine esatto. Vedremo nel {numref}`Paragrafo %s <disegnare-grafici>` che le librerie che useremo per produrre grafici sfruttano proprio gli argomenti opzionali per permettere di specificare solo le eventuali modifiche da apportare rispetto a uno stile predefinito per il risultato che si vuole ottenere.
 
 [^first-class]: Nel gergo tecnico in lingua inglese si dice che i nomi di funzione sono _first-class citizen_ per enfatizzare che vengono trattate in modo analogo ai nomi delle altre variabili: è possibile per esempio usarli per specificare argomenti, o come destinazione di un'operazione di assegnamento.

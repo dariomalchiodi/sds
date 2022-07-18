@@ -68,8 +68,11 @@ html:
     hypothesis: false
 
 sphinx:
+  recursive_update: true
   config:
     language: it
+    #locale_dirs: ["locale/"]
+    #gettext_compact: False  
     smartquotes: False
     bibtex_reference_style: author_year
     mathjax3_config:
@@ -77,6 +80,8 @@ sphinx:
         matchFontHeight: true,
         scale: 380
       }
+    html_theme_options:
+      search_bar_text: "Cerca..."
   extra_extensions:
   - sphinx_proof
   - sphinx_thebe

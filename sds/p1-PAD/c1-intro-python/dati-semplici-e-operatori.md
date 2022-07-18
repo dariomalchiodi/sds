@@ -123,18 +123,27 @@ inserirli: per esempio `==`, `!=` e `<=` corrispondono alle sequenze
 ```{table} Elenco dei principali operatori per i tipi semplici
 :name: elenco-operatori-per-tipi-semplici
 :align: center
-|  Operazione                  | Simbolo |  Operazione              | Simbolo |
-|:----------------------------:|:-------:| :------------------------|:-------:|
-| addizione                    | `+`     | uguale (per riferimento) | `is`    |
-| sottrazione                  | `-`     | uguale (per contenuto)   | `==`    |
-| moltiplicazione              | `*`     | diverso                  | `!=`    |
-| divisione (reale)            | `/`     | minore                   | `<`     |
-| divisione (intera)           | `//`    | minore o uguale          | `<=`    |
-| resto (modulo)               | `%`     | maggiore                 | `>`     |
-| elevamento a potenza         | `**`    | maggiore o uguale        | `>=`    |
-| appartenenza a una struttura | `in`    | congiunzione logica      | `and`   |
-| rimozione dalla memoria      | `del`   | disgiunzione logica      | `or`    |
-|                              |         | negazione logica         | `not`   |
+|  Operazione                  | Sequenza | Legatura |
+|:----------------------------:|:--------:|:--------:|
+| addizione                    | `+`      |          |
+| sottrazione                  | `-`      |          |
+| moltiplicazione              | `*`      |          |
+| divisione (reale)            | `/`      |          |
+| divisione (intera)           | `//`     |          |
+| resto (modulo)               | `%`      |          |
+| elevamento a potenza         | `**`     |          |
+| appartenenza a una struttura | `in`     |          |
+| rimozione dalla memoria      | `del`    |          |
+| uguale (per riferimento)     | `is`     |          |
+| uguale (per contenuto)       | <code style="font-family: monospace !important;">==</code> | `==`    |
+| diverso                      | <code style="font-family: monospace !important;">!=</code> | `!=`    |
+| minore                       | `<`      |          |
+| minore o uguale              | <code style="font-family: monospace !important;"><=</code> | `<=`    |
+| maggiore                     | `>`      |          |
+| maggiore o uguale            | <code style="font-family: monospace !important;">>=</code> | `>=`    |
+| congiunzione logica          | `and`    |          |
+| disgiunzione logica          | `or`     |          |
+| negazione logica             | `not`    |          |
 ```
 
 Nella maggior parte dei casi gli operatori usano la stessa sintassi dei loro

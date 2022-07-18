@@ -30,6 +30,7 @@ jobs:
         sudo apt-get install gettext && \
         git clone https://github.com/dariomalchiodi/sphinx-proof.git && \
         cd sphinx-proof && \
+        git checkout sphinx-proof-it && \
         python sphinx_proof/translations/_convert.py && \
         cp -r sphinx_proof/* /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/sphinx_proof/ 
 

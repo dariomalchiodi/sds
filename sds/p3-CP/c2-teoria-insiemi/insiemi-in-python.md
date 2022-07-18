@@ -18,14 +18,7 @@ kernelspec:
 Python mette a disposizione il tipo `set` per rappresentare insiemi finiti.
 Questi possono essere descritti
 
-- tramite dei letterali di tipo insieme, delimitando tramite parentesi graffe
-  una sequenza degli elementi dell'insieme da descrivere separati tramite
-  virgole, oppure
-- invocando il costruttore della classe `set` specificando come argomento un
-  iterabile contenente gli elementi dell'insieme.
-
-```{admonition} Nota
-:class: note
+```{margin}
 In Python si usano quindi le parentesi graffe per delimitare sia i letterali di
 tipo insieme che quelli di tipo dizionario. Ciò non comporta ambiguità nel
 linguaggio perché in un letterale di tipo insieme queste parentesi contengono
@@ -36,6 +29,11 @@ insieme vuoto. L'ambiguità è risolta nel modo seguente: `{}` indica il
 dizionario vuoto, mentre per riferirsi a un insieme vuoto è necessario
 invocare il costruttore `set` senza specificare argomenti.
 ```
+- tramite dei letterali di tipo insieme, delimitando tramite parentesi graffe
+  una sequenza degli elementi dell'insieme da descrivere separati tramite
+  virgole, oppure
+- invocando il costruttore della classe `set` specificando come argomento un
+  iterabile contenente gli elementi dell'insieme.
 
 Pertanto le espressioni `{1, 3, 5}`, `set([1, 3, 5])` e `set((1, 3, 5))`
 corrispondono allo stesso oggetto di tipo insieme. Chiaramente tutte le tre

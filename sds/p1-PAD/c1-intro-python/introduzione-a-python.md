@@ -25,8 +25,9 @@ kernelspec:
 > The Zen of Python, Tim Peters
 
 ```{margin}
-I notebook possono essere eseguiti in vari ambienti di elaborazione, ma
-quelli più diffusi sono [Jupyter](https://jupyter.org/) e
+I notebook possono essere eseguiti in vari ambienti di elaborazione: al momento
+in cui questo libro è stato scritto tra quelli più diffusi ci sono
+[Jupyter](https://jupyter.org/) e
 [Visual Studio Code](https://code.visualstudio.com/)
 ```
 

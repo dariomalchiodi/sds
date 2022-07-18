@@ -92,11 +92,17 @@ e quindi che
 
 Pertanto,
 
-$$
-\text{varianza totale} = \frac{n-G}{n-1} \text{varianza entro i gruppi} +
+\begin{multline}
+\text{varianza totale} = \frac{n-G}{n-1} \text{varianza entro i gruppi} + \\
                          \frac{G-1}{n-1} \text{varianza tra i gruppi}.
-$$
+\end{multline}
 
+```{margin}
+Per validare o confutare questo tipi di ipotesi esistono metodi
+quantitativi basati sul calcolo di indici che coinvolgono le quantità che noi
+abbiamo confrontato in modo qualitativo. L'uso di questi metodi richiede però
+un approfondimento teorico che va al di là della trattazione in questo libro.
+```
 Possiamo utilizzare questa uguaglianza per validare o confutare l'ipotesi che
 le medie nei gruppi siano diverse: se la varianza totale e la varianza entro
 i gruppi assumono valori non troppo diversi tra loro (e dunque la varianza
@@ -104,19 +110,17 @@ i gruppi assumono valori non troppo diversi tra loro (e dunque la varianza
   contrario la varianza tra i gruppi assume un valore elevato si può
   convalidare l'ipotesi.
 
-```{admonition} Nota
-:class: naming
-In realtà per validare o confutare questi tipi di ipotesi esistono metodi
-quantitativi basati sul calcolo di indici che coinvolgono le quantità che noi
-abbiamo confrontato in modo qualitativo. L'uso di questi metodi richiede però
-un approfondimento teorico che va al di là del programma del nostro corso.
-```
-
-Per applicare la tecnica di analisi della varianza selezionaniamo per esempio
+Per applicare la tecnica di analisi della varianza selezioniamo per esempio
 i due gruppi dei supereroi corrispondenti alle due case editrici più
 rappresentate: Marvel e DC, e concentriamoci per ogni gruppo sull'indice di
 forza.
 
+```{margin}
+Questa cella mostra come effettuare un'operazione di selezione
+complessa su di un _dataframe_, basandosi sull'operatore `&` di congiungzione
+logica. Analogamente, l'operatore `|` permette di calcolare disgiunzioni
+logiche.
+```
 ```{code-cell} ipython3
 import pandas as pd
 
@@ -126,14 +130,6 @@ marvel_strength = heroes[(heroes['Publisher'] == 'Marvel Comics') &
                          (pd.notnull(heroes['Strength']))]['Strength']
 dc_strength = heroes[(heroes['Publisher'] == 'DC Comics') & \
                      (pd.notnull(heroes['Strength']))]['Strength']
-```
-
-```{admonition} Nota
-:class: naming
-La cella precedente mostra come effettuare un'operazione di selezione
-complessa su di un _dataframe_, basandosi sull'operatore `&` di congiungzione
-logica. Analogamente, l'operatore `|` permette di calcolare disgiunzioni
-logiche.
 ```
 
 Iniziamo calcolando $\mathrm{SS}_{\mathrm T}$.
