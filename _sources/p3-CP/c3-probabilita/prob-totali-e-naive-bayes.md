@@ -6,8 +6,8 @@
 ````{prf:theorem} Disuguaglianza di Markov
 :label: teo-markov
 Sia $X$ una variabile aleatoria che può assumere solo specificazioni non
-negative e avente valore atteso finito $\mathbb E(X)$.. Per ogni valore reale 
-a \geq 0$ si ha
+negative e avente valore atteso finito $\mathbb E(X)$. Per ogni valore reale 
+$a \geq 0$ si ha
 
 $$ \mathbb P(X \leq a) \geq \frac{\mathbb E(X)}{a}. $$
 ````
@@ -50,7 +50,7 @@ $$ \mathbb P(| X - \mu | \leq \epsilon) \geq \frac{\sigma^2}{\epsilon^2}. $$
 
 ````
 ````{prf:proof}
-Definiamo $Y := (X - \mu)^2$, e notiamo che per costruzione $Y$ non assume mai
+Definiamo $Y \triangleq (X - \mu)^2$, e notiamo che per costruzione $Y$ non assume mai
 specificazioni negative e il suo valore atteso è $\mathbb E(Y) = \sigma^2$,
 che per ipotesi esiste ed è finito. Essendo $\epsilon \geq 0$, gli eventi
 $| X - \mu | \leq \epsilon$ e $Y \leq \epsilon^2$ si equivalgono,

@@ -305,7 +305,7 @@ in una _sigma-algebra_ come indicato nella definizione che segue.
 
 ````{prf:definition} Sigma-algebra degli eventi
 :label: def-sigma-algebra-degli-eventi
-Ogni algebra degli eventi $\mathbb A$ su uno spazio degli esiti $\Omega$
+Ogni algebra degli eventi $\mathsf A$ su uno spazio degli esiti $\Omega$
 è una _sigma-algebra_ se rispetta la seguente proprietà oltre a quelle della
 {prf:ref}`def-algebra-degli-eventi`: per ogni successione infinita
 $E_1, E_2, \ldots$ di eventi in $\mathsf A$

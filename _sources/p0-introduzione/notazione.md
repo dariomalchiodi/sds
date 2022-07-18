@@ -105,27 +105,41 @@ testo.
 ```{table} Notazione utilizzata nel testo
 :name: tab-notazione
 :align: center
-|  Simbolo          | Significato |
-|:-----------------:|:-----------:|
-|                   |             |
-|                   |             |
-|                   |             |
-|                   |             |
-|                   |             |
-|                   |             |
-|                   |             |
-|                   |             |
-|                   |             |
-|                   |             |
-|                   |             |
-|                   |             |
-|                   |             |
-|                   |             |
-|                   |             |
-|                   |             |
-|                   |             |
-|                   |             |
-|                   |             |
+|  Simbolo                      | Significato |
+|:-----------------------------:|:-----------:|
+| $\mathbb N$                   | insieme dei numeri naturali                                        |
+| $\mathbb R$                   | insieme dei numeri reali                                        |
+| $A = \{ a_1, \dots a_n \}$    | insieme / evento composto dagli elementi / esiti $a_1, \dots, a_n$ |
+| $a \in A$                     | elemento $a$ dell'insieme $A$                                      |
+| $(a_1, \dots, a_n)$           | disposizione o permutazione composta dagli elementi $a_1, \dots, a_n$ |
+| $n!$                          | fattoriale del numero intero $n$                                   |
+| $\binom{n}{k}$                | coefficiente binomiale («$n$ su $k$»)                              |
+| $p_n$                         | numero di permutazioni semplici di $n$ elementi                    |
+| $P_{n; n_1, \dots, n_k}$      | numero di permutazioni con ripetizione di $n$ elementi distinguibili a gruppi contenenti $n_1, \dots, n_k$ oggetti |
+| $\{ a_1, \dots, a_n \}$       | combinazione composta dagli elementi $a_1, \dots, a_n$             |
+| $D_{n, k}$                    | disposizioni con ripetizione di $n$ oggetti in $k$ posti           |
+| $d_{n, k}$                    | disposizioni senza ripetizione di $n$ oggetti in $k$ posti         |
+| $c_{n, k}$                    | combinazioni semplici di $n$ oggetti in $k$ posti                  |
+| $C_{n, k}$                    | combinazioni con ripetizione di $n$ oggetti in $k$ posti           |
+| $S \subseteq T$               | sottoinsieme / sottoevento $S$ di un insieme / evento $T$          |
+| $\Omega$                      | insieme universo / spazio degli esiti                              |
+| $A \rightarrow B$             | (evento o proposizione) $A$ implica (evento o proposizione) $B$    |
+| $A \leftrightarrow B$         | (evento o proposizione) $A$ coimplica (evento o proposizione) $B$  |
+| $S \cup T$                    | unione degli insiemi / eventi $S$ e $T$                            |
+| $S \cap T$                    | intersezione degli insiemi / eventi $S$ e $T$                      |
+| $S \backslash T$              | differenza tra l'insieme / eventi $S$ e l'insieme / evento $T$     |
+| $S \ominus T$                 | differenza simmetrica tra gli insiemi /eventi $S$ e $T$            |
+| $A \vee B$                    | disgiunzione logica tra le proposizioni $A$ e $B$                  |
+| $A \wedge B$                  | congiunzione logica tra le proposizioni $A$ e $B$                  |
+| $\mathscr E$                  | esperimento casuale                                                |
+| $\omega \in \Omega$           | esito di un esperimento casuale                                    |
+| $\{ \omega \}$                | evento elementare                                                  |
+| $\mathsf A$                   | algebra degli eventi                                               |
+| $2^A$                         | insieme delle parti dell'insieme $A$                               |
+| $\mathbb P$                   | funzione di probabilità                                            |
+| $\mathbb P(E)$                | probabilità dell'evento $E$                                        |
+| $\mathbb P(E\|F)$             | probabilità condizionata dell'evento $E$ dato l'evento $F$         |
+| $\mathbb E(X)$                | valore atteso della variabile aleatoria $X$                        |
+| $\mathbb E(g(X))$             | valore atteso della funzione $g$ della variabile aleatoria $X$     |
+| $a \triangleq b$              | $a$ è definito come uguale a $b$                                   |
 ```
-
-## Il linguaggio di programmazione

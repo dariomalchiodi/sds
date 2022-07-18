@@ -1,8 +1,8 @@
 # Probabilità condizionata
 
 Immaginiamo di fissare un esperimento casuale $\mathcal E$ e definire il
-corrispondente spazio di proababilità $(\Omega, \mathbb A, \mathbb P)$. Dato
-un generico evento $E \in \mathbb A$, se dopo che $\mathcal E$ è stato eseguito
+corrispondente spazio di proababilità $(\Omega, \mathsf A, \mathbb P)$. Dato
+un generico evento $E \in \mathsf A$, se dopo che $\mathcal E$ è stato eseguito
 noi sapessimo qual è l'esito $\omega \in \Omega$ che è stato osservato,
 sapremmo automaticamente se $E$ si è verificato oppure no. Immaginiamo di non
 conoscere con precisione $\omega$, ma di avere accesso a qualche forma
