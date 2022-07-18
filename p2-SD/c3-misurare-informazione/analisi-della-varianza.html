@@ -41,8 +41,8 @@
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
-    <script>let toggleHintShow = 'Click to show';</script>
-    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleHintShow = 'Mostra il codice';</script>
+    <script>let toggleHintHide = 'Nascondi il codice';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/translations.js"></script>
@@ -146,7 +146,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p0-introduzione/notazione.html">
-     1.2. Convenzioni e notazione
+     1.2. Organizzazione del libro
     </a>
    </li>
   </ul>
@@ -1121,14 +1121,14 @@ giustificato);</p></li>
 segue) che
 <span class="math notranslate nohighlight">\(\mathrm{SS}_{\mathrm T} = \mathrm{SS}_{\mathrm W} + \mathrm{SS}_{\mathrm B}\)</span>,
 e quindi che</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f2784266-98d4-40ca-95f3-265d26b3d18c">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-f2784266-98d4-40ca-95f3-265d26b3d18c" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c0096aba-2218-4020-80f3-74dfbd1e1921">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-c0096aba-2218-4020-80f3-74dfbd1e1921" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \frac{\mathrm{SS}_{\mathrm T}}{n-1} &amp;= \frac{\mathrm{SS}_{\mathrm W}}{n-1} +\frac{\mathrm{SS}_{\mathrm B}}{n-1}, \\
 &amp;= \frac{n-G}{n-1} \frac{\mathrm{SS}_{\mathrm W}}{n-G} + \frac{G-1}{n-1} \frac{\mathrm{SS}_{\mathrm B}}{G-1}.
 \end{align}\]</div>
 <p>Pertanto,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-db66b71e-38fc-41ab-9b7f-503d3316ff2a">
-<span class="eqno">(6.2)<a class="headerlink" href="#equation-db66b71e-38fc-41ab-9b7f-503d3316ff2a" title="Permalink a questa equazione">#</a></span>\[\begin{multline}
+<div class="amsmath math notranslate nohighlight" id="equation-65f25d63-1938-4705-a825-babb22f042cb">
+<span class="eqno">(6.2)<a class="headerlink" href="#equation-65f25d63-1938-4705-a825-babb22f042cb" title="Permalink a questa equazione">#</a></span>\[\begin{multline}
 \text{varianza totale} = \frac{n-G}{n-1} \text{varianza entro i gruppi} + \\
                          \frac{G-1}{n-1} \text{varianza tra i gruppi}.
 \end{multline}\]</div>
@@ -1351,8 +1351,8 @@ valutando la differenza nella distribuzione del peso.</p>
 \sum_{i=1}^{n_g} x^g_i = n_g \overline x^g,
 \]</div>
 <p>e quindi</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6c5dbff7-3a2f-44d7-a270-8d4edc6513dd">
-<span class="eqno">(6.3)<a class="headerlink" href="#equation-6c5dbff7-3a2f-44d7-a270-8d4edc6513dd" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-453d2776-050c-4093-bc79-ee6dd24fff46">
+<span class="eqno">(6.3)<a class="headerlink" href="#equation-453d2776-050c-4093-bc79-ee6dd24fff46" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm{SS}_{\mathrm T}  &amp;= \sum_{g=1}^G \sum_{i=1}^{n_g}
                             \left( \left(x^g_i\right)^2
                             - 2 \overline x x^g_i +

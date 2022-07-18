@@ -41,8 +41,8 @@
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
-    <script>let toggleHintShow = 'Click to show';</script>
-    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleHintShow = 'Mostra il codice';</script>
+    <script>let toggleHintHide = 'Nascondi il codice';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/translations.js"></script>
@@ -146,7 +146,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p0-introduzione/notazione.html">
-     1.2. Convenzioni e notazione
+     1.2. Organizzazione del libro
     </a>
    </li>
   </ul>
@@ -1006,7 +1006,7 @@ a \geq 0$ si ha</p>
 \[ \mathbb P(X \leq a) \geq \frac{\mathbb E(X)}{a}. \]</div>
 </section>
 </div><div class="proof admonition" id="proof">
-<p>Proof. Ipotizziamo che <span class="math notranslate nohighlight">\(X\)</span> sia una variabile aleataoria continua, e indichiamo con
+<p>Dimostrazione. Ipotizziamo che <span class="math notranslate nohighlight">\(X\)</span> sia una variabile aleataoria continua, e indichiamo con
 <span class="math notranslate nohighlight">\(f\)</span> la sua funzione di densità di probabilità. Non avendo <span class="math notranslate nohighlight">\(X\)</span> specificazioni
 positive, è possibile esprimere il suo valore atteso come segue:</p>
 <div class="math notranslate nohighlight">
@@ -1041,7 +1041,7 @@ e pertanto si ottiene la tesi.</p>
 \[ \mathbb P(| X - \mu | \leq \epsilon) \geq \frac{\sigma^2}{\epsilon^2}. \]</div>
 </section>
 </div><div class="proof admonition" id="proof">
-<p>Proof. Definiamo <span class="math notranslate nohighlight">\(Y := (X - \mu)^2\)</span>, e notiamo che per costruzione <span class="math notranslate nohighlight">\(Y\)</span> non assume mai
+<p>Dimostrazione. Definiamo <span class="math notranslate nohighlight">\(Y := (X - \mu)^2\)</span>, e notiamo che per costruzione <span class="math notranslate nohighlight">\(Y\)</span> non assume mai
 specificazioni negative e il suo valore atteso è <span class="math notranslate nohighlight">\(\mathbb E(Y) = \sigma^2\)</span>,
 che per ipotesi esiste ed è finito. Essendo <span class="math notranslate nohighlight">\(\epsilon \geq 0\)</span>, gli eventi
 <span class="math notranslate nohighlight">\(| X - \mu | \leq \epsilon\)</span> e <span class="math notranslate nohighlight">\(Y \leq \epsilon^2\)</span> si equivalgono,
@@ -1051,7 +1051,7 @@ pertanto</p>
    \mathbb P(Y \leq \epsilon^2) \geq \frac{\mathbb E(Y)}{\epsilon^2} =
    \frac{\sigma^2}{\epsilon^2}, \]</div>
 <p>dove la minorazione è legata all'applicazione della disuguaglianza di Markov
-alla variabile aleatoria <span class="math notranslate nohighlight">\(Y\)</span> (Notate che le ipotesi del <a class="reference internal" href="#teo-markov">Theorem 11.9</a>
+alla variabile aleatoria <span class="math notranslate nohighlight">\(Y\)</span> (Notate che le ipotesi del <a class="reference internal" href="#teo-markov">Teorema 11.9</a>
 sono soddisfatte, come evidenziato dalle osservazioni fatte all'inizio della
 dimostrazione).</p>
 </div>

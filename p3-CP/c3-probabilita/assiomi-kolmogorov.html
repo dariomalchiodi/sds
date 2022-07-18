@@ -41,8 +41,8 @@
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
-    <script>let toggleHintShow = 'Click to show';</script>
-    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleHintShow = 'Mostra il codice';</script>
+    <script>let toggleHintHide = 'Nascondi il codice';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/translations.js"></script>
@@ -146,7 +146,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p0-introduzione/notazione.html">
-     1.2. Convenzioni e notazione
+     1.2. Organizzazione del libro
     </a>
    </li>
   </ul>
@@ -972,7 +972,7 @@ per uno spazio misurabile (i) indipendentemente dal <em>significato</em> che vie
 dato al concetto stesso di probabilità e /ii) in modo da garantire che agli
 eventi vengano assegnate delle probabilità secondo uno schema <em>coerente</em>.</p>
 <p>Dato uno spazio misurabile <span class="math notranslate nohighlight">\((\Omega, \mathsf A)\)</span> e fissata una funzione di
-probabilità <span class="math notranslate nohighlight">\(\mathbb P\)</span> che soddisfa la <a class="reference internal" href="#def-assiomi-kolmogorov">Definition 11.7</a>,
+probabilità <span class="math notranslate nohighlight">\(\mathbb P\)</span> che soddisfa la <a class="reference internal" href="#def-assiomi-kolmogorov">Definizione 11.7</a>,
 si dice che la terna <span class="math notranslate nohighlight">\((\Omega, \mathsf A, \mathbb P)\)</span> rappresenta uno
 <em>spazio di probabilità</em>.</p>
 <div class="proof theorem admonition" id="probabilita-evento-complementare">
@@ -981,7 +981,7 @@ si dice che la terna <span class="math notranslate nohighlight">\((\Omega, \math
 <div class="math notranslate nohighlight">
 \[\forall E \subseteq \Omega \quad \mathbb P(\overline E) = 1 - \mathbb P(E).\]</div>
 <div class="proof admonition" id="proof">
-<p>Proof. Dato un generico <span class="math notranslate nohighlight">\(E \subseteq \Omega\)</span>, si ha <span class="math notranslate nohighlight">\(E \cup \overline E = \Omega\)</span> e
+<p>Dimostrazione. Dato un generico <span class="math notranslate nohighlight">\(E \subseteq \Omega\)</span>, si ha <span class="math notranslate nohighlight">\(E \cup \overline E = \Omega\)</span> e
 <span class="math notranslate nohighlight">\(E \cap \overline E = \{\}\)</span>, pertanto</p>
 <div class="math notranslate nohighlight">
 \[1 \underset{(11.2)}{=} \mathbb P(\Omega) = \mathbb P(E \cup \overline E)
@@ -990,12 +990,12 @@ si dice che la terna <span class="math notranslate nohighlight">\((\Omega, \math
 </div>
 </section>
 </div><div class="proof corollary admonition" id="probabilita-evento-impossibile">
-<p class="admonition-title"><span class="caption-number">Corollary 11.1 </span> (Probabilità dell'evento impossibile)</p>
+<p class="admonition-title"><span class="caption-number">Corollario 11.1 </span> (Probabilità dell'evento impossibile)</p>
 <section class="corollary-content" id="proof-content">
 <div class="math notranslate nohighlight">
 \[\mathbb P(\{\}) = 0\]</div>
 <div class="proof admonition" id="proof">
-<p>Proof. La tesi si ottiene dal <a class="reference internal" href="#probabilita-evento-complementare">Theorem 11.5</a>,
+<p>Dimostrazione. La tesi si ottiene dal <a class="reference internal" href="#probabilita-evento-complementare">Teorema 11.5</a>,
 quando <span class="math notranslate nohighlight">\(E = \Omega\)</span>.</p>
 </div>
 </section>
@@ -1006,7 +1006,7 @@ quando <span class="math notranslate nohighlight">\(E = \Omega\)</span>.</p>
 \[\forall E, F \subseteq \Omega \quad \mathbb P(E \cup F) =
 \mathbb P(E) + \mathbb P(F) - \mathbb P(E \cap F).\]</div>
 <div class="proof admonition" id="proof">
-<p>Proof. Per la distributività dell'intersezione rispetto all'unione si ha</p>
+<p>Dimostrazione. Per la distributività dell'intersezione rispetto all'unione si ha</p>
 <div class="math notranslate nohighlight">
 \[(E \cap \overline F) \cup (E \cap F) = E \cap (\overline F \cup F)
 = E \cap \Omega = E,\]</div>

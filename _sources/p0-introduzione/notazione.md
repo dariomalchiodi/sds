@@ -12,7 +12,9 @@ kernelspec:
   name: python3
 ---
 
-# Convenzioni e notazione
+# Organizzazione del libro
+
+## Convenzioni
 
 Spesso risulta necessario inframmezzare il testo principale con del codice,
 non al fine di eseguirlo ma per scopo illustrativo (per esempio per indicare
@@ -90,7 +92,40 @@ Questa area contiene la tesi di un teorema.
 In questa area viene inserita la dimostrazione di un teorema.
 ```
 
-```{prf:corollary} Corollario
+```{prf:corollary}
 :label: segnaposto-corollario
 Questa area contiene la definizione di un corollario e la sua dimostrazione.
 ```
+
+## Notazione
+
+La {numref}`tab-notazione` elenca le principali notazioni utilizzate nel
+testo.
+
+```{table} Notazione utilizzata nel testo
+:name: tab-notazione
+:align: center
+|  Simbolo          | Significato |
+|:-----------------:|:-----------:|
+|                   |             |
+|                   |             |
+|                   |             |
+|                   |             |
+|                   |             |
+|                   |             |
+|                   |             |
+|                   |             |
+|                   |             |
+|                   |             |
+|                   |             |
+|                   |             |
+|                   |             |
+|                   |             |
+|                   |             |
+|                   |             |
+|                   |             |
+|                   |             |
+|                   |             |
+```
+
+## Il linguaggio di programmazione

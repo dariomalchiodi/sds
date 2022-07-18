@@ -33,6 +33,7 @@ descrive le modalità di accesso e le operazioni principali per i tipi
 strutturati sopra elencati e fornisce dei puntatori alla documentazione
 ufficiale per chi volesse approfondire alcuni argomenti.
 
+(liste)=
 ## Le liste
 
 Una lista è una struttura dati che permette di memorizzare una sequenza di
@@ -49,7 +50,8 @@ strutture dati _omogenee_ ad accesso posizionale: in altre parole, anche in
 questo caso vengono memorizzate delle sequenze di valori, ma questi valori
 devono essere tutti dello stesso tipo. Sebbene gli _array_ non siano
 direttamente messi a disposizione in Python, è possibile utilizzarli facendo
-riferimento al _modulo_ `numpy`, descritto nel {numref}`importare-moduli`.
+riferimento al _modulo_ `numpy`, descritto nel
+{numref}`Paragrafo %s <importare-moduli>`.
 ```
 
 ```{margin}
@@ -341,7 +343,7 @@ Python implementa direttamente un tipo di dato per gli insiemi, intesi come coll
 ##  I dizionari
 I dizionari servono a memorizzare delle associazioni tra oggetti, in analogia con il concetto matematico di funzione. È quindi possibile pensare a essi come a insiemi di coppie (chiave, valore), dove una data chiave non occorre più di una volta, e a ogni chiave corrisponde un unico valore.
 
-Un letterale di tipo dizionario viene descritto indicando ogni coppia separando chiave e valore con il carattere di due punti, separando le coppie con delle virgole e racchiudendo l'intero letterale tra parentesi graffe. Possiamo per esempio usare un dizionario per rappresentare un _record_ in modo più elegante rispetto a quanto fatto nel {}`Paragrafo %s <>` utilizzando le liste:
+Un letterale di tipo dizionario viene descritto indicando ogni coppia separando chiave e valore con il carattere di due punti, separando le coppie con delle virgole e racchiudendo l'intero letterale tra parentesi graffe. Possiamo per esempio usare un dizionario per rappresentare un _record_ in modo più elegante rispetto a quanto fatto nel {numref}`Paragrafo %s <liste>` utilizzando le liste:
 
 ```{code-cell} ipython3
 rogue = {'name': 'Rogue',
