@@ -112,7 +112,7 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Cerca..." aria-label="Cerca..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         
@@ -146,7 +146,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p0-introduzione/notazione.html">
-     1.2. Notazione
+     1.2. Convenzioni e notazione
     </a>
    </li>
   </ul>
@@ -185,22 +185,22 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/funzioni.html">
-     2.4. Funzioni
+     2.4. Funzioni e funzioni anonime
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/importare-moduli.html">
-     2.6. Importare moduli
+     2.5. Importare moduli
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/disegnare-grafici.html">
-     2.7. Disegnare grafici
+     2.6. Disegnare grafici
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p1-PAD/c1-intro-python/leggere-file.html">
-     2.8. Leggere dati da file (e un po' di trucchi)
+     2.7. Leggere dati da file (e un po' di trucchi)
     </a>
    </li>
   </ul>
@@ -1790,6 +1790,13 @@ degli oggetti e delle probabilità emesse dal classificatore determina
 automaticamente quali sono i valori sensati da considerare per la soglia
 sulla probabilità e restituisce due array contenente rispettivamente ascisse
 e ordinate dei punti da unire per ottenere la curva ROC.</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Il metodo <code class="docutils literal notranslate"><span class="pre">roc_curve</span></code> restituisce tre valori: il terzo, non considerato nel
+nostro caso (il simbolo <code class="docutils literal notranslate"><span class="pre">_</span></code> ci permette di non dover creare una variabile
+fittizia che poi non verrebbe utilizzata) permette di ottenere i sopra
+citati valori di soglia selezionati dal metodo.</p>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
@@ -1805,14 +1812,6 @@ e ordinate dei punti da unire per ottenere la curva ROC.</p>
 <div class="cell_output docutils container">
 <img alt="../../_images/analisi-di-classificatori_13_0.png" src="../../_images/analisi-di-classificatori_13_0.png" />
 </div>
-</div>
-<div class="naming admonition">
-<p class="admonition-title">Nota</p>
-<p>Come è possibile vedere analizzando il codice nella cella precedente, il
-metodo <code class="docutils literal notranslate"><span class="pre">roc_curve</span></code> restituisce tre valori: il terzo, non considerato nel
-nostro caso (il simbolo <code class="docutils literal notranslate"><span class="pre">_</span></code> ci permette di non dover creare una variabile
-fittizia che poi non verrebbe utilizzata) permette di ottenere i sopra
-citati valori di soglia selezionati dal metodo.</p>
 </div>
 <p>L'oggetto <code class="docutils literal notranslate"><span class="pre">metrics</span></code> permette anche di calcolare il valore AUC corrispondente
 all'area sotto la curva ROC, invocando il metodo <code class="docutils literal notranslate"><span class="pre">auc</span></code> a cui passare i due
@@ -1979,7 +1978,7 @@ corrispondente valore di AUC.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.55
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.575
 </pre></div>
 </div>
 </div>
@@ -2026,8 +2025,8 @@ matrice più gradevole.</p>
     </tr>
     <tr>
       <th>1</th>
-      <td>6</td>
-      <td>34</td>
+      <td>4</td>
+      <td>36</td>
     </tr>
   </tbody>
 </table>

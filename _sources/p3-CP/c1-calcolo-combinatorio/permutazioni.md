@@ -34,6 +34,7 @@ tra loro, e si parla di _permutazione semplice_, o soltanto di _permutazione_,
 come descritto dalla seguente definizione.
 
 ````{prf:definition} Permutazione semplice
+:label: def-permutazione-semplice
 Consideriamo un insieme $A = \{ a_1,\dots a_n\}$ contenente $n$ oggetti.
 Chiamiamo _permutazione semplice_ (o più brevemente _permutazione_) di questi
 oggetti una qualsiasi sequenza ordinata in cui compaiono tutti e soli gli $n$
@@ -45,6 +46,7 @@ corrispondente ordine, separandoli con delle virgole e delimitando l'elenco
 con delle parentesi tonde.
 
 ````{prf:example} I Fantastici 4
+:label: ex-fantastic-4
 Consideriamo l'insieme $Q = \{ f, i, t, c \}$ dei Fantastici 4: mister
 fantastic ($f$), la donna invisibile ($i$), la torcia umana ($t$) e la cosa
 ($c$): le possibili permutazioni semplici dei suoi oggetti sono elencate nella
@@ -127,6 +129,7 @@ segue, prende in considerazione solamente le sequenze che sono diverse tra
 loro.
 
 ````{prf:definition} Permutazione con ripetizione
+:label: def-permutation-repetition
 Consideriamo un multiinsieme $A = \{ a_1,\dots a_n\}$ contenente $n$ oggetti
 distinguibili a gruppi di numerosità $n_1, \ldots, n_k$.
 Chiamiamo _permutazione di oggetti distinguibili a gruppi_ (più semplicemente

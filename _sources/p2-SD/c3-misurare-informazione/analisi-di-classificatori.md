@@ -715,6 +715,12 @@ automaticamente quali sono i valori sensati da considerare per la soglia
 sulla probabilità e restituisce due array contenente rispettivamente ascisse
 e ordinate dei punti da unire per ottenere la curva ROC.
 
+```{margin}
+Il metodo `roc_curve` restituisce tre valori: il terzo, non considerato nel
+nostro caso (il simbolo `_` ci permette di non dover creare una variabile
+fittizia che poi non verrebbe utilizzata) permette di ottenere i sopra
+citati valori di soglia selezionati dal metodo.
+```
 ```{code-cell} ipython3
 from sklearn import metrics
 y = [1, 0, 1, 1, 0]
@@ -723,15 +729,6 @@ fpr, tpr, _ = metrics.roc_curve(y, prob)
 plt.plot(fpr, tpr)
 plt.plot([0, 1], [0, 1], dashes=[3, 3], color='gray')
 plt.show()
-```
-
-```{admonition} Nota
-:class: naming
-Come è possibile vedere analizzando il codice nella cella precedente, il
-metodo `roc_curve` restituisce tre valori: il terzo, non considerato nel
-nostro caso (il simbolo `_` ci permette di non dover creare una variabile
-fittizia che poi non verrebbe utilizzata) permette di ottenere i sopra
-citati valori di soglia selezionati dal metodo.
 ```
 
 L'oggetto `metrics` permette anche di calcolare il valore AUC corrispondente

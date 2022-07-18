@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>2.4. Funzioni &#8212; Superhero Data Science 
+    <title>2.4. Funzioni e funzioni anonime &#8212; Superhero Data Science 
  Probabilità e Statistica</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -59,7 +59,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
     <link rel="search" title="Cerca" href="../../search.html" />
-    <link rel="next" title="2.6. Importare moduli" href="importare-moduli.html" />
+    <link rel="next" title="2.5. Importare moduli" href="importare-moduli.html" />
     <link rel="prev" title="2.3. Strutture di controllo" href="strutture-di-controllo.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="it">
@@ -110,7 +110,7 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Cerca..." aria-label="Cerca..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         
@@ -144,7 +144,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p0-introduzione/notazione.html">
-     1.2. Notazione
+     1.2. Convenzioni e notazione
     </a>
    </li>
   </ul>
@@ -183,22 +183,22 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     2.4. Funzioni
+     2.4. Funzioni e funzioni anonime
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="importare-moduli.html">
-     2.6. Importare moduli
+     2.5. Importare moduli
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="disegnare-grafici.html">
-     2.7. Disegnare grafici
+     2.6. Disegnare grafici
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="leggere-file.html">
-     2.8. Leggere dati da file (e un po' di trucchi)
+     2.7. Leggere dati da file (e un po' di trucchi)
     </a>
    </li>
   </ul>
@@ -1005,14 +1005,14 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   2.4. Funzioni
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   2.4.1. Funzioni
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#funzioni-anonime">
-   2.5. Funzioni anonime
+   2.4.2. Funzioni anonime
   </a>
  </li>
 </ul>
@@ -1024,7 +1024,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Funzioni</h1>
+                <h1>Funzioni e funzioni anonime</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -1034,14 +1034,14 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   2.4. Funzioni
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   2.4.1. Funzioni
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#funzioni-anonime">
-   2.5. Funzioni anonime
+   2.4.2. Funzioni anonime
   </a>
  </li>
 </ul>
@@ -1054,8 +1054,10 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="funzioni">
-<span id="id1"></span><h1><span class="section-number">2.4. </span>Funzioni<a class="headerlink" href="#funzioni" title="Link a questa intestazione">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="funzioni-e-funzioni-anonime">
+<span id="funzioni"></span><h1><span class="section-number">2.4. </span>Funzioni e funzioni anonime<a class="headerlink" href="#funzioni-e-funzioni-anonime" title="Link a questa intestazione">#</a></h1>
+<section id="id1">
+<h2><span class="section-number">2.4.1. </span>Funzioni<a class="headerlink" href="#id1" title="Link a questa intestazione">#</a></h2>
 <p>Il calcolo delle frequenze è un'operazione che viene fatta molto spesso, quindi
 conviene scrivere una funzione che ci eviti di dover ricopiare ogni volta la
 decina di linee che abbiamo scritto (in realtà è solo una scusa per vedere come
@@ -1109,8 +1111,8 @@ piccola.</p>
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="funzioni-anonime">
-<span id="id2"></span><h1><span class="section-number">2.5. </span>Funzioni anonime<a class="headerlink" href="#funzioni-anonime" title="Link a questa intestazione">#</a></h1>
+<section id="funzioni-anonime">
+<span id="id2"></span><h2><span class="section-number">2.4.2. </span>Funzioni anonime<a class="headerlink" href="#funzioni-anonime" title="Link a questa intestazione">#</a></h2>
 <p>Un'altra caratteristica di python è quella di poter specificare una funzione
 come argomento di un metodo (o di un'altra funzione); ciò si può fare o
 indicando il nome della funzione, oppure usando una <em>lambda function</em> o
@@ -1125,6 +1127,7 @@ si trova nella cella seguente, in cui la lista dei nomi viene ordinata non in
 modo alfabetico, bensì in funzione della lunghezza dei nomi stessi,
 specificando tramite l'argomento opzionale <code class="docutils literal notranslate"><span class="pre">key</span></code> una funzione anonima che
 trasformerà ogni elemento della lista in un valore su cui basare l'ordinamento.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1164,7 +1167,7 @@ trasformerà ogni elemento della lista in un valore su cui basare l'ordinamento.
     <a class='right-next' id="next-link" href="importare-moduli.html" title="successivo pagina">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">successivo</p>
-        <p class="prev-next-title"><span class="section-number">2.6. </span>Importare moduli</p>
+        <p class="prev-next-title"><span class="section-number">2.5. </span>Importare moduli</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

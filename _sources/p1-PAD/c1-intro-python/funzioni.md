@@ -13,7 +13,9 @@ kernelspec:
 ---
 
 (funzioni)=
-# Funzioni
+# Funzioni e funzioni anonime
+
+## Funzioni
 Il calcolo delle frequenze è un'operazione che viene fatta molto spesso, quindi
 conviene scrivere una funzione che ci eviti di dover ricopiare ogni volta la
 decina di linee che abbiamo scritto (in realtà è solo una scusa per vedere come
@@ -53,7 +55,7 @@ get_sorted_counts(years)
 ```
 
 (funzioni-anonime)=
-# Funzioni anonime
+## Funzioni anonime
 
 Un'altra caratteristica di python è quella di poter specificare una funzione
 come argomento di un metodo (o di un'altra funzione); ciò si può fare o

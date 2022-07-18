@@ -240,7 +240,7 @@ figure.fullwidth figcaption {
 /* Links: replicate underline that clears descenders */
 a:link,
 a:visited {
-  color: inherit;
+  color: var(--pst-color-secondary);
 }
 
 .no-tufte-underline:link {
@@ -249,6 +249,10 @@ a:visited {
 }
 
 /* My customizations */
+
+input#search-input {
+  font-family: "Lato", sans-serif;
+}
 
 aside.sidebar > :last-child {
   font-size: 1.1rem !important;
@@ -321,6 +325,10 @@ aside.sidebar > :last-child {
 
 .table th p {
   color: var(--pst-color-primary);
+}
+
+.table th p, .table td p, .table td .pre {
+  font-size: 1rem !important;
 }
 
 a.footnote-reference {
@@ -460,7 +468,7 @@ table.dataframe td {
   color: var(--pst-color-secondary);
   font-family: var(--pst-font-title);
   background-color: inherit !important;
-  margin-left: -.25rem !important;
+  margin-left: 1.5rem !important;
   padding-left: 1.7rem !important;
   margin-top: 1rem !important;
 }
@@ -477,6 +485,22 @@ table.dataframe td {
 
 .note.admonition .admonition-title:before {
   content: 'pan_tool_alt' !important;
+}
+
+.definition .admonition-title:before {
+  content: 'signpost' !important;
+}
+
+.theorem .admonition-title:before {
+  content: 'school' !important;
+}
+
+.corollary .admonition-title:before {
+  content: 'arrow_forward' !important;
+}
+
+.example .admonition-title:before {
+  content: 'center_focus_strong' !important;
 }
 
 .proof .admonition-title {
@@ -507,7 +531,7 @@ table.dataframe td {
 }
 
 #proof > p:last-of-type::after {
-    border: 1px solid currentColor;
+    border: 2px solid currentColor;
     /* background-color: currentColor; */
     content: '';
     display: block;
@@ -517,7 +541,7 @@ table.dataframe td {
     /* To be changed based on typeface */
     height: 0.625em;
     margin-left: 0.3em;
-    top: 0.3em;
+    top: 1rem;
     width: 0.625em;
 }
 
@@ -559,7 +583,7 @@ table.dataframe td {
 }
 
 .output.stream pre {
-  line-height: 0.9rem;
+  line-height: 1.2rem;
 }
 
 td.text-align:center {

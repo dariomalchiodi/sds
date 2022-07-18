@@ -587,6 +587,6 @@ sull'attributo "Intelligence" invece che su "Eye color".
 clf = tree.DecisionTreeClassifier(criterion='entropy')
 clf = clf.fit(X, Y)
 graphviz.Source(tree.export_graphviz(clf, out_file=None,
-                                    class_names=['bad guy', 'good guy'],
-                                    feature_names=features))
+                                     class_names=['bad guy', 'good guy'],
+                                     feature_names=features))
 ```
