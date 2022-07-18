@@ -21,9 +21,9 @@ equiprobabile di probabilità_, o più semplicemente di _spazio equiprobabile_.
 
 ````{prf:definition} Spazio equiprobabile di probabilità
 :label: def-spazio-equiprobabile
-Sia $(\Omega, \mathbb A, \mathbb P)$ uno spazio di probabilità. Se esiste una
+Sia $(\Omega, \mathsf A, \mathbb P)$ uno spazio di probabilità. Se esiste una
 costante $p \in [0, 1]$ tale che $\mathbb P({w}) = p$ per ogni $w \in \Omega$,
-si dice che $(\Omega, \mathbb A, \mathbb P)$ è uno _spazio equiprobabile di
+si dice che $(\Omega, \mathsf A, \mathbb P)$ è uno _spazio equiprobabile di
 probabilità_, o più semplicemente uno _spazio equiprobabile_.
 ````
 
@@ -68,7 +68,7 @@ evidenziato nel seguente teorema.
 
 ````{prf:theorem}
 Per ogni evento $E \subseteq \Omega$ nello spazio equiprobabile
-$(\Omega, \mathbb A, \mathbb P)$ si ha
+$(\Omega, \mathsf A, \mathbb P)$ si ha
 
 $$ \mathbb P(E) = \frac{|E|}{n}. $$ (eq-prob-classica)
 ````

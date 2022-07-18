@@ -327,8 +327,14 @@ aside.sidebar > :last-child {
   color: var(--pst-color-primary);
 }
 
-.table th p, .table td p, .table td .pre {
-  font-size: 1rem !important;
+.table th p, .table td p, .table td .pre, .table td .math {
+  font-size: 1.2rem !important;
+  text-align: left;
+}
+
+div.math, p~div.math {
+  margin-top: 0;
+  display: block;
 }
 
 a.footnote-reference {
@@ -432,6 +438,10 @@ table.dataframe td {
 
 .cell {
   font-size: 1.2rem;
+}
+
+.cell_output img {
+  width: 60% !important;
 }
 
 .amsmath,
@@ -543,6 +553,7 @@ table.dataframe td {
     margin-left: 0.3em;
     top: 1rem;
     width: 0.625em;
+    margin-bottom: 1rem;
 }
 
 .table caption {
