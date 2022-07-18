@@ -80,6 +80,8 @@ sphinx:
         matchFontHeight: true,
         scale: 380
       }
+    togglebutton_hint: "Mostra il codice"
+    togglebutton_hint_hide: "Nascondi il codice"
     html_theme_options:
       search_bar_text: "Cerca..."
   extra_extensions:
