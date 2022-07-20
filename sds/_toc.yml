@@ -7,7 +7,7 @@ parts:
   - file: p0-introduzione/presentazione
     sections:
     - file: p0-introduzione/un-esempio-introduttivo
-    - file: p0-introduzione/notazione
+    - file: p0-introduzione/organizzazione
 - caption: Programmazione per l'analisi dei dati
   numbered: true
   chapters:

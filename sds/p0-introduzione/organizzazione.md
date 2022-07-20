@@ -12,7 +12,16 @@ kernelspec:
   name: python3
 ---
 
-# Organizzazione del libro
+# Organizzazione dei contenuti
+
+## Approccio
+
+Mi è sempre risultato facile, anzi, naturale, apprendere nuovi concetti
+mettendoli in pratica in un contesto che potesse essere facilmente esplorato
+e controllato. Quando, anni fa, ho iniziato a insegnare, ho adottato in
+modo inconsapevole un metodo didattico che solo più tardi ho scoperto
+essere codificato nella cosiddetta teoria del _learning by doing_
+{cite}`freire1982`.
 
 ## Convenzioni
 
