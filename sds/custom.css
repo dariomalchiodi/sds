@@ -74,3 +74,7 @@ button.toggle-button.toggle-button-hidden:before {
 caption {
   display: grid;
 }
+
+#site-navigation{
+  height: 100%;
+}

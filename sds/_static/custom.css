@@ -102,6 +102,18 @@ p.subtitle {
   line-height: 1;
 }
 
+.marked::before {
+  vertical-align: sub;
+  /* margin-right: 0.1rem; */
+  content: '*';
+}
+
+.marked::after {
+  vertical-align: sub;
+  /* margin-left: 0.1rem; */
+  content: '*';
+}
+
 .numeral {
   font-family: var(--pst-font-text);
 }
@@ -373,6 +385,10 @@ p.rubric {
   color: var(--pst-color-secondary);
 }
 
+#site-navigation {
+  height: 100%;
+}
+
 ul,
 ul.simple {
   list-style-type: none;
@@ -440,9 +456,9 @@ table.dataframe td {
   font-size: 1.2rem;
 }
 
-.cell_output img {
+/* .cell_output img {
   width: 60% !important;
-}
+} */
 
 .amsmath,
 .math {
@@ -950,6 +966,7 @@ summary {
 
 .margin p {
   font-size: 1.2rem !important;
+  line-height: 1.2rem;
 }
 
 #site-title {

@@ -15,13 +15,24 @@ kernelspec:
 
 # Principio fondamentale del calcolo combinatorio
 
-Immaginate che nel guardaroba di un supereroe vi siano quattro mantelli,
-rispettivamente di colore rosa, verde, rosso e marrone, e tre costumi dei quali
-il primo è giallo, il secondo azzurro e il terzo nero. In quanti modi diversi
-si possono abbinare insieme un costume e un mantello? La
-{numref}`sh-combinations` illustra come rispondere a questa domanda: siccome
-a ognuna delle quattro possibili scelte per il mantello è possibile abbinare
-tre diversi costumi, il numero dei possibili abbinamenti è $4 \times 3 = 12$.
+Lo so che può sembrare impossibile, ma in alcuni casi Batman ha scelto
+di indossare dei costumi molto più sgargianti rispetto a quello grigio
+dei fumetti originali e a quello nero dei film più recenti. Per esempio,
+nel numero 241 di _Detective Comics_ l'uomo-pipistrello decide di combattere
+il crimine alternando tra le altre tenute arancioni, verdi e rosa al fine
+di attirare l'attenzione su se stesso piuttosto che su una ferita al braccio
+di Robin che avrebbe potuto destare sospetti essendo ovviamente uguale a
+quella che aveva riportato la sua identità segreta Dick Grayson {cite}`robb`.
+
+Modificando leggermente il contenuto di questo fumetto, immaginiamo che
+per differenziare ancora maggiormente la varietà dei propri costumi, Batman
+possa contare su di un guardaroba contenente quattro mantelli, rispettivamente
+di colore rosa, verde, rosso e marrone, e tre costumi dei quali il primo è
+giallo, il secondo azzurro e il terzo nero. In quanti modi diversi si possono
+abbinare insieme un costume e un mantello? La {numref}`sh-combinations`
+illustra come rispondere a questa domanda: siccome per ognuno dei quattro
+mantelli è possibile scegliere tre diversi costumi, il numero totale dei
+possibili abbinamenti è $4 \times 3 = 12$.
 
 ```{code-cell} ipython3
 :tags: [hide-cell, remove-output]
