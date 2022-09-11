@@ -146,7 +146,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p0-introduzione/organizzazione.html">
-     1.2. Organizzazione dei contenuti
+     1.2. Organizzazione
     </a>
    </li>
   </ul>
@@ -1011,13 +1011,23 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="principio-fondamentale-del-calcolo-combinatorio">
 <h1><span class="section-number">9.1. </span>Principio fondamentale del calcolo combinatorio<a class="headerlink" href="#principio-fondamentale-del-calcolo-combinatorio" title="Link a questa intestazione">#</a></h1>
-<p>Immaginate che nel guardaroba di un supereroe vi siano quattro mantelli,
-rispettivamente di colore rosa, verde, rosso e marrone, e tre costumi dei quali
-il primo è giallo, il secondo azzurro e il terzo nero. In quanti modi diversi
-si possono abbinare insieme un costume e un mantello? La
-<a class="reference internal" href="#sh-combinations"><span class="std std-numref">Fig. 9.1</span></a> illustra come rispondere a questa domanda: siccome
-a ognuna delle quattro possibili scelte per il mantello è possibile abbinare
-tre diversi costumi, il numero dei possibili abbinamenti è <span class="math notranslate nohighlight">\(4 \times 3 = 12\)</span>.</p>
+<p>Lo so che può sembrare impossibile, ma in alcuni casi Batman ha scelto
+di indossare dei costumi molto più sgargianti rispetto a quello grigio
+dei fumetti originali e a quello nero dei film più recenti. Per esempio,
+nel numero 241 di <em>Detective Comics</em> l'uomo-pipistrello decide di combattere
+il crimine alternando tra le altre tenute arancioni, verdi e rosa al fine
+di attirare l'attenzione su se stesso piuttosto che su una ferita al braccio
+di Robin che avrebbe potuto destare sospetti essendo ovviamente uguale a
+quella che aveva riportato la sua identità segreta Dick Grayson <span id="id1">[<a class="reference internal" href="../../bibliography.html#id14" title="Brian J. Robb. A Brief History of Superheroes. Robinson Publishing, 2014.">Robb, 2014</a>]</span>.</p>
+<p>Modificando leggermente il contenuto di questo fumetto, immaginiamo che
+per differenziare ancora maggiormente la varietà dei propri costumi, Batman
+possa contare su di un guardaroba contenente quattro mantelli, rispettivamente
+di colore rosa, verde, rosso e marrone, e tre costumi dei quali il primo è
+giallo, il secondo azzurro e il terzo nero. In quanti modi diversi si possono
+abbinare insieme un costume e un mantello? La <a class="reference internal" href="#sh-combinations"><span class="std std-numref">Fig. 9.1</span></a>
+illustra come rispondere a questa domanda: siccome per ognuno dei quattro
+mantelli è possibile scegliere tre diversi costumi, il numero totale dei
+possibili abbinamenti è <span class="math notranslate nohighlight">\(4 \times 3 = 12\)</span>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
