@@ -12,4 +12,4 @@ kernelspec:
   name: python3
 ---
 
-# Il modello uniforme continuo
+# Le distribuzioni continue

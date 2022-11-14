@@ -192,6 +192,13 @@ section > table {
   width: 100%;
 }
 
+section > p:first-of-type:first-letter {
+  float: left;
+  font-size: 5rem;
+  line-height: 3rem;
+  padding: 4px;
+}
+
 /* 50 + 5 == 55, to be the same width as paragraph */
 section > dl,
 section > ol,

@@ -108,6 +108,8 @@ parts:
     - file: p3-CP/c5-modelli-discreti/ipergeometrico
   - file: p3-CP/c6-modelli-continui/modelli-continui
     sections:
+    - file: p3-CP/c6-modelli-continui/distribuzione-uniforme-01
+    - file: p3-CP/c6-modelli-continui/distribuzioni-continue
     - file: p3-CP/c6-modelli-continui/uniforme
     - file: p3-CP/c6-modelli-continui/esponenziale
     - file: p3-CP/c6-modelli-continui/gaussiano
