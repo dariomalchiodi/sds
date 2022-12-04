@@ -609,7 +609,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/bernoulli.html">
-     13.1. Il modello di Bernoulli
+     13.1. Il modello bernoulliano
     </a>
    </li>
    <li class="toctree-l2">
@@ -640,8 +640,8 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p3-CP/c6-modelli-continui/modelli-continui.html">
-   14. I modelli continui
+  <a class="reference internal" href="../../p3-CP/c6-modelli-continui/va-e-modelli-continui.html">
+   14. Variabili aleatorie e modelli continui
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
   <label for="toctree-checkbox-14">
@@ -650,23 +650,33 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/dal-discreto-al-continuo.html">
+     14.1. Dal discreto al continuo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/va-continue.html">
+     14.2. Variabili aleatorie continue
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/uniforme.html">
-     14.1. Il modello uniforme continuo
+     14.3. Il modello uniforme continuo
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/esponenziale.html">
-     14.2. Il modello esponenziale
+     14.4. Il modello esponenziale
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/gaussiano.html">
-     14.3. Il modello gaussiano
+     14.5. Il modello gaussiano
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/altri-modelli.html">
-     14.4. Altri modelli continui
+     14.6. Altri modelli continui
     </a>
    </li>
   </ul>
@@ -1016,7 +1026,7 @@ procedere dobbiamo ricaricare le librerie usate finora, nonché il file
 visualizzare i grafici direttamente nel notebook.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas as pd
 </pre></div>
 </div>
 </div>
@@ -1031,12 +1041,12 @@ Per verificare quale sia la versione installata è sufficiente accedere alla
 proprietà <code class="docutils literal notranslate"><span class="pre">pd.__version__</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">__version__</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pd.__version__
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1.4.4&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1.5.2&#39;
 </pre></div>
 </div>
 </div>

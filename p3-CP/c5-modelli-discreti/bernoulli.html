@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>13.1. Il modello di Bernoulli &#8212; Superhero Data Science 
+    <title>13.1. Il modello bernoulliano &#8212; Superhero Data Science 
  Probabilità e Statistica</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -56,6 +56,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
     <link rel="search" title="Cerca" href="../../search.html" />
@@ -609,7 +611,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     13.1. Il modello di Bernoulli
+     13.1. Il modello bernoulliano
     </a>
    </li>
    <li class="toctree-l2">
@@ -640,8 +642,8 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../c6-modelli-continui/modelli-continui.html">
-   14. I modelli continui
+  <a class="reference internal" href="../c6-modelli-continui/va-e-modelli-continui.html">
+   14. Variabili aleatorie e modelli continui
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
   <label for="toctree-checkbox-14">
@@ -650,23 +652,33 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../c6-modelli-continui/dal-discreto-al-continuo.html">
+     14.1. Dal discreto al continuo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c6-modelli-continui/va-continue.html">
+     14.2. Variabili aleatorie continue
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../c6-modelli-continui/uniforme.html">
-     14.1. Il modello uniforme continuo
+     14.3. Il modello uniforme continuo
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c6-modelli-continui/esponenziale.html">
-     14.2. Il modello esponenziale
+     14.4. Il modello esponenziale
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c6-modelli-continui/gaussiano.html">
-     14.3. Il modello gaussiano
+     14.5. Il modello gaussiano
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c6-modelli-continui/altri-modelli.html">
-     14.4. Altri modelli continui
+     14.6. Altri modelli continui
     </a>
    </li>
   </ul>
@@ -995,7 +1007,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Il modello di Bernoulli</h1>
+                <h1>Il modello bernoulliano</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -1007,8 +1019,13 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="il-modello-di-bernoulli">
-<h1><span class="section-number">13.1. </span>Il modello di Bernoulli<a class="headerlink" href="#il-modello-di-bernoulli" title="Link a questa intestazione">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="il-modello-bernoulliano">
+<span id="sec-modello-bernoulliano"></span><h1><span class="section-number">13.1. </span>Il modello bernoulliano<a class="headerlink" href="#il-modello-bernoulliano" title="Link a questa intestazione">#</a></h1>
+<p>Tenuto conto del fatto che un esperimento bernoulliano di
+parametro <span class="math notranslate nohighlight">\(p\)</span> si può simulare estraendo un numero pseudocasuale uniformemente
+distribuito in <span class="math notranslate nohighlight">\([0, 1]\)</span> (compito effettuato per esempio dalla funzione <code class="docutils literal notranslate"><span class="pre">random</span></code>
+nel modulo omonimo) e decretando un successo se il risultato è inferiore a
+<span class="math notranslate nohighlight">\(p\)</span> e un fallimento altrimenti</p>
 </section>
 
     <script type="text/x-thebe-config">

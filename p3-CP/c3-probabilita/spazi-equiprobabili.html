@@ -611,7 +611,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../c5-modelli-discreti/bernoulli.html">
-     13.1. Il modello di Bernoulli
+     13.1. Il modello bernoulliano
     </a>
    </li>
    <li class="toctree-l2">
@@ -642,8 +642,8 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../c6-modelli-continui/modelli-continui.html">
-   14. I modelli continui
+  <a class="reference internal" href="../c6-modelli-continui/va-e-modelli-continui.html">
+   14. Variabili aleatorie e modelli continui
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
   <label for="toctree-checkbox-14">
@@ -652,23 +652,33 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../c6-modelli-continui/dal-discreto-al-continuo.html">
+     14.1. Dal discreto al continuo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c6-modelli-continui/va-continue.html">
+     14.2. Variabili aleatorie continue
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../c6-modelli-continui/uniforme.html">
-     14.1. Il modello uniforme continuo
+     14.3. Il modello uniforme continuo
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c6-modelli-continui/esponenziale.html">
-     14.2. Il modello esponenziale
+     14.4. Il modello esponenziale
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c6-modelli-continui/gaussiano.html">
-     14.3. Il modello gaussiano
+     14.5. Il modello gaussiano
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c6-modelli-continui/altri-modelli.html">
-     14.4. Altri modelli continui
+     14.6. Altri modelli continui
     </a>
    </li>
   </ul>
@@ -1150,13 +1160,13 @@ il <em>dataset</em> viene caricato.</p>
 </aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas as pd
 
-<span class="n">heroes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/heroes.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">years</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">]</span>
-<span class="n">min_year</span><span class="p">,</span> <span class="n">max_year</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">years</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">years</span><span class="p">)</span>
-<span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">max_year</span> <span class="o">-</span> <span class="n">min_year</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+heroes = pd.read_csv(&#39;data/heroes.csv&#39;, sep=&#39;;&#39;, index_col=0)
+years = heroes[&#39;First appearance&#39;]
+min_year, max_year = min(years), max(years)
+a = int(max_year - min_year) + 1
+print(a)
 </pre></div>
 </div>
 </div>
@@ -1178,20 +1188,20 @@ prima apparizione, come indicato nella cella seguente, e graficare il valore
 ottenuto al variare di <span class="math notranslate nohighlight">\(n\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import math
+import numpy as np
+import matplotlib.pyplot as plt
 
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;sds.mplstyle&#39;</span><span class="p">)</span>
+plt.style.use(&#39;sds.mplstyle&#39;)
 
-<span class="k">def</span> <span class="nf">prob_no_common_year</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">a</span><span class="o">**</span><span class="n">n</span><span class="p">)</span>
+def prob_no_common_year(n, a):
+    return math.factorial(a) / (math.factorial(a-n) * a**n)
 
-<span class="n">x</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">a</span><span class="o">//</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">p1</span> <span class="o">=</span> <span class="p">[</span><span class="n">prob_no_common_year</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+x = range(1, a//3)
+p1 = [prob_no_common_year(n, a) for n in x]
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">p1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+plt.plot(list(x), p1)
+plt.show()
 </pre></div>
 </div>
 </div>

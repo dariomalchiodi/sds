@@ -609,7 +609,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/bernoulli.html">
-     13.1. Il modello di Bernoulli
+     13.1. Il modello bernoulliano
     </a>
    </li>
    <li class="toctree-l2">
@@ -640,8 +640,8 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p3-CP/c6-modelli-continui/modelli-continui.html">
-   14. I modelli continui
+  <a class="reference internal" href="../../p3-CP/c6-modelli-continui/va-e-modelli-continui.html">
+   14. Variabili aleatorie e modelli continui
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
   <label for="toctree-checkbox-14">
@@ -650,23 +650,33 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/dal-discreto-al-continuo.html">
+     14.1. Dal discreto al continuo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/va-continue.html">
+     14.2. Variabili aleatorie continue
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/uniforme.html">
-     14.1. Il modello uniforme continuo
+     14.3. Il modello uniforme continuo
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/esponenziale.html">
-     14.2. Il modello esponenziale
+     14.4. Il modello esponenziale
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/gaussiano.html">
-     14.3. Il modello gaussiano
+     14.5. Il modello gaussiano
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/altri-modelli.html">
-     14.4. Altri modelli continui
+     14.6. Altri modelli continui
     </a>
    </li>
   </ul>
@@ -1032,26 +1042,26 @@ andranno ad alterare anche l'array di partenza.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
 
-<span class="k">def</span> <span class="nf">get_sorted_counts</span><span class="p">(</span><span class="n">sequence</span><span class="p">):</span>
-    <span class="n">counts</span> <span class="o">=</span> <span class="p">{}</span>
+def get_sorted_counts(sequence):
+    counts = {}
 
-    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">counts</span><span class="p">:</span>
-            <span class="n">counts</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">counts</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    for x in sequence:
+        if x in counts:
+            counts[x] += 1
+        else:
+            counts[x] = 1
 
-    <span class="n">pairs</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">pairs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    pairs = counts.items()
+    return sorted(pairs, key=lambda p:p[1], reverse=True)
 
-<span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1941</span><span class="p">,</span> <span class="mi">1962</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1941</span><span class="p">,</span>
-         <span class="mi">1964</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1940</span><span class="p">,</span> <span class="mi">1941</span><span class="p">,</span> <span class="mi">1961</span><span class="p">,</span>
-         <span class="kc">None</span><span class="p">,</span> <span class="mi">1963</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1963</span><span class="p">,</span> <span class="mi">1981</span><span class="p">,</span>
-         <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1962</span><span class="p">,</span> <span class="mi">1979</span><span class="p">]</span>
+years = [1941, 1962, None, None, 1941,
+         1964, None, 1940, 1941, 1961,
+         None, 1963, None, 1963, 1981,
+         None, None, 1962, 1979]
 
-<span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">get_sorted_counts</span><span class="p">(</span><span class="n">years</span><span class="p">))</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+np.array(get_sorted_counts(years)).transpose()
 </pre></div>
 </div>
 </div>
@@ -1064,7 +1074,7 @@ andranno ad alterare anche l'array di partenza.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">get_sorted_counts</span><span class="p">(</span><span class="n">years</span><span class="p">)[</span><span class="mi">1</span><span class="p">:])</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>np.array(get_sorted_counts(years)[1:]).transpose()
 </pre></div>
 </div>
 </div>
@@ -1082,14 +1092,14 @@ Usando una caratteristica di python è possibile assegnare le due liste ottenute
 direttamente a due variabili <code class="docutils literal notranslate"><span class="pre">x</span></code> e <code class="docutils literal notranslate"><span class="pre">y</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="mi">42</span><span class="p">,</span> <span class="mi">102</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>a, b = (42, 102)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">get_sorted_counts</span><span class="p">(</span><span class="n">years</span><span class="p">)[</span><span class="mi">1</span><span class="p">:])</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x, y = np.array(get_sorted_counts(years)[1:]).transpose()
 </pre></div>
 </div>
 </div>
@@ -1105,11 +1115,11 @@ metodo <code class="docutils literal notranslate"><span class="pre">plt.bar</spa
 assolute degli anni di prima apparizione:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;sds.mplstyle&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
+plt.style.use(&#39;sds.mplstyle&#39;)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+plt.bar(x, y)
+plt.show()
 </pre></div>
 </div>
 </div>

@@ -12,4 +12,12 @@ kernelspec:
   name: python3
 ---
 
-# Il modello di Bernoulli
+(sec:modello-bernoulliano)=
+# Il modello bernoulliano
+
+ Tenuto conto del fatto che un esperimento bernoulliano di
+parametro $p$ si può simulare estraendo un numero pseudocasuale uniformemente
+distribuito in $[0, 1]$ (compito effettuato per esempio dalla funzione `random`
+nel modulo omonimo) e decretando un successo se il risultato è inferiore a
+$p$ e un fallimento altrimenti
+

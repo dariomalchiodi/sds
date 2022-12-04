@@ -611,7 +611,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/bernoulli.html">
-     13.1. Il modello di Bernoulli
+     13.1. Il modello bernoulliano
     </a>
    </li>
    <li class="toctree-l2">
@@ -642,8 +642,8 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p3-CP/c6-modelli-continui/modelli-continui.html">
-   14. I modelli continui
+  <a class="reference internal" href="../../p3-CP/c6-modelli-continui/va-e-modelli-continui.html">
+   14. Variabili aleatorie e modelli continui
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
   <label for="toctree-checkbox-14">
@@ -652,23 +652,33 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/dal-discreto-al-continuo.html">
+     14.1. Dal discreto al continuo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/va-continue.html">
+     14.2. Variabili aleatorie continue
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/uniforme.html">
-     14.1. Il modello uniforme continuo
+     14.3. Il modello uniforme continuo
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/esponenziale.html">
-     14.2. Il modello esponenziale
+     14.4. Il modello esponenziale
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/gaussiano.html">
-     14.3. Il modello gaussiano
+     14.5. Il modello gaussiano
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/altri-modelli.html">
-     14.4. Altri modelli continui
+     14.6. Altri modelli continui
     </a>
    </li>
   </ul>
@@ -1156,17 +1166,17 @@ siamo, escludiamo l'unico record che fa riferimento al 2099 come anno di prima
 apparizione.</p>
 <div class="cell tag_full_width docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">scipy.constants</span> <span class="kn">import</span> <span class="n">golden</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy.constants import golden
 
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;sds.mplstyle&#39;</span><span class="p">)</span>
+plt.style.use(&#39;sds.mplstyle&#39;)
 
-<span class="n">heroes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/heroes.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">heroes_with_year</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">2020</span><span class="p">]</span>
+heroes = pd.read_csv(&#39;data/heroes.csv&#39;, sep=&#39;;&#39;, index_col=0)
+heroes_with_year = heroes[heroes[&#39;First appearance&#39;] &lt; 2020]
 
-<span class="n">heroes_with_year</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+heroes_with_year.head()
 </pre></div>
 </div>
 </div>
@@ -1375,7 +1385,7 @@ e calcoliamone le frequenze assolute usando il già introdotto metodo
 <code class="docutils literal notranslate"><span class="pre">value_counts</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>heroes_with_year[&#39;Publisher&#39;].value_counts()
 </pre></div>
 </div>
 </div>
@@ -1406,10 +1416,10 @@ delle frequenze assolute, anche se è possibile utilizzare la funzione
 funzione restituisce un <em>dataframe</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">publisher_freq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">],</span>
-                             <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Abs. freqence&#39;</span><span class="p">],</span>
-                             <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">])</span>
-<span class="n">publisher_freq</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>publisher_freq = pd.crosstab(index=heroes_with_year[&#39;Publisher&#39;],
+                             columns=[&#39;Abs. freqence&#39;],
+                             colnames=[&#39;&#39;])
+publisher_freq
 </pre></div>
 </div>
 </div>
@@ -1508,12 +1518,12 @@ calcolano dividendo quelle assolute per il numero totale di casi; quest'ultimo
 tabella delle frequenze relative si può ottenere nel modo seguente:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">publisher_abs_freq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">],</span>
-                                 <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Rel. freqence&#39;</span><span class="p">],</span>
-                                 <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">])</span>
-<span class="n">publisher_rel_freq</span> <span class="o">=</span> <span class="n">publisher_abs_freq</span> <span class="o">/</span> <span class="n">publisher_abs_freq</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>publisher_abs_freq = pd.crosstab(index=heroes_with_year[&#39;Publisher&#39;],
+                                 columns=[&#39;Rel. freqence&#39;],
+                                 colnames=[&#39;&#39;])
+publisher_rel_freq = publisher_abs_freq / publisher_abs_freq.sum()
 
-<span class="n">publisher_rel_freq</span>
+publisher_rel_freq
 </pre></div>
 </div>
 </div>
@@ -1592,11 +1602,11 @@ tabella delle frequenze relative si può ottenere nel modo seguente:</p>
 specificando il valore <code class="docutils literal notranslate"><span class="pre">True</span></code> per l'argomento <code class="docutils literal notranslate"><span class="pre">normalize</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">publisher_rel_freq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">],</span>
-                                 <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Rel. freqence&#39;</span><span class="p">],</span>
-                                 <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">],</span>
-                                 <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">publisher_rel_freq</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>publisher_rel_freq = pd.crosstab(index=heroes_with_year[&#39;Publisher&#39;],
+                                 columns=[&#39;Rel. freqence&#39;],
+                                 colnames=[&#39;&#39;],
+                                 normalize=True)
+publisher_rel_freq
 </pre></div>
 </div>
 </div>
@@ -1677,7 +1687,7 @@ arrotonda un valore floating point mantenendo un numero prefissato di cifre
 decimali:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">publisher_rel_freq</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>publisher_rel_freq.apply(lambda p: 100 * np.round(p, 3))
 </pre></div>
 </div>
 </div>
@@ -1760,9 +1770,9 @@ una serie di stringhe, così da poter effettuare un'ultima trasformazione che
 visualizza le percentuali utilizzando il simbolo <code class="docutils literal notranslate"><span class="pre">%</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">publisher_rel_freq</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">p</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-                   <span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
-                   <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span> <span class="o">+</span> <span class="s1">&#39;%&#39;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>(publisher_rel_freq.apply(lambda p: np.round(100*p, 2))
+                   .astype(str)
+                   .apply(lambda s: s + &#39;%&#39;))
 </pre></div>
 </div>
 </div>
@@ -1843,10 +1853,10 @@ decrescente) dei suoi elementi: nel caso di stringhe, quindi, le righe saranno
 ordinate alfabeticamente per i valori della prima colonna.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gender_freq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">],</span>
-                          <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Abs. frequence&#39;</span><span class="p">],</span>
-                          <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">])</span>
-<span class="n">gender_freq</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>gender_freq = pd.crosstab(index=heroes_with_year[&#39;Gender&#39;],
+                          columns=[&#39;Abs. frequence&#39;],
+                          colnames=[&#39;&#39;])
+gender_freq
 </pre></div>
 </div>
 </div>
@@ -1894,7 +1904,7 @@ corrispondente alla tabella tramite <code class="docutils literal notranslate"><
 una lista dei valori nell'ordine desiderato:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gender_freq</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>gender_freq.loc[[&#39;M&#39;, &#39;F&#39;]]
 </pre></div>
 </div>
 </div>
@@ -1942,8 +1952,8 @@ possibile visualizzarne graficamente i contenuti. In particolare, per i dati di
 tipo qualitativo è tipicamente sensato utilizzare i grafici a barre:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>heroes_with_year[&#39;Publisher&#39;].value_counts().plot.bar()
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -1955,8 +1965,8 @@ tipo qualitativo è tipicamente sensato utilizzare i grafici a barre:</p>
 <em>dataframe</em> corrispondente alla tabella delle frequenze:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">publisher_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>publisher_freq.plot.bar()
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -1976,8 +1986,8 @@ il nome del carattere considerato.</p></li>
 il valore <code class="docutils literal notranslate"><span class="pre">False</span></code> per l'argomento <code class="docutils literal notranslate"><span class="pre">legend</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">publisher_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>publisher_freq.plot.bar(legend=False)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -1990,13 +2000,13 @@ il <em>dataframe</em> nello stesso già visto per le tabelle delle frequenze, pr
 invocare <code class="docutils literal notranslate"><span class="pre">plt.plot</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">publisher_order</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Hanna-Barbera&#39;</span><span class="p">,</span> <span class="s1">&#39;ABC Studios&#39;</span><span class="p">,</span> <span class="s1">&#39;Dark Horse Comics&#39;</span><span class="p">,</span>
-                   <span class="s1">&#39;Image Comics&#39;</span><span class="p">,</span> <span class="s1">&#39;Marvel Comics&#39;</span><span class="p">,</span> <span class="s1">&#39;DC Comics&#39;</span><span class="p">,</span>
-                   <span class="s1">&#39;George Lucas&#39;</span><span class="p">,</span> <span class="s1">&#39;Rebellion&#39;</span><span class="p">,</span>
-                   <span class="s1">&#39;Star Trek&#39;</span><span class="p">,</span> <span class="s1">&#39;Universal Studios&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>publisher_order = [&#39;Hanna-Barbera&#39;, &#39;ABC Studios&#39;, &#39;Dark Horse Comics&#39;,
+                   &#39;Image Comics&#39;, &#39;Marvel Comics&#39;, &#39;DC Comics&#39;,
+                   &#39;George Lucas&#39;, &#39;Rebellion&#39;,
+                   &#39;Star Trek&#39;, &#39;Universal Studios&#39;]
 
-<span class="n">publisher_rel_freq</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">publisher_order</span><span class="p">,:]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+publisher_rel_freq.loc[publisher_order,:].plot.bar(legend=False)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -2015,17 +2025,17 @@ frequenze della forza dei supereroi con quelle delle supereroine, ci troveremmo
 con due diversi numeri di osservazioni:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">male_strength_freq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;M&#39;</span><span class="p">,</span>
-                                                  <span class="s1">&#39;Strength&#39;</span><span class="p">],</span>
-                                 <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Abs. freq.&#39;</span><span class="p">)</span>
-<span class="n">female_strength_freq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;F&#39;</span><span class="p">,</span>
-                                                    <span class="s1">&#39;Strength&#39;</span><span class="p">],</span>
-                                   <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Abs. freq.&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>male_strength_freq = pd.crosstab(index=heroes.loc[heroes[&#39;Gender&#39;]==&#39;M&#39;,
+                                                  &#39;Strength&#39;],
+                                 columns=&#39;Abs. freq.&#39;)
+female_strength_freq = pd.crosstab(index=heroes.loc[heroes[&#39;Gender&#39;]==&#39;F&#39;,
+                                                    &#39;Strength&#39;],
+                                   columns=&#39;Abs. freq.&#39;)
 
-<span class="n">num_male</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">male_strength_freq</span><span class="p">[</span><span class="s1">&#39;Abs. freq.&#39;</span><span class="p">])</span>
-<span class="n">num_female</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">female_strength_freq</span><span class="p">[</span><span class="s1">&#39;Abs. freq.&#39;</span><span class="p">])</span>
+num_male = sum(male_strength_freq[&#39;Abs. freq.&#39;])
+num_female = sum(female_strength_freq[&#39;Abs. freq.&#39;])
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ci sono </span><span class="si">{}</span><span class="s1"> supereroi e </span><span class="si">{}</span><span class="s1"> supereroine&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">num_male</span><span class="p">,</span> <span class="n">num_female</span><span class="p">))</span>
+print(&#39;Ci sono {} supereroi e {} supereroine&#39;.format(num_male, num_female))
 </pre></div>
 </div>
 </div>
@@ -2043,20 +2053,20 @@ settori che corrispondono a maschi e femmine (è un po' sessista, ma aiuta a
 leggere il grafico a colpo d'occhio).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">male_strength_freq</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;M&#39;</span><span class="p">,</span>
-                                                   <span class="s1">&#39;Strength&#39;</span><span class="p">],</span>
-                                 <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Abs. freq.&#39;</span><span class="p">,</span>
-                                 <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-                        <span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">&#39;Abs. freq.&#39;</span><span class="p">])</span>
-<span class="n">female_strength_freq</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;F&#39;</span><span class="p">,</span>
-                                                     <span class="s1">&#39;Strength&#39;</span><span class="p">],</span>
-                                   <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Abs. freq.&#39;</span><span class="p">,</span>
-                                   <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-                          <span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">&#39;Abs. freq.&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>male_strength_freq = (pd.crosstab(index=heroes.loc[heroes[&#39;Gender&#39;]==&#39;M&#39;,
+                                                   &#39;Strength&#39;],
+                                 columns=&#39;Abs. freq.&#39;,
+                                 normalize=True)
+                        .loc[:, &#39;Abs. freq.&#39;])
+female_strength_freq = (pd.crosstab(index=heroes.loc[heroes[&#39;Gender&#39;]==&#39;F&#39;,
+                                                     &#39;Strength&#39;],
+                                   columns=&#39;Abs. freq.&#39;,
+                                   normalize=True)
+                          .loc[:, &#39;Abs. freq.&#39;])
 
-<span class="n">male_strength_freq</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">female_strength_freq</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+male_strength_freq.plot(marker=&#39;o&#39;, color=&#39;blue&#39;, legend=False)
+female_strength_freq.plot(marker=&#39;o&#39;, color=&#39;pink&#39;, legend=False)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -2078,9 +2088,9 @@ generi. Tali barre si sovrapporrebbero, con l'effetto di nascondere
 (parzialmente o totalmente) quella più bassa.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">male_strength_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">female_strength_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>male_strength_freq.plot.bar(color=&#39;blue&#39;, legend=False)
+female_strength_freq.plot.bar(color=&#39;pink&#39;, legend=False)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -2093,9 +2103,9 @@ generano i grafici: ciò permette di disegnare delle barre semi-trasparenti che
 evidenziano le loro sovrapposizioni.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">male_strength_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.7</span><span class="p">)</span>
-<span class="n">female_strength_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.7</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>male_strength_freq.plot.bar(color=&#39;blue&#39;, alpha=.7)
+female_strength_freq.plot.bar(color=&#39;pink&#39;, alpha=.7)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -2113,8 +2123,8 @@ relative). Per esempio, la cella seguente calcola il diagramma a torta delle
 frequenze relative al genere dei supereroi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gender_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Abs. frequence&#39;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>gender_freq.plot.pie(y=&#39;Abs. frequence&#39;, colors=[&#39;pink&#39;, &#39;blue&#39;])
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -2164,9 +2174,9 @@ rispettando la relazione di ordine esistente tra i dati, utilizzando
 direttamente matplotlib come abbiamo visto nella lezione precedente.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_app_freq</span> <span class="o">=</span> <span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">first_app_freq</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">first_app_freq</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>first_app_freq = heroes_with_year[&#39;First appearance&#39;].value_counts()
+plt.bar(first_app_freq.index, first_app_freq.values)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -2185,8 +2195,8 @@ l'asse delle ascisse (cosa che, peraltro, permette di non scambiare per nulle
 le frequenze relativamente basse):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">first_app_freq</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">first_app_freq</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.vlines(first_app_freq.index, 0, first_app_freq.values)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -2199,9 +2209,9 @@ identifica un valore e la sua frequenza: basta generare il grafico precedente e
 sovrapporgli i singoli punti.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">first_app_freq</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">first_app_freq</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">first_app_freq</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">first_app_freq</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.vlines(first_app_freq.index, 0, first_app_freq.values)
+plt.plot(first_app_freq.index, first_app_freq.values, &#39;o&#39;)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -2212,11 +2222,11 @@ sovrapporgli i singoli punti.</p>
 <p>Infine, consideriamo il diagramma a bastoncini relativo al peso dei supereroi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weight_freq</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>weight_freq = heroes[&#39;Weight&#39;].value_counts()
 
-<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">weight_freq</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">weight_freq</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">weight_freq</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">weight_freq</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+plt.vlines(weight_freq.index, 0, weight_freq.values)
+plt.plot(weight_freq.index, weight_freq.values, &#39;o&#39;)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -2235,8 +2245,8 @@ viene calcolato e visualizzato in pandas invocando il metodo <code class="docuti
 corrispondente:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>heroes[&#39;Weight&#39;].hist()
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -2250,8 +2260,8 @@ contiene tutti i dati osservati in sotto-intervalli equiampi, il cui numero è
 individuato dall'argomento <code class="docutils literal notranslate"><span class="pre">bins</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>heroes[&#39;Weight&#39;].hist(bins=50)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -2266,10 +2276,10 @@ ampiezze pari a 20 per i pesi inferiori a 200 kg., pari a 50 per pesi compresi
 tra 200 e 500 kg., e pari a 100 per i valori rimanenti.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
-                                      <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
-                                      <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">100</span><span class="p">))))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>heroes[&#39;Weight&#39;].hist(bins=np.hstack((np.arange(0, 200, 20),
+                                      np.arange(200, 500, 50),
+                                      np.arange(500, 1000, 100))))
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -2310,7 +2320,7 @@ orrisponde al carattere <code class="docutils literal notranslate"><span class="
 massimo valore:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>(heroes_with_year[&#39;First appearance&#39;].min(), heroes_with_year[&#39;First appearance&#39;].max())
 </pre></div>
 </div>
 </div>
@@ -2339,11 +2349,11 @@ tabella delle frequenze, che risulta già ordinato nel modo corretto, e su
 questo invocare <code class="docutils literal notranslate"><span class="pre">cumsum</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_app_freq_cumulate</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">],</span>
-                                       <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Cumulate freq.&#39;</span><span class="p">],</span>
-                                       <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">])</span>
-                             <span class="o">.</span><span class="n">cumsum</span><span class="p">())</span>
-<span class="n">first_app_freq_cumulate</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span> <span class="c1"># per brevità visualizziamo solo i primi dieci elementi</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>first_app_freq_cumulate = (pd.crosstab(index=heroes_with_year[&#39;First appearance&#39;],
+                                       columns=[&#39;Cumulate freq.&#39;],
+                                       colnames=[&#39;&#39;])
+                             .cumsum())
+first_app_freq_cumulate.iloc[:10] # per brevità visualizziamo solo i primi dieci elementi
 </pre></div>
 </div>
 </div>
@@ -2423,8 +2433,8 @@ sono monotone crescenti e variano da 0 al numero totale di casi nel dataset
 considerato:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_app_freq_cumulate</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>first_app_freq_cumulate.plot(marker=&#39;o&#39;, legend=False)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -2437,7 +2447,7 @@ casi nel dataset in cui l'anno di prima apparizione è minore o uguale al 1970,
 e dunque tale frequenza rappresenta la risposta alla terza domanda:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_app_freq_cumulate</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mf">1970.0</span><span class="p">,</span> <span class="s1">&#39;Cumulate freq.&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>first_app_freq_cumulate.at[1970.0, &#39;Cumulate freq.&#39;]
 </pre></div>
 </div>
 </div>
@@ -2453,7 +2463,7 @@ apparizione è minore o uguale a 1980, e sottraendo tale valore al numero totale
 di casi si ottiene la risposta:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_app_freq_cumulate</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">first_app_freq_cumulate</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mf">1980.0</span><span class="p">,</span> <span class="s1">&#39;Cumulate freq.&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>first_app_freq_cumulate.iat[-1, 0] - first_app_freq_cumulate.at[1980.0, &#39;Cumulate freq.&#39;]
 </pre></div>
 </div>
 </div>
@@ -2471,12 +2481,12 @@ frequenze relative cumulate per l'anno di prima apparizione di cui, sempre per
 brevità, vengono mostrate le ultime dieci righe.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_app_relfreq_cumulate</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">],</span>
-                              <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Cumulate freq.&#39;</span><span class="p">],</span>
-                              <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">],</span>
-                              <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">cumsum</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>first_app_relfreq_cumulate = (pd.crosstab(index=heroes_with_year[&#39;First appearance&#39;],
+                              columns=[&#39;Cumulate freq.&#39;],
+                              colnames=[&#39;&#39;],
+                              normalize=True).cumsum())
 
-<span class="n">first_app_relfreq_cumulate</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span>
+first_app_relfreq_cumulate.iloc[-10:]
 </pre></div>
 </div>
 </div>
@@ -2556,8 +2566,8 @@ a quella precedente: l'unica differenza consiste nei valori sull'asse delle
 ordinate, che risulteranno ovviamente scalati sull'intervallo <span class="math notranslate nohighlight">\([0, 1]\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_app_relfreq_cumulate</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>first_app_relfreq_cumulate.plot(legend=False)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -2572,8 +2582,8 @@ successivo. Possiamo evidenziare questa proprietà effettuando uno <em>zoom</em>
 esempio tra il 1980 e il 1990:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_app_relfreq_cumulate</span><span class="p">[</span><span class="mi">1980</span><span class="p">:</span><span class="mi">1990</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>first_app_relfreq_cumulate[1980:1990].plot(legend=False)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -2588,8 +2598,8 @@ dato un insieme di osservazioni <span class="math notranslate nohighlight">\(\{ 
 funzione <span class="math notranslate nohighlight">\(\hat F: \mathbb R \mapsto [0, 1]\)</span> tale che per ogni <span class="math notranslate nohighlight">\(x \in \mathbb R\)</span>
 assume un valore pari alla frequenza relativa delle osservazioni che risultano
 essere minori o uguali a <span class="math notranslate nohighlight">\(x\)</span>. Pertanto</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3acefa80-2f7e-4d13-b57b-3163553bf7ed">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-3acefa80-2f7e-4d13-b57b-3163553bf7ed" title="Permalink a questa equazione">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a2f0e0cd-1ea8-4e1d-beda-4950d3d5f94b">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-a2f0e0cd-1ea8-4e1d-beda-4950d3d5f94b" title="Permalink a questa equazione">#</a></span>\[\begin{equation}
 \hat F(x) = \frac{\# \{ x_i \leq x \}}{n}
 = \frac{1}{n} \sum_{i=1}^n \mathrm I_{(-\infty, x]}(x_i) ,
 \end{equation}\]</div>
@@ -2610,13 +2620,13 @@ da poter effettuare un confronto con l'analogo grafico precedentemente
 generato:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import statsmodels.api as sm
 
-<span class="n">ecdf</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">ECDF</span><span class="p">(</span><span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">])</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1980</span><span class="p">,</span> <span class="mi">1991</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">ecdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+ecdf = sm.distributions.ECDF(heroes_with_year[&#39;First appearance&#39;])
+x = np.arange(1980, 1991)
+y = ecdf(x)
+plt.step(x, y)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -2640,12 +2650,12 @@ visualizzare nuovamente la funzione di ripartizione empirica tenendo però
 conto di tutte le osservazioni per gli anni di prima apparizione.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">min_year</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">])</span>
-<span class="n">max_year</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">])</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">min_year</span><span class="p">,</span> <span class="n">max_year</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">ecdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>min_year = min(heroes_with_year[&#39;First appearance&#39;])
+max_year = max(heroes_with_year[&#39;First appearance&#39;])
+x = np.arange(min_year, max_year+1)
+y = ecdf(x)
+plt.step(x, y)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -2667,12 +2677,12 @@ comodità come i colori che occorrono con frequenza relativa superiore a
 0.02).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eye_color</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">]</span>
-<span class="n">eye_color_freq</span> <span class="o">=</span> <span class="n">eye_color</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>eye_color = heroes[&#39;Eye color&#39;]
+eye_color_freq = eye_color.value_counts(normalize=True)
 
-<span class="n">eye_color_freq</span><span class="p">[</span><span class="n">eye_color_freq</span><span class="o">&gt;</span><span class="mf">.02</span><span class="p">]</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="n">eye_color_freq</span><span class="p">[</span><span class="n">eye_color_freq</span><span class="o">&gt;</span><span class="mf">.02</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+eye_color_freq[eye_color_freq&gt;.02].cumsum().plot()
+eye_color_freq[eye_color_freq&gt;.02].plot.bar()
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -2688,7 +2698,7 @@ all'ordinata 1, avendo considerato solo un sottoinsieme dei dati: possiamo
 verificarlo, oltre che visualmente, sommando le frequenze relative:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">eye_color_freq</span><span class="p">[</span><span class="n">eye_color_freq</span><span class="o">&gt;</span><span class="mf">.02</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sum(eye_color_freq[eye_color_freq&gt;.02])
 </pre></div>
 </div>
 </div>
@@ -2705,10 +2715,10 @@ questo tipo). Il diagramma di Pareto per i valori ottenuti considerando questa
 correzione si estende ora fino all'ordinata unitaria.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">norm_eye_color_freq</span> <span class="o">=</span> <span class="n">eye_color_freq</span><span class="p">[</span><span class="n">eye_color_freq</span><span class="o">&gt;</span><span class="mf">.02</span><span class="p">]</span><span class="o">/</span><span class="mf">0.92</span>
-<span class="n">norm_eye_color_freq</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="n">norm_eye_color_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>norm_eye_color_freq = eye_color_freq[eye_color_freq&gt;.02]/0.92
+norm_eye_color_freq.cumsum().plot()
+norm_eye_color_freq.plot.bar()
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -2728,15 +2738,15 @@ impostare la soglia sulle frequenze e rigeneriamo il grafico, stavolta
 considerando tutti i dati.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_pareto</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">renormalize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="n">freq</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">freq</span> <span class="o">=</span> <span class="n">freq</span><span class="p">[</span><span class="n">freq</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">renormalize</span><span class="p">:</span>
-        <span class="n">freq</span> <span class="o">=</span> <span class="n">freq</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span>
-    <span class="n">freq</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-    <span class="n">freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def my_pareto(data, threshold=0.02, renormalize=False):
+    freq = data.value_counts(normalize=True)
+    freq = freq[freq &gt; threshold]
+    if renormalize:
+        freq = freq / sum(freq)
+    freq.cumsum().plot()
+    freq.plot.bar()
 
-<span class="n">my_pareto</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">],</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+my_pareto(heroes[&#39;Eye color&#39;], threshold=0)
 </pre></div>
 </div>
 </div>
@@ -2754,7 +2764,7 @@ a meno che non venga specificamente indicato tramite l'argomento <code class="do
 così da ottenere un grafico più preciso.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_pareto</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">],</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.015</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>my_pareto(heroes[&#39;Eye color&#39;], threshold=0.015)
 </pre></div>
 </div>
 </div>
@@ -2766,18 +2776,18 @@ così da ottenere un grafico più preciso.</p>
 utilizzando la funzione <code class="docutils literal notranslate"><span class="pre">pareto</span></code> del package <code class="docutils literal notranslate"><span class="pre">paretochart</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#from paretochart import pareto</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#from paretochart import pareto
 
-<span class="n">eye_color</span> <span class="o">=</span> <span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">]</span>
-<span class="n">eye_color_freq</span> <span class="o">=</span> <span class="n">eye_color</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+eye_color = heroes_with_year[&#39;Eye color&#39;]
+eye_color_freq = eye_color.value_counts(normalize=True)
 
-<span class="n">common_colors</span> <span class="o">=</span> <span class="n">eye_color_freq</span><span class="p">[</span><span class="n">eye_color_freq</span> <span class="o">&gt;</span> <span class="mf">.02</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
-<span class="n">common_color_data</span> <span class="o">=</span> <span class="n">eye_color</span><span class="p">[</span><span class="n">eye_color</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">common_colors</span><span class="p">)]</span>
+common_colors = eye_color_freq[eye_color_freq &gt; .02].index
+common_color_data = eye_color[eye_color.isin(common_colors)]
 
-<span class="c1">#pareto(common_color_data.value_counts(normalize=True),</span>
-<span class="c1">#       labels=common_colors)</span>
+#pareto(common_color_data.value_counts(normalize=True),
+#       labels=common_colors)
 
-<span class="c1">#plt.show()</span>
+#plt.show()
 </pre></div>
 </div>
 </div>
@@ -2814,10 +2824,10 @@ basta indicare le serie corrispondenti ai caratteri considerati come valori
 degli argomenti <code class="docutils literal notranslate"><span class="pre">index</span></code> e <code class="docutils literal notranslate"><span class="pre">columns</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">int_gender_freq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">],</span>
-                              <span class="n">columns</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>int_gender_freq = pd.crosstab(index=heroes[&#39;Intelligence&#39;],
+                              columns=heroes[&#39;Gender&#39;])
 
-<span class="n">int_gender_freq</span>
+int_gender_freq
 </pre></div>
 </div>
 </div>
@@ -2885,9 +2895,9 @@ ordinata per i valori di intelligenza piuttosto che in modo alfabetico sarà
 quindi sufficiente utilizzare in metodo <code class="docutils literal notranslate"><span class="pre">reindex</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">int_gender_freq</span> <span class="o">=</span> <span class="n">int_gender_freq</span><span class="o">.</span><span class="n">reindex</span><span class="p">([</span><span class="s1">&#39;low&#39;</span><span class="p">,</span> <span class="s1">&#39;moderate&#39;</span><span class="p">,</span>
-                                           <span class="s1">&#39;average&#39;</span><span class="p">,</span> <span class="s1">&#39;good&#39;</span><span class="p">,</span> <span class="s1">&#39;high&#39;</span><span class="p">])</span>
-<span class="n">int_gender_freq</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>int_gender_freq = int_gender_freq.reindex([&#39;low&#39;, &#39;moderate&#39;,
+                                           &#39;average&#39;, &#39;good&#39;, &#39;high&#39;])
+int_gender_freq
 </pre></div>
 </div>
 </div>
@@ -2954,7 +2964,7 @@ sufficiente accedere alla tabella tramite <code class="docutils literal notransl
 argomento una lista dei valori nell'ordine desiderato:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">int_gender_freq</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>int_gender_freq.loc[:,[&#39;M&#39;, &#39;F&#39;]]
 </pre></div>
 </div>
 </div>
@@ -3020,7 +3030,7 @@ argomento una lista dei valori nell'ordine desiderato:</p>
 colonne della tabella, come nella cella seguente:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">int_gender_freq</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;moderate&#39;</span><span class="p">:</span><span class="s1">&#39;good&#39;</span><span class="p">,</span> <span class="p">:]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>int_gender_freq.loc[&#39;moderate&#39;:&#39;good&#39;, :]
 </pre></div>
 </div>
 </div>
@@ -3090,8 +3100,8 @@ relative a uno stesso valore risultino <em>affiancate</em></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">int_gender_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>int_gender_freq.plot.bar(color=[&#39;pink&#39;, &#39;blue&#39;])
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -3105,8 +3115,8 @@ modo da <em>sovrapporre</em> le barre che si riferiscono a uno stesso valore:</p
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">int_gender_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">],</span> <span class="n">stacked</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>int_gender_freq.plot.bar(color=[&#39;pink&#39;, &#39;blue&#39;], stacked=True)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -3120,7 +3130,7 @@ descritto quando abbiamo parlato degli istogrammi: si consideri per esempio il
 tentativo di calcolare le frequenze congiunte di peso e genere:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]])</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">,:]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pd.crosstab(index=heroes[&#39;Weight&#39;], columns=[heroes[&#39;Gender&#39;]]).iloc[:10,:]
 </pre></div>
 </div>
 </div>
@@ -3218,9 +3228,9 @@ Considerando questa nuova serie è possibile generare una tabella di frequenze
 congiunte più significativa.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">],</span>
-                         <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]),</span>
-            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pd.crosstab(index=pd.cut(heroes[&#39;Weight&#39;],
+                         bins=[30, 50, 80, 100, 200, 500, 1000]),
+            columns=[heroes[&#39;Gender&#39;]])
 </pre></div>
 </div>
 </div>
@@ -3292,10 +3302,10 @@ sinistra e chiusi a destra, ma è possibile invertire l'apertura e la chiusura
 degli estremi utilizzando l'argomento opzionale <code class="docutils literal notranslate"><span class="pre">right</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">],</span>
-                         <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span>
-                         <span class="n">right</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
-            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pd.crosstab(index=pd.cut(heroes[&#39;Weight&#39;],
+                         bins=[30, 50, 80, 100, 200, 500, 1000],
+                         right=False),
+            columns=[heroes[&#39;Gender&#39;]])
 </pre></div>
 </div>
 </div>
@@ -3371,8 +3381,8 @@ corrispondente. Per esempio, rigenerando la tabella delle frequenze congiunte
 di livello di intelligenza e genere con le colonne dei totali,</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">],</span>
-            <span class="n">columns</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">],</span> <span class="n">margins</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pd.crosstab(index=heroes[&#39;Intelligence&#39;],
+            columns=heroes[&#39;Gender&#39;], margins=True)
 </pre></div>
 </div>
 </div>
@@ -3462,10 +3472,10 @@ però ora ha diversi valori possibili:</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">],</span>
-            <span class="n">columns</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">],</span>
-            <span class="n">margins</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">normalize</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pd.crosstab(index=heroes[&#39;Intelligence&#39;],
+            columns=heroes[&#39;Gender&#39;],
+            margins=True,
+            normalize=&#39;all&#39;)
 </pre></div>
 </div>
 </div>
@@ -3546,10 +3556,10 @@ a 1</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">],</span>
-            <span class="n">columns</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">],</span>
-            <span class="n">margins</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">normalize</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pd.crosstab(index=heroes[&#39;Intelligence&#39;],
+            columns=heroes[&#39;Gender&#39;],
+            margins=True,
+            normalize=&#39;index&#39;)
 </pre></div>
 </div>
 </div>
@@ -3622,10 +3632,10 @@ sommano al valore unitario</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">],</span>
-            <span class="n">columns</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">],</span>
-            <span class="n">margins</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">normalize</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pd.crosstab(index=heroes[&#39;Intelligence&#39;],
+            columns=heroes[&#39;Gender&#39;],
+            margins=True,
+            normalize=&#39;columns&#39;)
 </pre></div>
 </div>
 </div>
@@ -3701,11 +3711,11 @@ visto, relativo alla forza di supereroi e supereroine. Invocando <code class="do
 permette di confrontare visualmente tali frequenze.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">],</span>
-            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]],</span>
-            <span class="n">normalize</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">],</span>
-                                          <span class="n">stacked</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pd.crosstab(index=heroes[&#39;Strength&#39;],
+            columns=[heroes[&#39;Gender&#39;]],
+            normalize=&#39;columns&#39;).plot.bar(color=[&#39;pink&#39;, &#39;blue&#39;],
+                                          stacked=False)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -3729,8 +3739,8 @@ nella cella seguente viene visualizzato il diagramma di dispersione dei
 caratteri relativi ad altezza e peso dei supereroi di genere maschile.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;M&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="s1">&#39;Weight&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>heroes[heroes[&#39;Gender&#39;]==&#39;M&#39;].plot.scatter(&#39;Height&#39;, &#39;Weight&#39;)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -3745,14 +3755,14 @@ un valore alto per l'altezza e viceversa. Volendo è possibile aggiungere al
 grafico una retta che metta in evidenza tale tipo di relazione:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;M&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="s1">&#39;Weight&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>heroes[heroes[&#39;Gender&#39;]==&#39;M&#39;].plot.scatter(&#39;Height&#39;, &#39;Weight&#39;)
 
-<span class="n">trend</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="mi">1200</span> <span class="o">+</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">7</span>
-<span class="n">x_range</span> <span class="o">=</span> <span class="p">[</span><span class="mi">170</span><span class="p">,</span> <span class="mi">300</span><span class="p">]</span>
-<span class="n">line</span><span class="p">,</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_range</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">trend</span><span class="p">,</span> <span class="n">x_range</span><span class="p">)),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
-<span class="n">line</span><span class="o">.</span><span class="n">set_dashes</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
-<span class="n">line</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+trend = lambda x: -1200 + x * 7
+x_range = [170, 300]
+line, = plt.plot(x_range, list(map(trend, x_range)), color=&#39;black&#39;)
+line.set_dashes([3, 2])
+line.set_linewidth(2)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -3770,29 +3780,29 @@ sulla quale invocare il metodo <code class="docutils literal notranslate"><span 
 almeno un valore mancante.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn import linear_model
 
-<span class="n">regr</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">()</span>
+regr = linear_model.LinearRegression()
 
-<span class="n">heroes_with_data</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;M&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+heroes_with_data = heroes[heroes[&#39;Gender&#39;]==&#39;M&#39;].copy().dropna()
 
-<span class="n">X</span> <span class="o">=</span> <span class="n">heroes_with_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">]]</span>
-<span class="n">Y</span> <span class="o">=</span> <span class="n">heroes_with_data</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span>
+X = heroes_with_data.loc[:, [&#39;Height&#39;]]
+Y = heroes_with_data[&#39;Weight&#39;]
 
-<span class="n">regr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+regr.fit(X, Y)
 
-<span class="n">heroes</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;M&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="s1">&#39;Weight&#39;</span><span class="p">)</span>
+heroes[heroes[&#39;Gender&#39;]==&#39;M&#39;].plot.scatter(&#39;Height&#39;, &#39;Weight&#39;)
 
-<span class="n">line</span><span class="p">,</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span> <span class="n">regr</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1000</span><span class="p">]]),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
-<span class="n">line</span><span class="o">.</span><span class="n">set_dashes</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
-<span class="n">line</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+line, = plt.plot([0, 1000], regr.predict([[0], [1000]]), color=&#39;black&#39;)
+line.set_dashes([3, 2])
+line.set_linewidth(2)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+plt.show()
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/sklearn/base.py:450: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/sklearn/base.py:450: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
   warnings.warn(
 </pre></div>
 </div>
@@ -3807,25 +3817,25 @@ sensibilmente diversa rispetto a quella tracciata a mano. Le cose cambiano se
 non si considerano questi tre valori.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes_with_data</span> <span class="o">=</span> <span class="n">heroes_with_data</span><span class="p">[</span><span class="n">heroes_with_data</span><span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">300</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>heroes_with_data = heroes_with_data[heroes_with_data[&#39;Height&#39;]&lt;300]
 
-<span class="n">X</span> <span class="o">=</span> <span class="n">heroes_with_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">]]</span>
-<span class="n">Y</span> <span class="o">=</span> <span class="n">heroes_with_data</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span>
+X = heroes_with_data.loc[:, [&#39;Height&#39;]]
+Y = heroes_with_data[&#39;Weight&#39;]
 
-<span class="n">regr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+regr.fit(X, Y)
 
-<span class="n">heroes</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;M&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="s1">&#39;Weight&#39;</span><span class="p">)</span>
+heroes[heroes[&#39;Gender&#39;]==&#39;M&#39;].plot.scatter(&#39;Height&#39;, &#39;Weight&#39;)
 
-<span class="n">line</span><span class="p">,</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">150</span><span class="p">,</span> <span class="mi">350</span><span class="p">],</span> <span class="n">regr</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">150</span><span class="p">],</span> <span class="p">[</span><span class="mi">350</span><span class="p">]]),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
-<span class="n">line</span><span class="o">.</span><span class="n">set_dashes</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
-<span class="n">line</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+line, = plt.plot([150, 350], regr.predict([[150], [350]]), color=&#39;black&#39;)
+line.set_dashes([3, 2])
+line.set_linewidth(2)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+plt.show()
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/sklearn/base.py:450: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/sklearn/base.py:450: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
   warnings.warn(
 </pre></div>
 </div>
@@ -3837,8 +3847,8 @@ una forma lineare, ma approfondire questo aspetto esula dal carattere
 introduttivo di questo corso.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">male_heroes</span> <span class="o">=</span> <span class="n">heroes_with_data</span><span class="p">[</span><span class="n">heroes_with_data</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;M&#39;</span><span class="p">]</span>
-<span class="n">male_heroes</span><span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">male_heroes</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>male_heroes = heroes_with_data[heroes_with_data[&#39;Gender&#39;]==&#39;M&#39;]
+male_heroes[&#39;Height&#39;].cov(male_heroes[&#39;Weight&#39;])
 </pre></div>
 </div>
 </div>
@@ -3850,7 +3860,7 @@ introduttivo di questo corso.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">male_heroes</span><span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">male_heroes</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>male_heroes[&#39;Height&#39;].corr(male_heroes[&#39;Weight&#39;])
 </pre></div>
 </div>
 </div>
@@ -3894,16 +3904,16 @@ su una serie: nella cella seguente per esempio vengono affiancati i diagrammi a
 torta relativi alle frequenze di genere e livello di intelligenza.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">gender_freq</span><span class="p">[</span><span class="s1">&#39;Abs. frequence&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Gender&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pie</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(6, 3))
+plt.subplot(1, 2, 1)
+gender_freq[&#39;Abs. frequence&#39;].plot.pie(colors=[&#39;pink&#39;, &#39;blue&#39;])
+plt.ylabel(&#39;&#39;)
+plt.xlabel(&#39;Gender&#39;)
+plt.subplot(1, 2, 2)
+heroes[&#39;Intelligence&#39;].value_counts().plot.pie()
+plt.ylabel(&#39;&#39;)
+plt.xlabel(&#39;Intelligence&#39;)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -3933,17 +3943,17 @@ comportamento si ha quando vengono generati dei grafici invocando i metodi di
 non vengono sovrapposti, bensì affiancati uno sopra l'altro.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">male_strength_freq</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;M&#39;</span><span class="p">,</span><span class="s1">&#39;Strength&#39;</span><span class="p">],</span>
-                                  <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Abs. freq.&#39;</span><span class="p">,</span>
-                                  <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>male_strength_freq = (pd.crosstab(index=heroes.loc[heroes[&#39;Gender&#39;]==&#39;M&#39;,&#39;Strength&#39;],
+                                  columns=&#39;Abs. freq.&#39;,
+                                  normalize=True))
 
-<span class="n">female_strength_freq</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="s1">&#39;Strength&#39;</span><span class="p">],</span>
-                                    <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Abs. freq.&#39;</span><span class="p">,</span>
-                                    <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+female_strength_freq = (pd.crosstab(index=heroes.loc[heroes[&#39;Gender&#39;]==&#39;F&#39;,&#39;Strength&#39;],
+                                    columns=&#39;Abs. freq.&#39;,
+                                    normalize=True))
 
-<span class="n">male_strength_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">female_strength_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+male_strength_freq.plot.bar(color=&#39;blue&#39;, legend=False)
+female_strength_freq.plot.bar(color=&#39;pink&#39;, legend=False)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -3959,13 +3969,13 @@ le funzioni di matplotlib accettano generalmente un argomento <code class="docut
 passare il sistema in cui il risultato deve essere inserito.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">male_strength_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">female_strength_freq</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ax = plt.subplot(1, 2, 1)
+male_strength_freq.plot.bar(color=&#39;blue&#39;, legend=False, ax=ax, figsize=(10, 2))
+plt.ylim((0, 0.4))
+ax = plt.subplot(1, 2, 2)
+female_strength_freq.plot.bar(color=&#39;pink&#39;, legend=False, ax=ax, figsize=(10, 2))
+plt.ylim((0, 0.4))
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -3987,10 +3997,10 @@ su cui hanno operato: ciò permette di sovrapporre dei grafici anche invocando
 metodi il cui comportamento predefinito è quello di creare un nuovo sistema.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">male_strength_freq</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
-<span class="n">female_strength_freq</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ax = male_strength_freq.plot(marker=&#39;o&#39;, color=&#39;blue&#39;)
+female_strength_freq.plot(marker=&#39;o&#39;, color=&#39;pink&#39;, ax=ax, legend=False)
+ax.legend([&#39;F&#39;, &#39;M&#39;])
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -4040,7 +4050,7 @@ dose di perizia. Innanzitutto è necessario eliminare i valori mancanti dai
 dati:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">][:</span><span class="mi">50</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">s</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x = [s for s in heroes_with_year[&#39;First appearance&#39;][:50] if not np.isnan(s)]
 </pre></div>
 </div>
 </div>
@@ -4050,8 +4060,8 @@ foglie. Memorizziamo nelle variabili <code class="docutils literal notranslate">
 numero e la corrispondente potenza di dieci.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">significant_digits</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">signif</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="n">significant_digits</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>significant_digits = 1
+signif = 10**significant_digits
 </pre></div>
 </div>
 </div>
@@ -4064,7 +4074,7 @@ dividerlo per la potenza di 10 memorizzata in <code class="docutils literal notr
 eliminare le <code class="docutils literal notranslate"><span class="pre">d</span></code> cifre meno significative).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="n">signif</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="n">signif</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>r = np.arange(int(min(x))/signif, (int(max(x))/signif + 1))
 </pre></div>
 </div>
 </div>
@@ -4073,8 +4083,8 @@ eliminare le <code class="docutils literal notranslate"><span class="pre">d</spa
 stelo, che sono quelli in corrispondenza dei quali non vi è alcuna foglia.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">r</span>
-         <span class="k">if</span> <span class="nb">len</span><span class="p">([</span><span class="n">e</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">if</span> <span class="n">s</span><span class="o">*</span><span class="n">signif</span> <span class="o">&lt;=</span> <span class="n">e</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">s</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">signif</span><span class="p">])]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>start = [s for s in r
+         if len([e for e in x if s*signif &lt;= e &lt; (s+1)*signif])]
 </pre></div>
 </div>
 </div>
@@ -4085,10 +4095,10 @@ Per comodità, convertiremo già le foglie in stringhe, avendo cura di aggiunger
 eventuali zeri iniziali.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stem</span> <span class="o">=</span> <span class="p">[(</span><span class="n">s</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;{:0</span><span class="si">{width}</span><span class="s1">d}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="p">(</span><span class="n">s</span><span class="o">*</span><span class="n">signif</span><span class="p">)),</span> <span class="n">width</span><span class="o">=</span><span class="n">significant_digits</span><span class="p">)</span> <span class="k">if</span> <span class="n">s</span>
-                                                                                <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">if</span> <span class="n">signif</span><span class="o">*</span><span class="n">s</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">signif</span><span class="o">*</span><span class="n">s</span><span class="o">+</span><span class="n">signif</span><span class="p">])</span>
-        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">start</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>stem = [(s, [&#39;{:0{width}d}&#39;.format(int(i%(s*signif)), width=significant_digits) if s
+                                                                                else str(int(i))
+             for i in x if signif*s &lt;= i &lt; signif*s+signif])
+        for s in start]
 </pre></div>
 </div>
 </div>
@@ -4100,11 +4110,11 @@ richiesto e di inserirli in una lista, per poi concatenare gli elementi di
 quest'ultima separandoli tramite un carattere di <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">capo</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="s1">&#39;{:&gt;</span><span class="si">{width}</span><span class="s1">}|</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                                                           <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
-                                                           <span class="n">width</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">start</span><span class="p">)))),</span>
-                         <span class="n">stem</span><span class="p">))))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import math
+print(&#39;\n&#39;.join(list(map(lambda e: &#39;{:&gt;{width}}|{}&#39;.format(e[0],
+                                                           &#39;, &#39;.join(e[1]),
+                                                           width=int(1+math.log10(max(start)))),
+                         stem))))
 </pre></div>
 </div>
 </div>
@@ -4125,21 +4135,21 @@ quest'ultima separandoli tramite un carattere di <code class="docutils literal n
 riscrivere il codice qui sopra organizzandolo all'interno di una funzione.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">stem_leaf</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">significant_digits</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">s</span><span class="p">)]</span>
-    <span class="n">signif</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="n">significant_digits</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def stem_leaf(data, significant_digits=1):
+    x = [s for s in data if not np.isnan(s)]
+    signif = 10**significant_digits
 
-    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="n">signif</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="n">signif</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">start</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">r</span> <span class="k">if</span> <span class="nb">len</span><span class="p">([</span><span class="n">e</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">if</span> <span class="n">s</span><span class="o">*</span><span class="n">signif</span> <span class="o">&lt;=</span> <span class="n">e</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">s</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">signif</span><span class="p">])]</span>
-    <span class="n">stem</span> <span class="o">=</span> <span class="p">[(</span><span class="n">s</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;{:0</span><span class="si">{width}</span><span class="s1">d}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="p">(</span><span class="n">s</span><span class="o">*</span><span class="n">signif</span><span class="p">)),</span> <span class="n">width</span><span class="o">=</span><span class="n">significant_digits</span><span class="p">)</span> <span class="k">if</span> <span class="n">s</span>
-                                                                                    <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-                 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">if</span> <span class="n">signif</span><span class="o">*</span><span class="n">s</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">signif</span><span class="o">*</span><span class="n">s</span><span class="o">+</span><span class="n">signif</span><span class="p">])</span>
-            <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">start</span><span class="p">]</span>
+    r = np.arange(int(min(x))/signif, int(max(x))/signif + 1)
+    start = [s for s in r if len([e for e in x if s*signif &lt;= e &lt; (s+1)*signif])]
+    stem = [(s, [&#39;{:0{width}d}&#39;.format(int(i%(s*signif)), width=significant_digits) if s
+                                                                                    else str(int(i))
+                 for i in x if signif*s &lt;= i &lt; signif*s+signif])
+            for s in start]
 
-    <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="s1">&#39;{:&gt;</span><span class="si">{width}</span><span class="s1">}|</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                                                                <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
-                                                                <span class="n">width</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">math</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">start</span><span class="p">)))),</span>
-                              <span class="n">stem</span><span class="p">)))</span>
+    return &#39;\n&#39;.join(list(map(lambda e: &#39;{:&gt;{width}}|{}&#39;.format(e[0],
+                                                                &#39;, &#39;.join(e[1]),
+                                                                width=int(1+math.log10(max(start)))),
+                              stem)))
 </pre></div>
 </div>
 </div>
@@ -4148,7 +4158,7 @@ riscrivere il codice qui sopra organizzandolo all'interno di una funzione.</p>
 di osservazioni.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">stem_leaf</span><span class="p">(</span><span class="n">heroes_with_year</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">][:</span><span class="mi">150</span><span class="p">]))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(stem_leaf(heroes_with_year[&#39;First appearance&#39;][:150]))
 </pre></div>
 </div>
 </div>

@@ -14,63 +14,109 @@ kernelspec:
 
 # Il modello geometrico
 
-La *distribuzione geometrica* descrive il numero di insuccessi necessari
-affinché si verifichi il primo successo in una successione di esperimenti
-bernoulliani indipendenti e identicamente distribuiti. Questa distribuzione,
-che ha quindi come supporto l'insieme dei numeri naturali (zero incluso), è
-quindi completamente descritta specificando il parametro $p$ del corrispondente
-esperimento bernoulliano. Più precisamente, $p \in (0, 1]$: il caso $p=0$ va
-infatti escluso a priori, altrimenti sarebbe impossibile avere come esito un
-successo (e dunque sarebbe impossibile contare il numero di insuccessi prima
-che si verifichi un successo). Il caso $p=1$ può essere incluso nell'insieme
-dei valori validi per il parametro, sebbene questa scelta identifichi un
-esperimento bernoulliano che ha sempre successo: in tal caso, la variabile
-aleatoria che conteggia il numero di insuccessi prima del primo successo
-degenera nel valore costante pari a zero.
+Bruce Banner si trasforma in Hulk ogni volta che non riesce a controllare
+un attacco d'ira. Ipotizziamo che, indipendentemente da tutto il resto, ciò avvenga con una prefissata probabilità: possiamo dunque modellare la
+trasformazione nei termini di un esperimento bernoulliano. Convenzionalmente,
+definiamo questo esperimento in modo che il successo si verifichi quando
+Banner si arrabbia e si trasforma in Hulk; al contrario, il fallimento avviene
+quando lui si arrabbia ma non si trasforma. Nel momento in cui iniziamo a
+leggere un fumetto, possiamo domandarci dopo quante arrabbiature Bruce Banner
+diventerà Hulk. La risposta sarà «uno» se la trasformazione avverrà al primo
+colpo di rabbia, «due» se il primo attacco d'ira sarà superato ma il secondo
+no, e così via. In linea di principio, non possiamo stabilire a priori un
+numero massimo di arrabbiature entro il quale Banner si trasformerà. Pertanto
+siamo di fronte a un esperimento casuale i cui esiti possono essere associati
+a tutti i numeri interi positivi. Questo tipo di esperimento è ben descritto
+dalla distribuzione geometrica, definita di seguito.
 
-```{admonition} Nota
-:class: note
+```{margin}
 In alternativa sarebbe possibile definire la distribuzione geometrica contando
-il numero totale di esperimenti necessari per ottenere il primo successo. In
-questo modo si conteggerebbe un esperimento in più rispetto a quanto visto
+il numero totale di fallimenti che precedono il primo successo. In
+questo modo si conteggerebbe un esperimento in meno rispetto a quanto visto
 (l'esperimento in cui si ottiene il successo). Ovviamente la distribuzione
 ottenuta avrebbe delle proprietà (come per esempio il valore atteso e la
-  varianza) diversi da quelli che otterremo.
+varianza) diversi da quelli che otterremo.
 ```
+````{prf:definition} Distribuzione geometrica
+:label: def:distribuzione-geometrica
+Consideriamo un esperimento bernoulliano di parametro $p \in (0, 1]$ che
+viene eseguito ripetutamente, in modo che ogni ripetizione sia effettuata in
+modo indipendente rispetto alle altre. La _distribuzione geometrica_ di
+parametro $p$ descrive il numero di ripetizioni che è necessario considerare
+affinché si verifichi per la prima volta un successo.
 
-Un modo intuitivo di simulare dei valori estratti da una distribuzione
-geometrica consiste nel simulare ripetutamente l'esecuzione del relativo
-esperimento bernoulliano, conteggiando il numero di tentativi che precedono il
-primo successo. Tenuto conto del fatto che un esperimento bernoulliano di
-parametro $p$ si può simulare estraendo un numero pseudocasuale uniformemente
-distribuito in $[0, 1]$ (compito effettuato per esempio dalla funzione `random`
-nel modulo omonimo) e decretando un successo se il risultato è inferiore a
-$p$ e un fallimento altrimenti, la seguente funzione permette di ottenere
-valori per una generica distribuzione geometrica, specificando il valore del
-corrispondente parametro. L'implementazione verifica anche che il valore
-specificato per il parametro sia valido.
+L'insieme di tutte le distribuzioni geometriche al variare del valore del
+parametro $p$ nell'intervallo $(0, 1]$ prende il nome di _famiglia
+geometrica_, e analogamente si definisce il _modello geometrico_ come una
+distribuzione geometrica di parametro non specificato.
+````
 
+Convenzionalmente, userò la sintassi $X \sim \mathrm G(p)$ per indicare che
+una variabile aleatoria $X$ segue una distribuzione geometrica di parametro
+$p$. Per quanto visto sopra, il supporto di una siffatta variabile aleatoria
+è l'insieme $\mathbb N$ dei numeri naturali (nella sua accezione che non
+considera $0$ come numero naturale). Il motivo
+per il quale l'insieme dei possibili valori del parametro $p$ è un intervallo
+semiaperto è legato al conteggio del numero di insuccessi. Il valore $p=1$ è
+ammissibile, sebbene in questo caso si perde la casualità nei risultati
+dell'esperimento bernoulliano, in quanto ogni ripetizione di quest'ultimo
+avrà sempre successo. Conseguentemente, la variabile aleatoria che conteggia
+il numero di insuccessi prima del primo successo degenera nel valore costante
+$1$. Al contrario, la possibilità che $p$ sia nullo va esclusa a priori: anche
+in questo caso si perderebbe la casualità nell'esecuzione dell'esperimento
+bernoulliano, ma ora sarebbe impossibile avere un successo come esito, cosa
+che non permette di contare il numero di insuccessi prima che si verifichi il
+primo successo. Informalmente, questo corrisponderebbe a ripetere
+indefinitamente l'esecuzione degli esperimenti bernoulliani senza mai
+fermarsi, e ciò corrisponderebbe a fare assumere alla variabile aleatoria in
+questione un valore infinito, cosa che è proibita dalla
+{prf:ref}`def:variabile-aleatoria`.
+
+Un modo intuitivo di simulare l'estrazione di valori da una distribuzione
+geometrica consiste nel ripetere l'esecuzione del corrispondente esperimento
+bernoulliano, fermandosi quando si ottiene il primo successo e restituendo
+il numero di tentativi effettuati. Utilizzando la funzione
+`bernoulli` definita nel {numref}`sec:modello-bernoulliano`, è possibile
+definire in modo semplice la seguente funzione che permette di simulare una
+generica distribuzione geometrica, specificando il valore del
+corrispondente parametro come argomento.
+
+```{margin}
+Questa implementazione verifica anche che il valore del parametro della
+distribuzione sia valido.
+```
 ```{code-cell} ipython3
-import random as rnd
+from util import bernoulli
 
-def geom(p):
-    assert p > 0 and p <= 1, '{} is not a valid parameter' \
-                             ' for the geometric distribution.'.format(p)
+def geom_rv(p):
+    """Simulate the extraction of a value from the geometric distribution
+
+    :param p: parameter of the geometric distribution
+    :type p: float
+    :raises ValueError: if p is not in the interval (0, 1] 
+    :return: simulated value of the distribution
+    :rtype: int
+    """
+    if p <= 0 or p > 1:
+        raise ValueError(f"{p} is not a valid parameter" \
+                         " for the geometric distribution.")
     i = 0
-    while rnd.random() >= p:
+    while bernoulli(p) == 0:
         i +=1
-    return i
 
-[geom(.3) for _ in range(10)]
+    assert i >= 0 and type(i) == int
+
+    return i + 1
+
+[geom_rv(.3) for _ in range(10)]
 ```
 
 Si potrebbe dimostrare che esistono metodi che utilizzano approcci più
-efficienti per affrontare questa distribuzione, per esempio evitando l'uso di
-cicli. Un esempio di  package `scipy.stats` mette a disposizione una classe
-`geom`, da inizializzare specificando come argomento il valore di $p$ e
-utilizzabile (tra le altre cose) per simulare un array di specificazioni
-invocando il metodo `rvs` che accetta come argomento la dimensione di tale
-array.
+efficienti per simulare la distribuzione geometrica, per esempio evitando
+l'uso di cicli. È questo l'approccio seguito dalla classe `geom` fornita dal
+package `scipy.stats`, che nella cella seguente viene utilizzata per generare
+una sequenza in modo analogo a quanto fatto usando la funzione `geom_rv`
+nell'esempio precedente.
 
 ```{code-cell} ipython3
 from scipy.stats import geom
@@ -79,50 +125,74 @@ g = geom(.3)
 g.rvs(10)
 ```
 
-Tenuto conto dell'indipendenza tra le ripetizioni dell'esperimento
-bernoulliano, richiedere che il primo successo sia avvenuto esattamente dopo
-$i$ insuccessi equivale a calcolare la probabilità di $i$ insuccessi
-successivi, seguiti da un successo. Pertanto la distribuzione geometrica ha la
-seguente funzione di massa di probabilità:
+Indichiamo con $\mathrm p_X$ la funzione di massa di probabilità di una
+variabile aleatoria $X \sim \mathrm G(p)$. Dato $i \in \mathbb N$, l'evento
+$X = i$ corrisponde alla situazione in cui il primo successo dell'esperimento
+bernoulliano è avvenuto esattamente dopo $i$ ripetizioni. Questa situazione
+avviene se e solo se nelle prime $i - 1$ ripetizioni l'esperimento ha come
+esito un fallimento, mentre nell'$i$-esima si ottiene un successo. Tenendo
+conto del fatto che le ripetizioni sono eseguite in modo indipendente le une
+dalle altre, otteniamo $\mathbb P(X = i) = (1-p)^{i - 1} p$ e quindi la forma
+analitica della funzione di massa di probabilità di $X$ risulta essere la
+seguente:
 
 $$
-f_X(i; p) = p (1-p)^i \mathrm I_{\mathbb N \cup \{0\}}(i).
+\mathrm p_X(i; p) = (1-p)^{i - 1} p \mathrm I_{\mathbb N}(i).
 $$
 
 Si verifica facilmente che sommando i valori di massa di probabilità per tutte
-le specificazioni si ottiene come risultato 1:
+le specificazioni di $X$ si ottiene come risultato 1:
 
-$$
-\sum_{i=0}^{+\infty}f_X(i; p) = \sum_{i=0}^{+\infty}p (1-p)^i =
-p \sum_{i=0}^{+\infty}(1-p)^i = p \frac{1}{1-(1-p)} = 1.
-$$
+```{margin}
+Nel terzultimo passaggio ho applicato il cambio di variabile $j = i - 1$.
+```
+\begin{align}
+\sum_{i=1}^{+\infty}\mathrm p_X(i; p) &= \sum_{i=1}^{+\infty} (1-p)^{i - 1} p =
+p \sum_{i=1}^{+\infty}(1-p)^{i - 1} \\
+&= p \sum_{j=0}^{+\infty}(1-p)^j = p \frac{1}{1-(1-p)} = 1.
+\end{align}
 
+```{margin}
+Nel nostro caso questa condizione equivale a $0 < p < 2$, che è sempre
+verificata se $p$ è il parametro di una distribuzione geometrica.
+```
 La penultima uguaglianza è basata sulla convergenza della _serie geometrica_:
-$\sum_{i=0}^{+\infty} \alpha^i = \frac{1}{1-\alpha}$ per ogni $\alpha$ tale che
-$|\alpha| < 1$. È da questo fatto che la distrubuzione geometrica pernde il suo
-nome.
+$\sum_{i=0}^{+\infty} \alpha^i = \frac{1}{1-\alpha}$ per ogni $\alpha$ tale
+che $|\alpha| < 1$: È da questo fatto che la distrubuzione geometrica pernde
+il suo nome.
 
 Nella cella seguente viene definita una funzione `geom_pdf` che accetta come
-argomenti rispettivamente un valore reale $x$ e un possibile parametro $p$ e
-restituisce il valore della funzione di probabilità geometrica. La funzione è
-costruito in modo da associare massa nulla ai punti al di fuori del dominio,
-verificando anche in questo caso che il parametro specificato assuma un valore
-valido.
+argomenti rispettivamente un valore numerico $x$ e il parametro $p$ di una
+distribuzione geometrica, e che restituisce il corrispondente valore della
+funzione di massa di probabilità geometrica.
 
 ```{code-cell} ipython3
 def geom_pdf(x, p):
-    assert p > 0 and p <= 1, '{} is not a valid parameter ' \
-                             'for the geometric distribution.'.format(p)
+    """Compute the p.d.f. of a geometric distribution
 
-    return p * (1 - p)**x if x > 0 and x==int(x) else 0
+    :param x: arguments to the p.d.f.
+    :type x: list, sequence or numpy array of numerical values
+    :param p: parameter of the geometric distribution
+    :type p: float
+    :raises ValueError: if p is not in the interval (0, 1] 
+    :return: computed values of the p.d.f.
+    :rtype: numpy array of float
+    """
+    if p <= 0 or p > 1:
+        raise ValueError(f"{p} is not a valid parameter " \
+                         "for the geometric distribution.")
+    invalid_indices = (x != np.floor(x)) | (x <= 0)
+    pdf_values = (1 - p) ** (x - 1) * p
+    pdf_values[invalid_indices] = 0
+
+    return pdf_values
 ```
 
 È quindi possibile visualizzare i valori di massa di probabilità, fissando per
-esempio $p=\frac{1}{2}$ e usando un grafico a bastoncini (così da evidenziare
-che le masse di probabilità sono associate a singoli valori). Ovviamente la
+esempio $p=\frac{1}{2}$ e usando un grafico a bastoncini. Ovviamente la
 visualizzazione dovrà coinvolgere un sottoinsieme delle possibili
-specificazioni, essendo il dominio della distribuzione infinito. Nella
-versione interattiva degli appunti è possibile modificare il valore di $p$
+specificazioni, essendo il supporto della distribuzione infinito. Nella
+versione interattiva del libro è possibile modificare il valore di $p$
 rigenerando automaticamente il grafico.
 
 ```{code-cell} ipython3
@@ -134,9 +204,15 @@ import numpy as np
 plt.style.use('sds.mplstyle')
 
 def gr_geom_pdf(p):
+    """Show the graph of the p.d.f. of a geometric distribution
+
+    :param p: parameter of the geometric distribution
+    :type p: float
+    """
     x = np.arange(0, 10, 1)
-    plt.vlines(x, [0]*len(x), list(map(lambda _: geom_pdf(_, p), x)))
-    plt.plot(x, list(map(lambda _: geom_pdf(_, p), x)), 'o')
+    pdf_values = geom_pdf(x, p)
+    plt.vlines(x, [0]*len(x), pdf_values)
+    plt.plot(x, pdf_values, 'o')
     plt.ylim(ymax=1, ymin=0)
     plt.xlim(xmax=11, xmin = -1)
     plt.show()
@@ -148,60 +224,75 @@ plt.show()
 Procediamo ora a determinare il valore atteso e la varianza della
 distribuzione. Iniziamo mostrando un risultato intermedio.
 
-**Lemma**. Per ogni $\alpha \in (-1, 1)$
+```{prf:lemma}
+Per ogni $\alpha \in (-1, 1)$
 
 $$
-\sum_{i=0}^{+\infty}i \alpha^i = \frac{\alpha}{(1-\alpha)^2}.
+\sum_{i=0}^{+\infty}i \alpha^{i - 1} = \frac{1}{(1-\alpha)^2}.
+$$
+```
+```{margin}
+Nel secondo passaggio ho sfruttato la linearità dell'operatore di derivata
+prima, scambiandolo con la sommatoria.
+```
+```{prf:proof}
+Osservando che $i \alpha^{i - 1}$ è la derivata prima di $\alpha^i$
+rispetto ad $\alpha$, otteniamo:
+\begin{align*}
+\sum_{i=0}^{+\infty}i \alpha^{i-1} &= \sum_{i=0}^{+\infty} \frac{\mathrm d}{\mathrm d \alpha} \alpha^i = \frac{\mathrm d}{\mathrm d \alpha} \sum_{i=0}^{+\infty} \alpha^i \\
+&= \frac{\mathrm d}{\mathrm d \alpha} \frac{1}{1-\alpha}
+= \frac{1}{(1-\alpha)^2},
+\end{align*}
+e ciò completa la dimostrazione.
+```
+
+Questo risultato ci permette di calcolare agevolmente il valore atteso.
+
+```{prf:proposition}
+Il valore atteso della distribuzione geometrica di parametro
+$p$ è pari a $\frac{1}{p}$.
+```
+```{prf:proof}
+Innanzitutto
+
+\begin{align*}
+\mathrm E(X) &= \sum_{i=1}^{+ \infty} i \mathrm p_X(i; p)
+              = \sum_{i=1}^{+ \infty} i (1-p)^{i - 1} p \\
+             &= p \sum_{i=0}^{+ \infty} i (1-p)^{i - 1},
+\end{align*}
+
+dove nell'ultimo passaggio ho sfruttato il fatto che il valore della
+serie non cambia se facciamo partire l'indice $i$ da $0$, in quanto ciò
+equivale ad aggiungere un termine nullo. A questo punto, ponendo
+$\alpha = 1 - p$ e applicando il lemma appena dimostrato si ha
+
+$$
+\mathrm E(X) = p \frac{1}{p^2} = \frac{1}{p}.
 $$
 
-Dimostrazione.
-
-\begin{align}
-\sum_{i=0}^{+\infty}i \alpha^i &= \alpha \sum_{i=0}^{+\infty}i \alpha^{i-1} \\
-&= \alpha \sum_{i=0}^{+\infty} \frac{\mathrm d}{\mathrm d \alpha} \alpha^i \\
-&= \alpha \frac{\mathrm d}{\mathrm d \alpha} \sum_{i=0}^{+\infty} \alpha^i \\
-&= \alpha \frac{\mathrm d}{\mathrm d \alpha} \frac{1}{1-\alpha} \\
-&= \alpha \frac{1}{(1-\alpha)^2}.
-\end{align}
-
-Questo risultto ci permette di calcolare agevolmente il valore atteso.
-
-**Proposizione**. Il valore atteso della distribuzione geometrica di parametro
-$p$ è pari a $\frac{1-p}{p}$.
-
-Dimostrazione. Innanzitutto
-
-\begin{align}
-\mathrm E(X) &= \sum_{i=0}^{+ \infty} i f_X(i; p)\\
-             &= \sum_{i=0}^{+ \infty} i p (1-p)^i \\        
-             &= p \sum_{i=0}^{+ \infty} i (1-p)^i,
-\end{align}
-
-e quindi per il lemma appena dimostrato si ha, ponendo $\alpha = 1-p$,
-
-$$
-\mathrm E(X) = p \frac{1 - p}{p^2} = \frac{1-p}{p}.
-$$
+che dimostra la proposizione.
+```
 
 Visualizziamo graficamente l'andamento del valore atteso in funzione del
 parametro $p$.
 
 ```{code-cell} ipython3
-x = np.arange(0.01, 1.01, 0.01)
-y = list(map(lambda p: (1-p)/p, x))
+p = np.arange(0.01, 1.01, 0.01)
+e = 1 / p
 
-plt.plot(x, y)
-plt.ylim(0, 50)
+plt.plot(p, e)
+plt.ylim(1, 10)
 plt.show()
 ```
 
 Il risultato è coerente con il significato di $p$: più il suo valore si
 avvicina a $1$, più è probabile che si ottenga un successo nel primo
-esperimento, così che il numero atteso di insuccessi tende a zero. Parimenti,
-al diminuire di $p$ diventa meno probabile ottenere un successo e quindi il
-numero atteso di insuccessi aumenta. In particolare, al tendere di $p$ a zero
-l'esperimento bernoulliano alla base della distribuzione geometrica non avrà
-mai successo e quindi il numero atteso di insuccessi tenderà a infinito.
+esperimento bernoulliano alla base della distribuzione geometrica, così che
+il numero atteso di ripetizioni tende a $1$. Parimenti, quando $p$ diminuisce
+diventa meno probabile ottenere un successo e quindi il numero atteso di
+esperimenti da effettuare aumenta. In particolare, al tendere di $p$ a zero
+l'esperimento bernoulliano non avrà mai successo e quindi il numero atteso di
+ripetizioni tenderà a più infinito.
 
 Per calcolare la varianza, procediamo innanzitutto a determinare il valore di
 $\mathrm E(X^2)$.

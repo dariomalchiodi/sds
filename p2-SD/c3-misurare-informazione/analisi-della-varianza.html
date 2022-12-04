@@ -611,7 +611,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/bernoulli.html">
-     13.1. Il modello di Bernoulli
+     13.1. Il modello bernoulliano
     </a>
    </li>
    <li class="toctree-l2">
@@ -642,8 +642,8 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p3-CP/c6-modelli-continui/modelli-continui.html">
-   14. I modelli continui
+  <a class="reference internal" href="../../p3-CP/c6-modelli-continui/va-e-modelli-continui.html">
+   14. Variabili aleatorie e modelli continui
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
   <label for="toctree-checkbox-14">
@@ -652,23 +652,33 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/dal-discreto-al-continuo.html">
+     14.1. Dal discreto al continuo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/va-continue.html">
+     14.2. Variabili aleatorie continue
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/uniforme.html">
-     14.1. Il modello uniforme continuo
+     14.3. Il modello uniforme continuo
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/esponenziale.html">
-     14.2. Il modello esponenziale
+     14.4. Il modello esponenziale
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/gaussiano.html">
-     14.3. Il modello gaussiano
+     14.5. Il modello gaussiano
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/altri-modelli.html">
-     14.4. Altri modelli continui
+     14.6. Altri modelli continui
     </a>
    </li>
   </ul>
@@ -1121,14 +1131,14 @@ giustificato);</p></li>
 segue) che
 <span class="math notranslate nohighlight">\(\mathrm{SS}_{\mathrm T} = \mathrm{SS}_{\mathrm W} + \mathrm{SS}_{\mathrm B}\)</span>,
 e quindi che</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f16c91a0-8137-4bb2-930d-ab8e9d65beb1">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-f16c91a0-8137-4bb2-930d-ab8e9d65beb1" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-912f0925-c9c7-40cc-96c6-a1c855025cc1">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-912f0925-c9c7-40cc-96c6-a1c855025cc1" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \frac{\mathrm{SS}_{\mathrm T}}{n-1} &amp;= \frac{\mathrm{SS}_{\mathrm W}}{n-1} +\frac{\mathrm{SS}_{\mathrm B}}{n-1}, \\
 &amp;= \frac{n-G}{n-1} \frac{\mathrm{SS}_{\mathrm W}}{n-G} + \frac{G-1}{n-1} \frac{\mathrm{SS}_{\mathrm B}}{G-1}.
 \end{align}\]</div>
 <p>Pertanto,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b21bf4e4-3fc5-4fb1-8d4e-9fd034b33092">
-<span class="eqno">(6.2)<a class="headerlink" href="#equation-b21bf4e4-3fc5-4fb1-8d4e-9fd034b33092" title="Permalink a questa equazione">#</a></span>\[\begin{multline}
+<div class="amsmath math notranslate nohighlight" id="equation-74e0b7cd-9654-4aa0-98a7-707602d27174">
+<span class="eqno">(6.2)<a class="headerlink" href="#equation-74e0b7cd-9654-4aa0-98a7-707602d27174" title="Permalink a questa equazione">#</a></span>\[\begin{multline}
 \text{varianza totale} = \frac{n-G}{n-1} \text{varianza entro i gruppi} + \\
                          \frac{G-1}{n-1} \text{varianza tra i gruppi}.
 \end{multline}\]</div>
@@ -1158,14 +1168,14 @@ logiche.</p>
 </aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas as pd
 
-<span class="n">heroes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/heroes.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+heroes = pd.read_csv(&#39;data/heroes.csv&#39;, sep=&#39;;&#39;, index_col=0)
 
-<span class="n">marvel_strength</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Marvel Comics&#39;</span><span class="p">)</span> <span class="o">&amp;</span>
-                         <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">]))][</span><span class="s1">&#39;Strength&#39;</span><span class="p">]</span>
-<span class="n">dc_strength</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;DC Comics&#39;</span><span class="p">)</span> <span class="o">&amp;</span> \
-                     <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">]))][</span><span class="s1">&#39;Strength&#39;</span><span class="p">]</span>
+marvel_strength = heroes[(heroes[&#39;Publisher&#39;] == &#39;Marvel Comics&#39;) &amp;
+                         (pd.notnull(heroes[&#39;Strength&#39;]))][&#39;Strength&#39;]
+dc_strength = heroes[(heroes[&#39;Publisher&#39;] == &#39;DC Comics&#39;) &amp; \
+                     (pd.notnull(heroes[&#39;Strength&#39;]))][&#39;Strength&#39;]
 </pre></div>
 </div>
 </div>
@@ -1173,9 +1183,9 @@ logiche.</p>
 <p>Iniziamo calcolando <span class="math notranslate nohighlight">\(\mathrm{SS}_{\mathrm T}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_strength</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">marvel_strength</span><span class="p">,</span> <span class="n">dc_strength</span><span class="p">])</span>
-<span class="n">sum_total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">all_strength</span> <span class="o">-</span> <span class="n">all_strength</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">sum_total</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>all_strength = pd.concat([marvel_strength, dc_strength])
+sum_total = sum((all_strength - all_strength.mean())**2)
+sum_total
 </pre></div>
 </div>
 </div>
@@ -1188,9 +1198,9 @@ logiche.</p>
 <p>Analogamente calcoliamo <span class="math notranslate nohighlight">\(\mathrm{SS}_{\mathrm W}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sum_within</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">marvel_strength</span> <span class="o">-</span> <span class="n">marvel_strength</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> \
-                    <span class="nb">sum</span><span class="p">((</span><span class="n">dc_strength</span> <span class="o">-</span> <span class="n">dc_strength</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">sum_within</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sum_within = sum((marvel_strength - marvel_strength.mean())**2) + \
+                    sum((dc_strength - dc_strength.mean())**2)
+sum_within
 </pre></div>
 </div>
 </div>
@@ -1203,9 +1213,9 @@ logiche.</p>
 <p>Infine, calcoliamo <span class="math notranslate nohighlight">\(\mathrm{SS}_{\mathrm B}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sum_between</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">marvel_strength</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">marvel_strength</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">all_strength</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> \
-                    <span class="nb">len</span><span class="p">(</span><span class="n">dc_strength</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">dc_strength</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">all_strength</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span>
-<span class="n">sum_between</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sum_between = len(marvel_strength) * (marvel_strength.mean() - all_strength.mean())**2 + \
+                    len(dc_strength) * (dc_strength.mean() - all_strength.mean())**2
+sum_between
 </pre></div>
 </div>
 </div>
@@ -1220,7 +1230,7 @@ virgola mobile, l'uguaglianza
 <span class="math notranslate nohighlight">\(\mathrm{SS}_{\mathrm T} = \mathrm{SS}_{\mathrm W} + \mathrm{SS}_{\mathrm B}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sum_total</span> <span class="o">-</span> <span class="n">sum_within</span> <span class="o">-</span> <span class="n">sum_between</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sum_total - sum_within - sum_between
 </pre></div>
 </div>
 </div>
@@ -1234,10 +1244,10 @@ virgola mobile, l'uguaglianza
 le formule sopra descritte.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_strength</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>n = len(all_strength)
 
-<span class="n">total_var</span> <span class="o">=</span> <span class="n">sum_total</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">total_var</span>
+total_var = sum_total / (n-1)
+total_var
 </pre></div>
 </div>
 </div>
@@ -1249,8 +1259,8 @@ le formule sopra descritte.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">within_var</span> <span class="o">=</span> <span class="n">sum_within</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">within_var</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>within_var = sum_within / (n-2)
+within_var * (n-2) / (n-1)
 </pre></div>
 </div>
 </div>
@@ -1269,22 +1279,22 @@ e restituirà una coppia i cui elementi saranno rispettivamente la varianza
 totale e la varianza entro i gruppi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
 
-<span class="k">def</span> <span class="nf">anova</span><span class="p">(</span><span class="n">groups</span><span class="p">):</span>
-    <span class="n">all_elements</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span>
+def anova(groups):
+    all_elements = pd.concat(groups)
 
-    <span class="n">sum_total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">all_elements</span> <span class="o">-</span> <span class="n">all_elements</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">sum_within</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">sum</span><span class="p">((</span><span class="n">g</span> <span class="o">-</span> <span class="n">g</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">])</span>
+    sum_total = sum((all_elements - all_elements.mean())**2)
+    sum_within = sum([sum((g - g.mean())**2) for g in groups])
 
-    <span class="n">sum_between</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">-</span><span class="n">all_elements</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span>
-                       <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">])</span>
-    <span class="k">assert</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">sum_total</span> <span class="o">-</span> <span class="n">sum_within</span> <span class="o">-</span> <span class="n">sum_between</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">**-</span><span class="mi">5</span><span class="p">)</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_elements</span><span class="p">)</span>
-    <span class="n">total_var</span> <span class="o">=</span> <span class="n">sum_total</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">within_var</span> <span class="o">=</span> <span class="n">sum_within</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">groups</span><span class="p">))</span>
+    sum_between = sum([len(g) * (g.mean()-all_elements.mean())**2
+                       for g in groups])
+    assert(np.abs(sum_total - sum_within - sum_between) &lt; 10**-5)
+    n = len(all_elements)
+    total_var = sum_total / (n-1)
+    within_var = sum_within / (n-len(groups))
 
-    <span class="k">return</span> <span class="p">(</span><span class="n">total_var</span><span class="p">,</span> <span class="n">within_var</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">groups</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+    return (total_var, within_var*(n-len(groups))/(n-1))
 </pre></div>
 </div>
 </div>
@@ -1293,7 +1303,7 @@ totale e la varianza entro i gruppi.</p>
 gli stessi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">anova</span><span class="p">([</span><span class="n">dc_strength</span><span class="p">,</span> <span class="n">marvel_strength</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>anova([dc_strength, marvel_strength])
 </pre></div>
 </div>
 </div>
@@ -1309,11 +1319,11 @@ che non si possa avvalorare l'ipotesi che l'indice di forza sia distribuito
 in modo sostanzialmente diverso tra i due generi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">male_strength</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span><span class="p">)</span> <span class="o">&amp;</span> \
-                       <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">]))][</span><span class="s1">&#39;Strength&#39;</span><span class="p">]</span>
-<span class="n">female_strength</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;F&#39;</span><span class="p">)</span> <span class="o">&amp;</span> \
-                         <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">]))][</span><span class="s1">&#39;Strength&#39;</span><span class="p">]</span>
-<span class="n">anova</span><span class="p">([</span><span class="n">male_strength</span><span class="p">,</span> <span class="n">female_strength</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>male_strength = heroes[(heroes[&#39;Gender&#39;] == &#39;M&#39;) &amp; \
+                       (pd.notnull(heroes[&#39;Strength&#39;]))][&#39;Strength&#39;]
+female_strength = heroes[(heroes[&#39;Gender&#39;] == &#39;F&#39;) &amp; \
+                         (pd.notnull(heroes[&#39;Strength&#39;]))][&#39;Strength&#39;]
+anova([male_strength, female_strength])
 </pre></div>
 </div>
 </div>
@@ -1327,13 +1337,13 @@ in modo sostanzialmente diverso tra i due generi.</p>
 valutando la differenza nella distribuzione del peso.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">male_weight</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;DC Comics&#39;</span><span class="p">)</span> <span class="o">&amp;</span> \
-                   <span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span><span class="p">)</span> <span class="o">&amp;</span> \
-                   <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]))][</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span>
-<span class="n">female_weight</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;DC Comics&#39;</span><span class="p">)</span> <span class="o">&amp;</span> \
-                     <span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;F&#39;</span><span class="p">)</span> <span class="o">&amp;</span> \
-                     <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]))][</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span>
-<span class="n">anova</span><span class="p">([</span><span class="n">male_weight</span><span class="p">,</span> <span class="n">female_weight</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>male_weight = heroes[(heroes[&#39;Publisher&#39;] == &#39;DC Comics&#39;) &amp; \
+                   (heroes[&#39;Gender&#39;] == &#39;M&#39;) &amp; \
+                   (pd.notnull(heroes[&#39;Weight&#39;]))][&#39;Weight&#39;]
+female_weight = heroes[(heroes[&#39;Publisher&#39;] == &#39;DC Comics&#39;) &amp; \
+                     (heroes[&#39;Gender&#39;] == &#39;F&#39;) &amp; \
+                     (pd.notnull(heroes[&#39;Weight&#39;]))][&#39;Weight&#39;]
+anova([male_weight, female_weight])
 </pre></div>
 </div>
 </div>
@@ -1351,8 +1361,8 @@ valutando la differenza nella distribuzione del peso.</p>
 \sum_{i=1}^{n_g} x^g_i = n_g \overline x^g,
 \]</div>
 <p>e quindi</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1537687a-550e-47cb-8845-fe958db24f07">
-<span class="eqno">(6.3)<a class="headerlink" href="#equation-1537687a-550e-47cb-8845-fe958db24f07" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-21cdd55d-9cd6-4bd3-a5a6-b8e7b77f22cb">
+<span class="eqno">(6.3)<a class="headerlink" href="#equation-21cdd55d-9cd6-4bd3-a5a6-b8e7b77f22cb" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm{SS}_{\mathrm T}  &amp;= \sum_{g=1}^G \sum_{i=1}^{n_g}
                             \left( \left(x^g_i\right)^2
                             - 2 \overline x x^g_i +

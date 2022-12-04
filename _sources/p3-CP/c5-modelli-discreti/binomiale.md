@@ -13,3 +13,10 @@ kernelspec:
 ---
 
 # Il modello binomiale
+
+
+```{math}
+p_X(x; n, p) = \binom{n}{x} p^x (1 - p)^{n - x}
+               \mathrm{I}_{\{0, 1, \dots, n\}}(x)
+```
+

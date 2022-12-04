@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>14.1. Il modello uniforme continuo &#8212; Superhero Data Science 
+    <title>14.3. Il modello uniforme continuo &#8212; Superhero Data Science 
  Probabilità e Statistica</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -56,13 +56,11 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
-    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
     <link rel="search" title="Cerca" href="../../search.html" />
-    <link rel="next" title="14.2. Il modello esponenziale" href="esponenziale.html" />
-    <link rel="prev" title="14. I modelli continui" href="modelli-continui.html" />
+    <link rel="next" title="14.4. Il modello esponenziale" href="esponenziale.html" />
+    <link rel="prev" title="14.2. Variabili aleatorie continue" href="va-continue.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="it">
     
@@ -611,7 +609,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../c5-modelli-discreti/bernoulli.html">
-     13.1. Il modello di Bernoulli
+     13.1. Il modello bernoulliano
     </a>
    </li>
    <li class="toctree-l2">
@@ -642,8 +640,8 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="modelli-continui.html">
-   14. I modelli continui
+  <a class="reference internal" href="va-e-modelli-continui.html">
+   14. Variabili aleatorie e modelli continui
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
   <label for="toctree-checkbox-14">
@@ -651,24 +649,34 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="dal-discreto-al-continuo.html">
+     14.1. Dal discreto al continuo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="va-continue.html">
+     14.2. Variabili aleatorie continue
+    </a>
+   </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     14.1. Il modello uniforme continuo
+     14.3. Il modello uniforme continuo
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="esponenziale.html">
-     14.2. Il modello esponenziale
+     14.4. Il modello esponenziale
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="gaussiano.html">
-     14.3. Il modello gaussiano
+     14.5. Il modello gaussiano
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="altri-modelli.html">
-     14.4. Altri modelli continui
+     14.6. Altri modelli continui
     </a>
    </li>
   </ul>
@@ -1010,155 +1018,7 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="il-modello-uniforme-continuo">
-<h1><span class="section-number">14.1. </span>Il modello uniforme continuo<a class="headerlink" href="#il-modello-uniforme-continuo" title="Link a questa intestazione">#</a></h1>
-<p>Dato <span class="math notranslate nohighlight">\(n \in \mathbb N\)</span>, consideriamo l'insieme <span class="math notranslate nohighlight">\(D_n = \{ \frac{i}{n}, i = 0,
-\dots, n \}\)</span> e la variabile aleatoria <span class="math notranslate nohighlight">\(X\)</span> definita dalla funzione di massa di
-probabilità</p>
-<div class="math notranslate nohighlight" id="equation-eq-uniform">
-<span class="eqno">(14.1)<a class="headerlink" href="#equation-eq-uniform" title="Permalink a questa equazione">#</a></span>\[p_X(x) = \frac{1}{n+1} \mathrm I_{D_n}(x).\]</div>
-<p>Chiaramente, la distribuzione di <span class="math notranslate nohighlight">\(X\)</span> ricorda il modello uniforme discreto, con
-la sola differenza che in questo caso il dominio include la specificazione
-<span class="math notranslate nohighlight">\(0\)</span>. Supponiamo ora che <span class="math notranslate nohighlight">\(n\)</span> assuma un valore molto grande: dato un generico
-<span class="math notranslate nohighlight">\(k \in D_n\)</span>, si ha <span class="math notranslate nohighlight">\(\mathbb P(X = k) = \frac{1}{n + 1}\)</span> e dunque diventa molto
-vicina a zero la probabilità che <span class="math notranslate nohighlight">\(X\)</span> assuma una qualsiasi delle sue
-specificazioni. Ciò non deve sembrare strano, perché queste ultime si
-addensano in <span class="math notranslate nohighlight">\([0, 1]\)</span> man mano che <span class="math notranslate nohighlight">\(n\)</span> cresce, pertanto specificazioni molto
-vicine tra loro diventeranno praticamente indistinguibili.</p>
-<aside class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>Il multiverso è stato inizialmente introdotto per risolvere in modo ingegnoso
-una serie di problemi di coerenza tra varie personificazioni di uno stesso
-supereroe: per esempio Terra-Uno è popolata dai protagonisti dei fumetti DC
-degli anni '60 (la cosiddetta «Silver age»), mentre quelli introdotti
-precedentemente (nella «Golden age») vivono su Terra-Due.</p>
-</aside>
-<div class="proof example admonition" id="ex-multiverso-dc">
-<p class="admonition-title"><span class="caption-number">Esempio 14.1 </span> (Il multiverso DC)</p>
-<section class="example-content" id="proof-content">
-<p>A partire dal 1961, e in particolare nel numero 123 di «The Flash», le storie
-dei fumetti pubblicati da DC non avvengono in un unico universo, bensì in più
-universi che esistono in uno spazio comune, ma i cui abitanti &quot;vibrano&quot; a
-frequenze diverse. Ogni universo è identificato in modo univoco da un nome,
-che nella maggior parte dei casi indica come viene denominato il pianeta
-Terra, e l'insieme di tutti gli universi è chiamato metaverso
-<a class="footnote-reference brackets" href="#meccanica-quantistica" id="id1">1</a>. Ogni protagonista può avere caratteristiche
-molto diverse a seconda del corrispondente universo: per esempio, Wonder Woman
-è buona quasi sempre, ma sicuramente non su Terra-Ventidue. Ora, ipotizziamo
-che in ognuno di questi universi esistano esattamente <span class="math notranslate nohighlight">\(n = 15000\)</span> protagonisti
-diversi, oguno con il proprio allineamento (buono, neutrale o cattivo).
-Immaginiamo anche che esista un criterio per scegliere a caso un universo
-all'interno del metaverso. La variabile aleatoria <span class="math notranslate nohighlight">\(X\)</span> che indica la frazione
-di protagonisti &quot;buoni&quot; nell'universo selezionato è distribuita sul dominio
-<span class="math notranslate nohighlight">\(D_{15000}\)</span> secondo la funzione di massa di probabilità <a class="reference internal" href="#equation-eq-uniform">(14.1)</a>.
-Ora, ha poco senso discriminare, per dire, tra le specificazioni
-<span class="math notranslate nohighlight">\(\frac{42}{15000}\)</span>. <span class="math notranslate nohighlight">\(\frac{43}{15000}\)</span> e <span class="math notranslate nohighlight">\(\frac{49}{15000}\)</span>, perché la loro
-differenza massima equivale a meno dello <span class="math notranslate nohighlight">\(0.05\%\)</span> del totale.</p>
-</section>
-</div><p>In altre parole, valori tra loro abbastanza vicini per le specificazioni
-risultano fondamentalmente equivalenti, e dunque ha più senso ragionare in
-termini della probabilità che <span class="math notranslate nohighlight">\(X\)</span> assuma valori in un intervallo (anche
-piccolo) di specificazioni piuttosto che studiare eventi in cui essa risulta
-uguale a una fissata specificazione. Calcoliamo dunque la funzione di
-distribuzione cumulativa di <span class="math notranslate nohighlight">\(X\)</span>: fissato <span class="math notranslate nohighlight">\(x \in [0, 1]\)</span>, esisteranno
-<span class="math notranslate nohighlight">\(i \in \{ 0, \dots, n \}\)</span> ed <span class="math notranslate nohighlight">\(\epsilon &lt; \frac{1}{n}\)</span> tali che
-<span class="math notranslate nohighlight">\(x = \frac{i}{n} + \epsilon\)</span>, e pertanto</p>
-<aside class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>Siccome <span class="math notranslate nohighlight">\(n x = i + n \epsilon\)</span> e <span class="math notranslate nohighlight">\(0 \leq n \epsilon &lt; 1\)</span>, abbiamo
-<span class="math notranslate nohighlight">\(i = \lfloor nb \rfloor\)</span>.</p>
-</aside>
-<div class="math notranslate nohighlight">
-\[F_X (x) = \mathbb P(X \leq x) = \mathbb P \Big( X \leq \frac{i}{n} \Big)
-        = \frac{i+1}{n} = \frac{\lfloor n x \rfloor + 1}{n},
-     \]</div>
-<p>così che in generale</p>
-<div class="math notranslate nohighlight">
-\[F_X(x) = \frac{\lfloor n x \rfloor + 1}{n} \mathrm I_{[0, 1]}(x) +
-\mathrm I_{(1, +\infty)}(x).\]</div>
-<p>A questo punto possiamo calcolare la probabilità che <span class="math notranslate nohighlight">\(X\)</span> assuma valori in un
-intervallo: fissati <span class="math notranslate nohighlight">\(a, b \in [0, 1]\)</span> con
-<span class="math notranslate nohighlight">\(a &lt; b\)</span> esisteranno <span class="math notranslate nohighlight">\(i, j \in \{ 0, \dots, n \}\)</span> con <span class="math notranslate nohighlight">\(i &lt; j\)</span> ed
-<span class="math notranslate nohighlight">\(\epsilon_1, \epsilon_2 \in [0, \frac{1}{n})\)</span>  tali che
-<span class="math notranslate nohighlight">\(a = \frac{i}{n} - \epsilon_1\)</span> e <span class="math notranslate nohighlight">\(b = \frac{j}{n} + \epsilon_2\)</span>. Pertanto</p>
-<aside class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>In questo caso abbiamo <span class="math notranslate nohighlight">\(n a = i - n \epsilon_1\)</span> e <span class="math notranslate nohighlight">\(0 \leq n \epsilon_1 &lt; 1\)</span>,
-quindi <span class="math notranslate nohighlight">\(i = \lceil na \rceil\)</span>.</p>
-</aside>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-\mathbb P(a \leq X \leq b) &amp; =
-     \mathbb P \Big( \frac{i}{n} \leq X \leq \frac{j}{n} \Big) =
-     \mathbb P \Big( \frac{i-1}{n} &lt; X \leq \frac{j}{n} \Big) \\
-     &amp; = F_X \Big( \frac{j}{n} \Big) - F_X \Big( \frac{i-1}{n} \Big) =
-     \frac{j+1}{n} - \frac{i}{n} \\
-     &amp; = \frac{\lfloor nb \rfloor - \lceil na \rceil + 1}{n}.
-\end{align*}\]</div>
-<p>Che cosa succederebbe se il dominio di <span class="math notranslate nohighlight">\(X\)</span> diventasse infinito? Consideriamo
-per esempio l'intero intervallo <span class="math notranslate nohighlight">\([0, 1]\)</span>. Da <a class="reference internal" href="#equation-eq-uniform">(14.1)</a> sappiamo che
-non ha più senso calcolare la probabilità di assumere una qualsiasi
-specificazione, perché <span class="math notranslate nohighlight">\(\mathbb P(X = x) = 0\)</span> per ogni <span class="math notranslate nohighlight">\(x \in \mathbb R\)</span>.</p>
-<div class="cell tag_hide-cell tag_remove-output docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;sds.mplstyle&#39;</span><span class="p">)</span>
-
-<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
-
-<span class="k">def</span> <span class="nf">cdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
-
-<span class="k">def</span> <span class="nf">cdf_graph</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">ax</span><span class="p">):</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1f77b4&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">rf</span><span class="s1">&#39;$n = </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
-    <span class="n">cdf_graph</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">i</span><span class="p">,</span> <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;discrete-to-continuous&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<figure class="align-default" id="fig-discrete-to-continuous">
-<div class="cell_output docutils container">
-<img alt="../../_images/uniforme_1_1.png" src="../../_images/uniforme_1_1.png" />
-</div>
-<figcaption>
-<p><span class="caption-number">Fig. 14.1 </span><span class="caption-text">Bla bla</span><a class="headerlink" href="#fig-discrete-to-continuous" title="Link a questa immagine">#</a></p>
-</figcaption>
-</figure>
-<hr class="footnotes docutils" />
-<dl class="footnote brackets">
-<dt class="label" id="meccanica-quantistica"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Per quanto bizzarro possa sembrare il concetto di
-multiverso, è interessante notare che una delle interpretazioni proposte per
-la meccanica quantistica (la teoria—oggi ampiamente accettata—che descrive
-il comportamento della materia nella scala sub-atomica) preveda l'esistenza
-di mondi paralleli. Semplificando parecchio, in un dato istante di tempo
-ognuna delle cosiddette &quot;particelle elementari&quot; (protoni, elettroni o entità
-ancora più piccole) non ha una posizione fissa, bensì si trova simultaneamente
-in più punti dello spazio. Solo quando viene effettuato un esperimento per
-osservare una di queste particelle (il verbo va inteso in senso lato, perché
-stiamo parlando di cose non visibili a occhio nudo) questa assume una
-posizione precisa. Tra l'altro, sono proprio le leggi della probabilità a
-descrivere l'esito dell'esperimento in questione. Tra le interpretazioni
-proposte per la meccanica quantistica, quella cosiddetta &quot;a molti mondi&quot;
-prevede che ogni volta che viene effettuato un esperimento di questo tipo
-si ottiene come conseguenza la creazione di tanti mondi distinti, uno per ogni
-esito possibile.</p>
-</dd>
-</dl>
+<span id="sec-modello-uniforme-continuo"></span><h1><span class="section-number">14.3. </span>Il modello uniforme continuo<a class="headerlink" href="#il-modello-uniforme-continuo" title="Link a questa intestazione">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1188,17 +1048,17 @@ esito possibile.</p>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="modelli-continui.html" title="precedente pagina">
+    <a class='left-prev' id="prev-link" href="va-continue.html" title="precedente pagina">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">precedente</p>
-            <p class="prev-next-title"><span class="section-number">14. </span>I modelli continui</p>
+            <p class="prev-next-title"><span class="section-number">14.2. </span>Variabili aleatorie continue</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="esponenziale.html" title="successivo pagina">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">successivo</p>
-        <p class="prev-next-title"><span class="section-number">14.2. </span>Il modello esponenziale</p>
+        <p class="prev-next-title"><span class="section-number">14.4. </span>Il modello esponenziale</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

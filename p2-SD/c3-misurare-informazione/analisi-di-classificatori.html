@@ -611,7 +611,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/bernoulli.html">
-     13.1. Il modello di Bernoulli
+     13.1. Il modello bernoulliano
     </a>
    </li>
    <li class="toctree-l2">
@@ -642,8 +642,8 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p3-CP/c6-modelli-continui/modelli-continui.html">
-   14. I modelli continui
+  <a class="reference internal" href="../../p3-CP/c6-modelli-continui/va-e-modelli-continui.html">
+   14. Variabili aleatorie e modelli continui
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
   <label for="toctree-checkbox-14">
@@ -652,23 +652,33 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/dal-discreto-al-continuo.html">
+     14.1. Dal discreto al continuo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/va-continue.html">
+     14.2. Variabili aleatorie continue
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/uniforme.html">
-     14.1. Il modello uniforme continuo
+     14.3. Il modello uniforme continuo
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/esponenziale.html">
-     14.2. Il modello esponenziale
+     14.4. Il modello esponenziale
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/gaussiano.html">
-     14.3. Il modello gaussiano
+     14.5. Il modello gaussiano
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/altri-modelli.html">
-     14.4. Altri modelli continui
+     14.6. Altri modelli continui
     </a>
    </li>
   </ul>
@@ -1318,18 +1328,18 @@ stata evidenziata anche la diagonale del quadrato, che ci servierà come punto
 di riferimento.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
 
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">.07</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;$\mathrm</span><span class="si">{CN}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.07</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;$\mathrm</span><span class="si">{CP}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+plt.axis(&#39;equal&#39;)
+plt.plot([0, 1, 1, 0, 0], [0, 0, 1, 1, 0], color=&#39;black&#39;)
+plt.plot([0, 1], [0, 1], &#39;o&#39;)
+plt.plot([0, 1], [0, 1], dashes=[3, 3], color=&#39;gray&#39;)
+plt.text(-.07, 0, &#39;$\mathrm{CN}$&#39;, horizontalalignment=&#39;center&#39;, verticalalignment=&#39;center&#39;)
+plt.text(1.07, 1, &#39;$\mathrm{CP}$&#39;, horizontalalignment=&#39;center&#39;, verticalalignment=&#39;center&#39;)
+plt.xlim([-.1, 1.1])
+plt.ylim([-.1, 1.1])
+plt.axis(&#39;off&#39;)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -1411,18 +1421,18 @@ classificatori ideale ed errato, possiamo aggiornare la rappresentazione sul
 piano cartesiano nel modo che segue.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">.07</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;$\mathrm</span><span class="si">{CN}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.07</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;$\mathrm</span><span class="si">{CP}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">.07</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;$\mathrm</span><span class="si">{CI}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.07</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;$\mathrm</span><span class="si">{CE}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.axis(&#39;equal&#39;)
+plt.plot([0, 1, 1, 0, 0], [0, 0, 1, 1, 0], color=&#39;black&#39;)
+plt.plot([0, 1, 0, 1], [0, 1, 1, 0], &#39;o&#39;)
+plt.plot([0, 1], [0, 1], dashes=[3, 3], color=&#39;gray&#39;)
+plt.text(-.07, 0, &#39;$\mathrm{CN}$&#39;, horizontalalignment=&#39;center&#39;, verticalalignment=&#39;center&#39;)
+plt.text(1.07, 1, &#39;$\mathrm{CP}$&#39;, horizontalalignment=&#39;center&#39;, verticalalignment=&#39;center&#39;)
+plt.text(-.07, 1, &#39;$\mathrm{CI}$&#39;, horizontalalignment=&#39;center&#39;, verticalalignment=&#39;center&#39;)
+plt.text(1.07, 0, &#39;$\mathrm{CE}$&#39;, horizontalalignment=&#39;center&#39;, verticalalignment=&#39;center&#39;)
+plt.xlim([-.1, 1.1])
+plt.ylim([-.1, 1.1])
+plt.axis(&#39;off&#39;)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -1509,20 +1519,20 @@ nell'80% dei casi verrà scelta la classe positiva e nel rimanente 20% gli
 esempi verranno associati a quella negativa.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">.5</span><span class="p">,</span> <span class="mf">.8</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">.5</span><span class="p">,</span> <span class="mf">.8</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">.07</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;$\mathrm</span><span class="si">{CN}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.07</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;$\mathrm</span><span class="si">{CP}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">.07</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;$\mathrm</span><span class="si">{CI}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.07</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;$\mathrm</span><span class="si">{CE}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">.6</span><span class="p">,</span> <span class="mf">.487</span><span class="p">,</span> <span class="s1">&#39;$\mathrm</span><span class="si">{CC}</span><span class="s1">_{1/2}$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">.9</span><span class="p">,</span> <span class="mf">.787</span><span class="p">,</span> <span class="s1">&#39;$\mathrm</span><span class="si">{CC}</span><span class="s1">_{4/5}$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.axis(&#39;equal&#39;)
+plt.plot([0, 1, 1, 0, 0], [0, 0, 1, 1, 0], color=&#39;black&#39;)
+plt.plot([0, 1, 0, 1, .5, .8], [0, 1, 1, 0, .5, .8], &#39;o&#39;)
+plt.plot([0, 1], [0, 1], dashes=[3, 3], color=&#39;gray&#39;)
+plt.text(-.07, 0, &#39;$\mathrm{CN}$&#39;, horizontalalignment=&#39;center&#39;, verticalalignment=&#39;center&#39;)
+plt.text(1.07, 1, &#39;$\mathrm{CP}$&#39;, horizontalalignment=&#39;center&#39;, verticalalignment=&#39;center&#39;)
+plt.text(-.07, 1, &#39;$\mathrm{CI}$&#39;, horizontalalignment=&#39;center&#39;, verticalalignment=&#39;center&#39;)
+plt.text(1.07, 0, &#39;$\mathrm{CE}$&#39;, horizontalalignment=&#39;center&#39;, verticalalignment=&#39;center&#39;)
+plt.text(.6, .487, &#39;$\mathrm{CC}_{1/2}$&#39;, horizontalalignment=&#39;center&#39;, verticalalignment=&#39;center&#39;)
+plt.text(.9, .787, &#39;$\mathrm{CC}_{4/5}$&#39;, horizontalalignment=&#39;center&#39;, verticalalignment=&#39;center&#39;)
+plt.xlim([-.1, 1.1])
+plt.ylim([-.1, 1.1])
+plt.axis(&#39;off&#39;)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -1565,31 +1575,31 @@ risultato è una traiettoria che prende il nome di <em>curva ROC</em>, il cui
 andamento tipico è visualizzato nella figura che segue.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn.datasets import make_classification
+from sklearn.linear_model import LogisticRegression
 
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;sds.mplstyle&#39;</span><span class="p">)</span>
+plt.style.use(&#39;sds.mplstyle&#39;)
 
-<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_informative</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">Xtrain</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="mi">9000</span><span class="p">]</span>
-<span class="n">Xtest</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">9000</span><span class="p">:]</span>
-<span class="n">ytrain</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="mi">9000</span><span class="p">]</span>
-<span class="n">ytest</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="mi">9000</span><span class="p">:]</span>
+X, y = make_classification(n_samples=10000, n_features=10, n_classes=2, n_informative=5)
+Xtrain = X[:9000]
+Xtest = X[9000:]
+ytrain = y[:9000]
+ytest = y[9000:]
 
-<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
-<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xtrain</span><span class="p">,</span> <span class="n">ytrain</span><span class="p">)</span>
+clf = LogisticRegression()
+clf.fit(Xtrain, ytrain)
 
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+from sklearn import metrics
 
-<span class="n">preds</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">Xtest</span><span class="p">)[:,</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">roc_curve</span><span class="p">(</span><span class="n">ytest</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
+preds = clf.predict_proba(Xtest)[:,1]
+fpr, tpr, _ = metrics.roc_curve(ytest, preds)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-<span class="c1">#plt.xlim([-0.01, 1])</span>
-<span class="c1">#plt.ylim([0, 1.01])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+plt.plot(fpr, tpr)
+plt.plot([0, 1], [0, 1], dashes=[3, 3], color=&#39;gray&#39;)
+#plt.xlim([-0.01, 1])
+#plt.ylim([0, 1.01])
+plt.axis(&#39;equal&#39;)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -1614,13 +1624,13 @@ compresa tra l'asse delle ascisse e la curva stessa, area evidenziata nella
 figura che segue.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">tpr</span><span class="p">),</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightgray&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.fill_between(fpr, [0]*len(tpr), tpr, color=&#39;lightgray&#39;)
+plt.plot(fpr, tpr)
+plt.plot([0, 1], [0, 1], dashes=[3, 3], color=&#39;gray&#39;)
+plt.xlim([0, 1])
+plt.ylim([0, 1.1])
+plt.axis(&#39;equal&#39;)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -1770,12 +1780,12 @@ consdierando i valori nelle due righe di questa tabella ripsettivamente come
 ascisse e ordinate di punti che andranno poi uniti.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;sds.mplstyle&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
+plt.style.use(&#39;sds.mplstyle&#39;)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">.33</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+plt.plot([1, 1, 0.5, 0, 0, 0], [1, 1, 1, 1, .33, 0])
+plt.plot([0, 1], [0, 1], dashes=[3, 3], color=&#39;gray&#39;)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -1799,13 +1809,13 @@ citati valori di soglia selezionati dal metodo.</p>
 </aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
-<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-<span class="n">prob</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.7</span><span class="p">,</span> <span class="mf">.4</span><span class="p">,</span> <span class="mf">.8</span><span class="p">,</span> <span class="mf">.7</span><span class="p">,</span> <span class="mf">.3</span><span class="p">]</span>
-<span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">roc_curve</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">prob</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn import metrics
+y = [1, 0, 1, 1, 0]
+prob = [.7, .4, .8, .7, .3]
+fpr, tpr, _ = metrics.roc_curve(y, prob)
+plt.plot(fpr, tpr)
+plt.plot([0, 1], [0, 1], dashes=[3, 3], color=&#39;gray&#39;)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -1818,7 +1828,7 @@ all'area sotto la curva ROC, invocando il metodo <code class="docutils literal n
 array precedentemente ottenuti.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metrics</span><span class="o">.</span><span class="n">auc</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span><span class="n">tpr</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>metrics.auc(fpr,tpr)
 </pre></div>
 </div>
 </div>
@@ -1838,12 +1848,12 @@ relativamente al primo e all'ultimo oggetto), si otterrebbe ovviamente una
 diversa curva ROC.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-<span class="n">prob</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.2</span><span class="p">,</span> <span class="mf">.4</span><span class="p">,</span> <span class="mf">.8</span><span class="p">,</span> <span class="mf">.7</span><span class="p">,</span> <span class="mf">.7</span><span class="p">]</span>
-<span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">roc_curve</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">prob</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>y = [1, 0, 1, 1, 0]
+prob = [.2, .4, .8, .7, .7]
+fpr, tpr, _ = metrics.roc_curve(y, prob)
+plt.plot(fpr, tpr)
+plt.plot([0, 1], [0, 1], dashes=[3, 3], color=&#39;gray&#39;)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -1856,7 +1866,7 @@ calcolando il valore per l'AUC, che in questo caso è non molto superiore al
 valore corrispondente a una scelta uniformemente casuale.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metrics</span><span class="o">.</span><span class="n">auc</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span><span class="n">tpr</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>metrics.auc(fpr,tpr)
 </pre></div>
 </div>
 </div>
@@ -1873,32 +1883,32 @@ eliminando tutti i casi in cui l'editore non è <code class="docutils literal no
 trasformando i valori categorici in valori numerici.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas as pd
 
-<span class="n">heroes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/heroes.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-<span class="n">heroes</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;Marvel Comics&#39;</span><span class="p">,</span> <span class="s1">&#39;DC Comics&#39;</span><span class="p">])]</span>
+heroes = pd.read_csv(&#39;data/heroes.csv&#39;, sep=&#39;;&#39;, index_col=0).dropna()
+heroes = heroes[heroes[&#39;Publisher&#39;].isin([&#39;Marvel Comics&#39;, &#39;DC Comics&#39;])]
 
-<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="s1">&#39;Weight&#39;</span><span class="p">,</span> <span class="s1">&#39;Gender&#39;</span><span class="p">,</span> <span class="s1">&#39;First appearance&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;Hair color&#39;</span><span class="p">,</span> <span class="s1">&#39;Eye color&#39;</span><span class="p">,</span> <span class="s1">&#39;Strength&#39;</span><span class="p">,</span> <span class="s1">&#39;Intelligence&#39;</span><span class="p">]</span>
+features = [&#39;Height&#39;, &#39;Weight&#39;, &#39;Gender&#39;, &#39;First appearance&#39;,
+            &#39;Hair color&#39;, &#39;Eye color&#39;, &#39;Strength&#39;, &#39;Intelligence&#39;]
 
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+from sklearn.preprocessing import LabelEncoder
 
-<span class="n">gender_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
-<span class="n">gender_encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">])</span>
+gender_encoder = LabelEncoder()
+gender_encoder.fit(heroes[&#39;Gender&#39;])
 
-<span class="n">eye_col_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
-<span class="n">eye_col_encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">])</span>
+eye_col_encoder = LabelEncoder()
+eye_col_encoder.fit(heroes[&#39;Eye color&#39;])
 
-<span class="n">hair_col_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
-<span class="n">hair_col_encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">])</span>
+hair_col_encoder = LabelEncoder()
+hair_col_encoder.fit(heroes[&#39;Hair color&#39;])
 
-<span class="n">intelligence_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">intelligence_encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">])</span>
+intelligence_encoder = LabelEncoder()
+_ = intelligence_encoder.fit(heroes[&#39;Intelligence&#39;])
 
-<span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gender_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">])</span>
-<span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">eye_col_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">])</span>
-<span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hair_col_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">])</span>
-<span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">intelligence_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">])</span>
+heroes[&#39;Gender&#39;] = gender_encoder.transform(heroes[&#39;Gender&#39;])
+heroes[&#39;Eye color&#39;] = eye_col_encoder.transform(heroes[&#39;Eye color&#39;])
+heroes[&#39;Hair color&#39;] = hair_col_encoder.transform(heroes[&#39;Hair color&#39;])
+heroes[&#39;Intelligence&#39;] = intelligence_encoder.transform(heroes[&#39;Intelligence&#39;])
 </pre></div>
 </div>
 </div>
@@ -1909,12 +1919,12 @@ e parimenti costruiamo la serie delle etichette corrispondenti, i cui valori
 vanno trasformati da categorici a numerici.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
-<span class="n">Y</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>X = heroes[features]
+Y = heroes[&#39;Publisher&#39;]
 
-<span class="n">publisher_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
-<span class="n">publisher_encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
-<span class="n">Y</span> <span class="o">=</span> <span class="n">publisher_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+publisher_encoder = LabelEncoder()
+publisher_encoder.fit(Y)
+Y = publisher_encoder.transform(Y)
 </pre></div>
 </div>
 </div>
@@ -1927,11 +1937,11 @@ funzionare correttamente quando questo verrà utilizzato su oggetti di cui non
 si conosce la classe di appartenenza.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_train</span> <span class="o">=</span> <span class="mi">90</span>
-<span class="n">X_train</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="n">num_train</span><span class="p">]</span>
-<span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">num_train</span><span class="p">:]</span>
-<span class="n">Y_train</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[:</span><span class="n">num_train</span><span class="p">]</span>
-<span class="n">Y_test</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="n">num_train</span><span class="p">:]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>num_train = 90
+X_train = X[:num_train]
+X_test = X[num_train:]
+Y_train = Y[:num_train]
+Y_test = Y[num_train:]
 </pre></div>
 </div>
 </div>
@@ -1948,18 +1958,18 @@ di questi due valori si può facilmente procedere come prima e tracciare la
 corrispondente curva ROC.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">tree</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn import tree
 
-<span class="n">clf</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">()</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">)</span>
+clf = tree.DecisionTreeClassifier()
+clf = clf.fit(X_train, Y_train)
 
-<span class="n">preds</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)[:,</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">roc_curve</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
+preds = clf.predict_proba(X_test)[:,1]
+fpr, tpr, _ = metrics.roc_curve(Y_test, preds)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;figure&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+plt.rc(&#39;figure&#39;, figsize=(7.0, 7.0))
+plt.plot(fpr, tpr)
+plt.plot([0, 1], [0, 1], dashes=[3, 3], color=&#39;gray&#39;)
+plt.show()
 </pre></div>
 </div>
 </div>
@@ -1972,13 +1982,13 @@ associata ai classificatori casuali, così come risulta anche evidenziato dal
 corrispondente valore di AUC.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">auc</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">auc</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span><span class="n">tpr</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">auc</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>auc = metrics.auc(fpr,tpr)
+print(auc)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.575
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6375
 </pre></div>
 </div>
 </div>
@@ -1990,7 +2000,7 @@ costruire un <em>DataFrame</em>, al fine di ottenere una visualizzazione della
 matrice più gradevole.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">preds</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pd.DataFrame(metrics.confusion_matrix(Y_test, preds))
 </pre></div>
 </div>
 </div>
@@ -2020,8 +2030,8 @@ matrice più gradevole.</p>
   <tbody>
     <tr>
       <th>0</th>
-      <td>2</td>
-      <td>6</td>
+      <td>3</td>
+      <td>5</td>
     </tr>
     <tr>
       <th>1</th>

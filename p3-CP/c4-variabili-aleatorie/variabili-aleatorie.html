@@ -56,6 +56,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
     <link rel="search" title="Cerca" href="../../search.html" />
@@ -609,7 +611,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../c5-modelli-discreti/bernoulli.html">
-     13.1. Il modello di Bernoulli
+     13.1. Il modello bernoulliano
     </a>
    </li>
    <li class="toctree-l2">
@@ -640,8 +642,8 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../c6-modelli-continui/modelli-continui.html">
-   14. I modelli continui
+  <a class="reference internal" href="../c6-modelli-continui/va-e-modelli-continui.html">
+   14. Variabili aleatorie e modelli continui
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
   <label for="toctree-checkbox-14">
@@ -650,23 +652,33 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../c6-modelli-continui/dal-discreto-al-continuo.html">
+     14.1. Dal discreto al continuo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../c6-modelli-continui/va-continue.html">
+     14.2. Variabili aleatorie continue
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../c6-modelli-continui/uniforme.html">
-     14.1. Il modello uniforme continuo
+     14.3. Il modello uniforme continuo
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c6-modelli-continui/esponenziale.html">
-     14.2. Il modello esponenziale
+     14.4. Il modello esponenziale
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c6-modelli-continui/gaussiano.html">
-     14.3. Il modello gaussiano
+     14.5. Il modello gaussiano
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c6-modelli-continui/altri-modelli.html">
-     14.4. Altri modelli continui
+     14.6. Altri modelli continui
     </a>
    </li>
   </ul>
@@ -1009,7 +1021,34 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="variabili-aleatorie">
 <h1><span class="section-number">12.1. </span>Variabili aleatorie<a class="headerlink" href="#variabili-aleatorie" title="Link a questa intestazione">#</a></h1>
+<div class="proof definition admonition" id="def:variabile-aleatoria">
+<p class="admonition-title"><span class="caption-number">Definizione 12.1 </span> (Variabile aleatoria)</p>
+<section class="definition-content" id="proof-content">
+<p>Una <em>variabile aleatoria</em> ...</p>
 </section>
+</div><p>La probabilità che una variabile aleatoria <span class="math notranslate nohighlight">\(X\)</span> assuma valori in un intervallo
+è direttamente legata alla funzione di distribuzione cumulativa di
+quest'ultima:</p>
+<div class="math notranslate nohighlight" id="equation-eq-cdf-e-intervalli">
+<span class="eqno">(12.1)<a class="headerlink" href="#equation-eq-cdf-e-intervalli" title="Permalink a questa equazione">#</a></span>\[\mathbb P(a &lt; X \leq b) = F_X(b) - F_X(a).\]</div>
+<div class="proof theorem admonition" id="teo:proprieta-F">
+<p class="admonition-title"><span class="caption-number">Teorema 12.1 </span> (Proprietà delle funzioni di distribuzione cumulativa)</p>
+<section class="theorem-content" id="proof-content">
+<p>Data una qualsiasi variabile aleatoria discreta <span class="math notranslate nohighlight">\(X\)</span>, la sua funzione di
+distribuzione cumulativa <span class="math notranslate nohighlight">\(F_X\)</span> soddisfa le tre seguenti proprietà:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(F_X\)</span> è monotona non decrescente;</p></li>
+<li><p><span class="math notranslate nohighlight">\(F_X\)</span> è continua da destra;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lim_{x \to +\infty} F_X(x) = 1\)</span>.</p></li>
+</ol>
+<p>Viceversa, se una qualsiasi funzione <span class="math notranslate nohighlight">\(F: \mathbb R \to [0, 1]\)</span> soddisfa le tre
+proprietà precedenti, allora esiste una variabile aleatoria <span class="math notranslate nohighlight">\(X\)</span> di cui <span class="math notranslate nohighlight">\(F\)</span>
+rappresenta la funzione di distribuzione cumulativa.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+</div></section>
 
     <script type="text/x-thebe-config">
     {
