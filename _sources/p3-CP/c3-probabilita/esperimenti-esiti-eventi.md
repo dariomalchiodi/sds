@@ -136,38 +136,43 @@ rispetto al complemento si ottiene $\{\} = \overline \Omega \in \mathsf A$.
 ````
 
 ````{prf:theorem}
-:label: teo-chiusura-unione-n-eventi
-Un'algebra degli eventi è chiusa rispetto all'unione di un numero finito di
-eventi.
+:label: teo-chiusura-algebra-eventi
+Un'algebra degli eventi è chiusa rispetto:
+
+1. all'unione di un numero finito di eventi,
+2. all'intersezione di un numero finito di eventi, e
+3. alla differenza tra due eventi.
 ````
 ````{prf:proof}
-Fissato $n \in \mathbb N$, consideriamo $n$ eventi
-$E_1, \ldots, E_n$ in un'algebra $\mathsf A$ e per ogni $r = 1, \ldots, n$
-definiamo $U_r = \cup_{i=1}^r E_i$. Per ottenere la tesi si può applicare il
-principio di induzione per dimostrare che $U_r \in \mathsf A$ per ogni $r$. La
-base dell'induzione è banalmente vera: $U_1$ coincide con $E_1$ e dunque
-appartiene all'algebra. Ipotizziamo ora che per un generico $r$ valga
-$U_r \in \mathsf A$: siccome $U_{r+1} = U_r \cup E_{r+1}$, la chiusura di
-$\mathsf A$ rispetto all'unione di due insiemi implica $U_{r+1} \in \mathsf A$.
-````
+Fissato $n \in \mathbb N$, sia $E_1, \ldots, E_n$ una successione di $n$
+eventi nell'algebra $\mathsf A$ considerata.
 
-```{prf:theorem}
-:label: teo-chiusura-intersezione
-Un'algebra degli eventi è chiusa rispetto all'intersezione di un numero finito
+Per dimostrare primo punto, definiamo $U_r = \cup_{i=1}^r E_i$ per ogni
+$r = 1, \ldots, n$ e applichiamo il principio di induzione per dimostrare che
+$U_r \in \mathsf A$ per ogni $r$. La base dell'induzione è banalmente vera:
+$U_1$ coincide con $E_1$ e dunque appartiene all'algebra. Ipotizziamo ora che
+per un generico $r$ valga $U_r \in \mathsf A$: siccome
+$U_{r+1} = U_r \cup E_{r+1}$, la chiusura di $\mathsf A$ rispetto all'unione
+di due insiemi implica $U_{r+1} \in \mathsf A$.
+
+Il secondo punto si dimostra applicando innanzitutto una delle leggi di De
+Morgan agli eventi $E_1$ ed $E_2$, ottenendo
+
+```{math}
+E_1 \cap E_2 = \overline{\overline E_1 \cup \overline E_2} \,,
+```
+
+e notando che le proprietà di chiusura rispetto a unione e complemento
+richieste dalla {prf:ref}`def-algebra-degli-eventi` implicano che
+$E_1 \cap E_2 \in \mathsf A$. Per estendere questa proprietà all'intersezione
+di un numero finito di eventi si può applicare il principio di induzione in
+modo analogo a quanto fatto nella prima parte della dimostrazione.
+
+Infine,la tesi al terzo piunto si ottiene facilmente notando che
+$E_1 \backslash E_2 = E_1 \cap \overline E_2$ e ricordando che per quanto
+visto finora $\mathsf A$ è chiuso rispetto al complemento e all'intersezione
 di eventi.
-```
-```{prf:proof}
-Sia $\mathsf A$ una generica algebra degli eventi e siano $E$ ed $F$ due suoi
-elementi. Applicando le leggi di De Morgan si ottiene
-
-$$ E \cap F = \overline{\overline E \cup \overline F}, $$   
-
-pertanto le proprietà di chiusura rispetto a unione e complemento implicano che
-$\mathsf A$ risulta anche chiusa rispetto all'intersezione di due suoi eventi.
-Per estendere questa proprietà all'intersezione di un numero finito di eventi
-si può applicare il principio di induzione in modo analogo a quanto fatto nella
-dimostrazione del {prf:ref}`teo-chiusura-unione-n-eventi`.
-```
+````
 
 In generale, l'algebra degli eventi deve essere abbastanza grande da
 comprendere tutti gli eventi dei quali potremmo volere ragionevolmente

@@ -1104,38 +1104,39 @@ implica una serie di altre proprietà che sono dimostrate di seguito.</p>
 assicura che <span class="math notranslate nohighlight">\(\Omega \in \mathsf A\)</span>, e applicando la proprietà di chiusura
 rispetto al complemento si ottiene <span class="math notranslate nohighlight">\(\{\} = \overline \Omega \in \mathsf A\)</span>.</p>
 </div>
-<div class="proof theorem admonition" id="teo-chiusura-unione-n-eventi">
+<div class="proof theorem admonition" id="teo-chiusura-algebra-eventi">
 <p class="admonition-title"><span class="caption-number">Teorema 11.2 </span></p>
 <section class="theorem-content" id="proof-content">
-<p>Un'algebra degli eventi è chiusa rispetto all'unione di un numero finito di
-eventi.</p>
+<p>Un'algebra degli eventi è chiusa rispetto:</p>
+<ol class="simple">
+<li><p>all'unione di un numero finito di eventi,</p></li>
+<li><p>all'intersezione di un numero finito di eventi, e</p></li>
+<li><p>alla differenza tra due eventi.</p></li>
+</ol>
 </section>
 </div><div class="proof admonition" id="proof">
-<p>Dimostrazione. Fissato <span class="math notranslate nohighlight">\(n \in \mathbb N\)</span>, consideriamo <span class="math notranslate nohighlight">\(n\)</span> eventi
-<span class="math notranslate nohighlight">\(E_1, \ldots, E_n\)</span> in un'algebra <span class="math notranslate nohighlight">\(\mathsf A\)</span> e per ogni <span class="math notranslate nohighlight">\(r = 1, \ldots, n\)</span>
-definiamo <span class="math notranslate nohighlight">\(U_r = \cup_{i=1}^r E_i\)</span>. Per ottenere la tesi si può applicare il
-principio di induzione per dimostrare che <span class="math notranslate nohighlight">\(U_r \in \mathsf A\)</span> per ogni <span class="math notranslate nohighlight">\(r\)</span>. La
-base dell'induzione è banalmente vera: <span class="math notranslate nohighlight">\(U_1\)</span> coincide con <span class="math notranslate nohighlight">\(E_1\)</span> e dunque
-appartiene all'algebra. Ipotizziamo ora che per un generico <span class="math notranslate nohighlight">\(r\)</span> valga
-<span class="math notranslate nohighlight">\(U_r \in \mathsf A\)</span>: siccome <span class="math notranslate nohighlight">\(U_{r+1} = U_r \cup E_{r+1}\)</span>, la chiusura di
-<span class="math notranslate nohighlight">\(\mathsf A\)</span> rispetto all'unione di due insiemi implica <span class="math notranslate nohighlight">\(U_{r+1} \in \mathsf A\)</span>.</p>
-</div>
-<div class="proof theorem admonition" id="teo-chiusura-intersezione">
-<p class="admonition-title"><span class="caption-number">Teorema 11.3 </span></p>
-<section class="theorem-content" id="proof-content">
-<p>Un'algebra degli eventi è chiusa rispetto all'intersezione di un numero finito
-di eventi.</p>
-</section>
-</div><div class="proof admonition" id="proof">
-<p>Dimostrazione. Sia <span class="math notranslate nohighlight">\(\mathsf A\)</span> una generica algebra degli eventi e siano <span class="math notranslate nohighlight">\(E\)</span> ed <span class="math notranslate nohighlight">\(F\)</span> due suoi
-elementi. Applicando le leggi di De Morgan si ottiene</p>
+<p>Dimostrazione. Fissato <span class="math notranslate nohighlight">\(n \in \mathbb N\)</span>, sia <span class="math notranslate nohighlight">\(E_1, \ldots, E_n\)</span> una successione di <span class="math notranslate nohighlight">\(n\)</span>
+eventi nell'algebra <span class="math notranslate nohighlight">\(\mathsf A\)</span> considerata.</p>
+<p>Per dimostrare primo punto, definiamo <span class="math notranslate nohighlight">\(U_r = \cup_{i=1}^r E_i\)</span> per ogni
+<span class="math notranslate nohighlight">\(r = 1, \ldots, n\)</span> e applichiamo il principio di induzione per dimostrare che
+<span class="math notranslate nohighlight">\(U_r \in \mathsf A\)</span> per ogni <span class="math notranslate nohighlight">\(r\)</span>. La base dell'induzione è banalmente vera:
+<span class="math notranslate nohighlight">\(U_1\)</span> coincide con <span class="math notranslate nohighlight">\(E_1\)</span> e dunque appartiene all'algebra. Ipotizziamo ora che
+per un generico <span class="math notranslate nohighlight">\(r\)</span> valga <span class="math notranslate nohighlight">\(U_r \in \mathsf A\)</span>: siccome
+<span class="math notranslate nohighlight">\(U_{r+1} = U_r \cup E_{r+1}\)</span>, la chiusura di <span class="math notranslate nohighlight">\(\mathsf A\)</span> rispetto all'unione
+di due insiemi implica <span class="math notranslate nohighlight">\(U_{r+1} \in \mathsf A\)</span>.</p>
+<p>Il secondo punto si dimostra applicando innanzitutto una delle leggi di De
+Morgan agli eventi <span class="math notranslate nohighlight">\(E_1\)</span> ed <span class="math notranslate nohighlight">\(E_2\)</span>, ottenendo</p>
 <div class="math notranslate nohighlight">
-\[ E \cap F = \overline{\overline E \cup \overline F}, \]</div>
-<p>pertanto le proprietà di chiusura rispetto a unione e complemento implicano che
-<span class="math notranslate nohighlight">\(\mathsf A\)</span> risulta anche chiusa rispetto all'intersezione di due suoi eventi.
-Per estendere questa proprietà all'intersezione di un numero finito di eventi
-si può applicare il principio di induzione in modo analogo a quanto fatto nella
-dimostrazione del <a class="reference internal" href="#teo-chiusura-unione-n-eventi">Teorema 11.2</a>.</p>
+\[E_1 \cap E_2 = \overline{\overline E_1 \cup \overline E_2} \,,\]</div>
+<p>e notando che le proprietà di chiusura rispetto a unione e complemento
+richieste dalla <a class="reference internal" href="#def-algebra-degli-eventi">Definizione 11.5</a> implicano che
+<span class="math notranslate nohighlight">\(E_1 \cap E_2 \in \mathsf A\)</span>. Per estendere questa proprietà all'intersezione
+di un numero finito di eventi si può applicare il principio di induzione in
+modo analogo a quanto fatto nella prima parte della dimostrazione.</p>
+<p>Infine,la tesi al terzo piunto si ottiene facilmente notando che
+<span class="math notranslate nohighlight">\(E_1 \backslash E_2 = E_1 \cap \overline E_2\)</span> e ricordando che per quanto
+visto finora <span class="math notranslate nohighlight">\(\mathsf A\)</span> è chiuso rispetto al complemento e all'intersezione
+di eventi.</p>
 </div>
 <p>In generale, l'algebra degli eventi deve essere abbastanza grande da
 comprendere tutti gli eventi dei quali potremmo volere ragionevolmente
@@ -1161,8 +1162,8 @@ ogni <span class="math notranslate nohighlight">\(\omega \in \Omega\)</span> si 
 elementare</em> <span class="math notranslate nohighlight">\(\{ \omega \}\)</span>, la sola proprietà di chiusura rispetto all'unione
 descritta nella <a class="reference internal" href="#def-algebra-degli-eventi">Definizione 11.5</a> permette di dimostrare che
 ogni evento è contenuto in <span class="math notranslate nohighlight">\(\mathsf A\)</span>.</p>
-<div class="proof theorem admonition" id="theorem-8">
-<p class="admonition-title"><span class="caption-number">Teorema 11.4 </span> (Algebra degli eventi di uno spazio degli esiti finito)</p>
+<div class="proof theorem admonition" id="theorem-7">
+<p class="admonition-title"><span class="caption-number">Teorema 11.3 </span> (Algebra degli eventi di uno spazio degli esiti finito)</p>
 <section class="theorem-content" id="proof-content">
 <p>Sia <span class="math notranslate nohighlight">\(\mathsf A\)</span> un'algebra degli eventi per uno spazio degli esiti finito
 <span class="math notranslate nohighlight">\(\Omega\)</span>. Se <span class="math notranslate nohighlight">\(\mathsf A\)</span> contiene tutti gli eventi elementari allora

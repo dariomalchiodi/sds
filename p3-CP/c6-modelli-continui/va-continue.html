@@ -56,6 +56,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
     <link rel="search" title="Cerca" href="../../search.html" />
@@ -1019,6 +1021,179 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="variabili-aleatorie-continue">
 <span id="sec-va-continue"></span><h1><span class="section-number">14.2. </span>Variabili aleatorie continue<a class="headerlink" href="#variabili-aleatorie-continue" title="Link a questa intestazione">#</a></h1>
+<p>Di seguito formalizziamo e generalizziamo i nuovi concetti che sono emersi nel
+paragrafo precedente. In particolare, partiamo dalla definizione di <em>variabile
+aleatoria continua</em>.</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Come indicato nella <a class="reference internal" href="../c4-variabili-aleatorie/variabili-aleatorie.html#def:dominio">Definizione 12.2</a>, per dominio si intende qui
+l'insieme delle specificazioni di una variabile aleatoria.</p>
+</aside>
+<div class="proof definition admonition" id="def:va-continua">
+<p class="admonition-title"><span class="caption-number">Definizione 14.1 </span> (Variabile aleatoria continua)</p>
+<section class="definition-content" id="proof-content">
+<p>Una variabile aleatoria <span class="math notranslate nohighlight">\(X\)</span> si dice <em>continua</em> quando il suo dominio <span class="math notranslate nohighlight">\(D_X\)</span> è
+un insieme continuo.</p>
+</section>
+</div><p>Il calcolo di probabilità di eventi collegati a una variabile aleatoria
+continua viene normalmente fatto utilizzando la relativa funzione di
+ripartizione, che è definita esattamente come nel caso di una variabile
+aleatoria discreta, oppure in termini della funzione di densità introdotta
+in modo informale nel paragrafo precedente. Per definire questo concetto in
+modo più preciso, notiamo innanzitutto che per <span class="math notranslate nohighlight">\(x \in \mathbb R\)</span> e
+<span class="math notranslate nohighlight">\(\Delta x \in \mathbb R^+\)</span>, è sempre possibile considerare l'evento
+<span class="math notranslate nohighlight">\(X \in (x, x + \Delta x]\)</span> che si verifica quando <span class="math notranslate nohighlight">\(X\)</span> assume valori
+nell'intervallo che ha <span class="math notranslate nohighlight">\(x\)</span> come estremo sinistro e <span class="math notranslate nohighlight">\(\Delta x\)</span> come ampiezza.
+Infatti, in base alla <a class="reference internal" href="../c4-variabili-aleatorie/variabili-aleatorie.html#def:variabile-aleatoria">Definizione 12.1</a> sappiamo che</p>
+<div class="math notranslate nohighlight">
+\[X^{-1}((-\infty, a]) = \{ w \in \Omega \text{ tale che } X(\omega) \leq a \}\]</div>
+<p>è sempre contenuto nell'algebra degli eventi <span class="math notranslate nohighlight">\(\mathsf A\)</span> che stiamo
+considerando, e siccome</p>
+<div class="math notranslate nohighlight">
+\[X \in (x, x + \Delta x] = X^{-1}((-\infty, x + \Delta x]) \,\backslash\,
+                          X^{-1}((-\infty, x]) \,,\]</div>
+<p>il <a class="reference internal" href="../c3-probabilita/esperimenti-esiti-eventi.html#teo-chiusura-algebra-eventi">Teorema 11.2</a> ci permette di concludere che anche
+<span class="math notranslate nohighlight">\(X \in (x, x + \Delta x]\)</span> è contenuto in <span class="math notranslate nohighlight">\(\mathsf A\)</span>. Risulta dunque ben
+definito il rapporto</p>
+<div class="math notranslate nohighlight">
+\[\frac{\mathbb P(X \in (x, x + \Delta x])}{\Delta x} \,,\]</div>
+<p>così come il suo limite per <span class="math notranslate nohighlight">\(\Delta x \to 0\)</span>, che permette di definire la
+la densità di probabilità in <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<div class="proof definition admonition" id="def:densita">
+<p class="admonition-title"><span class="caption-number">Definizione 14.2 </span> (Funzione di densità)</p>
+<section class="definition-content" id="proof-content">
+<p>La <em>funzione di densità</em> di una variabile aleatoria continua <span class="math notranslate nohighlight">\(X\)</span> è una
+funzione <span class="math notranslate nohighlight">\(f_X: \mathbb R \rightarrow \mathbb R^+\)</span> che associa a ogni argomento
+<span class="math notranslate nohighlight">\(x \in \mathbb R\)</span> il valore</p>
+<div class="math notranslate nohighlight">
+\[f_X(x) =
+\lim_{\Delta x \to 0}\frac{\mathbb P(X \in (x, x + \Delta x])}{\Delta x} \,,\]</div>
+<p>che indica la densità della probabilità che <span class="math notranslate nohighlight">\(X\)</span> assuma valori a destra di <span class="math notranslate nohighlight">\(x\)</span>.</p>
+</section>
+</div><p>Siccome</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\mathbb P(X \in (x, x + \Delta x]) &amp;= \mathbb P(x &lt; X \leq x + \Delta x) \\
+                                   &amp;= F_X(x + \Delta x) - F(x) \,,
+\end{align*}\]</div>
+<p>si verifica facilmente che per ogni <span class="math notranslate nohighlight">\(x \in \mathbb R\)</span> il valore <span class="math notranslate nohighlight">\(f_X(x)\)</span>
+equivale al limite del rapporto incrementale di <span class="math notranslate nohighlight">\(F\)</span> quando l'ampiezza del
+relativo intervallo tende a zero, e quindi la funzione di densità di una
+variabile aleatoria continua <span class="math notranslate nohighlight">\(X\)</span> coincide con la derivata prima della sua
+funzione di ripartizione.</p>
+<div class="proof example admonition" id="example-2">
+<p class="admonition-title"><span class="caption-number">Esempio 14.2 </span></p>
+<section class="example-content" id="proof-content">
+<p>Le funzioni di ripartizione e di densità della variabile aleatoria continua
+<span class="math notranslate nohighlight">\(X\)</span> introdotta nel paragrafo precedente sono definite rispettivamente nel
+modo seguente:</p>
+<div class="math notranslate nohighlight">
+\[F_X(x) = x \mathrm I_{[0, 1]}(x) + \mathrm I_{(1, +\infty)}(x)\]</div>
+<p>e</p>
+<div class="math notranslate nohighlight">
+\[f_X(x) = \mathrm I_{[0, 1]}(x) \,,\]</div>
+<p>dunque si verifica facilmente che <span class="math notranslate nohighlight">\(F_X' =f_X\)</span>.</p>
+</section>
+</div><p>La funzione di ripartizione è quindi una primitiva della funzione di
+densità, il teorema fondamentale del calcolo integrale <a class="footnote-reference brackets" href="#tfci" id="id1">1</a>
+implica che per ogni <span class="math notranslate nohighlight">\(a, b \in \mathbb R\)</span> tali che <span class="math notranslate nohighlight">\(a &lt; b\)</span> si ha</p>
+<div class="math notranslate nohighlight">
+\[\int_a^b f_X(x) \,\mathrm d x = F_X(b) - F_X(a) 
+                              = \mathbb P(a \leq X \leq b) \,.\]</div>
+<p>Considerando il limite per <span class="math notranslate nohighlight">\(b \rightarrow -\infty\)</span> si ottiene, analogamente,
+che <span class="math notranslate nohighlight">\(\mathbb P(X \leq x) = \int_{-\infty}^x f_X(x) \, \mathrm d x\)</span>. Più in
+generale, dato un qualsiasi insieme <span class="math notranslate nohighlight">\(A\)</span> esprimibile in termini di operazioni
+fondamentali effettuate su intervalli, varrà dunque</p>
+<div class="math notranslate nohighlight">
+\[\mathrm P(X \in A) = \int_A f_X(x) \, \mathrm d x \,,\]</div>
+<p>e quindi la probabilità <span class="math notranslate nohighlight">\(\mathbb P(X \in A)\)</span> è interpretabile in termini
+dell'area contenuta tra l'asse delle ascisse e il grafico della funzione di
+densità di <span class="math notranslate nohighlight">\(X\)</span> ristretta all'insieme <span class="math notranslate nohighlight">\(A\)</span>, come esemplificato in
+<a class="reference internal" href="../c2-teoria-insiemi/operazioni-tra-insiemi.html#venn-symm-difference"><span class="std std-numref">Fig. 10.7</span></a>.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
+import numpy as np
+
+from myst_nb import glue
+
+plt.rcParams.update({
+    &#39;text.latex.preamble&#39;: r&#39;\usepackage{amsfonts}&#39;
+})
+
+def pdf(x):
+    return 1.2 * np.exp(-.1*(x)**2) + np.exp(-(x-3)**2)
+
+fig, ax = plt.subplots()
+x = np.linspace(-2, 5, 500)
+y = pdf(x)
+
+x_filled = np.linspace(1, 3, 500)
+y_filled = pdf(x_filled)
+
+ax.fill_between(x_filled, y_filled, alpha=0.5)
+ax.plot(x, y)
+
+ax.text(2, -.2, r&#39;$A$&#39;)
+ax.text(2, 1, &#39;$\\mathbb P(X \\in A)$&#39;)
+
+ax.spines.right.set_visible(False)
+ax.spines.top.set_visible(False)
+
+plt.xticks([])
+plt.yticks([])
+
+glue(&quot;pdf-interpretation&quot;, fig, display=False)
+</pre></div>
+</div>
+</div>
+</div>
+<figure class="align-default" id="fig-pdf-interpretation" style="width: 100%">
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 1 Axes&gt;
+</pre></div>
+</div>
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 14.3 </span><span class="caption-text">Un diagramma di Venn per descrivere la differenza tra l'insieme <span class="math notranslate nohighlight">\(S\)</span> e
+l'insieme <span class="math notranslate nohighlight">\(T\)</span>.</span><a class="headerlink" href="#fig-pdf-interpretation" title="Link a questa immagine">#</a></p>
+</figcaption>
+</figure>
+<p>Il concetto di valore atteso di una variabile aleatoria continua o di una
+sua funzione si ottiene estendendo la <a class="reference internal" href="../c4-variabili-aleatorie/valore-atteso.html#def:valore-atteso-discreto">Definizione 12.3</a>.</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Anche in questo caso non</p>
+</aside>
+<div class="proof definition admonition" id="def:valore-atteso-continuo">
+<p class="admonition-title"><span class="caption-number">Definizione 14.3 </span> (Valore atteso di una variabile aleatoria continua)</p>
+<section class="definition-content" id="proof-content">
+<p>Il <em>valore atteso</em> di una variabile aleatoria continua <span class="math notranslate nohighlight">\(X\)</span> è definito come</p>
+<div class="math notranslate nohighlight">
+\[\mathbb E(X) = \int_{-\infty}^{+\infty} x f_X(x) \, \mathrm d x \,,\]</div>
+<p>nel caso in cui l'integrale converga, e risulta indefinito altrimenti.
+Analogamente, il valore atteso di una funzione misurabile <span class="math notranslate nohighlight">\(g\)</span> applicata a
+una variabile aleatoria continua <span class="math notranslate nohighlight">\(X\)</span> è uguale a</p>
+<div class="math notranslate nohighlight">
+\[\mathbb E(g(X)) = \int_{-\infty}^{+\infty} g(x) f_X(x) \, \mathrm d x\]</div>
+<p>quando l'integrale converge ed è indefinito negli altri casi.</p>
+</section>
+</div><hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="tfci"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Per la precisione, la versione del teorema fondamentale del calcolo
+integrale che viene considerata in questo caso è formulabile nel modo che
+segue: se <span class="math notranslate nohighlight">\(f_X\)</span> è una funzione integrabile e ammette come primitiva una
+funzione <em>assolutamente continua</em> <span class="math notranslate nohighlight">\(F_X\)</span> è, allora
+<span class="math notranslate nohighlight">\(\int_a^b f_X(x) \,\mathrm dx = F_X(b) - F_X(a)\)</span>. Va sottolineato che,
+nonostante l'ipotesi di assoluta continuità sia più restrittiva di quella di
+continuità semplice che stiamo considerando, non ci addentreremo nel suo
+approfondimento per evitare di complicare la trattazione. Rimarchiamo in ogni
+caso che tutte le distribuzioni che considereremo soddisfano l'ipotesi di
+assoluta continuità, rimandando a <span id="id2">[<a class="reference internal" href="../../bibliography.html#id15" title="John N. McDonald and N. A. Weiss. A course in real analysis. Academic Press/Elsevier, Boston, Massachusetts, 2nd edition, 2013. ISBN 978-0-12-387774-1.">McDonald and Weiss, 2013</a>]</span> per una trattazione
+rigorosa dei concetti collegati.</p>
+</dd>
+</dl>
 </section>
 
     <script type="text/x-thebe-config">

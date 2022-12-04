@@ -13,3 +13,9 @@ kernelspec:
 ---
 
 # Valore atteso
+
+````{prf:definition} Valore atteso di una variabile aleatoria discreta
+:label: def:valore-atteso-discreto
+
+...
+````
