@@ -17,7 +17,21 @@ kernelspec:
 
 ````{prf:definition} Variabile aleatoria
 :label: def:variabile-aleatoria
-Una _variabile aleatoria_ ...
+Fissato uno spazio di probabilità $(\Omega, \mathsf A, \mathbb P)$, una
+_variabile aleatoria_ è definita come una funzione $X: \Omega \rightarrow
+\mathbb R$ tale che, per ogni $a \in \mathbb R$, l'evento
+```{math}
+X^{-1}((-\infty, a]) = \{ w \in \Omega \text{ tale che } X(\omega) \leq a \}
+```
+è contenuto in $\mathsf A$.
+````
+
+
+````{prf:definition} Dominio di una variabile aleatoria
+:label: def:dominio
+Il dominio di una variabile aleatoria $X$ è l'insieme delle specificazioni che
+quest'ultima può assumere, e viene normalmente indicato usando il simbolo
+$D_X$.
 ````
 
 
