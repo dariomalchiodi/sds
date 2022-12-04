@@ -28,7 +28,7 @@ jobs:
     - name: Fix sphinx-proof
       run: |
         echo $RUNNER_TOOL_CACHE && \
-        ls -lsa /opt/hostedtoolcache/Python && \
+        ls -lsa /opt/hostedtoolcache/Python/root && \
         sudo apt-get install gettext && \
         git clone https://github.com/dariomalchiodi/sphinx-proof.git && \
         cd sphinx-proof && \
