@@ -12,7 +12,8 @@ kernelspec:
   name: python3
 ---
 
-# La distribuzione uniforme continua
+(sec:dal-discreto-al-continuo)=
+# Dal discreto al continuo
 
 Dato $n \in \mathbb N$, consideriamo l'insieme $D_n = \{ \frac{i}{n}, i = 0,
 \dots, n \}$ e la variabile aleatoria $X_n$ definita dalla funzione di massa
@@ -231,54 +232,115 @@ distribuzione cumulativa di una qualche variabile aleatoria $X$. Questa
 variabile aleatoria è però completamente diversa da quelle che abbiamo
 finora considerato: il grafico di $F$ non evidenzia discontinuità alle quali
 far corrispondere i punti di massa della distribuzione perché questa funzione
-è continua. D'altronde da {eq}`eq:uniform` si vede facilmente che
-$\lim_{n \to + \infty} p_{X_n}(x; n) = 0$ per ogni $x \in \mathbb R$, e
-quindi qunado $n$ tende a infinto non ci sono più punti di massa di
-probabilità.
-
-Quando questo succede, si dice che la variabile aleatoria
-corrispondente ha una distribuzione _continua_, o più brevemente che è
-_continua_. In particolare, $X$ ha una distribuzione _uniforme continua_
-sull'intervallo $[0, 1]$. Prima di addentrarci in una descrizione formale
-per le variabili aleatorie continue (cosa che faremo nel
-{numref}`sec:modelli-continui`), vale la pena soffermarci su alcune importanti
-differenze tra queste e le variabili aleatorie discrete. Innanzitutto, il
-fatto che non abbia più senso parlare di punti di massa richiede sia di
-definire in modo diverso il dominio delle variabili aleatorie continue, sia
-di rimpiazzare la funzione di massa di probabilità con un altro strumento
-che permetta di calcolare le probabilità di eventi che coinvolgono queste
-variabili aleatorie. Vale però la pena di osservare prima un'altra cosa
-interessante: facendo un ragionamento analogo a quello che ci ha
-portato a mostrare la convergenza di $F_{X_n}$ a $F$ possiamo facilmente
-dimostrare che
+è continua. D'altronde da {eq}`eq:uniform` si vede facilmente che per ogni
+$x \in \mathbb R$ si ha $\lim_{n \to + \infty} p_{X_n}(x; n) = 0$, o
+equivalentemente $\mathbb P(X = x) = 0$. Analogamente, dato un qualsiasi
+insieme finito $A = \{ a_1, \dots, a_n \} \subseteq [0, 1]$ si avrà 
 
 ```{math}
-\mathbb P(a \leq X_n \leq b) \to b - a
-        = F(b) - F(a) = \mathbb P(a \leq X \leq b),
+\mathbb P(X \in A) = \mathbb P\left(\displaystyle\cup_{i=1}^n \{a_i\}\right)
+                   = \sum_{i=1}^n \mathbb P(X=a_i)
+                   = \sum_{i=1}^n 0 = 0 .
 ```
 
-e questa formula è apparentemente incoerente rispetto a
-{eq}`eq:cdf-e-intervalli` perché quest'ultima fa riferimento a un intervallo
-semiaperto di specifcazioni. In realtà, si può verificare in modo
-relativamente facile che se avessimo posto $D_n = \{1, \dots, n \}$ e definito
-la funzione di massa di probabilità di $X_n$ come
+In altre parole, qunado $n$ tende a infinto ci troviamo di fronte a una
+distribuzione che non evidenzia alcun punto di massa di probabilità. Ciò
+richiede innanzitutto di definire in modo diverso il concetto di dominio
+per la distribuzione stessa. Nel caso che stiamo considerando, solo
+valori compresi tra $0$ e $1$ possono essere specificazioni valide, quindi
+il dominio di $X$ può essere intuitivmente individuato nell'intervallo
+corrispondente. Si può inoltre verificare abbastanza facilmente che se
+all'inizio del paragrafo avessimo posto $D_n = \{1, \dots, n \}$ e definito la
+funzione di massa di probabilità di $X_n$ come
 $p_{X_n}(x; n) = \frac{1}{n} \mathrm I_{D_n}(x)$, escludendo in altre parole
 il punto di massa $0$ dal dominio, avremmo comunque ottenuto $F$ come limite
 delle corrispondenti funzioni di ripartizione quando $n \to +\infty$. Il
-risultato sarebbe stato lo stesso se avessimo deciso di escludere il punto
-di massa $1$ al posto di $0$, o di escluderli entrambi. Pertanto non ci sono
-differenze nelle distribuzioni uniformi continue costruite sugli insiemi
-$[0, 1]$, $[0, 1)$, $(0, 1]$ o $(0, 1)$.
+risultato non sarebbe cambiato se avessimo deciso di escludere il punto di
+massa $1$ al posto di $0$, o di escluderli entrambi. Tenuto conto di quanto
+appena ricavato, possiamo per convenzione scegliere $[0, 1]$ come dominio di
+$X$.
 
-Tenuto conto di quanto appena ricavato, possiamo momentaneamente identificare
-il dominio di una variabile aleatoria continua $X$ con il sottoinsieme
-$D_X \subseteq \mathbb R$ sul quale la funzione di ripartizione $F_X$ non è
-costante, includendo la frontiera in questo sottoinsieme.
+La differenza fondamentale tra $X$ e le variabili aleatorie che abbiamo
+studiato finora sta proprio nel fatto che il suo dominio è un insieme
+continuo. Quando questo succede, si parla di variabili aleatorie aventi una
+distribuzione _continua_, o più brevemente di _variabili aleatorie continue_.
+La formalizzazione di questo tipo di variabili aleatorie e delle relative
+famiglie di distribuzione verrà descritta a partire dal
+{numref}`sec:va-continue`: in particolare, nel
+{numref}`sec:modello-uniforme-continuo` vedremo che $X$ segue una
+distribuzione _uniforme continua_ sull'intervallo $[0, 1]$.
+
+Tornando a concentrarci sul caso che stiamo analizzando, la mancanza di punti
+di massa di probabilità richiede di rimpiazzare la corrispondente funzione con
+un altro strumento che permetta di calcolare le probabilità di eventi che
+coinvolgono $X$. Per quanto ricavato sopra, tali eventi dovranno riguardare
+l'appartenenza della variabile aleatoria a insiemi continui, perché già
+sappiamo che in caso contrario si otterrebbe zero come valore di probabilità. 
+In analogia con quello che ho evidenziato all'inizio del paragrafo, i valori
+all'interno di un insieme continuo che sono sufficientemente vicini diventano
+indisinguibili all'atto pratico: se
+per esempio $X$ indicasse la frazione di secondo che impiega Flash a fare il
+suo prossimo spostamento, non farebbe alcuna differenza sapere che questa è
+uguale, per dire, a $0.0004678$ oppure a $0.0004681$ [^attosecondi]. Ha quindi
+senso, considerare una funzione $f_X$ definita in modo tale che il valore
+$f_X(x)$ esprima intuitivamente «quanta» massa di probabilità è concentrata
+attorno alla specificazione $x$. In analogia con il concetto fisico di
+densità, si dice che $f_X$ è la _funzione di densità di probabilità_ (o, più
+brevemente, _funzione di densità_) di $X$, e per ogni sottoinsieme
+$B \subseteq [0, 1]$ si ha
+
+```{math}
+\mathbb P(X \in B) = \int_B f_X(x) \, \mathrm d x .
+```
+
+Vista l'uniformità dei modelli discreti via via considerati per $X_n$, ha
+senso supporre un'analoga uniformità anche nella densità di probabilità per
+$X$, e dunque che valga $f_X(x) = k$ per una qualche costante
+$k \in \mathbb R$ quando $x \in [0, 1]$. D'altronde,
+$\mathbb P(X \in [0, 1]) = 1$ e pertanto
+
+```{math}
+1 = \mathbb P(X \in [0, 1]) = \int_0^1 f_X(x)\, \mathrm d x
+  = \int_0^1 k \, \mathrm d x = k ,
+```
+
+il che significa che $f_X(x) = 1$ per ogni $x \in [0, 1]$. Analogamente,
+sappiamo che $X$ non può assumere valori al di fuori di $[0, 1]$, e dunque la
+sua densità sarà nulla in questa regione di $\mathbb R$. Riassumendo,
+$f_X(x) = \mathrm I_{[0, 1]}(x)$. Risulta quindi molto facile calcolare la
+probabilità che $X$ sia contenuta in un intervallo $(a, b] \subseteq [0, 1]$
+come
+
+```{math}
+:label: eq:prob-uniform-interval
+\mathbb P(X \in (a, b]) = \int_a^b f_X(x) \mathrm d x
+                        = \int_a^b \mathrm d x = b - a .
+```
+
+Questo risultato è coerente con quello che otterremmo ricavando la stessa
+probabilità usando la funzione di ripartizione come indicato in
+{eq}`eq:cdf-e-intervalli`: infatti,
+
+```{math}
+\mathbb P(X \in (a, b]) = \mathbb P(a < X \leq b) = F(b) - F(a)
+                        = b - a .
+```
+
+Vale la pena osservare una cosa interessante: questo risultato non dipende
+dalla particolare forma dell'intervallo considerato, che può essere aperto,
+semichiuso o chiuso. Infatti, le proprietà dell'integrale di Riemann ci
+assicurano che calcolando, per esempio, $\mathbb P(X \in [a, b])$ in modo
+analogo a quanto fatto in {eq}`eq:prob-uniform-interval`, otterremmo lo stesso
+valore di probabilità. Non c'è alcuna incoerenza in questo risultato, in
+quanto $\mathbb P(X \in [a, b]) = \mathbb P(X \in (a, b]) + \mathbb P(X = a)$
+e l'ultima di queste probabilità è nulla. Con un ragionamento analogo è
+facile mostrare che succede lo stesso quando si considerano intervalli della
+forma $(a, b)$ o $[a, b)$.
 
 
 
 
- 
+
 
 ```{margin}
 In alcuni testi si preferisce utilizzare la notazione $f_X$ per indicare
@@ -286,15 +348,7 @@ sia la funzione di massa di probabilità, sia la funzione di densità. Io ho
 preferito usare rispettivamente $p_X$ e $f_X$ per rimarcare ulteriormente
 la differenza tra i due concetti coinvolti.
 ```
-In altre parole, calcolare la probabilità che $X$ assumere una fissata
-specificazione non porta alcuna informazione, coerentemente con quanto messo
-in evidenza all'inizio di questo paragrafo. Questo ci dice anche che non ha
-più senso ragionare in termini della funzione di massa di probabilità.
-Per una variabile aleatorie continua $X$ questo strumento è sostituito
-da un'altra funzione, detta di _densità di probabilità_ e indicata con
-$f_X$, il cui valore $f_X(x)$ esprime intuitivamente "quanta" massa di
-probabilità è concentrata attorno alla specificazione $x$. In analogia con
-il concetto fisico di densità, 
+
 
 
 
@@ -352,3 +406,9 @@ probabilità in modo più approfondito rispetto a quanto descritto in questo
 libro. Ma se volete uno _spoiler_, il limite di una successione di variabili
 aleatorie può essere definito in più modi, e in nessuno di questi si ha una
 convergenza delle $X_n$ alla distribuzione uniforme continua su $[0, 1]$. 
+
+[^attosecondi]: Se vi sembra che $0.0004678$ sia una frazione di secondo
+esageratamente piccola, tenete presente che nel numero 709 di _Superman comic_
+Barry Allen (l'identità segreta di Flash) sostiene di essere in grado di
+percepire eventi che durano meno di un _attosecondo_, che equivale a
+$10^{-18}$ secondi (un miliardesimo di un miliardesimo di secondo).

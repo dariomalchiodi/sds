@@ -12,5 +12,5 @@ kernelspec:
   name: python3
 ---
 
-(sec:modelli-continui)=
-# I modelli continui
+(sec:va-e-modelli-continui)=
+# Variabili aleatorie e modelli continui

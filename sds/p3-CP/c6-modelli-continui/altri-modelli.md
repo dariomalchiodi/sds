@@ -12,4 +12,5 @@ kernelspec:
   name: python3
 ---
 
+(sec:altri-modelli)=
 # Altri modelli continui

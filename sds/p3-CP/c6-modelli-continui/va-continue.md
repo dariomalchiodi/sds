@@ -12,4 +12,5 @@ kernelspec:
   name: python3
 ---
 
-# Le distribuzioni continue
+(sec:va-continue)=
+# Variabili aleatorie continue

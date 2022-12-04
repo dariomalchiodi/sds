@@ -12,4 +12,5 @@ kernelspec:
   name: python3
 ---
 
+(sec:modello-uniforme-continuo)=
 # Il modello uniforme continuo
