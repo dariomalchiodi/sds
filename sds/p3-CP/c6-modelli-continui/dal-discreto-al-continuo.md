@@ -33,6 +33,7 @@ specificazioni. Ciò non deve sembrare strano, perché queste ultime si
 addensano in $[0, 1]$ man mano che $n$ cresce, pertanto specificazioni molto
 vicine tra loro diventeranno praticamente indistinguibili.
 
+
 ```{margin}
 Il multiverso è stato inizialmente introdotto per risolvere in modo ingegnoso
 una serie di problemi di coerenza tra varie personificazioni di uno stesso
@@ -63,7 +64,49 @@ specificazioni $\frac{42}{15000}$, $\frac{43}{15000}$ e $\frac{49}{15000}$,
 perché la loro differenza massima equivale a meno dello $0.05\%$ del totale.
 ````
 
-In altre parole, valori tra loro abbastanza vicini per le specificazioni
+Prima di approfondire che cosa succede all'aumentare di $n$, calcoliamo il
+valore atteso e la varianza di $X_n$, perché ci saranno utili in seguito.
+
+````{prf:lemma}
+Il valore atteso e la varianza di $X_n$ sono rispettivamente uguali a
+$\frac{1}{2}$ e a $\frac{1}{12} + \frac{1}{6 n}$.
+
+```{prf:proof}
+Applicando le formule per il calcolo di valore atteso e varianza si ottiene:
+
+\begin{equation}
+\mathbb E(X) = \sum_{i=0}^n \frac{i}{n} \frac{1}{n+1}
+             = \frac{1}{n(n+1)} \sum_{i=0}^n i
+             = \frac{1}{n(n+1)} \frac{n(n+1)}{2}
+             = \frac{1}{2} \enspace;
+\end{equation}
+
+\begin{align}
+\mathbb E(X^2) &= \sum_{i=0}^n \frac{i^2}{n^2} \frac{1}{n+1}
+                = \frac{1}{n^2(n+1)} \sum_{i=0}^n i^2 \\
+               &= \frac{1}{n^2(n+1)} \frac{n(n+1)(2n+1)}{6}
+                = \frac{1}{3} + \frac{1}{6n} \enspace;
+\end{align}
+
+\begin{equation}
+\mathrm{Var}(X) = \frac{1}{3} + \frac{1}{6n} - \frac{1}{4}
+                = \frac{1}{12} + \frac{1}{6n} \enspace.
+\end{equation}
+
+Va notato come il valore atteso sia sempre uguale a $\frac{1}{2}$
+indipendentemente dal valore di $n$, come ci si può aspettare tenuto conto
+del fatto che, essendo la massa di probabilità costante, la centralità della
+distribuzione deve coincidere con il baricentro delle osservazioni. Per
+quanto riguarda invece la varianza, è presente un termine che dipende da $n$
+ma il cui contributo tende a diventare trascurabile man mano che questo
+parametro cresce.
+
+```
+````
+
+
+
+Come dicevamo, valori tra loro abbastanza vicini per le specificazioni
 risultano fondamentalmente equivalenti, e dunque ha più senso ragionare in
 termini della probabilità che $X_n$ assuma valori in un intervallo (anche
 piccolo) di specificazioni piuttosto che studiare eventi in cui essa risulta
@@ -284,7 +327,16 @@ suo prossimo spostamento, non farebbe alcuna differenza sapere che questa è
 uguale, per dire, a $0.0004678$ oppure a $0.0004681$ [^attosecondi]. Ha quindi
 senso, considerare una funzione $f_X$ definita in modo tale che il valore
 $f_X(x)$ esprima intuitivamente «quanta» massa di probabilità è concentrata
-attorno alla specificazione $x$. In analogia con il concetto fisico di
+attorno alla specificazione $x$.
+
+
+```{margin}
+In alcuni testi si preferisce utilizzare la notazione $f_X$ per indicare
+sia la funzione di massa di probabilità, sia la funzione di densità. Io ho
+preferito usare rispettivamente $p_X$ e $f_X$ per rimarcare ulteriormente
+la differenza tra i due concetti coinvolti.
+```
+In analogia con il concetto fisico di
 densità, si dice che $f_X$ è la _funzione di densità di probabilità_ (o, più
 brevemente, _funzione di densità_) di $X$, e per ogni sottoinsieme
 $B \subseteq [0, 1]$ si ha
@@ -338,16 +390,34 @@ facile mostrare che succede lo stesso quando si considerano intervalli della
 forma $(a, b)$ o $[a, b)$.
 
 
+Vedremo in modo preciso come la maggior parte dei concetti già introdotti
+per le variabili aleatorie discrete si possono estendere in modo naturale alle
+variabili aleatorie continue. Questo richiederà quasi sempre di modificare le
+formule relative sostituendo la funzione di massa di probabilità con la
+funzione di densità e le sommatorie con integrali, ma in alcuni casi non
+sarà strettamente necessario utilizzare il formalismo matematico. Consideriamo
+per esempio il valore atteso di $X$: per calcolarlo è sufficiente osservare
+che la sua densità è costante in $[0, 1]$ e nulla altrove, pertanto la
+centralità della distribzuione di $X$, e dunque il suo valore atteso, deve
+essere uguale a $\frac{1}{2}$. D'altra parte, abbiamo visto come
+$\mathbb E(X_n) = \frac{1}{2}$, dunque è naturale che lo stesso valga per la
+distribuzione limite che stiamo considerando. Facendo un ragionamento analogo,
+possiamo supporre che la varianza di $X$ si ottenga come
 
-
-
-
-```{margin}
-In alcuni testi si preferisce utilizzare la notazione $f_X$ per indicare
-sia la funzione di massa di probabilità, sia la funzione di densità. Io ho
-preferito usare rispettivamente $p_X$ e $f_X$ per rimarcare ulteriormente
-la differenza tra i due concetti coinvolti.
+```{math}
+\mathrm{Var}(X) = \lim_{n \to +\infty}\mathrm{Var}(X_n) = \frac{1}{12}
+                  \enspace.
 ```
+
+Nel {numref}`sec:modello-uniforme-continuo` vedremo come calcolare questi due
+valori in modo formale.
+
+
+
+
+
+
+
 
 
 

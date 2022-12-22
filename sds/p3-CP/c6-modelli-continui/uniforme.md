@@ -151,5 +151,5 @@ Media, varianza e deviazione standard di una generica distribuzione
 uniforme continua si ottengono facilmente a partire dalle definizioni.
 
 \begin{align}
-\mathbb E(X) &= \int_}-\
+\mathbb E(X)
 \end{align}
