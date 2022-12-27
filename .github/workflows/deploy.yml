@@ -27,7 +27,10 @@ jobs:
         pip install -r requirements.txt
     - name: Fix sphinx-proof
       run: |
-        echo $Python3_ROOT_DIR && \
+        echo $Python_ROOT_DIR && \
+        echo $PythonLocation && \
+        echo ${{ Python_ROOT_DIR }} && \
+        echo $RUNNER_TOOL_CACHE/Python && \
         sudo apt-get install gettext && \
         git clone https://github.com/dariomalchiodi/sphinx-proof.git && \
         cd sphinx-proof && \
