@@ -269,6 +269,11 @@ In questa area viene inserita la dimostrazione di un teorema.
 Questa area contiene la definizione di un corollario e la sua dimostrazione.
 ```
 
+```{prf:lemma}
+:label: segnaposto-lemma
+Questa area contiene la definizione di un lemma e la sua dimostrazione.
+```
+
 ## Notazione
 
 La {numref}`tab-notazione` elenca le principali notazioni utilizzate nel

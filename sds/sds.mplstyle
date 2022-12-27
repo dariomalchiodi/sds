@@ -12,12 +12,17 @@ boxplot.medianprops.color: C1
 
 figure.figsize: 7.0, 3.0
 
+font.family: 'serif'
+font.serif: ['Palatino']
+
 lines.markersize: 10
 lines.color: C4
 
 patch.facecolor: 'xkcd:baby blue'
 patch.edgecolor: 'xkcd:blue gray'
 patch.force_edgecolor: True
+
+text.usetex: True
 
 xtick.labelsize: 16
 ytick.labelsize: 16

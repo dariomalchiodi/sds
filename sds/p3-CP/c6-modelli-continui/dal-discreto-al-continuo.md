@@ -74,12 +74,12 @@ $\frac{1}{2}$ e a $\frac{1}{12} + \frac{1}{6 n}$.
 ```{prf:proof}
 Applicando le formule per il calcolo di valore atteso e varianza si ottiene:
 
-\begin{equation}
-\mathbb E(X) = \sum_{i=0}^n \frac{i}{n} \frac{1}{n+1}
-             = \frac{1}{n(n+1)} \sum_{i=0}^n i
-             = \frac{1}{n(n+1)} \frac{n(n+1)}{2}
-             = \frac{1}{2} \enspace;
-\end{equation}
+\begin{align}
+\mathbb E(X) &= \sum_{i=0}^n \frac{i}{n} \frac{1}{n+1}
+              = \frac{1}{n(n+1)} \sum_{i=0}^n i \\
+             &= \frac{1}{n(n+1)} \frac{n(n+1)}{2}
+              = \frac{1}{2} \enspace;
+\end{align}
 
 \begin{align}
 \mathbb E(X^2) &= \sum_{i=0}^n \frac{i^2}{n^2} \frac{1}{n+1}
@@ -229,6 +229,7 @@ for x, l in zip([2, np.pi - 1, np.floor(np.pi), np.pi, 4],
     s *= -1
 
 plt.ylim([-.5, .5])
+plt.axis('off')
 plt.show()
 
 
