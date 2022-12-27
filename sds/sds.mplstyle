@@ -3,7 +3,7 @@ axes.labelsize: 16
 axes.spines.top: False
 axes.spines.right: False
 axes.prop_cycle: cycler(color=['xkcd:sky blue', 'xkcd:lime green', 'xkcd:lavender', 'y'])
-axes.titlesize      : large
+axes.titlesize      : 16
 
 boxplot.boxprops.color: C0
 boxplot.whiskerprops.color: C0
