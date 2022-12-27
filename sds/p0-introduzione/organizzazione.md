@@ -75,11 +75,16 @@ essere pubblicati solo se sono coerenti con la licenza
 (CC BY 4.0) con la quale è distribuito questo libro.
 
 
-%Alcune persone hanno letto e commentato quello che ho scritto, contribuendo
-%in modo fondamentale al risultato finale: XXXXX. Ringrazio tutte e tutti
-%per avere dedicato un po' del loro tempo e delle loro energie a questo lavoro,
-%puntualizzando che che errori e imperfezioni sono interamente da attirbuirsi a
-%me. Ci sono poi tante persone che voglio ringraziare per il loro supporto: YYY.
+% ### Ringraziamenti
+
+% Alcune persone hanno letto e commentato quello che ho scritto, contribuendo
+% in modo fondamentale al risultato finale: Alessandro Di Giorgi mi ha aiutato
+% a limare la trattazione matematica in alcuni punti. Ringrazio tutte e tutti
+% per avere dedicato un po' del loro tempo e delle loro energie a questo lavoro,
+% puntualizzando che che errori e imperfezioni sono interamente da attirbuirsi a
+% me. Ci sono poi tante persone che voglio ringraziare per il loro supporto:
+% Serena Paolo e Paolo Boldi, che per primi e per motivi diversissimi ma non
+% troppo sono venuti a conoscenza della mia idea di scrivere un libro.
 
 ## Imparare <span class="marked">e</span> programmare
 

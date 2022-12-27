@@ -12,6 +12,7 @@ kernelspec:
   name: python3
 ---
 
+(sec:modello-geometrico)=
 # Il modello geometrico
 
 Bruce Banner si trasforma in Hulk ogni volta che non riesce a controllare

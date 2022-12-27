@@ -82,6 +82,12 @@ sphinx:
         matchFontHeight: true,
         scale: 380
       }
+      "loader": {
+        load: ['[tex]/mathtools']
+      }
+      "tex": {
+        packages: {'[+]': ['mathtools']}
+      }
     togglebutton_hint: "Mostra il codice"
     togglebutton_hint_hide: "Nascondi il codice"
     html_theme_options:
