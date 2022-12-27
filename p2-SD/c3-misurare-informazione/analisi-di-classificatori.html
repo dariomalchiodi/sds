@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
-    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "loader": {"load": ["[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["mathtools"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
@@ -1988,7 +1988,7 @@ print(auc)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.575
 </pre></div>
 </div>
 </div>
@@ -2035,8 +2035,8 @@ matrice più gradevole.</p>
     </tr>
     <tr>
       <th>1</th>
-      <td>2</td>
-      <td>38</td>
+      <td>4</td>
+      <td>36</td>
     </tr>
   </tbody>
 </table>

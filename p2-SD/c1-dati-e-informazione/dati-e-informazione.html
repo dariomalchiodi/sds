@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
-    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "loader": {"load": ["[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["mathtools"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
@@ -2598,8 +2598,8 @@ dato un insieme di osservazioni <span class="math notranslate nohighlight">\(\{ 
 funzione <span class="math notranslate nohighlight">\(\hat F: \mathbb R \mapsto [0, 1]\)</span> tale che per ogni <span class="math notranslate nohighlight">\(x \in \mathbb R\)</span>
 assume un valore pari alla frequenza relativa delle osservazioni che risultano
 essere minori o uguali a <span class="math notranslate nohighlight">\(x\)</span>. Pertanto</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6e8acd21-a9c8-41f2-a0b2-5eaccfcbc0d7">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-6e8acd21-a9c8-41f2-a0b2-5eaccfcbc0d7" title="Permalink a questa equazione">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9b79ae86-42a5-4a64-8e83-21d6b8ed20dd">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-9b79ae86-42a5-4a64-8e83-21d6b8ed20dd" title="Permalink a questa equazione">#</a></span>\[\begin{equation}
 \hat F(x) = \frac{\# \{ x_i \leq x \}}{n}
 = \frac{1}{n} \sum_{i=1}^n \mathrm I_{(-\infty, x]}(x_i) ,
 \end{equation}\]</div>

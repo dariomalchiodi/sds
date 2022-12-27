@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
-    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "loader": {"load": ["[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["mathtools"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
@@ -1131,14 +1131,14 @@ giustificato);</p></li>
 segue) che
 <span class="math notranslate nohighlight">\(\mathrm{SS}_{\mathrm T} = \mathrm{SS}_{\mathrm W} + \mathrm{SS}_{\mathrm B}\)</span>,
 e quindi che</p>
-<div class="amsmath math notranslate nohighlight" id="equation-690db2ed-8048-4107-abb7-d305be79593b">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-690db2ed-8048-4107-abb7-d305be79593b" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e4ef3883-7af3-443c-9b02-a64fe5f3f324">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-e4ef3883-7af3-443c-9b02-a64fe5f3f324" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \frac{\mathrm{SS}_{\mathrm T}}{n-1} &amp;= \frac{\mathrm{SS}_{\mathrm W}}{n-1} +\frac{\mathrm{SS}_{\mathrm B}}{n-1}, \\
 &amp;= \frac{n-G}{n-1} \frac{\mathrm{SS}_{\mathrm W}}{n-G} + \frac{G-1}{n-1} \frac{\mathrm{SS}_{\mathrm B}}{G-1}.
 \end{align}\]</div>
 <p>Pertanto,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6dfbe905-4870-4347-a59e-e02ee5ebb342">
-<span class="eqno">(6.2)<a class="headerlink" href="#equation-6dfbe905-4870-4347-a59e-e02ee5ebb342" title="Permalink a questa equazione">#</a></span>\[\begin{multline}
+<div class="amsmath math notranslate nohighlight" id="equation-02632a39-5922-4a87-bd10-d1e3478acd72">
+<span class="eqno">(6.2)<a class="headerlink" href="#equation-02632a39-5922-4a87-bd10-d1e3478acd72" title="Permalink a questa equazione">#</a></span>\[\begin{multline}
 \text{varianza totale} = \frac{n-G}{n-1} \text{varianza entro i gruppi} + \\
                          \frac{G-1}{n-1} \text{varianza tra i gruppi}.
 \end{multline}\]</div>
@@ -1361,8 +1361,8 @@ anova([male_weight, female_weight])
 \sum_{i=1}^{n_g} x^g_i = n_g \overline x^g,
 \]</div>
 <p>e quindi</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dbde3bd3-29d9-4f27-b5e8-8a14eeddfaa8">
-<span class="eqno">(6.3)<a class="headerlink" href="#equation-dbde3bd3-29d9-4f27-b5e8-8a14eeddfaa8" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0b62ae44-2390-4622-84b6-dce6d14e3974">
+<span class="eqno">(6.3)<a class="headerlink" href="#equation-0b62ae44-2390-4622-84b6-dce6d14e3974" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm{SS}_{\mathrm T}  &amp;= \sum_{g=1}^G \sum_{i=1}^{n_g}
                             \left( \left(x^g_i\right)^2
                             - 2 \overline x x^g_i +

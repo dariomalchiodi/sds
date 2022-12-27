@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
-    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "loader": {"load": ["[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["mathtools"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
@@ -1020,7 +1020,7 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="il-modello-geometrico">
-<h1><span class="section-number">13.4. </span>Il modello geometrico<a class="headerlink" href="#il-modello-geometrico" title="Link a questa intestazione">#</a></h1>
+<span id="sec-modello-geometrico"></span><h1><span class="section-number">13.4. </span>Il modello geometrico<a class="headerlink" href="#il-modello-geometrico" title="Link a questa intestazione">#</a></h1>
 <p>Bruce Banner si trasforma in Hulk ogni volta che non riesce a controllare
 un attacco d'ira. Ipotizziamo che, indipendentemente da tutto il resto, ciò avvenga con una prefissata probabilità: possiamo dunque modellare la
 trasformazione nei termini di un esperimento bernoulliano. Convenzionalmente,
@@ -1172,8 +1172,8 @@ le specificazioni di <span class="math notranslate nohighlight">\(X\)</span> si 
 <p class="sidebar-title"></p>
 <p>Nel terzultimo passaggio ho applicato il cambio di variabile <span class="math notranslate nohighlight">\(j = i - 1\)</span>.</p>
 </aside>
-<div class="amsmath math notranslate nohighlight" id="equation-d28b2746-5fe8-42b9-9834-b2e276baf60b">
-<span class="eqno">(13.1)<a class="headerlink" href="#equation-d28b2746-5fe8-42b9-9834-b2e276baf60b" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-02cdb36e-275d-4871-9020-32eb96a1a30a">
+<span class="eqno">(13.1)<a class="headerlink" href="#equation-02cdb36e-275d-4871-9020-32eb96a1a30a" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \sum_{i=1}^{+\infty}\mathrm p_X(i; p) &amp;= \sum_{i=1}^{+\infty} (1-p)^{i - 1} p =
 p \sum_{i=1}^{+\infty}(1-p)^{i - 1} \\
 &amp;= p \sum_{j=0}^{+\infty}(1-p)^j = p \frac{1}{1-(1-p)} = 1.
@@ -1329,8 +1329,8 @@ ripetizioni tenderà a più infinito.</p>
 <p><strong>Proposizione</strong> Il valore atteso del quadrato della distribuzione geometrica
 di parametro <span class="math notranslate nohighlight">\(p\)</span> è pari a <span class="math notranslate nohighlight">\(\frac{(1-p)(2-p)}{p^2}\)</span>.</p>
 <p>Dimostrazione.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-02324f9f-6f09-41c9-837d-bbdeea0d0455">
-<span class="eqno">(13.2)<a class="headerlink" href="#equation-02324f9f-6f09-41c9-837d-bbdeea0d0455" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-baec8a5c-078d-4553-9c29-b15f552330a8">
+<span class="eqno">(13.2)<a class="headerlink" href="#equation-baec8a5c-078d-4553-9c29-b15f552330a8" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm E\left(X^2\right) &amp;= \sum_{i=0}^{+\infty} i^2 p_X(i) \\
                &amp;= \sum_{i=0}^{+\infty} i^2 p (1-p)^i \\
                &amp;= p (1-p) \sum_{i=0}^{+\infty} i^2 (1-p)^{i-1} \\
@@ -1338,8 +1338,8 @@ di parametro <span class="math notranslate nohighlight">\(p\)</span> è pari a <
                &amp;= -p (1-p) \frac{\mathrm d}{\mathrm d p} \sum_{i=0}^{+\infty} i(1-p)^i.
 \end{align}\]</div>
 <p>Applicando ancora il lemma dimostrato precedentemente si ottiene</p>
-<div class="amsmath math notranslate nohighlight" id="equation-692b338b-f025-49b8-bd0d-8adbed52ffc2">
-<span class="eqno">(13.3)<a class="headerlink" href="#equation-692b338b-f025-49b8-bd0d-8adbed52ffc2" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c330c317-8be7-4250-bf37-3ef3d3b7917a">
+<span class="eqno">(13.3)<a class="headerlink" href="#equation-c330c317-8be7-4250-bf37-3ef3d3b7917a" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm E\left(X^2\right) &amp;= -p (1-p) \frac{\mathrm d}{\mathrm d p}
                                 \frac{1-p}{p^2} \\
       &amp;= p (1-p) \frac{p^2 + 1p(1-p)}{p^4} \\
@@ -1349,8 +1349,8 @@ di parametro <span class="math notranslate nohighlight">\(p\)</span> è pari a <
 <p><strong>Proposizione</strong>. La varianza della distribuzione geometrica di parametro <span class="math notranslate nohighlight">\(p\)</span>
 è uguale a <span class="math notranslate nohighlight">\(\frac{1-p}{p^2}\)</span>.</p>
 <p>Dimostrazione.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cfaac25a-089f-46d5-b1d8-965445277ad2">
-<span class="eqno">(13.4)<a class="headerlink" href="#equation-cfaac25a-089f-46d5-b1d8-965445277ad2" title="Permalink a questa equazione">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-517055d8-1b24-461d-8e33-df9485d3994a">
+<span class="eqno">(13.4)<a class="headerlink" href="#equation-517055d8-1b24-461d-8e33-df9485d3994a" title="Permalink a questa equazione">#</a></span>\[\begin{equation}
 \mathrm{Var}(X) = \mathrm E \left(X^2\right) - \mathrm E(X)^2 =
                   \frac{(1-p)(2-p)}{p^2} - \frac{(1-p)^2}{p^2} =
                   \frac{1-p}{p^2}.
@@ -1419,8 +1419,8 @@ ripartizione in cui è possibile calcolare esplicitamente il valore della
 sommatoria. Più precisamente, indicata con <span class="math notranslate nohighlight">\(X\)</span> una variabile aleatoria che
 segue una distribuzione geometrica di parametro <span class="math notranslate nohighlight">\(p\)</span>, è facile calcolare la
 probabilità <span class="math notranslate nohighlight">\(\mathrm P(X &gt; n)\)</span> per un generico <span class="math notranslate nohighlight">\(n\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ca29d5b4-366a-498d-a320-74e77e9bbab7">
-<span class="eqno">(13.5)<a class="headerlink" href="#equation-ca29d5b4-366a-498d-a320-74e77e9bbab7" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d80b7531-c759-44cb-b3bf-a7a12159dd29">
+<span class="eqno">(13.5)<a class="headerlink" href="#equation-d80b7531-c759-44cb-b3bf-a7a12159dd29" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm P(X &gt; n) &amp;= \sum_{i=n+1}^{+\infty}f_X(i; p) \\
                  &amp;= \sum_{i=n+1}^{+\infty}(1-p)^i p \\
                  &amp;= p (1-p)^{n+1} \sum_{i=n+1}^{+\infty}(1-p)^{i- (n+1)} \\
@@ -1478,8 +1478,8 @@ plt.show()
 </div>
 <p>Si noti infine che <span class="math notranslate nohighlight">\(\mathrm P(X \geq x) = \mathrm P(X \geq \lfloor x \rfloor) =
 \mathrm P(X &gt; \lfloor x \rfloor - 1) = (1-p)^{\lfloor x \rfloor}\)</span>, e quindi</p>
-<div class="amsmath math notranslate nohighlight" id="equation-965c1d2f-7d28-4598-bd1b-c74d798c1c90">
-<span class="eqno">(13.6)<a class="headerlink" href="#equation-965c1d2f-7d28-4598-bd1b-c74d798c1c90" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-482d8044-a33d-4410-a566-ac8b9dba62a7">
+<span class="eqno">(13.6)<a class="headerlink" href="#equation-482d8044-a33d-4410-a566-ac8b9dba62a7" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm P(X \geq x+y | X \geq x)
             &amp;= \frac{\mathrm  P(X \geq x+y, X \geq x)}{\mathrm  P(X \geq x)} \\
             &amp;= \frac{\mathrm  P(X \geq x+y)}{\mathrm  P(X \geq x)} \\

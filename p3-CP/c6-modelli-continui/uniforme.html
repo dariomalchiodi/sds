@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
-    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "loader": {"load": ["[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["mathtools"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
@@ -1026,8 +1026,8 @@ title="Print to PDF"
 <a class="reference internal" href="dal-discreto-al-continuo.html#sec-dal-discreto-al-continuo"><span class="std std-numref">Sezione 14.1</span></a>. Si verifica facilmente che <span class="math notranslate nohighlight">\(Y\)</span> è una
 variabile aleatoria avente come supporto <span class="math notranslate nohighlight">\(D_Y = [a, b]\)</span>, dunque una variabile
 aleatoria continua. Se si considera poi un generico <span class="math notranslate nohighlight">\(y \in (a, b)\)</span>, si ha</p>
-<div class="amsmath math notranslate nohighlight" id="equation-834aa45b-4130-4317-9d14-437f2810a64f">
-<span class="eqno">(14.9)<a class="headerlink" href="#equation-834aa45b-4130-4317-9d14-437f2810a64f" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6596c13c-17c5-423c-9f8b-8943ac1a2902">
+<span class="eqno">(14.9)<a class="headerlink" href="#equation-6596c13c-17c5-423c-9f8b-8943ac1a2902" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 F_Y(y) &amp;= \mathbb P(Y \leq y) = \mathbb P(a + X (b-a) \leq y) \\
        &amp;= \mathbb P \left( X \leq \frac{y - a}{b - a} \right)
         = \frac{y - a}{b - a} \enspace,
@@ -1139,8 +1139,8 @@ particolare forma di questo intervallo.</p>
 </section>
 </div><p>Media, varianza e deviazione standard di una generica distribuzione
 uniforme continua si ottengono facilmente a partire dalle definizioni.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1fcaa12d-0046-4c37-8309-a76be62c1fad">
-<span class="eqno">(14.10)<a class="headerlink" href="#equation-1fcaa12d-0046-4c37-8309-a76be62c1fad" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c4de1bba-93da-48f1-8223-bedb175fe698">
+<span class="eqno">(14.10)<a class="headerlink" href="#equation-c4de1bba-93da-48f1-8223-bedb175fe698" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathbb E(X)
 \end{align}\]</div>
 </section>
