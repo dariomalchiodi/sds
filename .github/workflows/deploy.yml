@@ -27,7 +27,6 @@ jobs:
         pip install -r requirements.txt
     - name: Fix sphinx-proof
       run: |
-        echo $Python_ROOT_DIR && \
         echo $PythonLocation && \
         echo ${{ Python_ROOT_DIR }} && \
         echo $RUNNER_TOOL_CACHE/Python && \
