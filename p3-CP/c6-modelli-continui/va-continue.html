@@ -1050,10 +1050,10 @@ Infatti, in base alla <a class="reference internal" href="../c4-variabili-aleato
 <p>è sempre contenuto nell'algebra degli eventi <span class="math notranslate nohighlight">\(\mathsf A\)</span> che stiamo
 considerando, e siccome</p>
 <div class="math notranslate nohighlight">
-\[X \in (x, x + \Delta x] = X^{-1}((-\infty, x + \Delta x]) \,\backslash\,
+\[X^{-1}((x, x + \Delta x]) = X^{-1}((-\infty, x + \Delta x]) \,\backslash\,
                           X^{-1}((-\infty, x]) \,,\]</div>
 <p>il <a class="reference internal" href="../c3-probabilita/esperimenti-esiti-eventi.html#teo-chiusura-algebra-eventi">Teorema 11.2</a> ci permette di concludere che anche
-<span class="math notranslate nohighlight">\(X \in (x, x + \Delta x]\)</span> è contenuto in <span class="math notranslate nohighlight">\(\mathsf A\)</span>. Risulta dunque ben
+<span class="math notranslate nohighlight">\(X^{-1}((x, x + \Delta x])\)</span> è contenuto in <span class="math notranslate nohighlight">\(\mathsf A\)</span>. Risulta dunque ben
 definito il rapporto</p>
 <div class="math notranslate nohighlight">
 \[\frac{\mathbb P(X \in (x, x + \Delta x])}{\Delta x} \,,\]</div>
@@ -1095,7 +1095,7 @@ modo seguente:</p>
 <p>dunque si verifica facilmente che <span class="math notranslate nohighlight">\(F_X' =f_X\)</span>.</p>
 </section>
 </div><p>La funzione di ripartizione è quindi una primitiva della funzione di
-densità, il teorema fondamentale del calcolo integrale <a class="footnote-reference brackets" href="#tfci" id="id1">1</a>
+densità, e il teorema fondamentale del calcolo integrale <a class="footnote-reference brackets" href="#tfci" id="id1">1</a>
 implica che per ogni <span class="math notranslate nohighlight">\(a, b \in \mathbb R\)</span> tali che <span class="math notranslate nohighlight">\(a &lt; b\)</span> si ha</p>
 <div class="math notranslate nohighlight">
 \[\int_a^b f_X(x) \,\mathrm d x = F_X(b) - F_X(a) 
@@ -1109,23 +1109,28 @@ fondamentali effettuate su intervalli, varrà dunque</p>
 <p>e quindi la probabilità <span class="math notranslate nohighlight">\(\mathbb P(X \in A)\)</span> è interpretabile in termini
 dell'area contenuta tra l'asse delle ascisse e il grafico della funzione di
 densità di <span class="math notranslate nohighlight">\(X\)</span> ristretta all'insieme <span class="math notranslate nohighlight">\(A\)</span>, come esemplificato in
-<a class="reference internal" href="../c2-teoria-insiemi/operazioni-tra-insiemi.html#venn-symm-difference"><span class="std std-numref">Fig. 10.7</span></a>.</p>
+<a class="reference internal" href="#fig-pdf-interpretation"><span class="std std-numref">Fig. 14.3</span></a>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
-import numpy as np
-
 from myst_nb import glue
+import numpy as np
+from scipy.stats import norm
 
 plt.rcParams.update({
+    &#39;font.size&#39;: 8,
     &#39;text.latex.preamble&#39;: r&#39;\usepackage{amsfonts}&#39;
 })
 
+# to ensure that pdf is a probability density
+Z = norm()
+norm_factor = (1 - Z.cdf(3 * 2**0.5))/ 2**0.5 + 5**0.5
+
 def pdf(x):
-    return 1.2 * np.exp(-.1*(x)**2) + np.exp(-(x-3)**2)
+    return (1.2 * np.exp(-.1*(x)**2) + np.exp(-(x-3)**2)) / norm_factor
 
 fig, ax = plt.subplots()
-x = np.linspace(-2, 5, 500)
+x = np.linspace(-0, 5, 500)
 y = pdf(x)
 
 x_filled = np.linspace(1, 3, 500)
@@ -1134,14 +1139,16 @@ y_filled = pdf(x_filled)
 ax.fill_between(x_filled, y_filled, alpha=0.5)
 ax.plot(x, y)
 
-ax.text(2, -.2, r&#39;$A$&#39;)
-ax.text(2, 1, &#39;$\\mathbb P(X \\in A)$&#39;)
+ax.text(2, -.1, r&#39;$A$&#39;, horizontalalignment=&#39;center&#39;)
+ax.text(2, 0.3, &#39;$P(X \\in A)$&#39;, horizontalalignment=&#39;center&#39;)
 
 ax.spines.right.set_visible(False)
 ax.spines.top.set_visible(False)
 
-plt.xticks([])
-plt.yticks([])
+ax.xaxis.set_major_formatter(plt.NullFormatter())
+ax.yaxis.set_major_formatter(plt.NullFormatter())
+ax.tick_params(axis=u&#39;both&#39;, which=u&#39;both&#39;,length=0)
+plt.show()
 
 glue(&quot;pdf-interpretation&quot;, fig, display=False)
 </pre></div>
@@ -1150,13 +1157,11 @@ glue(&quot;pdf-interpretation&quot;, fig, display=False)
 </div>
 <figure class="align-default" id="fig-pdf-interpretation" style="width: 100%">
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 1 Axes&gt;
-</pre></div>
-</div>
+<img alt="../../_images/va-continue_1_1.png" src="../../_images/va-continue_1_1.png" />
 </div>
 <figcaption>
-<p><span class="caption-number">Fig. 14.3 </span><span class="caption-text">Un diagramma di Venn per descrivere la differenza tra l'insieme <span class="math notranslate nohighlight">\(S\)</span> e
-l'insieme <span class="math notranslate nohighlight">\(T\)</span>.</span><a class="headerlink" href="#fig-pdf-interpretation" title="Link a questa immagine">#</a></p>
+<p><span class="caption-number">Fig. 14.3 </span><span class="caption-text">Visualizzazione dell'interpretazione geometrica della funzione di
+densità di probabilità di una variabile aleatoria continua.</span><a class="headerlink" href="#fig-pdf-interpretation" title="Link a questa immagine">#</a></p>
 </figcaption>
 </figure>
 <p>Il concetto di valore atteso di una variabile aleatoria continua o di una
@@ -1177,6 +1182,67 @@ una variabile aleatoria continua <span class="math notranslate nohighlight">\(X\
 <div class="math notranslate nohighlight">
 \[\mathbb E(g(X)) = \int_{-\infty}^{+\infty} g(x) f_X(x) \, \mathrm d x\]</div>
 <p>quando l'integrale converge ed è indefinito negli altri casi.</p>
+</section>
+</div><p>Tutte le definizioni introdotte per le variabili aleatorie discrete che
+coinvolgono il loro valore atteso o valori attesi di loro funzioni rimangono
+valide anche per le variabili continue. Per esempio, la varianza di una
+variabile aleatoria continua <span class="math notranslate nohighlight">\(X\)</span> sarà ancora definita come il valore atteso
+del suo scarto quadratico da <span class="math notranslate nohighlight">\(\mathbb E(X)\)</span>, la deviazione standard
+continua a essere uguale alla radice quadrata della varianza e così via.</p>
+<div class="proof example admonition" id="example-4">
+<p class="admonition-title"><span class="caption-number">Esempio 14.3 </span></p>
+<section class="example-content" id="proof-content">
+<p>Il valore atteso della variabile aleatoria <span class="math notranslate nohighlight">\(X\)</span> introdotta nel paragrafo
+precedente è</p>
+<div class="math notranslate nohighlight">
+\[\mathbb E(X) = \int_{-\infty}^{+\infty} x \, \mathrm I_{[0, 1]}(x)
+               \, \mathrm d x
+             = \int_0^1 x \, \mathrm d x
+             = \left. \frac{x^2}{2} \right|_0^1
+             = \frac{1}{2} \enspace,\]</div>
+<p>e analoamente la sua varianza è uguale a</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{multline*}
+\mathrm{Var}(X) = \mathbb E \left( \left( X - \frac{1}{2} \right)^2 \right)
+                = \int_0^1  \left( x - \frac{1}{2} \right)^2 \mathrm d x \\
+                = \int_{-\frac{1}{2}}^{\frac{1}{2}} y^2 \, \mathrm d y
+                = \left. \frac{y^3}{3} \right|_{-\frac{1}{2}}^{\frac{1}{2}}
+                = \frac{1}{12} \enspace.
+\end{multline*}\]</div>
+</section>
+</div><p>Anche tutte le definzioni già introdotte e definite in termini di probabilità
+calcolate su una variabile aleatoria rimangono invariate nel caso continuo,
+sebbene la continuità del supporto permetta in alcuni casi di ottenere delle
+notevoli semplificazioni rispetto a quanto accade per le variabili aleatorie
+discrete. È questo il caso del calcolo dei quantili.</p>
+<div class="proof definition admonition" id="definition-5">
+<p class="admonition-title"><span class="caption-number">Definizione 14.4 </span> (Quantili di una v.a. continua)</p>
+<section class="definition-content" id="proof-content">
+<p>Fissato <span class="math notranslate nohighlight">\(q \in [0, 1]\)</span>, il <em>quantile di livello q</em> di una variabile aleatoria
+continua <span class="math notranslate nohighlight">\(X\)</span> è il più piccolo valore <span class="math notranslate nohighlight">\(x_q \in \mathbb R\)</span> tale che</p>
+<div class="math notranslate nohighlight" id="equation-eq-quantile-continuous">
+<span class="eqno">(14.8)<a class="headerlink" href="#equation-eq-quantile-continuous" title="Permalink a questa equazione">#</a></span>\[\mathbb P(X \leq x_q) = q \enspace.\]</div>
+</section>
+</div><p>Come per il caso discreto, <a class="reference internal" href="#equation-eq-quantile-continuous">(14.8)</a> equivale a
+<span class="math notranslate nohighlight">\(F_X(x_q) = q\)</span>. La continuità della funzione di ripartizione ci permette
+però molto spesso di esprime il quantile come <span class="math notranslate nohighlight">\(x_q = F_X^{-1}(q)\)</span>.
+In alcuni casi, la forma analitica di <span class="math notranslate nohighlight">\(F_X\)</span> permette di semplificare
+ulteriormente i conti, come nell'esempio che segue.</p>
+<div class="proof example admonition" id="example-6">
+<p class="admonition-title"><span class="caption-number">Esempio 14.4 </span></p>
+<section class="example-content" id="proof-content">
+<p>Sempre considerando la variabile aleatoria <span class="math notranslate nohighlight">\(X\)</span> introdotta nel paragrafo
+precedente, per risolvere <span class="math notranslate nohighlight">\(F_X(x_q) = q\)</span> quando <span class="math notranslate nohighlight">\(q \in (0, 1)\)</span> è
+necessario considerare argomenti della funzione di ripartizione compresi
+strettamente tra <span class="math notranslate nohighlight">\(0\)</span> e <span class="math notranslate nohighlight">\(1\)</span>. In questa regione di <span class="math notranslate nohighlight">\(\mathbb R\)</span> <span class="math notranslate nohighlight">\(F_X\)</span> è uguale
+alla funzione identità, dunque <span class="math notranslate nohighlight">\(F_X(q) = q\)</span>. In altre parole il quantile di
+livello <span class="math notranslate nohighlight">\(q\)</span> di <span class="math notranslate nohighlight">\(X\)</span> è uguale al livello stesso, e quindi a <span class="math notranslate nohighlight">\(q\)</span>.</p>
+<p>I livelli non considerati si trattano facilmente a parte nel modo seguente:</p>
+<ul class="simple">
+<li><p>si ha <span class="math notranslate nohighlight">\(\mathbb P(X \leq x) = 1\)</span> per ogni <span class="math notranslate nohighlight">\(x \geq 1\)</span>, dunque <span class="math notranslate nohighlight">\(x_1 = 1\)</span>;</p></li>
+<li><p>analogamente, <span class="math notranslate nohighlight">\(\mathbb P(X \leq x) = 0\)</span> è sempre verificato quando
+<span class="math notranslate nohighlight">\(x \leq 0\)</span>, pertanto <span class="math notranslate nohighlight">\(x_0 = -\infty\)</span>.</p></li>
+</ul>
 </section>
 </div><hr class="footnotes docutils" />
 <dl class="footnote brackets">

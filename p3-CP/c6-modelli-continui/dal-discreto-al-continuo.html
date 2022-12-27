@@ -1064,7 +1064,44 @@ dominio <span class="math notranslate nohighlight">\(D_{15000}\)</span> secondo 
 specificazioni <span class="math notranslate nohighlight">\(\frac{42}{15000}\)</span>, <span class="math notranslate nohighlight">\(\frac{43}{15000}\)</span> e <span class="math notranslate nohighlight">\(\frac{49}{15000}\)</span>,
 perché la loro differenza massima equivale a meno dello <span class="math notranslate nohighlight">\(0.05\%\)</span> del totale.</p>
 </section>
-</div><p>In altre parole, valori tra loro abbastanza vicini per le specificazioni
+</div><p>Prima di approfondire che cosa succede all'aumentare di <span class="math notranslate nohighlight">\(n\)</span>, calcoliamo il
+valore atteso e la varianza di <span class="math notranslate nohighlight">\(X_n\)</span>, perché ci saranno utili in seguito.</p>
+<div class="proof lemma admonition" id="lemma-1">
+<p class="admonition-title"><span class="caption-number">Lemma 14.1 </span></p>
+<section class="lemma-content" id="proof-content">
+<p>Il valore atteso e la varianza di <span class="math notranslate nohighlight">\(X_n\)</span> sono rispettivamente uguali a
+<span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> e a <span class="math notranslate nohighlight">\(\frac{1}{12} + \frac{1}{6 n}\)</span>.</p>
+<div class="proof admonition" id="proof">
+<p>Dimostrazione. Applicando le formule per il calcolo di valore atteso e varianza si ottiene:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-dc1872c5-6028-4f22-8362-59d762713e88">
+<span class="eqno">(14.2)<a class="headerlink" href="#equation-dc1872c5-6028-4f22-8362-59d762713e88" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+\mathbb E(X) &amp;= \sum_{i=0}^n \frac{i}{n} \frac{1}{n+1}
+              = \frac{1}{n(n+1)} \sum_{i=0}^n i \\
+             &amp;= \frac{1}{n(n+1)} \frac{n(n+1)}{2}
+              = \frac{1}{2} \enspace;
+\end{align}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-ba249f11-5f2c-4588-9c76-04919b0d9d50">
+<span class="eqno">(14.3)<a class="headerlink" href="#equation-ba249f11-5f2c-4588-9c76-04919b0d9d50" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+\mathbb E(X^2) &amp;= \sum_{i=0}^n \frac{i^2}{n^2} \frac{1}{n+1}
+                = \frac{1}{n^2(n+1)} \sum_{i=0}^n i^2 \\
+               &amp;= \frac{1}{n^2(n+1)} \frac{n(n+1)(2n+1)}{6}
+                = \frac{1}{3} + \frac{1}{6n} \enspace;
+\end{align}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-0fd9bcfd-8689-4b0a-bf15-b804e7b5e12a">
+<span class="eqno">(14.4)<a class="headerlink" href="#equation-0fd9bcfd-8689-4b0a-bf15-b804e7b5e12a" title="Permalink a questa equazione">#</a></span>\[\begin{equation}
+\mathrm{Var}(X) = \frac{1}{3} + \frac{1}{6n} - \frac{1}{4}
+                = \frac{1}{12} + \frac{1}{6n} \enspace.
+\end{equation}\]</div>
+<p>Va notato come il valore atteso sia sempre uguale a <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span>
+indipendentemente dal valore di <span class="math notranslate nohighlight">\(n\)</span>, come ci si può aspettare tenuto conto
+del fatto che, essendo la massa di probabilità costante, la centralità della
+distribuzione deve coincidere con il baricentro delle osservazioni. Per
+quanto riguarda invece la varianza, è presente un termine che dipende da <span class="math notranslate nohighlight">\(n\)</span>
+ma il cui contributo tende a diventare trascurabile man mano che questo
+parametro cresce.</p>
+</div>
+</section>
+</div><p>Come dicevamo, valori tra loro abbastanza vicini per le specificazioni
 risultano fondamentalmente equivalenti, e dunque ha più senso ragionare in
 termini della probabilità che <span class="math notranslate nohighlight">\(X_n\)</span> assuma valori in un intervallo (anche
 piccolo) di specificazioni piuttosto che studiare eventi in cui essa risulta
@@ -1078,7 +1115,7 @@ distribuzione cumulativa di <span class="math notranslate nohighlight">\(X_n\)</
 <span class="math notranslate nohighlight">\(i \leq nx &lt; i + 1\)</span> e dunque <span class="math notranslate nohighlight">\(i = \lfloor n x \rfloor\)</span>.</p>
 </aside>
 <div class="math notranslate nohighlight" id="equation-eq-cdf-discrete-uniform">
-<span class="eqno">(14.2)<a class="headerlink" href="#equation-eq-cdf-discrete-uniform" title="Permalink a questa equazione">#</a></span>\[\begin{split}\begin{align}
+<span class="eqno">(14.5)<a class="headerlink" href="#equation-eq-cdf-discrete-uniform" title="Permalink a questa equazione">#</a></span>\[\begin{split}\begin{align}
 F_{X_n} (x) &amp;= \mathbb P(X_n \leq x)
             = \mathbb P \Big( X_n \leq \frac{i}{n} \Big) \\
             &amp;= \frac{i+1}{n+1} = \frac{\lfloor n x \rfloor + 1}{n+1},
@@ -1139,7 +1176,9 @@ glue(&quot;discrete-to-continuous&quot;, fig, display=True)
 </div>
 <figure class="align-default" id="fig-discrete-to-continuous">
 <div class="cell_output docutils container">
-<img alt="../../_images/dal-discreto-al-continuo_1_1.png" src="../../_images/dal-discreto-al-continuo_1_1.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1500x500 with 3 Axes&gt;
+</pre></div>
+</div>
 </div>
 <figcaption>
 <p><span class="caption-number">Fig. 14.1 </span><span class="caption-text">Le spezzate piene mostrano i grafici della funzione di distribuzione
@@ -1181,6 +1220,7 @@ for x, l in zip([2, np.pi - 1, np.floor(np.pi), np.pi, 4],
     s *= -1
 
 plt.ylim([-.5, .5])
+plt.axis(&#39;off&#39;)
 plt.show()
 
 
@@ -1191,7 +1231,9 @@ glue(&quot;floor-proof&quot;, fig, display=True)
 </div>
 <figure class="margin align-default" id="fig-floor-proof">
 <div class="cell_output docutils container">
-<img alt="../../_images/dal-discreto-al-continuo_3_1.png" src="../../_images/dal-discreto-al-continuo_3_1.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 500x100 with 1 Axes&gt;
+</pre></div>
+</div>
 </div>
 <figcaption>
 <p><span class="caption-number">Fig. 14.2 </span><span class="caption-text">Si ricava <span class="math notranslate nohighlight">\(x - 1 \leq \lfloor x \rfloor \leq x\)</span> considerando banalmente
@@ -1204,9 +1246,9 @@ del suo troncamento all'intero inferiore,</span><a class="headerlink" href="#fig
 l'intuizione che <span class="math notranslate nohighlight">\(F_{X_n}\)</span> tenda a <span class="math notranslate nohighlight">\(F\)</span> quando <span class="math notranslate nohighlight">\(n \to +\infty\)</span>. Non è
 difficile provare formalmente che questa intuizione è corretta: ricordando che
 per ogni <span class="math notranslate nohighlight">\(x\)</span> vale <span class="math notranslate nohighlight">\(x - 1 \leq \lfloor x \rfloor \leq x\)</span>,
-da <a class="reference internal" href="#equation-eq-cdf-discrete-uniform">(14.2)</a> si verifica che</p>
+da <a class="reference internal" href="#equation-eq-cdf-discrete-uniform">(14.5)</a> si verifica che</p>
 <div class="math notranslate nohighlight" id="equation-eq-cdf-continuous-uniform">
-<span class="eqno">(14.3)<a class="headerlink" href="#equation-eq-cdf-continuous-uniform" title="Permalink a questa equazione">#</a></span>\[\frac{n x}{n + 1} \leq F_{X_n}(x) \leq \frac{nx + 1}{n + 1},\]</div>
+<span class="eqno">(14.6)<a class="headerlink" href="#equation-eq-cdf-continuous-uniform" title="Permalink a questa equazione">#</a></span>\[\frac{n x}{n + 1} \leq F_{X_n}(x) \leq \frac{nx + 1}{n + 1},\]</div>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Il teorema dei due Carabinieri, o teorema del confronto, dice che, date tre
@@ -1271,7 +1313,15 @@ suo prossimo spostamento, non farebbe alcuna differenza sapere che questa è
 uguale, per dire, a <span class="math notranslate nohighlight">\(0.0004678\)</span> oppure a <span class="math notranslate nohighlight">\(0.0004681\)</span> <a class="footnote-reference brackets" href="#attosecondi" id="id4">4</a>. Ha quindi
 senso, considerare una funzione <span class="math notranslate nohighlight">\(f_X\)</span> definita in modo tale che il valore
 <span class="math notranslate nohighlight">\(f_X(x)\)</span> esprima intuitivamente «quanta» massa di probabilità è concentrata
-attorno alla specificazione <span class="math notranslate nohighlight">\(x\)</span>. In analogia con il concetto fisico di
+attorno alla specificazione <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>In alcuni testi si preferisce utilizzare la notazione <span class="math notranslate nohighlight">\(f_X\)</span> per indicare
+sia la funzione di massa di probabilità, sia la funzione di densità. Io ho
+preferito usare rispettivamente <span class="math notranslate nohighlight">\(p_X\)</span> e <span class="math notranslate nohighlight">\(f_X\)</span> per rimarcare ulteriormente
+la differenza tra i due concetti coinvolti.</p>
+</aside>
+<p>In analogia con il concetto fisico di
 densità, si dice che <span class="math notranslate nohighlight">\(f_X\)</span> è la <em>funzione di densità di probabilità</em> (o, più
 brevemente, <em>funzione di densità</em>) di <span class="math notranslate nohighlight">\(X\)</span>, e per ogni sottoinsieme
 <span class="math notranslate nohighlight">\(B \subseteq [0, 1]\)</span> si ha</p>
@@ -1292,7 +1342,7 @@ sua densità sarà nulla in questa regione di <span class="math notranslate nohi
 probabilità che <span class="math notranslate nohighlight">\(X\)</span> sia contenuta in un intervallo <span class="math notranslate nohighlight">\((a, b] \subseteq [0, 1]\)</span>
 come</p>
 <div class="math notranslate nohighlight" id="equation-eq-prob-uniform-interval">
-<span class="eqno">(14.4)<a class="headerlink" href="#equation-eq-prob-uniform-interval" title="Permalink a questa equazione">#</a></span>\[\mathbb P(X \in (a, b]) = \int_a^b f_X(x) \mathrm d x
+<span class="eqno">(14.7)<a class="headerlink" href="#equation-eq-prob-uniform-interval" title="Permalink a questa equazione">#</a></span>\[\mathbb P(X \in (a, b]) = \int_a^b f_X(x) \mathrm d x
                         = \int_a^b \mathrm d x = b - a .\]</div>
 <p>Questo risultato è coerente con quello che otterremmo ricavando la stessa
 probabilità usando la funzione di ripartizione come indicato in
@@ -1304,19 +1354,30 @@ probabilità usando la funzione di ripartizione come indicato in
 dalla particolare forma dell'intervallo considerato, che può essere aperto,
 semichiuso o chiuso. Infatti, le proprietà dell'integrale di Riemann ci
 assicurano che calcolando, per esempio, <span class="math notranslate nohighlight">\(\mathbb P(X \in [a, b])\)</span> in modo
-analogo a quanto fatto in <a class="reference internal" href="#equation-eq-prob-uniform-interval">(14.4)</a>, otterremmo lo stesso
+analogo a quanto fatto in <a class="reference internal" href="#equation-eq-prob-uniform-interval">(14.7)</a>, otterremmo lo stesso
 valore di probabilità. Non c'è alcuna incoerenza in questo risultato, in
 quanto <span class="math notranslate nohighlight">\(\mathbb P(X \in [a, b]) = \mathbb P(X \in (a, b]) + \mathbb P(X = a)\)</span>
 e l'ultima di queste probabilità è nulla. Con un ragionamento analogo è
 facile mostrare che succede lo stesso quando si considerano intervalli della
 forma <span class="math notranslate nohighlight">\((a, b)\)</span> o <span class="math notranslate nohighlight">\([a, b)\)</span>.</p>
-<aside class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>In alcuni testi si preferisce utilizzare la notazione <span class="math notranslate nohighlight">\(f_X\)</span> per indicare
-sia la funzione di massa di probabilità, sia la funzione di densità. Io ho
-preferito usare rispettivamente <span class="math notranslate nohighlight">\(p_X\)</span> e <span class="math notranslate nohighlight">\(f_X\)</span> per rimarcare ulteriormente
-la differenza tra i due concetti coinvolti.</p>
-</aside>
+<p>Vedremo in modo preciso come la maggior parte dei concetti già introdotti
+per le variabili aleatorie discrete si possono estendere in modo naturale alle
+variabili aleatorie continue. Questo richiederà quasi sempre di modificare le
+formule relative sostituendo la funzione di massa di probabilità con la
+funzione di densità e le sommatorie con integrali, ma in alcuni casi non
+sarà strettamente necessario utilizzare il formalismo matematico. Consideriamo
+per esempio il valore atteso di <span class="math notranslate nohighlight">\(X\)</span>: per calcolarlo è sufficiente osservare
+che la sua densità è costante in <span class="math notranslate nohighlight">\([0, 1]\)</span> e nulla altrove, pertanto la
+centralità della distribzuione di <span class="math notranslate nohighlight">\(X\)</span>, e dunque il suo valore atteso, deve
+essere uguale a <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span>. D'altra parte, abbiamo visto come
+<span class="math notranslate nohighlight">\(\mathbb E(X_n) = \frac{1}{2}\)</span>, dunque è naturale che lo stesso valga per la
+distribuzione limite che stiamo considerando. Facendo un ragionamento analogo,
+possiamo supporre che la varianza di <span class="math notranslate nohighlight">\(X\)</span> si ottenga come</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{Var}(X) = \lim_{n \to +\infty}\mathrm{Var}(X_n) = \frac{1}{12}
+                  \enspace.\]</div>
+<p>Nel <a class="reference internal" href="uniforme.html#sec-modello-uniforme-continuo"><span class="std std-numref">Sezione 14.3</span></a> vedremo come calcolare questi due
+valori in modo formale.</p>
 <hr class="footnotes docutils" />
 <dl class="footnote brackets">
 <dt class="label" id="meccanica-quantistica"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>

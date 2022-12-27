@@ -56,6 +56,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
     <link rel="search" title="Cerca" href="../../search.html" />
@@ -1019,6 +1021,128 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="il-modello-uniforme-continuo">
 <span id="sec-modello-uniforme-continuo"></span><h1><span class="section-number">14.3. </span>Il modello uniforme continuo<a class="headerlink" href="#il-modello-uniforme-continuo" title="Link a questa intestazione">#</a></h1>
+<p>Dati <span class="math notranslate nohighlight">\(a, b \in \mathbb R\)</span>, con <span class="math notranslate nohighlight">\(a &lt; b\)</span>, definiamo <span class="math notranslate nohighlight">\(Y = a + X (b-a)\)</span>, dove <span class="math notranslate nohighlight">\(X\)</span>
+è la variabile aleatoria introdotta nel
+<a class="reference internal" href="dal-discreto-al-continuo.html#sec-dal-discreto-al-continuo"><span class="std std-numref">Sezione 14.1</span></a>. Si verifica facilmente che <span class="math notranslate nohighlight">\(Y\)</span> è una
+variabile aleatoria avente come supporto <span class="math notranslate nohighlight">\(D_Y = [a, b]\)</span>, dunque una variabile
+aleatoria continua. Se si considera poi un generico <span class="math notranslate nohighlight">\(y \in (a, b)\)</span>, si ha</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9049cfa0-6550-4243-b3e2-2e7355377935">
+<span class="eqno">(14.9)<a class="headerlink" href="#equation-9049cfa0-6550-4243-b3e2-2e7355377935" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+F_Y(y) &amp;= \mathbb P(Y \leq y) = \mathbb P(a + X (b-a) \leq y) \\
+       &amp;= \mathbb P \left( X \leq \frac{y - a}{b - a} \right)
+        = \frac{y - a}{b - a} \enspace,
+\end{align}\]</div>
+<p>mentre <span class="math notranslate nohighlight">\(\forall y &lt; a \; \mathbb P(Y \leq y) = 0\)</span> e
+<span class="math notranslate nohighlight">\(\forall y &gt; b \; \mathbb P(Y \leq y) = 1\)</span>, e dunque riunendo i vari casi si
+ottiene</p>
+<div class="math notranslate nohighlight">
+\[F_Y(y) =  \frac{y - a}{b - a} \; \mathrm I_{[a, b]}(y)
+          + \mathrm I_{(b + \infty)}(y) \enspace.\]</div>
+<p>Analogamente, per <span class="math notranslate nohighlight">\(y \in (a, b)\)</span></p>
+<div class="math notranslate nohighlight">
+\[f_Y(y) = F_Y'(y) = \frac{1}{b - a} \enspace.\]</div>
+<p>D'altra parte, quando <span class="math notranslate nohighlight">\(y &lt; a\)</span> o <span class="math notranslate nohighlight">\(y &gt; b\)</span> ci si trova al di fuori del dominio
+della variabile aleatoria, pertanto <span class="math notranslate nohighlight">\(f_Y(y) = 0\)</span>. Riassumendo, la densità di
+<span class="math notranslate nohighlight">\(Y\)</span> è tale che</p>
+<div class="math notranslate nohighlight">
+\[f_Y(y) = \frac{1}{b - a} \; \mathrm I_{[a, b]}(y) \enspace.\]</div>
+<p>Per ogni <span class="math notranslate nohighlight">\(a &lt; b\)</span> abbiamo quindi definito una variabile aleatoria
+continua la cui densità è costante nel corrispondente intervallo <span class="math notranslate nohighlight">\([a, b]\)</span>.
+Coerentemente con il <a class="reference internal" href="dal-discreto-al-continuo.html#sec-dal-discreto-al-continuo"><span class="std std-numref">Sezione 14.1</span></a>, ci riferiremo
+a essa come alla <em>distribuzione uniforme continua</em> sull'intervallo <span class="math notranslate nohighlight">\([a, b]\)</span>.</p>
+<div class="proof definition admonition" id="def:uniform-continuous">
+<p class="admonition-title"><span class="caption-number">Definizione 14.5 </span> (La distribuzione uniforme continua)</p>
+<section class="definition-content" id="proof-content">
+<p>Dati <span class="math notranslate nohighlight">\(a, b \in \mathbb R\)</span> con <span class="math notranslate nohighlight">\(a &lt; b\)</span>, la <em>distribuzione uniforme continua</em>
+su <span class="math notranslate nohighlight">\([a, b]\)</span> è definita dalla densità</p>
+<div class="math notranslate nohighlight">
+\[f(x) =  \frac{1}{b - a} \; \mathrm I_{[a, b]}(x) \enspace,\]</div>
+<p>o in modo equivalente dalla ripartizione</p>
+<div class="math notranslate nohighlight">
+\[F(x) =  \frac{y - a}{b - a} \; \mathrm I_{[a, b]}(x)
+          + \mathrm I_{(b + \infty)}(x) \enspace.\]</div>
+<p>Quando una variabile aleatoria segue questa distribuzione, diremo per
+brevità che si tratta di una variabile aleatoria uniform continua.</p>
+</section>
+</div><aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Ho scelto questo esempio per sottolineare che non tutte le distribuzioni
+sono definite su supporti che contengono solo numeri non negativi.</p>
+</aside>
+<p>La <a class="reference internal" href="#fig-uniform-continuous"><span class="std std-numref">Fig. 14.4</span></a> mostra il grafico delle funzioni di
+densità e di ripartizione per la distribuzione uniforme continua su <span class="math notranslate nohighlight">\([-1, 1]\)</span>.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
+import numpy as np
+
+from myst_nb import glue
+
+def uniform_pdf(a, b, x):
+    return np.where((a &lt;= x) &amp; (x &lt;= b),  1 / (b - a), 0)
+
+def uniform_cdf(a, b, x):
+    return np.where((a &lt;= x) &amp; (x &lt;= b), (x - a) / (b - a),
+                    np.where(x &lt; a, 0, 1))
+
+fig, ax = plt.subplots(1, 2)
+x = np.linspace(-1.5, 1.5, 150)
+y_pdf = uniform_pdf(-1, 1, x)
+y_cdf = uniform_cdf(-1, 1, x)
+
+ax[0].hlines([0, 0.5, 0], [-1.5, -1, 1], [-1, 1, 1.5])
+ax[1].plot(x, y_cdf)
+
+for a in ax:
+  a.spines.right.set_visible(False)
+  a.spines.top.set_visible(False)
+  a.set_ylim(-0.1, 1.1)
+
+fig.show()
+
+
+glue(&quot;uniform-continuous&quot;, fig, display=True)
+</pre></div>
+</div>
+</div>
+</div>
+<figure class="align-default" id="fig-uniform-continuous">
+<div class="cell_output docutils container">
+<img alt="../../_images/uniforme_1_0.png" src="../../_images/uniforme_1_0.png" />
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 14.4 </span><span class="caption-text">I grafici della funzione di densità (a sinistra) e della funzione di
+ripartizione (a destra) della distribuzione uniforme continua sull'intervallo
+<span class="math notranslate nohighlight">\([-1, 1]\)</span>.</span><a class="headerlink" href="#fig-uniform-continuous" title="Link a questa immagine">#</a></p>
+</figcaption>
+</figure>
+<p>Va notato come la distribuzione derivata nel
+<a class="reference internal" href="dal-discreto-al-continuo.html#sec-dal-discreto-al-continuo"><span class="std std-numref">Sezione 14.1</span></a> rappresenti la distribuzione uniforme
+continua per il caso <span class="math notranslate nohighlight">\(a=0\)</span> e <span class="math notranslate nohighlight">\(b=1\)</span>, e come in generale il procedimento seguito
+per ottenere la distribuzione uniforme continua non porta a un risultato
+diverso nel caso in cui il supporto da cui si parte sia un intervallo aperto o
+semiaperto. Per brevità, uniamo quindi tutte le distribuzioni uniformi
+continue su un intervallo nella famiglia definita di seguito.</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Nonostante sia possibile definire una distribuzione uniforme su un insieme
+continuo che non sia un intervallo, per brevità si utilizza la dicitura
+<em>uniforme continua</em> per riferirsi alle sole distribuzioni che hanno un
+intervallo come supporto.</p>
+</aside>
+<div class="proof definition admonition" id="def:continuous-uniform-family">
+<p class="admonition-title"><span class="caption-number">Definizione 14.6 </span> (La famiglia uniforme continua)</p>
+<section class="definition-content" id="proof-content">
+<p>La <em>famiglia uniforme continua</em> comprende tutte le definizioni uniformi
+continue definite su un intervallo in <span class="math notranslate nohighlight">\(\mathbb R\)</span>, indipdententemente dalla
+particolare forma di questo intervallo.</p>
+</section>
+</div><p>Media, varianza e deviazione standard di una generica distribuzione
+uniforme continua si ottengono facilmente a partire dalle definizioni.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9d53af7a-49a0-4622-b684-ee41541a29b9">
+<span class="eqno">(14.10)<a class="headerlink" href="#equation-9d53af7a-49a0-4622-b684-ee41541a29b9" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+\mathbb E(X)
+\end{align}\]</div>
 </section>
 
     <script type="text/x-thebe-config">

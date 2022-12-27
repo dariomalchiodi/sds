@@ -15,7 +15,6 @@ kernelspec:
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-%matplotlib inline
 %run init.py
 ```
 

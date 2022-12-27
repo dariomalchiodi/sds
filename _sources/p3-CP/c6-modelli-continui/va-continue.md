@@ -49,12 +49,12 @@ X^{-1}((-\infty, a]) = \{ w \in \Omega \text{ tale che } X(\omega) \leq a \}
 considerando, e siccome
 
 ```{math}
-X \in (x, x + \Delta x] = X^{-1}((-\infty, x + \Delta x]) \,\backslash\,
+X^{-1}((x, x + \Delta x]) = X^{-1}((-\infty, x + \Delta x]) \,\backslash\,
                           X^{-1}((-\infty, x]) \,,
 ```
 
 il {prf:ref}`teo-chiusura-algebra-eventi` ci permette di concludere che anche
-$X \in (x, x + \Delta x]$ è contenuto in $\mathsf A$. Risulta dunque ben
+$X^{-1}((x, x + \Delta x])$ è contenuto in $\mathsf A$. Risulta dunque ben
 definito il rapporto
 
 ```{math}
@@ -112,7 +112,7 @@ dunque si verifica facilmente che $F_X' =f_X$.
 ````
 
 La funzione di ripartizione è quindi una primitiva della funzione di
-densità, il teorema fondamentale del calcolo integrale [^tfci]
+densità, e il teorema fondamentale del calcolo integrale [^tfci]
 implica che per ogni $a, b \in \mathbb R$ tali che $a < b$ si ha
 
 ```{math}
@@ -132,25 +132,30 @@ fondamentali effettuate su intervalli, varrà dunque
 e quindi la probabilità $\mathbb P(X \in A)$ è interpretabile in termini
 dell'area contenuta tra l'asse delle ascisse e il grafico della funzione di
 densità di $X$ ristretta all'insieme $A$, come esemplificato in
-{numref}`venn-symm-difference`.
+{numref}`fig:pdf-interpretation`.
 
 ```{code-cell} ipython3
 :tags: [hide-cell, remove-output]
 
 import matplotlib.pyplot as plt
-import numpy as np
-
 from myst_nb import glue
+import numpy as np
+from scipy.stats import norm
 
 plt.rcParams.update({
+    'font.size': 8,
     'text.latex.preamble': r'\usepackage{amsfonts}'
 })
 
+# to ensure that pdf is a probability density
+Z = norm()
+norm_factor = (1 - Z.cdf(3 * 2**0.5))/ 2**0.5 + 5**0.5
+
 def pdf(x):
-    return 1.2 * np.exp(-.1*(x)**2) + np.exp(-(x-3)**2)
+    return (1.2 * np.exp(-.1*(x)**2) + np.exp(-(x-3)**2)) / norm_factor
 
 fig, ax = plt.subplots()
-x = np.linspace(-2, 5, 500)
+x = np.linspace(-0, 5, 500)
 y = pdf(x)
 
 x_filled = np.linspace(1, 3, 500)
@@ -159,14 +164,16 @@ y_filled = pdf(x_filled)
 ax.fill_between(x_filled, y_filled, alpha=0.5)
 ax.plot(x, y)
 
-ax.text(2, -.2, r'$A$')
-ax.text(2, 1, '$\\mathbb P(X \\in A)$')
+ax.text(2, -.1, r'$A$', horizontalalignment='center')
+ax.text(2, 0.3, '$P(X \\in A)$', horizontalalignment='center')
 
 ax.spines.right.set_visible(False)
 ax.spines.top.set_visible(False)
 
-plt.xticks([])
-plt.yticks([])
+ax.xaxis.set_major_formatter(plt.NullFormatter())
+ax.yaxis.set_major_formatter(plt.NullFormatter())
+ax.tick_params(axis=u'both', which=u'both',length=0)
+plt.show()
 
 glue("pdf-interpretation", fig, display=False)
 ```
@@ -175,8 +182,8 @@ glue("pdf-interpretation", fig, display=False)
 :figwidth: 100%
 :name: fig:pdf-interpretation
 
-Un diagramma di Venn per descrivere la differenza tra l'insieme $S$ e
-l'insieme $T$.
+Visualizzazione dell'interpretazione geometrica della funzione di
+densità di probabilità di una variabile aleatoria continua.
 ```
 
 Il concetto di valore atteso di una variabile aleatoria continua o di una
@@ -205,6 +212,73 @@ una variabile aleatoria continua $X$ è uguale a
 quando l'integrale converge ed è indefinito negli altri casi.
 ````
 
+Tutte le definizioni introdotte per le variabili aleatorie discrete che
+coinvolgono il loro valore atteso o valori attesi di loro funzioni rimangono
+valide anche per le variabili continue. Per esempio, la varianza di una
+variabile aleatoria continua $X$ sarà ancora definita come il valore atteso
+del suo scarto quadratico da $\mathbb E(X)$, la deviazione standard
+continua a essere uguale alla radice quadrata della varianza e così via.
+
+
+````{prf:example}
+Il valore atteso della variabile aleatoria $X$ introdotta nel paragrafo
+precedente è
+
+```{math}
+\mathbb E(X) = \int_{-\infty}^{+\infty} x \, \mathrm I_{[0, 1]}(x)
+               \, \mathrm d x
+             = \int_0^1 x \, \mathrm d x
+             = \left. \frac{x^2}{2} \right|_0^1
+             = \frac{1}{2} \enspace,
+```
+
+e analoamente la sua varianza è uguale a
+
+\begin{multline*}
+\mathrm{Var}(X) = \mathbb E \left( \left( X - \frac{1}{2} \right)^2 \right)
+                = \int_0^1  \left( x - \frac{1}{2} \right)^2 \mathrm d x \\
+                = \int_{-\frac{1}{2}}^{\frac{1}{2}} y^2 \, \mathrm d y
+                = \left. \frac{y^3}{3} \right|_{-\frac{1}{2}}^{\frac{1}{2}}
+                = \frac{1}{12} \enspace.
+\end{multline*}
+````
+
+Anche tutte le definzioni già introdotte e definite in termini di probabilità
+calcolate su una variabile aleatoria rimangono invariate nel caso continuo,
+sebbene la continuità del supporto permetta in alcuni casi di ottenere delle
+notevoli semplificazioni rispetto a quanto accade per le variabili aleatorie
+discrete. È questo il caso del calcolo dei quantili.
+
+````{prf:definition} Quantili di una v.a. continua
+Fissato $q \in [0, 1]$, il _quantile di livello q_ di una variabile aleatoria
+continua $X$ è il più piccolo valore $x_q \in \mathbb R$ tale che
+
+```{math}
+:label: eq:quantile-continuous
+\mathbb P(X \leq x_q) = q \enspace.
+```
+````
+
+Come per il caso discreto, {eq}`eq:quantile-continuous` equivale a
+$F_X(x_q) = q$. La continuità della funzione di ripartizione ci permette
+però molto spesso di esprime il quantile come $x_q = F_X^{-1}(q)$.
+In alcuni casi, la forma analitica di $F_X$ permette di semplificare
+ulteriormente i conti, come nell'esempio che segue.
+
+````{prf:example}
+Sempre considerando la variabile aleatoria $X$ introdotta nel paragrafo
+precedente, per risolvere $F_X(x_q) = q$ quando $q \in (0, 1)$ è
+necessario considerare argomenti della funzione di ripartizione compresi
+strettamente tra $0$ e $1$. In questa regione di $\mathbb R$ $F_X$ è uguale
+alla funzione identità, dunque $F_X(q) = q$. In altre parole il quantile di
+livello $q$ di $X$ è uguale al livello stesso, e quindi a $q$.
+
+I livelli non considerati si trattano facilmente a parte nel modo seguente:
+
+- si ha $\mathbb P(X \leq x) = 1$ per ogni $x \geq 1$, dunque $x_1 = 1$;
+- analogamente, $\mathbb P(X \leq x) = 0$ è sempre verificato quando
+  $x \leq 0$, pertanto $x_0 = -\infty$.
+````
 
 
 [^tfci]: Per la precisione, la versione del teorema fondamentale del calcolo
