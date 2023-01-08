@@ -673,7 +673,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c6-modelli-continui/gaussiano.html">
-     14.5. Il modello gaussiano
+     14.5. Il modello normale
     </a>
    </li>
    <li class="toctree-l2">
@@ -1049,65 +1049,65 @@ di Venn illustrato in <a class="reference internal" href="#venn"><span class="st
 </ul>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
-import math
-import numpy as np
-from matplotlib_venn import venn2_circles, venn2
-from myst_nb import glue
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib_venn</span> <span class="kn">import</span> <span class="n">venn2_circles</span><span class="p">,</span> <span class="n">venn2</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
 
-import matplotlib
-matplotlib.rcParams[&#39;mathtext.rm&#39;] = &#39;Bitstream Vera Sans&#39;
-matplotlib.rcParams[&#39;mathtext.it&#39;] = &#39;Bitstream Vera Sans:italic&#39;
-matplotlib.rcParams[&#39;mathtext.bf&#39;] = &#39;Bitstream Vera Sans:bold&#39;
-matplotlib.rcParams[&#39;mathtext.fontset&#39;] = &#39;cm&#39;
-font_size = 18
-matplotlib.rcParams[&#39;font.size&#39;] = str(font_size)
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.rm&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Bitstream Vera Sans&#39;</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.it&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Bitstream Vera Sans:italic&#39;</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.bf&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Bitstream Vera Sans:bold&#39;</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
+<span class="n">font_size</span> <span class="o">=</span> <span class="mi">18</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">font_size</span><span class="p">)</span>
 
-venn_set_color = &#39;#0071BC&#39;
-venn_set_edge= &#39;#333333&#39;
+<span class="n">venn_set_color</span> <span class="o">=</span> <span class="s1">&#39;#0071BC&#39;</span>
+<span class="n">venn_set_edge</span><span class="o">=</span> <span class="s1">&#39;#333333&#39;</span>
 
 
-def simple_venn(universe=False):
-    fig = plt.figure()
+<span class="k">def</span> <span class="nf">simple_venn</span><span class="p">(</span><span class="n">universe</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 
-    v = venn2(subsets=(3, 3, 0), set_labels=(&#39;$O$&#39;, &#39;&#39;))
-    c = venn2_circles(subsets=(3, 3, 0))
+    <span class="n">v</span> <span class="o">=</span> <span class="n">venn2</span><span class="p">(</span><span class="n">subsets</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">set_labels</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;$O$&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">))</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">venn2_circles</span><span class="p">(</span><span class="n">subsets</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
 
-    for l in v.set_labels:
-      l.set_fontsize(font_size)
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">set_labels</span><span class="p">:</span>
+      <span class="n">l</span><span class="o">.</span><span class="n">set_fontsize</span><span class="p">(</span><span class="n">font_size</span><span class="p">)</span>
 
-    for area in [&#39;01&#39;, &#39;10&#39;, &#39;11&#39;]:
-        if area != &#39;11&#39;:
-          txt = v.get_label_by_id(area)
-          if txt:
-            txt.set_text(&#39;&#39;)
+    <span class="k">for</span> <span class="n">area</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;01&#39;</span><span class="p">,</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="s1">&#39;11&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">area</span> <span class="o">!=</span> <span class="s1">&#39;11&#39;</span><span class="p">:</span>
+          <span class="n">txt</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">get_label_by_id</span><span class="p">(</span><span class="n">area</span><span class="p">)</span>
+          <span class="k">if</span> <span class="n">txt</span><span class="p">:</span>
+            <span class="n">txt</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 
-    v.get_patch_by_id(&#39;10&#39;).set_color(venn_set_color)
-    v.get_patch_by_id(&#39;10&#39;).set_alpha(1)
+    <span class="n">v</span><span class="o">.</span><span class="n">get_patch_by_id</span><span class="p">(</span><span class="s1">&#39;10&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">venn_set_color</span><span class="p">)</span>
+    <span class="n">v</span><span class="o">.</span><span class="n">get_patch_by_id</span><span class="p">(</span><span class="s1">&#39;10&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
-    v.get_patch_by_id(&#39;01&#39;).set_color(&#39;white&#39;)
-    c[1].set_edgecolor(&#39;white&#39;)
+    <span class="n">v</span><span class="o">.</span><span class="n">get_patch_by_id</span><span class="p">(</span><span class="s1">&#39;01&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+    <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_edgecolor</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
 
-    plt.gca().set_facecolor(&#39;white&#39;)
+    <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
 
-    ymin, ymax = plt.gca().get_ylim()
-    plt.ylim(ymin - 0.1, ymax)
-    if universe:
-        plt.gca().set_axis_on()
-        plt.text(.6, .1, &#39;$2$&#39;, fontsize=font_size)
-        plt.text(.2, -0.1, &#39;$4$&#39;, fontsize=font_size)
-        plt.text(.5, -0.3, &#39;$6$&#39;, fontsize=font_size)
-        plt.text(0.95, 0.35, &#39;$\Omega$&#39;)
+    <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ymin</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">universe</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_axis_on</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">.6</span><span class="p">,</span> <span class="mf">.1</span><span class="p">,</span> <span class="s1">&#39;$2$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">font_size</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;$4$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">font_size</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;$6$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">font_size</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="s1">&#39;$\Omega$&#39;</span><span class="p">)</span>
 
-    plt.text(-0.85, 0, &#39;$1$&#39;, fontsize=font_size)
-    plt.text(-0.55, 0.15, &#39;$3$&#39;, fontsize=font_size)
-    plt.text(-0.55, -0.2, &#39;$5$&#39;, fontsize=font_size)
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.85</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;$1$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">font_size</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="s1">&#39;$3$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">font_size</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.55</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;$5$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">font_size</span><span class="p">)</span>
 
-    return fig
+    <span class="k">return</span> <span class="n">fig</span>
 
-fig = simple_venn()
+<span class="n">fig</span> <span class="o">=</span> <span class="n">simple_venn</span><span class="p">()</span>
 
-glue(&quot;venn-picture&quot;, fig, display=False)
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;venn-picture&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1129,9 +1129,9 @@ Nell'esempio precedente facciamo ovviamente riferimento all'universo
 visualizzato in modo più corretto nella <a class="reference internal" href="#venn-universe"><span class="std std-numref">Fig. 10.2</span></a>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig = simple_venn(universe=True)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">simple_venn</span><span class="p">(</span><span class="n">universe</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-glue(&quot;venn-universe-picture&quot;, fig, display=False)
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;venn-universe-picture&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

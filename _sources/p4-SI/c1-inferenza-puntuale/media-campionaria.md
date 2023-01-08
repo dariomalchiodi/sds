@@ -12,4 +12,5 @@ kernelspec:
   name: python3
 ---
 
+(sec:media-campionaria)=
 # Media campionaria

@@ -673,7 +673,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/gaussiano.html">
-     14.5. Il modello gaussiano
+     14.5. Il modello normale
     </a>
    </li>
    <li class="toctree-l2">
@@ -1123,22 +1123,22 @@ nel caso di due valori distinti <span class="math notranslate nohighlight">\(v_1
 rispettivamente con <span class="math notranslate nohighlight">\(f\)</span> e <span class="math notranslate nohighlight">\(1-f\)</span> le frequenze relative.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
-import matplotlib.pyplot as plt
-from scipy.constants import golden
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.constants</span> <span class="kn">import</span> <span class="n">golden</span>
 
-plt.style.use(&#39;sds.mplstyle&#39;)
-plt.rc(&#39;figure&#39;, figsize=(5.0, 5.0/golden))
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;sds.mplstyle&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;figure&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="o">/</span><span class="n">golden</span><span class="p">))</span>
 
-def gini_2_val(f):
-    return 1 - f**2 - (1-f)**2
+<span class="k">def</span> <span class="nf">gini_2_val</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">f</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">f</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
 
-x = np.arange(0, 1.01, .01)
-y = list(map(gini_2_val, x))
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">,</span> <span class="mf">.01</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">gini_2_val</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
 
-plt.plot(x, y)
-plt.ylim((0, 0.55))
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1160,9 +1160,9 @@ sulla serie delle frequenze il metodo <code class="docutils literal notranslate"
 sottrarre da 1 il risultato.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def gini(series):
-    return 1 - (sum(series.value_counts(normalize=True)
-                    .map(lambda f: f**2)))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gini</span><span class="p">(</span><span class="n">series</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">series</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                    <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
@@ -1174,19 +1174,19 @@ i valori mancanti) e per i nomi dei supereroi (ottenuti a partire dall'indice
 del <em>dataframe</em>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas as pd
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-heroes = pd.read_csv(&#39;data/heroes.csv&#39;, sep=&#39;;&#39;, index_col=0)
+<span class="n">heroes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/heroes.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-publisher = heroes[heroes[&#39;Publisher&#39;].isin([&#39;Marvel Comics&#39;,
-                                             &#39;DC Comics&#39;])][&#39;Publisher&#39;]
-eye_color = heroes[pd.notnull(heroes[&#39;Eye color&#39;])][&#39;Eye color&#39;]
-hair_color = heroes[pd.notnull(heroes[&#39;Hair color&#39;])][&#39;Hair color&#39;]
+<span class="n">publisher</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;Marvel Comics&#39;</span><span class="p">,</span>
+                                             <span class="s1">&#39;DC Comics&#39;</span><span class="p">])][</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span>
+<span class="n">eye_color</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">])][</span><span class="s1">&#39;Eye color&#39;</span><span class="p">]</span>
+<span class="n">hair_color</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">])][</span><span class="s1">&#39;Hair color&#39;</span><span class="p">]</span>
 
-print(gini(publisher))
-print(gini(eye_color))
-print(gini(hair_color))
-print(gini(heroes.index))
+<span class="nb">print</span><span class="p">(</span><span class="n">gini</span><span class="p">(</span><span class="n">publisher</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gini</span><span class="p">(</span><span class="n">eye_color</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gini</span><span class="p">(</span><span class="n">hair_color</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gini</span><span class="p">(</span><span class="n">heroes</span><span class="o">.</span><span class="n">index</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1208,15 +1208,15 @@ supporre che i valori assunti dal nome siano univoci. Per avere un quadro più
 preciso, calcoliamo anche la variante normalizzata dell'indice:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def generalized_gini(series):
-    freq = series.value_counts(normalize=True)
-    s = len(freq)
-    return (1 - (sum(freq.map(lambda f: f**2)))) * s / (s-1)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generalized_gini</span><span class="p">(</span><span class="n">series</span><span class="p">):</span>
+    <span class="n">freq</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">freq</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">**</span><span class="mi">2</span><span class="p">))))</span> <span class="o">*</span> <span class="n">s</span> <span class="o">/</span> <span class="p">(</span><span class="n">s</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
-print(generalized_gini(publisher))
-print(generalized_gini(eye_color))
-print(generalized_gini(hair_color))
-print(generalized_gini(heroes.index))
+<span class="nb">print</span><span class="p">(</span><span class="n">generalized_gini</span><span class="p">(</span><span class="n">publisher</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">generalized_gini</span><span class="p">(</span><span class="n">eye_color</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">generalized_gini</span><span class="p">(</span><span class="n">hair_color</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">generalized_gini</span><span class="p">(</span><span class="n">heroes</span><span class="o">.</span><span class="n">index</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1244,10 +1244,10 @@ H = \sum_{i=1}^s f_i \log \frac{1}{f_i} = - \sum_{i=1}^s f_i \log f_i
 andamento in <span class="math notranslate nohighlight">\((0,1]\)</span> è il seguente</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x = np.arange(0.01, 1.01, 0.01)
-y = list(map(lambda f: -1 * np.log2(f), x))
-plt.plot(x, y)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">f</span><span class="p">),</span> <span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1260,12 +1260,12 @@ tende a <span class="math notranslate nohighlight">\(0\)</span>. Il grafico dell
 il seguente.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x = np.arange(0.001, 1.01, 0.01)
-y = list(map(lambda f: -f * np.log2(f), x))
-plt.plot(x, y)
-plt.ylim(0, 0.6)
-plt.xlim(0, 1)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="o">-</span><span class="n">f</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">f</span><span class="p">),</span> <span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1300,14 +1300,14 @@ evidenza che anche questo indice tende ad aumentare all'aumentare
 dell'eterogeneità e a diminuire al diminuire di quest'ultima.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def entropy_2_val(f):
-    return 0 if f in (0, 1) else - f * np.log2(f) - (1-f) * np.log2(1-f)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">entropy_2_val</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">f</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">else</span> <span class="o">-</span> <span class="n">f</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">f</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">f</span><span class="p">)</span>
 
-x = np.arange(0, 1.01, .01)
-y = list(map(entropy_2_val, x))
-plt.plot(x, y)
-plt.ylim((0, 1.1))
-plt.show()
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">,</span> <span class="mf">.01</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">entropy_2_val</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1320,19 +1320,19 @@ considerati si verifica come non cambi il loro rapporto relativo in termini di
 eterogeneità.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def entropy(series):
-    return sum((series.value_counts(normalize=True)
-                      .map(lambda f: -f * np.log2(f))))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">entropy</span><span class="p">(</span><span class="n">series</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">((</span><span class="n">series</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                      <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="o">-</span><span class="n">f</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">f</span><span class="p">))))</span>
 
-print(entropy(publisher))
-print(entropy(eye_color))
-print(entropy(hair_color))
-print(entropy(heroes.index))              
+<span class="nb">print</span><span class="p">(</span><span class="n">entropy</span><span class="p">(</span><span class="n">publisher</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">entropy</span><span class="p">(</span><span class="n">eye_color</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">entropy</span><span class="p">(</span><span class="n">hair_color</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">entropy</span><span class="p">(</span><span class="n">heroes</span><span class="o">.</span><span class="n">index</span><span class="p">))</span>              
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9406863895967433
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9406863895967432
 2.7454093094041547
 3.1308603347354245
 9.470566732235026
@@ -1343,25 +1343,25 @@ print(entropy(heroes.index))
 <p>Come nel caso precedente, calcoliamo anche la variante normalizzata dell'indice.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def entropy(series, normalized=False):
-    freq = series.value_counts(normalize=True)
-    e = sum((freq.map(lambda f: -f * np.log2(f))))
-    if normalized:
-        e /= np.log2(len(freq))
-    return e
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">entropy</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">normalized</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">freq</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">freq</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="o">-</span><span class="n">f</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">f</span><span class="p">))))</span>
+    <span class="k">if</span> <span class="n">normalized</span><span class="p">:</span>
+        <span class="n">e</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">freq</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">e</span>
 
-print(entropy(publisher, normalized=True))
-print(entropy(eye_color, normalized=True))
-print(entropy(hair_color, normalized=True))
-print(entropy(heroes.index, normalized=True))
+<span class="nb">print</span><span class="p">(</span><span class="n">entropy</span><span class="p">(</span><span class="n">publisher</span><span class="p">,</span> <span class="n">normalized</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">entropy</span><span class="p">(</span><span class="n">eye_color</span><span class="p">,</span> <span class="n">normalized</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">entropy</span><span class="p">(</span><span class="n">hair_color</span><span class="p">,</span> <span class="n">normalized</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">entropy</span><span class="p">(</span><span class="n">heroes</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">normalized</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9406863895967433
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9406863895967432
 0.5987855536380803
 0.6444776827813027
-0.9983910129552006
+0.9983910129552008
 </pre></div>
 </div>
 </div>
@@ -1408,16 +1408,16 @@ fatta anche in modo da non avere a che fare con valori mancanti, che
 avrebbero complicato il processo di calcolo dell'albero).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>good_guys = heroes.loc[[&#39;Wonder Woman&#39;,
-                        &#39;Aquaman&#39;,
-                        &#39;Cyborg&#39;,
-                        &#39;Flash II&#39;]]
-bad_guys = heroes.loc[[&#39;Black Manta&#39;,
-                       &#39;Penguin&#39;,
-                       &#39;Joker&#39;,
-                       &#39;Deathstroke&#39;,
-                       &#39;Bizarro&#39;]]
-all_guys = pd.concat([good_guys, bad_guys])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">good_guys</span> <span class="o">=</span> <span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s1">&#39;Wonder Woman&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;Aquaman&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;Cyborg&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;Flash II&#39;</span><span class="p">]]</span>
+<span class="n">bad_guys</span> <span class="o">=</span> <span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s1">&#39;Black Manta&#39;</span><span class="p">,</span>
+                       <span class="s1">&#39;Penguin&#39;</span><span class="p">,</span>
+                       <span class="s1">&#39;Joker&#39;</span><span class="p">,</span>
+                       <span class="s1">&#39;Deathstroke&#39;</span><span class="p">,</span>
+                       <span class="s1">&#39;Bizarro&#39;</span><span class="p">]]</span>
+<span class="n">all_guys</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">good_guys</span><span class="p">,</span> <span class="n">bad_guys</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1428,9 +1428,9 @@ intelligenza, in quanto i rimanenti attributi sono o identici per tutti i casi
 selezionati o rappresentano valori univoci.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>features = [&#39;Height&#39;, &#39;Weight&#39;, &#39;Gender&#39;, &#39;First appearance&#39;,
-            &#39;Hair color&#39;, &#39;Eye color&#39;, &#39;Strength&#39;, &#39;Intelligence&#39;]
-X = all_guys[features]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="s1">&#39;Weight&#39;</span><span class="p">,</span> <span class="s1">&#39;Gender&#39;</span><span class="p">,</span> <span class="s1">&#39;First appearance&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Hair color&#39;</span><span class="p">,</span> <span class="s1">&#39;Eye color&#39;</span><span class="p">,</span> <span class="s1">&#39;Strength&#39;</span><span class="p">,</span> <span class="s1">&#39;Intelligence&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">all_guys</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1438,7 +1438,7 @@ X = all_guys[features]
 <p>Il risultato, memorizzato in <code class="docutils literal notranslate"><span class="pre">X</span></code>, è visualizzato qui sotto.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>X
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span>
 </pre></div>
 </div>
 </div>
@@ -1596,10 +1596,10 @@ supereroi e il secondo è costruito in modo analogo ma considerando i
 supercattivi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Y = pd.concat([pd.DataFrame([&#39;good guy&#39;] * len(good_guys),
-                            index=good_guys.index),
-               pd.DataFrame([&#39;bad guy&#39;] * len(bad_guys),
-                            index=bad_guys.index)])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="s1">&#39;good guy&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">good_guys</span><span class="p">),</span>
+                            <span class="n">index</span><span class="o">=</span><span class="n">good_guys</span><span class="o">.</span><span class="n">index</span><span class="p">),</span>
+               <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="s1">&#39;bad guy&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">bad_guys</span><span class="p">),</span>
+                            <span class="n">index</span><span class="o">=</span><span class="n">bad_guys</span><span class="o">.</span><span class="n">index</span><span class="p">)])</span>
 </pre></div>
 </div>
 </div>
@@ -1613,7 +1613,7 @@ assume un valore minore o uguale a 40 e visualizziamo le etichette delle
 osservazioni che soddisfano tale condizione.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Y[X[&#39;Strength&#39;] &lt;= 40]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">40</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1683,10 +1683,10 @@ o uguale a 40 e ragionando in termini della frequenza di <code class="docutils l
 otterrebbe il risultato seguente.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>freq = Y[X[&#39;Strength&#39;] &lt;= 40][0].value_counts(normalize=True)
-freq_bad = freq[&#39;bad guy&#39;]
-gini_left = gini_2_val(freq_bad)
-gini_left
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">freq</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">40</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">freq_bad</span> <span class="o">=</span> <span class="n">freq</span><span class="p">[</span><span class="s1">&#39;bad guy&#39;</span><span class="p">]</span>
+<span class="n">gini_left</span> <span class="o">=</span> <span class="n">gini_2_val</span><span class="p">(</span><span class="n">freq_bad</span><span class="p">)</span>
+<span class="n">gini_left</span>
 </pre></div>
 </div>
 </div>
@@ -1700,10 +1700,10 @@ gini_left
 analogo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>freq = Y[X[&#39;Strength&#39;] &gt; 40][0].value_counts(normalize=True)
-freq_bad = freq[&#39;bad guy&#39;]
-gini_right = gini_2_val(freq_bad)
-gini_right
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">freq</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">40</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">freq_bad</span> <span class="o">=</span> <span class="n">freq</span><span class="p">[</span><span class="s1">&#39;bad guy&#39;</span><span class="p">]</span>
+<span class="n">gini_right</span> <span class="o">=</span> <span class="n">gini_2_val</span><span class="p">(</span><span class="n">freq_bad</span><span class="p">)</span>
+<span class="n">gini_right</span>
 </pre></div>
 </div>
 </div>
@@ -1718,9 +1718,9 @@ l'omogeneità media dei casi suddivisi nei sottogruppi si calcola una loro
 media, pesata in funzione della numerosità dei sottogruppi stessi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>weight_left = len(Y[X[&#39;Strength&#39;] &lt;= 40]) / len(Y)
-weight_right = len(Y[X[&#39;Strength&#39;] &gt; 40]) / len(Y)
-gini_left * weight_left + gini_right * weight_right
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weight_left</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">40</span><span class="p">])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="n">weight_right</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">40</span><span class="p">])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="n">gini_left</span> <span class="o">*</span> <span class="n">weight_left</span> <span class="o">+</span> <span class="n">gini_right</span> <span class="o">*</span> <span class="n">weight_right</span>
 </pre></div>
 </div>
 </div>
@@ -1740,16 +1740,16 @@ effettuare questo calcolo indipendentemente dalla scelta dell'attributo, del
 valore di soglia e dell'indice di eterogeneità.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def split_value(attribute, value, index):
-    freq = (Y[X[attribute] &lt;= value])[0].value_counts(normalize=True)
-    freq_bad = freq[&#39;bad guy&#39;]
-    index_left = index(freq_bad)
-    weight_left = len(Y[X[attribute] &lt;= value]) / len(Y)
-    freq = (Y[X[attribute] &gt; value])[0].value_counts(normalize=True)
-    freq_bad = freq[&#39;bad guy&#39;]
-    index_right = index(freq_bad)
-    weight_right = len(Y[X[attribute] &gt; value]) / len(Y)
-    return index_left * weight_left + index_right * weight_right
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">split_value</span><span class="p">(</span><span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+    <span class="n">freq</span> <span class="o">=</span> <span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="n">attribute</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">value</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">freq_bad</span> <span class="o">=</span> <span class="n">freq</span><span class="p">[</span><span class="s1">&#39;bad guy&#39;</span><span class="p">]</span>
+    <span class="n">index_left</span> <span class="o">=</span> <span class="n">index</span><span class="p">(</span><span class="n">freq_bad</span><span class="p">)</span>
+    <span class="n">weight_left</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="n">attribute</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">value</span><span class="p">])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+    <span class="n">freq</span> <span class="o">=</span> <span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="n">attribute</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">value</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">freq_bad</span> <span class="o">=</span> <span class="n">freq</span><span class="p">[</span><span class="s1">&#39;bad guy&#39;</span><span class="p">]</span>
+    <span class="n">index_right</span> <span class="o">=</span> <span class="n">index</span><span class="p">(</span><span class="n">freq_bad</span><span class="p">)</span>
+    <span class="n">weight_right</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="n">attribute</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">value</span><span class="p">])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">index_left</span> <span class="o">*</span> <span class="n">weight_left</span> <span class="o">+</span> <span class="n">index_right</span> <span class="o">*</span> <span class="n">weight_right</span>
 </pre></div>
 </div>
 </div>
@@ -1759,7 +1759,7 @@ se riconsideriamo una suddivisione in gruppi basata sulla soglia 40 per la
 forza.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>split_value(&#39;Strength&#39;, 40, gini_2_val)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">split_value</span><span class="p">(</span><span class="s1">&#39;Strength&#39;</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">gini_2_val</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1773,12 +1773,12 @@ forza.</p>
 variare dei possibili valori per la soglia.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x_vals = range(10, 90)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_vals</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
 
-plt.plot(x_vals,
-         list(map(lambda v: split_value(&#39;Strength&#39;, v, gini_2_val),
-                  x_vals)))
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span>
+         <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">split_value</span><span class="p">(</span><span class="s1">&#39;Strength&#39;</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">gini_2_val</span><span class="p">),</span>
+                  <span class="n">x_vals</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1791,11 +1791,11 @@ l'omogeneità dei due sottogruppi generati. Avremmo ottenuto un risultato simile
 se come indice di eterogeneità avessimo utilizzato l'entropia.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.plot(x_vals,
-         list(map(lambda v: split_value(&#39;Strength&#39;, v, entropy_2_val),
-                  x_vals)))
-plt.ylim(0.35, 1.1)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span>
+         <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">split_value</span><span class="p">(</span><span class="s1">&#39;Strength&#39;</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">entropy_2_val</span><span class="p">),</span>
+                  <span class="n">x_vals</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">0.35</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1817,19 +1817,19 @@ tra etichette e valori numerici utilizzando il metodo <code class="docutils lite
 l'insieme delle osservazioni da convertire.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn.preprocessing import LabelEncoder
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
 
-gender_encoder = LabelEncoder()
-gender_encoder.fit(all_guys[&#39;Gender&#39;])
+<span class="n">gender_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">gender_encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">all_guys</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">])</span>
 
-eye_col_encoder = LabelEncoder()
-eye_col_encoder.fit(all_guys[&#39;Eye color&#39;])
+<span class="n">eye_col_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">eye_col_encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">all_guys</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">])</span>
 
-hair_col_encoder = LabelEncoder()
-hair_col_encoder.fit(all_guys[&#39;Hair color&#39;])
+<span class="n">hair_col_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">hair_col_encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">all_guys</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">])</span>
 
-intelligence_encoder = LabelEncoder()
-_ = intelligence_encoder.fit(all_guys[&#39;Intelligence&#39;])
+<span class="n">intelligence_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">intelligence_encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">all_guys</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1838,10 +1838,10 @@ _ = intelligence_encoder.fit(all_guys[&#39;Intelligence&#39;])
 convertire la serie corrispondente.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>all_guys[&#39;Gender&#39;] = gender_encoder.transform(all_guys[&#39;Gender&#39;])
-all_guys[&#39;Eye color&#39;] = eye_col_encoder.transform(all_guys[&#39;Eye color&#39;])
-all_guys[&#39;Hair color&#39;] = hair_col_encoder.transform(all_guys[&#39;Hair color&#39;])
-all_guys[&#39;Intelligence&#39;] = intelligence_encoder.transform(all_guys[&#39;Intelligence&#39;])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_guys</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gender_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">all_guys</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">])</span>
+<span class="n">all_guys</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">eye_col_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">all_guys</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">])</span>
+<span class="n">all_guys</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hair_col_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">all_guys</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">])</span>
+<span class="n">all_guys</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">intelligence_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">all_guys</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1856,8 +1856,8 @@ colonna in un <em>dataframe</em>. Utilizzando una sintassi analoga è anche poss
 numerici, limitatamente agli attributi cui siamo interessati.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>X = all_guys[features]
-X
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">all_guys</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
+<span class="n">X</span>
 </pre></div>
 </div>
 </div>
@@ -2011,10 +2011,10 @@ al metodo <code class="docutils literal notranslate"><span class="pre">fit</span
 loro etichette.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn import tree
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">tree</span>
 
-clf = tree.DecisionTreeClassifier()
-clf = clf.fit(X, Y)
+<span class="n">clf</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">()</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2024,8 +2024,8 @@ invocare il metodo <code class="docutils literal notranslate"><span class="pre">
 agli oggetti di partenza.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>predictions = clf.predict([X.loc[name] for name in X.index])
-predictions
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">X</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="p">])</span>
+<span class="n">predictions</span>
 </pre></div>
 </div>
 </div>
@@ -2044,11 +2044,11 @@ predictions
 utilizzando la libreria <code class="docutils literal notranslate"><span class="pre">graphviz</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import graphviz
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">graphviz</span>
 
-graphviz.Source(tree.export_graphviz(clf, out_file=None,
-                                    class_names=[&#39;bad guy&#39;, &#39;good guy&#39;],
-                                    feature_names=features))
+<span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">export_graphviz</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">out_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                    <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;bad guy&#39;</span><span class="p">,</span> <span class="s1">&#39;good guy&#39;</span><span class="p">],</span>
+                                    <span class="n">feature_names</span><span class="o">=</span><span class="n">features</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -2111,7 +2111,7 @@ graphviz.Source(tree.export_graphviz(clf, out_file=None,
 
 <span class="nn">File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/graphviz/jupyter_integration.py:112,</span> in <span class="ni">JupyterIntegration._repr_image_svg_xml</span><span class="nt">(self)</span>
 <span class="g g-Whitespace">    </span><span class="mi">110</span> <span class="k">def</span> <span class="nf">_repr_image_svg_xml</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">111</span>     <span class="sd">&quot;&quot;&quot;Return the rendered graph as SVG string.&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">111</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Return the rendered graph as SVG string.&quot;&quot;&quot;</span>
 <span class="ne">--&gt; </span><span class="mi">112</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;svg&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">SVG_ENCODING</span><span class="p">)</span>
 
 <span class="nn">File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/graphviz/piping.py:104,</span> in <span class="ni">Pipe.pipe</span><span class="nt">(self, format, renderer, formatter, neato_no_op, quiet, engine, encoding)</span>
@@ -2121,7 +2121,7 @@ graphviz.Source(tree.export_graphviz(clf, out_file=None,
    <span class="p">(</span><span class="o">...</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">61</span>          <span class="n">engine</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="g g-Whitespace">     </span><span class="mi">62</span>          <span class="n">encoding</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span>     <span class="sd">&quot;&quot;&quot;Return the source piped through the Graphviz layout command.</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Return the source piped through the Graphviz layout command.</span>
 <span class="g g-Whitespace">     </span><span class="mi">64</span><span class="sd"> </span>
 <span class="g g-Whitespace">     </span><span class="mi">65</span><span class="sd">     Args:</span>
 <span class="sd">   (...)</span>
@@ -2188,14 +2188,14 @@ graphviz.Source(tree.export_graphviz(clf, out_file=None,
 <span class="ne">ExecutableNotFound</span>: failed to execute PosixPath(&#39;dot&#39;), make sure the Graphviz executables are on your systems&#39; PATH
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;graphviz.sources.Source at 0x7fd353382760&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;graphviz.sources.Source at 0x7fab7bfc1f70&gt;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pd.DataFrame(np.array((X.index, Y[0], predictions)))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">predictions</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
@@ -2277,13 +2277,13 @@ riutilizzando i <code class="docutils literal notranslate"><span class="pre">Lab
 costruiamo una funzione che si occupi di effettuare questa trasformazione.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def filter(obj):
-    transformed_obj = obj[&#39;Height&#39;:&#39;Intelligence&#39;]
-    transformed_obj[&#39;Gender&#39;] = gender_encoder.transform([transformed_obj[&#39;Gender&#39;]])[0]
-    transformed_obj[&#39;Eye color&#39;] = eye_col_encoder.transform([transformed_obj[&#39;Eye color&#39;]])[0]
-    transformed_obj[&#39;Hair color&#39;] = hair_col_encoder.transform([transformed_obj[&#39;Hair color&#39;]])[0]
-    transformed_obj[&#39;Intelligence&#39;] = intelligence_encoder.transform([transformed_obj[&#39;Intelligence&#39;]])[0]
-    return transformed_obj
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">filter</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+    <span class="n">transformed_obj</span> <span class="o">=</span> <span class="n">obj</span><span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">:</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">]</span>
+    <span class="n">transformed_obj</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gender_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="n">transformed_obj</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]])[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">transformed_obj</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">eye_col_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="n">transformed_obj</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">]])[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">transformed_obj</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hair_col_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="n">transformed_obj</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">]])[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">transformed_obj</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">intelligence_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="n">transformed_obj</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">]])[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">transformed_obj</span>
 </pre></div>
 </div>
 </div>
@@ -2292,7 +2292,7 @@ costruiamo una funzione che si occupi di effettuare questa trasformazione.</p>
 etichetta esso viene associato.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>clf.predict([filter(heroes.loc[&#39;Professor X&#39;])])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="nb">filter</span><span class="p">(</span><span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Professor X&#39;</span><span class="p">])])</span>
 </pre></div>
 </div>
 </div>
@@ -2323,11 +2323,11 @@ risiede nel nodo di scelta al di sotto della radice, che sarebbe basato
 sull'attributo &quot;Intelligence&quot; invece che su &quot;Eye color&quot;.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>clf = tree.DecisionTreeClassifier(criterion=&#39;entropy&#39;)
-clf = clf.fit(X, Y)
-graphviz.Source(tree.export_graphviz(clf, out_file=None,
-                                     class_names=[&#39;bad guy&#39;, &#39;good guy&#39;],
-                                     feature_names=features))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;entropy&#39;</span><span class="p">)</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">export_graphviz</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">out_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                     <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;bad guy&#39;</span><span class="p">,</span> <span class="s1">&#39;good guy&#39;</span><span class="p">],</span>
+                                     <span class="n">feature_names</span><span class="o">=</span><span class="n">features</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -2390,7 +2390,7 @@ graphviz.Source(tree.export_graphviz(clf, out_file=None,
 
 <span class="nn">File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/graphviz/jupyter_integration.py:112,</span> in <span class="ni">JupyterIntegration._repr_image_svg_xml</span><span class="nt">(self)</span>
 <span class="g g-Whitespace">    </span><span class="mi">110</span> <span class="k">def</span> <span class="nf">_repr_image_svg_xml</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">111</span>     <span class="sd">&quot;&quot;&quot;Return the rendered graph as SVG string.&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">111</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Return the rendered graph as SVG string.&quot;&quot;&quot;</span>
 <span class="ne">--&gt; </span><span class="mi">112</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;svg&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">SVG_ENCODING</span><span class="p">)</span>
 
 <span class="nn">File /opt/hostedtoolcache/Python/3.8.15/x64/lib/python3.8/site-packages/graphviz/piping.py:104,</span> in <span class="ni">Pipe.pipe</span><span class="nt">(self, format, renderer, formatter, neato_no_op, quiet, engine, encoding)</span>
@@ -2400,7 +2400,7 @@ graphviz.Source(tree.export_graphviz(clf, out_file=None,
    <span class="p">(</span><span class="o">...</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">61</span>          <span class="n">engine</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="g g-Whitespace">     </span><span class="mi">62</span>          <span class="n">encoding</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span>     <span class="sd">&quot;&quot;&quot;Return the source piped through the Graphviz layout command.</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Return the source piped through the Graphviz layout command.</span>
 <span class="g g-Whitespace">     </span><span class="mi">64</span><span class="sd"> </span>
 <span class="g g-Whitespace">     </span><span class="mi">65</span><span class="sd">     Args:</span>
 <span class="sd">   (...)</span>
@@ -2467,7 +2467,7 @@ graphviz.Source(tree.export_graphviz(clf, out_file=None,
 <span class="ne">ExecutableNotFound</span>: failed to execute PosixPath(&#39;dot&#39;), make sure the Graphviz executables are on your systems&#39; PATH
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;graphviz.sources.Source at 0x7fd35c2cfe20&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;graphviz.sources.Source at 0x7fab72d7f250&gt;
 </pre></div>
 </div>
 </div>

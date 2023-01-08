@@ -673,7 +673,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/gaussiano.html">
-     14.5. Il modello gaussiano
+     14.5. Il modello normale
     </a>
    </li>
    <li class="toctree-l2">
@@ -1205,19 +1205,19 @@ evitare di modificare i dati originali, lavoreremo su delle copie da cui
 elimineremo inoltre i valori mancanti.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-plt.style.use(&#39;sds.mplstyle&#39;)
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;sds.mplstyle&#39;</span><span class="p">)</span>
 
-heroes = pd.read_csv(&#39;data/heroes.csv&#39;, sep=&#39;;&#39;, index_col=0)
+<span class="n">heroes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/heroes.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-year = heroes[&#39;First appearance&#39;].copy()
-year = year[pd.notnull(year)]
+<span class="n">year</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">year</span> <span class="o">=</span> <span class="n">year</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">year</span><span class="p">)]</span>
 
-strength = heroes[&#39;Strength&#39;].copy()
-strength = strength[pd.notnull(strength)]
+<span class="n">strength</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">strength</span> <span class="o">=</span> <span class="n">strength</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">strength</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
@@ -1230,8 +1230,8 @@ costante <span class="math notranslate nohighlight">\(k\)</span> coinciderà con
 verrà fatta verso sinistra.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>transformed_year = year - min(year)
-transformed_year.iloc[:10]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transformed_year</span> <span class="o">=</span> <span class="n">year</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+<span class="n">transformed_year</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1257,8 +1257,8 @@ verso sinistra, i valori trasformati avranno media campionaria nulla. La
 cella seguente effettua tale operazione sugli indici di forza.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>transformed_strength = strength - strength.mean()
-transformed_strength.iloc[:10]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transformed_strength</span> <span class="o">=</span> <span class="n">strength</span> <span class="o">-</span> <span class="n">strength</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">transformed_strength</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1285,9 +1285,9 @@ evidente se si visualizzano per esempio le tabelle delle frequenze assolute
 dei dati originali e di quelli trasformati.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pd.crosstab(index=strength,
-            columns=[&#39;Abs. freqence&#39;],
-            colnames=[&#39;Original&#39;]).iloc[:10]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">strength</span><span class="p">,</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Abs. freqence&#39;</span><span class="p">],</span>
+            <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Original&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1364,9 +1364,9 @@ dei dati originali e di quelli trasformati.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pd.crosstab(index=transformed_strength,
-            columns=[&#39;Abs. freqence&#39;],
-            colnames=[&#39;Transformed&#39;]).iloc[:10]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">transformed_strength</span><span class="p">,</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Abs. freqence&#39;</span><span class="p">],</span>
+            <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Transformed&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1448,14 +1448,14 @@ sull'asse delle ascisse. Lo si vede facilmente affiancando per esempio gli
 istogrammi degli indici di forza originali e trasformati.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(10, 3))
-plt.subplot(1, 2, 1)
-strength.plot.hist(bins=20)
-plt.xlabel(&#39;Original&#39;)
-plt.subplot(1, 2, 2)
-transformed_strength.plot.hist(bins=20)
-plt.xlabel(&#39;Transformed&#39;)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">strength</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Original&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">transformed_strength</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Transformed&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1499,11 +1499,11 @@ negativi, ciò implica che i dati trasformati varieranno nell'intervallo
 <span class="math notranslate nohighlight">\([0, 1]\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>strength = heroes[&#39;Strength&#39;].copy()
-strength = strength[pd.notnull(strength)]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">strength</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">strength</span> <span class="o">=</span> <span class="n">strength</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">strength</span><span class="p">)]</span>
 
-transformed_strength = strength / max(strength)
-transformed_strength.iloc[:10]
+<span class="n">transformed_strength</span> <span class="o">=</span> <span class="n">strength</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="n">strength</span><span class="p">)</span>
+<span class="n">transformed_strength</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1530,9 +1530,9 @@ avranno la medesima forma e gli stessi valori sull'asse delle ordinate, ma
 varieranno su un intervallo diverso se si considera l'asse delle ascisse.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pd.crosstab(index=transformed_strength,
-            columns=[&#39;Abs. freqence&#39;],
-            colnames=[&#39;Transformed&#39;]).iloc[:10]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">transformed_strength</span><span class="p">,</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Abs. freqence&#39;</span><span class="p">],</span>
+            <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Transformed&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1609,14 +1609,14 @@ varieranno su un intervallo diverso se si considera l'asse delle ascisse.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure(figsize=(10, 3))
-plt.subplot(1, 2, 1)
-strength.plot.hist(bins=20)
-plt.xlabel(&#39;Original&#39;)
-plt.subplot(1, 2, 2)
-transformed_strength.plot.hist(bins=20)
-plt.xlabel(&#39;Transformed&#39;)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">strength</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Original&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">transformed_strength</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Transformed&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1645,16 +1645,16 @@ valori <span class="math notranslate nohighlight">\(c = -10\)</span>, <span clas
 valori originali per quanto riguarda <span class="math notranslate nohighlight">\(a\)</span> e <span class="math notranslate nohighlight">\(b\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>strength = heroes[&#39;Strength&#39;].copy()
-strength = strength[pd.notnull(strength)]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">strength</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">strength</span> <span class="o">=</span> <span class="n">strength</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">strength</span><span class="p">)]</span>
 
-old_min = min(strength)
-old_max = max(strength)
-new_min = -10.0
-new_max = 10.0
+<span class="n">old_min</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">strength</span><span class="p">)</span>
+<span class="n">old_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">strength</span><span class="p">)</span>
+<span class="n">new_min</span> <span class="o">=</span> <span class="o">-</span><span class="mf">10.0</span>
+<span class="n">new_max</span> <span class="o">=</span> <span class="mf">10.0</span>
 
-transformed_strength = new_min + (new_max - new_min)/(old_max - old_min) * (strength - old_min)
-transformed_strength.iloc[:10]
+<span class="n">transformed_strength</span> <span class="o">=</span> <span class="n">new_min</span> <span class="o">+</span> <span class="p">(</span><span class="n">new_max</span> <span class="o">-</span> <span class="n">new_min</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">old_max</span> <span class="o">-</span> <span class="n">old_min</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">strength</span> <span class="o">-</span> <span class="n">old_min</span><span class="p">)</span>
+<span class="n">transformed_strength</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1719,8 +1719,8 @@ valori in un altro insieme di valori la cui media è <span class="math notransla
 seguente:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>transformed_strength = (strength - strength.mean()) / strength.std()
-transformed_strength.iloc[:10]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transformed_strength</span> <span class="o">=</span> <span class="p">(</span><span class="n">strength</span> <span class="o">-</span> <span class="n">strength</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">strength</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">transformed_strength</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1781,9 +1781,9 @@ dataset e applichiamo loro una trasformazione logaritmica usando 10 come
 base.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pd.crosstab(index=np.log10(year),
-            columns=[&#39;Abs. freqence&#39;],
-            colnames=[&#39;Transformed&#39;]).iloc[:10]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">year</span><span class="p">),</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Abs. freqence&#39;</span><span class="p">],</span>
+            <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Transformed&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1862,9 +1862,9 @@ base.</p>
 frequenze di dati originali e dati trasformati coincidono.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pd.crosstab(index=year,
-            columns=[&#39;Abs. freqence&#39;],
-            colnames=[&#39;Original&#39;]).iloc[:10]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">year</span><span class="p">,</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Abs. freqence&#39;</span><span class="p">],</span>
+            <span class="n">colnames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Original&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>

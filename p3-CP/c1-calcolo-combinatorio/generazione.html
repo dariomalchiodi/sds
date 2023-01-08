@@ -673,7 +673,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c6-modelli-continui/gaussiano.html">
-     14.5. Il modello gaussiano
+     14.5. Il modello normale
     </a>
    </li>
    <li class="toctree-l2">
@@ -1029,10 +1029,10 @@ partenza. Per esempio la cella seguente permette di generare tutte le
 <span class="math notranslate nohighlight">\(D'_{3, 2} = 9\)</span> coppie con ripetizione a partire da una lista di tre elementi</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>l = range(3)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 
-disp_rep = [(l1, l2) for l1 in l for l2 in l]
-disp_rep
+<span class="n">disp_rep</span> <span class="o">=</span> <span class="p">[(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">)</span> <span class="k">for</span> <span class="n">l1</span> <span class="ow">in</span> <span class="n">l</span> <span class="k">for</span> <span class="n">l2</span> <span class="ow">in</span> <span class="n">l</span><span class="p">]</span>
+<span class="n">disp_rep</span>
 </pre></div>
 </div>
 </div>
@@ -1052,11 +1052,11 @@ tecnica per ottenere tutte le <span class="math notranslate nohighlight">\(D_{3,
 partire dalla stessa lista precedentemente considerata.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>l = range(3)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 
-disp_rep = [(l1, l2) for l1 in l for l2 in l]
-disp_norep = [d for d in disp_rep if len(d)==len(set(d))]
-disp_norep
+<span class="n">disp_rep</span> <span class="o">=</span> <span class="p">[(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">)</span> <span class="k">for</span> <span class="n">l1</span> <span class="ow">in</span> <span class="n">l</span> <span class="k">for</span> <span class="n">l2</span> <span class="ow">in</span> <span class="n">l</span><span class="p">]</span>
+<span class="n">disp_norep</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">disp_rep</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">==</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">d</span><span class="p">))]</span>
+<span class="n">disp_norep</span>
 </pre></div>
 </div>
 </div>
@@ -1073,11 +1073,11 @@ generare, per esempio, tutte le <span class="math notranslate nohighlight">\(P_3
 considerata.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>l = range(3)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 
-disp_rep = [(l1, l2, l3) for l1 in l for l2 in l for l3 in l]
-perm = [d for d in disp_rep if len(d)==len(set(d))]
-perm
+<span class="n">disp_rep</span> <span class="o">=</span> <span class="p">[(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">,</span> <span class="n">l3</span><span class="p">)</span> <span class="k">for</span> <span class="n">l1</span> <span class="ow">in</span> <span class="n">l</span> <span class="k">for</span> <span class="n">l2</span> <span class="ow">in</span> <span class="n">l</span> <span class="k">for</span> <span class="n">l3</span> <span class="ow">in</span> <span class="n">l</span><span class="p">]</span>
+<span class="n">perm</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">disp_rep</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">==</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">d</span><span class="p">))]</span>
+<span class="n">perm</span>
 </pre></div>
 </div>
 </div>
@@ -1100,11 +1100,11 @@ vengono costruite tutte le <span class="math notranslate nohighlight">\(C_{4, 2}
 in due posti.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>l = range(4)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 
-disp_rep = [(l1, l2) for l1 in l for l2 in l]
-comb = [frozenset(d) for d in disp_rep if len(d)==len(set(d))]
-list(map(set, set(comb)))
+<span class="n">disp_rep</span> <span class="o">=</span> <span class="p">[(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">)</span> <span class="k">for</span> <span class="n">l1</span> <span class="ow">in</span> <span class="n">l</span> <span class="k">for</span> <span class="n">l2</span> <span class="ow">in</span> <span class="n">l</span><span class="p">]</span>
+<span class="n">comb</span> <span class="o">=</span> <span class="p">[</span><span class="nb">frozenset</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">disp_rep</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">==</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">d</span><span class="p">))]</span>
+<span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">set</span><span class="p">,</span> <span class="nb">set</span><span class="p">(</span><span class="n">comb</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
@@ -1137,8 +1137,8 @@ tramite l'argomento opzionale <code class="docutils literal notranslate"><span c
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import itertools
-list(itertools.product(range(3), repeat=2))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1153,7 +1153,7 @@ list(itertools.product(range(3), repeat=2))
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>list(itertools.permutations(range(3), 2))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1165,7 +1165,7 @@ list(itertools.product(range(3), repeat=2))
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>list(itertools.permutations(range(3), 3))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="mi">3</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1180,7 +1180,7 @@ list(itertools.product(range(3), repeat=2))
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>list(itertools.combinations(range(4), 2))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>

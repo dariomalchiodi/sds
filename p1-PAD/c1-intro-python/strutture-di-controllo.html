@@ -671,7 +671,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/gaussiano.html">
-     14.5. Il modello gaussiano
+     14.5. Il modello normale
     </a>
    </li>
    <li class="toctree-l2">
@@ -1027,16 +1027,16 @@ un'altra con i corrispondenti anni di prima apparizione, e le memorizza nelle
 variabili <code class="docutils literal notranslate"><span class="pre">names</span></code> e <code class="docutils literal notranslate"><span class="pre">years</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>names = [&#39;Aquaman&#39;, &#39;Ant-Man&#39;, &#39;Batman&#39;, &#39;Black Widow&#39;,
-         &#39;Captain America&#39;, &#39;Daredavil&#39;, &#39;Elektra&#39;, &#39;Flash&#39;,
-         &#39;Green Arrow&#39;, &#39;Human Torch&#39;, &#39;Hancock&#39;, &#39;Iron Man&#39;,
-         &#39;Mystique&#39;, &#39;Professor X&#39;, &#39;Rogue&#39;, &#39;Superman&#39;,
-         &#39;Spider-Man&#39;, &#39;Thor&#39;, &#39;Northstar&#39;]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Aquaman&#39;</span><span class="p">,</span> <span class="s1">&#39;Ant-Man&#39;</span><span class="p">,</span> <span class="s1">&#39;Batman&#39;</span><span class="p">,</span> <span class="s1">&#39;Black Widow&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;Captain America&#39;</span><span class="p">,</span> <span class="s1">&#39;Daredavil&#39;</span><span class="p">,</span> <span class="s1">&#39;Elektra&#39;</span><span class="p">,</span> <span class="s1">&#39;Flash&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;Green Arrow&#39;</span><span class="p">,</span> <span class="s1">&#39;Human Torch&#39;</span><span class="p">,</span> <span class="s1">&#39;Hancock&#39;</span><span class="p">,</span> <span class="s1">&#39;Iron Man&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;Mystique&#39;</span><span class="p">,</span> <span class="s1">&#39;Professor X&#39;</span><span class="p">,</span> <span class="s1">&#39;Rogue&#39;</span><span class="p">,</span> <span class="s1">&#39;Superman&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;Spider-Man&#39;</span><span class="p">,</span> <span class="s1">&#39;Thor&#39;</span><span class="p">,</span> <span class="s1">&#39;Northstar&#39;</span><span class="p">]</span>
 
-years = [1941, 1962, None, None, 1941,
-         1964, None, 1940, 1941, 1961,
-         None, 1963, None, 1963, 1981,
-         None, None, 1962, 1979]
+<span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1941</span><span class="p">,</span> <span class="mi">1962</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1941</span><span class="p">,</span>
+         <span class="mi">1964</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1940</span><span class="p">,</span> <span class="mi">1941</span><span class="p">,</span> <span class="mi">1961</span><span class="p">,</span>
+         <span class="kc">None</span><span class="p">,</span> <span class="mi">1963</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1963</span><span class="p">,</span> <span class="mi">1981</span><span class="p">,</span>
+         <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1962</span><span class="p">,</span> <span class="mi">1979</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1120,12 +1120,12 @@ della selezione. La cella seguente contiene un'implementazione (stavolta
 funzionante) del codice che conteggia le apparizioni per anno.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>counts = {}
-for y in years:
-    if y in counts:
-        counts[y] += 1
-    else:
-        counts[y] = 1
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">counts</span><span class="p">:</span>
+        <span class="n">counts</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">counts</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 </pre></div>
 </div>
 </div>
@@ -1133,7 +1133,7 @@ for y in years:
 <p>Il risultato è il seguente:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>counts
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span>
 </pre></div>
 </div>
 </div>
@@ -1165,8 +1165,8 @@ L'esempio utilizza anche l'argomento opzionale <code class="docutils literal not
 ordinati a partire da quello con il maggior numero di apparizioni.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pairs = list(counts.items())
-sorted(pairs, key=lambda p:p[1], reverse=True)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pairs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+<span class="nb">sorted</span><span class="p">(</span><span class="n">pairs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

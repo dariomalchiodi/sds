@@ -671,7 +671,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/gaussiano.html">
-     14.5. Il modello gaussiano
+     14.5. Il modello normale
     </a>
    </li>
    <li class="toctree-l2">
@@ -1027,9 +1027,9 @@ individui. Tra i vari modi che sono disponibili in pandas per creare un
 convertirli automaticamente in un <em>dataframe</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas as pd
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-heroes = pd.read_csv(&#39;data/heroes.csv&#39;, sep=&#39;;&#39;, index_col=0)
+<span class="n">heroes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/heroes.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1041,7 +1041,7 @@ dataframe viene automaticamente formattata in un formato tabellare facile da
 leggere se si utilizza jupyter:</p>
 <div class="cell tag_full_width docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>heroes
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span>
 </pre></div>
 </div>
 </div>
@@ -1265,7 +1265,7 @@ carattere come chiave:</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>heroes[&#39;Gender&#39;]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1304,7 +1304,7 @@ se si usano le posizioni):</p></li>
 </ul>
 <div class="cell tag_full_width docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>heroes[&#39;Agent 13&#39;:&#39;Air-Walker&#39;]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Agent 13&#39;</span><span class="p">:</span><span class="s1">&#39;Air-Walker&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1397,7 +1397,7 @@ restituita una serie, e quando sono utilizzate con uno <em>slice</em> o con una 
 viene restituito un <em>dataframe</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>heroes.loc[&#39;Professor X&#39;]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Professor X&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1420,7 +1420,7 @@ Name: Professor X, dtype: object
 </div>
 <div class="cell tag_full_width docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>heroes.iloc[42:46]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">42</span><span class="p">:</span><span class="mi">46</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1537,7 +1537,7 @@ cui si specificano i caratteri da mostrare, utilizzando anche in questo caso un
 valore, una lista di valori oppure uno <em>slice</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>heroes.loc[&#39;Professor X&#39;, &#39;Height&#39;:&#39;Weight&#39;]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Professor X&#39;</span><span class="p">,</span> <span class="s1">&#39;Height&#39;</span><span class="p">:</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1553,7 +1553,7 @@ Name: Professor X, dtype: object
 posizioni, e ciò riguarda anche il loro secondo argomento:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>heroes.iloc[[106, 103], [3, 4]]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">106</span><span class="p">,</span> <span class="mi">103</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -1603,7 +1603,7 @@ posizioni, e ciò riguarda anche il loro secondo argomento:</p>
 <p>Volendo accedere direttamente a un elemento è possibile utilizzare le proprietà <code class="docutils literal notranslate"><span class="pre">at</span></code> e <code class="docutils literal notranslate"><span class="pre">iat</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>heroes.at[&#39;Superman&#39;, &#39;Strength&#39;]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;Superman&#39;</span><span class="p">,</span> <span class="s1">&#39;Strength&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1615,7 +1615,7 @@ posizioni, e ciò riguarda anche il loro secondo argomento:</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>heroes.iat[500, -1]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1640,7 +1640,7 @@ booleano per l'argomento <code class="docutils literal notranslate"><span class=
 crescente o decrescente.</p>
 <div class="cell tag_full_width docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>heroes.sort_values(by=&#39;Weight&#39;, ascending=False)[:5]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Weight&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1767,7 +1767,7 @@ crescente o decrescente.</p>
 </div>
 <div class="cell tag_full_width docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>heroes.sort_index()[-5:]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span>
 </pre></div>
 </div>
 </div>
@@ -1902,8 +1902,8 @@ su <em>dot notation</em>). Per esempio possiamo selezionare gli eroi per cui l'a
 di apparizione esiste e rappresenta un valore non fuori scala nel modoseguente:</p>
 <div class="cell tag_full_width docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>heroes_with_year = heroes[heroes[&#39;First appearance&#39;] &gt; 1900]
-heroes_with_year.head()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes_with_year</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1900</span><span class="p">]</span>
+<span class="n">heroes_with_year</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

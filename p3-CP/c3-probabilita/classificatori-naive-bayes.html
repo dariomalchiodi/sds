@@ -673,7 +673,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c6-modelli-continui/gaussiano.html">
-     14.5. Il modello gaussiano
+     14.5. Il modello normale
     </a>
    </li>
    <li class="toctree-l2">
@@ -1079,10 +1079,10 @@ relativa con cui un supereroe del dataset ha gli occhi neri.</p></li>
 e importando le librerie che utilizzeremo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import pandas as pd
-import numpy as np
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-heroes = pd.read_csv(&#39;data/heroes.csv&#39;, sep=&#39;;&#39;, index_col=0)
+<span class="n">heroes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/heroes.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1092,9 +1092,9 @@ relativa del medesimo evento sul dataset, e quindi calcolando il rapporto tra
 il numero di supereroi Marvel e il totale dei supereroi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>marvel_heroes = heroes[heroes[&#39;Publisher&#39;]==&#39;Marvel Comics&#39;]
-p_marvel = len(marvel_heroes) / len(heroes)
-p_marvel
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">marvel_heroes</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Marvel Comics&#39;</span><span class="p">]</span>
+<span class="n">p_marvel</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">marvel_heroes</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">heroes</span><span class="p">)</span>
+<span class="n">p_marvel</span>
 </pre></div>
 </div>
 </div>
@@ -1108,9 +1108,9 @@ p_marvel
 calcolando la frazione di supereroi del dataset che hanno gli occhi neri.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>black_eyes_heroes = heroes[heroes[&#39;Eye color&#39;]==&#39;Black&#39;]
-p_blackeyes = len(black_eyes_heroes) / len(heroes)
-p_blackeyes
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">black_eyes_heroes</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Black&#39;</span><span class="p">]</span>
+<span class="n">p_blackeyes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">black_eyes_heroes</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">heroes</span><span class="p">)</span>
+<span class="n">p_blackeyes</span>
 </pre></div>
 </div>
 </div>
@@ -1125,11 +1125,11 @@ numero di supereroi Marvel che hanno gli occhi neri per il numero totale di
 supereroi Marvel.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>blackeyes_and_marvel_heroes = heroes[(heroes[&#39;Publisher&#39;]==&#39;Marvel Comics&#39;) &amp; \
-                                     (heroes[&#39;Eye color&#39;]==&#39;Black&#39;)]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">blackeyes_and_marvel_heroes</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Marvel Comics&#39;</span><span class="p">)</span> <span class="o">&amp;</span> \
+                                     <span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Black&#39;</span><span class="p">)]</span>
 
-p_blackeyes_given_marvel = len(blackeyes_and_marvel_heroes) / len(marvel_heroes)
-p_blackeyes_given_marvel
+<span class="n">p_blackeyes_given_marvel</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">blackeyes_and_marvel_heroes</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">marvel_heroes</span><span class="p">)</span>
+<span class="n">p_blackeyes_given_marvel</span>
 </pre></div>
 </div>
 </div>
@@ -1144,7 +1144,7 @@ di fronte a un supereroe Marvel, dato che questo ha gli occhi neri, può essere
 approssimata come segue.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>p_blackeyes_given_marvel * p_marvel / p_blackeyes
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_blackeyes_given_marvel</span> <span class="o">*</span> <span class="n">p_marvel</span> <span class="o">/</span> <span class="n">p_blackeyes</span>
 </pre></div>
 </div>
 </div>
@@ -1160,14 +1160,14 @@ avessimo applicato lo stesso procedimento per stimare la probabilità
 <span class="math notranslate nohighlight">\(\mathrm(\overline M|N)\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>nonmarvel_heroes = heroes[heroes[&#39;Publisher&#39;]!=&#39;Marvel Comics&#39;]
-blackeyes_and_nonmarvel_heroes = heroes[(heroes[&#39;Publisher&#39;]!=&#39;Marvel Comics&#39;) &amp; \
-                                        (heroes[&#39;Eye color&#39;]==&#39;Black&#39;)]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nonmarvel_heroes</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span><span class="o">!=</span><span class="s1">&#39;Marvel Comics&#39;</span><span class="p">]</span>
+<span class="n">blackeyes_and_nonmarvel_heroes</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span><span class="o">!=</span><span class="s1">&#39;Marvel Comics&#39;</span><span class="p">)</span> <span class="o">&amp;</span> \
+                                        <span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Black&#39;</span><span class="p">)]</span>
 
-p_notmarvel = len(nonmarvel_heroes) / len(heroes)
-p_blackeyes_given_notmarvel = len(blackeyes_and_nonmarvel_heroes) / len(nonmarvel_heroes)
+<span class="n">p_notmarvel</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nonmarvel_heroes</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">heroes</span><span class="p">)</span>
+<span class="n">p_blackeyes_given_notmarvel</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">blackeyes_and_nonmarvel_heroes</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">nonmarvel_heroes</span><span class="p">)</span>
 
-p_blackeyes_given_notmarvel * p_notmarvel / p_blackeyes
+<span class="n">p_blackeyes_given_notmarvel</span> <span class="o">*</span> <span class="n">p_notmarvel</span> <span class="o">/</span> <span class="n">p_blackeyes</span>
 </pre></div>
 </div>
 </div>
@@ -1220,17 +1220,17 @@ risultato una bassa probabilità di avere a che fare con un supereroe Marvel se
 i suoi occhi e i suoi capelli sono neri.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>black_eyes_and_hair_heroes = heroes[(heroes[&#39;Eye color&#39;]==&#39;Black&#39;) &amp; \
-                                    (heroes[&#39;Hair color&#39;]==&#39;Black&#39;)]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">black_eyes_and_hair_heroes</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Black&#39;</span><span class="p">)</span> <span class="o">&amp;</span> \
+                                    <span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Black&#39;</span><span class="p">)]</span>
 
-p_blackeyes_and_black_hair = len(black_eyes_and_hair_heroes) / len(heroes)
+<span class="n">p_blackeyes_and_black_hair</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">black_eyes_and_hair_heroes</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">heroes</span><span class="p">)</span>
 
-blackhair_and_marvel_heroes = heroes[(heroes[&#39;Publisher&#39;]==&#39;Marvel Comics&#39;) &amp; \
-                                     (heroes[&#39;Hair color&#39;]==&#39;Black&#39;)]
-p_blackhair_given_marvel = len(blackhair_and_marvel_heroes) / len(marvel_heroes)
+<span class="n">blackhair_and_marvel_heroes</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Marvel Comics&#39;</span><span class="p">)</span> <span class="o">&amp;</span> \
+                                     <span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Black&#39;</span><span class="p">)]</span>
+<span class="n">p_blackhair_given_marvel</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">blackhair_and_marvel_heroes</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">marvel_heroes</span><span class="p">)</span>
 
-p_blackeyes_given_marvel * p_blackhair_given_marvel * p_marvel \
-     / p_blackeyes_and_black_hair
+<span class="n">p_blackeyes_given_marvel</span> <span class="o">*</span> <span class="n">p_blackhair_given_marvel</span> <span class="o">*</span> <span class="n">p_marvel</span> \
+     <span class="o">/</span> <span class="n">p_blackeyes_and_black_hair</span>
 </pre></div>
 </div>
 </div>
@@ -1298,10 +1298,10 @@ il funzionamento, estraiamo dal nostro dataset alcune colonne ed eliminiamo
 tutte le righe in cui occorre almeno un valore mancante.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>features = [&#39;Height&#39;, &#39;Weight&#39;, &#39;Gender&#39;, &#39;First appearance&#39;,
-            &#39;Hair color&#39;, &#39;Eye color&#39;, &#39;Strength&#39;, &#39;Intelligence&#39;]
-heroes_cleaned = heroes.dropna()
-X = heroes_cleaned[features].copy()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="s1">&#39;Weight&#39;</span><span class="p">,</span> <span class="s1">&#39;Gender&#39;</span><span class="p">,</span> <span class="s1">&#39;First appearance&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Hair color&#39;</span><span class="p">,</span> <span class="s1">&#39;Eye color&#39;</span><span class="p">,</span> <span class="s1">&#39;Strength&#39;</span><span class="p">,</span> <span class="s1">&#39;Intelligence&#39;</span><span class="p">]</span>
+<span class="n">heroes_cleaned</span> <span class="o">=</span> <span class="n">heroes</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">heroes_cleaned</span><span class="p">[</span><span class="n">features</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1320,30 +1320,30 @@ passiamo le osservazioni, il numero di intervalli da considerare e i valori
 numerici da associare a questi ultimi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn.preprocessing import LabelEncoder
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
 
-n = 4
-X[&#39;Height&#39;] = pd.qcut(X[&#39;Height&#39;], n, labels=range(n))
-X[&#39;Weight&#39;] = pd.qcut(X[&#39;Weight&#39;], n, labels=range(n))
+<span class="n">n</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">X</span><span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">],</span> <span class="n">n</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">X</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">],</span> <span class="n">n</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
 
-gender_encoder = LabelEncoder()
-gender_encoder.fit(X[&#39;Gender&#39;])
-X[&#39;Gender&#39;] = gender_encoder.transform(X[&#39;Gender&#39;])
+<span class="n">gender_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">gender_encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">])</span>
+<span class="n">X</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gender_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">])</span>
 
-X[&#39;First appearance&#39;] = pd.qcut(X[&#39;First appearance&#39;],
-                                n,
-                                labels=range(n))
+<span class="n">X</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">],</span>
+                                <span class="n">n</span><span class="p">,</span>
+                                <span class="n">labels</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
 
-hair_encoder = LabelEncoder()
-hair_encoder.fit(X[&#39;Hair color&#39;])
-X[&#39;Hair color&#39;] = hair_encoder.transform(X[&#39;Hair color&#39;])
+<span class="n">hair_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">hair_encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">])</span>
+<span class="n">X</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hair_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Hair color&#39;</span><span class="p">])</span>
 
-eye_encoder = LabelEncoder()
-eye_encoder.fit(X[&#39;Eye color&#39;])
-X[&#39;Eye color&#39;] = eye_encoder.transform(X[&#39;Eye color&#39;])
+<span class="n">eye_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">eye_encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">])</span>
+<span class="n">X</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">eye_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Eye color&#39;</span><span class="p">])</span>
 
-X[&#39;Strength&#39;] = pd.qcut(X[&#39;Height&#39;], n, labels=range(n))
-X[&#39;Intelligence&#39;] = pd.qcut(X[&#39;Height&#39;], n, labels=range(n))
+<span class="n">X</span><span class="p">[</span><span class="s1">&#39;Strength&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">],</span> <span class="n">n</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">X</span><span class="p">[</span><span class="s1">&#39;Intelligence&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">],</span> <span class="n">n</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1355,8 +1355,8 @@ quindi costruiamo una serie i cui valori sono <code class="docutils literal notr
 supereroi Marvel e <code class="docutils literal notranslate"><span class="pre">0</span></code> per tutti gli altri casi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Y = (heroes_cleaned[&#39;Publisher&#39;]==&#39;Marvel Comics&#39;).apply( \
-         lambda x: 1 if x else 0)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span> <span class="o">=</span> <span class="p">(</span><span class="n">heroes_cleaned</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Marvel Comics&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span> \
+         <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1377,12 +1377,12 @@ classificatore stesso, per semplicità limitiamoci a verificare che cosa succeda
 con le osservazioni in <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sklearn.naive_bayes import GaussianNB
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
 
-model = GaussianNB()
-model.fit(X, Y)
+<span class="n">model</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
 
-model.predict(X)
+<span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1403,7 +1403,7 @@ associati alla Marvel. Per analizzare meglio i risultati, vediamo separatamente
 come vengono classificati i supereroi delle due classi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>model.predict(X[Y==0])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">Y</span><span class="o">==</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1416,7 +1416,7 @@ come vengono classificati i supereroi delle due classi.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>model.predict(X[Y==1])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">Y</span><span class="o">==</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1437,14 +1437,14 @@ possibile costruire un dataframe che contenga la corrispondente matrice di
 confusione.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tp = sum(model.predict(X[Y==1]))
-fn = len(model.predict(X[Y==1])) - tp
-fp = sum(model.predict(X[Y==0]))
-tn = len(model.predict(X[Y==0])) - fp
-pd.DataFrame([[tp, fn],
-              [fp, tn]],
-              index=[&#39;Etichetta positiva&#39;, &#39;Etichetta negativa&#39;],
-              columns=[&#39;Classif. positiva&#39;, &#39;Classif. negativa&#39;])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">Y</span><span class="o">==</span><span class="mi">1</span><span class="p">]))</span>
+<span class="n">fn</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">Y</span><span class="o">==</span><span class="mi">1</span><span class="p">]))</span> <span class="o">-</span> <span class="n">tp</span>
+<span class="n">fp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">Y</span><span class="o">==</span><span class="mi">0</span><span class="p">]))</span>
+<span class="n">tn</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">Y</span><span class="o">==</span><span class="mi">0</span><span class="p">]))</span> <span class="o">-</span> <span class="n">fp</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="n">tp</span><span class="p">,</span> <span class="n">fn</span><span class="p">],</span>
+              <span class="p">[</span><span class="n">fp</span><span class="p">,</span> <span class="n">tn</span><span class="p">]],</span>
+              <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Etichetta positiva&#39;</span><span class="p">,</span> <span class="s1">&#39;Etichetta negativa&#39;</span><span class="p">],</span>
+              <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Classif. positiva&#39;</span><span class="p">,</span> <span class="s1">&#39;Classif. negativa&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1492,7 +1492,7 @@ riassumere in un unico indice la bontà del risultato ottenuto è possibile
 calcolare la percentuale di dati corretti.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>(tp + tn) / len(X)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">tn</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

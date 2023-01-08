@@ -673,7 +673,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c6-modelli-continui/gaussiano.html">
-     14.5. Il modello gaussiano
+     14.5. Il modello normale
     </a>
    </li>
    <li class="toctree-l2">
@@ -1039,53 +1039,53 @@ che <span class="math notranslate nohighlight">\(S\)</span> è <em>incluso</em> 
  (s \in S \rightarrow s \in T) ;\]</div>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
-import math
-import numpy as np
-from matplotlib_venn import venn2_circles, venn2
-from myst_nb import glue
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib_venn</span> <span class="kn">import</span> <span class="n">venn2_circles</span><span class="p">,</span> <span class="n">venn2</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
 
-import matplotlib
-matplotlib.rcParams[&#39;mathtext.rm&#39;] = &#39;Bitstream Vera Sans&#39;
-matplotlib.rcParams[&#39;mathtext.it&#39;] = &#39;Bitstream Vera Sans:italic&#39;
-matplotlib.rcParams[&#39;mathtext.bf&#39;] = &#39;Bitstream Vera Sans:bold&#39;
-matplotlib.rcParams[&#39;mathtext.fontset&#39;] = &#39;cm&#39;
-font_size = 18
-matplotlib.rcParams[&#39;font.size&#39;] = str(font_size)
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.rm&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Bitstream Vera Sans&#39;</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.it&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Bitstream Vera Sans:italic&#39;</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.bf&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Bitstream Vera Sans:bold&#39;</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;mathtext.fontset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;cm&#39;</span>
+<span class="n">font_size</span> <span class="o">=</span> <span class="mi">18</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">font_size</span><span class="p">)</span>
 
-venn_set_color = &#39;#0071BC&#39;
-venn_set_edge= &#39;#333333&#39;
+<span class="n">venn_set_color</span> <span class="o">=</span> <span class="s1">&#39;#0071BC&#39;</span>
+<span class="n">venn_set_edge</span><span class="o">=</span> <span class="s1">&#39;#333333&#39;</span>
 
-def subset_venn():
-    fig = plt.figure()
+<span class="k">def</span> <span class="nf">subset_venn</span><span class="p">():</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 
-    v = venn2(subsets=(5, 0, 2), set_labels=(&#39;$T$&#39;, &#39;$S$&#39;))
+    <span class="n">v</span> <span class="o">=</span> <span class="n">venn2</span><span class="p">(</span><span class="n">subsets</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">set_labels</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;$T$&#39;</span><span class="p">,</span> <span class="s1">&#39;$S$&#39;</span><span class="p">))</span>
 
-    for l in v.set_labels:
-        l.set_fontsize(font_size)
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">set_labels</span><span class="p">:</span>
+        <span class="n">l</span><span class="o">.</span><span class="n">set_fontsize</span><span class="p">(</span><span class="n">font_size</span><span class="p">)</span>
 
-    for area in [&#39;01&#39;, &#39;10&#39;, &#39;11&#39;]:
-        v.get_patch_by_id(area).set_color(venn_set_color)
-        v.get_patch_by_id(area).set_edgecolor(venn_set_edge)
-        v.get_patch_by_id(area).set_alpha(1)
-        txt = v.get_label_by_id(area)
-        if txt:
-          txt.set_text(&#39;&#39;)
+    <span class="k">for</span> <span class="n">area</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;01&#39;</span><span class="p">,</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="s1">&#39;11&#39;</span><span class="p">]:</span>
+        <span class="n">v</span><span class="o">.</span><span class="n">get_patch_by_id</span><span class="p">(</span><span class="n">area</span><span class="p">)</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">venn_set_color</span><span class="p">)</span>
+        <span class="n">v</span><span class="o">.</span><span class="n">get_patch_by_id</span><span class="p">(</span><span class="n">area</span><span class="p">)</span><span class="o">.</span><span class="n">set_edgecolor</span><span class="p">(</span><span class="n">venn_set_edge</span><span class="p">)</span>
+        <span class="n">v</span><span class="o">.</span><span class="n">get_patch_by_id</span><span class="p">(</span><span class="n">area</span><span class="p">)</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">txt</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">get_label_by_id</span><span class="p">(</span><span class="n">area</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">txt</span><span class="p">:</span>
+          <span class="n">txt</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 
-    v.set_labels[1].set_position((-0.2, 0.3))
+    <span class="n">v</span><span class="o">.</span><span class="n">set_labels</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">((</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">))</span>
 
-    plt.gca().set_axis_on()
-    plt.gca().set_facecolor(&#39;white&#39;)
-    ymin, ymax = plt.gca().get_ylim()
-    plt.ylim(ymin - 0.1, ymax)
+    <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_axis_on</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+    <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ymin</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span>
 
-    plt.text(0.47, 0.5, &#39;$\Omega$&#39;)
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.47</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;$\Omega$&#39;</span><span class="p">)</span>
 
-    return fig
+    <span class="k">return</span> <span class="n">fig</span>
 
-fig = subset_venn()
+<span class="n">fig</span> <span class="o">=</span> <span class="n">subset_venn</span><span class="p">()</span>
 
-glue(&quot;venn-subset-picture&quot;, fig, display=False)
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;venn-subset-picture&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

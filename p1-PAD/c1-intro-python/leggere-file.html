@@ -671,7 +671,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/gaussiano.html">
-     14.5. Il modello gaussiano
+     14.5. Il modello normale
     </a>
    </li>
    <li class="toctree-l2">
@@ -1028,7 +1028,7 @@ a un supereroe, separate da virgola. Le prime tre righe del file sono indicate
 di seguito.</p>
 <div class="cell tag_full-width docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!head -3 data/heroes.csv
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>head<span class="w"> </span>-3<span class="w"> </span>data/heroes.csv
 </pre></div>
 </div>
 </div>
@@ -1054,11 +1054,11 @@ nascita nel secondo record).</p>
 <code class="docutils literal notranslate"><span class="pre">heroes</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import csv
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
 
-with open(&#39;data/heroes.csv&#39;, &#39;r&#39;) as heroes_file:
-  heroes_reader = csv.reader(heroes_file, delimiter=&#39;;&#39;, quotechar=&#39;&quot;&#39;)
-  heroes = list(heroes_reader)[1:]
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/heroes.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">heroes_file</span><span class="p">:</span>
+  <span class="n">heroes_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">heroes_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
+  <span class="n">heroes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">heroes_reader</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
 </pre></div>
 </div>
 </div>
@@ -1094,7 +1094,7 @@ stringa in intero e <code class="docutils literal notranslate"><span class="pre"
 sopra mostrate):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>heroes[:2]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heroes</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1152,7 +1152,7 @@ nella creazione della nuova lista bisogna limitarsi a considerare gli elementi
 <code class="docutils literal notranslate"><span class="pre">e</span></code> della lista originale che rendono vera l'espressione <code class="docutils literal notranslate"><span class="pre">g(e)</span></code>. Pertanto</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>years = [int(h[7]) for h in heroes if h[7]]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">heroes</span> <span class="k">if</span> <span class="n">h</span><span class="p">[</span><span class="mi">7</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -1171,27 +1171,27 @@ un'eccezione.</p>
 <p>A questo punto è possibile generare il grafico delle frequenze assolute:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
-import numpy as np
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-plt.style.use(&#39;sds.mplstyle&#39;)
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;sds.mplstyle&#39;</span><span class="p">)</span>
 
-def get_sorted_counts(sequence):
-    counts = {}
+<span class="k">def</span> <span class="nf">get_sorted_counts</span><span class="p">(</span><span class="n">sequence</span><span class="p">):</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="p">{}</span>
 
-    for x in sequence:
-        if x in counts:
-            counts[x] += 1
-        else:
-            counts[x] = 1
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">counts</span><span class="p">:</span>
+            <span class="n">counts</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">counts</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 
-    pairs = counts.items()
-    return sorted(pairs, key=lambda p:p[1], reverse=True)
+    <span class="n">pairs</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">pairs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-counts = get_sorted_counts(years)
-x, y = np.array(counts).transpose()
-plt.bar(x, y)
-plt.show()
+<span class="n">counts</span> <span class="o">=</span> <span class="n">get_sorted_counts</span><span class="p">(</span><span class="n">years</span><span class="p">)</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1209,7 +1209,7 @@ valore. Possiamo farlo usando una list comprehension appena più complicata di
 quella vista poco fa:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>[year for year in years if year &gt; 2020]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">year</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span> <span class="k">if</span> <span class="n">year</span> <span class="o">&gt;</span> <span class="mi">2020</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1230,10 +1230,10 @@ impostare l'ampiezza dell'asse delle ordinate in modo che ci sia un po' di
 spazio sopra la barra che corrisponde alla frequenza massima:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.bar(x, y)
-plt.xlim((1950, 2015))
-plt.ylim((0, 18.5))
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="mi">1950</span><span class="p">,</span> <span class="mi">2015</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mf">18.5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

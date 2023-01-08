@@ -671,7 +671,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/gaussiano.html">
-     14.5. Il modello gaussiano
+     14.5. Il modello normale
     </a>
    </li>
    <li class="toctree-l2">
@@ -1034,7 +1034,7 @@ disponibile nel modulo <code class="docutils literal notranslate"><span class="p
 cella seguente importa questo nuovo tipo di dato:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from collections import defaultdict
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 </pre></div>
 </div>
 </div>
@@ -1047,14 +1047,14 @@ tale valore predefinito sia <code class="docutils literal notranslate"><span cla
 preventivamente l'esistenza dei contatori.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def get_sorted_counts(sequence):
-    counts = defaultdict(int)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_sorted_counts</span><span class="p">(</span><span class="n">sequence</span><span class="p">):</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 
-    for x in sequence:
-        counts[x] += 1
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
+        <span class="n">counts</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 
-    pairs = counts.items()
-    return sorted(pairs, key=lambda p:p[1], reverse=True)
+    <span class="n">pairs</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">pairs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1065,7 +1065,7 @@ evitare situazioni di questo genere, è opportuno importare un intero modulo:
 per esempio, l'istruzione</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
 </pre></div>
 </div>
 </div>
@@ -1081,13 +1081,13 @@ della lista <code class="docutils literal notranslate"><span class="pre">index</
 essa presenti), e cioè l'indice in cui si trova un suo elemento massimo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>years = [1941, 1962, None, None, 1941,
-         1964, None, 1940, 1941, 1961,
-         None, 1963, None, 1963, 1981,
-         None, None, 1962, 1979]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1941</span><span class="p">,</span> <span class="mi">1962</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1941</span><span class="p">,</span>
+         <span class="mi">1964</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1940</span><span class="p">,</span> <span class="mi">1941</span><span class="p">,</span> <span class="mi">1961</span><span class="p">,</span>
+         <span class="kc">None</span><span class="p">,</span> <span class="mi">1963</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1963</span><span class="p">,</span> <span class="mi">1981</span><span class="p">,</span>
+         <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1962</span><span class="p">,</span> <span class="mi">1979</span><span class="p">]</span>
 
-years = [y for y in years if y]
-numpy.argmax(years)
+<span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">years</span> <span class="k">if</span> <span class="n">y</span><span class="p">]</span>
+<span class="n">numpy</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">years</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1106,8 +1106,8 @@ disposizione delle classi per gestire i dati organizzandoli in serie e in
 tabelle.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
-import pandas as pd
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
 </div>
 </div>
@@ -1126,8 +1126,8 @@ seguente cella importa il modulo <code class="docutils literal notranslate"><spa
 in python per la creazione di grafici).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
-plt.style.use(&#39;fivethirtyeight&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

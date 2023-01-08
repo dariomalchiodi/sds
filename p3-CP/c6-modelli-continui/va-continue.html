@@ -673,7 +673,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="gaussiano.html">
-     14.5. Il modello gaussiano
+     14.5. Il modello normale
     </a>
    </li>
    <li class="toctree-l2">
@@ -1112,45 +1112,45 @@ densità di <span class="math notranslate nohighlight">\(X\)</span> ristretta al
 <a class="reference internal" href="#fig-pdf-interpretation"><span class="std std-numref">Fig. 14.3</span></a>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
-from myst_nb import glue
-import numpy as np
-from scipy.stats import norm
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
 
-plt.rcParams.update({
-    &#39;font.size&#39;: 8,
-    &#39;text.latex.preamble&#39;: r&#39;\usepackage{amsfonts}&#39;
-})
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+    <span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="s1">&#39;text.latex.preamble&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;\usepackage</span><span class="si">{amsfonts}</span><span class="s1">&#39;</span>
+<span class="p">})</span>
 
-# to ensure that pdf is a probability density
-Z = norm()
-norm_factor = (1 - Z.cdf(3 * 2**0.5))/ 2**0.5 + 5**0.5
+<span class="c1"># to ensure that pdf is a probability density</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">norm</span><span class="p">()</span>
+<span class="n">norm_factor</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">Z</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="mi">2</span><span class="o">**</span><span class="mf">0.5</span><span class="p">))</span><span class="o">/</span> <span class="mi">2</span><span class="o">**</span><span class="mf">0.5</span> <span class="o">+</span> <span class="mi">5</span><span class="o">**</span><span class="mf">0.5</span>
 
-def pdf(x):
-    return (1.2 * np.exp(-.1*(x)**2) + np.exp(-(x-3)**2)) / norm_factor
+<span class="k">def</span> <span class="nf">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mf">1.2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">.1</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> <span class="o">/</span> <span class="n">norm_factor</span>
 
-fig, ax = plt.subplots()
-x = np.linspace(-0, 5, 500)
-y = pdf(x)
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-x_filled = np.linspace(1, 3, 500)
-y_filled = pdf(x_filled)
+<span class="n">x_filled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">y_filled</span> <span class="o">=</span> <span class="n">pdf</span><span class="p">(</span><span class="n">x_filled</span><span class="p">)</span>
 
-ax.fill_between(x_filled, y_filled, alpha=0.5)
-ax.plot(x, y)
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x_filled</span><span class="p">,</span> <span class="n">y_filled</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
-ax.text(2, -.1, r&#39;$A$&#39;, horizontalalignment=&#39;center&#39;)
-ax.text(2, 0.3, &#39;$P(X \\in A)$&#39;, horizontalalignment=&#39;center&#39;)
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mf">.1</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$A$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;$P(X </span><span class="se">\\</span><span class="s1">in A)$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
 
-ax.spines.right.set_visible(False)
-ax.spines.top.set_visible(False)
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
-ax.xaxis.set_major_formatter(plt.NullFormatter())
-ax.yaxis.set_major_formatter(plt.NullFormatter())
-ax.tick_params(axis=u&#39;both&#39;, which=u&#39;both&#39;,length=0)
-plt.show()
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="sa">u</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="sa">u</span><span class="s1">&#39;both&#39;</span><span class="p">,</span><span class="n">length</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-glue(&quot;pdf-interpretation&quot;, fig, display=False)
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;pdf-interpretation&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

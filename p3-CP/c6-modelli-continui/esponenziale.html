@@ -61,7 +61,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
     <link rel="search" title="Cerca" href="../../search.html" />
-    <link rel="next" title="14.5. Il modello gaussiano" href="gaussiano.html" />
+    <link rel="next" title="14.5. Il modello normale" href="gaussiano.html" />
     <link rel="prev" title="14.3. Il modello uniforme continuo" href="uniforme.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="it">
@@ -673,7 +673,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="gaussiano.html">
-     14.5. Il modello gaussiano
+     14.5. Il modello normale
     </a>
    </li>
    <li class="toctree-l2">
@@ -1075,16 +1075,73 @@ il teorema di de l'Hôpital.</p>
 <div class="math notranslate nohighlight">
 \[\lim_{p \to 0} F_Y(x, p, \lambda) = 1 - \mathrm e^{-\lambda x} \enspace.\]</div>
 <p>Possiamo verificare facilmente che</p>
-<div class="math notranslate nohighlight">
-\[F(x; \lambda) \coloneqq
+<div class="math notranslate nohighlight" id="equation-eq-cdf-exponential">
+<span class="eqno">(14.12)<a class="headerlink" href="#equation-eq-cdf-exponential" title="Permalink a questa equazione">#</a></span>\[F(x; \lambda) \coloneqq
      \left(1 - \mathrm e^{-\lambda x} \right) \; \mathrm I_{\mathbb R^+}(x)\]</div>
 <p>soddisfa i requisiti richiesti per essere una funzione di ripartizione
 continua. La distribuzione corrispondente è detta <em>distribuzione esponenziale</em>
-e la sua densità sarà pertanto definita come</p>
+e la sua densità sarà ottenuta derivando <a class="reference internal" href="#equation-eq-cdf-exponential">(14.12)</a>.</p>
+<div class="proof definition admonition" id="definition-0">
+<p class="admonition-title"><span class="caption-number">Definizione 14.7 </span> (La famiglia delle distribuzioni esponenziali)</p>
+<section class="definition-content" id="proof-content">
+<p>Dato <span class="math notranslate nohighlight">\(\lambda \in [0, +\infty)\)</span>, la  <em>distribuzione esponenziale</em> è definita
+dalla densità</p>
 <div class="math notranslate nohighlight">
 \[f(x; \lambda) = F'(x; \lambda) = \lambda  \mathrm e^{-\lambda x}
-                                 \;\mathrm I_{\mathbb R^+}(x).\]</div>
+                                 \;\mathrm I_{\mathbb R^+}(x) \enspace,\]</div>
+<p>o in modo equivalente dalla ripartizione</p>
+<div class="math notranslate nohighlight">
+\[F(x; \lambda) = \left(1 - \mathrm e^{-\lambda x} \right)
+                \; \mathrm I_{\mathbb R^+}(x) \enspace.\]</div>
+<p>L'insieme di tutte le distribuzioni esponenziali al variare dei possibili
+valori del relativo parametro <span class="math notranslate nohighlight">\(\lambda\)</span> viene detta <em>famiglia delle
+distribuzioni esponenziali</em>.</p>
 </section>
+</div><p>Il valore atteso e la varianza delle distribuzioni esponenziali si ottengono
+facilmente in funzione del loro parametro, applicando le relative definizioni.</p>
+<div class="proof lemma admonition" id="lemma-1">
+<p class="admonition-title"><span class="caption-number">Lemma 14.4 </span></p>
+<section class="lemma-content" id="proof-content">
+<p>Data <span class="math notranslate nohighlight">\(X \sim \mathrm E(\lambda)\)</span>, con <span class="math notranslate nohighlight">\(\lambda \in [0, +\infty)\)</span>, si ha</p>
+<div class="math notranslate nohighlight">
+\[\mathbb E(X) = \frac{1}{\lambda}, \quad
+\mathrm{Var}(X) = \frac{1}{\lambda^2} \enspace.\]</div>
+<div class="proof admonition" id="proof">
+<p>Dimostrazione. Il calcolo del valore atteso si può effettuare integrando per parti:
+definendo <span class="math notranslate nohighlight">\(f(x) = x\)</span> e <span class="math notranslate nohighlight">\(g(x) = \mathrm e^{-\lambda x}\)</span> si ha</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\mathbb E(X) &amp;= \int_{-\infty}^{+\infty} x f_X(x; \lambda) \; \mathrm d x
+              = \int_0^{+\infty} \lambda x \mathrm e^{-\lambda x}
+                \; \mathrm d x \\
+             &amp;= -\int_0^{+\infty} f(x) \cdot g'(x) \; \mathrm d x \\
+             &amp;= \underbrace{-x \mathrm e^{-\lambda x} \bigg|_0^{+\infty}}_{=0}
+                + \int_0^{+\infty} \mathrm e^{-\lambda x} \; \mathrm d x
+              = \frac{1}{\lambda} \underbrace{\int_0^{+\infty}
+                        \lambda \mathrm e^{-\lambda x} \; \mathrm d x}_{=1}
+              = \frac{1}{\lambda} \enspace.
+\end{align*}\]</div>
+<p>Procedendo in modo analogo, ma ponendo <span class="math notranslate nohighlight">\(f(x)=x^2\)</span>, si può calcolare il
+momento secondo:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\mathbb E(X^2) &amp;= \int_0^{+\infty}\lambda x^2 \mathrm e^{-\lambda x}
+                  \;\mathrm d x
+                = -\int_0^{+\infty} f(x) g'(x) \;\mathrm d x \\
+               &amp;= \underbrace{-x^2 \mathrm e^{-\lambda x}
+                              \bigg|_0^{+\infty}}_{=0} +
+                  2 \int_0^{+\infty} x \mathrm e^{-\lambda x}
+                                \; \mathrm d x \\
+               &amp;= \frac{2}{\lambda} \underbrace{\int_0^{+\infty}
+                                \lambda x \mathrm e^{-\lambda x}
+                                \; \mathrm d x}_{= 1 / \lambda}
+                = \frac{2}{\lambda^2} \enspace.
+\end{align*}\]</div>
+<p>Pertanto <span class="math notranslate nohighlight">\(\mathrm{Var}(X) = \frac{2}{\lambda^2} - \frac{1}{\lambda^2} =
+\frac{1}{\lambda^2}\)</span>.</p>
+</div>
+</section>
+</div></section>
 
     <script type="text/x-thebe-config">
     {
@@ -1123,7 +1180,7 @@ e la sua densità sarà pertanto definita come</p>
     <a class='right-next' id="next-link" href="gaussiano.html" title="successivo pagina">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">successivo</p>
-        <p class="prev-next-title"><span class="section-number">14.5. </span>Il modello gaussiano</p>
+        <p class="prev-next-title"><span class="section-number">14.5. </span>Il modello normale</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

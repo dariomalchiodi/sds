@@ -673,7 +673,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../c6-modelli-continui/gaussiano.html">
-     14.5. Il modello gaussiano
+     14.5. Il modello normale
     </a>
    </li>
    <li class="toctree-l2">
@@ -1092,29 +1092,29 @@ distribuzione sia valido.</p>
 </aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from util import bernoulli
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">util</span> <span class="kn">import</span> <span class="n">bernoulli</span>
 
-def geom_rv(p):
-    &quot;&quot;&quot;Simulate the extraction of a value from the geometric distribution
+<span class="k">def</span> <span class="nf">geom_rv</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Simulate the extraction of a value from the geometric distribution</span>
 
-    :param p: parameter of the geometric distribution
-    :type p: float
-    :raises ValueError: if p is not in the interval (0, 1] 
-    :return: simulated value of the distribution
-    :rtype: int
-    &quot;&quot;&quot;
-    if p &lt;= 0 or p &gt; 1:
-        raise ValueError(f&quot;{p} is not a valid parameter&quot; \
-                         &quot; for the geometric distribution.&quot;)
-    i = 0
-    while bernoulli(p) == 0:
-        i +=1
+<span class="sd">    :param p: parameter of the geometric distribution</span>
+<span class="sd">    :type p: float</span>
+<span class="sd">    :raises ValueError: if p is not in the interval (0, 1] </span>
+<span class="sd">    :return: simulated value of the distribution</span>
+<span class="sd">    :rtype: int</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">p</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> is not a valid parameter&quot;</span> \
+                         <span class="s2">&quot; for the geometric distribution.&quot;</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">bernoulli</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">i</span> <span class="o">+=</span><span class="mi">1</span>
 
-    assert i &gt;= 0 and type(i) == int
+    <span class="k">assert</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">type</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span>
 
-    return i + 1
+    <span class="k">return</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
 
-[geom_rv(.3) for _ in range(10)]
+<span class="p">[</span><span class="n">geom_rv</span><span class="p">(</span><span class="mf">.3</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
@@ -1124,7 +1124,7 @@ def geom_rv(p):
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">util</span> <span class="kn">import</span> <span class="n">bernoulli</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="k">def</span> <span class="nf">geom_rv</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="sd">&quot;&quot;&quot;Simulate the extraction of a value from the geometric distribution</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Simulate the extraction of a value from the geometric distribution</span>
 <span class="g g-Whitespace">      </span><span class="mi">5</span><span class="sd"> </span>
 <span class="g g-Whitespace">      </span><span class="mi">6</span><span class="sd">     :param p: parameter of the geometric distribution</span>
 <span class="sd">   (...)</span>
@@ -1144,10 +1144,10 @@ una sequenza in modo analogo a quanto fatto usando la funzione <code class="docu
 nell'esempio precedente.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from scipy.stats import geom
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">geom</span>
 
-g = geom(.3)
-g.rvs(10)
+<span class="n">g</span> <span class="o">=</span> <span class="n">geom</span><span class="p">(</span><span class="mf">.3</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1172,8 +1172,8 @@ le specificazioni di <span class="math notranslate nohighlight">\(X\)</span> si 
 <p class="sidebar-title"></p>
 <p>Nel terzultimo passaggio ho applicato il cambio di variabile <span class="math notranslate nohighlight">\(j = i - 1\)</span>.</p>
 </aside>
-<div class="amsmath math notranslate nohighlight" id="equation-02cdb36e-275d-4871-9020-32eb96a1a30a">
-<span class="eqno">(13.1)<a class="headerlink" href="#equation-02cdb36e-275d-4871-9020-32eb96a1a30a" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6dda5e78-0e88-4172-8310-262bbba1762f">
+<span class="eqno">(13.1)<a class="headerlink" href="#equation-6dda5e78-0e88-4172-8310-262bbba1762f" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \sum_{i=1}^{+\infty}\mathrm p_X(i; p) &amp;= \sum_{i=1}^{+\infty} (1-p)^{i - 1} p =
 p \sum_{i=1}^{+\infty}(1-p)^{i - 1} \\
 &amp;= p \sum_{j=0}^{+\infty}(1-p)^j = p \frac{1}{1-(1-p)} = 1.
@@ -1193,25 +1193,25 @@ distribuzione geometrica, e che restituisce il corrispondente valore della
 funzione di massa di probabilità geometrica.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def geom_pdf(x, p):
-    &quot;&quot;&quot;Compute the p.d.f. of a geometric distribution
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">geom_pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the p.d.f. of a geometric distribution</span>
 
-    :param x: arguments to the p.d.f.
-    :type x: list, sequence or numpy array of numerical values
-    :param p: parameter of the geometric distribution
-    :type p: float
-    :raises ValueError: if p is not in the interval (0, 1] 
-    :return: computed values of the p.d.f.
-    :rtype: numpy array of float
-    &quot;&quot;&quot;
-    if p &lt;= 0 or p &gt; 1:
-        raise ValueError(f&quot;{p} is not a valid parameter &quot; \
-                         &quot;for the geometric distribution.&quot;)
-    invalid_indices = (x != np.floor(x)) | (x &lt;= 0)
-    pdf_values = (1 - p) ** (x - 1) * p
-    pdf_values[invalid_indices] = 0
+<span class="sd">    :param x: arguments to the p.d.f.</span>
+<span class="sd">    :type x: list, sequence or numpy array of numerical values</span>
+<span class="sd">    :param p: parameter of the geometric distribution</span>
+<span class="sd">    :type p: float</span>
+<span class="sd">    :raises ValueError: if p is not in the interval (0, 1] </span>
+<span class="sd">    :return: computed values of the p.d.f.</span>
+<span class="sd">    :rtype: numpy array of float</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">p</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> is not a valid parameter &quot;</span> \
+                         <span class="s2">&quot;for the geometric distribution.&quot;</span><span class="p">)</span>
+    <span class="n">invalid_indices</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">|</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">pdf_values</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">p</span>
+    <span class="n">pdf_values</span><span class="p">[</span><span class="n">invalid_indices</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
-    return pdf_values
+    <span class="k">return</span> <span class="n">pdf_values</span>
 </pre></div>
 </div>
 </div>
@@ -1224,28 +1224,28 @@ versione interattiva del libro è possibile modificare il valore di <span class=
 rigenerando automaticamente il grafico.</p>
 <div class="cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from ipywidgets import *
-import matplotlib.pyplot as plt
-import numpy as np
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-plt.style.use(&#39;sds.mplstyle&#39;)
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;sds.mplstyle&#39;</span><span class="p">)</span>
 
-def gr_geom_pdf(p):
-    &quot;&quot;&quot;Show the graph of the p.d.f. of a geometric distribution
+<span class="k">def</span> <span class="nf">gr_geom_pdf</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Show the graph of the p.d.f. of a geometric distribution</span>
 
-    :param p: parameter of the geometric distribution
-    :type p: float
-    &quot;&quot;&quot;
-    x = np.arange(0, 10, 1)
-    pdf_values = geom_pdf(x, p)
-    plt.vlines(x, [0]*len(x), pdf_values)
-    plt.plot(x, pdf_values, &#39;o&#39;)
-    plt.ylim(ymax=1, ymin=0)
-    plt.xlim(xmax=11, xmin = -1)
-    plt.show()
+<span class="sd">    :param p: parameter of the geometric distribution</span>
+<span class="sd">    :type p: float</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">pdf_values</span> <span class="o">=</span> <span class="n">geom_pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">pdf_values</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pdf_values</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ymax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xmax</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">xmin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-interact(gr_geom_pdf, p=(0.1, 1, 0.1))
-plt.show()
+<span class="n">interact</span><span class="p">(</span><span class="n">gr_geom_pdf</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1306,12 +1306,12 @@ equivale ad aggiungere un termine nullo. A questo punto, ponendo
 parametro <span class="math notranslate nohighlight">\(p\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>p = np.arange(0.01, 1.01, 0.01)
-e = 1 / p
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">p</span>
 
-plt.plot(p, e)
-plt.ylim(1, 10)
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1329,8 +1329,8 @@ ripetizioni tenderà a più infinito.</p>
 <p><strong>Proposizione</strong> Il valore atteso del quadrato della distribuzione geometrica
 di parametro <span class="math notranslate nohighlight">\(p\)</span> è pari a <span class="math notranslate nohighlight">\(\frac{(1-p)(2-p)}{p^2}\)</span>.</p>
 <p>Dimostrazione.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-baec8a5c-078d-4553-9c29-b15f552330a8">
-<span class="eqno">(13.2)<a class="headerlink" href="#equation-baec8a5c-078d-4553-9c29-b15f552330a8" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5c18a61c-b0a2-4f10-829e-d3b258b5ba2b">
+<span class="eqno">(13.2)<a class="headerlink" href="#equation-5c18a61c-b0a2-4f10-829e-d3b258b5ba2b" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm E\left(X^2\right) &amp;= \sum_{i=0}^{+\infty} i^2 p_X(i) \\
                &amp;= \sum_{i=0}^{+\infty} i^2 p (1-p)^i \\
                &amp;= p (1-p) \sum_{i=0}^{+\infty} i^2 (1-p)^{i-1} \\
@@ -1338,8 +1338,8 @@ di parametro <span class="math notranslate nohighlight">\(p\)</span> è pari a <
                &amp;= -p (1-p) \frac{\mathrm d}{\mathrm d p} \sum_{i=0}^{+\infty} i(1-p)^i.
 \end{align}\]</div>
 <p>Applicando ancora il lemma dimostrato precedentemente si ottiene</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c330c317-8be7-4250-bf37-3ef3d3b7917a">
-<span class="eqno">(13.3)<a class="headerlink" href="#equation-c330c317-8be7-4250-bf37-3ef3d3b7917a" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b8348085-c355-4759-8d53-bc5997d7a031">
+<span class="eqno">(13.3)<a class="headerlink" href="#equation-b8348085-c355-4759-8d53-bc5997d7a031" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm E\left(X^2\right) &amp;= -p (1-p) \frac{\mathrm d}{\mathrm d p}
                                 \frac{1-p}{p^2} \\
       &amp;= p (1-p) \frac{p^2 + 1p(1-p)}{p^4} \\
@@ -1349,8 +1349,8 @@ di parametro <span class="math notranslate nohighlight">\(p\)</span> è pari a <
 <p><strong>Proposizione</strong>. La varianza della distribuzione geometrica di parametro <span class="math notranslate nohighlight">\(p\)</span>
 è uguale a <span class="math notranslate nohighlight">\(\frac{1-p}{p^2}\)</span>.</p>
 <p>Dimostrazione.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-517055d8-1b24-461d-8e33-df9485d3994a">
-<span class="eqno">(13.4)<a class="headerlink" href="#equation-517055d8-1b24-461d-8e33-df9485d3994a" title="Permalink a questa equazione">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3195ebe9-9fd2-46c8-9245-d75089f3c217">
+<span class="eqno">(13.4)<a class="headerlink" href="#equation-3195ebe9-9fd2-46c8-9245-d75089f3c217" title="Permalink a questa equazione">#</a></span>\[\begin{equation}
 \mathrm{Var}(X) = \mathrm E \left(X^2\right) - \mathrm E(X)^2 =
                   \frac{(1-p)(2-p)}{p^2} - \frac{(1-p)^2}{p^2} =
                   \frac{1-p}{p^2}.
@@ -1359,12 +1359,12 @@ di parametro <span class="math notranslate nohighlight">\(p\)</span> è pari a <
 della varianza in funzione del valore per il parametro <span class="math notranslate nohighlight">\(p\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x = np.arange(0.01, 1.01, 0.01)
-y = list(map(lambda p: (1-p)/p**2, x))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span><span class="o">/</span><span class="n">p</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
 
-plt.plot(x, y)
-plt.ylim(0, 50)
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1385,31 +1385,31 @@ permette di modificare il valore di <span class="math notranslate nohighlight">\
 grafico.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.patches as patches
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">patches</span>
 
-def geom_pdf(x, p):
-    assert p &gt; 0 and p &lt;= 1, &#39;{} is not a valid parameter &#39; \
-                             &#39;for the geometric distribution.&#39;.format(p)
+<span class="k">def</span> <span class="nf">geom_pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">p</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> is not a valid parameter &#39;</span> \
+                             <span class="s1">&#39;for the geometric distribution.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 
-    return p * (1 - p)**x if x==int(x) else 0
+    <span class="k">return</span> <span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">)</span><span class="o">**</span><span class="n">x</span> <span class="k">if</span> <span class="n">x</span><span class="o">==</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">else</span> <span class="mi">0</span>
 
-def gr_geom_pdf(p):
-    x = np.arange(0, 10, 1)
-    avg = (1 - p) / p
-    stdev = (1-p)**0.5/p
-    plt.gca().add_patch(patches.Rectangle(
-        (avg-stdev, 0.95), 2*stdev, 0.05, edgecolor=&#39;None&#39;, facecolor=&#39;green&#39;
-    ))
-    plt.plot([avg, avg], [0.9, 1], color=&#39;green&#39;)
-    plt.vlines(x, [0]*len(x), list(map(lambda _: geom_pdf(_, p), x)))
-    plt.plot(x, list(map(lambda _: geom_pdf(_, p), x)), &#39;o&#39;)
+<span class="k">def</span> <span class="nf">gr_geom_pdf</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">avg</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">)</span> <span class="o">/</span> <span class="n">p</span>
+    <span class="n">stdev</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span><span class="o">/</span><span class="n">p</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">avg</span><span class="o">-</span><span class="n">stdev</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">),</span> <span class="mi">2</span><span class="o">*</span><span class="n">stdev</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;green&#39;</span>
+    <span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">avg</span><span class="p">,</span> <span class="n">avg</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.9</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">_</span><span class="p">:</span> <span class="n">geom_pdf</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">p</span><span class="p">),</span> <span class="n">x</span><span class="p">)))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">_</span><span class="p">:</span> <span class="n">geom_pdf</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">p</span><span class="p">),</span> <span class="n">x</span><span class="p">)),</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
 
-    plt.ylim(ymax=1, ymin=0)
-    plt.xlim(xmax=11, xmin = -1)
-    plt.show()
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ymax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xmax</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">xmin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-interact(gr_geom_pdf, p=(0.1, 1, 0.1))
-plt.show()
+<span class="n">interact</span><span class="p">(</span><span class="n">gr_geom_pdf</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1419,8 +1419,8 @@ ripartizione in cui è possibile calcolare esplicitamente il valore della
 sommatoria. Più precisamente, indicata con <span class="math notranslate nohighlight">\(X\)</span> una variabile aleatoria che
 segue una distribuzione geometrica di parametro <span class="math notranslate nohighlight">\(p\)</span>, è facile calcolare la
 probabilità <span class="math notranslate nohighlight">\(\mathrm P(X &gt; n)\)</span> per un generico <span class="math notranslate nohighlight">\(n\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d80b7531-c759-44cb-b3bf-a7a12159dd29">
-<span class="eqno">(13.5)<a class="headerlink" href="#equation-d80b7531-c759-44cb-b3bf-a7a12159dd29" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-392c42f2-f110-4525-80f3-318508cfecf0">
+<span class="eqno">(13.5)<a class="headerlink" href="#equation-392c42f2-f110-4525-80f3-318508cfecf0" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm P(X &gt; n) &amp;= \sum_{i=n+1}^{+\infty}f_X(i; p) \\
                  &amp;= \sum_{i=n+1}^{+\infty}(1-p)^i p \\
                  &amp;= p (1-p)^{n+1} \sum_{i=n+1}^{+\infty}(1-p)^{i- (n+1)} \\
@@ -1448,10 +1448,10 @@ F_X(x; p) = \left( 1 - (1 - p)^{\lfloor x \rfloor + 1} \right)
 <code class="docutils literal notranslate"><span class="pre">geom_cdf</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def geom_cdf(x, p):
-    assert p &gt; 0 and p &lt;= 1, &#39;{} is not a valid parameter &#39; \
-                             &#39;for the geometric distribution.&#39;.format(p)
-    return 1 - (1-p)**(int(x) + 1) if x &gt;= 0 else 0
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">geom_cdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">p</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> is not a valid parameter &#39;</span> \
+                             <span class="s1">&#39;for the geometric distribution.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div>
@@ -1461,25 +1461,25 @@ in questo caso la visualizzazione, fatta scegliendo <span class="math notranslat
 nella versione interattiva degli appunti.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def gr_geom_cdf(p):
-    x = np.arange(-2, 10, .1)
-    y = list(map(lambda _: geom_cdf(_, p), x))
-    plt.step(x, y)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gr_geom_cdf</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">.1</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">_</span><span class="p">:</span> <span class="n">geom_cdf</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">p</span><span class="p">),</span> <span class="n">x</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
-    plt.ylim(ymax=1, ymin=-.1)
-    plt.xlim(xmax=10, xmin = -2)
-    plt.show()
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ymax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=-</span><span class="mf">.1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xmax</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">xmin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-interact(gr_geom_cdf, p=(0.1, 1, 0.1))
-plt.show()
+<span class="n">interact</span><span class="p">(</span><span class="n">gr_geom_cdf</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>Si noti infine che <span class="math notranslate nohighlight">\(\mathrm P(X \geq x) = \mathrm P(X \geq \lfloor x \rfloor) =
 \mathrm P(X &gt; \lfloor x \rfloor - 1) = (1-p)^{\lfloor x \rfloor}\)</span>, e quindi</p>
-<div class="amsmath math notranslate nohighlight" id="equation-482d8044-a33d-4410-a566-ac8b9dba62a7">
-<span class="eqno">(13.6)<a class="headerlink" href="#equation-482d8044-a33d-4410-a566-ac8b9dba62a7" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4abc0ced-ae0d-4760-b6be-64564bf2c099">
+<span class="eqno">(13.6)<a class="headerlink" href="#equation-4abc0ced-ae0d-4760-b6be-64564bf2c099" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm P(X \geq x+y | X \geq x)
             &amp;= \frac{\mathrm  P(X \geq x+y, X \geq x)}{\mathrm  P(X \geq x)} \\
             &amp;= \frac{\mathrm  P(X \geq x+y)}{\mathrm  P(X \geq x)} \\

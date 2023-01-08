@@ -673,7 +673,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="gaussiano.html">
-     14.5. Il modello gaussiano
+     14.5. Il modello normale
     </a>
    </li>
    <li class="toctree-l2">
@@ -995,12 +995,41 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#media-e-varianza">
+   14.3.1. Media e varianza
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quantili">
+   14.3.2. Quantili
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -1012,6 +1041,24 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#media-e-varianza">
+   14.3.1. Media e varianza
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quantili">
+   14.3.2. Quantili
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -1026,8 +1073,8 @@ title="Print to PDF"
 <a class="reference internal" href="dal-discreto-al-continuo.html#sec-dal-discreto-al-continuo"><span class="std std-numref">Sezione 14.1</span></a>. Si verifica facilmente che <span class="math notranslate nohighlight">\(Y\)</span> è una
 variabile aleatoria avente come supporto <span class="math notranslate nohighlight">\(D_Y = [a, b]\)</span>, dunque una variabile
 aleatoria continua. Se si considera poi un generico <span class="math notranslate nohighlight">\(y \in (a, b)\)</span>, si ha</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6596c13c-17c5-423c-9f8b-8943ac1a2902">
-<span class="eqno">(14.9)<a class="headerlink" href="#equation-6596c13c-17c5-423c-9f8b-8943ac1a2902" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6b84982d-d4e5-43a5-afbe-7e09d60cb0e2">
+<span class="eqno">(14.9)<a class="headerlink" href="#equation-6b84982d-d4e5-43a5-afbe-7e09d60cb0e2" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 F_Y(y) &amp;= \mathbb P(Y \leq y) = \mathbb P(a + X (b-a) \leq y) \\
        &amp;= \mathbb P \left( X \leq \frac{y - a}{b - a} \right)
         = \frac{y - a}{b - a} \enspace,
@@ -1061,8 +1108,11 @@ su <span class="math notranslate nohighlight">\([a, b]\)</span> è definita dall
 <div class="math notranslate nohighlight">
 \[F(x) =  \frac{y - a}{b - a} \; \mathrm I_{[a, b]}(x)
           + \mathrm I_{(b + \infty)}(x) \enspace.\]</div>
-<p>Quando una variabile aleatoria segue questa distribuzione, diremo per
-brevità che si tratta di una variabile aleatoria uniform continua.</p>
+<p>Indicheremo il fatto che una variabile aleatoria <span class="math notranslate nohighlight">\(X\)</span> segue una distribuzione
+uniforme continua sull'intervallo <span class="math notranslate nohighlight">\([a, b]\)</span> utilizzando la notazione
+<span class="math notranslate nohighlight">\(X \sim \mathrm U([a, b])\)</span>, con ovvie estensioni per il caso di intervalli
+non chiusi. Per brevità, diremo a volte che <span class="math notranslate nohighlight">\(X\)</span> è una variabile aleatoria
+uniforme continua su <span class="math notranslate nohighlight">\([a, b]\)</span>.</p>
 </section>
 </div><aside class="margin sidebar">
 <p class="sidebar-title"></p>
@@ -1073,35 +1123,36 @@ sono definite su supporti che contengono solo numeri non negativi.</p>
 densità e di ripartizione per la distribuzione uniforme continua su <span class="math notranslate nohighlight">\([-1, 1]\)</span>.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
-import numpy as np
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-from myst_nb import glue
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
 
-def uniform_pdf(a, b, x):
-    return np.where((a &lt;= x) &amp; (x &lt;= b),  1 / (b - a), 0)
+<span class="k">def</span> <span class="nf">uniform_pdf</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">a</span> <span class="o">&lt;=</span> <span class="n">x</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">b</span><span class="p">),</span>  <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
 
-def uniform_cdf(a, b, x):
-    return np.where((a &lt;= x) &amp; (x &lt;= b), (x - a) / (b - a),
-                    np.where(x &lt; a, 0, 1))
+<span class="k">def</span> <span class="nf">uniform_cdf</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">a</span> <span class="o">&lt;=</span> <span class="n">x</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">b</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">),</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 
-fig, ax = plt.subplots(1, 2)
-x = np.linspace(-1.5, 1.5, 150)
-y_pdf = uniform_pdf(-1, 1, x)
-y_cdf = uniform_cdf(-1, 1, x)
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+<span class="n">y_pdf</span> <span class="o">=</span> <span class="n">uniform_pdf</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">y_cdf</span> <span class="o">=</span> <span class="n">uniform_cdf</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
 
-ax[0].hlines([0, 0.5, 0], [-1.5, -1, 1], [-1, 1, 1.5])
-ax[1].plot(x, y_cdf)
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hlines</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_cdf</span><span class="p">)</span>
 
-for a in ax:
-  a.spines.right.set_visible(False)
-  a.spines.top.set_visible(False)
-  a.set_ylim(-0.1, 1.1)
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ax</span><span class="p">:</span>
+  <span class="n">a</span><span class="o">.</span><span class="n">spines</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+  <span class="n">a</span><span class="o">.</span><span class="n">spines</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+  <span class="n">a</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+  <span class="n">a</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
 
-fig.show()
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 
-glue(&quot;uniform-continuous&quot;, fig, display=True)
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;uniform-continuous&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1137,12 +1188,98 @@ intervallo come supporto.</p>
 continue definite su un intervallo in <span class="math notranslate nohighlight">\(\mathbb R\)</span>, indipdententemente dalla
 particolare forma di questo intervallo.</p>
 </section>
-</div><p>Media, varianza e deviazione standard di una generica distribuzione
-uniforme continua si ottengono facilmente a partire dalle definizioni.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c4de1bba-93da-48f1-8223-bedb175fe698">
-<span class="eqno">(14.10)<a class="headerlink" href="#equation-c4de1bba-93da-48f1-8223-bedb175fe698" title="Permalink a questa equazione">#</a></span>\[\begin{align}
-\mathbb E(X)
-\end{align}\]</div>
+</div><section id="media-e-varianza">
+<h2><span class="section-number">14.3.1. </span>Media e varianza<a class="headerlink" href="#media-e-varianza" title="Link a questa intestazione">#</a></h2>
+<p>Media, varianza e deviazione standard di una generica distribuzione
+uniforme continua si ottengono facilmente a partire dalle definizioni
+corrispondenti.</p>
+<div class="proof lemma admonition" id="lemma-2">
+<p class="admonition-title"><span class="caption-number">Lemma 14.2 </span></p>
+<section class="lemma-content" id="proof-content">
+<p>Dati <span class="math notranslate nohighlight">\(a, b \in \mathbb R\)</span> con <span class="math notranslate nohighlight">\(a &lt; b\)</span>, sia <span class="math notranslate nohighlight">\(X \sim \mathrm U([a, b])\)</span>. Si ha</p>
+<div class="math notranslate nohighlight" id="equation-eq-uniform-continuous">
+<span class="eqno">(14.10)<a class="headerlink" href="#equation-eq-uniform-continuous" title="Permalink a questa equazione">#</a></span>\[\mathbb E(X) = \frac{a + b}{2}
+\quad \text{e} \quad
+\mathrm{Var}(X) = \frac{(b - a)^2}{12} \enspace.\]</div>
+<div class="proof admonition" id="proof">
+<p>Dimostrazione. Il valore atteso si calcola sfruttando il prodotto notevole legato alla
+differenza di quadrati:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\mathbb E(X) &amp;= \int_{-\infty}^{+\infty} x f_X(x; a, b) \;\mathrm d x
+              = \int_a^b \frac{x}{b - a} \;\mathrm d x \\
+             &amp;= \frac{1}{b-a} \frac{x^2}{2} \bigg|_a^b
+              = \frac{b^2 - a^2}{2(b - a)} = \frac{a + b}{2} \enspace.
+\end{align*}\]</div>
+<p>Analogamente, la formula relativa alla differenza di cubi permette di
+calcolare <span class="math notranslate nohighlight">\(\mathbb E(X^2)\)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\mathbb E(X^2) &amp;= \int_{-\infty}^{+\infty} x^2 f_X(x; a, b) \;\mathrm d x
+              = \int_a^b \frac{x^2}{b - a} \;\mathrm d x \\
+             &amp;= \frac{1}{b-a} \frac{x^3}{3} \bigg|_a^b
+              = \frac{b^3 - a^3}{3(b - a)}
+              = \frac{b^2 + a b + a^2}{3} \enspace,
+\end{align*}\]</div>
+<p>così che <span class="math notranslate nohighlight">\(\mathrm{Var}(X) = \frac{b^2 + a b + a^2}{3} -
+                            \frac{b^2 - 2 a b + a^2}{4}
+                          = \frac{b^2 - a^2}{12}\)</span>.</p>
+</div>
+</section>
+</div><p>Si può notare che considerando <span class="math notranslate nohighlight">\(X \sim \mathrm U([0, 1])\)</span> e
+<span class="math notranslate nohighlight">\(Y \coloneq a + (b - a) X \sim \mathrm U([a, b])\)</span>, come indicato all'inizio di
+questo paragrafo, le proprietà di valore atteso e varianza permettono di
+ottenere in modo alternativo gli stessi risultati partendo da quanto ottenuto
+nel <a class="reference internal" href="dal-discreto-al-continuo.html#sec-dal-discreto-al-continuo"><span class="std std-numref">Sezione 14.1</span></a> per la distribuzione uniforme
+continua in <span class="math notranslate nohighlight">\([0, 1]\)</span>: precisamente, <span class="math notranslate nohighlight">\(\mathbb E(Y) = a + (b - a) \mathbb E(X)
+= a + \frac{b - a}{2} =  \frac{a + b}{2}\)</span> e <span class="math notranslate nohighlight">\(\mathrm{Var}(Y) = (b - a)^2
+\mathrm{Var}(X) = \frac{(b - a)^2)}{12}\)</span>. Inoltre sostituendo <span class="math notranslate nohighlight">\(a=0\)</span> e <span class="math notranslate nohighlight">\(b=1\)</span>
+in <a class="reference internal" href="#equation-eq-uniform-continuous">(14.10)</a> si ottengono la media e la varianza della
+distribuzione uniforme continua in <span class="math notranslate nohighlight">\([0, 1]\)</span>.</p>
+</section>
+<section id="quantili">
+<h2><span class="section-number">14.3.2. </span>Quantili<a class="headerlink" href="#quantili" title="Link a questa intestazione">#</a></h2>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Per non complicare la trattazione, ho fatto qui riferimento a intervalli
+chiusi, ma il ragionamento descritto vale per qualsiasi tipo di intervalli.</p>
+</aside>
+<p>Tenuto conto del fatto che la densità di una distribuzione uniforme
+continua è costante su un intervallo <span class="math notranslate nohighlight">\(I = [a, b]\)</span> e nulla altrove,
+intuitivamente il relativo quantile di livello <span class="math notranslate nohighlight">\(q \in [0, 1]\)</span> sarà il punto di
+<span class="math notranslate nohighlight">\(I\)</span> caratterizzato dalle seguenti proprietà:</p>
+<ul class="simple">
+<li><p>la sua distanza da <span class="math notranslate nohighlight">\(a\)</span> cresce linearmente rispetto a <span class="math notranslate nohighlight">\(q\)</span>,</p></li>
+<li><p>la sua distanza da <span class="math notranslate nohighlight">\(b\)</span> cresce linearmente rispetto a <span class="math notranslate nohighlight">\(1-q\)</span>.</p></li>
+</ul>
+<p>Più formalmente, <span class="math notranslate nohighlight">\(x_q\)</span> sarà uguale alla <em>combinazione lineare convessa</em> di
+<span class="math notranslate nohighlight">\(a\)</span> e <span class="math notranslate nohighlight">\(b\)</span> che ha <span class="math notranslate nohighlight">\(q\)</span> come coefficiente:</p>
+<div class="math notranslate nohighlight">
+\[x_q = a + q (b - a) \enspace,\]</div>
+<p>come dimostrato qui di seguito.</p>
+<div class="proof lemma admonition" id="lemma-3">
+<p class="admonition-title"><span class="caption-number">Lemma 14.3 </span></p>
+<section class="lemma-content" id="proof-content">
+<p>Dati <span class="math notranslate nohighlight">\(a, b \in \mathbb R\)</span> con <span class="math notranslate nohighlight">\(a &lt; b\)</span>, una variabile aleatoria
+<span class="math notranslate nohighlight">\(X \sim \mathrm U([a, b])\)</span> e <span class="math notranslate nohighlight">\(q \in [0, 1]\)</span>, il quantile di livello <span class="math notranslate nohighlight">\(q\)</span> di
+<span class="math notranslate nohighlight">\(X\)</span> è $x_q = a + q (b - a).</p>
+<div class="proof admonition" id="proof">
+<p>Dimostrazione. La tesi è banale quando <span class="math notranslate nohighlight">\(q=0\)</span> perché in questo caso il quantile è la più
+piccola specificazione di <span class="math notranslate nohighlight">\(X\)</span> e dunque <span class="math notranslate nohighlight">\(x_0 = a = a + 0 (b - a)\)</span>. Un
+ragionamento analogo vale nel caso <span class="math notranslate nohighlight">\(q =1 \)</span>. Concentriamoci dunque sul caso
+<span class="math notranslate nohighlight">\(q \in (0, 1)\)</span> e consideraimo l'equazione <span class="math notranslate nohighlight">\(F_X(x_q) = q\)</span>, che definisce il
+quantile cercato e che equivale a</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{x - a}{b - a} = q \enspace.
+\end{equation*}\]</div>
+<p>La sua soluzione è <span class="math notranslate nohighlight">\(x_q = a + q (b - a)\)</span>.</p>
+</div>
+</section>
+</div><p>Pertanto la mediana di una variabile aleatoria uniforme continua coincide
+con la sua media, cosa peraltro implicata dal fatto che la sua densità di
+probabilità è simmetrica rispetto a <span class="math notranslate nohighlight">\(\mathbb E(X)\)</span>.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">

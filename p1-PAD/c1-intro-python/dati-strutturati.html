@@ -671,7 +671,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/gaussiano.html">
-     14.5. Il modello gaussiano
+     14.5. Il modello normale
     </a>
    </li>
    <li class="toctree-l2">
@@ -1144,18 +1144,18 @@ permette per esempio di usare una lista per aggregare le informazioni che
 descrivono un supereroe:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>iron_man = [&#39;Iron Man&#39;,
-            &#39;Tony Stark&#39;,
-            &#39;Long Island, New York&#39;,
-            &#39;Marvel Comics&#39;,
-            198.51,
-            191.85,
-            &#39;M&#39;,
-            1963,
-            &#39;Blue&#39;,
-            &#39;Black&#39;,
-            85,
-           &#39;high&#39;]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iron_man</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Iron Man&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Tony Stark&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Long Island, New York&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Marvel Comics&#39;</span><span class="p">,</span>
+            <span class="mf">198.51</span><span class="p">,</span>
+            <span class="mf">191.85</span><span class="p">,</span>
+            <span class="s1">&#39;M&#39;</span><span class="p">,</span>
+            <span class="mi">1963</span><span class="p">,</span>
+            <span class="s1">&#39;Blue&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Black&#39;</span><span class="p">,</span>
+            <span class="mi">85</span><span class="p">,</span>
+           <span class="s1">&#39;high&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1177,7 +1177,7 @@ una coppia di parentesi quadre contenente la posizione dell'elemento,
 conteggiata a partire da <code class="docutils literal notranslate"><span class="pre">0</span></code>, pertanto</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>iron_man[1]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iron_man</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1194,7 +1194,7 @@ identifica l'ultimo elemento della lista, la posizione <code class="docutils lit
 penultimo e così via:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>iron_man[-2]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iron_man</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1211,7 +1211,7 @@ primo elemento da inserire, seguita da un carattere di due punti e dalla
 posizione del primo elemento da escludere. Pertanto</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>iron_man[4:6]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iron_man</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1228,7 +1228,7 @@ zero). Il riferimento a un <em>list slicing</em> si può fare anche utilizzando 
 negativi (o mescolando indici positivi e negativi):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>iron_man[-4:-2]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iron_man</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1266,11 +1266,11 @@ memorizzando dunque una successione di valori dello stesso tipo, per esempio i
 nomi di alcuni supereroi:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>names = [&#39;Aquaman&#39;, &#39;Ant-Man&#39;, &#39;Batman&#39;, &#39;Black Widow&#39;,
-         &#39;Captain America&#39;, &#39;Daredavil&#39;, &#39;Elektra&#39;, &#39;Flash&#39;,
-         &#39;Green Arrow&#39;, &#39;Human Torch&#39;, &#39;Hancock&#39;, &#39;Iron Man&#39;,
-         &#39;Mystique&#39;, &#39;Professor X&#39;, &#39;Rogue&#39;, &#39;Superman&#39;,
-         &#39;Spider-Man&#39;, &#39;Thor&#39;, &#39;Northstar&#39;]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Aquaman&#39;</span><span class="p">,</span> <span class="s1">&#39;Ant-Man&#39;</span><span class="p">,</span> <span class="s1">&#39;Batman&#39;</span><span class="p">,</span> <span class="s1">&#39;Black Widow&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;Captain America&#39;</span><span class="p">,</span> <span class="s1">&#39;Daredavil&#39;</span><span class="p">,</span> <span class="s1">&#39;Elektra&#39;</span><span class="p">,</span> <span class="s1">&#39;Flash&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;Green Arrow&#39;</span><span class="p">,</span> <span class="s1">&#39;Human Torch&#39;</span><span class="p">,</span> <span class="s1">&#39;Hancock&#39;</span><span class="p">,</span> <span class="s1">&#39;Iron Man&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;Mystique&#39;</span><span class="p">,</span> <span class="s1">&#39;Professor X&#39;</span><span class="p">,</span> <span class="s1">&#39;Rogue&#39;</span><span class="p">,</span> <span class="s1">&#39;Superman&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;Spider-Man&#39;</span><span class="p">,</span> <span class="s1">&#39;Thor&#39;</span><span class="p">,</span> <span class="s1">&#39;Northstar&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1290,7 +1290,7 @@ nomi di alcuni supereroi:</p>
 Il primo implementa essenzialmente la relazione di appartenenza: se <code class="docutils literal notranslate"><span class="pre">e</span></code> è un'espressione e <code class="docutils literal notranslate"><span class="pre">l</span></code> una lista, l'espressione <code class="docutils literal notranslate"><span class="pre">e</span> <span class="pre">in</span> <span class="pre">l</span></code> viene valutata come logicamente vera se il valore dell'espressione occorre in una posizione qualsiasi della lista, e come logicamente falsa altrimenti:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&#39;Thing&#39; in names
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Thing&#39;</span> <span class="ow">in</span> <span class="n">names</span>
 </pre></div>
 </div>
 </div>
@@ -1302,7 +1302,7 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&#39;Human Torch&#39; in names
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Human Torch&#39;</span> <span class="ow">in</span> <span class="n">names</span>
 </pre></div>
 </div>
 </div>
@@ -1315,7 +1315,7 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 <p>L'operatore <code class="docutils literal notranslate"><span class="pre">del</span></code> permette invece di eliminare un elemento da una lista, indicandone la relativa posizione: per esempio, eseguendo la cella seguente viene cancellata la stringa contenuta nella prima posizione di <code class="docutils literal notranslate"><span class="pre">names</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>del names[0]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1323,7 +1323,7 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 <p>Va sottolineato che <code class="docutils literal notranslate"><span class="pre">del</span></code> è un operatore dal comportamento quantomeno particolare, in quanto esso non restituisce alcun valore; la sua esecuzione ha però l'<em>effetto collaterale</em> di eliminare l'elemento nella posizione specificata della lista usata come operando <a class="footnote-reference brackets" href="#data-model" id="id1">1</a>. Come conseguenza di questo effetto collaterale, nell'esempio precedente viene eliminato il primo elemento della lista, così che quello che prima era il secondo elemento diventa ora il primo, e così via, come si può facilmente verificare:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>names[0]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1341,7 +1341,7 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 <p>Alcune delle funzioni nel linguaggio base di Python sono pensate per elaborare liste. Per esempio <code class="docutils literal notranslate"><span class="pre">len</span></code> restituisce la <em>lunghezza</em> della lista specificata come argomento, dove per lunghezza si intende il numero di elementi contenuti nella lista:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>len(names)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1356,7 +1356,7 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 <p>Python è un linguaggio di programmazione che implementa (anche) il paradigma orientato a oggetti, e come abbiamo già visto le liste (così come gli altri tipi di dati) sono a tutti gli effetti oggetti, e quindi su di esse è possibile invocare dei metodi. Supponiamo per esempio di voler mettere in ordine alfabetico i nomi dei supereroi contenuti in <code class="docutils literal notranslate"><span class="pre">names</span></code> (la lista è quasi in ordine, l'unico elemento fuori posto è l'ultimo): uno dei modi in cui è possibile eseguire questa operazione è quella di invocare sulla lista il metodo <code class="docutils literal notranslate"><span class="pre">sort</span></code> (usando la <em>dot notation tipica</em> della programmazione orientata agli oggetti).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>names.sort()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1364,7 +1364,7 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 <p>Così come l'operatore <code class="docutils literal notranslate"><span class="pre">del</span></code>, questo metodo non restituisce alcun valore, in quanto l'ordinamento è eseguito <em>in place</em> <a class="footnote-reference brackets" href="#sorted" id="id2">2</a>: l'invocazione di <code class="docutils literal notranslate"><span class="pre">sort</span></code> ha come effetto collaterale il riposizionamento degli elementi all'interno della lista in modo da riflettere l'ordinamento <a class="footnote-reference brackets" href="#ordinamento-eterogeneo" id="id3">3</a>. Possiamo convincercene facilmente visualizzando per esempio gli ultimi cinque elementi di <code class="docutils literal notranslate"><span class="pre">names</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>names[-5:]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span>
 </pre></div>
 </div>
 </div>
@@ -1377,7 +1377,7 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 <p>In Python è possibile specificare valori per argomenti <em>opzionali</em> quando si invoca un metodo (o una funzione): si tratta di argomenti identificati da un nome, che <em>possono</em> essere omessi, e in tal caso assumono un valore predefinito <a class="footnote-reference brackets" href="#argomenti-opzionali" id="id4">4</a>. Per poter specificare un valore diverso da quello predefinito è necessario indicare, dopo <em>tutti</em> gli eventuali argomenti non opzionali, un'espressione del tipo <code class="docutils literal notranslate"><span class="pre">&lt;nome&gt;=&lt;valore&gt;</span></code>, dove <code class="docutils literal notranslate"><span class="pre">&lt;nome&gt;</span></code> indica il nome dell'argomento opzionale in questione e <code class="docutils literal notranslate"><span class="pre">&lt;valore&gt;</span></code> è il relativo valore. Per esempio, il metodo <code class="docutils literal notranslate"><span class="pre">sort</span></code> effettua l'ordinamento in verso non decrescente, e l'argomento opzionale <code class="docutils literal notranslate"><span class="pre">reversed</span></code> permette di invertire tale verso:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>names.sort(reverse=True)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1385,7 +1385,7 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 <p>Un'altra caratteristica di python è quella di poter specificare una funzione come argomento di un metodo (o di un'altra funzione) <a class="footnote-reference brackets" href="#first-class" id="id5">5</a>; ciò si può fare indicando il nome della funzione, oppure usando una <em>funzione anonima</em> (vedi <a class="reference internal" href="funzioni.html#funzioni-anonime"><span class="std std-numref">Paragrafo 2.4.2</span></a>). Consideriamo ad esempio l'argomento opzionale <code class="docutils literal notranslate"><span class="pre">key</span></code> del metodo <code class="docutils literal notranslate"><span class="pre">sort</span></code>: esso permette di indicare un criterio alternativo per eseguire l'ordinamento, specificando come valore una funzione che trasforma gli elementi della lista in quantità numeriche su cui basare l'ordinamento (nel senso che elementi trasformati in numeri più bassi compariranno prima nella lista ordinata rispetto ad altri elementi trasformati in numeri più alti). Dunque è necessario fornire come valore di questo argomento opzionale il nome di una funzione che trasforma stringhe in numeri. Possiamo quindi utilizzare la funzione <code class="docutils literal notranslate"><span class="pre">len</span></code> precedentemente introdotta:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>names.sort(key=len)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1399,7 +1399,7 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 <p>In parole povere, abbiamo ordinato i nomi dal più breve al più lungo, come si può facilmente verificare:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>names
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span>
 </pre></div>
 </div>
 </div>
@@ -1429,7 +1429,7 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 <p>Nel caso in cui si volessero specificare due o più argomenti opzionali all'atto dell'invocazione di un metodo, basta separarli usando le virgole esattamente come si procede per gli argomenti non opzionali. Per esempio</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>names.sort(key=lambda n:len(n), reverse=True)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1445,18 +1445,18 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 <p>Una tupla è in tutto e per tutto una lista immutabile, nel senso che una volta che essa è stata creata non è possibile modificare i suoi contenuti. Un letterale di tipo tupla viene indicato con una sintassi analoga a quella per le liste, con l'unica differenza che i suoi contenuti sono delimitati da parentesi tonde.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>rogue = (&#39;Rogue&#39;,
-         &#39;Anna Marie&#39;,
-         &#39;Caldecott County, Mississippi&#39;,
-         &#39;Marvel Comics&#39;,
-         173.1,
-         54.39,
-         &#39;F&#39;,
-         1981,
-         &#39;Green&#39;,
-         &#39;Brown / White&#39;,
-         10,
-        &#39;good&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rogue</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Rogue&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;Anna Marie&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;Caldecott County, Mississippi&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;Marvel Comics&#39;</span><span class="p">,</span>
+         <span class="mf">173.1</span><span class="p">,</span>
+         <span class="mf">54.39</span><span class="p">,</span>
+         <span class="s1">&#39;F&#39;</span><span class="p">,</span>
+         <span class="mi">1981</span><span class="p">,</span>
+         <span class="s1">&#39;Green&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;Brown / White&#39;</span><span class="p">,</span>
+         <span class="mi">10</span><span class="p">,</span>
+        <span class="s1">&#39;good&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1464,10 +1464,10 @@ Il primo implementa essenzialmente la relazione di appartenenza: se <code class=
 <p>L'accesso a un elemento di una tupla viene fatto in modo posizionale usando la medesima sintassi introdotta per le liste, e anche in questo caso è possibile estrarre delle sotto-tuple utilizzando degli <em>slicing</em>. Quando però si tenta di modificare un elemento contenuto in una tupla, l'esecuzione verrà bloccata emettendo un errore:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>try:
-    rogue[-2] = 70
-except TypeError:
-    print(&#39;Non si possono modificare gli elementi di una tupla&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">rogue</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">70</span>
+<span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Non si possono modificare gli elementi di una tupla&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1481,7 +1481,7 @@ except TypeError:
 <p>A seguito di questo errore, la tupla manterrà i suoi valori originali, restando quindi effettivamente invariata:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>rogue
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rogue</span>
 </pre></div>
 </div>
 </div>
@@ -1510,8 +1510,8 @@ except TypeError:
 <p>Da un punto di vista strettamente funzionale, le stringhe sono assimilabili in Python a delle tuple di caratteri specializzate. Su di esse è infatti possibile eseguire tutte le operazioni che si eseguono sulle tuple, per esempio estraendo un carattere o una sottostringa rispettivamente attraverso l'accesso posizionale o il <em>list slicing:</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>name = rogue[1]
-name[3]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="n">rogue</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">name</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1524,10 +1524,10 @@ name[3]
 <p>Si verifica facilmente come l'analogia sia da fare rispetto a tuple e non a liste, in quanto i contenuti di una stringa non sono modificabili:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>try:
-    name[3] = &#39;A&#39;
-except TypeError:
-    print(&#39;Non si possono modificare i contenuti di una stringa&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;A&#39;</span>
+<span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Non si possono modificare i contenuti di una stringa&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1549,18 +1549,18 @@ except TypeError:
 <p>Un letterale di tipo dizionario viene descritto indicando ogni coppia separando chiave e valore con il carattere di due punti, separando le coppie con delle virgole e racchiudendo l'intero letterale tra parentesi graffe. Possiamo per esempio usare un dizionario per rappresentare un <em>record</em> in modo più elegante rispetto a quanto fatto nel <a class="reference internal" href="#liste"><span class="std std-numref">Paragrafo 2.2.1</span></a> utilizzando le liste:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>rogue = {&#39;name&#39;: &#39;Rogue&#39;,
-         &#39;identity&#39;: &#39;Anna Marie&#39;,
-         &#39;birth_place&#39;: &#39;Caldecott County, Mississippi&#39;,
-         &#39;publisher&#39;: &#39;Marvel Comics&#39;,
-         &#39;height&#39;: 173.1,
-         &#39;weight&#39;: 54.39,
-         &#39;gender&#39;: &#39;F&#39;,
-         &#39;first_appearance&#39;: 1981,
-         &#39;eye_color&#39;: &#39;Green&#39;,
-         &#39;hair_color&#39;: &#39;Brown / White&#39;,
-         &#39;strength&#39;: 10,
-         &#39;intelligence&#39;: &#39;good&#39;}
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rogue</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Rogue&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;identity&#39;</span><span class="p">:</span> <span class="s1">&#39;Anna Marie&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;birth_place&#39;</span><span class="p">:</span> <span class="s1">&#39;Caldecott County, Mississippi&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;publisher&#39;</span><span class="p">:</span> <span class="s1">&#39;Marvel Comics&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mf">173.1</span><span class="p">,</span>
+         <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="mf">54.39</span><span class="p">,</span>
+         <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;first_appearance&#39;</span><span class="p">:</span> <span class="mi">1981</span><span class="p">,</span>
+         <span class="s1">&#39;eye_color&#39;</span><span class="p">:</span> <span class="s1">&#39;Green&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;hair_color&#39;</span><span class="p">:</span> <span class="s1">&#39;Brown / White&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;strength&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+         <span class="s1">&#39;intelligence&#39;</span><span class="p">:</span> <span class="s1">&#39;good&#39;</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -1568,7 +1568,7 @@ except TypeError:
 <p>L'accesso, in lettura o scrittura, agli elementi di un dizionario viene fatto con una notazione che ricorda quella di liste e tuple: si specifica all'interno di parentesi quadre la chiave per ottenere o modificare il valore corrispondente:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>rogue[&#39;identity&#39;]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rogue</span><span class="p">[</span><span class="s1">&#39;identity&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>

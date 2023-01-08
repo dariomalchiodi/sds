@@ -673,7 +673,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../p3-CP/c6-modelli-continui/gaussiano.html">
-     14.5. Il modello gaussiano
+     14.5. Il modello normale
     </a>
    </li>
    <li class="toctree-l2">
@@ -1111,14 +1111,14 @@ calcolare facilmente i principali indici di dispersione. Importiamo, come al
 solito, il nostro dataset e impostiamo lo stile per i grafici.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-from scipy.constants import golden
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.constants</span> <span class="kn">import</span> <span class="n">golden</span>
 
-plt.style.use(&#39;sds.mplstyle&#39;)
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;sds.mplstyle&#39;</span><span class="p">)</span>
 
-heroes = pd.read_csv(&#39;data/heroes.csv&#39;, sep=&#39;;&#39;, index_col=0)
+<span class="n">heroes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/heroes.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1130,8 +1130,8 @@ su quest'ultimo degli appositi metodi. In particolare:</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>year = heroes[&#39;First appearance&#39;]
-year.var()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;First appearance&#39;</span><span class="p">]</span>
+<span class="n">year</span><span class="o">.</span><span class="n">var</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1146,7 +1146,7 @@ year.var()
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>year.std()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1165,7 +1165,7 @@ tipo serie;</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>year.describe()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1189,7 +1189,7 @@ come argomento.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>year.quantile(.15)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">.15</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1224,8 +1224,8 @@ raggiungere il minimo e il massimo valore osservato.</p></li>
 all'anno di prima apparizione.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>year.plot.box(whis=20)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">whis</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1249,8 +1249,8 @@ plot, in cui le osservazioni vengono preliminarmente analizzate in modo da
 evidenziare eventuali <em>outlier</em> marcandoli con dei cerchi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>year.plot.box()
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">box</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1266,8 +1266,8 @@ sull'asse delle ascisse. In questo caso i valori per i quartili si leggeranno
 ovviamente in corrispondenza di segmenti paralleli alle altezze della scatola.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>year.plot.box(vert=False)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">vert</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1295,21 +1295,21 @@ valori compresi tra 150 e 200 centimetri), i corrispondenti quantili di
 livello <span class="math notranslate nohighlight">\(0.2\)</span> assumeranno i seguenti valori.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>marvel = heroes.loc[(heroes[&#39;Publisher&#39;]==&#39;Marvel Comics&#39;) &amp; \
-                    (heroes[&#39;Height&#39;].between(150, 200))]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">marvel</span> <span class="o">=</span> <span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Marvel Comics&#39;</span><span class="p">)</span> <span class="o">&amp;</span> \
+                    <span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">200</span><span class="p">))]</span>
 
-dc = heroes.loc[(heroes[&#39;Publisher&#39;]==&#39;DC Comics&#39;) &amp; \
-                (heroes[&#39;Height&#39;].between(150, 200))]
+<span class="n">dc</span> <span class="o">=</span> <span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Publisher&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;DC Comics&#39;</span><span class="p">)</span> <span class="o">&amp;</span> \
+                <span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">200</span><span class="p">))]</span>
 
-marvel_sample = marvel[&#39;Height&#39;].sample(120)
-dc_sample = dc[&#39;Height&#39;].sample(120)
+<span class="n">marvel_sample</span> <span class="o">=</span> <span class="n">marvel</span><span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
+<span class="n">dc_sample</span> <span class="o">=</span> <span class="n">dc</span><span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
 
-(marvel_sample.quantile(.2), dc_sample.quantile(.2))
+<span class="p">(</span><span class="n">marvel_sample</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">.2</span><span class="p">),</span> <span class="n">dc_sample</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">.2</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(173.474, 170.352)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(170.808, 170.316)
 </pre></div>
 </div>
 </div>
@@ -1320,11 +1320,11 @@ i livelli in una discretizzazione che copra ragionevolmente l'intervallo
 quantili campionari che si riferiscono a uno stesso livello.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>levels = np.linspace(0, 1, 100)
-plt.plot(marvel_sample.quantile(levels),
-         dc_sample.quantile(levels),
-         &#39;o&#39;)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">levels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">marvel_sample</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">levels</span><span class="p">),</span>
+         <span class="n">dc_sample</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">levels</span><span class="p">),</span>
+         <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1338,12 +1338,12 @@ bisettrice del primo e del terzo quadrante. Possiamo evidenziare tale fatto
 sovrapponendo al diagramma il grafico della retta.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.plot([min(dc_sample), max(dc_sample)],
-         [min(dc_sample), max(dc_sample)])
-plt.plot(dc_sample.quantile(levels),
-         marvel_sample.quantile(levels),
-         &#39;o&#39;)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="nb">min</span><span class="p">(</span><span class="n">dc_sample</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">dc_sample</span><span class="p">)],</span>
+         <span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="n">dc_sample</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">dc_sample</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dc_sample</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">levels</span><span class="p">),</span>
+         <span class="n">marvel_sample</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">levels</span><span class="p">),</span>
+         <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1358,10 +1358,10 @@ l'argomento opzionale <code class="docutils literal notranslate"><span class="pr
 il riferimento della bisettrice.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import statsmodels.api as sm
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
 
-sm.qqplot_2samples(marvel_sample, dc_sample, line=&#39;45&#39;)
-plt.show()
+<span class="n">sm</span><span class="o">.</span><span class="n">qqplot_2samples</span><span class="p">(</span><span class="n">marvel_sample</span><span class="p">,</span> <span class="n">dc_sample</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;45&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1384,16 +1384,16 @@ vicino alla bisettrice. È questo il caso della distribuzione del peso tra
 supereroine e supereroi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>female = heroes.loc[(heroes[&#39;Gender&#39;]==&#39;F&#39;) &amp; \
-                    (heroes[&#39;Weight&#39;].between(50, 100))]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">female</span> <span class="o">=</span> <span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;F&#39;</span><span class="p">)</span> <span class="o">&amp;</span> \
+                    <span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">))]</span>
 
-male = heroes.loc[(heroes[&#39;Gender&#39;]==&#39;M&#39;) &amp; \
-                (heroes[&#39;Weight&#39;].between(50, 100))]
+<span class="n">male</span> <span class="o">=</span> <span class="n">heroes</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;M&#39;</span><span class="p">)</span> <span class="o">&amp;</span> \
+                <span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">))]</span>
 
-female_sample = female[&#39;Weight&#39;].sample(100)
-male_sample = male[&#39;Weight&#39;].sample(100)
-sm.qqplot_2samples(female_sample, male_sample, line=&#39;45&#39;)
-plt.show()
+<span class="n">female_sample</span> <span class="o">=</span> <span class="n">female</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">male_sample</span> <span class="o">=</span> <span class="n">male</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">sm</span><span class="o">.</span><span class="n">qqplot_2samples</span><span class="p">(</span><span class="n">female_sample</span><span class="p">,</span> <span class="n">male_sample</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;45&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1408,11 +1408,11 @@ grafico ottenuto in prossimità dell'origine. In tal modo diventa più facile
 accorgersi di eventuali valori fuori scala.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sm.qqplot_2samples((marvel_sample-marvel_sample.mean())/marvel_sample.std(),
-                   (dc_sample-dc_sample.mean())/dc_sample.std(),
-                   line=&#39;s&#39;,
-                   xlabel=&#39;DC&#39;, ylabel=&#39;Marvel&#39;)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sm</span><span class="o">.</span><span class="n">qqplot_2samples</span><span class="p">((</span><span class="n">marvel_sample</span><span class="o">-</span><span class="n">marvel_sample</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">/</span><span class="n">marvel_sample</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span>
+                   <span class="p">(</span><span class="n">dc_sample</span><span class="o">-</span><span class="n">dc_sample</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">/</span><span class="n">dc_sample</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span>
+                   <span class="n">line</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span>
+                   <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;DC&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Marvel&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1422,11 +1422,11 @@ plt.show()
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sm.qqplot_2samples((female_sample-female_sample.mean())/female_sample.std(),
-                   (male_sample-male_sample.mean())/male_sample.std(),
-                   line=&#39;45&#39;,
-                   xlabel=&#39;Male&#39;, ylabel=&#39;Female&#39;)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sm</span><span class="o">.</span><span class="n">qqplot_2samples</span><span class="p">((</span><span class="n">female_sample</span><span class="o">-</span><span class="n">female_sample</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">/</span><span class="n">female_sample</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span>
+                   <span class="p">(</span><span class="n">male_sample</span><span class="o">-</span><span class="n">male_sample</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">/</span><span class="n">male_sample</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span>
+                   <span class="n">line</span><span class="o">=</span><span class="s1">&#39;45&#39;</span><span class="p">,</span>
+                   <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Male&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Female&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1450,16 +1450,16 @@ plot i baffi hanno all'incirca la stessa lunghezza, così come la mediana si
 posiziona verso il centro della scatola.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from scipy.stats import norm
-sample = pd.Series(norm.rvs(24, 2, size=1000), name=&#39;&#39;)
-f, (h, b) = plt.subplots(2, 1, gridspec_kw = {&#39;height_ratios&#39;:[4, 3]})
-f.set_figheight(6)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">gridspec_kw</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;height_ratios&#39;</span><span class="p">:[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
+<span class="n">f</span><span class="o">.</span><span class="n">set_figheight</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
 
-h.yaxis.label.set_visible(False)
+<span class="n">h</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
-sample.plot.hist(bins=20, ax=h)
-sample.plot.box(vert=False, whis=20, ax=b, widths=.4, label=None)
-plt.show()
+<span class="n">sample</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">h</span><span class="p">)</span>
+<span class="n">sample</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">vert</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">whis</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">widths</span><span class="o">=</span><span class="mf">.4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1480,16 +1480,16 @@ questo caso si parla quindi di distribuzione asimmetrica a destra
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from scipy.stats import gamma
-sample = pd.Series(gamma.rvs(2, size=1000), name=&#39;&#39;)
-f, (h, b) = plt.subplots(2, 1, gridspec_kw = {&#39;height_ratios&#39;:[4, 3]})
-f.set_figheight(6)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">gamma</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">gamma</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">gridspec_kw</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;height_ratios&#39;</span><span class="p">:[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
+<span class="n">f</span><span class="o">.</span><span class="n">set_figheight</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
 
-h.yaxis.label.set_visible(False)
+<span class="n">h</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
-sample.plot.hist(bins=20, ax=h)
-sample.plot.box(vert=False, whis=20, ax=b, widths=.4)
-plt.show()
+<span class="n">sample</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">h</span><span class="p">)</span>
+<span class="n">sample</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">vert</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">whis</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">widths</span><span class="o">=</span><span class="mf">.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1504,16 +1504,16 @@ sinistra.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from scipy.stats import beta
-sample = pd.Series(beta.rvs(20, 2, size=1000), name=&#39;&#39;)
-f, (h, b) = plt.subplots(2, 1, gridspec_kw = {&#39;height_ratios&#39;:[4, 3]})
-f.set_figheight(6)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">beta</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">beta</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">gridspec_kw</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;height_ratios&#39;</span><span class="p">:[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
+<span class="n">f</span><span class="o">.</span><span class="n">set_figheight</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
 
-h.yaxis.label.set_visible(False)
+<span class="n">h</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
-sample.plot.hist(bins=20, ax=h)
-sample.plot.box(vert=False, whis=20, ax=b, widths=.4)
-plt.show()
+<span class="n">sample</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">h</span><span class="p">)</span>
+<span class="n">sample</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">vert</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">whis</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">widths</span><span class="o">=</span><span class="mf">.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1526,19 +1526,19 @@ relativo valore è inferiore a <span class="math notranslate nohighlight">\(100\
 corrispondenti istogramma e box plot.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sample = heroes[&#39;Weight&#39;] / (heroes[&#39;Height&#39;]/100) **2
-sample = sample[sample &lt; 100]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">]</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span> <span class="o">**</span><span class="mi">2</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="n">sample</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">]</span>
 
-sample.name = &#39;BMI&#39;
+<span class="n">sample</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;BMI&#39;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sample.plot.hist(bins=20)
-plt.ylabel(&#39;&#39;)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1548,8 +1548,8 @@ plt.show()
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sample.plot.box(vert=False, whis=200, widths=.4)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">vert</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">whis</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">widths</span><span class="o">=</span><span class="mf">.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1563,10 +1563,10 @@ valore è compreso tra <span class="math notranslate nohighlight">\(150\)</span>
 approssimativamente simmetrica.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sample = heroes[(heroes[&#39;Height&#39;].between(150, 220))][&#39;Height&#39;]
-sample.plot.hist(bins=20)
-plt.ylabel(&#39;&#39;)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample</span> <span class="o">=</span> <span class="n">heroes</span><span class="p">[(</span><span class="n">heroes</span><span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">220</span><span class="p">))][</span><span class="s1">&#39;Height&#39;</span><span class="p">]</span>
+<span class="n">sample</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1576,8 +1576,8 @@ plt.show()
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sample.plot.box(vert=False, whis=20, widths=.4)
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">vert</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">whis</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">widths</span><span class="o">=</span><span class="mf">.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1603,12 +1603,12 @@ andamento a campana, possiamo controllare numericamente se questa regola
 empirica risulti verificata.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def check_empirical_rule(n):
-    within = len(sample[np.abs(sample - sample.mean()) &lt; n*sample.std()])
-    return  within / len(sample)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">check_empirical_rule</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">within</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sample</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">sample</span> <span class="o">-</span> <span class="n">sample</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">*</span><span class="n">sample</span><span class="o">.</span><span class="n">std</span><span class="p">()])</span>
+    <span class="k">return</span>  <span class="n">within</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
 
-pd.DataFrame([check_empirical_rule(n) for n in range(1, 4)], columns=[&#39;%&#39;],
-             index=range(1, 4))
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">check_empirical_rule</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;%&#39;</span><span class="p">],</span>
+             <span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1672,14 +1672,14 @@ spiegazione, consiste nell'utilizzare come nella cella seguente il metodo
 <code class="docutils literal notranslate"><span class="pre">plt.subplots</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>f, (h, b) = plt.subplots(2, 1, gridspec_kw = {&#39;height_ratios&#39;:[4, 3]})
-f.set_figheight(6)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">gridspec_kw</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;height_ratios&#39;</span><span class="p">:[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
+<span class="n">f</span><span class="o">.</span><span class="n">set_figheight</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
 
-h.yaxis.label.set_visible(False)
+<span class="n">h</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
-sample.plot.hist(bins=20, ax=h)
-sample.plot.box(vert=False, whis=20, ax=b, widths=.4)
-plt.show()
+<span class="n">sample</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">h</span><span class="p">)</span>
+<span class="n">sample</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">vert</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">whis</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">widths</span><span class="o">=</span><span class="mf">.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

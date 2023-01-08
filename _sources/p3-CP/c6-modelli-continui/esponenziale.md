@@ -87,15 +87,85 @@ pertanto applicando il teorema dei due Carabinieri si ottiene
 Possiamo verificare facilmente che
 
 ```{math}
+:label: eq:cdf-exponential
 F(x; \lambda) \coloneqq
      \left(1 - \mathrm e^{-\lambda x} \right) \; \mathrm I_{\mathbb R^+}(x)
 ```     
 
 soddisfa i requisiti richiesti per essere una funzione di ripartizione
 continua. La distribuzione corrispondente è detta _distribuzione esponenziale_
-e la sua densità sarà pertanto definita come
+e la sua densità sarà ottenuta derivando {eq}`eq:cdf-exponential`.
+
+````{prf:definition} La famiglia delle distribuzioni esponenziali
+
+Dato $\lambda \in [0, +\infty)$, la  _distribuzione esponenziale_ è definita
+dalla densità
 
 ```{math}
 f(x; \lambda) = F'(x; \lambda) = \lambda  \mathrm e^{-\lambda x}
-                                 \;\mathrm I_{\mathbb R^+}(x).
+                                 \;\mathrm I_{\mathbb R^+}(x) \enspace,
 ```
+
+o in modo equivalente dalla ripartizione
+
+```{math}
+F(x; \lambda) = \left(1 - \mathrm e^{-\lambda x} \right)
+                \; \mathrm I_{\mathbb R^+}(x) \enspace.
+```
+
+L'insieme di tutte le distribuzioni esponenziali al variare dei possibili
+valori del relativo parametro $\lambda$ viene detta _famiglia delle
+distribuzioni esponenziali_.
+````
+
+Il valore atteso e la varianza delle distribuzioni esponenziali si ottengono
+facilmente in funzione del loro parametro, applicando le relative definizioni.
+
+`````{prf:lemma}
+Data $X \sim \mathrm E(\lambda)$, con $\lambda \in [0, +\infty)$, si ha
+
+```{math}
+\mathbb E(X) = \frac{1}{\lambda}, \quad
+\mathrm{Var}(X) = \frac{1}{\lambda^2} \enspace.
+```
+
+````{prf:proof}
+
+Il calcolo del valore atteso si può effettuare integrando per parti:
+definendo $f(x) = x$ e $g(x) = \mathrm e^{-\lambda x}$ si ha
+
+\begin{align*}
+\mathbb E(X) &= \int_{-\infty}^{+\infty} x f_X(x; \lambda) \; \mathrm d x
+              = \int_0^{+\infty} \lambda x \mathrm e^{-\lambda x}
+                \; \mathrm d x \\
+             &= -\int_0^{+\infty} f(x) \cdot g'(x) \; \mathrm d x \\
+             &= \underbrace{-x \mathrm e^{-\lambda x} \bigg|_0^{+\infty}}_{=0}
+                + \int_0^{+\infty} \mathrm e^{-\lambda x} \; \mathrm d x
+              = \frac{1}{\lambda} \underbrace{\int_0^{+\infty}
+                        \lambda \mathrm e^{-\lambda x} \; \mathrm d x}_{=1}
+              = \frac{1}{\lambda} \enspace.
+\end{align*}
+
+Procedendo in modo analogo, ma ponendo $f(x)=x^2$, si può calcolare il
+momento secondo:
+
+\begin{align*}
+\mathbb E(X^2) &= \int_0^{+\infty}\lambda x^2 \mathrm e^{-\lambda x}
+                  \;\mathrm d x
+                = -\int_0^{+\infty} f(x) g'(x) \;\mathrm d x \\
+               &= \underbrace{-x^2 \mathrm e^{-\lambda x}
+                              \bigg|_0^{+\infty}}_{=0} +
+                  2 \int_0^{+\infty} x \mathrm e^{-\lambda x}
+                                \; \mathrm d x \\
+               &= \frac{2}{\lambda} \underbrace{\int_0^{+\infty}
+                                \lambda x \mathrm e^{-\lambda x}
+                                \; \mathrm d x}_{= 1 / \lambda}
+                = \frac{2}{\lambda^2} \enspace.
+\end{align*}
+
+Pertanto $\mathrm{Var}(X) = \frac{2}{\lambda^2} - \frac{1}{\lambda^2} =
+\frac{1}{\lambda^2}$.
+
+````
+
+`````

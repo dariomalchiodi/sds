@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>14.5. Il modello gaussiano &#8212; Superhero Data Science 
+    <title>14.5. Il modello normale &#8212; Superhero Data Science 
  Probabilità e Statistica</title>
     
   <!-- Loaded before other Sphinx assets -->
@@ -56,6 +56,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "loader": {"load": ["[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["mathtools"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
     <link rel="search" title="Cerca" href="../../search.html" />
@@ -671,7 +673,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     14.5. Il modello gaussiano
+     14.5. Il modello normale
     </a>
    </li>
    <li class="toctree-l2">
@@ -993,23 +995,80 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#momenti-della-distribuzione-normale">
+   14.5.1. Momenti della distribuzione normale (*)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#il-teorema-di-de-moivre-laplace">
+   14.5.2. Il teorema di de Moivre-Laplace (*)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implementazione-del-modello-normale">
+   14.5.3. Implementazione del modello normale
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Il modello gaussiano</h1>
+                <h1>Il modello normale</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#momenti-della-distribuzione-normale">
+   14.5.1. Momenti della distribuzione normale (*)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#il-teorema-di-de-moivre-laplace">
+   14.5.2. Il teorema di de Moivre-Laplace (*)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implementazione-del-modello-normale">
+   14.5.3. Implementazione del modello normale
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -1017,8 +1076,1241 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="il-modello-gaussiano">
-<span id="sec-modello-gaussiano"></span><h1><span class="section-number">14.5. </span>Il modello gaussiano<a class="headerlink" href="#il-modello-gaussiano" title="Link a questa intestazione">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="il-modello-normale">
+<span id="sec-modello-normale"></span><h1><span class="section-number">14.5. </span>Il modello normale<a class="headerlink" href="#il-modello-normale" title="Link a questa intestazione">#</a></h1>
+<p>Fissato <span class="math notranslate nohighlight">\(p \in [0, 1]\)</span>, per ogni <span class="math notranslate nohighlight">\(n \in \mathbb N\)</span> sia
+<span class="math notranslate nohighlight">\(X_n \sim \mathrm B(n, p)\)</span>. In altre parole, <span class="math notranslate nohighlight">\(X_n\)</span> è una variabile aleatoria
+distribuita secondo una legge binomiale di parametri <span class="math notranslate nohighlight">\(n\)</span> e <span class="math notranslate nohighlight">\(p\)</span>, che descrive
+il numero di successi ottenuti in <span class="math notranslate nohighlight">\(n\)</span> ripetizioni indipendenti di un
+esperimento di Bernoulli di parametro <span class="math notranslate nohighlight">\(p\)</span>. Supponiamo di aumentare via via
+<span class="math notranslate nohighlight">\(n\)</span>, per capire se abbia senso ragionare in termini di una distribuzione
+limite di <span class="math notranslate nohighlight">\(X_n\)</span>. È evidente fin da subito che questo non può succedere, in
+quanto <span class="math notranslate nohighlight">\(\mathbb E(X_n) = np\)</span> e <span class="math notranslate nohighlight">\(\mathrm{Var}(X_n) = np(1-p)\)</span> e dunque, man mano
+che <span class="math notranslate nohighlight">\(n\)</span> aumenta, da una parte il centro della distribuzione si allontana
+sempre di più dall'origine e dall'altra la varianza aumenta, come si può
+facilmente verificare osservando i grafici delle funzioni di massa di
+probabilità visualizzati nella <a class="reference internal" href="#fig-binomial-divergence"><span class="std std-numref">Figura 14.5</span></a>.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">st</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+
+<span class="c1">#plt.style.use(&#39;sds.mplstyle&#39;)</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">ns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ns</span><span class="p">,</span> <span class="n">axes</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">B</span>  <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">binom</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">B</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">rf</span><span class="s1">&#39;$n=</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;binomial-divergence&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<figure class="align-default" id="fig-binomial-divergence">
+<div class="cell_output docutils container">
+<img alt="../../_images/gaussiano_1_1.png" src="../../_images/gaussiano_1_1.png" />
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 14.5 </span><span class="caption-text">Grafici della funzione di massa di probabilità di <span class="math notranslate nohighlight">\(X_n\)</span> per <span class="math notranslate nohighlight">\(n = 10, 25
+\text{ e } 50\)</span>.</span><a class="headerlink" href="#fig-binomial-divergence" title="Link a questa immagine">#</a></p>
+</figcaption>
+</figure>
+<p>Possiamo però considerare una trasformazione di <span class="math notranslate nohighlight">\(X_n\)</span> che renda la
+distribuzione del risultato indipendente da <span class="math notranslate nohighlight">\(n\)</span> relativamente alla sua
+centralità e alla sua dispersione. Definiamo quindi <span class="math notranslate nohighlight">\(Y_n\)</span> come la versione
+standardizzata di <span class="math notranslate nohighlight">\(X_n\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[Y_n \coloneqq \frac{X_n - n p}{\sqrt{n p (1 - p)}} \enspace.\]</div>
+<p>Per le proprietà della trasformazione applicata, indipendentemente dal valore
+di <span class="math notranslate nohighlight">\(n\)</span> avremo che <span class="math notranslate nohighlight">\(Y_n\)</span> ha valore atteso nullo e varianza unitaria, come
+illustrato nella <a class="reference internal" href="#fig-binomial-convergence"><span class="std std-numref">Figura 14.6</span></a>. Questa
+figura mette in evidenza anche il fatto che, al crescere di <span class="math notranslate nohighlight">\(n\)</span>, da una parte
+le specificazioni di <span class="math notranslate nohighlight">\(Y_n\)</span> tendono ad avvicinarsi l'un l'altra, e dall'altra
+il <em>range</em> di questa variabile aleatoria è un intervallo centrato nell'origine
+che diventa sempre più grande, comprendendo sia numeri positivi, sia numeri
+negativi. Diventa quindi ragionevole valutare l'ipotesi che, in analogia a
+quanto visto nel <a class="reference internal" href="esponenziale.html#sec-modello-esponenziale"><span class="std std-numref">Paragrafo 14.4</span></a>, la
+distribuzione di <span class="math notranslate nohighlight">\(Y_n\)</span> tenda a una distribuzione di tipo continuo che ha
+<span class="math notranslate nohighlight">\(\mathbb R\)</span> come supporto.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ns</span><span class="p">,</span> <span class="n">axes</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">x_norm</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">n</span><span class="o">*</span><span class="n">p</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">))</span><span class="o">**</span><span class="mf">0.5</span>
+    <span class="n">B</span>  <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">binom</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">B</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x_norm</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_norm</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">rf</span><span class="s1">&#39;$n=</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;binomial-convergence&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<figure class="align-default" id="fig-binomial-convergence">
+<div class="cell_output docutils container">
+<img alt="../../_images/gaussiano_3_1.png" src="../../_images/gaussiano_3_1.png" />
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 14.6 </span><span class="caption-text">Grafici della funzione di massa di probabilità di <span class="math notranslate nohighlight">\(Y_n\)</span> per <span class="math notranslate nohighlight">\(n = 10, 25
+\text{ e } 50\)</span>.</span><a class="headerlink" href="#fig-binomial-convergence" title="Link a questa immagine">#</a></p>
+</figcaption>
+</figure>
+<p>Possiamo verificare empiricamente come, in effetti, man mano che <span class="math notranslate nohighlight">\(n\)</span> cresce
+<span class="math notranslate nohighlight">\(Y_n\)</span> tende a seguire una distribuzione continua descritta dalla funzione
+di densità di probabilità</p>
+<div class="math notranslate nohighlight" id="equation-eq-normal-pdf">
+<span class="eqno">(14.13)<a class="headerlink" href="#equation-eq-normal-pdf" title="Permalink a questa equazione">#</a></span>\[\phi(x) \coloneqq \frac{1}{\sqrt{2 \pi}} \mathrm e^{-\frac{x^2}{2}} \enspace,\]</div>
+<p>il cui grafico è visualizzato nella <a class="reference internal" href="#fig-normal-pdf"><span class="std std-numref">Figura 14.7</span></a>.
+Questa distribuzione, che definiremo rigorosamente più avanti, ha un ruolo
+particolarmente importante e viene chiamata <em>distribuzione normale standard</em>.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">std_normal_pdf</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">x_gauss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">y_gauss</span> <span class="o">=</span> <span class="n">std_normal_pdf</span><span class="p">(</span><span class="n">x_gauss</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_gauss</span><span class="p">,</span> <span class="n">y_gauss</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">])</span>
+
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;normal-pdf&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<figure class="align-default" id="fig-normal-pdf" style="width: 400px">
+<div class="cell_output docutils container">
+<img alt="../../_images/gaussiano_5_0.png" src="../../_images/gaussiano_5_0.png" />
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 14.7 </span><span class="caption-text">Grafico della funzione di densità della distribuzione normale
+standard.</span><a class="headerlink" href="#fig-normal-pdf" title="Link a questa immagine">#</a></p>
+</figcaption>
+</figure>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Il fatto che le altezze dei bastoncini in <a class="reference internal" href="#fig-binomial-convergence"><span class="std std-numref">Fig. 14.6</span></a>
+sommino a <span class="math notranslate nohighlight">\(1\)</span> spiega anche come mai queste stesse altezze tendano a diminuire
+quando <span class="math notranslate nohighlight">\(n\)</span> cresce.</p>
+</aside>
+<p>Per verificare questo fatto è però necessario considerare un ulteriore
+passaggio intermedio: per ogni <span class="math notranslate nohighlight">\(n\)</span>, <span class="math notranslate nohighlight">\(Y_n\)</span> è una variabile aleatoria discreta,
+mentre la distribuzione limite che stiamo considerando è continua. Nel
+primo caso, la somma delle altezze dei bastoncini nella
+<a class="reference internal" href="#fig-binomial-convergence"><span class="std std-numref">Figura 14.6</span></a> è uguale a <span class="math notranslate nohighlight">\(1\)</span>, mentre nel
+secondo è la regione di piano delimitata dall'asse delle ascisse e dalla curva
+mostrata in <a class="reference internal" href="#fig-normal-pdf"><span class="std std-numref">Figura 14.7</span></a> ad avere area unitaria.
+Per poter confrontare correttamente le distribuzioni in gioco dobbiamo
+pertanto o «trasformare» <span class="math notranslate nohighlight">\(Y_n\)</span> in una variabile aleatoria continua, oppure
+al contrario considerare un equivalente discreto della distribuzione normale
+standard.</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Avremmo potuto considerare il processo inverso, ottenendo gli stessi
+risultati, ma ciò sarebbe stato più complicato e avrebbe richiesto
+il ricorso al calcolo integrale.</p>
+</aside>
+<p>Procediamo costruendo una distribuzione continua che preservi in qualche
+senso le probabilità che definiscono <span class="math notranslate nohighlight">\(Y_n\)</span>. Più precisamente, per <span class="math notranslate nohighlight">\(n\)</span> fissato
+vogliamo definire una variabile aleatoria continua <span class="math notranslate nohighlight">\(Y'_n\)</span> in modo tale da
+«spalmare» la massa di probabilità di ogni specificazione <span class="math notranslate nohighlight">\(y \in D_{Y_n}\)</span>
+in un suo opportuno intorno <span class="math notranslate nohighlight">\(I_y\)</span>, garantendo che
+<span class="math notranslate nohighlight">\(\mathbb P(Y'_n \in I_y) = \mathbb P(Y_n = y)\)</span>. Ci sono vari modi per
+effettuare questa operazione: uno di quelli più naturali consiste nel centrare
+ogni <span class="math notranslate nohighlight">\(I_y\)</span> nella relativa specificazione <span class="math notranslate nohighlight">\(y\)</span>, utilizzando un'ampiezza costante
+scelta in modo da garantire che la famiglia di questi intervalli sia una
+partizione del range di <span class="math notranslate nohighlight">\(Y_n\)</span>. In altre parole, indicate con
+<span class="math notranslate nohighlight">\(y_1, \dots, y_{n+1}\)</span> le specificazioni di <span class="math notranslate nohighlight">\(Y_n\)</span>, per ogni <span class="math notranslate nohighlight">\(i = 1, \dots, n+1\)</span>
+possiamo convertire il bastoncino della
+<a class="reference internal" href="#fig-binomial-convergence"><span class="std std-numref">Figura 14.6</span></a> posizionato nell'ascissa <span class="math notranslate nohighlight">\(y_i\)</span>
+in una barra della medesima altezza la cui base è
+<span class="math notranslate nohighlight">\([(y_{i-1} + y_i)/2, (y_i + y_{i+1})/2)\)</span> (con ovvie estensioni per i casi
+estremi che riguardano <span class="math notranslate nohighlight">\(y_1\)</span> e <span class="math notranslate nohighlight">\(y_{n+1}\)</span>). A questo punto è possibile
+considerare la funzione che, dato <span class="math notranslate nohighlight">\(x \in \mathbb R\)</span> compreso in uno degli
+intervalli restituisce l'altezza della barra corrispondente, e il cui valore è
+zero per i punti rimanenti. L'area della regione delimitata dal grafico di
+questa funzione e dall'asse delle ascisse non è però uguale a <span class="math notranslate nohighlight">\(1\)</span>, ma è
+possibile normalizzare la funzione stessa, dividendo ogni valore da essa
+restituito per la somma delle aree delle barre. Il risultato è una funzione
+<span class="math notranslate nohighlight">\(f_n\)</span> che può essere interpretata come densità di probabilità e quindi
+confrontata con <span class="math notranslate nohighlight">\(\phi\)</span>: la <a class="reference internal" href="#fig-normal-convergence"><span class="std std-numref">Figura 14.8</span></a>
+mostra come effettivamente la prima funzione tenda a coincidere con la seconda
+all'aumentare di <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">binomial</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">binom</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">x_norm</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">n</span><span class="o">*</span><span class="n">p</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">))</span><span class="o">**</span><span class="mf">0.5</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">B</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">y_norm</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">))</span><span class="o">**</span><span class="mf">0.5</span>
+    <span class="k">return</span> <span class="n">x_norm</span><span class="p">,</span> <span class="n">y_norm</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">80</span><span class="p">],</span> <span class="n">axes</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span>  <span class="o">=</span> <span class="n">binomial</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightgray&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span>
+           <span class="n">width</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">))</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_gauss</span><span class="p">,</span> <span class="n">y_gauss</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">rf</span><span class="s1">&#39;$n=</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;normal-convergence&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<figure class="align-default" id="fig-normal-convergence">
+<div class="cell_output docutils container">
+<img alt="../../_images/gaussiano_7_1.png" src="../../_images/gaussiano_7_1.png" />
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 14.8 </span><span class="caption-text">Convergenza di <span class="math notranslate nohighlight">\(f_n\)</span> alla densità <span class="math notranslate nohighlight">\(\phi\)</span> della distribuzione normale standard.
+I grafici a barre visualizzano l'area delimitata da <span class="math notranslate nohighlight">\(f_n\)</span>, per
+<span class="math notranslate nohighlight">\(n = 10, 100 \text{ e } 250\)</span>, mentre la curva blu indica il grafico di <span class="math notranslate nohighlight">\(\phi\)</span>.</span><a class="headerlink" href="#fig-normal-convergence" title="Link a questa immagine">#</a></p>
+</figcaption>
+</figure>
+<p>Il ragionamento informale seguito finora può essere rivisto in modo formale,
+in particolare considerando il teorema di de Moivre-Laplace.</p>
+<div class="proof theorem admonition" id="teo:demoivre-laplace">
+<p class="admonition-title"><span class="caption-number">Teorema 14.1 </span> (Teorema di de Moivre-Laplace)</p>
+<section class="theorem-content" id="proof-content">
+<p>Dati <span class="math notranslate nohighlight">\(n \in \mathbb N\)</span> e <span class="math notranslate nohighlight">\(p \in [0, 1]\)</span>, sia <span class="math notranslate nohighlight">\(X \sim \mathrm B(n, p)\)</span>.
+Definita <span class="math notranslate nohighlight">\(Y_n \coloneqq (X_n - np) / \sqrt{n p (1-p)}\)</span>, quando <span class="math notranslate nohighlight">\(n \to +\infty\)</span>
+la distribuzione di <span class="math notranslate nohighlight">\(Y_n\)</span> tende a quella normale standard.</p>
+</section>
+</div><p>La dimostrazione del teorema di de Moivre-Laplace, relativamente complessa,
+è riportata nel <a class="reference internal" href="#sec-teo-de-moivre-laplace"><span class="std std-numref">Paragrafo opzionale 14.5.2</span></a>.
+In ogni caso, per quanto visto finora ha senso ragionare in termini di una
+variabile aleatoria <span class="math notranslate nohighlight">\(X\)</span> che abbia <span class="math notranslate nohighlight">\(\phi\)</span> come densità di probabilità, e più in
+generale parlare della distribuzione continua normale standard. Vi sono alcune
+proprietà di questa distribuzione che possiamo ricavare, sempre in modo
+informale. Innanzitutto <a class="reference internal" href="#equation-eq-normal-pdf">(14.13)</a> descrive effettivamente una
+densità di probabilità in quanto <span class="math notranslate nohighlight">\(\phi\)</span> è una funzione non negativa il cui
+integrale su <span class="math notranslate nohighlight">\(\mathbb R\)</span> è uguale a <span class="math notranslate nohighlight">\(1\)</span>: dimostrarlo in modo formale richiede
+qualche conoscenza di analisi matematica avanzata (in particolare, la capacità
+di calcolare integrali doppi), ma possiamo convincerci facilmente che sia
+così, avendo verificato sperimentalmente che <span class="math notranslate nohighlight">\(\phi\)</span> è il limite di <span class="math notranslate nohighlight">\(f_n\)</span>, e
+per ogni <span class="math notranslate nohighlight">\(n\)</span> quest'ultima funzione è stata costruita in modo che l'area tra il
+suo grafico e l'asse delle ascisse valga esattamente <span class="math notranslate nohighlight">\(1\)</span>. Risulta inoltre
+facile calcolare il valore atteso di <span class="math notranslate nohighlight">\(X\)</span>: se definiamo
+<span class="math notranslate nohighlight">\(g(x) \coloneqq x \phi(x)\)</span>, per ogni <span class="math notranslate nohighlight">\(x\)</span> vale <span class="math notranslate nohighlight">\(g(-x) = -g(x)\)</span>, essendo <span class="math notranslate nohighlight">\(\phi\)</span>
+una funzione pari (cioè una funzione simmetrica rispetto all'asse delle
+ordinate). Dunque</p>
+<div class="math notranslate nohighlight">
+\[\mathbb E(X) = \int_{-\infty}^{+\infty}g(x) \; \mathrm d x = 0 \enspace.\]</div>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Ottenere <span class="math notranslate nohighlight">\(\mathrm{Var}(X)\)</span> applicando la relativa definizione richiede
+conoscenze relativamente avanzate di analisi matematica: precisamente,
+è necessario risolvere un integrale non banale in termini di una particolare
+funzione detta <em>funzione gamma</em>.</p>
+</aside>
+<p>D'altra parte, la distribuzione di <span class="math notranslate nohighlight">\(X\)</span> è il limite di una serie di
+distribuzioni che sono tutte centrate in <span class="math notranslate nohighlight">\(0\)</span>, in quanto le variabili aleatorie
+<span class="math notranslate nohighlight">\(Y_n\)</span> sono state ottenute standardizzando le corrispondenti <span class="math notranslate nohighlight">\(X_n\)</span>. Seguendo un
+ragionamento analogo, è facile convincersi che la varianza e la deviazione
+standard di <span class="math notranslate nohighlight">\(X\)</span> sono uguali a <span class="math notranslate nohighlight">\(1\)</span>. Da qui in avanti supporremo quindi che
+che <span class="math notranslate nohighlight">\(\mathbb E(X) = 0\)</span> e <span class="math notranslate nohighlight">\(\mathrm{Var}(X) = 1\)</span> (cosa che è effettivamente
+vera, e della quale i lettori interessati troveranno una dimostrazione nel
+<a class="reference internal" href="#sec-norm-fgm"><span class="std std-numref">Paragrafo opzionale 14.5.1</span></a>). Le cose diventano più
+complicate quando si considera la funzione di ripartizione di <span class="math notranslate nohighlight">\(X\)</span>, che viene
+indicata con il simbolo <span class="math notranslate nohighlight">\(\Phi\)</span>. Ovviamente vale</p>
+<div class="math notranslate nohighlight">
+\[\Phi(x) = \mathbb P(X \leq x) = \int_{-\infty}^x \phi(u) \; \mathrm d u
+          \enspace,\]</div>
+<p>ma non è possibile esprimere analiticamente questo integrale in termini di
+funzioni che già conosciamo <a class="footnote-reference brackets" href="#calcolo-cdf-normale" id="id1">1</a>. Per questo motivo <span class="math notranslate nohighlight">\(\Phi\)</span>
+viene calcolata ricorrendo a processi di approssimazione numerica
+<a class="footnote-reference brackets" href="#approssimazione-integrali" id="id2">2</a>. Vedremo nel
+<a class="reference internal" href="#sec-implementazione-modello-normale"><span class="std std-numref">Paragrafo 14.5.3</span></a> che questo
+processo è fatto in modo trasparente dal modulo Python <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>, che vale
+la pena utilizzare nelle applicazioni pratiche. Ma possiamo per il momento
+ottenere i valori di <span class="math notranslate nohighlight">\(\Phi\)</span> ricavando direttamente l'approssimazione degli
+integrali coinvolti. In particolare, la funzione <code class="docutils literal notranslate"><span class="pre">quad</span></code> presente nel modulo
+<code class="docutils literal notranslate"><span class="pre">scipy.integrate</span></code> permette di calcolare questa approssimazione, specificando
+come argomenti la funzione integranda e gli estremi di integrazione. Per
+esempio, nella cella che segue calcoliamo <span class="math notranslate nohighlight">\(\Phi(0)\)</span>.</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>La costante <code class="docutils literal notranslate"><span class="pre">inf</span></code> definita in Numpy permette di specificare degli estremi di
+integrazione infiniti. Va notato inoltre come per brevità la funzione
+integranda sia stata specificata utilizzando una funzione anonima.</p>
+</aside>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
+
+<span class="n">quad</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.49999999999999983, 5.08909572547112e-09)
+</pre></div>
+</div>
+</div>
+</div>
+<p>La funzione <code class="docutils literal notranslate"><span class="pre">quad</span></code> restituisce una coppia che contiene, rispettivamente,
+l'approssimazione cercata e una stima dell'errore effettuato
+nell'approssimazione stessa. Effettivamente è facile convincersi che il
+risultato è corretto, in quanto essendo <span class="math notranslate nohighlight">\(\phi\)</span> simmetrica rispetto all'asse
+delle ordinate e valendo il suo integrale su <span class="math notranslate nohighlight">\(\mathbb R\)</span> esattamente <span class="math notranslate nohighlight">\(1\)</span>, deve
+necessariamente essere <span class="math notranslate nohighlight">\(\Phi(0) = \frac{1}{2}\)</span>. Possiamo quindi definire una
+funzione <code class="docutils literal notranslate"><span class="pre">cdf_normal</span></code> che approssima i valori di <span class="math notranslate nohighlight">\(\Phi\)</span> e utilizzarla per
+mostrare il suo grafico, sovrapponendolo a quello di <span class="math notranslate nohighlight">\(\phi\)</span> per ottenere il
+risultato mostrato nella <a class="reference internal" href="#fig-normal-cdf"><span class="std std-numref">Figura 14.9</span></a>.</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>In analogia con il codice precedentemente scritto, vogliamo che <code class="docutils literal notranslate"><span class="pre">cdf_normal</span></code>
+sia una funzione <em>vettoriale</em>, cioè venga automaticamente applicata elemento
+per elemento ai vettori che le vengono passati come argomenti, ma ciò è
+incompatibile con <code class="docutils literal notranslate"><span class="pre">quad</span></code>. In casi come questo, si utilizza la funzione Numpy
+<code class="docutils literal notranslate"><span class="pre">vectorize</span></code> che trasforma una funzione non vettoriale nel suo equivalente
+vettoriale.</p>
+</aside>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">std_normal_cdf_scalar</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">quad</span><span class="p">(</span><span class="k">lambda</span> <span class="n">u</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">u</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">x</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">std_normal_cdf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">std_normal_cdf_scalar</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">y_cdf</span> <span class="o">=</span> <span class="n">std_normal_cdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">y_pdf</span> <span class="o">=</span> <span class="n">std_normal_pdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_cdf</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\Phi$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_pdf</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\phi$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;normal-cdf&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<figure class="align-default" id="fig-normal-cdf" style="width: 400px">
+<div class="cell_output docutils container">
+<img alt="../../_images/gaussiano_12_0.png" src="../../_images/gaussiano_12_0.png" />
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 14.9 </span><span class="caption-text">Grafico della funzione di ripartizione della distribuzione normale
+standard (in blu) sovrapposto al grafico della corrispondente funzione
+di densità di probabilità (in verde).</span><a class="headerlink" href="#fig-normal-cdf" title="Link a questa immagine">#</a></p>
+</figcaption>
+</figure>
+<p>Nelle appendici di molti libri di testo di probabilità e statistica,
+soprattutto in quelli più datati, è inclusa una tabella che contiene le
+approssimazioni di <span class="math notranslate nohighlight">\(\Phi\)</span> per dei particolari valori del suo argomento.
+Ciò era fondamentalmente necessario quando non erano diffusi computer e
+librerie come <code class="docutils literal notranslate"><span class="pre">scipy</span></code>, perché altrimenti non sarebbe stato possibile svolgere
+esercizi, risolvere temi d'esame e soprattutto affrontare problemi pratici che
+coinvolgono la distribuzione normale standard. Chiaramente, questo tipo di
+tabella diventa inutile nel momento in cui possiamo scrivere ed eseguire
+codice che ci permette di ottenere facilmente approssimazioni affidabili di
+qualunque valore di <span class="math notranslate nohighlight">\(\Phi\)</span>. Ci sono però situazioni nelle quali anche oggi
+questa tabella può tornare utile, per esempio nel caso in cui non sia
+possibile accedere a un computer durante un esame scritto. La cella seguente
+mostra come generare una tabulazione di valori approssimati per <span class="math notranslate nohighlight">\(\Phi\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">most_significant</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">least_significant</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">x_start</span> <span class="ow">in</span> <span class="n">most_significant</span><span class="p">:</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">x_end</span> <span class="ow">in</span> <span class="n">least_significant</span><span class="p">:</span>
+        <span class="n">row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_start</span><span class="o">+</span><span class="n">x_end</span><span class="p">)</span>
+    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">std_normal_cdf</span><span class="p">(</span><span class="n">row</span><span class="p">))</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">least_significant</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">most_significant</span><span class="p">)</span>
+     <span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0.00</th>
+      <th>0.01</th>
+      <th>0.02</th>
+      <th>0.03</th>
+      <th>0.04</th>
+      <th>0.05</th>
+      <th>0.06</th>
+      <th>0.07</th>
+      <th>0.08</th>
+      <th>0.09</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.0</th>
+      <td>0.5000</td>
+      <td>0.5040</td>
+      <td>0.5080</td>
+      <td>0.5120</td>
+      <td>0.5160</td>
+      <td>0.5199</td>
+      <td>0.5239</td>
+      <td>0.5279</td>
+      <td>0.5319</td>
+      <td>0.5359</td>
+    </tr>
+    <tr>
+      <th>0.1</th>
+      <td>0.5398</td>
+      <td>0.5438</td>
+      <td>0.5478</td>
+      <td>0.5517</td>
+      <td>0.5557</td>
+      <td>0.5596</td>
+      <td>0.5636</td>
+      <td>0.5675</td>
+      <td>0.5714</td>
+      <td>0.5753</td>
+    </tr>
+    <tr>
+      <th>0.2</th>
+      <td>0.5793</td>
+      <td>0.5832</td>
+      <td>0.5871</td>
+      <td>0.5910</td>
+      <td>0.5948</td>
+      <td>0.5987</td>
+      <td>0.6026</td>
+      <td>0.6064</td>
+      <td>0.6103</td>
+      <td>0.6141</td>
+    </tr>
+    <tr>
+      <th>0.3</th>
+      <td>0.6179</td>
+      <td>0.6217</td>
+      <td>0.6255</td>
+      <td>0.6293</td>
+      <td>0.6331</td>
+      <td>0.6368</td>
+      <td>0.6406</td>
+      <td>0.6443</td>
+      <td>0.6480</td>
+      <td>0.6517</td>
+    </tr>
+    <tr>
+      <th>0.4</th>
+      <td>0.6554</td>
+      <td>0.6591</td>
+      <td>0.6628</td>
+      <td>0.6664</td>
+      <td>0.6700</td>
+      <td>0.6736</td>
+      <td>0.6772</td>
+      <td>0.6808</td>
+      <td>0.6844</td>
+      <td>0.6879</td>
+    </tr>
+    <tr>
+      <th>0.5</th>
+      <td>0.6915</td>
+      <td>0.6950</td>
+      <td>0.6985</td>
+      <td>0.7019</td>
+      <td>0.7054</td>
+      <td>0.7088</td>
+      <td>0.7123</td>
+      <td>0.7157</td>
+      <td>0.7190</td>
+      <td>0.7224</td>
+    </tr>
+    <tr>
+      <th>0.6</th>
+      <td>0.7257</td>
+      <td>0.7291</td>
+      <td>0.7324</td>
+      <td>0.7357</td>
+      <td>0.7389</td>
+      <td>0.7422</td>
+      <td>0.7454</td>
+      <td>0.7486</td>
+      <td>0.7517</td>
+      <td>0.7549</td>
+    </tr>
+    <tr>
+      <th>0.7</th>
+      <td>0.7580</td>
+      <td>0.7611</td>
+      <td>0.7642</td>
+      <td>0.7673</td>
+      <td>0.7704</td>
+      <td>0.7734</td>
+      <td>0.7764</td>
+      <td>0.7794</td>
+      <td>0.7823</td>
+      <td>0.7852</td>
+    </tr>
+    <tr>
+      <th>0.8</th>
+      <td>0.7881</td>
+      <td>0.7910</td>
+      <td>0.7939</td>
+      <td>0.7967</td>
+      <td>0.7995</td>
+      <td>0.8023</td>
+      <td>0.8051</td>
+      <td>0.8078</td>
+      <td>0.8106</td>
+      <td>0.8133</td>
+    </tr>
+    <tr>
+      <th>0.9</th>
+      <td>0.8159</td>
+      <td>0.8186</td>
+      <td>0.8212</td>
+      <td>0.8238</td>
+      <td>0.8264</td>
+      <td>0.8289</td>
+      <td>0.8315</td>
+      <td>0.8340</td>
+      <td>0.8365</td>
+      <td>0.8389</td>
+    </tr>
+    <tr>
+      <th>1.0</th>
+      <td>0.8413</td>
+      <td>0.8438</td>
+      <td>0.8461</td>
+      <td>0.8485</td>
+      <td>0.8508</td>
+      <td>0.8531</td>
+      <td>0.8554</td>
+      <td>0.8577</td>
+      <td>0.8599</td>
+      <td>0.8621</td>
+    </tr>
+    <tr>
+      <th>1.1</th>
+      <td>0.8643</td>
+      <td>0.8665</td>
+      <td>0.8686</td>
+      <td>0.8708</td>
+      <td>0.8729</td>
+      <td>0.8749</td>
+      <td>0.8770</td>
+      <td>0.8790</td>
+      <td>0.8810</td>
+      <td>0.8830</td>
+    </tr>
+    <tr>
+      <th>1.2</th>
+      <td>0.8849</td>
+      <td>0.8869</td>
+      <td>0.8888</td>
+      <td>0.8907</td>
+      <td>0.8925</td>
+      <td>0.8944</td>
+      <td>0.8962</td>
+      <td>0.8980</td>
+      <td>0.8997</td>
+      <td>0.9015</td>
+    </tr>
+    <tr>
+      <th>1.3</th>
+      <td>0.9032</td>
+      <td>0.9049</td>
+      <td>0.9066</td>
+      <td>0.9082</td>
+      <td>0.9099</td>
+      <td>0.9115</td>
+      <td>0.9131</td>
+      <td>0.9147</td>
+      <td>0.9162</td>
+      <td>0.9177</td>
+    </tr>
+    <tr>
+      <th>1.4</th>
+      <td>0.9192</td>
+      <td>0.9207</td>
+      <td>0.9222</td>
+      <td>0.9236</td>
+      <td>0.9251</td>
+      <td>0.9265</td>
+      <td>0.9279</td>
+      <td>0.9292</td>
+      <td>0.9306</td>
+      <td>0.9319</td>
+    </tr>
+    <tr>
+      <th>1.5</th>
+      <td>0.9332</td>
+      <td>0.9345</td>
+      <td>0.9357</td>
+      <td>0.9370</td>
+      <td>0.9382</td>
+      <td>0.9394</td>
+      <td>0.9406</td>
+      <td>0.9418</td>
+      <td>0.9429</td>
+      <td>0.9441</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Il risultato ottenuto tabula i valori di <span class="math notranslate nohighlight">\(\Phi(x)\)</span> per tutti i valori
+<span class="math notranslate nohighlight">\(x\)</span> che vanno da <span class="math notranslate nohighlight">\(0\)</span> a <span class="math notranslate nohighlight">\(1.59\)</span> a scatti di un centesimo. La tabella si legge
+nel modo seguente: il valore contenuto nella cella che si trova nella
+<span class="math notranslate nohighlight">\(i\)</span>-esima riga e nella <span class="math notranslate nohighlight">\(j\)</span>-esima colonna è un'approssimazione per <span class="math notranslate nohighlight">\(\Phi(i+j)\)</span>.
+Per esempio, l'ultimo valore in basso a sinistra corrisponderà a <span class="math notranslate nohighlight">\(\Phi(1.5)\)</span>,
+quello appena alla sua destra corrisponderà a <span class="math notranslate nohighlight">\(\Phi(1.51)\)</span> e così via
+<a class="footnote-reference brackets" href="#interpolazione-lineare" id="id3">3</a>. Nonostante la funzione di ripartizione della
+distribuzione normale standard abbia valori non nulli anche per argomenti
+negativi, la tabella è stata generata (esattamente come nei libri di testo
+che di norma la contengono) considerando solo valori non negativi. Ciò viene
+fatto per risparmiare spazio, in quanto i valori che corrispondono ad
+argomenti negativi si possono facilmente ricavare da quelli tabulati,
+sfruttando il seguente risultato.</p>
+<div class="proof lemma admonition" id="lemma-1">
+<p class="admonition-title"><span class="caption-number">Lemma 14.5 </span></p>
+<section class="lemma-content" id="proof-content">
+<p>Per ogni <span class="math notranslate nohighlight">\(x \in \mathbb R\)</span> si ha <span class="math notranslate nohighlight">\(\Phi(-x) = 1 - \Phi(x)\)</span>.</p>
+<div class="proof admonition" id="proof">
+<p>Dimostrazione. Data una variabile aleatoria <span class="math notranslate nohighlight">\(X\)</span> con distribuzione normale
+standard, sia <span class="math notranslate nohighlight">\(x \in \mathbb R^+\)</span>. Dalla simmetria di <span class="math notranslate nohighlight">\(\phi\)</span> rispetto
+all'asse delle ordinate, come evidenziato nella
+<a class="reference internal" href="#fig-normal-symmetry"><span class="std std-numref">Figura 14.10</span></a>, si ottiene</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\Phi(-x) &amp;= \int_{-\infty}^{-x} \phi(x) \; \mathrm d x
+          = \int_x^{+\infty} \phi(x) \; \mathrm d x \\
+         &amp;= \mathbb P(X &gt; x)
+          = 1 - \mathbb P(X \leq x)
+          = 1 - \Phi(x) \enspace.
+\end{align*}\]</div>
+<p>L'estensione ai casi rimanenti è banale.</p>
+</div>
+</section>
+</div><div class="cell tag_hide-cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">x_start</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">x_fill</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="n">x_start</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">y_fill</span> <span class="o">=</span> <span class="n">std_normal_pdf</span><span class="p">(</span><span class="n">x_fill</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x_fill</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y_fill</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightgray&#39;</span><span class="p">)</span>
+
+<span class="n">x_fill</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x_start</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">y_fill</span> <span class="o">=</span> <span class="n">std_normal_pdf</span><span class="p">(</span><span class="n">x_fill</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x_fill</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y_fill</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightgray&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_pdf</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$=\Phi(-x)$&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
+            <span class="n">arrowprops</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;arrowstyle&#39;</span><span class="p">:</span> <span class="s1">&#39;-&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;ec&#39;</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span><span class="p">},</span>
+            <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$=\Phi(-x)$&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
+            <span class="n">arrowprops</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;arrowstyle&#39;</span><span class="p">:</span> <span class="s1">&#39;-&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;ec&#39;</span><span class="p">:</span><span class="s1">&#39;black&#39;</span><span class="p">},</span>
+            <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="o">-</span><span class="n">x_start</span><span class="p">,</span> <span class="n">x_start</span><span class="p">],</span> <span class="p">[</span><span class="sa">r</span><span class="s1">&#39;$-x$&#39;</span><span class="p">,</span> <span class="s1">&#39;$x$&#39;</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;normal-symmetry&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<figure class="align-default" id="fig-normal-symmetry" style="width: 400px">
+<div class="cell_output docutils container">
+<img alt="../../_images/gaussiano_16_0.png" src="../../_images/gaussiano_16_0.png" />
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 14.10 </span><span class="caption-text">Relazione che lega la simmetria di <span class="math notranslate nohighlight">\(\phi\)</span> rispetto all'asse delle ordinate
+alla proprietà <span class="math notranslate nohighlight">\(\Phi(-x) = 1 -\Phi(x)\)</span>.</span><a class="headerlink" href="#fig-normal-symmetry" title="Link a questa immagine">#</a></p>
+</figcaption>
+</figure>
+<p>Fissiamo ora <span class="math notranslate nohighlight">\(\mu, \sigma \in \mathbb R\)</span>, con <span class="math notranslate nohighlight">\(\sigma &gt; 0\)</span>, e definiamo
+<span class="math notranslate nohighlight">\(Y \coloneqq \mu + \sigma X\)</span>. Sfruttando le proprietà di valore atteso e
+varianza e ricordando quanto appena ricavato, si verifica facilmente che</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\mathbb E(Y)    &amp;= \mu + \sigma \mathbb E(X) = \mu \enspace, \\
+\mathrm{Var}(Y) &amp;= \sigma^2 \mathrm{Var}(X) = \sigma^2 \enspace.
+\end{align*}\]</div>
+<p>Inoltre</p>
+<div class="math notranslate nohighlight" id="equation-eq-normal-standardization">
+<span class="eqno">(14.14)<a class="headerlink" href="#equation-eq-normal-standardization" title="Permalink a questa equazione">#</a></span>\[F_Y(x) = \mathbb P(Y \leq x) = \mathbb P(\mu + \sigma X \leq x)
+       = \mathbb P\left(X \leq \frac{x - \mu}{\sigma} \right)
+       = \Phi \left( \frac{x - \mu}{\sigma} \right)\enspace,\]</div>
+<p>e quindi la funzione di densità di probabilità di <span class="math notranslate nohighlight">\(Y\)</span> ha la seguente forma
+analitica:</p>
+<div class="math notranslate nohighlight">
+\[f_Y(x) = F'_Y(x) = \phi \left( \frac{x - \mu}{\sigma} \right) \frac{1}{\sigma}
+       = \frac{1}{\sqrt{2 \pi} \sigma}
+                \mathrm e^{-\frac{(x - \mu)^2}{2 \sigma^2}} \enspace.\]</div>
+<p>Pertanto, <span class="math notranslate nohighlight">\(\mu\)</span> e <span class="math notranslate nohighlight">\(\sigma\)</span> parametrizzano una distribuzione di probabilità
+estendendo la distribuzione normale standard. Le distribuzioni in questa
+famiglia vengono pertanto dette <em>normali</em>.</p>
+<div class="proof definition admonition" id="definition-2">
+<p class="admonition-title"><span class="caption-number">Definizione 14.8 </span> (La famiglia delle distribuzioni normali)</p>
+<section class="definition-content" id="proof-content">
+<p>Dati <span class="math notranslate nohighlight">\(\mu \in \mathbb R\)</span> e <span class="math notranslate nohighlight">\(\sigma \in \mathbb R^+\)</span>, la
+<em>distribuzione esponenziale</em> di parametri <span class="math notranslate nohighlight">\(\mu\)</span> e <span class="math notranslate nohighlight">\(\sigma\)</span> è definita
+dalla funzione di densità di probabilità</p>
+<div class="math notranslate nohighlight">
+\[f(x; \mu, \sigma) = \frac{1}{\sqrt{2\pi} \sigma}
+                    \mathrm e^{-\frac{(x - \mu)^2}{2 \sigma^2}} \enspace,\]</div>
+<p>o in modo equivalente dalla funzione di ripartizione</p>
+<div class="math notranslate nohighlight">
+\[F(x; \mu, \sigma) = \int_{-\infty}^x f(u; \mu, \sigma) \; \mathrm d x
+                    \enspace.\]</div>
+<p>Per indicare che una variabile aleatoria <span class="math notranslate nohighlight">\(X\)</span> segue una distribuzione normale
+utilizzeremo l'abbreviazione <span class="math notranslate nohighlight">\(X \sim \mathrm N(\mu, \sigma)\)</span>, dove <span class="math notranslate nohighlight">\(\mu\)</span> e
+<span class="math notranslate nohighlight">\(\sigma\)</span> sono i valori per i parametri della distribuzione stessa.
+L'insieme di tutte le distribuzioni normali al variare dei possibili
+valori dei due relativi parametri viene detta <em>famiglia delle distribuzioni
+normali</em>.</p>
+</section>
+</div><p>La distribuzione normale standard è una particolare distribuzione normale:
+quella, ovviamente, per la quale <span class="math notranslate nohighlight">\(\mu = 0\)</span> e <span class="math notranslate nohighlight">\(\sigma = 1\)</span>.
+La <a class="reference internal" href="#fig-normal-graphs"><span class="std std-numref">Figura 14.11</span></a> mostra i grafici delle funzioni di
+densità di probabilità e di ripartizione della distribuzione normale per
+<span class="math notranslate nohighlight">\(\mu \in \{-5, 0, 5\}\)</span> e <span class="math notranslate nohighlight">\(\sigma \in \{1, 2\}\)</span>. È possibile notare come
+tutti i grafici su una stessa riga evidenziano la stessa dispersione ma
+una centralità diversa: in particolare, il valore atteso della distribuzione
+si sposta in avanti man mano che si considerano le figure da sinistra a
+destra. Analogamente, i grafici su una stessa colonna hanno la medesima
+centralità ma differenti dispersioni, e la varianza aumenta andando dall'alto
+verso il basso nella figura.</p>
+<div class="cell tag_remove-output tag_hide-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">normal_pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">std_normal_pdf</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span>
+
+<span class="k">def</span> <span class="nf">normal_cdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">std_normal_cdf</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span><span class="p">)</span>
+
+<span class="n">mus</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">sigmas</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">[[(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span> <span class="k">for</span> <span class="n">mu</span> <span class="ow">in</span> <span class="n">mus</span><span class="p">]</span> <span class="k">for</span> <span class="n">sigma</span> <span class="ow">in</span> <span class="n">sigmas</span><span class="p">]</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="p">(</span><span class="n">ax_row</span><span class="p">,</span> <span class="n">param_row</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">params</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">))</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">ax_row</span><span class="p">,</span> <span class="n">param_row</span><span class="p">)):</span>
+        <span class="n">pdf_values</span> <span class="o">=</span> <span class="n">normal_pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+        <span class="n">cdf_values</span> <span class="o">=</span> <span class="n">normal_cdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">cdf_values</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\Phi$&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pdf_values</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\phi$&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">r</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;µ=</span><span class="si">{</span><span class="n">mu</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;σ=</span><span class="si">{</span><span class="n">sigma</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">r</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">c</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;normal-graphs&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<figure class="align-default" id="fig-normal-graphs">
+<div class="cell_output docutils container">
+<img alt="../../_images/gaussiano_18_0.png" src="../../_images/gaussiano_18_0.png" />
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 14.11 </span><span class="caption-text">Grafici delle funzioni di densità di probabilità (in verde) e di ripartizione
+(in blu) di differenti distribuzioni norali. Gli assi delle ascisse e delle
+ordinate indicano rispettivamente i valori dei parametri <span class="math notranslate nohighlight">\(\mu\)</span> e <span class="math notranslate nohighlight">\(\sigma\)</span>.</span><a class="headerlink" href="#fig-normal-graphs" title="Link a questa immagine">#</a></p>
+</figcaption>
+</figure>
+<p>Va notato che anche il calcolo della ripartizione di una generica
+distribuzione normale richiede di valutare un integrale di cui non si
+conosce la forma analitica, ma applicando <a class="reference internal" href="#equation-eq-normal-standardization">(14.14)</a>
+è possibile ottenerne i valori a partire dalla tabulazione di <span class="math notranslate nohighlight">\(\Phi\)</span>.
+Chiaramente, questo aspetto cade in secondo piano per tutte le applicazioni
+nelle quali è possibile utilizzare un computer.</p>
+<figure class="margin align-left" id="fig-gauss">
+<a class="reference internal image-reference" href="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Bendixen_-_Carl_Friedrich_Gau%C3%9F%2C_1828.jpg/211px-Bendixen_-_Carl_Friedrich_Gau%C3%9F%2C_1828.jpg"><img alt="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Bendixen_-_Carl_Friedrich_Gau%C3%9F%2C_1828.jpg/211px-Bendixen_-_Carl_Friedrich_Gau%C3%9F%2C_1828.jpg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Bendixen_-_Carl_Friedrich_Gau%C3%9F%2C_1828.jpg/211px-Bendixen_-_Carl_Friedrich_Gau%C3%9F%2C_1828.jpg" style="width: 200px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 14.12 </span><span class="caption-text">Ritratto di Carl Friedrich Gauss a 50 anni, esseguito da Siegfried Detlev
+Bendixen (immagine di pubblico dominio).</span><a class="headerlink" href="#fig-gauss" title="Link a questa immagine">#</a></p>
+</figcaption>
+</figure>
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>Nella letteratura si usano gli aggettivi <em>normale</em> e
+<em>gaussiano</em> in modo quasi sempre intercambiabile, così che alcuni testi
+parlano di distribuzioni normali e normali standard, variabili aleatorie
+normali, densità normali e così via, mentre in altre fonti si trovano le
+diciture «distribuzione gaussiana» o «gaussiana standard», «variabile
+aleatoria gaussiana», «densità gaussiana» eccetera. In alcuni casi viene fatta
+però una rilevante differenziazione (che questo testo non adotta), definendo
+come <em>distribuzione normale</em> quella che qui ho chiamato «distribuzione normale
+standard» e usando l'aggettivo «gaussiana» per riferirsi in generale a questo
+tipo di distribuzione. In altre parole, in questi testi la distribuzione
+normale è un tipo specifico di distribuzione gaussiana, e precisamente quella
+con media nulla e deviazione standard unitaria.</p>
+<p>Il termine <em>gaussiano</em> fa riferimento a Carl Friedrich Gauss (di cui la
+<a class="reference internal" href="#fig-gauss"><span class="std std-numref">Figura 14.12</span></a> mostra un ritratto), una delle figure più
+eminenti nella storia della matematica. All'inizio del 1800 Gauss dimostrò,
+tra le altre cose, che la forma analitica della densità normale era l'unica
+che permettesse di risolvere un particolare problema (quello della stima della
+centralità in una popolazione, che affronteremo nel
+<a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/media-campionaria.html#sec-media-campionaria"><span class="std std-numref">Paragrafo 15.2</span></a>), e osservò come questa
+distribuzione fosse in accordo con gli errori di predizione in ambito
+astronomico. La paternità di questa distribuzione spetta però, come spesso
+accade, a più studiosi: in particolare, le prime osservazioni sul
+comportamento della distribuzione binomiale al crescere del parametro <span class="math notranslate nohighlight">\(n\)</span> sono
+state fatte da Abraham de Moivre nella prima metà del 1700, e Pierre-Simon
+de Laplace ha sviluppato queste osservazioni verso la fine dello stesso
+secolo, approssimando l'errore compiuto nel sostituire una distribuzione
+binomiale con una gaussiana e calcolando</p>
+<div class="math notranslate nohighlight">
+\[\int_{-\infty}^{+\infty} \mathrm e^{-x^2} \; \mathrm d x = \sqrt{\pi} \enspace.\]</div>
+<p>Sebbene venga fatto risalire sempre a Gauss, l'aggettivo <em>normale</em> è stato
+utilizzanto estensivamente dai matematici per riferirsi alla distribuzione
+gaussiana solo a partire dal 1900.</p>
+</div>
+<p>Non è un caso che l'aggettivo <em>normale</em> sia stato usato per definire i dati
+per le cui frequenze vale  la regola empirica introdotta nel
+<a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/simmetria-e-normalita.html#sec-simmetria-e-normalita"><span class="std std-numref">Paragrafo 7.4</span></a>. Le percentuali indicate da
+questa regola, in effetti, corrispondono esattamente alla probabilità di
+osservare un valore della distribuzione normale standard che dista dal suo
+valore atteso al più una, due o tre deviazioni standard, rispettivamente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">prob_within_std</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">normal_cdf</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">normal_cdf</span><span class="p">(</span><span class="o">-</span><span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;sigma=</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s1">, p=</span><span class="si">{</span><span class="n">prob_within_std</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sigma=1, p=0.683
+sigma=2, p=0.954
+sigma=3, p=0.997
+</pre></div>
+</div>
+</div>
+</div>
+<p>Le distribuzioni normali godono di una serie di interessanti proprietà,
+descritte di seguito.</p>
+<div class="proof theorem admonition" id="theo-normal">
+<p class="admonition-title"><span class="caption-number">Teorema 14.2 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>Siano <span class="math notranslate nohighlight">\(X \sim \mathrm N(\mu_X, \sigma_X)\)</span>, <span class="math notranslate nohighlight">\(Y \sim \mathrm N(\mu_Y, \sigma_Y)\)</span>
+e <span class="math notranslate nohighlight">\(a, b \in \mathbb R\)</span>.</p>
+<ol class="simple">
+<li><p>Definita <span class="math notranslate nohighlight">\(Y \coloneqq a X + b\)</span>, si ha
+<span class="math notranslate nohighlight">\(Y \sim \mathrm N(a \mu_X + b, a \sigma_X)\)</span>.</p></li>
+<li><p>Definita <span class="math notranslate nohighlight">\(Z \coloneqq X + Y\)</span>,
+vale <span class="math notranslate nohighlight">\(Z \sim \mathrm N \left(\mu_X + \mu_Y, \sqrt{\sigma_X^2 + \sigma_Y^2}
+\right)\)</span>.</p></li>
+</ol>
+<div class="proof admonition" id="proof">
+<p>Dimostrazione. Per quanto riguarda la prima parte, vale</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+F_Y(x) = \mathbb P(Y \leq x) = \mathbb P \left(X \leq \frac{x-b}{a} \right)
+       = F_X \left( \frac{x-b}{a} \right) \enspace,
+\end{equation*}\]</div>
+<p>e pertanto</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_Y(x) = \frac{1}{a} f_X \left( \frac{x-b}{a} \right)
+       = \frac{1}{\sqrt{2\pi} a \sigma_X}
+         \mathrm e^{-\left( \frac{x - b}{a} - \mu_X \right)^2 / (2 \sigma_X^2)}
+       = \frac{1}{\sqrt{2\pi} a \sigma_X}
+         \mathrm e^{-\frac{(x - (a\mu_X + b))^2}{2 a^2 \sigma_X^2}} \enspace,
+\end{equation*}\]</div>
+<p>che implica la tesi. La seconda parte è dimostrata nel
+<a class="reference internal" href="#sec-norm-fgm"><span class="std std-numref">Paragrafo opzionale 14.5.1</span></a>.</p>
+</div>
+</section>
+</div><p>Da questo teorema si ricava un risultato che sarà particolarmente utile
+nella parte di questo libro dedicata alla statistica inferenziale.</p>
+<div class="proof corollary admonition" id="cor:normal">
+<p class="admonition-title"><span class="caption-number">Corollario 14.1 </span></p>
+<section class="corollary-content" id="proof-content">
+<p>Siano <span class="math notranslate nohighlight">\(X_1, \dots, X_n\)</span> delle variabili aleatorie indipendenti, dove per ogni
+<span class="math notranslate nohighlight">\(i = 1, \dots, n\)</span> si ha <span class="math notranslate nohighlight">\(X_i \sim \mathrm N(\mu_i, \sigma_i)\)</span>. Dati
+<span class="math notranslate nohighlight">\(a_1, \dots, a_n, b \in \mathbb R\)</span> e definita</p>
+<div class="math notranslate nohighlight">
+\[Y \coloneqq \sum_{i=1}^n a_i X_i + b \enspace,\]</div>
+<p><span class="math notranslate nohighlight">\(Y\)</span> è distribuita secondo una legge normale con valore atteso</p>
+<div class="math notranslate nohighlight">
+\[\mu_Y = \sum_{i=1}^n a_i + b\]</div>
+<p>e deviazione standard</p>
+<div class="math notranslate nohighlight">
+\[\sigma_Y = \sqrt{\sum_{i=1}^n a_i^2 \sigma_i^2} \enspace.\]</div>
+<div class="proof admonition" id="proof">
+<p>Dimostrazione. Segue per induzione dal <a class="reference internal" href="#theo-normal">Teorema 14.2</a>.</p>
+</div>
+</section>
+</div><section id="momenti-della-distribuzione-normale">
+<span id="sec-norm-fgm"></span><h2><span class="section-number">14.5.1. </span>Momenti della distribuzione normale (*)<a class="headerlink" href="#momenti-della-distribuzione-normale" title="Link a questa intestazione">#</a></h2>
+<p>Calcolare la funzione generatrice dei momenti per la distribuzione normale
+richiede un po' di perizia. Partendo dalla definizione e ponendo
+<span class="math notranslate nohighlight">\(X \sim \mathrm N(\mu, \sigma)\)</span>, si ha</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>La notazione <span class="math notranslate nohighlight">\(\mathrm{exp}(x) \coloneqq \mathrm e^x\)</span> serve per
+evitare, nel seguito, di usare gli apici per scrivere degli esponenti
+complicati che risulterebbero difficili da leggere.</p>
+</aside>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+m_X(t) &amp;= \mathbb E(\mathrm e^{tX})
+        = \int_{-\infty}^{+\infty}\frac{1}{\sqrt{2\pi} \sigma} \mathrm{exp}(tx)
+          \mathrm{exp}\left( -\frac{(x - \mu)^2}{2 \sigma^2} \right)
+          \; \mathrm dx \\
+       &amp;= \mathrm e^{t\mu}
+          \int_{-\infty}^{+\infty}\frac{1}{\sqrt{2\pi} \sigma}
+          \mathrm{exp}(t(x - \mu))
+          \mathrm{exp}\left( -\frac{(x - \mu)^2}{2 \sigma^2} \right)
+          \; \mathrm dx \enspace.
+\end{align*}\]</div>
+<p>Sfruttando le proprietà
+delle potenze è possibile scrivere</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+m_X(t) &amp;= \mathrm e^{t\mu}\int_{-\infty}^{+\infty}\frac{1}{\sqrt{2\pi} \sigma}
+          \mathrm{exp}\left(t(x-\mu) -\frac{(x - \mu)^2}{2 \sigma^2} \right)
+          \; \mathrm dx \\
+       &amp;= \mathrm e^{t\mu}\int_{-\infty}^{+\infty}\frac{1}{\sqrt{2\pi} \sigma}
+          \mathrm{exp}\left(-\frac{1}{2 \sigma^2}
+                        \left((x - \mu)^2 -2\sigma^2 t (x - \mu)
+                        \right)
+                      \right) \mathrm dx \enspace,
+\end{align*}\]</div>
+<p>così che nell'esponente all'interno dell'integrale è possibile completare
+lo sviluppo di un quadrato nel modo seguente:</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>L'ultimo integrale in questa catena di equazioni è uguale a <span class="math notranslate nohighlight">\(1\)</span> perché
+l'integranda è la funzione di densità di probabilità di una distribuzione
+normale di parametri <span class="math notranslate nohighlight">\(\mu + \sigma^2 t\)</span> e <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
+</aside>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+m_X(t) &amp;= \mathrm e^{t\mu}\int_{-\infty}^{+\infty}\frac{1}{\sqrt{2\pi} \sigma}
+          \mathrm{exp}\left(-\frac{1}{2 \sigma^2}
+                        \left((x - \mu)^2 -2\sigma^2 t (x - \mu)
+                        \pm \sigma^4 t^2\right)
+                      \right) \mathrm dx \\
+       &amp;= \mathrm e^{t\mu+\frac{1}{2}\sigma^2t^2}
+          \underbrace{
+            \int_{-\infty}^{+\infty}\frac{1}{\sqrt{2\pi} \sigma}
+            \mathrm{exp}\left(-\frac{(x - \mu - \sigma^2 t)^2}{2 \sigma^2}
+                        \right) \mathrm dx
+          }_{=1}
+        = \mathrm e^{t\mu+\frac{1}{2}\sigma^2t^2} \enspace.
+         
+\end{align*}\]</div>
+<p>Il valore atteso di <span class="math notranslate nohighlight">\(X\)</span> sarà dunque</p>
+<div class="math notranslate nohighlight">
+\[\mathbb E(X) = m_X'(0) = \left(
+           \mathrm e^{t\mu+\frac{1}{2}\sigma^2t^2} (\mu + t \sigma^2)
+           \right)_{t = 0} = \mu \enspace,\]</div>
+<p>e analogamente</p>
+<div class="math notranslate nohighlight">
+\[\mathbb E(X^2) = m_X''(0) = \left(
+           \mathrm e^{t\mu+\frac{1}{2}\sigma^2t^2} \left(
+              (\mu + t \sigma^2)^2 + \sigma^2 \right)
+           \right)_{t = 0} = \mu^2 + \sigma^2 \enspace,\]</div>
+<p>così che <span class="math notranslate nohighlight">\(\mathrm{Var}(X) = \mu^2 + \sigma^2 - \mu^2 = \sigma^2\)</span>. Ciò dimostra
+che i due parametri della distribuzione di una variabile aleatoria normale
+equivalgono rispettivamente al suo valore atteso e alla sua deviazione
+standard, e in particolare che una variabile aleatoria normale standard ha
+valore atteso nullo e deviazione standard e varianza unitarie. Si può
+inoltre facilmente verificare che, essendo
+<span class="math notranslate nohighlight">\(Y \coloneqq X - \mu \sim \mathrm N(0, \sigma)\)</span> e <span class="math notranslate nohighlight">\(m_Y(t) = \mathrm e^
+{\sigma^2 t^2 / 2}\)</span>, vale</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+m_Y'(t)            &amp;=   t \sigma^2 \mathrm e^{\sigma^2 t^2 / 2} \enspace, \\
+m_Y''(t)           &amp;=   \sigma^2 (1 + \sigma^2 t^2)
+                        \mathrm e^{\sigma^2 t^2 / 2} \enspace, \\
+m_Y'''(t)          &amp;=   t \sigma^4 (3 + \sigma^2 t^2)
+                        \mathrm e^{\sigma^2 t^2 / 2} \enspace, \\
+m_Y^\mathrm{(iv)}(t) &amp;= \sigma^4
+                        (3 + 4 \sigma^2 t^2 + 2 \sigma^2 t^3 + \sigma^4 t^4)
+                        \mathrm e^{\sigma^2 t^2 / 2} \enspace,
+\end{align*}\]</div>
+<p>da cui si ricava che, come già sappiamo,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\mu_1 &amp;= 0 \enspace, \\
+\mu_2 &amp;= \sigma^2 \enspace, \\
+\mu_3 &amp;= 0 \enspace, \\
+\mu_4 &amp;= 3 \sigma^4 \enspace,
+\end{align*}\]</div>
+<p>e dall'ultima relazione segue che la curtosi di una qualsiasi distribuzione
+normale è uguale a <span class="math notranslate nohighlight">\(\mu_4 / \sigma^4 - 3 = 0\)</span>.</p>
+<p>La funzione generatrice dei momenti permette di dimostrare facilmente
+anche la seconda parte del <a class="reference internal" href="#cor:normal">Corollario 14.1</a>, in quanto, date due
+variabili aleatorie indipendenti <span class="math notranslate nohighlight">\(X \sim \mathrm N(\mu_X, \sigma_X)\)</span> e
+<span class="math notranslate nohighlight">\(Y \sim \mathrm N(\mu_Y, \sigma_Y)\)</span> e posto <span class="math notranslate nohighlight">\(Z \coloneqq X + Y\)</span> si ha</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>L'indipendenza di <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span> permette di scrivere il valore atteso del
+prodotto <span class="math notranslate nohighlight">\(\mathrm e^{tX} \mathrm e^{tY}\)</span> come il prodotto dei corrispondenti
+valori attesi.</p>
+</aside>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+m_Z(t) &amp;= \mathbb E\left(\mathrm e^{t(X + Y)}\right)
+        = \mathbb E\left( \mathrm e^{tX} \mathrm e^{tY} \right)
+        = \mathbb E\left(\mathrm e^{tX}\right)
+          \mathbb E\left(\mathrm e^{tY}\right)
+        = m_X(t) m_Y(t) \\
+       &amp;= \mathrm e^{t\mu_X + \frac{1}{2}\sigma_X^2 t^2}
+          \mathrm e^{t\mu_Y + \frac{1}{2}\sigma_Y^2 t^2}
+        = \mathrm e^{t(\mu_X + \mu_Y)
+          + \frac{1}{2}(\sigma_X^2 + \sigma_Y^2) t^2} \enspace,
+\end{align*}\]</div>
+<p>che è la funzione generatrice dei momenti di una distribuzione che ha
+<span class="math notranslate nohighlight">\(\mu_X + \mu_Y\)</span> per valore atteso e <span class="math notranslate nohighlight">\(\sigma_X^2 + \sigma_Y^2\)</span> per varianza.</p>
+</section>
+<section id="il-teorema-di-de-moivre-laplace">
+<span id="sec-teo-de-moivre-laplace"></span><h2><span class="section-number">14.5.2. </span>Il teorema di de Moivre-Laplace (*)<a class="headerlink" href="#il-teorema-di-de-moivre-laplace" title="Link a questa intestazione">#</a></h2>
+<p>Dimostrare in modo matematicamente impeccabile il
+<a class="reference internal" href="#teo:demoivre-laplace">Teorema 14.1</a> richiede alcune conoscenze avanzate che vanno
+al di fuori dello scopo di questo volume. Di seguito riporto una dimostrazione
+che, pur introducendo delle approssimazioni rilevanti, permette a chi è
+interessato ad approfondire l'argomento di convincersi della validità di
+questo teorema.</p>
+<p>Consideriamo le variabili aleatorie <span class="math notranslate nohighlight">\(X_n\)</span> e <span class="math notranslate nohighlight">\(Y_n\)</span> definite nell'enunciato
+del teorema: la relazione che le lega implica che la prima variabile assume
+una specificazione <span class="math notranslate nohighlight">\(x \in \{0, \dots n\}\)</span> se e solo se la seconda assume una
+specificazione <span class="math notranslate nohighlight">\(y\)</span> tale che</p>
+<div class="math notranslate nohighlight" id="equation-eq-dml-relation">
+<span class="eqno">(14.15)<a class="headerlink" href="#equation-eq-dml-relation" title="Permalink a questa equazione">#</a></span>\[x = np + y \sqrt{n p (1-p)} \enspace,\]</div>
+<p>e ovviamente varrà</p>
+<div class="math notranslate nohighlight">
+\[\mathbb P(Y_n = y) = \mathbb P(X_n = x)
+                   = \binom{n}{x} p^x (1 - p)^{n - x} \enspace.\]</div>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>L'approssimazione di Stirling <span class="math notranslate nohighlight">\(n! \approx \sqrt{2 \pi n} n^n \mathrm e^{-n}\)</span>
+è tanto più accurata quanto <span class="math notranslate nohighlight">\(n\)</span> è grande.</p>
+</aside>
+<p>Applicando a questa formula l'approssimazione di Stirling per il fattoriale
+si ottiene</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\mathbb P(Y_n = y)
+   &amp;\approx \frac{\sqrt{2\pi n} n^n \mathrm e^{-n}}
+                 {\sqrt{2 \pi x} x^x \mathrm e^{-x}
+                  \sqrt{2 \pi (n-x)} (n-x)^{(n-x)} \mathrm e^{-(n-x)}}
+            p^x (1 - p)^{n - x} \\
+   &amp;= \sqrt{\frac{n}{2 \pi x (n-x)}} \frac{n^x n^{n-x}}{x^x (n-x)^{n-x}}
+      p^x (1 - p)^{n - x} \\
+   &amp;= \sqrt{\frac{n}{2 \pi x (n-x)}}
+      \left( \frac{np}{x} \right)^x
+      \left( \frac{n(1-p)}{n-x} \right)^{n-x} \\
+   &amp;= \sqrt{\frac{n}{2 \pi x (n-x)}}
+      \mathrm{exp}\left(
+                  \underbrace{-x \ln \frac{x}{np}}_A
+                  + \underbrace{(x - n) \ln \frac{n-x}{n(1-p)}}_B
+                  \right) \enspace,
+\end{align*}\]</div>
+<p>dove l'ultimo passaggio è stato ottenuto elevando il prodotto esterno alla
+radice quadrata al suo logaritmo naturale e sfruttando le proprietà dei
+logaritmi. Semplifichiamo i conti che seguono tralasciando il fattore sotto
+frazione e consideriamo separatamente i termini <span class="math notranslate nohighlight">\(A\)</span> e <span class="math notranslate nohighlight">\(B\)</span> che occorrono
+all'esponente. Per quanto riguarda il primo, la relazione
+<a class="reference internal" href="#equation-eq-dml-relation">(14.15)</a> implica</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+A &amp;= -n p - y \sqrt{n p (1-p)} \ln \frac{np + y \sqrt{n p (1-p)}}{n p} \\
+  &amp;= -n p - y \sqrt{n p (1-p)} \ln \left( 1 + y \sqrt\frac{1 - p}{n p} \right)
+     \enspace,
+\end{align*}\]</div>
+<p>così che considerando lo sviluppo di <span class="math notranslate nohighlight">\(\ln (1 + x)\)</span> in serie di Taylor centrata
+in <span class="math notranslate nohighlight">\(0\)</span> e troncata al termine di secondo grado, ovvero
+<span class="math notranslate nohighlight">\(\ln (1 + x) \approx x - \frac{x^2}{2}\)</span>, svolgendo i conti e trascurando
+i termini di grado superiore al secondo possiamo ulteriormente semplificare
+l'espressione in</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+A &amp;\approx -n p - y \sqrt{n p (1-p)}
+   \left( y \sqrt\frac{1-p}{np} - \frac{y^2}{2} \frac{1-p}{np} \right) \\
+  &amp;= -y \sqrt{n p (1-p)} + \frac{y^2}{2} (1-p) - y^2 (1-p) \\
+  &amp;= -y \sqrt{n p (1-p)} - \frac{y^2}{2} (1-p) \enspace.
+\end{align*}\]</div>
+<p>Procedendo in modo analogo, <span class="math notranslate nohighlight">\(B\)</span> si approssima nel modo seguente:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+B &amp;= \left( np + y \sqrt{n p (1-p)} - n \right)
+     \ln \frac{n (1-p) - y \sqrt{n p (1-p)}}{n (1-p)} \\
+  &amp;= \left( np + y \sqrt{n p (1-p)} - n \right)
+     \ln \left( 1 - y \sqrt\frac{p}{n (1-p)} \right) \\
+  &amp;\approx \left( np + y \sqrt{n p (1-p)} - n \right)
+     \left( -y \sqrt\frac{p}{n (1-p)}
+            - \frac{y^2}{2} \frac{p}{n (1-p)} \right) \\
+  &amp;= -\left( n (1-p) - y \sqrt{n p (1-p)} \right)
+     \left( -y \sqrt\frac{p}{n (1-p)} 
+            -\frac{y^2}{2} \frac{p}{n (1-p)} \right) \\
+  &amp;\approx y \sqrt{n p (1-p)} + \frac{y^2}{2} p - y^2 p \\
+  &amp;= y \sqrt{n p (1-p)} - \frac{y^2}{2} p \enspace.
+\end{align*}\]</div>
+<p>Pertanto, a meno del fattore che abbiamo trascurato,</p>
+<div class="math notranslate nohighlight" id="equation-eq-approx-dml">
+<span class="eqno">(14.16)<a class="headerlink" href="#equation-eq-approx-dml" title="Permalink a questa equazione">#</a></span>\[\mathbb P(Y_n = y) \approx \mathrm e^{-y^2/2} \enspace,\]</div>
+<p>dove le approssimazioni
+effettuate diventano più precise all'aumentare di <span class="math notranslate nohighlight">\(n\)</span>. Ora, per
+<span class="math notranslate nohighlight">\(n \to +\infty\)</span> possiamo approssimare la distribuzione di <span class="math notranslate nohighlight">\(Y_n\)</span> con una
+distribuzione continua, la cui densità si determina normalizzando il
+secondo membro di <a class="reference internal" href="#equation-eq-approx-dml">(14.16)</a>, ovvero dividendolo per il valore</p>
+<div class="math notranslate nohighlight">
+\[I = \int_{-\infty}^{+\infty} \mathrm e^{-y^2/2} \; \mathrm d y \enspace.\]</div>
+<p>Calcolare questo integrale in modo analitico richiede la conoscenza di
+argomenti avanzati di analisi matematica, ma è possibile seguire il seguente
+ragionamento informale. Abbiamo visto alcune argomentazioni che suggeriscono
+che l'integrale di <span class="math notranslate nohighlight">\(\phi\)</span> su <span class="math notranslate nohighlight">\(\mathbb R\)</span> valga <span class="math notranslate nohighlight">\(1\)</span>. Possiamo rafforzare
+questa intuizione ricorrendo all'approssimazione di questo integrale usando
+le formule di quadratura.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quad</span><span class="p">(</span><span class="k">lambda</span> <span class="n">u</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">u</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.9999999999999997, 1.017819145094224e-08)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Possiamo quindi ragionevolmente supporre che</p>
+<div class="math notranslate nohighlight">
+\[1 = \int_{-\infty}^{+\infty}
+    \frac{1}{\sqrt{2\pi}} \mathrm e^{-y^2/2} \;\mathrm d y
+  = \frac{1}{\sqrt{2\pi}} I \enspace,\]</div>
+<p>e dunque ottenere la funzione di densità che approssima la distribuzione
+di <span class="math notranslate nohighlight">\(Y_n\)</span> per <span class="math notranslate nohighlight">\(n \to +\infty\)</span> come</p>
+<div class="math notranslate nohighlight">
+\[f(y) = \frac{1}{\sqrt{2\pi}} \mathrm e^{-y^2/2} \enspace,\]</div>
+<p>che coincide con la densità <span class="math notranslate nohighlight">\(\phi\)</span> della distribuzione normale standard.</p>
+</section>
+<section id="implementazione-del-modello-normale">
+<span id="sec-implementazione-modello-normale"></span><h2><span class="section-number">14.5.3. </span>Implementazione del modello normale<a class="headerlink" href="#implementazione-del-modello-normale" title="Link a questa intestazione">#</a></h2>
+<p>La distribuzione normale è implementata in <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> dalla funzione
+<code class="docutils literal notranslate"><span class="pre">norm</span></code>, che restituisce un oggetto della classe che la libreria utilizza
+per codificare le variabili casuali. Gli argomenti <code class="docutils literal notranslate"><span class="pre">loc</span></code> e <code class="docutils literal notranslate"><span class="pre">scale</span></code> permettono
+di specificare, rispettivamente, valore atteso e deviazione standard della
+distribuzione (ma è possibile omettere i nomi degli argomenti, a patto di
+specificare prima il valore atteso e poi la deviazione standard).</p>
+<p>A partire da un oggetto che descrive una distribuzione normale è possibile
+invocare i metodi <code class="docutils literal notranslate"><span class="pre">pdf</span></code>, <code class="docutils literal notranslate"><span class="pre">cdf</span></code>, <code class="docutils literal notranslate"><span class="pre">ppf</span></code> e <code class="docutils literal notranslate"><span class="pre">rv</span></code> rispettivamente per calcolare la
+funzione di densità di probabilità e di ripartizione, per estrarre i quantili
+e per simulare l'estrazione di specificazioni.</p>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="calcolo-cdf-normale"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Vale la pena di sottolineare che <span class="math notranslate nohighlight">\(\phi\)</span> è una funzione
+continua e derivabile infinite volte, pertanto l'integrale che corrisponde a
+<span class="math notranslate nohighlight">\(\Phi(x)\)</span> esiste. Semplicemente, non è possibile esprimerlo in termini di
+funzioni o operazioni matematiche note, a meno di non introdurre delle
+<em>funzioni speciali</em> che fondamentalmente incapsulano l'integrale
+in questione. È questo il caso della cosiddetta <em>funzione degli errori</em>
+(<em>error function</em> nella terminologia inglese) definita da
+<span class="math notranslate nohighlight">\(\mathrm{erf}(x) = \frac{2}{\sqrt{\pi}}
+\int_0^x \mathrm e^{-u^2} \; \mathrm d u\)</span>;
+ricorrendo a questa funzione è possibile scrivere
+<span class="math notranslate nohighlight">\(\Phi(x) = \frac{1}{2} ( 1 + \mathrm{erf}(x/\sqrt{2}) )\)</span>.</p>
+</dd>
+<dt class="label" id="approssimazione-integrali"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>Uno dei modi più semplici di approssimare
+numericamente il valore di un integrale di Riemann è quello di partizionare
+l'intervallo di integrazione in un insieme di intervalli più piccoli e di
+calcolare la somma delle aree dei rettangoli che hanno come base ognuno di
+questi rettangoli e come altezza il valore che la funzione integranda assume
+in un punto interno agli stessi, per esempio il punto medio. Il valore
+ottenuto approssimerà sempre di più quello dell'integrale quando il numero
+di intervalli cresce. La funzione <code class="docutils literal notranslate"><span class="pre">quad</span></code> che ho usato in questo paragrafo
+adotta un approccio più sofisticato, applicando una <em>formula di
+quadratura</em> che, semplificando parecchio, consiste nel pesare i valori usati
+per la funzione integranda e nello scegliere adattivamente il numero di
+intervalli da considerare.</p>
+</dd>
+<dt class="label" id="interpolazione-lineare"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>Nel caso in cui sia necessario usare la tabella per
+approssimare <span class="math notranslate nohighlight">\(\Phi\)</span> per un argomento <span class="math notranslate nohighlight">\(x \in (x_0, x_1)\)</span>, dove gli estremi
+dell'intervallo sono due valori tabulati successivi, tipicamente si
+ricorre a un processo di <em>interpolazione lineare</em>: tenuto conto che la retta
+che passa per i punti <span class="math notranslate nohighlight">\((x_0, \Phi(x_0))\)</span> e <span class="math notranslate nohighlight">\((x_1, \Phi(x_1))\)</span> ha equazione
+<span class="math notranslate nohighlight">\((y - \Phi(x_0)) / (\Phi(x_1)-\Phi(x_0)) = (x - x_0) / (x_1 - x_0)\)</span>,
+possiamo usare il valore dell'ordinata di questa retta in corrispondenza di
+<span class="math notranslate nohighlight">\(x\)</span> come (ulteriore) approssimazione per <span class="math notranslate nohighlight">\(\Phi\)</span>, calcolando
+<span class="math notranslate nohighlight">\(\Phi(x) \approx \Phi(x_0) + \left( \Phi(x_1) - \Phi(x_0) \right)
+(x - x_0) / (x_1 - x_0)\)</span>.</p>
+</dd>
+</dl>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
