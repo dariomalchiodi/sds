@@ -324,7 +324,7 @@ testo.
 | $\mathbb E(X)$                | valore atteso della variabile aleatoria $X$                        |
 | $\mathbb E(g(X))$             | valore atteso della funzione $g$ della variabile aleatoria $X$     |
 | $\mathbb E(g(X, Y))$           | valore atteso della funzione $g$ delle variabili aleatorie $X$ e $Y$ |
-| $a \triangleq b$              | $a$ è definito come uguale a $b$                                   |
+| $a \coloneqq b$              | $a$ è definito come uguale a $b$                                   |
 ```
 
 ## Utilizzo all'interno di un insegnamento

@@ -156,7 +156,6 @@ quindi $i -1 \leq na < i$ e $i = \lceil na \rceil$.
 ```{code-cell} ipython3
 :tags: [hide-cell, remove-output]
 
-import math
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -172,7 +171,7 @@ def cdf_graph(n, ax):
     y = cdf(x, n)
     ax.step(x, y)
     ax.plot(x, np.clip(x, 0, 1), dashes=[2,], linewidth=1.2, color='#1f77b4')
-    ax.set_title(rf'$n = {n}$')
+    ax.set_xlabel(rf'$n = {n}$')
 
 fig, ax = plt.subplots(1, 3, figsize=(15, 5))
 
@@ -211,7 +210,7 @@ F(x) = \begin{cases}
 ```
 
 ```{code-cell} ipython3
-:tags: [hide-cell, remove-output]
+:tags: [hide-cell, remove-output, margin]
 
 fig = plt.figure(figsize=(5, 1))
 
@@ -243,7 +242,7 @@ figclass: margin
 ---
 Si ricava $x - 1 \leq \lfloor x \rfloor \leq x$ considerando banalmente
 il fatto che un qualsiasi numero reale è necessariamente maggiore o uguale
-del suo troncamento all'intero inferiore, 
+del suo troncamento all'intero inferiore.
 ```
 
 
@@ -252,7 +251,7 @@ $F_{X_{20}}$ e $F_{X_{30}}$ affiancandoli a quello di $F$, suggerisce
 l'intuizione che $F_{X_n}$ tenda a $F$ quando $n \to +\infty$. Non è
 difficile provare formalmente che questa intuizione è corretta: ricordando che
 per ogni $x$ vale $x - 1 \leq \lfloor x \rfloor \leq x$,
-da {eq}`eq:cdf-discrete-uniform` si verifica che
+da {eq}`eq:cdf-discrete-uniform` si verifica che 
 
 ```{math}
 :label: eq:cdf-continuous-uniform

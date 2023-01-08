@@ -231,7 +231,7 @@ figure.align-default {
 figure img {
   margin: auto;
   display: block;
-  width: 90% !important;
+  width: 90%;
 }
 
 figcaption {
@@ -305,11 +305,10 @@ aside.sidebar > :last-child {
 
 .bd-toc, .toc-h2 {
   font-family: var(--pst-font-title);
-  font-size: 1.1rem;
 }
 
 .toc-h2 {
-  margin: -0.6rem 0;
+  margin: -0.3rem 0;
 }
 
 .bd-toc {
@@ -486,10 +485,6 @@ table.dataframe td {
   margin-left: 0.1rem;
 }
 
-.margin.sidebar .pre {
-  font-size: 1rem;
-}
-
 .eqno {
   font-size: 1rem !important;
 }
@@ -639,7 +634,7 @@ td.text-align:center {
 
 .caption-text .math,
 .caption-text .amsmath {
-  font-size: 1rem !important;
+  font-size: 0.8rem !important;
 }
 
 #main-content a:link,
@@ -939,6 +934,7 @@ label.margin-toggle:not(.sidenote-number) {
 
 #bd-toc-nav {
   background-color: transparent !important;
+  height: 10rem;
 }
 
 .bd-sidebar {
@@ -1072,6 +1068,10 @@ main.bd-content #main-content dl.field-list dd:not(:last-child) {
   .bd-toc div.onthispage,
   .bd-toc .toc-entry a {
     color: rgba(var(--pst-color-sidebar-link));
+  }
+
+  .toc-h2 {
+    line-height: 1.1rem;;
   }
 
   nav.bd-links p.caption {
