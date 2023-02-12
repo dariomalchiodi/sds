@@ -111,8 +111,8 @@ parts:
     - file: p3-CP/c6-modelli-continui/dal-discreto-al-continuo
     - file: p3-CP/c6-modelli-continui/va-continue
     - file: p3-CP/c6-modelli-continui/uniforme
-    - file: p3-CP/c6-modelli-continui/esponenziale
     - file: p3-CP/c6-modelli-continui/gaussiano
+    - file: p3-CP/c6-modelli-continui/esponenziale
     - file: p3-CP/c6-modelli-continui/altri-modelli
 - caption: "Statistica inferenziale"
   numbered: true

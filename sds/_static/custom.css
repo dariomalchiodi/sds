@@ -628,10 +628,6 @@ td.text-align:center {
   text-align: center !important;
 }
 
-.caption-text .std.std-numref {
-  font-size: 1rem !important;
-}
-
 .caption-text .math,
 .caption-text .amsmath {
   font-size: 0.8rem !important;

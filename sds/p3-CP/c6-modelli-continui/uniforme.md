@@ -249,3 +249,18 @@ La sua soluzione è $x_q = a + q (b - a)$.
 Pertanto la mediana di una variabile aleatoria uniforme continua coincide
 con la sua media, cosa peraltro implicata dal fatto che la sua densità di
 probabilità è simmetrica rispetto a $\mathbb E(X)$.
+
+## Implementazione del modello uniforme continuo
+
+Per quanto rigaurda le distribuzioni discrete, `scipy.stats` mette
+a disposizione delle funzioni con un'interfaccia _naturale_ i cui parametri
+sono direttamente legati ai parametri della distribuzione stessa. Anche nel
+caso continuo, ogni distribuzione è associata a una funzione che restituisce
+le istanze delle corrispondenti classi. Però, indipendentemente dalla
+distribuzione che si vuole generare, queste funzioni si invocano specifcando
+sempre i parametri `loc` e `scale`, legati rispettivamente alla centralità e
+alla dispersione della distribuzione generata. La relazione precisa
+tra i valori specificati per questi argomenti e il risultato ottenuto cambia
+di caso in caso. Per quanto riguarda una generica distribuzione uniforme
+continua $\mathrm U([a, b])$, il valore di `loc` coincide con $a$, mentre
+quello di `scale` equivale a $b - a$.

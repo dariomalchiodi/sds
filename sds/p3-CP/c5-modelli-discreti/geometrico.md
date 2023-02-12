@@ -16,7 +16,8 @@ kernelspec:
 # Il modello geometrico
 
 Bruce Banner si trasforma in Hulk ogni volta che non riesce a controllare
-un attacco d'ira. Ipotizziamo che, indipendentemente da tutto il resto, ciò avvenga con una prefissata probabilità: possiamo dunque modellare la
+un attacco d'ira. Ipotizziamo che, indipendentemente da tutto il resto, ciò
+avvenga con una prefissata probabilità: possiamo dunque modellare la
 trasformazione nei termini di un esperimento bernoulliano. Convenzionalmente,
 definiamo questo esperimento in modo che il successo si verifichi quando
 Banner si arrabbia e si trasforma in Hulk; al contrario, il fallimento avviene
