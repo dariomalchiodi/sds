@@ -269,6 +269,39 @@ valori per il relativo parametro $\lambda$ _famiglia delle distribuzioni
 esponenziali_.
 ````
 
+```{code-cell} ipython3
+:tags: [hide-cell, remove-output]
+
+plt.style.use('sds.mplstyle')
+
+lambda_ = 1.3
+fig, axes = plt.subplots(1, 2, sharey=True)
+
+x = np.linspace(-5, 0, 50)
+y = lambda_ * np.exp(lambda_ * x)
+pl = axes[0].plot(x, y)
+color = pl[0].get_color()
+
+x = np.linspace(0, 1)
+y = [0] * len(x)
+axes[0].plot(x, y, color=color)
+
+x = np.linspace(-5, 1, 50)
+y = np.exp(lambda_ * x)
+y[x>0] = 1
+axes[1].plot(x, y)
+
+glue("negative-exp", fig)
+```
+
+```{glue:figure} negative-exp
+:name: fig:negative-exponential
+:figclass: margin
+
+Grafici delle funzioni di densità (sopra) e di ripartizione (sotto) della
+distribuzione esponenziale negativa di parametro $\lambda = 3/2$.
+```
+
 
 ````{admonition} Nomenclatura
 :class: naming
@@ -288,8 +321,13 @@ Usando questa accezione, una variabile aleatoria $X$ segue una distribuzione
 esponenziale negativa di parametro $\lambda$ se e solo se la sua funzione di
 densità di probabilità è
 ```{math}
-f_X(x; \lambda) = \lambda \mathrm e^x \mathrm I_{(-\infty, 0]}(x) \enspace.
+f_X(x; \lambda) = \lambda \mathrm e^{\lambda x}
+                  \mathrm I_{(-\infty, 0]}(x) \enspace.
 ```
+
+La {numref}`fig:negative-exponential` mostra i grafici della funzione di
+densità di probabilità e di ripartizione della distribuzione esponenziale
+negativa che corrisponde al parametro $\lambda = 3/2$.
 
 La dicitura «famiglia esponenziale» viene inoltre utilizzata per indicare
 un insieme di famiglie di distribuzioni (che comprende, tra le altre,
@@ -376,7 +414,7 @@ La distribuzione esponenziale gode della proprietà di assenza di memoria
 che abbiamo già visto nel {numref}`Paragrafo %s <sec:modello-geometrico>`,
 come dimostrato nel teorema che segue.
 
-````{prf:theorem}
+`````{prf:theorem}
 :label: teo:exponential-memory-lack
 Siano $\lambda \in \mathbb R^+$ e $X \sim \mathrm E(\lambda)$. Per ogni
 $s, t \in \mathbb R^+$, si ha
@@ -385,7 +423,7 @@ $s, t \in \mathbb R^+$, si ha
 \mathbb P(X > s+t \mid X > s) = \mathbb P(X > s) \enspace.
 \end{equation*}
 
-```{prf:proof}
+````{prf:proof}
 Ricordando che $\mathbb P(X > s) = 1 - F_X(s) = \mathrm e^{-\lambda s}$,
 dalla definizione di probabilità condizionata si ottiene
 
@@ -399,8 +437,8 @@ dalla definizione di probabilità condizionata si ottiene
 \end{align*}
 
 ovvero la tesi.
-```
 ````
+`````
 
 Pertanto le distribuzioni geometrica ed esponenziale sono accomunate
 dal soddisfare la proprietà di assenza di memoria. Si potrebbe anche
@@ -419,7 +457,7 @@ proprietà:
 
 - proprietà del processo di Poisson
 
-## Momenti e quantili della distribuzione geometrica (*)
+## Momenti della distribuzione esponenziale (*)
 
 La forma analitica della funzione di distribuzione di probabilità rende
 particolarmente facile il calcolo della funzione generatrice dei momenti
@@ -517,6 +555,8 @@ e la curtosi della distribuzione esponenziale risulta uguale a
 $\mu_4 / \sigma^4 - 3 = m^{(4)}_Y(0) \lambda^4 -3 = 6$, anche in questo
 caso indipendentementedal valore del parametro.
 
+## Quantili della distribuzione esponenziale (*)
+
 Essendo la funzione di ripartizione della distribuzione esponenziale
 particolarmente facile da invertire, è possibile ricavare una forma analitica
 per i quantili, come mostrato di seguito.
@@ -543,13 +583,85 @@ e dunque la tesi.
 
 ````{prf:corollary}
 La mediana di una distribuzione esponenziale di parametro
-$\lambda \in \mathbb R^+$ è il valore $\ln 2 / \lambda$.
+$\lambda \in \mathbb R^+$ è il valore $\ln 2 / \lambda$. Il primo e il terzo
+quartile della stessa distribuzione valgono rispettivamente  $(\ln 4 - \ln 3)
+/ \lambda$ e $\ln 4 / \lambda$, mentre il suo range interquartile è uguale a
+$\ln 3 / \lambda$.
 
 ```{prf:proof}
-Applicando il {prf:ref}`lemma:exponential-quantile` per $q = 1/2$ e
-utilizzando le proprietà dei logaritmi si ottiene direttamente la tesi.
+Applicando il {prf:ref}`lemma:exponential-quantile` per $q = 1/2, 1/4
+\text{ e } 3/4$ e utilizzando le proprietà dei logaritmi si ottiene che:
+
+- la mediana della distribuzione è $-\frac{1}{\lambda} \ln \frac{1}{2}
+  = \frac{\ln 2}{\lambda}$;
+- il primo quartile è $-\frac{1}{\lambda} (\ln 3 - \ln 4)
+  = \frac{\ln 4 - \ln 3}{\lambda}$;
+- il terzo quartile è $-\frac{1}{\lambda} \ln \frac{1}{4}
+  = \frac{\ln 4}{\lambda}$.
+
+Il range interquartile si ottiene calcolando la sottrazione tra il terzo e il
+primo quartile:
+
+\begin{equation*}
+\mathrm{IQR} = \frac{\ln 4}{\lambda} - \frac{\ln 4 - \ln 3}{\lambda}
+             = \frac{\ln 3}{\lambda} \enspace.
+\end{equation*}
 ```
 ````
+
+```{code-cell} ipython3
+:tags: [hide-cell, remove-output]
+
+fig, ax = plt.subplots(figsize=(6, 0.3))
+
+lambda_ = 1
+first_quartile = (np.log(4) - np.log(3)) / lambda_
+median = np.log(2) / lambda_
+third_quartile = np.log(4) / lambda_
+
+lw = 1
+height = 0.2
+
+plt.plot([median, median], [-height, height], c='k', linewidth=1.5)
+
+plt.plot([0, 0], [-.1, .1], c='k', linewidth=lw)
+plt.plot([0, first_quartile], [0, 0], c='k', linewidth=lw)
+
+plt.plot([first_quartile, first_quartile], [-height, height],
+         c='k', linewidth=lw)
+
+plt.plot([third_quartile, third_quartile], [-height, height],
+         c='k', linewidth=lw)
+
+plt.plot([first_quartile, third_quartile], [height, height],
+         c='k', linewidth=lw)
+plt.plot([first_quartile, third_quartile], [-height, -height],
+         c='k', linewidth=lw)
+
+plt.plot([third_quartile, third_quartile*1.2], [0, 0], c='k', linewidth=lw)
+plt.plot([third_quartile*1.2, third_quartile*1.8], [0, 0],
+         'k--', linewidth=lw)
+
+plt.text(0, -0.5, '0', ha='center')
+plt.text(median, -0.5, r'$\ln 2/\lambda$', ha='center')
+
+plt.axis('off')
+pad = 2
+plt.xlim(0-pad, 2.5+pad) 
+plt.show()
+
+glue("exponential-bp", fig)
+```
+
+```{glue:figure} exponential-bp
+:name: fig:exponential-bp
+:figwidth: 100%
+
+Diagramma a scatola per la distribuzione esponenziale di parametro
+$\lambda = 1$. Il baffo a destra della scatola è parzialmente tratteggiato
+per enfatizzare il fatto che si estende fino a $+\infty$.
+
+```
 
 (sec:implementazione-modello-esponenziale)=
 ## Implementazione del modello esponenziale
