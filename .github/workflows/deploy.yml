@@ -30,6 +30,7 @@ jobs:
         pip install -r requirements.txt
     - name: Fix sphinx-proof
       run: |
+        ls -lsa /opt/hostedtoolcache/Python && \
         sudo apt-get install gettext && \
         git clone https://github.com/dariomalchiodi/sphinx-proof.git && \
         cd sphinx-proof && \

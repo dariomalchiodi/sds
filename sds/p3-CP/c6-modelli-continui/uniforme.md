@@ -83,8 +83,9 @@ uniforme continua su $[a, b]$.
 Ho scelto questo esempio per sottolineare che non tutte le distribuzioni
 sono definite su supporti che contengono solo numeri non negativi.
 ```
-La {numref}`fig:uniform-continuous` mostra il grafico delle funzioni di
-densità e di ripartizione per la distribuzione uniforme continua su $[-1, 1]$.
+La {numref}`Figura %s <fig:uniform-continuous>` mostra il grafico delle
+funzioni di densità e di ripartizione per la distribuzione uniforme continua
+su $[-1, 1]$.
 
 
 ```{code-cell} ipython3
@@ -92,9 +93,6 @@ densità e di ripartizione per la distribuzione uniforme continua su $[-1, 1]$.
 
 import matplotlib.pyplot as plt
 import numpy as np
-
-plt.style.use('sds.mplstyle')
-
 from myst_nb import glue
 
 def uniform_pdf(a, b, x):
@@ -104,30 +102,33 @@ def uniform_cdf(a, b, x):
     return np.where((a <= x) & (x <= b), (x - a) / (b - a),
                     np.where(x < a, 0, 1))
 
-fig, ax = plt.subplots(1, 2, figsize=[6, 2])
+plt.style.use('sds.mplstyle')
+
+fig, axes = plt.subplots(1, 4,
+                         gridspec_kw={'width_ratios': [.15, .2, .2, .15]},
+                         figsize=(10, 2))
+
 x = np.linspace(-1.5, 1.5, 150)
 y_pdf = uniform_pdf(-1, 1, x)
 y_cdf = uniform_cdf(-1, 1, x)
 
-ax[0].hlines([0, 0.5, 0], [-1.5, -1, 1], [-1, 1, 1.5])
-ax[1].plot(x, y_cdf)
+axes[1].hlines([0, 0.5, 0], [-1.5, -1, 1], [-1, 1, 1.5])
+axes[2].plot(x, y_cdf)
 
-for a in ax:
-  a.spines.right.set_visible(False)
-  a.spines.top.set_visible(False)
-  a.set_yticks([0, 0.5, 1])
+axes[1].set_yticks([0, 0.5, 1])
+axes[2].set_yticks([])
+for a in axes[1:3]:
   a.set_ylim(-0.1, 1.1)
 
-fig.show()
-
+axes[0].axis('off')
+axes[3].axis('off')
 
 glue("uniform-continuous", fig, display=True)
 ```
 
 ```{glue:figure} uniform-continuous
----
-name: fig:uniform-continuous
----
+:name: fig:uniform-continuous
+
 I grafici della funzione di densità (a sinistra) e della funzione di
 ripartizione (a destra) della distribuzione uniforme continua sull'intervallo
 $[-1, 1]$.
