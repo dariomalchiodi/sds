@@ -36,7 +36,8 @@ jobs:
         cd sphinx-proof && \
         git checkout sphinx-proof-it && \
         python sphinx_proof/translations/_convert.py && \
-        cp -r sphinx_proof/* /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/sphinx_proof/ 
+        cp -r sphinx_proof/* /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/sphinx_proof/ &&
+        ls /opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/sphinx_proof/translations/jsons
 
     # Build the book
     - name: Build the book
