@@ -311,6 +311,32 @@ generare valori fuori scala. La curtosi è invece nulla quando
 $p = \frac{1}{2}$, e anche in questo caso si tratta di un risultato abbastanza
 scontato, essendo equiprobabili le specificazioni della distribuzione.
 
+## Quantili della distribuzione di Bernoulli (*)
+
+La distribuzione di Bernoulli ha solo due specificazioni, e di conseguenza
+la sua funzione di ripartizione assume solo tre valori, e ciò ha un notevole
+impatto sui quantili della distribuzione stessa. Più precisamente, dati
+$p \in (0, 1)$ e $X \sim \mathrm B(p)$, $F_X$ vale $0$ se il suo argomento
+è negativo, $1 - p$ quando l'argomento è compreso tra $0$ (incluso) e $1$
+(escluso) e $1$ nei casi rimanenti. Pertanto, per ogni $q \in [1-p, 1)$ si ha
+
+```{math}
+F_X(0) = \mathbb P (X = 0) = 1 -p \leq q
+```
+
+mentre $F_X(1) = 1 > q$. Dunque $x_q = 0$, essendo $0$ la più grande
+specificazione $x$ di $X$ (l'unica, peraltro) tale che $F_X(x) \leq q$.
+Analogamente, dal fatto che $F_X(1) \leq 1$ e che non ci sono specificazioni
+maggiori di $1$ consegue che $x_1 = 1$. Se invece consideriamo un generico
+livello $q \in [0, 1-p)$, nessuna specificazione $x$ è tale che
+$F_X(x) \leq q$, il che implica che non esiste il relativo quantile per la
+distribuzione di Bernoulli.
+
+Quando $p=1$, una variabile aleatoria $X \sim B(p)$ degenera nella costante
+$1$ e dunque esiste solamente il quantile $x_1 = 1$. Analogamente, quando
+$p=0$ l'unico quantile esistente è $x_1 = 0$.
+
+
 ## Implementazione della distribuzione di Bernoulli (*)
 
 Il modulo `scipy.stats` contiene una serie di classi che implementano un gran
