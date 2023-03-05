@@ -203,26 +203,29 @@ p = \frac{\binom{12}{2}}{\binom{50}{2}} = \frac{12 \cdot 11}{50 \cdot 49}
   \approx 0.054 \enspace,
 \end{equation*}
 
-e dunque $X \sim \mathrm B(0.054)$, il che significa che mediamente possiamo
-aspettarci che in poco più di cinque volte su cento selezioni casuali di due
-albi si arrivi a pescarne due con due storie diverse di Aquaman.
+e dunque $X \sim \mathrm B(0.054)$. Pertanto
+- la probabilità di non pescare albi con due storie di Aquaman differenti è
+  $\mathbb P(X = 0) = 0.946$, e
+- $\mathbb E(X) = 0.054$, il che significa che mediamente possiamo aspettarci
+  che in poco più di cinque volte su cento selezioni casuali di due albi si
+  arrivi a pescarne due con due storie diverse di Aquaman.
 
-Se sapessimo che sei delle dodici copie in questione sono dei doppioni tutti identici tra loro, ci
-troveremmo di fronte a una variabile aleatoria $X'$ che segue ancora
-distribuzione di Bernoulli, ma in questo il calcolo del relativo parametro
-richiede un po' più di perizia. In particolare, quello che si complica è il
-calcolo del numero di casi favorevoli. Per ottenerlo possiamo seguire, per
-esempio, uno dei due seguenti ragionamenti:
+Se sapessimo che sei delle dodici copie in questione sono dei doppioni tutti
+identici tra loro, ci troveremmo di fronte a una variabile aleatoria $X'$ che
+segue ancora distribuzione di Bernoulli, ma in questo il calcolo del relativo
+parametro richiede un po' più di perizia. In particolare, quello che si
+complica è il calcolo del numero di casi favorevoli. Per ottenerlo possiamo
+seguire, per esempio, uno dei due seguenti ragionamenti:
 
 - il numero di modi di scegliere due albi dai dodici a
-  disposizione è $\binom{12}{2} = 66$, ma $\binom{6}{2} = 15$ di questi corrispondono a coppie
-  che contengono due albi uguali, dunque il numero di coppie con albi distinti
-  è $66 - 15 = 51$;
-- ci sono $\binom{6}{2} = 15$ modi di comporre una coppia
-  considerando solo gli albi di cui possediamo un'unica copia, e a questi
-  bisogna aggiungere
-  $6 \cdot 6 = 36$, che corrisponde al numero di possibili coppie che contengono uno
-  dei doppioni e un altro albo; il risultato è, anche in questo caso, $51$.
+  disposizione è $\binom{12}{2} = 66$, ma $\binom{6}{2} = 15$ di questi
+  corrispondono a coppie che contengono due albi uguali, dunque il numero di
+  coppie con albi distinti è $66 - 15 = 51$;
+- ci sono $\binom{6}{2} = 15$ modi di comporre una coppia considerando solo
+  gli albi di cui possediamo un'unica copia, e a questi   bisogna aggiungere
+  $6 \cdot 6 = 36$, che corrisponde al numero di possibili coppie che
+  contengono uno dei doppioni e un altro albo; il risultato è, anche in questo
+  caso, $51$.
 
 La probabilità $p'$ di estrarre due albi con due storie diverse di Aquaman in
 è quindi
@@ -232,9 +235,9 @@ p' = \frac{51}{\frac{50 \cdot 49}{2}}
    \approx 0.041 \enspace.
 \end{equation*}
 
-Riassumendo, $X' \sim \mathrm B(0.042)$: in altre parole, la media del numero
-di volte in cui si arriva a leggere due storie diverse di Aquaman scende a
-poco più di quattro volte su cento.
+Riassumendo, $X' \sim \mathrm B(0.042)$, il che significa ad esempio che la
+media del numero di volte in cui si arriva a leggere due storie diverse di
+Aquaman scende a poco più di quattro volte su cento.
 ```
 
 
