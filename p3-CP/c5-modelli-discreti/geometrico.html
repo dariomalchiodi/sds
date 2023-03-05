@@ -1038,8 +1038,8 @@ le specificazioni di <span class="math notranslate nohighlight">\(X\)</span> si 
 <p class="sidebar-title"></p>
 <p>Nel terzultimo passaggio ho applicato il cambio di variabile <span class="math notranslate nohighlight">\(j = i - 1\)</span>.</p>
 </aside>
-<div class="amsmath math notranslate nohighlight" id="equation-7274c42e-e2e5-4ab5-bf10-8a0217f897fe">
-<span class="eqno">(13.1)<a class="headerlink" href="#equation-7274c42e-e2e5-4ab5-bf10-8a0217f897fe" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-30842c7d-3554-4a46-8f36-02e5dd77e563">
+<span class="eqno">(13.1)<a class="headerlink" href="#equation-30842c7d-3554-4a46-8f36-02e5dd77e563" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \sum_{i=1}^{+\infty}\mathrm p_X(i; p) &amp;= \sum_{i=1}^{+\infty} (1-p)^{i - 1} p =
 p \sum_{i=1}^{+\infty}(1-p)^{i - 1} \\
 &amp;= p \sum_{j=0}^{+\infty}(1-p)^j = p \frac{1}{1-(1-p)} = 1.
@@ -1195,8 +1195,8 @@ ripetizioni tenderà a più infinito.</p>
 <p><strong>Proposizione</strong> Il valore atteso del quadrato della distribuzione geometrica
 di parametro <span class="math notranslate nohighlight">\(p\)</span> è pari a <span class="math notranslate nohighlight">\(\frac{(1-p)(2-p)}{p^2}\)</span>.</p>
 <p>Dimostrazione.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9dae12a0-4351-4d87-9940-bf3a9456a03f">
-<span class="eqno">(13.2)<a class="headerlink" href="#equation-9dae12a0-4351-4d87-9940-bf3a9456a03f" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c08f6729-9cbe-47c5-8390-56bc9b29a80c">
+<span class="eqno">(13.2)<a class="headerlink" href="#equation-c08f6729-9cbe-47c5-8390-56bc9b29a80c" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm E\left(X^2\right) &amp;= \sum_{i=0}^{+\infty} i^2 p_X(i) \\
                &amp;= \sum_{i=0}^{+\infty} i^2 p (1-p)^i \\
                &amp;= p (1-p) \sum_{i=0}^{+\infty} i^2 (1-p)^{i-1} \\
@@ -1204,8 +1204,8 @@ di parametro <span class="math notranslate nohighlight">\(p\)</span> è pari a <
                &amp;= -p (1-p) \frac{\mathrm d}{\mathrm d p} \sum_{i=0}^{+\infty} i(1-p)^i.
 \end{align}\]</div>
 <p>Applicando ancora il lemma dimostrato precedentemente si ottiene</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8d2af5e9-35b7-4f37-9a41-66a0f8cc7c81">
-<span class="eqno">(13.3)<a class="headerlink" href="#equation-8d2af5e9-35b7-4f37-9a41-66a0f8cc7c81" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a0231b8f-91c9-4838-bea0-98cc2a55317f">
+<span class="eqno">(13.3)<a class="headerlink" href="#equation-a0231b8f-91c9-4838-bea0-98cc2a55317f" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm E\left(X^2\right) &amp;= -p (1-p) \frac{\mathrm d}{\mathrm d p}
                                 \frac{1-p}{p^2} \\
       &amp;= p (1-p) \frac{p^2 + 1p(1-p)}{p^4} \\
@@ -1215,8 +1215,8 @@ di parametro <span class="math notranslate nohighlight">\(p\)</span> è pari a <
 <p><strong>Proposizione</strong>. La varianza della distribuzione geometrica di parametro <span class="math notranslate nohighlight">\(p\)</span>
 è uguale a <span class="math notranslate nohighlight">\(\frac{1-p}{p^2}\)</span>.</p>
 <p>Dimostrazione.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0c6628b9-6c4d-4e7f-b3c9-64ac28d81ebd">
-<span class="eqno">(13.4)<a class="headerlink" href="#equation-0c6628b9-6c4d-4e7f-b3c9-64ac28d81ebd" title="Permalink a questa equazione">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-820b9f2d-4ad4-40e6-95ca-df44e3358107">
+<span class="eqno">(13.4)<a class="headerlink" href="#equation-820b9f2d-4ad4-40e6-95ca-df44e3358107" title="Permalink a questa equazione">#</a></span>\[\begin{equation}
 \mathrm{Var}(X) = \mathrm E \left(X^2\right) - \mathrm E(X)^2 =
                   \frac{(1-p)(2-p)}{p^2} - \frac{(1-p)^2}{p^2} =
                   \frac{1-p}{p^2}.
@@ -1285,8 +1285,8 @@ ripartizione in cui è possibile calcolare esplicitamente il valore della
 sommatoria. Più precisamente, indicata con <span class="math notranslate nohighlight">\(X\)</span> una variabile aleatoria che
 segue una distribuzione geometrica di parametro <span class="math notranslate nohighlight">\(p\)</span>, è facile calcolare la
 probabilità <span class="math notranslate nohighlight">\(\mathrm P(X &gt; n)\)</span> per un generico <span class="math notranslate nohighlight">\(n\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c4577ed1-fb66-4f06-af06-9d27400ddb79">
-<span class="eqno">(13.5)<a class="headerlink" href="#equation-c4577ed1-fb66-4f06-af06-9d27400ddb79" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3e64b09e-58f5-4118-9f50-d6153b1cfe09">
+<span class="eqno">(13.5)<a class="headerlink" href="#equation-3e64b09e-58f5-4118-9f50-d6153b1cfe09" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm P(X &gt; n) &amp;= \sum_{i=n+1}^{+\infty}f_X(i; p) \\
                  &amp;= \sum_{i=n+1}^{+\infty}(1-p)^i p \\
                  &amp;= p (1-p)^{n+1} \sum_{i=n+1}^{+\infty}(1-p)^{i- (n+1)} \\
@@ -1344,8 +1344,8 @@ nella versione interattiva degli appunti.</p>
 </div>
 <p>Si noti infine che <span class="math notranslate nohighlight">\(\mathrm P(X \geq x) = \mathrm P(X \geq \lfloor x \rfloor) =
 \mathrm P(X &gt; \lfloor x \rfloor - 1) = (1-p)^{\lfloor x \rfloor}\)</span>, e quindi</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e411365f-4842-4aeb-b379-2df27040f8c4">
-<span class="eqno">(13.6)<a class="headerlink" href="#equation-e411365f-4842-4aeb-b379-2df27040f8c4" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-58cd14bc-acac-4942-9dc6-c296fb02e1d2">
+<span class="eqno">(13.6)<a class="headerlink" href="#equation-58cd14bc-acac-4942-9dc6-c296fb02e1d2" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm P(X \geq x+y | X \geq x)
             &amp;= \frac{\mathrm  P(X \geq x+y, X \geq x)}{\mathrm  P(X \geq x)} \\
             &amp;= \frac{\mathrm  P(X \geq x+y)}{\mathrm  P(X \geq x)} \\
