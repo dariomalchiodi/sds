@@ -4,49 +4,57 @@
 <html lang="it">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>2.1. Tipi di dati semplici &#8212; Superhero Data Science 
  Probabilità e Statistica</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
     <script>let toggleHintShow = 'Mostra il codice';</script>
     <script>let toggleHintHide = 'Nascondi il codice';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/translations.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -54,65 +62,449 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'p1-PAD/c1-intro-python/dati-semplici-e-operatori';</script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
     <link rel="search" title="Cerca" href="../../search.html" />
     <link rel="next" title="2.2. Tipi di dati strutturati" href="dati-strutturati.html" />
-    <link rel="prev" title="2. Python" href="introduzione-a-python.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="it">
-    
-
-    <!-- Google Analytics -->
-    
+    <link rel="prev" title="2. Elaborare i dati con python" href="introduzione-a-python.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="it">
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="light">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Cerca..." aria-label="Cerca..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../landing.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/logoface.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/logoface.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
         
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p0-introduzione/presentazione.html">
+                        Presentazione
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="introduzione-a-python.html">
+                        Elaborare i dati con python
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../c2-pandas/pandas.html">
+                        Pandas
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p2-SD/c1-dati-e-informazione/dati-e-informazione.html">
+                        Dati e informazione
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p2-SD/c2-utilizzare-informazione/utilizzare-informazione.html">
+                        Utilizzare l'informazione
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p2-SD/c3-misurare-informazione/misurare-informazione.html">
+                        Misurare l'informazione
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p2-SD/c4-visualizzare-informazione/visualizzare-informazione.html">
+                        Visualizzare l'informazione
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p2-SD/c5-analizzare-relazioni/analizzare-relazioni.html">
+                        Analizzare le relazioni tra i dati
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p3-CP/c1-calcolo-combinatorio/calcolo-combinatorio.html">
+                        Calcolo combinatorio
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p3-CP/c2-teoria-insiemi/teoria-insiemi.html">
+                        Teoria degli insiemi
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p3-CP/c3-probabilita/calcolo-probabilita.html">
+                        Calcolo delle probabilità
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p3-CP/c4-variabili-aleatorie/intro.html">
+                        Variabili aleatorie
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p3-CP/c5-modelli-discreti/modelli-discreti.html">
+                        Modelli discreti
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p3-CP/c6-modelli-continui/va-e-modelli-continui.html">
+                        Modelli continui
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p4-SI/c1-inferenza-puntuale/inferenza-puntuale.html">
+                        Inferenza puntuale
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../bibliography.html">
+                        Bibliografia
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Cerca" aria-label="Cerca" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
       
       
-      <img src="../../_static/logoface.png" class="logo" alt="logo">
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
       
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
       
-      <h1 class="site-logo" id="site-title">Superhero Data Science 
- Probabilità e Statistica</h1>
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Cerca" aria-label="Cerca" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Cerca..." aria-label="Cerca..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p0-introduzione/presentazione.html">
+                        Presentazione
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="introduzione-a-python.html">
+                        Elaborare i dati con python
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../c2-pandas/pandas.html">
+                        Pandas
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p2-SD/c1-dati-e-informazione/dati-e-informazione.html">
+                        Dati e informazione
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p2-SD/c2-utilizzare-informazione/utilizzare-informazione.html">
+                        Utilizzare l'informazione
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p2-SD/c3-misurare-informazione/misurare-informazione.html">
+                        Misurare l'informazione
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p2-SD/c4-visualizzare-informazione/visualizzare-informazione.html">
+                        Visualizzare l'informazione
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p2-SD/c5-analizzare-relazioni/analizzare-relazioni.html">
+                        Analizzare le relazioni tra i dati
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p3-CP/c1-calcolo-combinatorio/calcolo-combinatorio.html">
+                        Calcolo combinatorio
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p3-CP/c2-teoria-insiemi/teoria-insiemi.html">
+                        Teoria degli insiemi
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p3-CP/c3-probabilita/calcolo-probabilita.html">
+                        Calcolo delle probabilità
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p3-CP/c4-variabili-aleatorie/intro.html">
+                        Variabili aleatorie
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p3-CP/c5-modelli-discreti/modelli-discreti.html">
+                        Modelli discreti
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p3-CP/c6-modelli-continui/va-e-modelli-continui.html">
+                        Modelli continui
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p4-SI/c1-inferenza-puntuale/inferenza-puntuale.html">
+                        Inferenza puntuale
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../bibliography.html">
+                        Bibliografia
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../../landing.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/logoface.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/logoface.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Cerca..." aria-label="Cerca..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -121,917 +513,474 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Introduzione
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduzione</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p0-introduzione/presentazione.html">
-   1. Presentazione
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p0-introduzione/un-esempio-introduttivo.html">
-     1.1. Un esempio
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p0-introduzione/organizzazione.html">
-     1.2. Organizzazione
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p0-introduzione/presentazione.html">1. Presentazione</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p0-introduzione/un-esempio-introduttivo.html">1.1. Un esempio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p0-introduzione/organizzazione.html">1.2. Organizzazione</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Programmazione per l'analisi dei dati
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Programmazione per l'analisi dei dati</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="introduzione-a-python.html">
-   2. Python
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     2.1. Tipi di dati semplici
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="dati-strutturati.html">
-     2.2. Tipi di dati strutturati
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="strutture-di-controllo.html">
-     2.3. Strutture di controllo
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="funzioni.html">
-     2.4. Funzioni e funzioni anonime
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="importare-moduli.html">
-     2.5. Importare moduli
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="disegnare-grafici.html">
-     2.6. Disegnare grafici
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="leggere-file.html">
-     2.7. Leggere dati da file (e un po' di trucchi)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../c2-pandas/pandas.html">
-   3. Pandas
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c2-pandas/serie.html">
-     3.1. Serie
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c2-pandas/dataframe.html">
-     3.2. Dataframe
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="introduzione-a-python.html">2. Elaborare i dati con python</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.1. Tipi di dati semplici</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dati-strutturati.html">2.2. Tipi di dati strutturati</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strutture-di-controllo.html">2.3. Strutture di controllo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="funzioni.html">2.4. Funzioni e funzioni anonime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="importare-moduli.html">2.5. Importare moduli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="disegnare-grafici.html">2.6. Disegnare grafici</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leggere-file.html">2.7. Leggere dati da file (e un po' di trucchi)</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Statistica descrittiva
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/dati-e-informazione.html">
-   4. Dati e informazione
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/dati-quantitativi-e-qualitativi.html">
-     4.7. Dati quantitativi e qualitativi
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/frequenze-assolute-e-relative.html">
-     4.8. Frequenze assolute e relative
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/frequenze-cumulate.html">
-     4.9. Frequenze cumulate
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/frequenze-congiunte-e-marginali.html">
-     4.10. Frequenze congiunte e marginali
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/utilizzare-informazione.html">
-   5. Utilizzare l'informazione
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/descrivere-popolazione.html">
-     5.1. Descrivere una popolazione
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/predire-informazione.html">
-     5.2. Predire l'informazione
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/classificazione.html">
-     5.3. Classificazione
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/regressione.html">
-     5.4. Regressione
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/misurare-informazione.html">
-   6. Misurare l'informazione
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/indici-di-posizione.html">
-     6.1. Indici di posizione
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/indici-di-dispersione.html">
-     6.2. Calcolo della dispersione in pandas
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/quantili-campionari.html">
-     6.3. Quantili campionari
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/eterogeneita.html">
-     6.4. Indici di eterogeneità
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/concentrazione.html">
-     6.5. Indici di concentrazione
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/trasformazioni-dei-dati.html">
-     6.6. Trasformazione dei dati
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/analisi-della-varianza.html">
-     6.7. Analisi della varianza
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/analisi-di-classificatori.html">
-     6.8. Analisi di classificatori
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/visualizzare-informazione.html">
-   7. Visualizzare l'informazione
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-discreti.html">
-     7.1. Dati discreti
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-continui.html">
-     7.2. Dati continui
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-cumulati.html">
-     7.3. Dati cumulati
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/simmetria-e-normalita.html">
-     7.4. Simmetria e normalità
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p2-SD/c5-analizzare-relazioni/analizzare-relazioni.html">
-   8. Analizzare le relazioni tra i dati
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c5-analizzare-relazioni/diagrammi-per-dati-a-coppie.html">
-     8.1. Dati a coppie
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c5-analizzare-relazioni/covarianza-e-correlazione.html">
-     8.2. Covarianza e correlazione
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../c2-pandas/pandas.html">3. Pandas</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../c2-pandas/serie.html">3.1. Serie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c2-pandas/dataframe.html">3.2. Dataframe</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Calcolo delle probabilità
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/calcolo-combinatorio.html">
-   9. Calcolo combinatorio
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/principio-fondamentale-calcolo-combinatorio.html">
-     9.1. Principio fondamentale del calcolo combinatorio
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/permutazioni.html">
-     9.2. Permutazioni
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/disposizioni.html">
-     9.3. Disposizioni
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/combinazioni.html">
-     9.4. Combinazioni
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/generazione.html">
-     9.5. Generazione di disposizioni, permutazioni e combinazioni
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/esercizi.html">
-     9.6. Esercizi
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/teoria-insiemi.html">
-   10. Teoria degli insiemi
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-  <label for="toctree-checkbox-10">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/concetti-di-base.html">
-     10.1. Concetti di base
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/insiemi-finiti-e-infiniti.html">
-     10.2. Insiemi finiti e infiniti
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/relazioni-tra-insiemi.html">
-     10.3. Relazioni tra insiemi
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/operazioni-tra-insiemi.html">
-     10.4. Operazioni tra insiemi
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/insiemi-in-python.html">
-     10.5. Gli insiemi in Python
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p3-CP/c3-probabilita/calcolo-probabilita.html">
-   11. Calcolo delle probabilità
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c3-probabilita/concetto-di-probabilita.html">
-     11.1. Il concetto di probabilità
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c3-probabilita/esperimenti-esiti-eventi.html">
-     11.2. Concetti fondamentali
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c3-probabilita/assiomi-kolmogorov.html">
-     11.3. Assiomi di Kolmogorov
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c3-probabilita/spazi-equiprobabili.html">
-     11.4. Spazi equiprobabili
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c3-probabilita/probabilita-condizionata.html">
-     11.5. Probabilità condizionata
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c3-probabilita/prob-totali-e-naive-bayes.html">
-     11.6. Teoremi
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c3-probabilita/classificatori-naive-bayes.html">
-     11.7. Classificatori naive Bayes
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c3-probabilita/indipendenza.html">
-     11.8. Indipendenza
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/intro.html">
-   12. Variabili aleatorie
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-aleatorie.html">
-     12.1. Variabili aleatorie
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-aleatorie-discrete.html">
-     12.2. Variabili aleatorie discrete
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/valore-atteso.html">
-     12.3. Valore atteso
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/varianza.html">
-     12.4. Varianza
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/momenti.html">
-     12.5. momenti
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-multivariate.html">
-     12.6. Variabili aleatorie multivariate
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/indipendenza.html">
-     12.7. Indipendenza di variabili aleatorie
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/disuguaglianze-fondamentali.html">
-     12.8. Disuguaglianze fondamentali
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-aleatorie-continue.html">
-     12.9. Variabili aleatorie continue
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/modelli-discreti.html">
-   13. Modelli discreti
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/bernoulli.html">
-     13.1. Il modello bernoulliano
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/binomiale.html">
-     13.2. Il modello binomiale
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/uniforme.html">
-     13.3. Il modello uniforme discreto
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/geometrico.html">
-     13.4. Il modello geometrico
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/poisson.html">
-     13.5. Il modello di poisson
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c5-modelli-discreti/ipergeometrico.html">
-     13.6. Il modello ipergeometrico
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p3-CP/c6-modelli-continui/va-e-modelli-continui.html">
-   14. Variabili aleatorie e modelli continui
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-  <label for="toctree-checkbox-14">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/dal-discreto-al-continuo.html">
-     14.1. Dal discreto al continuo
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/va-continue.html">
-     14.2. Variabili aleatorie continue
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/uniforme.html">
-     14.3. Il modello uniforme continuo
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/esponenziale.html">
-     14.4. Il modello esponenziale
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/gaussiano.html">
-     14.5. Il modello normale
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p3-CP/c6-modelli-continui/altri-modelli.html">
-     14.6. Altri modelli continui
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Statistica inferenziale
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistica descrittiva</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/inferenza-puntuale.html">
-   15. Inferenza puntuale
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-  <label for="toctree-checkbox-15">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima.html">
-     15.1. Popolazione, campione e stima
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/media-campionaria.html">
-     15.2. Media campionaria
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/varianza-campionaria.html">
-     15.3. Varianza campionaria
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/errore-di-una-stima.html">
-     15.4. Errore di una stima
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/teorema-centrale-limite.html">
-     15.5. Teorema del limite centrale
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/leggi-grandi-numeri.html">
-     15.6. Leggi dei grandi numeri
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/distribuzioni-campionarie.html">
-     15.7. Distribuzioni campionarie
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/calcolo-dimensione-campione.html">
-     15.8. Calcolo della dimensione del campione
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/processo-poisson.html">
-     15.9. Processo di poisson
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/dati-e-informazione.html">4. Dati e informazione</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/dati-quantitativi-e-qualitativi.html">4.7. Dati quantitativi e qualitativi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/frequenze-assolute-e-relative.html">4.8. Frequenze assolute e relative</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/frequenze-cumulate.html">4.9. Frequenze cumulate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/frequenze-congiunte-e-marginali.html">4.10. Frequenze congiunte e marginali</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Bibliografia
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/utilizzare-informazione.html">5. Utilizzare l'informazione</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/descrivere-popolazione.html">5.1. Descrivere una popolazione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/predire-informazione.html">5.2. Predire l'informazione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/classificazione.html">5.3. Classificazione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/regressione.html">5.4. Regressione</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/misurare-informazione.html">6. Misurare l'informazione</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/indici-di-posizione.html">6.1. Indici di posizione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/indici-di-dispersione.html">6.2. Calcolo della dispersione in pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/quantili-campionari.html">6.3. Quantili campionari</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/eterogeneita.html">6.4. Indici di eterogeneità</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/concentrazione.html">6.5. Indici di concentrazione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/trasformazioni-dei-dati.html">6.6. Trasformazione dei dati</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/analisi-della-varianza.html">6.7. Analisi della varianza</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/analisi-di-classificatori.html">6.8. Analisi di classificatori</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/visualizzare-informazione.html">7. Visualizzare l'informazione</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-discreti.html">7.1. Dati discreti</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-continui.html">7.2. Dati continui</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-cumulati.html">7.3. Dati cumulati</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/simmetria-e-normalita.html">7.4. Simmetria e normalità</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p2-SD/c5-analizzare-relazioni/analizzare-relazioni.html">8. Analizzare le relazioni tra i dati</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c5-analizzare-relazioni/diagrammi-per-dati-a-coppie.html">8.1. Dati a coppie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c5-analizzare-relazioni/covarianza-e-correlazione.html">8.2. Covarianza e correlazione</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Calcolo delle probabilità</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../bibliography.html">
-   16. Bibliografia
-  </a>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/calcolo-combinatorio.html">9. Calcolo combinatorio</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/principio-fondamentale-calcolo-combinatorio.html">9.1. Principio fondamentale del calcolo combinatorio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/permutazioni.html">9.2. Permutazioni</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/disposizioni.html">9.3. Disposizioni</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/combinazioni.html">9.4. Combinazioni</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/generazione.html">9.5. Generazione di disposizioni, permutazioni e combinazioni</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/esercizi.html">9.6. Esercizi</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/teoria-insiemi.html">10. Teoria degli insiemi</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/concetti-di-base.html">10.1. Concetti di base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/insiemi-finiti-e-infiniti.html">10.2. Insiemi finiti e infiniti</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/relazioni-tra-insiemi.html">10.3. Relazioni tra insiemi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/operazioni-tra-insiemi.html">10.4. Operazioni tra insiemi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/insiemi-in-python.html">10.5. Gli insiemi in Python</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p3-CP/c3-probabilita/calcolo-probabilita.html">11. Calcolo delle probabilità</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c3-probabilita/concetto-di-probabilita.html">11.1. Il concetto di probabilità</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c3-probabilita/esperimenti-esiti-eventi.html">11.2. Concetti fondamentali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c3-probabilita/assiomi-kolmogorov.html">11.3. Assiomi di Kolmogorov</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c3-probabilita/spazi-equiprobabili.html">11.4. Spazi equiprobabili</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c3-probabilita/probabilita-condizionata.html">11.5. Probabilità condizionata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c3-probabilita/prob-totali-e-naive-bayes.html">11.6. Teoremi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c3-probabilita/classificatori-naive-bayes.html">11.7. Classificatori naive Bayes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c3-probabilita/indipendenza.html">11.8. Indipendenza</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/intro.html">12. Variabili aleatorie</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-aleatorie.html">12.1. Variabili aleatorie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-aleatorie-discrete.html">12.2. Variabili aleatorie discrete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/valore-atteso.html">12.3. Valore atteso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/varianza.html">12.4. Varianza</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/momenti.html">12.5. momenti</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-multivariate.html">12.6. Variabili aleatorie multivariate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/indipendenza.html">12.7. Indipendenza di variabili aleatorie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/disuguaglianze-fondamentali.html">12.8. Disuguaglianze fondamentali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-aleatorie-continue.html">12.9. Variabili aleatorie continue</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p3-CP/c5-modelli-discreti/modelli-discreti.html">13. Modelli discreti</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c5-modelli-discreti/bernoulli.html">13.1. La distribuzione di Bernoulli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c5-modelli-discreti/binomiale.html">13.2. Il modello binomiale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c5-modelli-discreti/uniforme.html">13.3. Il modello uniforme discreto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c5-modelli-discreti/geometrico.html">13.4. Il modello geometrico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c5-modelli-discreti/poisson.html">13.5. Il modello di poisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c5-modelli-discreti/ipergeometrico.html">13.6. Il modello ipergeometrico</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p3-CP/c6-modelli-continui/va-e-modelli-continui.html">14. Modelli continui</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c6-modelli-continui/dal-discreto-al-continuo.html">14.1. Dal discreto al continuo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c6-modelli-continui/va-continue.html">14.2. Variabili aleatorie continue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c6-modelli-continui/uniforme.html">14.3. Il modello uniforme continuo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c6-modelli-continui/gaussiano.html">14.4. Il modello normale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c6-modelli-continui/esponenziale.html">14.5. Il modello esponenziale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c6-modelli-continui/altri-modelli.html">14.6. Altri modelli continui</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistica inferenziale</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/inferenza-puntuale.html">15. Inferenza puntuale</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima.html">15.1. Popolazione, campione e stima</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/media-campionaria.html">15.2. Media campionaria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/varianza-campionaria.html">15.3. Varianza campionaria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/errore-di-una-stima.html">15.4. Errore di una stima</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/teorema-centrale-limite.html">15.5. Teorema del limite centrale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/leggi-grandi-numeri.html">15.6. Leggi dei grandi numeri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/distribuzioni-campionarie.html">15.7. Distribuzioni campionarie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/calcolo-dimensione-campione.html">15.8. Calcolo della dimensione del campione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/processo-poisson.html">15.9. Processo di poisson</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">16. Bibliografia</a></li>
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
+</nav>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  </div>
+  
 
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
 
-          
+  
+  <div id="rtd-footer-container"></div>
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
+      </div>
+      <main id="main-content" class="bd-main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
 
 
 
 <div class="col py-1 d-flex header-article-main">
     <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
     </div>
     <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/dariomalchiodi/sds/main?urlpath=tree/sds/p1-PAD/c1-intro-python/dati-semplici-e-operatori.md"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="https://mybinder.org/v2/gh/dariomalchiodi/sds/main?urlpath=tree/sds/p1-PAD/c1-intro-python/dati-semplici-e-operatori.md" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Launch on Binder"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../../_static/images/logo_binder.svg">
   </span>
-<span class="headerbtn__text-container">Binder</span>
+<span class="btn__text-container">Binder</span>
 </a>
-
-      </li>
+</a>
       
       <li>
-        
 <button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
   data-toggle="tooltip"
 data-placement="left"
 title="Launch Thebe"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-play"></i>
   </span>
-<span class="headerbtn__text-container">Live Code</span>
+<span class="btn__text-container">Live Code</span>
 </button>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
+  class="btn btn-sm"
   data-toggle="tooltip"
 data-placement="bottom"
 title="Fullscreen mode"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+
+<div class="dropdown dropdown-repository-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/dariomalchiodi/sds"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="https://github.com/dariomalchiodi/sds" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Source repository"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fab fa-github"></i>
   </span>
-<span class="headerbtn__text-container">repository</span>
+<span class="btn__text-container">repository</span>
 </a>
-
-      </li>
+</a>
       
-      <li>
-        <a href="https://github.com/dariomalchiodi/sds/issues/new?title=Issue%20on%20page%20%2Fp1-PAD/c1-intro-python/dati-semplici-e-operatori.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
+      <li><a href="https://github.com/dariomalchiodi/sds/issues/new?title=Issue%20on%20page%20%2Fp1-PAD/c1-intro-python/dati-semplici-e-operatori.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Open an issue"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-lightbulb"></i>
   </span>
-<span class="headerbtn__text-container">open issue</span>
+<span class="btn__text-container">open issue</span>
 </a>
-
-      </li>
+</a>
       
-      <li>
-        <a href="https://github.com/dariomalchiodi/sds/edit/main/sds/p1-PAD/c1-intro-python/dati-semplici-e-operatori.md"
-   class="headerbtn"
+      <li><a href="https://github.com/dariomalchiodi/sds/edit/main/sds/p1-PAD/c1-intro-python/dati-semplici-e-operatori.md" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Edit this page"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-pencil-alt"></i>
   </span>
-<span class="headerbtn__text-container">suggest edit</span>
+<span class="btn__text-container">suggest edit</span>
 </a>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../_sources/p1-PAD/c1-intro-python/dati-semplici-e-operatori.ipynb"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="../../_sources/p1-PAD/c1-intro-python/dati-semplici-e-operatori.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Download notebook file"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-code"></i>
   </span>
-<span class="headerbtn__text-container">.ipynb</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
-
-      </li>
+</a>
       
-      <li>
-        <a href="../../_sources/p1-PAD/c1-intro-python/dati-semplici-e-operatori.md"
-   class="headerbtn"
+      <li><a href="../../_sources/p1-PAD/c1-intro-python/dati-semplici-e-operatori.md" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Download source file"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.md</span>
+<span class="btn__text-container">.md</span>
 </a>
-
-      </li>
+</a>
       
       <li>
-        
 <button onclick="printPdf(this)"
-  class="headerbtn"
+  class="btn btn-sm dropdown-item"
   data-toggle="tooltip"
 data-placement="left"
 title="Print to PDF"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file-pdf"></i>
   </span>
-<span class="headerbtn__text-container">.pdf</span>
+<span class="btn__text-container">.pdf</span>
 </button>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
     </div>
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Tipi di dati semplici</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                    </div>
-                </div>
             </div>
-            <main id="main-content" role="main">
-                
-              <div>
-                
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tipi di dati semplici</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
   <section class="tex2jax_ignore mathjax_ignore" id="tipi-di-dati-semplici">
-<span id="dati-semplici"></span><h1><span class="section-number">2.1. </span>Tipi di dati semplici<a class="headerlink" href="#tipi-di-dati-semplici" title="Link a questa intestazione">#</a></h1>
+<span id="dati-semplici"></span><h1><span class="section-number">2.1. </span>Tipi di dati semplici<a class="headerlink" href="#tipi-di-dati-semplici" title="Permalink to this heading">#</a></h1>
+<p>Nell'ambito della programmazione dei calcolatori, si utilizza normalmente
+il termine <em>tipo</em> per identificare a quale categoria appartiene un particolare
+<em>dato</em> che può essere associato a una variabile, a un'espressione, a un
+parametro, al valore restituito da una funzione e così via. Associare ogni
+dato a un tipo è importante perché ciò permette di identificare quelle che
+sono le operazioni che si possono effettuare su di esso: per esempio,
+l'elevamento a potenza ha senso quando viene applicato a un numero, ma non,
+per dire, a una lettera.</p>
+<p>Nella gran parte dei linguaggi che si studiano quando si impara a programmare
+gli elaboratori, l'associazione di un dato al tipo corrispondente deve essere
+fatta in modo esplicito tramite un'opportuna <em>dichiarazione</em>. Ciò permette
+di rilevare eventuali operazioni improprie, come il suddetto elevamento a
+potenza di una lettera, effettuando una preventiva analisi lessicale dei
+contenuti di un programma, e trasformando quest'ultimo in codice eseguibile
+solo se tale analisi ha esito positivo. Si parla quindi di <em>type checking
+statico</em>, riferendosi al fatto che la verifica della congruità dei tipi
+associati ai dati con le operazioni effettuate sugli stessi viene fatta «a
+bocce ferme», leggendo il codice prima che questo venga eseguito e dunque
+stabilendo il tipo di ogni dato una volta per tutte.</p>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>Il linguaggio è comunque fortemente tipizzato, ma il <em>type checking</em> viene
-fatto durante l'esecuzione.</p>
+<p>È interessante sottolineare che Python è un linguaggio <em>fortemente tipizzato</em>,
+nel senso che non vengono mai eseguite conversioni implicite tra tipi
+di operandi fondamentalmente diversi.</p>
 </aside>
-<p>In Python non è obbligatorio dichiarare il tipo di una variabile, anzi: nelle
-prime versioni del linguaggio la dichiarazione non era neppure possibile
-<a class="footnote-reference brackets" href="#type-hinting" id="id1">1</a>. Pertanto, il modo più semplice di procedere quando si vuole
-utilizzare una variabile è quello di assegnarle un valore: quest'ultimo
-determina automaticamente il tipo, e di conseguenza quali operazioni si possono
-effettuare sulla variabile stessa <a class="footnote-reference brackets" href="#duck-typing" id="id2">2</a>. Ovviamente questo vale solo
-fino a quando non viene modificato il contenuto della variabile.</p>
-<p>I tipi di dati semplici sono quello booleano (<code class="docutils literal notranslate"><span class="pre">bool</span></code>, che fa riferimento alle
+<p>In Python si segue invece un approccio differente, eliminando dal linguaggio
+le dichiarazioni <a class="footnote-reference brackets" href="#type-hinting" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> e affidandosi a un <em>type checking dinamico</em>
+che viene effettuato durante l'esecuzione del codice. Senza entrare troppo nei
+dettagli, prima di effettuare una qualsiasi operazione si verifica che questa
+sia possibile analizzando quali sono i valori degli operandi coinvolti. Se
+vengono rilevate delle incongruenze, viene lanciata un'eccezione, altrimenti
+l'esecuzione procede.</p>
+<p>L'utilizzo del <em>type checking</em> dinamico semplifica notevolmente la struttura
+del linguaggio di programmazione, che utilizza dei <em>nomi</em> da associare a
+variabili e a parametri formali di funzioni, senza alcuna indicazione dei
+tipi coinvolti. In particolare:</p>
+<ul class="simple">
+<li><p>una variabile viene automaticamente creata in corrispondenza del primo
+assegnamento che la coinvolge, e il suo tipo è quello del valore assegnato;</p></li>
+<li><p>i parametri formali di metodi e funzioni vengono associati ai tipi che
+corrispondono ai valori attuali di volta in volta specificati durante le
+relative invocazioni;</p></li>
+<li><p>il tipo restituito da una funzione è quello dell'espressione di volta in
+volta restituita al termine dell'invocazione della funzione stessa.</p></li>
+</ul>
+<p>Ciò significa quindi che non ha più senso parlare del tipo di una variabile,
+o di un parametro, o del valore restituito da una funzione: quest'ultima
+potrebbe restituire tipi differenti a seconda dei parametri attuali
+specificati durante la sua invocazione; analogamente, è possibile assegnare a
+una variabile un valore il cui tipo è completamente diverso da quello del
+valore precedentemente memorizzato, e così via. In sintesi, le operazioni che
+è possibile effettuare su una variabile, su un parametro e così via dipendono
+dal ciò che essi contengono in un dato momento <a class="footnote-reference brackets" href="#duck-typing" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
+<p>Prima di parlare più in dettaglio dei tipi di dati disposibili, vale la pena
+sottolineare un'altra cosa: Python è un linguaggio che supporta pienamente
+il paradigma di programmazione orientato agli oggetti, e tutti i tipi di
+dati corrispondono a classi. Non esiste pertanto il concetto di «tipo
+primitivo», inteso come mera sequenza di byte usata per rappresentare interi,
+decimali e così via, che si trova in linguaggi come C o Java. Pertanto,
+invece di dire per esempio che una variabile contiene un valore di un dato
+tipo, sarebbe più corretto parlare di un <em>nome</em> associato a un <em>riferimento</em>
+che individua univocamente l'oggetto di una classe: la seconda individua il
+tipo e il primo il valore che corrisponde alla variabile (in inglese si usa il
+verbo <em>to bind</em>, che significa «legare&gt; per indicare in modo ancora più forte
+questa associazione tra il nome e l'oggetto). Un discorso analogo si può fare
+per esempio per i parametri formali di una funzione o di un metodo. In realtà,
+nel gergo degli sviluppatori che usano Python è ancora molto diffuso parlare,
+sebbene in modo leggermente improprio, di variabili e di valori in esso
+contenute.</p>
+<p>Semplificando un po' il discorso, possiamo suddividere i tipi di dati che
+Python mette a disposizione in due grandi categorie:</p>
+<ul class="simple">
+<li><p>i tipi di dati <em>semplici</em>, che servono a definire un'informazione di tipo
+atomico, che ha poco senso suddividere in sottoparti, e</p></li>
+<li><p>i tipi di dati <em>strutturati</em>, che vengono utilizzati per aggregare insieme
+più tipi di dati (semplici o strutturati che siano).</p></li>
+</ul>
+<p>Nel resto di questo capitolo mi soffermerò sui tipi di dati semplici, mentre
+il <a class="reference internal" href="dati-strutturati.html#cap-dati-strutturati"><span class="std std-numref">Capitolo 2.2</span></a> si concentrerà sui principali
+tipi di dati strutturati. Come accennato poco sopra, la categorizzazione che
+descriverò è lungi dall'essere perfetta: da una parte, non è completa perché
+Python supporta alcuni tipi di dati, come quelli che descrivono le funzioni o
+le classi, che non ricadono naturalmente in nessuna delle due categorie;
+dall'altra, è opinabile piazzare alcuni tipi in una categoria piuttosto che
+nell'altra: ciò capita per esempio con le stringhe, che vedremo annoverate
+tra i tipi semplici ma che possono essere pensate (e accedute) come una
+particolare aggregazione di caratteri.</p>
+<p>I tipi di dati semplici sui quali ci concentreremo sono i seguenti:</p>
+<ul class="simple">
+<li><p>int</p></li>
+<li><p>bool</p></li>
+<li><p>str</p></li>
+<li><p>float</p></li>
+<li><p>none</p></li>
+</ul>
+<p>più complex e number</p>
+<p>sono quello booleano (<code class="docutils literal notranslate"><span class="pre">bool</span></code>, che fa riferimento alle
 costanti <code class="docutils literal notranslate"><span class="pre">True</span></code> e <code class="docutils literal notranslate"><span class="pre">False</span></code>), quello intero (<code class="docutils literal notranslate"><span class="pre">int</span></code>) e quello a virgola mobile
 (<code class="docutils literal notranslate"><span class="pre">float</span></code>). Ciò significa dunque che in Python, a differenza di altri
 linguaggi, non esiste un tipo semplice per i caratteri: vedremo più avanti che
@@ -1144,90 +1093,90 @@ inserirli: per esempio <code class="docutils literal notranslate"><span class="p
 <code style="font-family: monospace !important;">!=</code> e
 <code style="font-family: monospace !important;">&lt;=</code>.</p>
 </aside>
-<table class="colwidths-auto table" id="elenco-operatori-per-tipi-semplici">
+<table class="table table-center" id="elenco-operatori-per-tipi-semplici">
 <caption><span class="caption-number">Tabella 2.1 </span><span class="caption-text">Elenco dei principali operatori per i tipi semplici</span><a class="headerlink" href="#elenco-operatori-per-tipi-semplici" title="Link a questa tabella">#</a></caption>
 <thead>
-<tr class="row-odd"><th class="text-align:center head"><p>Operazione</p></th>
-<th class="text-align:center head"><p>Sequenza</p></th>
-<th class="text-align:center head"><p>Legatura</p></th>
+<tr class="row-odd"><th class="head text-center"><p>Operazione</p></th>
+<th class="head text-center"><p>Sequenza</p></th>
+<th class="head text-center"><p>Legatura</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-align:center"><p>addizione</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">+</span></code></p></td>
-<td class="text-align:center"><p></p></td>
+<tr class="row-even"><td class="text-center"><p>addizione</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">+</span></code></p></td>
+<td class="text-center"><p></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p>sottrazione</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
-<td class="text-align:center"><p></p></td>
+<tr class="row-odd"><td class="text-center"><p>sottrazione</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
+<td class="text-center"><p></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p>moltiplicazione</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">*</span></code></p></td>
-<td class="text-align:center"><p></p></td>
+<tr class="row-even"><td class="text-center"><p>moltiplicazione</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">*</span></code></p></td>
+<td class="text-center"><p></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p>divisione (reale)</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">/</span></code></p></td>
-<td class="text-align:center"><p></p></td>
+<tr class="row-odd"><td class="text-center"><p>divisione (reale)</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">/</span></code></p></td>
+<td class="text-center"><p></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p>divisione (intera)</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">//</span></code></p></td>
-<td class="text-align:center"><p></p></td>
+<tr class="row-even"><td class="text-center"><p>divisione (intera)</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">//</span></code></p></td>
+<td class="text-center"><p></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p>resto (modulo)</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">%</span></code></p></td>
-<td class="text-align:center"><p></p></td>
+<tr class="row-odd"><td class="text-center"><p>resto (modulo)</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">%</span></code></p></td>
+<td class="text-center"><p></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p>elevamento a potenza</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">**</span></code></p></td>
-<td class="text-align:center"><p></p></td>
+<tr class="row-even"><td class="text-center"><p>elevamento a potenza</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">**</span></code></p></td>
+<td class="text-center"><p></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p>appartenenza a una struttura</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">in</span></code></p></td>
-<td class="text-align:center"><p></p></td>
+<tr class="row-odd"><td class="text-center"><p>appartenenza a una struttura</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">in</span></code></p></td>
+<td class="text-center"><p></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p>rimozione dalla memoria</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">del</span></code></p></td>
-<td class="text-align:center"><p></p></td>
+<tr class="row-even"><td class="text-center"><p>rimozione dalla memoria</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">del</span></code></p></td>
+<td class="text-center"><p></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p>uguale (per riferimento)</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">is</span></code></p></td>
-<td class="text-align:center"><p></p></td>
+<tr class="row-odd"><td class="text-center"><p>uguale (per riferimento)</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">is</span></code></p></td>
+<td class="text-center"><p></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p>uguale (per contenuto)</p></td>
-<td class="text-align:center"><p><code style="font-family: monospace !important;">==</code></p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">==</span></code></p></td>
+<tr class="row-even"><td class="text-center"><p>uguale (per contenuto)</p></td>
+<td class="text-center"><p><code style="font-family: monospace !important;">==</code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">==</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p>diverso</p></td>
-<td class="text-align:center"><p><code style="font-family: monospace !important;">!=</code></p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">!=</span></code></p></td>
+<tr class="row-odd"><td class="text-center"><p>diverso</p></td>
+<td class="text-center"><p><code style="font-family: monospace !important;">!=</code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">!=</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p>minore</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code></p></td>
-<td class="text-align:center"><p></p></td>
+<tr class="row-even"><td class="text-center"><p>minore</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code></p></td>
+<td class="text-center"><p></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p>minore o uguale</p></td>
-<td class="text-align:center"><p><code style="font-family: monospace !important;">&lt;=</code></p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&lt;=</span></code></p></td>
+<tr class="row-odd"><td class="text-center"><p>minore o uguale</p></td>
+<td class="text-center"><p><code style="font-family: monospace !important;">&lt;=</code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">&lt;=</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p>maggiore</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code></p></td>
-<td class="text-align:center"><p></p></td>
+<tr class="row-even"><td class="text-center"><p>maggiore</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code></p></td>
+<td class="text-center"><p></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p>maggiore o uguale</p></td>
-<td class="text-align:center"><p><code style="font-family: monospace !important;">&gt;=</code></p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></p></td>
+<tr class="row-odd"><td class="text-center"><p>maggiore o uguale</p></td>
+<td class="text-center"><p><code style="font-family: monospace !important;">&gt;=</code></p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p>congiunzione logica</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">and</span></code></p></td>
-<td class="text-align:center"><p></p></td>
+<tr class="row-even"><td class="text-center"><p>congiunzione logica</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">and</span></code></p></td>
+<td class="text-center"><p></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p>disgiunzione logica</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">or</span></code></p></td>
-<td class="text-align:center"><p></p></td>
+<tr class="row-odd"><td class="text-center"><p>disgiunzione logica</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">or</span></code></p></td>
+<td class="text-center"><p></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p>negazione logica</p></td>
-<td class="text-align:center"><p><code class="docutils literal notranslate"><span class="pre">not</span></code></p></td>
-<td class="text-align:center"><p></p></td>
+<tr class="row-even"><td class="text-center"><p>negazione logica</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">not</span></code></p></td>
+<td class="text-center"><p></p></td>
 </tr>
 </tbody>
 </table>
@@ -1263,8 +1212,8 @@ insieme a pandas (vedi <a class="reference internal" href="../c2-pandas/pandas.h
 <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code> e <code class="docutils literal notranslate"><span class="pre">not</span></code>, dunque in modo esplicito rispetto alla sintassi di
 linguaggi come Java o C (che usano invece i simboli <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code>, <code class="docutils literal notranslate"><span class="pre">||</span></code> e <code class="docutils literal notranslate"><span class="pre">!</span></code>).</p></li>
 <li><p>Gli operatori <code class="docutils literal notranslate"><span class="pre">in</span></code> e <code class="docutils literal notranslate"><span class="pre">del</span></code>, introdotti per completezza, sono in realtà
-tipicamente utilizzati insieme alle strutture dati (vedi
-<a class="reference internal" href="dati-strutturati.html#dati-strutturati"><span class="std std-numref">Sezione 2.2</span></a>).</p></li>
+tipicamente utilizzati insieme alle strutture dati (vedi il
+<a class="reference internal" href="dati-strutturati.html#cap-dati-strutturati"><span class="std std-numref">Capitolo 2.2</span></a>).</p></li>
 </ul>
 <p>Sebbene la maggior parte degli operatori che considereremo sono di tipo
 binario, ne esistono anche di altri tipi: il simbolo <code class="docutils literal notranslate"><span class="pre">-</span></code> è un esempio di
@@ -1302,9 +1251,9 @@ abbiamo visto all'inizio di questo paragrafo.</p>
 </aside>
 <p>effettua la conversione da <code class="docutils literal notranslate"><span class="pre">float</span></code> a <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p>
 <hr class="footnotes docutils" />
-<dl class="footnote brackets">
-<dt class="label" id="type-hinting"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>A partire dalla versione 3.5 Python permette di indicare il
+<aside class="footnote brackets" id="type-hinting" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>A partire dalla versione 3.5 Python permette di indicare il
 tipo di alcuni elementi del linguaggio (come ad esempio i parametri formali di
 una funzione, o il valore da essa restituito) utilizzando un formalismo
 chiamato <em>type hinting</em>. Va specificato che la tipizzazione resta comunque
@@ -1315,9 +1264,10 @@ vengano utilizzate correttamente. <em>Editor</em> e IDE  possono per esempio tra
 vantaggio dal <em>type hinting</em> per suggerire come completare il codice o per
 segnalare dei <em>warning</em>. Infine, l'uso del <em>type hinting</em> rappresenta anche un
 modo per alleggerire la documentazione.</p>
-</dd>
-<dt class="label" id="duck-typing"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd><p>Se in un linguaggio è necessario dichiarare esplicitamente i
+</aside>
+<aside class="footnote brackets" id="duck-typing" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Se in un linguaggio è necessario dichiarare esplicitamente i
 tipi, si dice che la <em>tipizzazione</em> è <em>statica</em> e la dichiarazione determina
 che cosa si può fare con un oggetto; per esempio su un oggetto di tipo <code class="docutils literal notranslate"><span class="pre">Anatra</span></code>
 sarà possibile invocare i metodi <code class="docutils literal notranslate"><span class="pre">cammina</span></code>, <code class="docutils literal notranslate"><span class="pre">nuota</span></code> e <code class="docutils literal notranslate"><span class="pre">starnazza</span></code>. Senza
@@ -1331,8 +1281,7 @@ termine <em>duck typing</em> per descrivere questo tipo di tipizzazione dinamica
 facendo riferimento a una frase attribuita al poeta americano James Whitcomb
 Riley: «when I see a bird that walks like a duck and swims like a duck and
 quacks like a duck, I call that bird a duck».</p>
-</dd>
-</dl>
+</aside>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1347,7 +1296,7 @@ quacks like a duck, I call that bird a duck».</p>
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./p1-PAD/c1-intro-python"
         },
         predefinedOutput: true
@@ -1355,50 +1304,84 @@ quacks like a duck, I call that bird a duck».</p>
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
-              
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="introduzione-a-python.html" title="precedente pagina">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">precedente</p>
-            <p class="prev-next-title"><span class="section-number">2. </span>Python</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="dati-strutturati.html" title="successivo pagina">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">successivo</p>
-        <p class="prev-next-title"><span class="section-number">2.2. </span>Tipi di dati strutturati</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+  <a class='left-prev' id="prev-link" href="introduzione-a-python.html" title="precedente pagina">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">precedente</p>
+          <p class="prev-next-title"><span class="section-number">2. </span>Elaborare i dati con python</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="dati-strutturati.html" title="successivo pagina">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">successivo</p>
+      <p class="prev-next-title"><span class="section-number">2.2. </span>Tipi di dati strutturati</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
 </div>
             </footer>
+            
+          </div>
+          
+          
+          
+          
         </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
   
-    By <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a><br/>
-  
-      &copy; Copyright 2021 — Licensed under CC-BY 4.0.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
-</div>
+<p class="component-author">
+By <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a>
+</p>
 
-
-      </div>
-    </div>
+  </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <div class="footer-item">
+    
+<p class="copyright">
 
+    &copy; Copyright 2021 — Licensed under CC-BY 4.0.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Ultimo aggiornamento None.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
 
   </body>
 </html>

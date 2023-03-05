@@ -12,7 +12,7 @@ kernelspec:
   name: python3
 ---
 
-(dati-strutturati)=
+(cap:dati-strutturati)=
 # Tipi di dati strutturati
 
 I tipi di dati strutturati, o più brevemente _strutture dati,_ permettono di

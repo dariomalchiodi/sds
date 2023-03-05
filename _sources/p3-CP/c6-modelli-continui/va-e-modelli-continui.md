@@ -13,4 +13,4 @@ kernelspec:
 ---
 
 (sec:va-e-modelli-continui)=
-# Variabili aleatorie e modelli continui
+# Modelli continui

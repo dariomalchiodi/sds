@@ -15,19 +15,110 @@ kernelspec:
 (dati-semplici)=
 # Tipi di dati semplici
 
-```{margin}
-Il linguaggio è comunque fortemente tipizzato, ma il _type checking_ viene
-fatto durante l'esecuzione.
-```
-In Python non è obbligatorio dichiarare il tipo di una variabile, anzi: nelle
-prime versioni del linguaggio la dichiarazione non era neppure possibile
-[^type-hinting]. Pertanto, il modo più semplice di procedere quando si vuole
-utilizzare una variabile è quello di assegnarle un valore: quest'ultimo
-determina automaticamente il tipo, e di conseguenza quali operazioni si possono
-effettuare sulla variabile stessa [^duck-typing]. Ovviamente questo vale solo
-fino a quando non viene modificato il contenuto della variabile.
+Nell'ambito della programmazione dei calcolatori, si utilizza normalmente
+il termine _tipo_ per identificare a quale categoria appartiene un particolare
+_dato_ che può essere associato a una variabile, a un'espressione, a un
+parametro, al valore restituito da una funzione e così via. Associare ogni
+dato a un tipo è importante perché ciò permette di identificare quelle che
+sono le operazioni che si possono effettuare su di esso: per esempio,
+l'elevamento a potenza ha senso quando viene applicato a un numero, ma non,
+per dire, a una lettera.
 
-I tipi di dati semplici sono quello booleano (`bool`, che fa riferimento alle
+Nella gran parte dei linguaggi che si studiano quando si impara a programmare
+gli elaboratori, l'associazione di un dato al tipo corrispondente deve essere
+fatta in modo esplicito tramite un'opportuna _dichiarazione_. Ciò permette
+di rilevare eventuali operazioni improprie, come il suddetto elevamento a
+potenza di una lettera, effettuando una preventiva analisi lessicale dei
+contenuti di un programma, e trasformando quest'ultimo in codice eseguibile
+solo se tale analisi ha esito positivo. Si parla quindi di _type checking
+statico_, riferendosi al fatto che la verifica della congruità dei tipi
+associati ai dati con le operazioni effettuate sugli stessi viene fatta «a
+bocce ferme», leggendo il codice prima che questo venga eseguito e dunque
+stabilendo il tipo di ogni dato una volta per tutte.
+
+```{margin}
+È interessante sottolineare che Python è un linguaggio _fortemente tipizzato_,
+nel senso che non vengono mai eseguite conversioni implicite tra tipi
+di operandi fondamentalmente diversi.
+```
+In Python si segue invece un approccio differente, eliminando dal linguaggio
+le dichiarazioni [^type-hinting] e affidandosi a un _type checking dinamico_
+che viene effettuato durante l'esecuzione del codice. Senza entrare troppo nei
+dettagli, prima di effettuare una qualsiasi operazione si verifica che questa
+sia possibile analizzando quali sono i valori degli operandi coinvolti. Se
+vengono rilevate delle incongruenze, viene lanciata un'eccezione, altrimenti
+l'esecuzione procede. 
+
+L'utilizzo del _type checking_ dinamico semplifica notevolmente la struttura
+del linguaggio di programmazione, che utilizza dei _nomi_ da associare a
+variabili e a parametri formali di funzioni, senza alcuna indicazione dei
+tipi coinvolti. In particolare:
+
+- una variabile viene automaticamente creata in corrispondenza del primo
+  assegnamento che la coinvolge, e il suo tipo è quello del valore assegnato;
+- i parametri formali di metodi e funzioni vengono associati ai tipi che
+  corrispondono ai valori attuali di volta in volta specificati durante le
+  relative invocazioni;
+- il tipo restituito da una funzione è quello dell'espressione di volta in
+  volta restituita al termine dell'invocazione della funzione stessa.
+
+Ciò significa quindi che non ha più senso parlare del tipo di una variabile,
+o di un parametro, o del valore restituito da una funzione: quest'ultima
+potrebbe restituire tipi differenti a seconda dei parametri attuali
+specificati durante la sua invocazione; analogamente, è possibile assegnare a
+una variabile un valore il cui tipo è completamente diverso da quello del
+valore precedentemente memorizzato, e così via. In sintesi, le operazioni che
+è possibile effettuare su una variabile, su un parametro e così via dipendono
+dal ciò che essi contengono in un dato momento [^duck-typing].
+
+Prima di parlare più in dettaglio dei tipi di dati disposibili, vale la pena
+sottolineare un'altra cosa: Python è un linguaggio che supporta pienamente
+il paradigma di programmazione orientato agli oggetti, e tutti i tipi di
+dati corrispondono a classi. Non esiste pertanto il concetto di «tipo
+primitivo», inteso come mera sequenza di byte usata per rappresentare interi,
+decimali e così via, che si trova in linguaggi come C o Java. Pertanto,
+invece di dire per esempio che una variabile contiene un valore di un dato
+tipo, sarebbe più corretto parlare di un _nome_ associato a un _riferimento_
+che individua univocamente l'oggetto di una classe: la seconda individua il
+tipo e il primo il valore che corrisponde alla variabile (in inglese si usa il
+verbo _to bind_, che significa «legare> per indicare in modo ancora più forte
+questa associazione tra il nome e l'oggetto). Un discorso analogo si può fare
+per esempio per i parametri formali di una funzione o di un metodo. In realtà,
+nel gergo degli sviluppatori che usano Python è ancora molto diffuso parlare,
+sebbene in modo leggermente improprio, di variabili e di valori in esso
+contenute.
+
+Semplificando un po' il discorso, possiamo suddividere i tipi di dati che
+Python mette a disposizione in due grandi categorie:
+
+- i tipi di dati _semplici_, che servono a definire un'informazione di tipo
+  atomico, che ha poco senso suddividere in sottoparti, e
+- i tipi di dati _strutturati_, che vengono utilizzati per aggregare insieme
+  più tipi di dati (semplici o strutturati che siano).
+
+Nel resto di questo capitolo mi soffermerò sui tipi di dati semplici, mentre
+il {numref}`Capitolo %s <cap:dati-strutturati>` si concentrerà sui principali
+tipi di dati strutturati. Come accennato poco sopra, la categorizzazione che
+descriverò è lungi dall'essere perfetta: da una parte, non è completa perché
+Python supporta alcuni tipi di dati, come quelli che descrivono le funzioni o
+le classi, che non ricadono naturalmente in nessuna delle due categorie;
+dall'altra, è opinabile piazzare alcuni tipi in una categoria piuttosto che
+nell'altra: ciò capita per esempio con le stringhe, che vedremo annoverate
+tra i tipi semplici ma che possono essere pensate (e accedute) come una
+particolare aggregazione di caratteri.
+
+
+I tipi di dati semplici sui quali ci concentreremo sono i seguenti:
+- int
+- bool
+- str
+- float
+- none
+
+più complex e number
+
+
+sono quello booleano (`bool`, che fa riferimento alle
 costanti `True` e `False`), quello intero (`int`) e quello a virgola mobile
 (`float`). Ciò significa dunque che in Python, a differenza di altri
 linguaggi, non esiste un tipo semplice per i caratteri: vedremo più avanti che
@@ -176,8 +267,8 @@ di seguito.
   `and`, `or` e `not`, dunque in modo esplicito rispetto alla sintassi di
   linguaggi come Java o C (che usano invece i simboli `&&`, `||` e `!`).
 - Gli operatori `in` e `del`, introdotti per completezza, sono in realtà
-  tipicamente utilizzati insieme alle strutture dati (vedi
-  {numref}`dati-strutturati`).
+  tipicamente utilizzati insieme alle strutture dati (vedi il
+  {numref}`Capitolo %s <cap:dati-strutturati>`).
 
 Sebbene la maggior parte degli operatori che considereremo sono di tipo
 binario, ne esistono anche di altri tipi: il simbolo `-` è un esempio di

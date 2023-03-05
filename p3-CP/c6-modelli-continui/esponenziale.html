@@ -4,49 +4,57 @@
 <html lang="it">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>14.4. Il modello esponenziale &#8212; Superhero Data Science 
+    <title>14.5. Il modello esponenziale &#8212; Superhero Data Science 
  Probabilità e Statistica</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
     <script>let toggleHintShow = 'Mostra il codice';</script>
     <script>let toggleHintHide = 'Nascondi il codice';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/translations.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -54,67 +62,455 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "loader": {"load": ["[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["mathtools"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'p3-CP/c6-modelli-continui/esponenziale';</script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
     <link rel="search" title="Cerca" href="../../search.html" />
-    <link rel="next" title="14.5. Il modello normale" href="gaussiano.html" />
-    <link rel="prev" title="14.3. Il modello uniforme continuo" href="uniforme.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="it">
-    
-
-    <!-- Google Analytics -->
-    
+    <link rel="next" title="14.6. Altri modelli continui" href="altri-modelli.html" />
+    <link rel="prev" title="14.4. Il modello normale" href="gaussiano.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="it">
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="light">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Cerca..." aria-label="Cerca..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../landing.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/logoface.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/logoface.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
         
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p0-introduzione/presentazione.html">
+                        Presentazione
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p1-PAD/c1-intro-python/introduzione-a-python.html">
+                        Elaborare i dati con python
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p1-PAD/c2-pandas/pandas.html">
+                        Pandas
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p2-SD/c1-dati-e-informazione/dati-e-informazione.html">
+                        Dati e informazione
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p2-SD/c2-utilizzare-informazione/utilizzare-informazione.html">
+                        Utilizzare l'informazione
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p2-SD/c3-misurare-informazione/misurare-informazione.html">
+                        Misurare l'informazione
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p2-SD/c4-visualizzare-informazione/visualizzare-informazione.html">
+                        Visualizzare l'informazione
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p2-SD/c5-analizzare-relazioni/analizzare-relazioni.html">
+                        Analizzare le relazioni tra i dati
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../c1-calcolo-combinatorio/calcolo-combinatorio.html">
+                        Calcolo combinatorio
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../c2-teoria-insiemi/teoria-insiemi.html">
+                        Teoria degli insiemi
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../c3-probabilita/calcolo-probabilita.html">
+                        Calcolo delle probabilità
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../c4-variabili-aleatorie/intro.html">
+                        Variabili aleatorie
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../c5-modelli-discreti/modelli-discreti.html">
+                        Modelli discreti
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="va-e-modelli-continui.html">
+                        Modelli continui
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p4-SI/c1-inferenza-puntuale/inferenza-puntuale.html">
+                        Inferenza puntuale
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../bibliography.html">
+                        Bibliografia
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Cerca" aria-label="Cerca" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
       
       
-      <img src="../../_static/logoface.png" class="logo" alt="logo">
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
       
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
       
-      <h1 class="site-logo" id="site-title">Superhero Data Science 
- Probabilità e Statistica</h1>
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Cerca" aria-label="Cerca" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Cerca..." aria-label="Cerca..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p0-introduzione/presentazione.html">
+                        Presentazione
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p1-PAD/c1-intro-python/introduzione-a-python.html">
+                        Elaborare i dati con python
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p1-PAD/c2-pandas/pandas.html">
+                        Pandas
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p2-SD/c1-dati-e-informazione/dati-e-informazione.html">
+                        Dati e informazione
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p2-SD/c2-utilizzare-informazione/utilizzare-informazione.html">
+                        Utilizzare l'informazione
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p2-SD/c3-misurare-informazione/misurare-informazione.html">
+                        Misurare l'informazione
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p2-SD/c4-visualizzare-informazione/visualizzare-informazione.html">
+                        Visualizzare l'informazione
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p2-SD/c5-analizzare-relazioni/analizzare-relazioni.html">
+                        Analizzare le relazioni tra i dati
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../c1-calcolo-combinatorio/calcolo-combinatorio.html">
+                        Calcolo combinatorio
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../c2-teoria-insiemi/teoria-insiemi.html">
+                        Teoria degli insiemi
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../c3-probabilita/calcolo-probabilita.html">
+                        Calcolo delle probabilità
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../c4-variabili-aleatorie/intro.html">
+                        Variabili aleatorie
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../c5-modelli-discreti/modelli-discreti.html">
+                        Modelli discreti
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="va-e-modelli-continui.html">
+                        Modelli continui
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../p4-SI/c1-inferenza-puntuale/inferenza-puntuale.html">
+                        Inferenza puntuale
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../bibliography.html">
+                        Bibliografia
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="../../landing.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/logoface.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/logoface.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Cerca..." aria-label="Cerca..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -123,933 +519,520 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Introduzione
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduzione</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p0-introduzione/presentazione.html">
-   1. Presentazione
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p0-introduzione/un-esempio-introduttivo.html">
-     1.1. Un esempio
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p0-introduzione/organizzazione.html">
-     1.2. Organizzazione
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p0-introduzione/presentazione.html">1. Presentazione</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p0-introduzione/un-esempio-introduttivo.html">1.1. Un esempio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p0-introduzione/organizzazione.html">1.2. Organizzazione</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Programmazione per l'analisi dei dati
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Programmazione per l'analisi dei dati</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p1-PAD/c1-intro-python/introduzione-a-python.html">
-   2. Python
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-semplici-e-operatori.html">
-     2.1. Tipi di dati semplici
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-strutturati.html">
-     2.2. Tipi di dati strutturati
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p1-PAD/c1-intro-python/strutture-di-controllo.html">
-     2.3. Strutture di controllo
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p1-PAD/c1-intro-python/funzioni.html">
-     2.4. Funzioni e funzioni anonime
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p1-PAD/c1-intro-python/importare-moduli.html">
-     2.5. Importare moduli
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p1-PAD/c1-intro-python/disegnare-grafici.html">
-     2.6. Disegnare grafici
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p1-PAD/c1-intro-python/leggere-file.html">
-     2.7. Leggere dati da file (e un po' di trucchi)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p1-PAD/c2-pandas/pandas.html">
-   3. Pandas
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p1-PAD/c2-pandas/serie.html">
-     3.1. Serie
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p1-PAD/c2-pandas/dataframe.html">
-     3.2. Dataframe
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p1-PAD/c1-intro-python/introduzione-a-python.html">2. Elaborare i dati con python</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-semplici-e-operatori.html">2.1. Tipi di dati semplici</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-strutturati.html">2.2. Tipi di dati strutturati</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p1-PAD/c1-intro-python/strutture-di-controllo.html">2.3. Strutture di controllo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p1-PAD/c1-intro-python/funzioni.html">2.4. Funzioni e funzioni anonime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p1-PAD/c1-intro-python/importare-moduli.html">2.5. Importare moduli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p1-PAD/c1-intro-python/disegnare-grafici.html">2.6. Disegnare grafici</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p1-PAD/c1-intro-python/leggere-file.html">2.7. Leggere dati da file (e un po' di trucchi)</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Statistica descrittiva
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p1-PAD/c2-pandas/pandas.html">3. Pandas</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p1-PAD/c2-pandas/serie.html">3.1. Serie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p1-PAD/c2-pandas/dataframe.html">3.2. Dataframe</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistica descrittiva</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/dati-e-informazione.html">
-   4. Dati e informazione
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/dati-quantitativi-e-qualitativi.html">
-     4.7. Dati quantitativi e qualitativi
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/frequenze-assolute-e-relative.html">
-     4.8. Frequenze assolute e relative
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/frequenze-cumulate.html">
-     4.9. Frequenze cumulate
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/frequenze-congiunte-e-marginali.html">
-     4.10. Frequenze congiunte e marginali
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/utilizzare-informazione.html">
-   5. Utilizzare l'informazione
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/descrivere-popolazione.html">
-     5.1. Descrivere una popolazione
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/predire-informazione.html">
-     5.2. Predire l'informazione
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/classificazione.html">
-     5.3. Classificazione
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/regressione.html">
-     5.4. Regressione
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/misurare-informazione.html">
-   6. Misurare l'informazione
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/indici-di-posizione.html">
-     6.1. Indici di posizione
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/indici-di-dispersione.html">
-     6.2. Calcolo della dispersione in pandas
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/quantili-campionari.html">
-     6.3. Quantili campionari
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/eterogeneita.html">
-     6.4. Indici di eterogeneità
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/concentrazione.html">
-     6.5. Indici di concentrazione
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/trasformazioni-dei-dati.html">
-     6.6. Trasformazione dei dati
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/analisi-della-varianza.html">
-     6.7. Analisi della varianza
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c3-misurare-informazione/analisi-di-classificatori.html">
-     6.8. Analisi di classificatori
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/visualizzare-informazione.html">
-   7. Visualizzare l'informazione
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
-  <label for="toctree-checkbox-7">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-discreti.html">
-     7.1. Dati discreti
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-continui.html">
-     7.2. Dati continui
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-cumulati.html">
-     7.3. Dati cumulati
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/simmetria-e-normalita.html">
-     7.4. Simmetria e normalità
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p2-SD/c5-analizzare-relazioni/analizzare-relazioni.html">
-   8. Analizzare le relazioni tra i dati
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c5-analizzare-relazioni/diagrammi-per-dati-a-coppie.html">
-     8.1. Dati a coppie
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p2-SD/c5-analizzare-relazioni/covarianza-e-correlazione.html">
-     8.2. Covarianza e correlazione
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/dati-e-informazione.html">4. Dati e informazione</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/dati-quantitativi-e-qualitativi.html">4.7. Dati quantitativi e qualitativi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/frequenze-assolute-e-relative.html">4.8. Frequenze assolute e relative</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/frequenze-cumulate.html">4.9. Frequenze cumulate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/frequenze-congiunte-e-marginali.html">4.10. Frequenze congiunte e marginali</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Calcolo delle probabilità
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/utilizzare-informazione.html">5. Utilizzare l'informazione</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/descrivere-popolazione.html">5.1. Descrivere una popolazione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/predire-informazione.html">5.2. Predire l'informazione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/classificazione.html">5.3. Classificazione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/regressione.html">5.4. Regressione</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/misurare-informazione.html">6. Misurare l'informazione</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/indici-di-posizione.html">6.1. Indici di posizione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/indici-di-dispersione.html">6.2. Calcolo della dispersione in pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/quantili-campionari.html">6.3. Quantili campionari</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/eterogeneita.html">6.4. Indici di eterogeneità</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/concentrazione.html">6.5. Indici di concentrazione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/trasformazioni-dei-dati.html">6.6. Trasformazione dei dati</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/analisi-della-varianza.html">6.7. Analisi della varianza</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/analisi-di-classificatori.html">6.8. Analisi di classificatori</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/visualizzare-informazione.html">7. Visualizzare l'informazione</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-discreti.html">7.1. Dati discreti</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-continui.html">7.2. Dati continui</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-cumulati.html">7.3. Dati cumulati</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/simmetria-e-normalita.html">7.4. Simmetria e normalità</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p2-SD/c5-analizzare-relazioni/analizzare-relazioni.html">8. Analizzare le relazioni tra i dati</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c5-analizzare-relazioni/diagrammi-per-dati-a-coppie.html">8.1. Dati a coppie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c5-analizzare-relazioni/covarianza-e-correlazione.html">8.2. Covarianza e correlazione</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Calcolo delle probabilità</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../c1-calcolo-combinatorio/calcolo-combinatorio.html">
-   9. Calcolo combinatorio
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
-  <label for="toctree-checkbox-9">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c1-calcolo-combinatorio/principio-fondamentale-calcolo-combinatorio.html">
-     9.1. Principio fondamentale del calcolo combinatorio
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c1-calcolo-combinatorio/permutazioni.html">
-     9.2. Permutazioni
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c1-calcolo-combinatorio/disposizioni.html">
-     9.3. Disposizioni
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c1-calcolo-combinatorio/combinazioni.html">
-     9.4. Combinazioni
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c1-calcolo-combinatorio/generazione.html">
-     9.5. Generazione di disposizioni, permutazioni e combinazioni
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c1-calcolo-combinatorio/esercizi.html">
-     9.6. Esercizi
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../c2-teoria-insiemi/teoria-insiemi.html">
-   10. Teoria degli insiemi
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
-  <label for="toctree-checkbox-10">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c2-teoria-insiemi/concetti-di-base.html">
-     10.1. Concetti di base
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c2-teoria-insiemi/insiemi-finiti-e-infiniti.html">
-     10.2. Insiemi finiti e infiniti
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c2-teoria-insiemi/relazioni-tra-insiemi.html">
-     10.3. Relazioni tra insiemi
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c2-teoria-insiemi/operazioni-tra-insiemi.html">
-     10.4. Operazioni tra insiemi
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c2-teoria-insiemi/insiemi-in-python.html">
-     10.5. Gli insiemi in Python
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../c3-probabilita/calcolo-probabilita.html">
-   11. Calcolo delle probabilità
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
-  <label for="toctree-checkbox-11">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c3-probabilita/concetto-di-probabilita.html">
-     11.1. Il concetto di probabilità
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c3-probabilita/esperimenti-esiti-eventi.html">
-     11.2. Concetti fondamentali
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c3-probabilita/assiomi-kolmogorov.html">
-     11.3. Assiomi di Kolmogorov
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c3-probabilita/spazi-equiprobabili.html">
-     11.4. Spazi equiprobabili
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c3-probabilita/probabilita-condizionata.html">
-     11.5. Probabilità condizionata
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c3-probabilita/prob-totali-e-naive-bayes.html">
-     11.6. Teoremi
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c3-probabilita/classificatori-naive-bayes.html">
-     11.7. Classificatori naive Bayes
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c3-probabilita/indipendenza.html">
-     11.8. Indipendenza
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../c4-variabili-aleatorie/intro.html">
-   12. Variabili aleatorie
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
-  <label for="toctree-checkbox-12">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c4-variabili-aleatorie/variabili-aleatorie.html">
-     12.1. Variabili aleatorie
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c4-variabili-aleatorie/variabili-aleatorie-discrete.html">
-     12.2. Variabili aleatorie discrete
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c4-variabili-aleatorie/valore-atteso.html">
-     12.3. Valore atteso
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c4-variabili-aleatorie/varianza.html">
-     12.4. Varianza
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c4-variabili-aleatorie/momenti.html">
-     12.5. momenti
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c4-variabili-aleatorie/variabili-multivariate.html">
-     12.6. Variabili aleatorie multivariate
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c4-variabili-aleatorie/indipendenza.html">
-     12.7. Indipendenza di variabili aleatorie
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c4-variabili-aleatorie/disuguaglianze-fondamentali.html">
-     12.8. Disuguaglianze fondamentali
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c4-variabili-aleatorie/variabili-aleatorie-continue.html">
-     12.9. Variabili aleatorie continue
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../c5-modelli-discreti/modelli-discreti.html">
-   13. Modelli discreti
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
-  <label for="toctree-checkbox-13">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c5-modelli-discreti/bernoulli.html">
-     13.1. Il modello bernoulliano
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c5-modelli-discreti/binomiale.html">
-     13.2. Il modello binomiale
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c5-modelli-discreti/uniforme.html">
-     13.3. Il modello uniforme discreto
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c5-modelli-discreti/geometrico.html">
-     13.4. Il modello geometrico
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c5-modelli-discreti/poisson.html">
-     13.5. Il modello di poisson
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../c5-modelli-discreti/ipergeometrico.html">
-     13.6. Il modello ipergeometrico
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="va-e-modelli-continui.html">
-   14. Variabili aleatorie e modelli continui
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
-  <label for="toctree-checkbox-14">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="dal-discreto-al-continuo.html">
-     14.1. Dal discreto al continuo
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="va-continue.html">
-     14.2. Variabili aleatorie continue
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="uniforme.html">
-     14.3. Il modello uniforme continuo
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     14.4. Il modello esponenziale
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="gaussiano.html">
-     14.5. Il modello normale
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="altri-modelli.html">
-     14.6. Altri modelli continui
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../c1-calcolo-combinatorio/calcolo-combinatorio.html">9. Calcolo combinatorio</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../c1-calcolo-combinatorio/principio-fondamentale-calcolo-combinatorio.html">9.1. Principio fondamentale del calcolo combinatorio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c1-calcolo-combinatorio/permutazioni.html">9.2. Permutazioni</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c1-calcolo-combinatorio/disposizioni.html">9.3. Disposizioni</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c1-calcolo-combinatorio/combinazioni.html">9.4. Combinazioni</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c1-calcolo-combinatorio/generazione.html">9.5. Generazione di disposizioni, permutazioni e combinazioni</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c1-calcolo-combinatorio/esercizi.html">9.6. Esercizi</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Statistica inferenziale
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/inferenza-puntuale.html">
-   15. Inferenza puntuale
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
-  <label for="toctree-checkbox-15">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima.html">
-     15.1. Popolazione, campione e stima
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/media-campionaria.html">
-     15.2. Media campionaria
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/varianza-campionaria.html">
-     15.3. Varianza campionaria
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/errore-di-una-stima.html">
-     15.4. Errore di una stima
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/teorema-centrale-limite.html">
-     15.5. Teorema del limite centrale
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/leggi-grandi-numeri.html">
-     15.6. Leggi dei grandi numeri
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/distribuzioni-campionarie.html">
-     15.7. Distribuzioni campionarie
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/calcolo-dimensione-campione.html">
-     15.8. Calcolo della dimensione del campione
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/processo-poisson.html">
-     15.9. Processo di poisson
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../c2-teoria-insiemi/teoria-insiemi.html">10. Teoria degli insiemi</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../c2-teoria-insiemi/concetti-di-base.html">10.1. Concetti di base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c2-teoria-insiemi/insiemi-finiti-e-infiniti.html">10.2. Insiemi finiti e infiniti</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c2-teoria-insiemi/relazioni-tra-insiemi.html">10.3. Relazioni tra insiemi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c2-teoria-insiemi/operazioni-tra-insiemi.html">10.4. Operazioni tra insiemi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c2-teoria-insiemi/insiemi-in-python.html">10.5. Gli insiemi in Python</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Bibliografia
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../c3-probabilita/calcolo-probabilita.html">11. Calcolo delle probabilità</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../c3-probabilita/concetto-di-probabilita.html">11.1. Il concetto di probabilità</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c3-probabilita/esperimenti-esiti-eventi.html">11.2. Concetti fondamentali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c3-probabilita/assiomi-kolmogorov.html">11.3. Assiomi di Kolmogorov</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c3-probabilita/spazi-equiprobabili.html">11.4. Spazi equiprobabili</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c3-probabilita/probabilita-condizionata.html">11.5. Probabilità condizionata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c3-probabilita/prob-totali-e-naive-bayes.html">11.6. Teoremi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c3-probabilita/classificatori-naive-bayes.html">11.7. Classificatori naive Bayes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c3-probabilita/indipendenza.html">11.8. Indipendenza</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../c4-variabili-aleatorie/intro.html">12. Variabili aleatorie</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/variabili-aleatorie.html">12.1. Variabili aleatorie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/variabili-aleatorie-discrete.html">12.2. Variabili aleatorie discrete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/valore-atteso.html">12.3. Valore atteso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/varianza.html">12.4. Varianza</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/momenti.html">12.5. momenti</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/variabili-multivariate.html">12.6. Variabili aleatorie multivariate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/indipendenza.html">12.7. Indipendenza di variabili aleatorie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/disuguaglianze-fondamentali.html">12.8. Disuguaglianze fondamentali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/variabili-aleatorie-continue.html">12.9. Variabili aleatorie continue</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../c5-modelli-discreti/modelli-discreti.html">13. Modelli discreti</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/bernoulli.html">13.1. La distribuzione di Bernoulli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/binomiale.html">13.2. Il modello binomiale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/uniforme.html">13.3. Il modello uniforme discreto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/geometrico.html">13.4. Il modello geometrico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/poisson.html">13.5. Il modello di poisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/ipergeometrico.html">13.6. Il modello ipergeometrico</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="va-e-modelli-continui.html">14. Modelli continui</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dal-discreto-al-continuo.html">14.1. Dal discreto al continuo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="va-continue.html">14.2. Variabili aleatorie continue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uniforme.html">14.3. Il modello uniforme continuo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gaussiano.html">14.4. Il modello normale</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">14.5. Il modello esponenziale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="altri-modelli.html">14.6. Altri modelli continui</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistica inferenziale</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../bibliography.html">
-   16. Bibliografia
-  </a>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/inferenza-puntuale.html">15. Inferenza puntuale</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima.html">15.1. Popolazione, campione e stima</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/media-campionaria.html">15.2. Media campionaria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/varianza-campionaria.html">15.3. Varianza campionaria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/errore-di-una-stima.html">15.4. Errore di una stima</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/teorema-centrale-limite.html">15.5. Teorema del limite centrale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/leggi-grandi-numeri.html">15.6. Leggi dei grandi numeri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/distribuzioni-campionarie.html">15.7. Distribuzioni campionarie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/calcolo-dimensione-campione.html">15.8. Calcolo della dimensione del campione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/processo-poisson.html">15.9. Processo di poisson</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">16. Bibliografia</a></li>
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
+</nav>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  </div>
+  
 
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
 
-          
+  
+  <div id="rtd-footer-container"></div>
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
+      </div>
+      <main id="main-content" class="bd-main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
 
 
 
 <div class="col py-1 d-flex header-article-main">
     <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
     </div>
     <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/dariomalchiodi/sds/main?urlpath=tree/sds/p3-CP/c6-modelli-continui/esponenziale.md"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="https://mybinder.org/v2/gh/dariomalchiodi/sds/main?urlpath=tree/sds/p3-CP/c6-modelli-continui/esponenziale.md" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Launch on Binder"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../../_static/images/logo_binder.svg">
   </span>
-<span class="headerbtn__text-container">Binder</span>
+<span class="btn__text-container">Binder</span>
 </a>
-
-      </li>
+</a>
       
       <li>
-        
 <button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
   data-toggle="tooltip"
 data-placement="left"
 title="Launch Thebe"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-play"></i>
   </span>
-<span class="headerbtn__text-container">Live Code</span>
+<span class="btn__text-container">Live Code</span>
 </button>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
+  class="btn btn-sm"
   data-toggle="tooltip"
 data-placement="bottom"
 title="Fullscreen mode"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+
+<div class="dropdown dropdown-repository-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/dariomalchiodi/sds"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="https://github.com/dariomalchiodi/sds" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Source repository"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fab fa-github"></i>
   </span>
-<span class="headerbtn__text-container">repository</span>
+<span class="btn__text-container">repository</span>
 </a>
-
-      </li>
+</a>
       
-      <li>
-        <a href="https://github.com/dariomalchiodi/sds/issues/new?title=Issue%20on%20page%20%2Fp3-CP/c6-modelli-continui/esponenziale.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
+      <li><a href="https://github.com/dariomalchiodi/sds/issues/new?title=Issue%20on%20page%20%2Fp3-CP/c6-modelli-continui/esponenziale.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Open an issue"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-lightbulb"></i>
   </span>
-<span class="headerbtn__text-container">open issue</span>
+<span class="btn__text-container">open issue</span>
 </a>
-
-      </li>
+</a>
       
-      <li>
-        <a href="https://github.com/dariomalchiodi/sds/edit/main/sds/p3-CP/c6-modelli-continui/esponenziale.md"
-   class="headerbtn"
+      <li><a href="https://github.com/dariomalchiodi/sds/edit/main/sds/p3-CP/c6-modelli-continui/esponenziale.md" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Edit this page"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-pencil-alt"></i>
   </span>
-<span class="headerbtn__text-container">suggest edit</span>
+<span class="btn__text-container">suggest edit</span>
 </a>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../_sources/p3-CP/c6-modelli-continui/esponenziale.ipynb"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="../../_sources/p3-CP/c6-modelli-continui/esponenziale.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Download notebook file"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-code"></i>
   </span>
-<span class="headerbtn__text-container">.ipynb</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
-
-      </li>
+</a>
       
-      <li>
-        <a href="../../_sources/p3-CP/c6-modelli-continui/esponenziale.md"
-   class="headerbtn"
+      <li><a href="../../_sources/p3-CP/c6-modelli-continui/esponenziale.md" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Download source file"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.md</span>
+<span class="btn__text-container">.md</span>
 </a>
-
-      </li>
+</a>
       
       <li>
-        
 <button onclick="printPdf(this)"
-  class="headerbtn"
+  class="btn btn-sm dropdown-item"
   data-toggle="tooltip"
 data-placement="left"
 title="Print to PDF"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file-pdf"></i>
   </span>
-<span class="headerbtn__text-container">.pdf</span>
+<span class="btn__text-container">.pdf</span>
 </button>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
     </div>
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Il modello esponenziale</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                    </div>
-                </div>
             </div>
-            <main id="main-content" role="main">
-                
-              <div>
-                
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Il modello esponenziale</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#momenti-della-distribuzione-esponenziale">
+   14.5.1. Momenti della distribuzione esponenziale (*)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quantili-della-distribuzione-esponenziale">
+   14.5.2. Quantili della distribuzione esponenziale (*)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implementazione-del-modello-esponenziale">
+   14.5.3. Implementazione del modello esponenziale
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
   <section class="tex2jax_ignore mathjax_ignore" id="il-modello-esponenziale">
-<span id="sec-modello-esponenziale"></span><h1><span class="section-number">14.4. </span>Il modello esponenziale<a class="headerlink" href="#il-modello-esponenziale" title="Link a questa intestazione">#</a></h1>
-<p>Nel <a class="reference internal" href="../c5-modelli-discreti/geometrico.html#sec-modello-geometrico"><span class="std std-numref">Sezione 13.4</span></a> abbiamo visto che la funzione di
-ripartizione di una variabile aleatoria <span class="math notranslate nohighlight">\(X\)</span> con distribuzione geometrica di
-parametro <span class="math notranslate nohighlight">\(p \in (0, 1]\)</span> è definita come</p>
+<span id="sec-modello-esponenziale"></span><h1><span class="section-number">14.5. </span>Il modello esponenziale<a class="headerlink" href="#il-modello-esponenziale" title="Permalink to this heading">#</a></h1>
+<p>Data una successione <span class="math notranslate nohighlight">\(p_1, p_2, \dots, p_n, \dots\)</span> di valori tali
+che <span class="math notranslate nohighlight">\(p_i \in (0, 1]\)</span> per ogni <span class="math notranslate nohighlight">\(i \in \mathbb N\)</span>, consideriamo la famiglia
+di variabili aleatorie geometirche
+<span class="math notranslate nohighlight">\(\{ X_i \sim \mathrm G(p_n), i \in \mathbb N \}\)</span>. Per
+quanto abbiamo visto  nel <a class="reference internal" href="../c5-modelli-discreti/geometrico.html#sec-modello-geometrico"><span class="std std-numref">Paragrafo 13.4</span></a>,
+la funzione di ripartizione di ogni <span class="math notranslate nohighlight">\(X_i\)</span> sarà</p>
 <div class="math notranslate nohighlight">
-\[F_X(x; p) = 1 - (1 - p)^{\lfloor x \rfloor + 1} \mathrm
+\[F_{X_i}(x; p_i) = 1 - (1 - p_i)^{\lfloor x \rfloor + 1} \mathrm
             I_{\mathbb N \cup \{0\}}(x) \enspace.\]</div>
-<p>Dato <span class="math notranslate nohighlight">\(\lambda \in [0, +\infty)\)</span>, definiamo <span class="math notranslate nohighlight">\(Y = \frac{p}{\lambda} X\)</span>. In altre
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">st</span>
+<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+
+<span class="n">ps</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]</span>
+
+<span class="n">Xs</span> <span class="o">=</span> <span class="p">[</span><span class="n">st</span><span class="o">.</span><span class="n">geom</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">loc</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">ps</span><span class="p">]</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ps</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">Xs</span><span class="p">)):</span>
+    <span class="n">pdf</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span><span class="mi">10</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">pdf</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span><span class="mi">10</span><span class="p">],</span> <span class="n">pdf</span><span class="p">[:</span><span class="mi">10</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">rf</span><span class="s1">&#39;$X_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;geometric-divergence&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<figure class="align-default" id="fig-geometric-divergence" style="width: 300px">
+<img alt="../../_images/15c69ccabf7e88d16c0e5161936df71b84b6f89949030d8f24b146d0b9b1a28f.png" src="../../_images/15c69ccabf7e88d16c0e5161936df71b84b6f89949030d8f24b146d0b9b1a28f.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 14.16 </span><span class="caption-text">Grafici della funzione di massa di probabilità di <span class="math notranslate nohighlight">\(X_i\)</span> per <span class="math notranslate nohighlight">\(i = 1, 2, 3\)</span>,
+<span class="math notranslate nohighlight">\(p_1 = 0.8\)</span>, <span class="math notranslate nohighlight">\(p_2 = 0.5\)</span> e <span class="math notranslate nohighlight">\(p_3 = 0.2\)</span>.</span><a class="headerlink" href="#fig-geometric-divergence" title="Link a questa immagine">#</a></p>
+</figcaption>
+</figure>
+<p>Dato <span class="math notranslate nohighlight">\(\lambda \in [0, +\infty)\)</span>, definiamo <span class="math notranslate nohighlight">\(Y_i = \frac{p_i}{\lambda} X_i\)</span> per
+ogni <span class="math notranslate nohighlight">\(i \in \mathbb N\)</span>. In altre
 parole, <span class="math notranslate nohighlight">\(Y\)</span> si ottiene scalando <span class="math notranslate nohighlight">\(X\)</span> di un fattore opportuno e ciò porta ad
 «addensare» i relativi punti di massa di quest'ultima (che vengono divisi per
-una quantità positiva e moltiplicati per un valore tra zero e uno). La
-funzione di ripartizione di <span class="math notranslate nohighlight">\(Y\)</span> si ottiene facilmente, in quanto</p>
+una quantità positiva e moltiplicati per un valore tra zero e uno).</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lambdas</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ps</span><span class="p">),</span> <span class="mi">3</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">lambda_</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">lambdas</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">Xs</span><span class="p">,</span> <span class="n">ps</span><span class="p">):</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">p</span> <span class="o">/</span> <span class="n">lambda_</span>
+        <span class="n">pdf</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">pdf</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">pdf</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ps</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">rf</span><span class="s1">&#39;$X_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">lambdas</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">rf</span><span class="s1">&#39;$\lambda = </span><span class="si">{</span><span class="n">lambda_</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;geometric-convergence&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<figure class="align-default" id="fig-geometric-convergence">
+<img alt="../../_images/686b430b94fca77c2eb0e7e1078b1bf73a400b41bc8ee0537afa8a463947a893.png" src="../../_images/686b430b94fca77c2eb0e7e1078b1bf73a400b41bc8ee0537afa8a463947a893.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 14.17 </span><span class="caption-text">Grafici della funzione di massa di probabilità delle variabili aleatorie <span class="math notranslate nohighlight">\(Y_i\)</span>
+ottenute dalle corrispondenti <span class="math notranslate nohighlight">\(X_i\)</span> della
+<a class="reference internal" href="#fig-geometric-divergence"><span class="std std-numref">Figura 14.16</span></a>. Ogni colonna fa riferimento
+a un valore differente per <span class="math notranslate nohighlight">\(\lambda\)</span>.</span><a class="headerlink" href="#fig-geometric-convergence" title="Link a questa immagine">#</a></p>
+</figcaption>
+</figure>
+<p>La funzione di ripartizione delle <span class="math notranslate nohighlight">\(Y_i\)</span> è nulla per ogni argomento negativo.
+Concentrandosi invece sugli argomenti non negativi, si ha</p>
 <div class="math notranslate nohighlight">
-\[F_Y(x; p, \lambda) = \mathbb P(Y \leq x) 
-                   = \mathbb P\left(X \leq \frac{\lambda}{p} x \right)
-                   = F_X\left(\frac{\lambda}{p}x \right)
-                   = 1 - (1 - p)^{\left\lfloor \frac{\lambda x}{p}
-                                               \right\rfloor + 1} \enspace.\]</div>
+\[F_{Y_i}(x; p_i, \lambda) = \mathbb P(Y_i \leq x) 
+                      = \mathbb P\left(X_i \leq \frac{\lambda}{p_i} x \right)
+                      = F_{X_i}\left(\frac{\lambda}{p_i} x; p_i \right)
+                      = 1 - (1 - p_i)^{\left\lfloor \frac{\lambda x}{p_i}
+                                            \right\rfloor + 1} \enspace.\]</div>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>In questo caso stiamo sfruttando il fatto che
 <span class="math notranslate nohighlight">\(x - 1 \leq \lfloor x \rfloor \leq x\)</span> (vedi
-<a class="reference internal" href="dal-discreto-al-continuo.html#sec-dal-discreto-al-continuo"><span class="std std-numref">Sezione 14.1</span></a>) unitamente al fatto che l'elevamento
-fatto con base <span class="math notranslate nohighlight">\(1 - p\)</span> è un'operazione monotona non crescente.</p>
+<a class="reference internal" href="dal-discreto-al-continuo.html#sec-dal-discreto-al-continuo"><span class="std std-numref">Paragrafo 14.1</span></a>) unitamente al fatto che
+l'elevamentobfatto con base <span class="math notranslate nohighlight">\(1 - p\)</span> è un'operazione monotona non crescente.</p>
 </aside>
 <p>Concentriamoci sulla quantità
 <span class="math notranslate nohighlight">\((1 - p)^{\left\lfloor \frac{\lambda x}{p} \right\rfloor + 1}\)</span>, notando che
 vale</p>
 <div class="math notranslate nohighlight" id="equation-eq-geometric-to-exponential">
-<span class="eqno">(14.11)<a class="headerlink" href="#equation-eq-geometric-to-exponential" title="Permalink a questa equazione">#</a></span>\[(1 - p)^{\frac{\lambda x}{p}} \geq
+<span class="eqno">(14.16)<a class="headerlink" href="#equation-eq-geometric-to-exponential" title="Permalink a questa equazione">#</a></span>\[(1 - p)^{\frac{\lambda x}{p}} \geq
 (1 - p)^{\left\lfloor \frac{\lambda x}{p} \right\rfloor + 1} \geq
 (1 - p)^{\frac{\lambda x}{p} + 1}.\]</div>
 <p>Studiamo il limite per <span class="math notranslate nohighlight">\(p \to 0\)</span> della quantità a sinistra di questa catena
@@ -1065,7 +1048,7 @@ il teorema di de l'Hôpital.</p>
  = \lim_{p \to 0} \mathrm e^{\lambda x \frac{\ln (1 - p)}{p}}
  = \mathrm e^{-\lambda x} \enspace.\]</div>
 <p>D'altra parte, per quanto riguarda la quantità più a destra in
-<a class="reference internal" href="#equation-eq-geometric-to-exponential">(14.11)</a> si ha che</p>
+<a class="reference internal" href="#equation-eq-geometric-to-exponential">(14.16)</a> si ha che</p>
 <div class="math notranslate nohighlight">
 \[\lim_{p \to 0}(1 - p)^{\frac{\lambda x}{p} + 1}
 = \lim_{p \to 0}(1 - p)^{\frac{\lambda x}{p}}
@@ -1073,42 +1056,186 @@ il teorema di de l'Hôpital.</p>
   = \mathrm e^{-\lambda x} - 0 \enspace,\]</div>
 <p>pertanto applicando il teorema dei due Carabinieri si ottiene</p>
 <div class="math notranslate nohighlight">
-\[\lim_{p \to 0} F_Y(x, p, \lambda) = 1 - \mathrm e^{-\lambda x} \enspace.\]</div>
-<p>Possiamo verificare facilmente che</p>
+\[\lim_{p_i \to 0} F(x; p_i, \lambda) = 1 - \mathrm e^{-\lambda x} \enspace.\]</div>
+<p>Riassumendo, le distribuzioni delle <span class="math notranslate nohighlight">\(Y_i\)</span> tendono a una distribuzione
+continua caratterizzata dalla ripartizione</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Si verifica facilmente che <span class="math notranslate nohighlight">\(F\)</span> soddisfa i requisiti che definiscono una
+funzione di ripartizione continua.</p>
+</aside>
 <div class="math notranslate nohighlight" id="equation-eq-cdf-exponential">
-<span class="eqno">(14.12)<a class="headerlink" href="#equation-eq-cdf-exponential" title="Permalink a questa equazione">#</a></span>\[F(x; \lambda) \coloneqq
-     \left(1 - \mathrm e^{-\lambda x} \right) \; \mathrm I_{\mathbb R^+}(x)\]</div>
-<p>soddisfa i requisiti richiesti per essere una funzione di ripartizione
-continua. La distribuzione corrispondente è detta <em>distribuzione esponenziale</em>
-e la sua densità sarà ottenuta derivando <a class="reference internal" href="#equation-eq-cdf-exponential">(14.12)</a>.</p>
+<span class="eqno">(14.17)<a class="headerlink" href="#equation-eq-cdf-exponential" title="Permalink a questa equazione">#</a></span>\[F(x; \lambda) \coloneqq
+     \left(1 - \mathrm e^{-\lambda x} \right) \; \mathrm I_{\mathbb R^+}(x)
+     \enspace .\]</div>
+<p>e dalla densità che si ottiene derivando questa stessa funzione:</p>
+<div class="math notranslate nohighlight" id="equation-eq-pdf-exponential">
+<span class="eqno">(14.18)<a class="headerlink" href="#equation-eq-pdf-exponential" title="Permalink a questa equazione">#</a></span>\[f(x; \lambda) = F'(x; \lambda) = \lambda \mathrm e^{-\lambda x}
+                \; \mathrm I_{\mathbb R^+}(x) \enspace ,\]</div>
+<p>che si verifica facilmente avere integrale su <span class="math notranslate nohighlight">\(\mathbb R\)</span> uguale a <span class="math notranslate nohighlight">\(1\)</span>,
+sostituendo nell'integranda <span class="math notranslate nohighlight">\(y \coloneqq \lambda x\)</span>:</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Gli estremi di integrazione non vanno scambiati perché <span class="math notranslate nohighlight">\(\lambda\)</span> non è mai
+negativo.</p>
+</aside>
+<div class="math notranslate nohighlight">
+\[\int_{-\infty}^{+\infty} f(x; \lambda) \; \mathrm d x
+      = \int_{0}^{+\infty} \lambda \mathrm e^{-\lambda x} \; \mathrm d x
+      = \int_{0}^{+\infty} \mathrm e^{-y} \; \mathrm d y
+      = \left. -\mathrm e^{-y} \right|_0^{+\infty}
+      = -0 + 1 = 1 \enspace .\]</div>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">exponential_pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">lambda_</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">lambda_</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ps</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">lambda_</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">Xs</span><span class="p">,</span> <span class="n">ps</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">p</span> <span class="o">/</span> <span class="n">lambda_</span>
+    <span class="n">pdf</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">p</span><span class="o">/</span><span class="n">lambda_</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">pdf</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightgray&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">p</span><span class="o">/</span><span class="n">lambda_</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">)</span>
+
+    <span class="n">y_exp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y_exp</span><span class="p">,</span> <span class="n">exponential_pdf</span><span class="p">(</span><span class="n">y_exp</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">rf</span><span class="s1">&#39;$p_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1"> = </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;geometric-convergence-to-exp&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<figure class="align-default" id="fig-geometric-convergence-to-exp">
+<img alt="../../_images/802bd6e909a1e54bdc597b200153772a2160e00640946d87538eacce32de01dc.png" src="../../_images/802bd6e909a1e54bdc597b200153772a2160e00640946d87538eacce32de01dc.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 14.18 </span><span class="caption-text">Convergenza della distribuzione geometrica a quella esponenziale.
+Le barre grige visualizzano l'area delimitata dalle funzioni di densità
+ottenute convertendo le funzioni di massa di probabilità delle variabili
+aleatorie <span class="math notranslate nohighlight">\(Y_i\)</span> mostrate nella colonna centrale della
+<a class="reference internal" href="#fig-geometric-convergence"><span class="std std-numref">Figura 14.17</span></a>, relative alla scelta
+<span class="math notranslate nohighlight">\(\lambda = 1\)</span>, sovrapposti alla corrispondente funzione di densità di
+probabilità <a class="reference internal" href="#equation-eq-pdf-exponential">(14.18)</a>.</span><a class="headerlink" href="#fig-geometric-convergence-to-exp" title="Link a questa immagine">#</a></p>
+</figcaption>
+</figure>
+<p>Usando la stessa tecnica della <a class="reference internal" href="gaussiano.html#fig-normal-convergence"><span class="std std-numref">Figura 14.11</span></a>,
+la <a class="reference internal" href="#fig-geometric-convergence-to-exp"><span class="std std-numref">Figura 14.18</span></a> mostra come
+le densità ottenute convertendo le funzioni di massa di probabilità
+delle variabili aleatorie <span class="math notranslate nohighlight">\(Y_i\)</span> tendano alla funzione definita in
+<a class="reference internal" href="#equation-eq-pdf-exponential">(14.18)</a>. Riassumendo, siamo di fronte a un nuovo tipo di
+distribuzione continua, che viene chiamata <em>distribuzione esponenziale</em> e che
+è definita formalmente come seuge, unitamente alla corrispondente famiglia.</p>
 <div class="proof definition admonition" id="definition-0">
-<p class="admonition-title"><span class="caption-number">Definizione 14.7 </span> (La famiglia delle distribuzioni esponenziali)</p>
+<p class="admonition-title"><span class="caption-number">Definition 14.8 </span> (La famiglia delle distribuzioni esponenziali)</p>
 <section class="definition-content" id="proof-content">
-<p>Dato <span class="math notranslate nohighlight">\(\lambda \in [0, +\infty)\)</span>, la  <em>distribuzione esponenziale</em> è definita
-dalla densità</p>
+<p>Dato <span class="math notranslate nohighlight">\(\lambda \in \mathbb R^+\)</span>, la  <em>distribuzione esponenziale</em> di parametro
+<span class="math notranslate nohighlight">\(\lambda\)</span> è definita dalla funzione di densità di probabilità</p>
 <div class="math notranslate nohighlight">
 \[f(x; \lambda) = F'(x; \lambda) = \lambda  \mathrm e^{-\lambda x}
                                  \;\mathrm I_{\mathbb R^+}(x) \enspace,\]</div>
-<p>o in modo equivalente dalla ripartizione</p>
+<p>o in modo equivalente dalla funzione di ripartizione</p>
 <div class="math notranslate nohighlight">
 \[F(x; \lambda) = \left(1 - \mathrm e^{-\lambda x} \right)
                 \; \mathrm I_{\mathbb R^+}(x) \enspace.\]</div>
-<p>L'insieme di tutte le distribuzioni esponenziali al variare dei possibili
-valori del relativo parametro <span class="math notranslate nohighlight">\(\lambda\)</span> viene detta <em>famiglia delle
-distribuzioni esponenziali</em>.</p>
+<p>Useremo la notazione <span class="math notranslate nohighlight">\(X \sim \mathrm E(\lambda)\)</span> per specificare che una
+variabile aleatoria <span class="math notranslate nohighlight">\(X\)</span> segue una distribuzione esponenziale di parametro
+<span class="math notranslate nohighlight">\(\lambda\)</span>. L'insieme di tutte le distribuzioni esponenziali al variare dei
+valori per il relativo parametro <span class="math notranslate nohighlight">\(\lambda\)</span> <em>famiglia delle distribuzioni
+esponenziali</em>.</p>
 </section>
-</div><p>Il valore atteso e la varianza delle distribuzioni esponenziali si ottengono
-facilmente in funzione del loro parametro, applicando le relative definizioni.</p>
-<div class="proof lemma admonition" id="lemma-1">
-<p class="admonition-title"><span class="caption-number">Lemma 14.4 </span></p>
-<section class="lemma-content" id="proof-content">
-<p>Data <span class="math notranslate nohighlight">\(X \sim \mathrm E(\lambda)\)</span>, con <span class="math notranslate nohighlight">\(\lambda \in [0, +\infty)\)</span>, si ha</p>
+</div><div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;sds.mplstyle&#39;</span><span class="p">)</span>
+
+<span class="n">lambda_</span> <span class="o">=</span> <span class="mf">1.3</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">lambda_</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">lambda_</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">pl</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">color</span> <span class="o">=</span> <span class="n">pl</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_color</span><span class="p">()</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">lambda_</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">y</span><span class="p">[</span><span class="n">x</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;negative-exp&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<figure class="margin align-default" id="fig-negative-exponential">
+<img alt="../../_images/319810207f41ec5764ec29c480caf7fb484a22e61c48fd08cfbbd87972e47ea7.png" src="../../_images/319810207f41ec5764ec29c480caf7fb484a22e61c48fd08cfbbd87972e47ea7.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 14.19 </span><span class="caption-text">Grafici delle funzioni di densità (sopra) e di ripartizione (sotto) della
+distribuzione esponenziale negativa di parametro <span class="math notranslate nohighlight">\(\lambda = 3/2\)</span>.</span><a class="headerlink" href="#fig-negative-exponential" title="Link a questa immagine">#</a></p>
+</figcaption>
+</figure>
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>La distribuzione esponenziale deve il suo nome al ruolo predominante
+che la funzione esponenziale (intesa come elevamento di <span class="math notranslate nohighlight">\(\mathrm e\)</span> a una
+potenza) ha nella definizione delle funzioni di ripartizione e di densità di
+probabilità. Il fatto che l'argomento di questa funzione sia sempre negativo
+in corrispondenza delle specificazioni della distribuzione porta alcuni testi
+a utilizzare il nome «esponenziale negativa». Altre fonti distinguono
+invece le distribuzioni esponenziali da quelle esponenziali negative,
+usando la prima denominazione esattamente come ho fatto io, e la
+seconda per indicare l'equivalente della distribuzione esponenziale in cui
+però densità e ripartizione sono ribaltate rispetto all'asse delle ordinate,
+portando quindi ad avere <span class="math notranslate nohighlight">\(\mathbb R^-\)</span> come insieme delle specificazioni.
+Usando questa accezione, una variabile aleatoria <span class="math notranslate nohighlight">\(X\)</span> segue una distribuzione
+esponenziale negativa di parametro <span class="math notranslate nohighlight">\(\lambda\)</span> se e solo se la sua funzione di
+densità di probabilità è</p>
 <div class="math notranslate nohighlight">
-\[\mathbb E(X) = \frac{1}{\lambda}, \quad
-\mathrm{Var}(X) = \frac{1}{\lambda^2} \enspace.\]</div>
-<div class="proof admonition" id="proof">
-<p>Dimostrazione. Il calcolo del valore atteso si può effettuare integrando per parti:
-definendo <span class="math notranslate nohighlight">\(f(x) = x\)</span> e <span class="math notranslate nohighlight">\(g(x) = \mathrm e^{-\lambda x}\)</span> si ha</p>
+\[f_X(x; \lambda) = \lambda \mathrm e^{\lambda x}
+                  \mathrm I_{(-\infty, 0]}(x) \enspace.\]</div>
+<p>La <a class="reference internal" href="#fig-negative-exponential"><span class="std std-numref">Fig. 14.19</span></a> mostra i grafici della funzione di
+densità di probabilità e di ripartizione della distribuzione esponenziale
+negativa che corrisponde al parametro <span class="math notranslate nohighlight">\(\lambda = 3/2\)</span>.</p>
+<p>La dicitura «famiglia esponenziale» viene inoltre utilizzata per indicare
+un insieme di famiglie di distribuzioni (che comprende, tra le altre,
+quelle esponenziali) che godono di particolari proprietà teoriche che in
+questo libro non vengono considerate. Si tratta quindi di una famiglia di
+famiglie parametriche di distribuzioni, dunque sarebbe più corretto parlare
+della meta-famiglia o, come riportato in alcuni testi per essere concisi
+evitando nel contempo di incorrere in ambiguità, della classe esponenziale.</p>
+<p>Nel seguito non tratterò né la famiglia delle distribuzioni esponenziali
+negative, né la classe esponenziale. Pertanto userò
+l'aggettivo «esponenziale» per riferirmi solo alle distribuzioni definite in
+questo paragrafo, o alla corrispondente famiglia parametrica.</p>
+</div>
+<p>Il valore atteso e la varianza delle distribuzioni esponenziali si ottengono
+facilmente in funzione del loro parametro, applicando le relative definizioni.
+Più precisamente, il valore atteso di <span class="math notranslate nohighlight">\(X \sim \mathrm E(\lambda)\)</span> si calcola
+tipicamente integrando per parti: definendo <span class="math notranslate nohighlight">\(f(x) \coloneqq x\)</span> e
+<span class="math notranslate nohighlight">\(g(x) \coloneqq \mathrm e^{-\lambda x}\)</span> si ha</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>L'ultimo integrale è uguale a <span class="math notranslate nohighlight">\(1\)</span> perché equivale all'integrale della
+densità esponenziale su <span class="math notranslate nohighlight">\(\mathbb R\)</span>.</p>
+</aside>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 \mathbb E(X) &amp;= \int_{-\infty}^{+\infty} x f_X(x; \lambda) \; \mathrm d x
@@ -1121,8 +1248,13 @@ definendo <span class="math notranslate nohighlight">\(f(x) = x\)</span> e <span
                         \lambda \mathrm e^{-\lambda x} \; \mathrm d x}_{=1}
               = \frac{1}{\lambda} \enspace.
 \end{align*}\]</div>
-<p>Procedendo in modo analogo, ma ponendo <span class="math notranslate nohighlight">\(f(x)=x^2\)</span>, si può calcolare il
-momento secondo:</p>
+<p>Procedendo in modo analogo, ma ponendo <span class="math notranslate nohighlight">\(f(x) \coloneqq x^2\)</span>, si ottiene</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>In questo caso, l'ultimo integrale è uguale a <span class="math notranslate nohighlight">\(1 / \lambda\)</span> perché il suo
+calcolo è lo stesso del valore atteso della distribuzione esponenziale di
+parametro <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
+</aside>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 \mathbb E(X^2) &amp;= \int_0^{+\infty}\lambda x^2 \mathrm e^{-\lambda x}
@@ -1139,9 +1271,292 @@ momento secondo:</p>
 \end{align*}\]</div>
 <p>Pertanto <span class="math notranslate nohighlight">\(\mathrm{Var}(X) = \frac{2}{\lambda^2} - \frac{1}{\lambda^2} =
 \frac{1}{\lambda^2}\)</span>.</p>
+<p>La famiglia delle distribuzioni esponenziali gode di una particolare
+proprietà di chiusura rispetto alla scalatura delle sue specificazioni,
+come indicato in dettaglio di seguito.</p>
+<div class="proof lemma admonition" id="lemma-1">
+<p class="admonition-title"><span class="caption-number">Lemma 14.5 </span></p>
+<section class="lemma-content" id="proof-content">
+<p>Dati <span class="math notranslate nohighlight">\(\lambda \in \mathbb R^+\)</span> e <span class="math notranslate nohighlight">\(X \sim \mathrm E(\lambda)\)</span>, posto
+<span class="math notranslate nohighlight">\(c &gt; 0\)</span> e definita <span class="math notranslate nohighlight">\(Y \coloneqq X/c\)</span>, si ha che <span class="math notranslate nohighlight">\(Y \sim \mathrm E(\lambda c)\)</span>.</p>
+<div class="proof admonition" id="proof">
+<p>Proof. La funzione di ripartizione di <span class="math notranslate nohighlight">\(Y\)</span> è tale che per ogni <span class="math notranslate nohighlight">\(x \in \mathbb R\)</span>,
+tenuto conto del fatto che <span class="math notranslate nohighlight">\(c\)</span> è positivo,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+F_Y (x) = \mathbb P(Y \leq x) = \mathbb P(X \leq c x) = F_X(c x)
+        = 1 - \mathrm e^{-\lambda c x} \enspace.
+\end{equation*}\]</div>
+<p>Nell'ultimo membro di questa uguaglianza si riconosce facilmente la
+ripartizione di una distribuzione esponenziale di parametro <span class="math notranslate nohighlight">\(\lambda c\)</span>.</p>
 </div>
 </section>
-</div></section>
+</div><p>La distribuzione esponenziale gode della proprietà di assenza di memoria
+che abbiamo già visto nel <a class="reference internal" href="../c5-modelli-discreti/geometrico.html#sec-modello-geometrico"><span class="std std-numref">Paragrafo 13.4</span></a>,
+come dimostrato nel teorema che segue.</p>
+<div class="proof theorem admonition" id="teo:exponential-memory-lack">
+<p class="admonition-title"><span class="caption-number">Theorem 14.3 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>Siano <span class="math notranslate nohighlight">\(\lambda \in \mathbb R^+\)</span> e <span class="math notranslate nohighlight">\(X \sim \mathrm E(\lambda)\)</span>. Per ogni
+<span class="math notranslate nohighlight">\(s, t \in \mathbb R^+\)</span>, si ha</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbb P(X &gt; s+t \mid X &gt; s) = \mathbb P(X &gt; s) \enspace.
+\end{equation*}\]</div>
+<div class="proof admonition" id="proof">
+<p>Proof. Ricordando che <span class="math notranslate nohighlight">\(\mathbb P(X &gt; s) = 1 - F_X(s) = \mathrm e^{-\lambda s}\)</span>,
+dalla definizione di probabilità condizionata si ottiene</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\mathbb P(X &gt; s+t \mid X &gt; s)
+    &amp;= \frac{\mathbb P(\left\{ X &gt; s+t \right\} \cap \left\{ X &gt; s \right\})}
+           {\mathbb P(X &gt; s)} \\
+    &amp;= \frac{\mathbb P(X &gt; s+t)}{\mathbb P(X &gt; s)}
+     = \frac{\mathrm e^{-\lambda(s + t)}}{\mathrm e^{-\lambda s}}
+     = \mathrm e^{-\lambda s} = \mathrm P(X&gt; s) \enspace,
+\end{align*}\]</div>
+<p>ovvero la tesi.</p>
+</div>
+</section>
+</div><p>Pertanto le distribuzioni geometrica ed esponenziale sono accomunate
+dal soddisfare la proprietà di assenza di memoria. Si potrebbe anche
+dimostrare che non vi sono altre distribuzioni che hanno questa proprietà.
+In generale, queste due distribuzioni sono fortemente legate dal fatto
+di modellare bene, sotto opportune condizioni, il concetto di <em>tempo di
+attesa</em>, intesa come quantificazione del tempo necesario prima del verificarsi
+di un evento prefissato. Nel caso della distribuzione geometrica, i possibili
+istanti temporali sono <span class="math notranslate nohighlight">\(t = 0, 1, 2, \dots\)</span> e l'evento al quale siamo
+interessati è il successo in un particolare esperimento bernoulliano che
+viene ripetuto a ogni istante temporale, in condizioni di indipendenza. Nel
+caso della distribuzione esponenziale, invece, ogni numero reale positivo
+rappresenta una possibile misurazione temporale, e l'evento di cui si
+attende il verificarsi è definito in modo indiretto dalle seguenti
+proprietà:</p>
+<ul class="simple">
+<li><p>proprietà del processo di Poisson</p></li>
+</ul>
+<section id="momenti-della-distribuzione-esponenziale">
+<h2><span class="section-number">14.5.1. </span>Momenti della distribuzione esponenziale (*)<a class="headerlink" href="#momenti-della-distribuzione-esponenziale" title="Permalink to this heading">#</a></h2>
+<p>La forma analitica della funzione di distribuzione di probabilità rende
+particolarmente facile il calcolo della funzione generatrice dei momenti
+per la distribuzione esponenziale. Infatti, data <span class="math notranslate nohighlight">\(X \sim \mathrm E(\lambda)\)</span></p>
+<div class="math notranslate nohighlight">
+\[m_X(t) = \mathbb E \left( \mathrm e^{tX} \right)
+       = \int_0^{+\infty} e^{tx} \lambda \mathrm e^{-\lambda x} \; \mathrm d x
+       = \frac{\lambda}{\lambda - t}
+         \underbrace{\int_0^{+\infty}(\lambda - t)
+                     \mathrm e^{-(\lambda-t) x} \; \mathrm d x}_{=1}
+       = \frac{\lambda}{\lambda - t} \enspace,\]</div>
+<p>dove l'ultimo integrale nella catena di uguaglianze è uguale a <span class="math notranslate nohighlight">\(1\)</span> a patto
+che <span class="math notranslate nohighlight">\(t &lt; \lambda\)</span>, perché in questo caso l'integranda è la funzione di
+densità di probabilità di una distribuzione esponenziale di parametro
+<span class="math notranslate nohighlight">\(\lambda - t\)</span>. Pertanto la funzione generatrice dei momenti è correttamente
+definita in un intorno dell'origine. Il calcolo delle derivate di questa
+funzione è semplice: <span class="math notranslate nohighlight">\(m_X'(t) = \lambda (\lambda - t)^{-2}\)</span>,
+<span class="math notranslate nohighlight">\(m_X''(t) = 2 \lambda (\lambda - t)^{-3}\)</span> e in generale
+<span class="math notranslate nohighlight">\(m_X^{(n)}(t) = n! \lambda (\lambda - t)^{-(n+1)}\)</span>, così che
+<span class="math notranslate nohighlight">\(m_X'(0) = 1/\lambda\)</span> e <span class="math notranslate nohighlight">\(m_X''(0) = 2/\lambda^2\)</span>, come precedentemente
+ricavato. Ricavare i primi momenti centrali non è difficile, ma è
+necessario effettuare dei conti un po' lunghi.
+Posto <span class="math notranslate nohighlight">\(Y \coloneqq X - 1 / \lambda\)</span>, la funzione generatrice dei momenti
+centrali di <span class="math notranslate nohighlight">\(X\)</span> coincide con</p>
+<div class="math notranslate nohighlight">
+\[m_Y(t) = \mathbb E \left( \mathrm e^{tY} \right)
+       = \mathrm e^{-\frac{t}{\lambda}} m_X(t) \enspace,\]</div>
+<p>e dunque <span class="math notranslate nohighlight">\(m_Y(0) = m_X(0) = 1\)</span>. La derivata prima di <span class="math notranslate nohighlight">\(m_Y\)</span> è</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+m'_Y(t) &amp;= -\frac{1}{\lambda} \mathrm e^{-\frac{t}{\lambda}} m_X(t) +
+           \mathrm e^{-\frac{t}{\lambda}} m'_X(t)
+         = -\frac{1}{\lambda} \mathrm e^{-\frac{t}{\lambda}} m_X(t) +
+           \mathrm e^{-\frac{t}{\lambda}} m_X(t) (\lambda - t)^{-1} \\
+        &amp;= \mathrm e^{-\frac{t}{\lambda}} m_X(t)
+           \left( (\lambda - t)^{-1} - \lambda^{-1} \right)
+         = m_Y(t) \left( (\lambda - t)^{-1} - \lambda^{-1} \right)
+\end{align*}\]</div>
+<p>e <span class="math notranslate nohighlight">\(m'_Y(0) = m_Y(0) \left( \lambda^{-1} - \lambda^{-1} \right) = 0\)</span>. La
+derivata seconda è uguale a</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+m''_Y(t) &amp;= m'_Y(t) \left( (\lambda - t)^{-1} - \lambda^{-1} \right)
+            + m_Y(t) (\lambda - t)^{-2} \\
+         &amp;= m_Y(t) \left(
+                \left( (\lambda - t)^{-1} - \lambda^{-1} \right)^2
+                + (\lambda - t)^{-2}
+            \right) \enspace,
+\end{align*}\]</div>
+<p>e quindi</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{flalign*}
+m'''_Y(t) &amp;= m'_Y(t) \left(\!
+                \left( (\lambda \!-\! t)^{-1} \!-\! \lambda^{-1} \right)^2
+                + (\lambda - t)^{-2}
+             \!\right) + 
+            2 m_Y(t) \left(
+               \left( (\lambda \!-\! t)^{-1} \!-\! \lambda^{-1} \right)
+                (\lambda \!-\! t)^{-2} + (\lambda \!-\! t)^{-3}
+             \right) \\
+          &amp;= m_Y(t) \left(
+             \left( (\lambda \!-\! t)^{-1}-\lambda^{-1} \right)^3
+             +\left( (\lambda \!-\! t)^{-1}-\lambda^{-1} \right) (\lambda \!-\! t)^{-2}
+           + 4 (\lambda \!-\! t)^{-3} -2 \lambda^{-1}(\lambda \!-\! t)^{-2}
+             \right) \enspace,
+\end{flalign*}\]</div>
+<p>il che implica che la skewness della distribuzione esponenziale vale
+<span class="math notranslate nohighlight">\(\mu_3 / \sigma^3 = m'''_Y(0) \lambda^3 = 2\)</span>, indipendentemente dal
+valore del parametro. Infine,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{multline*}
+m^{(4)}_Y(t) = m'_Y(t) \left(
+             \left( (\lambda \!-\! t)^{-1}-\lambda^{-1} \right)^3
+             + \left( (\lambda \!-\! t)^{-1}-\lambda^{-1} \right) (\lambda \!-\! t)^{-2}
+             + 4 (\lambda \!-\! t)^{-3} -2 \lambda^{-1} (\lambda \!-\! t)^{-2}
+               \right) \\
+            + m_Y(t) \left(
+               3 \left( (\lambda \!-\! t)^{-1}-\lambda^{-1} \right)^2 (\lambda \!-\! t)^{-2}
+               + 3 (\lambda \!-\! t)^{-4} -2 \lambda^{-1} (\lambda \!-\! t)^{-3}
+               + 12 (\lambda \!-\! t)^{-4} -4 \lambda^{-1}(\lambda \!-\! t)^{-3}
+              \right)
+\end{multline*}\]</div>
+<p>e la curtosi della distribuzione esponenziale risulta uguale a
+<span class="math notranslate nohighlight">\(\mu_4 / \sigma^4 - 3 = m^{(4)}_Y(0) \lambda^4 -3 = 6\)</span>, anche in questo
+caso indipendentementedal valore del parametro.</p>
+</section>
+<section id="quantili-della-distribuzione-esponenziale">
+<h2><span class="section-number">14.5.2. </span>Quantili della distribuzione esponenziale (*)<a class="headerlink" href="#quantili-della-distribuzione-esponenziale" title="Permalink to this heading">#</a></h2>
+<p>Essendo la funzione di ripartizione della distribuzione esponenziale
+particolarmente facile da invertire, è possibile ricavare una forma analitica
+per i quantili, come mostrato di seguito.</p>
+<div class="proof lemma admonition" id="lemma:exponential-quantile">
+<p class="admonition-title"><span class="caption-number">Lemma 14.6 </span></p>
+<section class="lemma-content" id="proof-content">
+<p>Dati <span class="math notranslate nohighlight">\(\lambda \in \mathbb R^+\)</span> e <span class="math notranslate nohighlight">\(X \sim \mathrm E(\lambda)\)</span>, per ogni
+<span class="math notranslate nohighlight">\(q \in [0, 1)\)</span> si ha</p>
+<div class="math notranslate nohighlight">
+\[\xi_X^q = -\frac{1}{\lambda} \ln (1 - q) \enspace.\]</div>
+<div class="proof admonition" id="proof">
+<p>Proof. Risolvendo <span class="math notranslate nohighlight">\(F_X(\xi_X^q) = q\)</span> rispetto a <span class="math notranslate nohighlight">\(\xi_X^q\)</span> si ottiene</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathrm e^{-\lambda \xi_X^q} = 1 - q \enspace,
+\end{equation*}\]</div>
+<p>e dunque la tesi.</p>
+</div>
+</section>
+</div><div class="proof corollary admonition" id="corollary-4">
+<p class="admonition-title"><span class="caption-number">Corollary 14.2 </span></p>
+<section class="corollary-content" id="proof-content">
+<p>La mediana di una distribuzione esponenziale di parametro
+<span class="math notranslate nohighlight">\(\lambda \in \mathbb R^+\)</span> è il valore <span class="math notranslate nohighlight">\(\ln 2 / \lambda\)</span>. Il primo e il terzo
+quartile della stessa distribuzione valgono rispettivamente  <span class="math notranslate nohighlight">\((\ln 4 - \ln 3)
+/ \lambda\)</span> e <span class="math notranslate nohighlight">\(\ln 4 / \lambda\)</span>, mentre il suo range interquartile è uguale a
+<span class="math notranslate nohighlight">\(\ln 3 / \lambda\)</span>.</p>
+<div class="proof admonition" id="proof">
+<p>Proof. Applicando il <a class="reference internal" href="#lemma:exponential-quantile">Lemma 14.6</a> per <span class="math notranslate nohighlight">\(q = 1/2, 1/4
+\text{ e } 3/4\)</span> e utilizzando le proprietà dei logaritmi si ottiene che:</p>
+<ul class="simple">
+<li><p>la mediana della distribuzione è <span class="math notranslate nohighlight">\(-\frac{1}{\lambda} \ln \frac{1}{2}
+= \frac{\ln 2}{\lambda}\)</span>;</p></li>
+<li><p>il primo quartile è <span class="math notranslate nohighlight">\(-\frac{1}{\lambda} (\ln 3 - \ln 4)
+= \frac{\ln 4 - \ln 3}{\lambda}\)</span>;</p></li>
+<li><p>il terzo quartile è <span class="math notranslate nohighlight">\(-\frac{1}{\lambda} \ln \frac{1}{4}
+= \frac{\ln 4}{\lambda}\)</span>.</p></li>
+</ul>
+<p>Il range interquartile si ottiene calcolando la sottrazione tra il terzo e il
+primo quartile:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathrm{IQR} = \frac{\ln 4}{\lambda} - \frac{\ln 4 - \ln 3}{\lambda}
+             = \frac{\ln 3}{\lambda} \enspace.
+\end{equation*}\]</div>
+</div>
+</section>
+</div><div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">))</span>
+
+<span class="n">lambda_</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">first_quartile</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="o">/</span> <span class="n">lambda_</span>
+<span class="n">median</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">lambda_</span>
+<span class="n">third_quartile</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">/</span> <span class="n">lambda_</span>
+
+<span class="n">lw</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">height</span> <span class="o">=</span> <span class="mf">0.2</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">median</span><span class="p">,</span> <span class="n">median</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="n">height</span><span class="p">,</span> <span class="n">height</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">.1</span><span class="p">,</span> <span class="mf">.1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">lw</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">first_quartile</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">lw</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">first_quartile</span><span class="p">,</span> <span class="n">first_quartile</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="n">height</span><span class="p">,</span> <span class="n">height</span><span class="p">],</span>
+         <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">lw</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">third_quartile</span><span class="p">,</span> <span class="n">third_quartile</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="n">height</span><span class="p">,</span> <span class="n">height</span><span class="p">],</span>
+         <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">lw</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">first_quartile</span><span class="p">,</span> <span class="n">third_quartile</span><span class="p">],</span> <span class="p">[</span><span class="n">height</span><span class="p">,</span> <span class="n">height</span><span class="p">],</span>
+         <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">lw</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">first_quartile</span><span class="p">,</span> <span class="n">third_quartile</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="n">height</span><span class="p">,</span> <span class="o">-</span><span class="n">height</span><span class="p">],</span>
+         <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">lw</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">third_quartile</span><span class="p">,</span> <span class="n">third_quartile</span><span class="o">*</span><span class="mf">1.2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">lw</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">third_quartile</span><span class="o">*</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">third_quartile</span><span class="o">*</span><span class="mf">1.8</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+         <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">lw</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">median</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\ln 2/\lambda$&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">pad</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="o">-</span><span class="n">pad</span><span class="p">,</span> <span class="mf">2.5</span><span class="o">+</span><span class="n">pad</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;exponential-bp&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<figure class="align-default" id="fig-exponential-bp" style="width: 100%">
+<img alt="../../_images/89e8b58b8fc6ff2104eb3415ba6c6280d5280f155722a058637c31bb89ee80f9.png" src="../../_images/89e8b58b8fc6ff2104eb3415ba6c6280d5280f155722a058637c31bb89ee80f9.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 14.20 </span><span class="caption-text">Diagramma a scatola per la distribuzione esponenziale di parametro
+<span class="math notranslate nohighlight">\(\lambda = 1\)</span>. Il baffo a destra della scatola è parzialmente tratteggiato
+per enfatizzare il fatto che si estende fino a <span class="math notranslate nohighlight">\(+\infty\)</span>.</span><a class="headerlink" href="#fig-exponential-bp" title="Link a questa immagine">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="implementazione-del-modello-esponenziale">
+<span id="sec-implementazione-modello-esponenziale"></span><h2><span class="section-number">14.5.3. </span>Implementazione del modello esponenziale<a class="headerlink" href="#implementazione-del-modello-esponenziale" title="Permalink to this heading">#</a></h2>
+<p>In <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> si ottiene un oggetto che descrive una distribuzione
+esponenziale utilizzando la funzione <code class="docutils literal notranslate"><span class="pre">expon</span></code>. Come per tutti i modelli
+continui, quando si invoca questa funzione senza specificare il valore
+per alcun parametro, l'oggetto restituito fa riferimento a una distribuzione
+specifica nella famiglia esponenziale, e precisamente quello che corrisponde
+al parametro <span class="math notranslate nohighlight">\(\lambda = 1\)</span>. Se si vuole utilizzare una distribuzione
+esponenziale per un generico valore <span class="math notranslate nohighlight">\(\lambda\)</span> del parametro, è necessario
+specificare l'argomento <code class="docutils literal notranslate"><span class="pre">scale</span></code> <a class="footnote-reference brackets" href="#loc-param" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>, impostandolo a <span class="math notranslate nohighlight">\(1 / \lambda\)</span>.
+Ciò è dovuto al fatto che, in generale, il valore indicato per <code class="docutils literal notranslate"><span class="pre">scale</span></code>
+modifica la deviazione standard della distribuzione, che nel caso del modello
+esponenziale è uguale, appunto, a <span class="math notranslate nohighlight">\(1 / \lambda\)</span>.</p>
+<hr class="footnotes docutils" />
+<aside class="footnote brackets" id="loc-param" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Come per tutte le altre distribuzioni implementate in
+<code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>, è anche possibile specificare un valore per il parametro <code class="docutils literal notranslate"><span class="pre">loc</span></code>,
+con l'effetto di modificare la centralità della distribuzione ottenuta,
+traslandola verso destra esattamente di una quantità uguale al valore che
+è stato specificato. Ciò significa pertanto che l'oggetto ottenuto invocando
+<code class="docutils literal notranslate"><span class="pre">expon</span></code> non descrive una distribuzione all'interno della famiglia
+esponenziale, semplicemente perché il suo dominio non è <span class="math notranslate nohighlight">\(\mathbb R^+\)</span>.</p>
+</aside>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1155,7 +1570,7 @@ momento secondo:</p>
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./p3-CP/c6-modelli-continui"
         },
         predefinedOutput: true
@@ -1163,50 +1578,115 @@ momento secondo:</p>
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
-              
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="uniforme.html" title="precedente pagina">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">precedente</p>
-            <p class="prev-next-title"><span class="section-number">14.3. </span>Il modello uniforme continuo</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="gaussiano.html" title="successivo pagina">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">successivo</p>
-        <p class="prev-next-title"><span class="section-number">14.5. </span>Il modello normale</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+  <a class='left-prev' id="prev-link" href="gaussiano.html" title="precedente pagina">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">precedente</p>
+          <p class="prev-next-title"><span class="section-number">14.4. </span>Il modello normale</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="altri-modelli.html" title="successivo pagina">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">successivo</p>
+      <p class="prev-next-title"><span class="section-number">14.6. </span>Altri modelli continui</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
 </div>
             </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
   
-    By <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a><br/>
-  
-      &copy; Copyright 2021 — Licensed under CC-BY 4.0.<br/>
-</p>
-        </footer>
-    </div>
-    
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#momenti-della-distribuzione-esponenziale">
+   14.5.1. Momenti della distribuzione esponenziale (*)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quantili-della-distribuzione-esponenziale">
+   14.5.2. Quantili della distribuzione esponenziale (*)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implementazione-del-modello-esponenziale">
+   14.5.3. Implementazione del modello esponenziale
+  </a>
+ </li>
+</ul>
+
+</nav>
 </div>
 
-
-      </div>
-    </div>
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a>
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2021 — Licensed under CC-BY 4.0.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Ultimo aggiornamento None.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
 
   </body>
 </html>

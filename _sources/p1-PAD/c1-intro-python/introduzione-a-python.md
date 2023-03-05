@@ -13,7 +13,7 @@ kernelspec:
 ---
 
 (chap-python)=
-# Python
+# Elaborare i dati con python
 
 > Beautiful is better than ugly. <br/>
 > Explicit is better than implicit. <br/>
@@ -48,3 +48,9 @@ Tutti gli strumenti a cui faremo riferimento ricadono nella categoria del
 [FLOSS](https://it.wikipedia.org/wiki/Free_and_Open_Source_Software), e sono
 pertanto distribuiti con licenze che ne permettono, tra le altre cose, il
 libero utilizzo.
+
+La trattazione è pensata per studenti che hanno già familiarità con la
+programmazione degli elaboratori e, in particolare, già conoscono almeno
+un linguaggio di programmazione che adotta l'approccio imperativo e
+procedurale, e che conoscano le basi del paradigma di programmazione orientato
+agli oggetti.
