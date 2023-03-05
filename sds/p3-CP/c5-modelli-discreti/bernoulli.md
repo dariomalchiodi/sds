@@ -180,10 +180,61 @@ consiste nel determinare correttamente il valore del parametro $p$ partendo
 dalla descrizione dell'esperimento di Bernoulli dal quale si parte. In alcuni
 casi la probabilità di successo si determina in modo elementare, mentre in
 altri è necessario ricorrere alle tecniche di combinatorica che abbiamo visto
-nel {numref}`Capitolo %s <(cap-calcolo-combinatorio)>`.
+nel {numref}`Capitolo %s <cap:calcolo-combinatorio>`.
 
-```{prf:example} Esempio
+```{prf:example}
 :label: ex:bernoulli
+
+Uno scatolone contiene 50 albi di fumetti, in dodici dei quali compare una e
+una sola storia con Aquaman come protagonista, mentre nei restanti albi
+Aquaman non compare mai. Scelgo a caso due albi dallo scatolone e indico con
+$X$ la variabile aleatoria che assume il valore $1$ quando negli albi che ho
+pescato posso leggere due storie diverse di Aquaman, e che vale $0$ in tutti
+gli altri casi. Chiaramente $X$ segue una distribuzione di Bernoulli, e il
+suo parametro è uguale alla probabilità $p$ che selezionando due albi dai 50 a
+disposizione, entrambi facciano parte del gruppo di dodici che parlano di
+Aquaman. A sua volta, $p$ è uguale al rapporto tra il numero di combinazioni
+di dodici oggetti in due posti (il numero di casi favorevoli) e il numero di
+combinazioni di cinquanta oggetti in due posti (il numero di casi possibili),
+pertanto
+
+\begin{equation*}
+p = \frac{\binom{12}{2}}{\binom{50}{2}} = \frac{12 \cdot 11}{50 \cdot 49}
+  \approx 0.054 \enspace,
+\end{equation*}
+
+e dunque $X \sim \mathrm B(0.054)$, il che significa che mediamente possiamo
+aspettarci che in poco più di cinque volte su cento selezioni casuali di due
+albi si arrivi a pescarne due con due storie diverse di Aquaman.
+
+Se sapessimo che sei delle dodici copie in questione sono dei doppioni tutti identici tra loro, ci
+troveremmo di fronte a una variabile aleatoria $X'$ che segue ancora
+distribuzione di Bernoulli, ma in questo il calcolo del relativo parametro
+richiede un po' più di perizia. In particolare, quello che si complica è il
+calcolo del numero di casi favorevoli. Per ottenerlo possiamo seguire, per
+esempio, uno dei due seguenti ragionamenti:
+
+- il numero di modi di scegliere due albi dai dodici a
+  disposizione è $\binom{12}{2} = 66$, ma $\binom{6}{2} = 15$ di questi corrispondono a coppie
+  che contengono due albi uguali, dunque il numero di coppie con albi distinti
+  è $66 - 15 = 51$;
+- ci sono $\binom{6}{2} = 15$ modi di comporre una coppia
+  considerando solo gli albi di cui possediamo un'unica copia, e a questi
+  bisogna aggiungere
+  $6 \cdot 6 = 36$, che corrisponde al numero di possibili coppie che contengono uno
+  dei doppioni e un altro albo; il risultato è, anche in questo caso, $51$.
+
+La probabilità $p'$ di estrarre due albi con due storie diverse di Aquaman in
+è quindi
+
+\begin{equation*}
+p' = \frac{51}{\frac{50 \cdot 49}{2}}
+   \approx 0.041 \enspace.
+\end{equation*}
+
+Riassumendo, $X' \sim \mathrm B(0.042)$: in altre parole, la media del numero
+di volte in cui si arriva a leggere due storie diverse di Aquaman scende a
+poco più di quattro volte su cento.
 ```
 
 

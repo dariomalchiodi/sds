@@ -12,7 +12,7 @@ kernelspec:
   name: python3
 ---
 
-(cap-calcolo-combinatorio)=
+(cap:calcolo-combinatorio)=
 # Calcolo combinatorio
 
 Il _calcolo combinatorio_ è una branca della matematica che descrive come
