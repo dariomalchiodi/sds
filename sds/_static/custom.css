@@ -8,7 +8,7 @@
 :root {
   --pst-color-background: #FFFFFF; /*255, 255, 255; */
   --pst-color-primary: #01579B;
-  --pst-color-secondary: #0071BC;
+  --pst-color-secondary: #0071BC !important;
   --pst-color-complementary: #208050;
   --pst-color-evident: red;
   --pst-font-text: 'Lora', serif;
