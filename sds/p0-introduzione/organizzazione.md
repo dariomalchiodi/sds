@@ -84,7 +84,10 @@ essere pubblicati solo se sono coerenti con la licenza
 % puntualizzando che che errori e imperfezioni sono interamente da attirbuirsi a
 % me. Ci sono poi tante persone che voglio ringraziare per il loro supporto:
 % Serena Paolo e Paolo Boldi, che per primi e per motivi diversissimi ma non
-% troppo sono venuti a conoscenza della mia idea di scrivere un libro.
+% troppo sono venuti a conoscenza della mia idea di scrivere un libro, e per
+% motivi uguali ma non troppo mi hanno spronato a farlo. Matteo Princisgh ha
+% accuratamente letto le bozze e trovato tante imperfezioni alle quali spero
+% di avere rimediato.
 
 ## Imparare <span class="marked">e</span> programmare
 

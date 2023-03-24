@@ -27,7 +27,7 @@ heroes = pd.read_csv('data/heroes.csv', sep=';', index_col=0)
 ```
 
 Usando lo stesso file a cui abbiamo fatto riferimento nei paragrafi precedenti,
-è stato necessario utilizzare l'argomento opzionle `sep` per indicare il
+è stato necessario utilizzare l'argomento opzionale `sep` per indicare il
 carattere usato per separare i campi in ogni record. La visualizzazione dei
 dataframe viene automaticamente formattata in un formato tabellare facile da
 leggere se si utilizza jupyter:
@@ -142,7 +142,7 @@ heroes.sort_values(by='Weight', ascending=False)[:5]
 heroes.sort_index()[-5:]
 ```
 
-Va notato che entrmabi i metodi restituiscono una copia del _dataframe_. Anche
+Va notato che entrambi i metodi restituiscono una copia del _dataframe_. Anche
 per i _dataframe_ è possibile utilizzare una lista di valori booleani che
 identificano le righe da selezionare, e tale lista può essere prodotta
 effettuando una query. In questo caso però le condizioni possono riguardare le

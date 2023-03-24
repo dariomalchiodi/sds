@@ -117,7 +117,7 @@ dataset.
 
 Abbiamo già incontrato il concetto di _frequenza assoluta_: si tratta del
 conteggio del numero di volte che una data osservazione occorre in un campione.
-Questo tipo di informazione è facilmente analizzabile quando il nuemro di
+Questo tipo di informazione è facilmente analizzabile quando il numero di
 differenti osservazioni non è troppo grande: ciò accade quasi sempre quando si
 analizzano caratteri qualitativi e relativamente meno spesso per i caratteri
 quantitativi. Prendiamo per esempio in considerazione il carattere _Publisher_,
@@ -378,7 +378,7 @@ seguito.
   specificare il nome della colonna nel _dataframe_ corrispondente alla tabella
   delle frequenze. Ciò è legato al fatto che mentre metodi come `plot.bar` sono
   in grado di visualizzare più caratteri contemporaneamente (e più avanti
-  vedremo come), quando si disegna un diagrama a torta è necessario utilizzare
+  vedremo come), quando si disegna un diagramma a torta è necessario utilizzare
   un solo carattere e quindi è necessario selezionarlo nel dataframe, anche in
   casi come questo in cui vi è effettivamente un solo carattere; In
   alternativa, è possibile estrarre la serie dal _dataframe_ e invocare su di
@@ -480,7 +480,7 @@ plt.show()
 ```
 
 Questo istogramma ci dice, a occhio, che i pesi variano perlopiù tra zero e
-duecento chilogrammi, sebbene esistano erori con pesi maggiori. In teoria è
+duecento chilogrammi, sebbene esistano errori con pesi maggiori. In teoria è
 possibile utilizzare sotto-intervalli di ampiezze differenti: per esempio,
 ampiezze pari a 20 per i pesi inferiori a 200 kg., pari a 50 per pesi compresi
 tra 200 e 500 kg., e pari a 100 per i valori rimanenti.
@@ -930,7 +930,7 @@ pd.crosstab(index=heroes['Intelligence'],
 ```
 
 la colonna `All` conterrà le frequenze assolute per il carattere Intelligence,
-e parimenti la righa `All` elencherà le frequenze assolute per il genere
+e parimenti la riga `All` elencherà le frequenze assolute per il genere
 (escludendo ovviamente in entrambi i casi l'ultimo elemento che corrisponde al
 numero totale di osservazioni).
 

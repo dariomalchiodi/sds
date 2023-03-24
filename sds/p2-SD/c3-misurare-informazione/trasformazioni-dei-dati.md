@@ -309,7 +309,7 @@ transformed_strength.iloc[:10]
 ```
 
 Questa trasformazione dovrebbe avere l'effetto di rendere nulla la media
-campionaria dei dati trasfromati.
+campionaria dei dati trasformati.
 
 ```python
 transformed_strength.mean()
@@ -331,7 +331,7 @@ distanziati.
 In questi casi può essere utile considerare non tanto il valore originale ma,
 pensando a tale valore come potenza di una data base, ragionare in termini
 del relativo esponente. Ciò corrisponde ad applicare una
-_trasformazione lograritmica_ del seguente tipo:
+_trasformazione logaritmica_ del seguente tipo:
 
 $$
 x \mapsto x' = \log x.

@@ -31,7 +31,7 @@ stesso.
 Siccome il numero di sottinsiemi costituiti da $k$ elementi è
 $c_{n,k}=\binom{n}{k}$, si ha  che la cardinalità di $\mathcal{P}(A)$ è
 $|\mathcal{P}(A)| = 1 + \sum_{k=1}^{n} \binom{n}{k}$, dove il primo addendo
-è dovuto alla presenza dell'insieme vuoto. Sfruttando le propriet\`a del
+è dovuto alla presenza dell'insieme vuoto. Sfruttando le proprietà del
 coefficiente binomiale otteniamo
 
 \begin{equation}

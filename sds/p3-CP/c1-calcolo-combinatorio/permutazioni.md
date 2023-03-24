@@ -79,7 +79,7 @@ oggetti possiamo applicare il principio fondamentale del calcolo combinatorio:
 - calcoliamo in quanti modi possiamo selezionare l'oggetto da inserire nella
   prima posizione: avendo a disposizione $n$ oggetti, abbiamo $n$
   possibilità;
-- per ciasuna delle $n$ possibili scelte fatte al punto precedente,
+- per ciascuna delle $n$ possibili scelte fatte al punto precedente,
   calcoliamo in quanti modi possiamo selezionare l'oggetto da inserire nella
   seconda posizione: avendo a disposizione $n-1$ oggetti, abbiamo $n-1$
   possibilità; in totale abbiamo dunque $n \cdot (n-1)$ modi differenti per

@@ -207,7 +207,7 @@ def anova(groups):
     return (total_var, within_var*(n-len(groups))/(n-1))
 ```
 
-Verifichiamo che i valori restituti per i due gruppi già considerati siano
+Verifichiamo che i valori restituiti per i due gruppi già considerati siano
 gli stessi.
 
 ```{code-cell} ipython3
