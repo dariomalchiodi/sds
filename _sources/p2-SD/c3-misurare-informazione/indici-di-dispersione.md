@@ -35,7 +35,7 @@ heroes = pd.read_csv('data/heroes.csv', sep=';', index_col=0)
 Gli indici di dispersione di un oggetto di tipo serie si calcolano invocando
 su quest'ultimo degli appositi metodi. In particolare:
 
-- `var` restiuisce la varianza campionaria;
+- `var` restituisce la varianza campionaria;
 
 ```{code-cell} ipython3
 year = heroes['First appearance']

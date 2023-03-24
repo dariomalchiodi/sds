@@ -160,7 +160,7 @@ verificata se $p$ è il parametro di una distribuzione geometrica.
 ```
 La penultima uguaglianza è basata sulla convergenza della _serie geometrica_:
 $\sum_{i=0}^{+\infty} \alpha^i = \frac{1}{1-\alpha}$ per ogni $\alpha$ tale
-che $|\alpha| < 1$: È da questo fatto che la distrubuzione geometrica pernde
+che $|\alpha| < 1$: È da questo fatto che la distribuzione geometrica prende
 il suo nome.
 
 Nella cella seguente viene definita una funzione `geom_pdf` che accetta come
@@ -346,7 +346,7 @@ plt.ylim(0, 50)
 plt.show()
 ```
 
-Anche in questo caso il grafico ottenuto è coerente con il signigicato
+Anche in questo caso il grafico ottenuto è coerente con il significato
 probabilistico della distribuzione: al diminuire di $p$ la massa di probabilità
 si concentra su un insieme sempre più grande di valori, dunque la varianza
 aumenta. Quando $p=1$ il numero di insuccessi è sempre nullo e quindi la
@@ -423,7 +423,7 @@ F_X(x; p) = \left( 1 - (1 - p)^{\lfloor x \rfloor + 1} \right)
                                  \mathrm I_{[0, +\infty]}(x),
 $$
 
-che viene utilizzata nella cella seguente per implementare una funizone
+che viene utilizzata nella cella seguente per implementare una funzione
 `geom_cdf`.
 
 ```{code-cell} ipython3

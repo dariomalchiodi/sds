@@ -16,7 +16,7 @@ kernelspec:
 Una delle classi principali implementate in pandas è `Series`. Le sue istanze
 rappresentano serie di osservazioni di un certo carattere fatto su un insieme
 di individui. La cella seguente recupera dalla lista `heroes` precedentemente
-creata i nomi dei supereoi e il loro anno di prima apparizione e li utilizza
+creata i nomi dei supereroi e il loro anno di prima apparizione e li utilizza
 per creare una serie:
 
 ```{code-cell} ipython3
@@ -183,7 +183,7 @@ first_app_freq = first_appearance[first_appearance < 2090].value_counts().sort_i
 first_app_freq.head(10)
 ```
 
-## Visualizzione grafica di una serie
+## Visualizzazione grafica di una serie
 Pandas mette a disposizione l'oggetto `plot` per visualizzare graficamente i
 contenuti di una serie, utilizzando matplotlib dietro le quinte; in
 particolare, il metodo `bar` visualizza un grafico a barre:
@@ -355,7 +355,7 @@ bmi = weight / height.apply(lambda h: (h/100)**2)
 bmi.sort_values(ascending=False)[:15]
 ```
 
-A parte notare Hulk è solo il quindicesimo della classifica, va sottolinato che
+A parte notare Hulk è solo il quindicesimo della classifica, va sottolineato che
 le operazioni fatte elemento per elemento allineano i vettori corrispondenti
 alle serie in base all'indice (e non alla posizione). Consideriamo per esempio
 la seguente cella, in cui vengono selezionati altezze e pesi più o meno

@@ -52,7 +52,7 @@ però il cliente non gradisce, e quindi costituisce un errore sicuramente più
 grave rispetto al caso precedente.
 
 Tenuto anche conto del fatto che tipicamente è molto difficile riuscire a
-ottenere un buon classificatre in termine sia di falsi positivi, sia di falsi
+ottenere un buon classificare in termine sia di falsi positivi, sia di falsi
 negativi, un modo efficace di valutare entrambi questi tipi di errore
 consiste nel disegnare la _matrice di confusione_ (o _tabella di confusione_)
 che mostra il numero di falsi positivi e di falsi negativi unitamente al
@@ -124,7 +124,7 @@ $$
 \mathrm{sensibilità} = \frac{\mathrm{VP}}{\mathrm{TP}},
 $$
 
-- la _specificità_, analaogamente intesa come frazione degli oggetti negativi
+- la _specificità_, analogamente intesa come frazione degli oggetti negativi
   che vengono correttamente classificati
 
 $$
@@ -247,7 +247,7 @@ annulla e la specificità vale $1$, pertanto $\mathrm{CN}$ individuerà il
 punto $(0, 0)$ sul piano cartesiano. I due classificatori costanti
 considerati si collocano quindi in corrispondenza di due dei quattro vertici
 del quadrato, come mostrato nella figura seguente all'interno della quale è
-stata evidenziata anche la diagonale del quadrato, che ci servierà come punto
+stata evidenziata anche la diagonale del quadrato, che ci servirà come punto
 di riferimento.
 
 ```{code-cell} ipython3
@@ -695,7 +695,7 @@ vale $1$.
 </table>
 
 La visualizzazione della corrispondente curva ROC può essere effettuata
-consdierando i valori nelle due righe di questa tabella ripsettivamente come
+considerando i valori nelle due righe di questa tabella rispettivamente come
 ascisse e ordinate di punti che andranno poi uniti.
 
 ```{code-cell} ipython3
@@ -818,7 +818,7 @@ Y = publisher_encoder.transform(Y)
 Il passo successivo consiste nel dividere gli oggetti a disposizione e le
 corrispondenti etichette in due gruppi: uno per costruire il classificatore e
 uno per valutarne l'efficacia in termini di curva ROC. Usando infatti dei
-dati nuovi per valuare un classificatore si cattura meglio la sua capacità di
+dati nuovi per valutare un classificatore si cattura meglio la sua capacità di
 funzionare correttamente quando questo verrà utilizzato su oggetti di cui non
 si conosce la classe di appartenenza.
 

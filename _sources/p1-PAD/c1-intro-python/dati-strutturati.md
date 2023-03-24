@@ -144,14 +144,14 @@ detto le liste sono strutture dati _dinamiche_, nel senso che oltre a
 modificare gli elementi in essa contenuti è anche possibile rimuovere uno o più
 di tali elementi, oppure aggiungerne di nuovi.
 
-Sono dipsosizione varie operazioni che agiscono sulle liste, e queste
+Sono a disposizione varie operazioni che agiscono sulle liste, e queste
 operazioni sono implementate utilizzando diversi elementi del linguaggio:
 gli operatori, le funzioni e i metodi. I paragrafi che seguono, lungi
 dall'essere esaustivi, introducono alcuni esempi: il loro scopo è
 principalmente quello di sottolineare la differenza tra i concetti di
 operatore, funzione e metodo in Python. Per degli approfondimenti è possibile
 consultare la documentazione ufficiale, che contiene un [documento
-introudttivo](https://docs.python.org/3/tutorial/introduction.html#lists) e uno
+introduttivo](https://docs.python.org/3/tutorial/introduction.html#lists) e uno
 [più dettagliato](https://docs.python.org/3/tutorial/datastructures.html#)
 sull'uso delle liste. Per esemplificare l'uso di questi tre tipi di strumenti
 conviene ragionare in termini di una lista utilizzata come se fosse un _array_,

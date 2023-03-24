@@ -121,7 +121,7 @@ print(gini(heroes.index))
 ```
 
 I risultati ottenuti ci dicono che l'attributo più omogeneo tra quelli
-considerati è quello relativo all'editore: ciò è dvuto al fatto che sono stati
+considerati è quello relativo all'editore: ciò è dovuto al fatto che sono stati
 considerati solamente i due editori con il maggior numero di valori. Il nome
 dei supereroi risulta invece l'attributo più eterogeneo, e anche in questo caso
 si tratta di un risultato che ci potevamo aspettare, in quanto è ragionevole
@@ -279,7 +279,7 @@ classificazione funziona in modo analogo nel caso di tempo piovoso (_rain_).
 
 La costruzione di un albero di ricerca richiede innanzitutto di individuare un
 indice di eterogeneità. Facciamo un esempio selezioniamo l'indice di Gini e
-lavorando solo con due classi: i superori e i supercattivi, che indicheremo
+lavorando solo con due classi: i supereroi e i supercattivi, che indicheremo
 rispettivamente con le etichette `good_guy` e `bad_guy`. Il fatto di avere solo
 due etichette possibili semplifica notevolmente il calcolo dell'indice: basterà
 infatti specificare la frequenza relativa $f$ di `good_guy`, così che la
@@ -288,7 +288,7 @@ valore $1 - f^2 - (1-f)^2$: potremo quindi riutilizzare la funzione
 `gini_2_val` precedentemente definita.
 
 Per mantenere l'albero di decisione di dimensioni compatte selezioniamo un
-numero relativamente basso di supererori e supercattivi (la scelta è stata
+numero relativamente basso di supereroi e supercattivi (la scelta è stata
   fatta anche in modo da non avere a che fare con valori mancanti, che
   avrebbero complicato il processo di calcolo dell'albero).
 
@@ -567,7 +567,7 @@ clf.predict([filter(heroes.loc['Professor X'])])
 ```
 
 Il risultato ottenuto deve metterci in guardia: non necessariamente infatti un
-buon compoartamento degli alberi di decisione sui dati utilizzati per
+buon comportamento degli alberi di decisione sui dati utilizzati per
 costruirli è associato a un analogo comportamento nell'_indurre_ etichette per
 dati nuovi. Le tecniche da utilizzare per valutare la cosiddetta capacità di
 _generalizzazione_ a nuovi casi esulano però dallo scopo del nostro corso.
