@@ -634,7 +634,7 @@ esito. Questo processo viene modellato utilizzando la
 definita dalla funzione di massa di probabilità</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-f_X(x; p) = (1-p)^x p \; \mathrm I_{\mathbb N \cup \{ 0 \}}(x) \enspace.
+f(x; p) = (1-p)^x p \; \mathrm I_{\mathbb N \cup \{ 0 \}}(x) \enspace.
 \end{equation*}\]</div>
 <p>Userò la sintassi <span class="math notranslate nohighlight">\(X \sim \mathrm G(p)\)</span> per indicare che una variabile
 aleatoria <span class="math notranslate nohighlight">\(X\)</span> segue una distribuzione geometrica di parametro <span class="math notranslate nohighlight">\(p\)</span>. L'insieme
@@ -645,9 +645,9 @@ parametro prende il nome di <em>famiglia delle distribuzioni geometriche</em>.</
 sono tra loro indipendenti, si ha</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-f_X(x; p) = &amp; (1-p)^x p
-          = \mathbb P(\text{insuccesso alla prima ripetizione}) \dots \\
-            &amp; \dots\mathbb P(\text{insuccesso alla $x$-esima ripetizione})
+f(x; p) = &amp; (1-p)^x p
+        = \mathbb P(\text{insuccesso alla prima ripetizione}) \dots \\
+          &amp; \dots\mathbb P(\text{insuccesso alla $x$-esima ripetizione})
 \mathbb P(\text{successo alla $(x+1)$-esima ripetizione}) \enspace,
 \end{align*}\]</div>
 <aside class="margin sidebar">
@@ -678,18 +678,13 @@ la ripetizione dell'esperimento non terminerebbe mai. Questo implicherebbe
 in un certo qual senso che la specificazione assunta assume un valore
 infinito, cosa che è proibita dalla <a class="reference internal" href="../c4-variabili-aleatorie/variabili-aleatorie.html#def:variabile-aleatoria">Definition 12.1</a>.</p>
 <p>Si verifica facilmente che sommando i valori di massa di probabilità per tutte
-le specificazioni di <span class="math notranslate nohighlight">\(X\)</span> si ottiene come risultato 1:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8fbc664b-ca77-4116-8665-5cf47deff077">
-<span class="eqno">(13.1)<a class="headerlink" href="#equation-8fbc664b-ca77-4116-8665-5cf47deff077" title="Permalink a questa equazione">#</a></span>\[\begin{align}
-\sum_{x=0}^{+\infty}\mathrm f_X(x; p) = \sum_{x=0}^{+\infty} (1-p)^x p =
+le specificazioni della distribuzione si ottiene come risultato 1:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ac4d652d-88f0-4d98-889e-bb7f87661525">
+<span class="eqno">(13.1)<a class="headerlink" href="#equation-ac4d652d-88f0-4d98-889e-bb7f87661525" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+\sum_{x=0}^{+\infty}\mathrm f(x; p) = \sum_{x=0}^{+\infty} (1-p)^x p =
 p \sum_{x=0}^{+\infty}(1-p)^x
  = p \frac{1}{1-(1-p)} = 1.
 \end{align}\]</div>
-<aside class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>Nel nostro caso questa condizione equivale a <span class="math notranslate nohighlight">\(0 &lt; p &lt; 2\)</span>, che è sempre
-verificata se <span class="math notranslate nohighlight">\(p\)</span> è il parametro di una distribuzione geometrica.</p>
-</aside>
 <div class="naming admonition">
 <p class="admonition-title">Nomenclatura</p>
 <p>La distribuzione geometrica prende il nome dalla serie omonima, utilizzata
@@ -698,8 +693,40 @@ nel penultimo passaggio dell'equazione precedente e definita da</p>
 \[\begin{equation*}
 \sum_{i=0}^{+\infty} \alpha^i = \frac{1}{1-\alpha} \enspace,
 \end{equation*}\]</div>
-<p>a patto che che <span class="math notranslate nohighlight">\(|\alpha| &lt; 1\)</span>.</p>
+<p>a patto che che <span class="math notranslate nohighlight">\(|\alpha| &lt; 1\)</span>. Nel nostro caso questa condizione equivale a
+<span class="math notranslate nohighlight">\(0 &lt; p &lt; 2\)</span>, che è sempre verificata, essendo <span class="math notranslate nohighlight">\(p \in (0, 1]\)</span>.</p>
 </div>
+<p>La forma analitica per la funzione di ripartizione di una generica
+distribuzione geometrica si ottiene nel modo seguente:
+data <span class="math notranslate nohighlight">\(X \sim \mathrm G(p)\)</span> e fissato un generico
+<span class="math notranslate nohighlight">\(n \in \mathbb N \cup \{ 0 \}\)</span>,</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Nel terzultimo passaggio ho applicato alla sommatoria la sostituzione
+<span class="math notranslate nohighlight">\(i = x - (n + 1)\)</span>.</p>
+</aside>
+<div class="amsmath math notranslate nohighlight" id="equation-f31f3ae0-7bac-447e-8092-063428cf80c4">
+<span class="eqno">(13.2)<a class="headerlink" href="#equation-f31f3ae0-7bac-447e-8092-063428cf80c4" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+\mathbb P(X &gt; n) &amp;= \sum_{x=n+1}^{+\infty}f_X(x; p)
+                  = \sum_{x=n+1}^{+\infty}(1-p)^x p \\
+                 &amp;= p (1-p)^{n+1} \sum_{x=n+1}^{+\infty}(1-p)^{x - (n+1)}
+                  = p (1-p)^{n+1} \sum_{i=0}^{+\infty}(1-p)^i \\
+                 &amp;= p (1-p)^{n+1} \frac{1}{1-(1-p)} \\
+                 &amp;= (1-p)^{n+1} \enspace.
+\end{align}\]</div>
+<p>Pertanto <span class="math notranslate nohighlight">\(F_X(n; p) = \mathbb P(X \leq n) = 1 - \mathbb P(X &gt; n)
+= 1 - (1-p)^{n+1}\)</span>.</p>
+<p>Fissato invece un generico <span class="math notranslate nohighlight">\(x \in \mathbb R^+\)</span> e indicato con
+<span class="math notranslate nohighlight">\(\lfloor x \rfloor\)</span> l'intero ottenuto troncando <span class="math notranslate nohighlight">\(x\)</span> (o, equivalentemente,
+arrotondandolo per difetto), l'evento <span class="math notranslate nohighlight">\(X \leq x\)</span> equivarrà a
+<span class="math notranslate nohighlight">\(X \leq \lfloor x \rfloor\)</span>. Tenuto infine conto del fatto che le specificazioni
+di una distribuzione geometrica sono non negative, si ottiene facilmente la
+seguente forma più generale per la funzione di ripartizione:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+F_X(x; p) = \left( 1 - (1 - p)^{\lfloor x \rfloor + 1} \right)
+                                 \mathrm I_{[0, +\infty]}(x) \enspace.
+\end{equation*}\]</div>
 <p>Un modo intuitivo di simulare l'estrazione di valori da una distribuzione
 geometrica consiste nel ripetere l'esecuzione del corrispondente esperimento
 bernoulliano, fermandosi quando si ottiene il primo successo e restituendo
@@ -931,8 +958,8 @@ ripetizioni tenderà a più infinito.</p>
 <p><strong>Proposizione</strong> Il valore atteso del quadrato della distribuzione geometrica
 di parametro <span class="math notranslate nohighlight">\(p\)</span> è pari a <span class="math notranslate nohighlight">\(\frac{(1-p)(2-p)}{p^2}\)</span>.</p>
 <p>Dimostrazione.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-37b07f7a-6000-4574-811a-cfa50bcec978">
-<span class="eqno">(13.2)<a class="headerlink" href="#equation-37b07f7a-6000-4574-811a-cfa50bcec978" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-24f04765-ea49-4a1c-a95f-65d381e2e030">
+<span class="eqno">(13.3)<a class="headerlink" href="#equation-24f04765-ea49-4a1c-a95f-65d381e2e030" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm E\left(X^2\right) &amp;= \sum_{i=0}^{+\infty} i^2 p_X(i) \\
                &amp;= \sum_{i=0}^{+\infty} i^2 p (1-p)^i \\
                &amp;= p (1-p) \sum_{i=0}^{+\infty} i^2 (1-p)^{i-1} \\
@@ -940,8 +967,8 @@ di parametro <span class="math notranslate nohighlight">\(p\)</span> è pari a <
                &amp;= -p (1-p) \frac{\mathrm d}{\mathrm d p} \sum_{i=0}^{+\infty} i(1-p)^i.
 \end{align}\]</div>
 <p>Applicando ancora il lemma dimostrato precedentemente si ottiene</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fd0289a1-ad6e-416e-9a4f-607a1ea1034d">
-<span class="eqno">(13.3)<a class="headerlink" href="#equation-fd0289a1-ad6e-416e-9a4f-607a1ea1034d" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2422df55-17bd-410c-8d07-30a8030ae827">
+<span class="eqno">(13.4)<a class="headerlink" href="#equation-2422df55-17bd-410c-8d07-30a8030ae827" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm E\left(X^2\right) &amp;= -p (1-p) \frac{\mathrm d}{\mathrm d p}
                                 \frac{1-p}{p^2} \\
       &amp;= p (1-p) \frac{p^2 + 1p(1-p)}{p^4} \\
@@ -951,8 +978,8 @@ di parametro <span class="math notranslate nohighlight">\(p\)</span> è pari a <
 <p><strong>Proposizione</strong>. La varianza della distribuzione geometrica di parametro <span class="math notranslate nohighlight">\(p\)</span>
 è uguale a <span class="math notranslate nohighlight">\(\frac{1-p}{p^2}\)</span>.</p>
 <p>Dimostrazione.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-90249600-9919-40aa-ba0c-2a5473ea43e3">
-<span class="eqno">(13.4)<a class="headerlink" href="#equation-90249600-9919-40aa-ba0c-2a5473ea43e3" title="Permalink a questa equazione">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-733d780c-074e-44ea-85f1-5d0ec721162c">
+<span class="eqno">(13.5)<a class="headerlink" href="#equation-733d780c-074e-44ea-85f1-5d0ec721162c" title="Permalink a questa equazione">#</a></span>\[\begin{equation}
 \mathrm{Var}(X) = \mathrm E \left(X^2\right) - \mathrm E(X)^2 =
                   \frac{(1-p)(2-p)}{p^2} - \frac{(1-p)^2}{p^2} =
                   \frac{1-p}{p^2}.
@@ -1016,36 +1043,6 @@ grafico.</p>
 </div>
 </div>
 </div>
-<p>La distribuzione geometrica ammette una forma analitica della sua funzione di
-ripartizione in cui è possibile calcolare esplicitamente il valore della
-sommatoria. Più precisamente, indicata con <span class="math notranslate nohighlight">\(X\)</span> una variabile aleatoria che
-segue una distribuzione geometrica di parametro <span class="math notranslate nohighlight">\(p\)</span>, è facile calcolare la
-probabilità <span class="math notranslate nohighlight">\(\mathrm P(X &gt; n)\)</span> per un generico <span class="math notranslate nohighlight">\(n\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4513f869-d9f3-4ebc-96fe-c1ceb27c10e0">
-<span class="eqno">(13.5)<a class="headerlink" href="#equation-4513f869-d9f3-4ebc-96fe-c1ceb27c10e0" title="Permalink a questa equazione">#</a></span>\[\begin{align}
-\mathrm P(X &gt; n) &amp;= \sum_{i=n+1}^{+\infty}f_X(i; p) \\
-                 &amp;= \sum_{i=n+1}^{+\infty}(1-p)^i p \\
-                 &amp;= p (1-p)^{n+1} \sum_{i=n+1}^{+\infty}(1-p)^{i- (n+1)} \\
-                 &amp;= p (1-p)^{n+1} \sum_{j=0}^{+\infty}(1-p)^j \\
-                 &amp;= p (1-p)^{n+1} \frac{1}{1-(1-p)} \\
-                 &amp;= (1-p)^{n+1}.
-\end{align}\]</div>
-<p>Pertanto, fissato <span class="math notranslate nohighlight">\(n \in \mathbb N\)</span> si avrà</p>
-<div class="math notranslate nohighlight">
-\[
-F_X(n; p) = \mathrm P(X \leq n) = 1 - \mathrm P(X &gt; n) = 1 - (1-p)^{n+1}.
-\]</div>
-<p>Fissato invece un generico <span class="math notranslate nohighlight">\(x \in \mathbb R^+\)</span> e indicato con
-<span class="math notranslate nohighlight">\(\lfloor x \rfloor\)</span> l'intero ottenuto troncando <span class="math notranslate nohighlight">\(x\)</span> (o, equivalentemente,
-arrotondandolo per difetto), l'evento <span class="math notranslate nohighlight">\(X \leq x\)</span> equivarrà a
-<span class="math notranslate nohighlight">\(X \leq \lfloor x \rfloor\)</span>. Tenuto infine conto del fatto che le specificazioni
-di una distribuzione geometrica sono non negative, si ottiene facilmente la
-seguente forma più generale per la funzione di ripartizione:</p>
-<div class="math notranslate nohighlight">
-\[
-F_X(x; p) = \left( 1 - (1 - p)^{\lfloor x \rfloor + 1} \right)
-                                 \mathrm I_{[0, +\infty]}(x),
-\]</div>
 <p>che viene utilizzata nella cella seguente per implementare una funzione
 <code class="docutils literal notranslate"><span class="pre">geom_cdf</span></code>.</p>
 <div class="cell docutils container">
@@ -1080,8 +1077,8 @@ nella versione interattiva degli appunti.</p>
 </div>
 <p>Si noti infine che <span class="math notranslate nohighlight">\(\mathrm P(X \geq x) = \mathrm P(X \geq \lfloor x \rfloor) =
 \mathrm P(X &gt; \lfloor x \rfloor - 1) = (1-p)^{\lfloor x \rfloor}\)</span>, e quindi</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d97491c2-9321-4179-af4d-b18d627dbd82">
-<span class="eqno">(13.6)<a class="headerlink" href="#equation-d97491c2-9321-4179-af4d-b18d627dbd82" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f8e5d15b-1266-4f7e-8263-464592837e3a">
+<span class="eqno">(13.6)<a class="headerlink" href="#equation-f8e5d15b-1266-4f7e-8263-464592837e3a" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm P(X \geq x+y | X \geq x)
             &amp;= \frac{\mathrm  P(X \geq x+y, X \geq x)}{\mathrm  P(X \geq x)} \\
             &amp;= \frac{\mathrm  P(X \geq x+y)}{\mathrm  P(X \geq x)} \\
