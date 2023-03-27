@@ -52,7 +52,7 @@ Fissato $p \in (0, 1]$, la distribuzione geometrica di parametro $p$ è
 definita dalla funzione di massa di probabilità
 
 \begin{equation*}
-f_X(x; p) = (1-p)^x p \; \mathrm I_{\mathbb N \cup \{ 0 \}}(x) \enspace.
+f(x; p) = (1-p)^x p \; \mathrm I_{\mathbb N \cup \{ 0 \}}(x) \enspace.
 \end{equation*}
 
 Userò la sintassi $X \sim \mathrm G(p)$ per indicare che una variabile
@@ -65,9 +65,9 @@ Siccome le varie ripetizioni dell'esperimento di Bernoulli di parametro $p$
 sono tra loro indipendenti, si ha
 
 \begin{align*}
-f_X(x; p) = & (1-p)^x p
-          = \mathbb P(\text{insuccesso alla prima ripetizione}) \dots \\
-            & \dots\mathbb P(\text{insuccesso alla $x$-esima ripetizione})
+f(x; p) = & (1-p)^x p
+        = \mathbb P(\text{insuccesso alla prima ripetizione}) \dots \\
+          & \dots\mathbb P(\text{insuccesso alla $x$-esima ripetizione})
 \mathbb P(\text{successo alla $(x+1)$-esima ripetizione}) \enspace,
 \end{align*}
 
@@ -101,18 +101,14 @@ in un certo qual senso che la specificazione assunta assume un valore
 infinito, cosa che è proibita dalla {prf:ref}`def:variabile-aleatoria`.
 
 Si verifica facilmente che sommando i valori di massa di probabilità per tutte
-le specificazioni di $X$ si ottiene come risultato 1:
+le specificazioni della distribuzione si ottiene come risultato 1:
 
 \begin{align}
-\sum_{x=0}^{+\infty}\mathrm f_X(x; p) = \sum_{x=0}^{+\infty} (1-p)^x p =
+\sum_{x=0}^{+\infty}\mathrm f(x; p) = \sum_{x=0}^{+\infty} (1-p)^x p =
 p \sum_{x=0}^{+\infty}(1-p)^x
  = p \frac{1}{1-(1-p)} = 1.
 \end{align}
 
-```{margin}
-Nel nostro caso questa condizione equivale a $0 < p < 2$, che è sempre
-verificata se $p$ è il parametro di una distribuzione geometrica.
-```
 
 ````{admonition} Nomenclatura
 :class: naming
@@ -124,8 +120,42 @@ nel penultimo passaggio dell'equazione precedente e definita da
 \sum_{i=0}^{+\infty} \alpha^i = \frac{1}{1-\alpha} \enspace,
 \end{equation*}
 
-a patto che che $|\alpha| < 1$.
+a patto che che $|\alpha| < 1$. Nel nostro caso questa condizione equivale a
+$0 < p < 2$, che è sempre verificata, essendo $p \in (0, 1]$.
 ````
+
+La forma analitica per la funzione di ripartizione di una generica
+distribuzione geometrica si ottiene nel modo seguente:
+data $X \sim \mathrm G(p)$ e fissato un generico
+$n \in \mathbb N \cup \{ 0 \}$,
+
+```{margin}
+Nel terzultimo passaggio ho applicato alla sommatoria la sostituzione
+$i = x - (n + 1)$.
+```
+\begin{align}
+\mathbb P(X > n) &= \sum_{x=n+1}^{+\infty}f_X(x; p)
+                  = \sum_{x=n+1}^{+\infty}(1-p)^x p \\
+                 &= p (1-p)^{n+1} \sum_{x=n+1}^{+\infty}(1-p)^{x - (n+1)}
+                  = p (1-p)^{n+1} \sum_{i=0}^{+\infty}(1-p)^i \\
+                 &= p (1-p)^{n+1} \frac{1}{1-(1-p)} \\
+                 &= (1-p)^{n+1} \enspace.
+\end{align}
+
+Pertanto $F_X(n; p) = \mathbb P(X \leq n) = 1 - \mathbb P(X > n)
+= 1 - (1-p)^{n+1}$.
+
+Fissato invece un generico $x \in \mathbb R^+$ e indicato con
+$\lfloor x \rfloor$ l'intero ottenuto troncando $x$ (o, equivalentemente,
+arrotondandolo per difetto), l'evento $X \leq x$ equivarrà a
+$X \leq \lfloor x \rfloor$. Tenuto infine conto del fatto che le specificazioni
+di una distribuzione geometrica sono non negative, si ottiene facilmente la
+seguente forma più generale per la funzione di ripartizione:
+
+\begin{equation*}
+F_X(x; p) = \left( 1 - (1 - p)^{\lfloor x \rfloor + 1} \right)
+                                 \mathrm I_{[0, +\infty]}(x) \enspace.
+\end{equation*}
 
 
 
@@ -426,38 +456,7 @@ interact(gr_geom_pdf, p=(0.1, 1, 0.1))
 plt.show()
 ```
 
-La distribuzione geometrica ammette una forma analitica della sua funzione di
-ripartizione in cui è possibile calcolare esplicitamente il valore della
-sommatoria. Più precisamente, indicata con $X$ una variabile aleatoria che
-segue una distribuzione geometrica di parametro $p$, è facile calcolare la
-probabilità $\mathrm P(X > n)$ per un generico $n$:
 
-\begin{align}
-\mathrm P(X > n) &= \sum_{i=n+1}^{+\infty}f_X(i; p) \\
-                 &= \sum_{i=n+1}^{+\infty}(1-p)^i p \\
-                 &= p (1-p)^{n+1} \sum_{i=n+1}^{+\infty}(1-p)^{i- (n+1)} \\
-                 &= p (1-p)^{n+1} \sum_{j=0}^{+\infty}(1-p)^j \\
-                 &= p (1-p)^{n+1} \frac{1}{1-(1-p)} \\
-                 &= (1-p)^{n+1}.
-\end{align}
-
-Pertanto, fissato $n \in \mathbb N$ si avrà
-
-$$
-F_X(n; p) = \mathrm P(X \leq n) = 1 - \mathrm P(X > n) = 1 - (1-p)^{n+1}.
-$$
-
-Fissato invece un generico $x \in \mathbb R^+$ e indicato con
-$\lfloor x \rfloor$ l'intero ottenuto troncando $x$ (o, equivalentemente,
-arrotondandolo per difetto), l'evento $X \leq x$ equivarrà a
-$X \leq \lfloor x \rfloor$. Tenuto infine conto del fatto che le specificazioni
-di una distribuzione geometrica sono non negative, si ottiene facilmente la
-seguente forma più generale per la funzione di ripartizione:
-
-$$
-F_X(x; p) = \left( 1 - (1 - p)^{\lfloor x \rfloor + 1} \right)
-                                 \mathrm I_{[0, +\infty]}(x),
-$$
 
 che viene utilizzata nella cella seguente per implementare una funzione
 `geom_cdf`.
