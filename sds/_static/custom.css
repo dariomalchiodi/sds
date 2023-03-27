@@ -555,7 +555,7 @@ table.dataframe td {
 }
 
 div#proof {
-  padding: 0 !important;
+  padding: 2rem !important;
 }
 
 .proof .proof {
@@ -945,7 +945,6 @@ label.margin-toggle:not(.sidenote-number) {
 
 #bd-toc-nav {
   background-color: transparent !important;
-  height: 10rem;
 }
 
 .bd-sidebar {

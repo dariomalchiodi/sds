@@ -13,7 +13,7 @@ kernelspec:
 ---
 
 (sec:modello-geometrico)=
-# Il modello geometrico
+# Le distribuzioni geometriche
 
 Bruce Banner si trasforma in Hulk ogni volta che non riesce a controllare
 un attacco d'ira. Ipotizziamo che, indipendentemente da tutto il resto, ciò
@@ -29,50 +29,105 @@ no, e così via. In linea di principio, non possiamo stabilire a priori un
 numero massimo di arrabbiature entro il quale Banner si trasformerà. Pertanto
 siamo di fronte a un esperimento casuale i cui esiti possono essere associati
 a tutti i numeri interi positivi. Questo tipo di esperimento è ben descritto
-dalla distribuzione geometrica, definita di seguito.
+dalla famiglia delle distribuzioni geometricche.
+
+## Il modello geometrico
+
+```{margin}
+I processi geometrici, così come quelli binomiali, si possono paragonare al
+concetto di _ciclo_ nella programmazione degli elaboratori. Ma in questo caso
+la loro controparte è quella dei _cicli basati su condizione_.
+```
+Un processo di conteggio alternativo rispetto a quello binomiale consiste nel
+considerare un esperimento di Bernoulli descritto dalla corrispondente
+probabilità di successo $p \in (0, 1]$, e ripetendolo in condizioni di
+indipendenza fino a che non si ottiene per la prima volta un successo come
+esito. Questo processo viene modellato utilizzando la
+_distribuzione geometrica_, definita di seguito.
+
+
+````{prf:definition} La famiglia delle distribuzioni geometriche
+:label: def:distribuzione-geometrica
+Fissato $p \in (0, 1]$, la distribuzione geometrica di parametro $p$ è
+definita dalla funzione di massa di probabilità
+
+\begin{equation*}
+f_X(x; p) = (1-p)^x p \; \mathrm I_{\mathbb N \cup \{ 0 \}}(x) \enspace.
+\end{equation*}
+
+Userò la sintassi $X \sim \mathrm G(p)$ per indicare che una variabile
+aleatoria $X$ segue una distribuzione geometrica di parametro $p$. L'insieme
+di tutte le distribuzioni geometriche al variare dei valori del reltivo
+parametro prende il nome di _famiglia delle distribuzioni geometriche_.
+````
+
+Siccome le varie ripetizioni dell'esperimento di Bernoulli di parametro $p$
+sono tra loro indipendenti, si ha
+
+\begin{align*}
+f_X(x; p) = & (1-p)^x p
+          = \mathbb P(\text{insuccesso alla prima ripetizione}) \dots \\
+            & \dots\mathbb P(\text{insuccesso alla $x$-esima ripetizione})
+\mathbb P(\text{successo alla $(x+1)$-esima ripetizione}) \enspace,
+\end{align*}
 
 ```{margin}
 In alternativa sarebbe possibile definire la distribuzione geometrica contando
-il numero totale di fallimenti che precedono il primo successo. In
-questo modo si conteggerebbe un esperimento in meno rispetto a quanto visto
-(l'esperimento in cui si ottiene il successo). Ovviamente la distribuzione
+il numero totale di ripetizioni per ottenere il primo successo. In questo
+questo modo si conteggerebbe un esperimento in più (che è esattamente
+l'esperimento in cui si ottiene il successo). Ovviamente la distribuzione
 ottenuta avrebbe delle proprietà (come per esempio il valore atteso e la
 varianza) diversi da quelli che otterremo.
 ```
-````{prf:definition} Distribuzione geometrica
-:label: def:distribuzione-geometrica
-Consideriamo un esperimento bernoulliano di parametro $p \in (0, 1]$ che
-viene eseguito ripetutamente, in modo che ogni ripetizione sia effettuata in
-modo indipendente rispetto alle altre. La _distribuzione geometrica_ di
-parametro $p$ descrive il numero di ripetizioni che è necessario considerare
-affinché si verifichi per la prima volta un successo.
+e quindi una distribuzione geometrica descrive il numero di ripetizioni di un
+esperimento di Bernoulli che hanno come esito un fallimento che precedono
+l'esecuzione del medesimo esperimento che per la prima volta ha come esito
+un successo. Il supporto di una siffatta variabile aleatoria è l'insieme
+$\mathbb N \cup \{ 0 \}$ dei numeri naturali allargato in modo da comprendere
+la specificazione $0$, che corrisponde al caso in cui l'esperimento viene
+eseguito una e una sola volta perché il primo esito che si verifica è un
+successo (e pertanto il numero di insuccessi ottenuti è nullo).
 
-L'insieme di tutte le distribuzioni geometriche al variare del valore del
-parametro $p$ nell'intervallo $(0, 1]$ prende il nome di _famiglia
-geometrica_, e analogamente si definisce il _modello geometrico_ come una
-distribuzione geometrica di parametro non specificato.
+
+Il motivo per il quale l'insieme dei possibili valori del parametro $p$ è un
+intervallo semiaperto a sinistra è legato alla natura del processo di
+conteggio. Il valore $p=1$ è ammissibile, sebbene in questo caso ogni
+esecuzione dell'esperimento di Bernoulli avrebbe come esito un successo, e
+quindi la distribuzione degenera nella descrizione della costante $0$. Al
+contrario, la possibilità che $p$ sia nullo va esclusa a priori, perché in
+questo caso non sarebbe mai possibile avere come esito un successo, e quindi
+la ripetizione dell'esperimento non terminerebbe mai. Questo implicherebbe
+in un certo qual senso che la specificazione assunta assume un valore
+infinito, cosa che è proibita dalla {prf:ref}`def:variabile-aleatoria`.
+
+Si verifica facilmente che sommando i valori di massa di probabilità per tutte
+le specificazioni di $X$ si ottiene come risultato 1:
+
+\begin{align}
+\sum_{x=0}^{+\infty}\mathrm f_X(x; p) = \sum_{x=0}^{+\infty} (1-p)^x p =
+p \sum_{x=0}^{+\infty}(1-p)^x
+ = p \frac{1}{1-(1-p)} = 1.
+\end{align}
+
+```{margin}
+Nel nostro caso questa condizione equivale a $0 < p < 2$, che è sempre
+verificata se $p$ è il parametro di una distribuzione geometrica.
+```
+
+````{admonition} Nomenclatura
+:class: naming
+
+La distribuzione geometrica prende il nome dalla serie omonima, utilizzata
+nel penultimo passaggio dell'equazione precedente e definita da
+
+\begin{equation*}
+\sum_{i=0}^{+\infty} \alpha^i = \frac{1}{1-\alpha} \enspace,
+\end{equation*}
+
+a patto che che $|\alpha| < 1$.
 ````
 
-Convenzionalmente, userò la sintassi $X \sim \mathrm G(p)$ per indicare che
-una variabile aleatoria $X$ segue una distribuzione geometrica di parametro
-$p$. Per quanto visto sopra, il supporto di una siffatta variabile aleatoria
-è l'insieme $\mathbb N$ dei numeri naturali (nella sua accezione che non
-considera $0$ come numero naturale). Il motivo
-per il quale l'insieme dei possibili valori del parametro $p$ è un intervallo
-semiaperto è legato al conteggio del numero di insuccessi. Il valore $p=1$ è
-ammissibile, sebbene in questo caso si perde la casualità nei risultati
-dell'esperimento bernoulliano, in quanto ogni ripetizione di quest'ultimo
-avrà sempre successo. Conseguentemente, la variabile aleatoria che conteggia
-il numero di insuccessi prima del primo successo degenera nel valore costante
-$1$. Al contrario, la possibilità che $p$ sia nullo va esclusa a priori: anche
-in questo caso si perderebbe la casualità nell'esecuzione dell'esperimento
-bernoulliano, ma ora sarebbe impossibile avere un successo come esito, cosa
-che non permette di contare il numero di insuccessi prima che si verifichi il
-primo successo. Informalmente, questo corrisponderebbe a ripetere
-indefinitamente l'esecuzione degli esperimenti bernoulliani senza mai
-fermarsi, e ciò corrisponderebbe a fare assumere alla variabile aleatoria in
-questione un valore infinito, cosa che è proibita dalla
-{prf:ref}`def:variabile-aleatoria`.
+
 
 Un modo intuitivo di simulare l'estrazione di valori da una distribuzione
 geometrica consiste nel ripetere l'esecuzione del corrispondente esperimento
@@ -142,26 +197,7 @@ $$
 \mathrm p_X(i; p) = (1-p)^{i - 1} p \mathrm I_{\mathbb N}(i).
 $$
 
-Si verifica facilmente che sommando i valori di massa di probabilità per tutte
-le specificazioni di $X$ si ottiene come risultato 1:
 
-```{margin}
-Nel terzultimo passaggio ho applicato il cambio di variabile $j = i - 1$.
-```
-\begin{align}
-\sum_{i=1}^{+\infty}\mathrm p_X(i; p) &= \sum_{i=1}^{+\infty} (1-p)^{i - 1} p =
-p \sum_{i=1}^{+\infty}(1-p)^{i - 1} \\
-&= p \sum_{j=0}^{+\infty}(1-p)^j = p \frac{1}{1-(1-p)} = 1.
-\end{align}
-
-```{margin}
-Nel nostro caso questa condizione equivale a $0 < p < 2$, che è sempre
-verificata se $p$ è il parametro di una distribuzione geometrica.
-```
-La penultima uguaglianza è basata sulla convergenza della _serie geometrica_:
-$\sum_{i=0}^{+\infty} \alpha^i = \frac{1}{1-\alpha}$ per ogni $\alpha$ tale
-che $|\alpha| < 1$: È da questo fatto che la distribuzione geometrica prende
-il suo nome.
 
 Nella cella seguente viene definita una funzione `geom_pdf` che accetta come
 argomenti rispettivamente un valore numerico $x$ e il parametro $p$ di una
@@ -203,7 +239,7 @@ from ipywidgets import *
 import matplotlib.pyplot as plt
 import numpy as np
 
-plt.style.use('sds.mplstyle')
+plt.style.use('matplotlibrc')
 
 def gr_geom_pdf(p):
     """Show the graph of the p.d.f. of a geometric distribution

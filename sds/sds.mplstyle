@@ -11,7 +11,7 @@ boxplot.whiskerprops.color: C0
 boxplot.medianprops.linewidth: 2
 boxplot.medianprops.color: C1
 
-figure.dpi: 220
+figure.dpi: 520
 
 lines.markersize: 10
 lines.color: C4
