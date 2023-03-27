@@ -272,10 +272,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../c5-modelli-discreti/modelli-discreti.html">13. Modelli discreti</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/bernoulli.html">13.1. La distribuzione di Bernoulli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/bernoulli.html">13.1. Le distribuzioni di Bernoulli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/binomiale.html">13.2. Il modello binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/uniforme.html">13.3. Il modello uniforme discreto</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/geometrico.html">13.4. Il modello geometrico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/geometrico.html">13.4. Le distribuzioni geometriche</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/poisson.html">13.5. Il modello di poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/ipergeometrico.html">13.6. Il modello ipergeometrico</a></li>
 </ul>
@@ -607,8 +607,8 @@ document.write(`
 che <span class="math notranslate nohighlight">\(Y\)</span> è una variabile aleatoria avente come supporto <span class="math notranslate nohighlight">\(D_Y = [a, b]\)</span>, dunque
 una variabile aleatoria continua. Se si considera poi un generico
 <span class="math notranslate nohighlight">\(y \in (a, b)\)</span>, si ha</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f337c6b5-526c-47dc-bb5b-23d5dfdf5bef">
-<span class="eqno">(14.9)<a class="headerlink" href="#equation-f337c6b5-526c-47dc-bb5b-23d5dfdf5bef" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7b7f5f15-7848-4a95-acbc-09f41a197122">
+<span class="eqno">(14.9)<a class="headerlink" href="#equation-7b7f5f15-7848-4a95-acbc-09f41a197122" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 F_Y(y) &amp;= \mathbb P(Y \leq y) = \mathbb P(a + X (b-a) \leq y) \\
        &amp;= \mathbb P \left( X \leq \frac{y - a}{b - a} \right)
         = \frac{y - a}{b - a} \enspace,
@@ -702,7 +702,7 @@ su <span class="math notranslate nohighlight">\([-1, 1]\)</span>.</p>
 </details>
 </div>
 <figure class="align-default" id="fig-uniform-continuous">
-<img alt="../../_images/6962c4a90cd41ce7fa4692f31692ed347e0f14a175fed6143dad2e4719189bf5.png" src="../../_images/6962c4a90cd41ce7fa4692f31692ed347e0f14a175fed6143dad2e4719189bf5.png" />
+<img alt="../../_images/683ce789f39400d547d2ff07410833b3d510b1d8ad63bde4f5a56a65ce904c45.png" src="../../_images/683ce789f39400d547d2ff07410833b3d510b1d8ad63bde4f5a56a65ce904c45.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 14.4 </span><span class="caption-text">I grafici della funzione di densità (a sinistra) e della funzione di
 ripartizione (a destra) della distribuzione uniforme continua sull'intervallo
@@ -893,7 +893,7 @@ atteso e la stessa varianza, come illustrato nella
 </details>
 </div>
 <figure class="align-default" id="fig-uniform-kurtosis">
-<img alt="../../_images/b59a9788c3652c0b184e91104190ef0211fffb263d16919523beb227a147dd97.png" src="../../_images/b59a9788c3652c0b184e91104190ef0211fffb263d16919523beb227a147dd97.png" />
+<img alt="../../_images/0924b8b84958cb9d5a65300d5839dfadb37160cb949ac838593d3ec94ed96765.png" src="../../_images/0924b8b84958cb9d5a65300d5839dfadb37160cb949ac838593d3ec94ed96765.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 14.5 </span><span class="caption-text">Grafici delle funzioni di densità di probabilità di due distribuzioni,
 rispettivamente uniforme continua tra -3 e 3 (spezzata nera) e normale avente
@@ -1014,7 +1014,7 @@ perfettamente simmetrico.</p>
 </details>
 </div>
 <figure class="align-default" id="fig-uniform-continuous-bp" style="width: 100%">
-<img alt="../../_images/fcc383c582f16cf27d79a04f3f35ad61ed9c52354f84718b4b49052fdaecdc1b.png" src="../../_images/fcc383c582f16cf27d79a04f3f35ad61ed9c52354f84718b4b49052fdaecdc1b.png" />
+<img alt="../../_images/19e58e316bfc1127263164e8b3fe20e7bb7e4168f2230a68c58eb4af3af91b16.png" src="../../_images/19e58e316bfc1127263164e8b3fe20e7bb7e4168f2230a68c58eb4af3af91b16.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 14.6 </span><span class="caption-text">Diagramma a scatola per la distribuzione uniforme continua tra <span class="math notranslate nohighlight">\(a\)</span> e <span class="math notranslate nohighlight">\(b\)</span>.</span><a class="headerlink" href="#fig-uniform-continuous-bp" title="Link a questa immagine">#</a></p>
 </figcaption>
@@ -1077,7 +1077,7 @@ densità di probabilità.</p>
 </details>
 </div>
 <figure class="align-default" id="fig-uniform-implementation" style="width: 100%">
-<img alt="../../_images/400a322487e6d4f110c44c807e9949a81bb2c1ca6479abda4558d4088bcff0f1.png" src="../../_images/400a322487e6d4f110c44c807e9949a81bb2c1ca6479abda4558d4088bcff0f1.png" />
+<img alt="../../_images/908e2fc96835086f32544f28a074810225d49df999c4956d3997b04b721340b9.png" src="../../_images/908e2fc96835086f32544f28a074810225d49df999c4956d3997b04b721340b9.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 14.7 </span><span class="caption-text">Le barre mostrano l'istogramma ottenuto a partire da un insieme di valori
 pseudo-casuali generati a partire da una distribuzione uniforme tra <span class="math notranslate nohighlight">\(-4\)</span> e

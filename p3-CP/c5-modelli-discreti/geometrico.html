@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>13.4. Il modello geometrico &#8212; Superhero Data Science 
+    <title>13.4. Le distribuzioni geometriche &#8212; Superhero Data Science 
  Probabilità e Statistica</title>
   
   
@@ -272,10 +272,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="modelli-discreti.html">13. Modelli discreti</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="bernoulli.html">13.1. La distribuzione di Bernoulli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bernoulli.html">13.1. Le distribuzioni di Bernoulli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="binomiale.html">13.2. Il modello binomiale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="uniforme.html">13.3. Il modello uniforme discreto</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">13.4. Il modello geometrico</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">13.4. Le distribuzioni geometriche</a></li>
 <li class="toctree-l2"><a class="reference internal" href="poisson.html">13.5. Il modello di poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ipergeometrico.html">13.6. Il modello ipergeometrico</a></li>
 </ul>
@@ -561,7 +561,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -572,11 +574,19 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Il modello geometrico</h1>
+    <h1>Le distribuzioni geometriche</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contenuti </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-modello-geometrico">13.4.1. Il modello geometrico</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -586,8 +596,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="il-modello-geometrico">
-<span id="sec-modello-geometrico"></span><h1><span class="section-number">13.4. </span>Il modello geometrico<a class="headerlink" href="#il-modello-geometrico" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="le-distribuzioni-geometriche">
+<span id="sec-modello-geometrico"></span><h1><span class="section-number">13.4. </span>Le distribuzioni geometriche<a class="headerlink" href="#le-distribuzioni-geometriche" title="Permalink to this heading">#</a></h1>
 <p>Bruce Banner si trasforma in Hulk ogni volta che non riesce a controllare
 un attacco d'ira. Ipotizziamo che, indipendentemente da tutto il resto, ciò
 avvenga con una prefissata probabilità: possiamo dunque modellare la
@@ -602,49 +612,94 @@ no, e così via. In linea di principio, non possiamo stabilire a priori un
 numero massimo di arrabbiature entro il quale Banner si trasformerà. Pertanto
 siamo di fronte a un esperimento casuale i cui esiti possono essere associati
 a tutti i numeri interi positivi. Questo tipo di esperimento è ben descritto
-dalla distribuzione geometrica, definita di seguito.</p>
+dalla famiglia delle distribuzioni geometricche.</p>
+<section id="il-modello-geometrico">
+<h2><span class="section-number">13.4.1. </span>Il modello geometrico<a class="headerlink" href="#il-modello-geometrico" title="Permalink to this heading">#</a></h2>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>I processi geometrici, così come quelli binomiali, si possono paragonare al
+concetto di <em>ciclo</em> nella programmazione degli elaboratori. Ma in questo caso
+la loro controparte è quella dei <em>cicli basati su condizione</em>.</p>
+</aside>
+<p>Un processo di conteggio alternativo rispetto a quello binomiale consiste nel
+considerare un esperimento di Bernoulli descritto dalla corrispondente
+probabilità di successo <span class="math notranslate nohighlight">\(p \in (0, 1]\)</span>, e ripetendolo in condizioni di
+indipendenza fino a che non si ottiene per la prima volta un successo come
+esito. Questo processo viene modellato utilizzando la
+<em>distribuzione geometrica</em>, definita di seguito.</p>
+<div class="proof definition admonition" id="def:distribuzione-geometrica">
+<p class="admonition-title"><span class="caption-number">Definition 13.2 </span> (La famiglia delle distribuzioni geometriche)</p>
+<section class="definition-content" id="proof-content">
+<p>Fissato <span class="math notranslate nohighlight">\(p \in (0, 1]\)</span>, la distribuzione geometrica di parametro <span class="math notranslate nohighlight">\(p\)</span> è
+definita dalla funzione di massa di probabilità</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f_X(x; p) = (1-p)^x p \; \mathrm I_{\mathbb N \cup \{ 0 \}}(x) \enspace.
+\end{equation*}\]</div>
+<p>Userò la sintassi <span class="math notranslate nohighlight">\(X \sim \mathrm G(p)\)</span> per indicare che una variabile
+aleatoria <span class="math notranslate nohighlight">\(X\)</span> segue una distribuzione geometrica di parametro <span class="math notranslate nohighlight">\(p\)</span>. L'insieme
+di tutte le distribuzioni geometriche al variare dei valori del reltivo
+parametro prende il nome di <em>famiglia delle distribuzioni geometriche</em>.</p>
+</section>
+</div><p>Siccome le varie ripetizioni dell'esperimento di Bernoulli di parametro <span class="math notranslate nohighlight">\(p\)</span>
+sono tra loro indipendenti, si ha</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+f_X(x; p) = &amp; (1-p)^x p
+          = \mathbb P(\text{insuccesso alla prima ripetizione}) \dots \\
+            &amp; \dots\mathbb P(\text{insuccesso alla $x$-esima ripetizione})
+\mathbb P(\text{successo alla $(x+1)$-esima ripetizione}) \enspace,
+\end{align*}\]</div>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>In alternativa sarebbe possibile definire la distribuzione geometrica contando
-il numero totale di fallimenti che precedono il primo successo. In
-questo modo si conteggerebbe un esperimento in meno rispetto a quanto visto
-(l'esperimento in cui si ottiene il successo). Ovviamente la distribuzione
+il numero totale di ripetizioni per ottenere il primo successo. In questo
+questo modo si conteggerebbe un esperimento in più (che è esattamente
+l'esperimento in cui si ottiene il successo). Ovviamente la distribuzione
 ottenuta avrebbe delle proprietà (come per esempio il valore atteso e la
 varianza) diversi da quelli che otterremo.</p>
 </aside>
-<div class="proof definition admonition" id="def:distribuzione-geometrica">
-<p class="admonition-title"><span class="caption-number">Definition 13.2 </span> (Distribuzione geometrica)</p>
-<section class="definition-content" id="proof-content">
-<p>Consideriamo un esperimento bernoulliano di parametro <span class="math notranslate nohighlight">\(p \in (0, 1]\)</span> che
-viene eseguito ripetutamente, in modo che ogni ripetizione sia effettuata in
-modo indipendente rispetto alle altre. La <em>distribuzione geometrica</em> di
-parametro <span class="math notranslate nohighlight">\(p\)</span> descrive il numero di ripetizioni che è necessario considerare
-affinché si verifichi per la prima volta un successo.</p>
-<p>L'insieme di tutte le distribuzioni geometriche al variare del valore del
-parametro <span class="math notranslate nohighlight">\(p\)</span> nell'intervallo <span class="math notranslate nohighlight">\((0, 1]\)</span> prende il nome di <em>famiglia
-geometrica</em>, e analogamente si definisce il <em>modello geometrico</em> come una
-distribuzione geometrica di parametro non specificato.</p>
-</section>
-</div><p>Convenzionalmente, userò la sintassi <span class="math notranslate nohighlight">\(X \sim \mathrm G(p)\)</span> per indicare che
-una variabile aleatoria <span class="math notranslate nohighlight">\(X\)</span> segue una distribuzione geometrica di parametro
-<span class="math notranslate nohighlight">\(p\)</span>. Per quanto visto sopra, il supporto di una siffatta variabile aleatoria
-è l'insieme <span class="math notranslate nohighlight">\(\mathbb N\)</span> dei numeri naturali (nella sua accezione che non
-considera <span class="math notranslate nohighlight">\(0\)</span> come numero naturale). Il motivo
-per il quale l'insieme dei possibili valori del parametro <span class="math notranslate nohighlight">\(p\)</span> è un intervallo
-semiaperto è legato al conteggio del numero di insuccessi. Il valore <span class="math notranslate nohighlight">\(p=1\)</span> è
-ammissibile, sebbene in questo caso si perde la casualità nei risultati
-dell'esperimento bernoulliano, in quanto ogni ripetizione di quest'ultimo
-avrà sempre successo. Conseguentemente, la variabile aleatoria che conteggia
-il numero di insuccessi prima del primo successo degenera nel valore costante
-<span class="math notranslate nohighlight">\(1\)</span>. Al contrario, la possibilità che <span class="math notranslate nohighlight">\(p\)</span> sia nullo va esclusa a priori: anche
-in questo caso si perderebbe la casualità nell'esecuzione dell'esperimento
-bernoulliano, ma ora sarebbe impossibile avere un successo come esito, cosa
-che non permette di contare il numero di insuccessi prima che si verifichi il
-primo successo. Informalmente, questo corrisponderebbe a ripetere
-indefinitamente l'esecuzione degli esperimenti bernoulliani senza mai
-fermarsi, e ciò corrisponderebbe a fare assumere alla variabile aleatoria in
-questione un valore infinito, cosa che è proibita dalla
-<a class="reference internal" href="../c4-variabili-aleatorie/variabili-aleatorie.html#def:variabile-aleatoria">Definition 12.1</a>.</p>
+<p>e quindi una distribuzione geometrica descrive il numero di ripetizioni di un
+esperimento di Bernoulli che hanno come esito un fallimento che precedono
+l'esecuzione del medesimo esperimento che per la prima volta ha come esito
+un successo. Il supporto di una siffatta variabile aleatoria è l'insieme
+<span class="math notranslate nohighlight">\(\mathbb N \cup \{ 0 \}\)</span> dei numeri naturali allargato in modo da comprendere
+la specificazione <span class="math notranslate nohighlight">\(0\)</span>, che corrisponde al caso in cui l'esperimento viene
+eseguito una e una sola volta perché il primo esito che si verifica è un
+successo (e pertanto il numero di insuccessi ottenuti è nullo).</p>
+<p>Il motivo per il quale l'insieme dei possibili valori del parametro <span class="math notranslate nohighlight">\(p\)</span> è un
+intervallo semiaperto a sinistra è legato alla natura del processo di
+conteggio. Il valore <span class="math notranslate nohighlight">\(p=1\)</span> è ammissibile, sebbene in questo caso ogni
+esecuzione dell'esperimento di Bernoulli avrebbe come esito un successo, e
+quindi la distribuzione degenera nella descrizione della costante <span class="math notranslate nohighlight">\(0\)</span>. Al
+contrario, la possibilità che <span class="math notranslate nohighlight">\(p\)</span> sia nullo va esclusa a priori, perché in
+questo caso non sarebbe mai possibile avere come esito un successo, e quindi
+la ripetizione dell'esperimento non terminerebbe mai. Questo implicherebbe
+in un certo qual senso che la specificazione assunta assume un valore
+infinito, cosa che è proibita dalla <a class="reference internal" href="../c4-variabili-aleatorie/variabili-aleatorie.html#def:variabile-aleatoria">Definition 12.1</a>.</p>
+<p>Si verifica facilmente che sommando i valori di massa di probabilità per tutte
+le specificazioni di <span class="math notranslate nohighlight">\(X\)</span> si ottiene come risultato 1:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8fbc664b-ca77-4116-8665-5cf47deff077">
+<span class="eqno">(13.1)<a class="headerlink" href="#equation-8fbc664b-ca77-4116-8665-5cf47deff077" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+\sum_{x=0}^{+\infty}\mathrm f_X(x; p) = \sum_{x=0}^{+\infty} (1-p)^x p =
+p \sum_{x=0}^{+\infty}(1-p)^x
+ = p \frac{1}{1-(1-p)} = 1.
+\end{align}\]</div>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Nel nostro caso questa condizione equivale a <span class="math notranslate nohighlight">\(0 &lt; p &lt; 2\)</span>, che è sempre
+verificata se <span class="math notranslate nohighlight">\(p\)</span> è il parametro di una distribuzione geometrica.</p>
+</aside>
+<div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>La distribuzione geometrica prende il nome dalla serie omonima, utilizzata
+nel penultimo passaggio dell'equazione precedente e definita da</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\sum_{i=0}^{+\infty} \alpha^i = \frac{1}{1-\alpha} \enspace,
+\end{equation*}\]</div>
+<p>a patto che che <span class="math notranslate nohighlight">\(|\alpha| &lt; 1\)</span>.</p>
+</div>
 <p>Un modo intuitivo di simulare l'estrazione di valori da una distribuzione
 geometrica consiste nel ripetere l'esecuzione del corrispondente esperimento
 bernoulliano, fermandosi quando si ottiene il primo successo e restituendo
@@ -734,27 +789,6 @@ seguente:</p>
 \[
 \mathrm p_X(i; p) = (1-p)^{i - 1} p \mathrm I_{\mathbb N}(i).
 \]</div>
-<p>Si verifica facilmente che sommando i valori di massa di probabilità per tutte
-le specificazioni di <span class="math notranslate nohighlight">\(X\)</span> si ottiene come risultato 1:</p>
-<aside class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>Nel terzultimo passaggio ho applicato il cambio di variabile <span class="math notranslate nohighlight">\(j = i - 1\)</span>.</p>
-</aside>
-<div class="amsmath math notranslate nohighlight" id="equation-d110c87b-dd6c-43ab-90b6-b2a377633a19">
-<span class="eqno">(13.1)<a class="headerlink" href="#equation-d110c87b-dd6c-43ab-90b6-b2a377633a19" title="Permalink a questa equazione">#</a></span>\[\begin{align}
-\sum_{i=1}^{+\infty}\mathrm p_X(i; p) &amp;= \sum_{i=1}^{+\infty} (1-p)^{i - 1} p =
-p \sum_{i=1}^{+\infty}(1-p)^{i - 1} \\
-&amp;= p \sum_{j=0}^{+\infty}(1-p)^j = p \frac{1}{1-(1-p)} = 1.
-\end{align}\]</div>
-<aside class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>Nel nostro caso questa condizione equivale a <span class="math notranslate nohighlight">\(0 &lt; p &lt; 2\)</span>, che è sempre
-verificata se <span class="math notranslate nohighlight">\(p\)</span> è il parametro di una distribuzione geometrica.</p>
-</aside>
-<p>La penultima uguaglianza è basata sulla convergenza della <em>serie geometrica</em>:
-<span class="math notranslate nohighlight">\(\sum_{i=0}^{+\infty} \alpha^i = \frac{1}{1-\alpha}\)</span> per ogni <span class="math notranslate nohighlight">\(\alpha\)</span> tale
-che <span class="math notranslate nohighlight">\(|\alpha| &lt; 1\)</span>: È da questo fatto che la distribuzione geometrica prende
-il suo nome.</p>
 <p>Nella cella seguente viene definita una funzione <code class="docutils literal notranslate"><span class="pre">geom_pdf</span></code> che accetta come
 argomenti rispettivamente un valore numerico <span class="math notranslate nohighlight">\(x\)</span> e il parametro <span class="math notranslate nohighlight">\(p\)</span> di una
 distribuzione geometrica, e che restituisce il corrispondente valore della
@@ -796,7 +830,7 @@ rigenerando automaticamente il grafico.</p>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;sds.mplstyle&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;matplotlibrc&#39;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">gr_geom_pdf</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Show the graph of the p.d.f. of a geometric distribution</span>
@@ -897,8 +931,8 @@ ripetizioni tenderà a più infinito.</p>
 <p><strong>Proposizione</strong> Il valore atteso del quadrato della distribuzione geometrica
 di parametro <span class="math notranslate nohighlight">\(p\)</span> è pari a <span class="math notranslate nohighlight">\(\frac{(1-p)(2-p)}{p^2}\)</span>.</p>
 <p>Dimostrazione.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6b526efb-2403-4c8a-9d6d-15ab7ce824f7">
-<span class="eqno">(13.2)<a class="headerlink" href="#equation-6b526efb-2403-4c8a-9d6d-15ab7ce824f7" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-37b07f7a-6000-4574-811a-cfa50bcec978">
+<span class="eqno">(13.2)<a class="headerlink" href="#equation-37b07f7a-6000-4574-811a-cfa50bcec978" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm E\left(X^2\right) &amp;= \sum_{i=0}^{+\infty} i^2 p_X(i) \\
                &amp;= \sum_{i=0}^{+\infty} i^2 p (1-p)^i \\
                &amp;= p (1-p) \sum_{i=0}^{+\infty} i^2 (1-p)^{i-1} \\
@@ -906,8 +940,8 @@ di parametro <span class="math notranslate nohighlight">\(p\)</span> è pari a <
                &amp;= -p (1-p) \frac{\mathrm d}{\mathrm d p} \sum_{i=0}^{+\infty} i(1-p)^i.
 \end{align}\]</div>
 <p>Applicando ancora il lemma dimostrato precedentemente si ottiene</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dc1a3e88-e70a-4d91-8733-9c378b0e6621">
-<span class="eqno">(13.3)<a class="headerlink" href="#equation-dc1a3e88-e70a-4d91-8733-9c378b0e6621" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-fd0289a1-ad6e-416e-9a4f-607a1ea1034d">
+<span class="eqno">(13.3)<a class="headerlink" href="#equation-fd0289a1-ad6e-416e-9a4f-607a1ea1034d" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm E\left(X^2\right) &amp;= -p (1-p) \frac{\mathrm d}{\mathrm d p}
                                 \frac{1-p}{p^2} \\
       &amp;= p (1-p) \frac{p^2 + 1p(1-p)}{p^4} \\
@@ -917,8 +951,8 @@ di parametro <span class="math notranslate nohighlight">\(p\)</span> è pari a <
 <p><strong>Proposizione</strong>. La varianza della distribuzione geometrica di parametro <span class="math notranslate nohighlight">\(p\)</span>
 è uguale a <span class="math notranslate nohighlight">\(\frac{1-p}{p^2}\)</span>.</p>
 <p>Dimostrazione.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8f91ee3b-83ba-4159-b92a-9e4d86e1909b">
-<span class="eqno">(13.4)<a class="headerlink" href="#equation-8f91ee3b-83ba-4159-b92a-9e4d86e1909b" title="Permalink a questa equazione">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-90249600-9919-40aa-ba0c-2a5473ea43e3">
+<span class="eqno">(13.4)<a class="headerlink" href="#equation-90249600-9919-40aa-ba0c-2a5473ea43e3" title="Permalink a questa equazione">#</a></span>\[\begin{equation}
 \mathrm{Var}(X) = \mathrm E \left(X^2\right) - \mathrm E(X)^2 =
                   \frac{(1-p)(2-p)}{p^2} - \frac{(1-p)^2}{p^2} =
                   \frac{1-p}{p^2}.
@@ -987,8 +1021,8 @@ ripartizione in cui è possibile calcolare esplicitamente il valore della
 sommatoria. Più precisamente, indicata con <span class="math notranslate nohighlight">\(X\)</span> una variabile aleatoria che
 segue una distribuzione geometrica di parametro <span class="math notranslate nohighlight">\(p\)</span>, è facile calcolare la
 probabilità <span class="math notranslate nohighlight">\(\mathrm P(X &gt; n)\)</span> per un generico <span class="math notranslate nohighlight">\(n\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-26b4da70-97d8-4680-b38b-1b9ecf24942c">
-<span class="eqno">(13.5)<a class="headerlink" href="#equation-26b4da70-97d8-4680-b38b-1b9ecf24942c" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4513f869-d9f3-4ebc-96fe-c1ceb27c10e0">
+<span class="eqno">(13.5)<a class="headerlink" href="#equation-4513f869-d9f3-4ebc-96fe-c1ceb27c10e0" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm P(X &gt; n) &amp;= \sum_{i=n+1}^{+\infty}f_X(i; p) \\
                  &amp;= \sum_{i=n+1}^{+\infty}(1-p)^i p \\
                  &amp;= p (1-p)^{n+1} \sum_{i=n+1}^{+\infty}(1-p)^{i- (n+1)} \\
@@ -1046,8 +1080,8 @@ nella versione interattiva degli appunti.</p>
 </div>
 <p>Si noti infine che <span class="math notranslate nohighlight">\(\mathrm P(X \geq x) = \mathrm P(X \geq \lfloor x \rfloor) =
 \mathrm P(X &gt; \lfloor x \rfloor - 1) = (1-p)^{\lfloor x \rfloor}\)</span>, e quindi</p>
-<div class="amsmath math notranslate nohighlight" id="equation-20752c93-615f-40fc-9a68-4410950e1fff">
-<span class="eqno">(13.6)<a class="headerlink" href="#equation-20752c93-615f-40fc-9a68-4410950e1fff" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d97491c2-9321-4179-af4d-b18d627dbd82">
+<span class="eqno">(13.6)<a class="headerlink" href="#equation-d97491c2-9321-4179-af4d-b18d627dbd82" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm P(X \geq x+y | X \geq x)
             &amp;= \frac{\mathrm  P(X \geq x+y, X \geq x)}{\mathrm  P(X \geq x)} \\
             &amp;= \frac{\mathrm  P(X \geq x+y)}{\mathrm  P(X \geq x)} \\
@@ -1063,6 +1097,7 @@ alcunché sul numero di successivi insuccessi prima che si verifichi il primo
 successo. In altre parole, non c'è nessuna differenza, da un punto di vista
 probabilistico, dalla ripetizione degli esperimenti che vanno dal <span class="math notranslate nohighlight">\(n+1\)</span>-esimo
 in poi e dal ricominciare da capo la ripetizione.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1117,6 +1152,20 @@ in poi e dal ricominciare da capo la ripetizione.</p>
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenuti
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-modello-geometrico">13.4.1. Il modello geometrico</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

@@ -13,7 +13,15 @@ kernelspec:
 ---
 
 (sec:modello-bernoulliano)=
-# La distribuzione di Bernoulli
+# Le distribuzioni di Bernoulli
+
+Il tipo più semplice di modello casuale è quello nel quale l'esecuzione di
+un esperimento ha due soli possibili esiti. Esperimenti di questo tipo,
+che vengono tipicamente chiamati _esperimenti di Bernoulli_, danno luogo a
+una famiglia di distribuzioni di probabilità che è anch'essa detta
+_famiglia di Bernoulli_.
+
+## Il modello di Bernoulli
 
 Si usa generalmente il termine _esperimento di Bernoulli_ per indicare un
 esperimento casuale ha due soli possibili esiti, che vengono convenzionalmente
@@ -41,7 +49,6 @@ un un certo senso duali rispetto a quelli sopra indicati, nei quali i medesimi
 avvenimenti identificano il fallimento.
 ```
 
-
 Dato un generico esperimento di Bernoulli, sia $p \in [0, 1]$ la probabilità
 di ottenere un successo come esito. La variabile aleatoria
 $X: \Omega \to \{ 0, 1 \}$ definita in modo tale che
@@ -58,7 +65,7 @@ probabilità di successo $p$ e il cui supporto è l'insieme $\{ 0, 1 \}$.
 Chiaramente, gli eventi $X =0$ e $X = 1$ avranno rispettivamente probabilità
 uguali a $1 - p$ e $p$, da cui segue la prossima definizione.
 
-````{prf:definition} La famiglia di Bernoulli
+````{prf:definition} La famiglia delle distribuzioni di Bernoulli
 :label: def:bernoulli-distribution
 
 Dato $p \in [0, 1]$, la distribuzione di Bernoulli di parametro $p$ è
@@ -152,6 +159,8 @@ aleatorie ad esso collegate. Dunque è possibile imbattersi nelle diciture
 «esperimento bernoulliano», «distribuzione Bernoulliana», «variabile aleatoria
 bernoulliana» e così via.
 ````
+
+## Valore atteso e varianza della distribuzione di Bernoulli
 
 Il fatto che siano presenti due sole specificazioni permette di ottenere
 agevolmente il valore atteso e la varianza della distribuzione calcolando
@@ -269,23 +278,24 @@ m_Y(t) = \mathbb E \left( \mathrm e^{tY} \right)
 
 così che il momento centrale $n$-esimo sarà uguale a
 
-\begin{equation*}
-\mu_n = m_Y^{(n)}(0) = \left. p (1 - p)
-                       \left( (1 - p)^{n-1} \mathrm e^{t(1-p)}
-                              + (-1)^n p^{n-1} \mathrm e^{-tp} \right)
-                       \right|_{t=0}
-                     = p (1 - p) \left( (1 - p)^{n-1} + (-1)^n p^{n-1} \right)
-                       \enspace.
-\end{equation*}
+\begin{align*}
+\mu_n = m_Y^{(n)}(0) &= \left. p (1 - p)
+                        \left( (1 - p)^{n-1} \mathrm e^{t(1-p)}
+                               + (-1)^n p^{n-1} \mathrm e^{-tp} \right)
+                       \right|_{t=0} \\
+                     &= p (1 - p)
+                        \left( (1 - p)^{n-1} + (-1)^n p^{n-1} \right)
+                        \enspace.
+\end{align*}
 
 Dunque possiamo concludere che per una distribuzione di Bernoulli di parametro
-p
+$p$
 
 - la varianza è $p (1 - p)$, come già calcolato;
 - il momento centrale terzo è $\mu_3 =p(1 - p)(1 - 2p)$, così che la skewness
   vale
   ```{math}
-  \frac{\mu_3}{\sigma^3} = \frac{p(1 - p)(1 - 2p)}{(p(1 - p))^{2/3}}
+  \frac{\mu_3}{\sigma^3} = \frac{p(1 - p)(1 - 2p)}{(p(1 - p))^{3/2}}
                          = \frac{1 - 2p}{\sqrt{p(1 - p)}}
   ```
   e la distribuzione è asimmetrica verso sinistra, simmetrica e asimmetrica
@@ -310,40 +320,185 @@ una sola delle sue due specificazioni, diventando quindi più propensa a
 generare valori fuori scala. La curtosi è invece nulla quando
 $p = \frac{1}{2}$, e anche in questo caso si tratta di un risultato abbastanza
 scontato, essendo equiprobabili le specificazioni della distribuzione.
+La {numref}`Figura %s <fig:bernoulli-sk-plot>` illustra il grafico
+skewness-curtosi per la famiglia delle distribuzioni di Bernoulli.
 
+```{code-cell} ipython3
+:tags: [hide-cell, remove-output]
+
+from myst_nb import glue
+
+fig, ax = plt.subplots()
+
+p = np.linspace(0.01, 0.99, 300)
+skewness = (1 - 2*p) / (p * (1 - p))**0.5
+kurtosis = (1 - 2*p)**2 / (p * (1 - p))
+
+plt.plot(skewness, kurtosis)
+plt.show()
+
+glue("bernoulli-sk-plot", fig, display=True)
+```
+
+```{glue:figure} bernoulli-sk-plot
+:figwidth: 400pt
+:name: "fig:bernoulli-sk-plot"
+
+Il grafico skewness-curtosi per la famiglia delle distribuzioni di
+Bernoulli.
+```
+
+(sec:bernoulli_quantiles)=
 ## Quantili della distribuzione di Bernoulli (*)
 
 La distribuzione di Bernoulli ha solo due specificazioni, e di conseguenza
-la sua funzione di ripartizione assume solo tre valori, e ciò ha un notevole
-impatto sui quantili della distribuzione stessa. Più precisamente, dati
-$p \in (0, 1)$ e $X \sim \mathrm B(p)$, $F_X$ vale $0$ se il suo argomento
-è negativo, $1 - p$ quando l'argomento è compreso tra $0$ (incluso) e $1$
-(escluso) e $1$ nei casi rimanenti. Pertanto, per ogni $q \in [1-p, 1)$ si ha
+la sua funzione di ripartizione assume al massimo tre valori distinti, e ciò
+ha un notevole impatto sui quantili della distribuzione stessa. Consideriamo
+pertanto una variabile aleatoria $X \sim \mathrm B(p)$ e analizziamo
+innanzitutto il caso $p \in (0, 1)$, per il quale si ha
 
-```{math}
-F_X(0) = \mathbb P (X = 0) = 1 -p \leq q
+\begin{equation*}
+F_X(x) = \begin{cases}
+    0     & \text{per $x < 0$} \enspace, \\
+    1 - p & \text{per $0 \leq x < 1$} \enspace,  \\
+    1     & \text{per $x \geq 1$} \enspace.
+\end{cases}
+\end{equation*}
+
+Dato un generico livello $q \in (1-p, 1]$ si avrà
+
+\begin{equation*}
+x_q = \arg\min_x \{ F_X(x) \geq q \} = \arg\min_x \{ F_X(x) = 1 \}
+    = \arg\min_x \{ x \geq 1 \} = 1 \enspace.
+\end{equation*}
+
+Analogamente, per ogni livello $q \in (0, 1-p]$
+
+\begin{equation*}
+x_q = \arg\min_x \{ F_X(x) \geq q \} = \arg\min_x \{ F_X(x) = 1-p \}
+    = \arg\min_x \{ x \geq 0 \} = 0 \enspace.
+\end{equation*}
+
+Riassumendo, $0$ è il quantile per tutti i livelli $q \in (0, 1-p]$ e $1$
+è il quantile per tutti i livelli successivi.
+
+Rimangono da analizzare i casi $p = 0$ e $p = 1$. Consideriamo il secondo, nel
+quale la variabile aleatoria degenera nella costante $1$, così che la sua
+funzione di ripartizione diventa
+
+\begin{equation*}
+F_X(x) = \begin{cases}
+    0     & \text{per $x < 1$} \enspace, \\
+    1     & \text{per $x \geq 1$} \enspace,
+\end{cases}
+\end{equation*}
+
+e quindi per ogni $q > 0$ si ha $x_q = \arg\min_x \{ F_X(x) \geq q \}
+= \arg\min_x \{ F_X(x) = 1 \} = \arg\min_x \{ x \geq 1 \} = 1$. Dunque
+il quantile di qualsiasi livello non nullo è uguale a $1$. Si verifica
+facilmente che si ottiene un risultato analogo quando $p = 0$, con l'unica
+differenza che ora, sempre indipendentemente dal livello $q > 0$, il quantile
+è uguale a $0$.
+
+```{code-cell} ipython3
+:tags: [hide-cell, remove-output]
+
+plt.style.use('matplotlibrc')
+
+lw = 1
+height = 0.1
+
+def bernoulli_bp(q1, m, q3, ax, label):
+
+    ax.plot([m, m], [-height, height*0.95], c='k', linewidth=1.8)
+
+    ax.plot([0, 0], [-.05, .05], c='k', linewidth=lw)
+    ax.plot([0, q1], [0, 0], c='k', linewidth=lw)
+
+    ax.plot([q1, q1], [-height, height],
+            c='k', linewidth=lw)
+
+    ax.plot([q3, q3], [-height, height],
+            c='k', linewidth=lw)
+
+    ax.plot([q1, q3], [height, height],
+            c='k', linewidth=lw)
+    ax.plot([q1, q3], [-height, -height],
+            c='k', linewidth=lw)
+
+    ax.plot([q3, q3], [-height, height],
+            c='k', linewidth=lw)
+    ax.plot([q3, 1], [0, 0], 'k', linewidth=lw)
+    ax.plot([1, 1], [-0.05, 0.05], 'k', linewidth=lw)
+
+    ax.text(0, -.21, '0', ha='center')
+    ax.text(1, -.21, '1', ha='center')
+    ax.text(0.5, .18, label, ha='center')
+
+    ax.set_ylim(-.3, .3)
+
+fig, axes = plt.subplots(2, 4,figsize=(8, 3))
+bernoulli_bp(0, 0, 0, axes[0, 1], r'$0 < p \leq \frac{1}{4}$')
+bernoulli_bp(0, 0, 1, axes[0, 2], r'$\frac{1}{4} < p \leq \frac{1}{2}$')
+bernoulli_bp(0, 1, 1, axes[1, 1], r'$\frac{1}{2} < p \leq \frac{3}{4}$')
+bernoulli_bp(1, 1, 1, axes[1, 2], r'$\frac{3}{4} < p < 1$')
+
+for a in axes.flatten():
+    a.axis('off')
+
+plt.show()
+
+
+glue("bernoulli-bp", fig)
 ```
 
-mentre $F_X(1) = 1 > q$. Dunque $x_q = 0$, essendo $0$ la più grande
-specificazione $x$ di $X$ (l'unica, peraltro) tale che $F_X(x) \leq q$.
-Analogamente, dal fatto che $F_X(1) \leq 1$ e che non ci sono specificazioni
-maggiori di $1$ consegue che $x_1 = 1$. Se invece consideriamo un generico
-livello $q \in [0, 1-p)$, nessuna specificazione $x$ è tale che
-$F_X(x) \leq q$, il che implica che non esiste il relativo quantile per la
-distribuzione di Bernoulli.
+```{glue:figure} bernoulli-bp
+:name: fig:bernoulli-bp
+:figwidth: 100%
 
-Quando $p=1$, una variabile aleatoria $X \sim B(p)$ degenera nella costante
-$1$ e dunque esiste solamente il quantile $x_1 = 1$. Analogamente, quando
-$p=0$ l'unico quantile esistente è $x_1 = 0$.
+I possibili diagrammi a scatola per una distribuzione di Bernoulli, in
+funzione del valore assunto dal relativo parametro $p$. I casi $p = 0$ e
+$p = 1$ sono esclusi.
+
+```
+
+Essendo i quantili per la distribuzione di Bernoulli sempre uguali a $0$ o a
+$1$, non risulta affatto utile disegnare il suo diagramma a scatola, perché
+si otterrebbe sempre un grafico senza scatola o senza baffi. Più precisamente,
+come evidenziato dalla {numref}`Figura %s<fig:bernoulli-bp>`:
+
+- quando $0 < p \leq \frac{1}{4}$ il primo e il terzo quartile, e quindi anche
+  la mediana, sono uguali a $0$, dunque la scatola del diagramma collassa in
+  un segmento verticale sovrapposto all'estremo del baffo sinistro;
+- quando $\frac{1}{4} < p \leq \frac{1}{2}$ il primo quartile e la mediana
+  si annullano mentre il terzo quartile è uguale a $1$, quindi la scatola
+  occupa tutto l'intervallo $[0, 1]$ e i baffi scompaiono, e il segmento che
+  evidenzia la mediana coincide con l'estremo sinistro della scatola;
+- quando $\frac{1}{2} < p \leq \frac{3}{4}$ il primo quartile è nullo mentre
+  la mediana e il terzo quartile sono uguali a $1$, pertanto il grafico è
+  analogo a quello descritto nel punto precedente, con l'unica differenza che
+  la mediana è evidenziata sovrapponendola all'estremo destro della scatola;
+- quando $\frac{3}{4} < p \leq 1$ i primi tre quartili sono tutti uguali a
+  $1$, quindi la scatola collassa in un segmento verticale sovrapposto
+  all'estremo del baffo destro. 
+
+Nella figura non sono contemplati i casi $p = 0$ e $p = 1$, per i quali la
+distribuzione è degenere e le variabili aleatorie corrispondenti vanno
+rispettivamente a coincidere con le costanti $0$ e $1$, e dunque i primi tre
+quartili, così come il minimo e il massimo delle specificazioni, coincidono
+queste costanti. Pertanto, l'intero diagramma collassa in un segmento
+verticale posizionato nel primo caso nell'ascissa nulla e nel secondo in
+quella unitaria.
+
 
 
 ## Implementazione della distribuzione di Bernoulli (*)
 
-Il modulo `scipy.stats` contiene una serie di classi che implementano un gran
-numero di famiglie di distribuzioni, e in particolare quasi tutte quelle che
-sono descritte in questo libro. Più precisamente, sulle istanze di queste
-classi è possibile invocare metodi che permettono di calcolare automaticamente
-gli indici e le funzioni che abbiamo studiato. Il punto di partenza per
+Il modulo `scipy.stats` contiene una serie di classi che implementano le
+famiglie di distribuzioni comunemente utilizzate, e in particolare quasi tutte
+quelle che ho descritto in questo libro. Più precisamente, sulle istanze di
+queste classi è possibile invocare metodi che permettono di calcolare
+automaticamente gli indici e le funzioni che abbiamo studiato. Il punto di partenza per
 ottenere tali istanze consiste nell'invocare una funzione specifica per ogni
 famiglia di distribuzioni, che si occupa di creare le istanze e di
 restituirle. Questa funzione ha un nome che ricorda quello della famiglia a
@@ -402,18 +557,19 @@ valore atteso, mediana, varianza e deviazione standard della distribuzione.
 print(f'Per la distribuzione di Bernoulli di parametro {p} si ha')
 print(f'valore atteso {B.mean():.2f}')
 print(f'mediana {B.median():.2f}')
-print(f'varianza {B.var()}')
+print(f'varianza {B.var():.2f}')
 print(f'deviazione standard {B.std():.2f}')
 ```
 
 Inoltre, il metodo `ppf` calcola un generico quantile della distribuzione,
-specificando come argomento il livello corrispondente.
+specificando come argomento il livello corrispondente. Per esempio, nella
+cella seguente viene calcolato il range interquartile di una distribuzione di
+Bernoulli di parametro $p = 0.7$ che, come abbiamo visto al termine del
+{numref}`Paragrafo %s <sec:bernoulli_quantiles>`, vale $1$.
 
 ```{code-cell} ipython3
 
-print(f'Quantili della distribuzione di Bernoulli di parametro {p}')
-for q in np.arange(0.1, 0.9, 0.1):
-    print(f'livello {q:.1f}: {B.ppf(q)}')
+B.ppf(0.75) - B.ppf(0.25)
 ```
 
 ```{margin}
@@ -435,6 +591,8 @@ Bernoulli e vedere come viene modificato il grafico.
 :tags: [hide-input]
 
 import pandas as pd
+
+plt.style.use('../../sds.mplstyle')
 
 param_slider = widgets.FloatSlider(value=0.5,
                                         min=0,
@@ -463,9 +621,3 @@ def bernoulli_simulation(p):
 
 widgets.interactive(bernoulli_simulation, p = param_slider)
 ```
-
-Tenuto conto del fatto che un esperimento bernoulliano di
-parametro $p$ si può simulare estraendo un numero pseudocasuale uniformemente
-distribuito in $[0, 1]$ (compito effettuato per esempio dalla funzione `random`
-nel modulo omonimo) e decretando un successo se il risultato è inferiore a
-$p$ e un fallimento altrimenti
