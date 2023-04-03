@@ -128,26 +128,29 @@ La forma analitica per la funzione di ripartizione di una generica
 distribuzione geometrica si ottiene nel modo seguente:
 
 ````{prf:theorem}
+:label: teo:geometric-cdf
 
 Fissato $p \in (0, 1]$ e data $X \sim \mathrm G(p)$,
 $\forall n \in \mathbb N \cup \{ 0 \}$ e $\forall x \in \mathbb R$ 
 
-\begin{equation*}
+```{math}
+:label: eq:geometric-cdf
+
 F_X(x; p) = \left( 1 - (1 - p)^{\lfloor x \rfloor + 1} \right)
             \mathrm I_{[0, +\infty]}(x) \enspace.
-\end{equation*}
+```
 ````
 ````{prf:proof}
 
 Indipendentemente dal valore di $n$ si ha che
-\begin{align*}
+\begin{align}
 \mathbb P(X > n) &= \sum_{x=n+1}^{+\infty}f_X(x; p)
                   = \sum_{x=n+1}^{+\infty}(1-p)^x p \\
                  &= p (1-p)^{n+1} \sum_{x=n+1}^{+\infty}(1-p)^{x - (n+1)}
                   = p (1-p)^{n+1} \sum_{i=0}^{+\infty}(1-p)^i \\
                  &= p (1-p)^{n+1} \frac{1}{1-(1-p)}
-                 &= (1-p)^{n+1} \enspace,
-\end{align*}
+                  = (1-p)^{n+1} \enspace,
+\end{align}
 
 dove nel terzultimo passaggio ho applicato la sostituzione $i = x - (n + 1)$.
 Pertanto $F_X(n; p) = \mathbb P(X \leq n) = 1 - \mathbb P(X > n)
@@ -210,6 +213,454 @@ def geometric_pdf_cdf(p):
 
 widgets.interactive(geometric_pdf_cdf, p = param_slider)
 ```
+
+## Valore atteso e varianza della distribuzione geometrica
+
+Il calcolo dei valori attesi che coinvolgono la distribuzione geometrica
+richiede tipicamente di valutare il valore di serie infinite. Pertanto
+conviene iniziare dal seguente risultato intermedio.
+
+```{prf:lemma}
+:label: lemma:geom-ev
+Per ogni $\alpha \in (-1, 1)$ valgono le seguenti identità:
+
+\begin{align*}
+\sum_{i=0}^{+\infty}i \alpha^{i - 1} = \frac{1}{(1-\alpha)^2} \enspace, \\
+\sum_{i=0}^{+\infty}i^2 \alpha^{i - 1} = \frac{\alpha + 1}{(1-\alpha)^3}
+                                                              \enspace.
+\end{align*}
+```
+```{margin}
+Nel secondo passaggio ho sfruttato la linearità dell'operatore di derivata
+prima, scambiandolo con la sommatoria.
+```
+```{prf:proof}
+Osservando che $i \alpha^{i - 1}$ è la derivata prima di $\alpha^i$
+rispetto ad $\alpha$, otteniamo:
+\begin{align*}
+\sum_{i=0}^{+\infty}i \alpha^{i-1}
+        &= \sum_{i=0}^{+\infty} \frac{\mathrm d}{\mathrm d \alpha} \alpha^i
+         = \frac{\mathrm d}{\mathrm d \alpha} \sum_{i=0}^{+\infty} \alpha^i \\
+        &= \frac{\mathrm d}{\mathrm d \alpha} \frac{1}{1-\alpha}
+         = \frac{1}{(1-\alpha)^2},
+\end{align*}
+
+e ciò completa la dimostrazione della prima identità, tenendo conto del fatto
+che i valori considerati per $\alpha$ garantiscono sempre che la serie
+geometrica converga. Procedendo in modo analogo,
+
+\begin{align*}
+\sum_{i=0}^{+\infty}i^2 \alpha^{i-1}
+        &= \sum_{i=0}^{+\infty} \frac{\mathrm d}{\mathrm d \alpha} i \alpha^i
+         = \frac{\mathrm d}{\mathrm d \alpha} \sum_{i=0}^{+\infty} i\alpha^i \\
+        &= \frac{\mathrm d}{\mathrm d \alpha} \alpha
+                   \sum_{i=0}^{+\infty} i \alpha^{i - 1}
+         = \frac{\mathrm d}{\mathrm d \alpha} \frac{\alpha}{(1-\alpha)^2}
+         = \frac{\alpha + 1}{(1 - \alpha)^3} \enspace,
+\end{align*}
+
+il che dimostra anche la seconda identità.
+```
+
+Questo risultato ci permette di calcolare agevolmente il valore atteso della
+distribuzione.
+
+```{prf:theorem}
+Dati $p \in (0, 1]$, e $X \sim \mathrm G(p)$,
+
+\begin{equation*}
+\mathbb E(X) = \frac{1 - p}{p} \enspace.
+\end{equation*}
+```
+```{prf:proof}
+Applicando la definizione di valore atteso si ottiene
+
+\begin{equation*}
+\mathbb E(X) = \sum_{x=0}^{+ \infty} x f_X(x; p)
+             = \sum_{i=0}^{+ \infty} x (1-p)^x p
+             = p (1 - p) \sum_{x=0}^{+ \infty} x (1 - p)^{x - 1} \enspace,
+\end{equation*}
+
+e quindi ponendo $\alpha = 1 - p$ e applicando la prima identità del
+{prf:ref}`lemma:geom-ev` si ottiene
+
+\begin{equation*}
+\mathbb E(X) = p (1 - p) \frac{1}{p^2} = \frac{1 - p}{p} \enspace.
+\end{equation*}
+
+che dimostra la proposizione.
+```
+
+La {numref}`Figura %s <fig:geometric-ev>` visualizza graficamente l'andamento del
+valore atteso della distribuzione geometrica in funzione del corrispondente
+parametro $p$. Il risultato è coerente con il significato dato a questo
+parametro: più il suo valore si avvicina a $1$, più è probabile che si ottenga
+un successo nel primo esperimento bernoulliano alla base della distribuzione
+geometrica, così che il numero atteso di fallimenti tende a $0$. Parimenti,
+quando $p$ diminuisce diventa meno probabile ottenere un successo e quindi
+aumenta il numero atteso di esecuzioni dell'esperimento casuale da effettuare.
+In particolare, al tendere di $p$ a zero l'esperimento bernoulliano non avrà
+mai successo e quindi il numero atteso di ripetizioni tenderà a infinito.
+
+```{code-cell} ipython3
+:tags: [hide-cell, remove-output]
+
+from myst_nb import glue
+
+fig, ax = plt.subplots()
+
+p = np.arange(0.01, 1.01, 0.01)
+e = (1 - p) / p
+
+plt.plot(p, e)
+plt.ylim(0, 10)
+plt.show()
+
+glue("geometric-ev", fig)
+```
+
+```{glue:figure} geometric-ev
+:name: fig:geometric-ev
+:figwidth: 100%
+
+Grafico dell'andamento del valore atteso $\mathbb E(X)$ al variare del
+parametro $p \in (0, 1]$ di una variabile aleatoria $X \sim \mathrm G(p)$.
+```
+
+Procedendo in modo simile a quanto abbiamo visto per il valore atteso è
+possibile calcolare anche la varianza della distribuzione.
+
+```{prf:theorem}
+Data $X \sim \mathrm G(p)$ con $p \in (0, 1]$,
+
+\begin{equation*}
+\mathbb V(X) = \frac{1 - p}{p^2} \enspace.
+\end{equation*}
+```
+```{prf:proof}
+Il calcolo del momento secondo si ottiene applicando la seconda identità del
+{prf:ref}`lemma:geom-ev`:
+
+\begin{align*}
+\mathbb E(X^2) &= \sum_{x=0}^{+\infty} x^2 f_X(x; p)
+                = \sum_{x=0}^{+\infty} x^2 (1 - p)^x p
+                = p (1 - p) \sum_{x=0}^{+\infty} x^2 (1 - p)^{x - 1} \\
+               &= p (1 - p) \frac{2 - p}{p^3}
+                = \frac{(1 - p)(2 - p)}{p^2} \enspace,
+\end{align*}
+
+e di conseguenza
+
+\begin{equation*}
+\mathbb V(X) = \mathbb E(X^2) - \mathbb E(X)^2
+             = \frac{(1 - p)(2 - p)}{p^2} - \frac{(1 - p)^2}{p^2}
+             = \frac{1 - p}{p^2}(2 - p - 1 + p)
+             = \frac{1 - p}{p^2}
+\end{equation*}
+
+è il valore per la varianza della distribuzione geometrica.
+```
+
+
+Come già fatto per il valore atteso, la {numref}`Figura %s <fig:geometric-var>`
+mostra graficamente l'andamento della varianza in funzione del valore del
+parametro $p$. Anche in questo caso il grafico ottenuto è coerente con
+l'esperimento casuale alla base della distribuzione: al diminuire di $p$ la
+massa di probabilità si concentra su un insieme sempre più grande di valori,
+dunque la varianza aumenta. Quando $p=1$ il numero di insuccessi è sempre nullo
+e quindi la variabile aleatoria degenera in una costante che per definizione ha
+varianza nulla.
+
+```{code-cell} ipython3
+:tags: [hide-cell, remove-output]
+
+fig, ax = plt.subplots()
+
+x = np.arange(0.01, 1.01, 0.01)
+y = list(map(lambda p: (1-p)/p**2, x))
+
+plt.plot(x, y)
+plt.ylim(0, 50)
+plt.show()
+
+glue("geometric-var", fig)
+```
+
+```{glue:figure} geometric-var
+:name: fig:geometric-var
+:figwidth: 100%
+
+Grafico dell'andamento della varianza $\mathbb V(X)$ al variare del
+parametro $p \in (0, 1]$ di una variabile aleatoria $X \sim \mathrm G(p)$.
+```
+
+## Assenza di memoria e tempi di attesa
+
+La distribuzione geometrica gode di una particolare proprietà, descritta
+dal seguente teorema.
+
+````{prf:theorem}
+:label: teo:memoryless-geo
+
+Dati $p \in (0, 1]$ e $X \sim \mathrm G(p)$, per ogni $x, y \in \mathbb N$
+```{math}
+:label: eq:memoryless-geo
+
+\mathbb P(X \geq x+y \mid X \geq x)= \mathbb P(X \geq y) \enspace.
+```
+````
+```{prf:proof}
+Nella dimostrazione del {prf:ref}`teo:geometric-cdf` abbiamo visto che
+$\mathbb P(X > x) = (1 - p)^{\lfloor x \rfloor +1}$, pertanto
+$\mathbb P(X \geq x) = \mathrm P(X \geq \lfloor x \rfloor) =
+\mathrm P(X > \lfloor x \rfloor - 1) = (1-p)^{\lfloor x \rfloor}$. Sfruttando
+questo risultato otteniamo
+
+\begin{align*}
+\mathbb P(X \geq x+y \mid X \geq x)
+            &= \frac{\mathbb  P(X \geq x+y, X \geq x)}{\mathrm  P(X \geq x)}
+             = \frac{\mathbb  P(X \geq x+y)}{\mathrm  P(X \geq x)} \\
+            &= \frac{(1-p)^{\lfloor x \rfloor + \lfloor y \rfloor}}
+                    {(1-p)^{\lfloor x \rfloor}}
+            = (1-p)^{\lfloor y \rfloor}
+            = \mathbb P(X \geq y) \enspace,
+\end{align*}
+
+e quindi la tesi è dimostrata.
+```
+
+La proprietà espressa da {eq}`eq:memoryless-geo` prende il nome di
+_assenza di memoria_. Essa indica che durante la ripetizione dell'esperimento
+bernoulliano alla base della distribuzione geomatrica, il fatto che sia
+avvenuto un numero $n$ (anche elevato) di insuccessi consecutivi non permette di dire
+alcunché sul numero di successivi insuccessi prima che si verifichi il primo
+successo. In altre parole, non c'è nessuna differenza, da un punto di vista
+probabilistico, dalla ripetizione degli esperimenti che vanno dal $n+1$-esimo
+in poi e dal ricominciare da capo la ripetizione.
+
+## I momenti della distribuzione geometrica (*)
+
+Fissato $p \in (0, 1]$, la funzione generatrice dei momenti per una variabile
+aleatoria $X \sim \mathrm{g}(p)$ ha la seguente forma analitica:
+
+```{math}
+:label: eq:mgf-geometric
+
+m_X(t) = \mathbb E\left( \mathrm e^{tX} \right)
+       = \sum_{x=0}^{+\infty}(1 - p)^x p \mathrm e^{tx}
+       = p \sum_{x=0}^{+\infty}((1 - p) \mathrm e^t)^x
+       = p (1 - (1 - p) \mathrm e^t)^{-1} \enspace,
+```
+
+ed è definita per i valori di $t$ per i quali è garantita la convergenza della
+serie geometrica contenuta in {eq}`eq:mgf-geometric`, cioè quando
+$| (1 - p) \mathrm e^t | < 1$, che equivale a $t < - \log(1-p)$. Pertanto le
+prime quattro derivate della funzione generatrice dei momenti saranno
+
+\begin{align*}
+m_X'(t)    = & m_X(t)^2 \frac{1 - p}{p} \mathrm e^t \enspace, \\
+m_X''(t)   = & \frac{1-p}{p} \mathrm e^t (m_X(t)^2 + 2 m_X(t) m_X'(t))
+               \enspace, \\
+m_X'''(t)  = & \frac{1-p}{p} \mathrm e^t ( m_X(t)^2 + 4 m_X(t) m_X'(t)
+             + 2 m_X'(t)^2 + 2 m_X(t) m_X''(t)) \enspace, \\
+m_X^{\mathrm{IV}}(t) = & \frac{1-p}{p} \mathrm e^t ( m_X(t)^2 + 6 m_X(t) m_X'(t) +
+               6 m_X'(t)^2 + 6 m_X(t) m_X''(t) + 6 m_X'(t) m_X''(t)
+               + 2 m_X(t) m_X'''(t) ) \enspace.
+\end{align*}
+
+Pertanto:
+- $\mathbb E(X) = m_X'(0) = \frac{1-p}{p}$, a conferma di quanto abbiamo
+  ricavato in XXXXX;
+- $\mathbb E(X^2) = m_X''(0) = \frac{(1 - p)(2 - p)}{p^2}$, come visto in XXXX;
+- i momenti terzo e quarto sono rispettivamente
+  $\mu_3' = m_X'''(0) = \frac{(1-p)(p^2 -6p + 6)}{p^3}$ e
+  $\mu'_4 = m_X^{\mathrm{IV}}(0) = \frac{1-p}{p} (24 - 36p + 14p^2 - p^3)$. 
+
+Per calcolare i momenti centrali si può utilizzare il
+{prf:ref}`teo:central-moments`: posto $Y \coloneqq X - \frac{1-p}{p}$ si ha
+
+\begin{align*}
+m_Y'(t)  &= \mathrm e^{-t\frac{1-p}{p}}
+            \left( m_X'(t) - \frac{1-p}{p} m_X(t) \right) \enspace, \\
+m_Y''(t) &= \mathrm e^{-t\frac{1-p}{p}}
+            \left( m_X''(t) - 2 \frac{1-p}{p} m_X'(t) +
+                       \left( \frac{1-p}{p} \right)^2 m_X(t) \right) \enspace,
+\end{align*}
+
+e pertanto i primi due momenti centrali sono $\mu_1 = m_Y'(0) = 0$ e
+$\mu_2 = m_Y''(0) = \frac{1 - p}{p^2}$, che coincidono con il valore atteso e
+la varianza della distribuzione geometrica. Analogamente
+
+\begin{equation*}
+m_Y'''(t) = \mathrm e^{-t\frac{1-p}{p}} \left( m_X'''(t)
+            - 3 \frac{1-p}{p} m_X''(t)
+            + 3 \left( \frac{1-p}{p} \right)^2 m_X'(t)
+            - \left( \frac{1-p}{p} \right)^3 m_X(t) \right) \enspace,
+\end{equation*}
+
+da cui si ricava che il terzo momento centrale è
+
+\begin{equation*}
+\mu_3 = m_Y'''(0) = \frac{(1- p)(2 - p)}{p^3}
+\end{equation*}
+
+e quindi la skewness della distribuzione è pari a
+
+\begin{equation*}
+\frac{\mu_3}{\sigma^3} = \frac{(1- p)(2 - p)}{p^3} \frac{p^3}{(1-p)^{3/2}}
+                       = \frac{2-p}{\sqrt{1-p}} \enspace.
+\end{equation*}
+
+Infine,
+
+\begin{equation*}
+m_Y^{\mathrm{IV}}(t) = \mathrm e^{-t\frac{1-p}{p}} \left( m_X^{\mathrm{IV}}(t)
+            - 4 \frac{1-p}{p} m_X'''(t)
+            + 6 \left( \frac{1-p}{p} \right)^2 m_X''(t)
+            - 4 \left( \frac{1-p}{p} \right)^3 m'_X(t)
+            + \left( \frac{1-p}{p} \right)^4 m_X(t) \right)
+\end{equation*}
+
+e
+
+\begin{equation*}
+\mu_4 = m_Y^{\mathrm{IV}}(0) = \frac{1-p}{p^4}(p^2 -9p + 9) \enspace,
+\end{equation*}
+
+e pertanto la curtosi della distribuzione geometrica è
+
+\begin{equation*}
+\frac{\mu_4}{\sigma^4} - 3 =
+      \frac{1-p}{p^4}(p^2 -9p + 9) \frac{p^4}{(1 - p)^2} - 3
+      = 6 + \frac{p^2}{1 - p} \enspace,
+\end{equation*}
+
+che è sempre strettamente positiva, il che rende la distribuzione
+leptocurtica: tenderà a produrre più valori fuori scala se confrontata con
+una distribuzione normale con gli stessi valore atteso e deviazione standard.
+Questo fatto è abbastanza ovvio, avendo la distribuzione geometrica una
+coda a destra. In particolare, più $p$ si avvicina a $1$ e più la curtosi
+aumenta, coerentemente con il fatto che in questi casi la distribuzione tende
+a degenerare alla costante $0$. La {numref}`Figura %s <fig:bernoulli-sk-plot>`
+illustra il grafico skewness-curtosi per la famiglia delle distribuzioni
+geometriche.
+
+```{code-cell} ipython3
+:tags: [hide-cell, remove-output]
+
+fig, ax = plt.subplots()
+
+p = np.linspace(0.01, 0.99, 300)
+skewness = (2 - p) / (1 - p)**0.5
+kurtosis = 6 + p**2 / (1 - p)
+
+plt.plot(skewness, kurtosis)
+plt.show()
+
+glue("geometric-sk-plot", fig, display=True)
+```
+
+```{glue:figure} geometric-sk-plot
+:figwidth: 400pt
+:name: "fig:geometric-sk-plot"
+
+Il grafico skewness-curtosi per la famiglia delle distribuzioni
+geometriche.
+```
+
+## Quantili della distribuzione geometrica
+
+Abbiamo visto nel {prf:ref}`teo:geometric-cdf` come nella distribuzione geometrica
+sia possibile semplificare la sommatoria alla base del calcolo della funzione
+di ripartizione. Questo permette di calcolare in modo abbastanza agevole un
+generico quantile della distribuzione. Infatti, dato $p \in (0, 1]$ e
+applicando {eq}`eq:geometric-cdf` a una variabile aleatoria
+$X \sim \mathrm G(p)$, dato un generico livello $q \in [0, 1]$ si ha
+
+```{margin}
+Nel penultimo passaggio si utilizza il logaritmo in base due per semplificare
+i conti che seguono, ma si sarebbe potuta considerare una qualsiasi altra base
+ottenendo un risultato analogo.
+```
+\begin{align*}
+x_q &= \min_x \left\{ F_X(x; p) \geq q \right\} = \min_x
+       \left\{ 1 - (1 - p)^{\lfloor x \rfloor + 1} \geq q \right \}
+     = \min_x \left\{ (1 - p)^{\lfloor x \rfloor + 1} \leq 1 - q \right \} \\
+    &= \min_x \left\{ \lfloor x \rfloor \geq
+                         \frac{\log_2 (1 - q)}{\log_2 (1 - p)} - 1 \right \}
+     = \left\lceil \frac{\log_2 (1 - q)}{\log_2 (1 - p)} \right\rceil - 1
+       \enspace.
+\end{align*}
+
+Pertanto la mediana, il primo e il terzo quartile della distribuzione saranno
+
+\begin{align*}
+x_{1/2} &= \left\lceil \frac{\log_2 \frac{1}{2}}{\log_2 (1 - p)}
+                                                           \right\rceil - 1
+         = \left\lceil \frac{-1}{\log_2 (1 - p)} \right\rceil - 1 \enspace, \\
+x_{1/4} &= \left\lceil \frac{-2}{\log_2 (1 - p)} \right\rceil - 1 \enspace, \\
+x_{3/4} &= \left\lceil \frac{\log_2 3 -2}{\log_2 (1 - p)} \right\rceil - 1
+                                                                  \enspace, \\
+\end{align*}
+
+come evidenziato dal diagramma a scatola illustrato nella
+{ref}`Figura %s<fig:geometric-bp>`.
+
+```{code-cell} ipython3
+:tags: [hide-cell, remove-output]
+
+fig, ax = plt.subplots(figsize=(6, 0.3))
+
+p = 0.2
+first_quartile = np.ceil(-2 / np.log2(1 - p)) - 1
+median = np.ceil(-1 / np.log2(1 - p)) - 1
+third_quartile = np.ceil((np.log2(3) - 2) / np.log2(1 - p)) - 1
+
+lw = 1
+height = 0.2
+
+plt.plot([median, median], [-height, height], c='k', linewidth=1.5)
+
+plt.plot([0, 0], [-.1, .1], c='k', linewidth=lw)
+plt.plot([0, first_quartile], [0, 0], c='k', linewidth=lw)
+
+plt.plot([first_quartile, first_quartile], [-height, height],
+         c='k', linewidth=lw)
+
+plt.plot([third_quartile, third_quartile], [-height, height],
+         c='k', linewidth=lw)
+
+plt.plot([first_quartile, third_quartile], [height, height],
+         c='k', linewidth=lw)
+plt.plot([first_quartile, third_quartile], [-height, -height],
+         c='k', linewidth=lw)
+
+plt.plot([third_quartile, third_quartile*1.2], [0, 0], c='k', linewidth=lw)
+plt.plot([third_quartile*1.2, third_quartile*1.8], [0, 0],
+         'k--', linewidth=lw)
+
+plt.text(0, -0.5, '0', ha='center')
+plt.text(median, -0.5, r'$\ln 2/\lambda$', ha='center')
+
+plt.axis('off')
+pad = 2
+plt.xlim(0-pad, 2.5+pad) 
+plt.show()
+
+glue("geometric-bp", fig)
+```
+
+```{glue:figure} geometric-bp
+:name: fig:geometric-bp
+:figwidth: 100%
+
+Diagramma a scatola per la distribuzione geometrica di parametro
+$p = 0.7$. Il baffo a destra della scatola è parzialmente tratteggiato
+per enfatizzare il fatto che si estende fino a $+\infty$.
+
+```
+
+## Implementazione della distribuzione geometrica
 
 
 
@@ -344,135 +795,10 @@ interact(gr_geom_pdf, p=(0.1, 1, 0.1))
 plt.show()
 ```
 
-Procediamo ora a determinare il valore atteso e la varianza della
-distribuzione. Iniziamo mostrando un risultato intermedio.
 
-```{prf:lemma}
-Per ogni $\alpha \in (-1, 1)$
 
-$$
-\sum_{i=0}^{+\infty}i \alpha^{i - 1} = \frac{1}{(1-\alpha)^2}.
-$$
-```
-```{margin}
-Nel secondo passaggio ho sfruttato la linearità dell'operatore di derivata
-prima, scambiandolo con la sommatoria.
-```
-```{prf:proof}
-Osservando che $i \alpha^{i - 1}$ è la derivata prima di $\alpha^i$
-rispetto ad $\alpha$, otteniamo:
-\begin{align*}
-\sum_{i=0}^{+\infty}i \alpha^{i-1} &= \sum_{i=0}^{+\infty} \frac{\mathrm d}{\mathrm d \alpha} \alpha^i = \frac{\mathrm d}{\mathrm d \alpha} \sum_{i=0}^{+\infty} \alpha^i \\
-&= \frac{\mathrm d}{\mathrm d \alpha} \frac{1}{1-\alpha}
-= \frac{1}{(1-\alpha)^2},
-\end{align*}
-e ciò completa la dimostrazione.
-```
 
-Questo risultato ci permette di calcolare agevolmente il valore atteso.
 
-```{prf:proposition}
-Il valore atteso della distribuzione geometrica di parametro
-$p$ è pari a $\frac{1}{p}$.
-```
-```{prf:proof}
-Innanzitutto
-
-\begin{align*}
-\mathrm E(X) &= \sum_{i=1}^{+ \infty} i \mathrm p_X(i; p)
-              = \sum_{i=1}^{+ \infty} i (1-p)^{i - 1} p \\
-             &= p \sum_{i=0}^{+ \infty} i (1-p)^{i - 1},
-\end{align*}
-
-dove nell'ultimo passaggio ho sfruttato il fatto che il valore della
-serie non cambia se facciamo partire l'indice $i$ da $0$, in quanto ciò
-equivale ad aggiungere un termine nullo. A questo punto, ponendo
-$\alpha = 1 - p$ e applicando il lemma appena dimostrato si ha
-
-$$
-\mathrm E(X) = p \frac{1}{p^2} = \frac{1}{p}.
-$$
-
-che dimostra la proposizione.
-```
-
-Visualizziamo graficamente l'andamento del valore atteso in funzione del
-parametro $p$.
-
-```{code-cell} ipython3
-p = np.arange(0.01, 1.01, 0.01)
-e = 1 / p
-
-plt.plot(p, e)
-plt.ylim(1, 10)
-plt.show()
-```
-
-Il risultato è coerente con il significato di $p$: più il suo valore si
-avvicina a $1$, più è probabile che si ottenga un successo nel primo
-esperimento bernoulliano alla base della distribuzione geometrica, così che
-il numero atteso di ripetizioni tende a $1$. Parimenti, quando $p$ diminuisce
-diventa meno probabile ottenere un successo e quindi il numero atteso di
-esperimenti da effettuare aumenta. In particolare, al tendere di $p$ a zero
-l'esperimento bernoulliano non avrà mai successo e quindi il numero atteso di
-ripetizioni tenderà a più infinito.
-
-Per calcolare la varianza, procediamo innanzitutto a determinare il valore di
-$\mathrm E(X^2)$.
-
-**Proposizione** Il valore atteso del quadrato della distribuzione geometrica
-di parametro $p$ è pari a $\frac{(1-p)(2-p)}{p^2}$.
-
-Dimostrazione.
-
-\begin{align}
-\mathrm E\left(X^2\right) &= \sum_{i=0}^{+\infty} i^2 p_X(i) \\
-               &= \sum_{i=0}^{+\infty} i^2 p (1-p)^i \\
-               &= p (1-p) \sum_{i=0}^{+\infty} i^2 (1-p)^{i-1} \\
-               &= p (1-p) \sum_{i=0}^{+\infty} \frac{\mathrm d}{\mathrm d p}\left(-i(1-p)^i\right) \\
-               &= -p (1-p) \frac{\mathrm d}{\mathrm d p} \sum_{i=0}^{+\infty} i(1-p)^i.
-\end{align}
-
-Applicando ancora il lemma dimostrato precedentemente si ottiene
-
-\begin{align}
-\mathrm E\left(X^2\right) &= -p (1-p) \frac{\mathrm d}{\mathrm d p}
-                                \frac{1-p}{p^2} \\
-      &= p (1-p) \frac{p^2 + 1p(1-p)}{p^4} \\
-      &= \frac{(1-p)(2-p)}{p^2}.
-\end{align}
-
-Siamo ora in grado di calcolare la varianza della distribuzione.
-
-**Proposizione**. La varianza della distribuzione geometrica di parametro $p$
-è uguale a $\frac{1-p}{p^2}$.
-
-Dimostrazione.
-
-\begin{equation}
-\mathrm{Var}(X) = \mathrm E \left(X^2\right) - \mathrm E(X)^2 =
-                  \frac{(1-p)(2-p)}{p^2} - \frac{(1-p)^2}{p^2} =
-                  \frac{1-p}{p^2}.
-\end{equation}
-
-Come già fatto per il valore atteso, visualizziamo graficamente l'andamento
-della varianza in funzione del valore per il parametro $p$.
-
-```{code-cell} ipython3
-x = np.arange(0.01, 1.01, 0.01)
-y = list(map(lambda p: (1-p)/p**2, x))
-
-plt.plot(x, y)
-plt.ylim(0, 50)
-plt.show()
-```
-
-Anche in questo caso il grafico ottenuto è coerente con il significato
-probabilistico della distribuzione: al diminuire di $p$ la massa di probabilità
-si concentra su un insieme sempre più grande di valori, dunque la varianza
-aumenta. Quando $p=1$ il numero di insuccessi è sempre nullo e quindi la
-variabile aleatoria degenera in una costante che per definizione ha varianza
-nulla.
 
 Siamo ora in grado di accoppiare la visualizzazione della funzione di massa di
 probabilità a un'indicazione del valore atteso e della dispersione della
@@ -539,157 +865,4 @@ def gr_geom_cdf(p):
 
 interact(gr_geom_cdf, p=(0.1, 1, 0.1))
 plt.show()
-```
-
-Si noti infine che $\mathrm P(X \geq x) = \mathrm P(X \geq \lfloor x \rfloor) =
-\mathrm P(X > \lfloor x \rfloor - 1) = (1-p)^{\lfloor x \rfloor}$, e quindi
-
-\begin{align}
-\mathrm P(X \geq x+y | X \geq x)
-            &= \frac{\mathrm  P(X \geq x+y, X \geq x)}{\mathrm  P(X \geq x)} \\
-            &= \frac{\mathrm  P(X \geq x+y)}{\mathrm  P(X \geq x)} \\
-            &= \frac{(1-p)^{\lfloor x \rfloor + \lfloor y \rfloor}}
-                    {(1-p)^{\lfloor x \rfloor}} \\
-            &= (1-p)^{\lfloor y \rfloor} \\
-            &= \mathrm P(X \geq y).
-\end{align}
-
-Questa proprietà prende il nome di _assenza di memoria_. Essa indica che
-durante la ripetizione dell'esperimento bernoulliano, il fatto che sia avvenuto
-un numero $n$ (anche elevato) di insuccessi consecutivi non permette di dire
-alcunché sul numero di successivi insuccessi prima che si verifichi il primo
-successo. In altre parole, non c'è nessuna differenza, da un punto di vista
-probabilistico, dalla ripetizione degli esperimenti che vanno dal $n+1$-esimo
-in poi e dal ricominciare da capo la ripetizione.
-
-## I momenti della distribuzione geometrica (*)
-
-Fissato $p \in (0, 1]$, la funzione generatrice dei momenti per una variabile
-aleatoria $X \sim \mathrm{g}(p)$ ha la seguente forma analitica:
-
-```{math}
-:label: eq:mgf-geometric
-
-m_X(t) = \mathbb E\left( \mathrm e^{tX} \right)
-       = \sum_{x=0}^{+\infty}(1 - p)^x p \mathrm e^{tx}
-       = p \sum_{x=0}^{+\infty}((1 - p) \mathrm e^t)^x
-       = p (1 - (1 - p) \mathrm e^t)^{-1} \enspace,
-```
-
-ed è definita per i valori di $t$ per i quali è garantita la convergenza della
-serie geometrica contenuta in {eq}`eq:mgf-geometric`, cioè quando
-$| (1 - p) \mathrm e^t | < 1$, che equivale a $t < - \log(1-p)$. Pertanto le
-prime quattro derivate della funzione generatrice dei momenti saranno
-
-\begin{align*}
-m_X'(t)    = & m_X(t)^2 \frac{1 - p}{p} \mathrm e^t \enspace, \\
-m_X''(t)   = & \frac{1-p}{p} \mathrm e^t (m_X(t)^2 + 2 m_X(t) m_X'(t))
-               \enspace, \\
-m_X'''(t)  = & \frac{1-p}{p} \mathrm e^t ( m_X(t)^2 + 4 m_X(t) m_X'(t)
-             + 2 m_X'(t)^2 + 2 m_X(t) m_X''(t)) \enspace, \\
-m_X^{\mathrm{IV}}(t) = & \frac{1-p}{p} \mathrm e^t ( m_X(t)^2 + 6 m_X(t) m_X'(t) +
-               6 m_X'(t)^2 + 6 m_X(t) m_X''(t) + 6 m_X'(t) m_X''(t)
-               + 2 m_X(t) m_X'''(t) ) \enspace.
-\end{align*}
-
-Pertanto:
-- $\mathbb E(X) = m_X'(0) = \frac{1-p}{p}$, a conferma di quanto abbiamo
-  ricavato in XXXXX;
-- $\mathbb E(X^2) = m_X''(0) = \frac{(1 - p)(2 - p)}{p^2}$, come visto in XXXX;
-- i momenti terzo e quarto sono rispettivamente
-  $\mu_3' = m_X'''(0) = \frac{(1-p)(p^2 -6p + 6)}{p^3}$ e
-  $\mu'_4 = m_X^{\mathrm{IV}}(0) = \frac{1-p}{p} (24 - 36p + 14p^2 - p^3)$. 
-
-Per calcolare i momenti centrali si può utilizzare il
-{prf:ref}`teo:central-moments`: posto $Y \coloneqq X - \frac{1-p}{p}$ si ha
-
-\begin{align*}
-m_Y'(t)  &= \mathrm e^{-t\frac{1-p}{p}}
-            \left( m_X'(t) - \frac{1-p}{p} m_X(t) \right) \enspace, \\
-m_Y''(t) &= \mathrm e^{-t\frac{1-p}{p}}
-            \left( m_X''(t) - 2 \frac{1-p}{p} m_X'(t) +
-                       \left( \frac{1-p}{p} \right)^2 m_X(t) \right) \enspace,
-\end{align*}
-
-e pertanto i primi due momenti centrali sono $\mu_1 = m_Y'(0) = 0$ e
-$\mu_2 = m_Y''(0) = \frac{1 - p}{p^2}$, che coincidono con il valore atteso e
-la varianza della distribuzione geometrica. Analogamente
-
-\begin{equation*}
-m_Y'''(t) = \mathrm e^{-t\frac{1-p}{p}} \left( m_X'''(t)
-            - 3 \frac{1-p}{p} m_X''(t)
-            + 3 \left( \frac{1-p}{p} \right)^2 m_X'(t)
-            - \left( \frac{1-p}{p} \right)^3 m_X(t) \right) \enspace,
-\end{equation*}
-
-da cui si ricava che il terzo momento centrale è
-
-\begin{equation*}
-\mu_3 = m_Y'''(0) = \frac{(1- p)(2 - p)}{p^3}
-\end{equation*}
-
-e quindi la skewness della distribuzione è pari a
-
-\begin{equation*}
-\frac{\mu_3}{\sigma^3} = \frac{(1- p)(2 - p)}{p^3} \frac{p^3}{(1-p)^{3/2}}
-                       = \frac{2-p}{\sqrt{1-p}} \enspace.
-\end{equation*}
-
-Infine,
-
-\begin{equation*}
-m_Y^{\mathrm{IV}}(t) = \mathrm e^{-t\frac{1-p}{p}} \left( m_X^{\mathrm{IV}}(t)
-            - 4 \frac{1-p}{p} m_X'''(t)
-            + 6 \left( \frac{1-p}{p} \right)^2 m_X''(t)
-            - 4 \left( \frac{1-p}{p} \right)^3 m'_X(t)
-            + \left( \frac{1-p}{p} \right)^4 m_X(t) \right)
-\end{equation*}
-
-e
-
-\begin{equation*}
-\mu_4 = m_Y^{\mathrm{IV}}(0) = \frac{1-p}{p^4}(p^2 -9p + 9) \enspace,
-\end{equation*}
-
-e pertanto la curtosi della distribuzione geometrica è
-
-\begin{equation*}
-\frac{\mu_4}{\sigma^4} - 3 =
-      \frac{1-p}{p^4}(p^2 -9p + 9) \frac{p^4}{(1 - p)^2} - 3
-      = 6 + \frac{p^2}{1 - p} \enspace,
-\end{equation*}
-
-che è sempre strettamente positiva, il che rende la distribuzione
-leptocurtica: tenderà a produrre più valori fuori scala se confrontata con
-una distribuzione normale con gli stessi valore atteso e deviazione standard.
-Questo fatto è abbastanza ovvio, avendo la distribuzione geometrica una
-coda a destra. In particolare, più $p$ si avvicina a $1$ e più la curtosi
-aumenta, coerentemente con il fatto che in questi casi la distribuzione tende
-a degenerare alla costante $0$. La {numref}`Figura %s <fig:bernoulli-sk-plot>`
-illustra il grafico skewness-curtosi per la famiglia delle distribuzioni
-geometriche.
-
-```{code-cell} ipython3
-:tags: [hide-cell, remove-output]
-
-from myst_nb import glue
-
-fig, ax = plt.subplots()
-
-p = np.linspace(0.01, 0.99, 300)
-skewness = (2 - p) / (1 - p)**0.5
-kurtosis = 6 + p**2 / (1 - p)
-
-plt.plot(skewness, kurtosis)
-plt.show()
-
-glue("geometric-sk-plot", fig, display=True)
-```
-
-```{glue:figure} geometric-sk-plot
-:figwidth: 400pt
-:name: "fig:geometric-sk-plot"
-
-Il grafico skewness-curtosi per la famiglia delle distribuzioni
-geometriche.
 ```
