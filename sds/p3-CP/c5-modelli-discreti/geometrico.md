@@ -126,36 +126,91 @@ $0 < p < 2$, che è sempre verificata, essendo $p \in (0, 1]$.
 
 La forma analitica per la funzione di ripartizione di una generica
 distribuzione geometrica si ottiene nel modo seguente:
-data $X \sim \mathrm G(p)$ e fissato un generico
-$n \in \mathbb N \cup \{ 0 \}$,
 
-```{margin}
-Nel terzultimo passaggio ho applicato alla sommatoria la sostituzione
-$i = x - (n + 1)$.
-```
-\begin{align}
+````{prf:theorem}
+
+Fissato $p \in (0, 1]$ e data $X \sim \mathrm G(p)$,
+$\forall n \in \mathbb N \cup \{ 0 \}$ e $\forall x \in \mathbb R$ 
+
+\begin{equation*}
+F_X(x; p) = \left( 1 - (1 - p)^{\lfloor x \rfloor + 1} \right)
+            \mathrm I_{[0, +\infty]}(x) \enspace.
+\end{equation*}
+````
+````{prf:proof}
+
+Indipendentemente dal valore di $n$ si ha che
+\begin{align*}
 \mathbb P(X > n) &= \sum_{x=n+1}^{+\infty}f_X(x; p)
                   = \sum_{x=n+1}^{+\infty}(1-p)^x p \\
                  &= p (1-p)^{n+1} \sum_{x=n+1}^{+\infty}(1-p)^{x - (n+1)}
                   = p (1-p)^{n+1} \sum_{i=0}^{+\infty}(1-p)^i \\
-                 &= p (1-p)^{n+1} \frac{1}{1-(1-p)} \\
-                 &= (1-p)^{n+1} \enspace.
-\end{align}
+                 &= p (1-p)^{n+1} \frac{1}{1-(1-p)}
+                 &= (1-p)^{n+1} \enspace,
+\end{align*}
 
+dove nel terzultimo passaggio ho applicato la sostituzione $i = x - (n + 1)$.
 Pertanto $F_X(n; p) = \mathbb P(X \leq n) = 1 - \mathbb P(X > n)
-= 1 - (1-p)^{n+1}$.
-
-Fissato invece un generico $x \in \mathbb R^+$ e indicato con
+= 1 - (1-p)^{n+1}$. Fissato ora un generico $x \in \mathbb R^+$ e indicato con
 $\lfloor x \rfloor$ l'intero ottenuto troncando $x$ (o, equivalentemente,
 arrotondandolo per difetto), l'evento $X \leq x$ equivarrà a
 $X \leq \lfloor x \rfloor$. Tenuto infine conto del fatto che le specificazioni
-di una distribuzione geometrica sono non negative, si ottiene facilmente la
-seguente forma più generale per la funzione di ripartizione:
+di una distribuzione geometrica sono non negative, si ottiene
 
 \begin{equation*}
 F_X(x; p) = \left( 1 - (1 - p)^{\lfloor x \rfloor + 1} \right)
-                                 \mathrm I_{[0, +\infty]}(x) \enspace.
+                                 \mathrm I_{[0, +\infty]}(x)
 \end{equation*}
+
+come forma più generale per la funzione di ripartizione.
+````
+
+Il codice nella seguente cella nascosta permette di visualizzare i grafici
+delle funzioni di massa di probabilità e di ripartizione di una generica
+distribuzione geometrica. Essendo in questo caso infinito il supporto della
+distribuzione, il primo grafico contiene in teoria un numero infinito di
+bastoncini, e solo quelli relativi ai valori più piccoli delle specificazioni
+sono mostrati effettivamente. Nella versione interattiva del libro è anche
+possibile modificare il valore del parametro $p$ agendo sul relativo selettore
+e verificando in che modo i grafici vengono modificati.
+
+```{code-cell} ipython3
+:tags: [hide-input]
+
+import ipywidgets as widgets
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from scipy import stats as st
+
+param_slider = widgets.FloatSlider(value=0.3,
+                                        min=0.05,
+                                        max=1,
+                                        step=0.01,
+                                        description='p',
+                                        continuous_update=True,
+                                        readout=False,
+                                        orientation='horizontal')
+
+def geometric_pdf_cdf(p):
+    G = st.geom(p, loc=-1)
+
+    x = np.arange(0, 11)
+
+    plt.vlines(x, 0, G.pmf(x), color='k')
+    plt.plot(x, G.pmf(x), 'o')
+    
+    plt.hlines(G.cdf(x)[:-1], x[:-1], x[1:])
+    plt.vlines(x[:-1], G.cdf(x)[:-1]-.01, G.cdf(x)[:-1]+.01)
+    plt.plot([-1, 0], [0, 0], color='C0')
+
+    plt.title(rf'$p = {p:.2f}$')
+    plt.ylim(0, 1.1)
+    plt.show()
+
+widgets.interactive(geometric_pdf_cdf, p = param_slider)
+```
+
 
 
 
@@ -506,3 +561,135 @@ alcunché sul numero di successivi insuccessi prima che si verifichi il primo
 successo. In altre parole, non c'è nessuna differenza, da un punto di vista
 probabilistico, dalla ripetizione degli esperimenti che vanno dal $n+1$-esimo
 in poi e dal ricominciare da capo la ripetizione.
+
+## I momenti della distribuzione geometrica (*)
+
+Fissato $p \in (0, 1]$, la funzione generatrice dei momenti per una variabile
+aleatoria $X \sim \mathrm{g}(p)$ ha la seguente forma analitica:
+
+```{math}
+:label: eq:mgf-geometric
+
+m_X(t) = \mathbb E\left( \mathrm e^{tX} \right)
+       = \sum_{x=0}^{+\infty}(1 - p)^x p \mathrm e^{tx}
+       = p \sum_{x=0}^{+\infty}((1 - p) \mathrm e^t)^x
+       = p (1 - (1 - p) \mathrm e^t)^{-1} \enspace,
+```
+
+ed è definita per i valori di $t$ per i quali è garantita la convergenza della
+serie geometrica contenuta in {eq}`eq:mgf-geometric`, cioè quando
+$| (1 - p) \mathrm e^t | < 1$, che equivale a $t < - \log(1-p)$. Pertanto le
+prime quattro derivate della funzione generatrice dei momenti saranno
+
+\begin{align*}
+m_X'(t)    = & m_X(t)^2 \frac{1 - p}{p} \mathrm e^t \enspace, \\
+m_X''(t)   = & \frac{1-p}{p} \mathrm e^t (m_X(t)^2 + 2 m_X(t) m_X'(t))
+               \enspace, \\
+m_X'''(t)  = & \frac{1-p}{p} \mathrm e^t ( m_X(t)^2 + 4 m_X(t) m_X'(t)
+             + 2 m_X'(t)^2 + 2 m_X(t) m_X''(t)) \enspace, \\
+m_X^{\mathrm{IV}}(t) = & \frac{1-p}{p} \mathrm e^t ( m_X(t)^2 + 6 m_X(t) m_X'(t) +
+               6 m_X'(t)^2 + 6 m_X(t) m_X''(t) + 6 m_X'(t) m_X''(t)
+               + 2 m_X(t) m_X'''(t) ) \enspace.
+\end{align*}
+
+Pertanto:
+- $\mathbb E(X) = m_X'(0) = \frac{1-p}{p}$, a conferma di quanto abbiamo
+  ricavato in XXXXX;
+- $\mathbb E(X^2) = m_X''(0) = \frac{(1 - p)(2 - p)}{p^2}$, come visto in XXXX;
+- i momenti terzo e quarto sono rispettivamente
+  $\mu_3' = m_X'''(0) = \frac{(1-p)(p^2 -6p + 6)}{p^3}$ e
+  $\mu'_4 = m_X^{\mathrm{IV}}(0) = \frac{1-p}{p} (24 - 36p + 14p^2 - p^3)$. 
+
+Per calcolare i momenti centrali si può utilizzare il
+{prf:ref}`teo:central-moments`: posto $Y \coloneqq X - \frac{1-p}{p}$ si ha
+
+\begin{align*}
+m_Y'(t)  &= \mathrm e^{-t\frac{1-p}{p}}
+            \left( m_X'(t) - \frac{1-p}{p} m_X(t) \right) \enspace, \\
+m_Y''(t) &= \mathrm e^{-t\frac{1-p}{p}}
+            \left( m_X''(t) - 2 \frac{1-p}{p} m_X'(t) +
+                       \left( \frac{1-p}{p} \right)^2 m_X(t) \right) \enspace,
+\end{align*}
+
+e pertanto i primi due momenti centrali sono $\mu_1 = m_Y'(0) = 0$ e
+$\mu_2 = m_Y''(0) = \frac{1 - p}{p^2}$, che coincidono con il valore atteso e
+la varianza della distribuzione geometrica. Analogamente
+
+\begin{equation*}
+m_Y'''(t) = \mathrm e^{-t\frac{1-p}{p}} \left( m_X'''(t)
+            - 3 \frac{1-p}{p} m_X''(t)
+            + 3 \left( \frac{1-p}{p} \right)^2 m_X'(t)
+            - \left( \frac{1-p}{p} \right)^3 m_X(t) \right) \enspace,
+\end{equation*}
+
+da cui si ricava che il terzo momento centrale è
+
+\begin{equation*}
+\mu_3 = m_Y'''(0) = \frac{(1- p)(2 - p)}{p^3}
+\end{equation*}
+
+e quindi la skewness della distribuzione è pari a
+
+\begin{equation*}
+\frac{\mu_3}{\sigma^3} = \frac{(1- p)(2 - p)}{p^3} \frac{p^3}{(1-p)^{3/2}}
+                       = \frac{2-p}{\sqrt{1-p}} \enspace.
+\end{equation*}
+
+Infine,
+
+\begin{equation*}
+m_Y^{\mathrm{IV}}(t) = \mathrm e^{-t\frac{1-p}{p}} \left( m_X^{\mathrm{IV}}(t)
+            - 4 \frac{1-p}{p} m_X'''(t)
+            + 6 \left( \frac{1-p}{p} \right)^2 m_X''(t)
+            - 4 \left( \frac{1-p}{p} \right)^3 m'_X(t)
+            + \left( \frac{1-p}{p} \right)^4 m_X(t) \right)
+\end{equation*}
+
+e
+
+\begin{equation*}
+\mu_4 = m_Y^{\mathrm{IV}}(0) = \frac{1-p}{p^4}(p^2 -9p + 9) \enspace,
+\end{equation*}
+
+e pertanto la curtosi della distribuzione geometrica è
+
+\begin{equation*}
+\frac{\mu_4}{\sigma^4} - 3 =
+      \frac{1-p}{p^4}(p^2 -9p + 9) \frac{p^4}{(1 - p)^2} - 3
+      = 6 + \frac{p^2}{1 - p} \enspace,
+\end{equation*}
+
+che è sempre strettamente positiva, il che rende la distribuzione
+leptocurtica: tenderà a produrre più valori fuori scala se confrontata con
+una distribuzione normale con gli stessi valore atteso e deviazione standard.
+Questo fatto è abbastanza ovvio, avendo la distribuzione geometrica una
+coda a destra. In particolare, più $p$ si avvicina a $1$ e più la curtosi
+aumenta, coerentemente con il fatto che in questi casi la distribuzione tende
+a degenerare alla costante $0$. La {numref}`Figura %s <fig:bernoulli-sk-plot>`
+illustra il grafico skewness-curtosi per la famiglia delle distribuzioni
+geometriche.
+
+```{code-cell} ipython3
+:tags: [hide-cell, remove-output]
+
+from myst_nb import glue
+
+fig, ax = plt.subplots()
+
+p = np.linspace(0.01, 0.99, 300)
+skewness = (2 - p) / (1 - p)**0.5
+kurtosis = 6 + p**2 / (1 - p)
+
+plt.plot(skewness, kurtosis)
+plt.show()
+
+glue("geometric-sk-plot", fig, display=True)
+```
+
+```{glue:figure} geometric-sk-plot
+:figwidth: 400pt
+:name: "fig:geometric-sk-plot"
+
+Il grafico skewness-curtosi per la famiglia delle distribuzioni
+geometriche.
+```

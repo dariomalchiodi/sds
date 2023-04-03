@@ -558,6 +558,10 @@ div#proof {
   padding: 2rem !important;
 }
 
+.proof + .proof {
+  margin-top: -1.6rem;
+}
+
 .proof .proof {
   box-shadow: 0 0;
   background-color: transparent;
