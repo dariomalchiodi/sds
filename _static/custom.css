@@ -558,7 +558,7 @@ div#proof {
   padding: 2rem !important;
 }
 
-.proof + .proof {
+.proof + .proof, .proof + .margin + .proof {
   margin-top: -1.6rem;
 }
 
