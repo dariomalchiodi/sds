@@ -20,12 +20,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -41,8 +41,8 @@
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -65,6 +65,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "loader": {"load": ["[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["mathtools"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'p3-CP/c4-variabili-aleatorie/momenti';</script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
@@ -586,6 +588,64 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="momenti">
 <h1><span class="section-number">12.5. </span>momenti<a class="headerlink" href="#momenti" title="Permalink to this heading">#</a></h1>
+<div class="proof theorem admonition" id="teo:central-moments">
+<p class="admonition-title"><span class="caption-number">Theorem 12.2 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>Data una variabile aleatoria <span class="math notranslate nohighlight">\(X\)</span> tale con valore atteso finito
+<span class="math notranslate nohighlight">\(\mathbb E(X) = \mu\)</span>, posto <span class="math notranslate nohighlight">\(Y \coloneqq X - \mu\)</span> si ha</p>
+<div class="math notranslate nohighlight">
+\[m_Y^{(n)}(t) = \mathrm  e^{-t \mu}
+               \sum_{i=0}^n \binom{n}{i}(-\mu)^i m_X^{n-i}(t) \enspace.\]</div>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Per semplificare la notazione, poniamo <span class="math notranslate nohighlight">\(f(t) = \mathrm e^{- t \mu} g(t)\)</span>, così
+che l'enunciato diventa</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f^{(n)}(t) = \mathrm e^{-t \mu} \sum_{i=0}^n \binom{n}{i}(-\mu)^i g^{n-i}(t)
+             \enspace,
+\end{equation*}\]</div>
+<p>e dimostriamo per induzione quest'ultima equazione. Il caso base <span class="math notranslate nohighlight">\(n = 1\)</span> è
+semplice da trattare, in quanto</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f'(t) = -\mu \mathrm e^{-t \mu} g(t) + \mathrm e^{-t\mu} g'(t)
+      = \mathrm e^{-t\mu} (g'(t) - \mu g(t))
+      = \sum_{i=0}^1 \binom{1}{i}(-\mu)^i g^{n-i}(t) \enspace.
+\end{equation*}\]</div>
+<p>Per quanto riguarda il passo dell'induzione, si ha</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+f^{(n+1)}(t) &amp;= \frac{\mathrm d}{\mathrm d t} f^{(n)}(t)
+              = \frac{\mathrm d}{\mathrm d t} \mathrm e^{-t \mu}
+                       \sum_{i=0}^n \binom{n}{i}(-\mu)^i g^{(n-i)}(t) \\
+             &amp;= -\mu \mathrm e^{-t \mu}
+                       \sum_{i=0}^n \binom{n}{i}(-\mu)^i g^{(n-i)}(t)
+                + \mathrm e^{-t \mu}
+                       \sum_{i=0}^n \binom{n}{i}(-\mu)^i g^{(n-i+1)}(t) \\
+             &amp;= \mathrm e^{-t \mu} \left( 
+                    \sum_{i=0}^n \binom{n}{i}(-\mu)^{i+1} g^{(n-i)}(t) +
+                    \sum_{i=0}^n \binom{n}{i}(-\mu)^i g^{(n+1-i)}(t)
+                \right) \\
+             &amp;= \mathrm e^{-t \mu} \left( 
+                    \sum_{j=1}^{n+1} \binom{n}{j-1}(-\mu)^{j} g^{(n-j+1)}(t) +
+                    \sum_{j=0}^n \binom{n}{j}(-\mu)^i g^{(n+1-j)}(t)
+                \right) \\
+             &amp;= \mathrm e^{-t \mu} \left( 
+                    \sum_{j=0}^{n+1} \binom{n}{j-1}(-\mu)^{j} g^{(n+1-j)}(t) +
+                    \sum_{j=0}^{n+1} \binom{n}{j}(-\mu)^i g^{(n+1-j)}(t)
+                \right) \\
+             &amp;= \mathrm e^{-t \mu}  
+                \sum_{j=0}^{n+1} \left( \binom{n}{j-1} + \binom{n}{j} \right)
+                (-\mu)^{j} g^{(n+1-j)}(t) \enspace.
+\end{align*}\]</div>
+<p>Si verifica facilmente che</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\binom{n}{j-1} + \binom{n}{j} = \binom{n+1}{j} \enspace,
+\end{align*}\]</div>
+<p>da cui segue la tesi.</p>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -614,7 +674,10 @@ document.write(`
               
               
                 <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="varianza.html"
@@ -634,7 +697,10 @@ document.write(`
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -644,7 +710,7 @@ document.write(`
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -674,7 +740,7 @@ Di <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://
     
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -683,8 +749,8 @@ Di <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

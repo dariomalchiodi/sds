@@ -20,12 +20,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -41,8 +41,8 @@
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -585,6 +585,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-modello-geometrico">13.4.1. Il modello geometrico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#i-momenti-della-distribuzione-geometrica">13.4.2. I momenti della distribuzione geometrica (*)</a></li>
 </ul>
             </nav>
         </div>
@@ -679,8 +680,8 @@ in un certo qual senso che la specificazione assunta assume un valore
 infinito, cosa che è proibita dalla <a class="reference internal" href="../c4-variabili-aleatorie/variabili-aleatorie.html#def:variabile-aleatoria">Definition 12.1</a>.</p>
 <p>Si verifica facilmente che sommando i valori di massa di probabilità per tutte
 le specificazioni della distribuzione si ottiene come risultato 1:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ac4d652d-88f0-4d98-889e-bb7f87661525">
-<span class="eqno">(13.1)<a class="headerlink" href="#equation-ac4d652d-88f0-4d98-889e-bb7f87661525" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9f80a47e-318c-4fda-933a-1c24bbe4499b">
+<span class="eqno">(13.1)<a class="headerlink" href="#equation-9f80a47e-318c-4fda-933a-1c24bbe4499b" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \sum_{x=0}^{+\infty}\mathrm f(x; p) = \sum_{x=0}^{+\infty} (1-p)^x p =
 p \sum_{x=0}^{+\infty}(1-p)^x
  = p \frac{1}{1-(1-p)} = 1.
@@ -697,36 +698,97 @@ nel penultimo passaggio dell'equazione precedente e definita da</p>
 <span class="math notranslate nohighlight">\(0 &lt; p &lt; 2\)</span>, che è sempre verificata, essendo <span class="math notranslate nohighlight">\(p \in (0, 1]\)</span>.</p>
 </div>
 <p>La forma analitica per la funzione di ripartizione di una generica
-distribuzione geometrica si ottiene nel modo seguente:
-data <span class="math notranslate nohighlight">\(X \sim \mathrm G(p)\)</span> e fissato un generico
-<span class="math notranslate nohighlight">\(n \in \mathbb N \cup \{ 0 \}\)</span>,</p>
-<aside class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>Nel terzultimo passaggio ho applicato alla sommatoria la sostituzione
-<span class="math notranslate nohighlight">\(i = x - (n + 1)\)</span>.</p>
-</aside>
-<div class="amsmath math notranslate nohighlight" id="equation-f31f3ae0-7bac-447e-8092-063428cf80c4">
-<span class="eqno">(13.2)<a class="headerlink" href="#equation-f31f3ae0-7bac-447e-8092-063428cf80c4" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+distribuzione geometrica si ottiene nel modo seguente:</p>
+<div class="proof theorem admonition" id="theorem-1">
+<p class="admonition-title"><span class="caption-number">Theorem 13.1 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>Fissato <span class="math notranslate nohighlight">\(p \in (0, 1]\)</span> e data <span class="math notranslate nohighlight">\(X \sim \mathrm G(p)\)</span>,
+<span class="math notranslate nohighlight">\(\forall n \in \mathbb N \cup \{ 0 \}\)</span> e <span class="math notranslate nohighlight">\(\forall x \in \mathbb R\)</span></p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+F_X(x; p) = \left( 1 - (1 - p)^{\lfloor x \rfloor + 1} \right)
+            \mathrm I_{[0, +\infty]}(x) \enspace.
+\end{equation*}\]</div>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Indipendentemente dal valore di <span class="math notranslate nohighlight">\(n\)</span> si ha che</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
 \mathbb P(X &gt; n) &amp;= \sum_{x=n+1}^{+\infty}f_X(x; p)
                   = \sum_{x=n+1}^{+\infty}(1-p)^x p \\
                  &amp;= p (1-p)^{n+1} \sum_{x=n+1}^{+\infty}(1-p)^{x - (n+1)}
                   = p (1-p)^{n+1} \sum_{i=0}^{+\infty}(1-p)^i \\
-                 &amp;= p (1-p)^{n+1} \frac{1}{1-(1-p)} \\
-                 &amp;= (1-p)^{n+1} \enspace.
-\end{align}\]</div>
-<p>Pertanto <span class="math notranslate nohighlight">\(F_X(n; p) = \mathbb P(X \leq n) = 1 - \mathbb P(X &gt; n)
-= 1 - (1-p)^{n+1}\)</span>.</p>
-<p>Fissato invece un generico <span class="math notranslate nohighlight">\(x \in \mathbb R^+\)</span> e indicato con
+                 &amp;= p (1-p)^{n+1} \frac{1}{1-(1-p)}
+                 &amp;= (1-p)^{n+1} \enspace,
+\end{align*}\]</div>
+<p>dove nel terzultimo passaggio ho applicato la sostituzione <span class="math notranslate nohighlight">\(i = x - (n + 1)\)</span>.
+Pertanto <span class="math notranslate nohighlight">\(F_X(n; p) = \mathbb P(X \leq n) = 1 - \mathbb P(X &gt; n)
+= 1 - (1-p)^{n+1}\)</span>. Fissato ora un generico <span class="math notranslate nohighlight">\(x \in \mathbb R^+\)</span> e indicato con
 <span class="math notranslate nohighlight">\(\lfloor x \rfloor\)</span> l'intero ottenuto troncando <span class="math notranslate nohighlight">\(x\)</span> (o, equivalentemente,
 arrotondandolo per difetto), l'evento <span class="math notranslate nohighlight">\(X \leq x\)</span> equivarrà a
 <span class="math notranslate nohighlight">\(X \leq \lfloor x \rfloor\)</span>. Tenuto infine conto del fatto che le specificazioni
-di una distribuzione geometrica sono non negative, si ottiene facilmente la
-seguente forma più generale per la funzione di ripartizione:</p>
+di una distribuzione geometrica sono non negative, si ottiene</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 F_X(x; p) = \left( 1 - (1 - p)^{\lfloor x \rfloor + 1} \right)
-                                 \mathrm I_{[0, +\infty]}(x) \enspace.
+                                 \mathrm I_{[0, +\infty]}(x)
 \end{equation*}\]</div>
+<p>come forma più generale per la funzione di ripartizione.</p>
+</div>
+<p>Il codice nella seguente cella nascosta permette di visualizzare i grafici
+delle funzioni di massa di probabilità e di ripartizione di una generica
+distribuzione geometrica. Essendo in questo caso infinito il supporto della
+distribuzione, il primo grafico contiene in teoria un numero infinito di
+bastoncini, e solo quelli relativi ai valori più piccoli delle specificazioni
+sono mostrati effettivamente. Nella versione interattiva del libro è anche
+possibile modificare il valore del parametro <span class="math notranslate nohighlight">\(p\)</span> agendo sul relativo selettore
+e verificando in che modo i grafici vengono modificati.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span> <span class="k">as</span> <span class="n">st</span>
+
+<span class="n">param_slider</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                                        <span class="nb">min</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+                                        <span class="nb">max</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                        <span class="n">step</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+                                        <span class="n">description</span><span class="o">=</span><span class="s1">&#39;p&#39;</span><span class="p">,</span>
+                                        <span class="n">continuous_update</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                        <span class="n">readout</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                        <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">geometric_pdf_cdf</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">geom</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">loc</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">G</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">G</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">G</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mf">.01</span><span class="p">,</span> <span class="n">G</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mf">.01</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C0&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">rf</span><span class="s1">&#39;$p = </span><span class="si">{</span><span class="n">p</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">widgets</span><span class="o">.</span><span class="n">interactive</span><span class="p">(</span><span class="n">geometric_pdf_cdf</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">param_slider</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "3869ca003d214d8bb13c798305a5e0a3"}</script></div>
+</div>
 <p>Un modo intuitivo di simulare l'estrazione di valori da una distribuzione
 geometrica consiste nel ripetere l'esecuzione del corrispondente esperimento
 bernoulliano, fermandosi quando si ottiene il primo successo e restituendo
@@ -771,7 +833,7 @@ distribuzione sia valido.</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">util</span> <span class="kn">import</span> <span class="n">bernoulli</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="k">def</span> <span class="nf">geom_rv</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Simulate the extraction of a value from the geometric distribution</span>
@@ -881,7 +943,7 @@ rigenerando automaticamente il grafico.</p>
 </div>
 <p>Procediamo ora a determinare il valore atteso e la varianza della
 distribuzione. Iniziamo mostrando un risultato intermedio.</p>
-<div class="proof lemma admonition" id="lemma-1">
+<div class="proof lemma admonition" id="lemma-2">
 <p class="admonition-title"><span class="caption-number">Lemma 13.1 </span></p>
 <section class="lemma-content" id="proof-content">
 <p>Per ogni <span class="math notranslate nohighlight">\(\alpha \in (-1, 1)\)</span></p>
@@ -907,7 +969,7 @@ rispetto ad <span class="math notranslate nohighlight">\(\alpha\)</span>, otteni
 <p>e ciò completa la dimostrazione.</p>
 </div>
 <p>Questo risultato ci permette di calcolare agevolmente il valore atteso.</p>
-<div class="proof proposition admonition" id="proposition-2">
+<div class="proof proposition admonition" id="proposition-3">
 <p class="admonition-title"><span class="caption-number">Proposition 13.1 </span></p>
 <section class="proposition-content" id="proof-content">
 <p>Il valore atteso della distribuzione geometrica di parametro
@@ -958,8 +1020,8 @@ ripetizioni tenderà a più infinito.</p>
 <p><strong>Proposizione</strong> Il valore atteso del quadrato della distribuzione geometrica
 di parametro <span class="math notranslate nohighlight">\(p\)</span> è pari a <span class="math notranslate nohighlight">\(\frac{(1-p)(2-p)}{p^2}\)</span>.</p>
 <p>Dimostrazione.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-24f04765-ea49-4a1c-a95f-65d381e2e030">
-<span class="eqno">(13.3)<a class="headerlink" href="#equation-24f04765-ea49-4a1c-a95f-65d381e2e030" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-fb328f92-06af-4bbf-8347-983c9b953c3f">
+<span class="eqno">(13.2)<a class="headerlink" href="#equation-fb328f92-06af-4bbf-8347-983c9b953c3f" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm E\left(X^2\right) &amp;= \sum_{i=0}^{+\infty} i^2 p_X(i) \\
                &amp;= \sum_{i=0}^{+\infty} i^2 p (1-p)^i \\
                &amp;= p (1-p) \sum_{i=0}^{+\infty} i^2 (1-p)^{i-1} \\
@@ -967,8 +1029,8 @@ di parametro <span class="math notranslate nohighlight">\(p\)</span> è pari a <
                &amp;= -p (1-p) \frac{\mathrm d}{\mathrm d p} \sum_{i=0}^{+\infty} i(1-p)^i.
 \end{align}\]</div>
 <p>Applicando ancora il lemma dimostrato precedentemente si ottiene</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2422df55-17bd-410c-8d07-30a8030ae827">
-<span class="eqno">(13.4)<a class="headerlink" href="#equation-2422df55-17bd-410c-8d07-30a8030ae827" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5d337a34-d089-4d61-b143-c0c022ae1b77">
+<span class="eqno">(13.3)<a class="headerlink" href="#equation-5d337a34-d089-4d61-b143-c0c022ae1b77" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm E\left(X^2\right) &amp;= -p (1-p) \frac{\mathrm d}{\mathrm d p}
                                 \frac{1-p}{p^2} \\
       &amp;= p (1-p) \frac{p^2 + 1p(1-p)}{p^4} \\
@@ -978,8 +1040,8 @@ di parametro <span class="math notranslate nohighlight">\(p\)</span> è pari a <
 <p><strong>Proposizione</strong>. La varianza della distribuzione geometrica di parametro <span class="math notranslate nohighlight">\(p\)</span>
 è uguale a <span class="math notranslate nohighlight">\(\frac{1-p}{p^2}\)</span>.</p>
 <p>Dimostrazione.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-733d780c-074e-44ea-85f1-5d0ec721162c">
-<span class="eqno">(13.5)<a class="headerlink" href="#equation-733d780c-074e-44ea-85f1-5d0ec721162c" title="Permalink a questa equazione">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2ba25300-d9b2-4712-a630-b6fe5937e7d7">
+<span class="eqno">(13.4)<a class="headerlink" href="#equation-2ba25300-d9b2-4712-a630-b6fe5937e7d7" title="Permalink a questa equazione">#</a></span>\[\begin{equation}
 \mathrm{Var}(X) = \mathrm E \left(X^2\right) - \mathrm E(X)^2 =
                   \frac{(1-p)(2-p)}{p^2} - \frac{(1-p)^2}{p^2} =
                   \frac{1-p}{p^2}.
@@ -1077,8 +1139,8 @@ nella versione interattiva degli appunti.</p>
 </div>
 <p>Si noti infine che <span class="math notranslate nohighlight">\(\mathrm P(X \geq x) = \mathrm P(X \geq \lfloor x \rfloor) =
 \mathrm P(X &gt; \lfloor x \rfloor - 1) = (1-p)^{\lfloor x \rfloor}\)</span>, e quindi</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f8e5d15b-1266-4f7e-8263-464592837e3a">
-<span class="eqno">(13.6)<a class="headerlink" href="#equation-f8e5d15b-1266-4f7e-8263-464592837e3a" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9bbe8b09-993d-4bc3-8253-1f6473dfab87">
+<span class="eqno">(13.5)<a class="headerlink" href="#equation-9bbe8b09-993d-4bc3-8253-1f6473dfab87" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm P(X \geq x+y | X \geq x)
             &amp;= \frac{\mathrm  P(X \geq x+y, X \geq x)}{\mathrm  P(X \geq x)} \\
             &amp;= \frac{\mathrm  P(X \geq x+y)}{\mathrm  P(X \geq x)} \\
@@ -1094,6 +1156,125 @@ alcunché sul numero di successivi insuccessi prima che si verifichi il primo
 successo. In altre parole, non c'è nessuna differenza, da un punto di vista
 probabilistico, dalla ripetizione degli esperimenti che vanno dal <span class="math notranslate nohighlight">\(n+1\)</span>-esimo
 in poi e dal ricominciare da capo la ripetizione.</p>
+</section>
+<section id="i-momenti-della-distribuzione-geometrica">
+<h2><span class="section-number">13.4.2. </span>I momenti della distribuzione geometrica (*)<a class="headerlink" href="#i-momenti-della-distribuzione-geometrica" title="Permalink to this heading">#</a></h2>
+<p>Fissato <span class="math notranslate nohighlight">\(p \in (0, 1]\)</span>, la funzione generatrice dei momenti per una variabile
+aleatoria <span class="math notranslate nohighlight">\(X \sim \mathrm{g}(p)\)</span> ha la seguente forma analitica:</p>
+<div class="math notranslate nohighlight" id="equation-eq-mgf-geometric">
+<span class="eqno">(13.6)<a class="headerlink" href="#equation-eq-mgf-geometric" title="Permalink a questa equazione">#</a></span>\[m_X(t) = \mathbb E\left( \mathrm e^{tX} \right)
+       = \sum_{x=0}^{+\infty}(1 - p)^x p \mathrm e^{tx}
+       = p \sum_{x=0}^{+\infty}((1 - p) \mathrm e^t)^x
+       = p (1 - (1 - p) \mathrm e^t)^{-1} \enspace,\]</div>
+<p>ed è definita per i valori di <span class="math notranslate nohighlight">\(t\)</span> per i quali è garantita la convergenza della
+serie geometrica contenuta in <a class="reference internal" href="#equation-eq-mgf-geometric">(13.6)</a>, cioè quando
+<span class="math notranslate nohighlight">\(| (1 - p) \mathrm e^t | &lt; 1\)</span>, che equivale a <span class="math notranslate nohighlight">\(t &lt; - \log(1-p)\)</span>. Pertanto le
+prime quattro derivate della funzione generatrice dei momenti saranno</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+m_X'(t)    = &amp; m_X(t)^2 \frac{1 - p}{p} \mathrm e^t \enspace, \\
+m_X''(t)   = &amp; \frac{1-p}{p} \mathrm e^t (m_X(t)^2 + 2 m_X(t) m_X'(t))
+               \enspace, \\
+m_X'''(t)  = &amp; \frac{1-p}{p} \mathrm e^t ( m_X(t)^2 + 4 m_X(t) m_X'(t)
+             + 2 m_X'(t)^2 + 2 m_X(t) m_X''(t)) \enspace, \\
+m_X^{\mathrm{IV}}(t) = &amp; \frac{1-p}{p} \mathrm e^t ( m_X(t)^2 + 6 m_X(t) m_X'(t) +
+               6 m_X'(t)^2 + 6 m_X(t) m_X''(t) + 6 m_X'(t) m_X''(t)
+               + 2 m_X(t) m_X'''(t) ) \enspace.
+\end{align*}\]</div>
+<p>Pertanto:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbb E(X) = m_X'(0) = \frac{1-p}{p}\)</span>, a conferma di quanto abbiamo
+ricavato in XXXXX;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb E(X^2) = m_X''(0) = \frac{(1 - p)(2 - p)}{p^2}\)</span>, come visto in XXXX;</p></li>
+<li><p>i momenti terzo e quarto sono rispettivamente
+<span class="math notranslate nohighlight">\(\mu_3' = m_X'''(0) = \frac{(1-p)(p^2 -6p + 6)}{p^3}\)</span> e
+<span class="math notranslate nohighlight">\(\mu'_4 = m_X^{\mathrm{IV}}(0) = \frac{1-p}{p} (24 - 36p + 14p^2 - p^3)\)</span>.</p></li>
+</ul>
+<p>Per calcolare i momenti centrali si può utilizzare il
+<a class="reference internal" href="../c4-variabili-aleatorie/momenti.html#teo:central-moments">Theorem 12.2</a>: posto <span class="math notranslate nohighlight">\(Y \coloneqq X - \frac{1-p}{p}\)</span> si ha</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+m_Y'(t)  &amp;= \mathrm e^{-t\frac{1-p}{p}}
+            \left( m_X'(t) - \frac{1-p}{p} m_X(t) \right) \enspace, \\
+m_Y''(t) &amp;= \mathrm e^{-t\frac{1-p}{p}}
+            \left( m_X''(t) - 2 \frac{1-p}{p} m_X'(t) +
+                       \left( \frac{1-p}{p} \right)^2 m_X(t) \right) \enspace,
+\end{align*}\]</div>
+<p>e pertanto i primi due momenti centrali sono <span class="math notranslate nohighlight">\(\mu_1 = m_Y'(0) = 0\)</span> e
+<span class="math notranslate nohighlight">\(\mu_2 = m_Y''(0) = \frac{1 - p}{p^2}\)</span>, che coincidono con il valore atteso e
+la varianza della distribuzione geometrica. Analogamente</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+m_Y'''(t) = \mathrm e^{-t\frac{1-p}{p}} \left( m_X'''(t)
+            - 3 \frac{1-p}{p} m_X''(t)
+            + 3 \left( \frac{1-p}{p} \right)^2 m_X'(t)
+            - \left( \frac{1-p}{p} \right)^3 m_X(t) \right) \enspace,
+\end{equation*}\]</div>
+<p>da cui si ricava che il terzo momento centrale è</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mu_3 = m_Y'''(0) = \frac{(1- p)(2 - p)}{p^3}
+\end{equation*}\]</div>
+<p>e quindi la skewness della distribuzione è pari a</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{\mu_3}{\sigma^3} = \frac{(1- p)(2 - p)}{p^3} \frac{p^3}{(1-p)^{3/2}}
+                       = \frac{2-p}{\sqrt{1-p}} \enspace.
+\end{equation*}\]</div>
+<p>Infine,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+m_Y^{\mathrm{IV}}(t) = \mathrm e^{-t\frac{1-p}{p}} \left( m_X^{\mathrm{IV}}(t)
+            - 4 \frac{1-p}{p} m_X'''(t)
+            + 6 \left( \frac{1-p}{p} \right)^2 m_X''(t)
+            - 4 \left( \frac{1-p}{p} \right)^3 m'_X(t)
+            + \left( \frac{1-p}{p} \right)^4 m_X(t) \right)
+\end{equation*}\]</div>
+<p>e</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mu_4 = m_Y^{\mathrm{IV}}(0) = \frac{1-p}{p^4}(p^2 -9p + 9) \enspace,
+\end{equation*}\]</div>
+<p>e pertanto la curtosi della distribuzione geometrica è</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{\mu_4}{\sigma^4} - 3 =
+      \frac{1-p}{p^4}(p^2 -9p + 9) \frac{p^4}{(1 - p)^2} - 3
+      = 6 + \frac{p^2}{1 - p} \enspace,
+\end{equation*}\]</div>
+<p>che è sempre strettamente positiva, il che rende la distribuzione
+leptocurtica: tenderà a produrre più valori fuori scala se confrontata con
+una distribuzione normale con gli stessi valore atteso e deviazione standard.
+Questo fatto è abbastanza ovvio, avendo la distribuzione geometrica una
+coda a destra. In particolare, più <span class="math notranslate nohighlight">\(p\)</span> si avvicina a <span class="math notranslate nohighlight">\(1\)</span> e più la curtosi
+aumenta, coerentemente con il fatto che in questi casi la distribuzione tende
+a degenerare alla costante <span class="math notranslate nohighlight">\(0\)</span>. La <a class="reference internal" href="bernoulli.html#fig-bernoulli-sk-plot"><span class="std std-numref">Figura 13.2</span></a>
+illustra il grafico skewness-curtosi per la famiglia delle distribuzioni
+geometriche.</p>
+<div class="cell tag_hide-cell tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+<span class="n">skewness</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">p</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
+<span class="n">kurtosis</span> <span class="o">=</span> <span class="mi">6</span> <span class="o">+</span> <span class="n">p</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">skewness</span><span class="p">,</span> <span class="n">kurtosis</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">glue</span><span class="p">(</span><span class="s2">&quot;geometric-sk-plot&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
 </section>
 </section>
 
@@ -1123,7 +1304,10 @@ in poi e dal ricominciare da capo la ripetizione.</p>
               
               
                 <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="uniforme.html"
@@ -1143,7 +1327,10 @@ in poi e dal ricominciare da capo la ripetizione.</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -1159,6 +1346,7 @@ in poi e dal ricominciare da capo la ripetizione.</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-modello-geometrico">13.4.1. Il modello geometrico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#i-momenti-della-distribuzione-geometrica">13.4.2. I momenti della distribuzione geometrica (*)</a></li>
 </ul>
   </nav></div>
 
@@ -1167,7 +1355,7 @@ in poi e dal ricominciare da capo la ripetizione.</p>
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -1197,7 +1385,7 @@ Di <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://
     
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -1206,8 +1394,8 @@ Di <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>
