@@ -684,8 +684,8 @@ in un certo qual senso che la specificazione assunta assume un valore
 infinito, cosa che è proibita dalla <a class="reference internal" href="../c4-variabili-aleatorie/variabili-aleatorie.html#def:variabile-aleatoria">Definition 12.1</a>.</p>
 <p>Si verifica facilmente che sommando i valori di massa di probabilità per tutte
 le specificazioni della distribuzione si ottiene come risultato 1:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1267e731-4d02-4a69-a2fb-f91f7a27dbb8">
-<span class="eqno">(13.1)<a class="headerlink" href="#equation-1267e731-4d02-4a69-a2fb-f91f7a27dbb8" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-85aa0a65-a637-435b-a7c5-af9292f8cb3d">
+<span class="eqno">(13.1)<a class="headerlink" href="#equation-85aa0a65-a637-435b-a7c5-af9292f8cb3d" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \sum_{x=0}^{+\infty}\mathrm f(x; p) = \sum_{x=0}^{+\infty} (1-p)^x p =
 p \sum_{x=0}^{+\infty}(1-p)^x
  = p \frac{1}{1-(1-p)} = 1.
@@ -714,8 +714,8 @@ distribuzione geometrica si ottiene nel modo seguente:</p>
 </section>
 </div><div class="proof admonition" id="proof">
 <p>Proof. Indipendentemente dal valore di <span class="math notranslate nohighlight">\(n\)</span> si ha che</p>
-<div class="amsmath math notranslate nohighlight" id="equation-601c8c9b-1b59-4096-8054-7d665acffe21">
-<span class="eqno">(13.3)<a class="headerlink" href="#equation-601c8c9b-1b59-4096-8054-7d665acffe21" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e6adb0ec-42bb-4e65-9188-93c036c0bae6">
+<span class="eqno">(13.3)<a class="headerlink" href="#equation-e6adb0ec-42bb-4e65-9188-93c036c0bae6" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathbb P(X &gt; n) &amp;= \sum_{x=n+1}^{+\infty}f_X(x; p)
                   = \sum_{x=n+1}^{+\infty}(1-p)^x p \\
                  &amp;= p (1-p)^{n+1} \sum_{x=n+1}^{+\infty}(1-p)^{x - (n+1)}
@@ -789,7 +789,7 @@ e verificando in che modo i grafici vengono modificati.</p>
 </div>
 </details>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "705f25486dca484086b7768226386577"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "8085ec65d76643d3b9505c3760e1ec7d"}</script></div>
 </div>
 </section>
 <section id="valore-atteso-e-varianza-della-distribuzione-geometrica">
@@ -841,7 +841,7 @@ geometrica converga. Procedendo in modo analogo,</p>
 </div>
 <p>Questo risultato ci permette di calcolare agevolmente il valore atteso della
 distribuzione.</p>
-<div class="proof theorem admonition" id="theorem-3">
+<div class="proof theorem admonition" id="teo:mean-geometric">
 <p class="admonition-title"><span class="caption-number">Theorem 13.2 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>Dati <span class="math notranslate nohighlight">\(p \in (0, 1]\)</span>, e <span class="math notranslate nohighlight">\(X \sim \mathrm G(p)\)</span>,</p>
@@ -909,7 +909,7 @@ parametro <span class="math notranslate nohighlight">\(p \in (0, 1]\)</span> di 
 </figure>
 <p>Procedendo in modo simile a quanto abbiamo visto per il valore atteso è
 possibile calcolare anche la varianza della distribuzione.</p>
-<div class="proof theorem admonition" id="theorem-4">
+<div class="proof theorem admonition" id="teo:var-geometric">
 <p class="admonition-title"><span class="caption-number">Theorem 13.3 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>Data <span class="math notranslate nohighlight">\(X \sim \mathrm G(p)\)</span> con <span class="math notranslate nohighlight">\(p \in (0, 1]\)</span>,</p>
@@ -1042,8 +1042,9 @@ m_X^{\mathrm{IV}}(t) = &amp; \frac{1-p}{p} \mathrm e^t ( m_X(t)^2 + 6 m_X(t) m_X
 <p>Pertanto:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\mathbb E(X) = m_X'(0) = \frac{1-p}{p}\)</span>, a conferma di quanto abbiamo
-ricavato in XXXXX;</p></li>
-<li><p><span class="math notranslate nohighlight">\(\mathbb E(X^2) = m_X''(0) = \frac{(1 - p)(2 - p)}{p^2}\)</span>, come visto in XXXX;</p></li>
+ricavato nel <a class="reference internal" href="#teo:mean-geometric">Theorem 13.2</a>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb E(X^2) = m_X''(0) = \frac{(1 - p)(2 - p)}{p^2}\)</span>, come ottenuto
+nella dimostrazione del <a class="reference internal" href="#teo:var-geometric">Theorem 13.3</a>;</p></li>
 <li><p>i momenti terzo e quarto sono rispettivamente
 <span class="math notranslate nohighlight">\(\mu_3' = m_X'''(0) = \frac{(1-p)(p^2 -6p + 6)}{p^3}\)</span> e
 <span class="math notranslate nohighlight">\(\mu'_4 = m_X^{\mathrm{IV}}(0) = \frac{1-p}{p} (24 - 36p + 14p^2 - p^3)\)</span>.</p></li>
@@ -1058,9 +1059,10 @@ m_Y''(t) &amp;= \mathrm e^{-t\frac{1-p}{p}}
             \left( m_X''(t) - 2 \frac{1-p}{p} m_X'(t) +
                        \left( \frac{1-p}{p} \right)^2 m_X(t) \right) \enspace,
 \end{align*}\]</div>
-<p>e pertanto i primi due momenti centrali sono <span class="math notranslate nohighlight">\(\mu_1 = m_Y'(0) = 0\)</span> e
-<span class="math notranslate nohighlight">\(\mu_2 = m_Y''(0) = \frac{1 - p}{p^2}\)</span>, che coincidono con il valore atteso e
-la varianza della distribuzione geometrica. Analogamente</p>
+<p>e pertanto i primi due momenti centrali sono <span class="math notranslate nohighlight">\(\mu_1 = m_Y'(0) = 0\)</span>, come
+deve necessariamente essere, e <span class="math notranslate nohighlight">\(\mu_2 = m_Y''(0) = \frac{1 - p}{p^2}\)</span>, che
+coincide con la varianza della distribuzione geometrica ricavata nel
+<a class="reference internal" href="#teo:var-geometric">Theorem 13.3</a>. Analogamente</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 m_Y'''(t) = \mathrm e^{-t\frac{1-p}{p}} \left( m_X'''(t)
@@ -1166,12 +1168,13 @@ x_q &amp;= \min_x \left\{ F_X(x; p) \geq q \right\} = \min_x
 <p>Pertanto la mediana, il primo e il terzo quartile della distribuzione saranno</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
+
 x_{1/2} &amp;= \left\lceil \frac{\log_2 \frac{1}{2}}{\log_2 (1 - p)}
                                                            \right\rceil - 1
          = \left\lceil \frac{-1}{\log_2 (1 - p)} \right\rceil - 1 \enspace, \\
-x_{1/4} &amp;= \left\lceil \frac{-2}{\log_2 (1 - p)} \right\rceil - 1 \enspace, \\
-x_{3/4} &amp;= \left\lceil \frac{\log_2 3 -2}{\log_2 (1 - p)} \right\rceil - 1
+x_{1/4} &amp;= \left\lceil \frac{\log_2 3 -2}{\log_2 (1 - p)} \right\rceil - 1
                                                                   \enspace, \\
+x_{3/4} &amp;= \left\lceil \frac{-2}{\log_2 (1 - p)} \right\rceil - 1 \enspace, \\
 \end{align*}\]</div>
 <p>come evidenziato dal diagramma a scatola illustrato nella
 <a class="reference internal" href="#fig-geometric-bp"><span class="std std-ref">Figura %s</span></a>.</p>
@@ -1185,9 +1188,9 @@ x_{3/4} &amp;= \left\lceil \frac{\log_2 3 -2}{\log_2 (1 - p)} \right\rceil - 1
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">))</span>
 
 <span class="n">p</span> <span class="o">=</span> <span class="mf">0.2</span>
-<span class="n">first_quartile</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">third_quartile</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span>
 <span class="n">median</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span>
-<span class="n">third_quartile</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">first_quartile</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span>
 
 <span class="n">lw</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">height</span> <span class="o">=</span> <span class="mf">0.2</span>
@@ -1209,15 +1212,25 @@ x_{3/4} &amp;= \left\lceil \frac{\log_2 3 -2}{\log_2 (1 - p)} \right\rceil - 1
          <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">lw</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">third_quartile</span><span class="p">,</span> <span class="n">third_quartile</span><span class="o">*</span><span class="mf">1.2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">lw</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">third_quartile</span><span class="o">*</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">third_quartile</span><span class="o">*</span><span class="mf">1.8</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">third_quartile</span><span class="o">*</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">third_quartile</span><span class="o">*</span><span class="mf">1.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
          <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">lw</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">median</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\ln 2/\lambda$&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">median</span><span class="o">+</span><span class="mf">.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.6</span><span class="p">,</span>
+         <span class="sa">r</span><span class="s1">&#39;$\left\lceil \frac{-1}{\log_2 (1 - p)} \right\rceil - 1$&#39;</span><span class="p">,</span>
+         <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">first_quartile</span><span class="o">+</span><span class="mf">.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span>
+         <span class="sa">r</span><span class="s1">&#39;$\left\lceil \frac{\log_2 3 -2}{\log_2 (1 - p)} \right\rceil - 1$&#39;</span><span class="p">,</span>
+         <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">third_quartile</span><span class="o">+</span><span class="mf">.1</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span>
+         <span class="sa">r</span><span class="s1">&#39;$\left\lceil \frac{-2}{\log_2 (1 - p)} \right\rceil - 1$&#39;</span><span class="p">,</span>
+         <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-<span class="n">pad</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="o">-</span><span class="n">pad</span><span class="p">,</span> <span class="mf">2.5</span><span class="o">+</span><span class="n">pad</span><span class="p">)</span> 
+<span class="n">pad</span> <span class="o">=</span> <span class="mf">.5</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="o">-</span><span class="n">pad</span><span class="p">,</span> <span class="n">third_quartile</span><span class="o">*</span><span class="mf">1.5</span><span class="o">+</span><span class="n">pad</span><span class="p">)</span> 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="n">glue</span><span class="p">(</span><span class="s2">&quot;geometric-bp&quot;</span><span class="p">,</span> <span class="n">fig</span><span class="p">)</span>
@@ -1227,7 +1240,7 @@ x_{3/4} &amp;= \left\lceil \frac{\log_2 3 -2}{\log_2 (1 - p)} \right\rceil - 1
 </details>
 </div>
 <figure class="align-default" id="fig-geometric-bp" style="width: 100%">
-<img alt="../../_images/cb59004cf3304f15fd65825ce0e8729fdba7ca1b6749698fb8af7a9a213c2218.png" src="../../_images/cb59004cf3304f15fd65825ce0e8729fdba7ca1b6749698fb8af7a9a213c2218.png" />
+<img alt="../../_images/7ab3a79c96d5acb0f3ad0e1b3b8f969c69a62ce4d5e4415bd90f8f7fda73be4f.png" src="../../_images/7ab3a79c96d5acb0f3ad0e1b3b8f969c69a62ce4d5e4415bd90f8f7fda73be4f.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 13.7 </span><span class="caption-text">Diagramma a scatola per la distribuzione geometrica di parametro
 <span class="math notranslate nohighlight">\(p = 0.7\)</span>. Il baffo a destra della scatola è parzialmente tratteggiato

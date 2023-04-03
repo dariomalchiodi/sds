@@ -266,6 +266,8 @@ Questo risultato ci permette di calcolare agevolmente il valore atteso della
 distribuzione.
 
 ```{prf:theorem}
+:label: teo:mean-geometric
+
 Dati $p \in (0, 1]$, e $X \sim \mathrm G(p)$,
 
 \begin{equation*}
@@ -331,6 +333,8 @@ Procedendo in modo simile a quanto abbiamo visto per il valore atteso è
 possibile calcolare anche la varianza della distribuzione.
 
 ```{prf:theorem}
+:label: teo:var-geometric
+
 Data $X \sim \mathrm G(p)$ con $p \in (0, 1]$,
 
 \begin{equation*}
@@ -470,8 +474,9 @@ m_X^{\mathrm{IV}}(t) = & \frac{1-p}{p} \mathrm e^t ( m_X(t)^2 + 6 m_X(t) m_X'(t)
 
 Pertanto:
 - $\mathbb E(X) = m_X'(0) = \frac{1-p}{p}$, a conferma di quanto abbiamo
-  ricavato in XXXXX;
-- $\mathbb E(X^2) = m_X''(0) = \frac{(1 - p)(2 - p)}{p^2}$, come visto in XXXX;
+  ricavato nel {prf:ref}`teo:mean-geometric`;
+- $\mathbb E(X^2) = m_X''(0) = \frac{(1 - p)(2 - p)}{p^2}$, come ottenuto
+  nella dimostrazione del {prf:ref}`teo:var-geometric`;
 - i momenti terzo e quarto sono rispettivamente
   $\mu_3' = m_X'''(0) = \frac{(1-p)(p^2 -6p + 6)}{p^3}$ e
   $\mu'_4 = m_X^{\mathrm{IV}}(0) = \frac{1-p}{p} (24 - 36p + 14p^2 - p^3)$. 
@@ -487,9 +492,10 @@ m_Y''(t) &= \mathrm e^{-t\frac{1-p}{p}}
                        \left( \frac{1-p}{p} \right)^2 m_X(t) \right) \enspace,
 \end{align*}
 
-e pertanto i primi due momenti centrali sono $\mu_1 = m_Y'(0) = 0$ e
-$\mu_2 = m_Y''(0) = \frac{1 - p}{p^2}$, che coincidono con il valore atteso e
-la varianza della distribuzione geometrica. Analogamente
+e pertanto i primi due momenti centrali sono $\mu_1 = m_Y'(0) = 0$, come
+deve necessariamente essere, e $\mu_2 = m_Y''(0) = \frac{1 - p}{p^2}$, che
+coincide con la varianza della distribuzione geometrica ricavata nel
+{prf:ref}`teo:var-geometric`. Analogamente
 
 \begin{equation*}
 m_Y'''(t) = \mathrm e^{-t\frac{1-p}{p}} \left( m_X'''(t)
@@ -595,12 +601,13 @@ x_q &= \min_x \left\{ F_X(x; p) \geq q \right\} = \min_x
 Pertanto la mediana, il primo e il terzo quartile della distribuzione saranno
 
 \begin{align*}
+
 x_{1/2} &= \left\lceil \frac{\log_2 \frac{1}{2}}{\log_2 (1 - p)}
                                                            \right\rceil - 1
          = \left\lceil \frac{-1}{\log_2 (1 - p)} \right\rceil - 1 \enspace, \\
-x_{1/4} &= \left\lceil \frac{-2}{\log_2 (1 - p)} \right\rceil - 1 \enspace, \\
-x_{3/4} &= \left\lceil \frac{\log_2 3 -2}{\log_2 (1 - p)} \right\rceil - 1
+x_{1/4} &= \left\lceil \frac{\log_2 3 -2}{\log_2 (1 - p)} \right\rceil - 1
                                                                   \enspace, \\
+x_{3/4} &= \left\lceil \frac{-2}{\log_2 (1 - p)} \right\rceil - 1 \enspace, \\
 \end{align*}
 
 come evidenziato dal diagramma a scatola illustrato nella
@@ -612,9 +619,9 @@ come evidenziato dal diagramma a scatola illustrato nella
 fig, ax = plt.subplots(figsize=(6, 0.3))
 
 p = 0.2
-first_quartile = np.ceil(-2 / np.log2(1 - p)) - 1
+third_quartile = np.ceil(-2 / np.log2(1 - p)) - 1
 median = np.ceil(-1 / np.log2(1 - p)) - 1
-third_quartile = np.ceil((np.log2(3) - 2) / np.log2(1 - p)) - 1
+first_quartile = np.ceil((np.log2(3) - 2) / np.log2(1 - p)) - 1
 
 lw = 1
 height = 0.2
@@ -636,15 +643,25 @@ plt.plot([first_quartile, third_quartile], [-height, -height],
          c='k', linewidth=lw)
 
 plt.plot([third_quartile, third_quartile*1.2], [0, 0], c='k', linewidth=lw)
-plt.plot([third_quartile*1.2, third_quartile*1.8], [0, 0],
+plt.plot([third_quartile*1.2, third_quartile*1.5], [0, 0],
          'k--', linewidth=lw)
 
 plt.text(0, -0.5, '0', ha='center')
-plt.text(median, -0.5, r'$\ln 2/\lambda$', ha='center')
+plt.text(median+.2, -0.6,
+         r'$\left\lceil \frac{-1}{\log_2 (1 - p)} \right\rceil - 1$',
+         ha='center')
+
+plt.text(first_quartile+.5, 0.6,
+         r'$\left\lceil \frac{\log_2 3 -2}{\log_2 (1 - p)} \right\rceil - 1$',
+         ha='center')
+
+plt.text(third_quartile+.1, 0.6,
+         r'$\left\lceil \frac{-2}{\log_2 (1 - p)} \right\rceil - 1$',
+         ha='center')
 
 plt.axis('off')
-pad = 2
-plt.xlim(0-pad, 2.5+pad) 
+pad = .5
+plt.xlim(0-pad, third_quartile*1.5+pad) 
 plt.show()
 
 glue("geometric-bp", fig)
@@ -661,6 +678,7 @@ per enfatizzare il fatto che si estende fino a $+\infty$.
 ```
 
 ## Implementazione della distribuzione geometrica
+
 
 
 
