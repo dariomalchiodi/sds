@@ -90,7 +90,7 @@ A titolo di esempio la cella seguente visualizza il box plot relativo
 all'anno di prima apparizione.
 
 ```{code-cell} ipython3
-year.plot.box(whis=20)
+year.plot.box(whis=(0, 100))
 plt.show()
 ```
 
