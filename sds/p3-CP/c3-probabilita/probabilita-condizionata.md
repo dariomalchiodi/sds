@@ -20,6 +20,8 @@ senso ipotizzare che esso si sia verificato. In generale, si dice che la
 probabilità $\mathbb P(E | F)$ è indefinita quando $\mathbb P(F) = 0$.
 ```
 ````{prf:definition} Probabilità condizionata
+:label: def:conditional_probability
+
 Siano $E, F \subseteq \Omega$ due eventi in uno spazio di probabilità
 $(\Omega, \mathbb A, \mathbb P)$: se $\mathbb P(F) \neq 0$ si definisce
 _probabilità condizionata di $E$ dato $F$_ (o, più brevemente, _proababilità di

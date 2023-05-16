@@ -293,7 +293,12 @@ testo.
 |  Simbolo                      | Significato |
 |:-----------------------------:|:-----------:|
 | $\mathbb N$                   | insieme dei numeri naturali                                        |
+| $\mathbb Z$                   | insieme dei numeri interi                                        |
+| $[a..b]$                      | intervallo discreto dei numeri interi compresi tra $a$ e $b$ (estremi inclusi) |
 | $\mathbb R$                   | insieme dei numeri reali                                        |
+| $[a, b]$                      | intervallo chiuso dei numeri reali compresi tra $a$ e $b$ |
+| $(a, b)$                      | intervallo aperto dei numeri reali compresi tra $a$ e $b$ |
+| $[a, b)$, $(a, b]$            | intervalli semiaperti dei numeri reali compresi tra $a$ e $b$ |
 | $A = \{ a_1, \dots a_n \}$    | insieme/evento composto dagli elementi/esiti $a_1, \dots, a_n$ |
 | $a \in A$                     | elemento $a$ dell'insieme $A$                                      |
 | $(a_1, \dots, a_n)$           | disposizione o permutazione composta dagli elementi $a_1, \dots, a_n$ |

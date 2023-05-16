@@ -104,7 +104,7 @@ dalla loro effettiva tangibilità
   inseriti sono stati mescolati.
 
 In casi come questo, le regole del calcolo combinatorio descritte nel
-{numref}`Capitolo %s <cap-calcolo-combinatorio>` sono spesso di aiuto per
+{numref}`Capitolo %s <cap:calcolo-combinatorio>` sono spesso di aiuto per
 calcolare numeratore e denominatore nella formula {eq}`eq-prob-classica`.
 
 ```{margin}

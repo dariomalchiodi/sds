@@ -68,6 +68,8 @@ Prima di approfondire che cosa succede all'aumentare di $n$, calcoliamo il
 valore atteso e la varianza di $X_n$, perché ci saranno utili in seguito.
 
 ````{prf:lemma}
+:label: lemma:ex_var_uniform
+
 Il valore atteso e la varianza di $X_n$ sono rispettivamente uguali a
 $\frac{1}{2}$ e a $\frac{1}{12} + \frac{1}{6 n}$.
 

@@ -581,7 +581,7 @@ div#proof {
   margin-right: 0.3rem;
 }
 
-#proof > p:last-of-type::after {
+#proof > :last-child::after {
     border: 2px solid currentColor;
     /* background-color: currentColor; */
     content: '';

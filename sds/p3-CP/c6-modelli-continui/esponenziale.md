@@ -246,6 +246,7 @@ distribuzione continua, che viene chiamata _distribuzione esponenziale_ e che
 è definita formalmente come seuge, unitamente alla corrispondente famiglia.
 
 ````{prf:definition} La famiglia delle distribuzioni esponenziali
+:label: def:exponential_distr_family
 
 Dato $\lambda \in \mathbb R^+$, la  _distribuzione esponenziale_ di parametro
 $\lambda$ è definita dalla funzione di densità di probabilità
@@ -394,6 +395,7 @@ proprietà di chiusura rispetto alla scalatura delle sue specificazioni,
 come indicato in dettaglio di seguito.
 
 ````{prf:lemma}
+:label: lemma:exponential_scaling
 Dati $\lambda \in \mathbb R^+$ e $X \sim \mathrm E(\lambda)$, posto
 $c > 0$ e definita $Y \coloneqq X/c$, si ha che $Y \sim \mathrm E(\lambda c)$.
 ```{prf:proof}
