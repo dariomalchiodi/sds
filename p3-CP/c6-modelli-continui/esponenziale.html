@@ -264,7 +264,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/variabili-aleatorie-discrete.html">12.2. Variabili aleatorie discrete</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/valore-atteso.html">12.3. Valore atteso</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/varianza.html">12.4. Varianza</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/momenti.html">12.5. momenti</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/momenti.html">12.5. Momenti</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/variabili-multivariate.html">12.6. Variabili aleatorie multivariate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/indipendenza.html">12.7. Indipendenza di variabili aleatorie</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/disuguaglianze-fondamentali.html">12.8. Disuguaglianze fondamentali</a></li>
@@ -273,8 +273,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../c5-modelli-discreti/modelli-discreti.html">13. Modelli discreti</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/bernoulli.html">13.1. Le distribuzioni di Bernoulli</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/binomiale.html">13.2. Il modello binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/uniforme.html">13.3. Il modello uniforme discreto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/binomiale.html">13.2. Le distribuzioni binomiali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/uniforme.html">13.3. Le distribuzioni uniformi discrete</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/geometrico.html">13.4. Le distribuzioni geometriche</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/poisson.html">13.5. Il modello di poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/ipergeometrico.html">13.6. Il modello ipergeometrico</a></li>
@@ -820,7 +820,7 @@ delle variabili aleatorie <span class="math notranslate nohighlight">\(Y_i\)</sp
 <a class="reference internal" href="#equation-eq-pdf-exponential">(14.18)</a>. Riassumendo, siamo di fronte a un nuovo tipo di
 distribuzione continua, che viene chiamata <em>distribuzione esponenziale</em> e che
 è definita formalmente come seuge, unitamente alla corrispondente famiglia.</p>
-<div class="proof definition admonition" id="definition-0">
+<div class="proof definition admonition" id="def:exponential_distr_family">
 <p class="admonition-title"><span class="caption-number">Definition 14.8 </span> (La famiglia delle distribuzioni esponenziali)</p>
 <section class="definition-content" id="proof-content">
 <p>Dato <span class="math notranslate nohighlight">\(\lambda \in \mathbb R^+\)</span>, la  <em>distribuzione esponenziale</em> di parametro
@@ -959,7 +959,7 @@ parametro <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
 <p>La famiglia delle distribuzioni esponenziali gode di una particolare
 proprietà di chiusura rispetto alla scalatura delle sue specificazioni,
 come indicato in dettaglio di seguito.</p>
-<div class="proof lemma admonition" id="lemma-1">
+<div class="proof lemma admonition" id="lemma:exponential_scaling">
 <p class="admonition-title"><span class="caption-number">Lemma 14.5 </span></p>
 <section class="lemma-content" id="proof-content">
 <p>Dati <span class="math notranslate nohighlight">\(\lambda \in \mathbb R^+\)</span> e <span class="math notranslate nohighlight">\(X \sim \mathrm E(\lambda)\)</span>, posto

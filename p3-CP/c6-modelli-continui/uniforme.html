@@ -264,7 +264,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/variabili-aleatorie-discrete.html">12.2. Variabili aleatorie discrete</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/valore-atteso.html">12.3. Valore atteso</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/varianza.html">12.4. Varianza</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/momenti.html">12.5. momenti</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/momenti.html">12.5. Momenti</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/variabili-multivariate.html">12.6. Variabili aleatorie multivariate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/indipendenza.html">12.7. Indipendenza di variabili aleatorie</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/disuguaglianze-fondamentali.html">12.8. Disuguaglianze fondamentali</a></li>
@@ -273,8 +273,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../c5-modelli-discreti/modelli-discreti.html">13. Modelli discreti</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/bernoulli.html">13.1. Le distribuzioni di Bernoulli</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/binomiale.html">13.2. Il modello binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/uniforme.html">13.3. Il modello uniforme discreto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/binomiale.html">13.2. Le distribuzioni binomiali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/uniforme.html">13.3. Le distribuzioni uniformi discrete</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/geometrico.html">13.4. Le distribuzioni geometriche</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/poisson.html">13.5. Il modello di poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/ipergeometrico.html">13.6. Il modello ipergeometrico</a></li>
@@ -607,8 +607,8 @@ document.write(`
 che <span class="math notranslate nohighlight">\(Y\)</span> è una variabile aleatoria avente come supporto <span class="math notranslate nohighlight">\(D_Y = [a, b]\)</span>, dunque
 una variabile aleatoria continua. Se si considera poi un generico
 <span class="math notranslate nohighlight">\(y \in (a, b)\)</span>, si ha</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7002989c-ae48-49db-94f9-eefbccb42e7e">
-<span class="eqno">(14.9)<a class="headerlink" href="#equation-7002989c-ae48-49db-94f9-eefbccb42e7e" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0b01d2c8-ec2f-4829-ad26-da7ac8940e7e">
+<span class="eqno">(14.9)<a class="headerlink" href="#equation-0b01d2c8-ec2f-4829-ad26-da7ac8940e7e" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 F_Y(y) &amp;= \mathbb P(Y \leq y) = \mathbb P(a + X (b-a) \leq y) \\
        &amp;= \mathbb P \left( X \leq \frac{y - a}{b - a} \right)
         = \frac{y - a}{b - a} \enspace,
@@ -1077,7 +1077,7 @@ densità di probabilità.</p>
 </details>
 </div>
 <figure class="align-default" id="fig-uniform-implementation" style="width: 100%">
-<img alt="../../_images/a54f96713fd87ffcaf6e08f50f320dbb124b8e5e7c6f34e3898ab4688315c88b.png" src="../../_images/a54f96713fd87ffcaf6e08f50f320dbb124b8e5e7c6f34e3898ab4688315c88b.png" />
+<img alt="../../_images/c5f86446284d6fe78acb30a9bcc704d6d16293c9676648ff5437c25ac30c2708.png" src="../../_images/c5f86446284d6fe78acb30a9bcc704d6d16293c9676648ff5437c25ac30c2708.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 14.7 </span><span class="caption-text">Le barre mostrano l'istogramma ottenuto a partire da un insieme di valori
 pseudo-casuali generati a partire da una distribuzione uniforme tra <span class="math notranslate nohighlight">\(-4\)</span> e

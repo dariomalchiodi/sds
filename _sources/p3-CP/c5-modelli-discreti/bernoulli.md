@@ -301,27 +301,35 @@ $p$
   e la distribuzione è asimmetrica verso sinistra, simmetrica e asimmetrica
   verso destra rispettivamente a seconda del fatto che $p$ sia minore di,
   uguale a oppure maggiore di $\frac{1}{2}$;
-- il momento centrale quarto è uguale a $\mu_4 = p(1 - p)(1 - p - p^2)$ e
+- il momento centrale quarto è uguale a $\mu_4 = p(1 - p)(1 - 3p + 3p^2)$ e
   pertanto la curtosi sarà
   ```{math}
-  \frac{\mu_4}{\sigma^4} - 3 = \frac{(1 - p - p^2)}{p(1 - p)} - 3
-                             = \frac{(1 - 2p)^2}{p(1 - p)} \enspace.
+  \frac{\mu_4}{\sigma^4} - 3 = \frac{(1 - 3p + 3p^2)}{p(1 - p)} - 3
+                             = \frac{1 - 6p(1-p)}{p(1 - p)}
+                             = \frac{1}{p(1-p)} - 6 \enspace.
   ```
 
 Questo ultimo punto merita una riflessione più approfondita: la curtosi è
-sempre positiva quando $p \neq \frac{1}{2}$; di conseguenza, la distribuzione
-è quasi sempre leptocurtica, nel senso che tende a produrre più valori fuori
-scala se confrontata con una distribuzione normale di ugual valore atteso e
-deviazione standard. In questi casi, inoltre, il valore della curtosi aumenta
-sempre di più man mano che il parametro si avvicina a uno dei suoi due
-valori estremi, $0$ oppure $1$: come è ragionevole aspettarsi, d'altronde,
-più $p$ è vicino questi valori e più la distribuzione tenderà ad assumere
-una sola delle sue due specificazioni, diventando quindi più propensa a
-generare valori fuori scala. La curtosi è invece nulla quando
-$p = \frac{1}{2}$, e anche in questo caso si tratta di un risultato abbastanza
-scontato, essendo equiprobabili le specificazioni della distribuzione.
-La {numref}`Figura %s <fig:bernoulli-sk-plot>` illustra il grafico
-skewness-curtosi per la famiglia delle distribuzioni di Bernoulli.
+positiva, e dunque la distribuzione è leptocurtica, quando $p$ si trova
+all'interno dell'intervallo
+
+```{math}
+\left[ \frac{1}{2} - \frac{1}{\sqrt{12}},
+       \frac{1}{2} + \frac{1}{\sqrt{12}} \right] \enspace,
+```
+
+mesocurtica quando lo stesso parametro coincide con uno degli estremi di
+questo intervallo e platicurtica nei casi rimanenti. Informalmente, questo
+risultato riflette il fatto che quando $p$ si avvicina a $0$, la distribuzione
+di Bernoulli tenderà a produrre sempre più raramente la specificazione $1$,
+che sarà dunque assimilabile a un valore fuori scala. Un comportamento analogo
+si ha ovviamente quando $p$ approssima $1$ (con $0$ che diventa )
+Al contrario, più $p$ si avvicina a $\frac{1}{2}$ e più le due specificazioni
+diventano equiprobabili, così che la distribuzione tenderà sempre di meno a
+produrre valori fuori scala, e quindi a essere leptocurtica. In particolare,
+si può dimostrare che per $p = \frac{1}{2}$ si ottiene la più platicurtica
+delle distribuzioni. La {numref}`Figura %s <fig:bernoulli-sk-plot>` illustra
+il grafico skewness-curtosi per la famiglia delle distribuzioni di Bernoulli.
 
 ```{code-cell} ipython3
 :tags: [hide-cell, remove-output]
@@ -332,7 +340,7 @@ fig, ax = plt.subplots()
 
 p = np.linspace(0.01, 0.99, 300)
 skewness = (1 - 2*p) / (p * (1 - p))**0.5
-kurtosis = (1 - 2*p)**2 / (p * (1 - p))
+kurtosis = 1 / (p * (1 - p)) - 6
 
 plt.plot(skewness, kurtosis)
 plt.show()

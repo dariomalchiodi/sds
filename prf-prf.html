@@ -266,7 +266,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="p3-CP/c4-variabili-aleatorie/variabili-aleatorie-discrete.html">12.2. Variabili aleatorie discrete</a></li>
 <li class="toctree-l2"><a class="reference internal" href="p3-CP/c4-variabili-aleatorie/valore-atteso.html">12.3. Valore atteso</a></li>
 <li class="toctree-l2"><a class="reference internal" href="p3-CP/c4-variabili-aleatorie/varianza.html">12.4. Varianza</a></li>
-<li class="toctree-l2"><a class="reference internal" href="p3-CP/c4-variabili-aleatorie/momenti.html">12.5. momenti</a></li>
+<li class="toctree-l2"><a class="reference internal" href="p3-CP/c4-variabili-aleatorie/momenti.html">12.5. Momenti</a></li>
 <li class="toctree-l2"><a class="reference internal" href="p3-CP/c4-variabili-aleatorie/variabili-multivariate.html">12.6. Variabili aleatorie multivariate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="p3-CP/c4-variabili-aleatorie/indipendenza.html">12.7. Indipendenza di variabili aleatorie</a></li>
 <li class="toctree-l2"><a class="reference internal" href="p3-CP/c4-variabili-aleatorie/disuguaglianze-fondamentali.html">12.8. Disuguaglianze fondamentali</a></li>
@@ -275,8 +275,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="p3-CP/c5-modelli-discreti/modelli-discreti.html">13. Modelli discreti</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="p3-CP/c5-modelli-discreti/bernoulli.html">13.1. Le distribuzioni di Bernoulli</a></li>
-<li class="toctree-l2"><a class="reference internal" href="p3-CP/c5-modelli-discreti/binomiale.html">13.2. Il modello binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="p3-CP/c5-modelli-discreti/uniforme.html">13.3. Il modello uniforme discreto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="p3-CP/c5-modelli-discreti/binomiale.html">13.2. Le distribuzioni binomiali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="p3-CP/c5-modelli-discreti/uniforme.html">13.3. Le distribuzioni uniformi discrete</a></li>
 <li class="toctree-l2"><a class="reference internal" href="p3-CP/c5-modelli-discreti/geometrico.html">13.4. Le distribuzioni geometriche</a></li>
 <li class="toctree-l2"><a class="reference internal" href="p3-CP/c5-modelli-discreti/poisson.html">13.5. Il modello di poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="p3-CP/c5-modelli-discreti/ipergeometrico.html">13.6. Il modello ipergeometrico</a></li>
@@ -479,16 +479,19 @@ document.write(`
    <a href="#cap-def-spazio-equiprobabile"><strong>def-spazio-equiprobabile</strong></a> | 
    <a href="#cap-def-spazio-esiti"><strong>def-spazio-esiti</strong></a> | 
    <a href="#cap-def:bernoulli-distribution"><strong>def:bernoulli-distribution</strong></a> | 
+   <a href="#cap-def:binomial-distribution"><strong>def:binomial-distribution</strong></a> | 
+   <a href="#cap-def:conditional_probability"><strong>def:conditional_probability</strong></a> | 
    <a href="#cap-def:continuous-uniform-family"><strong>def:continuous-uniform-family</strong></a> | 
    <a href="#cap-def:densita"><strong>def:densita</strong></a> | 
+   <a href="#cap-def:disc-unif-distribution"><strong>def:disc-unif-distribution</strong></a> | 
    <a href="#cap-def:distribuzione-geometrica"><strong>def:distribuzione-geometrica</strong></a> | 
    <a href="#cap-def:dominio"><strong>def:dominio</strong></a> | 
+   <a href="#cap-def:exponential_distr_family"><strong>def:exponential_distr_family</strong></a> | 
    <a href="#cap-def:uniform-continuous"><strong>def:uniform-continuous</strong></a> | 
    <a href="#cap-def:va-continua"><strong>def:va-continua</strong></a> | 
    <a href="#cap-def:valore-atteso-continuo"><strong>def:valore-atteso-continuo</strong></a> | 
    <a href="#cap-def:valore-atteso-discreto"><strong>def:valore-atteso-discreto</strong></a> | 
    <a href="#cap-def:variabile-aleatoria"><strong>def:variabile-aleatoria</strong></a> | 
-   <a href="#cap-definition-0"><strong>definition-0</strong></a> | 
    <a href="#cap-definition-2"><strong>definition-2</strong></a> | 
    <a href="#cap-definition-5"><strong>definition-5</strong></a> | 
    <a href="#cap-dupli-kate-multi-paul"><strong>dupli-kate-multi-paul</strong></a> | 
@@ -509,7 +512,9 @@ document.write(`
    <a href="#cap-lemma-1"><strong>lemma-1</strong></a> | 
    <a href="#cap-lemma-2"><strong>lemma-2</strong></a> | 
    <a href="#cap-lemma-3"><strong>lemma-3</strong></a> | 
+   <a href="#cap-lemma:ex_var_uniform"><strong>lemma:ex_var_uniform</strong></a> | 
    <a href="#cap-lemma:exponential-quantile"><strong>lemma:exponential-quantile</strong></a> | 
+   <a href="#cap-lemma:exponential_scaling"><strong>lemma:exponential_scaling</strong></a> | 
    <a href="#cap-lemma:geom-ev"><strong>lemma:geom-ev</strong></a> | 
    <a href="#cap-probabilita-evento-complementare"><strong>probabilita-evento-complementare</strong></a> | 
    <a href="#cap-probabilita-evento-impossibile"><strong>probabilita-evento-impossibile</strong></a> | 
@@ -522,13 +527,21 @@ document.write(`
    <a href="#cap-teo-chiusura-algebra-eventi"><strong>teo-chiusura-algebra-eventi</strong></a> | 
    <a href="#cap-teo-markov"><strong>teo-markov</strong></a> | 
    <a href="#cap-teo-prob-equiprobabile"><strong>teo-prob-equiprobabile</strong></a> | 
+   <a href="#cap-teo:binomial-expected-value"><strong>teo:binomial-expected-value</strong></a> | 
+   <a href="#cap-teo:binomial-variance"><strong>teo:binomial-variance</strong></a> | 
    <a href="#cap-teo:central-moments"><strong>teo:central-moments</strong></a> | 
    <a href="#cap-teo:demoivre-laplace"><strong>teo:demoivre-laplace</strong></a> | 
+   <a href="#cap-teo:disc-unif-cdf"><strong>teo:disc-unif-cdf</strong></a> | 
    <a href="#cap-teo:exponential-memory-lack"><strong>teo:exponential-memory-lack</strong></a> | 
    <a href="#cap-teo:geometric-cdf"><strong>teo:geometric-cdf</strong></a> | 
    <a href="#cap-teo:mean-geometric"><strong>teo:mean-geometric</strong></a> | 
    <a href="#cap-teo:memoryless-geo"><strong>teo:memoryless-geo</strong></a> | 
+   <a href="#cap-teo:mgf-method"><strong>teo:mgf-method</strong></a> | 
    <a href="#cap-teo:proprieta-F"><strong>teo:proprieta-F</strong></a> | 
+   <a href="#cap-teo:sum-bernoulli"><strong>teo:sum-bernoulli</strong></a> | 
+   <a href="#cap-teo:sum-binomial"><strong>teo:sum-binomial</strong></a> | 
+   <a href="#cap-teo:unif-disc-expected-value"><strong>teo:unif-disc-expected-value</strong></a> | 
+   <a href="#cap-teo:unif-disc-var"><strong>teo:unif-disc-var</strong></a> | 
    <a href="#cap-teo:var-geometric"><strong>teo:var-geometric</strong></a> | 
    <a href="#cap-theo-normal"><strong>theo-normal</strong></a> | 
    <a href="#cap-theorem-1"><strong>theorem-1</strong></a> | 
@@ -682,6 +695,22 @@ document.write(`
        <a href="p3-CP/c5-modelli-discreti/bernoulli.html#def:bernoulli-distribution"><code class="xref">def:bernoulli-distribution</code></a> <em>(p3-CP/c5-modelli-discreti/bernoulli)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def:binomial-distribution"><td></td><td>
+       <strong>def:binomial-distribution</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="p3-CP/c5-modelli-discreti/binomiale.html#def:binomial-distribution"><code class="xref">def:binomial-distribution</code></a> <em>(p3-CP/c5-modelli-discreti/binomiale)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def:conditional_probability"><td></td><td>
+       <strong>def:conditional_probability</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="p3-CP/c3-probabilita/probabilita-condizionata.html#def:conditional_probability"><code class="xref">def:conditional_probability</code></a> <em>(p3-CP/c3-probabilita/probabilita-condizionata)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-def:continuous-uniform-family"><td></td><td>
        <strong>def:continuous-uniform-family</strong></td><td></td></tr>
      <tr>
@@ -698,6 +727,14 @@ document.write(`
        <a href="p3-CP/c6-modelli-continui/va-continue.html#def:densita"><code class="xref">def:densita</code></a> <em>(p3-CP/c6-modelli-continui/va-continue)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def:disc-unif-distribution"><td></td><td>
+       <strong>def:disc-unif-distribution</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="p3-CP/c5-modelli-discreti/uniforme.html#def:disc-unif-distribution"><code class="xref">def:disc-unif-distribution</code></a> <em>(p3-CP/c5-modelli-discreti/uniforme)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-def:distribuzione-geometrica"><td></td><td>
        <strong>def:distribuzione-geometrica</strong></td><td></td></tr>
      <tr>
@@ -712,6 +749,14 @@ document.write(`
        <td></td>
        <td>
        <a href="p3-CP/c4-variabili-aleatorie/variabili-aleatorie.html#def:dominio"><code class="xref">def:dominio</code></a> <em>(p3-CP/c4-variabili-aleatorie/variabili-aleatorie)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def:exponential_distr_family"><td></td><td>
+       <strong>def:exponential_distr_family</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="p3-CP/c6-modelli-continui/esponenziale.html#def:exponential_distr_family"><code class="xref">def:exponential_distr_family</code></a> <em>(p3-CP/c6-modelli-continui/esponenziale)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-def:uniform-continuous"><td></td><td>
@@ -752,14 +797,6 @@ document.write(`
        <td></td>
        <td>
        <a href="p3-CP/c4-variabili-aleatorie/variabili-aleatorie.html#def:variabile-aleatoria"><code class="xref">def:variabile-aleatoria</code></a> <em>(p3-CP/c4-variabili-aleatorie/variabili-aleatorie)</em></td><td>
-       <em>definition</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-definition-0"><td></td><td>
-       <strong>definition-0</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="p3-CP/c6-modelli-continui/esponenziale.html#definition-0"><code class="xref">definition-0</code></a> <em>(p3-CP/c6-modelli-continui/esponenziale)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-definition-2"><td></td><td>
@@ -922,12 +959,28 @@ document.write(`
        <a href="p3-CP/c6-modelli-continui/uniforme.html#lemma-3"><code class="xref">lemma-3</code></a> <em>(p3-CP/c6-modelli-continui/uniforme)</em></td><td>
        <em>lemma</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-lemma:ex_var_uniform"><td></td><td>
+       <strong>lemma:ex_var_uniform</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="p3-CP/c6-modelli-continui/dal-discreto-al-continuo.html#lemma:ex_var_uniform"><code class="xref">lemma:ex_var_uniform</code></a> <em>(p3-CP/c6-modelli-continui/dal-discreto-al-continuo)</em></td><td>
+       <em>lemma</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-lemma:exponential-quantile"><td></td><td>
        <strong>lemma:exponential-quantile</strong></td><td></td></tr>
      <tr>
        <td></td>
        <td>
        <a href="p3-CP/c6-modelli-continui/esponenziale.html#lemma:exponential-quantile"><code class="xref">lemma:exponential-quantile</code></a> <em>(p3-CP/c6-modelli-continui/esponenziale)</em></td><td>
+       <em>lemma</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-lemma:exponential_scaling"><td></td><td>
+       <strong>lemma:exponential_scaling</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="p3-CP/c6-modelli-continui/esponenziale.html#lemma:exponential_scaling"><code class="xref">lemma:exponential_scaling</code></a> <em>(p3-CP/c6-modelli-continui/esponenziale)</em></td><td>
        <em>lemma</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-lemma:geom-ev"><td></td><td>
@@ -1026,6 +1079,22 @@ document.write(`
        <a href="p3-CP/c3-probabilita/spazi-equiprobabili.html#teo-prob-equiprobabile"><code class="xref">teo-prob-equiprobabile</code></a> <em>(p3-CP/c3-probabilita/spazi-equiprobabili)</em></td><td>
        <em>theorem</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-teo:binomial-expected-value"><td></td><td>
+       <strong>teo:binomial-expected-value</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="p3-CP/c5-modelli-discreti/binomiale.html#teo:binomial-expected-value"><code class="xref">teo:binomial-expected-value</code></a> <em>(p3-CP/c5-modelli-discreti/binomiale)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-teo:binomial-variance"><td></td><td>
+       <strong>teo:binomial-variance</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="p3-CP/c5-modelli-discreti/binomiale.html#teo:binomial-variance"><code class="xref">teo:binomial-variance</code></a> <em>(p3-CP/c5-modelli-discreti/binomiale)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-teo:central-moments"><td></td><td>
        <strong>teo:central-moments</strong></td><td></td></tr>
      <tr>
@@ -1040,6 +1109,14 @@ document.write(`
        <td></td>
        <td>
        <a href="p3-CP/c6-modelli-continui/gaussiano.html#teo:demoivre-laplace"><code class="xref">teo:demoivre-laplace</code></a> <em>(p3-CP/c6-modelli-continui/gaussiano)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-teo:disc-unif-cdf"><td></td><td>
+       <strong>teo:disc-unif-cdf</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="p3-CP/c5-modelli-discreti/uniforme.html#teo:disc-unif-cdf"><code class="xref">teo:disc-unif-cdf</code></a> <em>(p3-CP/c5-modelli-discreti/uniforme)</em></td><td>
        <em>theorem</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-teo:exponential-memory-lack"><td></td><td>
@@ -1074,12 +1151,52 @@ document.write(`
        <a href="p3-CP/c5-modelli-discreti/geometrico.html#teo:memoryless-geo"><code class="xref">teo:memoryless-geo</code></a> <em>(p3-CP/c5-modelli-discreti/geometrico)</em></td><td>
        <em>theorem</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-teo:mgf-method"><td></td><td>
+       <strong>teo:mgf-method</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="p3-CP/c4-variabili-aleatorie/momenti.html#teo:mgf-method"><code class="xref">teo:mgf-method</code></a> <em>(p3-CP/c4-variabili-aleatorie/momenti)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-teo:proprieta-F"><td></td><td>
        <strong>teo:proprieta-F</strong></td><td></td></tr>
      <tr>
        <td></td>
        <td>
        <a href="p3-CP/c4-variabili-aleatorie/variabili-aleatorie.html#teo:proprieta-F"><code class="xref">teo:proprieta-F</code></a> <em>(p3-CP/c4-variabili-aleatorie/variabili-aleatorie)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-teo:sum-bernoulli"><td></td><td>
+       <strong>teo:sum-bernoulli</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="p3-CP/c5-modelli-discreti/binomiale.html#teo:sum-bernoulli"><code class="xref">teo:sum-bernoulli</code></a> <em>(p3-CP/c5-modelli-discreti/binomiale)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-teo:sum-binomial"><td></td><td>
+       <strong>teo:sum-binomial</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="p3-CP/c5-modelli-discreti/binomiale.html#teo:sum-binomial"><code class="xref">teo:sum-binomial</code></a> <em>(p3-CP/c5-modelli-discreti/binomiale)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-teo:unif-disc-expected-value"><td></td><td>
+       <strong>teo:unif-disc-expected-value</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="p3-CP/c5-modelli-discreti/uniforme.html#teo:unif-disc-expected-value"><code class="xref">teo:unif-disc-expected-value</code></a> <em>(p3-CP/c5-modelli-discreti/uniforme)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-teo:unif-disc-var"><td></td><td>
+       <strong>teo:unif-disc-var</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="p3-CP/c5-modelli-discreti/uniforme.html#teo:unif-disc-var"><code class="xref">teo:unif-disc-var</code></a> <em>(p3-CP/c5-modelli-discreti/uniforme)</em></td><td>
        <em>theorem</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-teo:var-geometric"><td></td><td>

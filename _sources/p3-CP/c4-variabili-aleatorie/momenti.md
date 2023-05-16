@@ -12,7 +12,35 @@ kernelspec:
   name: python3
 ---
 
-# momenti
+# Momenti
+
+````{prf:theorem}
+:label: teo:mgf-method
+
+Siano date $n$ variabili aleatorie $X_1, \dots, X_n$ tra loro indipendenti e
+ciascuna avente la stessa distribuzione di una variabile aleatoria $X$, della
+quale $m_X$ indica la funzione generatrice dei momenti. Posto
+$Y \coloneqq \sum_{i=1}^n X_i$, si ha
+
+```{math}
+m_Y(t) = \left( m_X(t) \right)^n \enspace.
+```
+````
+````{prf:proof}
+La funzione generatrice dei momenti di $Y$ è tale che
+
+\begin{align*}
+m_Y(t) = \mathbb E\left( \mathrm e^{tY} \right)
+       = \mathbb E\left( \mathrm e^{t\sum_{i=1}^n X_i} \right)
+       = \mathbb E\left( \prod_{i=1}^n \mathrm e^{t X_i} \right)
+       = \prod_{i=1}^n \mathbb E\left( \mathrm e^{t X_i} \right)
+       = \prod_{i=1}^n m_X(t)
+       = \left( m_X(t) \right)^n \enspace,
+\end{align*}
+
+dove il terzultimo passaggio è giustificato dall'indipendenza di
+$X_1, \dots, X_n$.
+````
 
 ````{prf:theorem}
 :label: teo:central-moments

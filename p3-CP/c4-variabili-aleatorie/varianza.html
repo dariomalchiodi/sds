@@ -65,11 +65,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "loader": {"load": ["[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["mathtools"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'p3-CP/c4-variabili-aleatorie/varianza';</script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
     <link rel="search" title="Cerca" href="../../search.html" />
-    <link rel="next" title="12.5. momenti" href="momenti.html" />
+    <link rel="next" title="12.5. Momenti" href="momenti.html" />
     <link rel="prev" title="12.3. Valore atteso" href="valore-atteso.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="it"/>
@@ -262,7 +264,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="variabili-aleatorie-discrete.html">12.2. Variabili aleatorie discrete</a></li>
 <li class="toctree-l2"><a class="reference internal" href="valore-atteso.html">12.3. Valore atteso</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">12.4. Varianza</a></li>
-<li class="toctree-l2"><a class="reference internal" href="momenti.html">12.5. momenti</a></li>
+<li class="toctree-l2"><a class="reference internal" href="momenti.html">12.5. Momenti</a></li>
 <li class="toctree-l2"><a class="reference internal" href="variabili-multivariate.html">12.6. Variabili aleatorie multivariate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="indipendenza.html">12.7. Indipendenza di variabili aleatorie</a></li>
 <li class="toctree-l2"><a class="reference internal" href="disuguaglianze-fondamentali.html">12.8. Disuguaglianze fondamentali</a></li>
@@ -271,8 +273,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../c5-modelli-discreti/modelli-discreti.html">13. Modelli discreti</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/bernoulli.html">13.1. Le distribuzioni di Bernoulli</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/binomiale.html">13.2. Il modello binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/uniforme.html">13.3. Il modello uniforme discreto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/binomiale.html">13.2. Le distribuzioni binomiali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/uniforme.html">13.3. Le distribuzioni uniformi discrete</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/geometrico.html">13.4. Le distribuzioni geometriche</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/poisson.html">13.5. Il modello di poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/ipergeometrico.html">13.6. Il modello ipergeometrico</a></li>
@@ -586,6 +588,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="varianza">
 <h1><span class="section-number">12.4. </span>Varianza<a class="headerlink" href="#varianza" title="Permalink to this heading">#</a></h1>
+<div class="math notranslate nohighlight" id="equation-eq-var-alternative">
+<span class="eqno">(12.2)<a class="headerlink" href="#equation-eq-var-alternative" title="Permalink a questa equazione">#</a></span>\[\mathrm{Var}(X) = \mathbb E \left( X^2 \right) - \mathbb E(X)^2 \enspace.\]</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -633,7 +637,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">successivo</p>
-        <p class="prev-next-title"><span class="section-number">12.5. </span>momenti</p>
+        <p class="prev-next-title"><span class="section-number">12.5. </span>Momenti</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

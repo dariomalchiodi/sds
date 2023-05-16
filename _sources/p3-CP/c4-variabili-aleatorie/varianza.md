@@ -13,3 +13,9 @@ kernelspec:
 ---
 
 # Varianza
+
+```{math}
+:label: eq:var-alternative
+
+\mathrm{Var}(X) = \mathbb E \left( X^2 \right) - \mathbb E(X)^2 \enspace.
+```

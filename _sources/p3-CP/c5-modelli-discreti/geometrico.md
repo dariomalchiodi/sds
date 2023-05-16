@@ -547,7 +547,7 @@ una distribuzione normale con gli stessi valore atteso e deviazione standard.
 Questo fatto è abbastanza ovvio, avendo la distribuzione geometrica una
 coda a destra. In particolare, più $p$ si avvicina a $1$ e più la curtosi
 aumenta, coerentemente con il fatto che in questi casi la distribuzione tende
-a degenerare alla costante $0$. La {numref}`Figura %s <fig:bernoulli-sk-plot>`
+a degenerare alla costante $0$. La {numref}`Figura %s <fig:geometric-sk-plot>`
 illustra il grafico skewness-curtosi per la famiglia delle distribuzioni
 geometriche.
 

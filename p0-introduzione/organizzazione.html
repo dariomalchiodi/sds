@@ -264,7 +264,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../p3-CP/c4-variabili-aleatorie/variabili-aleatorie-discrete.html">12.2. Variabili aleatorie discrete</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../p3-CP/c4-variabili-aleatorie/valore-atteso.html">12.3. Valore atteso</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../p3-CP/c4-variabili-aleatorie/varianza.html">12.4. Varianza</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../p3-CP/c4-variabili-aleatorie/momenti.html">12.5. momenti</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../p3-CP/c4-variabili-aleatorie/momenti.html">12.5. Momenti</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../p3-CP/c4-variabili-aleatorie/variabili-multivariate.html">12.6. Variabili aleatorie multivariate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../p3-CP/c4-variabili-aleatorie/indipendenza.html">12.7. Indipendenza di variabili aleatorie</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../p3-CP/c4-variabili-aleatorie/disuguaglianze-fondamentali.html">12.8. Disuguaglianze fondamentali</a></li>
@@ -273,8 +273,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../p3-CP/c5-modelli-discreti/modelli-discreti.html">13. Modelli discreti</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../p3-CP/c5-modelli-discreti/bernoulli.html">13.1. Le distribuzioni di Bernoulli</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../p3-CP/c5-modelli-discreti/binomiale.html">13.2. Il modello binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../p3-CP/c5-modelli-discreti/uniforme.html">13.3. Il modello uniforme discreto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../p3-CP/c5-modelli-discreti/binomiale.html">13.2. Le distribuzioni binomiali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../p3-CP/c5-modelli-discreti/uniforme.html">13.3. Le distribuzioni uniformi discrete</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../p3-CP/c5-modelli-discreti/geometrico.html">13.4. Le distribuzioni geometriche</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../p3-CP/c5-modelli-discreti/poisson.html">13.5. Il modello di poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../p3-CP/c5-modelli-discreti/ipergeometrico.html">13.6. Il modello ipergeometrico</a></li>
@@ -860,109 +860,124 @@ testo.</p>
 <tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\mathbb N\)</span></p></td>
 <td class="text-center"><p>insieme dei numeri naturali</p></td>
 </tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\mathbb Z\)</span></p></td>
+<td class="text-center"><p>insieme dei numeri interi</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\([a..b]\)</span></p></td>
+<td class="text-center"><p>intervallo discreto dei numeri interi compresi tra <span class="math notranslate nohighlight">\(a\)</span> e <span class="math notranslate nohighlight">\(b\)</span> (estremi inclusi)</p></td>
+</tr>
 <tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\mathbb R\)</span></p></td>
 <td class="text-center"><p>insieme dei numeri reali</p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(A = \{ a_1, \dots a_n \}\)</span></p></td>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\([a, b]\)</span></p></td>
+<td class="text-center"><p>intervallo chiuso dei numeri reali compresi tra <span class="math notranslate nohighlight">\(a\)</span> e <span class="math notranslate nohighlight">\(b\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\((a, b)\)</span></p></td>
+<td class="text-center"><p>intervallo aperto dei numeri reali compresi tra <span class="math notranslate nohighlight">\(a\)</span> e <span class="math notranslate nohighlight">\(b\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\([a, b)\)</span>, <span class="math notranslate nohighlight">\((a, b]\)</span></p></td>
+<td class="text-center"><p>intervalli semiaperti dei numeri reali compresi tra <span class="math notranslate nohighlight">\(a\)</span> e <span class="math notranslate nohighlight">\(b\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(A = \{ a_1, \dots a_n \}\)</span></p></td>
 <td class="text-center"><p>insieme/evento composto dagli elementi/esiti <span class="math notranslate nohighlight">\(a_1, \dots, a_n\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(a \in A\)</span></p></td>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(a \in A\)</span></p></td>
 <td class="text-center"><p>elemento <span class="math notranslate nohighlight">\(a\)</span> dell'insieme <span class="math notranslate nohighlight">\(A\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\((a_1, \dots, a_n)\)</span></p></td>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\((a_1, \dots, a_n)\)</span></p></td>
 <td class="text-center"><p>disposizione o permutazione composta dagli elementi <span class="math notranslate nohighlight">\(a_1, \dots, a_n\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(n!\)</span></p></td>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(n!\)</span></p></td>
 <td class="text-center"><p>fattoriale del numero intero <span class="math notranslate nohighlight">\(n\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\binom{n}{k}\)</span></p></td>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\binom{n}{k}\)</span></p></td>
 <td class="text-center"><p>coefficiente binomiale («<span class="math notranslate nohighlight">\(n\)</span> su <span class="math notranslate nohighlight">\(k\)</span>») di <span class="math notranslate nohighlight">\(n\)</span> oggetti in <span class="math notranslate nohighlight">\(k\)</span> posti</p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(p_n\)</span></p></td>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(p_n\)</span></p></td>
 <td class="text-center"><p>numero di permutazioni semplici di <span class="math notranslate nohighlight">\(n\)</span> elementi</p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(P_{n; n_1, \dots, n_k}\)</span></p></td>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(P_{n; n_1, \dots, n_k}\)</span></p></td>
 <td class="text-center"><p>numero di permutazioni con ripetizione di <span class="math notranslate nohighlight">\(n\)</span> elementi distinguibili a gruppi contenenti <span class="math notranslate nohighlight">\(n_1, \dots, n_k\)</span> oggetti</p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\{ a_1, \dots, a_n \}\)</span></p></td>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\{ a_1, \dots, a_n \}\)</span></p></td>
 <td class="text-center"><p>combinazione composta dagli elementi <span class="math notranslate nohighlight">\(a_1, \dots, a_n\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(D_{n, k}\)</span></p></td>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(D_{n, k}\)</span></p></td>
 <td class="text-center"><p>disposizioni con ripetizione di <span class="math notranslate nohighlight">\(n\)</span> oggetti in <span class="math notranslate nohighlight">\(k\)</span> posti</p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(d_{n, k}\)</span></p></td>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(d_{n, k}\)</span></p></td>
 <td class="text-center"><p>disposizioni senza ripetizione di <span class="math notranslate nohighlight">\(n\)</span> oggetti in <span class="math notranslate nohighlight">\(k\)</span> posti</p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(c_{n, k}\)</span></p></td>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(c_{n, k}\)</span></p></td>
 <td class="text-center"><p>combinazioni semplici di <span class="math notranslate nohighlight">\(n\)</span> oggetti in <span class="math notranslate nohighlight">\(k\)</span> posti</p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(C_{n, k}\)</span></p></td>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(C_{n, k}\)</span></p></td>
 <td class="text-center"><p>combinazioni con ripetizione di <span class="math notranslate nohighlight">\(n\)</span> oggetti in <span class="math notranslate nohighlight">\(k\)</span> posti</p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(S \subseteq T\)</span></p></td>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(S \subseteq T\)</span></p></td>
 <td class="text-center"><p>sottoinsieme/sottoevento <span class="math notranslate nohighlight">\(S\)</span> di un insieme/evento <span class="math notranslate nohighlight">\(T\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\Omega\)</span></p></td>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\Omega\)</span></p></td>
 <td class="text-center"><p>insieme universo / spazio degli esiti</p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(A \rightarrow B\)</span></p></td>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(A \rightarrow B\)</span></p></td>
 <td class="text-center"><p>evento/proposizione <span class="math notranslate nohighlight">\(A\)</span> implica evento/proposizione <span class="math notranslate nohighlight">\(B\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(A \leftrightarrow B\)</span></p></td>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(A \leftrightarrow B\)</span></p></td>
 <td class="text-center"><p>evento/proposizione <span class="math notranslate nohighlight">\(A\)</span> coimplica evento/proposizione <span class="math notranslate nohighlight">\(B\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(S \cup T\)</span></p></td>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(S \cup T\)</span></p></td>
 <td class="text-center"><p>unione degli insiemi/eventi <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(T\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(S \cap T\)</span></p></td>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(S \cap T\)</span></p></td>
 <td class="text-center"><p>intersezione degli insiemi/eventi <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(T\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(S \backslash T\)</span></p></td>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(S \backslash T\)</span></p></td>
 <td class="text-center"><p>differenza tra l'insieme/evento <span class="math notranslate nohighlight">\(S\)</span> e l'insieme/evento <span class="math notranslate nohighlight">\(T\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(S \ominus T\)</span></p></td>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(S \ominus T\)</span></p></td>
 <td class="text-center"><p>differenza simmetrica tra gli insiemi/eventi <span class="math notranslate nohighlight">\(S\)</span> e <span class="math notranslate nohighlight">\(T\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(A \vee B\)</span></p></td>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(A \vee B\)</span></p></td>
 <td class="text-center"><p>disgiunzione logica tra le proposizioni <span class="math notranslate nohighlight">\(A\)</span> e <span class="math notranslate nohighlight">\(B\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(A \wedge B\)</span></p></td>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(A \wedge B\)</span></p></td>
 <td class="text-center"><p>congiunzione logica tra le proposizioni <span class="math notranslate nohighlight">\(A\)</span> e <span class="math notranslate nohighlight">\(B\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\mathscr E\)</span></p></td>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\mathscr E\)</span></p></td>
 <td class="text-center"><p>esperimento casuale</p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\omega \in \Omega\)</span></p></td>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\omega \in \Omega\)</span></p></td>
 <td class="text-center"><p>esito di un esperimento casuale</p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\{ \omega \}\)</span></p></td>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\{ \omega \}\)</span></p></td>
 <td class="text-center"><p>evento elementare</p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\mathsf A\)</span></p></td>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\mathsf A\)</span></p></td>
 <td class="text-center"><p>algebra degli eventi</p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(2^A\)</span></p></td>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(2^A\)</span></p></td>
 <td class="text-center"><p>insieme delle parti dell'insieme <span class="math notranslate nohighlight">\(A\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\mathbb P\)</span></p></td>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\mathbb P\)</span></p></td>
 <td class="text-center"><p>funzione di probabilità</p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\mathbb P(E)\)</span></p></td>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\mathbb P(E)\)</span></p></td>
 <td class="text-center"><p>probabilità dell'evento <span class="math notranslate nohighlight">\(E\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\mathbb P(E|F)\)</span></p></td>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\mathbb P(E|F)\)</span></p></td>
 <td class="text-center"><p>probabilità condizionata dell'evento <span class="math notranslate nohighlight">\(E\)</span> dato l'evento <span class="math notranslate nohighlight">\(F\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\mathbb E(X)\)</span></p></td>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\mathbb E(X)\)</span></p></td>
 <td class="text-center"><p>valore atteso della variabile aleatoria <span class="math notranslate nohighlight">\(X\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\mathbb E(g(X))\)</span></p></td>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\mathbb E(g(X))\)</span></p></td>
 <td class="text-center"><p>valore atteso della funzione <span class="math notranslate nohighlight">\(g\)</span> della variabile aleatoria <span class="math notranslate nohighlight">\(X\)</span></p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\mathbb E(g(X, Y))\)</span></p></td>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\mathbb E(g(X, Y))\)</span></p></td>
 <td class="text-center"><p>valore atteso della funzione <span class="math notranslate nohighlight">\(g\)</span> delle variabili aleatorie <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span></p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(a \coloneqq b\)</span></p></td>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(a \coloneqq b\)</span></p></td>
 <td class="text-center"><p><span class="math notranslate nohighlight">\(a\)</span> è definito come uguale a <span class="math notranslate nohighlight">\(b\)</span></p></td>
 </tr>
 </tbody>

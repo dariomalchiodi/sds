@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>12.5. momenti &#8212; Superhero Data Science 
+    <title>12.5. Momenti &#8212; Superhero Data Science 
  Probabilità e Statistica</title>
   
   
@@ -264,7 +264,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="variabili-aleatorie-discrete.html">12.2. Variabili aleatorie discrete</a></li>
 <li class="toctree-l2"><a class="reference internal" href="valore-atteso.html">12.3. Valore atteso</a></li>
 <li class="toctree-l2"><a class="reference internal" href="varianza.html">12.4. Varianza</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">12.5. momenti</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">12.5. Momenti</a></li>
 <li class="toctree-l2"><a class="reference internal" href="variabili-multivariate.html">12.6. Variabili aleatorie multivariate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="indipendenza.html">12.7. Indipendenza di variabili aleatorie</a></li>
 <li class="toctree-l2"><a class="reference internal" href="disuguaglianze-fondamentali.html">12.8. Disuguaglianze fondamentali</a></li>
@@ -273,8 +273,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../c5-modelli-discreti/modelli-discreti.html">13. Modelli discreti</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/bernoulli.html">13.1. Le distribuzioni di Bernoulli</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/binomiale.html">13.2. Il modello binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/uniforme.html">13.3. Il modello uniforme discreto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/binomiale.html">13.2. Le distribuzioni binomiali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/uniforme.html">13.3. Le distribuzioni uniformi discrete</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/geometrico.html">13.4. Le distribuzioni geometriche</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/poisson.html">13.5. Il modello di poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/ipergeometrico.html">13.6. Il modello ipergeometrico</a></li>
@@ -572,7 +572,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>momenti</h1>
+    <h1>Momenti</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -587,9 +587,33 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="momenti">
-<h1><span class="section-number">12.5. </span>momenti<a class="headerlink" href="#momenti" title="Permalink to this heading">#</a></h1>
-<div class="proof theorem admonition" id="teo:central-moments">
+<h1><span class="section-number">12.5. </span>Momenti<a class="headerlink" href="#momenti" title="Permalink to this heading">#</a></h1>
+<div class="proof theorem admonition" id="teo:mgf-method">
 <p class="admonition-title"><span class="caption-number">Theorem 12.2 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>Siano date <span class="math notranslate nohighlight">\(n\)</span> variabili aleatorie <span class="math notranslate nohighlight">\(X_1, \dots, X_n\)</span> tra loro indipendenti e
+ciascuna avente la stessa distribuzione di una variabile aleatoria <span class="math notranslate nohighlight">\(X\)</span>, della
+quale <span class="math notranslate nohighlight">\(m_X\)</span> indica la funzione generatrice dei momenti. Posto
+<span class="math notranslate nohighlight">\(Y \coloneqq \sum_{i=1}^n X_i\)</span>, si ha</p>
+<div class="math notranslate nohighlight">
+\[m_Y(t) = \left( m_X(t) \right)^n \enspace.\]</div>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. La funzione generatrice dei momenti di <span class="math notranslate nohighlight">\(Y\)</span> è tale che</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+m_Y(t) = \mathbb E\left( \mathrm e^{tY} \right)
+       = \mathbb E\left( \mathrm e^{t\sum_{i=1}^n X_i} \right)
+       = \mathbb E\left( \prod_{i=1}^n \mathrm e^{t X_i} \right)
+       = \prod_{i=1}^n \mathbb E\left( \mathrm e^{t X_i} \right)
+       = \prod_{i=1}^n m_X(t)
+       = \left( m_X(t) \right)^n \enspace,
+\end{align*}\]</div>
+<p>dove il terzultimo passaggio è giustificato dall'indipendenza di
+<span class="math notranslate nohighlight">\(X_1, \dots, X_n\)</span>.</p>
+</div>
+<div class="proof theorem admonition" id="teo:central-moments">
+<p class="admonition-title"><span class="caption-number">Theorem 12.3 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>Data una variabile aleatoria <span class="math notranslate nohighlight">\(X\)</span> tale con valore atteso finito
 <span class="math notranslate nohighlight">\(\mathbb E(X) = \mu\)</span>, posto <span class="math notranslate nohighlight">\(Y \coloneqq X - \mu\)</span> si ha</p>

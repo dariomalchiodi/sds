@@ -72,7 +72,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Indice" href="../../genindex.html" />
     <link rel="search" title="Cerca" href="../../search.html" />
     <link rel="next" title="13.5. Il modello di poisson" href="poisson.html" />
-    <link rel="prev" title="13.3. Il modello uniforme discreto" href="uniforme.html" />
+    <link rel="prev" title="13.3. Le distribuzioni uniformi discrete" href="uniforme.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="it"/>
   </head>
@@ -264,7 +264,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/variabili-aleatorie-discrete.html">12.2. Variabili aleatorie discrete</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/valore-atteso.html">12.3. Valore atteso</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/varianza.html">12.4. Varianza</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/momenti.html">12.5. momenti</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/momenti.html">12.5. Momenti</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/variabili-multivariate.html">12.6. Variabili aleatorie multivariate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/indipendenza.html">12.7. Indipendenza di variabili aleatorie</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c4-variabili-aleatorie/disuguaglianze-fondamentali.html">12.8. Disuguaglianze fondamentali</a></li>
@@ -273,8 +273,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="modelli-discreti.html">13. Modelli discreti</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="bernoulli.html">13.1. Le distribuzioni di Bernoulli</a></li>
-<li class="toctree-l2"><a class="reference internal" href="binomiale.html">13.2. Il modello binomiale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="uniforme.html">13.3. Il modello uniforme discreto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="binomiale.html">13.2. Le distribuzioni binomiali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uniforme.html">13.3. Le distribuzioni uniformi discrete</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">13.4. Le distribuzioni geometriche</a></li>
 <li class="toctree-l2"><a class="reference internal" href="poisson.html">13.5. Il modello di poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ipergeometrico.html">13.6. Il modello ipergeometrico</a></li>
@@ -633,7 +633,7 @@ indipendenza fino a che non si ottiene per la prima volta un successo come
 esito. Questo processo viene modellato utilizzando la
 <em>distribuzione geometrica</em>, definita di seguito.</p>
 <div class="proof definition admonition" id="def:distribuzione-geometrica">
-<p class="admonition-title"><span class="caption-number">Definition 13.2 </span> (La famiglia delle distribuzioni geometriche)</p>
+<p class="admonition-title"><span class="caption-number">Definition 13.4 </span> (La famiglia delle distribuzioni geometriche)</p>
 <section class="definition-content" id="proof-content">
 <p>Fissato <span class="math notranslate nohighlight">\(p \in (0, 1]\)</span>, la distribuzione geometrica di parametro <span class="math notranslate nohighlight">\(p\)</span> è
 definita dalla funzione di massa di probabilità</p>
@@ -684,8 +684,8 @@ in un certo qual senso che la specificazione assunta assume un valore
 infinito, cosa che è proibita dalla <a class="reference internal" href="../c4-variabili-aleatorie/variabili-aleatorie.html#def:variabile-aleatoria">Definition 12.1</a>.</p>
 <p>Si verifica facilmente che sommando i valori di massa di probabilità per tutte
 le specificazioni della distribuzione si ottiene come risultato 1:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5cb1ab90-b9e0-4739-b31a-1e159d8f50f5">
-<span class="eqno">(13.1)<a class="headerlink" href="#equation-5cb1ab90-b9e0-4739-b31a-1e159d8f50f5" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-91d6bce5-f39a-4cd8-b20b-ecf0c404c50e">
+<span class="eqno">(13.3)<a class="headerlink" href="#equation-91d6bce5-f39a-4cd8-b20b-ecf0c404c50e" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \sum_{x=0}^{+\infty}\mathrm f(x; p) = \sum_{x=0}^{+\infty} (1-p)^x p =
 p \sum_{x=0}^{+\infty}(1-p)^x
  = p \frac{1}{1-(1-p)} = 1.
@@ -704,18 +704,18 @@ nel penultimo passaggio dell'equazione precedente e definita da</p>
 <p>La forma analitica per la funzione di ripartizione di una generica
 distribuzione geometrica si ottiene nel modo seguente:</p>
 <div class="proof theorem admonition" id="teo:geometric-cdf">
-<p class="admonition-title"><span class="caption-number">Theorem 13.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Theorem 13.8 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>Fissato <span class="math notranslate nohighlight">\(p \in (0, 1]\)</span> e data <span class="math notranslate nohighlight">\(X \sim \mathrm G(p)\)</span>,
 <span class="math notranslate nohighlight">\(\forall n \in \mathbb N \cup \{ 0 \}\)</span> e <span class="math notranslate nohighlight">\(\forall x \in \mathbb R\)</span></p>
 <div class="math notranslate nohighlight" id="equation-eq-geometric-cdf">
-<span class="eqno">(13.2)<a class="headerlink" href="#equation-eq-geometric-cdf" title="Permalink a questa equazione">#</a></span>\[F_X(x; p) = \left( 1 - (1 - p)^{\lfloor x \rfloor + 1} \right)
+<span class="eqno">(13.4)<a class="headerlink" href="#equation-eq-geometric-cdf" title="Permalink a questa equazione">#</a></span>\[F_X(x; p) = \left( 1 - (1 - p)^{\lfloor x \rfloor + 1} \right)
             \mathrm I_{[0, +\infty]}(x) \enspace.\]</div>
 </section>
 </div><div class="proof admonition" id="proof">
 <p>Proof. Indipendentemente dal valore di <span class="math notranslate nohighlight">\(n\)</span> si ha che</p>
-<div class="amsmath math notranslate nohighlight" id="equation-08f5a15e-2b5a-42a9-8a28-527e328f2db5">
-<span class="eqno">(13.3)<a class="headerlink" href="#equation-08f5a15e-2b5a-42a9-8a28-527e328f2db5" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-faaaf603-69e0-4ae3-9a0b-5954cdc69506">
+<span class="eqno">(13.5)<a class="headerlink" href="#equation-faaaf603-69e0-4ae3-9a0b-5954cdc69506" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathbb P(X &gt; n) &amp;= \sum_{x=n+1}^{+\infty}f_X(x; p)
                   = \sum_{x=n+1}^{+\infty}(1-p)^x p \\
                  &amp;= p (1-p)^{n+1} \sum_{x=n+1}^{+\infty}(1-p)^{x - (n+1)}
@@ -789,7 +789,7 @@ e verificando in che modo i grafici vengono modificati.</p>
 </div>
 </details>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "19f5f76a69fc4aadb9c35b9a75cff10d"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "b2d1fa56faac405b8007a6f05c32d865"}</script></div>
 </div>
 </section>
 <section id="valore-atteso-e-varianza-della-distribuzione-geometrica">
@@ -842,7 +842,7 @@ geometrica converga. Procedendo in modo analogo,</p>
 <p>Questo risultato ci permette di calcolare agevolmente il valore atteso della
 distribuzione.</p>
 <div class="proof theorem admonition" id="teo:mean-geometric">
-<p class="admonition-title"><span class="caption-number">Theorem 13.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Theorem 13.9 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>Dati <span class="math notranslate nohighlight">\(p \in (0, 1]\)</span>, e <span class="math notranslate nohighlight">\(X \sim \mathrm G(p)\)</span>,</p>
 <div class="amsmath math notranslate nohighlight">
@@ -866,7 +866,7 @@ distribuzione.</p>
 \end{equation*}\]</div>
 <p>che dimostra la proposizione.</p>
 </div>
-<p>La <a class="reference internal" href="#fig-geometric-ev"><span class="std std-numref">Figura 13.4</span></a> visualizza graficamente l'andamento del
+<p>La <a class="reference internal" href="#fig-geometric-ev"><span class="std std-numref">Figura 13.10</span></a> visualizza graficamente l'andamento del
 valore atteso della distribuzione geometrica in funzione del corrispondente
 parametro <span class="math notranslate nohighlight">\(p\)</span>. Il risultato è coerente con il significato dato a questo
 parametro: più il suo valore si avvicina a <span class="math notranslate nohighlight">\(1\)</span>, più è probabile che si ottenga
@@ -903,14 +903,14 @@ mai successo e quindi il numero atteso di ripetizioni tenderà a infinito.</p>
 <figure class="align-default" id="fig-geometric-ev" style="width: 100%">
 <img alt="../../_images/6253db5247ba3d0187e31d856d90acf18686d48abf26e5b621a697e0492f7058.png" src="../../_images/6253db5247ba3d0187e31d856d90acf18686d48abf26e5b621a697e0492f7058.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 13.4 </span><span class="caption-text">Grafico dell'andamento del valore atteso <span class="math notranslate nohighlight">\(\mathbb E(X)\)</span> al variare del
+<p><span class="caption-number">Fig. 13.10 </span><span class="caption-text">Grafico dell'andamento del valore atteso <span class="math notranslate nohighlight">\(\mathbb E(X)\)</span> al variare del
 parametro <span class="math notranslate nohighlight">\(p \in (0, 1]\)</span> di una variabile aleatoria <span class="math notranslate nohighlight">\(X \sim \mathrm G(p)\)</span>.</span><a class="headerlink" href="#fig-geometric-ev" title="Link a questa immagine">#</a></p>
 </figcaption>
 </figure>
 <p>Procedendo in modo simile a quanto abbiamo visto per il valore atteso è
 possibile calcolare anche la varianza della distribuzione.</p>
 <div class="proof theorem admonition" id="teo:var-geometric">
-<p class="admonition-title"><span class="caption-number">Theorem 13.3 </span></p>
+<p class="admonition-title"><span class="caption-number">Theorem 13.10 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>Data <span class="math notranslate nohighlight">\(X \sim \mathrm G(p)\)</span> con <span class="math notranslate nohighlight">\(p \in (0, 1]\)</span>,</p>
 <div class="amsmath math notranslate nohighlight">
@@ -939,7 +939,7 @@ possibile calcolare anche la varianza della distribuzione.</p>
 \end{equation*}\]</div>
 <p>è il valore per la varianza della distribuzione geometrica.</p>
 </div>
-<p>Come già fatto per il valore atteso, la <a class="reference internal" href="#fig-geometric-var"><span class="std std-numref">Figura 13.5</span></a>
+<p>Come già fatto per il valore atteso, la <a class="reference internal" href="#fig-geometric-var"><span class="std std-numref">Figura 13.11</span></a>
 mostra graficamente l'andamento della varianza in funzione del valore del
 parametro <span class="math notranslate nohighlight">\(p\)</span>. Anche in questo caso il grafico ottenuto è coerente con
 l'esperimento casuale alla base della distribuzione: al diminuire di <span class="math notranslate nohighlight">\(p\)</span> la
@@ -972,7 +972,7 @@ varianza nulla.</p>
 <figure class="align-default" id="fig-geometric-var" style="width: 100%">
 <img alt="../../_images/e24740533f6ce1e6b9abb95660663f0eb133d9c1074f59ffb42d8ceea1e637c3.png" src="../../_images/e24740533f6ce1e6b9abb95660663f0eb133d9c1074f59ffb42d8ceea1e637c3.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 13.5 </span><span class="caption-text">Grafico dell'andamento della varianza <span class="math notranslate nohighlight">\(\mathbb V(X)\)</span> al variare del
+<p><span class="caption-number">Fig. 13.11 </span><span class="caption-text">Grafico dell'andamento della varianza <span class="math notranslate nohighlight">\(\mathbb V(X)\)</span> al variare del
 parametro <span class="math notranslate nohighlight">\(p \in (0, 1]\)</span> di una variabile aleatoria <span class="math notranslate nohighlight">\(X \sim \mathrm G(p)\)</span>.</span><a class="headerlink" href="#fig-geometric-var" title="Link a questa immagine">#</a></p>
 </figcaption>
 </figure>
@@ -982,14 +982,14 @@ parametro <span class="math notranslate nohighlight">\(p \in (0, 1]\)</span> di 
 <p>La distribuzione geometrica gode di una particolare proprietà, descritta
 dal seguente teorema.</p>
 <div class="proof theorem admonition" id="teo:memoryless-geo">
-<p class="admonition-title"><span class="caption-number">Theorem 13.4 </span></p>
+<p class="admonition-title"><span class="caption-number">Theorem 13.11 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>Dati <span class="math notranslate nohighlight">\(p \in (0, 1]\)</span> e <span class="math notranslate nohighlight">\(X \sim \mathrm G(p)\)</span>, per ogni <span class="math notranslate nohighlight">\(x, y \in \mathbb N\)</span></p>
 <div class="math notranslate nohighlight" id="equation-eq-memoryless-geo">
-<span class="eqno">(13.4)<a class="headerlink" href="#equation-eq-memoryless-geo" title="Permalink a questa equazione">#</a></span>\[\mathbb P(X \geq x+y \mid X \geq x)= \mathbb P(X \geq y) \enspace.\]</div>
+<span class="eqno">(13.6)<a class="headerlink" href="#equation-eq-memoryless-geo" title="Permalink a questa equazione">#</a></span>\[\mathbb P(X \geq x+y \mid X \geq x)= \mathbb P(X \geq y) \enspace.\]</div>
 </section>
 </div><div class="proof admonition" id="proof">
-<p>Proof. Nella dimostrazione del <a class="reference internal" href="#teo:geometric-cdf">Theorem 13.1</a> abbiamo visto che
+<p>Proof. Nella dimostrazione del <a class="reference internal" href="#teo:geometric-cdf">Theorem 13.8</a> abbiamo visto che
 <span class="math notranslate nohighlight">\(\mathbb P(X &gt; x) = (1 - p)^{\lfloor x \rfloor +1}\)</span>, pertanto
 <span class="math notranslate nohighlight">\(\mathbb P(X \geq x) = \mathrm P(X \geq \lfloor x \rfloor) =
 \mathrm P(X &gt; \lfloor x \rfloor - 1) = (1-p)^{\lfloor x \rfloor}\)</span>. Sfruttando
@@ -1006,7 +1006,7 @@ questo risultato otteniamo</p>
 \end{align*}\]</div>
 <p>e quindi la tesi è dimostrata.</p>
 </div>
-<p>La proprietà espressa da <a class="reference internal" href="#equation-eq-memoryless-geo">(13.4)</a> prende il nome di
+<p>La proprietà espressa da <a class="reference internal" href="#equation-eq-memoryless-geo">(13.6)</a> prende il nome di
 <em>assenza di memoria</em>. Essa indica che durante la ripetizione dell'esperimento
 bernoulliano alla base della distribuzione geomatrica, il fatto che sia
 avvenuto un numero <span class="math notranslate nohighlight">\(n\)</span> (anche elevato) di insuccessi consecutivi non permette di dire
@@ -1020,12 +1020,12 @@ in poi e dal ricominciare da capo la ripetizione.</p>
 <p>Fissato <span class="math notranslate nohighlight">\(p \in (0, 1]\)</span>, la funzione generatrice dei momenti per una variabile
 aleatoria <span class="math notranslate nohighlight">\(X \sim \mathrm{g}(p)\)</span> ha la seguente forma analitica:</p>
 <div class="math notranslate nohighlight" id="equation-eq-mgf-geometric">
-<span class="eqno">(13.5)<a class="headerlink" href="#equation-eq-mgf-geometric" title="Permalink a questa equazione">#</a></span>\[m_X(t) = \mathbb E\left( \mathrm e^{tX} \right)
+<span class="eqno">(13.7)<a class="headerlink" href="#equation-eq-mgf-geometric" title="Permalink a questa equazione">#</a></span>\[m_X(t) = \mathbb E\left( \mathrm e^{tX} \right)
        = \sum_{x=0}^{+\infty}(1 - p)^x p \mathrm e^{tx}
        = p \sum_{x=0}^{+\infty}((1 - p) \mathrm e^t)^x
        = p (1 - (1 - p) \mathrm e^t)^{-1} \enspace,\]</div>
 <p>ed è definita per i valori di <span class="math notranslate nohighlight">\(t\)</span> per i quali è garantita la convergenza della
-serie geometrica contenuta in <a class="reference internal" href="#equation-eq-mgf-geometric">(13.5)</a>, cioè quando
+serie geometrica contenuta in <a class="reference internal" href="#equation-eq-mgf-geometric">(13.7)</a>, cioè quando
 <span class="math notranslate nohighlight">\(| (1 - p) \mathrm e^t | &lt; 1\)</span>, che equivale a <span class="math notranslate nohighlight">\(t &lt; - \log(1-p)\)</span>. Pertanto le
 prime quattro derivate della funzione generatrice dei momenti saranno</p>
 <div class="amsmath math notranslate nohighlight">
@@ -1042,15 +1042,15 @@ m_X^{\mathrm{IV}}(t) = &amp; \frac{1-p}{p} \mathrm e^t ( m_X(t)^2 + 6 m_X(t) m_X
 <p>Pertanto:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\mathbb E(X) = m_X'(0) = \frac{1-p}{p}\)</span>, a conferma di quanto abbiamo
-ricavato nel <a class="reference internal" href="#teo:mean-geometric">Theorem 13.2</a>;</p></li>
+ricavato nel <a class="reference internal" href="#teo:mean-geometric">Theorem 13.9</a>;</p></li>
 <li><p><span class="math notranslate nohighlight">\(\mathbb E(X^2) = m_X''(0) = \frac{(1 - p)(2 - p)}{p^2}\)</span>, come ottenuto
-nella dimostrazione del <a class="reference internal" href="#teo:var-geometric">Theorem 13.3</a>;</p></li>
+nella dimostrazione del <a class="reference internal" href="#teo:var-geometric">Theorem 13.10</a>;</p></li>
 <li><p>i momenti terzo e quarto sono rispettivamente
 <span class="math notranslate nohighlight">\(\mu_3' = m_X'''(0) = \frac{(1-p)(p^2 -6p + 6)}{p^3}\)</span> e
 <span class="math notranslate nohighlight">\(\mu'_4 = m_X^{\mathrm{IV}}(0) = \frac{1-p}{p} (24 - 36p + 14p^2 - p^3)\)</span>.</p></li>
 </ul>
 <p>Per calcolare i momenti centrali si può utilizzare il
-<a class="reference internal" href="../c4-variabili-aleatorie/momenti.html#teo:central-moments">Theorem 12.2</a>: posto <span class="math notranslate nohighlight">\(Y \coloneqq X - \frac{1-p}{p}\)</span> si ha</p>
+<a class="reference internal" href="../c4-variabili-aleatorie/momenti.html#teo:central-moments">Theorem 12.3</a>: posto <span class="math notranslate nohighlight">\(Y \coloneqq X - \frac{1-p}{p}\)</span> si ha</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 m_Y'(t)  &amp;= \mathrm e^{-t\frac{1-p}{p}}
@@ -1062,7 +1062,7 @@ m_Y''(t) &amp;= \mathrm e^{-t\frac{1-p}{p}}
 <p>e pertanto i primi due momenti centrali sono <span class="math notranslate nohighlight">\(\mu_1 = m_Y'(0) = 0\)</span>, come
 deve necessariamente essere, e <span class="math notranslate nohighlight">\(\mu_2 = m_Y''(0) = \frac{1 - p}{p^2}\)</span>, che
 coincide con la varianza della distribuzione geometrica ricavata nel
-<a class="reference internal" href="#teo:var-geometric">Theorem 13.3</a>. Analogamente</p>
+<a class="reference internal" href="#teo:var-geometric">Theorem 13.10</a>. Analogamente</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 m_Y'''(t) = \mathrm e^{-t\frac{1-p}{p}} \left( m_X'''(t)
@@ -1108,7 +1108,7 @@ una distribuzione normale con gli stessi valore atteso e deviazione standard.
 Questo fatto è abbastanza ovvio, avendo la distribuzione geometrica una
 coda a destra. In particolare, più <span class="math notranslate nohighlight">\(p\)</span> si avvicina a <span class="math notranslate nohighlight">\(1\)</span> e più la curtosi
 aumenta, coerentemente con il fatto che in questi casi la distribuzione tende
-a degenerare alla costante <span class="math notranslate nohighlight">\(0\)</span>. La <a class="reference internal" href="bernoulli.html#fig-bernoulli-sk-plot"><span class="std std-numref">Figura 13.2</span></a>
+a degenerare alla costante <span class="math notranslate nohighlight">\(0\)</span>. La <a class="reference internal" href="#fig-geometric-sk-plot"><span class="std std-numref">Figura 13.12</span></a>
 illustra il grafico skewness-curtosi per la famiglia delle distribuzioni
 geometriche.</p>
 <div class="cell tag_hide-cell tag_remove-output docutils container">
@@ -1136,18 +1136,18 @@ geometriche.</p>
 <figure class="align-default" id="fig-geometric-sk-plot" style="width: 400pt">
 <img alt="../../_images/0486b0997e8e87968d89bc18204e2e211ec2b9ee00e40e633a3107cd0b1ed8c2.png" src="../../_images/0486b0997e8e87968d89bc18204e2e211ec2b9ee00e40e633a3107cd0b1ed8c2.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 13.6 </span><span class="caption-text">Il grafico skewness-curtosi per la famiglia delle distribuzioni
+<p><span class="caption-number">Fig. 13.12 </span><span class="caption-text">Il grafico skewness-curtosi per la famiglia delle distribuzioni
 geometriche.</span><a class="headerlink" href="#fig-geometric-sk-plot" title="Link a questa immagine">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="quantili-della-distribuzione-geometrica">
 <h2><span class="section-number">13.4.5. </span>Quantili della distribuzione geometrica<a class="headerlink" href="#quantili-della-distribuzione-geometrica" title="Permalink to this heading">#</a></h2>
-<p>Abbiamo visto nel <a class="reference internal" href="#teo:geometric-cdf">Theorem 13.1</a> come nella distribuzione geometrica
+<p>Abbiamo visto nel <a class="reference internal" href="#teo:geometric-cdf">Theorem 13.8</a> come nella distribuzione geometrica
 sia possibile semplificare la sommatoria alla base del calcolo della funzione
 di ripartizione. Questo permette di calcolare in modo abbastanza agevole un
 generico quantile della distribuzione. Infatti, dato <span class="math notranslate nohighlight">\(p \in (0, 1]\)</span> e
-applicando <a class="reference internal" href="#equation-eq-geometric-cdf">(13.2)</a> a una variabile aleatoria
+applicando <a class="reference internal" href="#equation-eq-geometric-cdf">(13.4)</a> a una variabile aleatoria
 <span class="math notranslate nohighlight">\(X \sim \mathrm G(p)\)</span>, dato un generico livello <span class="math notranslate nohighlight">\(q \in [0, 1]\)</span> si ha</p>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
@@ -1242,7 +1242,7 @@ x_{3/4} &amp;= \left\lceil \frac{-2}{\log_2 (1 - p)} \right\rceil - 1 \enspace, 
 <figure class="align-default" id="fig-geometric-bp" style="width: 100%">
 <img alt="../../_images/7ab3a79c96d5acb0f3ad0e1b3b8f969c69a62ce4d5e4415bd90f8f7fda73be4f.png" src="../../_images/7ab3a79c96d5acb0f3ad0e1b3b8f969c69a62ce4d5e4415bd90f8f7fda73be4f.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 13.7 </span><span class="caption-text">Diagramma a scatola per la distribuzione geometrica di parametro
+<p><span class="caption-number">Fig. 13.13 </span><span class="caption-text">Diagramma a scatola per la distribuzione geometrica di parametro
 <span class="math notranslate nohighlight">\(p = 0.7\)</span>. Il baffo a destra della scatola è parzialmente tratteggiato
 per enfatizzare il fatto che si estende fino a <span class="math notranslate nohighlight">\(+\infty\)</span>.</span><a class="headerlink" href="#fig-geometric-bp" title="Link a questa immagine">#</a></p>
 </figcaption>
@@ -1513,7 +1513,7 @@ nella versione interattiva degli appunti.</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">precedente</p>
-        <p class="prev-next-title"><span class="section-number">13.3. </span>Il modello uniforme discreto</p>
+        <p class="prev-next-title"><span class="section-number">13.3. </span>Le distribuzioni uniformi discrete</p>
       </div>
     </a>
     <a class="right-next"
