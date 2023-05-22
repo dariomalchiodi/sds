@@ -88,7 +88,7 @@ Siccome le probabilità di successo e di insuccesso sono sempre uguali a $p$ e
 a $1-p$, quale che sia la ripetizione considerata, avremo
 
 ```{math}
-\mathbb P({\text{SSSFFFF}}) = p^3 (1-p)^4.
+\mathbb P(\{\text{SSSFFFF}\}) = p^3 (1-p)^4.
 ```
 
 Usando lo stesso ragionamento si verifica facilmente che si ottiene la stessa
@@ -132,13 +132,15 @@ numero $n$ di ripetizioni, fissato $x \in D_X$ si ottiene facilmente che
 Siamo quindi in grado di definire in modo formale la famiglia delle
 distribuzioni binomiali.
 
-````{prf:definition} (La famiglia delle distribuzioni binomiali)
+````{prf:definition} La famiglia delle distribuzioni binomiali
 :label: def:binomial-distribution
 
 Fissati $n \in \mathbb N$ e $p \in [0, 1]$, la distribuzione _binomiale_ di
 parametri $n$ e $p$ è definita dalla funzione di massa di probabilità
 
 ```{math}
+:label: eq:binomial-pdf
+
 f(x; n, p) = \binom{n}{x} p^x (1 - p)^{n - x}
              \mathrm{I}_{\{0, 1, \dots, n\}}(x) \enspace.
 ```
@@ -154,14 +156,15 @@ di massa di probabilità nei relativi punti di massa cresce inizialmente per
 poi decrescere. Infatti, per un generico $x \in \{0, \dots, n-1\}$ vale
 
 ```{math}
+:label: eq:binomial-pdf-ratio
+
 \frac{f_X(x+1; n, p)}{f_X(x; n, p)} = \frac{n-x}{x+1} \frac{p}{1-p} \enspace,
 ```
 
-e quindi per $x = (n+1)p - 1$, si dovrebbe avere
-$f_X(x+1; n, p) = f_X(x; n, p)$, ma questo è vero solo se $(n+1)p - 1$ è
-un valore intero (e in tal caso lo sarà anche $(n+1)p$). In tal caso, sempre
-calcolando $f_X$ solo in corrispondenza delle specificazioni della
-distribuzione, avremo che la funzione di massa di probabilità
+e lo stesso rapporto diventa uguale a $1$ quando $x = (n+1)p - 1$. Se tale
+valore è intero, lo sarà anche $(n+1)p$ e $f_X(x+1; n, p) = f_X(x; n, p)$. In
+tal caso, sempre calcolando $f_X$ solo in corrispondenza delle specificazioni
+della distribuzione, avremo che la funzione di massa di probabilità
 
 - è strettamente crescente da $x = 0$ a $x = (n+1)p - 1$,
 - assume il suo massimo per $x = (n+1)p - 1$ e $x = (n+1)p$, che sono quindi
@@ -228,6 +231,8 @@ Il modo più semplice per esprimere la forma analitica
 della funzione di ripartizione di $X \sim \mathrm B(n, p)$ è
 
 ```{math}
+:label: eq:binomial-cdf
+
 F_X(x; n, p) = \mathbb P(X \leq x)
              = \sum_{y=0}^{\lfloor x \rfloor} \binom{n}{y} p^y (1 - p)^{n - y}
                \mathrm{I}_{[0, n]}(x) + \mathrm I_{(n, +\infty)}(x) \enspace,
@@ -642,3 +647,310 @@ Il grafico skewness-curtosi per la famiglia delle distribuzioni
 binomiali. Ogni curva corrisponde a un valore diverso per il parametro $n$,
 come indicato dalla legenda.
 ```
+
+(sec:binomial-quantiles)=
+## Quantili della distribuzione binomiale (*)
+
+Analizzando {eq}`eq:binomial-cdf` si vede come determinare in modo esatto un
+generico quantile per la distribuzione binomiale sia decisamente complesso:
+occorrerebbe, dato $q \in [0, 1]$, determinare $x_q$ tale che
+
+```{math}
+\sum_{y=0}^{x_q} \binom{n}{y} p^y (1 - p)^{n - y} = q \enspace,
+```
+
+e in effetti trovare una forma analitica per la soluzione di questa equazione
+richiederebbe di introdurre delle funzioni, cosiddette _speciali_, definite
+in termini di particolari integrali. Possiamo però analizzare il caso
+particolare della mediana con un po' più di attenzione, ricordando che il
+grafico della funzione di massa di probabilità della distribuzione binomiale
+è approssimativamente simmetrico attorno al valore (o ai valori) della sua
+moda.
+
+Consideriamo prima il caso nel quale ci sono due valori modali, che abbiamo
+visto essere i due valori interi successivi $m_1 = (n+1)p - 1$ e
+$m_2 = (n+1)p$. La simmetria approssimata ci permette di dire che
+
+```{math}
+f_X(m_1 - i; n, p) \approx f_X(m_2 + i; n, p)
+```
+
+```{margin}
+Il valore massimo di $i$ per cui questa formula è valida è il minimo tra due
+quantità che rappresentano quante specificazioni della variabile aleatoria si
+trovano a sinistra e a destra, rispettivamente, del più piccolo e del più
+grande tra i due valori modali. Va ricordato, infatti, che quando
+$p \neq \frac{1}{2}$ il grafico della funzione di massa di probabilità ha
+una coda a sinistra oppure a destra, e tutte le specificazioni in questa coda
+non hanno delle omologhe specificazioni simmetriche rispetto alle mode.
+```
+per ogni $i = 1, \dots, \min\{m_1, n - m_2 \}$, e inoltre l'uguaglianza
+diventa esatta per $i = 0$. Ciò significa che
+
+```{math}
+\sum_{x = 0}^{m_1} f_X(x; n, p) \approx \sum_{x = m_2}^n f_X(x; n, p)
+\enspace,
+```
+
+e quindi $\mathbb P(X \leq m_1) \approx \mathbb P(X \geq m_2)$. La somma di
+queste due probabilità è uguale a $1$, dunque è ragionevole supporre che
+entrambe siano uguali a $\frac{1}{2}$. Se questo fosse vero, allora la
+mediana di $X$ sarebbe necessariamente uguale a $m_1$, perché
+$F_X(m_1) = \frac{1}{2}$ e $m_1$ è la più piccola specificazione di $X$ in
+corrispondenza della quale la funzione di ripartizione è maggiore o uguale
+di $\frac{1}{2}$ (perché i valori della ripartizione in corrispondenza delle
+specificazioni più piccole di $m_1$, se esistono, saranno necessariamente più
+piccoli di $\frac{1}{2}$). Va sottolineato, inoltre, che in questo caso
+$m_1 = \lfloor np \rfloor$.
+
+Nei casi rimanenti, c'è un unico valore modale
+$m = \lfloor(n+1)p\rfloor = \lceil np \rceil$, e usando la stessa
+argomentazione legata alla simmetria della funzione di massa di probabilità,
+possiamo assumere
+
+```{math}
+\mathbb P(X < m) \approx \mathbb P(X > m) \enspace,
+```
+
+e i valori di queste due probabilità devono essere necessariamente minori di
+$\frac{1}{2}$, altrimenti la specificazione che corrisponde alla moda
+avrebbe probabilità nulla. Se le due probabilità fossero uguali, ciò
+implicherebbe che $m$ è anche la mediana della distribuzione. Ciò non è
+necessariamente vero, ma in generale si può dimostrare che la mediana della
+distribuzione è sempre compresa tra $\lfloor np \rfloor$ e $\lceil np \rceil$.
+
+```{margin}
+Ovviamente, vale la pena calcolare i quantili utilizzando direttamente
+l'implementazione messa a disposizione da `scipy.stats`, descritta in
+dettaglio nel paragrafo seguente.
+```
+Questo tipo di ragionamento non si può estendere facilmente al calcolo dei
+rimanenti quantili utilizzando una formula analitica, ma questo non ci
+impedisce di calcolarli _operativamente_, scrivendo del codice che somma i
+valori della funzione di massa di probabilità fino a quando non si ottiene un
+risultato che supera il livello del quantile. La cella seguente implementa
+questa strategia per implementare la funzione `quantiles`, che restituisce una
+lista di valori che corrispondono ai quantili di una distribuzione binomiale,
+specificando i parametri di quest'ultima e una lista dei livelli
+corrispondenti.
+
+```{code-cell} ipython3
+from scipy.special import binom
+
+def quantiles(n, p, levels):
+    x = 0
+
+    pdf = (1-p)**n
+    cdf = pdf
+    quantiles = []
+
+    for q in levels:
+        while cdf < q:
+            pdf *= (n - x) / (x + 1) * p / (1 - p)
+            cdf += pdf
+            x += 1
+        quantiles.append(x)
+
+    return quantiles
+```
+
+Invece di ricalcolare da zero tutti i valori della funzione di ripartizione
+$F$, questa implementazione li ottiene sfruttando una strategia basata
+sull'accumulazione[^accumulazione]: una volta ottenuto $F(0)$, ogni valore successivo $F(x+1)$
+è ricavato sommando a $F(x)$, che è già stato ricavato, la probabilità della
+nuova specificazione $x$. In questo modo, l'esecuzione
+richiede meno tempo. C'è un aspetto ancora più importante che coinvolge
+l'efficienza del codice: anche la funzione di massa di probabilità viene
+calcolata accumulandone i valori, sfruttando esplicitamente
+{eq}`eq:binomial-pdf-ratio`. Calcolare la funzione di massa di probabilità
+usando la formula {eq}`eq:binomial-pdf` nella relativa definizione richierebbe
+ogni volta di valutare tre fattoriali e due elevamenti a potenza, che
+risulterebbero nell'esecuzione di $3n$ moltiplicazioni. In questo modo si
+calcola ogni valore di $f$ partendo da quello precedentemente ottenuto, al
+prezzo di $4$ moltiplicazioni.
+
+La funzione `quantiles` si può utilizzare per tabulare i quantili della
+distribuzione binomiale, come fatto per esempio nella cella seguente e
+relativamente al caso $n = 32$ e $p = 0.65$.
+
+```{code-cell} ipython3
+import pandas as pd
+
+n = 32
+p = 0.65
+levels = np.arange(0.05, 1, 0.05)
+
+
+content = []
+for q, x in zip(levels, quantiles(n, p, levels)):
+    content.append({'Livello': q, 'Quantile': x})
+
+table = pd.DataFrame.from_records(content)
+
+#table.style.format({'Level': '{:.2f}'}).hide(axis='index')
+table.set_index('Livello')
+```
+
+Analogamente, nella cella che segue (il cui codice è nascosto) la stessa
+funzione viene impiegata per visualizzare il diagramma a scatola della
+medesima distribuzione binomiale, evidenziando i valori numerici di mediana,
+primo e terzo quartile. Nella versione interattiva, agendo sui selettori che
+corrispondono ai due parametri della distribuzione è possibile vedere come
+cambia il diagramma.
+
+```{code-cell} ipython3
+:tags: [hide-input]
+
+def bp_binomial(n, p):
+    fig, ax = plt.subplots(figsize=(6, 0.3))
+
+    levels = [0.25, 0.5, 0.75]
+    first_quartile, median, third_quartile = quantiles(n, p, levels)
+
+    lw = 1
+    height = 0.2
+
+    plt.plot([median, median], [-height, height], c='k', linewidth=1.5)
+
+    plt.plot([0, 0], [-.1, .1], c='k', linewidth=lw)
+    plt.plot([0, first_quartile], [0, 0], c='k', linewidth=lw)
+
+    plt.plot([first_quartile, first_quartile], [-height, height],
+            c='k', linewidth=lw)
+
+    plt.plot([third_quartile, third_quartile], [-height, height],
+            c='k', linewidth=lw)
+
+    plt.plot([first_quartile, third_quartile], [height, height],
+            c='k', linewidth=lw)
+    plt.plot([first_quartile, third_quartile], [-height, -height],
+            c='k', linewidth=lw)
+
+    plt.plot([third_quartile, n], [0, 0], c='k', linewidth=lw)
+    plt.plot([n, n], [-.1, .1], c='k', linewidth=lw)
+
+    plt.text(0, -0.5, 0, ha='center')
+    plt.text(first_quartile, 0.5, first_quartile, ha='center')
+    plt.text(median, -0.5, median, ha='center')
+    plt.text(third_quartile, 0.5, third_quartile, ha='center')
+    plt.text(n, -0.5, n, ha='center')
+
+
+    plt.axis('off')
+    plt.show()
+
+n_slider = widgets.IntSlider(value=n,
+                             min=1,
+                             max=200,
+                             description='n',
+                             continuous_update=True,
+                             readout=False,
+                             orientation='horizontal')
+
+p_slider = widgets.FloatSlider(value=p,
+                               min=0,
+                               max=1,
+                               step=0.05,
+                               description='p',
+                               continuous_update=True,
+                               readout=False,
+                               orientation='horizontal')
+
+widgets.interactive(bp_binomial, n=n_slider, p=p_slider)
+```
+
+## Implementazione della distribuzione binomiale
+
+```{margin}
+È possibile specificare gli argomenti di `binom` in modo posizionale, avendo
+cura di indicare prima $n$ e poi $p$, oppure utilizzando `n` e `p` come nomi
+per gli argomenti, indipendentemente dall'ordine scelto. È in ogni caso
+richiesto di specificare entrambi gli argomenti, pena l'emissione di
+un'eccezione.
+```
+La creazione di oggetti che corrispondono a una distribuzione binomiale
+viene effettuata in `scipy.stats` dalla funzione `binom`, che accetta come
+argomenti i valori per i parametri $n$ e $p$ della distribuzione. Una volta
+che questi oggetti sono stati creati, è possibile invocare su di essi tutti i
+metodi visti nel capitolo precedente. Per esempio, nella cella seguente
+vengono calcolati i decili della distribuzione binomiale di parametri
+$n = 132$ e $p = 0.73$ (si tratta della stessa distribuzione di cui abbiamo
+tabulato i quantili nel paragrafo precedente, e come si può verificare i
+valori ottenuti coincidono con quelli equivalenti in quella tabulazione).
+
+```{code-cell} ipython3
+import scipy.stats as st
+
+X = st.binom(n, p)
+
+X.ppf(np.arange(0.1, 1, .1))
+```
+
+
+Analogamente, è possibile ottenere il grafico delle funzioni di massa di
+probabilità e di ripartizione della stessa distribuzione.
+
+```{code-cell} ipython3
+fig, axes = plt.subplots(1, 2, sharey=True)
+
+x = np.arange(-0.1, n+0.1, 0.01)
+axes[0].step(x, X.cdf(x))
+
+x = np.arange(*X.support())
+axes[1].vlines(x, 0, X.pmf(x), color='k')
+
+for ax in axes:
+    ax.set_xlabel(r'$x$')
+
+axes[1].set_xlim(10, 30)
+
+axes[0].set_ylabel(r'$F_X$', rotation='horizontal')
+axes[1].set_ylabel(r'$f_X$', rotation='horizontal')
+plt.show()
+```
+
+Usando le stesse convenzioni grafiche del capitolo precedente, anche in questo
+caso è possibile simulare l'osservazione di un campione di osservazioni da
+una distribuzione binomiale e confrontare il grafico delle sue frequenze
+relative con quello della funzione di massa di probabilità. Nella cella
+che segue, questo viene fatto relativamente alla stessa distribuzione
+binomiale che abbiamo considerato finora, ma i selettori che corrispondono
+ai due parametri permettono, nella versione interattiva, di verificare come
+il grafico risultante rimanga coerente al variare dei parametri coinvolti.
+
+```{code-cell} ipython3
+:tags: [hide-input]
+
+import pandas as pd
+
+def binomial_simulation(n, p):
+    X = st.binom(n, p)
+
+    m = 5000
+    x = X.rvs(m)
+    freq = pd.Series(x).value_counts(normalize=True)
+    freq = freq.reindex(np.arange(0, n+1), fill_value=0)
+    plt.bar(freq.index, freq.values, facecolor='lightgray', edgecolor='gray')
+
+    x = np.arange(*X.support())
+    plt.vlines(x, 0, X.pmf(x))
+    plt.plot(x, X.pmf(x), 'o')
+
+
+    plt.ylim(0, 1.1)
+    plt.show()
+
+widgets.interactive(binomial_simulation, n=n_slider, p=p_slider)
+```
+
+
+[^accumulazione]: Nell'ambito della programmazione, il termine _accumulazione_ indica una
+tecnica che consiste nell'ottenere il risultato di un calcolo generando in
+modo separato (tipicamente, all'interno di un ciclo) una serie di valori e
+aggregandoli insieme tramite un'operazione associativa, come la somma o il
+prodotto. In particolare, si introduce una variabile il cui _ruolo_ è quello
+di fungere da _accumulatore_, e la si inizializza all'elemento neutro
+dell'operazione considerata. L'aggregazione viene fatta via via che i valori
+risultano disponibili, eseguendo l'operazione applicandola a un nuovo valore e
+al precedente contenuto dell'accumulatore, e assegnando il risultato a
+quest'ultimo.
