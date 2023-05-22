@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>13.5. Il modello di poisson &#8212; Superhero Data Science 
+    <title>13.5. Le distribuzioni di Poisson &#8212; Superhero Data Science 
  Probabilità e Statistica</title>
   
   
@@ -65,6 +65,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "loader": {"load": ["[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["mathtools"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'p3-CP/c5-modelli-discreti/poisson';</script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
@@ -274,7 +276,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="binomiale.html">13.2. Le distribuzioni binomiali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="uniforme.html">13.3. Le distribuzioni uniformi discrete</a></li>
 <li class="toctree-l2"><a class="reference internal" href="geometrico.html">13.4. Le distribuzioni geometriche</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">13.5. Il modello di poisson</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">13.5. Le distribuzioni di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ipergeometrico.html">13.6. Il modello ipergeometrico</a></li>
 </ul>
 </li>
@@ -302,6 +304,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/processo-poisson.html">15.9. Processo di poisson</a></li>
 </ul>
 </li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../p5-appendici/formule-notevoli.html">Formule notevoli</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
 <ul class="nav bd-sidenav">
@@ -570,7 +576,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Il modello di poisson</h1>
+    <h1>Le distribuzioni di Poisson</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -584,8 +590,19 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="il-modello-di-poisson">
-<h1><span class="section-number">13.5. </span>Il modello di poisson<a class="headerlink" href="#il-modello-di-poisson" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="le-distribuzioni-di-poisson">
+<h1><span class="section-number">13.5. </span>Le distribuzioni di Poisson<a class="headerlink" href="#le-distribuzioni-di-poisson" title="Permalink to this heading">#</a></h1>
+<p>Immaginiamo di rieseguire il codice del <a class="reference internal" href="binomiale.html#sec-binomial-quantiles"><span class="std std-numref">Sezione 13.2.4</span></a>
+per il calcolo dei quantili di una distribuzione binomiale nella quale il
+parametro <span class="math notranslate nohighlight">\(n\)</span> assume un valore elevato, diciamo dell'ordine delle decine di
+migliaia. In quel codice, una delle prime operazioni consiste nel calcolare
+<span class="math notranslate nohighlight">\((1 - p)^n\)</span>, e per valori così alti dell'esponente, indipendentemente dalla
+base che consideriamo, è ragionevole che il valore della potenza venga
+memorizzato come <span class="math notranslate nohighlight">\(0\)</span>, tenendo conto della precisione dei numeri in virgola
+mobile. Analoghe considerazioni valgono per esempio per il calcolo della
+funzione di massa di probabilità. In casi come questi, è possibile introdurre
+una nuova famiglia di distribuzioni che rappresenta il risultato della
+convergenza</p>
 </section>
 
     <script type="text/x-thebe-config">

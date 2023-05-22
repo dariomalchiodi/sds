@@ -71,7 +71,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
     <link rel="search" title="Cerca" href="../../search.html" />
-    <link rel="next" title="13.5. Il modello di poisson" href="poisson.html" />
+    <link rel="next" title="13.5. Le distribuzioni di Poisson" href="poisson.html" />
     <link rel="prev" title="13.3. Le distribuzioni uniformi discrete" href="uniforme.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="it"/>
@@ -276,7 +276,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="binomiale.html">13.2. Le distribuzioni binomiali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="uniforme.html">13.3. Le distribuzioni uniformi discrete</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">13.4. Le distribuzioni geometriche</a></li>
-<li class="toctree-l2"><a class="reference internal" href="poisson.html">13.5. Il modello di poisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="poisson.html">13.5. Le distribuzioni di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ipergeometrico.html">13.6. Il modello ipergeometrico</a></li>
 </ul>
 </li>
@@ -304,6 +304,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/processo-poisson.html">15.9. Processo di poisson</a></li>
 </ul>
 </li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../p5-appendici/formule-notevoli.html">Formule notevoli</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
 <ul class="nav bd-sidenav">
@@ -684,8 +688,8 @@ in un certo qual senso che la specificazione assunta assume un valore
 infinito, cosa che è proibita dalla <a class="reference internal" href="../c4-variabili-aleatorie/variabili-aleatorie.html#def:variabile-aleatoria">Definition 12.1</a>.</p>
 <p>Si verifica facilmente che sommando i valori di massa di probabilità per tutte
 le specificazioni della distribuzione si ottiene come risultato 1:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-91d6bce5-f39a-4cd8-b20b-ecf0c404c50e">
-<span class="eqno">(13.3)<a class="headerlink" href="#equation-91d6bce5-f39a-4cd8-b20b-ecf0c404c50e" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1c22fcc3-4912-49f8-ad6f-c2d2cb189ae8">
+<span class="eqno">(13.6)<a class="headerlink" href="#equation-1c22fcc3-4912-49f8-ad6f-c2d2cb189ae8" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \sum_{x=0}^{+\infty}\mathrm f(x; p) = \sum_{x=0}^{+\infty} (1-p)^x p =
 p \sum_{x=0}^{+\infty}(1-p)^x
  = p \frac{1}{1-(1-p)} = 1.
@@ -709,13 +713,13 @@ distribuzione geometrica si ottiene nel modo seguente:</p>
 <p>Fissato <span class="math notranslate nohighlight">\(p \in (0, 1]\)</span> e data <span class="math notranslate nohighlight">\(X \sim \mathrm G(p)\)</span>,
 <span class="math notranslate nohighlight">\(\forall n \in \mathbb N \cup \{ 0 \}\)</span> e <span class="math notranslate nohighlight">\(\forall x \in \mathbb R\)</span></p>
 <div class="math notranslate nohighlight" id="equation-eq-geometric-cdf">
-<span class="eqno">(13.4)<a class="headerlink" href="#equation-eq-geometric-cdf" title="Permalink a questa equazione">#</a></span>\[F_X(x; p) = \left( 1 - (1 - p)^{\lfloor x \rfloor + 1} \right)
+<span class="eqno">(13.7)<a class="headerlink" href="#equation-eq-geometric-cdf" title="Permalink a questa equazione">#</a></span>\[F_X(x; p) = \left( 1 - (1 - p)^{\lfloor x \rfloor + 1} \right)
             \mathrm I_{[0, +\infty]}(x) \enspace.\]</div>
 </section>
 </div><div class="proof admonition" id="proof">
 <p>Proof. Indipendentemente dal valore di <span class="math notranslate nohighlight">\(n\)</span> si ha che</p>
-<div class="amsmath math notranslate nohighlight" id="equation-faaaf603-69e0-4ae3-9a0b-5954cdc69506">
-<span class="eqno">(13.5)<a class="headerlink" href="#equation-faaaf603-69e0-4ae3-9a0b-5954cdc69506" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-436d7513-0699-478a-bf82-9deb5b2c3219">
+<span class="eqno">(13.8)<a class="headerlink" href="#equation-436d7513-0699-478a-bf82-9deb5b2c3219" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathbb P(X &gt; n) &amp;= \sum_{x=n+1}^{+\infty}f_X(x; p)
                   = \sum_{x=n+1}^{+\infty}(1-p)^x p \\
                  &amp;= p (1-p)^{n+1} \sum_{x=n+1}^{+\infty}(1-p)^{x - (n+1)}
@@ -789,7 +793,7 @@ e verificando in che modo i grafici vengono modificati.</p>
 </div>
 </details>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "b2d1fa56faac405b8007a6f05c32d865"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "2f091bd7489c4e2a87f962a0392dbb5e"}</script></div>
 </div>
 </section>
 <section id="valore-atteso-e-varianza-della-distribuzione-geometrica">
@@ -986,7 +990,7 @@ dal seguente teorema.</p>
 <section class="theorem-content" id="proof-content">
 <p>Dati <span class="math notranslate nohighlight">\(p \in (0, 1]\)</span> e <span class="math notranslate nohighlight">\(X \sim \mathrm G(p)\)</span>, per ogni <span class="math notranslate nohighlight">\(x, y \in \mathbb N\)</span></p>
 <div class="math notranslate nohighlight" id="equation-eq-memoryless-geo">
-<span class="eqno">(13.6)<a class="headerlink" href="#equation-eq-memoryless-geo" title="Permalink a questa equazione">#</a></span>\[\mathbb P(X \geq x+y \mid X \geq x)= \mathbb P(X \geq y) \enspace.\]</div>
+<span class="eqno">(13.9)<a class="headerlink" href="#equation-eq-memoryless-geo" title="Permalink a questa equazione">#</a></span>\[\mathbb P(X \geq x+y \mid X \geq x)= \mathbb P(X \geq y) \enspace.\]</div>
 </section>
 </div><div class="proof admonition" id="proof">
 <p>Proof. Nella dimostrazione del <a class="reference internal" href="#teo:geometric-cdf">Theorem 13.8</a> abbiamo visto che
@@ -1006,7 +1010,7 @@ questo risultato otteniamo</p>
 \end{align*}\]</div>
 <p>e quindi la tesi è dimostrata.</p>
 </div>
-<p>La proprietà espressa da <a class="reference internal" href="#equation-eq-memoryless-geo">(13.6)</a> prende il nome di
+<p>La proprietà espressa da <a class="reference internal" href="#equation-eq-memoryless-geo">(13.9)</a> prende il nome di
 <em>assenza di memoria</em>. Essa indica che durante la ripetizione dell'esperimento
 bernoulliano alla base della distribuzione geomatrica, il fatto che sia
 avvenuto un numero <span class="math notranslate nohighlight">\(n\)</span> (anche elevato) di insuccessi consecutivi non permette di dire
@@ -1020,12 +1024,12 @@ in poi e dal ricominciare da capo la ripetizione.</p>
 <p>Fissato <span class="math notranslate nohighlight">\(p \in (0, 1]\)</span>, la funzione generatrice dei momenti per una variabile
 aleatoria <span class="math notranslate nohighlight">\(X \sim \mathrm{g}(p)\)</span> ha la seguente forma analitica:</p>
 <div class="math notranslate nohighlight" id="equation-eq-mgf-geometric">
-<span class="eqno">(13.7)<a class="headerlink" href="#equation-eq-mgf-geometric" title="Permalink a questa equazione">#</a></span>\[m_X(t) = \mathbb E\left( \mathrm e^{tX} \right)
+<span class="eqno">(13.10)<a class="headerlink" href="#equation-eq-mgf-geometric" title="Permalink a questa equazione">#</a></span>\[m_X(t) = \mathbb E\left( \mathrm e^{tX} \right)
        = \sum_{x=0}^{+\infty}(1 - p)^x p \mathrm e^{tx}
        = p \sum_{x=0}^{+\infty}((1 - p) \mathrm e^t)^x
        = p (1 - (1 - p) \mathrm e^t)^{-1} \enspace,\]</div>
 <p>ed è definita per i valori di <span class="math notranslate nohighlight">\(t\)</span> per i quali è garantita la convergenza della
-serie geometrica contenuta in <a class="reference internal" href="#equation-eq-mgf-geometric">(13.7)</a>, cioè quando
+serie geometrica contenuta in <a class="reference internal" href="#equation-eq-mgf-geometric">(13.10)</a>, cioè quando
 <span class="math notranslate nohighlight">\(| (1 - p) \mathrm e^t | &lt; 1\)</span>, che equivale a <span class="math notranslate nohighlight">\(t &lt; - \log(1-p)\)</span>. Pertanto le
 prime quattro derivate della funzione generatrice dei momenti saranno</p>
 <div class="amsmath math notranslate nohighlight">
@@ -1147,7 +1151,7 @@ geometriche.</span><a class="headerlink" href="#fig-geometric-sk-plot" title="Li
 sia possibile semplificare la sommatoria alla base del calcolo della funzione
 di ripartizione. Questo permette di calcolare in modo abbastanza agevole un
 generico quantile della distribuzione. Infatti, dato <span class="math notranslate nohighlight">\(p \in (0, 1]\)</span> e
-applicando <a class="reference internal" href="#equation-eq-geometric-cdf">(13.4)</a> a una variabile aleatoria
+applicando <a class="reference internal" href="#equation-eq-geometric-cdf">(13.7)</a> a una variabile aleatoria
 <span class="math notranslate nohighlight">\(X \sim \mathrm G(p)\)</span>, dato un generico livello <span class="math notranslate nohighlight">\(q \in [0, 1]\)</span> si ha</p>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
@@ -1521,7 +1525,7 @@ nella versione interattiva degli appunti.</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">successivo</p>
-        <p class="prev-next-title"><span class="section-number">13.5. </span>Il modello di poisson</p>
+        <p class="prev-next-title"><span class="section-number">13.5. </span>Le distribuzioni di Poisson</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -503,16 +503,18 @@ quella unitaria.
 ## Implementazione della distribuzione di Bernoulli (*)
 
 Il modulo `scipy.stats` contiene una serie di classi che implementano le
-famiglie di distribuzioni comunemente utilizzate, e in particolare quasi tutte
-quelle che ho descritto in questo libro. Più precisamente, sulle istanze di
-queste classi è possibile invocare metodi che permettono di calcolare
-automaticamente gli indici e le funzioni che abbiamo studiato. Il punto di partenza per
-ottenere tali istanze consiste nell'invocare una funzione specifica per ogni
-famiglia di distribuzioni, che si occupa di creare le istanze e di
+famiglie di distribuzioni comunemente utilizzate, e in particolare tutte
+quelle che descritte in questo libro. Più precisamente, ogni classe
+corrisponde a una famiglia di distribuzioni, e gli oggetti di una di queste
+classi implementano una distribuzione della famiglia per la quale sono stati
+specificati tutti i parametri. Su questi oggetti è possibile invocare metodi
+che permettono di calcolare automaticamente gli indici e le funzioni associati
+alla distribuzione che abbiamo studiato. Il punto di partenza per ottenere un
+siffatto oggetto non è il costruttore della classe, bensì una funzione
+fabbrica[^factory] specificamente progettata per creare le istanze e
 restituirle. Questa funzione ha un nome che ricorda quello della famiglia a
 cui essa fa riferimento, e per quanto riguarda le distribuzioni discrete
 essa accetta un argomento per ogni valore dei parametri coinvolti.
-
 Per quanto riguarda le distribuzioni di Bernoulli, questa funzione si chiama
 (banalmente) `bernoulli`, e la cella che segue mostra come ottenere le
 corrispondenti istanze.
@@ -629,3 +631,21 @@ def bernoulli_simulation(p):
 
 widgets.interactive(bernoulli_simulation, p = param_slider)
 ```
+
+
+
+[^factory]: Nel contesto della progettazione del software, si utilizza il
+termine _fabbrica_ (o, più spesso, l'equivalente inglese _factory_) per
+indicare un disegno progettuale (anche qui, nel gergo comune si tende
+piuttosto a utilizzare il termine originale _design pattern_) nel quale una
+funzione o un metodo ha la responsabilità di creare oggetti che hanno una
+superclasse comune. In questo caso specifico, la superclasse si chiama
+`rv_discrete` e corrisponde a una generica distribuzione discreta. L'utilizzo
+di questo disegno progettuale ha, tra gli altri, lo scopo di mantenere in una
+parte localizzata del codice tutta la logica legata alla creazione degli
+oggetti, nonché quello di permettere l'estensione del numero di differenti
+tipi di oggetti che si possono creare senza che ciò richieda di intervenire
+direttamente sul codice esistente. Quello dei disegni progettuali è un
+argomento parecchio interessante, ma decisamente al di fuori dello scopo di
+questo libro. Per approfondirlo si può fare riferimento al testo storico noto
+nel gergo dei programmatori come _Gang of Four_ {cite}`gang-of-four`.

@@ -276,7 +276,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/binomiale.html">13.2. Le distribuzioni binomiali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/uniforme.html">13.3. Le distribuzioni uniformi discrete</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/geometrico.html">13.4. Le distribuzioni geometriche</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/poisson.html">13.5. Il modello di poisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/poisson.html">13.5. Le distribuzioni di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../c5-modelli-discreti/ipergeometrico.html">13.6. Il modello ipergeometrico</a></li>
 </ul>
 </li>
@@ -304,6 +304,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/processo-poisson.html">15.9. Processo di poisson</a></li>
 </ul>
 </li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../p5-appendici/formule-notevoli.html">Formule notevoli</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
 <ul class="nav bd-sidenav">
@@ -640,22 +644,22 @@ valore atteso e la varianza di <span class="math notranslate nohighlight">\(X_n\
 <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> e a <span class="math notranslate nohighlight">\(\frac{1}{12} + \frac{1}{6 n}\)</span>.</p>
 <div class="proof admonition" id="proof">
 <p>Proof. Applicando le formule per il calcolo di valore atteso e varianza si ottiene:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0b6d4a25-f220-4a4c-97a5-3ab3febc7da4">
-<span class="eqno">(14.2)<a class="headerlink" href="#equation-0b6d4a25-f220-4a4c-97a5-3ab3febc7da4" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0a3b6585-7760-4604-a334-8079ec97cc61">
+<span class="eqno">(14.2)<a class="headerlink" href="#equation-0a3b6585-7760-4604-a334-8079ec97cc61" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathbb E(X) &amp;= \sum_{i=0}^n \frac{i}{n} \frac{1}{n+1}
               = \frac{1}{n(n+1)} \sum_{i=0}^n i \\
              &amp;= \frac{1}{n(n+1)} \frac{n(n+1)}{2}
               = \frac{1}{2} \enspace;
 \end{align}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-ca40dc36-f6b5-4670-8df0-acc6de00fb50">
-<span class="eqno">(14.3)<a class="headerlink" href="#equation-ca40dc36-f6b5-4670-8df0-acc6de00fb50" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8aa3e14f-1084-4d06-baca-e612c6941eab">
+<span class="eqno">(14.3)<a class="headerlink" href="#equation-8aa3e14f-1084-4d06-baca-e612c6941eab" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathbb E(X^2) &amp;= \sum_{i=0}^n \frac{i^2}{n^2} \frac{1}{n+1}
                 = \frac{1}{n^2(n+1)} \sum_{i=0}^n i^2 \\
                &amp;= \frac{1}{n^2(n+1)} \frac{n(n+1)(2n+1)}{6}
                 = \frac{1}{3} + \frac{1}{6n} \enspace;
 \end{align}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-90acc4c7-3fa1-4c57-a848-ff409fa206ac">
-<span class="eqno">(14.4)<a class="headerlink" href="#equation-90acc4c7-3fa1-4c57-a848-ff409fa206ac" title="Permalink a questa equazione">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2a8006aa-de3d-4d2d-9843-06d705eb3d0f">
+<span class="eqno">(14.4)<a class="headerlink" href="#equation-2a8006aa-de3d-4d2d-9843-06d705eb3d0f" title="Permalink a questa equazione">#</a></span>\[\begin{equation}
 \mathrm{Var}(X) = \frac{1}{3} + \frac{1}{6n} - \frac{1}{4}
                 = \frac{1}{12} + \frac{1}{6n} \enspace.
 \end{equation}\]</div>

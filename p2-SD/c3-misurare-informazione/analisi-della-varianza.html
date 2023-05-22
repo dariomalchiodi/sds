@@ -276,7 +276,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c5-modelli-discreti/binomiale.html">13.2. Le distribuzioni binomiali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c5-modelli-discreti/uniforme.html">13.3. Le distribuzioni uniformi discrete</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c5-modelli-discreti/geometrico.html">13.4. Le distribuzioni geometriche</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c5-modelli-discreti/poisson.html">13.5. Il modello di poisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c5-modelli-discreti/poisson.html">13.5. Le distribuzioni di Poisson</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c5-modelli-discreti/ipergeometrico.html">13.6. Il modello ipergeometrico</a></li>
 </ul>
 </li>
@@ -304,6 +304,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/processo-poisson.html">15.9. Processo di poisson</a></li>
 </ul>
 </li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../p5-appendici/formule-notevoli.html">Formule notevoli</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
 <ul class="nav bd-sidenav">
@@ -665,14 +669,14 @@ giustificato);</p></li>
 segue) che
 <span class="math notranslate nohighlight">\(\mathrm{SS}_{\mathrm T} = \mathrm{SS}_{\mathrm W} + \mathrm{SS}_{\mathrm B}\)</span>,
 e quindi che</p>
-<div class="amsmath math notranslate nohighlight" id="equation-91323a68-a129-4706-873a-669ab43b5adb">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-91323a68-a129-4706-873a-669ab43b5adb" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-08f23c54-e6a4-405c-97bd-842c806d0349">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-08f23c54-e6a4-405c-97bd-842c806d0349" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \frac{\mathrm{SS}_{\mathrm T}}{n-1} &amp;= \frac{\mathrm{SS}_{\mathrm W}}{n-1} +\frac{\mathrm{SS}_{\mathrm B}}{n-1}, \\
 &amp;= \frac{n-G}{n-1} \frac{\mathrm{SS}_{\mathrm W}}{n-G} + \frac{G-1}{n-1} \frac{\mathrm{SS}_{\mathrm B}}{G-1}.
 \end{align}\]</div>
 <p>Pertanto,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-026ae6b6-2b2c-44e3-a05c-9e05f6641687">
-<span class="eqno">(6.2)<a class="headerlink" href="#equation-026ae6b6-2b2c-44e3-a05c-9e05f6641687" title="Permalink a questa equazione">#</a></span>\[\begin{multline}
+<div class="amsmath math notranslate nohighlight" id="equation-227d057d-c34d-457c-b518-4e4829ad6e43">
+<span class="eqno">(6.2)<a class="headerlink" href="#equation-227d057d-c34d-457c-b518-4e4829ad6e43" title="Permalink a questa equazione">#</a></span>\[\begin{multline}
 \text{varianza totale} = \frac{n-G}{n-1} \text{varianza entro i gruppi} + \\
                          \frac{G-1}{n-1} \text{varianza tra i gruppi}.
 \end{multline}\]</div>
@@ -895,8 +899,8 @@ valutando la differenza nella distribuzione del peso.</p>
 \sum_{i=1}^{n_g} x^g_i = n_g \overline x^g,
 \]</div>
 <p>e quindi</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d3939b86-c126-45ba-bc2e-76330307ede2">
-<span class="eqno">(6.3)<a class="headerlink" href="#equation-d3939b86-c126-45ba-bc2e-76330307ede2" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b9bd3606-f823-4b6e-a1d2-61e5f8692fb8">
+<span class="eqno">(6.3)<a class="headerlink" href="#equation-b9bd3606-f823-4b6e-a1d2-61e5f8692fb8" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm{SS}_{\mathrm T}  &amp;= \sum_{g=1}^G \sum_{i=1}^{n_g}
                             \left( \left(x^g_i\right)^2
                             - 2 \overline x x^g_i +
