@@ -158,7 +158,7 @@ un'ulteriore etichetta per l'intera tabella.
 
 Essendo l'output di `pd.crosstab` un _dataframe_, su esso si possono eseguire
 operazioni quali _slicing_, accesso basato su indice e su posizione e così via.
-Ciò permette di trasformare facilmente una tabella di frequenze relative nella
+Ciò permette di trasformare facilmente una tabella di frequenze assolute nella
 corrispondente tabella delle _frequenze relative_, dove la frequenza relativa
 di un'osservazione è la frazione di casi in quell'osservazione occorre. L'uso
 delle frequenze relative permette di valutare più facilmente la grandezza dei
