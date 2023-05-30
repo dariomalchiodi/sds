@@ -963,7 +963,7 @@ un'ulteriore etichetta per l'intera tabella.</p>
 </div>
 <p>Essendo l'output di <code class="docutils literal notranslate"><span class="pre">pd.crosstab</span></code> un <em>dataframe</em>, su esso si possono eseguire
 operazioni quali <em>slicing</em>, accesso basato su indice e su posizione e così via.
-Ciò permette di trasformare facilmente una tabella di frequenze relative nella
+Ciò permette di trasformare facilmente una tabella di frequenze assolute nella
 corrispondente tabella delle <em>frequenze relative</em>, dove la frequenza relativa
 di un'osservazione è la frazione di casi in quell'osservazione occorre. L'uso
 delle frequenze relative permette di valutare più facilmente la grandezza dei
@@ -2055,8 +2055,8 @@ dato un insieme di osservazioni <span class="math notranslate nohighlight">\(\{ 
 funzione <span class="math notranslate nohighlight">\(\hat F: \mathbb R \mapsto [0, 1]\)</span> tale che per ogni <span class="math notranslate nohighlight">\(x \in \mathbb R\)</span>
 assume un valore pari alla frequenza relativa delle osservazioni che risultano
 essere minori o uguali a <span class="math notranslate nohighlight">\(x\)</span>. Pertanto</p>
-<div class="amsmath math notranslate nohighlight" id="equation-98855953-8560-4145-89d4-6766334238f9">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-98855953-8560-4145-89d4-6766334238f9" title="Permalink a questa equazione">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a7dcaef9-62a2-42a0-b893-4b2dac0d5338">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-a7dcaef9-62a2-42a0-b893-4b2dac0d5338" title="Permalink a questa equazione">#</a></span>\[\begin{equation}
 \hat F(x) = \frac{\# \{ x_i \leq x \}}{n}
 = \frac{1}{n} \sum_{i=1}^n \mathrm I_{(-\infty, x]}(x_i) ,
 \end{equation}\]</div>

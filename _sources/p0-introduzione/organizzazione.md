@@ -79,11 +79,11 @@ essere pubblicati solo se sono coerenti con la licenza
 
 % Alcune persone hanno letto e commentato quello che ho scritto, contribuendo
 % in modo fondamentale al risultato finale: Alessandro Di Giorgi mi ha aiutato
-% a limare la trattazione matematica in alcuni punti. Matteo Princisgh e Marco
-% De Petri hanno accuratamente letto le bozze e trovato tante imperfezioni alle
-% quali spero di avere rimediato.Ringrazio tutte e tutti
+% a limare la trattazione matematica in alcuni punti. Marco De Petri, Matteo
+% Princisgh e Nicolò Rosati hanno accuratamente letto le bozze e trovato
+% tante imperfezioni alle quali spero di avere rimediato. Ringrazio tutte e tutti
 % per avere dedicato un po' del loro tempo e delle loro energie a questo lavoro,
-% puntualizzando che che errori e imperfezioni sono interamente da attirbuirsi
+% puntualizzando che che errori e imprecisioni che dovessero essere rimasti sono interamente da attirbuirsi
 % a me. Ci sono poi tante persone che voglio ringraziare per il loro supporto:
 % Serena Paolo e Paolo Boldi, che per primi e per motivi diversissimi (ma non
 % troppo) sono venuti a conoscenza della mia idea di scrivere un libro, e per
