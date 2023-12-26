@@ -53,16 +53,78 @@ nuova famiglia di distribuzioni che permette di approssimare quella di $X$.
 
 In particolare, fissato $\lambda \in \mathbb R^+$ consideriamo una successione
 di variabili aleatorie $X_1, X_2, \dots$, dove per ogni $n \in \mathbb N$ si
-ha $X_n \sim \mathrm B(n, p_n)$ e $n p_n = \lambda$. La funzione di massa di
-probabilità di una generica variabile di questa successione è tale che
+ha $X_n \sim \mathrm B(n, p_n)$ e $n p_n = \lambda$. Evitando di considerare
+la funzione indicatrice sul supporto della distribuzione, per evitare di
+appesantire la notazione, la funzione di massa di probabilità di una generica
+variabile di questa successione è tale che
+
+\begin{align*}
+f_{X_n}(x; n, p_n) &= \binom{n}{x} p_n^x (1-p_n)^{n-x} \\
+     &= \frac{n \cdot (n-1) \cdot \dots \cdot (n - x + 1)}{x!}
+        \left( \frac{\lambda}{n} \right)^x 
+        \frac{\left(1 - \frac{\lambda}{n}\right )^n}
+             {\left(1 - \frac{\lambda}{n}\right )^x} \\
+     &= \frac{n}{n} \cdot \dots \frac{n - x + 1}{n}
+        \frac{\lambda^x}{x!}
+        \frac{\left(1 - \frac{\lambda}{n}\right )^n}
+             {\left(1 - \frac{\lambda}{n}\right )^x} \enspace.
+\end{align*}
+
+Se ora consideriamo il limite per $n \to +\infty$,
+
+- ognuna delle prime $n-x$ frazioni tende a $1$,
+- il numeratore dell'ultima funzione tende a $\mathrm e^{-\lambda}$, e
+- il suo denominatore tende a $1$,
+
+e dunque la successione delle funzioni di massa di probabilità ha come limite
+puntuale la seguente funzione
 
 ```{math}
-f_{X_n}(x; n, p_n) = \binom{n}{x} p_n^x (1-p_n)^{n-x} \enspace.
+f(x; \lambda) = \mathrm e^{-\lambda} \frac{\lambda^x}{x!}
+                \mathrm I_{\mathbb N \cup \{ 0 \}}(x) \enspace.
 ```
 
-Per analizzare il generico andamento di questa funzione, vale la pena
-studiare il rapporto $\rho$ tra i valori che essa assume per due valori
-successivi della relativa specificazione:
+Va notato che questa funzione è la funzione di massa di probabilità di una
+qualche distribuzione, essendo i sui valori sempre non negativi e valendo
+
+```{margin}
+In questa catena di uguaglianze, l'ultima serie corrisponde alla serie di
+Taylor della funzione $g(u) = \mathrm e^u$ centrata in $0$.
+```
+```{math}
+\sum_{x=0}^{+\infty} f(x; \lambda) = \mathrm e^{-\lambda}
+         \sum_{x=0}^{+\infty} \frac{\lambda^x}{x!}
+         = \mathrm e^{-\lambda} \cdot \mathrm e^{\lambda} = 1 \enspace.
+```
+
+Pertanto, la successione delle distribuzioni binomiali nella quale il
+parametro $n$ cresce e, contemporaneamente, il parametro $p$ diminuisce
+in modo che il prodotto dei due parametri sia costante converge a un nuovo
+tipo di distribuzione, che viene detta distribuzione di Poisson. La
+corrispondente famiglia di distribuzioni è descritta in modo formale nella
+definizione che segue.
+
+````{prf:definition} La famiglia delle distribuzioni di Poisson
+Fissato $\lambda \in \mathbb R^+$, la distribuzione definita dalla funzione
+di massa di probabilità
+
+```{math}
+f(x; \lambda) = \mathrm e^{-\lambda} \frac{\lambda^x}{x!}
+                \mathrm I_{\mathbb N \cup \{ 0 \}}(x)
+```
+
+è detta _distribuzione di Poisson_ di parametro $\lambda$, e userò la
+notazione $X \sim \mathrm P(\lambda)$ per indicare che una variabile aleatoria
+$X$ segue una siffatta distribuzione. La _famiglia delle distribuzioni di
+Poisson_ è definita come l'insieme di tutte queste distribuzioni, al variare
+dei possibili valori del corrispondente parametro $\lambda$.
+````
+
+Per analizzare il generico andamento della funzione funzione di massa di
+probabilità $f_X$ di una generica variabile aleatoria
+$X \sim \mathrm P(\lambda)$, vale la pena studiare il rapporto $\rho$ tra i
+valori che essa assume per due valori successivi della relativa
+specificazione:
 
 ```{math}
 \rho = \frac{f_X(x+1; \lambda)}{f_X(x; \lambda)}
@@ -87,20 +149,61 @@ tre differenti situazioni possibili, illustrate anche nella
 - se $\lambda \not\in \mathbb N$ e $\lambda < 1$, $f_X(0; \lambda)$
   rappresenta il massimo valore di massa di probabilità, la relativa funzione
   è strettamente decrescente e $0$ è la moda della distribuzione;
+
+```{code-cell} ipython3
+:tags: [hide-cell, remove-output, margin]
+
+import matplotlib.pyplot as plt
+from myst_nb import glue
+
+lambda_ = 2.2
+i = 2
+
+fig = plt.figure(figsize=(5, 1))
+
+plt.plot([i-1.5, i+1.5], [0, 0], 'k')
+
+plt.xticks([])
+plt.yticks([])
+
+s  = -1
+spacing = {-1: -.4, 1: .2}
+for x, l in zip([i-1, lambda_-1, i, lambda_, i+1],
+                [r'$i-1$', r'$\lambda - 1$', r'$i$', r'$\lambda$', r'$i+1$']):
+    plt.plot([x] * 2, [-.1, .1], 'k')
+    plt.text(x, spacing[s], l, ha='center', fontsize=18)
+    s *= -1
+
+plt.ylim([-.5, .5])
+plt.axis('off')
+plt.show()
+
+glue("poisson-mode-proof", fig, display=True)
+```
+
+```{glue:figure} poisson-mode-proof
+---
+name: fig:poisson-mode-proof
+figclass: margin
+---
+L'ultimo valore intero per il quale $\rho > 1$ è
+$i - 1 = \lfloor \lambda -1 \rfloor$, pertanto la moda coincide con l'intero
+successivo, e quest'ultimo è uguale a
+$i = \lceil \lambda - 1 \rceil = \lfloor \lambda \rfloor.$
+```
+
 - quando $\lambda \not\in \mathbb N$ ma $\lambda > 1$, la funzione di massa di
   probabilità è inizialmente crescente e ha un massimo nel valore modale
-  $\lceil \lambda \rceil$, poi decresce;
+  $\lceil \lambda \rceil$ (come evidenziato nella
+  {numref}`Figura %s <fig:poisson-mode-proof>`), poi decresce;
 - quando $\lambda \in \mathbb N$ la situazione è simile al punto precedente,
   ma in questo caso vi sono due valori modali: $\lambda - 1$ e $\lambda$.
 
 ```{code-cell} ipython3
 :tags: [hide-cell, remove-output]
 
-import matplotlib.pyplot as plt
 import numpy as np
 import scipy.stats as st
-
-from myst_nb import glue
 
 def poisson_graph(lambda_, ax):
     n = 10
@@ -128,8 +231,157 @@ Grafici della funzione di massa di probabilità per le distribuzioni di
 Poisson di parametro $0.9$ (sinistra), $2.7$ (centro) e $3$ (destra).
 ```
 
+Così come nel caso della distribuzione binomiale, non è possibile esprimere
+analiticamente la funzione di ripartizione $F_X$ se non in termini di una
+somma che coinvolge la funzione di massa di probabilità:
 
+```{math}
+F_X(x; \lambda) = \mathrm e^{-\lambda}
+                  \sum_{y=0}^{\lfloor x \rfloor} \frac{\lambda^y}{y!}
+                  \mathrm I_{\mathbb R^+ \cup \{ 0 \}}(x) \enspace.
+```
 
+Il grafico seguente mostra la sovrapposizione delle funzioni di massa di
+probabilità e di ripartizione di una generica distribuzione di Poisson. Nella
+versione interattiva del libro è possibile modificare il valore di $\lambda$ e
+visualizzare interattivamente come cambiano i grafici delle due funzioni
+
+```{code-cell} ipython3
+:tags: [hide-input]
+
+import ipywidgets as widgets
+
+n = 20
+
+lambda_slider = widgets.FloatSlider(value=2,
+                               min=0.001,
+                               max=n,
+                               step=0.1,
+                               description='p',
+                               continuous_update=True,
+                               readout=False,
+                               orientation='horizontal')
+
+def poisson_pdf_cdf(lambda_):
+    P = st.poisson(lambda_)
+
+    x = np.arange(0, n+1)
+    y = P.pmf(x)
+
+    plt.hlines([0] + list(P.cdf(x)), range(-1, n+1), list(range(n+1)) + [20])
+
+    plt.vlines(x, 0, y, color='k')
+    plt.plot(x, y, 'o')
+
+    #plt.plot([n*p], [0.5], 's')
+
+    plt.title(rf'$\lambda = {lambda_:.2f}$')
+    plt.xlim(-1, 21)
+    plt.ylim(0, 1.1)
+    plt.xticks(range(0, 21, 2))
+    plt.show()
+
+widgets.interactive(poisson_pdf_cdf, lambda_=lambda_slider)
+```
+
+```{figure} http://www.sil.si.edu/digitalcollections/hst/scientific-identity/fullsize/SIL14-P005-06a.jpg
+---
+figclass: margin
+name: fig:simeon-poisson
+width: 200px
+align: left
+---
+Ritratto di Siméon Denis Poisson (immagine di pubblico dominio, disponibile su
+wikimedia).
+```
+````{admonition} Nomenclatura
+:class: naming
+
+La distribuzione di Poisson prende il suo nome da quello del matematico e
+fisico francese Siméon Denis Poisson, ritratto nella
+{numref}`Figura %s <fig:simeon-poisson>`. In effetti, tale distribuzione è
+descritta nel suo libro «Recherches sur la probabilité des jugements en matière
+criminelle et en matière civile» pubblicato nel 1837, sebbene fosse già
+presente nell'articolo scientifico «Probabilitate Eventuum in Ludis a Casu
+Fortuito Pendentibus» pubblicato nel 1711 da un altro matematico francese,
+Abraham de Moivre. Come per il caso della distribuzione di Bernoulli, è
+relativamente frequente l'uso dell'aggettivo «poissoniano» per indicare
+questa distribuzione, così come i concetti matematici a essa collegati.
+````
+
+## Valore atteso e varianza della distribuzione di Poisson
+
+Abbiamo visto come una distribuzione di Poisson di parametro $\lambda$ sia il
+risultato della convergenza di una successione di distribuzioni binomiali di
+parametri $n$ e $p_n$, ognuna caratterizzata dalla relazione
+$\n p_n = \lambda$. Essendo pertanto il valore atteso di ognuna di queste
+distribuzioni esattamente uguale a $\lambda$, è ragionevole aspettarsi che
+lo stesso valga per la distribuzione di Poisson che rappresenta il limite
+della successione. Ciò è quello che effettivamente accade, come dimostrato
+nel seguente teorema.
+
+````{prf:theorem}
+:label: teo:poisson-mean
+
+Dati $\lambda \in \mathbb R^+$ e $X \sim \mathrm P(\lambda)$,
+$\mathbb E(X) = \lambda$.
+````
+````{prf:proof}
+Applicando la definizione di valore atteso di variabile aleatoria si ottiene
+
+\begin{align*}
+\mathbb E(X) &= \sum_{x=0}^{+\infty}x f_X(x)
+              = \lambda \mathrm e^{-\lambda }\sum_{x=0}^{+\infty}
+                                            x \frac{\lambda^{x-1}}{x!}
+              = \lambda \mathrm e^{-\lambda }\sum_{x=1}^{+\infty}
+                                            \frac{\lambda^{x-1}}{(x-1)!} \\
+             &=  \lambda \mathrm e^{-\lambda }\sum_{y=0}^{+\infty}
+                                            \frac{\lambda^y}{y!}
+              = \lambda \mathrm e^{-\lambda } \mathrm e^\lambda
+              = \lambda \enspace,
+\end{align*}
+
+dove nel terzo passaggio l'indice $x=0$ è omesso dalla sommatoria perché
+l'addendo corrispondente è nullo, e nel quarto passaggio è stata applicata
+la trasformazione $y = x - 1$. 
+````
+
+Il valore della varianza in una distribuzione di Poisson non si riesce a
+ottenere in modo altrettanto intuitivo, ed è necessario calcolarlo in modo
+formale, per esempio nel modo descritto dal seguente teorema.
+
+````{prf:theorem}
+:label: teo:poisson-variance
+
+Dati $\lambda \in \mathbb R^+$ e $X \sim \mathrm P(\lambda)$,
+$\mathrm{Var}(X) = \lambda$.
+````
+````{prf:proof}
+Il momento secondo della distribuzione è uguale a
+
+\begin{align*}
+\mathbb E\left( X^2 \right)
+   &= \sum_{x=0}^{+\infty}x^2 f_X(x)
+    = \lambda \mathrm e^{-\lambda }\sum_{x=0}^{+\infty}
+                                   x^2 \frac{\lambda^{x-1}}{x!}
+    = \lambda \mathrm e^{-\lambda }\sum_{x=1}^{+\infty}
+                                   x \frac{\lambda^{x-1}}{(x-1)!} \\
+   &=  \lambda \mathrm e^{-\lambda }\sum_{y=0}^{+\infty}
+                                    (y + 1) \frac{\lambda^y}{y!}
+    = \lambda \underbrace{
+           \mathrm e^{-\lambda }\sum_{y=0}^{+\infty} y \frac{\lambda^y}{y!}
+         }_{
+           =\mathbb E(X) = \lambda
+         }
+      + \lambda \mathrm e^{-\lambda } \underbrace{
+              \sum_{y=0}^{+\infty} \frac{\lambda^y}{y!}}_{= \mathrm e^\lambda}
+    = \lambda^2 + \lambda \enspace.
+\end{align*}
+
+Pertanto la varianza della distribuzione sarà $\mathrm{Var}(X) =
+\mathbb E\left( X^2 \right) - \mathbb E(X) ^2 = \lambda^2 + \lambda - \lambda^2
+= \lambda$.
+````
 
 ## Momenti della distribuzione di Poisson (*)
 
@@ -166,6 +418,33 @@ m_X(t) = \mathbb E \left( \mathrm e^{tX} \right)
 
 dove il valore della somma infinita è ottenuto considerando lo sviluppo in
 serie di Taylor dell'elevamento alla potenza di $\mathrm e$, centrata in $0$.
+````
+
+La particolare forma analitica della funzione generatrice dei momenti
+permette di dimostrare che la distribuzione di Poisson è _riproducibile_,
+come dettagliato nel seguente teorema.
+
+```{prf:theorem}
+:label: teo:poisson-reproducibility
+
+Dati $n \in \mathbb N$ e $\lambda_1, \dots, \lambda_n \in \mathbb R^+$,
+per ogni $i = 1, \dots, n$ sia $X_i \sim \mathrm P(\lambda_i)$. Se le
+variabili aleaotrie appena definite sono tra loro indipendenti, allora
+$Y \coloneqq \sum_{i=1}^n X_i \sim \mathrm P(\sum_{i=1}^n \lambda_i)$.
+```
+````{prf:proof}
+L'indipendenza delle $X_i$ permette di esprimere la funzione generatrice dei
+momenti di $Y$ come prodotto di quelle delle $X_i$:
+
+\begin{equation*}
+m_Y(t) = \prod_{i=1}^n \mathrm e^{-\lambda_i}
+         \mathrm{exp}\left( \lambda_i \mathrm e^t \right)
+       = \mathrm e^{-\sum_{i=1}^n\lambda_i}
+         \mathrm{exp}\left(\mathrm e^t \sum_{i=1}^n \lambda_i \right)\enspace,
+\end{equation*}
+
+e il risultato ottenuto coincide con la funzione generatrice dei momenti di
+una distribuzione di Poisson di parametro $\sum_{i=1}^n \lambda_i$.
 ````
 
 Il calcolo delle derivate di $m_X$ si può esprimere in un'elegante forma
