@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 
 
-<html lang="it" >
+<html lang="it" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>15.1. Popolazione, campione e stima &#8212; Superhero Data Science 
+    <title>15.1. Il problema della stima parametrica &#8212; Superhero Data Science 
  Probabilità e Statistica</title>
   
   
@@ -20,12 +20,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -41,8 +41,9 @@
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -65,12 +66,14 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "loader": {"load": ["[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["mathtools"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima';</script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
     <link rel="search" title="Cerca" href="../../search.html" />
     <link rel="next" title="15.2. Media campionaria" href="media-campionaria.html" />
-    <link rel="prev" title="15. Inferenza puntuale" href="inferenza-puntuale.html" />
+    <link rel="prev" title="15. Introduzione" href="inferenza-puntuale.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="it"/>
   </head>
@@ -81,6 +84,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -134,9 +146,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../../landing.html">
+  
   
   
   
@@ -146,8 +160,10 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../../_static/logoface.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../_static/logoface.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../_static/logoface.png" class="logo__image only-light" alt="Superhero Data Science 
+ Probabilità e Statistica - Home"/>
+    <script>document.write(`<img src="../../_static/logoface.png" class="logo__image only-dark" alt="Superhero Data Science 
+ Probabilità e Statistica - Home"/>`);</script>
   
   
 </a></div>
@@ -288,10 +304,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistica inferenziale</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistica inferenziale parametrica</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="inferenza-puntuale.html">15. Inferenza puntuale</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">15.1. Popolazione, campione e stima</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="inferenza-puntuale.html">15. Introduzione</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">15.1. Il problema della stima parametrica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="media-campionaria.html">15.2. Media campionaria</a></li>
 <li class="toctree-l2"><a class="reference internal" href="varianza-campionaria.html">15.3. Varianza campionaria</a></li>
 <li class="toctree-l2"><a class="reference internal" href="errore-di-una-stima.html">15.4. Errore di una stima</a></li>
@@ -546,24 +562,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Cerca" aria-label="Cerca" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -574,11 +594,20 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Popolazione, campione e stima</h1>
+    <h1>Il problema della stima parametrica</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contenuti </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-popolazione">15.1.1. La popolazione</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-campione">15.1.2. Il campione</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -588,8 +617,128 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="popolazione-campione-e-stima">
-<h1><span class="section-number">15.1. </span>Popolazione, campione e stima<a class="headerlink" href="#popolazione-campione-e-stima" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="il-problema-della-stima-parametrica">
+<h1><span class="section-number">15.1. </span>Il problema della stima parametrica<a class="headerlink" href="#il-problema-della-stima-parametrica" title="Permalink to this heading">#</a></h1>
+<section id="la-popolazione">
+<h2><span class="section-number">15.1.1. </span>La popolazione<a class="headerlink" href="#la-popolazione" title="Permalink to this heading">#</a></h2>
+<p>La parte di questo libro dedicata alla statistica descrittiva ha introdotto il
+concetto di popolazione definendolo come un insieme di individui, ognuno
+rappresentato dall'esito delle misurazioni di uno o più attributi. Nell'ambito
+della statistica inferenziale, la definizione di popolazione cambia in modo da
+poterla inquadrare nell'ambito del calcolo delle probabilità: quello che era
+l'insieme degli individui diventa ora legato al supporto di una variabile
+aleatoria, le cui specificazioni corrisopndono ai possibili valori della
+misurazione di un attributo. Anche in questo caso, per semplificare la
+trattazione si fa un abuso di linguaggio, riferendo il termine <em>popolazione</em>
+direttamente alle <em>misurazioni</em> e non agli <em>individui</em>.</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Nella statistica descrittiva, ogni individuo della popolazione è associato
+tipicamente a più attributi, mentre in questa definizione si
+fa implicitamente riferimento a una variabile aleatoria univariata. In linea
+di principio è possibile definire una popolazione utilizzanto delle variabili
+aleatorie multivariate, ma questo è un argomento avanzato che va oltre lo
+scopo di questo libro.</p>
+</aside>
+<div class="proof definition admonition" id="def:population-is">
+<p class="admonition-title"><span class="caption-number">Definition 15.1 </span> (Popolazione)</p>
+<section class="definition-content" id="proof-content">
+<p>In un problema di statistica inferenziale, la <em>popolazione</em> è definita come
+una variabile aleatoria <span class="math notranslate nohighlight">\(X\)</span>, la cui distribuzione dipende da un parametro
+<span class="math notranslate nohighlight">\(\theta\)</span> il cui valore è fissato ma al contempo ignoto.</p>
+</section>
+</div><aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>In altre parole, <span class="math notranslate nohighlight">\(\mathrm D\)</span> indica una particolare famiglia di distribuzione,
+dipendente esclusivamente dal parametro ignoto.</p>
+</aside>
+<p>Nella letteratura c'è ampio accordo sul fatto di utilizzare i simboli <span class="math notranslate nohighlight">\(X\)</span> e
+<span class="math notranslate nohighlight">\(\theta\)</span> per indicare, rispettivamente, la popolazione e il relativo parametro
+ignoto. Non c'è invece accordo relativamente al simbolo da usare per
+la distribuzione stessa. In questo libro adotterò la notazione
+<span class="math notranslate nohighlight">\(X \sim \mathrm D(\theta)\)</span>, evidenziando così il parametro ignoto. Utilizzerò
+la stessa notazione anche nel caso in cui la distribuzione della popolazione
+coinvolge due o più parametri, ma solamente uno di essi è sconosciuto, e
+ovviamente <span class="math notranslate nohighlight">\(\theta\)</span> farà riferimento a questo parametro. È possibile estendere
+questa notazione per il caso nel quale non si conoscono due o più parametri
+della distribuzione, scrivendo <span class="math notranslate nohighlight">\(X \sim \mathrm D(\boldsymbol \theta)\)</span>, dove
+<span class="math notranslate nohighlight">\(\boldsymbol\theta\)</span> è un vettore le cui componenti individuano i parametri
+ignoti. Questo caso particolare sarà però trattato solo marginalmente.
+Chiaramente, questa notazione viene introdotta solo per poter formalizzare i
+concetti chiave della statistica inferenziale parametrica puntuale
+indipendentemente dall'effettiva distribuzione della popolazione. Nel caso in
+cui questa sia specificata, i simboli <span class="math notranslate nohighlight">\(D\)</span> e <span class="math notranslate nohighlight">\(\theta\)</span> verranno sostituiti
+opportunamente.</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>In alcuni degli esempi preferirò in realtà scrivere simbolicamente tutti i
+parametri della distribuzione della popolazione, anche nel caso in cui alcuni
+siano noti, così che la soluzione si possa applicare indipendentemente dal
+particolare valore che i parametri noti assumono.</p>
+</aside>
+<div class="proof example admonition" id="ex:population">
+<p class="admonition-title"><span class="caption-number">Example 15.1 </span></p>
+<section class="example-content" id="proof-content">
+<p>Se la popolazione coincide con l'insieme di tutti i supereroi, e
+l'osservazione di un suo individuo ha come esito <span class="math notranslate nohighlight">\(1\)</span> nel caso in cui esso
+sia un supereroe Marvel e <span class="math notranslate nohighlight">\(0\)</span> altirmenti, la popolazione è
+naturalmente descritta da una variabile aleatoria <span class="math notranslate nohighlight">\(X \sim \mathrm B(p)\)</span>,
+pertanto si dice che la popolazione ha una distribuzione di Bernoulli il cui
+parametro <span class="math notranslate nohighlight">\(p\)</span> è ignoto. Dunque, <span class="math notranslate nohighlight">\(\mathrm D\)</span> è sostituito dalla distribuzione
+di Bernoulli e <span class="math notranslate nohighlight">\(\theta = p\)</span>.</p>
+<p>Se invece l'osservazione corrisponde a misurare l'altezza del supereroe,
+esprimendola in centrimetri, supponiamo che la popolazione sia descritta da
+una distribuzione normale il cui valore atteso è ignoto e la cui deviazione
+standard è pari a <span class="math notranslate nohighlight">\(2 \mathrm{cm}\)</span>. In questo caso avremo
+<span class="math notranslate nohighlight">\(X \sim \mathrm N(\mu, 2)\)</span>, il che vuol dire che</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathrm D\)</span> corrisponde a una particolare sottofamiglia del modello normale,
+precisamente quella nella quale il valore atteso può assumere qualsiasi
+valore in <span class="math notranslate nohighlight">\(\mathbb R\)</span> ma la deviazione standard è sempre uguale a <span class="math notranslate nohighlight">\(2\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta = \mu\)</span>.</p></li>
+</ul>
+<p>Va notato che, in linea di principio, sarebbe possibile introdurre il simbolo
+<span class="math notranslate nohighlight">\(\sigma = 2\)</span> e scrivere <span class="math notranslate nohighlight">\(X \sim \mathrm N(\mu, \sigma)\)</span>, ma in questo modo
+la notazione non permette di capire immediatamente quale sia il parametro
+ignoto.</p>
+<p>Infine, supponiamo che nel caso precedente sia il valore atteso, sia la
+deviazione standard della popolazione siano sconosciute. Avremo pertanto
+<span class="math notranslate nohighlight">\(X \sim \mathrm N(\mu, \sigma)\)</span>, che corrisponde a far coincidere <span class="math notranslate nohighlight">\(\mathrm D\)</span>
+con la famiglia delle distribuzioni normali e
+<span class="math notranslate nohighlight">\(\boldsymbol \theta = (\mu, \sigma)\)</span>.</p>
+</section>
+</div><p>L'uso di una variabile aleatoria per modellare la popolazione è intuitivamente
+legato al fatto che il campionamento da essa si lega in modo naturale
+all'osservazione della variabile aleatoria stessa, come dettagliato nel
+paragrafo seguente.</p>
+</section>
+<section id="il-campione">
+<h2><span class="section-number">15.1.2. </span>Il campione<a class="headerlink" href="#il-campione" title="Permalink to this heading">#</a></h2>
+<p>La modellizzazione del concetto di campione all'interno della statistica
+inferenziale è un argomento delicato: da un lato, come informalmente indicato
+alla fine del paragrafo precedente, è naturale pensare a un campione come
+a un insieme <span class="math notranslate nohighlight">\(\{ x_1, \dots, x_n \}\)</span> di osservazioni della popolazione <span class="math notranslate nohighlight">\(X\)</span>.
+Questa definizione avrebbe l'innegabile vantaggio di essere molto simile a
+quella vista nella parte sulla statistica descrittiva. Bisogna però tener
+conto di un aspetto importante: nella statistica descrittiva il campione,
+inteso come sequenza di numeri, è dato, mentre la modellazione fatta
+nell'ambito della statistica inferenziale deve essere indipendente dal
+<em>particolare</em> campione osservato.</p>
+<div class="proof example admonition" id="ex:multiple-samples">
+<p class="admonition-title"><span class="caption-number">Example 15.2 </span></p>
+<section class="example-content" id="proof-content">
+<p>ESEMPIO SULL'ESTRAZIONE DI DIVERSI CAMPIONI DA UNA STESSA POPOLAZIONE.</p>
+</section>
+</div><div class="proof definition admonition" id="def:sample-is">
+<p class="admonition-title"><span class="caption-number">Definition 15.2 </span></p>
+<section class="definition-content" id="proof-content">
+<p>Data una popolazione descritta da una variabile aleatoria
+<span class="math notranslate nohighlight">\(X \sim \mathrm D(\theta)\)</span> e un numero intero <span class="math notranslate nohighlight">\(n \in \mathbb N\)</span>, si definisce
+un <em>campione aleatorio</em> di dimensione <span class="math notranslate nohighlight">\(n\)</span> come una sequenza <span class="math notranslate nohighlight">\(X_1, \dots, X_n\)</span>
+di <span class="math notranslate nohighlight">\(n\)</span> variabili aleatorie i.i.d., la cui distribuzione coincide con quella
+di <span class="math notranslate nohighlight">\(X\)</span>.</p>
+</section>
+</div></section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -617,11 +766,10 @@ document.write(`
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="inferenza-puntuale.html"
@@ -629,7 +777,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">precedente</p>
-        <p class="prev-next-title"><span class="section-number">15. </span>Inferenza puntuale</p>
+        <p class="prev-next-title"><span class="section-number">15. </span>Introduzione</p>
       </div>
     </a>
     <a class="right-next"
@@ -641,15 +789,27 @@ document.write(`
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenuti
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-popolazione">15.1.1. La popolazione</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-campione">15.1.2. Il campione</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
@@ -667,6 +827,7 @@ Di <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2021 — Licensed under CC-BY 4.0.
@@ -693,8 +854,8 @@ Di <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
   <footer class="bd-footer">
   </footer>

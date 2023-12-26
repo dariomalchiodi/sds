@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html lang="it" >
+<html lang="it" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
@@ -20,12 +20,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -41,8 +41,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -83,6 +84,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -136,9 +146,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../landing.html">
+  
   
   
   
@@ -148,8 +160,10 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/logoface.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logoface.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/logoface.png" class="logo__image only-light" alt="Superhero Data Science 
+ Probabilità e Statistica - Home"/>
+    <script>document.write(`<img src="../_static/logoface.png" class="logo__image only-dark" alt="Superhero Data Science 
+ Probabilità e Statistica - Home"/>`);</script>
   
   
 </a></div>
@@ -290,10 +304,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistica inferenziale</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistica inferenziale parametrica</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../p4-SI/c1-inferenza-puntuale/inferenza-puntuale.html">15. Inferenza puntuale</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima.html">15.1. Popolazione, campione e stima</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../p4-SI/c1-inferenza-puntuale/inferenza-puntuale.html">15. Introduzione</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima.html">15.1. Il problema della stima parametrica</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../p4-SI/c1-inferenza-puntuale/media-campionaria.html">15.2. Media campionaria</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../p4-SI/c1-inferenza-puntuale/varianza-campionaria.html">15.3. Varianza campionaria</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../p4-SI/c1-inferenza-puntuale/errore-di-una-stima.html">15.4. Errore di una stima</a></li>
@@ -548,20 +562,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Cerca" aria-label="Cerca" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -599,14 +615,41 @@ document.write(`
 <div class="math notranslate nohighlight" id="equation-eq-sum-pow-1">
 <span class="eqno">(1)<a class="headerlink" href="#equation-eq-sum-pow-1" title="Permalink a questa equazione">#</a></span>\[\sum_{i=1}^n i = \frac{n(n+1)}{2} \enspace.\]</div>
 </section>
-</div><div class="proof theorem admonition" id="teo:sum-2">
+</div><div class="proof admonition" id="proof">
+<p>Proof. Sia <span class="math notranslate nohighlight">\(S = \sum_{i=1}^n i\)</span>: lo schema seguente elenca nella prima riga tutti
+gli addendi della somma in <span class="math notranslate nohighlight">\(S\)</span> dal primo all'ultimo, e nella seconda gli
+stessi addendi nell'ordine inverso. In fondo a ognuna di queste due righe
+è indicata la somma di tutti i relativi elementi, che per definizione è
+in entrambi i casi <span class="math notranslate nohighlight">\(S\)</span>. Ogni elemento della terza riga è ottenuto sommando
+i due elementi che stanno al di sopra di lui nella medesima colonna, e si
+vede facilmente come il risultato di questa somma sia sempre uguale a <span class="math notranslate nohighlight">\(n+1\)</span>,</p>
+<p>\begin{tabular}[rrrrrrrr]
+<span class="math notranslate nohighlight">\(1\)</span>   &amp; <span class="math notranslate nohighlight">\(2\)</span>   &amp; <span class="math notranslate nohighlight">\(3\)</span>   &amp; <span class="math notranslate nohighlight">\(\dots\)</span> &amp; <span class="math notranslate nohighlight">\(n-2\)</span> &amp; <span class="math notranslate nohighlight">\(n-1\)</span> &amp; <span class="math notranslate nohighlight">\(n\)</span>   &amp; <span class="math notranslate nohighlight">\(S\)</span> \
+<span class="math notranslate nohighlight">\(n\)</span>   &amp; <span class="math notranslate nohighlight">\(n-1\)</span> &amp; <span class="math notranslate nohighlight">\(n-2\)</span> &amp; <span class="math notranslate nohighlight">\(\dots\)</span> &amp; <span class="math notranslate nohighlight">\(3\)</span>   &amp; <span class="math notranslate nohighlight">\(2\)</span>   &amp; <span class="math notranslate nohighlight">\(1\)</span>   &amp; <span class="math notranslate nohighlight">\(S\)</span> \
+<span class="math notranslate nohighlight">\(n+1\)</span> &amp; <span class="math notranslate nohighlight">\(n+1\)</span> &amp; <span class="math notranslate nohighlight">\(n+1\)</span> &amp; <span class="math notranslate nohighlight">\(\dots\)</span> &amp; <span class="math notranslate nohighlight">\(n+1\)</span> &amp; <span class="math notranslate nohighlight">\(n+1\)</span> &amp; <span class="math notranslate nohighlight">\(n+1\)</span> &amp; <span class="math notranslate nohighlight">\(2S\)</span>
+\end{tabular}</p>
+</div>
+<div class="proof theorem admonition" id="teo:sum-2">
 <p class="admonition-title"><span class="caption-number">Theorem 2 </span> (Somma dei quadrati dei primi <span class="math notranslate nohighlight">\(n\)</span> interi)</p>
 <section class="theorem-content" id="proof-content">
 <p>Per ogni <span class="math notranslate nohighlight">\(n \in \mathbb N\)</span></p>
 <div class="math notranslate nohighlight" id="equation-eq-sum-pow-2">
 <span class="eqno">(2)<a class="headerlink" href="#equation-eq-sum-pow-2" title="Permalink a questa equazione">#</a></span>\[\sum_{i=1}^n i^2 = \frac{n(n+1)(2n+1)}{6} \enspace.\]</div>
 </section>
-</div><div class="proof theorem admonition" id="teo:sum-3">
+</div><div class="proof admonition" id="proof">
+<p>Proof. Applicando la tecnica di dimostrazione per induzione su <span class="math notranslate nohighlight">\(n\)</span>, il caso base
+<span class="math notranslate nohighlight">\(n=1\)</span> si verifica banalmente per ispezione: il membro sinistro
+dell'uguaglianza vale <span class="math notranslate nohighlight">\(1\)</span> e il suo membro destro vale
+<span class="math notranslate nohighlight">\(\frac{1 \cdot 2 \cdot 3}{6} = 1\)</span>. Per quanto riguarda il passo
+dell'induzione,</p>
+<p>\begin{equation*}
+\sum_{i=1}^{n+1} i^2 = \sum_{i=1}^n+ i^2 + (n+1)^2
+= \frac{n(n+1)(2n+1)}{6} + (n+1)^2
+= (n+1) \frac{n(2n+1) + 6(n+1)}{6}
+= (n+1) \frac{2n^2 + 7n +6}{6}
+\end{eqaution*}</p>
+</div>
+<div class="proof theorem admonition" id="teo:sum-3">
 <p class="admonition-title"><span class="caption-number">Theorem 3 </span> (Somma dei cubi dei primi <span class="math notranslate nohighlight">\(n\)</span> interi)</p>
 <section class="theorem-content" id="proof-content">
 <p>Per ogni <span class="math notranslate nohighlight">\(n \in \mathbb N\)</span></p>
@@ -647,11 +690,10 @@ document.write(`
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="../p4-SI/c1-inferenza-puntuale/processo-poisson.html"
@@ -671,10 +713,7 @@ document.write(`
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -697,6 +736,7 @@ Di <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2021 — Licensed under CC-BY 4.0.
@@ -723,8 +763,8 @@ Di <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
   <footer class="bd-footer">
   </footer>
