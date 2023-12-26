@@ -82,7 +82,7 @@ così che:
 Tenuto conto del fatto che le specificazioni $x$ assumono valori interi non
 negativi, da queste relazioni si ricava che in funzione di $\lambda$ si hanno
 tre differenti situazioni possibili, illustrate anche nella
-{numref}`Figura $s <fig:poisson-pmfs>`:
+{numref}`Figura %s <fig:poisson-pmfs>`:
 
 - se $\lambda \not\in \mathbb N$ e $\lambda < 1$, $f_X(0; \lambda)$
   rappresenta il massimo valore di massa di probabilità, la relativa funzione
