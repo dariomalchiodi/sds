@@ -261,9 +261,11 @@ parametri, vedendo come cambia il grafico prodotto.
 
 import ipywidgets as widgets
 
+n = 20
+
 n_slider = widgets.IntSlider(value=4,
                              min=1,
-                             max=20,
+                             max=n,
                              description='n',
                              continuous_update=True,
                              readout=False,
