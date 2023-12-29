@@ -12,6 +12,8 @@ kernelspec:
   name: python3
 ---
 
-(sec:stime-puntuali)=
-# Stime puntuali
+(sec:stime-per-intervalli)=
+# Stime per intervalli
 
+(sec:intervalli-fiduciari)=
+## Intervalli fiduciari

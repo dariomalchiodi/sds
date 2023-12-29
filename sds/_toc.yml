@@ -98,6 +98,7 @@ parts:
     - file: p3-CP/c4-variabili-aleatorie/indipendenza
     - file: p3-CP/c4-variabili-aleatorie/disuguaglianze-fondamentali
     - file: p3-CP/c4-variabili-aleatorie/variabili-aleatorie-continue
+    - file: p3-CP/c4-variabili-aleatorie/famiglie-di-distribuzioni
   - file: p3-CP/c5-modelli-discreti/modelli-discreti
     sections:
     - file: p3-CP/c5-modelli-discreti/bernoulli
@@ -114,9 +115,10 @@ parts:
     - file: p3-CP/c6-modelli-continui/gaussiano
     - file: p3-CP/c6-modelli-continui/esponenziale
     - file: p3-CP/c6-modelli-continui/altri-modelli
-- caption: "Statistica inferenziale parametrica"
+- caption: "Statistica inferenziale"
   numbered: true
   chapters:
+  - file: p4-SI/c0-statistica-inferenziale/statistica-inferenziale
   - file: p4-SI/c1-inferenza-puntuale/inferenza-puntuale
     sections:
     - file: p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima
@@ -128,6 +130,8 @@ parts:
     - file: p4-SI/c1-inferenza-puntuale/distribuzioni-campionarie
     - file: p4-SI/c1-inferenza-puntuale/calcolo-dimensione-campione
     - file: p4-SI/c1-inferenza-puntuale/processo-poisson
+  - file: p4-SI/c2-stime-per-intervalli/stime-per-intervalli
+  - file: p4-SI/c3-statistica-non-parametrica/statistica-non-parametrica
 - caption: Appendici
   numnered: true
   chapters:

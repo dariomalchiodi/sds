@@ -1,9 +1,7 @@
-ghp-import
 graphviz
 ipython
 ipywidgets
 jupyter-book
-jupytext
 matplotlib
 matplotlib-venn
 numpy
@@ -11,5 +9,5 @@ pandas
 plotly
 scikit-learn
 scipy
-sphinx_proof
+sphinx-proof
 statsmodels

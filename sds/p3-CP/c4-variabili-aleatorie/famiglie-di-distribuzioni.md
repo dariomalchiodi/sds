@@ -12,6 +12,5 @@ kernelspec:
   name: python3
 ---
 
-(sec:stime-puntuali)=
-# Stime puntuali
-
+(sec-famiglie-di-distribuzioni)=
+# Famiglie di distribuzioni

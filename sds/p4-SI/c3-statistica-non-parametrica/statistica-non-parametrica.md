@@ -12,6 +12,6 @@ kernelspec:
   name: python3
 ---
 
-(sec:stime-puntuali)=
-# Stime puntuali
 
+(cap:statistica-non-parametrica)=
+# Accenni alla statistica non parametrica
