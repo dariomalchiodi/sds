@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>15.7. Distribuzioni campionarie &#8212; Superhero Data Science 
+    <title>16.10. Distribuzioni campionarie &#8212; Superhero Data Science 
  Probabilità e Statistica</title>
   
   
@@ -70,8 +70,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
     <link rel="search" title="Cerca" href="../../search.html" />
-    <link rel="next" title="15.8. Calcolo della dimensione del campione" href="calcolo-dimensione-campione.html" />
-    <link rel="prev" title="15.6. Leggi dei grandi numeri" href="leggi-grandi-numeri.html" />
+    <link rel="next" title="16.11. Calcolo della dimensione del campione" href="calcolo-dimensione-campione.html" />
+    <link rel="prev" title="16.9. Leggi dei grandi numeri" href="leggi-grandi-numeri.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="it"/>
   </head>
@@ -281,6 +281,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/indipendenza.html">12.7. Indipendenza di variabili aleatorie</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/disuguaglianze-fondamentali.html">12.8. Disuguaglianze fondamentali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-aleatorie-continue.html">12.9. Variabili aleatorie continue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/famiglie-di-distribuzioni.html">12.10. Famiglie di distribuzioni</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../p3-CP/c5-modelli-discreti/modelli-discreti.html">13. Modelli discreti</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -302,20 +303,26 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistica inferenziale parametrica</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistica inferenziale</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="inferenza-puntuale.html">15. Introduzione</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="popolazione-campione-e-stima.html">15.1. Il problema della stima parametrica</a></li>
-<li class="toctree-l2"><a class="reference internal" href="media-campionaria.html">15.2. Media campionaria</a></li>
-<li class="toctree-l2"><a class="reference internal" href="varianza-campionaria.html">15.3. Varianza campionaria</a></li>
-<li class="toctree-l2"><a class="reference internal" href="errore-di-una-stima.html">15.4. Errore di una stima</a></li>
-<li class="toctree-l2"><a class="reference internal" href="teorema-centrale-limite.html">15.5. Teorema del limite centrale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="leggi-grandi-numeri.html">15.6. Leggi dei grandi numeri</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">15.7. Distribuzioni campionarie</a></li>
-<li class="toctree-l2"><a class="reference internal" href="calcolo-dimensione-campione.html">15.8. Calcolo della dimensione del campione</a></li>
-<li class="toctree-l2"><a class="reference internal" href="processo-poisson.html">15.9. Processo di poisson</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c0-statistica-inferenziale/statistica-inferenziale.html">15. Statistica inferenziale</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="inferenza-puntuale.html">16. Stime puntuali</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="popolazione-campione-e-stima.html">16.1. Il problema della stima parametrica</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="media-campionaria.html">16.5. Media campionaria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="varianza-campionaria.html">16.6. Varianza campionaria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="errore-di-una-stima.html">16.7. Errore di una stima</a></li>
+<li class="toctree-l2"><a class="reference internal" href="teorema-centrale-limite.html">16.8. Teorema del limite centrale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leggi-grandi-numeri.html">16.9. Leggi dei grandi numeri</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">16.10. Distribuzioni campionarie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calcolo-dimensione-campione.html">16.11. Calcolo della dimensione del campione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processo-poisson.html">16.12. Processo di poisson</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../c2-stime-per-intervalli/stime-per-intervalli.html">17. Stime per intervalli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c3-statistica-non-parametrica/statistica-non-parametrica.html">18. Accenni alla statistica non parametrica</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
 <ul class="nav bd-sidenav">
@@ -323,7 +330,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">16. Bibliografia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">19. Bibliografia</a></li>
 </ul>
 
     </div>
@@ -605,7 +612,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="distribuzioni-campionarie">
-<h1><span class="section-number">15.7. </span>Distribuzioni campionarie<a class="headerlink" href="#distribuzioni-campionarie" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">16.10. </span>Distribuzioni campionarie<a class="headerlink" href="#distribuzioni-campionarie" title="Permalink to this heading">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -644,7 +651,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">precedente</p>
-        <p class="prev-next-title"><span class="section-number">15.6. </span>Leggi dei grandi numeri</p>
+        <p class="prev-next-title"><span class="section-number">16.9. </span>Leggi dei grandi numeri</p>
       </div>
     </a>
     <a class="right-next"
@@ -652,7 +659,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">successivo</p>
-        <p class="prev-next-title"><span class="section-number">15.8. </span>Calcolo della dimensione del campione</p>
+        <p class="prev-next-title"><span class="section-number">16.11. </span>Calcolo della dimensione del campione</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

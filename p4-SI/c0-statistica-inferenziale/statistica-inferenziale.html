@@ -1,0 +1,931 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="it" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>15. Statistica inferenziale &#8212; Superhero Data Science 
+ Probabilità e Statistica</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Mostra il codice';</script>
+    <script>let toggleHintHide = 'Nascondi il codice';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "loader": {"load": ["[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["mathtools"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'p4-SI/c0-statistica-inferenziale/statistica-inferenziale';</script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Indice" href="../../genindex.html" />
+    <link rel="search" title="Cerca" href="../../search.html" />
+    <link rel="next" title="16. Stime puntuali" href="../c1-inferenza-puntuale/inferenza-puntuale.html" />
+    <link rel="prev" title="14.6. Altri modelli continui" href="../../p3-CP/c6-modelli-continui/altri-modelli.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="it"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Cerca..."
+         aria-label="Cerca..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../landing.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logoface.png" class="logo__image only-light" alt="Superhero Data Science 
+ Probabilità e Statistica - Home"/>
+    <script>document.write(`<img src="../../_static/logoface.png" class="logo__image only-dark" alt="Superhero Data Science 
+ Probabilità e Statistica - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../landing.html">
+                    Superhero Data Science <br/> Probabilità e Statistica</h1>
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduzione</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p0-introduzione/presentazione.html">1. Presentazione</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p0-introduzione/un-esempio-introduttivo.html">1.1. Un esempio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p0-introduzione/organizzazione.html">1.2. Organizzazione</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Programmazione per l'analisi dei dati</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p1-PAD/c1-intro-python/introduzione-a-python.html">2. Elaborare i dati con python</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-semplici-e-operatori.html">2.1. Tipi di dati semplici</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p1-PAD/c1-intro-python/dati-strutturati.html">2.2. Tipi di dati strutturati</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p1-PAD/c1-intro-python/strutture-di-controllo.html">2.3. Strutture di controllo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p1-PAD/c1-intro-python/funzioni.html">2.4. Funzioni e funzioni anonime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p1-PAD/c1-intro-python/importare-moduli.html">2.5. Importare moduli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p1-PAD/c1-intro-python/disegnare-grafici.html">2.6. Disegnare grafici</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p1-PAD/c1-intro-python/leggere-file.html">2.7. Leggere dati da file (e un po' di trucchi)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p1-PAD/c2-pandas/pandas.html">3. Pandas</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p1-PAD/c2-pandas/serie.html">3.1. Serie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p1-PAD/c2-pandas/dataframe.html">3.2. Dataframe</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistica descrittiva</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/dati-e-informazione.html">4. Dati e informazione</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/dati-quantitativi-e-qualitativi.html">4.7. Dati quantitativi e qualitativi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/frequenze-assolute-e-relative.html">4.8. Frequenze assolute e relative</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/frequenze-cumulate.html">4.9. Frequenze cumulate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c1-dati-e-informazione/frequenze-congiunte-e-marginali.html">4.10. Frequenze congiunte e marginali</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/utilizzare-informazione.html">5. Utilizzare l'informazione</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/descrivere-popolazione.html">5.1. Descrivere una popolazione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/predire-informazione.html">5.2. Predire l'informazione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/classificazione.html">5.3. Classificazione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c2-utilizzare-informazione/regressione.html">5.4. Regressione</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/misurare-informazione.html">6. Misurare l'informazione</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/indici-di-posizione.html">6.1. Indici di posizione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/indici-di-dispersione.html">6.2. Calcolo della dispersione in pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/quantili-campionari.html">6.3. Quantili campionari</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/eterogeneita.html">6.4. Indici di eterogeneità</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/concentrazione.html">6.5. Indici di concentrazione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/trasformazioni-dei-dati.html">6.6. Trasformazione dei dati</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/analisi-della-varianza.html">6.7. Analisi della varianza</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c3-misurare-informazione/analisi-di-classificatori.html">6.8. Analisi di classificatori</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/visualizzare-informazione.html">7. Visualizzare l'informazione</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-discreti.html">7.1. Dati discreti</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-continui.html">7.2. Dati continui</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-cumulati.html">7.3. Dati cumulati</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c4-visualizzare-informazione/simmetria-e-normalita.html">7.4. Simmetria e normalità</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p2-SD/c5-analizzare-relazioni/analizzare-relazioni.html">8. Analizzare le relazioni tra i dati</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c5-analizzare-relazioni/diagrammi-per-dati-a-coppie.html">8.1. Dati a coppie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p2-SD/c5-analizzare-relazioni/covarianza-e-correlazione.html">8.2. Covarianza e correlazione</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Calcolo delle probabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/calcolo-combinatorio.html">9. Calcolo combinatorio</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/principio-fondamentale-calcolo-combinatorio.html">9.1. Principio fondamentale del calcolo combinatorio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/permutazioni.html">9.2. Permutazioni</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/disposizioni.html">9.3. Disposizioni</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/combinazioni.html">9.4. Combinazioni</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/generazione.html">9.5. Generazione di disposizioni, permutazioni e combinazioni</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c1-calcolo-combinatorio/esercizi.html">9.6. Esercizi</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/teoria-insiemi.html">10. Teoria degli insiemi</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/concetti-di-base.html">10.1. Concetti di base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/insiemi-finiti-e-infiniti.html">10.2. Insiemi finiti e infiniti</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/relazioni-tra-insiemi.html">10.3. Relazioni tra insiemi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/operazioni-tra-insiemi.html">10.4. Operazioni tra insiemi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c2-teoria-insiemi/insiemi-in-python.html">10.5. Gli insiemi in Python</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p3-CP/c3-probabilita/calcolo-probabilita.html">11. Calcolo delle probabilità</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c3-probabilita/concetto-di-probabilita.html">11.1. Il concetto di probabilità</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c3-probabilita/esperimenti-esiti-eventi.html">11.2. Concetti fondamentali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c3-probabilita/assiomi-kolmogorov.html">11.3. Assiomi di Kolmogorov</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c3-probabilita/spazi-equiprobabili.html">11.4. Spazi equiprobabili</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c3-probabilita/probabilita-condizionata.html">11.5. Probabilità condizionata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c3-probabilita/prob-totali-e-naive-bayes.html">11.6. Teoremi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c3-probabilita/classificatori-naive-bayes.html">11.7. Classificatori naive Bayes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c3-probabilita/indipendenza.html">11.8. Indipendenza</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/intro.html">12. Variabili aleatorie</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-aleatorie.html">12.1. Variabili aleatorie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-aleatorie-discrete.html">12.2. Variabili aleatorie discrete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/valore-atteso.html">12.3. Valore atteso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/varianza.html">12.4. Varianza</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/momenti.html">12.5. Momenti</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-multivariate.html">12.6. Variabili aleatorie multivariate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/indipendenza.html">12.7. Indipendenza di variabili aleatorie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/disuguaglianze-fondamentali.html">12.8. Disuguaglianze fondamentali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-aleatorie-continue.html">12.9. Variabili aleatorie continue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/famiglie-di-distribuzioni.html">12.10. Famiglie di distribuzioni</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p3-CP/c5-modelli-discreti/modelli-discreti.html">13. Modelli discreti</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c5-modelli-discreti/bernoulli.html">13.1. Le distribuzioni di Bernoulli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c5-modelli-discreti/binomiale.html">13.2. Le distribuzioni binomiali</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c5-modelli-discreti/uniforme.html">13.3. Le distribuzioni uniformi discrete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c5-modelli-discreti/geometrico.html">13.4. Le distribuzioni geometriche</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c5-modelli-discreti/poisson.html">13.5. Le distribuzioni di Poisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c5-modelli-discreti/ipergeometrico.html">13.6. Il modello ipergeometrico</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../p3-CP/c6-modelli-continui/va-e-modelli-continui.html">14. Modelli continui</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c6-modelli-continui/dal-discreto-al-continuo.html">14.1. Dal discreto al continuo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c6-modelli-continui/va-continue.html">14.2. Variabili aleatorie continue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c6-modelli-continui/uniforme.html">14.3. Il modello uniforme continuo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c6-modelli-continui/gaussiano.html">14.4. Il modello normale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c6-modelli-continui/esponenziale.html">14.5. Il modello esponenziale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c6-modelli-continui/altri-modelli.html">14.6. Altri modelli continui</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistica inferenziale</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">15. Statistica inferenziale</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../c1-inferenza-puntuale/inferenza-puntuale.html">16. Stime puntuali</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../c1-inferenza-puntuale/popolazione-campione-e-stima.html">16.1. Il problema della stima parametrica</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../c1-inferenza-puntuale/media-campionaria.html">16.5. Media campionaria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c1-inferenza-puntuale/varianza-campionaria.html">16.6. Varianza campionaria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c1-inferenza-puntuale/errore-di-una-stima.html">16.7. Errore di una stima</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c1-inferenza-puntuale/teorema-centrale-limite.html">16.8. Teorema del limite centrale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c1-inferenza-puntuale/leggi-grandi-numeri.html">16.9. Leggi dei grandi numeri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c1-inferenza-puntuale/distribuzioni-campionarie.html">16.10. Distribuzioni campionarie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c1-inferenza-puntuale/calcolo-dimensione-campione.html">16.11. Calcolo della dimensione del campione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c1-inferenza-puntuale/processo-poisson.html">16.12. Processo di poisson</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../c2-stime-per-intervalli/stime-per-intervalli.html">17. Stime per intervalli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c3-statistica-non-parametrica/statistica-non-parametrica.html">18. Accenni alla statistica non parametrica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../p5-appendici/formule-notevoli.html">Formule notevoli</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">19. Bibliografia</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/dariomalchiodi/sds/main?urlpath=tree/sds/p4-SI/c0-statistica-inferenziale/statistica-inferenziale.md" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/dariomalchiodi/sds" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Repository di origine"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/dariomalchiodi/sds/edit/main/sds/p4-SI/c0-statistica-inferenziale/statistica-inferenziale.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/dariomalchiodi/sds/issues/new?title=Issue%20on%20page%20%2Fp4-SI/c0-statistica-inferenziale/statistica-inferenziale.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Apri un problema"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Scarica questa pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/p4-SI/c0-statistica-inferenziale/statistica-inferenziale.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Scarica il file del taccuino"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../../_sources/p4-SI/c0-statistica-inferenziale/statistica-inferenziale.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Scarica il file sorgente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Stampa in PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modalità schermo intero"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Cerca" aria-label="Cerca" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Statistica inferenziale</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenuti </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-statistica-parametrica">15.1. La statistica parametrica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-statistica-non-parametrica">15.2. La statistica non parametrica</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="statistica-inferenziale">
+<h1><span class="section-number">15. </span>Statistica inferenziale<a class="headerlink" href="#statistica-inferenziale" title="Permalink to this heading">#</a></h1>
+<p>Nella prima parte di questo libro abbiamo visto come alcuni aspetti di un
+insieme di dati, come per esempio la sua posizione o la sua dispersione
+attorno a un valore centrale, possano essere valutati da particolari indici.
+Questi indici permettono di considerare dati di dimensioni anche
+ragguardevoli, e di descriverli in modo succinto estraendo da essi delle
+informazioni rilevanti. In linea di principio, l'insieme di dati che viene
+analizzato può coincidere con la popolazione, coinvolgendo quindi tutti gli
+individui ai quali siamo interessati. In questo caso, le informazioni estratte
+tramite la statistica descrittiva ci permettono di trarre delle conclusioni
+<em>esatte</em> sui dati. Non sempre, però, è possibile operare in questo modo, come
+evidenziato di seguito.</p>
+<ul class="simple">
+<li><p>I dati dell'intera popolazione potrebbero non essere disponibili.
+Se per esempio si sta conducendo un sondaggio in vista di imminenti
+elezioni amministrative, non tutti i cittadini potrebbero essere propensi a
+dichiarare il proprio orientamento politico.</p></li>
+<li><p>Elaborare tutta la popolazione potrebbe richiedere troppe risorse.
+Continuando l'esempio precedente, anche ammettendo che tutti gli elettori
+siano disponibili a rispondere al sondaggio, intervistarli in modo esaustivo
+richiederebbe verosimilmente troppo tempo per avere dei risultati in tempo
+utile, richiedendo inoltre dei costi probabilmente proibitivi.</p></li>
+<li><p>La misurazione di un attributo potrebbe influire sull'individuo. Immaginiamo
+di voler vendere degli <em>hard disk</em> dichiarando il loro tempo medio di
+funzionamento: per definizione, un <em>hard disk</em> non sarà più funzionante
+dopo avere effettuato la misurazione del suo tempo di vita, pertanto se
+si calcolasse il tempo medio di funzionamento su tutti i dispositivi
+prodotti, non ne resterebbe alcuno da vendere.</p></li>
+</ul>
+<p>In casi come questi, è possibile estrarre un campione dalla popolazione e
+valutare un indice di interesse, che prenderà il nome di <em>stimatore</em> o
+<em>statistica</em>, assumendo che il risultato <span class="math notranslate nohighlight">\(\hat\tau\)</span> non si discosti troppo
+dal valore esatto <span class="math notranslate nohighlight">\(\tau\)</span> che si sarebbe ottenuto lavorando su tutta la
+popolazione. In tal senso, che <span class="math notranslate nohighlight">\(\hat\tau\)</span> è una <em>stima</em> di <span class="math notranslate nohighlight">\(\tau\)</span>, e pertanto
+sarebbe auspicabile poter dire qualcosa relativamente alla bontà di questa
+stima. Più in generale, questo tipo di procedimento ricade nell'ambito della
+cosiddetta <em>inferenza induttiva</em>, nella quale l'informazione ottenuta
+ragionando su alcuni casi particolari (quelli contenuti nel campione) viene
+generalizzata a un insieme di casi più esteso (la popolazione). L'inferenza
+induttiva rappresenta un processo di costruzione della conoscenza duale
+rispetto ai procedimenti <em>deduttivi</em> (utilizzati tipicamente nella
+dimostrazione di teoremi, o, più semplicemente nel considerare proposizioni
+vere per un insieme di individui e declinarle su di uno specifico individo).
+A differenza di quanto accade con quest'ultima, però, le conclusioni alle
+quali si arriva tramite l'inferenza induttiva non sono certe: come detto
+prima, calcolare la media campionaria sugli elementi di un campione fornisce
+un risultato diverso rispetto a quello che si otterrebbe effettuando il
+medesimo calcolo sull'intera popolazione, e possiamo solo supporre che i due
+risultati non differiscano troppo. La <em>statistica inferenziale</em> studia questo
+tipo di situazioni, definendo in modo formale l'incertezza insita nei
+procedimenti basati su campionamento e fornendo degli strumenti che permettono
+di quantificarla.</p>
+<p>La statistica inferenziale rappresenta, sotto vari punti di vista, un punto di
+incontro tra la statistica descrittiva e il calcolo delle probabilità.
+Quest'ultimo considera per esempio molte delle proprietà studiate nella
+statistica descrittiva per indicare analoghe proprietà di una variabile
+aleatoria (o, meglio, della sua distribuzione), e non è un caso che gli indici
+utilizzati per descrivere queste proprietà abbiano spesso lo stesso nome,
+così che si aggiunge a questo nome l'aggettivo <em>campionario</em> per distinguere
+il contesto della statistica descrittiva (e, come vedremo, di quella
+inferenziale) da quello del calcolo delle probabilità. La statistica
+inferenziale, infatti, non solo utilizza il calcolo delle probabilità per
+formalizzare in termini di variabili aleatorie i concetti di popolazione,
+campione e stima, ma, valutando le sopra menzionate proprietà su queste
+variabili aleatorie, permette di quantificare l'incertezza insita nel
+processo di stima.</p>
+<p>Inoltre, la statistica inferenziale approfondisce alcuni aspetti
+che sono stati introdotti in modo relativamente informalme nell'ambito
+descrittivo. Per esempio, la media campionaria indica il baricentro dei valori
+osservati nel campione, e dunque risulta naturale utilizzarla per valutare la
+centralità del campione stesso. Ma perché le viene data così tanta enfasi, a
+discapito di altri indici di posizione, in virtù del fatto che essa non è
+robusta rispetto ai valori fuori scala? Analogamente, consideriamo la
+definizione non pienamente intuitiva della varianza campionaria: perché la
+somma degli <span class="math notranslate nohighlight">\(n\)</span> scarti quadratici rispetto al valore centrale viene divisa per
+<span class="math notranslate nohighlight">\(n - 1\)</span> e non per <span class="math notranslate nohighlight">\(n\)</span>, così da ottenere la media aritmetica degli scarti
+stessi, che sembrerebbe più sensata per valutare la dispersione? Vedremo come
+la statistica inferenziale permette di rispondere a queste domande, facendoci
+considerare da un altro punto di vista alcuni degli indici che abbiamo
+studiato, motivandone ulteriormente la validità.</p>
+<p>Questo capitolo descrive in modo succinto le due principali branche della
+statistica inferenziale, la <em>statistica parametrica</em> (introducendo
+separatamente due differenti modalità di stima, quella <em>puntuale</em> e quella
+<em>per intervalli</em>) e la <em>statistica non parametrica</em> (si omette l'aggettivo
+inferenziale, per non appesantire la trattazione). La prima branca è
+approfondita nei Capitoli <a class="reference internal" href="../c1-inferenza-puntuale/inferenza-puntuale.html#sec-stime-puntuali"><span class="std std-numref">16</span></a> e
+<a class="reference internal" href="../c2-stime-per-intervalli/stime-per-intervalli.html#sec-stime-per-intervalli"><span class="std std-numref">17</span></a>, mentre la seconda viene accennata
+nel <a class="reference internal" href="../c3-statistica-non-parametrica/statistica-non-parametrica.html#cap-statistica-non-parametrica"><span class="std std-numref">Capitolo 18</span></a>.</p>
+<section id="la-statistica-parametrica">
+<h2><span class="section-number">15.1. </span>La statistica parametrica<a class="headerlink" href="#la-statistica-parametrica" title="Permalink to this heading">#</a></h2>
+<p>Nella statistica parametrica, l'incertezza è legata alla necessità di
+utilizzare un campione per approssimare numericamente una quantità ignota,
+indicata in modo generale come <span class="math notranslate nohighlight">\(\tau\)</span>, che dipende dalla popolazione.</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>L'uso del simbolo <span class="math notranslate nohighlight">\(\tau\)</span> per indicare la quantità ignota è una convenzione
+utilizzata soprattutto quando si vuole inquadrare il problema della stima
+parametrica in modo generale. Quando si considerano dei casi specifici, è
+ragionevole che vengano utilizzati simboli diversi, legati al particolare
+contesto che viene di volta in volta considerato.</p>
+</aside>
+<div class="proof example admonition" id="ex:parametric-estimate">
+<p class="admonition-title"><span class="caption-number">Example 15.1 </span></p>
+<section class="example-content" id="proof-content">
+<p>In un sondaggio demoscopico, <span class="math notranslate nohighlight">\(\tau\)</span> può essere la percntuale di una
+popolazione di riferimento che è favorevole (o sfavorevole) a un dato
+argomento. Analogamente, uno studio clinico volto a determinare l'efficacia di
+un farmaco nel curare una patologia può avere come scopo quello di stimare la
+frazione <span class="math notranslate nohighlight">\(\tau\)</span> dei casi nei quali si verifica una particolare
+controindicazione.</p>
+</section>
+</div><p>L'approssimazione di queste quantità ignote può essere fatta procedendo
+essenzialmente in due modi, brevemente descritti di seguito e approfonditi
+rispettivamente nei Capitoli <a class="reference internal" href="../c1-inferenza-puntuale/inferenza-puntuale.html#sec-stime-puntuali"><span class="std std-numref">16</span></a> e
+<a class="reference internal" href="../c2-stime-per-intervalli/stime-per-intervalli.html#sec-stime-per-intervalli"><span class="std std-numref">17</span></a>.</p>
+<ul class="simple">
+<li><p>Il modo più semplice è  quello di fornire una <em>stima puntuale</em>, che non è
+altro che un singolo valore numerico <span class="math notranslate nohighlight">\(\hat\tau\)</span> che si suppone non si
+discosti troppo da <span class="math notranslate nohighlight">\(\tau\)</span>. Questo viene fatto calcolando il valore di una
+funzione degli elementi del campione, che prende il nome di <em>stimatore</em> o
+<em>statistica</em>.</p></li>
+</ul>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Questa definizione nasconde delle sottigliezze, come spiegato in dettaglio nel
+<a class="reference internal" href="../c2-stime-per-intervalli/stime-per-intervalli.html#sec-intervalli-fiduciari"><span class="std std-numref">Paragrafo 17.1</span></a>.</p>
+</aside>
+<ul class="simple">
+<li><p>Un approccio alternativo consiste invece nell'indicare una
+<em>stima per intervalli</em>, nella quale l'approssimazione viene fornita
+specificando congiuntamente un <em>intervallo fiduciario</em> e un
+<em>livello fiduciario</em>. Il primo è un intervallo di valori reale, mentre il
+secondo è un valore in <span class="math notranslate nohighlight">\((0, 1)\)</span>, che indica la probabilità che l'intervallo
+specificato contenga <span class="math notranslate nohighlight">\(\tau\)</span>.</p></li>
+</ul>
+<div class="proof example admonition" id="example-1">
+<p class="admonition-title"><span class="caption-number">Example 15.2 </span></p>
+<section class="example-content" id="proof-content">
+<p>Con riferimento all'<a class="reference internal" href="#ex:parametric-estimate">Example 15.1</a>, ogni valore
+<span class="math notranslate nohighlight">\(\hat\tau \in [0..100]\)</span> rappresenta una particolare stima puntuale per il
+primo caso considerato, così come un qualsiasi valore in <span class="math notranslate nohighlight">\([0, 1]\)</span> è una stima
+puntuale possibile per il secondo caso.</p>
+<p>Considerando invece l'ambito della stima per intervalli, e focalizzandoci
+solamente sul secondo caso considerato, <span class="math notranslate nohighlight">\([0.001, 0.005]\)</span> potrebbe essere un
+intervallo fiduciario di livello <span class="math notranslate nohighlight">\(0.95\)</span>, così come potrebbe esserlo
+<span class="math notranslate nohighlight">\([0.01, 0.1]\)</span>.</p>
+</section>
+</div><p>L'esempio precedente mette in evidenza un fatto molto importante: di per sé,
+il valore <span class="math notranslate nohighlight">\(\hat\tau\)</span> di una stima puntuale non garantisce alcun livello sulla
+bontà dell'approssimazione fornita per <span class="math notranslate nohighlight">\(\tau\)</span>. Vale la pena di fare un'altra
+considerazione rilevante: anche qualora venga garantita, per esempio
+utilizzando alcuni dei criteri che vedremo nel prossimo capitolo, la qualità
+della procedura utilizzata per stimare <span class="math notranslate nohighlight">\(\tau\)</span>, non esiste un valore <em>giusto</em>
+in assoluto per la stima puntuale fornita. È facile rendersene conto
+ricordando che <span class="math notranslate nohighlight">\(\hat\tau\)</span> è il valore restituito da una statistica che dipende
+dal campione estratto, pertanto a ogni campione estraibile dalla popolazione
+fissata corrisponderà una stima potenzialmente diversa. Vedremo che, in tal
+senso, e come è ragionevole aspettarsi, la dimensione del campione considerato
+può giocare un ruolo molto importante. Ma fissando questa dimensione si
+ricade, in ogni caso, nella considerazione precedente: tutte le stime puntuali
+sono affette da un insito errore dovuto alla procedura di campionamento che
+le ha generate.</p>
+<p>Considerazioni analoghe valgono per le stime per intervalli, sebbene in
+questo caso la natura più complessa di un intervallo fiduciario veicoli anche
+informazioni indirette sulla bontà della stima: intuitivamente, più è ampio
+l'intervallo e meno precisa sarà la stima, e, indifferentemente dall'ampiezza,
+più il livello fiduciario è elevato e più affidabile sarà il risultato
+proposto. Ma, come già accennato, il ruolo del livello fiduciario va compreso
+attentamente: infatti, come vedremo in dettaglio nel
+<a class="reference internal" href="../c2-stime-per-intervalli/stime-per-intervalli.html#sec-intervalli-fiduciari"><span class="std std-numref">Paragrafo 17.1</span></a>, il suo valore non indica
+la probabilità che <span class="math notranslate nohighlight">\(\tau\)</span> sia in generale compreso nell'intervallo fornito,
+bensì l probabilità che la procedura di stima abbia fornito in <em>output</em> un
+intervallo fiduciario che contiene effettivamente il valore di <span class="math notranslate nohighlight">\(\tau\)</span>.</p>
+</section>
+<section id="la-statistica-non-parametrica">
+<h2><span class="section-number">15.2. </span>La statistica non parametrica<a class="headerlink" href="#la-statistica-non-parametrica" title="Permalink to this heading">#</a></h2>
+<p>Infine, vale la pena sottolineare che la statistica inferenziale
+può essere declinata anche in senso <em>non parametrico</em>, nel caso in cui
+l'incertezza non sia incentrata solo su uno o più parametri di una
+distribuzione, bensì sia l'intera distribuzione a essere sconosciuta. Questo
+argomento, però, è al di fuori della trattazione data in questo libro.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "dariomalchiodi/sds",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./p4-SI/c0-statistica-inferenziale"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../../p3-CP/c6-modelli-continui/altri-modelli.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">precedente</p>
+        <p class="prev-next-title"><span class="section-number">14.6. </span>Altri modelli continui</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../c1-inferenza-puntuale/inferenza-puntuale.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">successivo</p>
+        <p class="prev-next-title"><span class="section-number">16. </span>Stime puntuali</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenuti
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-statistica-parametrica">15.1. La statistica parametrica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-statistica-non-parametrica">15.2. La statistica non parametrica</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Di <a href='https://malchiodi.di.unimi.it'>Dario Malchiodi</a> <a href='https://twitter.com/dariomalchiodi'>@dariomalchiodi</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2021 — Licensed under CC-BY 4.0.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

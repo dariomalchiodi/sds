@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>15. Introduzione &#8212; Superhero Data Science 
+    <title>16. Stime puntuali &#8212; Superhero Data Science 
  Probabilità e Statistica</title>
   
   
@@ -66,14 +66,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 380}, "loader": {"load": ["[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["mathtools"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'p4-SI/c1-inferenza-puntuale/inferenza-puntuale';</script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
     <link rel="search" title="Cerca" href="../../search.html" />
-    <link rel="next" title="15.1. Il problema della stima parametrica" href="popolazione-campione-e-stima.html" />
-    <link rel="prev" title="14.6. Altri modelli continui" href="../../p3-CP/c6-modelli-continui/altri-modelli.html" />
+    <link rel="next" title="16.1. Il problema della stima parametrica" href="popolazione-campione-e-stima.html" />
+    <link rel="prev" title="15. Statistica inferenziale" href="../c0-statistica-inferenziale/statistica-inferenziale.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="it"/>
   </head>
@@ -283,6 +281,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/indipendenza.html">12.7. Indipendenza di variabili aleatorie</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/disuguaglianze-fondamentali.html">12.8. Disuguaglianze fondamentali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-aleatorie-continue.html">12.9. Variabili aleatorie continue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/famiglie-di-distribuzioni.html">12.10. Famiglie di distribuzioni</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../p3-CP/c5-modelli-discreti/modelli-discreti.html">13. Modelli discreti</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -304,20 +303,26 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistica inferenziale parametrica</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistica inferenziale</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">15. Introduzione</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="popolazione-campione-e-stima.html">15.1. Il problema della stima parametrica</a></li>
-<li class="toctree-l2"><a class="reference internal" href="media-campionaria.html">15.2. Media campionaria</a></li>
-<li class="toctree-l2"><a class="reference internal" href="varianza-campionaria.html">15.3. Varianza campionaria</a></li>
-<li class="toctree-l2"><a class="reference internal" href="errore-di-una-stima.html">15.4. Errore di una stima</a></li>
-<li class="toctree-l2"><a class="reference internal" href="teorema-centrale-limite.html">15.5. Teorema del limite centrale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="leggi-grandi-numeri.html">15.6. Leggi dei grandi numeri</a></li>
-<li class="toctree-l2"><a class="reference internal" href="distribuzioni-campionarie.html">15.7. Distribuzioni campionarie</a></li>
-<li class="toctree-l2"><a class="reference internal" href="calcolo-dimensione-campione.html">15.8. Calcolo della dimensione del campione</a></li>
-<li class="toctree-l2"><a class="reference internal" href="processo-poisson.html">15.9. Processo di poisson</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c0-statistica-inferenziale/statistica-inferenziale.html">15. Statistica inferenziale</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">16. Stime puntuali</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="popolazione-campione-e-stima.html">16.1. Il problema della stima parametrica</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="media-campionaria.html">16.5. Media campionaria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="varianza-campionaria.html">16.6. Varianza campionaria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="errore-di-una-stima.html">16.7. Errore di una stima</a></li>
+<li class="toctree-l2"><a class="reference internal" href="teorema-centrale-limite.html">16.8. Teorema del limite centrale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leggi-grandi-numeri.html">16.9. Leggi dei grandi numeri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distribuzioni-campionarie.html">16.10. Distribuzioni campionarie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calcolo-dimensione-campione.html">16.11. Calcolo della dimensione del campione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processo-poisson.html">16.12. Processo di poisson</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../c2-stime-per-intervalli/stime-per-intervalli.html">17. Stime per intervalli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c3-statistica-non-parametrica/statistica-non-parametrica.html">18. Accenni alla statistica non parametrica</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
 <ul class="nav bd-sidenav">
@@ -325,7 +330,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">16. Bibliografia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">19. Bibliografia</a></li>
 </ul>
 
     </div>
@@ -592,7 +597,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introduzione</h1>
+    <h1>Stime puntuali</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -606,61 +611,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="introduzione">
-<h1><span class="section-number">15. </span>Introduzione<a class="headerlink" href="#introduzione" title="Permalink to this heading">#</a></h1>
-<p>Nella prima parte di questo libro abbiamo visto come alcuni aspetti di un
-campione di dati, come per esempio la sua posizione o la sua dispersione
-attorno a un valore centrale, possano essere valutati da particolari indici.
-Questi indici sono stati introdotti motivando in modo relativamente informalme
-la loro validità, a volte lasciando alcuni loro aspetti esplicitamente senza
-spiegazione. Per esempio, la media campionaria corrisponde al baricentro dei
-valori osservati nel campione, e dunque risulta naturale utilizzarla per
-valutare la centralità del campione stesso. Ma perché si usa proprio questo
-indice e non un altro? Per quanto riguarda la varianza campionaria, la
-definizione non è nemmeno pienamente supportata dall'intuizione: perché la
-somma degli <span class="math notranslate nohighlight">\(n\)</span> scarti quadratici rispetto al valore centrale viene divisa per
-<span class="math notranslate nohighlight">\(n - 1\)</span> e non per <span class="math notranslate nohighlight">\(n\)</span>, così da ottenere come risultato la media aritmetica
-degli scarti stessi, che sembrerebbe più sensata per cogliere l'informazione
-cercata?</p>
-<p>Nella parte sul calcolo delle probabilità, invece, gli stessi aspetti studiati
-nella statistica descrittiva per indicare delle proprietà di un campione sono
-stati utilizzati per descrivere una variabile aleatoria, o, meglio, la sua
-distribuzione. Tutto questo non accade per caso, così come non è una
-coincidenza il fatto che gli indici che si utilizzano per valutare queste
-proprietà di una variabile aleatoria abbiano spesso nomi simili a quelli visti
-nella statistica descrittiva: la mediana campionaria e la deviazione standard
-campionaria hanno, per esempio, come controparte nel calcolo delle probabilità
-i concetti di mediana e deviazione standard di una variabile aleatoria.</p>
-<p>La <em>statistica inferenziale</em> rappresenta, in un certo senso, il punto di
-incontro tra la statistica descrittiva e il calcolo delle probabilità.
-Più precisamente, questa branca della matematica utilizza il calcolo delle
-probabilità per formalizzare i concetti di popolazione e campione
-precedentemente introdotti nell'ambito della statistica descrittiva, e li
-utilizza per valutare una qualche forma di <em>incertezza</em> che grava sulla
-popolazione. Per la precisione, ci concentreremo sulla <em>statistica
-inferenziale parametrica</em>, caratterizzta dal fatto che questa incertezza è
-legata al fatto di voler approssimare il valore numerico di parametri ignoti
-di una particolare distribuzione di probabilità, oppure il valore di quantità
-che dipendono da questi parametri. Questo capitolo, in particolare, si
-concentra sulla <em>stastistica inferenziale parametrica puntuale</em>, nella quale
-l'approssimazione di una quantità ignota viene fatta fornendo una <em>stima
-puntuale</em>, che non è altro che un singolo valore numerico. Più precisamente,
-viene introdotto il concetto generale di <em>stimatore</em> per modellare un generico
-indice utilizzato per approssimare una quantità ignota, in funzione di
-un campione estratto da una popolazione. Questa modellizzazione permette di
-introdurre delle proprietà desiderabili per gli stimatori, che si dimostrano
-essere legate alla bontà delle approssimazioni precedentemente introdotte.
-Vedremo, per esempio, che la media campionaria e la varianza campionaria
-corrispondono a due stimatori che godono di particolari proprietà, ed è
-proprio questo fatto a giustificare il loro utilizzo.</p>
-<p>Il capitolo successivo è invece dedicato alla <em>statistica inferenziale
-parametrica per intervalli</em>, che approssima un valore ignoto indicando un
-intervallo nel quale questo valore è contenuto con un certo grado di
-probabilità. Infine, vale la pena sottolineare che la statistica inferenziale
-può essere declinata anche in senso <em>non parametrico</em>, nel caso in cui
-l'incertezza non sia incentrata solo su uno o più parametri di una
-distribuzione, bensì sia l'intera distribuzione a essere sconosciuta. Questo
-argomento, però, è al di fuori della trattazione data in questo libro.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="stime-puntuali">
+<span id="sec-stime-puntuali"></span><h1><span class="section-number">16. </span>Stime puntuali<a class="headerlink" href="#stime-puntuali" title="Permalink to this heading">#</a></h1>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -696,12 +648,12 @@ argomento, però, è al di fuori della trattazione data in questo libro.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../../p3-CP/c6-modelli-continui/altri-modelli.html"
+       href="../c0-statistica-inferenziale/statistica-inferenziale.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">precedente</p>
-        <p class="prev-next-title"><span class="section-number">14.6. </span>Altri modelli continui</p>
+        <p class="prev-next-title"><span class="section-number">15. </span>Statistica inferenziale</p>
       </div>
     </a>
     <a class="right-next"
@@ -709,7 +661,7 @@ argomento, però, è al di fuori della trattazione data in questo libro.</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">successivo</p>
-        <p class="prev-next-title"><span class="section-number">15.1. </span>Il problema della stima parametrica</p>
+        <p class="prev-next-title"><span class="section-number">16.1. </span>Il problema della stima parametrica</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

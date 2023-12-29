@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>15.1. Il problema della stima parametrica &#8212; Superhero Data Science 
+    <title>16.1. Il problema della stima parametrica &#8212; Superhero Data Science 
  Probabilità e Statistica</title>
   
   
@@ -72,8 +72,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
     <link rel="search" title="Cerca" href="../../search.html" />
-    <link rel="next" title="15.2. Media campionaria" href="media-campionaria.html" />
-    <link rel="prev" title="15. Introduzione" href="inferenza-puntuale.html" />
+    <link rel="next" title="16.5. Media campionaria" href="media-campionaria.html" />
+    <link rel="prev" title="16. Stime puntuali" href="inferenza-puntuale.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="it"/>
   </head>
@@ -283,6 +283,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/indipendenza.html">12.7. Indipendenza di variabili aleatorie</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/disuguaglianze-fondamentali.html">12.8. Disuguaglianze fondamentali</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/variabili-aleatorie-continue.html">12.9. Variabili aleatorie continue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/famiglie-di-distribuzioni.html">12.10. Famiglie di distribuzioni</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../p3-CP/c5-modelli-discreti/modelli-discreti.html">13. Modelli discreti</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -304,20 +305,26 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistica inferenziale parametrica</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistica inferenziale</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="inferenza-puntuale.html">15. Introduzione</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">15.1. Il problema della stima parametrica</a></li>
-<li class="toctree-l2"><a class="reference internal" href="media-campionaria.html">15.2. Media campionaria</a></li>
-<li class="toctree-l2"><a class="reference internal" href="varianza-campionaria.html">15.3. Varianza campionaria</a></li>
-<li class="toctree-l2"><a class="reference internal" href="errore-di-una-stima.html">15.4. Errore di una stima</a></li>
-<li class="toctree-l2"><a class="reference internal" href="teorema-centrale-limite.html">15.5. Teorema del limite centrale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="leggi-grandi-numeri.html">15.6. Leggi dei grandi numeri</a></li>
-<li class="toctree-l2"><a class="reference internal" href="distribuzioni-campionarie.html">15.7. Distribuzioni campionarie</a></li>
-<li class="toctree-l2"><a class="reference internal" href="calcolo-dimensione-campione.html">15.8. Calcolo della dimensione del campione</a></li>
-<li class="toctree-l2"><a class="reference internal" href="processo-poisson.html">15.9. Processo di poisson</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c0-statistica-inferenziale/statistica-inferenziale.html">15. Statistica inferenziale</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="inferenza-puntuale.html">16. Stime puntuali</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">16.1. Il problema della stima parametrica</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="media-campionaria.html">16.5. Media campionaria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="varianza-campionaria.html">16.6. Varianza campionaria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="errore-di-una-stima.html">16.7. Errore di una stima</a></li>
+<li class="toctree-l2"><a class="reference internal" href="teorema-centrale-limite.html">16.8. Teorema del limite centrale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leggi-grandi-numeri.html">16.9. Leggi dei grandi numeri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distribuzioni-campionarie.html">16.10. Distribuzioni campionarie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calcolo-dimensione-campione.html">16.11. Calcolo della dimensione del campione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processo-poisson.html">16.12. Processo di poisson</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../c2-stime-per-intervalli/stime-per-intervalli.html">17. Stime per intervalli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c3-statistica-non-parametrica/statistica-non-parametrica.html">18. Accenni alla statistica non parametrica</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
 <ul class="nav bd-sidenav">
@@ -325,7 +332,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">16. Bibliografia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bibliography.html">19. Bibliografia</a></li>
 </ul>
 
     </div>
@@ -604,9 +611,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-popolazione">15.1.1. La popolazione</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-campione">15.1.2. Il campione</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">16.1. Il problema della stima parametrica</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#la-popolazione">16.2. La popolazione</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#il-campione">16.3. Il campione</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#stimatori-e-stime">16.4. Stimatori e stime</a></li>
 </ul>
+
             </nav>
         </div>
     </div>
@@ -618,127 +628,275 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="il-problema-della-stima-parametrica">
-<h1><span class="section-number">15.1. </span>Il problema della stima parametrica<a class="headerlink" href="#il-problema-della-stima-parametrica" title="Permalink to this heading">#</a></h1>
-<section id="la-popolazione">
-<h2><span class="section-number">15.1.1. </span>La popolazione<a class="headerlink" href="#la-popolazione" title="Permalink to this heading">#</a></h2>
-<p>La parte di questo libro dedicata alla statistica descrittiva ha introdotto il
-concetto di popolazione definendolo come un insieme di individui, ognuno
-rappresentato dall'esito delle misurazioni di uno o più attributi. Nell'ambito
-della statistica inferenziale, la definizione di popolazione cambia in modo da
-poterla inquadrare nell'ambito del calcolo delle probabilità: quello che era
-l'insieme degli individui diventa ora legato al supporto di una variabile
-aleatoria, le cui specificazioni corrisopndono ai possibili valori della
-misurazione di un attributo. Anche in questo caso, per semplificare la
-trattazione si fa un abuso di linguaggio, riferendo il termine <em>popolazione</em>
-direttamente alle <em>misurazioni</em> e non agli <em>individui</em>.</p>
+<h1><span class="section-number">16.1. </span>Il problema della stima parametrica<a class="headerlink" href="#il-problema-della-stima-parametrica" title="Permalink to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="la-popolazione">
+<h1><span class="section-number">16.2. </span>La popolazione<a class="headerlink" href="#la-popolazione" title="Permalink to this heading">#</a></h1>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>Nella statistica descrittiva, ogni individuo della popolazione è associato
-tipicamente a più attributi, mentre in questa definizione si
-fa implicitamente riferimento a una variabile aleatoria univariata. In linea
-di principio è possibile definire una popolazione utilizzanto delle variabili
-aleatorie multivariate, ma questo è un argomento avanzato che va oltre lo
+<p>In linea di principio è possibile definire una popolazione utilizzando
+variabili aleatorie multivariate, che equivale a considerare individui
+descritti da più attributi, ma questo è un argomento avanzato che va oltre lo
 scopo di questo libro.</p>
 </aside>
-<div class="proof definition admonition" id="def:population-is">
-<p class="admonition-title"><span class="caption-number">Definition 15.1 </span> (Popolazione)</p>
-<section class="definition-content" id="proof-content">
-<p>In un problema di statistica inferenziale, la <em>popolazione</em> è definita come
-una variabile aleatoria <span class="math notranslate nohighlight">\(X\)</span>, la cui distribuzione dipende da un parametro
-<span class="math notranslate nohighlight">\(\theta\)</span> il cui valore è fissato ma al contempo ignoto.</p>
-</section>
-</div><aside class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>In altre parole, <span class="math notranslate nohighlight">\(\mathrm D\)</span> indica una particolare famiglia di distribuzione,
-dipendente esclusivamente dal parametro ignoto.</p>
-</aside>
-<p>Nella letteratura c'è ampio accordo sul fatto di utilizzare i simboli <span class="math notranslate nohighlight">\(X\)</span> e
-<span class="math notranslate nohighlight">\(\theta\)</span> per indicare, rispettivamente, la popolazione e il relativo parametro
-ignoto. Non c'è invece accordo relativamente al simbolo da usare per
-la distribuzione stessa. In questo libro adotterò la notazione
-<span class="math notranslate nohighlight">\(X \sim \mathrm D(\theta)\)</span>, evidenziando così il parametro ignoto. Utilizzerò
-la stessa notazione anche nel caso in cui la distribuzione della popolazione
-coinvolge due o più parametri, ma solamente uno di essi è sconosciuto, e
-ovviamente <span class="math notranslate nohighlight">\(\theta\)</span> farà riferimento a questo parametro. È possibile estendere
-questa notazione per il caso nel quale non si conoscono due o più parametri
-della distribuzione, scrivendo <span class="math notranslate nohighlight">\(X \sim \mathrm D(\boldsymbol \theta)\)</span>, dove
-<span class="math notranslate nohighlight">\(\boldsymbol\theta\)</span> è un vettore le cui componenti individuano i parametri
-ignoti. Questo caso particolare sarà però trattato solo marginalmente.
-Chiaramente, questa notazione viene introdotta solo per poter formalizzare i
-concetti chiave della statistica inferenziale parametrica puntuale
-indipendentemente dall'effettiva distribuzione della popolazione. Nel caso in
-cui questa sia specificata, i simboli <span class="math notranslate nohighlight">\(D\)</span> e <span class="math notranslate nohighlight">\(\theta\)</span> verranno sostituiti
-opportunamente.</p>
+<p>La parte di questo libro dedicata alla statistica descrittiva ha introdotto il
+concetto di popolazione definendolo come un insieme di individui, ognuno
+rappresentato dall'esito delle misurazioni di uno o più attributi. Quando si
+introduce la statistica inferenziale, il punto di partenza è lo stesso (un
+insieme di individui), ma per semplificare la trattazione ci si concentra su
+di un unico attributo <span class="math notranslate nohighlight">\(\mathcal A\)</span>. In questo modo è possibile identificare
+ogni individuo con il valore che si ottiene misurando l'attributo
+<span class="math notranslate nohighlight">\(\mathcal A\)</span>, e le variabili aleatorie emergono come strumento ideale per
+modellare questo processo. In modo più preciso, si considera uno spazio di
+probabilità <span class="math notranslate nohighlight">\((\Omega, \mathsf A, \mathrm P)\)</span> nel quale <span class="math notranslate nohighlight">\(\Omega\)</span> rappresenta
+l'insieme degli individui e <span class="math notranslate nohighlight">\(\mathrm P\)</span> è la funzione di probabilità che
+corrisponde a selezionare gli individui in modo uniforme da <span class="math notranslate nohighlight">\(\Omega\)</span>. Infine,
+si introduce una variabile aleatoria <span class="math notranslate nohighlight">\(X\)</span> che formalizza la misurazione di
+<span class="math notranslate nohighlight">\(\mathcal A\)</span> (in altre parole, <span class="math notranslate nohighlight">\(X\)</span> è definita da una funzione che ha come
+codominio l'insieme dei valori di <span class="math notranslate nohighlight">\(\mathcal A\)</span>). Osservare una specificazione
+di <span class="math notranslate nohighlight">\(X\)</span> equivale dunque a estrarre a caso un elemento della popolazione e
+misurare su di esso il valore dell'attributo al quale siamo interessati.
+Per evitare di appesantire la nomenclatura, si preferisce fare un abuso di
+linguaggio e riferire il termine <em>popolazione</em> non agli <em>individui</em>, bensì
+direttamente alle <em>misurazioni</em> dell'attributo <span class="math notranslate nohighlight">\(\mathcal A\)</span>. In tal senso,
+si identifica la variabile aleatoria <span class="math notranslate nohighlight">\(X\)</span> direttamente con la popolazione.</p>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>In alcuni degli esempi preferirò in realtà scrivere simbolicamente tutti i
-parametri della distribuzione della popolazione, anche nel caso in cui alcuni
-siano noti, così che la soluzione si possa applicare indipendentemente dal
-particolare valore che i parametri noti assumono.</p>
+<p>Nel <code class="xref std std-numref docutils literal notranslate"><span class="pre">Paragrafo</span> <span class="pre">%s</span></code> considererò
+brevemente un caso particolare nel quale la distribuzione della popolazione
+coinvolge due parametri ignoti.</p>
 </aside>
-<div class="proof example admonition" id="ex:population">
-<p class="admonition-title"><span class="caption-number">Example 15.1 </span></p>
+<p>Come indicato nell'introduzione, la statistica inferenziale parametrica si
+basa sul fatto di conoscere la distribuzione della popolazione, a meno di uno
+o più parametri. Più precisamente, considereremo una <em>famiglia</em> di
+distribuzioni di probabilità, come introdotto nel
+<a class="reference internal" href="../../p3-CP/c4-variabili-aleatorie/famiglie-di-distribuzioni.html#sec-famiglie-di-distribuzioni"><span class="std std-numref">Paragrafo 12.10</span></a>, e nell'ottica di
+semplificare il problema che stiamo studiando, questa famiglia sarà
+caratterizzata da uno e un solo parametro. La distribuzione della popolazione
+apparterrà a questa famiglia, e individuare il corrispondente valore del
+parametro, che considereremo ignoto, equivarrà a individuare completamente la
+distribuzione. Grazie alla formalizzazione introdotta, diventa relativamente
+semplice definire in modo formale una popolazione.</p>
+<div class="proof definition admonition" id="def:population-is">
+<p class="admonition-title"><span class="caption-number">Definition 16.1 </span> (Popolazione)</p>
+<section class="definition-content" id="proof-content">
+<p>Sia <span class="math notranslate nohighlight">\(\mathcal F = \{F_\theta, \theta \in \Theta \subseteq \mathbb R \}\)</span> una
+famiglia di distribuzioni di probabilità indicizzata rispetto a un parametro.
+In un problema di statistica inferenziale parametrica, la <em>popolazione</em> è
+definita come una variabile aleatoria univariata <span class="math notranslate nohighlight">\(X\)</span>, la cui distribuzione
+appartiene a <span class="math notranslate nohighlight">\(\mathcal F\)</span>.</p>
+</section>
+</div><div class="naming admonition">
+<p class="admonition-title">Nomenclatura</p>
+<p>Quando si vuole modellare in modo generale il problema della statistica
+inferenziale parametrica puntuale, in letteratura si utilizzano i simboli <span class="math notranslate nohighlight">\(X\)</span>
+e <span class="math notranslate nohighlight">\(\theta\)</span> per indicare, rispettivamente, la popolazione e il parametro
+ignoto. C'è invece meno uniformità quando si tratta di denotare formalmente la
+distribuzione della popolazione. A questo scopo, io ho scelto di usare la
+notazione <span class="math notranslate nohighlight">\(X \sim F_\theta\)</span>, evidenziando così il parametro ignoto.</p>
+</div>
+<p>È importante sottolineare che le definizioni date in questo paragrafo e in
+quelli che seguono, così come la notazione introdotta, hanno lo scopo di
+formalizzare i concetti chiave del problema che stiamo studiando. Ogni volta
+che affronteremo un'istanza specifica di questo problema, i simboli come
+<span class="math notranslate nohighlight">\(\theta\)</span> e <span class="math notranslate nohighlight">\(F_\theta\)</span> verranno sostituiti opportunamente.</p>
+<div class="proof example admonition" id="ex:population-bernoulli">
+<p class="admonition-title"><span class="caption-number">Example 16.1 </span></p>
 <section class="example-content" id="proof-content">
-<p>Se la popolazione coincide con l'insieme di tutti i supereroi, e
-l'osservazione di un suo individuo ha come esito <span class="math notranslate nohighlight">\(1\)</span> nel caso in cui esso
-sia un supereroe Marvel e <span class="math notranslate nohighlight">\(0\)</span> altirmenti, la popolazione è
-naturalmente descritta da una variabile aleatoria <span class="math notranslate nohighlight">\(X \sim \mathrm B(p)\)</span>,
-pertanto si dice che la popolazione ha una distribuzione di Bernoulli il cui
-parametro <span class="math notranslate nohighlight">\(p\)</span> è ignoto. Dunque, <span class="math notranslate nohighlight">\(\mathrm D\)</span> è sostituito dalla distribuzione
-di Bernoulli e <span class="math notranslate nohighlight">\(\theta = p\)</span>.</p>
-<p>Se invece l'osservazione corrisponde a misurare l'altezza del supereroe,
-esprimendola in centrimetri, supponiamo che la popolazione sia descritta da
-una distribuzione normale il cui valore atteso è ignoto e la cui deviazione
-standard è pari a <span class="math notranslate nohighlight">\(2 \mathrm{cm}\)</span>. In questo caso avremo
-<span class="math notranslate nohighlight">\(X \sim \mathrm N(\mu, 2)\)</span>, il che vuol dire che</p>
+<p>Supponiamo che la popolazione considerata coinvolga tutti i supereroi,
+che l'osservazione di un suo individuo corrisponda a valutare l'attributo che
+descrive l'editore, e che il risultato della misurazione sia <span class="math notranslate nohighlight">\(1\)</span> nel caso di
+un supereroe Marvel e <span class="math notranslate nohighlight">\(0\)</span> altirmenti. Se assumiamo di non conoscere quale
+sia la frazione dei supereroi Marvel rispetto al totale, allora possiamo dire
+che la popolazione ha una distribuzione di Bernoulli di parametro <span class="math notranslate nohighlight">\(p\)</span>, fissato
+ma sconosciuto. Dunque, in termini della modellazione appena introdotta:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\mathrm D\)</span> corrisponde a una particolare sottofamiglia del modello normale,
-precisamente quella nella quale il valore atteso può assumere qualsiasi
-valore in <span class="math notranslate nohighlight">\(\mathbb R\)</span> ma la deviazione standard è sempre uguale a <span class="math notranslate nohighlight">\(2\)</span>;</p></li>
-<li><p><span class="math notranslate nohighlight">\(\theta = \mu\)</span>.</p></li>
+<li><p>il parametro ignoto <span class="math notranslate nohighlight">\(\theta\)</span> si può indicare in modo più adeguato usando
+<span class="math notranslate nohighlight">\(p\)</span>, e i suoi valori possibili appartengono all'insieme <span class="math notranslate nohighlight">\(\Theta = [0, 1]\)</span>;</p></li>
+<li><p>la popolazione è descritta da una variabile aleatoria <span class="math notranslate nohighlight">\(X \sim \mathrm B(p)\)</span>,
+la cui distribuzione appartiene alla famiglia
+<span class="math notranslate nohighlight">\(\mathcal F = \{ F_p, p \in [0, 1] \}\)</span>, dove <span class="math notranslate nohighlight">\(F_p\)</span> indica la funzione di
+ripartizione della distribuzione di Bernoulli di parametro <span class="math notranslate nohighlight">\(p\)</span>.</p></li>
 </ul>
-<p>Va notato che, in linea di principio, sarebbe possibile introdurre il simbolo
-<span class="math notranslate nohighlight">\(\sigma = 2\)</span> e scrivere <span class="math notranslate nohighlight">\(X \sim \mathrm N(\mu, \sigma)\)</span>, ma in questo modo
-la notazione non permette di capire immediatamente quale sia il parametro
-ignoto.</p>
-<p>Infine, supponiamo che nel caso precedente sia il valore atteso, sia la
-deviazione standard della popolazione siano sconosciute. Avremo pertanto
-<span class="math notranslate nohighlight">\(X \sim \mathrm N(\mu, \sigma)\)</span>, che corrisponde a far coincidere <span class="math notranslate nohighlight">\(\mathrm D\)</span>
-con la famiglia delle distribuzioni normali e
-<span class="math notranslate nohighlight">\(\boldsymbol \theta = (\mu, \sigma)\)</span>.</p>
+</section>
+</div><p>È importante notare che è possibile fare riferimento a distribuzioni per la
+popolazione che dipendono da più parametri, dei quali solo uno è ignoto, come
+illustrato nell'esempio che segue.</p>
+<div class="proof example admonition" id="ex:population-normal">
+<p class="admonition-title"><span class="caption-number">Example 16.2 </span></p>
+<section class="example-content" id="proof-content">
+<p>Come nell'<a class="reference internal" href="#ex:population-bernoulli">Example 16.1</a>, consideriamo tutti i supereroi,
+ma in questo caso concentriamoci sull'attributo relativo all'altezza, misurata
+in centimetri. Supponiamo che la popolazione sia descritta da una
+distribuzione normale il cui valore atteso è ignoto e la cui deviazione
+standard è pari a <span class="math notranslate nohighlight">\(2\, \mathrm{cm}\)</span>. In questo caso avremo
+<span class="math notranslate nohighlight">\(X \sim \mathrm N(\mu, 2)\)</span>, e pertanto</p>
+<ul class="simple">
+<li><p>è più descrittivo utilizzare <span class="math notranslate nohighlight">\(\mu\)</span> (rispetto a <span class="math notranslate nohighlight">\(\theta\)</span>) come simbolo per
+descrivere il parametro ignoto, e <span class="math notranslate nohighlight">\(\Theta = \mathbb R^+\)</span> (in generale, il
+valore atteso di una distribuzione normale può essere qualsiasi numero
+reale, ma nel caso specifico che stiamo considerando <span class="math notranslate nohighlight">\(\mu\)</span> descrive
+l'altezza, che è una quantità sempre positiva);</p></li>
+<li><p>la famiglia di distribuzioni che stiamo considerando è
+<span class="math notranslate nohighlight">\(\mathcal F = \{ F_\mu, \mu \in \mathbb R^+ \}\)</span>, dove <span class="math notranslate nohighlight">\(F_\mu\)</span> indica la
+funzione di ripartizione della distribuzione normale di valore atteso <span class="math notranslate nohighlight">\(\mu\)</span>
+e deviazione standard uguale a 2.</p></li>
+</ul>
 </section>
 </div><p>L'uso di una variabile aleatoria per modellare la popolazione è intuitivamente
-legato al fatto che il campionamento da essa si lega in modo naturale
+legato al fatto che l'estrazione di un campione si lega in modo naturale
 all'osservazione della variabile aleatoria stessa, come dettagliato nel
 paragrafo seguente.</p>
 </section>
-<section id="il-campione">
-<h2><span class="section-number">15.1.2. </span>Il campione<a class="headerlink" href="#il-campione" title="Permalink to this heading">#</a></h2>
+<section class="tex2jax_ignore mathjax_ignore" id="il-campione">
+<h1><span class="section-number">16.3. </span>Il campione<a class="headerlink" href="#il-campione" title="Permalink to this heading">#</a></h1>
 <p>La modellizzazione del concetto di campione all'interno della statistica
 inferenziale è un argomento delicato: da un lato, come informalmente indicato
 alla fine del paragrafo precedente, è naturale pensare a un campione come
 a un insieme <span class="math notranslate nohighlight">\(\{ x_1, \dots, x_n \}\)</span> di osservazioni della popolazione <span class="math notranslate nohighlight">\(X\)</span>.
 Questa definizione avrebbe l'innegabile vantaggio di essere molto simile a
 quella vista nella parte sulla statistica descrittiva. Bisogna però tener
-conto di un aspetto importante: nella statistica descrittiva il campione,
-inteso come sequenza di numeri, è dato, mentre la modellazione fatta
-nell'ambito della statistica inferenziale deve essere indipendente dal
-<em>particolare</em> campione osservato.</p>
+conto di un aspetto importante, evidenzito nell'esempio che segue.</p>
 <div class="proof example admonition" id="ex:multiple-samples">
-<p class="admonition-title"><span class="caption-number">Example 15.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Example 16.3 </span></p>
 <section class="example-content" id="proof-content">
-<p>ESEMPIO SULL'ESTRAZIONE DI DIVERSI CAMPIONI DA UNA STESSA POPOLAZIONE.</p>
+<p>Consideriamo le popolazioni descritte nell'<a class="reference internal" href="#ex:population-bernoulli">Example 16.1</a>
+e nell'<a class="reference internal" href="#ex:population-normal">Example 16.2</a>, e fissiamo <span class="math notranslate nohighlight">\(n = 10\)</span>. La
+<a class="reference internal" href="#tab-possible-samples"><span class="std std-numref">Tabella 16.1</span></a> mostra dieci diversi possibili campioni di
+<span class="math notranslate nohighlight">\(n\)</span> elementi estratti da queste due popolazioni.</p>
 </section>
-</div><div class="proof definition admonition" id="def:sample-is">
-<p class="admonition-title"><span class="caption-number">Definition 15.2 </span></p>
+</div><table class="table table-center" id="tab-possible-samples">
+<caption><span class="caption-number">Tabella 16.1 </span><span class="caption-text">Dieci possibili campioni di dimensione <span class="math notranslate nohighlight">\(n=7\)</span> estratti da popolazioni definite rispettivamente da una distribuzione di Bernoulli (prima colonna) e normale (seconda colonna, con valori arrotondati alla seconda cifra dopo la virgola per non appesantire la visualizzazione).</span><a class="headerlink" href="#tab-possible-samples" title="Link a questa tabella">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Editore</p></th>
+<th class="head"><p>Altezza</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="pasted-text">{0, 0, 0, 0, 1, 0, 1}</span></p></td>
+<td><p><span class="pasted-text">{196.94, 198.01, 196.04, 197.0, 197.2, 198.0, 197.9}</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="pasted-text">{1, 1, 1, 0, 1, 1, 1}</span></p></td>
+<td><p><span class="pasted-text">{195.1, 196.64, 196.35, 196.62, 197.6, 194.68, 197.96}</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="pasted-text">{0, 0, 0, 0, 0, 1, 1}</span></p></td>
+<td><p><span class="pasted-text">{196.69, 198.83, 195.62, 197.46, 200.32, 196.52, 193.54}</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="pasted-text">{1, 1, 1, 1, 1, 0, 0}</span></p></td>
+<td><p><span class="pasted-text">{196.56, 196.2, 198.48, 197.88, 194.25, 195.1, 196.31}</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="pasted-text">{1, 0, 1, 1, 1, 0, 1}</span></p></td>
+<td><p><span class="pasted-text">{198.81, 198.42, 196.06, 193.88, 198.71, 197.53, 199.61}</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="pasted-text">{0, 0, 1, 0, 1, 1, 1}</span></p></td>
+<td><p><span class="pasted-text">{196.24, 199.54, 198.12, 199.46, 197.42, 198.48, 197.79}</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="pasted-text">{1, 1, 0, 1, 1, 1, 1}</span></p></td>
+<td><p><span class="pasted-text">{200.12, 197.43, 195.49, 195.17, 197.17, 196.06, 196.71}</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="pasted-text">{0, 1, 1, 1, 0, 1, 1}</span></p></td>
+<td><p><span class="pasted-text">{196.11, 195.75, 196.04, 195.96, 197.66, 196.84, 197.45}</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="pasted-text">{1, 1, 1, 1, 1, 0, 0}</span></p></td>
+<td><p><span class="pasted-text">{196.48, 200.63, 194.52, 199.73, 194.99, 194.07, 196.85}</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="pasted-text">{1, 1, 0, 1, 1, 1, 1}</span></p></td>
+<td><p><span class="pasted-text">{197.38, 194.81, 196.81, 195.73, 195.26, 200.53, 196.69}</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>L'esempio precedente mette in evidenza una differenza molto importante tra
+la statistica descrittiva e quella inferenziale. Nella prima, il campione
+viene inteso come una sequenza di numeri fornita a priori. Nella seconda,
+d'altro canto, una volta che il numero di elementi è stato fissato, i campioni
+che è <em>possibile</em> osservare sono di solito sensibilmente diversi l'uno
+dall'altro, e quindi anche le conclusioni che se ne possono ricavare saranno
+differenti da un punto di vista numerico. Risulta però desiderabile valutare
+la bontà di queste conclusioni indipendentemente dal <em>particolare</em> campione
+che è stato osservato. Ipotizziamo, come è naturale pensare, che il nostro
+scopo sia quello di fornire un'approssimazione per il valore del parametro
+sconosciuto <span class="math notranslate nohighlight">\(\theta\)</span> (ma vedremo nel
+<a class="reference internal" href="#sec-stimatori-e-stime"><span class="std std-numref">Paragrafo 16.4</span></a> che questo è solo uno dei
+possibili obiettivi da perseguire). Chiaramente, saremo interessati a fornire
+un'approssimazione numerica per <span class="math notranslate nohighlight">\(\theta\)</span>, ma vorremo anche poter dire
+qualcosa, indipendentemente dal particolare campione che abbiamo osservato,
+sulla bontà di questa approssimazione, fornendo per esempio un'indicazione di
+quanto essa sia accurata. È per questo motivo che, nell'ambito della statistca
+inferenziale, il concetto di campione viene formalizzato utilizzando una
+successione di variabili aleatorie, come nella definizione seguente.</p>
+<div class="proof definition admonition" id="def:sample-is">
+<p class="admonition-title"><span class="caption-number">Definition 16.2 </span></p>
 <section class="definition-content" id="proof-content">
 <p>Data una popolazione descritta da una variabile aleatoria
-<span class="math notranslate nohighlight">\(X \sim \mathrm D(\theta)\)</span> e un numero intero <span class="math notranslate nohighlight">\(n \in \mathbb N\)</span>, si definisce
+<span class="math notranslate nohighlight">\(X\)</span> e un numero intero <span class="math notranslate nohighlight">\(n \in \mathbb N\)</span>, si definisce
 un <em>campione aleatorio</em> di dimensione <span class="math notranslate nohighlight">\(n\)</span> come una sequenza <span class="math notranslate nohighlight">\(X_1, \dots, X_n\)</span>
 di <span class="math notranslate nohighlight">\(n\)</span> variabili aleatorie i.i.d., la cui distribuzione coincide con quella
-di <span class="math notranslate nohighlight">\(X\)</span>.</p>
+di <span class="math notranslate nohighlight">\(X\)</span>. Ognuna delle <span class="math notranslate nohighlight">\(n\)</span> variabili aleatorie è detta <em>elemento</em> del campione.</p>
 </section>
-</div></section>
+</div><p>Identificare ogni elemento del campione con una variabile aleatoria
+modella in modo naturale il processo di campionamento: abbandonando per un
+attimo l'abuso di linguaggio che ho inizialmente introdotto, osservare una
+specificazione <span class="math notranslate nohighlight">\(x_i\)</span> di un generico elemento <span class="math notranslate nohighlight">\(X_i\)</span> equivale a selezionare
+casualmente un individuo della popolazione e misurarne il valore di un
+attributo. All'atto pratico, a seconda dei casi descriveremo un campione in
+due modi diversi:</p>
+<ul class="simple">
+<li><p>quando vorremo fare riferimento a <em>uno specifico campione estratto</em>, per
+esempio perché vogliamo ottenere un'approssimazione numerica di <span class="math notranslate nohighlight">\(\theta\)</span>,
+lo descriveremo come una sequenza <span class="math notranslate nohighlight">\(x_1, \dots, x_n\)</span> di specificazioni
+della variabile aleatoria <span class="math notranslate nohighlight">\(X\)</span> che descrive la popolazione;</p></li>
+<li><p>quando vorremo studiare le <em>proprietà</em> delle conclusioni alle quali
+arriviamo, per esempio nel valutare la bontà dell'approssimazione numerica
+del punto precedente, utilizzeremo una sequenza <span class="math notranslate nohighlight">\(X_1, \dots, X_n\)</span> di
+variabili aleatorie.</p></li>
+</ul>
+<p>La <a class="reference internal" href="#def:sample-is">Definition 16.2</a> impone tre requisiti alle variabili aleatorie
+utilizzate per desrivere un campione: queste variabili devono</p>
+<ul class="simple">
+<li><p>essere tra loro indipendenti,</p></li>
+<li><p>avere un'identica distribuzione,</p></li>
+<li><p>avere la stessa distribuzione della variabile aleatoria che descrive la
+popolazione.</p></li>
+</ul>
+<p>Questi requisiti hanno un ruolo fondamentale nelle dimostrazioni dei teoremi
+legati alla statistica inferenziale, ma è facile convincersi della loro
+importanza anche ragionando in modo informale. L'indipendenza tra gli
+elementi del campione garantisce che questo sia il più possibile
+rappresentativo della distribuzione dalla quale è stato estratto: i risultati
+dell'inferenza sarebbero verosimilmente falsati nel caso in cui due o più
+elementi del campione fossero in qualche modo dipendenti tra loro. Se per
+esempio lo scopo fosse quello di valutare l'efficacia di un farmaco nel
+ridurre il tasso di colesterolo nel sangue, sarebbe scorretto considerare, tra
+le altre, più misurazioni del colesterolo fatte a uno stesso individuo in
+istanti differenti. Infatti, se questo individuo fosse stato molto più
+ricettivo al farmaco rispetto alle altre persone considerate, e il farmaco
+avesse avuto un effetto duraturo, è ragionevole immaginare che tutte le
+misurazioni effettuate sull'individuo sarebbero sensibilmente più basse
+rispetto alle altre, e dunque si introdurrebbe una distorsione nei risultati
+dello studio. D'atra parte, la richiesta che tutte le variabili aleatorie che
+descrivono i singoli elementi del campione debbano avere un'identica
+distribuzione è ovviamente legata alla necessità di campionare sempre la
+medesima popolazione: se lo studio precedente fosse focalizzato sull'effetto
+congiunto del farmaco e di un particolare stile di vita, non avrebbe senso
+includere nel campione tutti i pazienti e le pazienti di un ospedale che
+hanno usufruito di quel farmaco in un dato periodo, perché solo una parte di
+questi pazienti condurrebbe verosimilmente lo stile di vita considerato.
+Infine, la distribuzione comune di tutte le variabili che definiscono il
+campione deve ovviamente essere la stessa che descrive la popolazione: se
+il campionamento consistesse nel selezionare a caso le persone che
+frequentano un edificio e domandare loro di valutare l'efficacia dei lavori
+di manutenzione, sarebbe errato posizionarsi all'ultimo piano e
+intervistare le prime cento persone che escono dall'ascensore dopo le 8:30,
+perché tutte queste persone non descrivono la popolazione alla quale siamo
+interessati, bensì una precisa sotto-popolazione: quella delle persone che
+frequentano un piano dell'edificio al mattino presto. Anche in questo caso,
+vi è un concreto rischio che i risultati dello studio siano falsati, perché
+per esempio vi sono delle falle nel sistema di manutenzione che coinvolgono
+piani diversi dall'ultimo, o che si verificano durante le ore più calde
+della giornata.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="stimatori-e-stime">
+<span id="sec-stimatori-e-stime"></span><h1><span class="section-number">16.4. </span>Stimatori e stime<a class="headerlink" href="#stimatori-e-stime" title="Permalink to this heading">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -777,7 +935,7 @@ di <span class="math notranslate nohighlight">\(X\)</span>.</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">precedente</p>
-        <p class="prev-next-title"><span class="section-number">15. </span>Introduzione</p>
+        <p class="prev-next-title"><span class="section-number">16. </span>Stime puntuali</p>
       </div>
     </a>
     <a class="right-next"
@@ -785,7 +943,7 @@ di <span class="math notranslate nohighlight">\(X\)</span>.</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">successivo</p>
-        <p class="prev-next-title"><span class="section-number">15.2. </span>Media campionaria</p>
+        <p class="prev-next-title"><span class="section-number">16.5. </span>Media campionaria</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -804,9 +962,12 @@ di <span class="math notranslate nohighlight">\(X\)</span>.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-popolazione">15.1.1. La popolazione</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-campione">15.1.2. Il campione</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">16.1. Il problema della stima parametrica</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#la-popolazione">16.2. La popolazione</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#il-campione">16.3. Il campione</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#stimatori-e-stime">16.4. Stimatori e stime</a></li>
 </ul>
+
   </nav></div>
 
 </div></div>

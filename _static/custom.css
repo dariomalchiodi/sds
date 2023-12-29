@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Lora:wght@400;700&display=swap');
 
@@ -511,37 +512,43 @@ table.dataframe td {
   margin-top: 1rem !important;
 }
 
-.admonition-title:before {
+.admonition-title:after {
+  font: normal 900 1em/1 "Material Icons" !important;
+  margin-top: 2pt;
+  margin-left: -2pt;
+}
+
+/* .admonition-title:before {
   font-family: 'Material Icons' !important;
   color: var(--pst-color-secondary) !important;
   margin-left: -1rem;
-}
+} */
 
-.naming.admonition .admonition-title:before {
+.naming.admonition .admonition-title:after {
   content: 'sell' !important;
 }
 
-.note.admonition .admonition-title:before {
+.note.admonition .admonition-title:after {
   content: 'pan_tool_alt' !important;
 }
 
-.definition .admonition-title:before {
+.definition .admonition-title:after {
   content: 'signpost' !important;
 }
 
-.theorem .admonition-title:before {
+.theorem .admonition-title:after {
   content: 'school' !important;
 }
 
-.lemma .admonition-title:before {
+.lemma .admonition-title:after {
   content: 'construction' !important;
 }
 
-.corollary .admonition-title:before {
-  content: 'arrow_forward' !important;
+.corollary .admonition-title:after {
+  content:  'arrow_forward' !important;
 }
 
-.example .admonition-title:before {
+.example .admonition-title:after {
   content: 'center_focus_strong' !important;
 }
 
@@ -562,7 +569,7 @@ div#proof {
 }
 
 .proof .proof {
-  box-shadow: 0 0;
+  box-shadow: 0 0 !important;
   background-color: transparent;
   border: 0 !important;
 }
@@ -670,6 +677,10 @@ td.text-align:center {
     -0.09em 0 #fffff8, 0.12em 0 #fffff8, -0.12em 0 #fffff8, 0.15em 0 #fffff8,
     -0.15em 0 #fffff8;
   background-position: 0% 93%, 100% 93%, 0% 93%;
+}
+
+.pasted-text {
+  font-weight: normal !important;
 }
 
 
