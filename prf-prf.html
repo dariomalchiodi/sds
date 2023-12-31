@@ -52,8 +52,8 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script>let toggleHintShow = 'Mostra il codice';</script>
-    <script>let toggleHintHide = 'Nascondi il codice';</script>
+    <script>let toggleHintShow = 'Mostra';</script>
+    <script>let toggleHintHide = 'Nascondi';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/translations.js"></script>
@@ -312,17 +312,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="p4-SI/c0-statistica-inferenziale/statistica-inferenziale.html">15. Statistica inferenziale</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="p4-SI/c1-inferenza-puntuale/inferenza-puntuale.html">16. Stime puntuali</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima.html">16.1. Il problema della stima parametrica</a></li>
-
-
-
-<li class="toctree-l2"><a class="reference internal" href="p4-SI/c1-inferenza-puntuale/media-campionaria.html">16.5. Media campionaria</a></li>
-<li class="toctree-l2"><a class="reference internal" href="p4-SI/c1-inferenza-puntuale/varianza-campionaria.html">16.6. Varianza campionaria</a></li>
-<li class="toctree-l2"><a class="reference internal" href="p4-SI/c1-inferenza-puntuale/errore-di-una-stima.html">16.7. Errore di una stima</a></li>
-<li class="toctree-l2"><a class="reference internal" href="p4-SI/c1-inferenza-puntuale/teorema-centrale-limite.html">16.8. Teorema del limite centrale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="p4-SI/c1-inferenza-puntuale/leggi-grandi-numeri.html">16.9. Leggi dei grandi numeri</a></li>
-<li class="toctree-l2"><a class="reference internal" href="p4-SI/c1-inferenza-puntuale/distribuzioni-campionarie.html">16.10. Distribuzioni campionarie</a></li>
-<li class="toctree-l2"><a class="reference internal" href="p4-SI/c1-inferenza-puntuale/calcolo-dimensione-campione.html">16.11. Calcolo della dimensione del campione</a></li>
-<li class="toctree-l2"><a class="reference internal" href="p4-SI/c1-inferenza-puntuale/processo-poisson.html">16.12. Processo di poisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="p4-SI/c1-inferenza-puntuale/media-campionaria.html">16.2. Media campionaria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="p4-SI/c1-inferenza-puntuale/varianza-campionaria.html">16.3. Varianza campionaria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="p4-SI/c1-inferenza-puntuale/errore-di-una-stima.html">16.4. Errore di una stima</a></li>
+<li class="toctree-l2"><a class="reference internal" href="p4-SI/c1-inferenza-puntuale/teorema-centrale-limite.html">16.5. Teorema del limite centrale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="p4-SI/c1-inferenza-puntuale/leggi-grandi-numeri.html">16.6. Leggi dei grandi numeri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="p4-SI/c1-inferenza-puntuale/distribuzioni-campionarie.html">16.7. Distribuzioni campionarie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="p4-SI/c1-inferenza-puntuale/calcolo-dimensione-campione.html">16.8. Calcolo della dimensione del campione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="p4-SI/c1-inferenza-puntuale/processo-poisson.html">16.9. Processo di poisson</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="p4-SI/c2-stime-per-intervalli/stime-per-intervalli.html">17. Stime per intervalli</a></li>
@@ -516,6 +513,7 @@ document.write(`
    <a href="#cap-def:exponential_distr_family"><strong>def:exponential_distr_family</strong></a> | 
    <a href="#cap-def:population-is"><strong>def:population-is</strong></a> | 
    <a href="#cap-def:sample-is"><strong>def:sample-is</strong></a> | 
+   <a href="#cap-def:statistics-is"><strong>def:statistics-is</strong></a> | 
    <a href="#cap-def:uniform-continuous"><strong>def:uniform-continuous</strong></a> | 
    <a href="#cap-def:va-continua"><strong>def:va-continua</strong></a> | 
    <a href="#cap-def:valore-atteso-continuo"><strong>def:valore-atteso-continuo</strong></a> | 
@@ -533,10 +531,12 @@ document.write(`
    <a href="#cap-ex-peter-petrelli"><strong>ex-peter-petrelli</strong></a> | 
    <a href="#cap-ex-problema-compleanni"><strong>ex-problema-compleanni</strong></a> | 
    <a href="#cap-ex:bernoulli"><strong>ex:bernoulli</strong></a> | 
-   <a href="#cap-ex:multiple-samples"><strong>ex:multiple-samples</strong></a> | 
    <a href="#cap-ex:parametric-estimate"><strong>ex:parametric-estimate</strong></a> | 
    <a href="#cap-ex:population-bernoulli"><strong>ex:population-bernoulli</strong></a> | 
    <a href="#cap-ex:population-normal"><strong>ex:population-normal</strong></a> | 
+   <a href="#cap-ex:populations"><strong>ex:populations</strong></a> | 
+   <a href="#cap-ex:statistic"><strong>ex:statistic</strong></a> | 
+   <a href="#cap-ex:statistics-rv"><strong>ex:statistics-rv</strong></a> | 
    <a href="#cap-example-0"><strong>example-0</strong></a> | 
    <a href="#cap-example-1"><strong>example-1</strong></a> | 
    <a href="#cap-example-2"><strong>example-2</strong></a> | 
@@ -818,6 +818,14 @@ document.write(`
        <a href="p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima.html#def:sample-is"><code class="xref">def:sample-is</code></a> <em>(p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def:statistics-is"><td></td><td>
+       <strong>def:statistics-is</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima.html#def:statistics-is"><code class="xref">def:statistics-is</code></a> <em>(p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-def:uniform-continuous"><td></td><td>
        <strong>def:uniform-continuous</strong></td><td></td></tr>
      <tr>
@@ -954,14 +962,6 @@ document.write(`
        <a href="p3-CP/c5-modelli-discreti/bernoulli.html#ex:bernoulli"><code class="xref">ex:bernoulli</code></a> <em>(p3-CP/c5-modelli-discreti/bernoulli)</em></td><td>
        <em>example</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-ex:multiple-samples"><td></td><td>
-       <strong>ex:multiple-samples</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima.html#ex:multiple-samples"><code class="xref">ex:multiple-samples</code></a> <em>(p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-ex:parametric-estimate"><td></td><td>
        <strong>ex:parametric-estimate</strong></td><td></td></tr>
      <tr>
@@ -984,6 +984,30 @@ document.write(`
        <td></td>
        <td>
        <a href="p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima.html#ex:population-normal"><code class="xref">ex:population-normal</code></a> <em>(p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-ex:populations"><td></td><td>
+       <strong>ex:populations</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima.html#ex:populations"><code class="xref">ex:populations</code></a> <em>(p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-ex:statistic"><td></td><td>
+       <strong>ex:statistic</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima.html#ex:statistic"><code class="xref">ex:statistic</code></a> <em>(p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-ex:statistics-rv"><td></td><td>
+       <strong>ex:statistics-rv</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima.html#ex:statistics-rv"><code class="xref">ex:statistics-rv</code></a> <em>(p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima)</em></td><td>
        <em>example</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-example-0"><td></td><td>

@@ -53,8 +53,8 @@
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script>let toggleHintShow = 'Mostra il codice';</script>
-    <script>let toggleHintHide = 'Nascondi il codice';</script>
+    <script>let toggleHintShow = 'Mostra';</script>
+    <script>let toggleHintHide = 'Nascondi';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/translations.js"></script>
@@ -310,17 +310,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../p4-SI/c0-statistica-inferenziale/statistica-inferenziale.html">15. Statistica inferenziale</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/inferenza-puntuale.html">16. Stime puntuali</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima.html">16.1. Il problema della stima parametrica</a></li>
-
-
-
-<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/media-campionaria.html">16.5. Media campionaria</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/varianza-campionaria.html">16.6. Varianza campionaria</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/errore-di-una-stima.html">16.7. Errore di una stima</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/teorema-centrale-limite.html">16.8. Teorema del limite centrale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/leggi-grandi-numeri.html">16.9. Leggi dei grandi numeri</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/distribuzioni-campionarie.html">16.10. Distribuzioni campionarie</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/calcolo-dimensione-campione.html">16.11. Calcolo della dimensione del campione</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/processo-poisson.html">16.12. Processo di poisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/media-campionaria.html">16.2. Media campionaria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/varianza-campionaria.html">16.3. Varianza campionaria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/errore-di-una-stima.html">16.4. Errore di una stima</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/teorema-centrale-limite.html">16.5. Teorema del limite centrale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/leggi-grandi-numeri.html">16.6. Leggi dei grandi numeri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/distribuzioni-campionarie.html">16.7. Distribuzioni campionarie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/calcolo-dimensione-campione.html">16.8. Calcolo della dimensione del campione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/processo-poisson.html">16.9. Processo di poisson</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../p4-SI/c2-stime-per-intervalli/stime-per-intervalli.html">17. Stime per intervalli</a></li>
@@ -2078,8 +2075,8 @@ dato un insieme di osservazioni <span class="math notranslate nohighlight">\(\{ 
 funzione <span class="math notranslate nohighlight">\(\hat F: \mathbb R \mapsto [0, 1]\)</span> tale che per ogni <span class="math notranslate nohighlight">\(x \in \mathbb R\)</span>
 assume un valore pari alla frequenza relativa delle osservazioni che risultano
 essere minori o uguali a <span class="math notranslate nohighlight">\(x\)</span>. Pertanto</p>
-<div class="amsmath math notranslate nohighlight" id="equation-962b1217-f9e9-450f-8aae-13b3bc657380">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-962b1217-f9e9-450f-8aae-13b3bc657380" title="Permalink a questa equazione">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-818fc2c3-2f7e-432d-855b-2b3e8bfa84dc">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-818fc2c3-2f7e-432d-855b-2b3e8bfa84dc" title="Permalink a questa equazione">#</a></span>\[\begin{equation}
 \hat F(x) = \frac{\# \{ x_i \leq x \}}{n}
 = \frac{1}{n} \sum_{i=1}^n \mathrm I_{(-\infty, x]}(x_i) ,
 \end{equation}\]</div>

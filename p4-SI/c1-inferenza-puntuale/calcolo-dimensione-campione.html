@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>16.11. Calcolo della dimensione del campione &#8212; Superhero Data Science 
+    <title>16.8. Calcolo della dimensione del campione &#8212; Superhero Data Science 
  Probabilità e Statistica</title>
   
   
@@ -53,8 +53,8 @@
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script>let toggleHintShow = 'Mostra il codice';</script>
-    <script>let toggleHintHide = 'Nascondi il codice';</script>
+    <script>let toggleHintShow = 'Mostra';</script>
+    <script>let toggleHintHide = 'Nascondi';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/translations.js"></script>
@@ -70,8 +70,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Indice" href="../../genindex.html" />
     <link rel="search" title="Cerca" href="../../search.html" />
-    <link rel="next" title="16.12. Processo di poisson" href="processo-poisson.html" />
-    <link rel="prev" title="16.10. Distribuzioni campionarie" href="distribuzioni-campionarie.html" />
+    <link rel="next" title="16.9. Processo di poisson" href="processo-poisson.html" />
+    <link rel="prev" title="16.7. Distribuzioni campionarie" href="distribuzioni-campionarie.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="it"/>
   </head>
@@ -308,17 +308,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../c0-statistica-inferenziale/statistica-inferenziale.html">15. Statistica inferenziale</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="inferenza-puntuale.html">16. Stime puntuali</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="popolazione-campione-e-stima.html">16.1. Il problema della stima parametrica</a></li>
-
-
-
-<li class="toctree-l2"><a class="reference internal" href="media-campionaria.html">16.5. Media campionaria</a></li>
-<li class="toctree-l2"><a class="reference internal" href="varianza-campionaria.html">16.6. Varianza campionaria</a></li>
-<li class="toctree-l2"><a class="reference internal" href="errore-di-una-stima.html">16.7. Errore di una stima</a></li>
-<li class="toctree-l2"><a class="reference internal" href="teorema-centrale-limite.html">16.8. Teorema del limite centrale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="leggi-grandi-numeri.html">16.9. Leggi dei grandi numeri</a></li>
-<li class="toctree-l2"><a class="reference internal" href="distribuzioni-campionarie.html">16.10. Distribuzioni campionarie</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">16.11. Calcolo della dimensione del campione</a></li>
-<li class="toctree-l2"><a class="reference internal" href="processo-poisson.html">16.12. Processo di poisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="media-campionaria.html">16.2. Media campionaria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="varianza-campionaria.html">16.3. Varianza campionaria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="errore-di-una-stima.html">16.4. Errore di una stima</a></li>
+<li class="toctree-l2"><a class="reference internal" href="teorema-centrale-limite.html">16.5. Teorema del limite centrale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leggi-grandi-numeri.html">16.6. Leggi dei grandi numeri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distribuzioni-campionarie.html">16.7. Distribuzioni campionarie</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">16.8. Calcolo della dimensione del campione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="processo-poisson.html">16.9. Processo di poisson</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../c2-stime-per-intervalli/stime-per-intervalli.html">17. Stime per intervalli</a></li>
@@ -612,7 +609,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="calcolo-della-dimensione-del-campione">
-<h1><span class="section-number">16.11. </span>Calcolo della dimensione del campione<a class="headerlink" href="#calcolo-della-dimensione-del-campione" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">16.8. </span>Calcolo della dimensione del campione<a class="headerlink" href="#calcolo-della-dimensione-del-campione" title="Permalink to this heading">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -651,7 +648,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">precedente</p>
-        <p class="prev-next-title"><span class="section-number">16.10. </span>Distribuzioni campionarie</p>
+        <p class="prev-next-title"><span class="section-number">16.7. </span>Distribuzioni campionarie</p>
       </div>
     </a>
     <a class="right-next"
@@ -659,7 +656,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">successivo</p>
-        <p class="prev-next-title"><span class="section-number">16.12. </span>Processo di poisson</p>
+        <p class="prev-next-title"><span class="section-number">16.9. </span>Processo di poisson</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

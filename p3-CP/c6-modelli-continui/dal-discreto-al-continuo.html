@@ -53,8 +53,8 @@
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script>let toggleHintShow = 'Mostra il codice';</script>
-    <script>let toggleHintHide = 'Nascondi il codice';</script>
+    <script>let toggleHintShow = 'Mostra';</script>
+    <script>let toggleHintHide = 'Nascondi';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/translations.js"></script>
@@ -310,17 +310,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../p4-SI/c0-statistica-inferenziale/statistica-inferenziale.html">15. Statistica inferenziale</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/inferenza-puntuale.html">16. Stime puntuali</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima.html">16.1. Il problema della stima parametrica</a></li>
-
-
-
-<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/media-campionaria.html">16.5. Media campionaria</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/varianza-campionaria.html">16.6. Varianza campionaria</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/errore-di-una-stima.html">16.7. Errore di una stima</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/teorema-centrale-limite.html">16.8. Teorema del limite centrale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/leggi-grandi-numeri.html">16.9. Leggi dei grandi numeri</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/distribuzioni-campionarie.html">16.10. Distribuzioni campionarie</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/calcolo-dimensione-campione.html">16.11. Calcolo della dimensione del campione</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/processo-poisson.html">16.12. Processo di poisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/media-campionaria.html">16.2. Media campionaria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/varianza-campionaria.html">16.3. Varianza campionaria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/errore-di-una-stima.html">16.4. Errore di una stima</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/teorema-centrale-limite.html">16.5. Teorema del limite centrale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/leggi-grandi-numeri.html">16.6. Leggi dei grandi numeri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/distribuzioni-campionarie.html">16.7. Distribuzioni campionarie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/calcolo-dimensione-campione.html">16.8. Calcolo della dimensione del campione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/processo-poisson.html">16.9. Processo di poisson</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../p4-SI/c2-stime-per-intervalli/stime-per-intervalli.html">17. Stime per intervalli</a></li>
@@ -667,22 +664,22 @@ valore atteso e la varianza di <span class="math notranslate nohighlight">\(X_n\
 <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> e a <span class="math notranslate nohighlight">\(\frac{1}{12} + \frac{1}{6 n}\)</span>.</p>
 <div class="proof admonition" id="proof">
 <p>Proof. Applicando le formule per il calcolo di valore atteso e varianza si ottiene:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b441d6bb-26fb-45ed-90cd-827da892000a">
-<span class="eqno">(14.2)<a class="headerlink" href="#equation-b441d6bb-26fb-45ed-90cd-827da892000a" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9ff6ee22-43f0-4601-9797-ca5a64b55b69">
+<span class="eqno">(14.2)<a class="headerlink" href="#equation-9ff6ee22-43f0-4601-9797-ca5a64b55b69" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathbb E(X) &amp;= \sum_{i=0}^n \frac{i}{n} \frac{1}{n+1}
               = \frac{1}{n(n+1)} \sum_{i=0}^n i \\
              &amp;= \frac{1}{n(n+1)} \frac{n(n+1)}{2}
               = \frac{1}{2} \enspace;
 \end{align}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-c8d2c36e-2f46-4c17-b9b4-c7e18c63b8a2">
-<span class="eqno">(14.3)<a class="headerlink" href="#equation-c8d2c36e-2f46-4c17-b9b4-c7e18c63b8a2" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e81cf36a-8247-452c-8023-8c080a592316">
+<span class="eqno">(14.3)<a class="headerlink" href="#equation-e81cf36a-8247-452c-8023-8c080a592316" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathbb E(X^2) &amp;= \sum_{i=0}^n \frac{i^2}{n^2} \frac{1}{n+1}
                 = \frac{1}{n^2(n+1)} \sum_{i=0}^n i^2 \\
                &amp;= \frac{1}{n^2(n+1)} \frac{n(n+1)(2n+1)}{6}
                 = \frac{1}{3} + \frac{1}{6n} \enspace;
 \end{align}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-8fc773a4-f93c-4a18-9df2-29f6989e1016">
-<span class="eqno">(14.4)<a class="headerlink" href="#equation-8fc773a4-f93c-4a18-9df2-29f6989e1016" title="Permalink a questa equazione">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6d712e52-9f1f-4817-9d2a-5236223b19f9">
+<span class="eqno">(14.4)<a class="headerlink" href="#equation-6d712e52-9f1f-4817-9d2a-5236223b19f9" title="Permalink a questa equazione">#</a></span>\[\begin{equation}
 \mathrm{Var}(X) = \frac{1}{3} + \frac{1}{6n} - \frac{1}{4}
                 = \frac{1}{12} + \frac{1}{6n} \enspace.
 \end{equation}\]</div>

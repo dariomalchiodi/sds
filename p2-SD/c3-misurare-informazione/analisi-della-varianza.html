@@ -53,8 +53,8 @@
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script>let toggleHintShow = 'Mostra il codice';</script>
-    <script>let toggleHintHide = 'Nascondi il codice';</script>
+    <script>let toggleHintShow = 'Mostra';</script>
+    <script>let toggleHintHide = 'Nascondi';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/translations.js"></script>
@@ -310,17 +310,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../p4-SI/c0-statistica-inferenziale/statistica-inferenziale.html">15. Statistica inferenziale</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/inferenza-puntuale.html">16. Stime puntuali</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima.html">16.1. Il problema della stima parametrica</a></li>
-
-
-
-<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/media-campionaria.html">16.5. Media campionaria</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/varianza-campionaria.html">16.6. Varianza campionaria</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/errore-di-una-stima.html">16.7. Errore di una stima</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/teorema-centrale-limite.html">16.8. Teorema del limite centrale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/leggi-grandi-numeri.html">16.9. Leggi dei grandi numeri</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/distribuzioni-campionarie.html">16.10. Distribuzioni campionarie</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/calcolo-dimensione-campione.html">16.11. Calcolo della dimensione del campione</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/processo-poisson.html">16.12. Processo di poisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/media-campionaria.html">16.2. Media campionaria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/varianza-campionaria.html">16.3. Varianza campionaria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/errore-di-una-stima.html">16.4. Errore di una stima</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/teorema-centrale-limite.html">16.5. Teorema del limite centrale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/leggi-grandi-numeri.html">16.6. Leggi dei grandi numeri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/distribuzioni-campionarie.html">16.7. Distribuzioni campionarie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/calcolo-dimensione-campione.html">16.8. Calcolo della dimensione del campione</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../p4-SI/c1-inferenza-puntuale/processo-poisson.html">16.9. Processo di poisson</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../p4-SI/c2-stime-per-intervalli/stime-per-intervalli.html">17. Stime per intervalli</a></li>
@@ -692,14 +689,14 @@ giustificato);</p></li>
 segue) che
 <span class="math notranslate nohighlight">\(\mathrm{SS}_{\mathrm T} = \mathrm{SS}_{\mathrm W} + \mathrm{SS}_{\mathrm B}\)</span>,
 e quindi che</p>
-<div class="amsmath math notranslate nohighlight" id="equation-527c0026-2301-41c3-bda9-0fd5c96e53eb">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-527c0026-2301-41c3-bda9-0fd5c96e53eb" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d427c424-21df-4c67-9a9e-9d3b7cd03597">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-d427c424-21df-4c67-9a9e-9d3b7cd03597" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \frac{\mathrm{SS}_{\mathrm T}}{n-1} &amp;= \frac{\mathrm{SS}_{\mathrm W}}{n-1} +\frac{\mathrm{SS}_{\mathrm B}}{n-1}, \\
 &amp;= \frac{n-G}{n-1} \frac{\mathrm{SS}_{\mathrm W}}{n-G} + \frac{G-1}{n-1} \frac{\mathrm{SS}_{\mathrm B}}{G-1}.
 \end{align}\]</div>
 <p>Pertanto,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-eb880865-2e9b-4061-bdf7-948a355c5846">
-<span class="eqno">(6.2)<a class="headerlink" href="#equation-eb880865-2e9b-4061-bdf7-948a355c5846" title="Permalink a questa equazione">#</a></span>\[\begin{multline}
+<div class="amsmath math notranslate nohighlight" id="equation-a7bd222d-3aa9-42f4-8026-0bf9a648ea34">
+<span class="eqno">(6.2)<a class="headerlink" href="#equation-a7bd222d-3aa9-42f4-8026-0bf9a648ea34" title="Permalink a questa equazione">#</a></span>\[\begin{multline}
 \text{varianza totale} = \frac{n-G}{n-1} \text{varianza entro i gruppi} + \\
                          \frac{G-1}{n-1} \text{varianza tra i gruppi}.
 \end{multline}\]</div>
@@ -922,8 +919,8 @@ valutando la differenza nella distribuzione del peso.</p>
 \sum_{i=1}^{n_g} x^g_i = n_g \overline x^g,
 \]</div>
 <p>e quindi</p>
-<div class="amsmath math notranslate nohighlight" id="equation-24018ffb-0da8-48d6-a648-f710b8cb8cb5">
-<span class="eqno">(6.3)<a class="headerlink" href="#equation-24018ffb-0da8-48d6-a648-f710b8cb8cb5" title="Permalink a questa equazione">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-129b8d9a-d5a5-46cb-8a61-6c819e597d4e">
+<span class="eqno">(6.3)<a class="headerlink" href="#equation-129b8d9a-d5a5-46cb-8a61-6c819e597d4e" title="Permalink a questa equazione">#</a></span>\[\begin{align}
 \mathrm{SS}_{\mathrm T}  &amp;= \sum_{g=1}^G \sum_{i=1}^{n_g}
                             \left( \left(x^g_i\right)^2
                             - 2 \overline x x^g_i +
