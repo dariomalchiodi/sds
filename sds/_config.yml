@@ -88,8 +88,8 @@ sphinx:
       "tex": {
         packages: {'[+]': ['mathtools']}
       }
-    togglebutton_hint: "Mostra il codice"
-    togglebutton_hint_hide: "Nascondi il codice"
+    togglebutton_hint: "Mostra"
+    togglebutton_hint_hide: "Nascondi"
     html_theme_options:
       search_bar_text: "Cerca..."
   extra_extensions:

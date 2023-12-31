@@ -197,5 +197,10 @@ intervallo fiduciario che contiene effettivamente il valore di $\tau$.
 Infine, vale la pena sottolineare che la statistica inferenziale
 può essere declinata anche in senso _non parametrico_, nel caso in cui
 l'incertezza non sia incentrata solo su uno o più parametri di una
-distribuzione, bensì sia l'intera distribuzione a essere sconosciuta. Questo
-argomento, però, è al di fuori della trattazione data in questo libro.
+distribuzione, bensì sia l'intera distribuzione a essere sconosciuta.
+Affrontare questo argomento in modo dettagliato, però, è al di fuori della
+trattazione data in questo libro. Il
+{numref}`Capitolo %s <cap:statistica-non-parametrica>` si limiterà a
+introdurre alcuni aspetti di base di questa branca della statistica, legandoli
+ad alcuni concetti a essi collegati che abbiamo già trattato nella parte sulla
+statistica descrittiva.

@@ -498,8 +498,8 @@ table.dataframe td {
 .admonition {
   border: 1px solid #0288D1 !important;
   /*border-radius: 2rem !important;*/
-  border-radius: 0 0 2rem 2rem !important;
-  padding-bottom: 2rem !important;
+  /* border-radius: 0 0 2rem 2rem !important;
+  padding-bottom: 2rem !important; */
   background-color: rgb(250, 250, 250);
 }
 
@@ -530,6 +530,19 @@ table.dataframe td {
 
 .note.admonition .admonition-title:after {
   content: 'pan_tool_alt' !important;
+}
+
+.admonition.code-note .admonition-title {
+  margin-top: 0 !important;
+  margin-left: 0 !important;
+}
+
+.admonition.code-note {
+  margin-bottom: 0;
+}
+
+.admonition.code-note .admonition-title:after {
+  content: 'code' !important;
 }
 
 .definition .admonition-title:after {
