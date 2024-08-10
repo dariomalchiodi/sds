@@ -1,15 +1,14 @@
 # Superhero Data Science
 
-[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-lightgrey.svg)][cc-by-nc-sa]
 [![License: MIT][mit-image]][mit]
 
 ## License
 
-This work is published under a [Creative Commons BY-NC-SA 4.0](LICENSE) license. All code is licensed under an [MIT](CODE_LICENSE) license. [Contributions](CONTRIBUTING.md) are most welcome.
-
 The text of the book is published under a
-[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License][cc-by-nc-sa] license.
+[Creative Commons BY-NC-SA 4.0 International License][cc-by-nc-sa] license.
+All the code is licensed under an [MIT](CODE_LICENSE) license.
+[Contributions](CONTRIBUTING.md) are most welcome.
 
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-image]][cc-by-nc-sa]
 
