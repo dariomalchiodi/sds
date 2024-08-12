@@ -1,0 +1,46 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+
+site:
+  template: book-theme
+  options:
+    logo: https://raw.githubusercontent.com/dariomalchiodi/sds-jb/main/sds/images/favicon.ico 
+    favicon: https://raw.githubusercontent.com/dariomalchiodi/sds-jb/main/sds/images/favicon.ico 
+    hide_outline: true
+
+project:
+  id: e186f7f2-b994-480d-b277-1ae293e25829
+  title: Superhero Data Science
+  # keywords: []
+  # github: https://github.com/dariomalchiodi/sds
+  # To autogenerate a Table of Contents, run "myst init --write-toc"
+  authors:
+    - name: Dario Malchiodi
+      orcid: 0000-0002-7574-697X
+      url: https://malchiodi.di.unimi.it
+      github: dariomalchiodi/sds
+      affiliations: ['unimi']
+
+  affiliations:
+    - id: unimi
+      institution: Università degli Studi di Milano
+      department: Dipartimento di Informatica
+ 
+  license:
+    content: CC-BY-NC-SA-4.0
+    code: MIT
+
+  numbering:
+    figure:
+      start: 1
+      template: Figura %s
+    table:
+      start: 1
+      template: Tabella %s
+
+  bibliography:
+    - references.bib
+
+  jupyter:
+    lite: true
+
