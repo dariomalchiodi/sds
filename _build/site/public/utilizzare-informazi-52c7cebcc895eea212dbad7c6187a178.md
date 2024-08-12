@@ -1,1 +1,0 @@
-## Utilizzare l'informazione

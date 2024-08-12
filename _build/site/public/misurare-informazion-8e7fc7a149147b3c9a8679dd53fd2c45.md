@@ -1,1 +1,0 @@
-## Misurare l'informazione

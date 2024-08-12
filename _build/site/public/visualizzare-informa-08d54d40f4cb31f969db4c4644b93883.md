@@ -1,1 +1,0 @@
-## Visualizzare l'informazione

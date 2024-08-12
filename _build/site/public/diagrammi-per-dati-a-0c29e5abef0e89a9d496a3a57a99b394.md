@@ -1,1 +1,0 @@
-## Dati a coppie

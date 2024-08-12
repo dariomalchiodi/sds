@@ -1,1 +1,0 @@
-## Frequenze assolute e relative

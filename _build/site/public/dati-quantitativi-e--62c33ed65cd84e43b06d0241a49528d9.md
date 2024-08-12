@@ -1,1 +1,0 @@
-## Dati quantitativi e qualitativi

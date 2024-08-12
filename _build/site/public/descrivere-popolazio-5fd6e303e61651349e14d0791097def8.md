@@ -1,1 +1,0 @@
-## Descrivere una popolazione

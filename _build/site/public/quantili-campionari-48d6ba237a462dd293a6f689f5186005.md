@@ -1,1 +1,0 @@
-## Quantili campionari

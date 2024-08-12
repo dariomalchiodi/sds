@@ -1,1 +1,0 @@
-## Predire l'informazione
