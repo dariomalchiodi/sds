@@ -1080,7 +1080,7 @@ saltarli a meno che non si voglia approfondire gli argomenti ivi contenuti.
 
 Una cella grafica generata da matplotlib e visualizzata nel notebook contiene
 quella che viene definita una _figura_ (tecnicamente, un oggetto della classe
-`plt.Figure`). Ogni figura può contenere uno o più _sistemi cartesiani_
+`plt.Figura`). Ogni figura può contenere uno o più _sistemi cartesiani_
 (oggetti della classe `plt.Axes`) i quali a loro volta contengono (nella
 maggior parte dei casi) due _assi cartesiani_ (oggetti della classe `plt.Axis`,
 da non confondere con `plt.Axes`). Tutte le figure che abbiamo generato finora

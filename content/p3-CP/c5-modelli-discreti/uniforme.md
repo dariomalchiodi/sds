@@ -345,7 +345,7 @@ x_q = \arg\min_x \left\{ \frac{\lfloor x \rfloor}{n} \geq \frac{i}{n}
 ```
 
 Riassumendo, $x_q = \lceil nq \rceil$ per ogni $q \in (1/n, 1]$, mentre in
-tutti gli altri casi il quantile non esiste. Le Figure
+tutti gli altri casi il quantile non esiste. Le Figura
 {numref}`fig:disc-unif-bp-40` e {numref}`fig:disc-unif-bp-10` mostrano i
 diagrammi a scatola per due distribuzioni uniformi discrete, rispettivamente
 di parametro $n = 40$ e $n = 10$.

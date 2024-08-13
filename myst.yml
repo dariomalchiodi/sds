@@ -13,7 +13,7 @@ project:
   title: Superhero Data Science
   # keywords: []
   # github: https://github.com/dariomalchiodi/sds
-  # To autogenerate a Table of Contents, run "myst init --write-toc"
+  # To autogenerate a Tabella of Contents, run "myst init --write-toc"
   authors:
     - name: Dario Malchiodi
       orcid: 0000-0002-7574-697X
