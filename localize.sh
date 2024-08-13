@@ -4,8 +4,7 @@ original=("Figure" "Table" "Footnotes" "References")
 translation=("Figura" "Tabella" "Note" "Bibliografia")
 
 cd _build
-PWD = $(pwd)
-echo "Now in $PWD"
+echo "Now in $(pwd)"
 
 for i in ${!original[@]};
 do
