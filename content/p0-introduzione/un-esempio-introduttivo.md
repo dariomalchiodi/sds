@@ -33,9 +33,9 @@ points = alt.Chart(source).mark_point().encode(
 ).add_params(brush)
 
 bars = alt.Chart(source).mark_bar().encode(
-    y='count(universe)',
+    y='universe',
+    x='count(universe)',
     color='universe',
-    x='universe'
 ).transform_filter(brush)
 
 points & bars
