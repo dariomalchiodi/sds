@@ -5,9 +5,8 @@ parts:
   numbered: true
   chapters:
   - file: content/p0-introduzione/presentazione
-    sections:
-    - file: content/p0-introduzione/un-esempio-introduttivo
-    - file: content/p0-introduzione/organizzazione
+  - file: content/p0-introduzione/un-esempio-introduttivo
+  - file: content/p0-introduzione/organizzazione
 - caption: Programmazione per l'analisi dei dati
   numbered: true
   chapters:
@@ -59,7 +58,7 @@ parts:
     sections:
     - file: content/p2-SD/c5-analizzare-relazioni/diagrammi-per-dati-a-coppie
     - file: content/p2-SD/c5-analizzare-relazioni/covarianza-e-correlazione
-- caption: "Calcolo delle probabilit\xE0"
+- caption: "Calcolo delle probabilità"
   numbered: true
   chapters:
   - file: content/p3-CP/c1-calcolo-combinatorio/calcolo-combinatorio

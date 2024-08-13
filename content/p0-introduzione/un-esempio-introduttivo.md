@@ -13,35 +13,32 @@ kernelspec:
 ---
 
 ```{code-cell} ipython3
-:tags: [thebe-init, hide-input]
+:tags: [remove-input]
 
-import ipywidgets as widgets
+import altair as alt
+import pandas as pd
+import numpy as np
 
-button = widgets.Button(
-    description='Click me',
-    disabled=False,
-    button_style='', # 'success', 'info', 'warning', 'danger' or ''
-    tooltip='Click me',
-    icon='check' # (FontAwesome names without the `fa-` prefix)
-)
+heroes = pd.read_csv('data/heroes.csv', index_col=0)
+filter = (heroes['universe'].isin(heroes.universe.value_counts()[:10].index))
+filter &= (heroes['weight']<600)
+filter &= (heroes['height']<400)
+source = heroes[filter]
+brush = alt.selection_interval(encodings=['x'])
+points = alt.Chart(source).mark_point().encode(
+    x='height:Q',
+    y='weight:Q',
+    size='strength',
+    color=alt.condition(brush, 'universe:N', alt.value('lightgray'))
+).add_params(brush)
 
-def displ(e):
-    print(e)
+bars = alt.Chart(source).mark_bar().encode(
+    y='count(universe)',
+    color='universe',
+    x='universe'
+).transform_filter(brush)
 
-button.on_click(displ)
-
-slider = widgets.IntSlider(
-    value=7,
-    min=0,
-    max=10,
-    step=1,
-    description='Test:',
-    disabled=False,
-    continuous_update=False,
-    orientation='horizontal',
-    readout=True,
-    readout_format='d'
-)
+points & bars
 ```
 
 # Un esempio
@@ -69,41 +66,4 @@ sarà descritto tramite:
 - un indice di intelligenza (in una scala qualitativa i cui valori sono _low_,
   _moderate_, _average_, _good_, e _high_).
 
-```{code-cell} ipython3
-:tags: [hide-input, thebe-init]
 
-import ipywidgets as widgets
-
-button = widgets.Button(
-    description='Click me',
-    disabled=False,
-    button_style='', # 'success', 'info', 'warning', 'danger' or ''
-    tooltip='Click me',
-    icon='check' # (FontAwesome names without the `fa-` prefix)
-)
-
-def displ(e):
-    print("prova")
-
-button.on_click(displ)
-
-button
-```
-
-```{code-cell} ipython3
-slider
-```
-
-```{code-cell} ipython3
-:tags: [thebe-init, hide-input]
-
-my_hidden_variable = 'wow, it worked!'
-```
-
-```{code-cell} ipython3
-print(my_hidden_variable)
-```
-
-```{code-cell} ipython3
-
-```
