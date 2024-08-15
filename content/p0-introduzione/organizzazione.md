@@ -6,32 +6,31 @@ in un contesto che potesse essere facilmente esplorato e controllato. Quando,
 anni fa, ho iniziato a insegnare, mi è sembrato naturale usare lo stesso
 approccio, adottando in modo inconsapevole un metodo didattico che solo più
 tardi ho scoperto essere codificato nella metodologia del _learning by doing_
-{cite}`freire1982`. Questo libro cerca di seguire la stessa filosofia,
+{cite:p}`freire1982`. Questo libro cerca di seguire la stessa filosofia,
 introducendo fin da subito&mdash;ove possibile&mdash;i singoli argomenti
 all'interno di un contesto applicativo.
 
 ```{margin}
 L'uso della fantascienza per introdurre concetti scientifici non è
 particolarmente insolito: due esempi abbastanza noti sono «La Fisica
-di Star Trek» {cite}`krauss` e «La Fisica dei Supereroi» {cite}`kakalios`.
+di Star Trek» {cite:p}`krauss` e «La Fisica dei Supereroi» {cite:p}`kakalios`.
 ```
-Per dare coerenza alla trattazione, ho deciso di collocare i vari esempi da
-affiancare alle parti più teoriche all'interno di uno stesso dominio.
+Per dare coerenza alla trattazione, ho deciso di contestualizzare in uno stesso
+dominio gli esempi da affiancare alle parti più teoriche.
 Il perimetro nel quale ho scelto di muovermi è il multiverso dei supereroi.
-Potrebbe sembrare un controsenso, vista la filosofia che ho appena dichiarato
-ed essendo i supereroi personaggi collocati in un ambito narrativo non reale
-(decisamente all'interno della _fiction_, peraltro). Poter applicare un
-concetto a un contesto, però, prescinde dall'effettiva realizzabilità fisica
-di quest'ultimo: serve solo specificare in modo chiaro, coerente e preciso le
-ipotesi che descrivono una data situazione. Questo permette di calarsi
-metaforicamente in questa stessa situazione, di modellarla tramite il 
-linguaggio della matematica, di esplorarla utilizzando il metodo scientifico
-e, sperabilmente, di ricavare delle informazioni, di prendere delle decisioni
-e così via. Oltre a essere molto divertente, riferirsi a un mondo inesistente
-ha anche un altro vantaggio: permette a chi impara di non stabilire un
-collegamento diretto tra l'istanza di un problema e i metodi risolutivi da
-utilizzare, favorendo un apprendimento incentrato sull'uso _critico_ di metodi
-e strumenti.
+Potrebbe sembrare un controsenso, vista la filosofia che ho appena dichiarato:
+i supereroi sono personaggi di un ambito narrativo non reale&mdash;parecchio
+_fiction_, peraltro. Poter applicare un concetto a un contesto, però, prescinde
+dall'effettiva realizzabilità fisica di quest'ultimo: serve solo specificare in
+modo chiaro, coerente e preciso le ipotesi che descrivono una data situazione.
+Questo permette di calarsi metaforicamente in questa stessa situazione, di
+modellarla tramite il  linguaggio della matematica, di esplorarla utilizzando
+il metodo scientifico e, sperabilmente, di ricavare delle informazioni, di
+prendere delle decisioni e così via. Oltre a essere molto divertente, riferirsi
+a un mondo inesistente ha anche un altro vantaggio: permette a chi impara di
+non stabilire un collegamento diretto tra l'istanza di un problema e i metodi
+risolutivi da utilizzare, favorendo un apprendimento incentrato sull'uso
+_critico_ di metodi e strumenti.
 
 
 Nonostante mi sia imbarcato in questa impresa, non sono un
@@ -40,12 +39,13 @@ di me per tutte le imperfezioni e gli errori che potrei avere inserito,
 sperando che questi non pregiudichino la comprensione dei concetti e degli
 esempi descritti. Nonostante io sia un po' più esperto di analisi dei dati,
 di calcolo delle probabilità e di statistica, non posso escludere di
-avere fatto errori in generale, anche se in questo caso sono confidente di
-averne fatti pochi.
+avere fatto errori in generale, anche se in questo caso sono confidente di non
+averne fatti troppi.
 
 ```{margin}
 Il modo più pratico per inviarmi queste segnalazioni è quello
-di sottoporre delle _pull request_ al
+di sottoporre delle _issue_ (per segnalare errori o suggerire miglioramenti)
+e delle _pull request_ (per proporre un miglioramento dei contenuti) al
 [repository](https://github.com/dariomalchiodi/sds) nel quale risultano
 organizzati i contenuti di questo libro. Ciò richiede
 familiarità con [git](https://www.git-scm.org), lo strumento di _source
@@ -55,69 +55,88 @@ Il lavoro di scrittura è comunuque _in progress_, e
 verosimilmente lo sarà ancora per parecchio tempo: segnalatemi refusi ed
 errori, e più in generale esempi e materiale che pensate possano arricchire
 quanto ho scritto, tenendo presente che immagini, dati e così via possono
-essere pubblicati solo se sono coerenti con la licenza
-[Creative Commons Attribuzione 4.0 Internazionale](https://creativecommons.org/licenses/by/4.0/deed.it)
-(CC BY 4.0) con la quale è distribuito questo libro.
+essere pubblicati solo se sono coerenti con la licenza _Creative Commons
+Attribution-NonCommercial-ShareAlike 4.0 International_
+([CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en))
+con la quale è distribuito questo libro.
 
 
-% ### Ringraziamenti
+### Ringraziamenti
 
-% Alcune persone hanno letto e commentato quello che ho scritto, contribuendo
-% in modo fondamentale al risultato finale: Alessandro Di Giorgi mi ha aiutato
-% a limare la trattazione matematica in alcuni punti. Marco De Petri, Matteo
-% Princisgh e Nicolò Rosati hanno accuratamente letto le bozze e trovato
-% tante imperfezioni alle quali spero di avere rimediato. Ringrazio tutte e tutti
-% per avere dedicato un po' del loro tempo e delle loro energie a questo lavoro,
-% puntualizzando che che errori e imprecisioni che dovessero essere rimasti sono interamente da attirbuirsi
-% a me. Ci sono poi tante persone che voglio ringraziare per il loro supporto:
-% Serena Paolo e Paolo Boldi, che per primi e per motivi diversissimi (ma non
-% troppo) sono venuti a conoscenza della mia idea di scrivere un libro, e per
-% motivi uguali (ma non troppo) mi hanno spronato a farlo. 
+Alcune persone hanno letto e commentato quello che ho scritto, contribuendo
+in modo fondamentale al risultato finale: Alessandro Di Giorgi mi ha aiutato
+a limare la trattazione matematica in alcuni punti. Nicola Ludwig ha
+impreziosito una mia incursione nel mondo della fisica. Marco De Petri, Matteo
+Princisgh e Nicolò Rosati hanno accuratamente letto le bozze e trovato
+tante imperfezioni alle quali spero di avere rimediato. Ringrazio tutte e tutti
+per avere dedicato un po' del loro tempo e delle loro energie a questo lavoro,
+puntualizzando che che errori e imprecisioni che dovessero essere rimasti sono
+da attirbuirsi interamente a me.
 
-## Imparare <span class="marked">e</span> programmare
+È poi doveroso ringraziare Laura Ripamonti, che tanti anni fa ha instillato in
+me l'idea di usare i supereroi come esempio, Serena Paolo e Paolo Boldi, che
+per primi e per motivi diversissimi (ma non così diversi) sono venuti a
+conoscenza della mia idea di scrivere un libro, e per motivi uguali (ma non
+così uguali) mi hanno spronato a farlo. A tutte queste persone, e a chi
+inevitabilmente sto dimenticando, voglio esprimere la mia riconoscenza per il
+supporto che hanno saputo darmi.
 
-```{margin}
-Questo libro è pensato per studenti del secondo anno delle lauree triennali
-di area informatca, dunque è opportuna una conoscenza relativa alla
-programmazione degli elaboratori al livello insegnato al primo anno nelle
-stesse lauree, o in lauree di aree affini.
-```
+## Imparare \*e\* programmare
+
 Come descritto nel paragrafo precedente, i concetti vengono introdotti
 affiancandoli (o facendoli precedere) da esempi. Quando è possibile, vengono
 anche mostrate delle _implementazioni_ utilizzando un linguaggio di
 programmazione. È quindi altamente consigliata una competenza di base sulla
 scrittura di _software_, utilizzando un linguaggio relativamente moderno: in
-particolare, farò riferimento a Python e al cosiddetto _data science stack_
-costituito dai package che sono ampiamente utilizzati, al tempo in cui scrivo,
-dalla comunità open source che fa riferimento all'analisi dei dati.
-Il {numref}`Capitolo %s <chap-python>` contiene una descrizione a livello
+particolare, farò riferimento a [Python](https://www.python.org) e al
+cosiddetto _data science stack_, costituito dai package che sono ampiamente
+utilizzati, al tempo in cui scrivo, dalla comunità open source che fa
+riferimento all'analisi dei dati[^librerie].
+```{margin}
+Questo libro è pensato per studenti del secondo anno delle lauree triennali
+di area informatica, dunque è opportuna una conoscenza relativa alla
+programmazione degli elaboratori al livello insegnato al primo anno nelle
+stesse lauree, o in lauree di aree affini.
+```
+
+Il Capitolo @chap-python contiene una descrizione a livello
 medio-alto delle funzionalità di Python che sono utilizzate, e può essere
 utilizzato da chi non conosce questo linguaggio per mettersi in pari. Una
 lettura di questo capitolo è comunque consigliata, al fine di familiarizzare
 con le convenzioni che utilizzo per scrivere codice.
 
-Oltre che per essere letto sotto forma di pagine Web, questo libro è scritto
-utilizzando una tecnologia che ne permette la fruizione a diversi livelli,
-agendo sulle icone nel menu in alto a destra. In particolare, è possibile
-«attivare» le parti contenenti codice in modo da potere eseguire quest'ultimo,
-anche dopo averlo modificato, direttamente all'interno del libro. I singoli
-capitoli possono essere convertiti in _notebook_ eseguibili usando il servizio
-online [Binder](https://www.binder.org), oppure direttamente scaricabili sul
-proprio computer al fine di eseguirli localmente. In quest'ultimo caso
-è necessario avere installato Python unitamente alle librerie utilizzate: il
-[repository](https://github.com/dariomalchiodi/sds) del libro contiene una
-descrizione di queste librerie e una possibile tecnica che permette di
-installarle in modo relativamente facile. Incoraggio tutti a usufruire di
-questa opportunità, non limitandosi a leggere passivamente il testo, e
-nemmeno a eseguire il codice in modo pedissequo, ma ad analizzarlo,
+Questo libro è scritto utilizzando una tecnologia che permette di inserire
+dei contenuti generati tramite l'esecuzione di codice python. Questo codice
+è nascosto quando serve a produrre per esempio tabelle o grafici, mentre è
+esplicitamente mostrato in tutti i casi nei quali chi legge viene guidato
+nell'implementazione di uno o più concetti spiegati nel testo. In ogni caso,
+l'intero codice sorgente che ho scritto per produrre il libro è scaricabile
+sia dal [repository](https://github.com/dariomalchiodi/sds) associato, sia
+cliccando l'icona ![ALT](images/download.svg) a inizio pagina. Va notato che,
+in entrambi i casi, quello che viene scaricato sono dei file che alternano
+il codice Markdown che specifica i contenuti testuali con il codice python,
+ed è quindi necessario separare quest'ultimo per poterlo eseguire.
+Nonostante questo modo di procedere sia un po' macchinoso, incoraggio tutti a
+usufruire di questa opportunità, non limitandosi a leggere passivamente il
+testo, ma nemmeno a eseguire il codice in modo pedissequo, ma ad analizzarlo,
 comprenderlo, modificarlo (valgono anche le modifiche che permettono di capire
 meglio il codice!), insomma _giocarci_ in un'ottica _hacker_ (nel senso
-originale del termine [^hacker]).
+originale del termine [^hacker]). In realtà è anche possibile giocare con il
+libro senza necessariamente dover comprendere il codice ed eseguirlo: come
+mostrato nel Paragrafo @sec:esempio-introduttivo, una parte dei contenuti è
+interattiva, e la manipolazione di questi contenuti è pensata proprio per
+facilitare la comprensione dei concetti introdotti.
 ```{margin}
-L'esecuzione diretta del codice e l'utilizzo di Binder richiedono una
-connessione Internet attiva, per permettere l'esecuzione di una macchina
-virtuale che si occupi dell'elaborazione. Questo non è un processo immediato,
-e anzi può richiedere un tempo non trascurabile.
+Il libro è stato generato utilizzando [MyST](https://mystmd.org/), che
+comprende sia una variante del formato testuale <wiki:Markdown>, sia il sofware
+che permette di tradurre il codice corrispondente nelle pagine HTML che
+state leggendo.
+
+L'utilizzo delle componenti interattive è basato su alcune tecnologie (in
+particolare, [JupyterLite](https://github.com/jupyterlite/jupyterlite))
+che sono al momento ancora in una fase preliminare di sviluppo. In particolare,
+è spesso necessario armarsi di pazienza e assicurarsi di utilizzare uno
+dei browser web supportati.
 ```
 
 
@@ -126,15 +145,14 @@ degli strumenti fondamentali, soprattutto nella prima parte relativa alla
 statistica descrittiva. Il risultato non scende al livello delle librerie
 professionali: da una parte, lo scopo è quello di concentrarsi sugli aspetti
 fondamentali per facilitare l'apprendimento di uno o più concetti.
-Dall'altro, non ci si aspetta che
-ciò che viene realizzato sia poi utilizzato in ambito lavorativo: esattamente
-come è ragionevole che uno sviluppatore abbia imparato a scrivere da zero i
-principali algoritmi di ordinamento (e, se dovesse servire, sia in grado di
-farlo), ma che faccia in seguito riferimento alle loro implementazioni in una
-libreria, ottimizzate e validate sicuramente meglio di quanto il singolo può
-ragionevolmente fare da solo. In quest'ottica, subito dopo le implementazioni
-«fai da te» i lettori sono indirizzati all'uso di librerie allo stato
-dell'arte.
+Dall'altro, non ci si aspetta che ciò che viene realizzato sia poi utilizzato
+in ambito lavorativo: esattamente come è ragionevole che uno sviluppatore abbia
+imparato a scrivere da zero i principali algoritmi di ordinamento (e, se
+dovesse servire, sia in grado di farlo), ma che faccia in seguito riferimento
+alle loro implementazioni in una libreria, ottimizzate e validate sicuramente
+meglio di quanto un singolo possa ragionevolmente fare da solo. In quest'ottica,
+subito dopo le implementazioni  «fai da te» i lettori sono indirizzati all'uso
+di librerie allo stato dell'arte.
 
 In linea di principio, anche chi non sa programmare gli elaboratori può
 leggere questo libro, saltando semplicemente le parti che contengono,
@@ -145,18 +163,18 @@ A questo tipo di lettori consiglio di prendere in considerazione testi scritti
 usando un approccio più tradizionale, come per esempio:
 
 - Probabilità e Statistica per le scienze e l'ingegneria, di Sheldon Ross
-  {cite}`ross`,
+  {cite:p}`ross`,
 - Introduzione alla statistica di Marylin K. Pelosi, Theresa M. Sandifer,
-  Paola Cerchiello e Paolo Giudici {cite}`pelosi`.
+  Paola Cerchiello e Paolo Giudici {cite:p}`pelosi`.
 
 
 Va anche messo in guardia chi non sa programmare e si trova davanti alla
-tentazione di leggere questo libro per apprendere a farlo, magari mentre
-in contemporanea impara ad analizzare dati. Questo non è un libro per imparare
-a programmare, ma piuttosto un libro per imparare <span class="marked">e</span> programmare, usando la
+tentazione di leggere questo libro per apprendere a farlo, magari mentre in
+contemporanea impara ad analizzare dati. Questo __non è__ un libro per imparare
+a programmare, ma piuttosto un libro per imparare programmando, usando la
 capacità di scrivere codice per arricchire il processo di apprendimento di
 un'altra materia. Si dice che non si è veramente capita una cosa se non si è
-in grado di spiegarla alla propria nonna [^cite-granny]: faccio mia questa
+in grado di spiegarla alla propria nonna[^cite-granny]: faccio mia questa
 massima, sperando di non distorcerla troppo dicendo che non si è veramente
 capito un concetto tecnico se non si è in grado di implementarlo scrivendo un
 programma. Se si vuole però seguire questa filosofia, bisogna già
@@ -165,9 +183,9 @@ tempo, energia e del materiale dedicato all'apprendimento della materia.
 Anche in questo caso, ci sono parecchi libri che possono essere utilizzati
 con profitto, per esempio:
 
-- [Pensare in Python](https://github.com/AllenDowney/ThinkPythonItalian/blob/master/thinkpython_italian.pdf), di Allen B. Downey.
-- Programmazione in C, di Kim N. King {cite}`king`,
-- Programmare in Go, di Ivo Balbaert {cite}`balbaert`.
+- [Pensare in Python](https://github.com/AllenDowney/ThinkPythonItalian/blob/master/thinkpython_italian.pdf), di Allen B. Downey {cite:p}`downey`.
+- Programmazione in C, di Kim N. King {cite:p}`king`,
+- Programmare in Go, di Ivo Balbaert {cite:p}`balbaert`.
 
 Ho volutamente messo nell'elenco precedente tre volumi più o meno recenti,
 e soprattutto ognuno dedicato a un linguaggio diverso: lo scopo, in questo
@@ -345,21 +363,28 @@ ancora riuscito a trovare un libro di testo che desse a queste tre aree
 il peso relativo che io assegno loro nelle mie lezioni.
 
 È per questo motivo che ho deciso, via via che la «massa critica» delle
-dispense cresceva, di scrivere un libro che evitasse l'adozione di due diversi
-testi da affiancare in ogni caso a dispense che colmassero le lacune
+dispense cresceva, di scrivere un libro che evitasse l'adozione di due o più
+testi differenti, da affiancare in ogni caso a dispense che colmassero le lacune
 risultanti.
 
-La trattazione è organizzata secondo il filo logico che seguo durante le mie
-lezioni. Nella prima parte, dedicata all'analisi dei dati nel senso più
-pratico del termine, introduco i principali argomenti della statistica
-descrittiva e i relativi strumenti nell'ottica di un loro utilizzo diretto,
-scrivendo codice Python e analizzando un _dataset_ di riferimento. Segue
-una parte sul calcolo delle probabilità, dedicata a esporre i principali
-concetti legati alla modellazione dell'incertezza in senso probabilistico,
-nella quale cerco di mantenere al minimo necessario l'uso del formalismo
-matematico. L'ultima parte è invece concentrata ad accennare alle basi della
-statistica inferenziale, focalizzandosi sull'inferenza parametrica.
-
+I contenuti sono organizzati secondo il filo logico che seguo durante le mie
+lezioni. La prima parte si concentra sulle basi computazionali, introducendo
+Python e le relative librerie utilizzate all'interno del libro. Nella seconda
+parte, dedicata all'analisi dei dati nel senso più pratico del termine,
+introduco i principali argomenti della statistica descrittiva e i relativi
+strumenti nell'ottica di un loro utilizzo diretto, scrivendo codice Python e
+analizzando un _dataset_ di riferimento. Segue una parte sul calcolo delle
+probabilità, dedicata a esporre i principali concetti legati alla modellazione
+dell'incertezza in senso probabilistico. L'ultima parte è infine concentrata ad
+accennare alle basi della statistica inferenziale, focalizzandosi
+sull'inferenza parametrica. Nella trattazione ho cercato di limitare l'uso del
+formalismo matematico allo stretto necessario per introdurre gli argomenti in
+modo rigoroso. I paragrafi il cui titolo è contrassegnato da un asterisco
+includono approfondimenti e materiale addizionale che possono essere
+trascurati&mdash;fondamentalmente, tutti gli argomenti che per limiti di tempo
+non riesco a spiegare in aula ma che consiglio vivamente agli studenti che
+volessero approfondire la conoscenza della disciplina, soprattutto nell'ottica
+di un proseguimento degli studi a livello magistrale.
 
 
 ````{aside}
@@ -373,29 +398,34 @@ MuseumsForum, distribuita sotto licenza
 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/))
 ```
 ````
+[^librerie]: Il repository associato a questo libro contiene un
+[file](https://github.com/dariomalchiodi/sds/blob/main/requirements.in)
+che elenca tutte le librerie utilizzate per generare i contenuti, incluse
+quelle necessarie per eseguire il codice.
+
 [^hacker]: Il termine _hacker_ viene oggigiorno utilizzato nel linguaggio
 comune dandogli un'accezione negativa che essenzialmente lo accomuna a chi
 persegue intenti dolosi scrivendo o modifcando _software_, o in generale
 sfruttando delle falle di sicurezza al fine di utilizzare in modo improprio
 delle tecnologie esistenti. In realtà, l'uso di questo termine
-nell'inglese moderno si fa risalire introdotto intorno al 1960, conferendogli
-però un'accezione più neutra: quella di indicare una persona con il talento di
-comprendere in profondità il funzionamento di un sistema, e quindi di essere
+nell'inglese moderno viene fatto risalire intorno al 1960, conferendogli
+però una connotazione più neutra: quella di indicare una persona con il talento
+di comprendere in profondità il funzionamento di un sistema, e quindi di essere
 in grado di controllarlo al punto di utilizzarlo in modo diverso rispetto
-a quello per cui era stato progettato. Tutto questo avveniva all'interno del
-Massachusetts Institute of Technology (MIT), ma si è focalizzato sui
-computer e in generale sull'informatica solo in un secondo tempo. Giusto per
-citare un esempio famoso, uno dei primi _hack_ (illegale, peraltro) riguardava
-l'uso del Cap’n Crunch Bo’sun Whistle (un fischietto che si trovava in regalo
-nelle scatole di una famosa marca di cereali, mostrato in
-@fig-whistle) per fare telefonate interurbane o internazionali
-gratuite con alcuni telefoni pubblici. Analogamente, la prima
-traccia scritta del termine «hacking» viene fatta risalire al verbale di una
-riunione del 1955 del Tech Model Railroad Club, che riuniva studenti del MIT
-appassionati di modellismo ferroviario.
+a quello per cui era stato progettato. Giusto per citare un esempio, uno dei
+primi _hack_ famosi&mdash;peraltro illegale&mdash;riguardava l'uso del Cap’n
+Crunch Bo’sun Whistle (un fischietto che si trovava in regalo nelle scatole di
+una famosa marca di cereali, mostrato in @fig-whistle) per fare telefonate
+interurbane o internazionali gratuite con alcuni telefoni pubblici. Uno degli
+ambienti nei quali la controcultura hacker ha iniziato a svilupparsi è quello
+del Massachusetts Institute of Technology (MIT): la prima traccia scritta del
+termine «hacking» fa riferimento al verbale di una riunione del 1955 del _Tech
+Model Railroad Club_, che riuniva studenti del MIT appassionati di modellismo
+ferroviario. Solo in un secondo momento è avvenuta un'identificazione rispetto
+al mondo informatico.
 
 [^cite-granny]: Risulta complicato risalire all'autore di questa massima:
 c'è chi la attribuisce ad Einstein, chi a Feynmann e chi a Rutherford (pare
 dunque che ci sia consenso sul contesto delle scienze fisiche);
-ci sono anche varianti in cui la nonna è sostituita da un bambino, o
-perfino da un barista.
+ci sono anche varianti in cui la nonna è sostituita da un bambino, o&mdash; per
+qualche motivo&mdash;perfino da un barista.
