@@ -12,36 +12,8 @@ kernelspec:
   name: python3
 ---
 
-```{code-cell} ipython3
-:tags: [remove-input]
-
-import altair as alt
-import pandas as pd
-import numpy as np
-
-heroes = pd.read_csv('data/heroes.csv', index_col=0)
-filter = (heroes['universe'].isin(heroes.universe.value_counts()[:10].index))
-filter &= (heroes['weight']<600)
-filter &= (heroes['height']<400)
-source = heroes[filter]
-brush = alt.selection_interval(encodings=['x'])
-points = alt.Chart(source).mark_point().encode(
-    x='height:Q',
-    y='weight:Q',
-    size='strength',
-    color=alt.condition(brush, 'universe:N', alt.value('lightgray'))
-).add_params(brush)
-
-bars = alt.Chart(source).mark_bar().encode(
-    y='universe',
-    x='count(universe)',
-    color='universe',
-).transform_filter(brush)
-
-points & bars
-```
-
-# Un esempio
+(sec:esempio-introduttivo)=
+# Un esempio interattivo
 
 Facciamo finta che...
 
@@ -67,3 +39,33 @@ sarà descritto tramite:
   _moderate_, _average_, _good_, e _high_).
 
 
+```{code-cell} ipython3
+:tags: [remove-input]
+
+import altair as alt
+import pandas as pd
+import numpy as np
+
+heroes = pd.read_csv('data/heroes.csv', index_col=0)
+filter = (heroes['creator'].isin(heroes.creator.value_counts()[:15].index))
+filter &= (heroes['weight']<600)
+filter &= (heroes['height']<400)
+source = heroes[filter]
+source = heroes[filter]
+brush = alt.selection_interval()
+points = alt.Chart(source).mark_point().encode(
+    x='height',
+    y='weight',
+    size='strength',
+    color=alt.condition(brush, 'creator', alt.value('lightgray')),
+    tooltip='name'
+).add_params(brush)
+
+bars = alt.Chart(source).mark_bar().encode(
+    y='creator',
+    x='count(creator)',
+    color='creator',
+).transform_filter(brush)
+
+points & bars
+```
