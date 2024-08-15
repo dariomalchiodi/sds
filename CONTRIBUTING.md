@@ -2,24 +2,23 @@
 
 Sono bene accette **pull request** volte a migliorare la qualità dei contenuti
 del libro. Una pull request incorporata nel repository aggiungerà il suo autore
-all'elenco dei 
+all'elenco dei contributori. Il contenuto di queste richieste è da considerarsi
+una donazione al progetto del libro: i contributi saranno comunque vincolati
+dalle condizioni indicate nelle licenze del [codice](LICENSE) e dei
+[contenuti](LICENSE-CC-BY-NC-SA), il che significa che chi contribuisce non
+sarà considerato coautore o proprietario del contenuto una volta che questo
+sarà stato incorporato al repository.
 
-I will be glad to consider **pull requests** aimed at improving the quality
-of the book contents. Authors of merged pull requests will appear in the
-contributor list. The content of these requests will be considered a donation
-to the book project: contributors will still be bound by the conditions stated
-in the code and content licenses, meaning that they will not be considered
-coauthors or owners of the content once it has been merged in.
+Per suggerire idee o segnalare errori è opportuno aprire delle **issue**.
 
-**Issues** can be opened for suggesting ideas or pointing out mistakes.
+In ogni caso, non saranno considerate issue o pull request aperte per chiedere
+aiuto nella risoluzione di esercizi o nello sviluppo di progetti.
 
-Do **not** use issues/PR to ask for help in solving exercises or developing
-projects.
+## Traduzioni
 
-## Translations
-
-The book is currently under development and written in Italian, the mother
-tongue of most of my students. In the future I might consider its translation
-to other languages, under the original copyright and [license](LICENSE), so
-commercial use of any translated material is prohibited.
+Il libro è attualmente in fase di sviluppo ed è scritto in italiano, la lingua
+madre della maggior parte dei miei studenti. In futuro potrei considerare una
+traduzione dei contenuti in altre lingue, mantenendo il copyright originale e
+le licenze del [codice](LICENSE) e dei [contenuti](LICENSE-CC-BY-NC-SA).
+Pertanto l'uso commerciale di qualsiasi materiale tradotto è proibito.
 
