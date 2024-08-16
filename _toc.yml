@@ -5,8 +5,8 @@ parts:
   numbered: true
   chapters:
   - file: content/p0-introduzione/presentazione
-  - file: content/p0-introduzione/un-esempio-interattivo
   - file: content/p0-introduzione/organizzazione
+  - file: content/p0-introduzione/un-esempio-interattivo
 - caption: Programmazione per l'analisi dei dati
   numbered: true
   chapters:

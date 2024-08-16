@@ -1,5 +1,6 @@
 
-## Approccio
+(sec:approccio)=
+# Approccio
 
 Mi è sempre risultato facile apprendere nuovi concetti mettendoli in pratica
 in un contesto che potesse essere facilmente esplorato e controllato. Quando,
@@ -123,7 +124,7 @@ comprenderlo, modificarlo (valgono anche le modifiche che permettono di capire
 meglio il codice!), insomma _giocarci_ in un'ottica _hacker_ (nel senso
 originale del termine [^hacker]). In realtà è anche possibile giocare con il
 libro senza necessariamente dover comprendere il codice ed eseguirlo: come
-mostrato nel Paragrafo @sec:esempio-introduttivo, una parte dei contenuti è
+mostrato nel Paragrafo @sec:esempio-interattivo, una parte dei contenuti è
 interattiva, e la manipolazione di questi contenuti è pensata proprio per
 facilitare la comprensione dei concetti introdotti.
 ```{margin}
