@@ -310,6 +310,8 @@ pygments==2.18.0
     # via
     #   ipython
     #   nbconvert
+pyodide-http==0.2.1
+    # via -r requirements.in
 pyparsing==3.1.2
     # via matplotlib
 python-dateutil==2.9.0.post0
