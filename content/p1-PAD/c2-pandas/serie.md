@@ -10,9 +10,15 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+
+numbering:
+  heading_1: true
+  heading_2: false
+  enumerator: 3.1.%s
+
+title: 3.1. Serie
 ---
 
-# Serie
 Una delle classi principali implementate in pandas è `Series`. Le sue istanze
 rappresentano serie di osservazioni di un certo carattere fatto su un insieme
 di individui. La cella seguente recupera dalla lista `heroes` precedentemente

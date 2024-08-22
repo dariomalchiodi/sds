@@ -12,5 +12,5 @@ kernelspec:
   name: python3
 ---
 
-(sec:va-e-modelli-continui)=
+(cap:va-e-modelli-continui)=
 # Modelli continui

@@ -1,6 +1,30 @@
+---
+jupytext:
+  formats: ipynb,md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+
+numbering:
+  heading: true
+  heading_1: true
+  heading_2: true
+
+  figure:
+    template: Figura 1.%s
+  table:
+    template: Tabella 1.%s
+title: 1.2. Approccio
+---
 
 (sec:approccio)=
-# Approccio
+
 
 Mi è sempre risultato facile apprendere nuovi concetti mettendoli in pratica
 in un contesto che potesse essere facilmente esplorato e controllato. Quando,
@@ -113,10 +137,10 @@ esplicitamente mostrato in tutti i casi nei quali chi legge viene guidato
 nell'implementazione di uno o più concetti spiegati nel testo. In ogni caso,
 l'intero codice sorgente che ho scritto per produrre il libro è scaricabile
 sia dal [repository](https://github.com/dariomalchiodi/sds) associato, sia
-cliccando l'icona ![ALT](images/download.svg) a inizio pagina. Va notato che,
-in entrambi i casi, quello che viene scaricato sono dei file che alternano
-il codice Markdown che specifica i contenuti testuali con il codice python,
-ed è quindi necessario separare quest'ultimo per poterlo eseguire.
+cliccando l'icona ![download icon](images/download.svg) a inizio pagina. Va
+notato che, in entrambi i casi, quello che viene scaricato sono dei file che
+alternano il codice Markdown che specifica i contenuti testuali con il codice
+python, ed è quindi necessario separare quest'ultimo per poterlo eseguire.
 Nonostante questo modo di procedere sia un po' macchinoso, incoraggio tutti a
 usufruire di questa opportunità, non limitandosi a leggere passivamente il
 testo, ma nemmeno a eseguire il codice in modo pedissequo, ma ad analizzarlo,
@@ -124,7 +148,7 @@ comprenderlo, modificarlo (valgono anche le modifiche che permettono di capire
 meglio il codice!), insomma _giocarci_ in un'ottica _hacker_ (nel senso
 originale del termine [^hacker]). In realtà è anche possibile giocare con il
 libro senza necessariamente dover comprendere il codice ed eseguirlo: come
-mostrato nel Paragrafo @sec:esempio-interattivo, una parte dei contenuti è
+mostrato nel Paragrafo @sec:sguardo-di-insieme, una parte dei contenuti è
 interattiva, e la manipolazione di questi contenuti è pensata proprio per
 facilitare la comprensione dei concetti introdotti.
 ```{margin}

@@ -3,6 +3,8 @@ version: 1
 
 site:
   template: book-theme
+  title: Superhero data science
+
   options:
     logo: https://raw.githubusercontent.com/dariomalchiodi/sds-jb/main/sds/images/favicon.ico 
     favicon: https://raw.githubusercontent.com/dariomalchiodi/sds-jb/main/sds/images/favicon.ico 
@@ -11,8 +13,11 @@ site:
 project:
   id: e186f7f2-b994-480d-b277-1ae293e25829
   title: Superhero Data Science
+  github: https://github.com/dariomalchiodi/sds
+
+  subject: Superhero Data Science
   # keywords: []
-  # github: https://github.com/dariomalchiodi/sds
+  # github: 
   # To autogenerate a Tabella of Contents, run "myst init --write-toc"
   authors:
     - name: Dario Malchiodi
@@ -31,6 +36,9 @@ project:
     code: MIT
 
   numbering:
+    heading: true
+    heading_1: true
+    heading_2: true
     figure:
       start: 1
       template: Figura %s
@@ -44,3 +52,134 @@ project:
   jupyter:
     lite: true
 
+  toc:
+    - title: SDS
+    - file: content/landing.md
+    - title: 1. Introduzione
+      children:
+      - file: content/p0-introduzione/presentazione.md
+      - file: content/p0-introduzione/organizzazione.md
+      - file: content/p0-introduzione/uno-sguardo-di-insieme.md
+    - title: Programmazione per l'analisi dei dati
+      children:
+        - file: content/p1-PAD/c1-intro-python/introduzione-a-python.md
+          children:
+          - file: content/p1-PAD/c1-intro-python/dati-semplici-e-operatori.md
+          - file: content/p1-PAD/c1-intro-python/dati-strutturati.md
+          - file: content/p1-PAD/c1-intro-python/strutture-di-controllo.md
+          - file: content/p1-PAD/c1-intro-python/funzioni.md
+          - file: content/p1-PAD/c1-intro-python/importare-moduli.md
+          - file: content/p1-PAD/c1-intro-python/disegnare-grafici.md
+          - file: content/p1-PAD/c1-intro-python/leggere-file.md
+        - file: content/p1-PAD/c2-pandas/pandas.md
+          children:
+          - file: content/p1-PAD/c2-pandas/serie.md
+          - file: content/p1-PAD/c2-pandas/dataframe.md
+    - title: Statistica descrittiva
+      children:
+        - file: content/p2-SD/c1-dati-e-informazione/dati-e-informazione.md
+          children:
+          - file: content/p2-SD/c1-dati-e-informazione/dati-quantitativi-e-qualitativi.md
+          - file: content/p2-SD/c1-dati-e-informazione/frequenze-assolute-e-relative.md
+          - file: content/p2-SD/c1-dati-e-informazione/frequenze-cumulate.md
+          - file: content/p2-SD/c1-dati-e-informazione/frequenze-congiunte-e-marginali.md
+        - file: content/p2-SD/c2-utilizzare-informazione/utilizzare-informazione.md
+          children:
+          - file: content/p2-SD/c2-utilizzare-informazione/descrivere-popolazione.md
+          - file: content/p2-SD/c2-utilizzare-informazione/predire-informazione.md
+          - file: content/p2-SD/c2-utilizzare-informazione/classificazione.md
+          - file: content/p2-SD/c2-utilizzare-informazione/regressione.md
+        - file: content/p2-SD/c3-misurare-informazione/misurare-informazione.md
+          children:
+          - file: content/p2-SD/c3-misurare-informazione/indici-di-posizione.md
+          - file: content/p2-SD/c3-misurare-informazione/indici-di-dispersione.md
+          - file: content/p2-SD/c3-misurare-informazione/quantili-campionari.md
+          - file: content/p2-SD/c3-misurare-informazione/eterogeneita.md
+          - file: content/p2-SD/c3-misurare-informazione/concentrazione.md
+          - file: content/p2-SD/c3-misurare-informazione/trasformazioni-dei-dati.md
+          - file: content/p2-SD/c3-misurare-informazione/analisi-della-varianza.md
+          - file: content/p2-SD/c3-misurare-informazione/analisi-di-classificatori.md
+        - file: content/p2-SD/c4-visualizzare-informazione/visualizzare-informazione.md
+          children:
+          - file: content/p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-discreti.md
+          - file: content/p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-continui.md
+          - file: content/p2-SD/c4-visualizzare-informazione/diagrammi-per-dati-cumulati.md
+          - file: content/p2-SD/c4-visualizzare-informazione/simmetria-e-normalita.md
+        - file: content/p2-SD/c5-analizzare-relazioni/analizzare-relazioni.md
+          children:
+          - file: content/p2-SD/c5-analizzare-relazioni/diagrammi-per-dati-a-coppie.md
+          - file: content/p2-SD/c5-analizzare-relazioni/covarianza-e-correlazione.md
+    - title: Calcolo delle probabilità
+      children:
+      - file: content/p3-CP/c1-calcolo-combinatorio/calcolo-combinatorio.md
+        children:
+        - file: content/p3-CP/c1-calcolo-combinatorio/principio-fondamentale-calcolo-combinatorio.md
+        - file: content/p3-CP/c1-calcolo-combinatorio/permutazioni.md
+        - file: content/p3-CP/c1-calcolo-combinatorio/disposizioni.md
+        - file: content/p3-CP/c1-calcolo-combinatorio/combinazioni.md
+        - file: content/p3-CP/c1-calcolo-combinatorio/generazione.md
+        - file: content/p3-CP/c1-calcolo-combinatorio/esercizi.md
+      - file: content/p3-CP/c2-teoria-insiemi/teoria-insiemi.md
+        children:
+        - file: content/p3-CP/c2-teoria-insiemi/concetti-di-base.md
+        - file: content/p3-CP/c2-teoria-insiemi/insiemi-finiti-e-infiniti.md
+        - file: content/p3-CP/c2-teoria-insiemi/relazioni-tra-insiemi.md
+        - file: content/p3-CP/c2-teoria-insiemi/operazioni-tra-insiemi.md
+        - file: content/p3-CP/c2-teoria-insiemi/insiemi-in-python.md
+      - file: content/p3-CP/c3-probabilita/calcolo-probabilita.md
+        children:
+        - file: content/p3-CP/c3-probabilita/concetto-di-probabilita.md
+        - file: content/p3-CP/c3-probabilita/esperimenti-esiti-eventi.md
+        - file: content/p3-CP/c3-probabilita/assiomi-kolmogorov.md
+        - file: content/p3-CP/c3-probabilita/spazi-equiprobabili.md
+        - file: content/p3-CP/c3-probabilita/probabilita-condizionata.md
+        - file: content/p3-CP/c3-probabilita/prob-totali-e-naive-bayes.md
+        - file: content/p3-CP/c3-probabilita/classificatori-naive-bayes.md
+        - file: content/p3-CP/c3-probabilita/indipendenza.md
+      - file: content/p3-CP/c4-variabili-aleatorie/intro.md
+        children:
+        - file: content/p3-CP/c4-variabili-aleatorie/variabili-aleatorie.md
+        - file: content/p3-CP/c4-variabili-aleatorie/variabili-aleatorie-discrete.md
+        - file: content/p3-CP/c4-variabili-aleatorie/valore-atteso.md
+        - file: content/p3-CP/c4-variabili-aleatorie/varianza.md
+        - file: content/p3-CP/c4-variabili-aleatorie/momenti.md
+        - file: content/p3-CP/c4-variabili-aleatorie/variabili-multivariate.md
+        - file: content/p3-CP/c4-variabili-aleatorie/indipendenza.md
+        - file: content/p3-CP/c4-variabili-aleatorie/disuguaglianze-fondamentali.md
+        - file: content/p3-CP/c4-variabili-aleatorie/variabili-aleatorie-continue.md
+        - file: content/p3-CP/c4-variabili-aleatorie/famiglie-di-distribuzioni.md
+      - file: content/p3-CP/c5-modelli-discreti/modelli-discreti.md
+        children:
+        - file: content/p3-CP/c5-modelli-discreti/bernoulli.md
+        - file: content/p3-CP/c5-modelli-discreti/binomiale.md
+        - file: content/p3-CP/c5-modelli-discreti/uniforme.md
+        - file: content/p3-CP/c5-modelli-discreti/geometrico.md
+        - file: content/p3-CP/c5-modelli-discreti/poisson.md
+        - file: content/p3-CP/c5-modelli-discreti/ipergeometrico.md
+      - file: content/p3-CP/c6-modelli-continui/va-e-modelli-continui.md
+        children:
+        - file: content/p3-CP/c6-modelli-continui/dal-discreto-al-continuo.md
+        - file: content/p3-CP/c6-modelli-continui/va-continue.md
+        - file: content/p3-CP/c6-modelli-continui/uniforme.md
+        - file: content/p3-CP/c6-modelli-continui/gaussiano.md
+        - file: content/p3-CP/c6-modelli-continui/esponenziale.md
+        - file: content/p3-CP/c6-modelli-continui/altri-modelli.md
+    - title: Statistica inferenziale
+      children:
+      - file: content/p4-SI/c0-statistica-inferenziale/statistica-inferenziale.md
+      - file: content/p4-SI/c1-inferenza-puntuale/inferenza-puntuale.md
+        children:
+        - file: content/p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima.md
+        - file: content/p4-SI/c1-inferenza-puntuale/media-campionaria.md
+        - file: content/p4-SI/c1-inferenza-puntuale/varianza-campionaria.md
+        - file: content/p4-SI/c1-inferenza-puntuale/errore-di-una-stima.md
+        - file: content/p4-SI/c1-inferenza-puntuale/teorema-centrale-limite.md
+        - file: content/p4-SI/c1-inferenza-puntuale/leggi-grandi-numeri.md
+        - file: content/p4-SI/c1-inferenza-puntuale/distribuzioni-campionarie.md
+        - file: content/p4-SI/c1-inferenza-puntuale/calcolo-dimensione-campione.md
+        - file: content/p4-SI/c1-inferenza-puntuale/processo-poisson.md
+      - file: content/p4-SI/c2-stime-per-intervalli/stime-per-intervalli.md
+      - file: content/p4-SI/c3-statistica-non-parametrica/statistica-non-parametrica.md
+    - title: Appendici
+      children:
+      - file: content/p5-appendici/formule-notevoli.md

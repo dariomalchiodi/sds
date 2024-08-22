@@ -10,9 +10,15 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+
+numbering:
+  heading_1: true
+  heading_2: false
+  enumerator: 2.7.%s
+
+title: 2.7. Leggere dati da file
 ---
 
-# Leggere dati da file (e un po' di trucchi)
 Di solito la quantità di dati da analizzare è tale che non è pensabile di
 poterli immettere manualmente in una o più lista come abbiamo fatto noi.
 Normalmente i dati sono memorizzati su un file ed è necessario leggerli.

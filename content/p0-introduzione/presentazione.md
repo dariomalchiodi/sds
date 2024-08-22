@@ -1,6 +1,29 @@
-# Presentazione
+---
+jupytext:
+  formats: ipynb,md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
 
-> In questo mondo nulla si può dire certo,
+numbering:
+  heading: true
+  heading_1: true
+  heading_2: true
+
+  figure:
+    template: Figura 1.%s
+
+title: 1.1. Presentazione
+---
+
+(par:franklin-law)=
+> In questo mondo nulla si può dire certo,<br/>
 > tranne la morte e le tasse
 >
 > -- Benjamin Franklin
@@ -98,7 +121,6 @@ concetti e strumenti descritti nel libro.
 %TODO Aggiungere descrizione degli esercizi
 
 %TODO per ogni parte descrivere i singoli capitoli inserendo i relativi link
-
 
 
 [^citazione-franklin]: Nella fonte originale (una lettera di B. Franklin al

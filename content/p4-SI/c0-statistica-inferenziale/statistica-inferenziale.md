@@ -12,6 +12,7 @@ kernelspec:
   name: python3
 ---
 
+(cap:inferential_statistics)=
 # Statistica inferenziale
 
 Nella prima parte di questo libro abbiamo visto come alcuni aspetti di un

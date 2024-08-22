@@ -10,10 +10,15 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+numbering:
+  heading_1: true
+  heading_2: true
+  enumerator: 2.%s
+
+title: 2. Elaborare i dati con python
 ---
 
 (chap-python)=
-# Elaborare i dati con python
 
 > The Zen of Python, by Tim Peters<br/>
 > 

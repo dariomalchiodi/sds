@@ -1,6 +1,25 @@
+---
+jupytext:
+  formats: ipynb,md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+
+numbering:
+  heading_1: true
+  heading_2: false
+  enumerator: 2.4.%s
+
+title: 2.4. Funzioni
+---
 
 (cap:funzioni)=
-## Funzioni
 
 Il calcolo delle frequenze è un'operazione che viene fatta molto spesso, quindi
 conviene scrivere una funzione che ci eviti di dover ricopiare ogni volta la

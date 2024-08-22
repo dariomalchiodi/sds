@@ -1,6 +1,24 @@
+---
+jupytext:
+  formats: ipynb,md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+numbering:
+  heading_1: true
+  heading_2: false
+  enumerator: 2.2.%s
+
+title: 2.2. Dati strutturati
+---
 
 (cap:dati-strutturati)=
-## Tipi di dati strutturati
 
 I tipi di dati strutturati, o più brevemente _strutture dati,_ permettono di
 aggregare più valori. Python supporta nativamente i seguenti tipi strutturati:

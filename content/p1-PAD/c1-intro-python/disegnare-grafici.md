@@ -1,6 +1,26 @@
+---
+jupytext:
+  formats: ipynb,md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+
+numbering:
+  heading_1: true
+  heading_2: false
+  enumerator: 2.6.%s
+
+title: 2.6. Disegnare grafici
+---
 
 (disegnare-grafici)=
-# Disegnare grafici
+
 Il modulo `plt` può essere usato per produrre vari tipi di grafici. In generale
 le funzioni di questo modulo che generano un grafico basato su una serie di
 punti accettano come argomenti due liste contenenti rispettivamente le ascisse

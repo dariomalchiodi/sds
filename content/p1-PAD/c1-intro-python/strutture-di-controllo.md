@@ -10,9 +10,15 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+
+numbering:
+  heading_1: true
+  heading_2: false
+  enumerator: 2.3.%s
+
+title: 2.3. Strutture di controllo
 ---
 
-# Strutture di controllo
 Python gestisce il flusso di esecuzione tramite le tipiche strutture di
 controllo di sequenza, selezione e iterazione. La sequenza viene implementata
 semplicemente indicando le istruzioni, una per riga, in ordine di esecuzione:

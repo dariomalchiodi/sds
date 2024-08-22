@@ -1,6 +1,25 @@
+---
+jupytext:
+  formats: ipynb,md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+numbering:
+  heading_1: true
+  heading_2: false
+  enumerator: 2.1.%s
+
+title: 2.1. Dati semplici e operatori
+---
 
 (dati-semplici)=
-# Tipi di dati semplici
+## Tipi di dati semplici
 
 Nell'ambito della programmazione dei calcolatori, si utilizza normalmente
 il termine _tipo_ per identificare a quale categoria appartiene un particolare
@@ -174,6 +193,8 @@ questo aspetto già quando si imparano le basi del linguaggio.
 Ci sono due importanti eccezioni a questa regola che verranno introdotte più
 avanti.
 ```
+
+## Operatori
 
 A partire da valori booleani, interi o a virgola mobile è possibile costruire
 espressioni arbitrariamente complesse utilizzando degli _operatori_. La maggior

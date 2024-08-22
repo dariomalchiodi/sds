@@ -10,9 +10,15 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+
+numbering:
+  heading_1: true
+  heading_2: false
+  enumerator: 3.2.%s
+
+title: 3.2. Dataframe
 ---
 
-# Dataframe
 Un _dataframe_ è una collezione di serie che hanno lo stesso indice, ed è
 quindi un insieme di osservazioni di vari _caratteri_ per una popolazione di
 individui. Tra i vari modi che sono disponibili in pandas per creare un

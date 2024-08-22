@@ -1,6 +1,25 @@
+---
+jupytext:
+  formats: ipynb,md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.10.3
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+numbering:
+  heading_1: true
+  heading_2: true
+  enumerator: 3.%s
+
+title: 3. Pandas
+---
 
 (cap:pandas)=
-## Pandas
+
 Vedremo come la libreria pandas faciliti le operazioni viste finora per
 caricare dati, organizzarli in opportune strutture e analizzarli. Per poter
 procedere dobbiamo ricaricare le librerie usate finora, nonché il file

@@ -10,10 +10,17 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+
+numbering:
+  heading_1: true
+  heading_2: false
+  enumerator: 2.5.%s
+
+title: 2.5. Importare moduli
 ---
 
 (importare-moduli)=
-# Importare moduli
+
 Il meccanismo con cui in python si organizzano progetti software complessi e si
 riutilizza il codice è basato sul concetto di _modulo_. In pratica un modulo è
 un file che contiene la definizione di una o più funzioni o classi.
