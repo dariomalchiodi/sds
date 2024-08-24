@@ -6,8 +6,8 @@ site:
   title: Superhero data science
 
   options:
-    logo: https://raw.githubusercontent.com/dariomalchiodi/sds-jb/main/sds/images/favicon.ico 
-    favicon: https://raw.githubusercontent.com/dariomalchiodi/sds-jb/main/sds/images/favicon.ico 
+    logo: content/images/logoface.png
+    favicon: content/images/sds.ico 
     hide_outline: true
 
 project:
