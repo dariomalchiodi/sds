@@ -19,6 +19,7 @@ title: 3. Pandas
 ---
 
 (cap:pandas)=
+# 3. Pandas
 
 Vedremo come la libreria pandas faciliti le operazioni viste finora per
 caricare dati, organizzarli in opportune strutture e analizzarli. Per poter

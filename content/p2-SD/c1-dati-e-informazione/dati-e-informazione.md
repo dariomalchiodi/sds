@@ -1,5 +1,5 @@
 (cap:dati-e-informazione)=
-## Dati e informazione
+# Dati e informazione
 
 Vedremo come esistano tipi differenti di dati, e come in funzione del loro tipo
 esistano diversi strumenti grafici che li descrivono. Studieremo inoltre in

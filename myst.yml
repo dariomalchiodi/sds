@@ -58,7 +58,7 @@ project:
     - title: 1. Introduzione
       children:
       - file: content/p0-introduzione/presentazione.md
-      - file: content/p0-introduzione/organizzazione.md
+      - file: content/p0-introduzione/approccio.md
       - file: content/p0-introduzione/uno-sguardo-di-insieme.md
     - title: Programmazione per l'analisi dei dati
       children:

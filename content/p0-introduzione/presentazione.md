@@ -118,10 +118,6 @@ Nonostante ciò, ove possibile vengono brevemente descritti alcuni strumenti
 avanzati, tipici del _machine learning_, che si basano sull'applicazione di
 concetti e strumenti descritti nel libro.
 
-%TODO Aggiungere descrizione degli esercizi
-
-%TODO per ogni parte descrivere i singoli capitoli inserendo i relativi link
-
 
 [^citazione-franklin]: Nella fonte originale (una lettera di B. Franklin al
 fisico francese Jean-Baptiste Le Roy) questa affermazione compare in realtà

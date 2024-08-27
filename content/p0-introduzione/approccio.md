@@ -24,8 +24,6 @@ title: 1.2. Approccio
 ---
 
 (sec:approccio)=
-
-
 Mi è sempre risultato facile apprendere nuovi concetti mettendoli in pratica
 in un contesto che potesse essere facilmente esplorato e controllato. Quando,
 anni fa, ho iniziato a insegnare, mi è sembrato naturale usare lo stesso
@@ -38,7 +36,8 @@ all'interno di un contesto applicativo.
 ```{margin}
 L'uso della fantascienza per introdurre concetti scientifici non è
 particolarmente insolito: due esempi abbastanza noti sono «La Fisica
-di Star Trek» {cite:p}`krauss` e «La Fisica dei Supereroi» {cite:p}`kakalios`.
+di Star Trek» {cite:p}`krauss` e «La Fisica dei Supereroi»
+{cite:p}`kakalios`[^note].
 ```
 Per dare coerenza alla trattazione, ho deciso di contestualizzare in uno stesso
 dominio gli esempi da affiancare alle parti più teoriche.
@@ -48,14 +47,14 @@ i supereroi sono personaggi di un ambito narrativo non reale&mdash;parecchio
 _fiction_, peraltro. Poter applicare un concetto a un contesto, però, prescinde
 dall'effettiva realizzabilità fisica di quest'ultimo: serve solo specificare in
 modo chiaro, coerente e preciso le ipotesi che descrivono una data situazione.
-Questo permette di calarsi metaforicamente in questa stessa situazione, di
-modellarla tramite il  linguaggio della matematica, di esplorarla utilizzando
-il metodo scientifico e, sperabilmente, di ricavare delle informazioni, di
-prendere delle decisioni e così via. Oltre a essere molto divertente, riferirsi
-a un mondo inesistente ha anche un altro vantaggio: permette a chi impara di
-non stabilire un collegamento diretto tra l'istanza di un problema e i metodi
-risolutivi da utilizzare, favorendo un apprendimento incentrato sull'uso
-_critico_ di metodi e strumenti.
+Ciò permette di calarsi metaforicamente in questa stessa situazione, di usare
+la matematica per modellarla e l'informatica per simularla, così da poterla
+esplorare utilizzando il metodo scientifico e, sperabilmente, ricavare
+informazioni, prendere decisioni e così via. Oltre a essere molto divertente,
+riferirsi a un mondo inesistente ha anche un altro vantaggio: permette a chi
+impara di non stabilire un collegamento diretto tra l'istanza di un problema e
+i metodi risolutivi da utilizzare, favorendo un apprendimento incentrato
+sull'uso _critico_ di metodi e strumenti.
 
 
 Nonostante mi sia imbarcato in questa impresa, non sono un
@@ -67,15 +66,6 @@ di calcolo delle probabilità e di statistica, non posso escludere di
 avere fatto errori in generale, anche se in questo caso sono confidente di non
 averne fatti troppi.
 
-```{margin}
-Il modo più pratico per inviarmi queste segnalazioni è quello
-di sottoporre delle _issue_ (per segnalare errori o suggerire miglioramenti)
-e delle _pull request_ (per proporre un miglioramento dei contenuti) al
-[repository](https://github.com/dariomalchiodi/sds) nel quale risultano
-organizzati i contenuti di questo libro. Ciò richiede
-familiarità con [git](https://www.git-scm.org), lo strumento di _source
-control management_ che utilizzo per organizzare i miei progetti _software_.
-```
 Il lavoro di scrittura è comunuque _in progress_, e
 verosimilmente lo sarà ancora per parecchio tempo: segnalatemi refusi ed
 errori, e più in generale esempi e materiale che pensate possano arricchire
@@ -84,6 +74,15 @@ essere pubblicati solo se sono coerenti con la licenza _Creative Commons
 Attribution-NonCommercial-ShareAlike 4.0 International_
 ([CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en))
 con la quale è distribuito questo libro.
+```{margin}
+Il modo più pratico per inviarmi queste segnalazioni è quello
+di sottoporre _issue_ (per segnalare errori o suggerire miglioramenti)
+o _pull request_ (per proporre modifiche ai contenuti) al
+[repository](https://github.com/dariomalchiodi/sds) nel quale ho
+organizzato i contenuti di questo libro. Ciò richiede
+familiarità con [git](https://www.git-scm.org), lo strumento di _source
+control management_ che utilizzo per i miei progetti _software_.
+```
 
 
 ### Ringraziamenti
@@ -99,36 +98,36 @@ puntualizzando che che errori e imprecisioni che dovessero essere rimasti sono
 da attirbuirsi interamente a me.
 
 È poi doveroso ringraziare Laura Ripamonti, che tanti anni fa ha instillato in
-me l'idea di usare i supereroi come esempio, Serena Paolo e Paolo Boldi, che
-per primi e per motivi diversissimi (ma non così diversi) sono venuti a
-conoscenza della mia idea di scrivere un libro, e per motivi uguali (ma non
-così uguali) mi hanno spronato a farlo. A tutte queste persone, e a chi
+me l'idea di usare i supereroi come esempio didattico, Serena Paolo e Paolo
+Boldi, che per primi e per motivi diversissimi (ma non così diversi) sono
+venuti a conoscenza della mia idea di scrivere un libro, e per motivi uguali
+(ma non così uguali) mi hanno spronato a farlo. A tutte queste persone, e a chi
 inevitabilmente sto dimenticando, voglio esprimere la mia riconoscenza per il
 supporto che hanno saputo darmi.
 
 ## Imparare \*e\* programmare
 
-Come descritto nel paragrafo precedente, i concetti vengono introdotti
-affiancandoli (o facendoli precedere) da esempi. Quando è possibile, vengono
-anche mostrate delle _implementazioni_ utilizzando un linguaggio di
-programmazione. È quindi altamente consigliata una competenza di base sulla
-scrittura di _software_, utilizzando un linguaggio relativamente moderno: in
+Come descritto nel paragrafo precedente, introdurrò i concetti affiancandoli
+(o facendoli precedere) da esempi. Dove possibile, mostrerò anche delle
+_implementazioni_ utilizzando un linguaggio relativamente moderno: in
 particolare, farò riferimento a [Python](https://www.python.org) e al
-cosiddetto _data science stack_, costituito dai package che sono ampiamente
+relativo _data science stack_, costituito dai package che sono ampiamente
 utilizzati, al tempo in cui scrivo, dalla comunità open source che fa
-riferimento all'analisi dei dati[^librerie].
+riferimento all'analisi dei dati[^librerie]. È quindi altamente consigliata una
+competenza di base nella programmazione degli elaboratori.
 ```{margin}
-Questo libro è pensato per studenti del secondo anno delle lauree triennali
-di area informatica, dunque è opportuna una conoscenza relativa alla
-programmazione degli elaboratori al livello insegnato al primo anno nelle
-stesse lauree, o in lauree di aree affini.
+Questo libro rappresenta l'evoluzione di una serie di dispense pensate per
+studenti del secondo anno delle lauree triennali di area informatica, dunque
+farò riferimento al livello di conoscenza di programmazione che si apprende al
+primo anno nelle stesse lauree, o in lauree di aree affini.
 ```
 
-Il Capitolo @chap-python contiene una descrizione a livello
-medio-alto delle funzionalità di Python che sono utilizzate, e può essere
-utilizzato da chi non conosce questo linguaggio per mettersi in pari. Una
-lettura di questo capitolo è comunque consigliata, al fine di familiarizzare
-con le convenzioni che utilizzo per scrivere codice.
+Il Capitolo [Elaborare i dati con Python](#cap:python) contiene una
+descrizione a livello medio-alto delle funzionalità di Python che sono
+utilizzate, e può essere utilizzato per mettersi in pari da chi sa già
+programmare, ma non conosce questo linguaggio. Una lettura di questo capitolo è
+comunque consigliata a tutti, al fine di familiarizzare con le convenzioni che
+utilizzo per scrivere codice.
 
 Questo libro è scritto utilizzando una tecnologia che permette di inserire
 dei contenuti generati tramite l'esecuzione di codice python. Questo codice
@@ -143,13 +142,13 @@ alternano il codice Markdown che specifica i contenuti testuali con il codice
 python, ed è quindi necessario separare quest'ultimo per poterlo eseguire.
 Nonostante questo modo di procedere sia un po' macchinoso, incoraggio tutti a
 usufruire di questa opportunità, non limitandosi a leggere passivamente il
-testo, ma nemmeno a eseguire il codice in modo pedissequo, ma ad analizzarlo,
+testo, e nemmeno a eseguire il codice in modo pedissequo, ma ad analizzarlo,
 comprenderlo, modificarlo (valgono anche le modifiche che permettono di capire
-meglio il codice!), insomma _giocarci_ in un'ottica _hacker_ (nel senso
-originale del termine [^hacker]). In realtà è anche possibile giocare con il
+meglio il codice!)&mdash;insomma, _giocarci_ in un'ottica _hacker_, nel senso
+originale del termine [^hacker]. In realtà è anche possibile giocare con il
 libro senza necessariamente dover comprendere il codice ed eseguirlo: come
-mostrato nel Paragrafo @sec:sguardo-di-insieme, una parte dei contenuti è
-interattiva, e la manipolazione di questi contenuti è pensata proprio per
+mostrato nel Paragrafo [Uno sguardo d'insieme](uno-sguardo-di-insieme), una
+parte dei contenuti è interattiva, e la sua manipolazione è pensata proprio per
 facilitare la comprensione dei concetti introdotti.
 ```{margin}
 Il libro è stato generato utilizzando [MyST](https://mystmd.org/), che
@@ -159,25 +158,26 @@ state leggendo.
 
 L'utilizzo delle componenti interattive è basato su alcune tecnologie (in
 particolare, [JupyterLite](https://github.com/jupyterlite/jupyterlite))
-che sono al momento ancora in una fase preliminare di sviluppo. In particolare,
-è spesso necessario armarsi di pazienza e assicurarsi di utilizzare uno
+che sono al momento ancora in una fase preliminare di sviluppo, ma che hanno
+il grande vantaggio di non richiedere alcuna installazione manuale. D'altro
+canto, è spesso necessario armarsi di pazienza e assicurarsi di utilizzare uno
 dei browser web supportati.
 ```
 
 
 Molto spesso cerco di guidare il lettore in una vera e propria implementazione
-degli strumenti fondamentali, soprattutto nella prima parte relativa alla
-statistica descrittiva. Il risultato non scende al livello delle librerie
-professionali: da una parte, lo scopo è quello di concentrarsi sugli aspetti
-fondamentali per facilitare l'apprendimento di uno o più concetti.
-Dall'altro, non ci si aspetta che ciò che viene realizzato sia poi utilizzato
-in ambito lavorativo: esattamente come è ragionevole che uno sviluppatore abbia
-imparato a scrivere da zero i principali algoritmi di ordinamento (e, se
-dovesse servire, sia in grado di farlo), ma che faccia in seguito riferimento
-alle loro implementazioni in una libreria, ottimizzate e validate sicuramente
-meglio di quanto un singolo possa ragionevolmente fare da solo. In quest'ottica,
-subito dopo le implementazioni  «fai da te» i lettori sono indirizzati all'uso
-di librerie allo stato dell'arte.
+degli strumenti fondamentali, soprattutto nella prima parte, relativa alla
+statistica descrittiva. Il risultato al quale arrivo non è da considerarsi al
+livello delle librerie professionali: da una parte, lo scopo è quello di
+concentrarsi sugli aspetti fondamentali per facilitare l'apprendimento di uno o
+più concetti. Dall'altro, queste implementazioni non sono pensate per essere
+utilizzate in ambito lavorativo: esattamente come è ragionevole che uno
+sviluppatore abbia imparato a scrivere da zero i principali algoritmi di
+ordinamento (e, se dovesse servire, sia in grado di farlo), ma che faccia in
+seguito riferimento alle loro implementazioni in una libreria, ottimizzate e
+validate sicuramente meglio di quanto un singolo possa ragionevolmente fare in
+autonomia. In quest'ottica, subito dopo le implementazioni  «fai da te», i
+lettori sono indirizzati all'uso di librerie allo stato dell'arte.
 
 In linea di principio, anche chi non sa programmare gli elaboratori può
 leggere questo libro, saltando semplicemente le parti che contengono,
@@ -223,31 +223,28 @@ concepita per studenti di madre lingua non inglese.
 
 ## Convenzioni
 
-Per quanto detto nel paragrafo precedente, spesso risulterà
-necessario inframmezzare il testo principale con del codice,
-non al fine di eseguirlo ma per scopo illustrativo (per esempio per indicare
-i letterali `true` e `false` per il tipo di dati `bool`). In questo caso il
-codice viene indicato utilizzando un carattere tipografico non proporzionale
-(Fira Code) che sfrutta le cosiddette _legature_ per abbellire il modo in cui
-vengono visualizzati alcuni elementi del linguaggio di programmazione.
-
+Per quanto detto nel paragrafo precedente, spesso inframmezzerò il testo con
+del codice, non tanto al fine di eseguirlo, ma più per uno scopo illustrativo
+(per esempio, per indicare i letterali `true` e `false` come unici valori
+possibili per il tipo di dati `bool`). In questo caso, utilizzerò un carattere
+tipografico non proporzionale con un colore diverso da quello del
+testo principale. Quando invece sarà necessario mostrare una o più righe di
+codice pensate per essere eseguite da chi legge, mostrerò queste righe 
+all'interno di un riquadro che ricorda la tipica _cella di codice_ in un
+_notebook_. Anche in questo caso utilizzerò un carattere tipografico non
+proporzionale, ma la colorazione del testo sarà fatta in modo da evidenziare
+dei particolari elementi nel codice (come variabili, letterali, parole chiave
+e così via, analogamente a quanto normalmente fatto dai moderni IDE). Inoltre,
+il codice risulterà staccato rispetto al testo principale, come nell'esempio
+che segue.
 ```{margin}
-Il _software_ normalmente impiegato per scrivere codice (editor, IDE, e così
-via) utilizza normalmente un tipo di carattere predefinito che non è in grado
-di gestire le legature, dunque le sequenze di questo tipo rimarranno invariate
-quando vengono inserite. È però abbastanza facile agire sulle impostazioni
-in modo da cambiare la famiglia di caratteri utilizzata.
+È pratica comune utilizzare un carattere tipografico non proporzionale (nel
+quale cioè tutti i glifi utilizzati per rappresentare una lettera hanno la
+stessa larghezza) per visualizzare codice, input e output, per una serie di
+motivi che ottimizzano la leggibilità del codice stesso, come la maggiore
+facilità di indentare le istruzioni, il minor rischio di non distinguere tra
+caratteri simili come 1 e l.
 ```
-Per esempio, l'operatore logico di «maggiore o uguale» è descritto dalla
-sequenza dei due simboli
-<code style="font-family: monospace !important;">>=</code>,
-che una volta digitata viene automaticamente convertita nel simbolo `>=`, più
-simile a quello utilizzato in ambito matematico.
-
-
-Quando invece è necessario mostrare una o più righe di codice intese per
-essere eseguite, queste verranno organizzate in una _cella di codice_
-all'interno di un _notebook_, visualizzata nel modo che segue.
 
 ```{code-cell} ipython3
 :tags: [remove-input]
@@ -259,20 +256,16 @@ age = 24
 print(age <= 42)
 ```
 
-Di norma, l'esito dell'esecuzione di codice sarà visualizzato all'interno di
+Di norma, visualizzerò l'eventuale output dell'esecuzione all'interno di
 un'apposita _cella di output_, accodata a quella di codice e mostrata come
 di seguito.
 
 ```{code-cell} ipython3
-:tags: [remove-input]
 print(age <= 42)
 ```
 
-Va notato come le celle di _output_ siano leggermente diverse da quelle di
-codice, in quanto queste ultime hanno il bordo sinistro evidenziato con un
-colore diverso. Questa convenzione è leggermente diversa da quella utilizzata
-normalmente nei _notebook_, in cui il colore delle celle di codice cambia
-quando queste vengono selezionate per eseguirle o per modificarne i contenuti.
+Infine, utilizzerò uno stile specifico per evidenziare nel testo alcune
+componenti particolari, come esemplificato qui sotto.
 
 ```{admonition} Nomenclatura
 :class: naming
@@ -281,45 +274,69 @@ in un particolare ambito, o alla descrizione di diciture alternative rispetto
 a quelle introdotte.
 ```
 
-```{prf:definition} Definizione
+```{prf:definition}
 :label: segnaposto-definizione
+:nonumber: true
 In questa area vengono definiti in modo formale uno o più concetti.
 ```
+```{margin}
+Definizioni, esempi e così via saranno normalmente numerati, e spesso
+accompagnati da un nome specifico racchiuso tra parentesi.
+```
 
-```{prf:example} Esempio
+```{prf:example}
 :label: segnaposto-esempio
+:nonumber: true
 Questa area racchiude un esempio.
 ```
+```{margin}
+Le diciture «Definizione», «Esempio», «Teorema» e così via non sono al momento
+localizzate dal _software_ che uso per generare le pagine HTML. Portate
+pazienza.
+```
 
-```{prf:theorem}
+````{prf:theorem}
 :label: segnaposto-teorema
+:nonumber: true
 Questa area contiene la tesi di un teorema.
-```
-
-```{prf:proof}
-In questa area viene inserita la dimostrazione di un teorema.
-```
+````
 
 ```{prf:corollary}
 :label: segnaposto-corollario
-Questa area contiene la definizione di un corollario e la sua dimostrazione.
+:nonumber: true
+Questa area contiene la definizione di un corollario.
 ```
 
 ```{prf:lemma}
 :label: segnaposto-lemma
-Questa area contiene la definizione di un lemma e la sua dimostrazione.
+:nonumber: true
+Questa area contiene la definizione di un lemma.
 ```
+
+````{prf:proof}
+:nonumber: true
+In questa area viene inserita la dimostrazione di un teorema, di un corollario
+o di un lemma.
+````
+```{margin}
+Per alcuni dei teoremi ometterò la relativa dimostrazione. Ciò capiterà quando
+sarà importante introdurre un risultato teorico rilevante, sebbene la sua
+dimostrazione richieda conoscenze matematiche avanzate.
+```
+
 
 ## Notazione
 
-La {numref}`tab-notazione` elenca le principali notazioni utilizzate nel
-testo.
+La {numref}`tab-notazione` elenca le principali notazioni che utilizzerò nelle
+formule matematiche.
 
-```{table} Notazione utilizzata nel testo
+```{table} Notazione utilizzata nel testo per le formule matematiche.
 :name: tab-notazione
 :align: center
+:tags: [full-width]
+
 |  Simbolo                      | Significato |
-|:-----------------------------:|:-----------:|
+|:------------------------------|:------------|
 | $\mathbb N$                   | insieme dei numeri naturali                                        |
 | $\mathbb Z$                   | insieme dei numeri interi                                        |
 | $[a..b]$                      | intervallo discreto dei numeri interi compresi tra $a$ e $b$ (estremi inclusi) |
@@ -376,8 +393,8 @@ testo che avevo adottato.
 
 Nei corsi di Laurea in area informatica, l'insegnamento delle tematiche alla
 base dell'analisi dei dati è tipicamente affidato a un unico insegnamento
-fondamentale del secondo anno, nel quale si abbracciano sia gli aspetti teorici del
-calcolo della probabilità e della statistica matematica, sia quelli più
+fondamentale del secondo anno, nel quale si abbracciano sia gli aspetti teorici
+del calcolo della probabilità e della statistica matematica, sia quelli più
 pratici legati alla statistica descrittiva. Risulta quindi difficile reperire
 materiale bibliografico, perché queste discipline sono spesso oggetto di
 insegnamenti differenti nell'ambito, per esempio, dei corsi in area matematica.
@@ -386,7 +403,6 @@ dedicati a una sola di queste discipline, o opere che focalizzano l'interesse
 su una di esse, sacrificando la trattazione delle altre. Non sono invece
 ancora riuscito a trovare un libro di testo che desse a queste tre aree
 il peso relativo che io assegno loro nelle mie lezioni.
-
 È per questo motivo che ho deciso, via via che la «massa critica» delle
 dispense cresceva, di scrivere un libro che evitasse l'adozione di due o più
 testi differenti, da affiancare in ogni caso a dispense che colmassero le lacune
@@ -400,16 +416,16 @@ introduco i principali argomenti della statistica descrittiva e i relativi
 strumenti nell'ottica di un loro utilizzo diretto, scrivendo codice Python e
 analizzando un _dataset_ di riferimento. Segue una parte sul calcolo delle
 probabilità, dedicata a esporre i principali concetti legati alla modellazione
-dell'incertezza in senso probabilistico. L'ultima parte è infine concentrata ad
-accennare alle basi della statistica inferenziale, focalizzandosi
-sull'inferenza parametrica. Nella trattazione ho cercato di limitare l'uso del
-formalismo matematico allo stretto necessario per introdurre gli argomenti in
-modo rigoroso. I paragrafi il cui titolo è contrassegnato da un asterisco
-includono approfondimenti e materiale addizionale che possono essere
-trascurati&mdash;fondamentalmente, tutti gli argomenti che per limiti di tempo
-non riesco a spiegare in aula ma che consiglio vivamente agli studenti che
-volessero approfondire la conoscenza della disciplina, soprattutto nell'ottica
-di un proseguimento degli studi a livello magistrale.
+dell'incertezza in senso probabilistico. L'ultima parte espone infine le basi
+della statistica inferenziale, focalizzandosi sull'inferenza parametrica. Nella
+trattazione ho cercato di limitare l'uso del formalismo matematico allo stretto
+necessario per introdurre gli argomenti in modo rigoroso. I paragrafi il cui
+titolo è contrassegnato da un asterisco includono approfondimenti e materiale
+addizionale che possono essere trascurati&mdash;fondamentalmente, tutti gli
+argomenti che per limiti di tempo non riesco a spiegare in aula ma che
+consiglio vivamente agli studenti che volessero approfondire la conoscenza
+della disciplina, soprattutto nell'ottica di un proseguimento degli studi a
+livello magistrale.
 
 
 ````{aside}
@@ -423,31 +439,36 @@ MuseumsForum, distribuita sotto licenza
 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/))
 ```
 ````
+[^note]: Userò le note a margine per dei commenti che ritengo importanti
+ma che non devono appesantire la lettura dei paragrafi corrispondenti.
+Relegherò invece nelle note a fine testo tutti gli approfondimenti che
+possono essere tralasciati a una prima lettura.
 [^librerie]: Il repository associato a questo libro contiene un
 [file](https://github.com/dariomalchiodi/sds/blob/main/requirements.in)
 che elenca tutte le librerie utilizzate per generare i contenuti, incluse
 quelle necessarie per eseguire il codice.
 
 [^hacker]: Il termine _hacker_ viene oggigiorno utilizzato nel linguaggio
-comune dandogli un'accezione negativa che essenzialmente lo accomuna a chi
+comune dandogli un'accezione negativa, che essenzialmente lo accomuna a chi
 persegue intenti dolosi scrivendo o modifcando _software_, o in generale
 sfruttando delle falle di sicurezza al fine di utilizzare in modo improprio
-delle tecnologie esistenti. In realtà, l'uso di questo termine
+delle tecnologie informatiche esistenti. In realtà, l'uso di questo termine
 nell'inglese moderno viene fatto risalire intorno al 1960, conferendogli
-però una connotazione più neutra: quella di indicare una persona con il talento
-di comprendere in profondità il funzionamento di un sistema, e quindi di essere
-in grado di controllarlo al punto di utilizzarlo in modo diverso rispetto
-a quello per cui era stato progettato. Giusto per citare un esempio, uno dei
-primi _hack_ famosi&mdash;peraltro illegale&mdash;riguardava l'uso del Cap’n
-Crunch Bo’sun Whistle (un fischietto che si trovava in regalo nelle scatole di
-una famosa marca di cereali, mostrato in @fig-whistle) per fare telefonate
-interurbane o internazionali gratuite con alcuni telefoni pubblici. Uno degli
-ambienti nei quali la controcultura hacker ha iniziato a svilupparsi è quello
-del Massachusetts Institute of Technology (MIT): la prima traccia scritta del
-termine «hacking» fa riferimento al verbale di una riunione del 1955 del _Tech
-Model Railroad Club_, che riuniva studenti del MIT appassionati di modellismo
-ferroviario. Solo in un secondo momento è avvenuta un'identificazione rispetto
-al mondo informatico.
+però una connotazione più neutra, e non direttamente collegata all'informatica:
+quella di indicare una persona con il talento di comprendere in profondità il
+funzionamento di un sistema, e dunque di essere in grado di controllarlo al
+punto di poterlo utilizzare in modo diverso rispetto agli scopi per cui il
+sistema era stato progettato. Giusto per citare un esempio, uno dei primi
+_hack_ famosi&mdash;peraltro illegale&mdash;riguardava l'uso del
+«Cap’n Crunch Bo’sun Whistle» (un fischietto che si trovava in regalo nelle
+scatole di una famosa marca di cereali, mostrato in @fig-whistle) per fare
+telefonate interurbane o internazionali gratuite con alcuni telefoni pubblici
+negli Stati Uniti. Uno degli ambienti nei quali la controcultura hacker ha
+iniziato a svilupparsi è quello del Massachusetts Institute of Technology
+(MIT): la prima traccia scritta del termine «hacking» fa riferimento al verbale
+di una riunione del 1955 del [Tech Model Railroad Club](http://tmrc.mit.edu/),
+che riuniva studenti appassionati di modellismo ferroviario. Solo più
+recentemente è avvenuta un'identificazione rispetto al mondo informatico.
 
 [^cite-granny]: Risulta complicato risalire all'autore di questa massima:
 c'è chi la attribuisce ad Einstein, chi a Feynmann e chi a Rutherford (pare

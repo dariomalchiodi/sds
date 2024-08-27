@@ -18,7 +18,9 @@ numbering:
 title: 2. Elaborare i dati con python
 ---
 
-(chap-python)=
+(cap:python)=
+
+# 2. Elaborare i dati con python
 
 > The Zen of Python, by Tim Peters<br/>
 > 

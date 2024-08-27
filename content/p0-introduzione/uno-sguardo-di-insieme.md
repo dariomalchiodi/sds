@@ -20,42 +20,41 @@ numbering:
   table:
     template: Tabella 1.%s
 
-title: 1.3. Uno sguardo di insieme
+title: 1.3. Uno sguardo d'insieme
 ---
 
-(sec:sguardo-di-insieme)=
-
-
-SPIEGARE LO SCOPO DI QUESTA PARTE
-
-Come indicato nel Paragrafo @sec:approccio, nel testo farò riferimento a un
+Lo scopo di questo paragrafo è duplice: da una parte, serve a descrivere per
+sommi capi il filo logico che è dietro all'organizzazione dei contenuti e
+a introdurre, in modo relativamente informale, i concetti cardine; dall'altra,
+spiega come utilizzare le componenti interattive del libro.
+Come indicato nel Paragrafo [Approccio](approccio), nel testo farò riferimento a un
 _dataset_ ottenuto modificando un opportuno sottoinsieme del
 [Superhero database](http://www.superherodb.com). Gli esempi faranno quindi
 riferimento al mondo dei supereroi, ognuno dei quali sarà descritto tramite
-i dati indicati nella {numref}`tab:dataset`.
+gli _attributi_ indicati nella {numref}`tab:dataset`.
 
 ```{table} Descrizione del _dataset_ utilizzato negli esempi
 :name: tab:dataset
 :align: center
 | Attributo          | Significato               | Contenuto                                                |
 |--------------------|---------------------------|----------------------------------------------------------|
-| `name`             | Nome (univoco)            | stringa                                                  |
+| `name`             | Identificativo univoco    | stringa                                                  |
 | `full_name`        | Nome completo             | stringa                                                  |
 | `identity`         | Identità segreta          | stringa                                                  |
 | `alignment`        | Inclinazione morale       | `'Good'`, `'Neutral'` o `'Bad'`                          |
 | `place_of_birth`   | Luogo di nascita          | stringa                                                  |
 | `creator`          | Editore/creatore          | stringa                                                  |
 | `universe`         | Universo                  | stringa                                                  |
-| `first_appearance` | Anno di prima apparizione | stringa                                                  |
+| `first_appearance` | Anno di prima apparizione | numero intero                                            |
 | `eye_color`        | Colore degli occhi        | stringa                                                  |
 | `hair_color`       | Colore dei capelli        | stringa                                                  |
-| `height`           | Altezza in cm.            | intero                                                   |
-| `weight`           | Peso  in kg.              | intero                                                   |
-| `strength`         | Forza                     | intero, da `0` a `100`                                   |
+| `height`           | Altezza in cm.            | numero in virgola mobile                                 |
+| `weight`           | Peso  in kg.              | numero in virgola mobile                                 |
+| `strength`         | Forza                     | numero intero (da `0` a `100`)                           |
 | `intelligence`     | Intelligenza              | `'Low'`, `'Moderate'`, `'Average'`, `'Good'`, o `'High'` |
-| `speed`            | Velocità                  | intero                                                   |
-| `durability`       | Resistenza                | intero                                                   |
-| `combat`           | Abilità nel combattimento | intero                                                   |
+| `speed`            | Velocità                  | numero intero (da `0` a `100`)                           |
+| `durability`       | Resistenza                | numero intero (da `0` a `100`)                           |
+| `combat`           | Abilità nel combattimento | numero intero (da `0` a `100`)                           |
 | `powers`           | Elenco dei superpoteri    | stringa                                                  |
 ```
 ```{margin}
@@ -66,27 +65,31 @@ sarà strutturato utilizzando nomi in inglese per variabili, funzioni e così vi
 ```
 
 Il _dataset_ è memorizzato nel file `heroes.csv` contenuto nella directory
-`data` del repository associato al libro. In questo file, i contenuti sono
-rappresentati utilizzando il formato CSV (_comma separated values_): ogni
-riga rappresenta un supereroe, in cui i valori degli attributi nella
-{numref}`tab:dataset` sono indicati separandoli tramite virgole. L'unica
-eccezione è costituita dalla prima riga del file, che contiene i nomi degli
-attributi, sempre separati usando le virgole, come si può vedere visualizzando
-la parte iniziale dei suoi contenuti.
+`data` del [repository](https://github.com/dariomalchiodi/sds) associato al
+libro. In questo file, i contenuti sono rappresentati utilizzando il formato
+CSV (_comma separated values_): ogni riga rappresenta un supereroe, in cui i
+valori degli attributi nella {numref}`tab:dataset` sono indicati separandoli
+tramite virgole. L'unica eccezione è costituita dalla prima riga del file, che
+contiene i nomi degli attributi, sempre separati usando le virgole, come si può
+vedere visualizzando la parte iniziale del file stesso.
 ```{margin}
 Il formato CSV è uno standard altamente utilizzato per condividere dati
 di dimensioni relativamente contenute.
 ```
 
+```{margin}
+Le righe di codice precedute dal punto esclamativo indicano dei comandi di
+_shell_.
+```
 ```{code-cell} ipython3
 !head data/heroes.csv
 ```
 
-Nel Capitolo @cap:pandas vedremo come caricare in memoria i contenuti di
+Nel Capitolo [Pandas](pandas) vedremo come caricare in memoria i contenuti di
 questo file e, soprattutto, come elaborarli. Per ora, concentriamoci su
 alcuni semplici esempi che, da una parte, mostrano come utilizzare le parti
-interattive del libro, e, dall'altra, danno un'anteprima di alcuni concetti
-spiegati nel seguito.
+interattive del libro, e, dall'altra, forniscono una panoramica di quelli che
+saranno i concetti spiegati nel libro.
 
 Quello che segue è un primo esempio di grafico interattivo. Nel diagramma in
 alto sono rappresentati alcuni supereroi utilizzando dei cerchi in un
@@ -105,12 +108,13 @@ originale.
 ```{margin}
 Il grafico qui sotto è stato realizzato utilizzando
 [altair](https://altair-viz.github.io/), una libreria che permette di
-utilizzare Python per visualizzare grafici complessi all'interno di pagine web,
-in una forma interattiva che è automaticamente attivata nel momento in cui
-queste pagine sono caricate. Per riconoscere se un grafico è stato generato
-tramite altair, è sufficiente controllare se nella sua parte in alto a destra
-è presente un pulsante rotondo che contiene tre punti. Questo pulsante attiva
-un menu che permette, tra le altre cose, di scaricare il grafico.
+utilizzare Python per visualizzare all'interno di pagine web grafici complessi 
+a partire da _dataset_ di dimensioni ridotte, in una forma interattiva che è
+automaticamente attivata nel momento in cui queste pagine sono caricate. Per
+riconoscere se un grafico è stato generato tramite altair, è sufficiente
+controllare se nella sua parte in alto a destra è presente un pulsante rotondo
+che contiene tre punti. Questo pulsante attiva un menu che permette, tra le
+altre cose, di scaricare il grafico.
 ```
 
 ```{code-cell} ipython3
@@ -149,7 +153,7 @@ esempio per rispondere alle domande seguenti.
 
 1. Qual è l'editore/creatore con più supereroi in assoluto?
 2. Quale editore ha il maggior numero di supereroi alti meno di un metro?
-3. Quale editore ha il maggiorn numero di supereroi che pesano tra 80 e 100 kg.?
+3. Quale editore ha il maggior numero di supereroi che pesano tra 80 e 100 kg.?
 4. Qual è il supererore più alto in assoluto?
 
 Ci sono ovviamente tanti aspetti dei dati che possono essere analizzati in
@@ -159,7 +163,6 @@ indicati qui sotto.
 In generale, solo una piccola parte dei grafici che vedremo saranno
 interattivi.
 ```
-
 (pt:relation-general)=
 5. Esiste una relazione di qualche tipo che lega tendenzialmente il peso e
    l'altezza dei supereroi?
@@ -170,19 +173,23 @@ interattivi.
 La _statistica descrittiva_, introdotta nei Capitoli da @cap:dati-e-informazione
 a @cap:analizzare-le-relazioni-tra-i-dati, fornisce degli strumenti che
 permettono di rispondere a domande come quelle appena considerate. In generale,
-questi strumenti permettono di estrarre informazioni da un _dataset_ che
-descrive, globalmente o parzialmente, un insieme di individui di riferimento,
-e possono avere una natura sia _qualitativa_, sia _quantitativa_. Si parla
-di analisi qualitativa quando lo scopo è quello di determinare la natura di
-un certo fenomeno (per esempio, per rispondere alle domande ai punti
-{numref}`5 <pt:relation-general>` o {numref}`6 <pt:relation-particular>`
-nell'elenco qui sopra). Questo richiede spesso di utilizzare degli strumenti,
-come il grafico visualizzato, i cui risultati devono essere interpretati,
-introducendo un certo grado di soggettività. Si parla invece di analisi
-quantitativa quando il risultato dell'analisi stessa è rappresentato da uno
-o più numeri, che possono essere messi a confronto in modo oggettivo. Se tutto
-questo suona complicato, non vi preoccupate: i concetti diventeranno più
-chiari nei capitoli successivi.
+lo scopo è quello di estrarre informazioni da un _dataset_ che descrive,
+globalmente o parzialmente, un insieme di individui di riferimento, e le
+tecniche utilizzate possono avere una natura sia _qualitativa_, sia
+_quantitativa_. Si parla di analisi qualitativa quando lo scopo è quello di
+determinare la natura di un certo fenomeno (per esempio, per rispondere alle
+domande ai punti {numref}`5 <pt:relation-general>` o
+{numref}`6 <pt:relation-particular>` nell'elenco qui sopra). Questo richiede
+spesso di utilizzare degli strumenti, come il grafico precedentemente
+visualizzato, i cui risultati devono essere interpretati, introducendo un certo
+grado di soggettività. Si parla invece di analisi quantitativa quando l'esito
+di quest'ultima è espresso da una o più quantità numeriche, che possono essere
+quindi messe a confronto in modo oggettivo con altre quantità (tipicamente,
+i risultati di altre analisi).
+```{margin}
+Se tutto questo suona complicato, non vi preoccupate: i concetti diventeranno
+più chiari nei capitoli successivi.
+```
 
 Supponiamo ora di volerci concentrare, per semplicità, sul peso dei
 supereroi: il grafico precedente è decisamente sovraffollato di cerchi, e
@@ -222,15 +229,15 @@ numero totale di supereroi il cui peso è contenuto nell'intervallo.
 ````
 ```{margin}
 Non sempre ha senso utilizzare un istogramma per esplorare dei valori in un
-_dataset_, come vedremo nel Capitolo @cap:dati-e-informazione
+_dataset_, come vedremo nel Capitolo @cap:dati-e-informazione.
 ```
 
 Gli istogrammi sono definiti in dettaglio nel Paragrafo @istogrammi, ma per il
 momento ci basta sapere come leggere il risultato ottenuto: in ognuno dei
 rettangoli mostrati, la base individua un intervallo $I$ di possibili valori
 per il peso dei supereroi, e l'altezza indica quanti supereroi hanno un peso
-contenuto in $I$ [^histogram]. Osservando il risultato si possono notare
-diversi aspetti interessanti: per esempio si vede che i supereroi con un peso
+contenuto in $I$ [^histogram]. Il grafico ottenuto mette in evidenza alcune
+cose interessanti: per esempio si vede che i supereroi con un peso
 superiore a 125 kg. sono presenti in numero maggiore rispetto a quelli con un
 peso inferiore a quaranta chili. D'altro canto, se non consideriamo i pesi
 molto grandi o molto piccoli, emerge un'approssimativa simmetria nei valori
@@ -245,7 +252,7 @@ quantitativi (e tipicamente lo è).
 Se siete attenti avrete notato che l'altezza di un rettangolo non può essere
 uguale al numero di supereroi che hanno un certo peso, perché i valori mostrati
 sull'asse delle ascisse non sono numeri interi. In questo istogramma, infatti,
-il numero di supereroi è legato all'area del rettangolo, cosa che ci
+il numero di supereroi è legato all'_area_ del rettangolo, cosa che ci
 permetterà tra poco di confrontare il risultato ottenuto con un altro grafico.
 Il motivo di questa scelta è approfondito nel Paragrafo @istogrammi.
 ```
@@ -283,7 +290,10 @@ incertezza utilizzando un numero $p \in [0, 1]$. Senza entrare per ora nei
 dettagli, più tale numero è prossimo a $\frac{1}{2}$ e più l'incertezza è
 elevata; dualmente, quanto più $p$ si avvicina agli estremi, tanto più si
 riduce questa incertezza: quando $p$ si avvicina a zero oppure a uno, aumenta
-rispettivamente la confidenza che l'affermazione sia falsa oppure vera.
+rispettivamente la confidenza che l'affermazione sia falsa oppure vera, al
+punto che l'affermazione risulta essere sicuramente falsa quando la probabilità
+è nulla e sicuramente vera quando la probabilità è uguale a $1$.
+Se la probabilità diventa uguale a uno di questi valori estremi
 Vedremo come il vantaggio di formalizzare matematicamente il concetto di
 probabilità ci permetterà di sviluppare tecniche che consentono di calcolare
 la probabilità di eventi complessi a partire da quella di eventi semplici:
@@ -303,11 +313,11 @@ facilmente rendervene conto riguardando l'istogramma in @fig:histogram:
 un peso tra $50$ e $100$ kg. occorre molto di più di un peso superiore ai
 cento chili. Diventa quindi importante modellare anche queste quantità
 casuali, e in tal senso si introduce il concetto di _variabile aleatoria_ e la
-relativa formalizzazione matematica. In modo molto informale, e concentrandosi
-sempre sull'esempio del peso dei supereroi, l'idea alla base di questa
-formalizzazione è quella di _idealizzare_ l'istogramma dei valori osservati,
-sostituendolo con il grafico di una funzione che rispetti le proprietà
-fondamentali messe in luce dall'istogramma stesso. Focalizziamoci sempre
+relativa formalizzazione matematica. Senza entrare per ora nei dettagli, e
+concentrandosi sempre sul peso dei supereroi, l'idea alla base di
+questa formalizzazione è quella di _idealizzare_ l'istogramma dei valori
+osservati, sostituendolo con il grafico di una funzione che rispetti le
+proprietà fondamentali messe in luce dall'istogramma stesso. Focalizziamoci sempre
 sulla @fig:histogram: ci sono infinite funzioni che esibiscono simmetria
 rispetto a un asse centrale e andamento _unimodale_ (cioè crescente fino a
 un valore massimo e poi decrescente), ma per motivi che al momento sono troppo
@@ -325,8 +335,10 @@ nell'istogramma, mentre $\mu \in \mathbb R$ e $\sigma \in \mathbb R^+$ sono due
 _parametri_ che cambiano la forma del grafico di $f$. Per la precisione,
 @eq:weight_normal definisce una _famiglia_ di funzioni, che come vedremo
 definisce a sua volta una famiglia di variabili aleatorie, o _modello_ di
-variabile aleatoria. Nel grafico interattivo riportato qui sotto è possibile
-vedere come cambia $f$ al variare dei suoi due parametri. In questo caso, è
+variabile aleatoria.
+
+Nel grafico interattivo riportato qui sotto è possibile vedere come cambia il
+grafico di $f$ al variare dei suoi due parametri. In questo caso, è
 però necessario attivare manualmente le funzionalità interattive cliccando
 inizialmente sul pulsante ![jupyterlite on icon](images/jupyterlite.svg)
 visualizzato nella parte alta della pagina web (operazione che è sufficiente
@@ -334,18 +346,20 @@ eseguire una sola volta per ogni pagina web del libro). Successivamente è
 possibile attivare il grafico grafico cliccando sul pulsante
 ![jupyterlite run icon](images/run.svg) che compare a destra del grafico stesso
 (questa operazione va ripetuta per ogni grafico interattivo presente nella
-pagina): dopo circa un minuto, viene visualizzata l'interfaccia che permette di
-interagire con la visualizzazione. Nel caso che stiamo considerando compaiono
-due selettori, rispettivamente per $\mu$ e $\sigma$: agendo su di essi è
-possibile cambiare i valori dei parametri e simultaneamente vedere come cambia
-il grafico della corrispondente versione di $f$.
+pagina): l'immagine sparirà, per ricomparire dopo circa un minuto, ora
+arricchita con l'interfaccia che permette di interagire con la visualizzazione.
+Nel caso che stiamo considerando compaiono due selettori, rispettivamente per
+$\mu$ e $\sigma$: agendo su di essi è possibile cambiare i valori dei parametri
+e simultaneamente vedere come varia il grafico della corrispondente versione di
+$f$.
 ```{margin}
 Questo secondo tipo di grafici interattivi è basato su
-[jupyterlite](https://jupyterlite.readthedocs.io/), una recente tecnologia che
-permette di eseguire codice python direttamente in un browser web. I grafici
-di questo tipo si riconoscono facilmente perché sotto di essi è riportata
-la dicitura `a Jupyter kernel connection is required to fully display this
-output`. Questa dicitura scompare una volta attivato il grafico.
+[jupyterlite](https://jupyterlite.readthedocs.io/), una tecnologia recentemente
+sviluppata che permette di eseguire codice python direttamente all'interno di
+un browser web. I grafici di questo tipo si riconoscono facilmente perché sotto
+di essi è riportata la dicitura `a Jupyter kernel connection is required to
+fully display this output`. Questa dicitura scompare una volta attivato il
+grafico.
 ```
 
 ```{code-cell} ipython3
@@ -386,11 +400,12 @@ def normal_pdf(mu, sigma):
 widgets.interactive(normal_pdf, mu=mu_slider, sigma=sigma_slider)
 ```
 
-Uno dei motivi per i quali si parla di modello di variabile aleatoria sta nel
+Uno dei motivi per i quali si parla di «modello» di variabile aleatoria sta nel
 fatto che è possibile scegliere i valori dei suoi parametri in modo da
-_adattare_ il modello ai dati che abbiamo osservato, ovvero scegliere
-opportunamente $\mu$ e $\sigma$ in modo che il grafico di $f$ si sovrapponga
-qualitativamente con quello dell'istogramma iniziale. Il grafico interattivo
+_adattare_ il modello ai dati che abbiamo osservato, che nel caso appena visto
+consiste nello scegliere degli opportuni valori di $\mu$ e $\sigma$ in modo che
+il grafico di $f$ si sovrapponga qualitativamente con quello dell'istogramma
+inizialmente ottenuto per il peso. Il grafico interattivo
 che segue permette di eseguire manualmente questa operazione, visualizzando
 sia l'istogramma sia il grafico (variabile) di $f$. Dopo avere attivato il
 grafico, agite sui selettori in modo da ottenere una buona sovrapposizione.
@@ -468,29 +483,104 @@ introdotte in modo relativamente informale.
 Prima però di iniziare con la statistica descrittiva, è importante rivedere
 alcuni concetti fondamentali di programmazione degli elaboratori, e
 soprattutto prendere dimestichezza con gli strumenti computazionali che
-userò in tutto il libro. È questo lo scopo dei capitoli @chap-python e
-@cap:pandas, che aprono la trattazione.
+userò in tutto il libro. È questo lo scopo dei capitoli [Elaborare i dati con
+Python](#cap:python) e [Pandas](#cap:pandas), che aprono la trattazione.
 
 ### Esercizi
 
-NOTA SUGLI ESERCIZI
+Al termine di ogni paragrafo sono proposti alcuni esercizi, la cui difficoltà
+di risoluzione è indicata dal numero di pallini racchuso tra parentesi.
 
-```{exercise}
-:label: my-exercise
+```{exercise} •
+Scaricate il dataset dei supereroi dal
+[repository](https://github.com/dariomalchiodi/sds) del libro e importatelo in
+un qualsiasi programma che gestisce fogli elettronici (tutti quelli più diffusi
+hanno la capacità di importare file CSV), in modo che ogni colonna contenga
+un diverso attributo (vedi ). Focalizzatevi, diciamo, sulle prime trenta righe
+e considerate separatamente le varie colonne, al fine di farvi un'idea di come
+varino i valori associati ai singoli attributi.
+```
 
-Recall that $n!$ is read as "$n$ factorial" and defined as
-$n! = n \times (n - 1) \times \cdots \times 2 \times 1$.
+```{exercise} •••
+Riconsiderate l'esercizio precedente, guardando i contenuti
+di ogni singola colonna del file CSV senza utilizzare un elaboratore di fogli
+elettronici, ma usando solamente un terminale e i comandi di _shell_.
+```
+```{margin}
+Essere _data scientist_ significa non solo sapere coniugare le competenze in
+probabilità, statistica e programmazione degli elaboratori, ma anche
+padroneggiare vari strumenti di _scripting_ che permettono di convertire,
+adattare e ripulire i dati: molto spesso, l'uso di questi strumenti è mediato
+da un terminale e dalla relativa _shell_. 
+```
 
-There are functions to compute this in various modules, but let's
-write our own version as an exercise.
+```{exercise} ••
+Sulla base dell'idea che vi siete fatti in merito dal _dataset_ dei supereroi
+risolvendo gli esercizi precedenti, provate a suddividere gli attributi in
+gruppi omogenei basandovi non sul tipo di dato che viene utilizzato per
+rappresentare i valori corrispondenti (indicato nella colonna «Contenuto» della
+{numref}`tab:dataset`), bensì sulla _natura_ degli attributi stessi.
+```
 
-In particular, write a function `factorial` such that `factorial(n)` returns $n!$
-for any positive integer $n$.
+```{exercise} •
+Rispondete alle domande numerate da 1 a 4 nell'elenco che segue il primo
+grafico interattivo.
+```
+
+```{exercise} ••
+Rispondete alle domande 5 e 6 nell'elenco che segue il primo grafico
+interattivo. Verbalizzate il ragionamento che avete fatto e scrivetelo.
+```
+
+```{exercise} ••
+Pensate ad altre domande relative al _dataset_ alle quali si possa trovare
+risposta utilizzando il primo grafico interattivo. Anche in questo caso,
+verbalizzate il ragionamento che va fatto per rispondere a queste domande.
+```
+
+```{exercise} •
+Considerate i seguenti valori
+
+$$ \{13, 8, 7, 4, 9, 8, 4, 4, 19, 2, 5, 3, 3, 1, 12 \} $$
+
+e disegnate a mano il corrispondente istogramma, utilizzando i seguenti
+intervalli di riferimento: $[0, 5)$, $[5, 10)$, $[10, 15)$, $[15, 20)$.
+Confrontate la forma del grafico ottenuto con quanto mostrato nella
+@fig:histogram, mettendo in luce le principali differenze.
+```
+
+```{exercise} •
+Scrivete dieci possibili eventi che riguardano il _dataset_ dei supereroi.
+```
+
+```{exercise} ••
+Scrivete un evento la cui probabilità è uguale a zero. Scrivete poi un
+evento avente $1$ come probabilità.
+```
+
+```{exercise} ••
+Ponete $\mu = \sigma = 1$ ed effettuate lo studio della funzione descritta
+in @eq:weight_normal, disegnando a mano il grafico corrispondente e verificando
+che questo grafico abbia la stessa forma visualizzata nel secondo grafico
+interattivo.
+```
+
+```{exercise} •
+Sulla base del risultato dell'esercizio precedente, e tenuto conto di quanto
+avete sperimentato lavorando sul secondo grafico interattivo, che ruolo hanno i
+parametri $\mu$ e $\sigma$ sul grafico di $f$ definita in @eq:weight_normal?
+```
+
+```{exercise} •
+Utilizzando il secondo grafico interattivo, determinate dei valori per $\mu$ e
+$\sigma$ che permettono di sovrapporre in modo ragionevole il grafico di $f$
+all'istogramma della @fig:histogram.
 ```
 
 
-
 [^histogram]: È possibile scegliere gli intervalli che individuano le basi dei
-rettangoli con un certo grado di libertà. Nella @fig:histogram, l'istogramma è
-stato generato  considerando venticinque intervalli equiampi che ricoprono
-tutti i valori possibili per il peso, ma sono possibili varie altre opzioni.
+rettangoli con un certo grado di libertà. Per semplicità, nella @fig:histogram
+l'istogramma è stato generato  considerando venticinque intervalli equiampi che
+ricoprono tutti i valori possibili per il peso, ma a seconda dei casi può
+essere sensato utilizzare un numero maggiore (o minore) di siffatti intervalli,
+oppure considerare un insieme di intervalli di ampiezze diverse.

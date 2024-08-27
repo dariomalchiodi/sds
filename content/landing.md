@@ -43,7 +43,13 @@ un libro. In particolare:
   passa da una pagina all'altra;
 - quanto indicato ai punti precedenti si riflette sui riferimenti incrociati,
   con il problema aggiuntivo di non gestire i riferimenti a un intero
-  capitolo.
+  capitolo;
+- infine, non è possibile introdurre delle personalizzazioni nello stile CSS
+  utilizzato per generare le pagine web, e questo non permette di scegliere
+  un carattere tipografico per il testo e di personalizzare il posizionamento
+  di alcuni elementi nel testo&mdash;per esempio, le note a margine non sono
+  perfettamente allineate in modo verticale con il capoverso al quale fanno
+  riferimento.
 
 In alcuni casi ho trovato delle soluzioni, che spesso non risolvono
 completamente la situazione e che soprattutto sono basate su scorciatoie non
