@@ -64,6 +64,7 @@ project:
       children:
         - file: content/p1-PAD/c1-intro-python/introduzione-a-python.md
           children:
+          - file: content/p1-PAD/c1-intro-python/installare-python.md
           - file: content/p1-PAD/c1-intro-python/dati-semplici-e-operatori.md
           - file: content/p1-PAD/c1-intro-python/dati-strutturati.md
           - file: content/p1-PAD/c1-intro-python/strutture-di-controllo.md
