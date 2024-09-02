@@ -15,7 +15,7 @@ numbering:
   heading_2: false
   enumerator: 2.1.%s
 
-title: 2.1. Dati semplici e operatori
+title: 2.2. Dati semplici e operatori
 ---
 
 (dati-semplici)=
@@ -27,8 +27,8 @@ _dato_ che può essere associato a una variabile, a un'espressione, a un
 parametro, al valore restituito da una funzione e così via. Associare ogni
 dato a un tipo è importante perché ciò permette di identificare quelle che
 sono le operazioni che si possono effettuare su di esso: per esempio,
-l'elevamento a potenza ha senso quando viene applicato a un numero, ma non,
-per dire, a una lettera.
+l'elevamento a potenza può avere senso quando viene applicato a un numero, ma
+non, per dire, a una lettera.
 
 Nella gran parte dei linguaggi che si studiano quando si impara a programmare
 gli elaboratori, l'associazione di un dato al tipo corrispondente deve essere
@@ -42,18 +42,19 @@ associati ai dati con le operazioni effettuate sugli stessi viene fatta «a
 bocce ferme», leggendo il codice prima che questo venga eseguito e dunque
 stabilendo il tipo di ogni dato una volta per tutte.
 
-```{margin}
-È interessante sottolineare che Python è un linguaggio _fortemente tipizzato_,
-nel senso che non vengono mai eseguite conversioni implicite tra tipi
-di operandi fondamentalmente diversi.
-```
+
 In Python si segue invece un approccio differente, eliminando dal linguaggio
 le dichiarazioni [^type-hinting] e affidandosi a un _type checking dinamico_
 che viene effettuato durante l'esecuzione del codice. Senza entrare troppo nei
 dettagli, prima di effettuare una qualsiasi operazione si verifica che questa
 sia possibile analizzando quali sono i valori degli operandi coinvolti. Se
 vengono rilevate delle incongruenze, viene lanciata un'eccezione, altrimenti
-l'esecuzione procede. 
+l'esecuzione procede.
+```{margin}
+È interessante sottolineare che Python è un linguaggio _fortemente tipizzato_,
+nel senso che non vengono mai eseguite conversioni implicite tra tipi
+di operandi fondamentalmente diversi.
+```
 
 L'utilizzo del _type checking_ dinamico semplifica notevolmente la struttura
 del linguaggio di programmazione, che utilizza dei _nomi_ da associare a
