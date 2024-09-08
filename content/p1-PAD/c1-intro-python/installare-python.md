@@ -35,7 +35,20 @@ utilizzato. Le distribuzioni recenti di Linux e di Mac OS sono già equipaggiate
 con Python: per verificare che sia così, è possibile lanciare un terminale ed
 eseguire il comando
 
-    $ python --version
+`````{tab-set}
+````{tab-item} Linux/Mac OS
+:sync: tab-linux
+```bash
+$ python --version
+```
+````
+````{tab-item} Windows
+:sync: tab-win
+```cmd-prompt
+TODO
+```
+````
+`````
 
 e notando che tipo di output si ottiene. Sono possibili tre casi:
 
@@ -122,9 +135,20 @@ un ambiente virtuale si procede usualmente nel modo che segue: usando un
 terminale, ci si posiziona nella directory principale del progetto e si
 esegue il comando
 
+`````{tab-set}
+````{tab-item} Linux/Mac OS
+:sync: tab-linux
 ```bash
 $ python -m venv .venv
-``` 
+```
+````
+````{tab-item} Windows
+:sync: tab-win
+```cmd-prompt
+TODO
+```
+````
+`````
 
 avendo cura di verificare preventivamente che il comando `python` faccia
 riferimento alla versione corretta. L'esecuzione ha l'effetto di creare una
@@ -138,9 +162,21 @@ Python diversa da quella individuata dal comando `python`, è sufficiente
 utilizzare il comando che fa riferimento in modo esplicito alla versione
 richiesta.
 ```
+
+`````{tab-set}
+````{tab-item} Linux/Mac OS
+:sync: tab-linux
 ```bash
 $ source .venv/bin/activate
 ```
+````
+````{tab-item} Windows
+:sync: tab-win
+```cmd-prompt
+TODO
+```
+````
+`````
 
 sempre nella directory principale del progetto (anche se è possibile
 posizionarsi in un altro punto del _file system_ e fare riferimento a un
@@ -158,13 +194,90 @@ attivato, modificando gli argomenti del comando utilizzato per crearlo.
 Nel paragrafo che segue vedremo come installare delle librerie una volta che
 l'ambiente è stato attivato. Eseguendo invece il comando
 
+`````{tab-set}
+````{tab-item} Linux/Mac OS
+:sync: tab-linux
 ```bash
 (.venv) $ deactivate
 ```
+````
+````{tab-item} Windows
+:sync: tab-win
+```cmd-prompt
+TODO
+```
+````
+`````
 
 si disattiva l'_environment_ attivato, e conseguentemente il _prompt_ di
 sistema torna a essere quello originario.
 
+
+(sec:download-book)=
+## Scaricare i contenuti del libro
+Questo libro è pensato per essere servito tramite un server web, ma ciò
+non richiede necessariamente una connessione dati attiva. È infatti possibile
+scaricarne i contenuti e generare i vari paragrafi come pagine web gestite da
+un server web locale. Questo permette, tra l'altro, di facilitare
+l'installazione delle librerie necessarie per eseguire il codice contenuto
+nei vari capitoli. Per fare questo è sufficiente eseguire il comando che segue,
+che clona il [repository](https://github.com/dariomalchiodi/sds) del libro
+usando [git](https://git-scm.com), il sistema di _source control management_
+che utilizzo per organizzare il corripsondente progetto software.
+
+`````{tab-set}
+````{tab-item} Linux/Mac OS
+:sync: tab-linux
+```bash
+(.venv) $ git clone git@github.com:dariomalchiodi/sds.git
+```
+````
+````{tab-item} Windows
+:sync: tab-win
+```cmd-prompt
+TODO
+```
+````
+`````
+```{margin}
+Per poter eseguire questa operazione è necessaria una connessioe internet
+attiva.
+```
+
+Volendo, è anche possibile scaricare un unico
+archivio ZIP, ma usare git permette di modo lineare facilmente il libro con la
+sua versione più recente, nel momento in cui vengono pubblicati degli
+aggiornamenti dei contenuti, eseguendo il comando
+
+`````{tab-set}
+````{tab-item} Linux/Mac OS
+:sync: tab-linux
+```bash
+(.venv) $ git pull
+```
+````
+````{tab-item} Windows
+:sync: tab-win
+```cmd-prompt
+TODO
+```
+````
+`````
+
+da un terminale, posizionandosi preventivmente nella directory nella quale
+il libro è stato scaricato (o in una sua sotto-directory). Infine, git è
+lo strumento da utilizzare anche per segnalare errori o proporre modifiche,
+inviando _issue_ o _pull request_ come già indicato nel Paragrafo @sec:approccio.
+
+```{admonition}
+Imparare a usare git è una cosa che
+suggerisco a chiunque approcci lo studio non solo dell'informatica, ma anche
+di tutte le discipline che in qualche modo afferiscono alla _data science_.
+Di fatto, git è utilizzato per gestire la stragrande maggioranza dei
+progetti software, dunque vale la pena imparare a usarlo fin da subito.
+```
+
+(sec:lib-install)=
 ## Gestire le librerie
 In teoria l'installazione di una libreria può essere fatta in modo
 autonomo, scaricando ed eseguendo il corrispondente eseguibile, o perfino
@@ -195,9 +308,20 @@ della libreria. Se volessimo per esempio installare _altair_, la libreria che
 ho usato nel Paragrafo [Uno sguardo di insieme](uno-sguardo-di-insieme) per
 produrre grafici interattivi, sarà sufficiente eseguire il comando
 
+`````{tab-set}
+````{tab-item} Linux/Mac OS
+:sync: tab-linux
 ```bash
 (.venv) $ pip install altair
 ```
+````
+````{tab-item} Windows
+:sync: tab-win
+```cmd-prompt
+TODO
+```
+````
+`````
 ```{margin}
 Sconsiglio di eseguire questo comando, perché tra breve vedremo come effettuare
 simultaneamente le installazioni di più librerie.
@@ -216,9 +340,20 @@ relative in un colpo solo. Se si utilizza pip, questa descrizione testuale è
 tipicamente inserita in un file il cui nome è `requirements.txt`, e tutte le
 installazioni si possono effettuare eseguendo il comando
 
+`````{tab-set}
+````{tab-item} Linux/Mac OS
+:sync: tab-linux
 ```bash
 (.venv) $ pip install -r requirements.txt
 ```
+````
+````{tab-item} Windows
+:sync: tab-win
+```cmd-prompt
+TODO
+```
+````
+`````
 
 Il [repository](https://github.com/dariomalchiodi/sds) associato a questo
 libro include il file `requirements.txt` che contiene tutti i riferimenti
@@ -242,9 +377,14 @@ essere di tre tipi differenti:
 
 Lo standard _de facto_ per i _notebook_ è quello introdotto dal progetto
 [Jupyter](https://jupyter.org). Esiste una pletora di applicazioni che
-permettono di scrivere, leggere e soprattutto eseguire __notebook_, e tra
+permettono di scrivere, leggere e soprattutto eseguire  _notebook_, e tra
 queste le più comunemente utilizzate sono quella distribuita direttamente
-dal progetto Jupyter e l'IDE flagship di Microsoft (Visual Studio Code).
+dal progetto Jupyter e l'IDE flagship di Microsoft
+([Visual Studio Code](https://code.visualstudio.com)).
+Se avete installato le librerie utilizzando il file `requirements.txt` seguendo
+le istruzioni indicate nei paragrafi precedenti, nell'ambiente
+virtuale che avete creato è già disponibile Jupyter, e per lanciarlo è
+sufficiente eseguire da terminale il comando
 ```{margin}
 Quando nel nome di una tecnologia basata su python è contenuta la sillaba «py»,
 questa sillaba è normalmente pronunciata nello stesso modo della parola
@@ -253,6 +393,98 @@ Jupyter fa eccezione, come dichiarato dai suoi creatori[^pronuncia-jupyter],
 e si pronuncia [ˈjü-pə-tər](https://www.merriam-webster.com/dictionary/Jupiter?pronunciation&lang=en_us&dir=gg&file=ggjupi01),
 come il pianeta "Jupiter".
 ```
+`````{tab-set}
+````{tab-item} Linux/Mac OS
+:sync: tab-linux
+```bash
+(.venv) $ jupyter notebook
+```
+````
+````{tab-item} Windows
+:sync: tab-win
+```cmd-prompt
+TODO
+```
+````
+`````
+
+che ha l'effetto di aprire un browser e di collegarlo a un indirizzo locale,
+sul quale è in ascolto un server web apposito. La pagina caricata mostrerà
+i file contenuti nella directory dalla quale è stato lanciato jupyter. Per
+esempio, la {numref}`jupyter-home` mostra come appare questa pagna facendo
+riferimento alla directory principale del _repository_ di questo libro. Per
+creare un nuovo _notebook_ è necessario cliccare sul pulsante «New» e
+selezionare «Python 3 (ipykernel)». Verrà visualizzata una nuova pagina,
+contenente un'unica cella di codice: per verificare che sia tutto a posto,
+potete scrivere una semplice espressione matematica in questa cella&mdash;va
+benissimo `1 + 1`. Premete poi la combinazione di tasti
+{kbd}`Shift`+{kbd}`Newline`: verrà automaticamente aggiunta al _notebook_ una
+cella di output, che conterrà il valore dell'espressione che avete inserito.
+Il vantaggio di usare un _notebook_ consiste in un'elevata interattività
+nell'esecuzione del codice, perché i risultati dell'esecuzione di una cella
+sono mantenuti in memoria per tutto il tempo nel quale il _notebook_ resta
+aperto, così da poter usare questi risultati come base per l'esecuzione di
+un'altra cella.
+
+```{figure} images/jupyter-home.png
+:width: 100%
+:name: jupyter-home
+
+La schermata iniziale di Jupyter, con l'elenco dei file presenti nella
+directory che corrisponde al _repository_ del libro.
+```
+
+```{admonition} Avvertenza
+Vi è una notevole flessibilità nel modo in cui si possono valutare le celle di
+codice contenute in un _notebook_: è sufficiente posizionarsi in una di essa e
+premere la combinazione {kbd}`Shift`+{kbd}`Newline`, cosa che permette di
+eseguirle in un ordine qualsiasi: dalla prima all'ultima, dall'ultima alla
+prima, sette volte la prima per poi passare alla terza e così via. Questo
+comporta aspetti positivi quanto negativi. Da un lato, si può sfruttare questa
+flessibilità per analizzare dei dati, eseguendo piccole parti di codice in una
+modalità altamente interattiva, valutando i risultati dell'esecuzione di queste
+parti per decidere quale sia la prossima parte da considerare. Dall'altro, non
+potere vincolare l'esecuzione delle celle in un ordine fisso e definito a
+priori implica un'insita indeterminazione nel risultato dell'esecuzione stessa,
+e pertanto limita la riproducibilità dei risultati ottenuti. Va anche
+sottolineato che i _notebook_ sono solo uno degli strumenti che è possibile
+usare per eseguire codice Python: tra quelli rimanenti, ve ne sono due
+normalmente utilizzati: il primo è l'uso del cosiddetto REPL (Read, Evaluate,
+Print, Loop), un ambiente di esecuzione semplificato che si esegue in un
+terminale e che segue per certi versi la filosofia alla base dei _notebook_:
+si inserisce un'istruzione e la si esegue, osservandone i risultati, e
+successivamente è possibile eseguire una seconda istruzione e così via, ma in
+questo caso per ri-eseguire un'istruzione precedentemente inserita è necessario
+inserirla nuovamente a mano; il secondo è invece l'uso di un interprete Python
+per eseguire un programma, in modo molto simile a quanto fatto con altri
+linguaggi come Go o Java. 
+```
+
+## Leggere il libro localmente
+
+Per leggere il libro in locale, dopo avere scaricato i suoi contenuti
+e installato le librerie necessarie (come indicato rispettivamente nei
+Paragrafi @sec:download-book e @sec:lib-install), è sufficiente posizionarsi
+nella directory principale del _repository_ clonato ed eseguire il comando 
+
+`````{tab-set}
+````{tab-item} Linux/Mac OS
+:sync: tab-linux
+```bash
+(.venv) $ myst start --execute
+```
+````
+````{tab-item} Windows
+:sync: tab-win
+```cmd-prompt
+TODO
+```
+````
+`````
+
+che eseguirà un server web locale (per _default_ sulla porta `3000`), al quale
+collegarsi usando un browser per leggere il libro nella stessa forma che ha
+sul relativo sito web.
 
 
 [^environment]: In realtà esistono alcune alternative per creare e
