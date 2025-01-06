@@ -18,63 +18,203 @@ numbering:
 title: 2.2. Dati strutturati
 ---
 
-(sec:dati-strutturati)=
+Come indicato nel Paragrafo @sec:tipi-semplici-e-strutturati, ho deciso di
+definire un tipo di dati come strutturato se i corrispondenti valori
+costituiscono un'aggregazione di più tipi di dati __ed__ è possibile iterare
+automaticamente sui loro contenuti. Dopo aver spiegato meglio questo concetto,
+in questo paragrafo elencherò i tipi strutturati usati maggiormente in Python, 
+descrivendo le corrispondenti classi e alcuni aspetti speciali della sintassi
+che permettono di accedere ai loro contenuti.
 
-I tipi di dati strutturati, o più brevemente _strutture dati,_ permettono di
-aggregare più valori. Python supporta nativamente i seguenti tipi strutturati:
-le liste, le tuple, le stringhe, gli insiemi e i dizionari. A ognuno di questi
-tipi corrisponde una diversa classe, esattamente come per i tipi semplici. Come
-descritto nei paragrafi seguenti, la sintassi per accedere ai contenuti di una
-struttura dati è relativamente uniforme, mentre ovviamente il modo in cui viene
-effettuato l'accesso dipende dallo specifico tipo di struttura dati.
+```{admonition} Nomenclatura
+Il generico valore di un tipo di dati strutturato è memorizzato appoggiandosi
+su di una _struttura dati_, intesa come metodo che permette di organizzare
+un particolare tipo di informazione all'interno di un computer. Questo tende
+a creare confusione nella terminologia, anche perché sebbene a volte i due
+concetti si sovrappongono (come capita per esempio con gli _array_),
+normalmente questo non succede. Anzi, di norma è possibile costruire un
+medesimo tipo di dati strutturato usando strutture dati diverse: per esempio,
+un insieme è un tipo di dati strutturato che può essere basato su un _array_
+così come su un albero (sebbene la scelta tra queste due strutture dati abbia
+un impatto sull'_efficienza_ delle operazioni che si possono eseguire
+sull'insieme). Siccome questo libro non parla delle strutture dati, e tenuto
+conto del fatto che la dicitura «generico valore di un tipo di dati
+strutturato» è decisamente prolissa, al suo posto userò occasionalmente il
+termine _struttura_, confidando che questo non causi confusione in chi
+legge.
+```
 
-In Python è possibile sia usare gli oggetti che corrispondono ai tipi di dati
-strutturati (ma anche gli altri tipi di dati descritti più avanti) come
-argomenti di operatori o funzioni, sia invocare metodi sugli oggetti stessi.
-Anche in questo caso vi sono operazioni di carattere più generale, effettuate
-utilizzando una sintassi comune, e operazioni specifiche che hanno una sintassi
-propria. Nel resto di questo paragrafo, senza pretesa di essere esaustivi,
-descrive le modalità di accesso e le operazioni principali per i tipi
-strutturati sopra elencati e fornisce dei puntatori alla documentazione
-ufficiale per chi volesse approfondire alcuni argomenti.
+I tipi di dati strutturati che descrivo nei prossimi paragrafi, elencati
+nella @tab:caratteristiche-dati-strutturati, sono:
+```{margin}
+Python supporta gli _array_ in un package omonimo, che non supporta però la
+corrispondente aritmetica. È per questo motivo che per analizzare dati vengono
+quasi sempre usati gli _array_ implementati in numpy.
+```
+
+- le stringhe, che abbiamo già parzialmente utilizzato e che descrivono
+  sequenze di caratteri;
+- gli _array_, che contengono sequenze omogenee di oggetti;
+- le liste e le tuple, che implementano sequenze di generici oggetti;
+- gli insiemi, che fanno riferimento all'omonimo concetto in matematica;
+- i dizionari, che permettono di costruire mappe tra oggetti.
+
+Classificherò questi tipi di dati in funzione di vari criteri, che descrivo
+qui sotto.
+
+- La modalità di accesso: quando l'aggregazione viene fatta in modo
+  sequenziale, il modo più naturale per riferirsi a un elemento della
+  struttura è quello di utilizzare un _indice_ che descrive la sua posizione.
+  È questo il caso delle stringhe, delle liste, degli _array_ e delle tuple.
+  L'accesso a insiemi e i dizionari, che organizzano i dati in un modo non
+  necessariamente ordinato, viene invece fatto in modo differente.
+
+- La staticità/dinamicità della struttura: ci sono dei tipi di dati strutturati
+  che non permettono di aggiungere o rimuovere elementi a una struttura dopo
+  che questa è stata creata (come le stringhe e le tuple), e altri tipi che
+  invece lo consentono (come le liste, gli insiemi e i dizionari).
+
+- La mutabilità degli elementi della struttura: alcuni tipi sono _immutabili_,
+  nel senso che gli elementi che aggregano non possono essere modificati,
+  mentre altri sono _mutabili_. Tra i tipi che considererò, le stringhe e le
+  tuple sono immutabili, mentre tutti gli altri sono mutabili.
+
+```{table} Proprietà dei tipi di dati strutturati
+:name: tab:caratteristiche-dati-strutturati
+:align: center
+| Tipo strutturato | Classe     | Posizionale | Dinamico | Mutabile |
+|:-----------------|:-----------|:-----------:|:--------:|:--------:|
+| stringhe         | `str`      | ✓           | ✕       | ✕        |
+| array            | `np.array` | ✓           | ✕       | ✓        |
+| liste            | `list`     | ✓           | ✓       | ✓        |
+| tuple            | `tuple`    | ✓           | ✕       | ✕        |
+| insiemi          | `set`      | ✕           | ✓       | ✓        |
+| dizionari        | `dict`     | ✕           | ✓       | ✓        |
+```
+```{margin}
+Ricordate che `np` è l'_alias_ che viene usato per importare numpy.
+```
+
+(sec:iterare)=
+## Accedere a una struttura
+Pur facendo riferimento a concetti altamente diversi tra loro, i tipi di dato
+strutturati che considererò supportano delle modalità comuni di accesso, e
+Python introduce una sintassi unificata per queste operazioni.
+La prima di queste modalità riguarda l'aspetto che ho scelto per definire i
+dati di tipo strutturato, ed è quella di supportare in modo automatico
+l'iterazione sui contenuti di una struttura.
+
+Molti dei linguaggi di programmazione che si rifanno al paradigma imperativo
+prevedono tra le strutture di controllo il cosiddetto _ciclo enumerativo_, noto
+ai più come «ciclo for» a causa della parola chiave corrispondente. Questa
+particolare forma di iterazione è caratterizzata dal fatto di specificare a
+priori il numero di volte che il corpo del ciclo deve essere eseguito.
+Normalmente, il numero di iterazioni viene indicato in modo più o meno
+esplicito, lavorando su una _variabile di ciclo_[^i] che deve assumere tutti i
+valori in una sequenza predefinita, e normalmente&mdash;ma non
+sempre&mdash;questa sequenza contempla tutti gli interi da $0$ a un valore $n$
+prefissato[^for-caveats].
+```{margin}
+A complicare ulteriormente la nomenclatura, notate come il termine «struttura
+di controllo» si riferisca a un ulteriore concetto che è completamente diverso
+sia da «tipo di dati strutturato» che da «struttura dati».
+```
+
+Python si comporta in un modo completamente diverso:
+nella sua forma più semplice, un ciclo for viene introdotto dall'idioma
+`for <variabile> in <struttura>:`, dove `<variabile>` è il nome scelto per la
+variabile di ciclo e `<struttura>` è il valore di un tipo di dati strutturato.
+Le righe di codice che compongono il corpo del ciclo vengono scritte subito
+dopo, aumentando il livello di indentazione. L'esecuzione del ciclo avviene nel
+modo seguente: tutti gli elementi contenuti in `<struttura>` vengono
+considerati separatamente, una e una sola volta, assegnandoli alla variabile
+del ciclo ed eseguendo il suo corpo. La differenza fondamentale rispetto al
+ciclo enumerativo classico è che in quest'ultimo la variabile di ciclo contiene
+di volta in volta un _indice_ da usare per ottenere l'elemento da
+elaborare[^foreach], per esempio estraendolo da un _array_, mentre in Python la
+variabile di ciclo contiene direttamente l'elemento in questione.
+
+````{prf:example}
+L'unico tipo di dati strutturato al quale ho accennato finora sono le stringhe:
+eseguire un ciclo for su una di esse equivale a considerare tutti i caratteri
+contenuti, dal primo all'ultimo:
+
+```{code-cell} ipython
+for c in 'Wasp':
+    print(c)
+```
+````
+
+Il nome per la variabile di ciclo viene generalmente scelto in modo da
+rispettare due requisiti: deve essere corto e deve ricordare il significato
+dei valori che saranno contenuti nella variabile. Nell'esempio precedente
+ho usato `c`, in quanto l'iterazione è fatta sui caratteri.
+
+Nonostante la sua semantica diversa, `for` in Python ricade a pieno titolo
+nella categoria dei cicli enumerativi: anche in questo caso, la variabile di
+ciclo assume i valori di una particolare sequenza, che sono poi i valori
+contenuti nella struttura sulla quale viene organizzata l'iterazione. La
+descrizione che ho dato di questa semantica, però, non specifica
+_in quale ordine_ vengono considerati i vari elementi, perché questo dipende
+fortemente dal particolare tipo di dati strutturato che si utilizza di volta
+in volta: in alcuni casi, come nell'esempio precedente, questo ordine è
+noto a priori, mentre in altri no.
+
+Le altre modalità di accesso comuni ai tipi di dati strutturati sono riassunte
+nel seguente elenco, e verranno dettagliate nei paragrafi che seguono.
+
+- La funzione `len` restituisce sempre il numero di elementi contenuti nella
+  struttura[^data-model]. Nel gergo informatico, ci si riferisce a questo
+  numero come alla sua _lunghezza_, anche nel caso in cui questa denominazione
+  possa risulta impropria (per esempio, si parla della _cardinalità_ di un
+  insieme e non della sua lunghezza).
+
+- È sempre disponibile un operatore di _accesso_ che permette di fare
+  riferimento a uno specifico elemento contenuto nella struttura. La sintassi
+  corrispondente dipende dal particolare tipo di dati, ma è comunque basata
+  sull'uso delle parentesi quadre, mutuata, estendendola, da quella
+  dall'analogo operatore che permette di estrarre le componenti in un _array_
+  nella maggior parte dei  linguaggi che mettono a disposizione questo tipo di
+  dato. Se la struttura è mutabile, l'accesso permetterà anche di modificarne
+  il contenuto, altrimenti sarà possibile solamente leggere il valore
+  corrispondente.
+
+- L'operatore `in` permette di verificare se una struttura contiene o meno un
+  dato elemento.
+
 
 (sec:stringhe)=
-## Stringhe e caratteri
+## Le stringhe
 
 ```{margin}
-A differenza di altri linguaggi, come per esempio il C, in Python non esiste
-un tipo di dato che corrisponda a un singolo carattere.
+A differenza di altri linguaggi, come per esempio C, in Python non esiste
+un tipo di dato che corrisponde a un singolo carattere.
 ```
-Le stringhe sono accessibili utilizzando gli oggetti della classe `str`, i
-cui letterali si costruiscono facendo precedere e seguire i caratteri della
+Le stringhe sono implementate come oggetti della classe `str`, i cui
+letterali si costruiscono facendo precedere e seguire i caratteri della
 stringa in questione da un delimitatore. Esistono tre tipi di delimitatori:
-
-- gli apici singoli,
-- gli apici doppi,
-- gli apici tripli.
-
-L'uso degli apici singoli (`'`) o doppi (`"`) ricalca la classica sintassi
-per indicare le stringhe nei linguaggi di programmazione più diffusi, con la
-differenza che in Python è possibile scegliere tra questi due diversi
-delimitatori: in altre parole, `'foo'` e `"foo"` identificano la stessa stringa.
-La presenza di due delimitatori diversi facilita la creazione di stringhe che
+gli apici singoli, doppi e tripli. L'uso degli apici singoli (`'`) o doppi
+(`"`) ricalca la classica sintassi per indicare le stringhe nei linguaggi di
+programmazione più diffusi, con la differenza che in Python è possibile
+scegliere tra due diversi delimitatori: in altre parole, `'Robin'` e `"Robin"`
+identificano la stessa stringa. Questo facilita la creazione di stringhe che
 devono contenere apici doppi o singoli, come nella cella seguente:
 
-```{margin}
-Volendo, apici singoli e doppi si possono comunque inserire in un letterale
-stringa usando la tecnica di _escaping_, cioè inserendoli, rispettivamente,
-con le sequenze `\'` e `\"`.
-```
+
 ```{code-cell} ipython3
 :tags: remove-output
 
-'Superman proviene da un pianeta chiamato "Krypton"'
-"L'altro nome di Superman è Kal-El"
+'Superman proviene da un pianeta chiamato "Krypton".'
+"L'altro nome di Superman è Kal-El."
+```
+```{margin}
+Volendo, apici singoli e doppi si possono comunque inserire in un letterale
+stringa usando la tecnica di _escaping_, utilizzando rispettivamente le
+sequenze `\'` e `\"`.
 ```
 
 È però necessario chiudere una stringa usando lo stesso tipo di delimitatore
 con il quale si è iniziato: sempre due apici singoli, o due doppi apici.
-
 Gli apici tripli permettono di definire delle stringhe che contengono più
 righe, senza dover inserire sequenze di _escape_ per i corrispondenti caratteri
 di «a capo». Per esempio, il letterale
@@ -83,8 +223,8 @@ di «a capo». Per esempio, il letterale
 :tags: remove-output
 
 '''Il primo fumetto che ha Storm come protagonista
-compare nel primo numero di "Giant-size X-men"
-ed è stato pubblicato nel 1977
+compare nel numero uno di "Giant-size X-men"
+ed è stato pubblicato nel 1977.
 '''
 ```
 
@@ -92,9 +232,69 @@ fa riferimento a una stringa di tre righe. I tre apici per delimitare le
 stringhe su più righe possono essere sia singoli che doppi. Anche in questo
 caso, è necessaria coerenza tra il delimitatore iniziale e quello finale.
 
-Oltre a operazioni analoghe a quelle delle tuple, il tipo `str` implementa anche metodi e operatori specifici per le stringhe. Anche in questo si rimanda alla [documentazione ufficiale](https://docs.python.org/3/library/stdtypes.html#string-methods).
+Abbiamo già visto che l'iterazione su di una stringa avviene carattere per
+carattere, nell'esatto ordine con cui questi appaiono. E non dovrebbe stupire
+nessuno il fatto che `len(s)` restituisca il numero di caratteri della stringa
+`s`, né che i letterali `''` e `""` denotino la stringa vuota (la cui
+lunghezza è uguale a zero).
 
-### Assegnamenti e stringhe formattate
+L'operatore di accesso richiede un po' più di dettaglio. Risulta naturale
+accedere in modo posizionale ai singoli caratteri di una stringa,
+specificandone la posizione, pertanto basta specificare dopo una variabile
+che la referenzia (ma ovviamente si potrebbe utilizzare anche un letterale)
+una coppia di parentesi quadre contenente la posizione, conteggiata a partire
+partire da `0`[^start-from-zero]. In altre parole, si può utilizzare
+l'operatore di accesso con la stessa semantica degli _array_. Ma in Python
+la sintassi è più estesa: se si specifica un valore negativo per la posizione,
+a questo viene automaticamente sommata la lunghezza della lista. Pertanto `-1`
+identifica l'ultimo elemento della lista, `-2` il penultimo e così via.
+
+È anche possibile indicare un intervallo di posizioni consecutive per
+riferirsi a una sottostringa: questa modalità, che prende il nome
+di _slicing_, si effettua indicando tra parentesi quadre la posizione del
+primo carattere da includere nella sottostringa, seguita da un carattere di due
+punti e dalla posizione del primo carattere da escludere[^substring]. Gli
+_slicing_ si possono fare anche usando due indici positivi, oppure due
+negativi, o ancora mischiando un indice positivo e uno negativo: la cosa
+importante è che la prima posizione preceda la seconda, altrimenti l'operazione
+restituisce la stringa vuota.
+```{margin}
+La sottostringa estratta partirà dal primo carattere della stringa ogni volta
+che nello slicing si omette la posizione iniziale, e procederà fino a fine
+stringa ogni volta che si omette la posizione finale.
+```
+
+In linea di principio, l'operatore `in` dovrebbe permettere di verificare
+se un carattere occorre da qualche parte in una stringa oppure no. In realtà
+questo comportamento si estende alle sottostringhe: `s in t` restituisce `True`
+quando la stringa `s` (che può contenere uno o più caratteri) è una
+sottostringa della stringa `t`, e `False` altrimenti.
+
+```{prf:example}
+TODO: esempio sulle stringhe.
+```
+
+
+Come già indicato precdentemente, in Python le stringhe sono immutabili, il
+che significa che non è possibile cambiarne i contenuti, per esempio
+rimpiazzando un carattere con un altro, oppure appendendo uno o più caratteri.
+Per effettuare operazioni di questo tipo è sempre necessario creare una nuova
+stringa che vada a rimpiazzare quella di partenza.
+
+Il tipo `str` implementa vari metodi e operatori specifici per le stringhe;
+in particolare vale la pena segnalare che:
+
+- l'operatore `+` concatena due stringhe,
+- l'esito della moltiplicazione tra una stringa `s` e un numero intero `i` è
+  una nuova stringa ottenuta concatenando `s` con se stessa per `i` volte;
+- `s.find(t)` restituisce la posizione a partire dalla quale la sottostringa
+  `t` è contenuta nella stringa `s`, se ciò accade, e `-1` negli altri casi.
+
+
+Per un elenco completo si può consultare la sezione relativa alle stringhe nella
+[documentazione ufficiale](https://docs.python.org/3/library/stdtypes.html#string-methods).
+
+### Stringhe raw e stringhe formattate
 
 (liste)=
 ## Le liste
@@ -259,7 +459,7 @@ L'operatore `del` permette invece di eliminare un elemento da una lista, indican
 del names[0]
 ```
 
-Va sottolineato che `del` è un operatore dal comportamento quantomeno particolare, in quanto esso non restituisce alcun valore; la sua esecuzione ha però l'_effetto collaterale_ di eliminare l'elemento nella posizione specificata della lista usata come operando [^data-model]. Come conseguenza di questo effetto collaterale, nell'esempio precedente viene eliminato il primo elemento della lista, così che quello che prima era il secondo elemento diventa ora il primo, e così via, come si può facilmente verificare:
+Va sottolineato che `del` è un operatore dal comportamento quantomeno particolare, in quanto esso non restituisce alcun valore; la sua esecuzione ha però l'_effetto collaterale_ di eliminare l'elemento nella posizione specificata della lista usata come operando [^del-behaviour]. Come conseguenza di questo effetto collaterale, nell'esempio precedente viene eliminato il primo elemento della lista, così che quello che prima era il secondo elemento diventa ora il primo, e così via, come si può facilmente verificare:
 
 ```{code-cell} ipython3
 names[0]
@@ -415,8 +615,77 @@ L'operatore `in` introdotto per le liste può anche essere utilizzato per i dizi
 
 Anche nel caso dei dizionari il linguaggio mette a disposizione una serie di funzioni specifiche, e si può fare riferimento alla [documentazione ufficiale](https://docs.python.org/3/tutorial/datastructures.html#dictionaries) di python per approfondire l'argomento.
 
+[^i]: Nel tempo si è consolidato l'uso dei nomi `i`, `j` e `k` per le variabili
+usate nei cicli enumerativi. C'è chi sostiene (ma è uno scherzo) che ciò sia un
+omaggio dovuto a [Edsger Dijkstra](wiki:Edsger_Dijkstra), uno dei pionieri
+dell'informatica, ma l'origine di questi nomi va fatta risalire a uno dei primi
+linguaggi di programmazione: il [Fortran](wiki:fortran), che utilizzava una
+dichiarazione di tipo _implicita_, nella quale la lettera iniziale nel nome di
+una variabile ne determinava anche il tipo, e il tipo era intero per le 
+variabili nelle quali questa iniziale era compresa tra I e N. Per brevità, e
+anche per ricordare la classica notazione usata in matematica per gli indici
+muti nelle sommatorie o nelle successioni, venivano quindi usate `I`, `J` e `K`
+come variabili di ciclo, e `N` o `M` per indicare eventualmente il valore
+finale di queste ultime (notate l'uso delle maiuscole: quando è stato
+introdotto il Fortran, si usavano solo quelle per scrivere il codice!). Questa
+convenzione viene ampiamente usata anche oggi: qualunque programmatore associa
+istintivamente nomi come `i` e `j` alle variabili di ciclo. È per questo che
+il loro uso è consigliato anche in Python, anche se vedremo che è relativamente
+rara la necessità di dover introdurre variabili di questo tipo.
 
-[^data-model]: I lettori attenti potrebbero avere notato un apparente incoerenza tra il modo in cui vengono valutate le espressioni e la semantica appena introdotta per l'operatore `del`. Consideriamo l'espressione `del names[0]` dell'esempio precedente: se questa fosse valutata in modo ususale, verrebbe innanzitutto valutato l'operando, dunque l'espressione `names[0]`. L'operatore `del` verrebbe quindi applicato al valore ottenuto, che nel nostro caso sarebbe la stringa `'Aquaman'`. Ora, l'istruzione `del 'Aquaman'` genererebbe un errore, perché `del` si può applicare solo a riferimenti e non a letterali. In realtà la valutazione di espressioni di questo tipo viene fatta in un modo diverso, perché `del names[0]` viene implicitamente convertita in un'altra espressione che equivale a invocare un particolare metodo dell'oggetto referenziato da `names`, passando il valore `0` come argomento. Senza addentrarsi in dettagli, è importante segnalare che Python è permeato da tecniche di questo tipo, che permettono tra l'altro di estendere l'uso della sintassi per i tipi _builtin_ anche a oggetti di classi definite dagli sviluppatori. Chi volesse approfondire questo spetto può studiare il cosiddeto [data model](https://docs.python.org/3/reference/datamodel.html) di Python (sebbene sarebbe prima importante imparare come definire e utilizzare nuove classi).
+[^for-caveats]: In realtà è possibile modificare dinamicamente il numero di
+iterazioni in un ciclo enumerativo, sia forzandone l'uscita anticipata, sia
+modificando alcune informazioni contestuali, come il valore della varaibile di
+ciclo nei linguaggi come C o Java, o la modifica del dato strutturato sul quale
+si esegue l'iterazione in Python.  Quest'ultima pratica è però decisamente
+sconsigliata, perché complica la comprensione del codice ed è normalmente
+rimpiazzabile con degli idiomi di programmazione più eleganti, come la sopra
+menzionata uscita anticipata.
+
+[^foreach]: Per completezza di informazione, molti altri linguaggi di
+programmazione affiancano al ciclo enumerativo (inteso in senso classico) una
+struttura di controllo con la semantica analoga a quella di `for` in Python,
+usando parole chiave dedicate come `foreach` o `forall`, oppure introducendo
+una sintassi alternativa.
+
+[^data-model]: Se avete già studiato un linguaggio di programmazione orientato
+agli oggetti, vi starete probabilmente chiedendo perché la lunghezza di una
+struttura non si ottenga invocando un metodo su di essa. Questo è in effetti
+quello che succede dietro le quinte: tutte le occorrenze di `len(o)` vengono
+automaticamente convertite nell'invocazione `o.__len__()`, dove `__len__` è
+un metodo implementato in tutti i tipi strutturati (il doppio _underscore_
+all'inizio e alla fine del nome del metodo sancisce il fatto che quest'ultimo è
+per certi versi speciale, ed è alla base della regola di stile che richiede di
+non usare `_` all'inizio e alla fine degli identificatori). Questo permette
+agli sviluppatori di scrivere nuove classi i cui oggetti possono essere usati
+in modo trasparente come argomenti di `len`. Procedendo in modo analogo si
+riesce ad agire praticamente su tutti gli aspetti del linguaggio, costruendo
+delle classi i cui oggetti possono venire usati come operandi in espressioni
+matematiche, o che possono essere invocati come delle funzioni, o ancora che
+supportano l'equivalente degli operatori di accesso. L'idea di base è quella
+di usare sempre la stessa sintassi per effettuare una particolare azione,
+indipendentemente dallo specifico tipo di dato che viene elaborato (ricordate
+uno dei principi esposti nello zen di Python: «There should be one&mdash;and
+preferably only one&mdash;obvious way to do it»). Il cosiddetto
+[Python data model](https://docs.python.org/3/reference/datamodel.html)
+formalizza in modo dettagliato la corrispondenza tra i vari componenti del
+linguaggio e i metodi che le classi devono implementare. Un
+buon punto di partenza per studiare il Python data model è il primo capitolo
+di {cite:p}`ramalho`, sebbene sarebbe prima importante imparare come si
+definisce una nuova classe.
+
+[^start-from-zero]: Gli informatici iniziano a contare da zero. Se aveste
+qualche dubbio sull'utilità di questa pratica, un breve ma particolarmente
+efficace
+[manoscritto](https://www.cs.utexas.edu/~EWD/ewd08xx/EWD831.PDF) di Edsger
+Dijkstra (vedi anche la precedente nota[^i]) descrive i suoi vantaggi.
+
+[^substring]: Dover specificare la posizione del primo carattere da
+escludere sembra controintuitivo rispetto a indicare la posizione dell'ultimo
+carattere nella sottostringa. In realtà in questo modo risulta più facile
+scrivere codice che elabora porzioni successive in una stringa.
+
+[^del-behaviour]: I lettori attenti potrebbero avere notato un apparente incoerenza tra il modo in cui vengono valutate le espressioni e la semantica appena introdotta per l'operatore `del`. Consideriamo l'espressione `del names[0]` dell'esempio precedente: se questa fosse valutata in modo ususale, verrebbe innanzitutto valutato l'operando, dunque l'espressione `names[0]`. L'operatore `del` verrebbe quindi applicato al valore ottenuto, che nel nostro caso sarebbe la stringa `'Aquaman'`. Ora, l'istruzione `del 'Aquaman'` genererebbe un errore, perché `del` si può applicare solo a riferimenti e non a letterali. In realtà la valutazione di espressioni di questo tipo viene fatta in un modo diverso, perché `del names[0]` viene implicitamente convertita in un'altra espressione che equivale a invocare un particolare metodo dell'oggetto referenziato da `names`, passando il valore `0` come argomento. 
 
 [^sorted]: In realtà è disponibile anche la funzione `sorted`, che non modifica l'argomento e restituisce una nuova lista.
 

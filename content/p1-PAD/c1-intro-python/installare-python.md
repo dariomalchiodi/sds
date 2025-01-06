@@ -715,11 +715,11 @@ un'approssimazione di $\pi$ e la funzione `factorial` che restituisce il
 fattoriale di un intero. Questi due elementi possono essere _importati_ in
 modo da utilizzarli nel codice, esattamente come se li avessimo definiti noi,
 usando la sintassi `from <module> import <name>`:
-
 ```{margin}
 Va notato come sia possibile usare `import` per importare più elementi da un
 medesimo modulo utilizzando una sola istruzione.
 ```
+
 ```{code-cell} ipython3
 from math import factorial, pi
 
@@ -745,6 +745,37 @@ print(math.factorial(10))
 In casi come questo, se due moduli `m1` e `m2` dovessero entrambi contenere un
 elemento `e`, non può avvenire alcun adombramento, perché per riferirsi ad
 esso si utilizzerebbero le denominazioni differenti `m1.e` e `m2.e`.
+
+Indicare il nome di un modulo per poter accedere ai suoi elementi ha spesso
+l'effetto di allungare il codice, diminuendone al contempo la leggibilità. È
+per questo motivo che è possibile importare un modulo specificando un nome
+alternativo, più corto detto _alias_, usando la sintassi
+`import <modulo> as <alias>`. Userò questo approccio per le librerie sulle
+quali mi appoggerò ampiamente nel resto del libro, che sono
+[numpy](http://www.numpy.org), [pandas](http://pandas.pydata.org) e
+[matplotlib](http://matplotlib.org), che permettono di lavorare rispettivamente
+con gli _array_, i _dataset_ e i grafici. Farò sempre l'importazione nel modo
+seguente:
+
+```{code-cell} ipython3
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+```
+```{margin}
+Come si vede nella terza riga di questa cella, alcuni moduli (come matplotlib)
+sono organizzati in strutture gerarchiche chiamate _package_, in modo non
+dissimile a quanto avviene per esempio in Java.
+```
+
+```{admonition} Nomenclatura
+:class: naming
+Questo modo di importare numpy, pandas e il modulo `pyplot` di matplotlib
+usando gli _alias_ `np`, `pd` e `plt` fa riferimento a una convenzione
+universalmente accettata tra gli sviluppatori. Vale la pena mantenre sempre
+questa convenzione, così che chi legge il codice possa capire a colpo d'occhio
+a quale modulo si fa riferimento.
+```
 
 ### Errori ed eccezioni
 Python gestisce le situazioni di errore emettendo delle _eccezioni_ in modo

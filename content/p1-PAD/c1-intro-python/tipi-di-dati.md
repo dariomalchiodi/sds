@@ -202,6 +202,7 @@ invocare i metodi `fly` e `run`, questo è in tutto e per tutto equivalente a un
 oggetto della classe `Superhero`, e lo si potrà utilizzare in tutti i contesti
 pensati per tale classe[^duck-typing].
 
+(sec:regole-di-stile)=
 ```{admonition} Approfondimento: identificatori e regole di stile
 Il termine _identificatore_ indica il nome scelto per riferirsi in modo univoco
 a specifiche entità in un programma, come variabili, variabili di istanza,
@@ -308,6 +309,7 @@ argomenti si può fare riferimento alla
 documentazione ufficiale di Python o alla parte IV in {cite:p}`ramalho`.
 ```
 
+(sec:tipi-semplici-e-strutturati)=
 ## Tipi semplici e strutturati
 
 Semplificando un po' il discorso, possiamo suddividere i tipi di dati che
@@ -337,8 +339,8 @@ tipo semplice, ma anche annoverate tra i tipi strutturati, essendo esse
 costituite da una sequenza di caratteri. Per decidere se un tipo di dato è
 semplice oppure strutturato, io mi baserò sul seguente criterio: un dato è
 di tipo strutturato se Python permette di _iterare_ nativamente sui suoi
-elementi usando l'idioma `for` (vedi Paragrafo @iterare-su-strutture); in tutti
-gli altri casi, considererò il tipo di dato come semplice.
+elementi usando l'idioma `for` (vedi Paragrafo @sec:iterare); in
+tutti gli altri casi, considererò il tipo di dato come semplice.
 
 
 ## Esercizi
