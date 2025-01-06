@@ -345,17 +345,19 @@ molti linguaggi di programmazione moderni. Gli ultimi tre operatori
 corrispondono ai classici connettivi logici, dunque anche i loro operandi sono
 valori di verità. Va notato che questi connettivi presentano una sintassi che
 utilizza i termini `and`, `or` e `not` (dunque in modo esplicito rispetto alla
-sintassi di linguaggi come Java o C, che usano invece i simboli &&, || e !).
-I connettivi logici vengono valutati sfruttando il meccanismo del corto
-circuito: il secondo operando di `and` e `or` viene valutato solo quando il
+sintassi di linguaggi come Java o C, che usano invece i simboli `&&`, `||` e
+`!`). I connettivi logici vengono valutati sfruttando il meccanismo del _corto
+circuito_: il secondo operando di `and` e `or` viene valutato solo quando il
 primo operando è stato valutato, rispettivamente, come `True` e `False`. Negli
 altri casi, l'operatore restituisce il valore del primo operando.
 ```{margin}
-Rimangono invece invariati i simboli `&`, `|` e `!` per riferirsi agli
-operatori binari che vengono applicati «bit per bit» in un numero o «componente
-per componente» in una struttura dati. Nel Capitolo [Pandas](pandas) vedremo
-come questi operatori risultano particolarmente utili da utilizzare per
-elaborare un _dataset_.
+Rimangono invece invariati i simboli `&` e `|` per riferirsi agli operatori
+di congiunzione e disgiunzione che vengono applicati alle singole componenti
+dei loro operandi, per esempio su ogni bit in un intero o «componente per
+componente» in una struttura dati, come un _array_. A questi si aggiunge
+l'operatore unario `~` per l'analoga negazione. Nel Capitolo [Pandas](pandas)
+vedremo che, in alcune situazioni, questi operatori risultano particolarmente
+utili da utilizzare per elaborare un _dataset_.
 ```
 
 ```{table} Elenco dei principali operatori logici
@@ -477,11 +479,23 @@ valutate da destra verso sinistra.
 Chiaramente, può capitare di voler valutare un'espressione seguendo un ordine
 che non è quello previsto dalle regole di precedenza. Come negli altri
 linguaggi, In casi come questi si utilizzano le parentesi tonde per delimitare
-le parti dell'espressione che vanno valutate per prime.  La @regole-precedenza
-fa riferimento solo agli operatori che abbiamo visto fino a questo momento (per
-la precisione, mancano quelli che operano componente per componente, ai quali
-ho solamente accennato). Per una lista completa, come sempre, il punto migliore
-al quale fare riferimento è la
+le parti dell'espressione che vanno valutate per prime. L'uso delle parentesi
+è comunque consigliato anche quando non strettamente necessario, se questo
+contribuisce ad aumentare la leggibilità del codice (cosa che tipicamente
+avviene per le espressioni non particolarmente semplici). Sempre al fine di
+produrre codice facile da leggere, è consigliabile anche inserire gli spazi
+tra operandi e operatori in un modo ragionato e coerente. La
+[Style Guide for Python Code](https://www.python.org/dev/peps/pep-0008/)
+(introdotta nel Paragrafo @sec:regole-di-stile) contiene un
+[paragrafo](https://peps.python.org/pep-0008/#whitespace-in-expressions-and-statements)
+dedicato proprio a questo argomento, e io mi atterrò alle indicazioni ivi
+contenute.
+
+Infine, vale la pena ricordare che la @regole-precedenza fa riferimento solo
+agli operatori che abbiamo visto fino a questo momento (per la precisione,
+mancano quelli che operano componente per componente, ai quali ho solamente
+accennato). Per una lista completa, come sempre, il punto migliore al quale
+fare riferimento è la
 [documentazione ufficiale](https://docs.python.org/3/reference/expressions.html#operator-precedence).
 Notate che questa fonte riporta le parentesi tonde come un particolare
 operatore che ha precedenza su tutto il resto.
