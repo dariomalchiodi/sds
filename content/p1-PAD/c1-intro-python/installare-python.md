@@ -635,6 +635,11 @@ else:
   print('È minorenne.')
 ```
 
+```{margin}
+L'indentazione può essere in teoria fatta usando un numero arbitrario di spazi
+o di tabulazioni, senza utilizzarli simultaneamente e mantenendo la scelta
+effettuata. È però consigliato l'uso dei soli spazi.
+```
 La selezione è dunque fatta utilizzando l'istruzione `if`, che deve essere
 seguita da una condizione booleana, terminata a sua volta da un carattere di
 due punti (`:`). Il corpo di istruzioni che viene eseguito se la condizione è
