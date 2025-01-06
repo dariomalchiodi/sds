@@ -164,3 +164,4 @@ cython_debug/
 _build/
 node_modules/
 package*.json
+content/scratchpad.ipynb

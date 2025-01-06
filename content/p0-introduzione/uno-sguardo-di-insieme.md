@@ -483,8 +483,9 @@ introdotte in modo relativamente informale.
 Prima però di iniziare con la statistica descrittiva, è importante rivedere
 alcuni concetti fondamentali di programmazione degli elaboratori, e
 soprattutto prendere dimestichezza con gli strumenti computazionali che
-userò in tutto il libro. È questo lo scopo dei capitoli [Elaborare i dati con
-Python](#cap:python) e [Pandas](#cap:pandas), che aprono la trattazione.
+userò in tutto il libro. È questo lo scopo dei capitoli
+[Elaborare i dati con Python](introduzione-a-python) e [Pandas](pandas), che
+aprono la trattazione.
 
 ### Esercizi
 

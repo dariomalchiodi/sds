@@ -14,7 +14,7 @@ kernelspec:
 numbering:
   heading: true
   heading_1: true
-  heading_2: true
+  heading_2: false
 
   figure:
     template: Figura 1.%s
@@ -105,6 +105,7 @@ venuti a conoscenza della mia idea di scrivere un libro, e per motivi uguali
 inevitabilmente sto dimenticando, voglio esprimere la mia riconoscenza per il
 supporto che hanno saputo darmi.
 
+(sec:imparare-e-programmare)=
 ## Imparare \*e\* programmare
 
 Come descritto nel paragrafo precedente, introdurrò i concetti affiancandoli
@@ -122,7 +123,7 @@ farò riferimento al livello di conoscenza di programmazione che si apprende al
 primo anno nelle stesse lauree, o in lauree di aree affini.
 ```
 
-Il Capitolo [Elaborare i dati con Python](#cap:python) contiene una
+Il Capitolo [Elaborare i dati con Python](introduzione-a-python) contiene una
 descrizione a livello medio-alto delle funzionalità di Python che sono
 utilizzate, e può essere utilizzato per mettersi in pari da chi sa già
 programmare, ma non conosce questo linguaggio. Una lettura di questo capitolo è
@@ -333,7 +334,7 @@ formule matematiche.
 ```{table} Notazione utilizzata nel testo per le formule matematiche.
 :name: tab-notazione
 :align: center
-:tags: [full-width]
+:class: [full-width]
 
 |  Simbolo                      | Significato |
 |:------------------------------|:------------|

@@ -18,7 +18,7 @@ numbering:
 title: 2.2. Dati strutturati
 ---
 
-(cap:dati-strutturati)=
+(sec:dati-strutturati)=
 
 I tipi di dati strutturati, o più brevemente _strutture dati,_ permettono di
 aggregare più valori. Python supporta nativamente i seguenti tipi strutturati:
@@ -37,6 +37,64 @@ propria. Nel resto di questo paragrafo, senza pretesa di essere esaustivi,
 descrive le modalità di accesso e le operazioni principali per i tipi
 strutturati sopra elencati e fornisce dei puntatori alla documentazione
 ufficiale per chi volesse approfondire alcuni argomenti.
+
+(sec:stringhe)=
+## Stringhe e caratteri
+
+```{margin}
+A differenza di altri linguaggi, come per esempio il C, in Python non esiste
+un tipo di dato che corrisponda a un singolo carattere.
+```
+Le stringhe sono accessibili utilizzando gli oggetti della classe `str`, i
+cui letterali si costruiscono facendo precedere e seguire i caratteri della
+stringa in questione da un delimitatore. Esistono tre tipi di delimitatori:
+
+- gli apici singoli,
+- gli apici doppi,
+- gli apici tripli.
+
+L'uso degli apici singoli (`'`) o doppi (`"`) ricalca la classica sintassi
+per indicare le stringhe nei linguaggi di programmazione più diffusi, con la
+differenza che in Python è possibile scegliere tra questi due diversi
+delimitatori: in altre parole, `'foo'` e `"foo"` identificano la stessa stringa.
+La presenza di due delimitatori diversi facilita la creazione di stringhe che
+devono contenere apici doppi o singoli, come nella cella seguente:
+
+```{margin}
+Volendo, apici singoli e doppi si possono comunque inserire in un letterale
+stringa usando la tecnica di _escaping_, cioè inserendoli, rispettivamente,
+con le sequenze `\'` e `\"`.
+```
+```{code-cell} ipython3
+:tags: remove-output
+
+'Superman proviene da un pianeta chiamato "Krypton"'
+"L'altro nome di Superman è Kal-El"
+```
+
+È però necessario chiudere una stringa usando lo stesso tipo di delimitatore
+con il quale si è iniziato: sempre due apici singoli, o due doppi apici.
+
+Gli apici tripli permettono di definire delle stringhe che contengono più
+righe, senza dover inserire sequenze di _escape_ per i corrispondenti caratteri
+di «a capo». Per esempio, il letterale
+
+```{code-cell} ipython3
+:tags: remove-output
+
+'''Il primo fumetto che ha Storm come protagonista
+compare nel primo numero di "Giant-size X-men"
+ed è stato pubblicato nel 1977
+'''
+```
+
+fa riferimento a una stringa di tre righe. I tre apici per delimitare le
+stringhe su più righe possono essere sia singoli che doppi. Anche in questo
+caso, è necessaria coerenza tra il delimitatore iniziale e quello finale.
+
+Oltre a operazioni analoghe a quelle delle tuple, il tipo `str` implementa anche metodi e operatori specifici per le stringhe. Anche in questo si rimanda alla [documentazione ufficiale](https://docs.python.org/3/library/stdtypes.html#string-methods).
+
+### Assegnamenti e stringhe formattate
 
 (liste)=
 ## Le liste
@@ -271,7 +329,7 @@ names.sort(key=lambda n:len(n), reverse=True)
 riordina le stringhe contenute in `names` dalla più lunga alla più corta. Va anche notato che essendo gli argomenti opzionali univocamente individuati dal loro nome, non è necessario specificarli seguendo un ordine prefissato: pertanto si potrebbero scambiare le posizioni di `key` e `reverse` nell'invocazione precedente senza modificare la semantica dell'istruzione.
 
 
-
+(sec:tuple)=
 ## Le tuple
 
 ```{margin}
@@ -317,28 +375,6 @@ Una tupla può essere utilizzata facendo ri ferimento agli stessi operatori e al
 
 L'immutabilità delle tuple le rende da preferire rispetto alle liste in tutti i casi in cui si vuole impedire che dei dati vengano modificati, per esempio a causa di un bug; inoltre la loro elaborazione è in molti casi più efficiente di quella delle liste.
 
-(stringhe)=
-## Le stringhe
-
-Da un punto di vista strettamente funzionale, le stringhe sono assimilabili in Python a delle tuple di caratteri specializzate. Su di esse è infatti possibile eseguire tutte le operazioni che si eseguono sulle tuple, per esempio estraendo un carattere o una sottostringa rispettivamente attraverso l'accesso posizionale o il _list slicing:_
-
-```{code-cell} ipython3
-name = rogue[1]
-name[3]
-```
-
-Si verifica facilmente come l'analogia sia da fare rispetto a tuple e non a liste, in quanto i contenuti di una stringa non sono modificabili:
-
-```{code-cell} ipython3
-try:
-    name[3] = 'A'
-except TypeError:
-    print('Non si possono modificare i contenuti di una stringa')
-```
-
-Oltre a operazioni analoghe a quelle delle tuple, il tipo `str` implementa anche metodi e operatori specifici per le stringhe. Anche in questo si rimanda alla [documentazione ufficiale](https://docs.python.org/3/library/stdtypes.html#string-methods).
-
-+++
 
 ## Gli insiemi
 Python implementa direttamente un tipo di dato per gli insiemi, intesi come collezione finita di elementi tra loro distinguibili e non memorizzati in un ordine particolare. A differenza delle liste e delle tuple, gli elementi non sono quindi associati a una posizione e non è possibile che un insieme contenga più di un'istanza di un medesimo elemento. La descrizione di questo tipo di dato è posticipata al Paragrafo @insiemi-in-python, dopo avere richiamato le proprietà matematiche di base degli insiemi.

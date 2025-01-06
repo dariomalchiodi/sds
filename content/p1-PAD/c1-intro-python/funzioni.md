@@ -59,7 +59,7 @@ years = [1941, 1962, None, None, 1941,
 get_sorted_counts(years)
 ```
 
-(funzioni-anonime)=
+(sec:funzioni-anonime)=
 ## Funzioni anonime
 
 Un'altra caratteristica di python è quella di poter specificare una funzione
