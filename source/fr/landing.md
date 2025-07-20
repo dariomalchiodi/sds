@@ -1,90 +1,79 @@
-
 ![SDS logo](../_static/img/logo.png)
 
 # Superhero Data Science
-## Analyse des données, calcul des probabilités et statistique
+## Analyse de données, calcul de probabilités et statistique
 
 ### Avertissement
 
-Ce livre représente un projet en cours, actuellement dans une phase
-préliminaire. Par conséquent, je déconseille d'utiliser les informations
-rapportées ici comme base principale pour établir l'étude des techniques
-d'analyse des données, du calcul des probabilités ou de la statistique.
+Ce livre est un travail en cours, actuellement dans une phase préliminaire. Le
+contenu est généré à l'aide de [Sphinx](https://www.sphinx-doc.org/en/master/)
+pour la génération des pages web, de [MyST](https://mystmd.org/) (une
+technologie en développement au sein du projet
+[Executable Books](https://github.com/executablebooks)) pour décrire le
+contenu, et d’un logiciel personnalisé que j’ai développé spécifiquement
+pour mettre en œuvre certains aspects importants liés à la rédaction d’un
+livre, comme la personnalisation des références croisées, l’exécution
+automatique de code ou encore les composants interactifs, qui ne sont pas
+suffisamment pris en charge par les technologies mentionnées ci-dessus.
 
-En ce qui concerne les aspects techniques, le matériel est généré en utilisant
-[Sphinx](https://www.sphinx-doc.org/en/master/)
-[MyST](https://mystmd.org/), une technologie en cours de développement au sein
-du projet [Executable Books](https://github.com/executablebooks) qui pour le
-moment (d'après ce que j'ai pu comprendre en étudiant la documentation)
-n'implémente pas de manière adéquate certains aspects importants liés à
-l'écriture d'un livre.
+Je ne recommande pas d’utiliser les informations présentées ici comme base
+principale pour l’étude des techniques d’analyse de données, de la théorie des
+probabilités ou de la statistique. L’état actuel du contenu est résumé dans la
+liste suivante.
 
-Dans certains cas, j'ai trouvé des solutions, qui souvent ne résolvent pas
-complètement la situation et qui surtout sont basées sur des raccourcis peu
-élégants. Je serai reconnaissant à celui qui, connaissant mieux que moi les
-technologies que j'ai utilisées, pourra me faire savoir comment améliorer la
-version actuelle de cette œuvre. À cette fin, je demande de suivre les lignes
-directrices indiquées dans la section appropriée du
-[repository](https://github.com/dariomalchiodi/sds/blob/main/CONTRIBUTING.md)
-associé au livre.
+Introduction  
+: En révision
 
-Da un punto di vista dei contenuti, l'attuale stato è riepilogato nella
-lista che segue.
+Traitement des données avec Python  
+: En révision
 
-Introduzione
-: In corso di revisione
+Pandas  
+: En cours de structuration
 
-Elaborare i dati con python
-: In corso di revisione
+Données et information  
+: En cours de structuration
 
-Pandas
-: In fase di strutturazione
+Utilisation de l'information  
+: En cours de structuration
 
-Dati e informazione
-: In fase di strutturazione
+Mesure de l'information  
+: En cours de structuration
 
-Utilizzare l’informazione
-: In fase di strutturazione
+Visualisation de l'information  
+: En cours de structuration
 
-Misurare l’informazione
-: In fase di strutturazione
+Analyse des relations entre les données  
+: En cours de structuration
 
-Visualizzare l’informazione
-: In fase di strutturazione
+Combinatoire  
+: En cours de structuration
 
-Analizzare le relazioni tra i dati
-: In fase di strutturazione
+Théorie des ensembles  
+: En cours de structuration
 
-Calcolo combinatorio
-: In fase di strutturazione
+Théorie des probabilités  
+: En cours de structuration
 
-Teoria degli insiemi
-: In fase di strutturazione
+Variables aléatoires  
+: En cours de structuration
 
-Calcolo delle probabilità
-: In fase di strutturazione
+Modèles discrets  
+: En cours de structuration
 
-Variabili aleatorie
-: In fase di strutturazione
+Modèles continus  
+: En cours de structuration
 
-Modelli discreti
-: In fase di strutturazione
+Statistique inférentielle  
+: En cours de structuration
 
-Modelli continui
-: In fase di strutturazione
+Estimations ponctuelles  
+: En cours de structuration
 
-Statistica inferenziale
-: In fase di strutturazione
+Estimations par intervalle  
+: En cours de structuration
 
-Stime puntuali
-: In fase di strutturazione
+Introduction à la statistique non paramétrique  
+: En cours de structuration
 
-Stime per intervalli
-: In fase di strutturazione
-
-Accenni alla statistica non parametrica
-: In fase di strutturazione
-
-Formule notevoli
-: In fase di strutturazione
-
+Formules notables  
+: En cours de structuration
