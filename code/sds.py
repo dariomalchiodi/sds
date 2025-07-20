@@ -708,7 +708,7 @@ if not hasattr(__builtins__, '_heroes_csv_ready') or not getattr(__builtins__, '
             console.log("Loading heroes.csv dataset into data/ directory...")
             
             # Fetch the CSV content from GitHub
-            response = await fetch("https://raw.githubusercontent.com/dariomalchiodi/sds/main/content/data/heroes.csv")
+            response = await fetch("https://raw.githubusercontent.com/dariomalchiodi/sds/main/data/heroes.csv")
             
             if response.ok:
                 csv_content = await response.text()
