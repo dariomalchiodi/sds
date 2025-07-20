@@ -692,22 +692,14 @@ if not hasattr(__builtins__, '_heroes_csv_ready') or not getattr(__builtins__, '
     import os
     
     async def _ensure_heroes_csv():
-        """Ensure heroes.csv is available in data/ directory, download if necessary"""
+        """Ensure heroes.csv is available in data/ directory, always download fresh version"""
         try:
             # Create data directory if it doesn't exist
             os.makedirs("data", exist_ok=True)
             
-            # Check if file already exists
-            try:
-                with open("data/heroes.csv", "r") as f:
-                    console.log("data/heroes.csv already available")
-                    return True
-            except FileNotFoundError:
-                pass
-            
             console.log("Loading heroes.csv dataset into data/ directory...")
             
-            # Fetch the CSV content from GitHub
+            # Always fetch fresh CSV content from GitHub to ensure latest version
             response = await fetch("https://raw.githubusercontent.com/dariomalchiodi/sds/main/data/heroes.csv")
             
             if response.ok:

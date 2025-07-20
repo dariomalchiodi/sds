@@ -214,7 +214,7 @@ import pyodide_http
 pyodide_http.patch_all()
 
 source = 'https://raw.githubusercontent.com/dariomalchiodi/' + \
-         'sds/main/content/data/heroes.csv'
+         'sds/main/data/heroes.csv'
 
 heroes = pd.read_csv(source, index_col=0)
 data = heroes.weight[heroes.weight < 200]
@@ -425,7 +425,7 @@ import pyodide_http
 pyodide_http.patch_all()
 
 source = 'https://raw.githubusercontent.com/dariomalchiodi/' + \
-         'sds/main/content/data/heroes.csv'
+         'sds/main/data/heroes.csv'
 heroes = pd.read_csv(source, index_col=0)
 
 data = heroes.weight[heroes.weight < 200]
