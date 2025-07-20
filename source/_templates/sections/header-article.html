@@ -14,23 +14,31 @@
         <a class="nav-link dropdown-toggle" href="#" id="languageDropdown"
            role="button" data-bs-toggle="dropdown" aria-expanded="false">
           {% if language == "en" %}
-            <img src="/it/_static/img/en.svg" class="flag" />
+            <img src="{{ pathto('_static/img/en.svg', 1) }}" class="flag" />
             English
           {% elif language == "it" %}
-            <img src="/it/_static/img/it.svg" class="flag" />
+            <img src="{{ pathto('_static/img/it.svg', 1) }}" class="flag" />
             Italiano
+          {% elif language == "fr" %}
+            <img src="{{ pathto('_static/img/fr.svg', 1) }}" class="flag" />
+            Français
           {% endif %}
         </a>
         <ul class="dropdown-menu dropdown-menu-end"
             aria-labelledby="languageDropdown">
           <li>
-            <a class="dropdown-item" href="/en/{{ pagename }}">
-              <img src="/it/_static/img/en.svg" class="flag" />English
+            <a class="dropdown-item" href="/en/{{ pagename }}.html">
+              <img src="{{ pathto('_static/img/en.svg', 1) }}" class="flag" />English
             </a>
           </li>
           <li>
-            <a class="dropdown-item" href="/it/{{ pagename }}">
-              <img src="/it/_static/img/it.svg" class="flag" />Italiano
+            <a class="dropdown-item" href="/it/{{ pagename }}.html">
+              <img src="{{ pathto('_static/img/it.svg', 1) }}" class="flag" />Italiano
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="/fr/{{ pagename }}.html">
+              <img src="{{ pathto('_static/img/fr.svg', 1) }}" class="flag" />Français
             </a>
           </li>
         </ul>

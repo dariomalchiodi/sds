@@ -24,3 +24,47 @@ msgstr "Aller au contenu principal"
 #: ../../source/_templates/layout.html:90
 msgid "Back to top"
 msgstr "Retour au début"
+
+# Custom translations for chapter/section references
+msgid "Capitolo"
+msgstr "Chapitre"
+
+msgid "Chapter"
+msgstr "Chapitre"
+
+msgid "Sezione"
+msgstr "Section"
+
+msgid "Section"
+msgstr "Section"
+
+msgid "Paragrafo"
+msgstr "Paragraphe"
+
+msgid "Paragraph"
+msgstr "Paragraphe"
+
+# Additional common terms
+msgid "Figura"
+msgstr "Figure"
+
+msgid "Figure"
+msgstr "Figure"
+
+msgid "Tabella"
+msgstr "Tableau"
+
+msgid "Table"
+msgstr "Tableau"
+
+msgid "Esempio"
+msgstr "Exemple"
+
+msgid "Example"
+msgstr "Exemple"
+
+msgid "Esercizio"
+msgstr "Exercice"
+
+msgid "Exercise"
+msgstr "Exercice"
