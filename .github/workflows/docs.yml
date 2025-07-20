@@ -9,6 +9,7 @@ on:
       - 'code/**'
       - 'Makefile'
       - 'requirements.txt'
+      - '.github/**'
   pull_request:
     branches: [main]
 
