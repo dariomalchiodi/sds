@@ -1,0 +1,38 @@
+format: jb-book
+root: landing
+
+parts:
+  - caption: Introduction
+    chapters:
+      - file: P0/presentazione
+      - file: P0/approccio
+        sections:
+        - file: P0/ringraziamenti
+        - file: P0/imparare-e-programmare
+        - file: P0/convenzioni
+        - file: P0/notazione
+        - file: P0/utilizzo-in-insegnamento
+      - file: P0/uno-sguardo-di-insieme
+  - caption: Programmation pour l'analyse des données
+    chapters:
+      - file: P1-PAD/presentazione
+      - file: P1-PAD/c1-intro-python/introduzione-a-python
+        sections:
+        - file: P1-PAD/c1-intro-python/installare-python
+        - file: P1-PAD/c1-intro-python/tipi-di-dati
+        - file: P1-PAD/c1-intro-python/dati-semplici
+        - file: P1-PAD/c1-intro-python/dati-strutturati
+        - file: P1-PAD/c1-intro-python/strutture-di-controllo
+        - file: P1-PAD/c1-intro-python/funzioni
+        - file: P1-PAD/c1-intro-python/importare-moduli
+        - file: P1-PAD/c1-intro-python/disegnare-grafici
+        - file: P1-PAD/c1-intro-python/leggere-file
+      - file: P1-PAD/c2-pandas/pandas
+
+
+  - caption: Appendici
+    chapters:
+    - file: references
+
+
+

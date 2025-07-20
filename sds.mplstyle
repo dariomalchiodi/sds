@@ -1,0 +1,82 @@
+# SDS Custom Matplotlib Style
+# This file should be placed in matplotlib's style directory or the current working directory
+# File: sds.mplstyle
+
+# Axes settings
+axes.axisbelow: True
+axes.facecolor: #eaf3f5
+axes.edgecolor: black
+axes.linewidth: 1.0
+axes.grid: True
+axes.grid.axis: both
+axes.labelsize: 10
+axes.labelpad: 10
+axes.spines.top: False
+axes.spines.right: False
+axes.titlesize: 12
+
+# Boxplots settings
+boxplot.boxprops.color: C0
+boxplot.whiskerprops.color: C0
+boxplot.medianprops.linewidth: 2
+boxplot.medianprops.color: C1
+
+# Figure settings
+figure.dpi: 100
+figure.edgecolor: none
+figure.facecolor : #eaf3f5
+figure.figsize: 4, 3.2
+
+# Grid settings
+grid.color: lightgray
+grid.linestyle: -
+grid.linewidth: 0.5
+grid.alpha: 0.7
+
+# Line settings
+lines.color: C4
+lines.linewidth: 2.0
+lines.markersize: 8
+
+# Font settings
+font.size: 12
+font.family: sans-serif
+axes.titlesize: 14
+axes.labelsize: 12
+xtick.labelsize: 10
+ytick.labelsize: 10
+legend.fontsize: 11
+
+# Legend
+legend.frameon: True
+legend.framealpha: 0.8
+legend.fancybox: True
+legend.shadow: False
+
+# Mathtext settings
+mathtext.fontset: stix
+mathtext.rm: stix
+mathtext.it: stix
+
+# Patch settings
+patch.facecolor: 'xkcd:baby blue'
+patch.edgecolor: 'xkcd:blue gray'
+patch.force_edgecolor: True
+
+# Text settings
+text.usetex: False
+
+# Savefig settings
+savefig.dpi: 100
+savefig.bbox: tight
+savefig.facecolor: #eaf3f5
+savefig.edgecolor: none
+
+# Ticks
+xtick.direction: inout
+ytick.direction: inout
+xtick.major.size: 4
+ytick.major.size: 4
+xtick.minor.size: 2
+ytick.minor.size: 2
+

@@ -1,0 +1,456 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Lora&display=swap');
+
+:root {
+  --serif-font: 'Lora', serif;
+  --sans-serif-font: 'Oswald', sans;
+  --tt-font: 'Source Code Pro', monospace;
+  --background-color: #eaf3f5;
+  --text-primary-color: #010177;
+  --link-color: #006699;
+  --visited-link-color: #6085a6;
+  --highlight-color: #1b50ebcf;
+  --table-heading: #888;
+  --stderr-background: #ffecbb;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-primary-color);
+    font-family: var(--serif-font);
+}
+
+h1, h2, h3, h4, h5, h6, .admonition-title {
+    font-family: var(--sans-serif-font);
+}
+
+code, pre {
+    font-family: var(--tt-font);
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:visited {
+  color: var(--visited-link-color);
+}
+
+a.headerlink {
+  color: var(--visited-link-color);
+}
+
+.admonition.note {
+  background-color: #b3d4fc;
+  border-left: 4px solid #006699;
+}
+.admonition.warning {
+  background-color: #fef3c7;
+  border-left: 4px solid #92400e;
+}
+
+aside.footnote {
+  font-size: 80%;
+}
+
+aside.margin {
+  font-size: 70%;
+}
+
+aside.margin a.footnote-reference {
+  font-size: 80%;
+}
+
+
+/* Hide scrollbar unless needed */
+.bd-sidebar-primary {
+    background-color: var(--background);
+    font-family: var(--sans-serif-font);
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+}
+
+.bd-sidebar-primary::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
+
+.bd-sidebar-secondary {
+    background-color: var(--background);
+    font-family: var(--sans-serif-font);
+}
+
+.bd-header-article {
+    background: var(--background);
+    background-color: var(--background-color);
+    font-family: var(--sans-serif-font);
+}
+
+.caption-number {
+  font-style: normal !important;
+}
+
+.caption-number::after {
+  content: '. ';
+  margin-left: -0.2em;
+}
+
+.cell {
+  margin-bottom: 0;
+}
+
+div.cell_input {
+  margin-bottom: 0 !important;
+  border-left: 4px solid blue !important;
+  border-top: 1px solid lightgray !important;
+  border-right: 1px solid lightgray !important;
+  border-bottom: 1px solid lightgray !important;
+  border-radius: 0 !important;
+}
+
+div.container.cell {
+  margin-bottom: 0;
+}
+
+div.container.cell + p {
+  margin-top: 1em;
+}
+
+py-script {
+  display: none;
+}
+
+.cell-out, .script-output {
+  margin-top: 0;
+  margin-bottom: 1em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 0.7em;
+  border-left: 4px solid lightblue;
+  border-top: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  font-family: var(--tt-font);
+  font-size: 90%;
+  white-space: pre-wrap;
+}
+
+.cell-stdout, .script-stdout {
+  font-family: var(--tt-font);
+  font-size: 90%;
+  margin-bottom: 1em;
+  margin-top: -0.3em;
+  white-space: pre-wrap;
+}
+
+.cell-stderr, .script-stderr {
+  font-family: var(--tt-font);
+  color: var(--table-heading);
+  font-size: 90%;
+  background-color: var(--stderr-background);
+  margin-bottom: 1em;
+  margin-top: -0.5em;
+  padding-bottom: 1em;
+  padding-left: 1em;
+  white-space: pre-wrap;
+}
+
+.cell-out:empty,
+.cell-stdout:empty,
+.cell-stderr:empty {
+  display: none;
+}
+
+
+.highlight {
+  background: none;
+  color: inherit;
+}
+
+.prev-next-title {
+  font-family: var(--sans-serif-font);
+}
+
+.prev-next-area a p.prev-next-title:hover {
+  color: var(--highlight-color);
+  text-decoration: none;
+}
+
+.toc-entry a.nav-link.active:hover {
+  color: var(--highlight-color);
+  text-decoration: none;
+}
+
+.admonition p.admonition-title~*, div.admonition p.admonition-title~* {
+    margin-left: 0.3rem;
+    margin-right: 0.3rem;
+}
+
+.proof.no-number > .admonition-title  {
+  visibility: hidden;
+  position: relative;
+}
+
+.lemma.admonition > .admonition-title::after {
+    content: "\f085";  /* Font Awesome icon code */
+}
+
+.naming.admonition > .admonition-title::after {
+    content: "\f24D";  /* Font Awesome icon code */
+}
+
+.corollary.admonition > .admonition-title::after {
+    content: "\f0AB";  /* Font Awesome icon code */
+}
+
+.theorem.admonition > .admonition-title::after {
+    content: "\f19C";  /* Font Awesome icon code */
+}
+
+.myproof.admonition > .admonition-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+.naming.admonition > .admonition-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+.example.admonition > .admonition-title::after {
+    content: "\f1CE";  /* Font Awesome icon code */
+}
+
+.definition.admonition > .admonition-title::after {
+    content: "\f15B";  /* Font Awesome icon code */
+}
+
+.proof.no-number > .admonition-title::after {
+  visibility: visible;
+}
+
+ a:hover {
+  color: var(--highlight-color);
+}
+
+nav.bd-links li > a:hover {
+  color: var(--highlight-color);
+  text-decoration: none;
+}
+
+table caption {
+  color: var(--text-primary-color);
+  caption-side: bottom;
+  text-align: left;
+}
+
+table thead tr {
+  border-bottom: 1px solid var(--table-heading) !important;
+}
+
+table tr {
+  background-color: inherit !important;
+}
+
+table.dataframe {
+  border-left: none;
+  border-right: none;
+  margin-bottom: 2em;
+  font-size: 85%;
+}
+
+table.dataframe th, table.dataframe td {
+  text-align: left !important;
+  padding-right: 1.5em;
+}
+
+.splash::before {
+  text-align: center;
+  color: var(--visited-link-color);
+  font: var(--fa-font-solid);
+  content: '\f254'; /* hourglass icon */
+}
+
+.splash::after {
+  content: ' Loading...'; /* fallback text, will be replaced by JavaScript */
+  color: var(--visited-link-color);
+}
+
+.fn-bracket {
+  visibility: hidden;
+}
+
+
+.flag {
+    width: 1.5em;
+    margin-right: 0.2em;
+}
+
+.no-output, .hide-code {
+  display: none !important;
+}
+
+/* Toggle code functionality */
+.toggle-code-wrapper {
+  position: relative;
+  margin: 1em 0;
+  /* Remove all wrapper styling - make it invisible */
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+
+.toggle-code-button {
+  position: relative;
+  display: block;
+  margin-bottom: 0.5em;
+  font-size: 0.8em;
+  color: var(--link-color);
+  cursor: pointer;
+  font-family: sans-serif;
+  z-index: 10;
+  user-select: none;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 2px 6px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  white-space: nowrap; /* Prevent text wrapping */
+  width: auto;
+  text-align: left;
+}
+
+.toggle-code-button:hover {
+  text-decoration: underline;
+  color: var(--link-color);
+}
+
+/* Triangle rotation animation */
+.toggle-code-button .triangle {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.toggle-code-button.expanded .triangle {
+  transform: rotate(90deg);
+}
+
+.toggle-code-content {
+  /* Remove all content wrapper styling */
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  /* Add smooth transition for content visibility */
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.toggle-code-content.expanded {
+  max-height: 800px; /* Large enough to accommodate most code blocks */
+  opacity: 1;
+}
+
+/* Make sure code blocks inside toggle content look exactly like normal code blocks */
+/* Let the theme handle the styling - remove overrides */
+
+/* PyScript toggle functionality - only apply to py-script elements */
+py-script.toggle-code:not(.expanded) {
+  display: none !important;
+}
+
+py-script.toggle-code.expanded {
+  display: block !important;
+}
+
+/* Ensure admonition titles have proper font size */
+.admonition-title {
+  font-size: 1rem !important;
+  font-weight: bold !important;
+}
+
+/* Ensure navigation links have proper font size */
+nav.bd-links li > a {
+  font-size: 0.9rem !important;
+}
+
+/* Ensure theorem type pseudo-elements have proper font size */
+.lemma.no-number > .admonition-title::before,
+.corollary.no-number > .admonition-title::before,
+.theorem.no-number > .admonition-title::before,
+.example.no-number > .admonition-title::before,
+.definition.no-number > .admonition-title::before {
+  font-size: 1rem !important;
+  font-weight: bold !important;
+}
+
+/* Custom styling for DataFrame tables */
+.cell-graph table {
+  border-collapse: collapse;
+  margin: 1em 0;
+  font-family: sans-serif;
+  font-size: 0.8em;
+  width: 100%;
+  /* border-radius: 5px; */
+  overflow: hidden;
+  /* box-shadow: 0 0 10px rgba(0,0,0,0.1); */
+}
+
+.cell-graph table tr {
+  background-color: white !important;
+  color: white;
+  text-align: left;
+}
+
+.cell-graph table th,
+.cell-graph table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #ddd;
+  border: 0;
+}
+
+.cell-graph table tbody tr:nth-child(even) {
+  /* background-color: var(--pst-color-surface); */
+  background-color: white !important;
+}
+
+.cell-graph table tbody tr:hover {
+  background-color: var(--pst-color-on-surface);
+}
+
+.cell-graph table tbody tr.row_heading {
+  font-weight: bold;
+  background-color: var(--pst-color-secondary);
+}
+
+/* Styling for the DataFrame table headers */
+.cell-graph table th {
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Styling for numeric columns */
+.cell-graph table td[class*="col_"] {
+  text-align: right;
+}
+
+/* Styling for index column */
+.cell-graph table .row_heading {
+  font-weight: bold;
+  background-color: var(--pst-color-surface);
+}
+
+/* Code block container with relative positioning for icon */
+.highlight {
+  position: relative;
+}

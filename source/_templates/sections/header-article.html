@@ -1,0 +1,45 @@
+{% if theme_article_header_start or theme_article_header_end %}
+<div class="header-article-items header-article__inner">
+  {% if theme_article_header_start %}
+    <div class="header-article-items__start">
+      {% for item in theme_article_header_start %}
+        <div class="header-article-item">{% include item %}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+  {% if theme_article_header_end %}
+    <div class="header-article-items__end">
+      <!-- Language switcher -->
+      <div class="nav-item dropdown" style="margin-top: 0.8em;">
+        <a class="nav-link dropdown-toggle" href="#" id="languageDropdown"
+           role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          {% if language == "en" %}
+            <img src="/it/_static/img/en.svg" class="flag" />
+            English
+          {% elif language == "it" %}
+            <img src="/it/_static/img/it.svg" class="flag" />
+            Italiano
+          {% endif %}
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="languageDropdown">
+          <li>
+            <a class="dropdown-item" href="/en/{{ pagename }}">
+              <img src="/it/_static/img/en.svg" class="flag" />English
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="/it/{{ pagename }}">
+              <img src="/it/_static/img/it.svg" class="flag" />Italiano
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      {% for item in theme_article_header_end %}
+        <div class="header-article-item">{% include item %}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+{% endif %}

@@ -1,0 +1,175 @@
+/* Italian-specific labels and content */
+
+.lemma.no-number > .admonition-title::before {
+  content: "Lemma";
+  visibility: visible;
+  position: absolute;
+  left: 2em;
+  top: 0.4em;
+}
+
+.corollary.no-number > .admonition-title::before {
+  content: "Corollario";
+  visibility: visible;
+  position: absolute;
+  left: 2em;
+  top: 0.4em;
+}
+
+.myproof.admonition::before {
+  content: "Dimostrazione";
+  display: block;
+  font-weight: bold;
+  font-family: var(--sans-serif-font);
+  margin-top: 0.4em;
+}
+
+.naming.admonition::before {
+  content: "Nomenclatura";
+  display: block;
+  font-weight: bold;
+  font-family: var(--sans-serif-font);
+  margin-top: 0.4em;
+}
+
+.theorem.no-number > .admonition-title::before {
+  content: "Teorema";
+  visibility: visible;
+  position: absolute;
+  left: 2em;
+  top: 0.4em;
+}
+
+.example.no-number > .admonition-title::before {
+  content: "Esempio";
+  visibility: visible;
+  position: absolute;
+  left: 2em;
+  top: 0.4em;
+}
+
+.definition.no-number > .admonition-title::before {
+  content: "Definizione";
+  visibility: visible;
+  position: absolute;
+  left: 2em;
+  top: 0.4em;
+}
+
+/* No automatic numbering - standard MyST/Sphinx behavior with titles only */
+
+/* Sidebar TOC numbering */
+.bd-sidebar nav.bd-links {
+    counter-reset: toc-chapter toc-appendix;
+}
+
+/* Skip the first toctree item (landing page) from numbering */
+.bd-sidebar nav.bd-links li.toctree-l1:not(:first-child) {
+    counter-increment: toc-chapter;
+    counter-reset: toc-section;
+}
+
+/* Only number non-first toctree items */
+.bd-sidebar nav.bd-links li.toctree-l1:not(:first-child) > a::before {
+    content: counter(toc-chapter) ". ";
+    font-weight: bold;
+    margin-right: 0.3em;
+}
+
+/* Section numbering in sidebar - only for chapters that are numbered */
+.bd-sidebar nav.bd-links li.toctree-l1:not(:first-child) li.toctree-l2 {
+    counter-increment: toc-section;
+}
+
+.bd-sidebar nav.bd-links li.toctree-l1:not(:first-child) li.toctree-l2 > a::before {
+    content: counter(toc-chapter) "." counter(toc-section) " ";
+    margin-right: 0.3em;
+}
+
+/* Style for current page in sidebar */
+.bd-sidebar nav.bd-links li.current > a {
+    font-weight: bold;
+}
+
+/* Part captions styling */
+.bd-sidebar .caption {
+    font-weight: bold;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    color: var(--color-brand-primary);
+}
+
+/* Appendix numbering using section ID detection - expandable for multiple appendices */
+
+/* Default chapter numbering for regular chapters */
+html:not([data-content_root="./"]) .bd-main .bd-content h1:not(.site-logo):not(.sidebar-brand-text) {
+    counter-increment: chapter;
+}
+
+/* Appendix numbering - detect by section ID "references" or other appendix patterns */
+.bd-main .bd-content section#references h1:not(.site-logo):not(.sidebar-brand-text),
+.bd-main .bd-content section[id^="appendix"] h1:not(.site-logo):not(.sidebar-brand-text),
+.bd-main .bd-content section[id^="bibliografia"] h1:not(.site-logo):not(.sidebar-brand-text) {
+    counter-increment: appendix;
+    counter-reset: section subsection;
+}
+
+/* Show appendix numbers with letters for appendices */
+.bd-main .bd-content section#references h1:not(.site-logo):not(.sidebar-brand-text)::before,
+.bd-main .bd-content section[id^="appendix"] h1:not(.site-logo):not(.sidebar-brand-text)::before,
+.bd-main .bd-content section[id^="bibliografia"] h1:not(.site-logo):not(.sidebar-brand-text)::before {
+    content: counter(appendix, upper-alpha) ". ";
+    font-weight: bold;
+    margin-right: 0.5em;
+    color: var(--color-brand-primary);
+}
+
+/* Appendix section numbering for appendices */
+.bd-main .bd-content section#references h2::before,
+.bd-main .bd-content section[id^="appendix"] h2::before,
+.bd-main .bd-content section[id^="bibliografia"] h2::before {
+    content: counter(appendix, upper-alpha) "." counter(section) " ";
+    font-weight: bold;
+    margin-right: 0.5em;
+    color: var(--color-brand-primary);
+}
+
+/* Appendix subsection numbering for appendices */
+.bd-main .bd-content section#references h3::before,
+.bd-main .bd-content section[id^="appendix"] h3::before,
+.bd-main .bd-content section[id^="bibliografia"] h3::before {
+    content: counter(appendix, upper-alpha) "." counter(section) "." counter(subsection) " ";
+    font-weight: bold;
+    margin-right: 0.5em;
+    color: var(--color-brand-primary);
+}
+
+/* Sidebar TOC appendix numbering */
+.bd-sidebar nav.bd-links {
+    counter-reset: toc-chapter toc-appendix;
+}
+
+/* Skip the first toctree item (landing page) from numbering */
+.bd-sidebar nav.bd-links li.toctree-l1:not(:first-child) {
+    counter-increment: toc-chapter;
+    counter-reset: toc-section;
+}
+
+/* Appendix numbering in sidebar - use JavaScript-added classes */
+.bd-sidebar nav.bd-links .appendix-list li.appendix-item {
+    counter-increment: toc-appendix;
+    counter-reset: toc-section;
+}
+
+/* Show appendix letters in sidebar TOC */
+.bd-sidebar nav.bd-links .appendix-list li.appendix-item > a::before {
+    content: counter(toc-appendix, upper-alpha) ". ";
+    font-weight: bold;
+    margin-right: 0.3em;
+}
+
+/* Appendix section numbering in sidebar */
+.bd-sidebar nav.bd-links .appendix-list li.appendix-item li.toctree-l2 > a::before {
+    content: counter(toc-appendix, upper-alpha) "." counter(toc-section) " ";
+    margin-right: 0.3em;
+}

@@ -1,0 +1,9 @@
+/* French-specific CSS customizations */
+
+/* French typography and language-specific styles */
+body {
+    /* French text tends to be longer, so we might need slightly different spacing */
+    line-height: 1.6;
+}
+
+/* French-specific customizations can be added here as needed */

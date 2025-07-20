@@ -1,0 +1,169 @@
+# =============================================================================
+# SUPERHERO DATA SCIENCE - MULTILINGUAL DOCUMENTATION PROJECT
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# BUILD ARTIFACTS (excluded for CI/CD publishing)
+# -----------------------------------------------------------------------------
+# Built documentation - handled by CI/CD pipeline
+build/
+
+# Temporary processing files
+tmpsource/
+
+# Generated translation templates
+*.pot
+
+# Compiled message catalogs - auto-generated from .po files
+*.mo
+
+# -----------------------------------------------------------------------------
+# PYTHON
+# -----------------------------------------------------------------------------
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+build-python/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# -----------------------------------------------------------------------------
+# SPHINX / DOCUMENTATION
+# -----------------------------------------------------------------------------
+# Sphinx cache
+.doctrees/
+.buildinfo
+
+# Sphinx build outputs (handled by CI/CD)
+_build/
+
+# MyST cache
+.myst_cache/
+
+# Jupyter execution artifacts
+.jupyter_cache/
+
+# -----------------------------------------------------------------------------
+# DEVELOPMENT ENVIRONMENT
+# -----------------------------------------------------------------------------
+# IDE/Editor
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# OS generated files
+.DS_Store?
+ehthumbs.db
+Icon?
+
+# -----------------------------------------------------------------------------
+# LOGS AND TEMPORARY FILES
+# -----------------------------------------------------------------------------
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# -----------------------------------------------------------------------------
+# PROJECT SPECIFIC
+# -----------------------------------------------------------------------------
+# Backup files (created by processing scripts)
+*.backup
+*.bak
+
+# Test outputs (if any)
+test-output/
+test-results/
+
+# -----------------------------------------------------------------------------
+# KEEP THESE FILES (important for the project)
+# -----------------------------------------------------------------------------
+# Translation source files (.po) should be committed
+!locales/**/messages.po
+
+# Source documentation files
+!source/
+
+# Build configuration
+!Makefile
+
+# Requirements and dependencies
+!requirements.txt
+!requirements.in
+
+# Custom CSS and static assets
+!source/_static/
+!sds.mplstyle
+
+# Project documentation
+!README.md
+!history.md
+
+# Build scripts and utilities
+!code/

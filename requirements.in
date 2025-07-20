@@ -1,0 +1,16 @@
+sphinx
+sphinx-book-theme
+myst-parser
+sphinxcontrib-bibtex
+docutils
+sphinx-external-toc
+sphinx-proof
+sphinx-tabs
+sphinx-exercise
+pandas
+numpy
+matplotlib
+pydata-sphinx-theme
+pybtex
+astor>=0.8.1
+
