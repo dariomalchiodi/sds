@@ -16,6 +16,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     
+    # Add permissions for GitHub Pages
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -84,14 +90,18 @@ jobs:
         </html>
         EOF
         
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      if: github.ref == 'refs/heads/main'
+    - name: Setup GitHub Pages
+      uses: actions/configure-pages@v3
+      
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v2
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build
-        # Optionally add custom domain:
-        # cname: your-custom-domain.com
+        path: ./build
+        
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v2
+      if: github.ref == 'refs/heads/main'
         
     # Optional: Add deployment status
     - name: Deployment Summary
@@ -104,3 +114,4 @@ jobs:
         echo "   - Italian: https://malchiodi.com/sds/it/"
         echo "   - English: https://malchiodi.com/sds/en/"  
         echo "   - French:  https://malchiodi.com/sds/fr/"
+        echo "🔗 Deployment URL: ${{ steps.deployment.outputs.page_url }}"
