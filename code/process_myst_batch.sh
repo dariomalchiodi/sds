@@ -133,12 +133,27 @@ if [ ! -f "$CODE_DIR/sds.py" ]; then
 fi
 
 # Get the Python executable path for the project
-PYTHON_EXEC="$PROJECT_ROOT/.venv/bin/python"
+# First try virtual environment, then fall back to system Python
+if [ -f "$PROJECT_ROOT/.venv/bin/python" ]; then
+    PYTHON_EXEC="$PROJECT_ROOT/.venv/bin/python"
+    log "Using virtual environment Python: $PYTHON_EXEC"
+elif command -v python3 >/dev/null 2>&1; then
+    PYTHON_EXEC="python3"
+    log "Using system Python: $PYTHON_EXEC"
+elif command -v python >/dev/null 2>&1; then
+    PYTHON_EXEC="python"
+    log "Using system Python: $PYTHON_EXEC"
+else
+    error "No Python executable found. Please install Python or set up a virtual environment."
+    exit 1
+fi
 
-# Check if virtual environment exists
-if [ ! -f "$PYTHON_EXEC" ]; then
-    error "Virtual environment not found. Expected Python executable at: $PYTHON_EXEC"
-    error "Please ensure the project's virtual environment is set up correctly."
+# Verify that Python can import the required modules
+log "Verifying Python setup and required modules..."
+if ! $PYTHON_EXEC -c "import sys; sys.path.insert(0, '$CODE_DIR'); import sds" 2>/dev/null; then
+    error "Failed to import sds module. Please ensure dependencies are installed."
+    error "If using system Python, run: pip install -r requirements.txt"
+    error "If using virtual environment, ensure it's properly set up with dependencies."
     exit 1
 fi
 
