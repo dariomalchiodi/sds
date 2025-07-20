@@ -59,6 +59,8 @@ bibtex_reference_style = 'author_year'
 #     'tabs'
 # ]
 
+myst_enable_extensions = [ 'deflist' ]
+
 myst_config = {
     "enable_extensions": [
         "amsmath",
