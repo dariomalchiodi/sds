@@ -27,6 +27,10 @@ def main():
         language = 'it'
     elif '/en' in html_root_dir or html_root_dir.endswith('en'):
         language = 'en'
+    elif '/fr' in html_root_dir or html_root_dir.endswith('fr'):
+        language = 'fr'
+    elif '/es' in html_root_dir or html_root_dir.endswith('es'):
+        language = 'es'
     
     print("=== Applying Cross-Reference Link Improvements ===\n")
     
@@ -70,6 +74,16 @@ def main():
         if language == 'it':
             print("Cross-reference links now show:")
             print("  - Link text: 'Capitolo X', 'Paragrafo X.Y', or 'Appendice A'")
+            print("  - Tooltip on hover: Original chapter/section title")
+            print("  - Consistent numbering throughout the documentation")
+        elif language == 'fr':
+            print("Cross-reference links now show:")
+            print("  - Link text: 'Chapitre X', 'Section X.Y', or 'Annexe A'")
+            print("  - Tooltip on hover: Original chapter/section title")
+            print("  - Consistent numbering throughout the documentation")
+        elif language == 'es':
+            print("Cross-reference links now show:")
+            print("  - Link text: 'Capítulo X', 'Sección X.Y', or 'Apéndice A'")
             print("  - Tooltip on hover: Original chapter/section title")
             print("  - Consistent numbering throughout the documentation")
         else:

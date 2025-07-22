@@ -1,6 +1,6 @@
 ---
 jupytext:
-  formats: ipynb,md:myst
+  formats: md:myst
   text_representation:
     extension: .md
     format_name: myst
@@ -53,21 +53,10 @@ di seguito.
 print(age <= 42)
 ```
 
-```{raw} html
-
-<py-script target="#cell-1">
-from pyscript import display
-
-age=22
-display(age <= 42)
-</py-script>
-```
-
-
 Infine, utilizzerò uno stile specifico per evidenziare nel testo alcune
 componenti particolari, come esemplificato qui sotto.
 
-```{admonition} Nomenclatura
+```{admonition} _
 :class: naming
 Questo tipo di area contiene delle note relative alla nomenclatura utilizzata
 in un particolare ambito, o alla descrizione di diciture alternative rispetto
@@ -89,11 +78,6 @@ accompagnati da un nome specifico racchiuso tra parentesi.
 :class: no-number
 Questa area racchiude un esempio.
 ```
-```{margin}
-Le diciture «Definizione», «Esempio», «Teorema» e così via non sono al momento
-localizzate dal _software_ che uso per generare le pagine HTML. Portate
-pazienza.
-```
 
 ````{prf:theorem}
 :label: segnaposto-teorema
@@ -112,13 +96,13 @@ Questa area contiene la definizione di un corollario.
 :label: segnaposto-lemma
 Questa area contiene la definizione di un lemma.
 ```
-
-````{prf:proof}
+```{admonition} _
+:class: myproof
 In questa area viene inserita la dimostrazione di un teorema, di un corollario
-o di un lemma. Per alcuni dei teoremi ometterò la relativa dimostrazione. Ciò capiterà quando
-sarà importante introdurre un risultato teorico rilevante, sebbene la sua
-dimostrazione richieda conoscenze matematiche avanzate.
-````
+o di un lemma. Per alcuni dei teoremi ometterò la relativa dimostrazione. Ciò
+capiterà quando sarà importante introdurre un risultato teorico rilevante,
+sebbene la sua dimostrazione richieda conoscenze matematiche avanzate.
+```
 
 ```{note}
 Questo tipo di area racchiude alcuni aspetti secondari che preferisco mettere

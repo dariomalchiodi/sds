@@ -454,3 +454,7 @@ nav.bd-links li > a {
 .highlight {
   position: relative;
 }
+
+.ast {
+  position: relative; top:0.3em;
+}

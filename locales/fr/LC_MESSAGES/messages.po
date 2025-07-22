@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Superhero Data Science \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-20 12:43+0200\n"
+"POT-Creation-Date: 2025-07-21 09:27+0200\n"
 "PO-Revision-Date: 2025-07-20 12:43+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: ../../source/_templates/layout.html:78
@@ -26,45 +26,45 @@ msgid "Back to top"
 msgstr "Retour au début"
 
 # Custom translations for chapter/section references
-msgid "Capitolo"
-msgstr "Chapitre"
+#~ msgid "Capitolo"
+#~ msgstr "Chapitre"
 
-msgid "Chapter"
-msgstr "Chapitre"
+#~ msgid "Chapter"
+#~ msgstr "Chapitre"
 
-msgid "Sezione"
-msgstr "Section"
+#~ msgid "Sezione"
+#~ msgstr "Section"
 
-msgid "Section"
-msgstr "Section"
+#~ msgid "Section"
+#~ msgstr "Section"
 
-msgid "Paragrafo"
-msgstr "Paragraphe"
+#~ msgid "Paragrafo"
+#~ msgstr "Paragraphe"
 
-msgid "Paragraph"
-msgstr "Paragraphe"
+#~ msgid "Paragraph"
+#~ msgstr "Paragraphe"
 
 # Additional common terms
-msgid "Figura"
-msgstr "Figure"
+#~ msgid "Figura"
+#~ msgstr "Figure"
 
-msgid "Figure"
-msgstr "Figure"
+#~ msgid "Figure"
+#~ msgstr "Figure"
 
-msgid "Tabella"
-msgstr "Tableau"
+#~ msgid "Tabella"
+#~ msgstr "Tableau"
 
-msgid "Table"
-msgstr "Tableau"
+#~ msgid "Table"
+#~ msgstr "Tableau"
 
-msgid "Esempio"
-msgstr "Exemple"
+#~ msgid "Esempio"
+#~ msgstr "Exemple"
 
-msgid "Example"
-msgstr "Exemple"
+#~ msgid "Example"
+#~ msgstr "Exemple"
 
-msgid "Esercizio"
-msgstr "Exercice"
+#~ msgid "Esercizio"
+#~ msgstr "Exercice"
 
-msgid "Exercise"
-msgstr "Exercice"
+#~ msgid "Exercise"
+#~ msgstr "Exercice"

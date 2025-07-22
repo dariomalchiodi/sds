@@ -9,41 +9,6 @@
   {% endif %}
   {% if theme_article_header_end %}
     <div class="header-article-items__end">
-      <!-- Language switcher -->
-      <div class="nav-item dropdown" style="margin-top: 0.8em;">
-        <a class="nav-link dropdown-toggle" href="#" id="languageDropdown"
-           role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          {% if language == "en" %}
-            <img src="{{ pathto('_static/img/en.svg', 1) }}" class="flag" />
-            English
-          {% elif language == "it" %}
-            <img src="{{ pathto('_static/img/it.svg', 1) }}" class="flag" />
-            Italiano
-          {% elif language == "fr" %}
-            <img src="{{ pathto('_static/img/fr.svg', 1) }}" class="flag" />
-            Français
-          {% endif %}
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end"
-            aria-labelledby="languageDropdown">
-          <li>
-            <a class="dropdown-item" href="/en/{{ pagename }}.html">
-              <img src="{{ pathto('_static/img/en.svg', 1) }}" class="flag" />English
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="/it/{{ pagename }}.html">
-              <img src="{{ pathto('_static/img/it.svg', 1) }}" class="flag" />Italiano
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="/fr/{{ pagename }}.html">
-              <img src="{{ pathto('_static/img/fr.svg', 1) }}" class="flag" />Français
-            </a>
-          </li>
-        </ul>
-      </div>
-
       {% for item in theme_article_header_end %}
         <div class="header-article-item">{% include item %}</div>
       {% endfor %}
@@ -51,3 +16,93 @@
   {% endif %}
 </div>
 {% endif %}
+
+<!-- Language switcher - always show -->
+<div class="header-article-items header-article__inner">
+  <div class="header-article-items__end">
+    <!-- Language switcher -->
+    <div class="nav-item dropdown" style="margin-top: 0.8em;">
+      <a class="nav-link dropdown-toggle" href="#" id="languageDropdown"
+         role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        {% if language == "en" %}
+          <img src="{{ pathto('_static/img/en.svg', 1) }}" class="flag" />
+          English
+        {% elif language == "it" %}
+          <img src="{{ pathto('_static/img/it.svg', 1) }}" class="flag" />
+          Italiano
+        {% elif language == "fr" %}
+          <img src="{{ pathto('_static/img/fr.svg', 1) }}" class="flag" />
+          Français
+        {% elif language == "es" %}
+          <img src="{{ pathto('_static/img/es.svg', 1) }}" class="flag" />
+          Español
+        {% endif %}
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end"
+          aria-labelledby="languageDropdown">
+        <li>
+          <a class="dropdown-item" href="#" onclick="switchLanguage('en')">
+            <img src="{{ pathto('_static/img/en.svg', 1) }}" class="flag" />English
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#" onclick="switchLanguage('it')">
+            <img src="{{ pathto('_static/img/it.svg', 1) }}" class="flag" />Italiano
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#" onclick="switchLanguage('fr')">
+            <img src="{{ pathto('_static/img/fr.svg', 1) }}" class="flag" />Français
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#" onclick="switchLanguage('es')">
+            <img src="{{ pathto('_static/img/es.svg', 1) }}" class="flag" />Español
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- URL mapping data for JavaScript -->
+<script type="application/json" id="url-mapping">
+{{ url_mapping | tojson | safe }}
+</script>
+
+<!-- Language switching JavaScript -->
+<script>
+function switchLanguage(targetLang) {
+  const currentLang = '{{ language }}';
+  const currentPath = '{{ pagename }}';
+  
+  // Load URL mapping from the JSON script tag
+  const urlMappingScript = document.getElementById('url-mapping');
+  const urlMapping = JSON.parse(urlMappingScript.textContent);
+  
+  // Find the reverse mapping - what's the Italian key for the current path?
+  let italianKey = null;
+  
+  // Direct match
+  if (urlMapping[currentPath]) {
+    italianKey = currentPath;
+  } else {
+    // Find by reverse lookup
+    for (const [key, mapping] of Object.entries(urlMapping)) {
+      if (mapping[currentLang] === currentPath) {
+        italianKey = key;
+        break;
+      }
+    }
+  }
+  
+  if (italianKey && urlMapping[italianKey] && urlMapping[italianKey][targetLang]) {
+    const targetPath = urlMapping[italianKey][targetLang];
+    const targetUrl = `/${targetLang}/${targetPath}.html`;
+    window.location.href = targetUrl;
+  } else {
+    // Fallback to home page if mapping not found
+    window.location.href = `/${targetLang}/`;
+  }
+}
+</script>

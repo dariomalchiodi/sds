@@ -12,7 +12,7 @@ kernelspec:
 (sec:dati-strutturati)=
 #  Dati strutturati
 
-Come indicato nel Paragrafo [Tipi di dati](sec:tipi-di-dati), ho deciso di
+Come indicato nel [Tipi di dati](sec:tipi-di-dati), ho deciso di
 definire un tipo di dati come strutturato se i corrispondenti valori
 costituiscono un'aggregazione di più tipi di dati __ed__ è possibile iterare
 automaticamente sui loro contenuti. Dopo aver spiegato meglio questo concetto,
@@ -140,23 +140,6 @@ s = 'Wasp'
 for c in s:
     print(c)
 ```
-```{raw} html
-<div id="stdout-0" class="script-stdout"></div>
-<py-script>
-import io, sys
-from pyscript import display
-
-output = io.StringIO()
-sys.stdout = output
-
-s = 'Wasp'
-for c in s:
-    print(c)
-
-display(output.getvalue(), target="stdout-0")
-</py-script>
-```
-
 ````
 
 Il nome per la variabile di ciclo viene generalmente scelto in modo da
@@ -182,7 +165,7 @@ una o poche righe di codice la cui struttura è sempre uguale, ma che si
 adattano a risolvere parecchie situazioni. Il risultato è l'apprendimento di
 quello che viene chiamato un _pattern_ del linguaggio, anche se si tende a
 parlare di codice _idiomatico_ o, nel caso specifico di Python,
-_pythonico__[^design-pattern]. L'uso di `for` mostrato sopra per iterare su una
+_pythonico_ [^design-pattern]. L'uso di `for` mostrato sopra per iterare su una
 stringa è un esempio di codice pythonico, e rappresenta una soluzione di
 carattere generale che va ben oltre il considerare i caratteri che occorono in
 una stringa. Infatti, come ho già evidenziato, lo stesso codice idiomatico
@@ -212,19 +195,6 @@ for i in range(len(s)):
     print(s[i])
 ```
 
-```{raw} html
-<div id="stdout-1" class="script-stdout"></div>
-<py-script>
-output = io.StringIO()
-sys.stdout = output
-
-for i in range(len(s)):
-    print(s[i])
-
-display(output.getvalue(), target="stdout-1")
-</py-script>
-```
-
 Si tratta di un _antipattern_ perché introduce inutile complessità nel
 codice, che deve:
 - introdurre una variabile intera `i` quando tutto quello che ci
@@ -247,20 +217,6 @@ utilizzare la funzione `enumerate`:
 for i, c in enumerate(s):
     print('Il carattere in posizione ', i, 'è', c)
 ```
-
-```{raw} html
-<div id="stdout-2" class="script-stdout"></div>
-<py-script>
-output = io.StringIO()
-sys.stdout = output
-
-for i, c in enumerate(s):
-    print(f'Il carattere in posizione {i} è {c}')
-
-display(output.getvalue(), target="stdout-2")
-</py-script>
-```
-
 ````
 
 Le altre modalità di accesso comuni ai tipi di dati strutturati sono riassunte
@@ -323,7 +279,7 @@ Gli apici tripli permettono di definire delle stringhe che contengono più
 righe, senza dover inserire sequenze di _escape_ per i corrispondenti caratteri
 di «a capo». Per esempio, il letterale
 
-```python
+```{code-block} python
 '''Il primo fumetto che ha Storm come protagonista
 compare nel numero uno di "Giant-size X-men"
 ed è stato pubblicato nel 1977.

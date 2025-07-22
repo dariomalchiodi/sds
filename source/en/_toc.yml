@@ -1,16 +1,19 @@
 format: jb-book
-root: landing
+root: home
 
 parts:
-  - caption: Introduzione
-    numbered: false
+  - caption: Overview
     chapters:
-      - file: P0/presentazione
-      - file: P0/approccio
+      - file: P0/presentation
+      - file: P0/approach
         sections:
-        - file: P0/ringraziamenti
-        - file: P0/imparare-e-programmare
-        - file: P0/convenzioni
-        - file: P0/notazione
-        - file: P0/utilizzo-in-insegnamento
-      - file: P0/uno-sguardo-di-insieme
+        - file: P0/acknowledgements
+        - file: P0/learning-and-programming
+  - caption: Programmazione per l'analisi dei dati
+    chapters:
+      - file: P1-PAD/presentation
+      - file: P1-PAD/c1-intro-python/introducing-python
+
+  - caption: Appendices
+    chapters:
+    - file: references

@@ -1,7 +1,7 @@
-/* Italian-specific labels and content */
+/* Spanish-specific labels and content */
 
 .lemma.no-number > .admonition-title::before {
-  content: "Lemma";
+  content: "Lema";
   visibility: visible;
   position: absolute;
   left: 2em;
@@ -9,7 +9,7 @@
 }
 
 .corollary.no-number > .admonition-title::before {
-  content: "Corollario";
+  content: "Corolario";
   visibility: visible;
   position: absolute;
   left: 2em;
@@ -17,7 +17,7 @@
 }
 
 .myproof.admonition::before {
-  content: "Dimostrazione";
+  content: "Demostración";
   display: block;
   font-weight: bold;
   font-family: var(--sans-serif-font);
@@ -41,7 +41,7 @@
 }
 
 .example.no-number > .admonition-title::before {
-  content: "Esempio";
+  content: "Ejemplo";
   visibility: visible;
   position: absolute;
   left: 2em;
@@ -49,7 +49,7 @@
 }
 
 .definition.no-number > .admonition-title::before {
-  content: "Definizione";
+  content: "Definición";
   visibility: visible;
   position: absolute;
   left: 2em;

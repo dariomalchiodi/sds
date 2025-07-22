@@ -16,6 +16,7 @@ help:
 	@echo "  it          Build Italian documentation with MyST processing"
 	@echo "  en          Build English documentation with MyST processing"
 	@echo "  fr          Build French documentation with MyST processing"
+	@echo "  es          Build Spanish documentation with MyST processing"
 	@echo "  all         Build all language versions"
 	@echo "  clean-all   Remove all build artifacts and temporary files"
 	@echo ""
@@ -79,6 +80,24 @@ fr:
 	@echo "French documentation build complete! Output: build/fr/"
 	@echo "Note: Figure/table numbering (X.Y format) is automatically handled by Sphinx configuration."
 
+# Spanish documentation build target
+es:
+	@echo "Building Spanish documentation..."
+	@echo "Step 1/5: Processing MyST files..."
+	./code/process_myst_batch.sh --clean es
+	@echo "Step 2/5: Copying shared resources..."
+	@if [ -d "$(SOURCEDIR)/_static" ]; then cp -r "$(SOURCEDIR)/_static" tmpsource/; fi
+	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
+	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
+	@echo "Step 3/5: Building HTML with Sphinx..."
+	$(SPHINXBUILD) -b html tmpsource/es build/es
+	@echo "Step 4/5: Applying cross-reference improvements..."
+	python3 code/apply_crossref_improvements.py build/es
+	@echo "Step 5/5: Cleaning temporary files..."
+	./code/clean_tmpsource.sh --force --all
+	@echo "Spanish documentation build complete! Output: build/es/"
+	@echo "Note: Figure/table numbering (X.Y format) is automatically handled by Sphinx configuration."
+
 # Build all language versions
 all:
 	@$(MAKE) clean-all
@@ -89,23 +108,29 @@ all:
 	./code/process_myst_batch.sh en
 	@echo "Step 3: Processing French MyST files..."
 	./code/process_myst_batch.sh fr
-	@echo "Step 4: Copying shared resources..."
+	@echo "Step 4: Processing Spanish MyST files..."
+	./code/process_myst_batch.sh es
+	@echo "Step 5: Copying shared resources..."
 	@if [ -d "$(SOURCEDIR)/_static" ]; then cp -r "$(SOURCEDIR)/_static" tmpsource/; fi
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
-	@echo "Step 5: Building Italian HTML..."
+	@echo "Step 6: Building Italian HTML..."
 	$(SPHINXBUILD) -b html tmpsource/it build/it
-	@echo "Step 6: Applying Italian cross-reference improvements..."
+	@echo "Step 7: Applying Italian cross-reference improvements..."
 	python3 code/apply_crossref_improvements.py build/it
-	@echo "Step 7: Building English HTML..."
+	@echo "Step 8: Building English HTML..."
 	$(SPHINXBUILD) -b html tmpsource/en build/en
-	@echo "Step 8: Applying English cross-reference improvements..."
+	@echo "Step 9: Applying English cross-reference improvements..."
 	python3 code/apply_crossref_improvements.py build/en
-	@echo "Step 9: Building French HTML..."
+	@echo "Step 10: Building French HTML..."
 	$(SPHINXBUILD) -b html tmpsource/fr build/fr
-	@echo "Step 10: Applying French cross-reference improvements..."
+	@echo "Step 11: Applying French cross-reference improvements..."
 	python3 code/apply_crossref_improvements.py build/fr
-	@echo "Step 11: Cleaning all temporary files..."
+	@echo "Step 12: Building Spanish HTML..."
+	$(SPHINXBUILD) -b html tmpsource/es build/es
+	@echo "Step 13: Applying Spanish cross-reference improvements..."
+	python3 code/apply_crossref_improvements.py build/es
+	@echo "Step 14: Cleaning all temporary files..."
 	./code/clean_tmpsource.sh --force --all
 	@echo "All language versions built successfully!"
 	@echo "Note: Figure/table numbering (X.Y format) is automatically handled by Sphinx configuration."
@@ -127,7 +152,7 @@ gettext-extract:
 
 update-po:
 	@echo "Updating translation files for all languages..."
-	@for lang in it fr; do \
+	@for lang in it fr es; do \
 		echo "Updating $$lang translations..."; \
 		mkdir -p locales/$$lang/LC_MESSAGES; \
 		if [ -f "locales/$$lang/LC_MESSAGES/messages.po" ]; then \
@@ -140,7 +165,7 @@ update-po:
 
 compile-mo:
 	@echo "Compiling translation files..."
-	@for lang in it fr; do \
+	@for lang in it fr es; do \
 		echo "Compiling $$lang translations..."; \
 		msgfmt locales/$$lang/LC_MESSAGES/messages.po -o locales/$$lang/LC_MESSAGES/messages.mo; \
 	done
@@ -149,7 +174,7 @@ compile-mo:
 update-translations: gettext-extract update-po compile-mo
 	@echo "All translation files updated and compiled!"
 
-.PHONY: help Makefile it en fr all clean-all gettext-extract update-po compile-mo update-translations
+.PHONY: help Makefile it en fr es all clean-all gettext-extract update-po compile-mo update-translations
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).

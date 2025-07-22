@@ -27,6 +27,9 @@ release = '1.0'
 
 # -- General configuration ---------------------------------------------------
 
+# Internationalization and localization
+language = 'es'
+
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
@@ -85,7 +88,7 @@ myst_config = {
 
 # myst_heading_start_level = 2
 
-root_doc = 'home'
+root_doc = 'landing'
 
 external_toc_path = '_toc.yml'
 external_toc_exclude_missing = False
@@ -126,7 +129,7 @@ templates_path = ['../_templates']
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = 'en'
+language = 'es'
 locale_dirs = ['../locales/'] # Path to your .po/.mo files
 gettext_compact = False
 
@@ -158,16 +161,16 @@ html_theme_options = {
 }
 
 html_context = {
-    "show_code_label": "Show code",
-    "hide_code_label": "Hide code",
-    "pyscript_wait_label": "Wait for PyScript to load"
+    "show_code_label": "Mostrar código",
+    "hide_code_label": "Ocultar código",
+    "pyscript_wait_label": "Esperar a que se cargue PyScript"
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['../_static']
-html_css_files = ['custom.css', 'custom_en.css']
+html_static_path = ['_static']
+html_css_files = ['custom.css', 'custom_es.css']
 
 html_js_files = [
     'custom.js',

@@ -1,6 +1,6 @@
 ---
 jupytext:
-  formats: ipynb,md:myst
+  formats: md:myst
   text_representation:
     extension: .md
     format_name: myst
@@ -10,7 +10,7 @@ kernelspec:
 ---
 
 (sec:imparare-e-programmare)=
-# Imparare <span style="position: relative; top:0.2em;">\*</span>e<span style="position: relative; top:0.2em;">\*</span> programmare
+# Imparare <span style="position: relative; top:0.3em;">\*</span>e<span style="position: relative; top:0.3em;">\*</span> programmare
 
 Come descritto nel paragrafo precedente, introdurrò i concetti affiancandoli
 (o facendoli precedere) da esempi. Dove possibile, mostrerò anche delle

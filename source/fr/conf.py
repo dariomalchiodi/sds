@@ -38,6 +38,7 @@ extensions = [ 'myst_parser',
                'sphinxcontrib.bibtex',
                'sphinx_external_toc',
                'sphinx_proof',
+               'sphinx.ext.autosectionlabel',
                 ]
 
 # nb_code_cell_render_options = {
@@ -84,7 +85,7 @@ myst_config = {
 
 # myst_heading_start_level = 2
 
-root_doc = 'landing'
+root_doc = 'accueil'
 
 external_toc_path = '_toc.yml'
 external_toc_exclude_missing = False
@@ -152,17 +153,11 @@ html_theme_options = {
     'number_toc': True,
     'pygments_light_style': 'abap',
     'pygments_dark_style': 'native',
+    'article_header_end': [],  # Enable article header area for language switcher
     # "extra_footer": "<p>Footer HTML</p>",
 }
 
 html_context = {
-    "language_switcher": """
-        <div style="text-align: right;">
-            <a href="/it/index.html">Italiano</a> |
-            <a href="/en/index.html">English</a> |
-            <strong>Français</strong>
-        </div>
-    """,
     "show_code_label": "Afficher le code",
     "hide_code_label": "Masquer le code",
     "pyscript_wait_label": "Attendre le chargement de PyScript"
@@ -193,4 +188,20 @@ suppress_warnings = [
 
 
 def setup(app):
+    import json
+    import os
+    
     print(">>> sphinx_tabs.tabs extension loaded")
+    
+    # Load URL mapping for language switching
+    mapping_path = os.path.join(os.path.dirname(__file__), '..', '_templates', 'url_mapping.json')
+    try:
+        with open(mapping_path, 'r', encoding='utf-8') as f:
+            url_mapping = json.load(f)
+        app.config.html_context = getattr(app.config, 'html_context', {})
+        app.config.html_context['url_mapping'] = url_mapping
+        print(f">>> URL mapping loaded with {len(url_mapping)} entries")
+    except Exception as e:
+        print(f">>> Warning: Could not load URL mapping: {e}")
+        app.config.html_context = getattr(app.config, 'html_context', {})
+        app.config.html_context['url_mapping'] = {}

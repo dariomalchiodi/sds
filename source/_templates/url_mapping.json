@@ -1,0 +1,134 @@
+{
+  "landing": {
+    "it": "landing",
+    "en": "home",
+    "fr": "accueil",
+    "es": "landing"
+  },
+  "P0/presentazione": {
+    "it": "P0/presentazione", 
+    "en": "P0/presentation",
+    "fr": "P0/presentation",
+    "es": "P0/presentacion"
+  },
+  "P0/approccio": {
+    "it": "P0/approccio",
+    "en": "P0/approach", 
+    "fr": "P0/approche",
+    "es": "P0/enfoque"
+  },
+  "P0/ringraziamenti": {
+    "it": "P0/ringraziamenti",
+    "en": "P0/acknowledgements",
+    "fr": "P0/remerciements",
+    "es": "P0/agradecimientos"
+  },
+  "P0/imparare-e-programmare": {
+    "it": "P0/imparare-e-programmare",
+    "en": "P0/learning-and-programming",
+    "fr": "P0/apprendre-et-programmer",
+    "es": "P0/aprender-y-programar"
+  },
+  "P0/convenzioni": {
+    "it": "P0/convenzioni",
+    "en": "P0/conventions",
+    "fr": "P0/conventions",
+    "es": "P0/convenciones"
+  },
+  "P0/notazione": {
+    "it": "P0/notazione",
+    "en": "P0/notation",
+    "fr": "P0/notation",
+    "es": "P0/notacion"
+  },
+  "P0/utilizzo-in-insegnamento": {
+    "it": "P0/utilizzo-in-insegnamento",
+    "en": "P0/use-in-teaching",
+    "fr": "P0/utilisation-enseignement",
+    "es": "P0/uso-en-ensenanza"
+  },
+  "P0/uno-sguardo-di-insieme": {
+    "it": "P0/uno-sguardo-di-insieme",
+    "en": "P0/overview-at-a-glance",
+    "fr": "P0/apercu-general",
+    "es": "P0/vista-de-conjunto"
+  },
+  "P1-PAD/presentazione": {
+    "it": "P1-PAD/presentazione",
+    "en": "P1-PAD/introduction",
+    "fr": "P1-PAD/presentation",
+    "es": "P1-PAD/presentacion"
+  },
+  "P1-PAD/c1-intro-python/introduzione-a-python": {
+    "it": "P1-PAD/c1-intro-python/introduzione-a-python",
+    "en": "P1-PAD/c1-intro-python/introduction-to-python",
+    "fr": "P1-PAD/c1-intro-python/introduction-a-python",
+    "es": "P1-PAD/c1-intro-python/introduccion-a-python"
+  },
+  "P1-PAD/c1-intro-python/installare-python": {
+    "it": "P1-PAD/c1-intro-python/installare-python",
+    "en": "P1-PAD/c1-intro-python/installing-python",
+    "fr": "P1-PAD/c1-intro-python/installer-python",
+    "es": "P1-PAD/c1-intro-python/instalar-python"
+  },
+  "P1-PAD/c1-intro-python/tipi-di-dati": {
+    "it": "P1-PAD/c1-intro-python/tipi-di-dati",
+    "en": "P1-PAD/c1-intro-python/data-types",
+    "fr": "P1-PAD/c1-intro-python/types-de-donnees",
+    "es": "P1-PAD/c1-intro-python/tipos-de-datos"
+  },
+  "P1-PAD/c1-intro-python/dati-semplici": {
+    "it": "P1-PAD/c1-intro-python/dati-semplici",
+    "en": "P1-PAD/c1-intro-python/simple-data",
+    "fr": "P1-PAD/c1-intro-python/donnees-simples",
+    "es": "P1-PAD/c1-intro-python/datos-simples"
+  },
+  "P1-PAD/c1-intro-python/dati-strutturati": {
+    "it": "P1-PAD/c1-intro-python/dati-strutturati",
+    "en": "P1-PAD/c1-intro-python/structured-data",
+    "fr": "P1-PAD/c1-intro-python/donnees-structurees",
+    "es": "P1-PAD/c1-intro-python/datos-estructurados"
+  },
+  "P1-PAD/c1-intro-python/strutture-di-controllo": {
+    "it": "P1-PAD/c1-intro-python/strutture-di-controllo",
+    "en": "P1-PAD/c1-intro-python/control-structures",
+    "fr": "P1-PAD/c1-intro-python/structures-de-controle",
+    "es": "P1-PAD/c1-intro-python/estructuras-de-control"
+  },
+  "P1-PAD/c1-intro-python/funzioni": {
+    "it": "P1-PAD/c1-intro-python/funzioni",
+    "en": "P1-PAD/c1-intro-python/functions",
+    "fr": "P1-PAD/c1-intro-python/fonctions",
+    "es": "P1-PAD/c1-intro-python/funciones"
+  },
+  "P1-PAD/c1-intro-python/importare-moduli": {
+    "it": "P1-PAD/c1-intro-python/importare-moduli",
+    "en": "P1-PAD/c1-intro-python/importing-modules",
+    "fr": "P1-PAD/c1-intro-python/importer-modules",
+    "es": "P1-PAD/c1-intro-python/importar-modulos"
+  },
+  "P1-PAD/c1-intro-python/disegnare-grafici": {
+    "it": "P1-PAD/c1-intro-python/disegnare-grafici",
+    "en": "P1-PAD/c1-intro-python/drawing-charts",
+    "fr": "P1-PAD/c1-intro-python/dessiner-graphiques",
+    "es": "P1-PAD/c1-intro-python/dibujar-graficos"
+  },
+  "P1-PAD/c1-intro-python/leggere-file": {
+    "it": "P1-PAD/c1-intro-python/leggere-file",
+    "en": "P1-PAD/c1-intro-python/reading-files",
+    "fr": "P1-PAD/c1-intro-python/lire-fichiers",
+    "es": "P1-PAD/c1-intro-python/leer-archivos"
+  },
+  "P1-PAD/c2-pandas/pandas": {
+    "it": "P1-PAD/c2-pandas/pandas",
+    "en": "P1-PAD/c2-pandas/pandas",
+    "fr": "P1-PAD/c2-pandas/pandas",
+    "es": "P1-PAD/c2-pandas/pandas"
+  },
+  "references": {
+    "it": "references",
+    "en": "references",
+    "fr": "references",
+    "es": "references"
+  }
+}

@@ -111,7 +111,7 @@ def generate_toc_dictionary(html_root_dir):
         if 'toctree-l1' in classes:
             # Skip part-level "Presentazione" entries - they are introductions, not numbered chapters
             # Also skip the very first "Presentazione" which appears to be a book-level introduction
-            if title == "Presentazione":
+            if title in ["Presentazione", "Présentation", "Presentation", "Presentación"]:
                 continue
             
             # Check if this is an appendix (either we detected appendices section, or title suggests it's an appendix)
@@ -541,6 +541,14 @@ def get_toggle_labels(language='en'):
         'it': {
             'show': 'Mostra codice',
             'hide': 'Nascondi codice'
+        },
+        'fr': {
+            'show': 'Afficher le code',
+            'hide': 'Masquer le code'
+        },
+        'es': {
+            'show': 'Mostrar código',
+            'hide': 'Ocultar código'
         }
     }
     
@@ -1133,6 +1141,10 @@ def process_myst_file(file_path, include_setup=True):
         language = 'it'
     elif 'en' in path_parts:
         language = 'en'
+    elif 'fr' in path_parts:
+        language = 'fr'
+    elif 'es' in path_parts:
+        language = 'es'
     
     # Process the content
     try:
@@ -1352,6 +1364,18 @@ def replace_crossref_links(html_root_dir, toc_dict=None, dry_run=False, language
             'Section': 'Paragrafo', 
             'Appendix': 'Appendice'
         }
+    elif language == 'fr':
+        type_mapping = {
+            'Chapter': 'Chapitre',
+            'Section': 'Section', 
+            'Appendix': 'Annexe'
+        }
+    elif language == 'es':
+        type_mapping = {
+            'Chapter': 'Capítulo',
+            'Section': 'Sección', 
+            'Appendix': 'Apéndice'
+        }
     else:  # English default
         type_mapping = {
             'Chapter': 'Chapter',
@@ -1413,6 +1437,12 @@ def replace_crossref_links(html_root_dir, toc_dict=None, dry_run=False, language
                 if language == 'it':
                     # Check for new format: "Capitolo X", "Paragrafo X.Y", "Appendice A"
                     if re.match(r'^(Capitolo|Paragrafo|Appendice)\s+[\dA-Z.]+$', link_text):
+                        continue
+                elif language == 'fr':
+                    if re.match(r'^(Chapitre|Section|Annexe)\s+[\dA-Z.]+$', link_text):
+                        continue
+                elif language == 'es':
+                    if re.match(r'^(Capítulo|Sección|Apéndice)\s+[\dA-Z.]+$', link_text):
                         continue
                 else:  # English
                     if re.match(r'^(Chapter|Section|Appendix)\s+[\dA-Z.]+$', link_text):
@@ -1497,6 +1527,14 @@ def replace_crossref_links(html_root_dir, toc_dict=None, dry_run=False, language
                 if language == 'it':
                     # Check for new format: "Capitolo X.", "Appendice A.", or just numbers like "3.1."
                     if (re.match(r'^(Capitolo|Appendice)\s+[\dA-Z]+\.', h1_text) or 
+                        re.match(r'^\d+(\.\d+)*\.', h1_text)):
+                        continue
+                elif language == 'fr':
+                    if (re.match(r'^(Chapitre|Annexe)\s+[\dA-Z]+\.', h1_text) or 
+                        re.match(r'^\d+(\.\d+)*\.', h1_text)):
+                        continue
+                elif language == 'es':
+                    if (re.match(r'^(Capítulo|Apéndice)\s+[\dA-Z]+\.', h1_text) or 
                         re.match(r'^\d+(\.\d+)*\.', h1_text)):
                         continue
                 else:  # English
