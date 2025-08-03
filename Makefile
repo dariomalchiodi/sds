@@ -17,7 +17,8 @@ help:
 	@echo "  en          Build English documentation with MyST processing"
 	@echo "  fr          Build French documentation with MyST processing"
 	@echo "  es          Build Spanish documentation with MyST processing"
-	@echo "  all         Build all language versions"
+	@echo "  all         Build all language versions and copy static files"
+	@echo "  copy-static Copy static files (e.g., index.html) to build directory"
 	@echo "  clean-all   Remove all build artifacts and temporary files"
 	@echo ""
 	@echo "Internationalization targets:"
@@ -98,6 +99,15 @@ es:
 	@echo "Spanish documentation build complete! Output: build/es/"
 	@echo "Note: Figure/table numbering (X.Y format) is automatically handled by Sphinx configuration."
 
+# Copy static files from source to build directory
+copy-static:
+	@echo "Copying static files..."
+	@mkdir -p $(BUILDDIR)
+	@if [ -f "$(SOURCEDIR)/index.html" ]; then \
+		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/"; \
+		echo "✓ index.html copied to build directory"; \
+	fi
+
 # Build all language versions
 all:
 	@$(MAKE) clean-all
@@ -130,7 +140,9 @@ all:
 	$(SPHINXBUILD) -b html tmpsource/es build/es
 	@echo "Step 13: Applying Spanish cross-reference improvements..."
 	python3 code/apply_crossref_improvements.py build/es
-	@echo "Step 14: Cleaning all temporary files..."
+	@echo "Step 14: Copying static files..."
+	@$(MAKE) copy-static
+	@echo "Step 15: Cleaning all temporary files..."
 	./code/clean_tmpsource.sh --force --all
 	@echo "All language versions built successfully!"
 	@echo "Note: Figure/table numbering (X.Y format) is automatically handled by Sphinx configuration."
@@ -174,7 +186,7 @@ compile-mo:
 update-translations: gettext-extract update-po compile-mo
 	@echo "All translation files updated and compiled!"
 
-.PHONY: help Makefile it en fr es all clean-all gettext-extract update-po compile-mo update-translations
+.PHONY: help Makefile it en fr es all copy-static clean-all gettext-extract update-po compile-mo update-translations
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
