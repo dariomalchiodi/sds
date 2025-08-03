@@ -9,6 +9,7 @@ parts:
         sections:
         - file: P0/remerciements
         - file: P0/apprendre-et-programmer
+        - file: P0/statistique-science-donnees
         - file: P0/conventions
         - file: P0/notation
         - file: P0/utilisation-enseignement

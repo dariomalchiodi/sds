@@ -29,6 +29,12 @@
     "fr": "P0/apprendre-et-programmer",
     "es": "P0/aprender-y-programar"
   },
+  "P0/statistica-data-science": {
+    "it": "P0/statistica-data-science",
+    "en": "P0/statistics-data-science",
+    "fr": "P0/statistique-science-donnees",
+    "es": "P0/estadistica-ciencia-datos"
+  },
   "P0/convenzioni": {
     "it": "P0/convenzioni",
     "en": "P0/conventions",
@@ -45,11 +51,11 @@
     "it": "P0/utilizzo-in-insegnamento",
     "en": "P0/use-in-teaching",
     "fr": "P0/utilisation-enseignement",
-    "es": "P0/uso-en-ensenanza"
+    "es": "P0/uso-en-asignatura"
   },
   "P0/uno-sguardo-di-insieme": {
     "it": "P0/uno-sguardo-di-insieme",
-    "en": "P0/overview-at-a-glance",
+    "en": "P0/overview",
     "fr": "P0/apercu-general",
     "es": "P0/vista-de-conjunto"
   },

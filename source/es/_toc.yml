@@ -7,12 +7,13 @@ parts:
       - file: P0/presentacion
       - file: P0/enfoque
         sections:
-        - file: P0/ringraziamenti
-        - file: P0/imparare-e-programmare
-        - file: P0/convenzioni
-        - file: P0/notazione
-        - file: P0/utilizzo-in-insegnamento
-      - file: P0/uno-sguardo-di-insieme
+        - file: P0/agradecimientos
+        - file: P0/aprender-y-programar
+        - file: P0/estadistica-ciencia-datos
+        - file: P0/convenciones
+        - file: P0/notacion
+        - file: P0/uso-en-asignatura
+      - file: P0/vista-de-conjunto
   - caption: Programación para el análisis de datos
     chapters:
       - file: P1-PAD/presentazione

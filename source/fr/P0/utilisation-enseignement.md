@@ -9,52 +9,52 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:utilizzo-in-insegnamento)=
-# Utilizzo all'interno di un insegnamento
+(sec:utilisation-pedagogique)=
+# Utilisation pédagogique
+Depuis plusieurs années, je suis responsable de l’enseignement de
+[Statistiques et analyse des données](https://malchiodi.di.unimi.it/teaching/SAD/fr)
+dans le cadre de la Licence en Informatique, proposée par l’Università degli
+Studi di Milano. Ce livre est issu de l’évolution d’un ensemble de notes de
+cours que j’ai utilisées pour compléter la bibliographie adoptée dans cet
+enseignement, dans le but de couvrir à la fois les aspects plus
+_computationnels_ des cours et certains sujets qui ne trouvent pas leur place
+dans les manuels classiques.
 
-Questo libro nasce dall'evoluzione di una serie di dispense che ho utilizzato
-negli ultimi anni a corredo dei libri di testo che ho adottato per
-l'insegnamento di «Statistica e analisi dei dati» per il corso di Laurea in
-Informatica erogato dall'Università degli Studi di Milano. Queste dispense
-trattavano sia gli aspetti più _computazionali_ delle lezioni, dunque quelle
-direttamente incentrate sulla comprensione e sulla scrittura di codice, sia
-alcuni argomenti che non trovano posto nella trattazione fatta nei libri di
-testo che avevo adottato.
+Dans les cursus en informatique, les bases de l’analyse des données sont
+généralement confiées à un seul enseignement fondamental de deuxième année, qui
+couvre à la fois les aspects théoriques du calcul des probabilités et de la
+statistique mathématique, ainsi que les aspects plus appliqués de la
+statistique descriptive. Il est donc difficile de trouver une bibliographie
+adaptée, car ces disciplines sont souvent traitées séparément, par exemple dans
+les cursus de mathématiques. En cohérence avec cela, le panorama des manuels
+comprend souvent d’excellents ouvrages, mais dédiés à une seule de ces
+disciplines, ou qui se concentrent sur l’une d’elles en négligeant les autres.
+Je n’ai pas encore trouvé de livre qui donne à ces trois domaines le poids
+relatif que je leur attribue dans mes cours.
 
-Nei corsi di Laurea in area informatica, l'insegnamento delle tematiche alla
-base dell'analisi dei dati è tipicamente affidato a un unico insegnamento
-fondamentale del secondo anno, nel quale si abbracciano sia gli aspetti teorici
-del calcolo della probabilità e della statistica matematica, sia quelli più
-pratici legati alla statistica descrittiva. Risulta quindi difficile reperire
-materiale bibliografico, perché queste discipline sono spesso oggetto di
-insegnamenti differenti nell'ambito, per esempio, dei corsi in area matematica.
-Coerentemente, il panorama dei libri di testo vede spesso ottimi volumi, ma
-dedicati a una sola di queste discipline, o opere che focalizzano l'interesse
-su una di esse, sacrificando la trattazione delle altre. Non sono invece
-ancora riuscito a trovare un libro di testo che desse a queste tre aree
-il peso relativo che io assegno loro nelle mie lezioni.
-È per questo motivo che ho deciso, via via che la «massa critica» delle
-dispense cresceva, di scrivere un libro che evitasse l'adozione di due o più
-testi differenti, da affiancare in ogni caso a dispense che colmassero le lacune
-risultanti.
+C’est pour cette raison que, au fil du temps, alors que la « masse critique »
+des notes de cours augmentait, j’ai décidé d’écrire un livre qui évite d’avoir
+à adopter deux ou plusieurs manuels à compléter de toute façon par des notes
+comblant les lacunes restantes.
 
-I contenuti sono organizzati secondo il filo logico che seguo durante le mie
-lezioni. La prima parte si concentra sulle basi computazionali, introducendo
-Python e le relative librerie utilizzate all'interno del libro. Nella seconda
-parte, dedicata all'analisi dei dati nel senso più pratico del termine,
-introduco i principali argomenti della statistica descrittiva e i relativi
-strumenti nell'ottica di un loro utilizzo diretto, scrivendo codice Python e
-analizzando un _dataset_ di riferimento. Segue una parte sul calcolo delle
-probabilità, dedicata a esporre i principali concetti legati alla modellazione
-dell'incertezza in senso probabilistico. L'ultima parte espone infine le basi
-della statistica inferenziale, focalizzandosi sull'inferenza parametrica. Nella
-trattazione ho cercato di limitare l'uso del formalismo matematico allo stretto
-necessario per introdurre gli argomenti in modo rigoroso. I paragrafi il cui
-titolo è contrassegnato da un asterisco includono approfondimenti e materiale
-addizionale che possono essere trascurati&mdash;fondamentalmente, tutti gli
-argomenti che per limiti di tempo non riesco a spiegare in aula ma che
-consiglio vivamente agli studenti che volessero approfondire la conoscenza
-della disciplina, soprattutto nell'ottica di un proseguimento degli studi a
-livello magistrale.
+Le contenu est organisé selon la logique que je suis pendant mes cours. La
+première partie est consacrée aux bases computationnelles, avec une
+introduction à Python et aux paquets utilisées dans le livre. La deuxième
+partie, centrée sur l’analyse des données dans son acception la plus pratique,
+présente les principaux thèmes de la statistique descriptive et les outils
+correspondants dans une optique d’utilisation directe, en écrivant du code
+Python et en analysant un jeu de données de référence. Suit une partie sur le
+calcul des probabilités, consacrée à l’exposition des concepts clés liés à la
+modélisation de l’incertitude de manière probabiliste. Enfin, la dernière
+partie introduit les bases de la statistique inférentielle, avec un focus sur
+l’inférence paramétrique. Dans ce parcours, j’ai tenté de limiter le formalisme
+mathématique au strict nécessaire pour garantir une introduction rigoureuse aux
+concepts. Les paragraphes dont le titre est marqué d’un astérisque contiennent
+des approfondissements et du matériel supplémentaire, que l’on peut
+ignorer&mdash;il s’agit essentiellement de tous les sujets que je n’ai pas le
+temps de traiter en classe, mais que je recommande vivement aux étudiants
+souhaitant approfondir leur compréhension de la matière, notamment en vue de
+poursuivre en master.  
+
 
 

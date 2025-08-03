@@ -480,6 +480,44 @@ except ImportError as e:
 except Exception as e:
     console.log(f"Error with altair: {e}")
 
+# Import pydom for DOM manipulation
+try:
+    from pyweb import pydom
+    import builtins
+    builtins.pydom = pydom
+    console.log("pydom imported and made available globally")
+except ImportError as e:
+    console.log(f"Failed to import pydom: {e}")
+    # Fallback: provide a simple pydom-like interface using PyScript's DOM access
+    try:
+        from js import document
+        
+        class SimplePydom:
+            def __getitem__(self, selector):
+                if selector.startswith('#'):
+                    # ID selector
+                    element_id = selector[1:]
+                    element = document.getElementById(element_id)
+                    return [element] if element else []
+                elif selector.startswith('.'):
+                    # Class selector
+                    class_name = selector[1:]
+                    elements = document.getElementsByClassName(class_name)
+                    return list(elements)
+                else:
+                    # Tag selector
+                    elements = document.getElementsByTagName(selector)
+                    return list(elements)
+        
+        pydom = SimplePydom()
+        import builtins
+        builtins.pydom = pydom
+        console.log("Simple pydom fallback created and made available globally")
+    except Exception as fallback_error:
+        console.log(f"Error creating pydom fallback: {fallback_error}")
+except Exception as e:
+    console.log(f"Error with pydom: {e}")
+
 def display(obj, target=None, append=True):
     """Display an object in the specified target div."""
     if target:

@@ -93,11 +93,15 @@ external_toc_exclude_missing = False
 # Enable figure and table numbering within chapters
 numfig = True
 numfig_format = {
-    'figure': 'Figura %s',
-    'table': 'Tabella %s', 
-    'code-block': 'Algoritmo %s',
-    'section': 'Paragrafo %s'
+    'figure': 'Figure %s',
+    'table': 'Table %s', 
+    'code-block': 'Algorithm %s',
+    'section': 'Section %s'
 }
+
+# Enable equation numbering
+math_numfig = True
+math_eqref_format = "({number})"
 
 # Figure and table numbering configuration
 # Note: Chapter-relative numbering (X.Y format) is not compatible with current toctree structure

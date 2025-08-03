@@ -9,69 +9,73 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:uno-sguardo-di-insieme)=
-# Uno sguardo di insieme
+(sec:apercu-general)=
+# Vue d’ensemble
 
-Lo scopo di questo paragrafo è duplice: da una parte, serve a descrivere per
-sommi capi il filo logico che è dietro all'organizzazione dei contenuti e
-a introdurre, in modo relativamente informale, i concetti cardine; dall'altra,
-spiega come utilizzare le componenti interattive del libro. Come indicato nel
-{ref}`chap:approccio` nel testo farò riferimento a un {ref}`sec:installazione`
-_dataset_ ottenuto modificando un opportuno sottoinsieme del
-[Superhero database](http://www.superherodb.com). Gli esempi faranno quindi
-riferimento al mondo dei supereroi, ognuno dei quali sarà descritto tramite
-gli _attributi_ indicati nella {numref}`tab:dataset`.
+Ce chapitre a un double objectif : d’un côté, il sert à décrire à grands traits
+la logique suivie dans l’organisation des contenus et à introduire, de façon
+relativement informelle, les concepts fondamentaux ; de l’autre, il explique
+comment utiliser les composants interactifs du livre. Comme indiqué dans le
+{ref}`chap:approche`, je vais faire référence à un jeu de données obtenu en
+modifiant un sous-ensemble approprié du
+[Superhero database](http://www.superherodb.com). Les exemples se rapporteront
+donc à l’univers des super-héros, chacun étant décrit par les _attributs_
+listés dans la {numref}`tab:dataset`.
 
 ```{margin}
-Ho scelto di utilizzare la lingua inglese per indicare i nomi degli attributi
-e i valori corrispondenti (quando questi sono descritti tramite stringhe),
-per coerenza rispetto ai contenuti del dataset. Analogamente, il codice Python
-sarà strutturato utilizzando nomi in inglese per variabili, funzioni e così via.
+J’ai choisi d’utiliser l’anglais pour indiquer les noms des attributs et les
+valeurs correspondantes (lorsqu’elles sont exprimées sous forme de chaînes),
+afin de rester cohérent avec le contenu du dataset. De la même manière, le code
+Python suivra une convention de nommage en anglais pour les variables,
+fonctions, etc.
 ```
 
-```{table} Descrizione del _dataset_ utilizzato negli esempi.
+```{table} Description du jeu de données utilisé dans les exemples.
 :name: tab:dataset
 :align: center
-| Attributo          | Significato               | Contenuto                                                |
-|--------------------|---------------------------|----------------------------------------------------------|
-| `name`             | Identificativo univoco    | stringa                                                  |
-| `full_name`        | Nome completo             | stringa                                                  |
-| `identity`         | Identità segreta          | stringa                                                  |
-| `alignment`        | Inclinazione morale       | `'Good'`, `'Neutral'` o `'Bad'`                          |
-| `place_of_birth`   | Luogo di nascita          | stringa                                                  |
-| `creator`          | Editore/creatore          | stringa                                                  |
-| `universe`         | Universo                  | stringa                                                  |
-| `first_appearance` | Anno di prima apparizione | numero intero                                            |
-| `eye_color`        | Colore degli occhi        | stringa                                                  |
-| `hair_color`       | Colore dei capelli        | stringa                                                  |
-| `height`           | Altezza in cm.            | numero in virgola mobile                                 |
-| `weight`           | Peso  in kg.              | numero in virgola mobile                                 |
-| `strength`         | Forza                     | numero intero (da `0` a `100`)                           |
-| `intelligence`     | Intelligenza              | `'Low'`, `'Moderate'`, `'Average'`, `'Good'`, o `'High'` |
-| `speed`            | Velocità                  | numero intero (da `0` a `100`)                           |
-| `durability`       | Resistenza                | numero intero (da `0` a `100`)                           |
-| `combat`           | Abilità nel combattimento | numero intero (da `0` a `100`)                           |
-| `powers`           | Elenco dei superpoteri    | stringa                                                  |
+| Attribut            | Signification             | Contenu                                                  |
+|---------------------|---------------------------|----------------------------------------------------------|
+| `name`              | identifiant unique        | chaîne                                     |
+| `full_name`         | nom complet               | chaîne                                     |
+| `identity`          | identité secrète          | chaîne                                     |
+| `alignment`         | alignement moral          | `'Good'`, `'Neutral'` ou `'Bad'`                         |
+| `place_of_birth`    | lieu de naissance         | chaîne                                     |
+| `creator`           | éditeur/créateur          | chaîne                                     |
+| `universe`          | univers                   | chaîne                                     |
+| `first_appearance`  | année de première apparition | entier                                                 |
+| `eye_color`         | couleur des yeux          | chaîne                                     |
+| `hair_color`        | couleur des cheveux       | chaîne                                     |
+| `height`            | taille en cm              | nombre flottant                              |
+| `weight`            | poids en kg               | nombre flottante                             |
+| `strength`          | force                     | entier (de `0` à `100`)                                  |
+| `intelligence`      | intelligence              | `'Low'`, `'Moderate'`, `'Average'`, `'Good'` ou `'High'` |
+| `speed`             | vitesse                   | entier (de `0` à `100`)                                  |
+| `durability`        | endurance                 | entier (de `0` à `100`)                                  |
+| `combat`            | aptitude au combat        | entier (de `0` à `100`)                                  |
+| `powers`            | liste des super-pouvoirs  | chaîne                                     |
 ```
 
 ```{margin}
-L'estratto del _dataset_ viene prodotto dinamicamente, e può essere necessario
-attendere alcuni secondi prima che questo venga visualizzato, rimpiazzando
-la scritta `Please wait, loading PyScript...` [^pyscript].
+L’extrait du jeu de données est généré dynamiquement, et il peut être
+nécessaire d’attendre quelques secondes avant qu’il n’apparaisse à l’écran,
+remplaçant le message `Attendre le chargement de PyScript`. Il en va de même
+pour tous les points où le navigateur exécute du code Python.
 ```
-Il _dataset_ è memorizzato nel file `heroes.csv` contenuto nella directory
-`data` del [repository](https://github.com/dariomalchiodi/sds) associato al
-libro. Nel codice interattivo, il file è accessibile come `data/heroes.csv`.
-In questo file, i contenuti sono rappresentati utilizzando il formato
-CSV (_comma separated values_), uno degli standard impiegati per condividere
-dati di dimensioni relativamente contenute: ogni riga rappresenta un supereroe,
-e in essa i valori degli attributi nella {numref}`tab:dataset` sono
-indicati separandoli tramite virgole. L'unica eccezione è costituita dalla
-prima riga del file, che contiene i nomi degli attributi, sempre separati
-usando le virgole, come si può vedere visualizzando la parte iniziale del file
-stesso.
-Qui sotto potete vedere la descrizione di alcuni degli attributi per dieci
-supereroi del _dataset_ considerati a caso.
+
+Le jeu de données est stocké dans le fichier `heroes.csv`, situé dans le
+répertoire `data` du [répertoire GitHub](https://github.com/dariomalchiodi/sds)
+associé au livre. Dans le code interactif, le fichier est accessible via le
+chemin `data/heroes.csv`. Le contenu de ce fichier est représenté au format CSV
+(_comma separated values_), un des standards utilisés pour l’échange de données
+de taille modérée : chaque ligne représente un super-héros, et les valeurs des
+attributs listés dans la {numref}`tab:dataset` y sont séparées par des
+virgules. La seule exception est la première ligne, qui contient les noms des
+attributs, eux aussi séparés par des virgules, comme on peut le voir en
+affichant le début du fichier.
+
+Ci-dessous, vous pouvez voir la description de certains des attributs pour dix
+super-héros du jeu de données, choisis au hasard.  
+
 
 ```{code-block} python
 :class: toggle-code
@@ -86,38 +90,36 @@ source.index.name = None
 source
 ```
 
-Nel Capitolo [Pandas](pandas) vedremo come caricare in memoria i contenuti di
-questo file e, soprattutto, come elaborarli. Per ora, concentriamoci su
-alcuni semplici esempi che, da una parte, mostrano come utilizzare le parti
-interattive del libro, e, dall'altra, forniscono una panoramica di quelli che
-saranno i concetti spiegati nel libro.
+Dans le {ref}`chap:pandas`, nous verrons comment charger en mémoire le contenu
+de ce fichier et, surtout, comment le manipuler. Pour l’instant,
+concentrons-nous sur quelques exemples simples qui, d’un côté, montrent comment
+utiliser les parties interactives du livre, et de l’autre, donnent un aperçu
+des concepts que je vais présenter.
 
-Quello che segue è un primo esempio di grafico interattivo. Nel diagramma in
-alto sono rappresentati alcuni supereroi, utilizzando dei cerchi in un piano
-cartesiano, usando peso e altezza rispettivamente come ascissa e ordinata
-del centro, e forza come raggio. Ogni cerchio è colorato con una sfumatura di
-blu scelta in funzione dell'editore, e posizionandosi sopra di esso viene
-automaticamente visualizzato il nome del supereroe corrispondente. Il secondo
-diagramma (in basso) mostra il numero di
-supereroi per ogni editore/creatore, usando delle barre orizzontali.
-Selezionando un'area rettangolare nel diagramma in alto è possibile concentrarsi
-su un sottoinsieme di supereroi (i cerchi relativi a quelli esclusi vengono
-automaticamente colorati in grigio): in modo automatico, il diagramma inferiore
-viene rigenerato in modo da riflettere la distribuzione dei soli supereroi
-selezionati. Una volta effettuata, la selezione può essere spostata, e cliccando
-in un punto qualsiasi al di fuori di essa viene ripristinato il grafico
-originale.
+Ce qui suit est un premier exemple de graphique interactif. Dans le diagramme
+du haut, certains super-héros sont représentés à l’aide de cercles placés sur
+un plan cartésien : les coordonnées du centre indiquent le poids et la taille,
+tandis que le rayon représente la force. Chaque cercle est coloré avec une
+nuance de bleu choisie en fonction de l’éditeur, et en passant la souris
+au-dessus, le nom du super-héros correspondant s’affiche automatiquement. Le
+diagramme du bas montre quant à lui le nombre de super-héros par
+éditeur/créateur, à l’aide de barres horizontales. En sélectionnant une zone
+rectangulaire dans le diagramme supérieur, on peut se concentrer sur un
+sous-ensemble de super-héros (ce qui grise automatiquement les cercles des
+super-héros exclus) : le diagramme inférieur est alors mis à jour
+automatiquement pour refléter la distribution du groupe sélectionné. Une fois
+la sélection effectuée, on peut la déplacer, et un simple clic en dehors de
+cette zone permet de rétablir le graphique initial.
+
 ```{margin}
-Il grafico qui sotto è stato realizzato utilizzando
-[altair](https://altair-viz.github.io/), una libreria che permette di
-utilizzare Python per visualizzare all'interno di pagine web grafici complessi 
-a partire da _dataset_ di dimensioni ridotte, in una forma interattiva che è
-automaticamente attivata nel momento in cui queste pagine sono caricate. Per
-riconoscere se un grafico è stato generato tramite altair, è sufficiente
-controllare se nella sua parte in alto a destra è presente un pulsante rotondo
-che contiene tre punti. Questo pulsante attiva un menu che permette, tra le
-altre cose, di scaricare il grafico.
-```
+Le graphique ci-contre a été généré avec
+[altair](https://altair-viz.github.io/), un paquet qui permet d’utiliser Python
+pour créer des visualisations complexes dans des pages web, avec un
+comportement interactif automatiquement activé dès le chargement de la page.
+Pour savoir si un graphique a été généré avec altair, il suffit de vérifier si
+un petit bouton rond contenant trois points est visible en haut à droite. Ce
+bouton ouvre un menu qui permet, entre autres, de télécharger le graphique.
+```  
 
 ```{code-block} python
 :class: toggle-code
@@ -155,54 +157,56 @@ chart = (points & bars).configure(background='#eaf3f5')
 chart
 ```
 
-Interagendo con questo grafico è possibile _esplorare_ i dati visualizzati, per
-esempio per rispondere alle domande seguenti.
+En interagissant avec le graphique, on peut effectuer une _analyse
+exploratoire_ des données, par exemple pour répondre aux questions suivantes.
 
-1. Qual è l'editore/creatore con più supereroi in assoluto?
-2. Quale editore ha il maggior numero di supereroi alti meno di un metro?
-3. Quale editore ha il maggior numero di supereroi che pesano tra 80 e 100 kg.?
-4. Qual è il supererore più alto in assoluto?
+1. Quel est l’éditeur/créateur qui compte le plus grand nombre de super-héros ?
+2. Quel éditeur compte le plus de super-héros mesurant moins d’un mètre ?
+3. Quel éditeur a le plus de super-héros pesant entre 80 et 100 kg ?
+4. Quel est le super-héros le plus grand de tous ?
 
-Ci sono ovviamente tanti aspetti dei dati che possono essere analizzati in
-prima battuta semplicemente guardando il grafico, come per esempio i due
-indicati qui sotto.
 ```{margin}
-In generale, solo una piccola parte dei grafici che vedremo saranno
-interattivi.
-```
-5. Esiste una relazione di qualche tipo che lega tendenzialmente il peso e
-   l'altezza dei supereroi?
-6. Questa relazione cambia se ci concentriamo sui supereroi che corrispondono
-   a un particolare editore/creatore?
-
-La _statistica descrittiva_, introdotta nei Capitoli da
-[Dati e informazione](cap:dati-e-informazione)
-a [Analizzare le relazioni tra i dati](cap:analizzare-le-relazioni-tra-i-dati),
-fornisce degli strumenti che permettono di rispondere a domande come quelle
-appena considerate. In generale, lo scopo è quello di estrarre informazioni da
-un _dataset_ che descrive, globalmente o parzialmente, un insieme di individui
-di riferimento, e le tecniche utilizzate possono avere una natura sia
-_qualitativa_, sia _quantitativa_. Si parla di analisi qualitativa quando lo
-scopo è quello di determinare la natura di un certo fenomeno (per esempio, per
-rispondere alle domande ai punti 5 o 6 nell'elenco qui sopra). Questo richiede
-spesso di utilizzare degli strumenti, come il grafico precedentemente
-visualizzato, i cui risultati devono essere interpretati, introducendo un certo
-grado di soggettività. Si parla invece di analisi quantitativa quando l'esito
-di quest'ultima è espresso da una o più quantità numeriche, che possono essere
-quindi messe a confronto in modo oggettivo con altre quantità (tipicamente,
-i risultati di altre analisi).
-```{margin}
-Se tutto questo suona complicato, non vi preoccupate: i concetti diventeranno
-più chiari nei capitoli successivi.
+En général, seule une petite partie des graphiques que nous verrons seront
+interactifs.
 ```
 
-Supponiamo ora di volerci concentrare, per semplicità, sul peso dei
-supereroi: il grafico precedente è decisamente sovraffollato di cerchi, e
-mentre è relativamente facile farsi un'idea dell'altezza più piccola e di
-quella più grande, diventa poco chiaro, per esempio, capire se ci sono più
-supereroi «leggeri» che «pesanti». Per capire meglio, riporto qui sotto un
-particolare grafico, chiamato _istogramma_, che evidenzia le frequenze con le
-quali i valori diversi del peso sono presenti nel nostro dataset.
+Il y a évidemment de nombreux aspects que l’on peut analyser de manière
+préliminaire simplement en observant le graphique tel qu’il a été généré
+(c’est-à-dire sans utiliser les composants interactifs), comme par exemple les
+deux suivants.
+
+5. Existe-t-il une relation quelconque entre le poids et la taille des
+   super-héros ?
+6. Cette relation change-t-elle si l’on se concentre sur les super-héros d’un
+   éditeur/créateur en particulier ?
+
+La _statistique descriptive_, introduite du {ref}`chap:dati-e-informazione` au
+{ref}`chap:analizzare-le-relazioni-tra-i-dati`, fournit des outils permettant
+de répondre à des questions comme celles que l’on vient de considérer. En
+général, l’objectif est d’extraire de l’information à partir d’un jeu de
+données qui décrit, totalement ou partiellement, un ensemble d’individus de
+référence. Les techniques employées peuvent être de nature _qualitative_ ou
+_quantitative_. On parle d’analyse qualitative lorsque l’objectif est de
+comprendre la nature d’un certain phénomène (comme dans les questions 5 ou 6
+ci-dessus). Cela implique souvent l’utilisation d’outils, comme le graphique
+présenté précédemment, dont les résultats doivent être interprétés, ce qui
+introduit une certaine part de subjectivité. On parle au contraire d’analyse
+quantitative lorsque le résultat s’exprime par une ou plusieurs valeurs
+numériques, que l’on peut alors comparer objectivement à d’autres (typiquement,
+les résultats d’autres analyses).
+
+```{margin}
+Si tout cela vous semble compliqué, ne vous inquiétez pas : les concepts
+deviendront plus clairs dans les chapitres suivants.
+```
+
+Supposons maintenant que nous voulions nous concentrer, pour faire simple, sur
+le poids des super-héros : le graphique précédent est clairement chargé en
+cercles, et même s’il est relativement facile d’estimer les tailles minimale et
+maximale, il est plus difficile de déterminer, par exemple, s’il y a plus de
+super-héros « légers » que « lourds ». Pour mieux comprendre cela, voici un
+graphique particulier, appelé _histogramme_, qui met en évidence les fréquences
+auxquelles apparaissent les différentes valeurs de poids dans le jeu de données.
 
 ```{code-block} python
 :class: toggle-code
@@ -221,128 +225,137 @@ fig.show()
 ```
 
 ```{margin}
-Non sempre ha senso utilizzare un istogramma per esplorare dei valori in un
-_dataset_, come vedremo nel Capitolo
-[Dati e informazione](cap:dati-e-informazione).
+Il n’est pas toujours pertinent d’utiliser un histogramme pour explorer les
+valeurs d’un jeu de données, comme nous le verrons dans le
+{ref}`chap:dati-e-informazione`.
 ```
-
-Gli istogrammi sono definiti in dettaglio nel Paragrafo
-[Istogrammi](istogrammi), ma per il momento ci basta sapere come leggere il
-risultato ottenuto: in ognuno dei rettangoli mostrati, la base individua un
-intervallo $I$ di possibili valori per il peso dei supereroi, e l'altezza è
-legata alla frazione di supereroi che hanno un peso contenuto in $I$
-[^histogram]. Il grafico ottenuto mette in evidenza alcune cose interessanti:
-per esempio si vede che i supereroi con un peso superiore a 125 kg. sono
-presenti in numero maggiore rispetto a quelli con un peso inferiore a quaranta
-chili. D'altro canto, se non consideriamo i pesi molto grandi o molto piccoli,
-emerge un'approssimativa simmetria nei valori rispetto a un asse centrale,
-unitamente al fatto che le altezze dei rettangoli tendono a crescere,
-approssimativamente fino ai $70$ kg, per poi diminuire. Anche questa è
-un'esplorazione dei dati, che in questo caso non richiede l'utilizzo di grafici
-interattivi. Vedremo altresì che il processo di esplorazione non deve
-necessariamente (o esclusivamente) coinvolgere l'uso di metodi grafici, ma può
-essere basato anche sull'utilizzo di strumenti quantitativi (e tipicamente lo è).
-```{margin}
-Se siete attenti avrete notato che l'altezza di un rettangolo non può essere
-uguale al numero di supereroi che hanno un certo peso, perché i valori mostrati
-sull'asse delle ascisse non sono numeri interi. In questo istogramma, infatti,
-il numero di supereroi è legato all'area del rettangolo, cosa che ci
-permetterà tra poco di confrontare il risultato ottenuto con un altro grafico.
-Il motivo di questa scelta è approfondito nel Paragrafo
-[Istogrammi](istogrammi).
-```
-
-Una volta accumulata conoscenza sui dati a disposizione, il passo successivo
-richiede normalmente di _modellare_ il processo che li ha generati, e questo
-richiede di cambiare in modo radicale la nostra prospettiva, immaginando non
-in termini dell'intero _dataset_, ma piuttosto ponendoci domande relative
-all'osservazione di uno qualsiasi dei suoi elementi, o di un insieme di
-elementi, nell'ipotesi di non sapere a priori che cosa osserveremo (ricordatevi
-della [Legge di Franklin](#par:franklin-law)), ma assumendo che ogni elemento
-abbia la stessa possibilità di tutti gli altri di essere osservato. I capitoli
-da [Calcolo combinatorio](cap:calcolo-combinatorio) a
-[Variabili aleatorie e modelli continui](cap:va-e-modelli-continui) affrontano
-il _Calcolo delle Probabilità_, fornendo alcuni strumenti di base per gestire
-l'incertezza dovuta al non sapere che cosa verrà di volta in volta osservato.
-Più precisamente, ci concentreremo su delle affermazioni, che chiameremo
-_eventi_, che riguardano l'esito delle osservazioni. Sempre pensando ai
-supereroi, sono ad esempio eventi le seguenti affermazioni:
-
-1. un supereroe è cattivo;
-2. un supereroe Marvel è più veloce di un supereroe DC;
-3. due supereroi apparsi per la prima volta nello stesso anno hanno lo stesso
-   indice di intelligenza;
-4. almeno un supereroe in un gruppo di dieci è collocato in uno degli
-   universi di _Star Wars_.
-
-Chiaramente, non è noto a priori se l'affermazione che costituisce un evento
-è vera o falsa, perché il valore di verità dipende da quelle che saranno le
-effettive osservazioni. Per questo motivo, viene introdotto il concetto
-cardine di _probabilità_, intesa come quantificazione numerica di questa
-incertezza utilizzando un numero $p \in [0, 1]$. Senza entrare per ora nei
-dettagli, più tale numero è prossimo a $\frac{1}{2}$ e più l'incertezza è
-elevata; dualmente, quanto più $p$ si avvicina agli estremi, tanto più si
-riduce questa incertezza: all'avvicinarsi di $p$ a zero, si riduce sempre di
-più la confidenza che l'affermazione sia vera, al punto che, quando la
-probabilità è nulla, l'affermazione diventa sicuramente falsa; analogamente,
-la confidenza aumenta al crescere di $p$, e l'affermazione sarà sicuramente
-vera quando $p = 1$. Vedremo che il vantaggio di formalizzare matematicamente
-il concetto di probabilità ci permetterà di sviluppare tecniche che consentono
-di calcolare la probabilità di eventi complessi a partire da quella di eventi
-semplici: è questo il caso del punto 4 nell'elenco qui sopra, nel quale la
-probabilità cercata si può ottenere una volta che è nota la probabilità che un
-singolo eroe provenga da un universo _Star Wars_.
-
-Molto spesso, gli eventi che vengono considerati fanno riferimento a una o
-più quantità numeriche (come ad esempio negli esempi ai punti 2 e 3 nel
-precedente elenco): ha senso, per esempio, chiedersi se la resistenza di un
-supereroe è massima, o se la sua altezza è compresa in un dato intervallo.
-È importante sottolineare che il fatto che ogni supereroe abbia le stesse
-_chance_ degli altri di essere osservato non implica assolutamente che la
-stessa cosa valga per i valori che queste quantità possono assumere. Potete
-facilmente rendervene conto riguardando il precedente istogramma: un peso tra
-$50$ e $100$ kg. è molto più frequente rispetto a un peso superiore ai cento
-chili. Diventa quindi importante modellare anche queste quantità casuali, e in
-tal senso si introduce il concetto di _variabile aleatoria_ e la relativa
-formalizzazione matematica. Senza entrare per ora nei dettagli, e
-concentrandosi sempre sul peso dei supereroi, l'idea alla base di
-questa formalizzazione è quella di _idealizzare_ l'istogramma dei valori
-osservati, sostituendolo con il grafico di una funzione $f$ che ne rispetti le
-proprietà fondamentali. Sempre facendo riferimento al precedente istogramma,
-ci sono infinite funzioni che esibiscono simmetria rispetto a un asse centrale
-e andamento _unimodale_ (cioè crescente fino a un valore massimo e decrescente
-da lì in avanti), ma per motivi che al momento sono troppo difficili da
-giustificare&mdash;ma che saranno chiari una volta letto il resto del
-libro&mdash;vale la pena concentrarci su questa:
 
 ```{margin}
-In questa formula, $\exp(x)$ indica l'elevamento della costante $\mathrm e$
-alla potenza $x$: questa forma è preferibile a $\mathrm e^x$ per evitare la
-presenza di un esponente frazionario, che risulterebbe meno leggibile.   
+Nous verrons également que l’exploration des données ne passe pas
+nécessairement (ou exclusivement) par des méthodes graphiques, mais peut aussi,
+et souvent doit, reposer sur des outils quantitatifs.
 ```
+
+Les histogrammes sont définis en détail dans le {ref}`sec:histogrammes`, mais
+pour le moment, il suffit de savoir comment en lire le résultat : dans chacun
+des rectangles affichés, la base identifie un intervalle $I$ de valeurs
+possibles pour le poids des super-héros, et la hauteur est liée à la fraction
+de super-héros dont le poids appartient à $I$ [^histogramme]. Le graphique
+obtenu met en lumière quelques éléments intéressants : par exemple, on remarque
+que les super-héros pesant plus de 125 kg sont plus nombreux que ceux pesant
+moins de quarante kilos. D’un autre côté, si l’on exclut les poids très grands
+ou très petits, on observe une certaine symétrie approximative des valeurs par
+rapport à un axe central, et les hauteurs des rectangles ont tendance à
+augmenter jusqu’à environ $70$ kg, puis à diminuer. C’est aussi une forme
+d’exploration des données, qui ici ne nécessite pas de graphiques interactifs.
+
+```{margin}
+Si vous êtes attentif, vous aurez remarqué que la hauteur d’un rectangle ne
+peut pas correspondre simplement au nombre de super-héros ayant un certain
+poids, car les valeurs indiquées sur l’axe des ordonnées ne sont pas entières.
+Dans cet histogramme, en effet, le nombre de super-héros est lié à l’aire du
+rectangle, ce qui nous permettra de comparer ce résultat à un autre graphique
+un peu plus loin. Le choix de cette représentation est détaillé dans le
+{ref}`sec:histogrammes`.
+```
+
+Une fois que l’on a acquis une certaine connaissance sur les données
+disponibles, l’étape suivante consiste généralement à _modéliser_ le processus
+qui les a générées. Pour cela, il faut changer radicalement de perspective : il
+ne s’agit plus de considérer le jeu de données dans son ensemble, mais plutôt
+de se poser des questions relatives à l’observation d’un de ses éléments (ou
+d’un groupe d’éléments), sans savoir à l’avance ce que l’on va observer
+(rappelez-vous la [Loi de Franklin](#sec:franklin-law)), tout en supposant que
+chaque super-héros a autant de chances que les autres d’être observé. À partir
+du {ref}`{chap:calcolo-combinatorio}` et jusqu’au
+{ref}`chap:va-e-modelli-continui`, ce livre introduit la _Théorie des
+Probabilités_, en fournissant des outils formels pour gérer l’incertitude liée
+à cette absence de connaissance préalable sur ce qui sera observé.
+
+Plus précisément, nous nous concentrerons sur les _événements_, entendus comme
+des affirmations portant sur les résultats des observations. En restant dans le
+thème des super-héros, on peut par exemple considérer les événements suivants :
+
+1. un super-héros est mauvais (en supposant que chaque super-héros ait une
+   inclination morale bien définie à l’avance, comme mesuré par l’attribut
+   `alignment` dans notre _dataset_) ;
+2. un super-héros Marvel est plus rapide qu’un super-héros DC ;
+3. deux super-héros apparus pour la première fois la même année ont le même
+   indice d’intelligence ;
+4. au moins un super-héros dans un groupe de dix appartient à l’un des univers
+   de _Star Wars_.
+
+Bien entendu, on ne sait pas à l’avance si ces affirmations sont vraies ou
+fausses, car leur valeur dépend des observations effectives. C’est pourquoi on
+introduit la notion centrale de _probabilité_, entendue comme une
+quantification numérique de cette incertitude, au moyen d’un nombre
+$p \in [0, 1]$. Sans entrer dans les détails pour l’instant, plus ce nombre est
+proche de $\frac{1}{2}$, plus l’incertitude est grande ; inversement, plus $p$
+se rapproche de l’un des deux extrêmes, plus l’incertitude diminue : quand $p$
+tend vers zéro, on est de moins en moins enclin à croire que l’affirmation est
+vraie, et si la probabilité est nulle, elle est forcément fausse ; à l’inverse,
+plus $p$ croît, plus la confiance en la plausibilité de l’affirmation augmente,
+et l’affirmation est sûrement vraie lorsque $p = 1$. Comme nous le verrons, le
+fait de formaliser mathématiquement le concept de probabilité nous permettra de
+développer des techniques qui permettent de calculer la probabilité
+d’événements complexes à partir de celle d’événements plus simples : c’est le
+cas du point 4 ci-dessus, où la probabilité cherchée peut être obtenue dès que
+l’on connaît la probabilité qu’un héros donné provienne d’un univers
+_Star Wars_.
+
+Très souvent, les événements que l’on considère font référence à une ou
+plusieurs quantités numériques (comme dans les exemples aux points 2 et 3
+ci-dessus) : on peut par exemple se demander si la résistance d’un super-héros
+est maximale, ou si sa taille se trouve dans un certain intervalle. Il est
+important de souligner que le fait que chaque super-héros ait la même _chance_
+d’être observé que les autres ne signifie absolument pas que cela vaut aussi
+pour les valeurs que peuvent prendre ces quantités. Vous pouvez facilement vous
+en rendre compte en regardant à nouveau l’histogramme précédent : un poids
+entre $50$ et $100$ kg est beaucoup plus fréquent qu’un poids supérieur à cent
+kilos. Il devient donc important de modéliser aussi ces quantités aléatoires,
+ce qui nous conduit à introduire la notion de _variable aléatoire_ et sa
+formalisation mathématique. Sans entrer encore dans les détails,
+concentrons-nous sur le cas spécifique du poids des super-héros, en gardant
+bien à l’esprit que, en général, la démarche peut être plus complexe ou
+simplement différente. L’idée à la base de cette formalisation est de définir
+une fonction $f$, appelée _densité de probabilité_, dont le graphique
+_idéalise_ l’histogramme des valeurs observées, tout en respectant ses
+propriétés fondamentales. Pour l’exemple qui nous intéresse ici, on peut
+résumer ces propriétés comme suit : symétrie par rapport à un axe central et
+comportement _unimodal_ (c’est-à-dire croissant jusqu’à un maximum, puis
+décroissant). Il existe une infinité de fonctions vérifiant ces deux
+propriétés, mais pour des raisons qui seraient trop complexes à justifier à ce
+stade&mdash;mais qui devraient devenir claires à la lecture du reste du
+livre&mdash;, il vaut la peine de se concentrer sur celle définie par :
+
+```{margin}
+Dans cette formule, $\exp(x)$ désigne l’exponentielle de la constante
+$\mathrm e$ à la puissance $x$ : cette notation est préférée à $\mathrm e^x$
+afin d’éviter les exposants fractionnaires, moins lisibles.
+```
+
 ```{math}
 :label: eq:weight_normal
 f(x; \mu, \sigma) = \frac{1}{\sigma \sqrt{2 \pi}} \;
        \mathrm{exp}\left(-\frac{(x - \mu)^2}{2 \sigma^2}\right) \enspace,
 ```
 
-dove $x$ indica un generico peso e $f(x; \mu, \sigma)$ la corrispondente
-altezza nell'istogramma. È importante evidenziare che $f$ ha un solo argomento,
-denotato da $x$, mentre $\mu \in \mathbb R$ e $\sigma \in \mathbb R^+$ vanno
-intesi come due _parametri_: la funzione risulta completamente definita solo
-quando il loro valore è stato fissato. Il punto e virgola nella definizione di
-$f$ ha appunto lo scopo di evidenziare il ruolo differente che hanno
-l'argomento, da una parte, e i parametri, dall'altra. Per la precisione,
-@eq:weight_normal definisce, al variare di $\mu$ e $\sigma$, una _famiglia_ di
-funzioni, ognuna delle quali è associata a una variabile aleatoria. Il
-risultato è una famiglia di variabili aleatorie, alla quale ci si riferisce
-come a un _modello_ di variabile aleatoria.
-
-Nel grafico interattivo riportato qui sotto è possibile vedere come cambia $f$
-al variare dei suoi due parametri. Sopra al grafico compaiono due selettori,
-rispettivamente per $\mu$ e $\sigma$: agendo su di essi è possibile cambiare i
-valori dei parametri corrispondenti e simultaneamente vedere come varia il
-grafico della corrispondente versione di $f$.
+où $x$ représente un poids quelconque et $f(x; \mu, \sigma)$ donne la valeur de
+la hauteur correspondante dans l’histogramme idéalisé. Il est important de
+souligner que $f$ a un seul argument, noté $x$, tandis que $\mu \in \mathbb R$
+et $\sigma \in \mathbb R^+$ doivent être considérés comme deux _paramètres_ :
+la fonction est entièrement définie uniquement lorsque leurs valeurs ont été
+fixées. Le point-virgule dans la définition de $f$ sert justement à mettre en
+évidence le rôle différent de l’argument d’une part, et des paramètres d’autre
+part. Plus précisément, l’{eq}`eq:weight_normal` définit, en faisant varier
+$\mu$ et $\sigma$, une _famille_ de fonctions, chacune étant associée à une
+variable aléatoire. Le résultat est une famille de variables aléatoires, à
+laquelle on fait référence comme à un _modèle_ de variable aléatoire. Dans le
+diagramme interactif ci-dessous, vous pouvez voir comment le graphique de $f$
+évolue en fonction de ses deux paramètres. En manipulant les deux curseurs,
+associés respectivement à $\mu$ et $\sigma$, il est possible de modifier les
+valeurs des paramètres et de visualiser en temps réel la manière dont la courbe
+de $f$ change.
 
 ```{code-block} python
 :class: toggle-code 
@@ -420,16 +433,16 @@ plot_pdf(0, 1)
 </div>
 ```
 
-Uno dei motivi per i quali si parla di «modello» di variabile aleatoria sta nel
-fatto che è possibile scegliere i valori dei suoi parametri in modo da
-_adattare_ il grafico di $f$, e più in generale la corrispondente variabile
-aleatoria, a dati precedentementi osservati. Nel caso appena visto, ciò
-equivale a scegliere dei valori opportuni per $\mu$ e $\sigma$, facendo sì che
-il grafico di $f$ si sovrapponga qualitativamente con quello dell'istogramma
-inizialmente ottenuto per il peso. Il seguente grafico interattivo permette di
-eseguire manualmente questa operazione, visualizzando sia l'istogramma, sia il
-grafico (variabile) di $f$. Potete quindi agire sui selettori in modo da
-ottenere una buona sovrapposizione.
+L’une des raisons pour lesquelles on parle de « modèle » de variable aléatoire
+réside dans le fait qu’il est possible de choisir les valeurs de ses paramètres
+de manière à _adapter_ le graphique de $f$, et plus généralement la variable
+aléatoire correspondante, à des données précédemment observées. Dans le cas que
+nous venons de voir, cela revient à choisir des valeurs appropriées pour $\mu$
+et $\sigma$, de façon à ce que le graphique de $f$ se superpose de façon
+qualitative à celui de l’histogramme initialement obtenu pour le poids. Le
+graphique interactif suivant permet de réaliser manuellement cette opération,
+en affichant à la fois l’histogramme et la courbe (variable) de $f$. Vous
+pouvez donc manipuler les curseurs afin d’obtenir une bonne superposition.
 
 ```{code-block} python
 :class:  toggle-code
@@ -568,132 +581,176 @@ setup_model_sliders()
 </div>
 ```
 
-Nell'ultima parte del libro, vedremo che in pratica esistono una serie di
-metodi che permettono di determinare in modo automatico i parametri di un
-modello al fine di adattarlo a un insieme di dati. È questo, tra gli altri, lo
-scopo della _statistica inferenziale_, illustrata nei Capitoli da
-[Statistica inferenziale](cap:inferential_statistics) a 
-[Statistica non parametrica](cap:statistica-non-parametrica). Il punto di
-partenza è sempre un _dataset_, che rappresenta ora un _campione_ di
-osservazioni effettuate su una _popolazione_ che presenta alcuni aspetti ignoti
-sui quali vogliamo gettare luce. Il caso più semplice&mdash;e quello che
-studieremo più a fondo&mdash; è quello nel quale la popolazione è descritta da
-una variabile aleatoria che fa riferimento a un modello per il quale uno o più
-parametri sono incogniti, e lo scopo è quello di approssimare questi parametri,
-o altre quantità di che dipendono da questi ultimi. La statistica inferenziale,
-in un certo senso, ci permette di terminare il libro «chiudendo il cerchio»:
-sia perché mette in pratica in maniera sinergica quello che abbiamo visto nelle
-parti sulla statistica descrittiva e sul calcolo delle probabilità, sia perché
-permette di comprendere a fondo la potenza di alcuni degli strumenti visti
-proprio nell'ambito della statistica descrittiva, e le cui proprietà erano
-state introdotte in modo relativamente informale.
+Dans la dernière partie du livre, nous verrons qu’il existe plusieurs méthodes
+permettant de déterminer automatiquement les paramètres d’un modèle afin de
+l’adapter à un ensemble de données. C’est là, entre autres, l’objectif de la
+_statistique inférentielle_, présentée du {ref}`chap:inferential_statistics` au
+{ref}`chap:statistica-non-parametrica`. Le point de départ est toujours un jeu
+de données, qui représente ici un _échantillon_ d’observations effectuées
+sur une _population_ plus large. Notre objectif est de formuler des hypothèses
+ou de tirer des conclusions sur cette population &mdash; même si nous ne
+pouvons pas l'observer directement dans son ensemble. En d'autres termes, nous
+allons utiliser l'échantillon pour apprendre quelque chose sur ce que nous
+ignorons dans la population. Le cas le plus simple&mdash;et celui que nous
+étudierons plus en détail&mdash;est celui où la population est décrite par une
+variable aléatoire associée à un modèle dont un ou plusieurs paramètres sont
+inconnus. Le but est et d'approximer ces paramètres, ou d’autres quantités
+qui en dépendent. Par exemple, imaginons que la population soit constituée de
+tous les super-héros présents dans notre jeu de données, et que la quantité qui
+nous intéresse soit leur poids moyen $p$. Si nous ne disposons que d'un
+échantillon de cent super-héros, le bon sens nous pousse à utiliser la moyenne
+de leur poids comme approximation de $p$. De manière générale, on utilise le
+terme _estimateur_ pour désigner la fonction qu'on applique à l'échantillon
+pour produire ce genre d'approximation. Dans notre exemple, l'estimateur
+utilisé est simplement la moyenne arithmétique des valeurs de l'échantillon
+&mdash; ce qu'on appelle la _moyenne empirique_. Le tableau ci-dessous
+montre comment les valeurs de cet estimateur varient pour dix échantillons
+tirés au hasard.
 
-Prima però di iniziare con la statistica descrittiva, è importante rivedere
-alcuni concetti fondamentali di programmazione degli elaboratori, e
-soprattutto prendere dimestichezza con gli strumenti computazionali che
-userò in tutto il libro. È questo lo scopo dei capitoli
-[Elaborare i dati con Python](chap:intro-python) e [Pandas](pandas), che
-aprono la trattazione.
+```{code-block} python
+:class:  toggle-code
 
-## Esercizi
+weights = heroes['weight'][heroes['weight']<200].dropna()
 
-Al termine di ogni paragrafo sono proposti alcuni esercizi, la cui difficoltà
-di risoluzione è indicata dal numero di pallini racchuso tra parentesi.
+def sample_mean(weights, n=100):
+    sample = weights.sample(n)
+    return sample.mean().round(2)
+
+num_samples = 10
+means = [sample_mean(weights) for _ in range(num_samples)]
+pd.DataFrame([means],
+             columns=[f'#{i}' for i in range(1, num_samples+1)],
+             index=['Mean weight'])
+
+```
+
+Comme on peut le voir, les moyennes empiriques varient d'un échantillon à
+l'autre, ce qui est tout à fait normal &mdash; chaque échantillon étant
+différent. Cela dit, les résultats ne varient pas de manière extrême : ils ont
+tendance à se regrouper autour de $79$, qui est une bonne estimation du vrai
+poids moyen de tous les super-héros (comme vous pouvez le vérifier en
+observant l'histogramme précédent). Mais peut-on vraiment être sûrs que la
+moyenne échantillonnale est le meilleur estimateur possible ? Et plus
+généralement, comment évaluer si un estimateur est « bon », en tenant compte
+de la variabilité qu'on vient de constater ? Nous répondrons à ce genre de
+questions dans la partie consacrée à la statistique inférentielle. D'une
+certaine manière, cette partie me permet de conclure le livre en « bouclant la
+boucle » : à la fois parce qu’elle met en &oelig;uvre de manière synergique ce
+que nous avons vu dans les parties sur la statistique descriptive et la théorie
+des probabilités, et parce qu’elle permet aussi de mieux comprendre toute la
+puissance de certains concepts et outils que nous avions rencontrés auparavant
+&mdash; parfois de manière relativement informelle.
+
+Mais avant de commencer avec la statistique descriptive, il est important de
+revoir certains concepts de base liés à la programmation, et surtout de se
+familiariser avec les outils computationnels que j’utiliserai tout au long du
+livre. C’est justement l’objectif du {ref}`chap:intro-python` et du
+{ref}`chap:pandas`, qui ouvrent notre parcours.
+
+## Exercices
+
+À la fin de chaque paragraphe, quelques exercices sont proposés, dont le niveau
+de difficulté est indiqué par le nombre de points entre parenthèses.
 
 ```{exercise} •
-Scaricate il dataset dei supereroi dal
-[repository](https://github.com/dariomalchiodi/sds) del libro e importatelo in
-un qualsiasi programma che gestisce fogli elettronici (tutti quelli più diffusi
-hanno la capacità di importare file CSV), in modo che ogni colonna contenga
-un diverso attributo. Focalizzatevi, diciamo, sulle prime trenta righe e
-considerate separatamente le varie colonne, al fine di farvi un'idea di come
-varino i valori associati ai singoli attributi.
+Téléchargez le jeu de données des super-héros depuis le
+[dépôt](https://github.com/dariomalchiodi/sds) du livre et importez-le dans
+n’importe quel programme de tableur (tous les plus courants peuvent importer
+des fichiers CSV), de façon à ce que chaque colonne contienne un attribut
+différent. Concentrez-vous, disons, sur les trente premières lignes et examinez
+les différentes colonnes séparément, pour vous faire une idée de la manière
+dont varient les valeurs associées aux différents attributs.
 ```
 
 ```{margin}
-Essere _data scientist_ significa non solo sapere coniugare le competenze in
-probabilità, statistica e programmazione degli elaboratori, ma anche
-padroneggiare vari strumenti di _scripting_ che permettono di convertire,
-adattare e ripulire i dati: molto spesso, l'uso di questi strumenti è mediato
-da un terminale e dalla relativa _shell_. 
+Être _data scientist_ ne signifie pas seulement savoir combiner les compétences
+en probabilités, statistiques et programmation, mais aussi maîtriser différents
+outils de _scripting_ permettant de convertir, adapter et nettoyer les
+données : très souvent, l’utilisation de ces outils passe par un terminal et
+une _shell_.
 ```
+
 ```{exercise} •••
-Riconsiderate l'esercizio precedente, guardando i contenuti
-di ogni singola colonna del file CSV senza utilizzare un elaboratore di fogli
-elettronici, ma usando solamente un terminale e i comandi di _shell_.
+Reprenez l’exercice précédent, en inspectant le contenu de chaque colonne du
+fichier CSV sans utiliser de tableur, mais uniquement un terminal et des
+commandes _shell_.
 ```
 
 ```{exercise} ••
-Sulla base dell'idea che vi siete fatti in merito dal _dataset_ dei supereroi
-risolvendo gli esercizi precedenti, provate a suddividere gli attributi in
-gruppi omogenei basandovi non sul tipo di dato che viene utilizzato per
-rappresentare i valori corrispondenti (indicato nella colonna «Contenuto» della
-{numref}`tab:dataset`), bensì sulla _natura_ degli attributi stessi.
+Sur la base de l’idée que vous vous êtes faite du jeu de données des
+super-héros en résolvant les exercices précédents, essayez de regrouper les
+attributs par similarité, non pas en fonction du type de données utilisé pour
+représenter les valeurs (indiqué dans la colonne « Contenu » de la
+{numref}`tab:dataset`), mais selon la _nature_ des attributs eux-mêmes.
 ```
 
 ```{exercise} •
-Rispondete alle domande numerate da 1 a 4 nell'elenco che segue il primo
-grafico interattivo.
+Répondez aux questions numérotées de 1 à 4 dans la liste qui suit le premier
+graphique interactif.
 ```
 
 ```{exercise} ••
-Rispondete alle domande 5 e 6 nell'elenco che segue il primo grafico
-interattivo. Verbalizzate il ragionamento che avete fatto e scrivetelo.
+Répondez aux questions 5 et 6 dans la liste qui suit le premier graphique
+interactif. Rédigez le raisonnement que vous avez suivi et mettez-le par écrit.
 ```
 
 ```{exercise} ••
-Pensate ad altre domande relative al _dataset_ alle quali si possa trovare
-risposta utilizzando il primo grafico interattivo. Anche in questo caso,
-verbalizzate il ragionamento che va fatto per rispondere a queste domande.
+Formulez d’autres questions relatives au jeu de données auxquelles il serait
+possible de répondre en utilisant le premier graphique interactif. Là aussi,
+expliquez par écrit le raisonnement qui permet d’y répondre.
 ```
 
 ```{exercise} •
-Considerate i seguenti valori
+Considérez les valeurs suivantes :
 
-$$ \{13, 8, 7, 4, 9, 8, 4, 4, 19, 2, 5, 3, 3, 1, 12 \} $$
+$$ \\{13, 8, 7, 4, 9, 8, 4, 4, 19, 2, 5, 3, 3, 1, 12 \\} $$
 
-e disegnate a mano il corrispondente istogramma, utilizzando i seguenti
-intervalli di riferimento: $[0, 5)$, $[5, 10)$, $[10, 15)$, $[15, 20)$.
-Confrontate la forma del grafico ottenuto con quanto mostrato nel testo,
-mettendo in luce le principali differenze.
+et tracez à la main l’histogramme correspondant, en calculant la hauteur de
+chaque rectangle comme le nombre de valeurs qui tombent dans l’intervalle
+correspondant, et en utilisant les intervalles suivants :
+$[0, 5)$, $[5, 10)$, $[10, 15)$, $[15, 20)$.
+Comparez la forme du graphique obtenu à celle montrée dans le texte, en mettant
+en évidence les principales différences.
 ```
 
 ```{exercise} •
-Scrivete dieci possibili eventi che riguardano il _dataset_ dei supereroi.
+Écrivez dix événements possibles concernant le jeu de données des super-héros.
 ```
 
 ```{exercise} ••
-Scrivete un evento la cui probabilità è uguale a zero. Scrivete poi un
-evento avente $1$ come probabilità.
+Écrivez un événement dont la probabilité est égale à zéro. Puis un autre dont
+la probabilité est égale à $1$.
 ```
 
 ```{exercise} ••
-Ponete $\mu = \sigma = 1$ ed effettuate lo studio della funzione descritta
-in @eq:weight_normal, disegnando a mano il grafico corrispondente e verificando
-che questo grafico abbia la stessa forma visualizzata nel secondo grafico
-interattivo.
+Fixez $\mu = \sigma = 1$ et étudiez la fonction décrite dans
+{eq}`eq:weight_normal`, en dessinant à la main le graphique correspondant et en
+vérifiant que celui-ci a la même forme que celle affichée dans le second
+graphique interactif.
 ```
 
 ```{exercise} •
-Sulla base del risultato dell'esercizio precedente, e tenuto conto di quanto
-avete sperimentato lavorando sul secondo grafico interattivo, che ruolo hanno i
-parametri $\mu$ e $\sigma$ sul grafico di $f$ definita in @eq:weight_normal?
+Sur la base du résultat de l’exercice précédent et en tenant compte de ce que
+vous avez expérimenté avec le second graphique interactif, quel est le rôle des
+paramètres $\mu$ et $\sigma$ sur le graphique de $f$ défini dans
+{eq}`eq:weight_normal` ?
 ```
 
 ```{exercise} •
-Utilizzando il secondo grafico interattivo, determinate dei valori per $\mu$ e
-$\sigma$ che permettono di sovrapporre in modo ragionevole il grafico di $f$
-all'istogramma della @fig:histogram.
+À l’aide du second graphique interactif, trouvez des valeurs pour $\mu$ et
+$\sigma$ qui permettent de superposer de manière raisonnable le graphique de
+$f$ à l’histogramme du poids des super-héros.
 ```
 
-[^pyscript]: I contenuti dinamici sono generati utilizzando
-[PyScript](https://pyscript.com/), un _framework_ che permette di eseguire
-codice Python direttamente all'interno dei moderni _browser_. Quando viene
-caricata una pagina del libro, 
+```{exercise} ••
+Expliquez par écrit le raisonnement qui vous a permis de conclure que $79$ est
+une bonne approximation du poids moyen des super-héros.
+```
 
-[^histogram]: È possibile scegliere gli intervalli che individuano le basi dei
-rettangoli con un certo grado di libertà. Per semplicità, nella @fig:histogram
-l'istogramma è stato generato  considerando venticinque intervalli equiampi che
-ricoprono tutti i valori possibili per il peso, ma a seconda dei casi può
-essere sensato utilizzare un numero maggiore (o minore) di siffatti intervalli,
-oppure considerare un insieme di intervalli di ampiezze diverse.
+[^histogramme]: Il est possible de choisir librement les intervalles définissant
+les bases des rectangles. Pour simplifier, l’histogramme dans le texte a été
+généré en considérant vingt-cinq intervalles de largeur égale couvrant toutes
+les valeurs possibles du poids, mais selon les cas, il peut être pertinent
+d’utiliser un nombre plus (ou moins) élevé d’intervalles, ou encore de
+considérer un ensemble d’intervalles de largeurs différentes.
+

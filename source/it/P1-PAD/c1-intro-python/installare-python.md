@@ -450,6 +450,7 @@ alle librerie necessarie per poter eseguire il codice che troverete nei vari
 capitoli.
 
 
+(sec:notebook)=
 ## Installare un notebook manager
 
 Come indicato all'inizio di questo capitolo, presenterò il codice Python in

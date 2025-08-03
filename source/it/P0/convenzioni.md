@@ -14,6 +14,7 @@ kernelspec:
 <script type="module" src="https://pyscript.net/releases/2025.5.1/core.js"></script>
 ```
 
+
 (sec:convenzioni)=
 # Convenzioni
 
@@ -96,6 +97,7 @@ Questa area contiene la definizione di un corollario.
 :label: segnaposto-lemma
 Questa area contiene la definizione di un lemma.
 ```
+
 ```{admonition} _
 :class: myproof
 In questa area viene inserita la dimostrazione di un teorema, di un corollario
@@ -108,6 +110,5 @@ sebbene la sua dimostrazione richieda conoscenze matematiche avanzate.
 Questo tipo di area racchiude alcuni aspetti secondari che preferisco mettere
 in evidenza nel testo, piuttosto che descriverli nelle note a pie' di pagina.
 ```
-
 
 

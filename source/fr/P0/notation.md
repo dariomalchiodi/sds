@@ -9,59 +9,60 @@ kernelspec:
   display_name: Python 3
 ---
 
+
 (sec:notazione)=
-# Notazione
+# Notation
 
-La {numref}`tab-notazione` elenca le principali notazioni che utilizzerò nelle
-formule matematiche.
+La {numref}`tab-notation` répertorie les principales notations que
+j’utiliserai dans les formules mathématiques.
 
-```{table} Notazione utilizzata nel testo per le formule matematiche.
-:name: tab-notazione
+```{table} Notation utilisée dans le texte pour les formules mathématiques.
+:name: tab-notation
 :align: center
 :class: [full-width]
 
-|  Simbolo                   | Significato                                                                    |
+|  Symbole                   | Signification                                                                  |
 |:---------------------------|:-------------------------------------------------------------------------------|
-| $\mathbb N$                | insieme dei numeri naturali                                                    |
-| $\mathbb Z$                | insieme dei numeri interi                                                      |
-| $[a..b]$                   | intervallo discreto dei numeri interi compresi tra $a$ e $b$ (estremi inclusi) |
-| $\mathbb R$                | insieme dei numeri reali                                                       |
-| $[a, b]$                   | intervallo chiuso dei numeri reali compresi tra $a$ e $b$                      |
-| $(a, b)$                   | intervallo aperto dei numeri reali compresi tra $a$ e $b$                      |
-| $[a, b)$, $(a, b]$         | intervalli semiaperti dei numeri reali compresi tra $a$ e $b$                  |
-| $A = \{ a_1, \dots a_n \}$ | insieme/evento composto dagli elementi/esiti $a_1, \dots, a_n$                 |
-| $a \in A$                  | elemento $a$ dell'insieme $A$                                                  |
-| $(a_1, \dots, a_n)$        | disposizione o permutazione composta dagli elementi $a_1, \dots, a_n$          |
-| $n!$                       | fattoriale del numero intero $n$                                               |
-| $\binom{n}{k}$             | coefficiente binomiale («$n$ su $k$») di $n$ oggetti in $k$ posti              |
-| $p_n$                      | numero di permutazioni semplici di $n$ elementi                                |
-| $P_{n; n_1, \dots, n_k}$   | numero di permutazioni con ripetizione di $n$ elementi distinguibili a gruppi contenenti $n_1, \dots, n_k$ oggetti |
-| $\{ a_1, \dots, a_n \}$    | combinazione composta dagli elementi $a_1, \dots, a_n$                         |
-| $D_{n, k}$                 | disposizioni con ripetizione di $n$ oggetti in $k$ posti                       |
-| $d_{n, k}$                 | disposizioni senza ripetizione di $n$ oggetti in $k$ posti                     |
-| $c_{n, k}$                 | combinazioni semplici di $n$ oggetti in $k$ posti                              |
-| $C_{n, k}$                 | combinazioni con ripetizione di $n$ oggetti in $k$ posti                       |
-| $S \subseteq T$            | sottoinsieme/sottoevento $S$ di un insieme/evento $T$                          |
-| $\Omega$                   | insieme universo / spazio degli esiti                                          |
-| $A \rightarrow B$          | evento/proposizione $A$ implica evento/proposizione $B$                        |
-| $A \leftrightarrow B$      | evento/proposizione $A$ coimplica evento/proposizione $B$                      |
-| $S \cup T$                 | unione degli insiemi/eventi $S$ e $T$                                          |
-| $S \cap T$                 | intersezione degli insiemi/eventi $S$ e $T$                                    |
-| $S \backslash T$           | differenza tra l'insieme/evento $S$ e l'insieme/evento $T$                     |
-| $S \ominus T$              | differenza simmetrica tra gli insiemi/eventi $S$ e $T$                         |
-| $A \vee B$                 | disgiunzione logica tra le proposizioni $A$ e $B$                              |
-| $A \wedge B$               | congiunzione logica tra le proposizioni $A$ e $B$                              |
-| $\mathscr E$               | esperimento casuale                                                            |
-| $\omega \in \Omega$        | esito di un esperimento casuale                                                |
-| $\{ \omega \}$             | evento elementare                                                              |
-| $\mathsf A$                | algebra degli eventi                                                           |
-| $2^A$                      | insieme delle parti dell'insieme $A$                                           |
-| $\mathbb P$                | funzione di probabilità                                                        |
-| $\mathbb P(E)$             | probabilità dell'evento $E$                                                    |
-| $\mathbb P(E\|F)$          | probabilità condizionata dell'evento $E$ dato l'evento $F$                     |
-| $\mathbb E(X)$             | valore atteso della variabile aleatoria $X$                                    |
-| $\mathbb E(g(X))$          | valore atteso della funzione $g$ della variabile aleatoria $X$                 |
-| $\mathbb E(g(X, Y))$       | valore atteso della funzione $g$ delle variabili aleatorie $X$ e $Y$           |
-| $a \triangleq b$           | $a$ è definito come uguale a $b$                                               |
-```
+| $\mathbb N$                | ensemble des nombres naturels                                                  |
+| $\mathbb Z$                | ensemble des nombres entiers                                                   |
+| $[a..b]$                   | intervalle discret des entiers entre $a$ et $b$ (bornes incluses)              |
+| $\mathbb R$                | ensemble des nombres réels                                                     |
+| $[a, b]$                   | intervalle fermé des réels entre $a$ et $b$                                    |
+| $(a, b)$                   | intervalle ouvert des réels entre $a$ et $b$                                   |
+| $[a, b)$, $(a, b]$         | intervalles semi-ouverts des réels entre $a$ et $b$                            |
+| $A = \\{ a_1, \dots a_n \\}$ | ensemble/événement composé des éléments/résultats $a_1, \dots, a_n$            |
+| $a \in A$                  | élément $a$ de l’ensemble $A$                                                 |
+| $(a_1, \dots, a_n)$        | arrangement ou permutation des éléments $a_1, \dots, a_n$                      |
+| $n!$                       | factorielle de l’entier $n$                                                   |
+| $\binom{n}{k}$             | coefficient binomial («$n$ parmi $k$») de $n$ objets dans $k$ positions        |
+| $p_n$                      | nombre de permutations simples de $n$ éléments                                |
+| $P_{n; n_1, \dots, n_k}$   | nombre de permutations avec répétition de $n$ éléments divisés en groupes de $n_1, \dots, n_k$ objets |
+| $\\{ a_1, \dots, a_n \\}$    | combinaison des éléments $a_1, \dots, a_n$                                    |
+| $D_{n, k}$                 | arrangements avec répétition de $n$ objets dans $k$ positions                  |
+| $d_{n, k}$                 | arrangements sans répétition de $n$ objets dans $k$ positions                  |
+| $c_{n, k}$                 | combinaisons simples de $n$ objets dans $k$ positions                          |
+| $C_{n, k}$                 | combinaisons avec répétition de $n$ objets dans $k$ positions                  |
+| $S \subseteq T$            | sous-ensemble/sous-événement $S$ d’un ensemble/événement $T$                  |
+| $\Omega$                   | univers / espace des résultats                                                 |
+| $A \rightarrow B$          | événement/proposition $A$ implique événement/proposition $B$                  |
+| $A \leftrightarrow B$      | événement/proposition $A$ équivaut à événement/proposition $B$                |
+| $S \cup T$                 | union des ensembles/événements $S$ et $T$                                     |
+| $S \cap T$                 | intersection des ensembles/événements $S$ et $T$                              |
+| $S \backslash T$           | différence entre l’ensemble/événement $S$ et l’ensemble/événement $T$        |
+| $S \ominus T$              | différence symétrique entre les ensembles/événements $S$ et $T$               |
+| $A \vee B$                 | disjonction logique des propositions $A$ et $B$                               |
+| $A \wedge B$               | conjonction logique des propositions $A$ et $B$                               |
+| $\mathscr E$               | expérience aléatoire                                                          |
+| $\omega \in \Omega$        | issue d’une expérience aléatoire                                              |
+| $\\{ \omega \\}$           | événement élémentaire                                                         |
+| $\mathsf A$                | algèbre des événements                                                        |
+| $2^A$                      | ensemble des parties de l’ensemble $A$                                        |
+| $\mathbb P$                | fonction de probabilité                                                       |
+| $\mathbb P(E)$             | probabilité de l’événement $E$                                                |
+| $\mathbb P(E\|F)$          | probabilité conditionnelle de l’événement $E$ sachant $F$                     |
+| $\mathbb E(X)$             | espérance de la variable aléatoire $X$                                        |
+| $\mathbb E(g(X))$          | espérance de la fonction $g$ de la variable aléatoire $X$                     |
+| $\mathbb E(g(X, Y))$       | espérance de la fonction $g$ des variables aléatoires $X$ et $Y$              |
+| $a \triangleq b$           | $a$ est défini comme étant égal à $b$                                         |
 
+```

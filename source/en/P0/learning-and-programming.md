@@ -27,7 +27,7 @@ level of programming knowledge typically gained in the first year of such
 programs&mdash;or in similar degrees.
 ```
 
-Chapter {numref}`#introducing-python` provides a mid-to-advanced level overview
+{ref}`chap:introducing-python` provides a mid-to-advanced level overview
 of the Python features that are used throughout the book, and can help readers
 already familiar with programming but new to this language get up to speed.
 Reading this chapter is recommended for everyone, in order to get familiar
@@ -39,71 +39,69 @@ reader is being guided through the implementation of one or more concepts.
 Conversely, when code is used to produce elements such as tables or plots, it
 is hidden by default. In those cases, a «Show code» link lets thre reader
 toggle the visibility of the hidden code. I encourage everyone to take
-advantage of this opportunity&mdash;not by passively reading the text or
-blindly running the code, but by analyzing it, understanding it, and modifying
-it (even just to better grasp how it works!). In short, _play with it_ in the
+advantage of this opportunity: just as passively reading a text is of little
+benefit, mindlessly running code makes little sense; instead, it's important to
+analyze it, understand it, and modify it (even changes made just to better
+grasp how it works are worthwile). In short, _play with it_ in the
 true _hacker_ spirit&mdash; understood in the original sense of the
-word[^hacker]. Actually, you can even play with the book without necessarily
-understanding or running the code: as shown in [A quick overview](uno-sguardo-di-insieme), some content is
-interactive, and manipulating it is designed to help you grasp the concepts
-more easily.
+word[^hacker]. In fact, the book can be explored even without a full
+understanding of the code or the need to run it: as shown in
+{ref}`sec:overview`, certain sections include interactive elements
+specifically designed to support a clearer grasp of the underlying concepts.
 ```{margin}
-The book was generated using [MyST](https://mystmd.org/), which includes a
-variant of the <wiki:Markdown> format as well as the software used to convert
-it into the HTML pages you’re reading.
-
-The interactive parts rely on technologies (especially
-[JupyterLite](https://github.com/jupyterlite/jupyterlite)) that are still in an
-early development phase, but have the big advantage of not requiring any manual
-installation. That said, patience may be required, and it’s important to use a
-supported web browser.
+The interactive parts rely on [PyScript](https://pyscript.net/), a technology
+that runs Python conde in modern web browsers. It does not require any manual
+installation or configuration, although it requires an active Internet
+connection and a supported web browser (any up-to-date WebAssembly-enabled
+browser, notably Chrome, Firefox, Edge, Safari, and Chromium-based browsers).
 ```
 
-Very often I try to guide the reader through the actual implementation of
-fundamental tools—especially in the first part, which focuses on descriptive
-statistics. The final results should not be considered at the level of
-professional libraries: the aim here is to focus on essential aspects that
-support learning one or more concepts. Moreover, these implementations are not
-intended for production use: just like it makes sense for a developer to learn
-how to implement sorting algorithms from scratch (and to be able to do so if
-needed), but then rely on the well-optimized and thoroughly tested
-implementations provided by libraries. With this in mind, immediately after
-each “DIY” implementation, readers are pointed toward the use of
-state-of-the-art libraries.
+I often try to guide the reader through the actual implementation of
+fundamental tools&mdash;particularly in the first part of the book, which
+focuses on descriptive statistics. These implementations should not be seen as
+substitutes for professional libraries: their purpose is to highlight essential
+aspects that help in understanding one or more core concepts. The idea is that
+by simulating a tool or technique through code, its inner workings become
+clearer. These implementations are not intended for production use&mdash;much
+like how developers have once learned to implement sorting algorithms from
+scratch to grasp their logic, even though in their daily work they ultimately
+rely on optimized, well-tested versions provided by standard libraries. With
+this in mind, each “DIY” approach is followed by a reference to the
+corresponding functionality in state-of-the-art Python packages.
 
-In principle, even readers with no programming experience can read this book by
-skipping the parts that include, describe, or discuss code. But this comes with
-the real risk of not fully grasping the content, given that much of the book
-alternates between text and code. For these readers, I recommend considering
-more traditional texts, such as:
+In principle, this book can be read even without prior programming experience
+by simply skipping sections that include, describe, or discuss code. However,
+this comes with the real risk of missing key insights, as much of the content
+is built around the interplay between explanations and code. For those less
+familiar with programming, it may be worthwhile to first consult books adopting
+a more traditional approach, such as:
 
 - Probability and Statistics for Engineering and the Sciences, by Sheldon Ross
   {cite:p}`ross`,
 - Introduction to Statistics, by Marylin K. Pelosi, Theresa M. Sandifer,
   Paola Cerchiello and Paolo Giudici {cite:p}`pelosi`.
 
-A word of caution, too, for those who can’t program but are tempted to read
-this book to learn how—perhaps while also learning data analysis. This is
-__not__ a book for learning to program, but rather a book for learning _by_
-programming, where code is used as a tool to enhance the learning of another
-subject. There’s a saying that you haven’t really understood something unless
-you can explain it to your grandmother[^cite-granny]: I take that to heart and
-stretch it a bit by saying you haven’t truly understood a technical concept
-until you can implement it by writing a program. But if you want to follow this
-philosophy, you need to have already learned how to write _software_, which is
-a skill that takes time, energy, and dedicated resources to acquire.
-Also in this case, there are many good books that can help, for instance:
+A word of caution for those whithout programming experience who might be
+tempted to read this book to learn coding&mdash;perhaps alongside learning data
+analysis. This is __not__ a book for learning to program from scratch, but
+rather a book for learning _through_ programming, where code serves as a tool
+to deepen understanding of another subject. There’s a saying that you haven’t
+truly understood something unless you can explain it to your
+grandmother[^cite-granny]: I take this to heart and extend it by  that a
+technical concept isn't fully grasped until you can implement it by writing a
+program. However, to follow this approach, a basic ability to write software is
+required&mdash; a skill that demands time, effort, and dedicated learning
+resources. For those starting out, there are many excellent books available,
+such as:
 
-- [Think Python](https://github.com/AllenDowney/ThinkPythonItalian/blob/master/thinkpython_italian.pdf), by Allen B. Downey {cite:p}`downey`.
+- [Think Python](https://allendowney.github.io/ThinkPython/), by Allen B.
+  Downey {cite:p}`downey`.
 - C Programming: A Modern Approach, by Kim N. King {cite:p}`king`,
 - Programming in Go, by Ivo Balbaert {cite:p}`balbaert`.
 
-I’ve intentionally listed three fairly recent books, each focused on a
-different language: the goal here is to learn programming basics, not the
-intricacies of a specific language. Lastly, this section only references books
-written in Italian, but it’s always worth considering the original version of a
-book if it’s in English, or looking for English versions designed for
-non-native speakers.
+I intentionally selected three relatively recent books, each centered on a
+different programming language. The aim is to understand the fundamentals of
+programming, rather than the finer details of any one language.
 
 
 ````{margin}
@@ -117,30 +115,31 @@ MuseumsForum, distributed under
 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/))
 ```
 
-[^librerie]: The repository associated with this book contains a
-[file](https://github.com/dariomalchiodi/sds/blob/main/requirements.in)
-listing all the libraries used to generate the content, including those needed to run the code.
+[^libraries]: The repository associated with this book includes a
+[file](https://github.com/dariomalchiodi/sds/blob/main/requirements.in) that
+lists all the libraries used to generate the contents, including those
+required to run the code.
+[^hacker]: The term _hacker_ is commonly used today with a negative
+connotation, essentially equating it with someone who pursues malicious aims
+by writing or modifying software, or more generally exploiting security
+vulnerabilities to misuse digital technologies. However, the modern English use
+of the term dates back to around 1960 and originally carried a more neutral
+meaning, not directly tied to computing: it referred to someone with the talent
+to deeply understand how a system works, and thus able to control it to
+the extent of using it in ways different from its original design purposes. To
+give a historical&mdash;though illegal&mdash;example: one of the earliest
+famous _hacks_ involved using the «Cap’n Crunch Bo’sun Whistle» (a toy included
+in boxes of a popular cereal brand, shown in {numref}`fig-whistle`) to make
+free long-distance or international calls from certain public telephones in the
+United States. One of the places where the hacker counterculture began to take
+shape was the Massachusetts Institute of Technology (MIT): the earliest known
+written reference of the term «hacking» appears in the minutes of a 1955
+meeting of the [Tech Model Railroad Club](http://tmrc.mit.edu/), a student club
+of model train enthusiasts. It was only later that the term become closely
+linked with the world of computing.
 
-[^hacker]: The term _hacker_ is nowadays commonly used with a negative connotation,
-essentially equating it with someone who pursues malicious goals by writing or modifying
-_software_, or more generally exploiting security flaws to misuse existing digital technologies.
-In reality, the modern English use of the term dates back to around 1960, but originally
-carried a more neutral meaning, not directly linked to computing:
-it described someone with the talent to deeply understand how a system works,
-and therefore able to control it to the point of using it in ways that differ
-from the purposes for which the system was originally designed.
-Just to give a well-known—though illegal—example: one of the earliest famous _hacks_
-involved using the “Cap’n Crunch Bo’sun Whistle” (a whistle included as a toy
-in boxes of a popular cereal brand, shown in @fig-whistle) to make free
-long-distance or international calls from certain public telephones in the United States.
-One of the places where hacker counterculture started to emerge was the
-Massachusetts Institute of Technology (MIT): the first written mention of
-“hacking” refers to the minutes of a 1955 meeting of the
-[Tech Model Railroad Club](http://tmrc.mit.edu/), a student club of model train enthusiasts.
-Only more recently has the term become closely associated with the world of computing.
-
-[^cite-granny]: It's hard to trace the true origin of this saying:
-some attribute it to Einstein, others to Feynman, and others to Rutherford
-(apparently there's consensus on it coming from the world of physics);
-there are also variants where the grandmother is replaced by a child—or,
-for some reason—even by a bartender.
+[^cite-granny]: The true origin of this saying is hard to pinpoint: some
+attribute it to Einstein, others to Feynman or Rutherford&mdash;there seems to
+be consensus, at least, that it comes from the world of physics. Variants also
+exist in which the grandmother is replaced by a child, or, for some reasons,
+even by a bartender.

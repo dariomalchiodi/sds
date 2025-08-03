@@ -9,6 +9,11 @@ parts:
         sections:
         - file: P0/acknowledgements
         - file: P0/learning-and-programming
+        - file: P0/statistics-data-science
+        - file: P0/conventions
+        - file: P0/notation
+        - file: P0/use-in-teaching
+      - file: P0/overview
   - caption: Programmazione per l'analisi dei dati
     chapters:
       - file: P1-PAD/presentation

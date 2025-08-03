@@ -14,30 +14,28 @@ kernelspec:
 <script type="module" src="https://pyscript.net/releases/2025.5.1/core.js"></script>
 ```
 
-(sec:convenzioni)=
-# Convenzioni
+(sec:conventions)=
+# Conventions
 
-Per quanto detto nel paragrafo precedente, spesso inframmezzerò il testo con
-del codice, non tanto al fine di eseguirlo, ma più per uno scopo illustrativo
-(per esempio, per indicare i letterali `true` e `false` come unici valori
-possibili per il tipo di dati `bool`). In questo caso, utilizzerò un carattere
-tipografico non proporzionale con un colore diverso da quello del
-testo principale. Quando invece sarà necessario mostrare una o più righe di
-codice pensate per essere eseguite da chi legge, mostrerò queste righe 
-all'interno di un riquadro che ricorda la tipica _cella di codice_ in un
-_notebook_. Anche in questo caso utilizzerò un carattere tipografico non
-proporzionale, ma la colorazione del testo sarà fatta in modo da evidenziare
-dei particolari elementi nel codice (come variabili, letterali, parole chiave
-e così via, analogamente a quanto normalmente fatto dai moderni IDE). Inoltre,
-il codice risulterà staccato rispetto al testo principale, come nell'esempio
-che segue.
+Comme mentionné dans le paragraphe précédent, je vais souvent insérer du code
+dans le texte, non pas tant pour qu’il soit exécuté, mais dans le but 
+d'illustrer des concepts (par exemple, pour montrer que les littéraux `true` et
+`false` sont les seules valeurs possibles du type de données `bool`). Dans ce
+cas, j’utiliserai une police à chasse fixe avec une couleur différente de celle
+du texte principal. Quand il sera nécessaire de montrer une ou plusieurs lignes
+de code destinées à être exécutées lors de la lecture, ces lignes apparaîtront
+dans un encadré qui rappelle une _cellule de code_ typique d’un _notebook_.
+Là encore, j’utiliserai une police à chasse fixe, mais la coloration syntaxique
+mettra en évidence certains éléments du code (comme les variables, les
+littéraux, les mots-clés, etc.), à la manière des éditeurs modernes de type
+IDE. Le code sera aussi visuellement séparé du texte principal, comme dans
+l’exemple suivant.
 ```{margin}
-È pratica comune utilizzare un carattere tipografico non proporzionale (nel
-quale cioè tutti i glifi utilizzati per rappresentare una lettera hanno la
-stessa larghezza) per visualizzare codice, input e output, per una serie di
-motivi che ottimizzano la leggibilità del codice stesso, come la maggiore
-facilità di indentare le istruzioni, il minor rischio di non distinguere tra
-caratteri simili come 1 e l.
+Il est courant d’utiliser une police à chasse fixe (où chaque glyphe a la même
+largeur) pour afficher le code, les entrées et les sorties, pour diverses
+raisons qui en améliorent la lisibilité, comme la facilité d’indenter les
+instructions ou la réduction du risque de confondre des caractères similaires
+comme 1 et l.
 ```
 
 ```python
@@ -45,69 +43,66 @@ age = 24
 print(age <= 42)
 ```
 
-Di norma, visualizzerò l'eventuale output dell'esecuzione all'interno di
-un'apposita _cella di output_, accodata a quella di codice e mostrata come
-di seguito.
+En général, j’afficherai le résultat de l’exécution dans une
+_cellule de sortie_ spécifique, placée juste après celle contenant le code,
+comme ci-dessous.
 
 ```python
 print(age <= 42)
 ```
 
-Infine, utilizzerò uno stile specifico per evidenziare nel testo alcune
-componenti particolari, come esemplificato qui sotto.
+Enfin, j’utiliserai un style distinctif pour signaler certains encadrés
+contenant des notions spécifiques, comme illustré ci-dessous.
 
 ```{admonition} _
 :class: naming
-Questo tipo di area contiene delle note relative alla nomenclatura utilizzata
-in un particolare ambito, o alla descrizione di diciture alternative rispetto
-a quelle introdotte.
+Cet encadrés contient des remarques sur la terminologie utilisée dans un domaine
+particulier, ou des variantes par rapport aux expressions introduites.
 ```
 
 ```{prf:definition}
-:label: segnaposto-definizione
+:label: marquplace-definition
 :class: no-number
-In questa area vengono definiti in modo formale uno o più concetti.
+Cet encadré définit formellement un ou plusieurs concepts.
 ```
 ```{margin}
-Definizioni, esempi e così via saranno normalmente numerati, e spesso
-accompagnati da un nome specifico racchiuso tra parentesi.
+Les définitions, exemples, etc. seront généralement numérotés, et souvent
+accompagnés d’un nom spécifique entre parenthèses.
 ```
 
 ```{prf:example}
-:label: segnaposto-esempio
+:label: marquplace-esempio
 :class: no-number
-Questa area racchiude un esempio.
+Cet encadré contient un exemple.
 ```
 
 ````{prf:theorem}
-:label: segnaposto-teorema
+:label: marquplace-teorema
 :class: no-number
-Questa area contiene la tesi di un teorema.
+Cet encadré présente l’énoncé d’un théorème.
 ````
 
 ```{prf:corollary}
-:label: segnaposto-corollario
+:label: marquplace-corollario
 :class: no-number
-Questa area contiene la definizione di un corollario.
+Cet encadré contient l’énoncé d’un corollaire.
 ```
 
 ```{prf:lemma}
 :class: no-number
-:label: segnaposto-lemma
-Questa area contiene la definizione di un lemma.
+:label: marquplace-lemma
+Cet encadré contient l’énoncé d’un lemme.
 ```
+
 ```{admonition} _
 :class: myproof
-In questa area viene inserita la dimostrazione di un teorema, di un corollario
-o di un lemma. Per alcuni dei teoremi ometterò la relativa dimostrazione. Ciò
-capiterà quando sarà importante introdurre un risultato teorico rilevante,
-sebbene la sua dimostrazione richieda conoscenze matematiche avanzate.
+Cet encadré contient la démonstration d’un théorème, corollaire ou lemme. Dans
+certains cas, je choisirai de ne pas inclure la démonstration, notamment
+lorsque le résultat théorique est important mais que sa présentation nécessite
+des connaissances mathématiques avancées.
 ```
 
 ```{note}
-Questo tipo di area racchiude alcuni aspetti secondari che preferisco mettere
-in evidenza nel testo, piuttosto che descriverli nelle note a pie' di pagina.
+Ce type de encadré met en valeur certains aspects secondaires que je préfère
+intégrer dans le texte plutôt que dans des notes de bas de page.
 ```
-
-
-

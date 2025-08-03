@@ -97,9 +97,9 @@ external_toc_exclude_missing = False
 numfig = True
 numfig_format = {
     'figure': 'Figura %s',
-    'table': 'Tabella %s', 
+    'table': 'Tabla %s', 
     'code-block': 'Algoritmo %s',
-    'section': 'Paragrafo %s'
+    'section': 'Párrafo %s'
 }
 
 # Figure and table numbering configuration

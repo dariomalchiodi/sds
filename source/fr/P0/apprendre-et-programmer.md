@@ -9,123 +9,106 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:imparare-e-programmare)=
-# Imparare <span style="position: relative; top:0.3em;">\*</span>e<span style="position: relative; top:0.3em;">\*</span> programmare
+(sec:apprendre-et-programmer)=
+# Apprendre <span class="ast">\*</span>et<span class="ast">\*</span> programmer
 
-Come descritto nel paragrafo precedente, introdurrò i concetti affiancandoli
-(o facendoli precedere) da esempi. Dove possibile, mostrerò anche delle
-_implementazioni_ utilizzando un linguaggio relativamente moderno: in
-particolare, farò riferimento a [Python](https://www.python.org) e al
-relativo _data science stack_, costituito dai package che sono ampiamente
-utilizzati, al tempo in cui scrivo, dalla comunità open source che fa
-riferimento all'analisi dei dati[^librerie]. È quindi altamente consigliata una
-competenza di base nella programmazione degli elaboratori.
+Comme décrit dans le paragraphe précédent, j’introduirai les concepts en les
+accompagnant (ou en les précédant) d’exemples. Lorsque c’est possible, je
+montrerai aussi des _implémentations_ en utilisant un langage relativement
+moderne : en particulier, je ferai référence à [Python](https://www.python.org)
+et à l’écosystème _data science_ qui lui est associé, composé des paquets
+largement utilisées, au moment où j’écris, par la communauté open source dédiée
+à l’analyse de données[^paquets]. Il est donc fortement recommandé de posséder
+des connaissances de base en programmation.
 ```{margin}
-Questo libro rappresenta l'evoluzione di una serie di dispense pensate per
-studenti del secondo anno delle lauree triennali di area informatica, dunque
-farò riferimento al livello di conoscenza di programmazione che si apprende al
-primo anno nelle stesse lauree, o in lauree di aree affini.
+Ce livre est l’évolution d’une série de notes de cours conçus pour des
+étudiants de deuxième année de licence en informatique ; je ferai donc
+référence au niveau de programmation que l’on acquiert pendant la première
+année dans ces cursus ou dans des cursus similaires.
 ```
 
-Il Capitolo [Elaborare i dati con Python](#introduzione-a-python) contiene una
-descrizione a livello medio-alto delle funzionalità di Python che sono
-utilizzate, e può essere utilizzato per mettersi in pari da chi sa già
-programmare, ma non conosce questo linguaggio. Una lettura di questo capitolo è
-comunque consigliata a tutti, al fine di familiarizzare con le convenzioni che
-utilizzo per scrivere codice.
+Le {ref}`chap:intro-python` contient une description de niveau intermédiaire à
+avancé des fonctionnalités de Python qui sont utilisées, et peut servir de
+remise à niveau pour celles et ceux qui savent déjà programmer mais ne
+connaissent pas ce langage. Une lecture de ce chapitre est toutefois
+recommandée à tout le monde, afin de se familiariser avec les conventions
+adoptées dans le code présenté.
 
-Questo libro è scritto utilizzando una tecnologia che permette di inserire
-dei contenuti generati tramite l'esecuzione di codice python. Questo codice
-è nascosto quando serve a produrre per esempio tabelle o grafici, mentre è
-esplicitamente mostrato in tutti i casi nei quali chi legge viene guidato
-nell'implementazione di uno o più concetti spiegati nel testo. In ogni caso,
-l'intero codice sorgente che ho scritto per produrre il libro è scaricabile
-sia dal [repository](https://github.com/dariomalchiodi/sds) associato, sia
-cliccando l'icona ![download icon](../../_static/img/download.svg) a inizio pagina. Va
-notato che, in entrambi i casi, quello che viene scaricato sono dei file che
-alternano il codice Markdown che specifica i contenuti testuali con il codice
-python, ed è quindi necessario separare quest'ultimo per poterlo eseguire.
-Nonostante questo modo di procedere sia un po' macchinoso, incoraggio tutti a
-usufruire di questa opportunità, non limitandosi a leggere passivamente il
-testo, e nemmeno a eseguire il codice in modo pedissequo, ma ad analizzarlo,
-comprenderlo, modificarlo (valgono anche le modifiche che permettono di capire
-meglio il codice!)&mdash;insomma, _giocarci_ in un'ottica _hacker_, nel senso
-originale del termine[^hacker]. In realtà è anche possibile giocare con il
-libro senza necessariamente dover comprendere il codice ed eseguirlo: come
-mostrato nel Paragrafo [Uno sguardo d'insieme](uno-sguardo-di-insieme), una
-parte dei contenuti è interattiva, e la sua manipolazione è pensata proprio per
-facilitare la comprensione dei concetti introdotti.
+Ce livre a été écrit avec une technologie qui permet d’intégrer du contenu
+généré par l’exécution de code Python. Ce code est caché lorsqu’il sert
+simplement à produire des tableaux ou des graphiques, tandis qu’il est affiché
+de manière explicite quand le lecteur est guidé à travers l’implémentation d’un
+ou plusieurs concepts expliqués dans le texte. Dans ces cas, un lien
+« Afficher le code » permet au lecteur d’afficher ou masquer le code caché.
+Je vous encourage vivement à profiter de cette possibilité : lire un texte de
+manière passive apporte peu de bénéfices, et exécuter du code sans y réfléchir
+n’a pas beaucoup de sens non plus ; ce qui compte, c’est de l’analyser, le
+comprendre et le modifier (même des changements faits uniquement pour mieux en
+saisir le fonctionnement sont utiles). En bref, _jouez avec_, dans le véritable
+esprit _hacker_ &mdash; entendu dans le sens original du terme[^hacker]. En
+réalité, on peut aussi explorer le livre sans forcément tout comprendre du code
+ni devoir l’exécuter : comme montré dans {ref}`sec:apercu-general`, certaines
+paragraphes incluent des éléments interactifs spécialement conçus pour aider à
+mieux saisir les concepts abordés.
+
 ```{margin}
-Il libro è stato generato utilizzando [MyST](https://mystmd.org/), che
-comprende sia una variante del formato testuale <wiki:Markdown>, sia il sofware
-che permette di tradurre il codice corrispondente nelle pagine HTML che
-state leggendo.
-
-L'utilizzo delle componenti interattive è basato su alcune tecnologie (in
-particolare, [JupyterLite](https://github.com/jupyterlite/jupyterlite))
-che sono al momento ancora in una fase preliminare di sviluppo, ma che hanno
-il grande vantaggio di non richiedere alcuna installazione manuale. D'altro
-canto, è spesso necessario armarsi di pazienza e assicurarsi di utilizzare uno
-dei browser web supportati.
+Les parties interactives s’appuient sur [PyScript](https://pyscript.net/), une
+technologie qui permet d’exécuter du code Python dans les navigateurs web
+modernes. Elle ne nécessite ni installation ni configuration manuelle, mais
+demande une connexion internet active et un navigateur compatible avec
+WebAssembly (comme Chrome, Firefox, Edge, Safari, ou tout navigateur basé sur
+Chromium, à condition qu'ils soient à jour).
 ```
 
+Très souvent, j’essaie de guider le lecteur dans une implémentation effective
+des outils fondamentaux, surtout dans la première partie, portant sur les
+statistiques descriptives. Le résultat obtenu ne doit pas être considéré comme
+équivalent à celui des paquets professionnelles : d’un côté, l’objectif est de
+se concentrer sur les aspects fondamentaux pour faciliter la compréhension d’un
+ou plusieurs concepts ; de l’autre, ces implémentations ne sont pas destinées à
+un usage professionnel. C’est un peu comme un développeur qui apprend à coder
+les principaux algorithmes de tri à la main (et qui serait capable de le faire
+en cas de besoin), mais qui utilise ensuite des paquets fiables, optimisées et
+bien testées, car cela dépasse ce qu’une personne seule peut raisonnablement
+produire. Dans cet esprit, juste après les implémentations « faites maison »,
+les lecteurs sont orientés vers l’utilisation de paquets à l’état de l’art.
 
-Molto spesso cerco di guidare il lettore in una vera e propria implementazione
-degli strumenti fondamentali, soprattutto nella prima parte, relativa alla
-statistica descrittiva. Il risultato al quale arrivo non è da considerarsi al
-livello delle librerie professionali: da una parte, lo scopo è quello di
-concentrarsi sugli aspetti fondamentali per facilitare l'apprendimento di uno o
-più concetti. Dall'altro, queste implementazioni non sono pensate per essere
-utilizzate in ambito lavorativo: esattamente come è ragionevole che uno
-sviluppatore abbia imparato a scrivere da zero i principali algoritmi di
-ordinamento (e, se dovesse servire, sia in grado di farlo), ma che faccia in
-seguito riferimento alle loro implementazioni in una libreria, ottimizzate e
-validate sicuramente meglio di quanto un singolo possa ragionevolmente fare in
-autonomia. In quest'ottica, subito dopo le implementazioni  «fai da te», i
-lettori sono indirizzati all'uso di librerie allo stato dell'arte.
+En principe, même ceux qui ne savent pas programmer peuvent lire ce livre, en
+sautant simplement les parties contenant, décrivant ou discutant du code. Mais
+dans ce cas, il faut bien peser le risque de ne pas assimiler les contenus de
+manière optimale, étant donné que le livre mêle texte et code dans une large
+mesure. À ces lecteurs, je conseille d’envisager des ouvrages plus classiques,
+comme :
 
-In linea di principio, anche chi non sa programmare gli elaboratori può
-leggere questo libro, saltando semplicemente le parti che contengono,
-descrivono e discutono il codice. Ma in questo caso è opportuno valutare bene
-il rischio di non apprendere i contenuti in modo ottimale, tenuto conto del
-fatto che buona parte del libro è stata scritta alternando testo e codice.
-A questo tipo di lettori consiglio di prendere in considerazione testi scritti
-usando un approccio più tradizionale, come per esempio:
+- Statistique et probabilités, de Jean-Pierre Lecoutre {cite:p}`lecoutre`,
+- Mini Manuel de probabilités et statistique : Cours + QCM, de Françoise
+  Couty-Fredon, Jean Debord etand Daniel Fredon {cite:p}`coutyfredon`.
 
-- Probabilità e Statistica per le scienze e l'ingegneria, di Sheldon Ross
-  {cite:p}`ross`,
-- Introduzione alla statistica di Marylin K. Pelosi, Theresa M. Sandifer,
-  Paola Cerchiello e Paolo Giudici {cite:p}`pelosi`.
+J’adresse également un avertissement à ceux qui ne savent pas programmer et
+seraient tentés de lire ce livre pour apprendre à le faire, tout en découvrant
+en même temps l’analyse de données. Ce livre __n’est pas__ un manuel pour
+apprendre à programmer, mais plutôt un livre pour apprendre _en programmant_, 
+car il utilise la programmation comme outil pour enrichir l’apprentissage d’une
+autre matière. On dit qu’on ne comprend vraiment quelque chose que lorsqu’on
+est capable de l’expliquer à sa grand-mère[^cite-granny] : je fais mienne cette
+maxime, en espérant ne pas trop la détourner, en disant qu’on ne comprend
+vraiment un concept technique que si on est capable de l’implémenter par un
+programme. Mais pour suivre cette approche, il faut déjà savoir écrire du
+logiciel, ce qui demande du temps, de l’énergie et du matériel dédié. Là encore,
+plusieurs ouvrages peuvent être utiles, comme :
 
+- Python 3 &mdash; Les fondamentaux du langage, de Sébastien Chazallet
+  {cite:p}`chazallet`,
+- Programmer en langage C : Cours et exercices corrigés, de Claude Delannoy
+  {cite:p}`delannoy`.
 
-Va anche messo in guardia chi non sa programmare e si trova davanti alla
-tentazione di leggere questo libro per apprendere a farlo, magari mentre in
-contemporanea impara ad analizzare dati. Questo __non è__ un libro per imparare
-a programmare, ma piuttosto un libro per imparare programmando, usando la
-capacità di scrivere codice per arricchire il processo di apprendimento di
-un'altra materia. Si dice che non si è veramente capita una cosa se non si è
-in grado di spiegarla alla propria nonna[^cite-granny]: faccio mia questa
-massima, sperando di non distorcerla troppo dicendo che non si è veramente
-capito un concetto tecnico se non si è in grado di implementarlo scrivendo un
-programma. Se si vuole però seguire questa filosofia, bisogna già
-avere imparato a scrivere _software_, e questa è una competenza che richiede
-tempo, energia e del materiale dedicato all'apprendimento della materia.
-Anche in questo caso, ci sono parecchi libri che possono essere utilizzati
-con profitto, per esempio:
-
-- [Pensare in Python](https://github.com/AllenDowney/ThinkPythonItalian/blob/master/thinkpython_italian.pdf), di Allen B. Downey {cite:p}`downey`.
-- Programmazione in C, di Kim N. King {cite:p}`king`,
-- Programmare in Go, di Ivo Balbaert {cite:p}`balbaert`.
-
-Ho volutamente messo nell'elenco precedente tre volumi più o meno recenti,
-e soprattutto ognuno dedicato a un linguaggio diverso: lo scopo, in questo
-caso, è infatti quello di imparare le basi della programmazione e non i
-dettagli di un linguaggio specifico. Infine, questo paragrafo fa riferimento
-solamente a libri scritti in italiano, ma è sempre da considerare la
-possibilità di studiare sulla versione originale di un libro quando questa
-è scritta in inglese, o quando esiste una versione in inglese specificamente
-concepita per studenti di madre lingua non inglese.
-
+J’ai délibérément inclus ici deux livres assez récents, chacun dédié à un
+langage différent : l’idée est bien d’apprendre les bases de la programmation,
+pas les subtilités d’un langage en particulier. Enfin, ce paragraphe ne
+mentionne que des livres écrits en français, mais il ne faut pas négliger la
+possibilité d’étudier à partir de la version originale d’un ouvrage, si
+celle-ci est en anglais, ou s’il en existe une version en anglais pensée pour
+des étudiants non natifs anglophones.
 
 ````{margin}
 ```{figure} ../../_static/img/whistle.jpg
@@ -133,41 +116,40 @@ concepita per studenti di madre lingua non inglese.
 name: fig-whistle
 height: 100px
 ---
-Un fischietto Cap’n Crunch Bo’sun (immagine del Heinz Nixdorf
-MuseumsForum, distribuita sotto licenza
-[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/))
+Un sifflet Cap’n Crunch Bo’sun (image du Heinz Nixdorf MuseumsForum, distribuée sous licence [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/))
 ```
 ````
 
-[^librerie]: Il repository associato a questo libro contiene un
-[file](https://github.com/dariomalchiodi/sds/blob/main/requirements.in)
-che elenca tutte le librerie utilizzate per generare i contenuti, incluse
-quelle necessarie per eseguire il codice.
 
-[^hacker]: Il termine _hacker_ viene oggigiorno utilizzato nel linguaggio
-comune dandogli un'accezione negativa, che essenzialmente lo accomuna a chi
-persegue intenti dolosi scrivendo o modifcando _software_, o in generale
-sfruttando delle falle di sicurezza al fine di utilizzare in modo improprio
-delle tecnologie informatiche esistenti. In realtà, l'uso di questo termine
-nell'inglese moderno viene fatto risalire intorno al 1960, conferendogli
-però una connotazione più neutra, e non direttamente collegata all'informatica:
-quella di indicare una persona con il talento di comprendere in profondità il
-funzionamento di un sistema, e dunque di essere in grado di controllarlo al
-punto di poterlo utilizzare in modo diverso rispetto agli scopi per cui il
-sistema era stato progettato. Giusto per citare un esempio, uno dei primi
-_hack_ famosi&mdash;peraltro illegale&mdash;riguardava l'uso del
-«Cap’n Crunch Bo’sun Whistle» (un fischietto che si trovava in regalo nelle
-scatole di una famosa marca di cereali, mostrato in @fig-whistle) per fare
-telefonate interurbane o internazionali gratuite con alcuni telefoni pubblici
-negli Stati Uniti. Uno degli ambienti nei quali la controcultura hacker ha
-iniziato a svilupparsi è quello del Massachusetts Institute of Technology
-(MIT): la prima traccia scritta del termine «hacking» fa riferimento al verbale
-di una riunione del 1955 del [Tech Model Railroad Club](http://tmrc.mit.edu/),
-che riuniva studenti appassionati di modellismo ferroviario. Solo più
-recentemente è avvenuta un'identificazione rispetto al mondo informatico.
+[^paquets]: Le dépôt associé à ce livre contient un
+[fichier](https://github.com/dariomalchiodi/sds/blob/main/requirements.in)
+qui liste toutes les paquets utilisées pour générer les contenus, y compris
+celles nécessaires à l’exécution du code.
 
-[^cite-granny]: Risulta complicato risalire all'autore di questa massima:
-c'è chi la attribuisce ad Einstein, chi a Feynmann e chi a Rutherford (pare
-dunque che ci sia consenso sul contesto delle scienze fisiche);
-ci sono anche varianti in cui la nonna è sostituita da un bambino, o&mdash; per
-qualche motivo&mdash;perfino da un barista.
+[^hacker]: Le terme _hacker_ est aujourd’hui souvent utilisé dans le langage
+courant avec une connotation négative, le rapprochant de quelqu’un qui poursuit
+des objectifs malveillants en écrivant ou en modifiant du logiciel, ou plus
+généralement en exploitant des failles de sécurité pour détourner des
+technologies informatiques existantes. En réalité, l’usage moderne du terme en
+anglais remonte aux alentours de 1960, avec une connotation plus neutre, et pas
+forcément liée à l’informatique : il désignait une personne ayant le talent de
+comprendre en profondeur le fonctionnement d’un système, au point de pouvoir le
+contrôler et l’utiliser d’une manière différente de celle pour laquelle il
+avait été conçu. Pour donner un exemple célèbre, l’un des premiers hacks connus 
+&mdash; bien qu’illégal &mdash; consistait à utiliser un « Cap’n Crunch Bo’sun
+Whistle » (un sifflet offert dans les boîtes de céréales d’une marque connue,
+illustré en {numref}`fig-whistle`) pour passer des appels interurbains ou
+internationaux gratuits depuis certains téléphones publics aux États-Unis. L’un
+des premiers foyers de la contre-culture hacker fut le Massachusetts Institute
+of Technology (MIT) : la première trace écrite du terme « hacking » se trouve
+dans le compte rendu d’une réunion de 1955 du
+[Tech Model Railroad Club](http://tmrc.mit.edu/), un club d’étudiants
+passionnés de modélisme ferroviaire. Ce n’est que plus récemment que le terme a
+été pleinement associé au monde de l’informatique.
+
+[^cite-granny]: Il est difficile de retracer l’auteur exact de cette maxime :
+certains l’attribuent à Einstein, d’autres à Feynman ou à Rutherford (on dirait
+donc qu’il y a consensus sur le contexte des sciences physiques) ; il existe
+aussi des variantes où la grand-mère est remplacée par un enfant, ou &mdash;
+pour une raison inconnue &mdash; même par un barman.
+

@@ -10,7 +10,7 @@ kernelspec:
 ---
 
 (sec:imparare-e-programmare)=
-# Imparare <span style="position: relative; top:0.3em;">\*</span>e<span style="position: relative; top:0.3em;">\*</span> programmare
+# Imparare <span class="ast">\*</span>e<span class="ast">\*</span> programmare
 
 Come descritto nel paragrafo precedente, introdurrò i concetti affiancandoli
 (o facendoli precedere) da esempi. Dove possibile, mostrerò anche delle
@@ -27,7 +27,7 @@ farò riferimento al livello di conoscenza di programmazione che si apprende al
 primo anno nelle stesse lauree, o in lauree di aree affini.
 ```
 
-Il Capitolo [Elaborare i dati con Python](#introduzione-a-python) contiene una
+Il {ref}`chap:introduzione-a-python` contiene una
 descrizione a livello medio-alto delle funzionalità di Python che sono
 utilizzate, e può essere utilizzato per mettersi in pari da chi sa già
 programmare, ma non conosce questo linguaggio. Una lettura di questo capitolo è
