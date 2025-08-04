@@ -458,3 +458,107 @@ nav.bd-links li > a {
 .ast {
   position: relative; top:0.3em;
 }
+
+/* Home page layout styles */
+.main-layout {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin: 50px 0;
+}
+
+.left-section {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+}
+
+.site-logo {
+  width: 200px;
+  height: auto;
+  max-width: 100%;
+}
+
+.right-section {
+  flex: 1;
+  text-align: left;
+  align-self: flex-start;
+}
+
+.right-section h1 {
+  font-size: 2.5em;
+  margin: 0 0 10px 0;
+  color: var(--text-primary-color);
+  font-family: var(--sans-serif-font);
+}
+
+.author {
+  font-size: 1.4em;
+  color: #666;
+  font-weight: normal;
+  margin: 0 0 30px 0;
+  font-family: var(--serif-font);
+}
+
+.language-prompt {
+  margin: 20px 0 30px 0;
+  font-size: 1.1em;
+  color: #555;
+  font-family: var(--serif-font);
+}
+
+.language-links { 
+  display: flex; 
+  gap: 20px; 
+  flex-wrap: wrap;
+}
+
+.lang-card { 
+  background: white; 
+  padding: 20px; 
+  border-radius: 8px; 
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+  text-decoration: none; 
+  color: inherit;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.lang-card:hover { 
+  transform: translateY(-2px); 
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15); 
+}
+
+.lang-card h3 {
+  margin: 0 0 10px 0;
+  color: var(--text-primary-color);
+  font-family: var(--sans-serif-font);
+}
+
+.lang-card p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9em;
+  font-family: var(--serif-font);
+}
+
+/* Responsive design for home page */
+@media (max-width: 768px) {
+  .main-layout {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+    margin: 30px 0;
+  }
+  .right-section {
+    text-align: center;
+  }
+  .site-logo {
+    width: 150px;
+  }
+  .language-links {
+    justify-content: center;
+  }
+}

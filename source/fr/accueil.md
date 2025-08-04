@@ -22,10 +22,10 @@ probabilités ou de la statistique. L’état actuel du contenu est résumé dan
 liste suivante.
 
 Introduction  
-: En révision
+: À relire
 
 Traitement des données avec Python  
-: En révision
+: En cours de structuration
 
 Pandas  
 : En cours de structuration

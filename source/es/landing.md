@@ -21,10 +21,10 @@ el estudio de técnicas de análisis de datos, teoría de la probabilidad o
 estadística. El estado actual del contenido se resume en la siguiente lista.
 
 Introducción  
-: En revisión
+: A la espera de revisión
 
 Procesamiento de Datos con Python  
-: En revisión
+: En estructuración
 
 Pandas  
 : En estructuración

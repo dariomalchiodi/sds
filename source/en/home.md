@@ -20,10 +20,10 @@ for studying data analysis techniques, probability theory, or statistics. The
 current status of the content is summarized in the following list.
 
 Introduction  
-: Under revision
+: Awaiting final proofreading
 
 Processing Data with Python  
-: Under revision
+: Being structured
 
 Pandas  
 : Being structured
