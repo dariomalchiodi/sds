@@ -11,39 +11,35 @@ kernelspec:
 
 # Presentazione
 
-La prima parte del libro introduce alcuni strumenti computazionali fondamentali
+La prima parte del libro introduce alcuni strumenti di base
 per l’analisi automatica di dataset di dimensioni contenute[^big-data],
-mediante l’uso di un computer. La padronanza di tali strumenti, unita alla
+mediante l’uso di un computer. La padronanza di questi strumenti, unita alla
 capacità di applicarli in modo efficace ai diversi scenari della _data science_,
-costituisce oggi una competenza essenziale per analizzare e interpretare
-l’ampia varietà di fonti di dati disponibili, utilizzandoli come supporto alle
-decisioni.
+è oggi fondamentale per analizzare e interpretare l’ampia varietà di dati
+disponibili e sfruttarli come supporto alle decisioni.
 
-Tra gli strumenti necessari figurano:
+Tra gli strumenti indispensabili troviamo:
 
-- un linguaggio di programmazione, che consenta di scrivere istruzioni
+- un linguaggio di programmazione, che permetta di scrivere istruzioni
   per automatizzare l’elaborazione dei dati;
 - una libreria per la gestione strutturata dei _dataset_.
 
 In questo libro utilizzerò rispettivamente Python e Pandas, presentati
-rispettivamente nei Capitoli
-{ref}`Elaborare i dati con Python <chap:intro-python>` e
-{ref}`Pandas <chap:pandas>`. Queste non sono tuttavia le uniche soluzioni
-disponibili: esistono diverse alternative valide, ma Python e Pandas
-rappresentano attualmente una parte consistente dell’ecosistema di strumenti
-per l’analisi dei dati, sia in ambito accademico che professionale.
+rispettivamente nel {ref}`chap:intro-python` e nel {ref}`chap:pandas`. Sebbene
+esistano molte alternative valide, queste due tecnologie rappresentano oggi
+una parte centrale dell'ecosistema per l'analisi dei dati, sia in ambito
+accademico che nel mondo del lavoro.
 
 
 
-[^big-data]: Un dataset si considera di dimensioni ridotte quando può essere
-elaborato con le risorse disponibili su un singolo elaboratore. In particolare,
-nel caso più semplice &emdash; che è quello trattato in questo libro &emdash;
-l'intero insieme di dati può essere caricato nella memoria centrale di un
-computer. Più in generale, si parla ancora di dati «gestibili localmente»
-se il _dataset_ può risiedere nella memoria di massa e venire elaborato
-progressivamente in memoria centrale, per esempio trasferendo un _record_ alla
-volta. Quando, invece, le dimensioni del _dataset_ superano significativamente
-la capacità della memoria di massa disponibile (ad esempio, oltre un terabyte
-con l'hardware attualmente disponibil), si entra nell’ambito dei _big data_,
-che richiedono approcci computazionali differenti rispetto a quelli
-dell’analisi classica dei dati.
+[^big-data]: Un _dataset_ si considera di dimensioni ridotte quando può essere
+elaborato con le risorse disponibili su un singolo elaboratore. Nel caso più
+semplice &mdash;quello trattato in questo libro&mdash; l'intero insieme di dati
+può essere caricato nella memoria centrale di un computer. In generale, si
+parla ancora di dati «gestibili localmente» se il _dataset_ può risiedere nella
+memoria di massa e venire elaborato progressivamente in quella centrale, per
+esempio trasferendo un _record_ alla volta. Quando invece le dimensioni dei
+dati superano di molto la capacità della memoria di massa disponibile (in
+linea di massima, oltre un terabyte con l'hardware attualmente disponibil), si
+entra nel campoi dei _big data_, che richiedono approcci differenti rispetto a
+quelli dell'analisi dei dati in senso classico.
