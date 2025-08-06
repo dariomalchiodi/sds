@@ -384,6 +384,10 @@ nav.bd-links li > a {
   font-size: 0.9rem !important;
 }
 
+nav.bd-links p.caption  {
+  margin-top: 0;
+}
+
 /* Ensure theorem type pseudo-elements have proper font size */
 .lemma.no-number > .admonition-title::before,
 .corollary.no-number > .admonition-title::before,

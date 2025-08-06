@@ -16,7 +16,7 @@ parts:
       - file: P0/apercu-general
   - caption: Programmation pour l'analyse des données
     chapters:
-      - file: P1-PAD/presentazione
+      - file: P1-PAD/presentation
       - file: P1-PAD/c2-pandas/pandas
   - caption: Annexes
     chapters:

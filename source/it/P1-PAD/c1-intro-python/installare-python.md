@@ -64,8 +64,8 @@ linguaggio, che non sono necessariamente identiche anche quando si riferiscono
 a uno stesso numero di versione, perché le specifiche non sempre entrano nel
 dettaglio specifico di come realizzare una funzionalità. Per esempio, potrebbe
 essere dipendente dalla particolare implementazione il formato di codifica
-da utilizzare per le stringhe. Per quanto riguarda Python, esiste [un certo
-numero di implementazioni](https://www.toptal.com/python/why-are-there-so-many-pythons)
+da utilizzare per le stringhe. Per quanto riguarda Python, esistono [varie
+implementazioni](https://www.toptal.com/python/why-are-there-so-many-pythons)
 che differiscono nella particolare tecnologia usata per eseguire i programmi:
 una si appoggia ad esempio sulla _Java virtual machine_, un'altra su uno
 strumento analogo basato sul linguaggio C, un'altra ancora è pensata per
@@ -77,21 +77,21 @@ il linguaggio C.
 (sec:download-book)=
 ## Scaricare i contenuti del libro
 Questo libro è pensato per essere fruito tramite la mediazione di un server
-web, ma ciò non richiede necessariamente una connessione dati permanentemente
-attiva. È infatti possibile scaricare i contenuti del libro e generare i suoi
-paragrafi come pagine web gestite da un server web locale. Questo permette,
-tra l'altro, di facilitare l'installazione delle librerie necessarie per
-eseguire il codice contenuto nei vari capitoli, come vedremo nei prossimi
-paragrafi. Volendo, è possibile continuare la lettura senza scaricare il
-libro, anche se ciò richiederà un po' più di lavoro per configurare
-l'installazione di Python. In ogni caso, è possibile scaricare i contenuti in
-un secondo tempo, anche se in Windows questo potrebbe portare a qualche
-complicazione rispetto al seguire il flusso di lavoro che descrivo qui di
-seguito.
+web. Il lato positivo è che le parti interattive possono essere utilizzate
+senza che sia necessario installare o configurare librerie, ma d'altro canto
+ciò richiede una connessione dati permanentemente attiva. Volendo, è possibile
+scaricare i contenuti del libro e generare i suoi paragrafi come pagine web
+gestite da un server web locale, ma questo richiede di installare
+preventivamente tutto il software che serve per poter lanciare il processo di
+generazione. Va notato che l'esecuzione delle parti interattive richiede
+comuqnue di essere collegati a internet.
 
 ```{margin}
-Per poter clonare il _repository_ del libro è necessario avere installato
-git sul proprio sistema.
+Per poter clonare il _repository_ del libro è necessario avere un _client_ git
+installato sul proprio sistema, disporre di un account GitHub e aver associato
+a quest'ultimo una chiave SSH pubblica. In alternativa, è possibile effettuare
+la clonazione usando il protocollo HTTPS, semplificando alcuni passi (per
+esempio, non è richiesta la chiave SSH) ma complicandone altri.
 ```
 Il modo consigliato per scaricare il libro è basato sull'utilizzo di
 [git](https://git-scm.com), un sistema di _source control management_
@@ -170,9 +170,9 @@ il comando
 da un terminale, posizionandosi preventivmente nella directory `sds` creata
 quando è stato clonato il _repository_ del libro (o in una sua sotto-directory).
 Inoltre, git è lo strumento da utilizzare anche per segnalare errori o proporre
-modifiche, inviando _issue_ o _pull request_ come già indicato nel Paragrafo
-[Approccio](sec:approccio). Infine, imparare a usare git è una cosa che
-raccomando a chiunque approcci lo studio non solo dell'informatica, ma anche di
+modifiche, inviando _issue_ o _pull request_ come già indicato nel
+{ref}`chap:approccio`. Infine, imparare a usare git è una cosa che raccomando a
+chiunque approcci lo studio non solo dell'informatica, ma anche di
 tutte le discipline che in qualche modo afferiscono alla _data science_. Di
 fatto, git è utilizzato per gestire la stragrande maggioranza dei progetti
 software, dunque vale la pena imparare a usarlo fin da subito.
@@ -219,7 +219,7 @@ e notare che tipo di output si ottiene. Sono possibili tre casi:
 ```{margin}
 Se la _major release_ è `4` o superiore, allora state leggendo questo libro
 parecchio tempo dopo che l'ho scritto, ed è fortemente probabile che una
-parte più o meno grande dei contenuti che riguardnao l'uso di Python sia
+parte più o meno grande dei contenuti che riguardano l'uso di Python sia
 diventata obsoleta. In questo caso, controllate se non esista un aggiornamento
 del libro, e in caso negativo cercate della documentazione più recente.
 ``` 
@@ -265,12 +265,12 @@ alla documentazione ufficiale, che prevede guide separate per sistemi basati su
 
 ## Creare un ambiente virtuale di esecuzione
 
-Python viene normalmente utilizzato insieme a varie librerie, ed è
-decisamente sconsigliabile installarle adottando un approccio _monolitico_,
-nel quale semplicemente si aggiunge una libreria ogni volta che ci si rende
-conto di averne bisogno: man mano che il tempo passa, e che il numero di
-librerie utilizzate aumenta, cresce anche il rischio di incompatibilità tra
-il sistema esistente e una nuova libreria della quale potreste avere bisogno.
+Python viene normalmente utilizzato insieme a varie librerie, e sconsiglio
+decisamente di installarle adottando un approccio _monolitico_, nel quale
+semplicemente si aggiunge una libreria ogni volta che ci si rende conto di
+averne bisogno: man mano che il tempo passa, e che il numero di librerie
+utilizzate aumenta, cresce anche il rischio di incompatibilità tra il sistema
+esistente e una nuova libreria della quale potreste avere bisogno.
 Considerazioni analoghe si possono fare nel momento in cui una o più librerie
 vengono aggiornate a una versione più recente.
 Per aggirare questo tipo di rischi, è altamente consigliabile compartimentare
@@ -278,7 +278,7 @@ l'installazione delle librerie: eseguire cioè Python in uno spazio logicamente
 isolato nel quale aggiungere tutte e sole le librerie necessarie per uno
 specifico progetto software. Questi spazi isolati prendono il nome di
 _environment virtuali_, o _ambienti virtuali di esecuzione_ (nel seguito
-parlerò per brevita di _environment_ o di ambienti virtuali), e vengono
+parlerò per brevità di _environment_ o di ambienti virtuali), e vengono
 opportunamente attivati ogni volta che si inizia a lavorare sul corrispondente
 progetto, disattivandoli prima di passare a un altro progetto.
 
@@ -289,6 +289,13 @@ un ambiente virtuale si procede usualmente nel modo che segue: usando la stessa
 _shell_ del paragrafo precedente, controllando di risultare posizionati nella
 directory `sds`, si esegue il comando
 
+```{margin}
+Scegliere `.venv` come nome della directory per l'_environment_ rappresenta un
+uso consolidato, del quale tengono conto per esempio gli IDE. In teoria si può
+usare un nome qualunque, ma è meglio farlo solo se sussistono motivi specifici. 
+L'uso di `--prompt sds` è facoltativo, e quando questa parte di comando viene
+omessa, verrà usato il nome della directory come _prompt_.
+```
 ```{eval-rst}
 .. tabs::
 
@@ -347,13 +354,13 @@ volta che l'ambiente è stato attivato. Eseguendo invece il comando
 
       .. code-block:: bash
 
-         $ deactivate
+         (sds) $ deactivate
 
    .. group-tab:: Windows
 
       .. code-block:: powershell
 
-         C:> deactivate
+         (sds) C:> deactivate
 
 ```
 
@@ -368,10 +375,10 @@ autonomo, scaricando ed eseguendo il corrispondente eseguibile, o perfino
 a partire dal relativo codice sorgente disponibile su fonti pubbliche. Questo
 modo di procedere può però nascondere delle insidie, e quella che classicamente
 si verifica è legata al fatto che praticamente ogni libreria è stata costruita
-utilizzando _altre_ librerie, e dunque è necessario installare preventivamente
-queste ultime, che potrebbero dipendere da altre librerie, che dovranno
-essere installate prima di procedere, e così via. In altre parole, installare
-manualmente una libreria può rivelarsi un'esperienza particolarmente
+utilizzando altre librerie, e dunque è necessario installare preventivamente
+queste ultime, che potrebbero a loro volta dipendere da altre librerie, che
+dovranno essere installate prima di procedere, e così via. In altre parole,
+installare manualmente una libreria può rivelarsi un'esperienza particolarmente
 impegnativa, quando non decisamente frustrante: con il crescere del numero
 di installazioni necessarie, diventa più verosimile che qualche tipo di errore
 complichi ulteriormente il processo, quando non lo blocchi completamente. Per
@@ -388,9 +395,14 @@ un _environment_ virtuale attivato, viene fatta eseguendo il comando `pip`
 in una _shell_, specificando il nome della libreria stessa&mdash;aggiungendo
 eventualmente i caratteri `==` seguiti da uno specifico numero di versione. Se
 volessimo per esempio installare _altair_, la libreria che ho usato nel
-Paragrafo [Uno sguardo di insieme](sec:uno-sguardo-di-insieme) per produrre grafici
-interattivi, sarà sufficiente eseguire il comando
+{ref}`sec:uno-sguardo-di-insieme` per produrre grafici interattivi, sarà
+sufficiente eseguire il comando
 
+```{margin}
+Tra breve vedremo come effettuare tramite un unico comando le installazioni di
+tutte le librerie che utilizzeremo; pertanto non è necessario che eseguiate
+questo comando nel vostro sistema.
+```
 ```{eval-rst}
 .. tabs::
 
@@ -408,16 +420,10 @@ interattivi, sarà sufficiente eseguire il comando
 
 ```
 
-```{margin}
-Tra breve vedremo come effettuare tramite un unico comando le installazioni di
-tutte le librerie che utilizzeremo; pertanto non è necessario che eseguiate
-questo comando nel vostro sistema.
-```
-
 il cui effetto è quello di verificare quali siano le librerie dalle quali
 _altair_ dipende, installando quelle che non sono attualmente disponibili, o
 gestendo gli eventuali aggiornamenti di librerie installate la cui versione
-è incompatibile, ripetendo il processo a ritroso per gestire tutte le
+è incompatibile, ripetendo poi il processo a ritroso per gestire tutte le
 dipendenze.
 
 Utilizzare dei _package manager_ presenta anche un ulteriore vantaggio: è
@@ -484,6 +490,10 @@ le istruzioni indicate nei paragrafi precedenti, nell'ambiente
 virtuale che avete creato è già disponibile Jupyter, e per lanciarlo è
 sufficiente eseguire da terminale il comando
 
+```{margin}
+Poco più avanti trovate anche le istruzioni per visualizzare ed eseguire
+un _notebook_ usando Visual Studio Code.
+```
 ```{eval-rst}
 .. tabs::
 
@@ -491,19 +501,14 @@ sufficiente eseguire da terminale il comando
 
       .. code-block:: bash
 
-         $ jupyter notebook
+         (sds) $ jupyter notebook
 
    .. group-tab:: Windows
 
       .. code-block:: powershell
 
-         C:> jupyter notebook
+         (sds) C:> jupyter notebook
 
-```
-
-```{margin}
-Poco più avanti trovate anche le istruzioni per visualizzare ed eseguire
-un _notebook_ usando Visual Studio Code.
 ```
 
 che ha l'effetto di aprire un browser e di collegarlo a un indirizzo locale,
@@ -533,12 +538,12 @@ directory che corrisponde al _repository_ del libro.
 ```
 
 Usare un _notebook_ con le versioni recenti di Visual Studio Code è ancora più
-semplice: basta selezionare il file corrispondente dall'IDE, e le sue celle
-verranno mostrate in un tab. Anche in questo caso, è possibile aggiungere
-codice ed esguirlo esattamente come nel caso di Jupyter: l'unica differenza sta
-nel fatto che la prima volta che si esegue una cella potrebbe essere necessario
-specificare l'_environment_ di riferimento, selezionandolo da un menu
-contestuale.
+semplice, a patto di avere installato l'omonima estensione: basta selezionare
+il file corrispondente dall'IDE, e le sue celle verranno mostrate in un tab.
+Anche in questo caso, è possibile aggiungere codice ed esguirlo esattamente
+come nel caso di Jupyter: l'unica differenza sta nel fatto che la prima volta
+che si esegue una cella potrebbe essere necessario specificare l'_environment_
+di riferimento, selezionandolo da un men contestuale.
 
 ```{admonition} Avvertenza
 Vi è una notevole flessibilità nel modo in cui si possono valutare le celle di
@@ -570,21 +575,21 @@ linguaggi come Go o Java.
 
 ## Primi passi con Python
 
-Come motivato nel Paragrafo @sec:imparare-e-programmare, suppongo che chi
-legge questo libro conosca abbia già imparato a usare un semplice linguaggio di
-programmazione. Questo paragrafo prende in considerazione alcune operazioni di
-base legate appunto alla programmazione, e spiega rapidamente come effettuarle
-in Python. Ciò mi permetterà di introdurre fin da subito degli esempi di
-codice per affiancare i concetti che spiegherò man mano.
+Come motivato nel {ref}`sec:imparare-e-programmare`, suppongo che chi
+legge questo libro abbia già imparato a usare un linguaggio di programmazione.
+Questo paragrafo prende in considerazione alcune operazioni di base legate
+appunto alla programmazione, e spiega rapidamente come effettuarle in Python.
+Ciò mi permetterà di introdurre fin da subito degli esempi di codice per
+affiancare i concetti che spiegherò man mano.
 
 ### Assegnamenti
 L'assegnamento di un valore a una variabile viene fatto utilizzando la stessa
 notazione che si riscontra nella maggioranza degli altri linguaggi di
 programmazione, utilizzando l'idioma `variabile = valore`. Nel Paragrafo
-@sec:tipizzazione-dinamica vedremo che Python non contempla la _dichiarazione_
-delle variabili: queste ultime sono create automaticamente la prima volta che
-viene assegnato loro un valore, che determina implicitamente anche il tipo
-della variabile. Per esempio
+{ref}`sec:tipizzazione-dinamica` vedremo che Python non contempla la
+_dichiarazione_ delle variabili: queste ultime sono create automaticamente la
+prima volta che viene assegnato loro un valore, che determina implicitamente
+anche il tipo della variabile. Per esempio
 
 ```python
 age = 42
@@ -607,10 +612,9 @@ print(3.14)
 ```
 
 ### Esecuzione condizionata
-Anche per quanto riguarda l'esecuzione di una selezione di tipo semplice,
-Python utilizza una sintassi che è parecchio vicina a quella che già conoscete,
-sebbene probabilmente non è esattamente la stessa. Considerate per esempio la
-cella che segue:
+Anche per quanto riguarda le selezioni, Python utilizza una sintassi che
+probabilmente è parecchio simile a quella che già conoscete, sebbene non
+esattamente uguale. Considerate per esempio la cella che segue:
 
 ```python
 if age >= 18:
@@ -620,24 +624,29 @@ else:
 ```
 
 ```{margin}
-L'indentazione può essere in teoria fatta usando un numero arbitrario di spazi
-o di tabulazioni, senza utilizzarli simultaneamente e mantenendo la scelta
-effettuata. È però consigliato l'uso dei soli spazi.
+L'indentazione può essere fatta usando un numero arbitrario di spazi o di
+tabulazioni, a condizione di non mescolarli e di mantenere la scelta effettuata
+per tutto il blocco di codice. Esistono argomentazioni sia a favore degli spazi
+che delle tabulazioni, così come critiche per entrambi. È una questione che
+divide profondamente gli sviluppatori&mdash;una vera e propria guerra di
+preferenze. Personalmente, non intendo schierarmi: si tratta spesso di gusti
+personali, salvo quando la scelta è imposta dall’ambiente di lavoro. Mi limito
+a sottolineare che, qualunque opzione si scelga, è fondamentale mantenere
+coerenza nel codice che viene prodotto.
 ```
 La selezione è dunque fatta utilizzando l'istruzione `if`, che deve essere
-seguita da una condizione booleana, terminata a sua volta da un carattere di
-due punti (`:`). Il corpo di istruzioni che viene eseguito se la condizione è
-vera è caratterizzato da uno stesso livello di indentazione. La parola chiave
-`else` permette di specificare un blocco di istruzioni da eseguire se la
-condizione è falsa, usando la stessa sintassi[^one-liner]. Notate che l'esempio
-precedente mette in luce che:
-- l'istruzione `if` non richiede di delimitare la relativa condizione booleana
-  tra parentesi,
+seguita da una condizione, terminata a sua volta da un carattere di due punti
+(`:`). Il corpo di istruzioni che viene eseguito se la condizione è vera è
+caratterizzato da uno stesso livello di indentazione. La parola chiave `else`
+permette di specificare un blocco di istruzioni da eseguire se la condizione è
+falsa, usando la stessa sintassi[^one-liner]. Notate che l'esempio precedente
+mette in luce che:
+- non è richiesto di delimitare la condizione tra parentesi tonde,
 - la funzione `print` permette di stampare dei messaggi sotto forma di una
   stringa prefissata, che in questo caso è stata delimitata da due caratteri di
   apice singolo,
-- è possibile passare a `print` un numero variabile di argomenti, ognuno dei
-  quali verrà stampato usando lo spazio come carattere separatore.
+- è possibile passare a `print` un numero variabile di argomenti, al fine di
+  stamparli, separandoli usando uno spazio.
 
 ### Scrivere funzioni
 La cella seguente mostra come definire una funzione che accetta un argomento,
@@ -799,24 +808,25 @@ Uno specifico software provvede poi a eseguirlo, trasformandolo a sua volta nel
 codice macchina dello specifico computer utilizzato. Quando si utilizza
 CPython, l'implementazione di Python alla quale faccio qui riferimento, il
 processo di compilazione è trasparente, e avviene in modo automatico solo
-quando vengono importati dei moduli (vedi il Paragrafo
-[Importare moduli](importare-moduli)): in questo caso, il risultato della
-compilazione sono file dall'estensione `.pyc` salvati in una directory
-`__pycache__`, che vengono creati solo se non esistono o se sono meno recenti
-del relativo sorgente; negli altri casi, il _bytecode_ viene direttamente
-eseguito.
+quando vengono importati dei moduli (vedi il {ref}`sec:importare-moduli`): in
+questo caso, il risultato della compilazione sono file dall'estensione `.pyc`
+salvati in una directory `__pycache__`, che vengono creati solo se non esistono
+o se sono meno recenti del relativo sorgente; negli altri casi, il _bytecode_
+viene direttamente eseguito.
 [^environment]: In realtà esistono alcune alternative per creare e
 utilizzare ambienti virtuali: al momento nel quale scrivo,
 [Anaconda](https://docs.anaconda.com/anaconda/) e
 [Miniconda](https://docs.anaconda.com/miniconda/) rappresentano quelle più
 utilizzate insieme a `venv`.
 [^package-manager]: Anaconda e miniconda, citati nella nota
-precedente[^environment], mettono a disposizione anche i relativi _package
+precedente, mettono a disposizione anche i relativi _package
 manager_, che possono essere utilizzati al posto di pip.
-[^linguaggio-notebook]: Va notato che i _notebook_ che useremo non sono
-vincolati a un particolare linguaggio di programmazione: noi li utilizzeremo
-per eseguire quasi esclusivamente codice Python, ma occasionalmente vedremo
-come lanciare dei comandi di _shell_ senza dover aprire un terminale.
+[^linguaggio-notebook]: Va notato che i _notebook_ non sono vincolati a un
+particolare linguaggio di programmazione. I _notebook manager_ sono tipicamente
+modulari, e permettono l'installazione di uno o più _kernel_ dedicati ognuno a
+uno specifico linguaggio di programmazione. Io lavorerò quasi esclusivamente
+con codice Python, ma occasionalmente vedremo come lanciare dei comandi di
+_shell_ senza dover aprire un terminale dedicato.
 [^pronuncia-jupyter]: Fernando Perez, uno degli artefici del progetto Jupyter,
 lo pronuncia in questo modo, per esempio, in una sua
 [presentazione](https://www.youtube.com/watch?v=cc2hHjARNTY) alla conferenza
@@ -829,9 +839,10 @@ quest'ultimo.
 [^one-liner]: In realtà è possibile usare una sintassi che permette di scrivere
 una selezione su di una sola riga, ma sconsiglio di utilizzarla, perché
 diminuisce la leggibilità del codice.
-[^bad-practice]: In linea di principio, una funzione non dovrebbe generare
-delle stampe, a meno che non si tratti di emissione di _warning_ o di errori
-(ma, in ogni caso, questi dovrebbero essere notificati usando delle particolari
-funzionalità del linguaggio, e non usando `print`). Questo evita che chi
-osserva il risultato dell'esecuzione possa confondere i messaggi e i valori
-restituiti.
+[^bad-practice]: In linea di principio, una funzione non dovrebbe produrre
+stampe a schermo, a meno che non si tratti di emissione di _warning_ o di
+errori. Anche in questi casi, è tuttavia preferibile utilizzare le funzionalità
+specifiche del linguaggio, come il _logging_ o le eccezioni, piuttosto che
+ricorrere a `print`. Questo approccio aiuta a non confondere chi osserva
+l'esecuzione del programma, distinguendo chiaramente tra messaggi e valori
+restituiti, oltre a semplificare il processo di verifica del software.

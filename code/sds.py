@@ -1,10 +1,178 @@
 import os
 import re
+import yaml
+import glob
+import argparse
 from pathlib import Path
 
 def generate_toc_dictionary(html_root_dir):
     """
-    Parse HTML files to extract TOC structure with titles and numbers.
+    Parse TOC YAML files to extract structure with titles and numbers.
+    
+    Args:
+        html_root_dir (str): Path to the root directory containing HTML files (e.g., 'build/it')
+    
+    Returns:
+        dict: Dictionary mapping titles to (type, number) where:
+              - type is either 'Chapter', 'Section', or 'Appendix'  
+              - number is the chapter/section number as string (e.g., "1", "2.3", "A", "B.1")
+    """
+    import yaml
+    import os
+    from pathlib import Path
+    
+    # Determine language from path
+    language = os.path.basename(html_root_dir)
+    if language not in ['it', 'en', 'fr', 'es']:
+        language = 'it'  # Default to Italian
+    
+    # Find the corresponding _toc.yml file
+    toc_file = f'source/{language}/_toc.yml'
+    if not os.path.exists(toc_file):
+        print(f"TOC file {toc_file} not found, falling back to HTML parsing")
+        return generate_toc_dictionary_from_html(html_root_dir)
+    
+    toc_dict = {}
+    
+    try:
+        with open(toc_file, 'r', encoding='utf-8') as f:
+            toc_data = yaml.safe_load(f)
+    except Exception as e:
+        print(f"Error reading TOC file: {e}")
+        return {}
+    
+    # Function to extract title from markdown file
+    def extract_title_from_file(file_path):
+        """Extract the first heading from a markdown file."""
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+                
+            # Look for the first h1 heading
+            import re
+            # Match # Title or {doc}`<title>` patterns
+            title_match = re.search(r'^#\s+(.+)$', content, re.MULTILINE)
+            if title_match:
+                title = title_match.group(1).strip()
+                # Clean up any MyST/Markdown formatting
+                title = re.sub(r'\*([^*]+)\*', r'\1', title)  # Remove emphasis
+                title = re.sub(r'`([^`]+)`', r'\1', title)    # Remove code formatting
+                return title
+                
+            # Try alternative patterns like MyST title directives
+            title_match = re.search(r'^\s*title:\s*(.+)$', content, re.MULTILINE)
+            if title_match:
+                title = title_match.group(1).strip()
+                # Clean up any MyST/Markdown formatting
+                title = re.sub(r'\*([^*]+)\*', r'\1', title)  # Remove emphasis
+                title = re.sub(r'`([^`]+)`', r'\1', title)    # Remove code formatting
+                return title
+                
+        except Exception as e:
+            print(f"Error reading file {file_path}: {e}")
+        
+        return None
+    
+    # Counters for numbering
+    chapter_counter = 0
+    appendix_counter = 0
+    in_appendices = False
+    
+    # Process parts and chapters
+    for part in toc_data.get('parts', []):
+        caption = part.get('caption', '')
+        chapters = part.get('chapters', [])
+        
+        # Check if this part is for appendices
+        if any(keyword in caption.lower() for keyword in ['appendic', 'annex', 'annexe']):
+            in_appendices = True
+            appendix_counter = 0  # Reset for each appendices part
+        
+        for chapter in chapters:
+            file_path = chapter.get('file', '')
+            title = chapter.get('title')
+            
+            # If no title in YAML, extract from markdown file
+            if not title and file_path:
+                full_file_path = f'source/{language}/{file_path}.md'
+                title = extract_title_from_file(full_file_path)
+            
+            if not title:
+                continue
+            
+            # Skip presentation/introduction files - they don't get numbered
+            if any(keyword in file_path.lower() for keyword in ['presentazione', 'presentation', 'presentacion', 'introduction']):
+                continue
+            
+            # Determine if this is a chapter or appendix
+            if in_appendices:
+                appendix_counter += 1
+                appendix_letter = chr(ord('A') + appendix_counter - 1)  # A, B, C, ...
+                toc_dict[title] = ('Appendix', appendix_letter)
+                current_chapter_num = appendix_letter
+                current_is_appendix = True
+            else:
+                chapter_counter += 1
+                toc_dict[title] = ('Chapter', str(chapter_counter))
+                current_chapter_num = chapter_counter
+                current_is_appendix = False
+            
+            # Process sections within this chapter
+            sections = chapter.get('sections', [])
+            section_counter = 0
+            
+            for section in sections:
+                section_file = section.get('file', '')
+                section_title = section.get('title')
+                
+                # If no title in YAML, extract from markdown file
+                if not section_title and section_file:
+                    full_section_path = f'source/{language}/{section_file}.md'
+                    section_title = extract_title_from_file(full_section_path)
+                
+                if not section_title:
+                    continue
+                
+                section_counter += 1
+                
+                if current_is_appendix:
+                    section_num = f"{current_chapter_num}.{section_counter}"
+                else:
+                    section_num = f"{current_chapter_num}.{section_counter}"
+                
+                toc_dict[section_title] = ('Section', section_num)
+                
+                # Process subsections if they exist
+                subsections = section.get('sections', [])
+                subsection_counter = 0
+                
+                for subsection in subsections:
+                    subsection_file = subsection.get('file', '')
+                    subsection_title = subsection.get('title')
+                    
+                    # If no title in YAML, extract from markdown file
+                    if not subsection_title and subsection_file:
+                        full_subsection_path = f'source/{language}/{subsection_file}.md'
+                        subsection_title = extract_title_from_file(full_subsection_path)
+                    
+                    if not subsection_title:
+                        continue
+                    
+                    subsection_counter += 1
+                    
+                    if current_is_appendix:
+                        subsection_num = f"{current_chapter_num}.{section_counter}.{subsection_counter}"
+                    else:
+                        subsection_num = f"{current_chapter_num}.{section_counter}.{subsection_counter}"
+                    
+                    toc_dict[subsection_title] = ('Section', subsection_num)
+    
+    return toc_dict
+
+
+def generate_toc_dictionary_from_html(html_root_dir):
+    """
+    Parse HTML files to extract TOC structure with titles and numbers (fallback method).
     
     Args:
         html_root_dir (str): Path to the root directory containing HTML files (e.g., 'build/it')
@@ -1469,6 +1637,7 @@ def replace_crossref_links(html_root_dir, toc_dict=None, dry_run=False, language
                 main_content = link.find_parent(class_=['bd-main', 'bd-article'])
                 if not main_content:
                     continue
+                    
                 link_text = link.get_text(strip=True)
                 
                 # Skip if this link already has a number pattern (to avoid double-processing)
@@ -1486,10 +1655,50 @@ def replace_crossref_links(html_root_dir, toc_dict=None, dry_run=False, language
                     if re.match(r'^(Chapter|Section|Appendix)\s+[\dA-Z.]+$', link_text):
                         continue
                 
+                # Function to clean and normalize text for matching
+                def normalize_text(text):
+                    """Clean text by removing HTML entities and normalizing formatting."""
+                    import html
+                    # Decode HTML entities
+                    text = html.unescape(text)
+                    # Remove HTML tags
+                    text = re.sub(r'<[^>]+>', '', text)
+                    # Normalize emphasis markers: both *word* and \word\ become word
+                    text = re.sub(r'[\*\\]([^*\\]+)[\*\\]', r'\1', text)
+                    # Normalize common formatting differences
+                    text = re.sub(r'\s+', ' ', text)  # Normalize whitespace
+                    text = text.strip()
+                    return text
+                
+                # Normalize the link text for comparison
+                normalized_link_text = normalize_text(link_text)
+                
                 # Check if the link text matches any title in our TOC dictionary
-                # First try direct match
-                if link_text in toc_dict:
-                    type_name, number = toc_dict[link_text]
+                # Try different matching strategies
+                matched_title = None
+                matched_info = None
+                
+                # 1. Direct match with normalized text
+                for toc_title, toc_info in toc_dict.items():
+                    if normalize_text(toc_title) == normalized_link_text:
+                        matched_title = toc_title
+                        matched_info = toc_info
+                        break
+                
+                # 2. If no direct match, try partial matches for formatted titles
+                if not matched_title:
+                    for toc_title, toc_info in toc_dict.items():
+                        normalized_toc_title = normalize_text(toc_title)
+                        # Check if the core text matches (ignoring minor formatting differences)
+                        if normalized_toc_title in normalized_link_text or normalized_link_text in normalized_toc_title:
+                            # Additional check: ensure they're roughly the same length to avoid false positives
+                            if abs(len(normalized_toc_title) - len(normalized_link_text)) <= 5:
+                                matched_title = toc_title
+                                matched_info = toc_info
+                                break
+                
+                if matched_info:
+                    type_name, number = matched_info
                     italian_type = type_mapping.get(type_name, type_name)
                     
                     # Format the link text according to type
@@ -1511,37 +1720,39 @@ def replace_crossref_links(html_root_dir, toc_dict=None, dry_run=False, language
                     if not dry_run:
                         # Replace the link text and add title attribute for hover tooltip
                         link.string = new_text
-                        link['title'] = link_text  # Show original title on hover
+                        link['title'] = normalize_text(matched_title)  # Show original title on hover
                         content_modified = True
                         
-                # If direct match failed, try using the title attribute (for already numbered links)
+                # If no match found, try using the title attribute (for already numbered links)
                 elif link.get('title'):
-                    title_text = link.get('title')
-                    if title_text in toc_dict:
-                        type_name, number = toc_dict[title_text]
-                        italian_type = type_mapping.get(type_name, type_name)
-                        
-                        # Format the link text according to type
-                        if type_name == 'Chapter':
-                            new_text = f"{italian_type} {number}"
-                        elif type_name == 'Section':
-                            new_text = f"{italian_type} {number}"  # Include "Paragrafo" for sections
-                        else:  # Appendix
-                            new_text = f"{italian_type} {number}"
-                        
-                        file_replacements.append({
-                            'original': link_text,
-                            'new': new_text,
-                            'href': link.get('href', ''),
-                            'type': type_name,
-                            'number': number
-                        })
-                        
-                        if not dry_run:
-                            # Replace the link text and keep title attribute for hover tooltip
-                            link.string = new_text
-                            # Title attribute already exists with the original title
-                            content_modified = True
+                    title_text = normalize_text(link.get('title'))
+                    for toc_title, toc_info in toc_dict.items():
+                        if normalize_text(toc_title) == title_text:
+                            type_name, number = toc_info
+                            italian_type = type_mapping.get(type_name, type_name)
+                            
+                            # Format the link text according to type
+                            if type_name == 'Chapter':
+                                new_text = f"{italian_type} {number}"
+                            elif type_name == 'Section':
+                                new_text = f"{italian_type} {number}"  # Include "Paragrafo" for sections
+                            else:  # Appendix
+                                new_text = f"{italian_type} {number}"
+                            
+                            file_replacements.append({
+                                'original': link_text,
+                                'new': new_text,
+                                'href': link.get('href', ''),
+                                'type': type_name,
+                                'number': number
+                            })
+                            
+                            if not dry_run:
+                                # Replace the link text and keep title attribute for hover tooltip
+                                link.string = new_text
+                                # Title attribute already exists with the original title
+                                content_modified = True
+                            break
             
             # Add numbering to main page titles (h1 elements)
             # Only process h1 elements that are in the main content area
@@ -1654,3 +1865,401 @@ def replace_crossref_links(html_root_dir, toc_dict=None, dry_run=False, language
     return changes_summary
 
 
+def make_part_titles_clickable_and_collapsible(html_root_dir, dry_run=False, language='it'):
+    """Make part titles clickable and add collapsible functionality to part sub-TOCs."""
+    
+    try:
+        from bs4 import BeautifulSoup
+    except ImportError:
+        print("BeautifulSoup4 is required. Install with: pip install beautifulsoup4")
+        return
+    
+    # Parse the TOC file to find parts and their presentation files
+    toc_file = f'source/{language}/_toc.yml'
+    if not os.path.exists(toc_file):
+        print(f"TOC file {toc_file} not found")
+        return
+        
+    with open(toc_file, 'r', encoding='utf-8') as f:
+        toc_data = yaml.safe_load(f)
+    
+    # Find parts that have presentation files as their first chapter
+    part_mappings = {}
+    appendices_sections = {}  # For parts like "Appendici" that don't have presentation files
+    
+    for part in toc_data.get('parts', []):
+        caption = part.get('caption', '')
+        chapters = part.get('chapters', [])
+        
+        if chapters:
+            first_chapter = chapters[0]
+            first_file = first_chapter.get('file', '')
+            
+            # Check if the first chapter looks like a presentation file
+            if any(keyword in first_file.lower() for keyword in ['presentazione', 'presentation', 'presentacion']):
+                # Convert file path to HTML path
+                html_path = first_file + '.html'
+                part_mappings[caption] = html_path
+                print(f"Found part '{caption}' -> {html_path}")
+            else:
+                # This might be an appendices-type section - treat it as collapsible but without a specific link
+                appendices_sections[caption] = True
+                print(f"Found appendices section '{caption}' (no specific presentation link)")
+    
+    if not part_mappings and not appendices_sections:
+        print(f"No part mappings or appendices sections found for language {language}")
+        return
+        
+    print(f"Making part titles clickable and collapsible for {language}...")
+    html_files = glob.glob(os.path.join(html_root_dir, '**', '*.html'), recursive=True)
+    
+    # CSS and JavaScript for collapsible functionality
+    collapsible_css = """
+<style>
+/* Fix alignment of main title with other navigation items */
+.bd-sidenav__home-link {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+}
+
+.bd-sidenav__home-link .toctree-l1 {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+}
+
+.bd-sidenav__home-link .toctree-l1 a {
+    padding-left: 0.75rem !important; /* Match padding of other navigation items */
+}
+
+/* Part collapsible styles - using FontAwesome approach for consistency */
+.part-collapsible {
+    cursor: pointer;
+    position: relative;
+    padding-right: 25px; /* Add more space to avoid touching separator */
+    margin-right: 8px; /* Add margin to prevent touching the right edge */
+}
+
+.part-collapsible::after {
+    content: "\\f054"; /* fa-chevron-right Unicode for collapsed state */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    right: 8px; /* Position away from the edge */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.part-collapsible:not(.collapsed)::after {
+    /* When expanded (not collapsed): use down chevron */
+    content: "\\f078"; /* fa-chevron-down Unicode */
+}
+
+.part-chapters {
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.part-chapters.collapsed {
+    max-height: 0;
+    opacity: 0;
+}
+
+/* Chapter collapsible styles - identical to parts for consistency */
+.chapter-collapsible {
+    cursor: pointer;
+    position: relative;
+    padding-right: 25px; /* Add more space to avoid touching separator */
+    margin-right: 8px; /* Add margin to prevent touching the right edge */
+}
+
+.chapter-collapsible::after {
+    content: "\\f054"; /* fa-chevron-right Unicode for collapsed state */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    right: 8px; /* Position away from the edge */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.chapter-collapsible:not(.collapsed)::after {
+    /* When expanded (not collapsed): use down chevron */
+    content: "\\f078"; /* fa-chevron-down Unicode */
+}
+
+.chapter-sub-items {
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.chapter-sub-items.collapsed {
+    max-height: 0;
+    opacity: 0;
+}
+
+/* Hide any remaining details/summary elements that might not have been converted */
+details summary {
+    display: none;
+}
+
+details {
+    summary: none;
+}
+</style>
+"""
+
+    collapsible_js = """
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Find all part titles with collapsible class
+    const partTitles = document.querySelectorAll('.part-collapsible');
+    
+    partTitles.forEach(function(title) {
+        // Initialize parts as collapsed by default
+        title.classList.add('collapsed');
+        const chapters = title.nextElementSibling;
+        if (chapters && chapters.classList.contains('part-chapters')) {
+            chapters.classList.add('collapsed');
+        }
+        
+        title.addEventListener('click', function(e) {
+            // Don't trigger collapse if clicking on a link (unless it's the whole element without child links)
+            if (e.target.tagName === 'A' && title.querySelector('a')) return;
+            
+            if (chapters && chapters.classList.contains('part-chapters')) {
+                title.classList.toggle('collapsed');
+                chapters.classList.toggle('collapsed');
+            }
+        });
+    });
+    
+    // Find all chapter titles with collapsible class
+    const chapterTitles = document.querySelectorAll('.chapter-collapsible');
+    
+    chapterTitles.forEach(function(title) {
+        // Initialize chapters as collapsed by default (except current page)
+        const parentLi = title.closest('li');
+        const isCurrentPage = parentLi && (parentLi.classList.contains('current') || parentLi.classList.contains('active'));
+        
+        if (!isCurrentPage) {
+            title.classList.add('collapsed');
+        }
+        
+        const subItems = title.parentElement.querySelector('.chapter-sub-items');
+        if (subItems) {
+            if (!isCurrentPage) {
+                subItems.classList.add('collapsed');
+            }
+        }
+        
+        title.addEventListener('click', function(e) {
+            // Prevent default link behavior for collapsing
+            e.preventDefault();
+            
+            if (subItems) {
+                title.classList.toggle('collapsed');
+                subItems.classList.toggle('collapsed');
+            }
+        });
+    });
+    
+    // Remove any remaining details elements that might not have been converted
+    const remainingDetails = document.querySelectorAll('details');
+    remainingDetails.forEach(function(detail) {
+        detail.style.display = 'none';
+    });
+});
+</script>
+"""
+    
+    files_modified = 0
+    
+    for html_file in html_files:
+        try:
+            with open(html_file, 'r', encoding='utf-8') as f:
+                content = f.read()
+                
+            soup = BeautifulSoup(content, 'html.parser')
+            changed = False
+            has_parts = False
+            
+            # Process regular parts (with presentation links)
+            for part_caption, target_file in part_mappings.items():
+                # Find elements containing the part caption text in the TOC
+                potential_elements = soup.find_all(lambda tag: 
+                    tag.name in ['p', 'div', 'span', 'li', 'caption'] and 
+                    tag.get_text(strip=True) == part_caption)
+                
+                if potential_elements:
+                    has_parts = True
+                
+                for element in potential_elements:
+                    # Check if this is in the TOC sidebar (has TOC-related classes or parents)
+                    parent_classes = []
+                    current = element
+                    while current and current.name and len(parent_classes) < 10:
+                        if current.get('class'):
+                            parent_classes.extend(current.get('class'))
+                        current = current.parent
+                        
+                    # If it's in the TOC and not already processed
+                    if (any(cls in parent_classes for cls in ['toctree', 'sidebar', 'nav', 'bd-sidebar']) and
+                        not element.find('a') and 'part-collapsible' not in element.get('class', [])):
+                        
+                        # Calculate relative path from current file to target
+                        current_path = os.path.relpath(html_file, html_root_dir)
+                        current_dir = os.path.dirname(current_path)
+                        
+                        if current_dir:
+                            relative_url = os.path.relpath(target_file, current_dir)
+                        else:
+                            relative_url = target_file
+                            
+                        # Make the element clickable and collapsible
+                        if not dry_run:
+                            element.clear()
+                            link = soup.new_tag('a', href=relative_url)
+                            link.string = part_caption
+                            element.append(link)
+                            
+                            # Add collapsible class to the part title
+                            element['class'] = element.get('class', []) + ['part-collapsible']
+                            
+                            # Find the following chapters list
+                            chapters_container = element.find_next_sibling()
+                            if chapters_container and chapters_container.name in ['ul', 'ol', 'div']:
+                                chapters_container['class'] = chapters_container.get('class', []) + ['part-chapters']
+                            
+                            changed = True
+                            print(f"Made '{part_caption}' clickable and collapsible -> {relative_url}")
+
+            # Process appendices sections (without presentation links)
+            for appendices_caption in appendices_sections.keys():
+                # Find elements with the appendices caption in a span
+                potential_elements = soup.find_all(lambda tag: 
+                    tag.name == 'span' and 
+                    'caption-text' in tag.get('class', []) and
+                    tag.get_text(strip=True) == appendices_caption)
+                
+                if potential_elements:
+                    has_parts = True
+                
+                for span_element in potential_elements:
+                    # Get the parent p element
+                    p_element = span_element.parent
+                    if (p_element and p_element.name == 'p' and 
+                        'caption' in p_element.get('class', []) and
+                        'part-collapsible' not in p_element.get('class', [])):
+                        
+                        if not dry_run:
+                            # Add collapsible class to the parent p element
+                            p_element['class'] = p_element.get('class', []) + ['part-collapsible']
+                            
+                            # Find the following chapters list
+                            chapters_container = p_element.find_next_sibling()
+                            if chapters_container and chapters_container.name in ['ul', 'ol', 'div']:
+                                chapters_container['class'] = chapters_container.get('class', []) + ['part-chapters']
+                            
+                            changed = True
+                            print(f"Made appendices section '{appendices_caption}' collapsible")
+            
+            # Convert chapter details elements to use the same custom collapsible approach as parts
+            if not dry_run:
+                # Find all details elements (used for chapters with sub-items)
+                details_elements = soup.find_all('details')
+                for details in details_elements:
+                    # Get the parent li element
+                    parent_li = details.find_parent('li')
+                    if parent_li and parent_li.get('class') and 'has-children' in parent_li.get('class', []):
+                        # Get the main chapter link (before the details)
+                        chapter_link = None
+                        for sibling in parent_li.children:
+                            if hasattr(sibling, 'name') and sibling.name == 'a':
+                                chapter_link = sibling
+                                break
+                        
+                        if chapter_link:
+                            # Add custom collapsible class to the chapter link
+                            chapter_link['class'] = chapter_link.get('class', []) + ['chapter-collapsible']
+                            
+                            # Get the sub-items from details
+                            sub_ul = details.find('ul')
+                            if sub_ul:
+                                # Add custom class to sub-items
+                                sub_ul['class'] = sub_ul.get('class', []) + ['chapter-sub-items']
+                                
+                                # Remove the details wrapper and move sub-items after the chapter link
+                                details.extract()  # Remove details element
+                                parent_li.append(sub_ul)  # Add sub-items directly to parent li
+                                
+                                changed = True
+            
+            # Add CSS and JavaScript if we have parts or chapters (regardless of whether we made changes)
+            if (has_parts or soup.find_all('details')) and not dry_run:
+                # Add CSS to head (replace if exists)
+                head = soup.find('head')
+                if head:
+                    # Remove existing part-collapsible styles - find by content
+                    for style_tag in head.find_all('style'):
+                        if style_tag.string and 'part-collapsible' in style_tag.string:
+                            style_tag.decompose()
+                    
+                    head.append(BeautifulSoup(collapsible_css, 'html.parser'))
+                    changed = True
+                
+                # Add JavaScript before closing body (replace if exists)
+                body = soup.find('body')
+                if body:
+                    # Remove existing part-collapsible script - find by content
+                    for script_tag in body.find_all('script'):
+                        if script_tag.string and 'part-collapsible' in script_tag.string:
+                            script_tag.decompose()
+                    
+                    body.append(BeautifulSoup(collapsible_js, 'html.parser'))
+                    changed = True
+                
+                if changed:
+                    with open(html_file, 'w', encoding='utf-8') as f:
+                        f.write(str(soup))
+                        
+                    files_modified += 1
+                    
+        except Exception as e:
+            print(f"Error processing {html_file}: {e}")
+    
+    if not dry_run:
+        print(f"Modified {files_modified} files")
+    else:
+        print(f"Would modify {files_modified} files")
+
+
+def main():
+    """Command-line interface for sds.py functions."""
+    parser = argparse.ArgumentParser(description='Process documentation files')
+    subparsers = parser.add_subparsers(dest='command', help='Available commands')
+    
+    # Add subparser for making parts clickable and collapsible
+    parser_clickable = subparsers.add_parser('make-parts-clickable', 
+                                           help='Make part titles clickable and collapsible in TOC')
+    parser_clickable.add_argument('html_dir', help='HTML build directory')
+    parser_clickable.add_argument('--language', default='it', 
+                                help='Language code (it, en, fr, es)')
+    parser_clickable.add_argument('--dry-run', action='store_true',
+                                help='Show what would be changed without making changes')
+    
+    args = parser.parse_args()
+    
+    if args.command == 'make-parts-clickable':
+        make_part_titles_clickable_and_collapsible(args.html_dir, args.dry_run, args.language)
+    else:
+        parser.print_help()
+
+
+if __name__ == '__main__':
+    main()

@@ -16,7 +16,7 @@ parts:
       - file: P0/vista-de-conjunto
   - caption: Programación para el análisis de datos
     chapters:
-      - file: P1-PAD/presentazione
+      - file: P1-PAD/presentacion
       - file: P1-PAD/c1-intro-python/introduzione-a-python
         sections:
         - file: P1-PAD/c1-intro-python/installare-python

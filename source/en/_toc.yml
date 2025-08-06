@@ -14,7 +14,7 @@ parts:
         - file: P0/notation
         - file: P0/use-in-teaching
       - file: P0/overview
-  - caption: Programmazione per l'analisi dei dati
+  - caption: Programming for data analysis
     chapters:
       - file: P1-PAD/presentation
       - file: P1-PAD/c1-intro-python/introducing-python

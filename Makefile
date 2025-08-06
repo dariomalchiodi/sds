@@ -30,17 +30,19 @@ help:
 # Italian documentation build target
 it:
 	@echo "Building Italian documentation..."
-	@echo "Step 1/5: Processing MyST files..."
+	@echo "Step 1/6: Processing MyST files..."
 	./code/process_myst_batch.sh --clean it
-	@echo "Step 2/5: Copying shared resources..."
+	@echo "Step 2/6: Copying shared resources..."
 	@if [ -d "$(SOURCEDIR)/_static" ]; then cp -r "$(SOURCEDIR)/_static" tmpsource/; fi
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
-	@echo "Step 3/5: Building HTML with Sphinx..."
+	@echo "Step 3/6: Building HTML with Sphinx..."
 	$(SPHINXBUILD) -b html tmpsource/it build/it
-	@echo "Step 4/5: Applying cross-reference improvements..."
+	@echo "Step 4/6: Applying cross-reference improvements..."
 	python3 code/apply_crossref_improvements.py build/it
-	@echo "Step 5/5: Cleaning temporary files..."
+	@echo "Step 5/6: Making part titles clickable and collapsible..."
+	python3 code/sds.py make-parts-clickable build/it --language it
+	@echo "Step 6/6: Cleaning temporary files..."
 	./code/clean_tmpsource.sh --force --all
 	@echo "Italian documentation build complete! Output: build/it/"
 	@echo "Note: Figure/table numbering (X.Y format) is automatically handled by Sphinx configuration."
@@ -48,17 +50,19 @@ it:
 # English documentation build target
 en:
 	@echo "Building English documentation..."
-	@echo "Step 1/5: Processing MyST files..."
+	@echo "Step 1/6: Processing MyST files..."
 	./code/process_myst_batch.sh --clean en
-	@echo "Step 2/5: Copying shared resources..."
+	@echo "Step 2/6: Copying shared resources..."
 	@if [ -d "$(SOURCEDIR)/_static" ]; then cp -r "$(SOURCEDIR)/_static" tmpsource/; fi
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
-	@echo "Step 3/5: Building HTML with Sphinx..."
+	@echo "Step 3/6: Building HTML with Sphinx..."
 	$(SPHINXBUILD) -b html tmpsource/en build/en
-	@echo "Step 4/5: Applying cross-reference improvements..."
+	@echo "Step 4/6: Applying cross-reference improvements..."
 	python3 code/apply_crossref_improvements.py build/en
-	@echo "Step 5/5: Cleaning temporary files..."
+	@echo "Step 5/6: Making part titles clickable and collapsible..."
+	python3 code/sds.py make-parts-clickable build/en --language en
+	@echo "Step 6/6: Cleaning temporary files..."
 	./code/clean_tmpsource.sh --force --all
 	@echo "English documentation build complete! Output: build/en/"
 	@echo "Note: Figure/table numbering (X.Y format) is automatically handled by Sphinx configuration."
@@ -66,17 +70,19 @@ en:
 # French documentation build target
 fr:
 	@echo "Building French documentation..."
-	@echo "Step 1/5: Processing MyST files..."
+	@echo "Step 1/6: Processing MyST files..."
 	./code/process_myst_batch.sh --clean fr
-	@echo "Step 2/5: Copying shared resources..."
+	@echo "Step 2/6: Copying shared resources..."
 	@if [ -d "$(SOURCEDIR)/_static" ]; then cp -r "$(SOURCEDIR)/_static" tmpsource/; fi
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
-	@echo "Step 3/5: Building HTML with Sphinx..."
+	@echo "Step 3/6: Building HTML with Sphinx..."
 	$(SPHINXBUILD) -b html tmpsource/fr build/fr
-	@echo "Step 4/5: Applying cross-reference improvements..."
+	@echo "Step 4/6: Applying cross-reference improvements..."
 	python3 code/apply_crossref_improvements.py build/fr
-	@echo "Step 5/5: Cleaning temporary files..."
+	@echo "Step 5/6: Making part titles clickable and collapsible..."
+	python3 code/sds.py make-parts-clickable build/fr --language fr
+	@echo "Step 6/6: Cleaning temporary files..."
 	./code/clean_tmpsource.sh --force --all
 	@echo "French documentation build complete! Output: build/fr/"
 	@echo "Note: Figure/table numbering (X.Y format) is automatically handled by Sphinx configuration."
@@ -84,17 +90,19 @@ fr:
 # Spanish documentation build target
 es:
 	@echo "Building Spanish documentation..."
-	@echo "Step 1/5: Processing MyST files..."
+	@echo "Step 1/6: Processing MyST files..."
 	./code/process_myst_batch.sh --clean es
-	@echo "Step 2/5: Copying shared resources..."
+	@echo "Step 2/6: Copying shared resources..."
 	@if [ -d "$(SOURCEDIR)/_static" ]; then cp -r "$(SOURCEDIR)/_static" tmpsource/; fi
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
-	@echo "Step 3/5: Building HTML with Sphinx..."
+	@echo "Step 3/6: Building HTML with Sphinx..."
 	$(SPHINXBUILD) -b html tmpsource/es build/es
-	@echo "Step 4/5: Applying cross-reference improvements..."
+	@echo "Step 4/6: Applying cross-reference improvements..."
 	python3 code/apply_crossref_improvements.py build/es
-	@echo "Step 5/5: Cleaning temporary files..."
+	@echo "Step 5/6: Making part titles clickable and collapsible..."
+	python3 code/sds.py make-parts-clickable build/es --language es
+	@echo "Step 6/6: Cleaning temporary files..."
 	./code/clean_tmpsource.sh --force --all
 	@echo "Spanish documentation build complete! Output: build/es/"
 	@echo "Note: Figure/table numbering (X.Y format) is automatically handled by Sphinx configuration."
@@ -128,21 +136,29 @@ all:
 	$(SPHINXBUILD) -b html tmpsource/it build/it
 	@echo "Step 7: Applying Italian cross-reference improvements..."
 	python3 code/apply_crossref_improvements.py build/it
-	@echo "Step 8: Building English HTML..."
+	@echo "Step 8: Making Italian part titles clickable and collapsible..."
+	python3 code/sds.py make-parts-clickable build/it --language it
+	@echo "Step 9: Building English HTML..."
 	$(SPHINXBUILD) -b html tmpsource/en build/en
-	@echo "Step 9: Applying English cross-reference improvements..."
+	@echo "Step 10: Applying English cross-reference improvements..."
 	python3 code/apply_crossref_improvements.py build/en
-	@echo "Step 10: Building French HTML..."
+	@echo "Step 11: Making English part titles clickable and collapsible..."
+	python3 code/sds.py make-parts-clickable build/en --language en
+	@echo "Step 12: Building French HTML..."
 	$(SPHINXBUILD) -b html tmpsource/fr build/fr
-	@echo "Step 11: Applying French cross-reference improvements..."
+	@echo "Step 13: Applying French cross-reference improvements..."
 	python3 code/apply_crossref_improvements.py build/fr
-	@echo "Step 12: Building Spanish HTML..."
+	@echo "Step 14: Making French part titles clickable and collapsible..."
+	python3 code/sds.py make-parts-clickable build/fr --language fr
+	@echo "Step 15: Building Spanish HTML..."
 	$(SPHINXBUILD) -b html tmpsource/es build/es
-	@echo "Step 13: Applying Spanish cross-reference improvements..."
+	@echo "Step 16: Applying Spanish cross-reference improvements..."
 	python3 code/apply_crossref_improvements.py build/es
-	@echo "Step 14: Copying static files..."
+	@echo "Step 17: Making Spanish part titles clickable and collapsible..."
+	python3 code/sds.py make-parts-clickable build/es --language es
+	@echo "Step 18: Copying static files..."
 	@$(MAKE) copy-static
-	@echo "Step 15: Cleaning all temporary files..."
+	@echo "Step 19: Cleaning all temporary files..."
 	./code/clean_tmpsource.sh --force --all
 	@echo "All language versions built successfully!"
 	@echo "Note: Figure/table numbering (X.Y format) is automatically handled by Sphinx configuration."
