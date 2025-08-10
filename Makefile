@@ -19,7 +19,10 @@ help:
 	@echo "  es          Build Spanish documentation with MyST processing"
 	@echo "  all         Build all language versions and copy static files"
 	@echo "  copy-static Copy static files (e.g., index.html) to build directory"
+	@echo "  sync-shortener Sync URL shortener files to all language directories"
+	@echo "  validate-shortener Validate shortener-mappings.json for errors"
 	@echo "  clean-all   Remove all build artifacts and temporary files"
+	@echo "  serve       Start development server with clean URL support"
 	@echo ""
 	@echo "Internationalization targets:"
 	@echo "  gettext-extract     Extract translatable strings from Sphinx theme"
@@ -30,19 +33,21 @@ help:
 # Italian documentation build target
 it:
 	@echo "Building Italian documentation..."
-	@echo "Step 1/6: Processing MyST files..."
+	@echo "Step 0/7: Syncing URL shortener files..."
+	./code/sync-url-shortener.sh
+	@echo "Step 1/7: Processing MyST files..."
 	./code/process_myst_batch.sh --clean it
-	@echo "Step 2/6: Copying shared resources..."
+	@echo "Step 2/7: Copying shared resources..."
 	@if [ -d "$(SOURCEDIR)/_static" ]; then cp -r "$(SOURCEDIR)/_static" tmpsource/; fi
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
-	@echo "Step 3/6: Building HTML with Sphinx..."
+	@echo "Step 3/7: Building HTML with Sphinx..."
 	$(SPHINXBUILD) -b html tmpsource/it build/it
-	@echo "Step 4/6: Applying cross-reference improvements..."
+	@echo "Step 4/7: Applying cross-reference improvements..."
 	python3 code/apply_crossref_improvements.py build/it
-	@echo "Step 5/6: Making part titles clickable and collapsible..."
+	@echo "Step 5/7: Making part titles clickable and collapsible..."
 	python3 code/sds.py make-parts-clickable build/it --language it
-	@echo "Step 6/6: Cleaning temporary files..."
+	@echo "Step 6/7: Cleaning temporary files..."
 	./code/clean_tmpsource.sh --force --all
 	@echo "Italian documentation build complete! Output: build/it/"
 	@echo "Note: Figure/table numbering (X.Y format) is automatically handled by Sphinx configuration."
@@ -50,19 +55,21 @@ it:
 # English documentation build target
 en:
 	@echo "Building English documentation..."
-	@echo "Step 1/6: Processing MyST files..."
+	@echo "Step 0/7: Syncing URL shortener files..."
+	./code/sync-url-shortener.sh
+	@echo "Step 1/7: Processing MyST files..."
 	./code/process_myst_batch.sh --clean en
-	@echo "Step 2/6: Copying shared resources..."
+	@echo "Step 2/7: Copying shared resources..."
 	@if [ -d "$(SOURCEDIR)/_static" ]; then cp -r "$(SOURCEDIR)/_static" tmpsource/; fi
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
-	@echo "Step 3/6: Building HTML with Sphinx..."
+	@echo "Step 3/7: Building HTML with Sphinx..."
 	$(SPHINXBUILD) -b html tmpsource/en build/en
-	@echo "Step 4/6: Applying cross-reference improvements..."
+	@echo "Step 4/7: Applying cross-reference improvements..."
 	python3 code/apply_crossref_improvements.py build/en
-	@echo "Step 5/6: Making part titles clickable and collapsible..."
+	@echo "Step 5/7: Making part titles clickable and collapsible..."
 	python3 code/sds.py make-parts-clickable build/en --language en
-	@echo "Step 6/6: Cleaning temporary files..."
+	@echo "Step 6/7: Cleaning temporary files..."
 	./code/clean_tmpsource.sh --force --all
 	@echo "English documentation build complete! Output: build/en/"
 	@echo "Note: Figure/table numbering (X.Y format) is automatically handled by Sphinx configuration."
@@ -70,19 +77,21 @@ en:
 # French documentation build target
 fr:
 	@echo "Building French documentation..."
-	@echo "Step 1/6: Processing MyST files..."
+	@echo "Step 0/7: Syncing URL shortener files..."
+	./code/sync-url-shortener.sh
+	@echo "Step 1/7: Processing MyST files..."
 	./code/process_myst_batch.sh --clean fr
-	@echo "Step 2/6: Copying shared resources..."
+	@echo "Step 2/7: Copying shared resources..."
 	@if [ -d "$(SOURCEDIR)/_static" ]; then cp -r "$(SOURCEDIR)/_static" tmpsource/; fi
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
-	@echo "Step 3/6: Building HTML with Sphinx..."
+	@echo "Step 3/7: Building HTML with Sphinx..."
 	$(SPHINXBUILD) -b html tmpsource/fr build/fr
-	@echo "Step 4/6: Applying cross-reference improvements..."
+	@echo "Step 4/7: Applying cross-reference improvements..."
 	python3 code/apply_crossref_improvements.py build/fr
-	@echo "Step 5/6: Making part titles clickable and collapsible..."
+	@echo "Step 5/7: Making part titles clickable and collapsible..."
 	python3 code/sds.py make-parts-clickable build/fr --language fr
-	@echo "Step 6/6: Cleaning temporary files..."
+	@echo "Step 6/7: Cleaning temporary files..."
 	./code/clean_tmpsource.sh --force --all
 	@echo "French documentation build complete! Output: build/fr/"
 	@echo "Note: Figure/table numbering (X.Y format) is automatically handled by Sphinx configuration."
@@ -90,19 +99,21 @@ fr:
 # Spanish documentation build target
 es:
 	@echo "Building Spanish documentation..."
-	@echo "Step 1/6: Processing MyST files..."
+	@echo "Step 0/7: Syncing URL shortener files..."
+	./code/sync-url-shortener.sh
+	@echo "Step 1/7: Processing MyST files..."
 	./code/process_myst_batch.sh --clean es
-	@echo "Step 2/6: Copying shared resources..."
+	@echo "Step 2/7: Copying shared resources..."
 	@if [ -d "$(SOURCEDIR)/_static" ]; then cp -r "$(SOURCEDIR)/_static" tmpsource/; fi
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
-	@echo "Step 3/6: Building HTML with Sphinx..."
+	@echo "Step 3/7: Building HTML with Sphinx..."
 	$(SPHINXBUILD) -b html tmpsource/es build/es
-	@echo "Step 4/6: Applying cross-reference improvements..."
+	@echo "Step 4/7: Applying cross-reference improvements..."
 	python3 code/apply_crossref_improvements.py build/es
-	@echo "Step 5/6: Making part titles clickable and collapsible..."
+	@echo "Step 5/7: Making part titles clickable and collapsible..."
 	python3 code/sds.py make-parts-clickable build/es --language es
-	@echo "Step 6/6: Cleaning temporary files..."
+	@echo "Step 6/7: Cleaning temporary files..."
 	./code/clean_tmpsource.sh --force --all
 	@echo "Spanish documentation build complete! Output: build/es/"
 	@echo "Note: Figure/table numbering (X.Y format) is automatically handled by Sphinx configuration."
@@ -111,10 +122,31 @@ es:
 copy-static:
 	@echo "Copying static files..."
 	@mkdir -p $(BUILDDIR)
+	@echo "Validating shortener mappings..."
+	python3 code/validate-shortener.py
+	@echo "Generating redirect pages..."
+	python3 code/generate-redirect-pages.py $(BUILDDIR)
+	@echo "Syncing URL shortener files..."
+	./code/sync-url-shortener.sh
+	@echo "Creating shared static directory for root shortener..."
+	@mkdir -p "$(BUILDDIR)/en/_static"
+	@if [ -f "$(SOURCEDIR)/_static/url-shortener.js" ]; then \
+		cp "$(SOURCEDIR)/_static/url-shortener.js" "$(BUILDDIR)/en/_static/"; \
+		echo "✓ url-shortener.js copied to en/_static for root access"; \
+	fi
 	@if [ -f "$(SOURCEDIR)/index.html" ]; then \
 		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/"; \
 		echo "✓ index.html copied to build directory"; \
 	fi
+	@if [ -f "$(SOURCEDIR)/short.html" ]; then \
+		cp "$(SOURCEDIR)/short.html" "$(BUILDDIR)/"; \
+		echo "✓ short.html copied to build directory"; \
+	fi
+
+# Sync URL shortener files to all language directories
+sync-shortener:
+	@echo "Syncing URL shortener files..."
+	./code/sync-url-shortener.sh
 
 # Build all language versions
 all:
@@ -202,7 +234,21 @@ compile-mo:
 update-translations: gettext-extract update-po compile-mo
 	@echo "All translation files updated and compiled!"
 
-.PHONY: help Makefile it en fr es all copy-static clean-all gettext-extract update-po compile-mo update-translations
+# Validate shortener mappings for syntax and duplicate errors
+validate-shortener:
+	@echo "Validating shortener mappings..."
+	python3 code/validate-shortener.py
+
+# Start development server with clean URL support
+serve:
+	@echo "Starting SDS development server..."
+	@if [ ! -d "$(BUILDDIR)" ]; then \
+		echo "❌ Build directory not found. Please run 'make all' first."; \
+		exit 1; \
+	fi
+	@python3 code/serve.py
+
+.PHONY: help Makefile it en fr es all copy-static sync-shortener validate-shortener clean-all gettext-extract update-po compile-mo update-translations serve
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).

@@ -566,3 +566,32 @@ nav.bd-links p.caption  {
     justify-content: center;
   }
 }
+
+/* Remove the default vertical border highlighting for current navigation items */
+nav.bd-links .current > a {
+  box-shadow: none !important;
+}
+
+/* Custom current-page class for alternative highlighting */
+.current-page {
+  background-color: var(--pst-color-primary-bg) !important;
+  border-radius: 0.25rem;
+  border-left: 3px solid var(--pst-color-primary) !important;
+  font-weight: 600;
+}
+
+/* Make "Superhero Data Science" title prominent - black and bold */
+.bd-sidenav__home-link .toctree-l1 > a {
+  color: var(--pst-color-text-base) !important;
+  font-weight: bold !important;
+}
+
+/* Make part names (captions) less prominent - gray */
+nav.bd-links p.caption {
+  color: var(--pst-color-text-muted) !important;
+}
+
+/* For current/active chapter links: remove bold weight, keep color highlighting */
+nav.bd-links .current > a:not(.bd-sidenav__home-link .toctree-l1 > a) {
+  font-weight: normal !important;
+}

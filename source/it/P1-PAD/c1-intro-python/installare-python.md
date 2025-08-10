@@ -10,17 +10,16 @@ nb_execution: false
 (sec:installazione)=
 # Installazione, configurazione e primi passi
 
-Questo paragrafo descrive come installare Python e le librerie alle quali
-farò riferimento nel libro, introducendo nel contempo una serie di buone
-abitudini che è opportuno imparare fin da subito a utilizzare per tutti i
-progetti software legati all'analisi dei dati, come l'utilizzo degli ambienti
-virtuali di esecuzione e dei _package manager_. Chi ha già dimestichezza con
-Python e ha a disposizione un'installazione funzionante può probabilmente
-saltare direttamente al paragrafo successivo, sebbene anche in questo caso
-consiglio una rapida lettura, sia per allinearsi con la terminologia che
-utilizzerò, sia per sincerarsi che non vi siano problemi di incompatibilità
-della versione già disponibile e che tutte le librerie necessarie siano già
-installate.
+Questo paragrafo descrive come installare Python e le librerie utilizzate nel
+libro. Nel contempo, introdurrò alcune buone abitudini che è opportuno imparare
+fin da subito a utilizzare per tutti i progetti software legati all'analisi dei
+dati, come l'utilizzo degli ambienti virtuali di esecuzione e dei _package
+manager_. Chi ha già dimestichezza con Python e ha a disposizione
+un'installazione funzionante può probabilmente saltare direttamente al
+paragrafo successivo, sebbene anche in questo caso consiglio una rapida
+lettura, sia per allinearsi con la terminologia che utilizzerò, sia per
+sincerarsi che non vi siano problemi di incompatibilità della versione già
+disponibile e che tutte le librerie necessarie siano già installate.
 
 (sec:linguaggi-versioni-implementazioni)=
 ## Linguaggi, versioni e implementazioni
@@ -29,10 +28,10 @@ anni le loro specifiche vengono aggiornate. Il risultato di questi cambiamenti
 è una serie di _versioni_ del linguaggio. A oggi, per individuare le specifica
 versione di un linguaggio di programmazione (ma anche di una libreria o in
 generale di un prodotto software), è ampiamente utilizzato il cosiddetto schema
-di [versioning semantico](https://semver.org/) che, nella sua incarnazione più
-semplice, descrive una versione tramite una sequenza `X.Y.Z` formata da tre
-numeri interi, inizialmente fissati a zero e incrementati ogni volta che
-vengono effettuati degli aggiornamenti:
+di [versionamento semantico](https://semver.org/lang/it) che, nella sua
+incarnazione più semplice, descrive una versione tramite una sequenza `X.Y.Z`
+formata da tre numeri interi, inizialmente fissati a zero e incrementati ogni
+volta che vengono effettuati degli aggiornamenti:
 
 - `X` indica la _major release_, e viene aumentato quando si introducono
   cambiamenti non compatibili con le versioni precedenti,
@@ -59,20 +58,20 @@ della sua sintassi e della sua semantica, e un'altra è costruire gli strumenti
 che permettono di eseguire i corrispondenti programmi, come gli interpreti e
 i compilatori[^compilatori]. Questi strumenti possono essere realizzati in
 momenti differenti, da persone diverse e usando di volta in volta specifiche
-tecnologie. Il risultato sono delle particolari _implementazioni_ del
-linguaggio, che non sono necessariamente identiche anche quando si riferiscono
-a uno stesso numero di versione, perché le specifiche non sempre entrano nel
-dettaglio specifico di come realizzare una funzionalità. Per esempio, potrebbe
-essere dipendente dalla particolare implementazione il formato di codifica
-da utilizzare per le stringhe. Per quanto riguarda Python, esistono [varie
+tecnologie. Il risultato sono diverse _implementazioni_ del linguaggio. Anche
+quando si riferiscono allo stesso numero di versione, non sono necessariamente
+identiche: le specifiche del linguaggio, infatti, non sempre entrano nel
+dettaglio specifico di come certe funzionalità debbano essere realizzate. Per
+esempio, potrebbe essere dipendente dalla particolare implementazione il
+formato di codifica da utilizzare per le stringhe. Per quanto riguarda Python,
+esistono [varie
 implementazioni](https://www.toptal.com/python/why-are-there-so-many-pythons)
 che differiscono nella particolare tecnologia usata per eseguire i programmi:
-una si appoggia ad esempio sulla _Java virtual machine_, un'altra su uno
-strumento analogo basato sul linguaggio C, un'altra ancora è pensata per
-eseguire i programmi all'interno di un browser Web, e così via.
-L'implementazione più diffusa, che tipicamente viene installata per _default_,
-viene chiamata _CPython_ e, come suggerito dal suo nome, è stata scritta usando
-il linguaggio C.
+una è basata sulla _Java virtual machine_, un'altra su uno strumento analogo
+basato sul linguaggio C, un'altra ancora è pensata per l'esecuzione in un
+browser Web, e così via. L'implementazione più diffusa (che tipicamente viene
+installata per _default_) viene chiamata _CPython_ e, come suggerito dal nome,
+è stata scritta usando il linguaggio C.
 
 (sec:download-book)=
 ## Scaricare i contenuti del libro
@@ -80,11 +79,11 @@ Questo libro è pensato per essere fruito tramite la mediazione di un server
 web. Il lato positivo è che le parti interattive possono essere utilizzate
 senza che sia necessario installare o configurare librerie, ma d'altro canto
 ciò richiede una connessione dati permanentemente attiva. Volendo, è possibile
-scaricare i contenuti del libro e generare i suoi paragrafi come pagine web
-gestite da un server web locale, ma questo richiede di installare
-preventivamente tutto il software che serve per poter lanciare il processo di
-generazione. Va notato che l'esecuzione delle parti interattive richiede
-comuqnue di essere collegati a internet.
+scaricare i contenuti del libro e generare i suoi paragrafi come pagine gestite
+da un server web locale. Questa opzione richiede però l'installazione
+preventiva del software che gestisce il processo di generazione. Va notato che
+per esecguire le parti interattive è comuqnue necessario essere collegati a
+internet.
 
 ```{margin}
 Per poter clonare il _repository_ del libro è necessario avere un _client_ git
@@ -107,11 +106,11 @@ una directory `sds` creata appositamente.
 
    .. group-tab:: Linux / Mac OS
 
-      In tutti gli esempi che seguono, il simbolo ``$`` indica il *prompt* di una
-      *shell*, che nel sistema che usate potrebbe essere configurata per
-      mostrare un *prompt* di tipo diverso. Solo nell'esempio qui sotto, invece,
-      ``my_parent_dir`` è un nome fittizio da sostituire con il *pathname* della
-      directory nella quale si vogliono posizionare i contenuti del libro.
+      Negli esempi seguenti, il simbolo ``$`` indica il _prompt_ di una
+      _shell_, che nel sistema che usate potrebbe essere visualizzato
+      diversamente. Solo nell'esempio qui sotto, invece, ``my_parent_dir`` è un
+      nome fittizio da sostituire con il percorso nel quale intendete salvare
+      la directory del libro.
 
       .. code-block:: bash
 
@@ -119,16 +118,16 @@ una directory `sds` creata appositamente.
          $ git clone git@github.com:dariomalchiodi/sds.git
          $ cd sds
 
-      Nel seguito del paragrafo supporrò che la *shell* nella quale sono stati
+      Nel seguito del paragrafo supporrò che la _shell_ nella quale sono stati
       inseriti questi comandi sia rimasta aperta.
 
    .. group-tab:: Windows
 
-      In tutti gli esempi che seguono, la dicitura ``C:>`` indica il *prompt* di
-      una *PowerShell*, che nel sistema che usate potrebbe essere configurata
-      per mostrare un *prompt* diverso. Solo nell'esempio qui sotto, invece,
-      ``my_parent_dir`` è un nome fittizio da sostituire con il *pathname* della
-      directory nella quale si vogliono posizionare i contenuti del libro.
+      Negli esempi seguenti, la dicitura ``C:>`` indica il _prompt_ di
+      una _PowerShell_, che nel sistema che usate potrebbe essere visualizzato
+      diversamente. Solo nell'esempio qui sotto, invece, ``my_parent_dir`` è un
+      nome fittizio da sostituire con il percorso nel quale intendete salvare
+      la directory del libro.
 
       .. code-block:: powershell
 
@@ -174,18 +173,18 @@ modifiche, inviando _issue_ o _pull request_ come già indicato nel
 {ref}`chap:approccio`. Infine, imparare a usare git è una cosa che raccomando a
 chiunque approcci lo studio non solo dell'informatica, ma anche di
 tutte le discipline che in qualche modo afferiscono alla _data science_. Di
-fatto, git è utilizzato per gestire la stragrande maggioranza dei progetti
-software, dunque vale la pena imparare a usarlo fin da subito.
+fatto, git è lo strumento più utilizzato per la gestione dei progetti software:
+imparare a usarlo fin da subito è un investimento utile.
 
 
 ## Installare Python
 
 L'installazione di Python è fortemente dipendente dal sistema operativo
-utilizzato. Le distribuzioni recenti di Linux e di Mac OS sono già equipaggiate
-con Python, mentre in Windows è necessario provvedere a un'installazione
-manuale. In ogni caso, il computer che state utilizzando potrebbe già essere
-equipaggiato con una distribuzione di Python: per verificare se sia così, è
-possibile lanciare un terminale, eseguire il comando
+utilizzato. Nelle distribuzioni recenti di Linux e di Mac OS Python è già
+preinstallato, mentre in Windows è necessario installarlo manualmente. In ogni
+caso, il computer che state utilizzando potrebbe già disporre di una
+distribuzione di Python: per verificare se sia così, è possibile lanciare un
+terminale, eseguire il comando
 
 ```{eval-rst}
 .. tabs::
@@ -218,10 +217,9 @@ e notare che tipo di output si ottiene. Sono possibili tre casi:
    momento in cui sto scrivendo questo paragrafo;
 ```{margin}
 Se la _major release_ è `4` o superiore, allora state leggendo questo libro
-parecchio tempo dopo che l'ho scritto, ed è fortemente probabile che una
-parte più o meno grande dei contenuti che riguardano l'uso di Python sia
-diventata obsoleta. In questo caso, controllate se non esista un aggiornamento
-del libro, e in caso negativo cercate della documentazione più recente.
+parecchio tempo dopo che l'ho scritto, ed è probabile che parte del contenuto
+sia obsoleta. In questo caso, verificate se è disponibile una versione
+aggiornata del libro o consultate della documentazione più recente.
 ``` 
 3. si ottiene un errore che indica che `python` non è tra i comandi disponibili:
    questo è indice del fatto che probabilmente non è installata alcuna versione
@@ -243,8 +241,8 @@ correttamente. Pertanto sconsiglio di procedere in tal senso.
 Nel secondo caso, potrebbe comunque esistere un'installazione del
 linguaggio in una versione compatibile, ma il comando `python` fa riferimento
 a un'altra versione. Per sincerarsene, è possibile scrivere `python`
-nel terminale e (senza aggiungere alcuno spazio) premere il tasto {kbd}`TAB`:
-in presenza di più installazioni, i nomi dei corrispondenti comandi vengono 
+nel terminale e premere il tasto {kbd}`TAB`, senza aggiungere spazi: in
+presenza di più installazioni, i nomi dei corrispondenti comandi vengono 
 automaticamente stampati. Anche nel terzo caso, Python potrebbe essere
 installato senza che il vostro terminale risulti configurato per eseguirlo, ma
 si tratta di un'eventualità abbastanza remota.
@@ -265,22 +263,20 @@ alla documentazione ufficiale, che prevede guide separate per sistemi basati su
 
 ## Creare un ambiente virtuale di esecuzione
 
-Python viene normalmente utilizzato insieme a varie librerie, e sconsiglio
-decisamente di installarle adottando un approccio _monolitico_, nel quale
-semplicemente si aggiunge una libreria ogni volta che ci si rende conto di
-averne bisogno: man mano che il tempo passa, e che il numero di librerie
-utilizzate aumenta, cresce anche il rischio di incompatibilità tra il sistema
-esistente e una nuova libreria della quale potreste avere bisogno.
-Considerazioni analoghe si possono fare nel momento in cui una o più librerie
-vengono aggiornate a una versione più recente.
-Per aggirare questo tipo di rischi, è altamente consigliabile compartimentare
-l'installazione delle librerie: eseguire cioè Python in uno spazio logicamente
-isolato nel quale aggiungere tutte e sole le librerie necessarie per uno
-specifico progetto software. Questi spazi isolati prendono il nome di
-_environment virtuali_, o _ambienti virtuali di esecuzione_ (nel seguito
-parlerò per brevità di _environment_ o di ambienti virtuali), e vengono
-opportunamente attivati ogni volta che si inizia a lavorare sul corrispondente
-progetto, disattivandoli prima di passare a un altro progetto.
+Python viene normalmente utilizzato insieme a varie librerie. Sconsiglio però
+di adottare un approccio _monolitico_, aggiungendo librerie ogni volta che
+servono: man mano che il tempo passa, aumenta il numero di librerie utilizzate
+e cresce il rischio di incompatibilità tra il sistema esistente e una nuova
+libreria della quale potreste avere bisogno. Considerazioni analoghe si possono
+fare nel momento in cui una o più librerie vengono aggiornate a una versione
+più recente. Per aggirare questo tipo di rischi, è altamente consigliabile
+compartimentare l'installazione delle librerie: eseguire cioè Python in uno
+spazio logicamente isolato nel quale aggiungere tutte e sole le librerie
+necessarie per uno specifico progetto software. Questi spazi isolati vengono
+chiamati _environment virtuali_, o _ambienti virtuali di esecuzione_ (nel
+seguito parlerò per brevità di _environment_ o di ambienti virtuali). Un
+ambiente virtuale viene attivato ogni volta che si inizia a lavorare su un
+progetto, e si disattiva prima di passare a lavorare su altro.
 
 Esistono diverse implementazioni del concetto di _environment_ virtuale in
 Linux: in questo libro farò riferimento a _venv_[^environment], che è
@@ -370,15 +366,13 @@ sistema torna a essere quello originario.
 
 (sec:lib-install)=
 ## Gestire le librerie
-In teoria, l'installazione di una libreria può essere fatta in modo
-autonomo, scaricando ed eseguendo il corrispondente eseguibile, o perfino
-a partire dal relativo codice sorgente disponibile su fonti pubbliche. Questo
-modo di procedere può però nascondere delle insidie, e quella che classicamente
-si verifica è legata al fatto che praticamente ogni libreria è stata costruita
-utilizzando altre librerie, e dunque è necessario installare preventivamente
-queste ultime, che potrebbero a loro volta dipendere da altre librerie, che
-dovranno essere installate prima di procedere, e così via. In altre parole,
-installare manualmente una libreria può rivelarsi un'esperienza particolarmente
+In teoria, si può installare manualmente una libreria, scaricando il
+corrispondente eseguibile o partendo dal codice sorgente disponibile su fonti
+pubbliche. Tuttavia, questo approccio può nascondere delle insidie: quasi ogni
+libreria dipende da altre librerie. Procedere in questo modo richiede di
+installare innanzitutto queste ultime librerie, che a loro volta potrebbero
+dipendere da altro software, e così via. In altre parole, l'installazione
+manualme di una libreria può rivelarsi un'esperienza particolarmente
 impegnativa, quando non decisamente frustrante: con il crescere del numero
 di installazioni necessarie, diventa più verosimile che qualche tipo di errore
 complichi ulteriormente il processo, quando non lo blocchi completamente. Per
@@ -468,8 +462,9 @@ essere di tre tipi differenti:
 - le celle di output, ognuna delle quali è associata a una specifica cella di
   codice, e contiene output prodotto dall'esecuzione di quest'ultima,
 - le celle restanti, nelle quali si possono trovare testo formattato, grafici e
-  video che non sono generati dal codice eseguito nel _notebook_, bensì sono
-  stati inseriti direttamente da chi ha realizzato quest'ultimo.
+  video che possono essere stati generati dal codice eseguito nel _notebook_,
+  come effetto collaterae, ma che possono anche essere stati inseriti
+  direttamente da chi ha realizzato quest'ultimo.
 
 ```{margin}
 Quando nel nome di una tecnologia basata su python è contenuta la sillaba «py»,
@@ -480,7 +475,7 @@ e si pronuncia [ˈjü-pə-tər](https://www.merriam-webster.com/dictionary/Jupit
 come il nome inglese del pianeta Giove (Jupiter).
 ```
 Lo standard _de facto_ per i _notebook_ è quello introdotto dal progetto
-[Jupyter](https://jupyter.org). Esiste una pletora di applicazioni che
+[Jupyter](https://jupyter.org). Esiste [una pletora di applicazioni](https://mljourney.com/jupyter-notebook-alternatives-in-2025/) che
 permettono di scrivere, leggere e soprattutto eseguire  _notebook_, e tra
 queste le più comunemente utilizzate sono quella distribuita direttamente
 dal progetto Jupyter e l'IDE flagship di Microsoft
@@ -511,23 +506,28 @@ un _notebook_ usando Visual Studio Code.
 
 ```
 
+```{margin}
+{margin} L’estensione .ipynb` identifica i notebook Python.
+```
 che ha l'effetto di aprire un browser e di collegarlo a un indirizzo locale,
 sul quale è in ascolto un server web appositamente eseguito. La pagina caricata
 mostrerà i file contenuti nella directory dalla quale è stato lanciato Jupyter.
-Per esempio, la {numref}`jupyter-home` mostra come appare questa pagina facendo
-riferimento alla directory principale del _repository_ di questo libro. Per
-creare un nuovo _notebook_ è necessario cliccare sul pulsante «New» e
-selezionare «Python 3 (ipykernel)». Verrà visualizzata una nuova pagina,
-contenente un'unica cella di codice: per verificare che sia tutto a posto,
-potete scrivere una semplice espressione matematica in questa cella&mdash;va
-benissimo `1 + 1`. Premete poi la combinazione di tasti
-{kbd}`Shift` + {kbd}`⤶`: verrà automaticamente aggiunta al _notebook_ una
-cella di output, che conterrà il valore dell'espressione che avete inserito.
-Il vantaggio di usare un _notebook_ consiste in un'elevata interattività
-nell'esecuzione del codice, perché i risultati dell'esecuzione di una cella
-sono mantenuti in memoria per tutto il tempo nel quale il _notebook_ resta
-aperto, così da poter usare questi risultati come base per l'esecuzione di
-un'altra cella.
+Per esempio, la {numref}`jupyter-home` mostra come appare questa pagina quando
+si esegue Jupyter dalla directory principale del _repository_ di questo libro.
+Cliccando sulla directory _playground_ e selezionando l'unico file presente,
+_first-notebook.ipynb_, viene visualizzato un semplice esempio di _notebook_,
+contenente un'unica cella di codice nella quale è già presente l'espressione
+`1 + 1`. Se vi posizionate nella cella e premete la combinazione di tasti
+{kbd}`Shift` + {kbd}`⤶`, verrà automaticamente aggiunta una cella di output,
+che conterrà il valore dell'espressione. Per creare un nuovo _notebook_ è
+possibile selezionare la voce di menu _File/New/Notebook_, oppure tornare alla
+vista che elenca i file, cliccare sul pulsante «New» e selezionare «Python 3
+(ipykernel)». Verrà visualizzata una nuova pagina, contenente un'unica cella di
+codice, vuota. Il vantaggio di usare un _notebook_ consiste in un'elevata
+interattività nell'esecuzione del codice, perché i risultati dell'esecuzione di
+una cella sono mantenuti in memoria per tutto il tempo nel quale il _notebook_
+resta aperto, così da poter usare questi risultati come base per l'esecuzione
+di altre celle.
 
 ```{figure} ../../../_static/img/jupyter-home.png
 :width: 100%
@@ -551,15 +551,15 @@ codice contenute in un _notebook_: è sufficiente posizionarsi in una di essa e
 premere la combinazione {kbd}`Shift` + {kbd}`⤶`, cosa che permette di
 eseguirle in un ordine qualsiasi: dalla prima all'ultima, dall'ultima alla
 prima, sette volte la prima per poi passare alla terza e così via. Questo
-comporta aspetti positivi quanto negativi. Da un lato, si può sfruttare questa
-flessibilità per analizzare dei dati, eseguendo piccole parti di codice in una
-modalità altamente interattiva, valutando i risultati dell'esecuzione di queste
-parti per decidere quale sia la prossima parte da considerare. Dall'altro, non
-poter vincolare l'esecuzione delle celle in un ordine fisso e definito a
-priori implica un'insita indeterminazione nel risultato dell'esecuzione stessa,
-e pertanto limita la riproducibilità dei risultati ottenuti. Inoltre, sebbene
-i _notebook_ siano essenzialmente file testuali, contengono un'elevata quantità
-di meta-informazioni che complicano la loro gestione tramite git[^jupytext].
+comporta aspetti positivi quanto negativi. La flessibilità dell'esecuzione
+consente un'analisi altamente interattiva: si può eseguire una parte di celle,
+osservare i risultati, e decidere in base a questi come procedere. Tuttavia,
+questa libertà comporta dei rischi. Non potendo imporre un ordine di
+esecuzione, il risutato finale può variare, e questo limita la riproducibilità
+dei risultati. Inoltre, i _notebook_ siano salvati come file di testo che
+contengono un'elevata quantità di meta-informazioni, che ne complicano la
+gestione con strumenti come git[^jupytext].
+
 Va anche sottolineato che i _notebook_ sono solo uno degli strumenti che è
 possibile usare per eseguire codice Python: tra quelli rimanenti, ve ne sono
 due che vengono ampiamente utilizzati: il primo riguarda l'uso del cosiddetto
@@ -577,19 +577,19 @@ linguaggi come Go o Java.
 
 Come motivato nel {ref}`sec:imparare-e-programmare`, suppongo che chi
 legge questo libro abbia già imparato a usare un linguaggio di programmazione.
-Questo paragrafo prende in considerazione alcune operazioni di base legate
-appunto alla programmazione, e spiega rapidamente come effettuarle in Python.
-Ciò mi permetterà di introdurre fin da subito degli esempi di codice per
-affiancare i concetti che spiegherò man mano.
+In questo paragrafo considererò alcuni concetti di base di programmazione,
+mostrandone la sintassi in Python. Questo mi permetterà di introdurre fin da
+subito esempi di codice che accompagneranno i concetti che spiegherò man mano
+nel testo.
 
 ### Assegnamenti
 L'assegnamento di un valore a una variabile viene fatto utilizzando la stessa
-notazione che si riscontra nella maggioranza degli altri linguaggi di
+notazione che si riscontra nella maggior paerte dei linguaggi di
 programmazione, utilizzando l'idioma `variabile = valore`. Nel Paragrafo
-{ref}`sec:tipizzazione-dinamica` vedremo che Python non contempla la
+{ref}`sec:tipizzazione-dinamica` vedremo che Python non richiede la
 _dichiarazione_ delle variabili: queste ultime sono create automaticamente la
 prima volta che viene assegnato loro un valore, che determina implicitamente
-anche il tipo della variabile. Per esempio
+il tipo della variabile. Per esempio
 
 ```python
 age = 42
@@ -598,13 +598,13 @@ age = 42
 è un esempio di assegnamento che coinvolge un tipo intero.
 
 ### Stampare un valore
-Abbiamo già visto come la valutazione di una cella in un _notebook_ possa
-generare un output. In realtà questo modo di procedere ha una serie di
-limitazioni (per esempio viene stampato solo il risultato della valutazione
-dell'ultima istruzione eseguita nella cella di input), e in ogni caso non
-funziona quando scriviamo del codice senza utilizzare i _notebook_. In
-generale, è possibile stampare un valore o il contenuto di una variabile
-passandoli come argomento alla funzione `print`:
+Abbiamo visto che la valutazione di una cella in un _notebook_ può produrre
+un output. Tuttavia, questo modo di procedere presenta delle limitazioni: per
+esempio viene visualizzatio solo il risultato dell'ultima istruzione eseguita
+nella cella di input. Inoltre, questo approccio non è utilizzabile quando
+scriviamo codice senza utilizzare i _notebook_. In generale, è possibile
+stampare esplicitamente un valore o il contenuto di una variabile, passandoli
+come argomento alla funzione `print`:
 
 ```python
 print(age)
@@ -612,9 +612,9 @@ print(3.14)
 ```
 
 ### Esecuzione condizionata
-Anche per quanto riguarda le selezioni, Python utilizza una sintassi che
-probabilmente è parecchio simile a quella che già conoscete, sebbene non
-esattamente uguale. Considerate per esempio la cella che segue:
+Anche le selezioni (anche note come istruzioni condizionali) si scrivono in
+Python usando una sintassi simile a quella di molti altri linguaggio, sebbene
+con alcune differenze. Considerate per esempio la cella che segue:
 
 ```python
 if age >= 18:
@@ -624,44 +624,40 @@ else:
 ```
 
 ```{margin}
-L'indentazione può essere fatta usando un numero arbitrario di spazi o di
+L'indentazione può essere fatta usando un numero qualsiasi di spazi o di
 tabulazioni, a condizione di non mescolarli e di mantenere la scelta effettuata
 per tutto il blocco di codice. Esistono argomentazioni sia a favore degli spazi
 che delle tabulazioni, così come critiche per entrambi. È una questione che
 divide profondamente gli sviluppatori&mdash;una vera e propria guerra di
-preferenze. Personalmente, non intendo schierarmi: si tratta spesso di gusti
-personali, salvo quando la scelta è imposta dall’ambiente di lavoro. Mi limito
-a sottolineare che, qualunque opzione si scelga, è fondamentale mantenere
-coerenza nel codice che viene prodotto.
+preferenze. Personalmente, non intendo schierarmi: usate quella che
+preferite (quando ve lo potete permettere: a volte la scelta è imposta
+dall’ambiente di lavoro), ma siate coerenti.
 ```
-La selezione è dunque fatta utilizzando l'istruzione `if`, che deve essere
-seguita da una condizione, terminata a sua volta da un carattere di due punti
-(`:`). Il corpo di istruzioni che viene eseguito se la condizione è vera è
-caratterizzato da uno stesso livello di indentazione. La parola chiave `else`
-permette di specificare un blocco di istruzioni da eseguire se la condizione è
-falsa, usando la stessa sintassi[^one-liner]. Notate che l'esempio precedente
-mette in luce che:
-- non è richiesto di delimitare la condizione tra parentesi tonde,
+La selezione è fatta utilizzando l'istruzione `if`, seguita da una condizione e
+terminata da un carattere di due punti (`:`). Il blocco di codice da eseguire
+se la condizione è vera è indentato. La parola chiave `else` permette di
+specificare un blocco da eseguire in caso contrario, usando la stessa
+sintassi[^one-liner]. Notate che l'esempio precedente mette in luce che:
+
+- non è necessario racchiudere la condizione tra parentesi tonde,
 - la funzione `print` permette di stampare dei messaggi sotto forma di una
   stringa prefissata, che in questo caso è stata delimitata da due caratteri di
   apice singolo,
-- è possibile passare a `print` un numero variabile di argomenti, al fine di
-  stamparli, separandoli usando uno spazio.
+- `print` accetta una sequenza di argomenti da stampare, separandoli
+   automaticamente con degli spazi.
 
 ### Scrivere funzioni
 La cella seguente mostra come definire una funzione che accetta un argomento,
-che interpreta come l'età di una persona, e restituisce un valore booleano
-che indica se questa persona è maggiorenne oppure no, dopo avere stampato un
-messaggio analogo a quello introdotto nel precedente paragrafo:
+che interpreta come l'età di una persona, stampa un messaggio e restituisce
+un valore booleano che indica se la persona è maggiorenne:
 
 ```{margin}
-Notate come la cella di output generata dall'esecuzione contenga due righe, che
-hanno un ruolo fondamentalmente diverso: la prima è la stampa di un messaggio,
-legata all'esecuzione di `print`, mentre la seconda rappresenta il valore
-restituito dalla funzione. Va sottolineato che mescolare in questo modo output
-e valori restituiti __non__ rappresenta una buona pratica di
-programmazione[^bad-practice], ma in questo caso mi permette di introdurre una
-serie di concetti importanti usando un unico, breve esempio.
+Notate che l'esecuzione ha prodotto due celle, i cui ruoli sono
+fondamentalmente diversi: la prima contiene il testo prodotto da `print`, la
+il valore restituito da `check_age`. In generale, mescolare standard output e
+valori restituiti __non__ è una buona pratica di programmazione[^bad-practice];
+in questo caso, tuttavia, lo faccio per introdurre più concetti importanti con
+un singolo esempio.
 ```
 
 ```python
@@ -676,19 +672,18 @@ def check_age(age):
 check_age(age)
 ```
 
-Anche in questo caso, l'esempio ci permette di osservare che
-- la definizione di una funzione viene introdotta dall'istruzione `def`,
-  seguita dal nome della funzione e da una coppia di parentesi tonde che
-  racchiude l'elenco degli argomenti e da un carattere di due punti;
-- non viene indicato il tipo degli argomenti, a causa della tipizzazione
-  dinamica del linguaggio;
-- le istruzioni che compongono il corpo della funzione sono indentate rispetto
-  alla definizione (e i blocchi che corrispondono a `if` ed `else` hanno un
-  ulteriore livello di indentazione);
+Questo esempio ci permette di osservare che
+
+- la definizione di una funzione viene fatta dall'istruzione `def`,
+  seguita dal nome della funzione e dagli argomenti racchiusi tra parentesi
+  tonde, terminando con un carattere di due punti;
+- non si indicano i tipi degli argomenti, né del valore restituito, per via
+  della tipizzazione dinamica;
+- il corpo della funzione è indentato rispetto alla definizione, e i blocchi
+  per `if` ed `else` sono ulteriormente indentati;
 - l'istruzione `return` determina il termine dell'esecuzione della funzione e
-  individua il valore da essa restituito,
-- le costanti `True` e `False` permettono di fare riferimento ai due possibili
-  valori booleani.
+  specifica il valore da restituire,
+- le costanti `True` e `False` rappresentano i due valori booleani.
 
 Chiaramente, il vantaggio di una funzione è quello di poterla invocare
 più volte, passando diversi argomenti, come nell'esempio che segue:
@@ -723,11 +718,11 @@ print(factorial(10))
 
 Quando è necessario importare molti elementi da uno o più moduli, potrebbe
 capitare che due o più elementi in moduli diversi abbiano lo stesso nome. In
-casi come questi, per evitare degli adombramenti è opportuno utilizzare i
-cosiddetti _namespace_: si importa l'intero modulo, usando l'istruzione
-`import <module>`, e si accede poi ai suoi generici elementi usando una
-variante della _dot notation_: si scrive il nome del modulo, seguito da un
-punto e dal nome dell'elemento in questione.
+casi come questi, per evitare degli adombramenti (cioè conflitti tra i nomi)
+è opportuno utilizzare i cosiddetti _namespace_: si importa l'intero modulo,
+usando l'istruzione `import <module>`, e si accede poi ai suoi generici
+elementi usando una variante della _dot notation_: si scrive il nome del
+modulo, seguito da un punto e dal nome dell'elemento in questione.
 
 ```python
 import math
@@ -740,12 +735,12 @@ In casi come questo, se due moduli `m1` e `m2` dovessero entrambi contenere un
 elemento `e`, non può avvenire alcun adombramento, perché per riferirsi ad
 esso si utilizzerebbero le denominazioni differenti `m1.e` e `m2.e`.
 
-Indicare il nome di un modulo per poter accedere ai suoi elementi ha spesso
+Indicare il nome di un modulo per accedere ai suoi elementi ha spesso
 l'effetto di allungare il codice, diminuendone al contempo la leggibilità. È
 per questo motivo che è possibile importare un modulo specificando un nome
 alternativo, più corto detto _alias_, usando la sintassi
-`import <modulo> as <alias>`. Userò questo approccio per le librerie sulle
-quali mi appoggerò ampiamente nel resto del libro, che sono
+`import <modulo> as <alias>`. Userò questo approccio per le librerie che
+utilizzo più frequentemente nel libro, che sono
 [numpy](http://www.numpy.org), [pandas](http://pandas.pydata.org) e
 [matplotlib](http://matplotlib.org), che permettono di lavorare rispettivamente
 con gli _array_, i _dataset_ e i grafici. Farò sempre l'importazione nel modo
@@ -757,16 +752,16 @@ import pandas as pd
 import matplotlib.pyplot as plt
 ```
 ```{margin}
-Come si vede nella terza riga di questa cella, alcuni moduli (come matplotlib)
-sono organizzati in strutture gerarchiche chiamate _package_, in modo non
-dissimile a quanto avviene per esempio in Java.
+Come mostrato nella terza riga, alcuni moduli (come matplotlib) sono
+organizzati in strutture gerarchiche chiamate _package_, in modo non dissimile
+a quanto avviene per esempio in Java.
 ```
 
 ```{admonition} Nomenclatura
 :class: naming
 Questo modo di importare numpy, pandas e il modulo `pyplot` di matplotlib
 usando gli _alias_ `np`, `pd` e `plt` fa riferimento a una convenzione
-universalmente accettata tra gli sviluppatori. Vale la pena mantenre sempre
+universalmente accettata tra gli sviluppatori. È consigliabile mantenere sempre
 questa convenzione, così che chi legge il codice possa capire a colpo d'occhio
 a quale modulo si fa riferimento.
 ```
@@ -783,12 +778,11 @@ print(uninitialized_variable)
 
 Un aspetto importante delle eccezioni è rappresentato dal fatto che normalmente
 l'emissione di un'eccezione causa l'arresto del programma (o della valutazione
-di una cella in un _notebook_), ma il programmatore ha la facoltà di scrivere
-del codice che verrà automaticamente eseguito ogni volta che viene generata una
-particolare eccezione all'interno di uno specifico blocco di codice. Non
-entrerò però nel dettaglio di questo aspetto particolare del linguaggio. Per
-approfondire questo argomento, è possibile per esempio fare riferimento alla
-[documentazione ufficiale](https://docs.python.org/3/tutorial/errors.html).
+di una cella in un _notebook_), ma il programmatore può scrivere del codice che
+sarà eseguito automaticamente ogni volta che si verifica una specifica
+eccezione all'interno di un dato blocco di codice. Per approfondire questo
+argomento, che non tratterò nel libro, è possibile per esempio fare riferimento
+alla [documentazione ufficiale](https://docs.python.org/3/tutorial/errors.html).
 Detto questo, esistono delle particolari situazioni di errore che non sono
 gestibili usando le eccezioni: un classico esempio è quello degli errori di
 sintassi, che vengono emessi quando il _parser_ che analizza il codice sorgente
@@ -812,7 +806,7 @@ quando vengono importati dei moduli (vedi il {ref}`sec:importare-moduli`): in
 questo caso, il risultato della compilazione sono file dall'estensione `.pyc`
 salvati in una directory `__pycache__`, che vengono creati solo se non esistono
 o se sono meno recenti del relativo sorgente; negli altri casi, il _bytecode_
-viene direttamente eseguito.
+già esistente viene direttamente eseguito.
 [^environment]: In realtà esistono alcune alternative per creare e
 utilizzare ambienti virtuali: al momento nel quale scrivo,
 [Anaconda](https://docs.anaconda.com/anaconda/) e
@@ -822,17 +816,16 @@ utilizzate insieme a `venv`.
 precedente, mettono a disposizione anche i relativi _package
 manager_, che possono essere utilizzati al posto di pip.
 [^linguaggio-notebook]: Va notato che i _notebook_ non sono vincolati a un
-particolare linguaggio di programmazione. I _notebook manager_ sono tipicamente
-modulari, e permettono l'installazione di uno o più _kernel_ dedicati ognuno a
-uno specifico linguaggio di programmazione. Io lavorerò quasi esclusivamente
-con codice Python, ma occasionalmente vedremo come lanciare dei comandi di
-_shell_ senza dover aprire un terminale dedicato.
+particolare linguaggio di programmazione. I _notebook manager_ permettono
+l'installazione di uno o più _kernel_, moduli dedicati a specifici linguaggi di programmazione. Io lavorerò quasi esclusivamente con codice Python, ma
+occasionalmente vedremo come lanciare dei comandi di _shell_ senza dover aprire
+un terminale dedicato.
 [^pronuncia-jupyter]: Fernando Perez, uno degli artefici del progetto Jupyter,
 lo pronuncia in questo modo, per esempio, in una sua
 [presentazione](https://www.youtube.com/watch?v=cc2hHjARNTY) alla conferenza
 PLOTCON 2016.
-[^jupytext]: Inserire dei _notebook_ direttamente all'interno di un _repository_
-git è sconsigliato. Piuttosto, si possono usare tencologie come
+[^jupytext]: Per questo motivo, inserire dei _notebook_ all'interno di un
+_repository_ git è sconsigliato. Piuttosto, si possono usare tencologie come
 [jupytext](https://jupytext.readthedocs.io/) che sincronizzano automaticamente
 i _notebook_ con del codice Python equivalente, e provvedono a versionare
 quest'ultimo.

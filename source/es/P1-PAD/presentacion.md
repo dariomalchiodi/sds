@@ -9,35 +9,36 @@ kernelspec:
   display_name: Python 3
 ---
 
-# Introducción
+# Presentación
 
 La primera parte de este libro presenta algunas herramientas básicas para el
-análisis automatizado de conjuntos de datos de tamaño pequeño o
-medio[^big-data], utilizando un ordenador. Dominar estas herramientas
-&mdash;junto con la capacidad de aplicarlas de manera eficaz en distintos
-escenarios de data science&mdash; es hoy fundamental para analizar e
-interpretar la gran variedad de datos disponibles y utilizarlos como apoyo en
-la toma de decisiones.
+análisis automatizado de conjuntos de datos pequeños o medianos[^big-data]
+mediante el uso de un ordenador. Dominar estas herramientas, junto con la
+capacidad deaplicarlas de forma eficaz en distintos escenarios de
+_data science_, es hoy fundamental para analizar e interpretar la amplia
+variedad de datos disponibles y aprovecharlos como apoyo en la toma de
+decisiones.
 
-Entre las herramientas clave se encuentran:
+Entre las herramientas esenciales se encuentran:
 
-- un lenguaje de programación, que nos permita escribir instrucciones para
+- un lenguaje de programación que permita escribir instrucciones para
   automatizar el procesamiento de datos;
-- una biblioteca para la gestión estructurada de los datasets.
+- una biblioteca para la gestión estructurada de conjuntos de datos.
 
-En este libro utilizaremos Python y Pandas para estos fines, presentados
-respectivamente en los capítulos {ref}`chap:intro-python` y {ref}`chap:pandas`.
-Si bien existen muchas alternativas válidas, estas dos tecnologías constituyen
-actualmente una parte central del ecosistema de análisis de datos, tanto en
-contextos académicos como en el ámbito profesional.
+En este libro utilizaré Python y Pandas, presentados en
+{ref}`chap:intro-python` y {ref}`chap:pandas`, respectivamente. Aunque
+existen muchas alternativas válidas, estas dos tecnologías representan hoy
+una parte central del ecosistema de análisis de datos, tanto en el ámbito
+académico como en el profesional.
 
-[^big-data]: Un dataset se considera de tamaño reducido cuando puede procesarse
-con los recursos disponibles en un solo ordenador. En el caso más simple
-&mdash;que es el que se trata en este libro&mdash; el conjunto completo de
-datos cabe en la memoria principal del equipo. De forma más general, los datos
-aún se consideran «gestionables localmente» si pueden almacenarse en disco y
-cargarse progresivamente en la memoria RAM, por ejemplo, un registro a la vez.
-Cuando el tamaño de los datos supera significativamente la capacidad de
-almacenamiento disponible (aproximadamente, más de un terabyte con el hardware
-actual), entramos en el ámbito del _big data_, que requiere enfoques
-computacionales distintos a los del análisis clásico de datos.
+[^big-data]: Un conjunto de datos se considera pequeño cuando puede procesarse
+con los recursos disponibles en un único ordenador. En el caso más
+sencillo&mdash;el tratado en este libro&mdash;todo el conjunto de datos puede
+cargarse en la memoria principal de un ordenador. En general, todavía hablamos
+de datos «manejables localmente» si el conjunto de datos puede residir en el
+almacenamiento masivo y procesarse progresivamente en la memoria principal, por
+ejemplo, transfiriendo un registro cada vez. Cuando el tamaño de los datos
+supera con creces la capacidad de almacenamiento masivo disponible
+(aproximadamente, más de un terabyte con el hardware actualmente disponible),
+entramos en el ámbito de los _big data_, que requieren enfoques diferentes de
+los del análisis de datos tradicional.

@@ -1,0 +1,19 @@
+{
+  "github": "https://github.com/dariomalchiodi/sds",
+  "jupyter": "https://jupyter.org",
+  "python": "https://python.org",
+  "numpy": "https://numpy.org",
+  "pandas": "https://pandas.pydata.org",
+  "matplotlib": "https://matplotlib.org",
+  "altair": "https://altair-viz.github.io",
+  "vscode": "https://code.visualstudio.com",
+  "install": "/fr/P1-PAD/c1-intro-python/installer-python.html",
+  "requirements": "/requirements.txt",
+  "playground": "/playground/",
+  "docs": "https://docs.python.org",
+  "stackoverflow": "https://stackoverflow.com",
+  "jp-alternatives": "https://mljourney.com/jupyter-notebook-alternatives-in-2025/",
+  "pie": "https://www.merriam-webster.com/dictionary/pie?pronunciation&lang=en_us&dir=p&file=pie00001",
+  "pee": "https://www.merriam-webster.com/dictionary/Jupiter?pronunciation&lang=en_us&dir=gg&file=ggjupi01",
+  "py-implementations": "https://www.toptal.com/python/why-are-there-so-many-pythons"
+}

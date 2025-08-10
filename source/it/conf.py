@@ -150,7 +150,7 @@ html_theme_options = {
     'home_page_in_toc': True,
     'show_toc_level': 3,
     'show_navbar_depth': 3,
-    'number_toc': True,
+    # 'number_toc': True,
     'pygments_light_style': 'abap',
     'pygments_dark_style': 'native',
     'article_header_end': [],  # Enable article header area for language switcher

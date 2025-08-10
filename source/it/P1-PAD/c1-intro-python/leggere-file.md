@@ -20,7 +20,7 @@ directory `data`: esso contiene 735 righe, ognuna con le informazioni relative
 a un supereroe, separate da virgola. Le prime tre righe del file sono indicate
 di seguito.
 
-```{code-cell} ipython3
+```python
 :tags: [full-width]
 !head -3 data/heroes.csv
 ```
@@ -37,7 +37,7 @@ nascita nel secondo record).
 La cella seguente legge i contenuti del file e li inserisce nella lista
 `heroes`.
 
-```{code-cell} ipython3
+```python
 import csv
 
 with open('data/heroes.csv', 'r') as heroes_file:
@@ -76,7 +76,7 @@ stringa in intero e `str(42)` effettua la conversione inversa.
 Proviamo a visualizzare i primi due record (che corrispondono alle due righe
 sopra mostrate):
 
-```{code-cell} ipython3
+```python
 heroes[:2]
 ```
 
@@ -107,7 +107,7 @@ possibile utilizzre la sintassi `[f(e) for e in l if g(e)]`, che indica che
 nella creazione della nuova lista bisogna limitarsi a considerare gli elementi
 `e` della lista originale che rendono vera l'espressione `g(e)`. Pertanto
 
-```{code-cell} ipython3
+```python
 years = [int(h[7]) for h in heroes if h[7]]
 ```
 
@@ -124,7 +124,7 @@ Per comodità è riportato anche il codice della funzione `get_sorted_counts`
 ```
 A questo punto è possibile generare il grafico delle frequenze assolute:
 
-```{code-cell} ipython3
+```python
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -157,7 +157,7 @@ avanti vedremo come gestirle. Per ora limitiamoci a vedere quale sia questo
 valore. Possiamo farlo usando una list comprehension appena più complicata di
 quella vista poco fa:
 
-```{code-cell} ipython3
+```python
 [year for year in years if year > 2020]
 ```
 
@@ -171,7 +171,7 @@ con gli estremi di questo intervallo. Già che ci siamo, possiamo anche
 impostare l'ampiezza dell'asse delle ordinate in modo che ci sia un po' di
 spazio sopra la barra che corrisponde alla frequenza massima:
 
-```{code-cell} ipython3
+```python
 plt.bar(x, y)
 plt.xlim((1950, 2015))
 plt.ylim((0, 18.5))

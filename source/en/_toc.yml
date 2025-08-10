@@ -2,11 +2,11 @@ format: jb-book
 root: home
 
 parts:
-  - caption: Overview
+  - caption: Presentation
     chapters:
-      - file: P0/presentation
-      - file: P0/approach
+      - file: P0/introduction
         sections:
+        - file: P0/approach
         - file: P0/acknowledgements
         - file: P0/learning-and-programming
         - file: P0/statistics-data-science
@@ -16,8 +16,11 @@ parts:
       - file: P0/overview
   - caption: Programming for data analysis
     chapters:
-      - file: P1-PAD/presentation
+      - file: P1-PAD/introduction
       - file: P1-PAD/c1-intro-python/introducing-python
+        sections:
+        - file: P1-PAD/c1-intro-python/installing-python
+        - file: P1-PAD/c1-intro-python/data-types
 
   - caption: Appendices
     chapters:

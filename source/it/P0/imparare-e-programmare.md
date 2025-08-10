@@ -27,7 +27,7 @@ farò riferimento al livello di conoscenza di programmazione che si apprende al
 primo anno nelle stesse lauree, o in lauree di aree affini.
 ```
 
-Il {ref}`chap:introduzione-a-python` contiene una
+Il {ref}`chap:intro-python` contiene una
 descrizione a livello medio-alto delle funzionalità di Python che sono
 utilizzate, e può essere utilizzato per mettersi in pari da chi sa già
 programmare, ma non conosce questo linguaggio. Una lettura di questo capitolo è

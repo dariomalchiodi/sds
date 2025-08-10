@@ -16,23 +16,22 @@ Nell'ambito della programmazione dei calcolatori, si utilizza normalmente
 il termine _tipo_ per identificare a quale categoria appartiene un particolare
 _dato_ che può essere associato a una variabile, a un'espressione, a un
 parametro, al valore restituito da una funzione e così via. Associare ogni
-dato a un tipo è importante perché ciò permette di identificare quelle che
-sono le operazioni che si possono effettuare su di esso: per esempio,
-l'elevamento a potenza può avere senso quando l'esponente è un numero, ma
-non, per dire, una stringa. Sebbene Python non faccia eccezione, il meccanismo
-che utilizza per identificare i tipi è decisamente diverso da quello adottato
-dai linguaggi che normalmente si studiano quando ci si avvicina alla
-programmazione degli elaboratori. Di seguito vedremo in dettaglio come funziona
-questo meccanismo, specificando alcune macro-categorie di tipi che
-saranno analizzate in dettaglio nei paragrafi successivi. Questo mi permetterà
-anche di introdurre alcuni accenni alla _programmazione orientata agli
-oggetti_, necessari per poter utilizzare una parte delle librerie alle quali
-farò riferimento, tenuto conto del fatto che non sempre questo argomento è noto
-a chi si appresta a imparare i fondamenti della _data science_.
+dato a un tipo è importante perché ciò permette di capire quali operazioni si
+possono effettuare su di esso: per esempio, l'elevamento a potenza può avere
+senso quando l'esponente è un numero, ma non, per dire, una stringa. Anche
+Python associa ogni dato a un tipo, ma il meccanismo che utilizza è molto
+diverso da quello dei linguaggi che di solito si incontrano quando si inizia a
+studiare programmazione. Vedremo tra poco come funziona questo meccanismo,
+specificando alcune macro-categorie di tipi che analizzeremo in dettaglio nei
+paragrafi successivi. Questo mi permetterà anche di introdurre alcuni accenni
+alla _programmazione orientata agli oggetti_, necessari per poter utilizzare
+una parte delle librerie alle quali farò riferimento, visto che non sempre
+questo argomento è noto a chi si appresta a imparare i fondamenti della
+_data science_.
 ```{margin}
-Nel Paragrafo @attributi vedremo che è importante non confondere il _tipo di un
-attributo_ all'interno di un _dataset_ con il _tipo di dato_ utilizzato per
-memorizzare i valori dell'attributo stesso.
+Nel {ref}`sec:attributi` vedremo che è importante non confondere
+il _tipo di un attributo_ all'interno di un _dataset_ con il _tipo di dato_
+utilizzato per memorizzare i valori dell'attributo stesso.
 ```
 
 (sec:tipizzazione-dinamica)=
@@ -41,15 +40,15 @@ memorizzare i valori dell'attributo stesso.
 Nella gran parte dei linguaggi che si studiano quando si impara a programmare
 gli elaboratori (come C, o Java, o Go), l'associazione di un dato al tipo
 corrispondente deve essere fatta in modo esplicito tramite un'opportuna
-_dichiarazione_, che determina che cosa si può fare con il dato in questione. 
-Ciò permette di rilevare eventuali operazioni improprie, come il sopra citato 
-elevamento alla potenza di una lettera, effettuando una preventiva analisi
-lessicale dei contenuti di un programma, e trasformando quest'ultimo in codice
-eseguibile solo se tale analisi ha esito positivo. Si parla quindi di _type
-checking statico_, o di _tipizzazione statica_, riferendosi al fatto che la
-verifica della congruità dei tipi viene fatta «a bocce ferme», leggendo il
-codice prima che questo venga eseguito e dunque stabilendo il tipo di ogni dato
-una volta per tutte.
+_dichiarazione_, che determina che cosa si può fare con quel dato. Ciò permette
+di rilevare eventuali operazioni improprie, come il sopra citato  elevamento
+alla potenza di una lettera, effettuando una preventiva analisi lessicale dei
+contenuti di un programma, e trasformando quest'ultimo in codice eseguibile
+solo se tale analisi ha esito positivo. Si parla quindi di _type checking
+statico_, o di _tipizzazione statica_, riferendosi al fatto che la verifica
+della congruità dei tipi viene fatta «a bocce ferme», leggendo il codice prima
+che questo venga eseguito e dunque stabilendo il tipo di ogni dato una volta
+per tutte.
 
 In Python si segue invece un approccio differente, eliminando dal linguaggio
 l'obbligo di rendere esplicite le dichiarazioni e affidandosi a
@@ -84,16 +83,13 @@ di qualcosa di immutabile. La funzione potrebbe ad esempio restituire tipi
 differenti a seconda dei parametri attuali specificati durante la sua
 invocazione; analogamente, è possibile assegnare a una variabile un valore il
 cui tipo è completamente diverso rispetto al valore precedentemente
-memorizzato, e così via. In sintesi, la definizione del concetto stesso di
-_tipo_ diventa in un certo senso indiretta, perché le operazioni che è
-possibile effettuare su una variabile, su un parametro e così via dipendono dai
-loro contenti in un dato momento dell'esecuzione.
-
-A complicare il tutto, a partire dalla versione 3.5 di Python è possibile
-effettuare una sorta di dichiarazione, utilizzando un formalismo
-chiamato _type hinting_ che permette di indicare nel codice il
+memorizzato, e così via. In sintesi, il concetto di tipo in Python è relativo:
+ciò che puoi fare con una variabile o un parametro dipende dal valore che
+contiene in quel momento. A complicare il tutto, a partire dalla versione 3.5
+di Python è possibile effettuare una sorta di dichiarazione, utilizzando un
+formalismo chiamato _type hinting_ che permette di indicare nel codice il
 tipo di alcuni elementi del linguaggio (come ad esempio i parametri formali di
-una funzione, o il valore da essa restituito). Va sottlineato che la
+una funzione, o il valore da essa restituito). Va sottolineato che la
 tipizzazione resta comunque dinamica, ma in questo modo è possibile utilizzare
 degli strumenti esterni per effettuare il cosiddetto _type checking_, che
 consiste nel verificare _staticamente_ (cioè sulla base di quanto scritto nel
@@ -111,16 +107,13 @@ Python è un linguaggio che supporta pienamente il paradigma di programmazione
 orientato agli oggetti, che mette in evidenza i concetti di _classe_ e
 _oggetto_ per rappresentare ed elaborare i dati. Semplificando non poco la
 trattazione, una classe identifica un'_astrazione_ rispetto a tutti i dati di
-un certo tipo. Una classe può essere vista come l'insieme di tutti i dati di un
-certo tipo, e si utilizza il termine _oggetto_ per indicare uno di questi
-specifici dati. Entrando un poco più nel dettaglio, una classe definisce non
-solo che cosa è necessario memorizzare per creare un dato (le informazioni che
-sono descritte dalle _variabili di istanza_ della classe&mdash;anche se
-_membri_ e _proprietà_ sono diffusamente usati come sinonimi in questo
-contesto), ma anche quali sono le operazioni  che si possono eseguire
-sull'oggetto corrispondente (i cosiddetti _metodi_ della classe&mdash;spesso
-chiamati _azioni_).  Per esempio, un'potetica classe `Superhero` potrebbe
-prevedere
+un certo tipo. Una classe è, in pratica, l’insieme di tutti i dati di un certo
+tipo. Un singolo elemento di quell’insieme è detto _oggetto_, o _istanza_.
+Entrando un poco più nel dettaglio, una classe definisce non solo che cosa è
+necessario memorizzare affinché esista un dato (le informazioni che sono
+descritte dalle sue _variabili di istanza_), ma anche quali sono le operazioni
+che si possono eseguire sull'oggetto corrispondente (i suoi _metodi_) Per
+esempio, un'ipotetica classe `Superhero` potrebbe prevedere
 
 - due variabili di istanza `name` e `secret_identity`, contenenti due stringhe
   che indicano il nome di un supereroe e la sua identità segreta;
@@ -131,27 +124,26 @@ In alcuni linguaggi orientati agli oggetti, i metodi rimpiazzano completamente
 le funzioni. Come vedremo più avanti, in Python i due concetti coesistono.
 ```
 
-Nell'ipotesi che tutto quello che ci interessa fare con un supereroe sia
-riferirsi al suo nome e alla sua identità segreta, nonché farlo volare o
-correre, la classe `Superhero` racchiude tutto quello di cui necessitiamo.
-Quando vorremo ragionare in termini di uno specifico supereroe, diciamo
-Superman, possiamo creare l'oggetto corrispondente invocando un particolare
-metodo che prende il nome di _costruttore_ della classe, e che accetta come
-parametri le informazioni necessarie a inizializzare l'oggetto stesso (spesso,
-ma non sempre, si tratta dei valori per tutte o alcune delle variabili di
-istanza). Il costruttore restituisce un _riferimento_ all'oggetto creato, che
-di norma viene memorizzato in una variabile. In Python, il costruttore si
-invoca facendo riferimento allo stesso nome della classe, così che la creazione
-dell'oggetto che corrisponde a Superman e la memorizzazione del corrispondente
-riferimento si potrebbe ipoteticamente fare nel modo descritto nella cella
-seguente.
+Se tutto quello che ci interessa fare con un supereroe è riferirsi al suo nome
+e alla sua identità segreta, nonché farlo volare o correre, la classe
+`Superhero` racchiude tutto quello di cui necessitiamo. Quando vorremo
+ragionare in termini di uno specifico supereroe, diciamo Superman, possiamo
+creare l'oggetto corrispondente invocando un particolare metodo che prende il
+nome di _costruttore_ della classe, e che accetta come parametri le
+informazioni necessarie a inizializzare l'oggetto stesso (spesso, ma non
+sempre, si tratta dei valori per tutte o alcune delle variabili di istanza). Il
+costruttore restituisce un _riferimento_ all'oggetto creato, che di norma viene
+memorizzato in una variabile. In Python, il costruttore si invoca facendo 
+riferimento allo stesso nome della classe, così che la creazione dell'oggetto
+che corrisponde a Superman e la memorizzazione del corrispondente riferimento
+si potrebbe ipoteticamente fare nel modo descritto nella cella seguente.
 
-```python
+```{code}
 # Questo codice è riportato per esemplificare i concetti di classe, costruttore,
 # riferimento e oggetto. Non eseguitelo, perché non funzionerebbe!
 
 # Notate anche che tutto il testo che segue un carattere di cancelletto (#)
-# viene ignoorato durante l'esecuzione rappresenta dunque un commento.
+# viene ignorato durante l'esecuzione rappresenta dunque un commento.
 
 hero = Superhero('Superman', 'Clark Kent')
 ``` 
@@ -183,8 +175,8 @@ restituito dal costruttore, o perfino ai _letterali_ della classe[^letterali],
 anche se è estremamente raro che questo si renda necessario.
 ```
 Tornando all'esempio precedente, `hero.name` corrisponde a `'Superman'`, ed è
-possibile effettuare l'invocazione `hero.fly()` (nell'ipotesi che il metodo no
-nsia richiesta la specificazione del valore di alcun parametro). Anche in
+possibile effettuare l'invocazione `hero.fly()` (se per invocare il metodo non
+è richiesta la specificazione del valore di alcun parametro). Anche in
 questo contesto, il linguaggio è basato su un _type checking_ dinamico:
 indipendentemente dalla classe in gioco,  quando a _runtime_ viene analizzata
 una _dot notation_, se il riferimento individua un oggetto che prevede la
@@ -225,16 +217,16 @@ e l'_underscore_, impiegando quest'ultimo solo come separatore in un
 identificatore composto da più parole (come in `secret_identity` nel precedente
 esempio). L'uso di uno o più _underscore_ all'inizio o alla fine di un nome è
 da evitare, perché può conferire un significato specifico al codice che
-emerge solo in particolari occasini. Nel libro non affronterò situazioni di
+emerge solo in particolari occasioni. Nel libro non affronterò situazioni di
 questo tipo, ma è meglio essere particolarmente attenti a questo aspetto già
 quando si imparano le basi del linguaggio. Ci sono comunque delle eccezioni
 da considerare: tra queste, solo due sono rilevanti per i nostri scopi:
 
 - quando risulta particolarmente significativo utilizzare come identificatore
   una parola chiave del linguaggio (come per esempio `lambda`, che utilizzeremo
-  nel Paragrafo @sec:funzioni-anonime, in una formula matematica), è
-  accettabile aggiungere un underscore al suo termine (ottenendo, nel caso
-  precedente, l'identificatore `lambda_`);
+  nel Paragrafo @sec:funzioni-anonime, per esprimere concetti matematici o
+  fisici), è   accettabile aggiungere un underscore al suo termine (ottenendo,
+  nel caso precedente, l'identificatore `lambda_`);
 - se è necessario riferirsi esplicitamente a una variabile che viene utilizzata
   in una parte particolarmente limitata del codice, o che non viene utilizzata
   affatto, al posto di inventare un nome significativo si può usare un unico
@@ -258,17 +250,16 @@ al significato dell'identificatore stesso.
 ```
 
 Va infine sottolineato che l'unico modo di riferirsi a un tipo di dato in
-Python è attraverso l'utilizzo delle classi: non esistono i «tipi primitivi», ai
-quali corrispondono mere sequenze di byte usate per rappresentare interi,
-decimali e così via, che si trovano per esempio in Java. Al contrario, i tipi
-intero e decimale fanno riferimento alle classi `int`[^maxint] e `float`,
-ognuna caratterizzata dai suoi metodi.
+Python è attraverso l'utilizzo delle classi: a differenza di Java, non esistono
+«tipi primitivi» che memorizzano interi, decimali e così via come mere sequenze
+di byte. Al contrario, i tipi intero e decimale fanno riferimento alle classi
+`int`[^maxint] e `float`, ognuna caratterizzata dai suoi metodi.
 ```{margin}
 Gran parte delle classi che implementano tipi introdotti fin dalle prime
-versioni di Python, come `int` e `float`, rappresentano un esempio di eccezione
-alla regola di stile che ho precedentemente menzionato: per una serie di motivi
-legati anche alla retrocompatibilità del linguaggio, i loro nomi non iniziano
-con una lettera maiuscola.
+versioni di Python, come `int` e `float`, sono delle eccezioni alla regola di
+stile che ho precedentemente menzionato: per una serie di motivi legati anche
+alla retrocompatibilità del linguaggio, i loro nomi non iniziano con una
+lettera maiuscola.
 ```
 
 Ricapitolando, quando si parla di una variabile all'interno di codice scritto
@@ -276,13 +267,14 @@ in Python, invece di dire che una variabile contiene un valore di un dato
 tipo, sarebbe più corretto parlare di un _nome_ (o identificatore) associato a
 un _riferimento_ che a sua volta individua univocamente l'oggetto di una
 classe: la seconda individua (temporaneamente, a causa della tipizzazione
-dinamica) il tipo del particolare dato che corrisponde alla variabile (in
-inglese si usa il verbo _to bind_, che significa «legare», per indicare in modo
-ancora più forte questa associazione tra il nome e l'oggetto). Un discorso
-analogo si può fare per esempio per i parametri formali di una funzione o di un
-metodo. Oggettivamente, questa nomenclatura tende a essere pesante, e infatti
-nel gergo comune è diffusa l'abitudine di riferirsi a una variabile (o un
-parametro) e all'oggetto&mdash;quando non al valore&mdash;in essa contenuto.
+dinamica) il tipo del particolare dato che corrisponde alla variabile (nel
+gergo informatico inglese si usa il verbo _to bind_, che significa «legare»,
+per indicare in modo ancora più forte questa associazione tra il nome e
+l'oggetto). Un discorso analogo si può fare per esempio per i parametri formali
+di una funzione o di un metodo. Oggettivamente, questa nomenclatura tende a
+essere pesante, e infatti nel gergo comune è diffusa l'abitudine di riferirsi a
+una variabile (o un parametro) e all'oggetto&mdash;quando non al
+valore&mdash;in essa contenuto.
 
 
 ```{admonition} Avvertenza
@@ -295,10 +287,10 @@ descritto come sia possibile creare delle classi per riferirsi a tipi di dati
 personalizzati, né introdotto argomenti specifici come l'ereditarietà e il
 polimorfismo, perché non è necessario conoscere questi aspetti del linguaggio
 per poter comprendere con profitto il resto di quello che scriverò.
-Padroneggiare questi concetti, però, è una competenza decisamente attesa per un
-informatico, e auspicabile anche per un _data scientist_, ma tutto questo è
-ampiamente al di fuori dello scopo di questo libro. Per approfondire questi
-argomenti si può fare riferimento alla
+Padroneggiare questi concetti, però, è una competenza decisamente attesa per
+ogni professionista dell'informatica, e auspicabile anche per un
+_data scientist_, ma tutto questo è ampiamente al di fuori dello scopo di
+questo libro. Per approfondire questi argomenti si può fare riferimento alla
 [specifica parte](https://docs.python.org/3/tutorial/classes.html) della
 documentazione ufficiale di Python o alla parte IV in {cite:p}`ramalho`.
 ```
@@ -366,7 +358,7 @@ e quali sono false:
   valori per dei parametri;
 - a ogni variabile di istanza in una classe corrisponde un parametro nel
   costruttore;
-- l'invocazione di un costruttore è l'unico modo per crere un oggetto;
+- l'invocazione di un costruttore è l'unico modo per creare un oggetto;
 - il nome di una classe è anche l'identificatore da utilizzare per invocare
   il corrispondente costruttore.
 ```

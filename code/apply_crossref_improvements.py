@@ -10,7 +10,7 @@ from pathlib import Path
 # Add the code directory to the path so we can import sds
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'code'))
 
-from sds import generate_toc_dictionary, replace_crossref_links
+from sds import generate_toc_dictionary, replace_crossref_links, update_sidebar_navigation_numbering
 
 def main():
     """Apply cross-reference numbering to all HTML files"""
@@ -58,16 +58,52 @@ def main():
     print("2. Applying cross-reference improvements...")
     
     try:
-        changes_summary = replace_crossref_links(html_root_dir, toc_dict, dry_run=False, language=language)
+        # NUMBERING DISABLED - Commenting out all automatic numbering functions
+        # changes_summary = replace_crossref_links(html_root_dir, toc_dict, dry_run=False, language=language)
+        changes_summary = {
+            'files_processed': 0,
+            'files_modified': 0,
+            'total_replacements': 0,
+            'replacements_by_file': {},
+            'errors': []
+        }
         
-        print(f"Processing complete!")
+        print(f"Cross-reference processing DISABLED!")
         print(f"  Files processed: {changes_summary['files_processed']}")
         print(f"  Files modified: {changes_summary['files_modified']}")
         print(f"  Total replacements: {changes_summary['total_replacements']}")
         
-        if changes_summary['errors']:
-            print(f"  Errors encountered: {len(changes_summary['errors'])}")
-            for error in changes_summary['errors']:
+        # Also update sidebar navigation numbering
+        print()
+        print("3. Sidebar navigation numbering DISABLED...")
+        # sidebar_changes = update_sidebar_navigation_numbering(html_root_dir, toc_dict, dry_run=False, language=language)
+        sidebar_changes = {
+            'files_processed': 0,
+            'files_modified': 0,
+            'total_replacements': 0,
+            'errors': []
+        }
+        
+        print(f"Sidebar navigation processing DISABLED!")
+        print(f"  Files processed: {sidebar_changes['files_processed']}")
+        print(f"  Files modified: {sidebar_changes['files_modified']}")
+        print(f"  Total replacements: {sidebar_changes['total_replacements']}")
+        
+        # Combine totals
+        total_files_processed = changes_summary['files_processed']
+        total_files_modified = changes_summary['files_modified'] + sidebar_changes['files_modified']
+        total_replacements = changes_summary['total_replacements'] + sidebar_changes['total_replacements']
+        
+        print()
+        print(f"Overall processing complete!")
+        print(f"  Files processed: {total_files_processed}")
+        print(f"  Files modified: {total_files_modified}")
+        print(f"  Total replacements: {total_replacements}")
+        
+        if changes_summary['errors'] or sidebar_changes['errors']:
+            all_errors = changes_summary['errors'] + sidebar_changes['errors']
+            print(f"  Errors encountered: {len(all_errors)}")
+            for error in all_errors:
                 print(f"    - {error}")
         
         print()

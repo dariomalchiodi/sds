@@ -10,6 +10,7 @@ sphinx-exercise
 pandas
 numpy
 matplotlib
+notebook
 pydata-sphinx-theme
 pybtex
 astor>=0.8.1

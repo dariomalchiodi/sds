@@ -26,7 +26,7 @@ una tale variante di dizionario esiste: si chiama `defaultdict` ed è
 disponibile nel modulo `collections` (uno dei moduli standard di python). La
 cella seguente importa questo nuovo tipo di dato:
 
-```{code-cell} ipython3
+```python
 from collections import defaultdict
 ```
 
@@ -37,7 +37,7 @@ tale valore predefinito sia `0`. Ciò permette di riscrivere la funzione
 `get_sorted_counts` in modo che non sia più necessario verificare
 preventivamente l'esistenza dei contatori.
 
-```{code-cell} ipython3
+```python
 def get_sorted_counts(sequence):
     counts = defaultdict(int)
 
@@ -53,7 +53,7 @@ capitare che due o più elementi in moduli diversi abbiano lo stesso nome. Per
 evitare situazioni di questo genere, è opportuno importare un intero modulo:
 per esempio, l'istruzione
 
-```{code-cell} ipython3
+```python
 import numpy
 ```
 
@@ -67,7 +67,7 @@ che mette a disposizione una struttura dati simile agli array (in cui
   della lista `index` (dopo averla modificata eliminando i valori `None` in
     essa presenti), e cioè l'indice in cui si trova un suo elemento massimo.
 
-```{code-cell} ipython3
+```python
 years = [1941, 1962, None, None, 1941,
          1964, None, 1940, 1941, 1961,
          None, 1963, None, 1963, 1981,
@@ -85,7 +85,7 @@ alternativo, più corto. È quello che succede nella seguente cella, che importa
 disposizione delle classi per gestire i dati organizzandoli in serie e in
 tabelle.
 
-```{code-cell} ipython3
+```python
 import numpy as np
 import pandas as pd
 ```
@@ -104,7 +104,7 @@ seguente cella importa il modulo `pyplot` che è contenuto nel modulo
 `matplotlib` ([matplotlib](http://matplotlib.org) è la libreria di riferimento
 in python per la creazione di grafici).
 
-```{code-cell} ipython3
+```python
 import matplotlib.pyplot as plt
 plt.style.use('fivethirtyeight')
 ```
