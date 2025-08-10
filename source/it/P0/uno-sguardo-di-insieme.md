@@ -229,7 +229,8 @@ _dataset_, come vedremo nel {ref}`chap:dati-e-informazione`.
 ```{margin}
 Vedremo altresì che il processo di esplorazione non deve
 necessariamente (o esclusivamente) coinvolgere l'uso di metodi grafici, ma può
-essere basato anche sull'utilizzo di strumenti quantitativi (e tipicamente lo è).
+essere basato anche sull'utilizzo di strumenti quantitativi (e tipicamente lo
+è).
 ```
 Gli istogrammi sono definiti in dettaglio nel {ref}`sec:istogrammi`, ma per il
 momento ci basta sapere come leggere il risultato ottenuto: in ognuno dei
@@ -361,7 +362,7 @@ import base64
 
 def plot_pdf(mu, sigma):
     x = np.linspace(-10, 10, 400)
-    y = (1 / (sigma * np.sqrt(2 * np.pi))) * np.exp(-0.5 * ((x - mu) / sigma) ** 2)
+    y = (1 / (sigma * np.sqrt(2*np.pi))) * np.exp(-0.5 * ((x - mu) / sigma)**2)
     
     fig, ax = plt.subplots()
     ax.fill_between(x, 0, y, alpha=0.5, color='tab:blue')
@@ -380,7 +381,8 @@ def plot_pdf(mu, sigma):
     img_buffer.close()
     
     # Display in protected div
-    img_html = '<div class="no-mathjax"><img src="data:image/png;base64,' + img_base64 + '" style="max-width: 100%; height: auto;" /></div>'
+    img_html = '<div class="no-mathjax"><img src="data:image/png;base64,' + \
+               img_base64 + '" style="max-width: 100%; height: auto;" /></div>'
     Element("pdf-output").write(img_html)
     
     plt.close(fig)
@@ -486,7 +488,7 @@ else:
 
 def model_plot_pdf(mu, sigma):
     x = np.linspace(0, 200, 400)
-    y = (1 / (sigma * np.sqrt(2 * np.pi))) * np.exp(-0.5 * ((x - mu) / sigma) ** 2)
+    y = (1 / (sigma * np.sqrt(2*np.pi))) * np.exp(-0.5 * ((x - mu) / sigma)**2)
     
     fig, ax = plt.subplots()
     ax.hist(data, bins=30, density=True, alpha=0.3, color='tab:blue')
@@ -714,10 +716,10 @@ evento avente $1$ come probabilità.
 ```
 
 ```{exercise} ••
-Ponete $\mu = \sigma = 1$ ed effettuate lo studio della funzione descritta
-in {eq}`eq:weight_normal`, disegnando a mano il grafico corrispondente e verificando
-che questo grafico abbia la stessa forma visualizzata nel secondo grafico
-interattivo.
+Ponete $\mu = \sigma = 1$ ed effettuate lo studio della funzione descritta in
+{eq}`eq:weight_normal`, disegnando a mano il grafico corrispondente e
+verificando che questo grafico abbia la stessa forma visualizzata nel secondo
+grafico interattivo.
 ```
 
 ```{exercise} •

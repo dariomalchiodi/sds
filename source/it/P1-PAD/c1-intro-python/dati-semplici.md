@@ -58,14 +58,14 @@ letterale: in questo modo si possono separare terzetti di cifre, ma anche
 evidenziare parti logicamente diverse in una sequenza numerica (come ad
 esempio le componenti di un numero di telefono).
 
-Il modo più semplice per scrivere un letterale di tipo `float` è invece quello di
-indicare un eventuale segno, seguito dalle cifre della parte intera, dal
+Il modo più semplice per scrivere un letterale di tipo `float` è invece quello
+di indicare un eventuale segno, seguito dalle cifre della parte intera, dal
 carattere `.` e dalle cifre della parte decimale. È obbligatorio specificare
 sempre il carattere di punto decimale e almeno una tra le parti intera e
 decimale, e anche in questo caso è possibile separare due cifre successive
 utilizzando un carattere di _underscore_. Nel caso in cui si debbano
 specificare dei valori molto grandi o molto piccoli risulta però più pratico
-l'utilizzo della notazione _scientifica_: si indica un valore (intero o 
+l'utilizzo della notazione _scientifica_: si indica un valore (intero o
 decimale) di _mantissa_, con o senza segno e virgola, seguito da uno dei
 caratteri `E` o `e` e da un letterale intero detto _esponente;_ questa
 espressione genera il valore numerico pari al prodotto della mantissa
@@ -577,26 +577,25 @@ valutate da destra verso sinistra.
 Chiaramente, può capitare di voler valutare un'espressione seguendo un ordine
 che non è quello previsto dalle regole di precedenza. Come negli altri
 linguaggi, In casi come questi si utilizzano le parentesi tonde per delimitare
-le parti dell'espressione che vanno valutate per prime. L'uso delle parentesi
-è comunque consigliato anche quando non strettamente necessario, se questo
+le parti dell'espressione che vanno valutate per prime. L'uso delle parentesi è
+comunque consigliato anche quando non strettamente necessario, se questo
 contribuisce ad aumentare la leggibilità del codice (cosa che tipicamente
 avviene per le espressioni non particolarmente semplici). Sempre al fine di
-produrre codice facile da leggere, è consigliabile anche inserire gli spazi
-tra operandi e operatori in un modo ragionato e coerente. La
-[Style Guide for Python Code](https://www.python.org/dev/peps/pep-0008/)
-(introdotta nel Paragrafo @sec:regole-di-stile) contiene un
-[paragrafo](https://peps.python.org/pep-0008/#whitespace-in-expressions-and-statements)
-dedicato proprio a questo argomento, e io mi atterrò alle indicazioni ivi
-contenute.
+produrre codice facile da leggere, è consigliabile anche inserire gli spazi tra
+operandi e operatori in un modo ragionato e coerente. La [Style Guide for
+Python Code](https://www.python.org/dev/peps/pep-0008/) (introdotta nel
+Paragrafo @sec:regole-di-stile) contiene un
+[paragrafo](/sds/short/pep-whitespace) dedicato proprio a questo argomento, e
+io mi atterrò alle indicazioni ivi contenute.
 
 Infine, vale la pena ricordare che la @regole-precedenza fa riferimento solo
 agli operatori che abbiamo visto fino a questo momento (per la precisione,
 mancano quelli che operano componente per componente, ai quali ho solamente
 accennato). Per una lista completa, come sempre, il punto migliore al quale
-fare riferimento è la
-[documentazione ufficiale](https://docs.python.org/3/reference/expressions.html#operator-precedence).
-Notate che questa fonte riporta le parentesi tonde come un particolare
-operatore che ha precedenza su tutto il resto.
+fare riferimento è la [documentazione
+ufficiale](/sds/short/operator-precedence). Notate che questa fonte riporta le
+parentesi tonde come un particolare operatore che ha precedenza su tutto il
+resto.
 
 (sec:altri-tipi)=
 ## Altri tipi
@@ -620,8 +619,8 @@ simbolo, altrimenti quest'ultimo viene scambiato dal _parser_ del linguaggio
 come il nome di una variabile. Ciò significa che l'unità
 immaginaria[^unita-immaginaria] va sempre scritta come `1j` o `1J`.
 
-Gli operatori elencati nelle [Tabelle %s](#elenco-operatori-per-tipi-numerici) e
-[%s](#elenco-operatori-logici) si possono applicare a operandi complessi,
+Gli operatori elencati nelle [Tabelle %s](#elenco-operatori-per-tipi-numerici)
+e [%s](#elenco-operatori-logici) si possono applicare a operandi complessi,
 eccezion fatta per le operazioni che non sono definite in tal senso (il
 confronto, la divisione troncata e il modulo).
 
@@ -1209,48 +1208,45 @@ definite un letterale di tipo `float`.
 specifica _software bug_) per indicare la presenza di qualche tipo di errore,
 di norma nel codice sorgente, che fa sì che il risultato dell'esecuzione di un
 programma non sia quello atteso. Spesso si fa risalire l'adozione di questo
-termine a un
-preciso momento storico: nel 1947, gli operatori di un computer dell'Università
-di Harvard documentarono un fatto particolarmente bizzarro: una falena era
-entrata nel calcolatore (a quei tempi l'hardware era di tipo elettromeccanico,
-dunque di dimensioni considerevoli), rimanendo intrappolata in uno dei suoi
-circuiti. Questo incidente causò un malfunzionamento, ed è appunto cercando di
-risolverlo che i tecnici si resero conto di che cosa era accaduto. Questo fatto
-venne documentato nel _logbook_ (un registro nel quale venivano annotati a mano
-fatti rilevanti che si verificavano durante l'utilizzo del computer) come
-«First actual case of bug being found», incollando con del
-[nastro adesivo](https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/First_Computer_Bug%2C_1945.jpg/1280px-First_Computer_Bug%2C_1945.jpg)
-la falena incriminata, a testimonianza dell'accaduto. Questa fonte suggerisce
-dunque come _bug_ fosse già usato nell'accezione moderna: risultava
-particolarmente intrigante il fatto che un _bug_ fisico (la falena) avesse
-causato un _bug_ logico. In effetti, questo termine già veniva utilizzato in
-ambito ingegneristico per indicare un malfunzionamento in un sistema: compare,
-per esempio, in una lettera scritta da Thomas Edison nel 1878. L'etimologia di
-_bug_ viene fatta risalire a «bugbear», un nome che veniva usato nel X secolo
-in Inghilterra per indicare spiriti magligni ritenuti responsabili di eventi
-infausti, come la rottura di oggetti. Questa credenza rimase diffusa nei secoli
-successivi, e con l'introduzione della meccanica e poi dell'ingegneria il
-termine _bugbear_ rimase per indicare un problema dovuto all'uso di un
-macchinario.
+termine a un preciso momento storico: nel 1947, gli operatori di un computer
+dell'Università di Harvard documentarono un fatto particolarmente bizzarro: una
+falena era entrata nel calcolatore (a quei tempi l'hardware era di tipo
+elettromeccanico, dunque di dimensioni considerevoli), rimanendo intrappolata
+in uno dei suoi circuiti. Questo incidente causò un malfunzionamento, ed è
+appunto cercando di risolverlo che i tecnici si resero conto di che cosa era
+accaduto. Questo fatto venne documentato nel _logbook_ (un registro nel quale
+venivano annotati a mano fatti rilevanti che si verificavano durante l'utilizzo
+del computer) come «First actual case of bug being found», incollando con del
+[nastro adesivo](/sds/short/real-bug) la falena incriminata, a testimonianza
+dell'accaduto. Questa fonte suggerisce dunque come _bug_ fosse già usato
+nell'accezione moderna: risultava particolarmente intrigante il fatto che un
+_bug_ fisico (la falena) avesse causato un _bug_ logico. In effetti, questo
+termine già veniva utilizzato in ambito ingegneristico per indicare un
+malfunzionamento in un sistema: compare, per esempio, in una lettera scritta da
+Thomas Edison nel 1878. L'etimologia di _bug_ viene fatta risalire a «bugbear»,
+un nome che veniva usato nel X secolo in Inghilterra per indicare spiriti
+magligni ritenuti responsabili di eventi infausti, come la rottura di oggetti.
+Questa credenza rimase diffusa nei secoli successivi, e con l'introduzione
+della meccanica e poi dell'ingegneria il termine _bugbear_ rimase per indicare
+un problema dovuto all'uso di un macchinario.
 
 [^is-behaviour]: In realtà, il funzionamento di `is` è molto complicato da
-descrivere, perché dipende da vari fattori che non riguardano solo la
-specifica implementazione del linguaggio, ma anche per esempio il fatto che
-l'esecuzione del codice avvenga nella REPL piuttosto che in un _notebook_ o
-altrove. Questo comportamento così articolato fa sì che a volte i risultati
-della valutazione di espressioni possano sembrare incoerenti tra loro: per
-esempio, l'espressione `float(2.71) is float(2.71)` viene valutata come vera.
-Questo è dovuto al modo nel quale Python esegue il codice, organizzandolo in
-_blocchi_ che vengono compilati separatamente. A seconda del contesto,diverse
-occorrenze di un medesimo letterale vengono fatte riferire in alcuni casi a uno
-stesso oggetto, e in altri a oggetti differenti. Una spiegazione detagliata di
-questo fenomeno è ampiamente al di fuori dello scopo di questo libro. Se siete
-abbastanza coraggiosi, l'argomento è stato per esempio affrontato con dovizia
-di particolari su
-[Stack Overflow](https://stackoverflow.com/questions/34147515/the-is-operator-behaves-unexpectedly-with-non-cached-integers/34147516#34147516).
-La cosa importante è ricordare che `is` è un operatore peculiare che può
-produrre dei comportamenti inattesi, nel caso in cui emergessero dei _bug_
-durante l'esecuzione di codice che lo utilizza.
+descrivere, perché dipende da vari fattori che non riguardano solo la specifica
+implementazione del linguaggio, ma anche per esempio il fatto che l'esecuzione
+del codice avvenga nella REPL piuttosto che in un _notebook_ o altrove. Questo
+comportamento così articolato fa sì che a volte i risultati della valutazione
+di espressioni possano sembrare incoerenti tra loro: per esempio, l'espressione
+`float(2.71) is float(2.71)` viene valutata come vera. Questo è dovuto al modo
+nel quale Python esegue il codice, organizzandolo in _blocchi_ che vengono
+compilati separatamente. A seconda del contesto,diverse occorrenze di un
+medesimo letterale vengono fatte riferire in alcuni casi a uno stesso oggetto,
+e in altri a oggetti differenti. Una spiegazione detagliata di questo fenomeno
+è ampiamente al di fuori dello scopo di questo libro. Se siete abbastanza
+coraggiosi, l'argomento è stato per esempio affrontato con dovizia di
+particolari su [Stack Overflow](/sds/short/is-behaviour). La cosa importante è
+ricordare che `is` è un operatore peculiare che può produrre dei comportamenti
+inattesi, nel caso in cui emergessero dei _bug_ durante l'esecuzione di codice
+che lo utilizza.
 
 
 [^flyweight]: Questa funzionalità è tipica di un particolare _pattern_ di

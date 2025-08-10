@@ -34,20 +34,20 @@ programmare, ma non conosce questo linguaggio. Una lettura di questo capitolo è
 comunque consigliata a tutti, al fine di familiarizzare con le convenzioni che
 utilizzo per scrivere codice.
 
-Questo libro è scritto utilizzando una tecnologia che permette di inserire
-dei contenuti generati tramite l'esecuzione di codice python. Questo codice
-è nascosto quando serve a produrre per esempio tabelle o grafici, mentre è
+Questo libro è scritto utilizzando una tecnologia che permette di inserire dei
+contenuti generati tramite l'esecuzione di codice python. Questo codice è
+nascosto quando serve a produrre per esempio tabelle o grafici, mentre è
 esplicitamente mostrato in tutti i casi nei quali chi legge viene guidato
 nell'implementazione di uno o più concetti spiegati nel testo. In ogni caso,
-l'intero codice sorgente che ho scritto per produrre il libro è scaricabile
-sia dal [repository](https://github.com/dariomalchiodi/sds) associato, sia
-cliccando l'icona ![download icon](../../_static/img/download.svg) a inizio pagina. Va
-notato che, in entrambi i casi, quello che viene scaricato sono dei file che
-alternano il codice Markdown che specifica i contenuti testuali con il codice
-python, ed è quindi necessario separare quest'ultimo per poterlo eseguire.
-Nonostante questo modo di procedere sia un po' macchinoso, incoraggio tutti a
-usufruire di questa opportunità, non limitandosi a leggere passivamente il
-testo, e nemmeno a eseguire il codice in modo pedissequo, ma ad analizzarlo,
+l'intero codice sorgente che ho scritto per produrre il libro è scaricabile sia
+dal [repository](https://github.com/dariomalchiodi/sds) associato, sia
+cliccando l'icona ![download icon](../../_static/img/download.svg) a inizio
+pagina. Va notato che, in entrambi i casi, quello che viene scaricato sono dei
+file che alternano il codice Markdown che specifica i contenuti testuali con il
+codice python, ed è quindi necessario separare quest'ultimo per poterlo
+eseguire. Nonostante questo modo di procedere sia un po' macchinoso, incoraggio
+tutti a usufruire di questa opportunità, non limitandosi a leggere passivamente
+il testo, e nemmeno a eseguire il codice in modo pedissequo, ma ad analizzarlo,
 comprenderlo, modificarlo (valgono anche le modifiche che permettono di capire
 meglio il codice!)&mdash;insomma, _giocarci_ in un'ottica _hacker_, nel senso
 originale del termine[^hacker]. In realtà è anche possibile giocare con il
@@ -113,7 +113,8 @@ tempo, energia e del materiale dedicato all'apprendimento della materia.
 Anche in questo caso, ci sono parecchi libri che possono essere utilizzati
 con profitto, per esempio:
 
-- [Pensare in Python](https://github.com/AllenDowney/ThinkPythonItalian/blob/master/thinkpython_italian.pdf), di Allen B. Downey {cite:p}`downey`.
+- [Pensare in Python](/short/thinkpython-it), di Allen B. Downey
+  {cite:p}`downey`.
 - Programmazione in C, di Kim N. King {cite:p}`king`,
 - Programmare in Go, di Ivo Balbaert {cite:p}`balbaert`.
 

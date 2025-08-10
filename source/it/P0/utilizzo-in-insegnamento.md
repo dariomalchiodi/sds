@@ -33,8 +33,8 @@ ancora riuscito a trovare un libro di testo che desse a queste tre aree
 il peso relativo che io assegno loro nelle mie lezioni.
 È per questo motivo che ho deciso, via via che la «massa critica» delle
 dispense cresceva, di scrivere un libro che evitasse l'adozione di due o più
-testi differenti, da affiancare in ogni caso a dispense che colmassero le lacune
-risultanti.
+testi differenti, da affiancare in ogni caso a dispense che colmassero le
+lacune risultanti.
 
 I contenuti sono organizzati secondo il filo logico che seguo durante le mie
 lezioni. La prima parte si concentra sulle basi computazionali, introducendo

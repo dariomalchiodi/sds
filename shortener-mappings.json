@@ -15,5 +15,13 @@
   "jp-alternatives": "https://mljourney.com/jupyter-notebook-alternatives-in-2025/",
   "pie": "https://www.merriam-webster.com/dictionary/pie?pronunciation&lang=en_us&dir=p&file=pie00001",
   "pee": "https://www.merriam-webster.com/dictionary/Jupiter?pronunciation&lang=en_us&dir=gg&file=ggjupi01",
-  "py-implementations": "https://www.toptal.com/python/why-are-there-so-many-pythons"
+  "py-implementations": "https://www.toptal.com/python/why-are-there-so-many-pythons",
+  "thinkpython-it": "https://github.com/AllenDowney/ThinkPythonItalian/blob/master/thinkpython_italian.pdf",
+  "cholera-map": "https://en.wikipedia.org/wiki/File:Snow-cholera-map-1.jpg",
+  "nightingale-graph": "https://upload.wikimedia.org/wikipedia/commons/archive/1/17/20201105141904%21Nightingale-mortality.jpg",
+  "nightingale-source": "https://en.wikipedia.org/wiki/File:Nightingale-mortality.jpg",
+  "pep-whitespace": "https://peps.python.org/pep-0008/#whitespace-in-expressions-and-statements",
+  "operator-precedence": "https://docs.python.org/3/reference/expressions.html#operator-precedence",
+  "real-bug": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/First_Computer_Bug%2C_1945.jpg/1280px-First_Computer_Bug%2C_1945.jpg",
+  "is-behaviour": "https://stackoverflow.com/questions/34147515/the-is-operator-behaves-unexpectedly-with-non-cached-integers/34147516#34147516"
 }

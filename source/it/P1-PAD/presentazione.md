@@ -11,12 +11,12 @@ kernelspec:
 
 # Presentazione
 
-La prima parte del libro introduce alcuni strumenti di base
-per l’analisi automatica di dataset di dimensioni contenute[^big-data],
-mediante l’uso di un computer. La padronanza di questi strumenti, unita alla
-capacità di applicarli in modo efficace ai diversi scenari della _data science_,
-è oggi fondamentale per analizzare e interpretare l’ampia varietà di dati
-disponibili e sfruttarli come supporto alle decisioni.
+La prima parte del libro introduce alcuni strumenti di base per l’analisi
+automatica di dataset di dimensioni contenute[^big-data], mediante l’uso di un
+computer. La padronanza di questi strumenti, unita alla capacità di applicarli
+in modo efficace ai diversi scenari della _data science_, è oggi fondamentale
+per analizzare e interpretare l’ampia varietà di dati disponibili e sfruttarli
+come supporto alle decisioni.
 
 Tra gli strumenti indispensabili troviamo:
 

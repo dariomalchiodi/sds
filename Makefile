@@ -33,8 +33,9 @@ help:
 # Italian documentation build target
 it:
 	@echo "Building Italian documentation..."
-	@echo "Step 0/7: Syncing URL shortener files..."
-	./code/sync-url-shortener.sh
+	@echo "Step 0/7: Validating and generating URL shortener..."
+	@python3 code/validate-shortener.py
+	@python3 code/generate-redirect-pages.py $(BUILDDIR)
 	@echo "Step 1/7: Processing MyST files..."
 	./code/process_myst_batch.sh --clean it
 	@echo "Step 2/7: Copying shared resources..."
@@ -55,8 +56,9 @@ it:
 # English documentation build target
 en:
 	@echo "Building English documentation..."
-	@echo "Step 0/7: Syncing URL shortener files..."
-	./code/sync-url-shortener.sh
+	@echo "Step 0/7: Validating and generating URL shortener..."
+	@python3 code/validate-shortener.py
+	@python3 code/generate-redirect-pages.py $(BUILDDIR)
 	@echo "Step 1/7: Processing MyST files..."
 	./code/process_myst_batch.sh --clean en
 	@echo "Step 2/7: Copying shared resources..."
@@ -77,8 +79,9 @@ en:
 # French documentation build target
 fr:
 	@echo "Building French documentation..."
-	@echo "Step 0/7: Syncing URL shortener files..."
-	./code/sync-url-shortener.sh
+	@echo "Step 0/7: Validating and generating URL shortener..."
+	@python3 code/validate-shortener.py
+	@python3 code/generate-redirect-pages.py $(BUILDDIR)
 	@echo "Step 1/7: Processing MyST files..."
 	./code/process_myst_batch.sh --clean fr
 	@echo "Step 2/7: Copying shared resources..."
@@ -99,8 +102,9 @@ fr:
 # Spanish documentation build target
 es:
 	@echo "Building Spanish documentation..."
-	@echo "Step 0/7: Syncing URL shortener files..."
-	./code/sync-url-shortener.sh
+	@echo "Step 0/7: Validating and generating URL shortener..."
+	@python3 code/validate-shortener.py
+	@python3 code/generate-redirect-pages.py $(BUILDDIR)
 	@echo "Step 1/7: Processing MyST files..."
 	./code/process_myst_batch.sh --clean es
 	@echo "Step 2/7: Copying shared resources..."
@@ -126,27 +130,17 @@ copy-static:
 	python3 code/validate-shortener.py
 	@echo "Generating redirect pages..."
 	python3 code/generate-redirect-pages.py $(BUILDDIR)
-	@echo "Syncing URL shortener files..."
-	./code/sync-url-shortener.sh
-	@echo "Creating shared static directory for root shortener..."
-	@mkdir -p "$(BUILDDIR)/en/_static"
-	@if [ -f "$(SOURCEDIR)/_static/url-shortener.js" ]; then \
-		cp "$(SOURCEDIR)/_static/url-shortener.js" "$(BUILDDIR)/en/_static/"; \
-		echo "✓ url-shortener.js copied to en/_static for root access"; \
-	fi
+	@echo "✓ URL shortener validation and generation complete"
 	@if [ -f "$(SOURCEDIR)/index.html" ]; then \
 		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/"; \
 		echo "✓ index.html copied to build directory"; \
 	fi
-	@if [ -f "$(SOURCEDIR)/short.html" ]; then \
-		cp "$(SOURCEDIR)/short.html" "$(BUILDDIR)/"; \
-		echo "✓ short.html copied to build directory"; \
-	fi
 
-# Sync URL shortener files to all language directories
+# Validate and generate URL shortener files
 sync-shortener:
-	@echo "Syncing URL shortener files..."
-	./code/sync-url-shortener.sh
+	@echo "Validating and generating URL shortener files..."
+	@python3 code/validate-shortener.py
+	@python3 code/generate-redirect-pages.py $(BUILDDIR)
 
 # Build all language versions
 all:
