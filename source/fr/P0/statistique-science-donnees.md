@@ -95,7 +95,7 @@ La surface de chaque secteur représente le nombre de morts, et les couleurs
 indiquent la cause : rouge pour les blessures de guerre, bleu pour les maladies
 évitables, et noir pour les autres causes. Image du domaine public. Réalisée
 par Florence Nightingale (1858). Source :
-[Wikimedia Commons](https://en.wikipedia.org/wiki/File:Nightingale-mortality.jpg).
+[Wikimedia Commons](https://malchiodi.com/sds/short/nightingale-source).
 ```
 
 Les cas de Snow et de Nightingale illustrent une approche descriptive de
@@ -169,6 +169,6 @@ français, par exemple en matière d’alphabétisation ou de criminalité. Dupi
 les régions d'une carte géographique sont colorées en fonction de la valeur
 d'un indicateur donné.
 
-[^polaire]: Il convient de noter que les diagrammes polaires rendus célèbres par
-Florence Nightingale avaient déjà été introduits en 1829 par André-Michel
+[^polaire]: Il convient de noter que les diagrammes polaires rendus célèbres
+par Florence Nightingale avaient déjà été introduits en 1829 par André-Michel
 Guerry (le même que dans la note précédente).

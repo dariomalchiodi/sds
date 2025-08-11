@@ -98,11 +98,11 @@ function switchLanguage(targetLang) {
   
   if (italianKey && urlMapping[italianKey] && urlMapping[italianKey][targetLang]) {
     const targetPath = urlMapping[italianKey][targetLang];
-    const targetUrl = `/${targetLang}/${targetPath}.html`;
+    const targetUrl = `/sds/${targetLang}/${targetPath}.html`;
     window.location.href = targetUrl;
   } else {
     // Fallback to home page if mapping not found
-    window.location.href = `/${targetLang}/`;
+    window.location.href = `/sds/${targetLang}/`;
   }
 }
 </script>

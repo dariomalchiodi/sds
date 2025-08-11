@@ -206,7 +206,8 @@ cercles, et même s’il est relativement facile d’estimer les tailles minimal
 maximale, il est plus difficile de déterminer, par exemple, s’il y a plus de
 super-héros « légers » que « lourds ». Pour mieux comprendre cela, voici un
 graphique particulier, appelé _histogramme_, qui met en évidence les fréquences
-auxquelles apparaissent les différentes valeurs de poids dans le jeu de données.
+auxquelles apparaissent les différentes valeurs de poids dans le jeu de
+données.
 
 ```{code-block} python
 :class: toggle-code
@@ -747,10 +748,10 @@ Expliquez par écrit le raisonnement qui vous a permis de conclure que $79$ est
 une bonne approximation du poids moyen des super-héros.
 ```
 
-[^histogramme]: Il est possible de choisir librement les intervalles définissant
-les bases des rectangles. Pour simplifier, l’histogramme dans le texte a été
-généré en considérant vingt-cinq intervalles de largeur égale couvrant toutes
-les valeurs possibles du poids, mais selon les cas, il peut être pertinent
-d’utiliser un nombre plus (ou moins) élevé d’intervalles, ou encore de
-considérer un ensemble d’intervalles de largeurs différentes.
+[^histogramme]: Il est possible de choisir librement les intervalles
+définissant les bases des rectangles. Pour simplifier, l’histogramme dans le
+texte a été généré en considérant vingt-cinq intervalles de largeur égale
+couvrant toutes les valeurs possibles du poids, mais selon les cas, il peut
+être pertinent d’utiliser un nombre plus (ou moins) élevé d’intervalles, ou
+encore de considérer un ensemble d’intervalles de largeurs différentes.
 

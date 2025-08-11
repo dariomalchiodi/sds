@@ -89,6 +89,7 @@ root_doc = 'home'
 
 external_toc_path = '_toc.yml'
 external_toc_exclude_missing = False
+html_link_suffix = ''
 
 # Enable figure and table numbering within chapters
 numfig = True

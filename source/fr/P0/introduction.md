@@ -35,42 +35,41 @@ Représentation de Benjamin Franklin sur les billets de 100 dollars américains
   [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/))
 ```
 
-En réalité, le concept d’_incertitude_ est particulièrement difficile à définir,
-car il est très nuancé et prend des significations différentes selon le
-contexte. Dans ce livre, nous allons nous concentrer sur une incarnation
-particulière de ce concept, que nous appellerons _aléa_.
-De manière simple (et donc certainement perfectible), on peut identifier
-l’aléa comme la propriété qui caractérise toute expérience dont, même répétée
-dans les mêmes conditions, le résultat ne peut être déterminé à l’avance.
-De façon (pour l’instant) informelle, nous appellerons _événements_ les
-affirmations concernant les résultats de ces expériences. La valeur de vérité
-de ces affirmations sera donc incertaine.
-Un exemple classique d’événement est celui du résultat du lancer de dés
-lorsqu’on joue au Monopoly. Un autre exemple, tout aussi classique mais plus
-moderne, concerne la valeur de clôture d’un indice boursier. Si nous y
+En réalité, le concept d’_incertitude_ est particulièrement difficile à
+définir, car il est très nuancé et prend des significations différentes selon
+le contexte. Dans ce livre, nous allons nous concentrer sur une incarnation
+particulière de ce concept, que nous appellerons _aléa_. De manière simple (et
+donc certainement perfectible), on peut identifier l’aléa comme la propriété
+qui caractérise toute expérience dont, même répétée dans les mêmes conditions,
+le résultat ne peut être déterminé à l’avance. De façon (pour l’instant)
+informelle, nous appellerons _événements_ les affirmations concernant les
+résultats de ces expériences. La valeur de vérité de ces affirmations sera donc
+incertaine. Un exemple classique d’événement est celui du résultat du lancer de
+dés lorsqu’on joue au Monopoly. Un autre exemple, tout aussi classique mais
+plus moderne, concerne la valeur de clôture d’un indice boursier. Si nous y
 réfléchissons davantage, de nombreux autres exemples nous viennent à l’esprit :
 en observant le ciel le matin, y aura-t-il de la pluie aujourd’hui ? Combien de
 petits-enfants aura la sœur de mon voisin ? L’année prochaine, parviendrai-je à
 passer l’hiver en n’attrapant la grippe qu’une seule fois au plus ? En effet,
-il n’est pas difficile de se convaincre que l’aléa (ou, si vous préférez,
-le non-déterminisme) traverse notre existence, au point de jouer un rôle
-essentiel dans la description de certains aspects fondamentaux de la Nature,
-comme la théorie de l’évolution ou la mécanique quantique.
+il n’est pas difficile de se convaincre que l’aléa (ou, si vous préférez, le
+non-déterminisme) traverse notre existence, au point de jouer un rôle essentiel
+dans la description de certains aspects fondamentaux de la Nature, comme la
+théorie de l’évolution ou la mécanique quantique.
 
 Malgré cela, les gens apprennent plus ou moins rapidement à cohabiter
-raisonnablement bien avec l’incertitude : en sortant de chez soi, la plupart
-du temps, on sait s’il est judicieux de prendre un parapluie, et certaines
+raisonnablement bien avec l’incertitude : en sortant de chez soi, la plupart du
+temps, on sait s’il est judicieux de prendre un parapluie, et certaines
 personnes parviennent même à spéculer avec succès en bourse. Cela se produit
-parce que nous sommes capables d’_évaluer_ l’incertitude de nombreux événements,
-en acceptant le _risque_ que comporte cette évaluation (pour reprendre
-l’exemple du ciel nuageux, le risque est d’emporter un parapluie inutilement,
-ou de ne pas l’emporter et de se retrouver sous la pluie). Presque toujours,
-nous faisons tout cela de manière largement subjective, en nous fondant sur
-notre _expérience_. Les mathématiques nous fournissent cependant des outils
-qualitatifs et quantitatifs pour aborder ce problème de manière rigoureuse.
-En particulier, en combinant le _calcul des probabilités_ et la _statistique_,
-nous pouvons modéliser l’incertitude des événements et l’évaluer à l’aide de
-l’expérience que nous avons acquise.
+parce que nous sommes capables d’_évaluer_ l’incertitude de nombreux
+événements, en acceptant le _risque_ que comporte cette évaluation (pour
+reprendre l’exemple du ciel nuageux, le risque est d’emporter un parapluie
+inutilement, ou de ne pas l’emporter et de se retrouver sous la pluie). Presque
+toujours, nous faisons tout cela de manière largement subjective, en nous
+fondant sur notre _expérience_. Les mathématiques nous fournissent cependant
+des outils qualitatifs et quantitatifs pour aborder ce problème de manière
+rigoureuse. En particulier, en combinant le _calcul des probabilités_ et la
+_statistique_, nous pouvons modéliser l’incertitude des événements et l’évaluer
+à l’aide de l’expérience que nous avons acquise.
 
 Ce livre a justement pour objectif de fournir les bases de ces deux branches
 des mathématiques, à travers une approche interactive et centrée sur
@@ -93,9 +92,9 @@ Le travail est organisé en quatre parties :
   comme une discipline permettant d’évaluer de manière quantitative
   l’incertitude des événements ;
 - la quatrième se concentre enfin sur les bases de la _statistique
-  inférentielle_, afin de fournir des outils permettant de prendre des décisions
-  en condition d’incertitude, à l’aide des outils introduits dans les chapitres
-  précédents.
+  inférentielle_, afin de fournir des outils permettant de prendre des
+  décisions en condition d’incertitude, à l’aide des outils introduits dans les
+  chapitres précédents.
 
 Chacune de ces parties, prise isolément, remplirait un livre entier —
 voire plusieurs ! Par conséquent, bien que le matériel soit exploitable sans
@@ -110,6 +109,6 @@ physicien français Jean-Baptiste Le Roy), cette affirmation apparaît en réali
 comme la fin de la phrase : «... in this world nothing can be said to be
 certain, except death and taxes». Il convient toutefois de souligner que,
 bien que cette maxime soit attribuée à Benjamin Franklin, il existe des
-[sources antérieures]([wiki:Death_and_taxes_(idiom)](https://en.wikipedia.org/wiki/Death_and_taxes_(idiom)))
+[sources antérieures](https://en.wikipedia.org/wiki/Death_and_taxes_(idiom))
 qui en rapportent certaines variantes.
 

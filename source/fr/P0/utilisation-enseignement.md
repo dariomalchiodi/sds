@@ -11,14 +11,13 @@ kernelspec:
 
 (sec:utilisation-pedagogique)=
 # Utilisation pédagogique
-Depuis plusieurs années, je suis responsable de l’enseignement de
-[Statistiques et analyse des données](https://malchiodi.di.unimi.it/teaching/SAD/fr)
-dans le cadre de la Licence en Informatique, proposée par l’Università degli
-Studi di Milano. Ce livre est issu de l’évolution d’un ensemble de notes de
-cours que j’ai utilisées pour compléter la bibliographie adoptée dans cet
-enseignement, dans le but de couvrir à la fois les aspects plus
-_computationnels_ des cours et certains sujets qui ne trouvent pas leur place
-dans les manuels classiques.
+Depuis plusieurs années, je suis responsable de l’enseignement de [Statistiques
+et analyse des données](https://malchiodi.di.unimi.it/teaching/SAD/fr) dans le
+cadre de la Licence en Informatique, proposée par l’Università degli Studi di
+Milano. Ce livre est issu de l’évolution d’un ensemble de notes de cours que
+j’ai utilisées pour compléter la bibliographie adoptée dans cet enseignement,
+dans le but de couvrir à la fois les aspects plus _computationnels_ des cours
+et certains sujets qui ne trouvent pas leur place dans les manuels classiques.
 
 Dans les cursus en informatique, les bases de l’analyse des données sont
 généralement confiées à un seul enseignement fondamental de deuxième année, qui
@@ -51,7 +50,7 @@ l’inférence paramétrique. Dans ce parcours, j’ai tenté de limiter le form
 mathématique au strict nécessaire pour garantir une introduction rigoureuse aux
 concepts. Les paragraphes dont le titre est marqué d’un astérisque contiennent
 des approfondissements et du matériel supplémentaire, que l’on peut
-ignorer&mdash;il s’agit essentiellement de tous les sujets que je n’ai pas le
+ignorer &mdash; il s’agit essentiellement de tous les sujets que je n’ai pas le
 temps de traiter en classe, mais que je recommande vivement aux étudiants
 souhaitant approfondir leur compréhension de la matière, notamment en vue de
 poursuivre en master.  

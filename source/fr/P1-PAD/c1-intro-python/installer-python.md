@@ -49,23 +49,23 @@ récente ne devrait poser aucun problème, tandis qu'une version nettement plus
 ancienne est à éviter.
 
 Il pourrait sembler que connaître la version exacte d'un langage de
-programmation suffise à en déterminer toutes les fonctionnalités, mais ce
-n'est pas tout à fait vrai. La définition d'un langage inclut sa _syntaxe_ et
-sa _sémantique_, mais la création des outils permettant d'exécuter les
-programmes correspondants &mdash;interpréteurs et compilateur
-[^compilateurs]&mdash; est une autre affaire. Ces outils peuvent être développés
-par des personnes différentes, à des moments différents, et avec des
-technologies diverses. Il existe donc plusieurs _implémentations_ d'un même
-langage, qui peuvent différer malgré le respect d'une version identique, car
-les spécifications ne dictent pas toujours exactement _comment_ certaines
-fonctionnalités doivent être réalisées. Par exemple, le format d'encodage des
-chaînes de caractères peut différer selon les implémentations. Dans le cas de
-Python, il existe [plusieurs implémentations](/sds/short/py-implementations),
-chacune reposant sur une technologie sous-jacente différente : l'une utilise la
-machine virtuelle Java, une autre un moteur écrit en C, une autre encore
-s'exécute dans les navigateurs web, etc. L'implémentation la plus courante,
-généralement installée par défaut, s'appelle _CPython_ et, comme son nom
-l'indique, est écrite en C.
+programmation suffise à en déterminer toutes les fonctionnalités, mais ce n'est
+pas tout à fait vrai. La définition d'un langage inclut sa _syntaxe_ et sa
+_sémantique_, mais la création des outils permettant d'exécuter les programmes
+correspondants &mdash;interpréteurs et compilateur [^compilateurs]&mdash; est
+une autre affaire. Ces outils peuvent être développés par des personnes
+différentes, à des moments différents, et avec des technologies diverses. Il
+existe donc plusieurs _implémentations_ d'un même langage, qui peuvent différer
+malgré le respect d'une version identique, car les spécifications ne dictent
+pas toujours exactement _comment_ certaines fonctionnalités doivent être
+réalisées. Par exemple, le format d'encodage des chaînes de caractères peut
+différer selon les implémentations. Dans le cas de Python, il existe <a
+href="/sds/short/py-implementations" target="_blank">plusieurs
+implémentations</a>, chacune reposant sur une technologie sous-jacente
+différente : l'une utilise la machine virtuelle Java, une autre un moteur écrit
+en C, une autre encore s'exécute dans les navigateurs web, etc.
+L'implémentation la plus courante, généralement installée par défaut, s'appelle
+_CPython_ et, comme son nom l'indique, est écrite en C.
 
 (sec:telecharger-livre)=
 ## Télécharger le contenu du livre

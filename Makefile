@@ -7,6 +7,7 @@ SPHINXOPTS    ?=
 SPHINXBUILD   ?= sphinx-build
 SOURCEDIR     = source
 BUILDDIR      = build
+SDSDIR        = $(BUILDDIR)/sds
 
 # Put it first so that "make" without argument is like "make help".
 help:
@@ -21,7 +22,8 @@ help:
 	@echo "  copy-static Copy static files (e.g., index.html) to build directory"
 	@echo "  sync-shortener Sync URL shortener files to all language directories"
 	@echo "  validate-shortener Validate shortener-mappings.json for errors"
-	@echo "  clean-all   Remove all build artifacts and temporary files"
+	@echo "  clean       Remove all build artifacts and temporary files"
+	@echo "  clean-all   Remove all build artifacts and temporary files (alias for clean)"
 	@echo "  serve       Start development server with clean URL support"
 	@echo ""
 	@echo "Internationalization targets:"
@@ -35,7 +37,7 @@ it:
 	@echo "Building Italian documentation..."
 	@echo "Step 0/7: Validating and generating URL shortener..."
 	@python3 code/validate-shortener.py
-	@python3 code/generate-redirect-pages.py $(BUILDDIR)
+	@python3 code/generate-redirect-pages.py $(SDSDIR)
 	@echo "Step 1/7: Processing MyST files..."
 	./code/process_myst_batch.sh --clean it
 	@echo "Step 2/7: Copying shared resources..."
@@ -43,14 +45,19 @@ it:
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
 	@echo "Step 3/7: Building HTML with Sphinx..."
-	$(SPHINXBUILD) -b html tmpsource/it build/it
+	$(SPHINXBUILD) -b html tmpsource/it $(SDSDIR)/it
 	@echo "Step 4/7: Applying cross-reference improvements..."
-	python3 code/apply_crossref_improvements.py build/it
+	python3 code/apply_crossref_improvements.py $(SDSDIR)/it
 	@echo "Step 5/7: Making part titles clickable and collapsible..."
-	python3 code/sds.py make-parts-clickable build/it --language it
+	python3 code/sds.py make-parts-clickable $(SDSDIR)/it --language it
 	@echo "Step 6/7: Cleaning temporary files..."
 	./code/clean_tmpsource.sh --force --all
-	@echo "Italian documentation build complete! Output: build/it/"
+	@echo "Step 7/7: Copying index.html to build root..."
+	@if [ -f "$(SOURCEDIR)/index.html" ]; then \
+		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/"; \
+		echo "✓ index.html copied to build directory"; \
+	fi
+	@echo "Italian documentation build complete! Output: $(SDSDIR)/it/"
 	@echo "Note: Figure/table numbering (X.Y format) is automatically handled by Sphinx configuration."
 
 # English documentation build target
@@ -58,7 +65,7 @@ en:
 	@echo "Building English documentation..."
 	@echo "Step 0/7: Validating and generating URL shortener..."
 	@python3 code/validate-shortener.py
-	@python3 code/generate-redirect-pages.py $(BUILDDIR)
+	@python3 code/generate-redirect-pages.py $(SDSDIR)
 	@echo "Step 1/7: Processing MyST files..."
 	./code/process_myst_batch.sh --clean en
 	@echo "Step 2/7: Copying shared resources..."
@@ -66,14 +73,19 @@ en:
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
 	@echo "Step 3/7: Building HTML with Sphinx..."
-	$(SPHINXBUILD) -b html tmpsource/en build/en
+	$(SPHINXBUILD) -b html tmpsource/en $(SDSDIR)/en
 	@echo "Step 4/7: Applying cross-reference improvements..."
-	python3 code/apply_crossref_improvements.py build/en
+	python3 code/apply_crossref_improvements.py $(SDSDIR)/en
 	@echo "Step 5/7: Making part titles clickable and collapsible..."
-	python3 code/sds.py make-parts-clickable build/en --language en
+	python3 code/sds.py make-parts-clickable $(SDSDIR)/en --language en
 	@echo "Step 6/7: Cleaning temporary files..."
 	./code/clean_tmpsource.sh --force --all
-	@echo "English documentation build complete! Output: build/en/"
+	@echo "Step 7/7: Copying index.html to build root..."
+	@if [ -f "$(SOURCEDIR)/index.html" ]; then \
+		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/"; \
+		echo "✓ index.html copied to build directory"; \
+	fi
+	@echo "English documentation build complete! Output: $(SDSDIR)/en/"
 	@echo "Note: Figure/table numbering (X.Y format) is automatically handled by Sphinx configuration."
 
 # French documentation build target
@@ -81,7 +93,7 @@ fr:
 	@echo "Building French documentation..."
 	@echo "Step 0/7: Validating and generating URL shortener..."
 	@python3 code/validate-shortener.py
-	@python3 code/generate-redirect-pages.py $(BUILDDIR)
+	@python3 code/generate-redirect-pages.py $(SDSDIR)
 	@echo "Step 1/7: Processing MyST files..."
 	./code/process_myst_batch.sh --clean fr
 	@echo "Step 2/7: Copying shared resources..."
@@ -89,14 +101,19 @@ fr:
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
 	@echo "Step 3/7: Building HTML with Sphinx..."
-	$(SPHINXBUILD) -b html tmpsource/fr build/fr
+	$(SPHINXBUILD) -b html tmpsource/fr $(SDSDIR)/fr
 	@echo "Step 4/7: Applying cross-reference improvements..."
-	python3 code/apply_crossref_improvements.py build/fr
+	python3 code/apply_crossref_improvements.py $(SDSDIR)/fr
 	@echo "Step 5/7: Making part titles clickable and collapsible..."
-	python3 code/sds.py make-parts-clickable build/fr --language fr
+	python3 code/sds.py make-parts-clickable $(SDSDIR)/fr --language fr
 	@echo "Step 6/7: Cleaning temporary files..."
 	./code/clean_tmpsource.sh --force --all
-	@echo "French documentation build complete! Output: build/fr/"
+	@echo "Step 7/7: Copying index.html to build root..."
+	@if [ -f "$(SOURCEDIR)/index.html" ]; then \
+		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/"; \
+		echo "✓ index.html copied to build directory"; \
+	fi
+	@echo "French documentation build complete! Output: $(SDSDIR)/fr/"
 	@echo "Note: Figure/table numbering (X.Y format) is automatically handled by Sphinx configuration."
 
 # Spanish documentation build target
@@ -104,7 +121,7 @@ es:
 	@echo "Building Spanish documentation..."
 	@echo "Step 0/7: Validating and generating URL shortener..."
 	@python3 code/validate-shortener.py
-	@python3 code/generate-redirect-pages.py $(BUILDDIR)
+	@python3 code/generate-redirect-pages.py $(SDSDIR)
 	@echo "Step 1/7: Processing MyST files..."
 	./code/process_myst_batch.sh --clean es
 	@echo "Step 2/7: Copying shared resources..."
@@ -112,14 +129,19 @@ es:
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
 	@echo "Step 3/7: Building HTML with Sphinx..."
-	$(SPHINXBUILD) -b html tmpsource/es build/es
+	$(SPHINXBUILD) -b html tmpsource/es $(SDSDIR)/es
 	@echo "Step 4/7: Applying cross-reference improvements..."
-	python3 code/apply_crossref_improvements.py build/es
+	python3 code/apply_crossref_improvements.py $(SDSDIR)/es
 	@echo "Step 5/7: Making part titles clickable and collapsible..."
-	python3 code/sds.py make-parts-clickable build/es --language es
+	python3 code/sds.py make-parts-clickable $(SDSDIR)/es --language es
 	@echo "Step 6/7: Cleaning temporary files..."
 	./code/clean_tmpsource.sh --force --all
-	@echo "Spanish documentation build complete! Output: build/es/"
+	@echo "Step 7/7: Copying index.html to build root..."
+	@if [ -f "$(SOURCEDIR)/index.html" ]; then \
+		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/"; \
+		echo "✓ index.html copied to build directory"; \
+	fi
+	@echo "Spanish documentation build complete! Output: $(SDSDIR)/es/"
 	@echo "Note: Figure/table numbering (X.Y format) is automatically handled by Sphinx configuration."
 
 # Copy static files from source to build directory
@@ -129,7 +151,7 @@ copy-static:
 	@echo "Validating shortener mappings..."
 	python3 code/validate-shortener.py
 	@echo "Generating redirect pages..."
-	python3 code/generate-redirect-pages.py $(BUILDDIR)
+	python3 code/generate-redirect-pages.py $(SDSDIR)
 	@echo "✓ URL shortener validation and generation complete"
 	@if [ -f "$(SOURCEDIR)/index.html" ]; then \
 		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/"; \
@@ -140,7 +162,7 @@ copy-static:
 sync-shortener:
 	@echo "Validating and generating URL shortener files..."
 	@python3 code/validate-shortener.py
-	@python3 code/generate-redirect-pages.py $(BUILDDIR)
+	@python3 code/generate-redirect-pages.py $(SDSDIR)
 
 # Build all language versions
 all:
@@ -159,29 +181,29 @@ all:
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
 	@echo "Step 6: Building Italian HTML..."
-	$(SPHINXBUILD) -b html tmpsource/it build/it
+	$(SPHINXBUILD) -b html tmpsource/it $(SDSDIR)/it
 	@echo "Step 7: Applying Italian cross-reference improvements..."
-	python3 code/apply_crossref_improvements.py build/it
+	python3 code/apply_crossref_improvements.py $(SDSDIR)/it
 	@echo "Step 8: Making Italian part titles clickable and collapsible..."
-	python3 code/sds.py make-parts-clickable build/it --language it
+	python3 code/sds.py make-parts-clickable $(SDSDIR)/it --language it
 	@echo "Step 9: Building English HTML..."
-	$(SPHINXBUILD) -b html tmpsource/en build/en
+	$(SPHINXBUILD) -b html tmpsource/en $(SDSDIR)/en
 	@echo "Step 10: Applying English cross-reference improvements..."
-	python3 code/apply_crossref_improvements.py build/en
+	python3 code/apply_crossref_improvements.py $(SDSDIR)/en
 	@echo "Step 11: Making English part titles clickable and collapsible..."
-	python3 code/sds.py make-parts-clickable build/en --language en
+	python3 code/sds.py make-parts-clickable $(SDSDIR)/en --language en
 	@echo "Step 12: Building French HTML..."
-	$(SPHINXBUILD) -b html tmpsource/fr build/fr
+	$(SPHINXBUILD) -b html tmpsource/fr $(SDSDIR)/fr
 	@echo "Step 13: Applying French cross-reference improvements..."
-	python3 code/apply_crossref_improvements.py build/fr
+	python3 code/apply_crossref_improvements.py $(SDSDIR)/fr
 	@echo "Step 14: Making French part titles clickable and collapsible..."
-	python3 code/sds.py make-parts-clickable build/fr --language fr
+	python3 code/sds.py make-parts-clickable $(SDSDIR)/fr --language fr
 	@echo "Step 15: Building Spanish HTML..."
-	$(SPHINXBUILD) -b html tmpsource/es build/es
+	$(SPHINXBUILD) -b html tmpsource/es $(SDSDIR)/es
 	@echo "Step 16: Applying Spanish cross-reference improvements..."
-	python3 code/apply_crossref_improvements.py build/es
+	python3 code/apply_crossref_improvements.py $(SDSDIR)/es
 	@echo "Step 17: Making Spanish part titles clickable and collapsible..."
-	python3 code/sds.py make-parts-clickable build/es --language es
+	python3 code/sds.py make-parts-clickable $(SDSDIR)/es --language es
 	@echo "Step 18: Copying static files..."
 	@$(MAKE) copy-static
 	@echo "Step 19: Cleaning all temporary files..."
@@ -196,6 +218,9 @@ clean-all:
 	@echo "Cleaning temporary source files..."
 	./code/clean_tmpsource.sh --force --all 2>/dev/null || true
 	@echo "All artifacts cleaned!"
+
+# Standard clean target (alias for clean-all)
+clean: clean-all
 
 # Internationalization targets for Sphinx UI elements
 # (Note: Content is already multilingual via separate source directories)
@@ -242,7 +267,7 @@ serve:
 	fi
 	@python3 code/serve.py
 
-.PHONY: help Makefile it en fr es all copy-static sync-shortener validate-shortener clean-all gettext-extract update-po compile-mo update-translations serve
+.PHONY: help Makefile it en fr es all copy-static sync-shortener validate-shortener clean clean-all gettext-extract update-po compile-mo update-translations serve
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).

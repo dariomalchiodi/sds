@@ -47,8 +47,19 @@ class CleanURLHandler(http.server.SimpleHTTPRequestHandler):
             # Remove leading slash for file system operations
             clean_path = url_path.lstrip('/')
             
-            # Try to resolve the file
-            resolved_file = self.resolve_file_path(clean_path)
+            # Check if this is a request for SDS content (production-like)
+            if clean_path.startswith('sds/') or clean_path == 'sds':
+                # Handle /sds/* requests - serve from build/sds/
+                sds_path = clean_path[4:] if clean_path.startswith('sds/') else ''
+                resolved_file = self.resolve_file_path(f"sds/{sds_path}")
+            else:
+                # Handle root requests - also serve from build/sds/ for compatibility
+                # This allows both /it/ and /sds/it/ to work during development
+                if clean_path in ['it', 'en', 'fr', 'es'] or clean_path.startswith(('it/', 'en/', 'fr/', 'es/')):
+                    resolved_file = self.resolve_file_path(f"sds/{clean_path}")
+                else:
+                    # For other paths (like index.html), serve from build root
+                    resolved_file = self.resolve_file_path(clean_path)
             
             if resolved_file:
                 # Reconstruct the path for the parent handler
@@ -160,21 +171,24 @@ def main():
             
             # List available language versions
             for lang in ['en', 'fr', 'it', 'es']:
-                lang_dir = f"build/{lang}"
+                lang_dir = f"build/sds/{lang}"
                 if os.path.exists(lang_dir):
-                    print(f"   • {lang.upper()}: http://localhost:{port}/{lang}/")
+                    print(f"   • {lang.upper()}: http://localhost:{port}/sds/{lang}/")
+                    print(f"     (also: http://localhost:{port}/{lang}/ for dev)")
             
             print()
             print("🔗 URL Shortener:")
-            print(f"   • Main: http://localhost:{port}/short.html")
-            print(f"   • Test: http://localhost:{port}/short.html?short=github")
+            print(f"   • Main: http://localhost:{port}/sds/short.html")
+            print(f"   • Test: http://localhost:{port}/sds/short.html?short=github")
             
             print()
             print("✨ Clean URL Examples:")
-            if os.path.exists("build/it/P1-PAD/presentazione.html"):
-                print(f"   • http://localhost:{port}/it/P1-PAD/presentazione")
-            if os.path.exists("build/en/home.html"):
-                print(f"   • http://localhost:{port}/en/home")
+            if os.path.exists("build/sds/it/P1-PAD/presentazione.html"):
+                print(f"   • http://localhost:{port}/sds/it/P1-PAD/presentazione")
+                print(f"   • http://localhost:{port}/it/P1-PAD/presentazione (dev)")
+            if os.path.exists("build/sds/en/home.html"):
+                print(f"   • http://localhost:{port}/sds/en/home")
+                print(f"   • http://localhost:{port}/en/home (dev)")
             
             print()
             print("🛑 Press Ctrl+C to stop the server")

@@ -87,15 +87,15 @@ comme :
 J’adresse également un avertissement à ceux qui ne savent pas programmer et
 seraient tentés de lire ce livre pour apprendre à le faire, tout en découvrant
 en même temps l’analyse de données. Ce livre __n’est pas__ un manuel pour
-apprendre à programmer, mais plutôt un livre pour apprendre _en programmant_, 
+apprendre à programmer, mais plutôt un livre pour apprendre _en programmant_,
 car il utilise la programmation comme outil pour enrichir l’apprentissage d’une
 autre matière. On dit qu’on ne comprend vraiment quelque chose que lorsqu’on
 est capable de l’expliquer à sa grand-mère[^cite-granny] : je fais mienne cette
 maxime, en espérant ne pas trop la détourner, en disant qu’on ne comprend
 vraiment un concept technique que si on est capable de l’implémenter par un
 programme. Mais pour suivre cette approche, il faut déjà savoir écrire du
-logiciel, ce qui demande du temps, de l’énergie et du matériel dédié. Là encore,
-plusieurs ouvrages peuvent être utiles, comme :
+logiciel, ce qui demande du temps, de l’énergie et du matériel dédié. Là
+encore, plusieurs ouvrages peuvent être utiles, comme :
 
 - Python 3 &mdash; Les fondamentaux du langage, de Sébastien Chazallet
   {cite:p}`chazallet`,
@@ -116,7 +116,9 @@ des étudiants non natifs anglophones.
 name: fig-whistle
 height: 100px
 ---
-Un sifflet Cap’n Crunch Bo’sun (image du Heinz Nixdorf MuseumsForum, distribuée sous licence [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/))
+Un sifflet Cap’n Crunch Bo’sun (image du Heinz Nixdorf MuseumsForum,
+distribuée sous licence
+[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/))
 ```
 ````
 

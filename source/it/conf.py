@@ -89,6 +89,7 @@ root_doc = 'landing'
 
 external_toc_path = '_toc.yml'
 external_toc_exclude_missing = False
+html_link_suffix = ''
 
 # Enable figure and table numbering within chapters
 numfig = True
@@ -160,7 +161,7 @@ html_theme_options = {
 html_context = {
     "show_code_label": "Mostra codice",
     "hide_code_label": "Nascondi codice",
-    "pyscript_wait_label": "Attendi il caricamento di PyScript"
+    "pyscript_wait_label": "Attendi il caricamento di PyScript",
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,

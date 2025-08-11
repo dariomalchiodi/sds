@@ -15,7 +15,8 @@ La première partie de ce livre présente quelques outils de base pour l'analyse
 automatisée de jeux de données de petite à moyenne taille[^big-data], à l'aide
 d'un ordinateur. Maîtriser ces outils &mdash;ainsi que la capacité à les
 appliquer efficacement dans différents contextes de data science&mdash; est
-aujourd'hui essentiel pour analyser et interpréter la grande variété de données disponibles, et les utiliser comme support à la prise de décision.
+aujourd'hui essentiel pour analyser et interpréter la grande variété de données
+disponibles, et les utiliser comme support à la prise de décision.
 
 Parmi les outils essentiels, on trouve :
 

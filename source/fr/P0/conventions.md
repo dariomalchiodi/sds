@@ -9,11 +9,6 @@ kernelspec:
   display_name: Python 3
 ---
 
-```{raw} html
-
-<script type="module" src="https://pyscript.net/releases/2025.5.1/core.js"></script>
-```
-
 (sec:conventions)=
 # Conventions
 
@@ -56,8 +51,8 @@ contenant des notions spécifiques, comme illustré ci-dessous.
 
 ```{admonition} _
 :class: naming
-Cet encadrés contient des remarques sur la terminologie utilisée dans un domaine
-particulier, ou des variantes par rapport aux expressions introduites.
+Cet encadrés contient des remarques sur la terminologie utilisée dans un
+domaine particulier, ou des variantes par rapport aux expressions introduites.
 ```
 
 ```{prf:definition}

@@ -84,7 +84,7 @@ alla diffusione tra i soldati di malattie come colera, tifo o dissenteria. È
 anche grazie a questo intervento che il sistema sanitario militare venne
 successivamente riformato. 
 
-```{figure} /sds/short/nightingale-graph
+```{figure} https://upload.wikimedia.org/wikipedia/commons/archive/1/17/20201105141904%21Nightingale-mortality.jpg
 :width: 100%
 :name: florence-nightingale
 
@@ -94,7 +94,7 @@ servizio Florence Nightingale. L'area di ogni settore rappresenta il numero di
 morti, mentre i colori indicano la causa del decesso: rosso per le ferite
 riportate in battaglia, blu per le malattie curabili e nero per altre cause.
 Immagine di pubblico dominio. Realizzata da Florence Nightingale (1858).
-Fonte: [Wikimedia Commons](/sds/short/nightingale-source).
+Fonte: [Wikimedia Commons](https://malchiodi.com/sds/short/nightingale-source).
 ```
 
 I casi di Snow e Nightingale illustrano un approccio descrittivo all'analisi

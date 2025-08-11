@@ -468,22 +468,21 @@ essere di tre tipi differenti:
 
 ```{margin}
 Quando nel nome di una tecnologia basata su python è contenuta la sillaba «py»,
-questa sillaba è normalmente pronunciata nello stesso modo della parola
-inglese «pie», cioè [ˈpī](https://www.merriam-webster.com/dictionary/pie?pronunciation&lang=en_us&dir=p&file=pie00001).
-Jupyter fa eccezione, come dichiarato dai suoi creatori[^pronuncia-jupyter],
-e si pronuncia [ˈjü-pə-tər](https://www.merriam-webster.com/dictionary/Jupiter?pronunciation&lang=en_us&dir=gg&file=ggjupi01),
+questa sillaba è normalmente pronunciata nello stesso modo della parola parola
+«pie», cioè [ˈpī](7sds/short/pie). Jupyter fa eccezione, come dichiarato dai
+suoi creatori[^pronuncia-jupyter], e si pronuncia [ˈjü-pə-tər](/sds/short/pee),
 come il nome inglese del pianeta Giove (Jupiter).
 ```
 Lo standard _de facto_ per i _notebook_ è quello introdotto dal progetto
-[Jupyter](https://jupyter.org). Esiste [una pletora di applicazioni](https://mljourney.com/jupyter-notebook-alternatives-in-2025/) che
-permettono di scrivere, leggere e soprattutto eseguire  _notebook_, e tra
-queste le più comunemente utilizzate sono quella distribuita direttamente
-dal progetto Jupyter e l'IDE flagship di Microsoft
-([Visual Studio Code](https://code.visualstudio.com)).
-Se avete installato le librerie utilizzando il file `requirements.txt` seguendo
-le istruzioni indicate nei paragrafi precedenti, nell'ambiente
-virtuale che avete creato è già disponibile Jupyter, e per lanciarlo è
-sufficiente eseguire da terminale il comando
+[Jupyter](https://jupyter.org). Esiste [una pletora di
+applicazioni](/sds/short/py-implementations) che permettono di scrivere,
+leggere e soprattutto eseguire  _notebook_, e tra queste le più comunemente
+utilizzate sono quella distribuita direttamente dal progetto Jupyter e l'IDE
+flagship di Microsoft ([Visual Studio Code](https://code.visualstudio.com)). Se
+avete installato le librerie utilizzando il file `requirements.txt` seguendo le
+istruzioni indicate nei paragrafi precedenti, nell'ambiente virtuale che avete
+creato è già disponibile Jupyter, e per lanciarlo è sufficiente eseguire da
+terminale il comando
 
 ```{margin}
 Poco più avanti trovate anche le istruzioni per visualizzare ed eseguire
@@ -503,7 +502,6 @@ un _notebook_ usando Visual Studio Code.
       .. code-block:: powershell
 
          (sds) C:> jupyter notebook
-
 ```
 
 ```{margin}
