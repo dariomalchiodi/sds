@@ -12,7 +12,7 @@ y = 2
 More text
 '''
         result = extract_python_roles(source)
-        self.assertEqual(result, ['x = 1\ny = 2'])
+        self.assertEqual(result, [('x = 1\ny = 2', None, False)])
 
     def test_myst_style_block(self):
         source = '''
@@ -23,7 +23,7 @@ def hello():
 ```
 '''
         result = extract_python_roles(source)
-        self.assertEqual(result, ['def hello():\n    print("Hello")'])
+        self.assertEqual(result, [('def hello():\n    print("Hello")', None, False)])
 
     def test_multiple_blocks(self):
         source = '''
@@ -36,7 +36,7 @@ y = 2
 ```
 '''
         result = extract_python_roles(source)
-        self.assertEqual(result, ['x = 1', 'y = 2'])
+        self.assertEqual(result, [('x = 1', None, False), ('y = 2', None, False)])
 
     def test_empty_block(self):
         source = '''
@@ -44,7 +44,7 @@ y = 2
 ```
 '''
         result = extract_python_roles(source)
-        self.assertEqual(result, [''])
+        self.assertEqual(result, [('', None, False)])
 
     def test_no_python_blocks(self):
         source = '''
@@ -62,7 +62,7 @@ plain text
     def test_inline_python_role(self):
         source = 'Some text with `x = 42`{py} inline code'
         result = extract_python_roles(source)
-        self.assertEqual(result, ['x = 42'])
+        self.assertEqual(result, [('x = 42', None, True)])
 
     def test_multiple_inline_roles(self):
         source = '''
@@ -70,7 +70,7 @@ This is `x = 1`{py} and this is `y = 2`{py}
 More text with `print("Hello")`{py}
 '''
         result = extract_python_roles(source)
-        self.assertEqual(result, ['x = 1', 'y = 2', 'print("Hello")'])
+        self.assertEqual(result, [('x = 1', None, True), ('y = 2', None, True), ('print("Hello")', None, True)])
 
     def test_mixed_blocks_and_roles(self):
         source = '''
@@ -83,7 +83,7 @@ z = 3
 And another inline role `print(x)`{py}
 '''
         result = extract_python_roles(source)
-        self.assertEqual(result, ['x = 1', 'y = 2\nz = 3', 'print(x)'])
+        self.assertEqual(result, [('x = 1', None, True), ('y = 2\nz = 3', None, False), ('print(x)', None, True)])
 
 if __name__ == '__main__':
     unittest.main()

@@ -5,7 +5,7 @@ import os
 # Add the code directory to the path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'code'))
 
-from sds import _extract_imports, process_myst_document
+from code.sds import process_myst_document, _extract_imports
 
 class TestPyConfigGeneration(unittest.TestCase):
     
@@ -46,7 +46,7 @@ from pandas.core.frame import DataFrame
         self.assertEqual(imports, expected)
     
     def test_process_myst_document_with_pyconfig(self):
-        """Test that py-config is generated when imports are present."""
+        """Test that micropip installation is generated when imports are present."""
         myst_content = '''# Test Document
 
 ```python
@@ -65,22 +65,23 @@ plt.plot([1, 2, 3])
         
         result = process_myst_document(myst_content, include_setup=True)
         
-        # Check that py-config tag is present
-        self.assertIn('<py-config', result)
-        self.assertIn('"packages":', result)
+        # Current implementation uses micropip for dynamic package installation
+        # instead of py-config static configuration
+        self.assertIn('micropip.install("altair")', result)
         
-        # Check that the expected packages are included
-        self.assertIn('"matplotlib"', result)
-        self.assertIn('"numpy"', result)
-        self.assertIn('"pandas"', result)
+        # Check that PyScript setup is present
+        self.assertIn('<py-script>', result)
+        self.assertIn('import micropip', result)
         
-        # Check that py-config comes before py-script tags
-        py_config_pos = result.find('<py-config')
-        py_script_pos = result.find('<py-script>')
-        self.assertLess(py_config_pos, py_script_pos)
+        # Should include matplotlib setup
+        self.assertIn('import matplotlib', result)
+        
+        # Verify that the document is processed correctly with Python blocks
+        self.assertIn('```python', result)
+        self.assertIn('</py-script>', result)
     
     def test_process_myst_document_no_imports(self):
-        """Test that no py-config is generated when there are no imports."""
+        """Test PyScript setup when there are no custom imports."""
         myst_content = '''# Test Document
 
 ```python
@@ -91,11 +92,17 @@ y = x * 2
         
         result = process_myst_document(myst_content, include_setup=True)
         
-        # Check that py-config tag is not present
-        self.assertNotIn('<py-config', result)
+        # Standard libraries are always included in PyScript setup
+        self.assertIn('micropip.install("altair")', result)
+        self.assertIn('import pandas as pd', result)
+        self.assertIn('import matplotlib', result)
         
-        # But py-script should still be present
+        # PyScript should be present
         self.assertIn('<py-script>', result)
+        
+        # Should include the Python code block
+        self.assertIn('x = 5', result)
+        self.assertIn('y = x * 2', result)
 
 if __name__ == '__main__':
     unittest.main()

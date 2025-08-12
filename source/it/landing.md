@@ -8,10 +8,10 @@
 
 Questo libro rappresenta un progetto in corso, attualmente in una fase
 preliminare. Il materiale è generato utilizzando
-[Sphinx](https://www.sphinx-doc.org/en/master/) per la generazione delle
-pagine web, [MyST](https://mystmd.org/) (una tecnologia in corso di sviluppo
-all'interno del progetto
-[Executable Books](https://github.com/executablebooks)) per descrivere i
+[Sphinx](https://www.sphinx-doc.org/en/master/){.external} per la generazione
+delle pagine web, [MyST](https://mystmd.org/){.external} (una tecnologia in
+corso di sviluppo all'interno del progetto [Executable
+Books](https://github.com/executablebooks)){.external} per descrivere i
 contenuti e del software che ho sviluppato ad hoc per implementare alcuni
 aspetti importanti legati alla scrittura di un libro, come la personalizzazione
 dei riferimenti incrociati, l'esecuzione automatica del codice o le componenti

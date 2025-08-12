@@ -12,11 +12,11 @@ kernelspec:
 (sec:imparare-e-programmare)=
 # Imparare <span class="ast">\*</span>e<span class="ast">\*</span> programmare
 
-Come descritto nel paragrafo precedente, introdurrò i concetti affiancandoli
-(o facendoli precedere) da esempi. Dove possibile, mostrerò anche delle
+Come descritto nel paragrafo precedente, introdurrò i concetti affiancandoli (o
+facendoli precedere) da esempi. Dove possibile, mostrerò anche delle
 _implementazioni_ utilizzando un linguaggio relativamente moderno: in
-particolare, farò riferimento a [Python](https://www.python.org) e al
-relativo _data science stack_, costituito dai package che sono ampiamente
+particolare, farò riferimento a [Python](https://www.python.org){.external} e
+al relativo _data science stack_, costituito dai package che sono ampiamente
 utilizzati, al tempo in cui scrivo, dalla comunità open source che fa
 riferimento all'analisi dei dati[^librerie]. È quindi altamente consigliata una
 competenza di base nella programmazione degli elaboratori.
@@ -35,37 +35,34 @@ comunque consigliata a tutti, al fine di familiarizzare con le convenzioni che
 utilizzo per scrivere codice.
 
 Questo libro è scritto utilizzando una tecnologia che permette di inserire dei
-contenuti generati tramite l'esecuzione di codice python. Questo codice è
-nascosto quando serve a produrre per esempio tabelle o grafici, mentre è
-esplicitamente mostrato in tutti i casi nei quali chi legge viene guidato
-nell'implementazione di uno o più concetti spiegati nel testo. In ogni caso,
-l'intero codice sorgente che ho scritto per produrre il libro è scaricabile sia
-dal [repository](https://github.com/dariomalchiodi/sds) associato, sia
-cliccando l'icona ![download icon](../../_static/img/download.svg) a inizio
-pagina. Va notato che, in entrambi i casi, quello che viene scaricato sono dei
-file che alternano il codice Markdown che specifica i contenuti testuali con il
-codice python, ed è quindi necessario separare quest'ultimo per poterlo
-eseguire. Nonostante questo modo di procedere sia un po' macchinoso, incoraggio
-tutti a usufruire di questa opportunità, non limitandosi a leggere passivamente
-il testo, e nemmeno a eseguire il codice in modo pedissequo, ma ad analizzarlo,
-comprenderlo, modificarlo (valgono anche le modifiche che permettono di capire
-meglio il codice!)&mdash;insomma, _giocarci_ in un'ottica _hacker_, nel senso
-originale del termine[^hacker]. In realtà è anche possibile giocare con il
-libro senza necessariamente dover comprendere il codice ed eseguirlo: come
-mostrato nel Paragrafo [Uno sguardo d'insieme](uno-sguardo-di-insieme), una
-parte dei contenuti è interattiva, e la sua manipolazione è pensata proprio per
+contenuti generati tramite l'esecuzione di codice python. Questo codice viene
+mostrato esplicitamente ogni volta che il lettore viene guidato
+nell’implementazione di uno o più concetti. Quando invece serve solo a produrre
+elementi come tabelle o grafici, il codice viene mostrato, ma un link «Mostra
+codice» consente al lettore di attivare o disattivare la visibilità del codice
+nascosto. Invito tutti a sfruttare questa possibilità: così come leggere
+passivamente un testo ha poco senso, eseguire questo codice senza riflettere è
+inutile; al contrario, è importante analizzarlo, comprenderlo e modificarlo
+(valgono anche le modifiche che permettono di capire meglio il
+codice!)&mdash;insomma, _giocarci_ in un'ottica _hacker_, nel senso originale
+del termine[^hacker]. In realtà è anche possibile giocare con il libro senza
+necessariamente dover comprendere il codice ed eseguirlo: come mostrato nel
+Paragrafo [Uno sguardo d'insieme](uno-sguardo-di-insieme), una parte dei
+contenuti è interattiva, e la sua manipolazione è pensata proprio per
 facilitare la comprensione dei concetti introdotti.
 ```{margin}
-Il libro è stato generato utilizzando [MyST](https://mystmd.org/), che
-comprende sia una variante del formato testuale <wiki:Markdown>, sia il sofware
-che permette di tradurre il codice corrispondente nelle pagine HTML che
-state leggendo.
+Il libro è stato generato utilizzando [MyST](https://mystmd.org/){.external},
+che comprende sia una variante del formato testuale
+[Markdown](https://en.wikipedia.org/wiki/Markdown){.external}, sia il sofware
+che permette di tradurre il codice corrispondente nelle pagine HTML che state
+leggendo.
 
 L'utilizzo delle componenti interattive è basato su alcune tecnologie (in
-particolare, [JupyterLite](https://github.com/jupyterlite/jupyterlite))
-che sono al momento ancora in una fase preliminare di sviluppo, ma che hanno
-il grande vantaggio di non richiedere alcuna installazione manuale. D'altro
-canto, è spesso necessario armarsi di pazienza e assicurarsi di utilizzare uno
+particolare,
+[JupyterLite](https://github.com/jupyterlite/jupyterlite){.external}) che sono
+al momento ancora in una fase preliminare di sviluppo, ma che hanno il grande
+vantaggio di non richiedere alcuna installazione manuale. D'altro canto, è
+spesso necessario armarsi di pazienza e assicurarsi di utilizzare uno
 dei browser web supportati.
 ```
 
@@ -113,8 +110,8 @@ tempo, energia e del materiale dedicato all'apprendimento della materia.
 Anche in questo caso, ci sono parecchi libri che possono essere utilizzati
 con profitto, per esempio:
 
-- [Pensare in Python](/short/thinkpython-it), di Allen B. Downey
-  {cite:p}`downey`.
+- <a href="/sds/short/thinkpython-it" target="_blank">Pensare in Python</a>, di
+  Allen B. Downey {cite:p}`downey`,
 - Programmazione in C, di Kim N. King {cite:p}`king`,
 - Programmare in Go, di Ivo Balbaert {cite:p}`balbaert`.
 
@@ -134,38 +131,38 @@ concepita per studenti di madre lingua non inglese.
 name: fig-whistle
 height: 100px
 ---
-Un fischietto Cap’n Crunch Bo’sun (immagine del Heinz Nixdorf
-MuseumsForum, distribuita sotto licenza
-[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/))
+Un fischietto Cap’n Crunch Bo’sun (immagine del Heinz Nixdorf MuseumsForum,
+distribuita sotto licenza [CC BY-NC-SA
+4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)){.external}
 ```
 ````
 
-[^librerie]: Il repository associato a questo libro contiene un
-[file](https://github.com/dariomalchiodi/sds/blob/main/requirements.in)
-che elenca tutte le librerie utilizzate per generare i contenuti, incluse
-quelle necessarie per eseguire il codice.
+[^librerie]: Il [repository](https://github.com/dariomalchiodi/sds/){.external}
+associato a questo libro contiene un file che elenca tutte le librerie
+utilizzate per generare i contenuti, incluse quelle necessarie per eseguire il
+codice.
 
 [^hacker]: Il termine _hacker_ viene oggigiorno utilizzato nel linguaggio
 comune dandogli un'accezione negativa, che essenzialmente lo accomuna a chi
 persegue intenti dolosi scrivendo o modifcando _software_, o in generale
 sfruttando delle falle di sicurezza al fine di utilizzare in modo improprio
 delle tecnologie informatiche esistenti. In realtà, l'uso di questo termine
-nell'inglese moderno viene fatto risalire intorno al 1960, conferendogli
-però una connotazione più neutra, e non direttamente collegata all'informatica:
+nell'inglese moderno viene fatto risalire intorno al 1960, conferendogli però
+una connotazione più neutra, e non direttamente collegata all'informatica:
 quella di indicare una persona con il talento di comprendere in profondità il
 funzionamento di un sistema, e dunque di essere in grado di controllarlo al
 punto di poterlo utilizzare in modo diverso rispetto agli scopi per cui il
 sistema era stato progettato. Giusto per citare un esempio, uno dei primi
-_hack_ famosi&mdash;peraltro illegale&mdash;riguardava l'uso del
-«Cap’n Crunch Bo’sun Whistle» (un fischietto che si trovava in regalo nelle
-scatole di una famosa marca di cereali, mostrato in @fig-whistle) per fare
-telefonate interurbane o internazionali gratuite con alcuni telefoni pubblici
-negli Stati Uniti. Uno degli ambienti nei quali la controcultura hacker ha
-iniziato a svilupparsi è quello del Massachusetts Institute of Technology
-(MIT): la prima traccia scritta del termine «hacking» fa riferimento al verbale
-di una riunione del 1955 del [Tech Model Railroad Club](http://tmrc.mit.edu/),
-che riuniva studenti appassionati di modellismo ferroviario. Solo più
-recentemente è avvenuta un'identificazione rispetto al mondo informatico.
+_hack_ famosi&mdash;peraltro illegale&mdash;riguardava l'uso del «Cap’n Crunch
+Bo’sun Whistle» (un fischietto che si trovava in regalo nelle scatole di una
+famosa marca di cereali, mostrato in @fig-whistle) per fare telefonate
+interurbane o internazionali gratuite con alcuni telefoni pubblici negli Stati
+Uniti. Uno degli ambienti nei quali la controcultura hacker ha iniziato a
+svilupparsi è quello del Massachusetts Institute of Technology (MIT): la prima
+traccia scritta del termine «hacking» fa riferimento al verbale di una riunione
+del 1955 del [Tech Model Railroad Club](http://tmrc.mit.edu/){.external}, che
+riuniva studenti appassionati di modellismo ferroviario. Solo più recentemente
+è avvenuta un'identificazione rispetto al mondo informatico.
 
 [^cite-granny]: Risulta complicato risalire all'autore di questa massima:
 c'è chi la attribuisce ad Einstein, chi a Feynmann e chi a Rutherford (pare

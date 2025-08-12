@@ -13,14 +13,14 @@ kernelspec:
 # Uno sguardo di insieme
 
 Lo scopo di questo capitolo è duplice: da una parte, serve a descrivere per
-sommi capi il filo logico che è dietro all'organizzazione dei contenuti e
-a introdurre, in modo relativamente informale, i concetti cardine; dall'altra,
+sommi capi il filo logico che è dietro all'organizzazione dei contenuti e a
+introdurre, in modo relativamente informale, i concetti cardine; dall'altra,
 spiega come utilizzare le componenti interattive del libro. Come indicato nel
 {ref}`chap:approccio`, nel testo farò riferimento a un _dataset_ ottenuto
-modificando un opportuno sottoinsieme del
-[Superhero database](http://www.superherodb.com). Gli esempi faranno quindi
-riferimento al mondo dei supereroi, ognuno dei quali sarà descritto tramite
-gli _attributi_ indicati nella {numref}`tab:dataset`.
+modificando un opportuno sottoinsieme del [Superhero
+database](http://www.superherodb.com){.external}. Gli esempi faranno quindi
+riferimento al mondo dei supereroi, ognuno dei quali sarà descritto tramite gli
+_attributi_ indicati nella {numref}`tab:dataset`.
 
 ```{margin}
 Ho scelto di utilizzare la lingua inglese per indicare i nomi degli attributi
@@ -61,18 +61,17 @@ la scritta `Please wait, loading PyScript... Lo stesso vale per
 tutti i punti nei quali il browser deve eseguire del codice Python.
 ```
 Il _dataset_ è memorizzato nel file `heroes.csv` contenuto nella directory
-`data` del [repository](https://github.com/dariomalchiodi/sds) associato al
-libro. Nel codice interattivo, il file è accessibile come `data/heroes.csv`.
-In questo file, i contenuti sono rappresentati utilizzando il formato
-CSV (_comma separated values_), uno degli standard impiegati per condividere
-dati di dimensioni relativamente contenute: ogni riga rappresenta un supereroe,
-e in essa i valori degli attributi nella {numref}`tab:dataset` sono
-indicati separandoli tramite virgole. L'unica eccezione è costituita dalla
+`data` del [repository](https://github.com/dariomalchiodi/sds){.external}
+associato al libro. Nel codice interattivo, il file è accessibile come
+`data/heroes.csv`. In questo file, i contenuti sono rappresentati utilizzando
+il formato CSV (_comma separated values_), uno degli standard impiegati per
+condividere dati di dimensioni relativamente contenute: ogni riga rappresenta
+un supereroe, e in essa i valori degli attributi nella {numref}`tab:dataset`
+sono indicati separandoli tramite virgole. L'unica eccezione è costituita dalla
 prima riga del file, che contiene i nomi degli attributi, sempre separati
 usando le virgole, come si può vedere visualizzando la parte iniziale del file
-stesso.
-Qui sotto potete vedere la descrizione di alcuni degli attributi per dieci
-supereroi del _dataset_ considerati a caso.
+stesso. Qui sotto potete vedere la descrizione di alcuni degli attributi per
+dieci supereroi del _dataset_ considerati a caso.
 
 ```{code-block} python
 :class: toggle-code
@@ -110,13 +109,13 @@ in un punto qualsiasi al di fuori di essa viene ripristinato il grafico
 originale.
 ```{margin}
 Il grafico qui accanto è stato realizzato utilizzando
-[altair](https://altair-viz.github.io/), una libreria che permette di
-utilizzare Python per visualizzare grafici complessi all'interno di pagine web,
-in una forma interattiva che è automaticamente attivata nel momento in cui una
-pagina viene caricata. Per riconoscere se un grafico è stato generato tramite
-altair, è sufficiente controllare se in alto a destra è presente un pulsante
-rotondo che contiene tre punti. Questo pulsante attiva un menu che permette,
-tra le altre cose, di scaricare il grafico.
+[altair](https://altair-viz.github.io/){.external}, una libreria che permette
+di utilizzare Python per visualizzare grafici complessi all'interno di pagine
+web, in una forma interattiva che è automaticamente attivata nel momento in cui
+una pagina viene caricata. Per riconoscere se un grafico è stato generato
+tramite altair, è sufficiente controllare se in alto a destra è presente un
+pulsante rotondo che contiene tre punti. Questo pulsante attiva un menu che
+permette, tra le altre cose, di scaricare il grafico.
 ```
 
 ```{code-block} python
@@ -648,12 +647,12 @@ di risoluzione è indicata dal numero di pallini racchuso tra parentesi.
 
 ```{exercise} •
 Scaricate il _dataset_ dei supereroi dal
-[repository](https://github.com/dariomalchiodi/sds) del libro e importatelo in
-un qualsiasi programma che gestisce fogli elettronici (tutti quelli più diffusi
-hanno la capacità di importare file CSV), in modo che ogni colonna contenga
-un diverso attributo. Focalizzatevi, diciamo, sulle prime trenta righe e
-considerate separatamente le varie colonne, al fine di farvi un'idea di come
-varino i valori associati ai singoli attributi.
+[repository](https://github.com/dariomalchiodi/sds){.external} del libro e
+importatelo in un qualsiasi programma che gestisce fogli elettronici (tutti
+quelli più diffusi hanno la capacità di importare file CSV), in modo che ogni
+colonna contenga un diverso attributo. Focalizzatevi, diciamo, sulle prime
+trenta righe e considerate separatamente le varie colonne, al fine di farvi
+un'idea di come varino i valori associati ai singoli attributi.
 ```
 
 ```{margin}

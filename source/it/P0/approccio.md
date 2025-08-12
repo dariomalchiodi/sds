@@ -54,21 +54,20 @@ di calcolo delle probabilità e di statistica, non posso escludere di
 avere fatto errori in generale, anche se in questo caso sono confidente di non
 averne fatti troppi.
 
-Il lavoro di scrittura è comunuque _in progress_, e
-verosimilmente lo sarà ancora per parecchio tempo: segnalatemi refusi ed
-errori, e più in generale esempi e materiale che pensate possano arricchire
-quanto ho scritto, tenendo presente che immagini, dati e così via possono
-essere pubblicati solo se sono coerenti con la licenza _Creative Commons
-Attribution-NonCommercial-ShareAlike 4.0 International_
-([CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en))
-con la quale è distribuito questo libro.
-Il modo più pratico per inviarmi queste segnalazioni è quello
-di sottoporre _issue_ (per segnalare errori o suggerire miglioramenti)
-o _pull request_ (per proporre modifiche ai contenuti) al
-[repository](https://github.com/dariomalchiodi/sds) nel quale ho
-organizzato i contenuti di questo libro. Ciò richiede
-familiarità con [git](https://www.git-scm.org), lo strumento di _source
-control management_ che utilizzo per i miei progetti _software_.
+Il lavoro di scrittura è comunuque _in progress_, e verosimilmente lo sarà
+ancora per parecchio tempo: segnalatemi refusi ed errori, e più in generale
+esempi e materiale che pensate possano arricchire quanto ho scritto, tenendo
+presente che immagini, dati e così via possono essere pubblicati solo se sono
+coerenti con la licenza _Creative Commons Attribution-NonCommercial-ShareAlike
+4.0 International_ ([CC BY-NC-SA
+4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)){.external} con
+la quale è distribuito questo libro. Il modo più pratico per inviarmi queste
+segnalazioni è quello di sottoporre _issue_ (per segnalare errori o suggerire
+miglioramenti) o _pull request_ (per proporre modifiche ai contenuti) al
+[repository](https://github.com/dariomalchiodi/sds){.external} nel quale ho
+organizzato i contenuti di questo libro. Ciò richiede familiarità con
+[git](https://www.git-scm.org){.external}, lo strumento di _source control
+management_ che utilizzo per i miei progetti _software_.
 
 
 [^note]: Userò le note a margine per dei commenti che ritengo importanti

@@ -9,12 +9,6 @@ kernelspec:
   display_name: Python 3
 ---
 
-```{raw} html
-
-<script type="module" src="https://pyscript.net/releases/2025.5.1/core.js"></script>
-```
-
-
 (sec:convenzioni)=
 # Convenzioni
 

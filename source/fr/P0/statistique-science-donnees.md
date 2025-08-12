@@ -95,7 +95,7 @@ La surface de chaque secteur représente le nombre de morts, et les couleurs
 indiquent la cause : rouge pour les blessures de guerre, bleu pour les maladies
 évitables, et noir pour les autres causes. Image du domaine public. Réalisée
 par Florence Nightingale (1858). Source :
-[Wikimedia Commons](https://malchiodi.com/sds/short/nightingale-source).
+<a href="/sds/short/nightingale-source" target="_blank">Wikimedia commons</a>.
 ```
 
 Les cas de Snow et de Nightingale illustrent une approche descriptive de

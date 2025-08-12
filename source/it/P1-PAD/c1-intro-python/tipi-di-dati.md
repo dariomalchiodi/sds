@@ -208,9 +208,10 @@ Rispettare la sintassi è obbligatorio, ma è anche buona pratica seguire nel
 modo più coerente possibile delle _regole di stile_, che tra le altre cose
 prevedono delle convenzioni specifiche su come debbano essere formati gli
 identificatori. Non esiste però uno standard unico: io farò riferimento alla
-[Style Guide for Python Code](https://www.python.org/dev/peps/pep-0008/), che
-contiene anche un paragrafo
-[Naming conventions](https://peps.python.org/pep-0008/#naming-conventions).
+[Style Guide for Python
+Code](https://www.python.org/dev/peps/pep-0008/){.external}, che contiene anche
+un paragrafo [Naming
+conventions](https://peps.python.org/pep-0008/#naming-conventions){.external}.
 Per variabili (di istanza e non), funzioni e metodi, queste regole di stile
 prevedono il cosiddetto _snake case_: si usano unicamente i caratteri minuscoli
 e l'_underscore_, impiegando quest'ultimo solo come separatore in un
@@ -291,8 +292,8 @@ Padroneggiare questi concetti, però, è una competenza decisamente attesa per
 ogni professionista dell'informatica, e auspicabile anche per un
 _data scientist_, ma tutto questo è ampiamente al di fuori dello scopo di
 questo libro. Per approfondire questi argomenti si può fare riferimento alla
-[specifica parte](https://docs.python.org/3/tutorial/classes.html) della
-documentazione ufficiale di Python o alla parte IV in {cite:p}`ramalho`.
+[specifica parte](https://docs.python.org/3/tutorial/classes.html){.external}
+della documentazione ufficiale di Python o alla parte IV in {cite:p}`ramalho`.
 ```
 
 (sec:tipi-semplici-e-strutturati)=
@@ -312,21 +313,21 @@ I due paragrafi che seguono descriveranno, rispettivamente, i tipi di dati
 semplici e strutturati che utilizzerò nel libro. Già solo considerando il
 linguaggio base, Python contempla svariati tipi di dati (la documentazione
 ufficiale ne riporta un
-[elenco](https://docs.python.org/3/library/datatypes.html)), ai quali vanno
-aggiunti i tipi implementati dalle librerie di terze parti. La trattazione che
-farò non è sicuramente esaustiva, e, anche se lo fosse, sarebbe lungi
-dall'essere perfetta. Da una parte, non è completa, perché vi sono classi che
-implementano tipi che non ricadono naturalmente in nessuna delle due categorie
-introdotte (come quelle che descrivono le funzioni, o gli iteratori, o concetti
-complessi che non corrispondono ad alcun tipo di dati così come lo si intende
-in senso classico); dall'altra, è opinabile associare alcuni tipi a una delle
-due categorie: per esempio, le stringhe possono essere pensate come un
-tipo semplice, ma anche annoverate tra i tipi strutturati, essendo esse
+[elenco](https://docs.python.org/3/library/datatypes.html){.external}), ai
+quali vanno aggiunti i tipi implementati dalle librerie di terze parti. La
+trattazione che farò non è sicuramente esaustiva, e, anche se lo fosse, sarebbe
+lungi dall'essere perfetta. Da una parte, non è completa, perché vi sono classi
+che implementano tipi che non ricadono naturalmente in nessuna delle due
+categorie introdotte (come quelle che descrivono le funzioni, o gli iteratori,
+o concetti complessi che non corrispondono ad alcun tipo di dati così come lo
+si intende in senso classico); dall'altra, è opinabile associare alcuni tipi a
+una delle due categorie: per esempio, le stringhe possono essere pensate come
+un tipo semplice, ma anche annoverate tra i tipi strutturati, essendo esse
 costituite da una sequenza di caratteri. Per decidere se un tipo di dato è
-semplice oppure strutturato, io mi baserò sul seguente criterio: un dato è
-di tipo strutturato se Python permette di _iterare_ nativamente sui suoi
-elementi usando l'idioma `for` (vedi Paragrafo @sec:iterare); in
-tutti gli altri casi, considererò il tipo di dato come semplice.
+semplice oppure strutturato, io mi baserò sul seguente criterio: un dato è di
+tipo strutturato se Python permette di _iterare_ nativamente sui suoi elementi
+usando l'idioma `for` (vedi {ref}`sec:iterare`); in tutti gli altri casi,
+considererò il tipo di dato come semplice.
 
 
 ## Esercizi

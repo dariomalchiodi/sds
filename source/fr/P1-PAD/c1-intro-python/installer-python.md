@@ -52,7 +52,7 @@ Il pourrait sembler que connaître la version exacte d'un langage de
 programmation suffise à en déterminer toutes les fonctionnalités, mais ce n'est
 pas tout à fait vrai. La définition d'un langage inclut sa _syntaxe_ et sa
 _sémantique_, mais la création des outils permettant d'exécuter les programmes
-correspondants &mdash;interpréteurs et compilateur [^compilateurs]&mdash; est
+correspondants &mdash; interpréteurs et compilateur [^compilateurs] &mdash; est
 une autre affaire. Ces outils peuvent être développés par des personnes
 différentes, à des moments différents, et avec des technologies diverses. Il
 existe donc plusieurs _implémentations_ d'un même langage, qui peuvent différer
@@ -411,19 +411,18 @@ _notebooks_. Le contenu de ces fichiers est organisé en _cellules_, qui peuvent
 
 ```{margin}
 Lorsque le nom d'une technologie Python contient la syllabe « py », elle se
-prononce généralement comme le mot anglais « pie » ([ˈpī](/sds/short/pie)). Jupyter
-fait exception, comme l'ont précisé ses créateurs[^pronuncer-jupyter], et se
-prononce [ˈjü-pə-tər](/sds/short/pee), comme le nom anglais de la planète Jupiter.
+prononce généralement comme le mot anglais « pie » (<a href="/sds/short/pie"
+taget="_blank">ˈpī</a>). Jupyter fait exception, comme l'ont précisé ses
+créateurs[^pronuncer-jupyter], et se prononce <a href="/sds/short/pee"
+taget="_blank">ˈjü-pə-tər</a>, comme le nom anglais de la planète Jupiter.
 ```
 
 Le standard _de facto_ des _notebook_ est celui introduit par le projet
-[Jupyter](https://jupyter.org). Il existe
-[de nombreuses applications](/sds/short/jp-alternatives)
-
-(https://mljourney.com/jupyter-notebook-alternatives-in-2025/)
-permettant de créer, lire et surtout exécuter des _notebook_. Les plus utilisées
-sont celle distribuée par le projet Jupyter et l'IDE principal de Microsoft,
-[Visual Studio Code](https://code.visualstudio.com).
+[Jupyter](https://jupyter.org). Il existe <a href="/sds/short/jp-alternatives"
+target="_blank">de nombreuses applications</a> permettant de créer, lire et
+surtout exécuter des _notebook_. Les plus utilisées sont celle distribuée par
+le projet Jupyter et l'IDE principal de Microsoft, [Visual Studio
+Code](https://code.visualstudio.com).
 
 Si vous avez installé les bibliothèques via le fichier requirements.txt selon
 les instructions des sections précédentes, Jupyter est déjà disponible dans
@@ -656,8 +655,9 @@ Ainsi, si `m1` et `m2` contiennent un élément `e`, il n'y a pas de conflit car
 on les appelle `m1.e` et `m2.e`. Cependant, écrire le nom du module à chaque
 fois peut rendre le code moins lisible. On peut alors utiliser un alias avec
 `import <module> as <alias>`. C'est ce que j'utiliserai pour
-[numpy](http://www.numpy.org), [pandas](http://pandas.pydata.org) et
-[matplotlib](http://matplotlib.org) :
+[numpy](http://www.numpy.org){.external},
+[pandas](http://pandas.pydata.org){.external} et
+[matplotlib](http://matplotlib.org){.external} :
 
 ```{margin}
 Comme dans la troisième ligne, certains modules (comme matplotlib) sont
@@ -695,7 +695,8 @@ print(uninitialized_variable)
 Une exception interrompt normalement l'exécution, mais on peut écrire du code
 qui s'exécute automatiquement lorsqu'une exception spécifique survient dans un
 bloc. Je ne détaille pas cela ici ; je vous invite à consulter la
-[documentation officielle](https://docs.python.org/3/tutorial/errors.html), qui
+[documentation
+officielle](https://docs.python.org/3/tutorial/errors.html){.external}, qui
 fournit plus de détails à ce sujet.
 
 Certaines erreurs ne peuvent pas être gérées par exceptions : par exemple, les
@@ -713,9 +714,9 @@ répertoire `__pycache__`, créé s'il n'existe pas ou est plus vieux que le
 source ; sinon, le bytecode est exécuté directement.
 [^environnement]: Il existe plusieurs solutions pour créer et gérer des
 environnements virtuels. À ce jour,
-[Anaconda](https://docs.anaconda.com/anaconda/) et
-[Miniconda](https://docs.anaconda.com/miniconda/) sont parmi les plus utilisées
-avec `venv`.
+[Anaconda](https://docs.anaconda.com/anaconda/){.external} et
+[Miniconda](https://docs.anaconda.com/miniconda/){.external} sont parmi les
+plus utilisées avec `venv`.
 [^package-manager]: Anaconda et Miniconda, cités ci-dessus, fournissent aussi
 leur propre gestionnaire de paquets, utilisable à la place de pip.
 [^nb-lang]: Les notebook ne sont pas liés à un langage spécifique. On peut y
@@ -723,11 +724,13 @@ installer un ou plusieurs _kernels_, chacun dédié à un langage. Je travailler
 surtout en Python, mais nous verrons parfois comment exécuter des commandes
 shell sans ouvrir de terminal.
 [^prononcer-jupyter]: Fernando Perez, un des créateurs de Jupyter, le prononce
-ainsi dans sa [conférence](https://www.youtube.com/watch?v=cc2hHjARNTY) à
-PLOTCON 2016.
+ainsi dans sa
+[conférence](https://www.youtube.com/watch?v=cc2hHjARNTY){.external} à PLOTCON
+2016.
 [^jupytext]: Inclure directement des notebook dans un dépôt git est
-déconseillé. On peut utiliser [jupytext](https://jupytext.readthedocs.io/) pour
-les synchroniser automatiquement avec du code Python équivalent.
+déconseillé. On peut utiliser
+[jupytext](https://jupytext.readthedocs.io/){.external} pour les synchroniser
+automatiquement avec du code Python équivalent.
 [^one-liner]: Il est possible d'écrire un `if` sur une seule ligne, mais cela
 nuit souvent à la lisibilité.
 [^bad-practice]: En principe, une fonction ne devrait pas afficher à l'écran,

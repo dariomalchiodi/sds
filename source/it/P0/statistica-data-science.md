@@ -53,7 +53,7 @@ contribuendo così a contenere l'epidemia.
 Mappa del quartiere di Soho, Londra, con indicazione del numero di contagi
 nelle singole case (i tratti orizzontali neri) durante l'epidemia di colera del
 1854.   Immagine di pubblico dominio. Realizzata da John Snow (1854).
-Fonte: [Wikimedia Commons](/sds/short/cholera-map).
+Fonte: <a href="/sds/short/cholera-map" target="blank_">Wikimedia Commons</a>.
 ```
 
 Curiosamente, anche il secondo esempio si colloca nello stesso anno. Nel 1854,
@@ -94,7 +94,8 @@ servizio Florence Nightingale. L'area di ogni settore rappresenta il numero di
 morti, mentre i colori indicano la causa del decesso: rosso per le ferite
 riportate in battaglia, blu per le malattie curabili e nero per altre cause.
 Immagine di pubblico dominio. Realizzata da Florence Nightingale (1858).
-Fonte: [Wikimedia Commons](https://malchiodi.com/sds/short/nightingale-source).
+Fonte: [Wikimedia
+Commons](https://malchiodi.com/sds/short/nightingale-source){.external}.
 ```
 
 I casi di Snow e Nightingale illustrano un approccio descrittivo all'analisi
@@ -166,10 +167,10 @@ precursori della _cartografia statistica_ furono i francesi André-Michel Guerry
 e Charles Dupin, che già nella prima metà dell'Ottocento usavano grafici per
 evidenziare differenze tra le provincie della Repubblica in aspetti come
 l'alfabetizzazione o il tasso di criminalità. Dupin fu il primo a introdurre
-quelle che oggi chiamiamo
-[mappe coropletiche](https://it.wikipedia.org/wiki/Mappa_coropletica), in cui
-le regioni di una mappa geografica vengono colorate in funzione del valore di
-un indicatore specifico.
+quelle che oggi chiamiamo [mappe
+coropletiche](https://it.wikipedia.org/wiki/Mappa_coropletica){.external}, in
+cui le regioni di una mappa geografica vengono colorate in funzione del valore
+di un indicatore specifico.
 
 [^polari]: Va notato che i diagrammi polari resi celebri da Florence
 Nightingale erano già stati introdotti nel 1829 da André-Michel Guerry (lo

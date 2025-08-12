@@ -34,25 +34,25 @@ kernelspec:
 >
 > --- The Zen of Python, by Tim Peters[^zen]
 
-Ce chapitre décrit brièvement les principaux outils permettant d'analyser
-des données de manière exploratoire en utilisant
-[Python](https://www.python.org) comme langage de programmation,
-les [notebooks](https://fr.wikipedia.org/wiki/Notebook_(programmation)) pour
-écrire et exécuter le code, ainsi que les principales bibliothèques du
-_Python data science stack_, qui seront introduites au fur et à mesure
-qu'elles se révéleront nécessaires.
+Ce chapitre décrit brièvement les principaux outils permettant d'analyser des
+données de manière exploratoire en utilisant
+[Python](https://www.python.org){.external} comme langage de programmation, les
+[notebooks](https://fr.wikipedia.org/wiki/Notebook_(programmation)){.external}
+pour écrire et exécuter le code, ainsi que les principales bibliothèques du
+_Python data science stack_, qui seront introduites au fur et à mesure qu'elles
+se révéleront nécessaires.
 ```{margin}
 Les _notebooks_ peuvent être exécutés dans divers environnements de
 développement : au moment où ce livre a été rédigé, parmi les plus répandus
-figurent [Jupyter](https://jupyter.org/) et
-[Visual Studio Code](https://code.visualstudio.com/), qui présentent aussi
+figurent [Jupyter](https://jupyter.org/){.external} et [Visual Studio
+Code](https://code.visualstudio.com/){.external}, qui présentent aussi
 l'avantage d'être gratuits, bien qu'il existe d'autres alternatives.
 ```
 
-Tous les outils mentionnés appartiennent à la catégorie
-[FLOSS](https://fr.wikipedia.org/wiki/Free/Libre_Open_Source_Software) et
-sont donc distribués sous des licences permettant, entre autres, leur usage
-libre.
+Tous les outils mentionnés appartiennent à la catégorie <a
+href="https://fr.wikipedia.org/wiki/Free/Libre_Open_Source_Software"
+target="_blank">FLOSS</a> et sont donc distribués sous des licences permettant,
+entre autres, leur usage libre.
 ```{margin}
 L'acronyme FLOSS signifie « Free/Libre Open Source Software »
 ```
@@ -69,9 +69,9 @@ ceux qui commencent l'étude de cette discipline.
 directrices pour écrire du code Python de manière à en exploiter l'élégance et
 les structures syntaxiques, plutôt que de traduire de façon littérale la
 syntaxe d'autres langages&mdash;ce qu'on appelle, en jargon, « écrire du code
-pythonique ». Ces lignes directrices, dans le domaine public, ont été
-rédigées en 1999 par Tim Peters, l'un des principaux contributeurs de Python.
-En plus d'être publiées dans une
-[section dédiée](https://peps.python.org/pep-0020/) des _Python Enhancement
+pythonique ». Ces lignes directrices, dans le domaine public, ont été rédigées
+en 1999 par Tim Peters, l'un des principaux contributeurs de Python. En plus
+d'être publiées dans une [section
+dédiée](https://peps.python.org/pep-0020/){.external} des _Python Enhancement
 Proposals_, elles s'affichent automatiquement en exécutant la ligne de code
 Python `import this`.

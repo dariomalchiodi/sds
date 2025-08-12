@@ -160,6 +160,52 @@ py-script {
   display: none;
 }
 
+/* Inline Python result styles - styled to resemble MathJax output */
+.py-inline-result {
+  /* Remove background and borders for seamless integration */
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  
+  /* Use Lora font to match body text */
+  font-family: 'Lora', serif;
+  font-size: 100%;
+  font-style: normal;
+  font-weight: normal;
+  
+  /* Subtle styling to distinguish from regular text while maintaining elegance */
+  color: var(--text-primary-color);
+  letter-spacing: 0.02em;
+  
+  /* Inline display with slight vertical alignment */
+  display: inline;
+  vertical-align: baseline;
+  
+  /* Subtle visual cue on hover to indicate it's dynamic content */
+  transition: color 0.2s ease;
+}
+
+/* Special styling for numeric results to look more mathematical */
+.py-inline-result.numeric {
+  font-variant-numeric: lining-nums;
+}
+
+/* Error state styling */
+.py-inline-result.error {
+  font-style: normal;
+  color: #d32f2f;
+  font-weight: 500;
+}
+
+.py-inline-result:hover {
+  color: var(--link-color);
+  cursor: help;
+}
+
+.py-inline-result:empty {
+  display: none;
+}
+
 
 .highlight {
   background: none;

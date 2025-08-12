@@ -11,7 +11,7 @@ class TestGeneratePyscriptSetup(unittest.TestCase):
         self.assertIn("</py-script>", result)
         
         # Should define the display function
-        self.assertIn("def display(obj, target=None):", result)
+        self.assertIn("def display(obj, target=None, append=True):", result)
         
         # Should define the Element helper class
         self.assertIn("def Element(element_id):", result)

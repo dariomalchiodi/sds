@@ -29,7 +29,7 @@ And here is some more text.
         self.assertIn('<div id="out-1" class="cell-out"></div>', result)
         self.assertIn('<div id="stdout-1" class="cell-stdout"></div>', result)
         self.assertIn('<div id="stderr-1" class="cell-stderr"></div>', result)
-        self.assertIn('<div id="graph-1" class="cell-graph"></div>', result)
+        self.assertIn('<div id="graph-1" class="cell-graph no-mathjax"></div>', result)
         
         # Should contain PyScript at the end
         self.assertIn("<py-script>", result)
@@ -64,8 +64,8 @@ a + b
         self.assertIn('<div id="out-2" class="cell-out"></div>', result)
         self.assertIn('<div id="stdout-1" class="cell-stdout"></div>', result)
         self.assertIn('<div id="stdout-2" class="cell-stdout"></div>', result)
-        self.assertIn('<div id="graph-1" class="cell-graph"></div>', result)
-        self.assertIn('<div id="graph-2" class="cell-graph"></div>', result)
+        self.assertIn('<div id="graph-1" class="cell-graph no-mathjax"></div>', result)
+        self.assertIn('<div id="graph-2" class="cell-graph no-mathjax"></div>', result)
         
         # Should have 2 PyScript blocks for the 2 code blocks (at the end)
         self.assertEqual(result.count("<py-script>"), 2)
@@ -83,13 +83,14 @@ Here is an inline role: `x = 42`{py} and some more text.
 '''
         result = process_myst_document(myst_content)
         
-        # Should contain original inline role
-        self.assertIn("`x = 42`{py}", result)
+        # Should NOT contain original inline role (it gets replaced)
+        self.assertNotIn("`x = 42`{py}", result)
         
-        # Should contain HTML block for the inline role
-        self.assertIn('<div id="out-1" class="cell-out"></div>', result)
-        self.assertIn('<div id="graph-1" class="cell-graph"></div>', result)
-        self.assertIn("    x = 42", result)
+        # Should contain inline span element for the inline role
+        self.assertIn('<span id="inline-1" class="py-inline-result">', result)
+        
+        # Should contain PyScript execution code for the inline expression
+        self.assertIn("x = 42", result)
     
     def test_no_python_blocks(self):
         myst_content = '''# Document
@@ -135,17 +136,20 @@ sum(x)
 '''
         result = process_myst_document(myst_content, include_setup=False)
         
-        # Should have 4 HTML div blocks (3 code blocks + 1 inline), but only 1 final raw HTML block for scripts
-        # Count individual div blocks, not raw HTML blocks
-        self.assertEqual(result.count('<div id="out-'), 4)
+        # Should have 3 HTML div blocks for code blocks (cells 1, 2, and 4)
+        # The inline role gets cell number 3, so the last code block is cell 4
+        self.assertEqual(result.count('<div id="out-'), 3)
         self.assertIn('<div id="out-1" class="cell-out"></div>', result)
         self.assertIn('<div id="out-2" class="cell-out"></div>', result)
-        self.assertIn('<div id="out-3" class="cell-out"></div>', result)
-        self.assertIn('<div id="out-4" class="cell-out"></div>', result)
-        self.assertIn('<div id="graph-1" class="cell-graph"></div>', result)
-        self.assertIn('<div id="graph-2" class="cell-graph"></div>', result)
-        self.assertIn('<div id="graph-3" class="cell-graph"></div>', result)
-        self.assertIn('<div id="graph-4" class="cell-graph"></div>', result)
+        self.assertIn('<div id="out-4" class="cell-out"></div>', result)  # Last code block gets cell 4
+        
+        # Should have span for inline role (cell 3)
+        self.assertIn('<span id="inline-3" class="py-inline-result">', result)
+        
+        # Should have graph divs for code blocks
+        self.assertIn('<div id="graph-1" class="cell-graph no-mathjax"></div>', result)
+        self.assertIn('<div id="graph-2" class="cell-graph no-mathjax"></div>', result)
+        self.assertIn('<div id="graph-4" class="cell-graph no-mathjax"></div>', result)
         
         # Should preserve all original content
         self.assertIn("# Mixed Document", result)
@@ -164,7 +168,7 @@ y = x * 2
         
         # Should still create HTML block
         self.assertIn('<div id="out-1" class="cell-out"></div>', result)
-        self.assertIn('<div id="graph-1" class="cell-graph"></div>', result)
+        self.assertIn('<div id="graph-1" class="cell-graph no-mathjax"></div>', result)
         
         # Should not have result assignment since no final expression
         self.assertNotIn("result = ", result)
@@ -180,12 +184,12 @@ x = 42
         
         # Should not contain the setup block
         self.assertNotIn("PyScript utilities loaded successfully", result)
-        self.assertNotIn("def display(obj, target=None):", result)
+        self.assertNotIn("def display(obj, target=None, append=True):", result)
         
         # Should still contain the Python block and its HTML
         self.assertIn("```python", result)
         self.assertIn('<div id="out-1" class="cell-out"></div>', result)
-        self.assertIn('<div id="graph-1" class="cell-graph"></div>', result)
+        self.assertIn('<div id="graph-1" class="cell-graph no-mathjax"></div>', result)
     
     def test_with_setup_enabled(self):
         myst_content = '''# Document
@@ -197,7 +201,7 @@ x = 42
         result = process_myst_document(myst_content, include_setup=True)
         
         # Should contain the setup utilities in PyScript
-        self.assertIn("def display(obj, target=None):", result)
+        self.assertIn("def display(obj, target=None, append=True):", result)
         self.assertIn("def Element(element_id):", result)
         
         # Should contain the setup and execution scripts at the end

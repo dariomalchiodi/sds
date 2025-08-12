@@ -25,6 +25,7 @@ help:
 	@echo "  clean       Remove all build artifacts and temporary files"
 	@echo "  clean-all   Remove all build artifacts and temporary files (alias for clean)"
 	@echo "  serve       Start development server with clean URL support"
+	@echo "  test        Run unit tests"
 	@echo ""
 	@echo "Internationalization targets:"
 	@echo "  gettext-extract     Extract translatable strings from Sphinx theme"
@@ -168,6 +169,9 @@ sync-shortener:
 all:
 	@$(MAKE) clean-all
 	@echo "Building all language versions..."
+	@echo "Step 0/19: Validating and generating URL shortener..."
+	@python3 code/validate-shortener.py
+	@python3 code/generate-redirect-pages.py $(SDSDIR)
 	@echo "Step 1: Processing Italian MyST files..."
 	./code/process_myst_batch.sh --clean it
 	@echo "Step 2: Processing English MyST files..."
@@ -267,7 +271,13 @@ serve:
 	fi
 	@python3 code/serve.py
 
-.PHONY: help Makefile it en fr es all copy-static sync-shortener validate-shortener clean clean-all gettext-extract update-po compile-mo update-translations serve
+# Test target - run unit tests
+test:
+	@echo "Running unit tests..."
+	@python3 -m pytest tests/ -v
+	@echo "All tests completed!"
+
+.PHONY: help Makefile it en fr es all copy-static sync-shortener validate-shortener clean clean-all gettext-extract update-po compile-mo update-translations serve test
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).

@@ -36,24 +36,24 @@ kernelspec:
 
 
 Questo capitolo descrive brevemente i principali strumenti che permettono di
-analizzare dati in modo esplorativo usando [Python](https://www.python.org)
-come linguaggio di programmazione, i
-[notebook](https://en.wikipedia.org/wiki/Notebook_interface) per scrivere ed
-eseguire il codice e le principali librerie del cosiddetto
-_Python data science stack_, che saranno introdotte via via che queste si
-riveleranno necessarie.
+analizzare dati in modo esplorativo usando
+[Python](https://www.python.org){.external} come linguaggio di programmazione,
+i [notebook](https://en.wikipedia.org/wiki/Notebook_interface){.external} per
+scrivere ed eseguire il codice e le principali librerie del cosiddetto _Python
+data science stack_, che saranno introdotte via via che queste si riveleranno
+necessarie.
 ```{margin}
 I _notebook_ possono essere eseguiti in vari ambienti di sviluppo: al
 momento in cui questo libro è stato scritto tra quelli più diffusi ci sono
-[Jupyter](https://jupyter.org/) e
-[Visual Studio Code](https://code.visualstudio.com/), che hanno anche il
-vantaggio di essere gratuiti, sebbene esistano altre alternative.
+[Jupyter](https://jupyter.org/){.external} e [Visual Studio
+Code](https://code.visualstudio.com/){.external}, che hanno anche il vantaggio
+di essere gratuiti, sebbene esistano altre alternative.
 ```
 
 Tutti gli strumenti a cui farò riferimento ricadono nella categoria del
-[FLOSS](https://it.wikipedia.org/wiki/Free_and_Open_Source_Software), e sono
-pertanto distribuiti con licenze che ne permettono, tra le altre cose, il
-libero utilizzo.
+[FLOSS](https://it.wikipedia.org/wiki/Free_and_Open_Source_Software){.external},
+e sono pertanto distribuiti con licenze che ne permettono, tra le altre cose,
+il libero utilizzo.
 ```{margin}
 L'acronimo FLOSS sta per «Free/Libre Open Source Software»
 ```
@@ -74,6 +74,6 @@ sintassi di altri linguaggi: quello che in gergo si chiama
 «scrivere codice pythonico». Queste linee guida, di pubblico dominio, sono
 state scritte nel 1999 da Tim Peters, uno dei principali contributori di
 Python. Oltre a essere pubblicate in
-un'[apposita sezione](https://peps.python.org/pep-0020/) dei
+un'[apposita sezione](https://peps.python.org/pep-0020/){.external} dei
 _Python Enhancement Proposals_, vengono automaticamente visualizzate eseguendo
 la linea di codice Python `import this`.

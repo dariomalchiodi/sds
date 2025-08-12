@@ -24,8 +24,8 @@ Tra i tipi che si possono utilizzare per esprimere delle quantità numeriche,
 `int` e `float` sono quelli più utilizzati in Python: il primo permette di
 memorizzare numeri interi, il secondo numeri decimali (quelli che comunemente
 chiamiamo «numeri con la virgola»). Come anticipato nel paragrafo precedente,
-`int` e `float` rappresentano due classi, delle quali i corrispondenti numeri
-saranno dunque gli oggetti. Siccome nella programmazione l'uso di costanti
+`int` e `float` rappresentano due classi, e i numeri corrispondenti ne
+costituiscono gli oggetti. Siccome nella programmazione l'uso di costanti
 numeriche è particolarmente frequente, Python permette di fare riferimento a
 queste costanti senza dover necessariamente creare in modo esplicito i
 corrispondenti oggetti. Come quasi in tutti i linguaggi, questo viene fatto
@@ -75,9 +75,15 @@ automaticamente tra la tradizione tradizionale e quella scientifica per
 visualizzare valori `float`, in modo da ottimizzare la leggibilità del
 risultato.
 
-Il formato adottato per memorizzare i valori decimali fa di solito
-riferimento al classico standard a virgola mobile
-[IEEE 754](https://en.wikipedia.org/wiki/IEEE_754), utilizzando $8$
+```{margin}
+Va sottolineato che `inf` e `nan` non sono letterali di tipo `float`: per
+riferirsi esplicitamente a essi si deve usare il costruttore della classe
+(`float('inf')` e `float('nan')`, rispettivamente), o utilizzare delle
+particolari librerie.
+```
+Il formato adottato per memorizzare i valori decimali fa di solito riferimento
+al classico standard a virgola mobile [IEEE
+754](https://en.wikipedia.org/wiki/IEEE_754){.external}, utilizzando $8$
 byte[^double]. Questo formato non è a precisione arbitraria: tutti i numeri che
 cadono al di fuori di un prefissato intervallo, i cui estremi corrispondono
 all'incirca a `±1.8E308`, vengono convertiti (a seconda del segno) nel `float`
@@ -88,17 +94,13 @@ vengono rappresentati come `0.0`. Infine, è previsto il valore speciale «not a
 number», che viene visualizzato come `nan` e che viene utilizzato come
 risultato per alcune operazioni aritmetiche indefinite, come calcolare il
 logaritmo di un numero negativo (notate che invece la divisione per zero causa
-l'emissione di un'eccezione), ma anche per segnalare valori mancanti in un
-_dataset_.
-```{margin}
-Va sottolineato che `inf` e `nan` non sono letterali di tipo `float`: per
-riferirsi esplicitamente a essi si deve usare il costruttore della classe
-(`float('inf')` e `float('nan')`, rispettivamente), o utilizzare delle
-particolari librerie.
-```
+l'emissione di un'eccezione), ma può anche essere impiegato per segnalare
+valori mancanti in un _dataset_.
 
 (sec:stranezze)=
 ````{admonition} Stranezze in virgola mobile
+:name: adm:stranezze
+
 La rappresentazione dei numeri decimali usando il formato in virgola mobile
 richiede spesso di effettuare delle approssimazioni. Questo fatto è ovvio
 se pensiamo per esempio ai numeri irrazionali, mentre è meno intuitivo quando
@@ -107,21 +109,6 @@ un esempio eclatante.
 
 ```python
 print(0.1 + 0.2)
-```
-
-```{raw} html
-<div id="stdout-0" class="script-stdout"></div>
-<py-script>
-import io, sys
-from pyscript import display
-
-output = io.StringIO()
-sys.stdout = output
-
-print(0.1 + 0.2)
-
-display(output.getvalue(), target="stdout-0")
-</py-script>
 ```
 
 Il risultato non è, come sarebbe logico aspettarsi, $0.3$, ma un numero
@@ -134,7 +121,7 @@ si ha infatti che
 $$(0.1)_{10} = (0.000\overline{1100})_2 \enspace,$$
 
 a significare che, a destra dell'uguale, la prima cifra binaria dopo il punto
-decimale va moltiplicata per $2^{-1}$, la seconda per $2^-2$ e così via, e
+decimale va moltiplicata per $2^{-1}$, la seconda per $2^{-2}$ e così via, e
 sommando tutti i prodotti si ottiene il numero indicato a sinistra (per il
 quale si potrebbe svolgere un processo analogo, ma l'uso della base decimale fa
 sì che il risultato sarebbe esattamente il numero indicato tra parentesi). La
@@ -145,10 +132,16 @@ formato usato per rappresentare i valori `float` memorizza la mantissa (e anche
 l'esponente) esprimendola in base $2$ e utilizzando un numero fisso di bit.
 Dunque non è possibile rappresentare $0.1$ in modo preciso. Lo stesso vale per
 gli altri due valori coinvolti nell'operazione, perché
-$(0.2)_{10} = (0.00\overline{1100})_2$ e
-$(0.3)_{10} = (0.0100\overline{1100})_2$. Se ipotizziamo per semplicità che
-vengano utilizzati $11$ bit dopo la virgola decimale, calcolando la somma
-delle approssimazioni di $0.1$ e $0.2$ nel sistema binario otteniamo
+
+$$(0.2)_{10} = (0.00 \overline{1100})_2 \enspace,$$
+
+mentre
+
+$$(0.3)_{10} = (0.0100 \overline{1100})_2 \enspace.$$
+
+Se ipotizziamo per semplicità che vengano utilizzati $11$ bit dopo la virgola
+decimale, calcolando la somma delle approssimazioni di $0.1$ e $0.2$ nel
+sistema binario otteniamo
 
     0.00011001100 +
     0.00110011001 =
@@ -170,14 +163,6 @@ In ogni caso, le stranezze non finiscono qui, perché valutando il letterale
 0.1
 ```
 
-```{raw} html
-<div id="out-1" class="script-output"></div>
-<py-script>
-
-display(0.1, target="out-1")
-</py-script>
-```
-
 e si può verificare che lo stesso accade per $0.2$ e $0.3$. Ciò è dovuto al
 fatto che la rappresentazione in virgola mobile è univoca ma non biunivoca:
 fissato un numero, la sua rappresentazione è unica, ma a partire da una
@@ -195,16 +180,9 @@ Riassumendo, quando viene valutata l'espressione `0.1 + 0.2`, nell'ordine:
   rappresentazione in virgola mobile;
 - viene visualizzato il numero decimale più corto tra tutti quelli che
   corrispondono alla rappresentazione binaria ottenuta, e questo numero non
-  è $0.3$, bensì <span id="inline-0"></span>.
+  è $0.3$, bensì {py}`0.1 + 0.2`.
 
 ````
-
-```{raw} html
-<py-script>
-
-display(0.1 + 0.2, target="inline-0")
-</py-script>
-```
 
 Il fatto che ogni letterale identifichi l'oggetto di una classe
 significa che su questi valori è possibile in teoria invocare dei metodi della
@@ -216,17 +194,9 @@ quale il metodo è stato invocato:
 3.14.as_integer_ratio()
 ```
 
-```{raw} html
-<div id="out-2" class="script-output"></div>
-<py-script>
-
-display(3.14.as_integer_ratio(), target="out-2")
-</py-script>
-```
-
 ```{margin}
 I due valori restituiti dal metodo sono aggregati insieme costruendo una
-tupla, un tipo di dati strutturato che vedremo nel Paragrafo @sec:tuple.
+tupla, un tipo di dati strutturato che vedremo nel {ref}`sec:tuple`.
 ```
 
 Per questioni di compatibilità, lo stesso metodo è presente anche in
@@ -234,14 +204,6 @@ Per questioni di compatibilità, lo stesso metodo è presente anche in
 
 ```python
 (3).as_integer_ratio()
-```
-
-```{raw} html
-<div id="out-3" class="script-output"></div>
-<py-script>
-
-display((3).as_integer_ratio(), target="out-3")
-</py-script>
 ```
 
 Nella pratica comune, però, non succede quasi mai di invocare dei metodi
@@ -263,34 +225,22 @@ destinazione come funzione di conversione. Per esempio
 int(3.14)
 ```
 
-```{raw} html
-<div id="out-4" class="script-output"></div>
-<py-script>
-display(int(3.14), target="out-4")
-</py-script>
-```
-```{margin}
-Nello stesso modo è possibile estrarre il valore numerico, intero o decimale,
-contenuto in una stringa, a patto che i suoi contenuti siano interpretabili
-in tal senso.
-```
-
-effettua una conversione da `float` a `int`, troncando all'intero più vicino
-da sinistra.
+effettua una conversione da `float` a `int`, troncando all'intero più vicino da
+sinistra. Nello stesso modo è possibile estrarre il valore numerico, intero o
+decimale, contenuto in una stringa, a patto che i suoi contenuti siano
+interpretabili in tal senso.
 
 ### Operatori per i tipi numerici
 
-A partire da riferimenti a oggetti, espressi usando variabili o letterali,
-è possibile costruire espressioni arbitrariamente complesse utilizzando degli
+A partire da riferimenti a oggetti, espressi usando variabili o letterali, è
+possibile costruire espressioni arbitrariamente complesse utilizzando degli
 _operatori_. Per operatore si intende un tipo particolare di funzione che viene
-espressa utilizzando la cosiddetta _notazione infissa_, nella quale gli
-argomenti (che in questo contesto si chiamano _operandi_) non vengono indicati
-tra parentesi, bensì specificati prima o dopo il simbolo che denota
-l'operatore/funzione. L'uso degli operatori permette di scrivere delle
-espressioni in modo più succinto e più leggibile rispetto a quello che si
-otterrebbe utilizzando delle funzioni, perché si rifà alla notazione
-aritmetica. La @elenco-operatori-per-tipi-numerici elenca i principali
-operatori che si possono applicare a valori numerici.
+espressa utilizzando la _notazione infissa_, nella quale gli argomenti (che in
+questo contesto si chiamano _operandi_) non vengono indicati tra parentesi,
+bensì specificati prima o dopo il simbolo che denota l'operatore/funzione.
+L'uso degli operatori permette di scrivere delle espressioni in modo più
+succinto e più leggibile rispetto a quello che si otterrebbe utilizzando delle
+funzioni, perché si rifà alla notazione aritmetica.
 
 ```{table} Elenco dei principali operatori per i tipi numerici
 :name: elenco-operatori-per-tipi-numerici
@@ -306,8 +256,9 @@ operatori che si possono applicare a valori numerici.
 | elevamento a potenza         | `**`      |
 ```
 
-Per quanto riguarda gli operatori elencati in
-@elenco-operatori-per-tipi-numerici è importante formulare alcune osservazioni.
+La {numref}`elenco-operatori-per-tipi-numerici` elenca i principali operatori
+che si possono applicare a valori numerici, per i quali è importante formulare
+alcune osservazioni.
 
 ```{margin}
 Vedremo più avanti che esiste anche uno speciale operatore _ternario_.
@@ -330,7 +281,7 @@ Vedremo più avanti che esiste anche uno speciale operatore _ternario_.
   sola promozione possibile è quindi quella da `int` a `float`.
 - La divisione decimale `a / b` restituisce il valore `float` che moltiplicato
   per il divisore `b` diventa uguale al dividendo `a`. Va notato che il
-  risultato è un `float` anche quando gli operandi sono entrambi interi, e il
+  risultato è un `float` anche quando gli operandi sono entrambi interi e il
   dividendo è un multiplo del divisore.
 - La divisione troncata `a // b` restituisce il più grande valore intero che
   è minore o uguale ad `a / b`. Se gli operandi hanno lo stesso segno, il
@@ -343,13 +294,13 @@ Vedremo più avanti che esiste anche uno speciale operatore _ternario_.
   interi, altrimenti viene restituito un valore `float` (che però è sempre
   equivalente a un intero, nel senso che la sua parte decimale è nulla).
 - L'operatore `%` denota l'operazione di modulo, definita nel modo seguente: il
-  modulo tra due valori $a$ e $b$, è il valore $r \in \mathbb N$ compreso tra
+  modulo tra due valori $a$ e $b$ è il valore $r \in \mathbb N$ compreso tra
   zero e $b$ tale   che $a = b \cdot q + r$, dove $q$ è il valore della divisone
   troncata tra $a$ e $b$. Se `a` e `b` sono entrambi positivi, allora `a % b`
   equivale al resto della divisione intera tra `a` e `b`, altrimenti il
   risultato va calcolato con attenzione. Riprendendo l'esempio del punto
   precedente, `-10 % 3` è uguale a $2$, mentre `10 % -3` è uguale a $-2$. Anche
-  in questo caso, l'operatore restituisce un intero quando lo sono anche i sue
+  in questo caso, l'operatore restituisce un intero quando lo sono anche gli
   operandi coinvolti, altrimenti restituisce un valore `float` con parte
   decimale nulla.
 - L'elevamento a potenza accetta operandi sia interi che decimali, e
@@ -357,20 +308,20 @@ Vedremo più avanti che esiste anche uno speciale operatore _ternario_.
   - un valore intero se sia la base che l'esponente sono `int`,
   - un valore decimale se la base o l'esponente sono `float` e la base è
     positiva,
-  - un valore complesso (vedi Paragrafo @sec:altri-tipi) se la base è negativa e
-    non intera.
+  - un valore complesso (vedi Paragrafo {ref}`sec:altri-tipi`) se la base è
+    negativa e non intera.
 
+```{margin}
+A differenza di altri linguaggi, non esistono invece in Python gli operatori
+unari di _autoincremento_ e _autodecremento_.
+```
 Va inoltre rimarcato che a ognuna delle operazioni in
-@elenco-operatori-per-tipi-numerici è associata una specifica variante
+{numref}`elenco-operatori-per-tipi-numerici` è associata una specifica variante
 dell'operatore di assegnamento, espressa aggiungendo il carattere `=` a destra
 del simbolo dell'operazione. La loro semantica è la seguente: dapprima viene
 applicata l'operazione ai due operandi, e il risultato viene assegnato alla
 variabile che compare a sinistra dell'assegnamento. Pertanto `a += 1` equivale
 ad `a = a + 1`, `b %= 2` a `b = b % 2`, `c **= 3` a `c = c ** 3` e così via.
-```{margin}
-A differenza di altri linguaggi, non esistono invece in Python gli operatori
-unari di _autoincremento_ e _autodecremento_.
-```
  
 ## Il tipo booleano
 
@@ -380,23 +331,24 @@ corrispondono i letterali `True` e `False`. Tecnicamente, `True` e `False` sono
 l'equivalente di due costanti i cui valori sono rispettivamente `1` e `0`, come
 si può facilmente verificare per esempio sommando `True` a sé stesso. In altre
 parole, `bool` è un _sottotipo_ di `int`, ed è possibile usare operandi di tipo
-booleano per tutti gli operatori della @elenco-operatori-per-tipi-numerici.
+booleano per tutti gli operatori della
+{numref}`elenco-operatori-per-tipi-numerici`.
 
 È possibile convertire qualsiasi oggetto in un valore di verità: questo si può
 fare esplicitamente passando per il costruttore `bool`, o implicitamente in
 tutti i punti nei quali è richiesto di specificare un valore booleano, come
-per esempio all'interno di un'operazione di selezione (vedi il Paragrafo
-[Strutture di controllo](strutture-di-controllo)). Diventano `False` i
-letterali `False` (ovviamente) e `None` (vedi il Paragrafo @sec:none), i valori
+per esempio all'interno di un'operazione di selezione (vedi il
+{ref}`sec:strutture-di-controllo`). Diventano `False` i
+letterali `False` (ovviamente) e `None` (vedi il {ref}`sec:none`), i valori
 nulli dei tipi numerici (l'intero `0`, il valore decimale `0.0`, ma anche i
 loro equivalenti per gli altri tipi numerici di Python) e, in generale, tutti
 gli oggetti che si possono pensare come «vuoti» perché non contengono alcunché,
-come la stringa vuota o la lista vuota (vedi i Paragrafi @sec:stringhe e
-[Dati strutturati](dati-strutturati)).
+come la stringa vuota o la lista vuota (vedi i {ref}`sec:stringhe` e
+{ref}`sec:dati-strutturati`).
 
 ### Operatori logici
-La @elenco-operatori-logici illustra i principali operatori associati ai
-valori booleani. I primi sette accettano operandi di tipo differente e
+La {numref}`elenco-operatori-logici` illustra i principali operatori associati
+ai valori booleani. I primi sette accettano operandi di tipo differente e
 restituiscono un valore `bool`: in particolare, la differenza e gli operatori
 di confronto ordinale hanno una sintassi intuitiva, che è identica a quella di
 molti linguaggi di programmazione moderni. Gli ultimi tre operatori
@@ -413,7 +365,7 @@ Rimangono invece invariati i simboli `&` e `|` per riferirsi agli operatori
 di congiunzione e disgiunzione che vengono applicati alle singole componenti
 dei loro operandi, per esempio su ogni bit in un intero o «componente per
 componente» in una struttura dati, come un _array_. A questi si aggiunge
-l'operatore unario `~` per l'analoga negazione. Nel Capitolo [Pandas](pandas)
+l'operatore unario `~` per l'analoga negazione. Nel {ref}`chap:pandas`
 vedremo che, in alcune situazioni, questi operatori risultano particolarmente
 utili da utilizzare per elaborare un _dataset_.
 ```
@@ -442,22 +394,14 @@ compatibili. Negli altri casi, viene lanciata un'eccezione `TypeError`.
 ```
 
 L'uguaglianza tra due operandi può essere valutata in due modi differenti:
-per contenuto e per identità. L'uguaglianza per contenuto, che corrisponde
+per contenuto e per riferimento. L'uguaglianza per contenuto, che corrisponde
 all'operatore `==`, coinvolge un confronto tra i valori di due operandi,
 mentre `is` restituisce `True` solo quando i riferimenti indicati come operandi
 puntano al medesimo oggetto. Per esempio, nel codice seguente
 
 ```python
-a = 2.71
-b = 2.71
-```
-
-```{raw} html
-<div id="out-5" class="script-output" style="display: none;"></div>
-<py-script>
-a = 2.71
-b = 2.71
-</py-script>
+a = int("10_000")
+b = int("10_000")
 ```
 
 il valore `2.71` rappresenta un letterale di tipo `float`, e per ognuna delle
@@ -470,18 +414,6 @@ daranno risultati diversi:
 ```python
 print('Il confronto per riferimento vale', a is b)
 print('Il confronto per valore vale', a == b)
-```
-```{raw} html
-<div id="stdout-6" class="script-stdout"></div>
-<py-script>
-output = io.StringIO()
-sys.stdout = output
-
-print('Il confronto per riferimento vale', a is b)
-print('Il confronto per valore vale', a == b)
-
-display(output.getvalue(), target="stdout-6")
-</py-script>
 ```
 
 In generale, ogni volta che viene invocato un costruttore viene dunque creato
@@ -514,25 +446,6 @@ a = 257
 b = 257
 print(a is b)
 ```
-```{raw} html
-<div id="stdout-7" class="script-stdout"></div>
-<py-script>
-output = io.StringIO()
-sys.stdout = output
-
-a = 256
-b = 256
-print(a is b)
-
-a = 257
-b = 257
-print(a is b)
-
-display(output.getvalue(), target="stdout-7")
-
-</py-script>
-```
-
 
 ### Regole di precedenza
 
@@ -546,18 +459,18 @@ l'ordine si ottiene il rapporto tra `a * c` e ` b`. Lo stesso vale per la
 situazione più generale nella quale l'espressione contiene operatori
 differenti. Ogni linguaggio stabilisce dunque delle _regole di precedenza_ che
 indicano l'ordine preciso nel quale i vari operatori devono essere valutati. La
-@regole-precedenza elenca gli operatori che ho introdotto finora, ordinati per
-precedenza decrescente: quando deve essere valutata un'espressione, si eseguono
-prima tutti gli elevamenti a potenza, se presenti, per poi passare agli
-operatori di segno, sempre se sono presenti, e così via. Notate che alcuni
-operatori appaiono su una stessa riga della tabella, a indicare che hanno la
-stessa precedenza. Rimane però il problema di stabilire l'ordine con il quale
-devono venire applicate più occorrenze di un medesimo stimatore, o operatori
-diversi che però hanno la stessa precedenza. In questo caso, la regola è
-semplice: si considera l'ordine nel quale gli operatori compaiono
-nell'espressione, procedendo da sinistra verso destra. Vi è però un'eccezione:
-questa regola non vale per l'elevamento a potenza, le cui occorrenze vengono
-valutate da destra verso sinistra.
+{numref}`regole-precedenza` elenca gli operatori che ho introdotto finora,
+ordinati per precedenza decrescente: quando deve essere valutata
+un'espressione, si eseguono prima tutti gli elevamenti a potenza, se presenti,
+per poi passare agli operatori di segno, sempre se sono presenti, e così via.
+Notate che alcuni operatori appaiono su una stessa riga della tabella, a
+indicare che hanno la stessa precedenza. Rimane però il problema di stabilire
+l'ordine con il quale devono venire applicate più occorrenze di un medesimo
+operatore, o operatori diversi che però hanno la stessa precedenza. In questo
+caso, la regola è semplice: si considera l'ordine nel quale gli operatori
+compaiono nell'espressione, procedendo da sinistra verso destra. Vi è però
+un'eccezione: questa regola non vale per l'elevamento a potenza, le cui
+occorrenze vengono valutate da destra verso sinistra.
 
 ```{table} Regole di precedenza per gli operatori
 :name: regole-precedenza
@@ -583,18 +496,18 @@ contribuisce ad aumentare la leggibilità del codice (cosa che tipicamente
 avviene per le espressioni non particolarmente semplici). Sempre al fine di
 produrre codice facile da leggere, è consigliabile anche inserire gli spazi tra
 operandi e operatori in un modo ragionato e coerente. La [Style Guide for
-Python Code](https://www.python.org/dev/peps/pep-0008/) (introdotta nel
-Paragrafo @sec:regole-di-stile) contiene un
-[paragrafo](/sds/short/pep-whitespace) dedicato proprio a questo argomento, e
-io mi atterrò alle indicazioni ivi contenute.
+Python Code](https://www.python.org/dev/peps/pep-0008/){.external} (introdotta
+nel {ref}`sec:tipi-di-dati`) contiene un <a href="/sds/short/pep-whitespace"
+target="_blank">paragrafo</a> dedicato proprio a questo argomento, e io mi
+atterrò alle indicazioni ivi contenute.
 
-Infine, vale la pena ricordare che la @regole-precedenza fa riferimento solo
-agli operatori che abbiamo visto fino a questo momento (per la precisione,
-mancano quelli che operano componente per componente, ai quali ho solamente
-accennato). Per una lista completa, come sempre, il punto migliore al quale
-fare riferimento è la [documentazione
-ufficiale](/sds/short/operator-precedence). Notate che questa fonte riporta le
-parentesi tonde come un particolare operatore che ha precedenza su tutto il
+Infine, vale la pena ricordare che la {numref}`regole-precedenza` fa
+riferimento solo agli operatori che abbiamo visto fino a questo momento (per la
+precisione, mancano quelli che operano componente per componente, ai quali ho
+solamente accennato). Per una lista completa, come sempre, il punto migliore al
+quale fare riferimento è la <a href="/sds/short/operator-precedence"
+terget="_blank">documentazione ufficiale</a>. Notate che questa fonte riporta
+le parentesi tonde come un particolare operatore che ha precedenza su tutto il
 resto.
 
 (sec:altri-tipi)=
@@ -619,10 +532,10 @@ simbolo, altrimenti quest'ultimo viene scambiato dal _parser_ del linguaggio
 come il nome di una variabile. Ciò significa che l'unità
 immaginaria[^unita-immaginaria] va sempre scritta come `1j` o `1J`.
 
-Gli operatori elencati nelle [Tabelle %s](#elenco-operatori-per-tipi-numerici)
-e [%s](#elenco-operatori-logici) si possono applicare a operandi complessi,
-eccezion fatta per le operazioni che non sono definite in tal senso (il
-confronto, la divisione troncata e il modulo).
+Gli operatori elencati nella {numref}`elenco-operatori-per-tipi-numerici` e
+nella {numref}`elenco-operatori-logici` si possono applicare a operandi
+complessi, eccezion fatta per le operazioni che non sono definite in tal senso
+(il confronto, la divisione troncata e il modulo).
 
 (sec:none)=
 ### L'oggetto speciale None
@@ -649,45 +562,32 @@ aspetto è particolarmente delicato, perché tutti i valori in Python
 rappresentano oggetti di una classe, e `None` non fa eccezione: è un oggetto
 della classe `NoneType`, o, meglio, è l'_unico_ oggetto di questa classe che
 può esistere (nel senso che non è nemmeno possibile invocarne il costruttore
-per creare altri oggetti[^singoletto]). Questa particolarità garantisce che
-per valutare correttamente se un valore, diciamo, contenuto in una variabile
-`a` è uguale a `None` si possono usare indifferentemente le due espressioni
-`a == None` e `a is None`, sebbene viene sempre consigliato di usare la
-seconda, a enfatizzare l'unicità dell'oggetto in gioco.
+per creare altri oggetti[^singoletto]). Questa peculiarità permette di valutare
+se una variabile, diciamo, `a` contiene `None` tramite l'espressione
+`a is None`, che è inerentemente più sicura di `a == None`[^aisnone]. Una
+cosa simile non sarebbe possibile, per esempio, con `a is 42`, perché possono
+esistere più oggetti della classe `int` uguali a `42`.
 
 (sec:numeri-in-base-dieci)=
 ### Numeri in base dieci
 Il modulo `decimal` mette a disposizione la classe `Decimal` che implementa
-numeri decimali memorizzati in base dieci. Questa classe non incorre dunque
-nei comportamenti controintuitivi illustrati nel Paragrafo @sec:stranezze.
-Rappresenta dunque una soluzione efficace quando è necessario fare riferimento
-a quantità monetarie, anche perché le espressioni che coinvolgono oggetti di
-questa classe venogno valutate preservando tutte le cifre significative degli
-operandi. Per esempio, nella cella seguente
+numeri decimali memorizzati in base dieci. Questa classe non incorre dunque nei
+comportamenti controintuitivi illustrati nel riquadro [Stranezze in virgola
+mobile](#adm:stranezze). Rappresenta dunque una soluzione efficace quando è
+necessario fare riferimento a quantità monetarie, anche perché le espressioni
+che coinvolgono oggetti di questa classe venogno valutate preservando tutte le
+cifre significative degli operandi. Per esempio, nella cella seguente
 
 ```python
 from decimal import Decimal
 
 print(Decimal('15.45') + Decimal('0.05'))
 ```
-```{raw} html
-<div id="stdout-8" class="script-output"></div>
-<py-script>
-from decimal import Decimal
 
-output = io.StringIO()
-sys.stdout = output
-
-print(Decimal('15.45') + Decimal('0.05'))
-
-display(output.getvalue(), target="stdout-8")
-</py-script>
-```
-
-il risultato è stampto indicando comunque due cifre decimali, anche se la
-seconda è uno zero. La
-[documentazione ufficiale](https://docs.python.org/3/library/decimal.html)
-descrive in dettaglio questa classe.
+il risultato è stampato indicando comunque due cifre decimali, anche se la
+seconda è uno zero. La [documentazione
+ufficiale](https://docs.python.org/3/library/decimal.html){.external} descrive
+in dettaglio questa classe.
 
 ### Date e istanti
 Quando si analizzano dei dati, può capitare che alcuni di questi indichino
@@ -714,8 +614,8 @@ qui di seguito.
   assume l'orario di mezzanotte quando non vengono specificati valori per gli
   altri argomenti.
 - `timedelta`, le cui istanze indicano un intervallo di tempo, espresso usando
-  le variaili di istanza `days`, `seconds`, `microseconds`, `milliseconds`,
-  `minutes`, `hours` e `weeks`.
+  le variaili di istanza `weeks`, `days`, `hours`, `minutes`, `seconds`,
+  `microseconds` e `milliseconds`.
 ```{margin}
 Ci si potrebbe chiedere, giustamente, come mai ho annoverato questi tipi
 nella categoria di quelli semplici, essendo per esempio una data scomponibile
@@ -743,7 +643,7 @@ istanze, considero il tipo di dati come semplice.
 ```
 
 ```{margin}
-Nel Paragrafo @sec:parametri-opzionali vedremo come Python adotti una
+Nel {ref}`sec:parametri-opzionali` vedremo come Python adotti una
 sintassi alternativa per l'invocazione di metodi e funzioni, basata su
 parametri opzionali, che permette in situazioni come questa la scrittura di
 codice più snello e più leggibile.
@@ -763,68 +663,44 @@ import datetime
 
 birth = datetime.date(1912, 6, 23)
 ```
-```{raw} html
-<py-script>
-import datetime
 
-birth = datetime.date(1912, 6, 23)
-</py-script>
+```{margin}
+Alan Turing non è nel nostro _dataset_, ma è un supereroe a tutti gli effetti
+:-)
 ```
-
 memorizza in `birth` l'oggetto che corrisponde alla data di nascita di Alan
 Turing, mentre
 
 ```python
 free = datetime.timedelta(14526)
 ```
-```{raw} html
-<py-script>
-free = datetime.timedelta(14526)
-</py-script>
-```
 
 salva in `free` l'oggetto che corrisponde a 14526 giorni, che equivale al
-periodo che lo stesso Turing ha passato in libertà dalla sua nascita. È
+periodo che è trascorso tra la nascita di Alan Turing e l'inizio del suo
+processo per «indecenza grave» da parte delle autorità britanniche. È
 interessante sottolineare che si possono scrivere espressioni matematiche che
 hanno oggetti di questo tipo come operandi. Per esempio,
 
 ```python
 birth + free
 ```
-```{raw} html
-<div id="cell-9" class="script-output"></div>
-<py-script>
-display(birth + free, target="cell-9")
-</py-script>
-```
 
-corrisponde alla data del suo arresto da parte delle autorità britanniche.
-Analogamente, si può ottenere un oggetto di tipo `timedelta` sottraendo due
-date, o sommare tra loro oggetti di tipo `timedelta` o ancora moltiplicarli
-per un numero. Più in generale, le classi del modulo `datetime` permettono di
-eseguire compiti particolarmente articolati, che non vale la pena di
-approfondire qui. Anche in questo caso, la
-[documentazione ufficiale](https://docs.python.org/3/library/datetime.html)
-è un ottimo punto di partenza per studiare le funzionalità che esse
-introducono. Mi limito qui a parlare solamente di come gli oggetti di queste
-classi si possano visualizzare con un notevole grado di flessibilità. L'uso di
-`print` permette di stampare date e istanti temporali usando un formato
-predefinito, che segue gli standard del mondo anglofono, come si verifica
-per esempio nella cella seguente:
+corrisponde alla data dell'udienza di Turing al suo processo. Analogamente, si
+può ottenere un oggetto di tipo `timedelta` sottraendo due date, o sommare tra
+loro oggetti di tipo `timedelta` o ancora moltiplicarli per un numero. Più in
+generale, le classi del modulo `datetime` permettono di eseguire compiti
+particolarmente articolati, che non vale la pena di approfondire qui. Anche in
+questo caso, la [documentazione
+ufficiale](https://docs.python.org/3/library/datetime.html){.external} è un
+ottimo punto di partenza per studiare le funzionalità che esse introducono. Mi
+limito qui a parlare solamente di come gli oggetti di queste classi si possano
+visualizzare con un notevole grado di flessibilità. L'uso di `print` permette
+di stampare date e istanti temporali usando un formato predefinito, che segue
+gli standard del mondo anglofono, come si verifica per esempio nella cella
+seguente:
 
 ```python
 print(birth)
-```
-```{raw} html
-<div id="stdout-10" class="script-stdout"></div>
-<py-script>
-output = io.StringIO()
-sys.stdout = output
-
-print(birth)
-
-display(output.getvalue(), target="stdout-10")
-</py-script>
 ```
 
 Si vede come l'output ottenuto indichi la sequenza anno, mese e giorno. Il
@@ -834,22 +710,12 @@ stampa, come nella cella seguente:
 ```python
 print(birth.strftime('%d/%m/%Y'))
 ```
-```{raw} html
-<div id="stdout-11" class="script-stdout"></div>
-<py-script>
-output = io.StringIO()
-sys.stdout = output
-
-print(birth.strftime('%d/%m/%Y'))
-display(output.getvalue(), target="stdout-11")
-</py-script>
-```
 
 Il funzionamento del metoodo si basa sull'indicazione di una _stringa di 
 formato_, che contiene sia caratteri da includere nella stampa (nel nostro
 caso, i separatori `/`), sia _direttive_ che specificano tanto un particolare
 componente dell'istante temporale, quanto il modo di stamparlo. La
-[Tabella %s](#elenco-direttive-strftime) riporta un elenco delle principali
+{numref}`elenco-direttive-strftime` riporta un elenco delle principali
 direttive che si possono utilizzare. Si può pertanto verificare che Alan
 Turing è nato di domenica:
 ```{margin}
@@ -863,16 +729,6 @@ fare riferimento al modulo `locale`.
 ```python
 print(birth.strftime('%A'))
 ```
-```{raw} html
-<div id="stdout-12" class="script-stdout"></div>
-<py-script>
-output = io.StringIO()
-sys.stdout = output
-
-print(birth.strftime('%A'))
-display(output.getvalue(), target="stdout-12")
-</py-script>
-```
 
 Infine, le direttive di `strftime` si possono utilizzare anche per effettuare
 l'operazione inversa: costruire cioè un oggetto della classe `datetime`
@@ -882,13 +738,6 @@ utilizzando il metodo `strptime`[^class-method]:
 ```python
 datetime.datetime.strptime('10/05/2024', '%d/%m/%Y')
 ```
-```{raw} html
-<div id="cell-13" class="script-output"></div>
-<py-script>
-display(datetime.datetime.strptime('10/05/2024', '%d/%m/%Y'), target="cell-13")
-</py-script>
-```
-
 
 ## Esercizi
 
@@ -1155,10 +1004,11 @@ l'operazione non possa essere eseguita.
 
 ```{exercise} •••
 Dopo aver letto la
-[documentazione](https://docs.python.org/3/library/locale.htm) del modulo
-`locale`, usate il metodo `setlocale` per impostare il locale sulla lingua
-italiana parlata in Italia (la stringa che descrive questo locale è `'it_IT'`)
-e verificate come il comportamento di `strftime` e `strptime` viene influenzato. 
+[documentazione](https://docs.python.org/3/library/locale.html){.external} del
+modulo `locale`, usate il metodo `setlocale` per impostare il locale sulla
+lingua italiana parlata in Italia (la stringa che descrive questo locale è
+`'it_IT'`) e verificate come il comportamento di `strftime` e `strptime` viene
+influenzato. 
 ```
 
 
@@ -1184,18 +1034,19 @@ memoria richiesta per generare la stringa da visualizzare.
 rappresentare un valore decimale non è semplice: in teoria, questo numero
 dipende dal tipo di CPU utilizzata e, soprattutto, dalla particolare
 implementazione di Python (se non ricordate che cosa si intende per
-implementazione di un linguaggio, rileggete il Paragrafo
-@sec:linguaggi-versioni-implementazioni). A complicare le cose, anche a parità
-d implementazione ci possono essere delle variazioni: per esempio, CPython
-(l'implementazione di Python probabilmente più utilizzata al momento in cui
-scrivo) memorizza i valori `float` utilizzando il tipo `double` del linguaggio
-C, e anche per quest'ultimo linguaggio è la particolare implementazione a
-stabilire il numero di byte coinvolti. Fortunatamente, le versioni recenti
-delle implementazioni più diffuse di Python impongono l'utilizzo dello standard
-IEEE 754 basato su otto byte. In ogni caso, conoscere con esattezza questo
-tipo di informazione risulta ininfluente per la stragrande maggioranza di
-applicazioni per le quali si utilizza Python (sicuramente lo è per quanto
-riguarda imparare a padroneggiare i concetti che espongo in questo libro).
+implementazione di un linguaggio, rileggete il
+{ref}`sec:linguaggi-versioni-implementazioni`). A complicare le cose, anche a
+parità d implementazione ci possono essere delle variazioni: per esempio,
+CPython (l'implementazione di Python probabilmente più utilizzata al momento in
+cui scrivo) memorizza i valori `float` utilizzando il tipo `double` del
+linguaggio C, e anche per quest'ultimo linguaggio è la particolare
+implementazione a stabilire il numero di byte coinvolti. Fortunatamente, le
+versioni recenti delle implementazioni più diffuse di Python impongono
+l'utilizzo dello standard IEEE 754 basato su otto byte. In ogni caso, conoscere
+con esattezza questo tipo di informazione risulta ininfluente per la stragrande
+maggioranza di applicazioni per le quali si utilizza Python (sicuramente lo è
+per quanto riguarda imparare a padroneggiare i concetti che espongo in questo
+libro).
 
 [^int-method]: Per invocare un metodo a partire da un letterale `int` è
 necessario racchiudere quest'ultimo tra parentesi tonde. In caso contrario,
@@ -1203,6 +1054,24 @@ viene emesso un errore perché il _parser_ che analizza le istruzioni di Python
 interpreta quello che noi intendevamo come il punto della _dot notation_ come
 un punto decimale, e si aspetta che i cartteri successivi contribuiscano a
 definite un letterale di tipo `float`.
+
+[^is-behaviour]: In realtà, il funzionamento di `is` è molto complicato da
+descrivere, perché dipende da vari fattori che non riguardano solo la specifica
+implementazione del linguaggio, ma anche per esempio il fatto che l'esecuzione
+del codice avvenga nella REPL piuttosto che in un _notebook_ o altrove. Questo
+comportamento così articolato fa sì che a volte i risultati della valutazione
+di espressioni possano sembrare incoerenti tra loro: per esempio, l'espressione
+`float(2.71) is float(2.71)` viene valutata come vera. Questo è dovuto al modo
+nel quale Python esegue il codice, organizzandolo in _blocchi_ che vengono
+compilati separatamente. A seconda del contesto,diverse occorrenze di un
+medesimo letterale vengono fatte riferire in alcuni casi a uno stesso oggetto,
+e in altri a oggetti differenti. Una spiegazione detagliata di questo fenomeno
+è ampiamente al di fuori dello scopo di questo libro. Se siete abbastanza
+coraggiosi, l'argomento è stato per esempio affrontato in modo approfondito su
+<a href="/sds/short/is-behaviour" target="blank_">Stack Overflow</a>. La cosa
+importante è ricordare che `is` è un operatore peculiare che può produrre dei
+comportamenti inattesi, nel caso in cui emergessero dei _bug_ durante
+l'esecuzione di codice che lo utilizza.
 
 [^bug]: Gli informatici usano il termine _bug_ (talvolta si usa la dicutura più
 specifica _software bug_) per indicare la presenza di qualche tipo di errore,
@@ -1217,37 +1086,19 @@ appunto cercando di risolverlo che i tecnici si resero conto di che cosa era
 accaduto. Questo fatto venne documentato nel _logbook_ (un registro nel quale
 venivano annotati a mano fatti rilevanti che si verificavano durante l'utilizzo
 del computer) come «First actual case of bug being found», incollando con del
-[nastro adesivo](/sds/short/real-bug) la falena incriminata, a testimonianza
-dell'accaduto. Questa fonte suggerisce dunque come _bug_ fosse già usato
-nell'accezione moderna: risultava particolarmente intrigante il fatto che un
-_bug_ fisico (la falena) avesse causato un _bug_ logico. In effetti, questo
-termine già veniva utilizzato in ambito ingegneristico per indicare un
-malfunzionamento in un sistema: compare, per esempio, in una lettera scritta da
-Thomas Edison nel 1878. L'etimologia di _bug_ viene fatta risalire a «bugbear»,
-un nome che veniva usato nel X secolo in Inghilterra per indicare spiriti
-magligni ritenuti responsabili di eventi infausti, come la rottura di oggetti.
-Questa credenza rimase diffusa nei secoli successivi, e con l'introduzione
-della meccanica e poi dell'ingegneria il termine _bugbear_ rimase per indicare
-un problema dovuto all'uso di un macchinario.
-
-[^is-behaviour]: In realtà, il funzionamento di `is` è molto complicato da
-descrivere, perché dipende da vari fattori che non riguardano solo la specifica
-implementazione del linguaggio, ma anche per esempio il fatto che l'esecuzione
-del codice avvenga nella REPL piuttosto che in un _notebook_ o altrove. Questo
-comportamento così articolato fa sì che a volte i risultati della valutazione
-di espressioni possano sembrare incoerenti tra loro: per esempio, l'espressione
-`float(2.71) is float(2.71)` viene valutata come vera. Questo è dovuto al modo
-nel quale Python esegue il codice, organizzandolo in _blocchi_ che vengono
-compilati separatamente. A seconda del contesto,diverse occorrenze di un
-medesimo letterale vengono fatte riferire in alcuni casi a uno stesso oggetto,
-e in altri a oggetti differenti. Una spiegazione detagliata di questo fenomeno
-è ampiamente al di fuori dello scopo di questo libro. Se siete abbastanza
-coraggiosi, l'argomento è stato per esempio affrontato con dovizia di
-particolari su [Stack Overflow](/sds/short/is-behaviour). La cosa importante è
-ricordare che `is` è un operatore peculiare che può produrre dei comportamenti
-inattesi, nel caso in cui emergessero dei _bug_ durante l'esecuzione di codice
-che lo utilizza.
-
+<a href="/sds/short/real-bug" target="_blank">nastro adesivo</a> la falena
+incriminata, a testimonianza dell'accaduto. Questa fonte suggerisce dunque come
+_bug_ fosse già usato nell'accezione moderna: risultava particolarmente
+intrigante il fatto che un _bug_ fisico (la falena) avesse causato un _bug_
+logico. In effetti, questo termine già veniva utilizzato in ambito
+ingegneristico per indicare un malfunzionamento in un sistema: compare, per
+esempio, in una lettera scritta da Thomas Edison nel 1878. L'etimologia di
+_bug_ viene fatta risalire a «bugbear», un nome che veniva usato nel X secolo
+in Inghilterra per indicare spiriti magligni ritenuti responsabili di eventi
+infausti, come la rottura di oggetti. Questa credenza rimase diffusa nei secoli
+successivi, e con l'introduzione della meccanica e poi dell'ingegneria il
+termine _bugbear_ rimase per indicare un problema dovuto all'uso di un
+macchinario.
 
 [^flyweight]: Questa funzionalità è tipica di un particolare _pattern_ di
 progettazione software, noto come _flyweight_ nella terminologia utilizzata
@@ -1261,11 +1112,22 @@ corrisponde ai numeri complessi, ed è legata principalmente all'adozione  della
 notazione utilizzata in ambito ingegneristico, nella quale l'unità immaginaria
 è denotata da $j$. Ci sono anche altre motivazioni che hanno portato a
 preferire `j` a `i`: chi è interessato ad approfondirle può fare riferimento a
-una specifica (e lunga) [discussione](https://bugs.python.org/issue10562) fatta
-nel 2010 da un gruppo di sviluppatori del linguaggio.
+una specifica (e lunga)
+[discussione](https://bugs.python.org/issue10562){.external} fatta nel 2010 da
+un gruppo di sviluppatori del linguaggio.
 
 [^singoletto]: È questa la situazione tipica di una _classe singoletto_, che si
 studia quando si approcciano le basi dell'ingegneria del software. 
+
+[^aisnone]: Quando si crea una nuova classe in Python, è possibile ridefinire
+l'operatore `==` (così come tutti i rimanenti operatori), e questo può essere
+fatto senza garantire la semantica dell'uguaglianza per contenuti. Per esempio,
+si può fare in modo che se `o` è un oggetto di questa classe, allora
+l'espressione `o == x` viene valutata `True` indipendentemente dal valore di
+`x`. Chiaramente, in un caso come questo, `o == None` è vera anche se `o` non
+è `None`. Non spiegando in questo libro come creare nuove classi, non mi
+addentrerò in questo argomento che è abbastanza avanzato: se siete interessati,
+potete leggere i primi capitoli di {cite}`ramalho`.
 
 [^class-method]: Il metodo `strptime` rappresenta un esmepio di _metodo
 fabbrica_ (o _factory method_, nella denominazione inglese tipica della

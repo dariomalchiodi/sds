@@ -3,6 +3,8 @@ import re
 import yaml
 import glob
 import argparse
+import ast
+import shutil
 from pathlib import Path
 
 def generate_toc_dictionary(html_root_dir):
@@ -317,21 +319,22 @@ def extract_python_roles(source):
     Args:
         source (str): The MyST Markdown source as a string.
     Returns:
-        list: A list of tuples (code_content, class_attr) where:
+        list: A list of tuples (code_content, class_attr, is_inline) where:
               - code_content is the Python code
               - class_attr is the CSS class from :class: directive or None
+              - is_inline is True for inline roles ({py}, {eval-python}), False for code blocks
     '''
     import re
     
     # Comprehensive pattern to match different Python code block formats
-    # Matches: ```python...``` or ```{python}...``` or ```{code-block} python...``` or {eval-python}`...`
+    # Matches: ```python...``` or ```{python}...``` or ```{code-block} python...``` or `...`{eval-python} or `...`{py}
     # For code-block format, capture the full block including options
-    pattern = r"(?:```\{code-block\}\s+python\s*([\s\S]*?)```)|(?:```(?:\{?python\}?)\s*([\s\S]*?)```)|(?:\{eval-python\}`([^`]+)`)"
+    pattern = r"(?:```\{code-block\}\s+python\s*([\s\S]*?)```)|(?:```(?:\{?python\}?)\s*([\s\S]*?)```)|(?:`([^`]+)`\{eval-python\})|(?:`([^`]+)`\{py\})"
     matches = re.finditer(pattern, source)
     
     result = []
     for match in matches:
-        # Group 1 is code-block content, group 2 is python content, group 3 is inline role content
+        # Group 1 is code-block content, group 2 is python content, group 3 is inline eval-python role, group 4 is inline py role
         if match.group(1) is not None:
             # This is a {code-block} python block
             content = match.group(1)
@@ -344,15 +347,19 @@ def extract_python_roles(source):
                     class_attr = class_match.group(1).strip()
                     # Remove the :class: line from the content
                     content = re.sub(r':class:\s*[^\n]+\n?', '', content)
-            result.append((content.strip(), class_attr))
+            result.append((content.strip(), class_attr, False))
         elif match.group(2) is not None:
             # This is a regular python block
             content = match.group(2)
-            result.append((content.strip(), None))
-        else:
+            result.append((content.strip(), None, False))
+        elif match.group(3) is not None:
             # This is an inline eval-python role
             content = match.group(3)
-            result.append((content.strip(), None))
+            result.append((content.strip(), None, True))
+        else:
+            # This is an inline py role
+            content = match.group(4)
+            result.append((content.strip(), None, True))
     
     return result
 
@@ -483,6 +490,23 @@ def generate_myst_interactive(setup_code, final_code, cell_number):
     
     # Combine both blocks
     return f"{python_block}\n\n{html_block}"
+
+def generate_inline_python(python_code, cell_number, language='en'):
+    '''Generates inline PyScript execution with span element for Python expressions.
+    
+    Args:
+        python_code (str): The Python expression to evaluate
+        cell_number (int): Progressive number for the cell
+        language (str): The language code for localization (default: 'en')
+    Returns:
+        str: Direct HTML content for inline execution (not wrapped in raw block)
+    '''
+    # Get localized labels
+    labels = get_toggle_labels(language)
+    
+    # Create direct HTML content without raw block wrapper
+    # The span will show loading text initially, then get updated by PyScript
+    return f'<span id="inline-{cell_number}" class="py-inline-result">{labels["wait"]}</span>'
 
 def generate_pyscript_setup():
     '''Generates the initial PyScript setup with common imports and utilities.
@@ -732,29 +756,33 @@ console.log("PyScript utilities loaded successfully")
 ```'''
 
 def get_toggle_labels(language='en'):
-    '''Get localized labels for toggle buttons.
+    '''Get localized labels for toggle buttons and loading indicators.
     
     Args:
         language (str): The language code (default: 'en')
     Returns:
-        dict: Dictionary with 'show' and 'hide' keys for the labels
+        dict: Dictionary with 'show', 'hide', and 'wait' keys for the labels
     '''
     labels = {
         'en': {
             'show': 'Show code',
-            'hide': 'Hide code'
+            'hide': 'Hide code',
+            'wait': 'Loading...'
         },
         'it': {
             'show': 'Mostra codice',
-            'hide': 'Nascondi codice'
+            'hide': 'Nascondi codice',
+            'wait': 'Caricamento...'
         },
         'fr': {
             'show': 'Afficher le code',
-            'hide': 'Masquer le code'
+            'hide': 'Masquer le code',
+            'wait': 'Chargement...'
         },
         'es': {
             'show': 'Mostrar código',
-            'hide': 'Ocultar código'
+            'hide': 'Ocultar código',
+            'wait': 'Cargando...'
         }
     }
     
@@ -781,14 +809,15 @@ def process_myst_document(myst_content, include_setup=True, language='en'):
     # Split the document by Python code blocks to reconstruct it
     result_parts = []
     pyscript_blocks = []  # Collect all PyScript blocks to add at the end
+    inline_expressions = []  # Collect inline Python expressions
     all_imports = set()  # Collect all imported packages
     current_pos = 0
     cell_number = 1
     
     # Pattern to find Python code blocks and their positions
-    # Matches: ```python...``` or ```{python}...``` or ```{code-block} python...``` or {eval-python}`...`
+    # Matches: ```python...``` or ```{python}...``` or ```{code-block} python...``` or `...`{eval-python} or `...`{py}
     # For code-block format, capture the full block including options
-    pattern = r"(?:```\{code-block\}\s+python\s*([\s\S]*?)```)|(?:```(?:\{?python\}?)\s*([\s\S]*?)```)|(?:\{eval-python\}`([^`]+)`)"
+    pattern = r"(?:```\{code-block\}\s+python\s*([\s\S]*?)```)|(?:```(?:\{?python\}?)\s*([\s\S]*?)```)|(?:`([^`]+)`\{eval-python\})|(?:`([^`]+)`\{py\})"
     
     python_code_index = 0
     for match in re.finditer(pattern, myst_content):
@@ -808,15 +837,17 @@ def process_myst_document(myst_content, include_setup=True, language='en'):
         # Add content before this Python block
         result_parts.append(myst_content[current_pos:match.start()])
         
-        # Get the Python code content and class from our extracted data
+        # Get the Python code content, class, and whether it's inline from our extracted data
+        is_inline = False
         if python_code_index < len(python_codes):
-            python_code, class_attr = python_codes[python_code_index]
+            python_code, class_attr, is_inline = python_codes[python_code_index]
         else:
             # Fallback to regex extraction if index is out of bounds
             if match.group(1) is not None:
                 # This is a {code-block} python block
                 python_code = match.group(1)
                 class_attr = None
+                is_inline = False
                 # Handle :class: directive extraction
                 if python_code and ':class:' in python_code:
                     class_match = re.search(r':class:\s*([^\n]+)', python_code)
@@ -827,12 +858,33 @@ def process_myst_document(myst_content, include_setup=True, language='en'):
                 # This is a regular python block
                 python_code = match.group(2)
                 class_attr = None
-            else:
+                is_inline = False
+            elif match.group(3) is not None:
                 # This is an inline eval-python role
                 python_code = match.group(3)
                 class_attr = None
+                is_inline = True
+            else:
+                # This is an inline py role
+                python_code = match.group(4)
+                class_attr = None
+                is_inline = True
         
-        # Add the original Python block, with toggle wrapper if needed
+        # Handle inline roles differently
+        if is_inline:
+            # For inline roles, replace the original role with our generated HTML
+            inline_html = generate_inline_python(python_code.strip(), cell_number, language)
+            result_parts.append(inline_html)
+            
+            # Collect the inline expression to add PyScript code later
+            inline_expressions.append((cell_number, python_code.strip()))
+            
+            current_pos = match.end()
+            cell_number += 1
+            python_code_index += 1
+            continue
+        
+        # For code blocks, add the original Python block, with toggle wrapper if needed
         original_block = match.group(0)
         
         if class_attr and 'toggle-code' in class_attr:
@@ -1248,7 +1300,7 @@ finally:
     result_parts.append(myst_content[current_pos:])
     
     # Add all PyScript blocks at the end
-    if pyscript_blocks:
+    if pyscript_blocks or inline_expressions:
         result_parts.append('\n\n```{raw} html\n')
         
         # Add setup first if requested
@@ -1257,6 +1309,60 @@ finally:
             # Extract just the PyScript content from the setup
             setup_script = setup_content.split('<py-script>')[1].split('</py-script>')[0]
             result_parts.append(f'<py-script>{setup_script}</py-script>\n')
+        
+        # Add PyScript code for inline expressions
+        if inline_expressions:
+            inline_pyscript_content = f'''
+<py-script>
+# Inline Python expressions execution
+console.log("Executing inline Python expressions");
+
+# Process all inline expressions
+inline_expressions = {inline_expressions!r}
+
+for cell_num, expression in inline_expressions:
+    try:
+        console.log(f"Evaluating inline expression {{cell_num}}: {{expression}}")
+        result = eval(expression)
+        
+        # Convert result to string representation
+        if result is not None:
+            result_str = str(result)
+        else:
+            result_str = "None"
+        
+        # Display the result in the inline span
+        element = document.getElementById(f"inline-{{cell_num}}")
+        if element:
+            element.innerHTML = result_str
+            
+            # Add appropriate CSS classes based on result type
+            element.className = "py-inline-result"
+            
+            # Check if result is numeric for special styling
+            if isinstance(result, (int, float, complex)):
+                element.className += " numeric"
+            
+            # Add title attribute for accessibility (shows on hover)
+            element.title = f"Computed result: {{result_str}}"
+            
+            console.log(f"Updated inline-{{cell_num}} with: {{result_str}}")
+        else:
+            console.log(f"Element inline-{{cell_num}} not found")
+            
+    except Exception as e:
+        console.log(f"Error in inline expression {{cell_num}}: {{str(e)}}")
+        # Display error message in red
+        element = document.getElementById(f"inline-{{cell_num}}")
+        if element:
+            element.innerHTML = f'<span style="color: red; font-style: normal;">Error: {{str(e)}}</span>'
+            element.className = "py-inline-result error"
+            element.title = f"Error evaluating: {{expression}}"
+
+console.log("Finished executing inline Python expressions");
+</py-script>
+'''
+            result_parts.append(inline_pyscript_content)
         
         # Add all collected PyScript blocks
         for pyscript_block in pyscript_blocks:

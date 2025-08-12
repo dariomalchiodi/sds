@@ -12,11 +12,11 @@ kernelspec:
 (sec:utilizzo-in-insegnamento)=
 # Utilizzo all'interno di un insegnamento
 Da un certo numero di anni, sono titolare dell'insegnamento di [Statistica e
-analisi dei dati](https://malchiodi.di.unimi.it/teaching/SAD) per il corso di
-Laurea in Informatica, erogato dall'Università degli Studi di Milano. Questo
-libro nasce dall'evoluzione di una serie di dispense che ho utilizzato per
-integrare il materiale bibliografico adottato in questo insegnamento, al fine
-di trattare sia gli aspetti più _computazionali_ delle lezioni, sia alcuni
+analisi dei dati](https://malchiodi.di.unimi.it/teaching/SAD){.external} per il
+corso di Laurea in Informatica, erogato dall'Università degli Studi di Milano.
+Questo libro nasce dall'evoluzione di una serie di dispense che ho utilizzato
+per integrare il materiale bibliografico adottato in questo insegnamento, al
+fine di trattare sia gli aspetti più _computazionali_ delle lezioni, sia alcuni
 argomenti che non trovano posto nella trattazione fatta nei libri di testo.
 
 Nei corsi di Laurea in area informatica, l'insegnamento delle tematiche alla

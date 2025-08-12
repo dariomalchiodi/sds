@@ -34,8 +34,8 @@ paga le tasse).
 :name: benjamin-franklin
 
 Raffigurazione di Benjamin Franklin sulle banconote da 100 dollari statunitensi
-(immagine di E. Strauhmanis, distribuita sotto licenza
-  [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/))
+(immagine di E. Strauhmanis, distribuita sotto licenza [CC BY
+2.0](https://creativecommons.org/licenses/by/2.0/)){.external}
 ```
 
 In realtà il concetto di _incertezza_ è particolarmente difficile da definire,
@@ -95,10 +95,9 @@ Il lavoro è organizzato in quattro parti:
 - la terza introduce i fondamenti del _calcolo delle probabilità_, intesa
   come disciplina che permette di valutare in modo quantitativo l'incertezza
   degli eventi;
-- la quarta si focalizza infine sulle basi della _statistica inferenziale_,
-  al fine di fornire strumenti che permettano di prendere decisioni
-  in condizioni di incertezza, utilizzando gli strumenti introdotti nei capitoli
-  precedenti.
+- la quarta si focalizza infine sulle basi della _statistica inferenziale_, al
+  fine di fornire strumenti che permettano di prendere decisioni in condizioni
+  di incertezza, utilizzando gli strumenti introdotti nei capitoli precedenti.
 
 Ognuna di queste parti, considerata da sola, riempirebbe un intero libro di
 testo&mdash;anche più di uno! Pertanto, sebbene il materiale sia fruibile
@@ -114,5 +113,6 @@ fisico francese Jean-Baptiste Le Roy) questa affermazione compare in realtà
 come parte finale della frase: «... in this world nothing can be said to be
 certain, except death and taxes». Va comunque sottolineato che, sebbene la
 paternità di questo detto sia fatta risalire a Benjamin Franklin, esistono
-[fonti antecedenti](https://en.wikipedia.org/wiki/Death_and_taxes_(idiom))
+[fonti
+antecedenti](https://en.wikipedia.org/wiki/Death_and_taxes_(idiom)){,external}
 che ne riportano alcune varianti.
