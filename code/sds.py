@@ -327,9 +327,9 @@ def extract_python_roles(source):
     import re
     
     # Comprehensive pattern to match different Python code block formats
-    # Matches: ```python...``` or ```{python}...``` or ```{code-block} python...``` or `...`{eval-python} or `...`{py}
+    # Matches: ```python...``` or ```{python}...``` or ```{code-block} python...``` or {eval-python}`...` or {py}`...`
     # For code-block format, capture the full block including options
-    pattern = r"(?:```\{code-block\}\s+python\s*([\s\S]*?)```)|(?:```(?:\{?python\}?)\s*([\s\S]*?)```)|(?:`([^`]+)`\{eval-python\})|(?:`([^`]+)`\{py\})"
+    pattern = r"(?:```\{code-block\}\s+python\s*([\s\S]*?)```)|(?:```(?:\{?python\}?)\s*([\s\S]*?)```)|(?:\{eval-python\}`([^`]+)`)|(?:\{py\}`([^`]+)`)"
     matches = re.finditer(pattern, source)
     
     result = []
@@ -815,9 +815,9 @@ def process_myst_document(myst_content, include_setup=True, language='en'):
     cell_number = 1
     
     # Pattern to find Python code blocks and their positions
-    # Matches: ```python...``` or ```{python}...``` or ```{code-block} python...``` or `...`{eval-python} or `...`{py}
+    # Matches: ```python...``` or ```{python}...``` or ```{code-block} python...``` or {eval-python}`...` or {py}`...`
     # For code-block format, capture the full block including options
-    pattern = r"(?:```\{code-block\}\s+python\s*([\s\S]*?)```)|(?:```(?:\{?python\}?)\s*([\s\S]*?)```)|(?:`([^`]+)`\{eval-python\})|(?:`([^`]+)`\{py\})"
+    pattern = r"(?:```\{code-block\}\s+python\s*([\s\S]*?)```)|(?:```(?:\{?python\}?)\s*([\s\S]*?)```)|(?:\{eval-python\}`([^`]+)`)|(?:\{py\}`([^`]+)`)"
     
     python_code_index = 0
     for match in re.finditer(pattern, myst_content):
@@ -2510,6 +2510,223 @@ document.addEventListener('DOMContentLoaded', function() {
         print(f"Would modify {files_modified} files")
 
 
+def process_html_py_roles(html_root_dir, dry_run=False, language='en'):
+    """
+    Process HTML files to replace any remaining {py} roles with interactive spans.
+    
+    This function handles {py} roles that weren't processed during MyST pre-processing
+    or that were stripped/modified by Sphinx during HTML generation.
+    
+    Args:
+        html_root_dir (str): Path to the HTML build directory
+        dry_run (bool): If True, show what would be changed without making changes
+        language (str): Language code for localization
+    
+    Returns:
+        dict: Summary of changes made
+    """
+    try:
+        from bs4 import BeautifulSoup
+    except ImportError:
+        print("BeautifulSoup4 is required. Install with: pip install beautifulsoup4")
+        return {}
+    
+    changes_summary = {
+        'files_processed': 0,
+        'files_modified': 0,
+        'total_replacements': 0,
+        'replacements_by_file': {},
+        'errors': []
+    }
+    
+    # Find all HTML files
+    html_files = list(Path(html_root_dir).rglob("*.html"))
+    
+    cell_counter = 1  # Global counter for inline expressions
+    all_inline_expressions = []  # Collect all inline expressions for PyScript
+    
+    for html_file in html_files:
+        # Skip certain files that shouldn't be modified
+        if any(skip in str(html_file) for skip in ['_static', 'genindex', 'search']):
+            continue
+            
+        changes_summary['files_processed'] += 1
+        file_replacements = 0
+        file_inline_expressions = []
+        
+        try:
+            # Read the HTML file
+            with open(html_file, 'r', encoding='utf-8') as f:
+                content = f.read()
+                
+            original_content = content
+            
+            # Pattern to match {py} roles in HTML
+            # This could appear in various forms after Sphinx processing:
+            # 1. As literal text: {py}`code`
+            # 2. As code elements: <code>{py}`code`</code>
+            # 3. As spans: <span class="...">code</span>{py}
+            # 4. Remaining MyST format: {py}`code`
+            
+            py_role_patterns = [
+                # Pattern 1: Direct {py} role syntax
+                r'\{py\}`([^`]+)`',
+                # Pattern 2: HTML escaped version
+                r'\{py\}`([^`]+)`',
+                # Pattern 3: Inside code tags
+                r'<code[^>]*>\{py\}`([^`]+)`</code>',
+                # Pattern 4: Sphinx might convert it to emphasis
+                r'<em[^>]*>\{py\}`([^`]+)`</em>',
+            ]
+            
+            for pattern in py_role_patterns:
+                matches = list(re.finditer(pattern, content))
+                for match in reversed(matches):  # Process in reverse to maintain positions
+                    python_code = match.group(1)
+                    
+                    # Generate the inline Python HTML
+                    inline_html = generate_inline_python(python_code, cell_counter, language)
+                    
+                    # Store the expression for PyScript execution
+                    file_inline_expressions.append((cell_counter, python_code))
+                    all_inline_expressions.append((cell_counter, python_code))
+                    
+                    if not dry_run:
+                        # Replace the match with our generated HTML
+                        content = content[:match.start()] + inline_html + content[match.end():]
+                    
+                    file_replacements += 1
+                    cell_counter += 1
+            
+            # If we made changes, save the file
+            if file_replacements > 0:
+                changes_summary['files_modified'] += 1
+                changes_summary['total_replacements'] += file_replacements
+                changes_summary['replacements_by_file'][str(html_file)] = file_replacements
+                
+                if not dry_run:
+                    # Create backup
+                    backup_file = html_file.with_suffix('.html.backup')
+                    with open(backup_file, 'w', encoding='utf-8') as f:
+                        f.write(original_content)
+                    
+                    # Write modified content
+                    with open(html_file, 'w', encoding='utf-8') as f:
+                        f.write(content)
+                    
+                    print(f"✓ {html_file.relative_to(html_root_dir)}: {file_replacements} {{py}} role(s) replaced")
+                else:
+                    print(f"Would replace {file_replacements} {{py}} role(s) in {html_file.relative_to(html_root_dir)}")
+                    
+        except Exception as e:
+            error_msg = f"Error processing {html_file}: {e}"
+            changes_summary['errors'].append(error_msg)
+            print(f"Error: {error_msg}")
+    
+    # Add PyScript execution for all inline expressions found
+    if all_inline_expressions and not dry_run:
+        _add_pyscript_for_inline_expressions(html_root_dir, all_inline_expressions)
+    
+    return changes_summary
+
+
+def _add_pyscript_for_inline_expressions(html_root_dir, inline_expressions):
+    """
+    Add PyScript execution code to the first HTML file to handle inline expressions.
+    
+    Args:
+        html_root_dir (str): Path to the HTML build directory  
+        inline_expressions (list): List of (cell_number, python_code) tuples
+    """
+    
+    # Find the first suitable HTML file (not in _static, genindex, etc.)
+    html_files = list(Path(html_root_dir).rglob("*.html"))
+    target_file = None
+    
+    for html_file in html_files:
+        if not any(skip in str(html_file) for skip in ['_static', 'genindex', 'search']):
+            target_file = html_file
+            break
+    
+    if not target_file:
+        print("Warning: No suitable HTML file found to add PyScript execution")
+        return
+    
+    try:
+        # Read the target file
+        with open(target_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # Create the PyScript execution code
+        pyscript_code = f'''
+<!-- PyScript execution for inline {len(inline_expressions)} {{py}} roles -->
+<py-script>
+# Inline Python expressions execution
+console.log("Executing {len(inline_expressions)} inline Python expressions");
+
+# Process all inline expressions
+inline_expressions = {inline_expressions!r}
+
+for cell_num, expression in inline_expressions:
+    try:
+        console.log(f"Evaluating inline expression {{cell_num}}: {{expression}}")
+        result = eval(expression)
+        
+        # Convert result to string representation
+        if result is not None:
+            result_str = str(result)
+        else:
+            result_str = "None"
+        
+        # Display the result in the inline span
+        element = document.getElementById(f"inline-{{cell_num}}")
+        if element:
+            element.innerHTML = result_str
+            
+            # Add appropriate CSS classes based on result type
+            element.className = "py-inline-result"
+            
+            # Check if result is numeric for special styling
+            if isinstance(result, (int, float, complex)):
+                element.className += " numeric"
+            
+            # Add title attribute for accessibility (shows on hover)
+            element.title = f"Computed result: {{result_str}}"
+            
+            console.log(f"Updated inline-{{cell_num}} with: {{result_str}}")
+        else:
+            console.log(f"Element inline-{{cell_num}} not found")
+            
+    except Exception as e:
+        console.log(f"Error in inline expression {{cell_num}}: {{str(e)}}")
+        # Display error message in red
+        element = document.getElementById(f"inline-{{cell_num}}")
+        if element:
+            element.innerHTML = f'<span style="color: red; font-style: normal;">Error: {{str(e)}}</span>'
+            element.className = "py-inline-result error"
+            element.title = f"Error evaluating: {{expression}}"
+
+console.log("Finished executing inline Python expressions");
+</py-script>
+'''
+        
+        # Try to insert the PyScript code before the closing </body> tag
+        if '</body>' in content:
+            content = content.replace('</body>', pyscript_code + '\n</body>')
+        else:
+            # Fallback: append at the end
+            content += pyscript_code
+        
+        # Write the modified content
+        with open(target_file, 'w', encoding='utf-8') as f:
+            f.write(content)
+        
+        print(f"✓ Added PyScript execution for {len(inline_expressions)} inline expressions to {target_file.relative_to(html_root_dir)}")
+        
+    except Exception as e:
+        print(f"Error adding PyScript to {target_file}: {e}")
+
+
 def main():
     """Command-line interface for sds.py functions."""
     parser = argparse.ArgumentParser(description='Process documentation files')
@@ -2524,10 +2741,21 @@ def main():
     parser_clickable.add_argument('--dry-run', action='store_true',
                                 help='Show what would be changed without making changes')
     
+    # Add subparser for processing py roles in HTML
+    parser_py_roles = subparsers.add_parser('process-py-roles',
+                                          help='Process {py} roles in HTML files')
+    parser_py_roles.add_argument('html_dir', help='HTML build directory')
+    parser_py_roles.add_argument('--language', default='en',
+                               help='Language code (it, en, fr, es)')
+    parser_py_roles.add_argument('--dry-run', action='store_true',
+                               help='Show what would be changed without making changes')
+    
     args = parser.parse_args()
     
     if args.command == 'make-parts-clickable':
         make_part_titles_clickable_and_collapsible(args.html_dir, args.dry_run, args.language)
+    elif args.command == 'process-py-roles':
+        process_html_py_roles(args.html_dir, args.dry_run, args.language)
     else:
         parser.print_help()
 
