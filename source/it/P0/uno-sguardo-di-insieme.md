@@ -262,7 +262,7 @@ all'osservazione di uno qualsiasi dei suoi elementi, o di un insieme di
 elementi, nell'ipotesi di non sapere a priori che cosa osserveremo (ricordatevi
 della [Legge di Franklin](#par:franklin-law)), ma assumendo che ogni supereroe
 abbia la stessa possibilità di tutti gli altri di essere osservato. A partire
-dal {ref}`{chap:calcolo-combinatorio}` e fino al
+dal {ref}`chap:calcolo-combinatorio` e fino al
 {ref}`chap:va-e-modelli-continui`, il libro descrive la _Teoria della
 Probabilità_, fornendo alcuni strumenti formali per gestire
 l'incertezza dovuta al non sapere che cosa verrà di volta in volta osservato.
