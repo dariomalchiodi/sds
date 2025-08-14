@@ -6,6 +6,7 @@ import argparse
 import ast
 import shutil
 from pathlib import Path
+from collections import OrderedDict
 
 def generate_toc_dictionary(html_root_dir):
     """
@@ -313,6 +314,164 @@ def generate_toc_dictionary_from_html(html_root_dir):
     
     return toc_dict
 
+def enumerate_toc(language='it', toc_data=None):
+    """
+    Reads the _toc.yml file for a specified language and creates an OrderedDict
+    with chapter and section numbering.
+    
+    Args:
+        language (str): Language code ('it', 'en', 'fr', 'es')
+        toc_data (dict): Optional TOC data dictionary. If provided, will use this
+                        instead of reading from file.
+    
+    Returns:
+        OrderedDict: Dictionary mapping titles to numbers where:
+                    - chapters get numbers like "1", "2", "3"
+                    - sections get numbers like "1.1", "1.2", "2.1"
+                    - appendix chapters get letters like "A", "B", "C"
+                    - appendix sections get numbers like "A.1", "A.2", "B.1"
+    """
+    # If toc_data is provided, use it directly
+    if toc_data is not None:
+        # Use the provided TOC data for testing
+        pass
+    else:
+        # Find the corresponding _toc.yml file
+        toc_file = f'source/{language}/_toc.yml'
+        if not os.path.exists(toc_file):
+            print(f"TOC file {toc_file} not found")
+            return OrderedDict()
+        
+        try:
+            with open(toc_file, 'r', encoding='utf-8') as f:
+                toc_data = yaml.safe_load(f)
+        except Exception as e:
+            print(f"Error reading TOC file: {e}")
+            return OrderedDict()
+    
+    # Function to extract title from markdown file
+    def extract_title_from_file(file_path):
+        """Extract the first heading from a markdown file."""
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+                
+            # Look for the first h1 heading
+            # Match # Title or {doc}`<title>` patterns
+            title_match = re.search(r'^#\s+(.+)$', content, re.MULTILINE)
+            if title_match:
+                title = title_match.group(1).strip()
+                # Clean up any MyST/Markdown formatting
+                title = re.sub(r'\*([^*]+)\*', r'\1', title)  # Remove emphasis
+                title = re.sub(r'`([^`]+)`', r'\1', title)    # Remove code formatting
+                return title
+                
+            # Try alternative patterns like MyST title directives
+            title_match = re.search(r'^\s*title:\s*(.+)$', content, re.MULTILINE)
+            if title_match:
+                title = title_match.group(1).strip()
+                # Clean up any MyST/Markdown formatting
+                title = re.sub(r'\*([^*]+)\*', r'\1', title)  # Remove emphasis
+                title = re.sub(r'`([^`]+)`', r'\1', title)    # Remove code formatting
+                return title
+                
+        except Exception as e:
+            print(f"Error reading file {file_path}: {e}")
+        
+        return None
+    
+    toc_ordered = OrderedDict()
+    chapter_counter = 0
+    appendix_counter = 0
+    
+    # Define appendix keywords for different languages
+    appendix_keywords = {
+        'it': ['appendici', 'appendice'],
+        'en': ['appendices', 'appendix'],
+        'fr': ['annexes', 'annexe'],
+        'es': ['apéndices', 'apéndice', 'anexos', 'anexo']
+    }
+    
+    # Get the appropriate keywords for the current language
+    current_appendix_keywords = appendix_keywords.get(language, appendix_keywords['en'])
+    
+    # Process all parts
+    for part in toc_data.get('parts', []):
+        caption = part.get('caption', '').lower()
+        chapters = part.get('chapters', [])
+        
+        # Check if this part contains appendices
+        is_appendix_part = any(keyword in caption for keyword in current_appendix_keywords)
+        
+        for chapter in chapters:
+            file_path = chapter.get('file', '')
+            title = chapter.get('title')
+            
+            # If no title in YAML, extract from markdown file
+            if not title and file_path:
+                full_file_path = f'source/{language}/{file_path}.md'
+                title = extract_title_from_file(full_file_path)
+            
+            if not title:
+                continue
+            
+            # Skip presentation/introduction files - they don't get numbered
+            if any(keyword in file_path.lower() for keyword in ['presentazione', 'presentation', 'presentacion', 'introduction']):
+                continue
+            
+            # Number chapters based on whether we're in an appendix part
+            if is_appendix_part:
+                appendix_counter += 1
+                chapter_num = chr(ord('A') + appendix_counter - 1)  # A, B, C, ...
+                toc_ordered[title] = chapter_num
+                current_chapter_num = chapter_num
+            else:
+                chapter_counter += 1
+                toc_ordered[title] = str(chapter_counter)
+                current_chapter_num = str(chapter_counter)
+            
+            # Process sections within this chapter
+            sections = chapter.get('sections', [])
+            section_counter = 0
+            
+            for section in sections:
+                section_file = section.get('file', '')
+                section_title = section.get('title')
+                
+                # If no title in YAML, extract from markdown file
+                if not section_title and section_file:
+                    full_section_path = f'source/{language}/{section_file}.md'
+                    section_title = extract_title_from_file(full_section_path)
+                
+                if not section_title:
+                    continue
+                
+                section_counter += 1
+                section_num = f"{current_chapter_num}.{section_counter}"
+                toc_ordered[section_title] = section_num
+                
+                # Process subsections if they exist
+                subsections = section.get('sections', [])
+                subsection_counter = 0
+                
+                for subsection in subsections:
+                    subsection_file = subsection.get('file', '')
+                    subsection_title = subsection.get('title')
+                    
+                    # If no title in YAML, extract from markdown file
+                    if not subsection_title and subsection_file:
+                        full_subsection_path = f'source/{language}/{subsection_file}.md'
+                        subsection_title = extract_title_from_file(full_subsection_path)
+                    
+                    if not subsection_title:
+                        continue
+                    
+                    subsection_counter += 1
+                    subsection_num = f"{current_chapter_num}.{section_counter}.{subsection_counter}"
+                    toc_ordered[subsection_title] = subsection_num
+    
+    return toc_ordered
+
 def extract_python_roles(source):
     '''Extracts Python code blocks and inline roles from MyST Markdown source.
     
@@ -327,9 +486,9 @@ def extract_python_roles(source):
     import re
     
     # Comprehensive pattern to match different Python code block formats
-    # Matches: ```python...``` or ```{python}...``` or ```{code-block} python...``` or {eval-python}`...` or {py}`...`
+    # Matches: ```python...``` or ```{python}...``` or ```{code-block} python...``` or `...`{eval-python} or `...`{py}
     # For code-block format, capture the full block including options
-    pattern = r"(?:```\{code-block\}\s+python\s*([\s\S]*?)```)|(?:```(?:\{?python\}?)\s*([\s\S]*?)```)|(?:\{eval-python\}`([^`]+)`)|(?:\{py\}`([^`]+)`)"
+    pattern = r"(?:```\{code-block\}\s+python\s*([\s\S]*?)```)|(?:```(?:\{?python\}?)\s*([\s\S]*?)```)|(?:`([^`]+)`\{eval-python\})|(?:`([^`]+)`\{py\})"
     matches = re.finditer(pattern, source)
     
     result = []
@@ -506,7 +665,7 @@ def generate_inline_python(python_code, cell_number, language='en'):
     
     # Create direct HTML content without raw block wrapper
     # The span will show loading text initially, then get updated by PyScript
-    return f'<span id="inline-{cell_number}" class="py-inline-splash">{labels["wait"]}</span>'
+    return f'<span id="inline-{cell_number}" class="py-inline-result">{labels["wait"]}</span>'
 
 def generate_pyscript_setup():
     '''Generates the initial PyScript setup with common imports and utilities.
@@ -815,9 +974,9 @@ def process_myst_document(myst_content, include_setup=True, language='en'):
     cell_number = 1
     
     # Pattern to find Python code blocks and their positions
-    # Matches: ```python...``` or ```{python}...``` or ```{code-block} python...``` or {eval-python}`...` or {py}`...`
+    # Matches: ```python...``` or ```{python}...``` or ```{code-block} python...``` or `...`{eval-python} or `...`{py}
     # For code-block format, capture the full block including options
-    pattern = r"(?:```\{code-block\}\s+python\s*([\s\S]*?)```)|(?:```(?:\{?python\}?)\s*([\s\S]*?)```)|(?:\{eval-python\}`([^`]+)`)|(?:\{py\}`([^`]+)`)"
+    pattern = r"(?:```\{code-block\}\s+python\s*([\s\S]*?)```)|(?:```(?:\{?python\}?)\s*([\s\S]*?)```)|(?:`([^`]+)`\{eval-python\})|(?:`([^`]+)`\{py\})"
     
     python_code_index = 0
     for match in re.finditer(pattern, myst_content):
@@ -2569,14 +2728,8 @@ def process_html_py_roles(html_root_dir, dry_run=False, language='en'):
             # 4. Remaining MyST format: {py}`code`
             
             py_role_patterns = [
-                # Pattern 1: Direct {py} role syntax
-                r'\{py\}`([^`]+)`',
-                # Pattern 2: HTML escaped version
-                r'\{py\}`([^`]+)`',
-                # Pattern 3: Inside code tags
-                r'<code[^>]*>\{py\}`([^`]+)`</code>',
-                # Pattern 4: Sphinx might convert it to emphasis
-                r'<em[^>]*>\{py\}`([^`]+)`</em>',
+                # Main pattern: backticks first, then {py}
+                r'`([^`]+)`\{py\}',
             ]
             
             for pattern in py_role_patterns:
@@ -2750,12 +2903,38 @@ def main():
     parser_py_roles.add_argument('--dry-run', action='store_true',
                                help='Show what would be changed without making changes')
     
+    # Add subparser for testing enumerate_toc function
+    parser_test_toc = subparsers.add_parser('test-enumerate-toc',
+                                          help='Test the enumerate_toc function')
+    parser_test_toc.add_argument('--language', default='it',
+                               help='Language code (it, en, fr, es)')
+    
     args = parser.parse_args()
     
     if args.command == 'make-parts-clickable':
         make_part_titles_clickable_and_collapsible(args.html_dir, args.dry_run, args.language)
     elif args.command == 'process-py-roles':
         process_html_py_roles(args.html_dir, args.dry_run, args.language)
+    elif args.command == 'test-enumerate-toc':
+        # Test the enumerate_toc function
+        print(f"Testing enumerate_toc function with {args.language} language...")
+        print("=" * 60)
+        
+        toc_dict = enumerate_toc(args.language)
+        
+        if not toc_dict:
+            print(f"No entries found in {args.language} TOC!")
+        else:
+            print(f"Found {len(toc_dict)} entries in the {args.language} TOC:")
+            print()
+            
+            # Iterate through the OrderedDict and print entries
+            for title, number in toc_dict.items():
+                print(f"{number:>8} : {title}")
+        
+        print()
+        print("=" * 60)
+        print("Test completed!")
     else:
         parser.print_help()
 
