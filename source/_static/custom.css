@@ -206,6 +206,15 @@ py-script {
   display: none;
 }
 
+/* Inline Python splash style - temporary loading state */
+.py-inline-splash {
+  background-color: #d3d3d3; /* light gray background */
+  font-family: 'Source Code Pro', monospace; /* teletype/monospace font */
+  padding: 2px 4px;
+  border-radius: 3px;
+  display: inline;
+  font-size: 90%;
+}
 
 .highlight {
   background: none;

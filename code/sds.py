@@ -506,7 +506,7 @@ def generate_inline_python(python_code, cell_number, language='en'):
     
     # Create direct HTML content without raw block wrapper
     # The span will show loading text initially, then get updated by PyScript
-    return f'<span id="inline-{cell_number}" class="py-inline-result">{labels["wait"]}</span>'
+    return f'<span id="inline-{cell_number}" class="py-inline-splash">{labels["wait"]}</span>'
 
 def generate_pyscript_setup():
     '''Generates the initial PyScript setup with common imports and utilities.
