@@ -1,5 +1,5 @@
 import unittest
-from code.sds import extract_python_roles
+from sds.sds import extract_python_roles
 
 class TestExtractPythonRoles(unittest.TestCase):
     def test_simple_code_block(self):

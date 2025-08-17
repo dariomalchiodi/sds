@@ -12,7 +12,7 @@ from pathlib import Path
 import sys
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'code'))
 
-from sds import process_html_py_roles, generate_inline_python
+from sds.sds import process_html_py_roles, generate_inline_python
 
 
 class TestProcessHtmlPyRoles(unittest.TestCase):

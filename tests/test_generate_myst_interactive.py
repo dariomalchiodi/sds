@@ -1,5 +1,5 @@
 import unittest
-from code.sds import generate_myst_interactive
+from sds.sds import generate_myst_interactive
 
 class TestGenerateMystInteractive(unittest.TestCase):
     def test_with_setup_and_final(self):

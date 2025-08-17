@@ -7,8 +7,8 @@ import sys
 import os
 from pathlib import Path
 
-# Add the code directory to the path so we can import sds
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'code'))
+# Add the sds directory to the path so we can import sds
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'sds'))
 
 from sds import generate_toc_dictionary, replace_crossref_links, update_sidebar_navigation_numbering
 

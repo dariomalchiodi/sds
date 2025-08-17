@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """
+
 Validate shortener-mappings.json file for deployment.
+Usage:
+    python3 sds/validate-shortener.py
 
 This script checks the shortener mappings JSON file for:
 1. Valid JSON syntax

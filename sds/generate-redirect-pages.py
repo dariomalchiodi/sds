@@ -6,8 +6,9 @@ This script reads the shortener-mappings.json file and generates a separate
 HTML redirect page for each short code in a 'short/' subdirectory. Each page 
 uses HTML meta refresh to redirect to the target URL.
 
+
 Usage:
-    python3 generate-redirect-pages.py [build_dir]
+    python3 sds/generate-redirect-pages.py [build_dir]
 
 The script will create redirect pages in build_dir/short/ (default: build/short/).
 URLs will be accessible as: https://site.com/short/code.html

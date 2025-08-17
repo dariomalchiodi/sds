@@ -9,6 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
+(chap:presentazione)=
 # Presentazione
 
 La prima parte del libro introduce alcuni strumenti di base per l’analisi

@@ -1,3 +1,4 @@
+(chap:reference)=
 # References
 
 ```{bibliography}

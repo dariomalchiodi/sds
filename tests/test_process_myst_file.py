@@ -7,7 +7,7 @@ import sys
 # Add the code directory to the path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'code'))
 
-from sds import process_myst_file
+from sds.sds import process_myst_file
 
 class TestProcessMystFile(unittest.TestCase):
     

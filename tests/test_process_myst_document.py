@@ -1,5 +1,5 @@
 import unittest
-from code.sds import process_myst_document
+from sds.sds import process_myst_document
 
 class TestProcessMystDocument(unittest.TestCase):
     def test_single_python_block(self):

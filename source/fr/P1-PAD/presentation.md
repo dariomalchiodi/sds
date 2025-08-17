@@ -9,6 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
+(chap:introduction)=
 # Introduction
 
 La première partie de ce livre présente quelques outils de base pour l'analyse

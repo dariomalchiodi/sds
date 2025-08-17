@@ -1,5 +1,5 @@
 import unittest
-from code.sds import split_code
+from sds.sds import split_code
 
 class TestSplitCode(unittest.TestCase):
     def test_single_statement(self):

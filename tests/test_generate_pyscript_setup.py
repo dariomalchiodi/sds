@@ -1,5 +1,5 @@
 import unittest
-from code.sds import generate_pyscript_setup
+from sds.sds import generate_pyscript_setup
 
 class TestGeneratePyscriptSetup(unittest.TestCase):
     def test_generate_setup(self):

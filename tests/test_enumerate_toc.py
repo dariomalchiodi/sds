@@ -1,6 +1,6 @@
 import unittest
 from collections import OrderedDict
-from code.sds import enumerate_toc
+from sds.sds import enumerate_toc
 
 
 class TestEnumerateToc(unittest.TestCase):
@@ -232,20 +232,19 @@ class TestEnumerateToc(unittest.TestCase):
     
     def test_simple_toc_chapters_only(self):
         """Test TOC with only chapters, no sections."""
-        result = enumerate_toc('en', self.simple_toc)
-        
+        with self._mock_label_extraction():
+            toc, _ = enumerate_toc('en', self.simple_toc)
         expected = OrderedDict([
             ('Introduction', '1'),
             ('Methods', '2'),
             ('Results', '3')
         ])
-        
-        self.assertEqual(result, expected)
+        self.assertEqual(toc, expected)
     
     def test_toc_with_sections(self):
         """Test TOC with chapters and sections."""
-        result = enumerate_toc('en', self.toc_with_sections)
-        
+        with self._mock_label_extraction():
+            toc, _ = enumerate_toc('en', self.toc_with_sections)
         expected = OrderedDict([
             ('Introduction', '1'),
             ('Background', '1.1'),
@@ -255,13 +254,12 @@ class TestEnumerateToc(unittest.TestCase):
             ('Data Analysis', '2.2'),
             ('Validation', '2.3')
         ])
-        
-        self.assertEqual(result, expected)
+        self.assertEqual(toc, expected)
     
     def test_appendices_italian(self):
         """Test Italian TOC with appendices."""
-        result = enumerate_toc('it', self.toc_with_appendices_it)
-        
+        with self._mock_label_extraction():
+            toc, _ = enumerate_toc('it', self.toc_with_appendices_it)
         expected = OrderedDict([
             ('Introduzione', '1'),
             ('Metodi', '2'),
@@ -271,59 +269,54 @@ class TestEnumerateToc(unittest.TestCase):
             ('Tabelle', 'B.1'),
             ('Grafici', 'B.2')
         ])
-        
-        self.assertEqual(result, expected)
+        self.assertEqual(toc, expected)
     
     def test_appendices_english(self):
         """Test English TOC with appendices."""
-        result = enumerate_toc('en', self.toc_with_appendices_en)
-        
+        with self._mock_label_extraction():
+            toc, _ = enumerate_toc('en', self.toc_with_appendices_en)
         expected = OrderedDict([
             ('Introduction', '1'),
             ('Analysis', '2'),
             ('References', 'A'),
             ('Additional Data', 'B')
         ])
-        
-        self.assertEqual(result, expected)
+        self.assertEqual(toc, expected)
     
     def test_appendices_french(self):
         """Test French TOC with appendices."""
-        result = enumerate_toc('fr', self.toc_with_appendices_fr)
-        
+        with self._mock_label_extraction():
+            toc, _ = enumerate_toc('fr', self.toc_with_appendices_fr)
         expected = OrderedDict([
             ('Introduction', '1'),
             ('Références', 'A')
         ])
-        
-        self.assertEqual(result, expected)
+        self.assertEqual(toc, expected)
     
     def test_appendices_spanish(self):
         """Test Spanish TOC with appendices."""
-        result = enumerate_toc('es', self.toc_with_appendices_es)
-        
+        with self._mock_label_extraction():
+            toc, _ = enumerate_toc('es', self.toc_with_appendices_es)
         expected = OrderedDict([
             ('Introducción', '1'),
             ('Referencias', 'A')
         ])
-        
-        self.assertEqual(result, expected)
+        self.assertEqual(toc, expected)
     
     def test_skip_presentation_files(self):
         """Test that presentation/introduction files are skipped."""
-        result = enumerate_toc('it', self.toc_with_presentation)
-        
+        with self._mock_label_extraction():
+            toc, _ = enumerate_toc('it', self.toc_with_presentation)
         expected = OrderedDict([
             ('First Chapter', '1'),
             ('Second Chapter', '2')
         ])
-        
-        self.assertEqual(result, expected)
+        self.assertEqual(toc, expected)
     
     def test_complex_toc_with_subsections(self):
         """Test complex TOC with multiple levels and appendices."""
-        result = enumerate_toc('en', self.complex_toc)
-        
+        with self._mock_label_extraction():
+            toc, _ = enumerate_toc('en', self.complex_toc)
         expected = OrderedDict([
             ('Getting Started', '1'),
             ('Prerequisites', '1.1'),
@@ -339,22 +332,21 @@ class TestEnumerateToc(unittest.TestCase):
             ('Common Issues', 'B.1'),
             ('FAQ', 'B.2')
         ])
-        
-        self.assertEqual(result, expected)
+        self.assertEqual(toc, expected)
     
     def test_empty_toc(self):
         """Test behavior with empty TOC."""
         empty_toc = {'format': 'jb-book', 'root': 'index', 'parts': []}
-        result = enumerate_toc('en', empty_toc)
-        
-        self.assertEqual(result, OrderedDict())
+        with self._mock_label_extraction():
+            toc, _ = enumerate_toc('en', empty_toc)
+        self.assertEqual(toc, OrderedDict())
     
     def test_toc_without_parts(self):
         """Test behavior with TOC that has no parts key."""
         no_parts_toc = {'format': 'jb-book', 'root': 'index'}
-        result = enumerate_toc('en', no_parts_toc)
-        
-        self.assertEqual(result, OrderedDict())
+        with self._mock_label_extraction():
+            toc, _ = enumerate_toc('en', no_parts_toc)
+        self.assertEqual(toc, OrderedDict())
     
     def test_part_without_chapters(self):
         """Test part that has no chapters."""
@@ -371,16 +363,15 @@ class TestEnumerateToc(unittest.TestCase):
                 }
             ]
         }
-        result = enumerate_toc('en', toc_no_chapters)
-        
+        with self._mock_label_extraction():
+            toc, _ = enumerate_toc('en', toc_no_chapters)
         expected = OrderedDict([
             ('Chapter One', '1')
         ])
-        
-        self.assertEqual(result, expected)
+        self.assertEqual(toc, expected)
     
     def test_chapter_without_title_or_file(self):
-        """Test chapter entries without title or file (should be skipped)."""
+        """Test chapter entries without title or file: should raise if title but no file, skip if neither."""
         toc_incomplete = {
             'format': 'jb-book',
             'root': 'index',
@@ -395,14 +386,10 @@ class TestEnumerateToc(unittest.TestCase):
                 }
             ]
         }
-        result = enumerate_toc('en', toc_incomplete)
-        
-        expected = OrderedDict([
-            ('Chapter Two', '1'),
-            ('Chapter Three', '2')
-        ])
-        
-        self.assertEqual(result, expected)
+        with self._mock_label_extraction():
+            with self.assertRaises(ValueError) as cm:
+                enumerate_toc('en', toc_incomplete)
+            self.assertIn("Chapter 'Chapter Two' has a title but no file", str(cm.exception))
     
     def test_multiple_appendix_parts(self):
         """Test TOC with multiple appendix parts."""
@@ -430,16 +417,15 @@ class TestEnumerateToc(unittest.TestCase):
                 }
             ]
         }
-        result = enumerate_toc('it', toc_multiple_appendices)
-        
+        with self._mock_label_extraction():
+            toc, _ = enumerate_toc('it', toc_multiple_appendices)
         # Second part should continue appendix numbering
         expected = OrderedDict([
             ('Introduction', '1'),
             ('References', 'A'),
             ('Data Tables', 'B')
         ])
-        
-        self.assertEqual(result, expected)
+        self.assertEqual(toc, expected)
     
     def test_case_insensitive_appendix_detection(self):
         """Test that appendix detection is case insensitive."""
@@ -461,19 +447,19 @@ class TestEnumerateToc(unittest.TestCase):
                 }
             ]
         }
-        result = enumerate_toc('it', toc_mixed_case)
-        
+        with self._mock_label_extraction():
+            toc, _ = enumerate_toc('it', toc_mixed_case)
         expected = OrderedDict([
             ('Introduction', '1'),
             ('References', 'A')
         ])
-        
-        self.assertEqual(result, expected)
+        self.assertEqual(toc, expected)
     
     def test_return_type_is_ordered_dict(self):
         """Test that the function returns an OrderedDict."""
-        result = enumerate_toc('en', self.simple_toc)
-        self.assertIsInstance(result, OrderedDict)
+        with self._mock_label_extraction():
+            toc, _ = enumerate_toc('en', self.simple_toc)
+        self.assertIsInstance(toc, OrderedDict)
     
     def test_numbering_consistency_across_parts(self):
         """Test that chapter numbering continues across non-appendix parts."""
@@ -496,15 +482,36 @@ class TestEnumerateToc(unittest.TestCase):
                 }
             ]
         }
-        result = enumerate_toc('en', toc_multiple_parts)
-        
+        with self._mock_label_extraction():
+            toc, _ = enumerate_toc('en', toc_multiple_parts)
         expected = OrderedDict([
             ('Chapter One', '1'),
             ('Chapter Two', '2'),
             ('Chapter Three', '3')
         ])
-        
-        self.assertEqual(result, expected)
+        self.assertEqual(toc, expected)
+
+    from contextlib import contextmanager
+    import sys
+    @contextmanager
+    def _mock_label_extraction(self):
+        """Mock extract_title_and_label_from_file to always return (title, unique_label) for tests."""
+        import sds.sds as sds_mod
+        orig_func = sds_mod.enumerate_toc.__globals__['extract_title_and_label_from_file'] if 'extract_title_and_label_from_file' in sds_mod.enumerate_toc.__globals__ else None
+        def fake_extract_title_and_label_from_file(file_path):
+            # Use file_path to generate a unique label
+            import os
+            base = os.path.basename(file_path)
+            label = os.path.splitext(base)[0].replace('-', '_').replace('.', '_')
+            return None, label
+        sds_mod.enumerate_toc.__globals__['extract_title_and_label_from_file'] = fake_extract_title_and_label_from_file
+        try:
+            yield
+        finally:
+            if orig_func:
+                sds_mod.enumerate_toc.__globals__['extract_title_and_label_from_file'] = orig_func
+            else:
+                del sds_mod.enumerate_toc.__globals__['extract_title_and_label_from_file']
 
 
 if __name__ == '__main__':

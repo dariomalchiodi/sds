@@ -14,11 +14,11 @@ Features:
 - Proper error handling
 
 Usage:
-    python3 code/serve.py [port]
+    python3 sds/serve.py [port]
     
 Examples:
-    python3 code/serve.py          # Serves on port 8080
-    python3 code/serve.py 3000     # Serves on port 3000
+    python3 sds/serve.py          # Serves on port 8080
+    python3 sds/serve.py 3000     # Serves on port 3000
 """
 
 import http.server
@@ -144,7 +144,7 @@ def main():
             port = int(sys.argv[1])
         except ValueError:
             print(f"❌ Invalid port number: {sys.argv[1]}")
-            print("Usage: python3 code/serve.py [port]")
+            print("Usage: python3 sds/serve.py [port]")
             sys.exit(1)
     
     # Check if build directory exists
@@ -201,7 +201,7 @@ def main():
     except OSError as e:
         if "Address already in use" in str(e):
             print(f"❌ Port {port} is already in use!")
-            print(f"Try a different port: python3 code/serve.py {port + 1}")
+            print(f"Try a different port: python3 sds/serve.py {port + 1}")
         else:
             print(f"❌ Server error: {e}")
         sys.exit(1)
