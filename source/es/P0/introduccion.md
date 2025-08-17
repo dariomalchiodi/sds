@@ -10,7 +10,7 @@ kernelspec:
 ---
 
 (par:franklin-law)=
-# Presentación
+# Introducción
 
 > En este mundo, nada puede darse por cierto,<br/>
 > excepto la muerte y los impuestos

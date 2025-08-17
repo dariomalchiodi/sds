@@ -303,16 +303,6 @@ class TestEnumerateToc(unittest.TestCase):
         ])
         self.assertEqual(toc, expected)
     
-    def test_skip_presentation_files(self):
-        """Test that presentation/introduction files are skipped."""
-        with self._mock_label_extraction():
-            toc, _ = enumerate_toc('it', self.toc_with_presentation)
-        expected = OrderedDict([
-            ('First Chapter', '1'),
-            ('Second Chapter', '2')
-        ])
-        self.assertEqual(toc, expected)
-    
     def test_complex_toc_with_subsections(self):
         """Test complex TOC with multiple levels and appendices."""
         with self._mock_label_extraction():

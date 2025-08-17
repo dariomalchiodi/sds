@@ -450,9 +450,7 @@ def enumerate_toc(language='it', toc_data=None):
                 raise ValueError(f"Chapter '{title}' has a title but no file specified in the TOC.")
             else:
                 continue
-            # Skip presentation/introduction files - they don't get numbered
-            if any(keyword in file_path.lower() for keyword in ['presentazione', 'presentation', 'presentacion', 'introduction']):
-                continue
+            # Removed skip logic for presentation/introduction files; these will now be numbered
             if is_appendix_part:
                 appendix_counter += 1
                 chapter_num = chr(ord('A') + appendix_counter - 1)
@@ -2993,6 +2991,134 @@ def main():
         print("Test completed!")
     else:
         parser.print_help()
+
+import os
+from bs4 import BeautifulSoup
+
+def apply_toc_numbering(language, dry_run=False):
+    toc_dict, _ = enumerate_toc(language)
+    toc_items = list(toc_dict.items())
+
+    # Skip the main title ("Superhero Data Science") in any language
+    filtered_toc = [(k, v) for k, v in toc_items if k != "Superhero Data Science"]
+
+    html_dir = os.path.join("build", "sds", language)
+    if not os.path.isdir(html_dir):
+        raise RuntimeError(f"HTML directory not found: {html_dir}")
+
+    # Find all HTML files
+    html_files = []
+    for root, _, files in os.walk(html_dir):
+        for f in files:
+            if f.endswith(".html"):
+                html_files.append(os.path.join(root, f))
+
+    # Use the first HTML file with a TOC as reference
+    ref_file = None
+    for html_file in html_files:
+        with open(html_file, "r", encoding="utf-8") as f:
+            soup = BeautifulSoup(f, "html.parser")
+        toc_div = soup.find("div", class_="bd-toc-item navbar-nav active")
+        if toc_div:
+            ref_file = html_file
+            break
+    if not ref_file:
+        raise RuntimeError("No TOC found in any HTML file.")
+
+    with open(ref_file, "r", encoding="utf-8") as f:
+        soup = BeautifulSoup(f, "html.parser")
+    toc_div = soup.find("div", class_="bd-toc-item navbar-nav active")
+    if toc_div is None:
+        raise RuntimeError("TOC div not found.")
+
+    # Dynamically collect all TOC <a> elements, skipping main title and part names
+    toc_links = []
+    for el in toc_div.children:
+        # Skip whitespace and comments
+        if not hasattr(el, "name"):
+            continue
+        # Skip the main title (first <ul> with home link)
+        if el.name == "ul" and "bd-sidenav__home-link" in el.get("class", []):
+            continue
+        # Skip part captions
+        if el.name == "p" and "caption" in el.get("class", []):
+            continue
+        # For each <ul> (the actual TOC for a part), collect <a> tags
+        if el.name == "ul":
+            for li in el.find_all("li"):
+                a = li.find("a")
+                if a:
+                    toc_links.append(a)
+
+    # Check that the number of items matches
+    if len(toc_links) != len(filtered_toc):
+        print("\n--- HTML TOC items ---")
+        for i, a in enumerate(toc_links):
+            html_content = ''.join(str(x) for x in a.contents).strip()
+            print(f"{i+1:2d}: {html_content}")
+        print("\n--- TOC dictionary entries ---")
+        for i, (dict_title, number) in enumerate(filtered_toc):
+            print(f"{i+1:2d}: {dict_title}")
+        raise RuntimeError(
+            f"TOC mismatch: {len(toc_links)} HTML items vs {len(filtered_toc)} TOC entries"
+        )
+
+    # Check that the titles match
+    def normalize_apostrophes(text):
+        # Replace right/left single quotes and other apostrophe-like chars with ASCII apostrophe
+        return text.replace("’", "'").replace("‘", "'").replace("‛", "'").replace("`", "'")
+
+    for (a, (dict_title, number)) in zip(toc_links, filtered_toc):
+        # Get the HTML content of the <a> tag, preserving <span class="ast"> tags
+        html_content = ''.join(str(x) for x in a.contents).strip()
+        # Normalize apostrophes for comparison
+        html_norm = normalize_apostrophes(html_content)
+        dict_norm = normalize_apostrophes(dict_title)
+        if html_norm != dict_norm:
+            raise RuntimeError(
+                f"TOC mismatch: HTML '{html_content}' != TOC '{dict_title}'"
+            )
+
+    # Prepare the numbered TOC for dry_run
+    numbered_toc = []
+    for (dict_title, number) in filtered_toc:
+        numbered_toc.append(f"{number}. {dict_title}")
+
+    if dry_run:
+        print("Numbered TOC:")
+        for entry in numbered_toc:
+            print(entry)
+        return
+
+    # Apply numbering to all HTML files
+    for html_file in html_files:
+        with open(html_file, "r", encoding="utf-8") as f:
+            soup = BeautifulSoup(f, "html.parser")
+        toc_div = soup.find("div", class_="bd-toc-item navbar-nav active")
+        if toc_div is None:
+            continue
+        toc_links = []
+        for el in toc_div.children:
+            if not hasattr(el, "name"):
+                continue
+            if el.name == "ul" and "bd-sidenav__home-link" in el.get("class", []):
+                continue
+            if el.name == "p" and "caption" in el.get("class", []):
+                continue
+            if el.name == "ul":
+                for li in el.find_all("li"):
+                    a = li.find("a")
+                    if a:
+                        toc_links.append(a)
+        if len(toc_links) != len(filtered_toc):
+            raise RuntimeError(
+                f"TOC mismatch in {html_file}: {len(toc_links)} HTML items vs {len(filtered_toc)} TOC entries"
+            )
+        for a, (dict_title, number) in zip(toc_links, filtered_toc):
+            new_text = f"{number}. {dict_title}"
+            a.string.replace_with(new_text)
+        with open(html_file, "w", encoding="utf-8") as f:
+            f.write(str(soup))
 
 
 if __name__ == '__main__':
