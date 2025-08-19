@@ -1,5 +1,5 @@
 import unittest
-from code.sds import process_myst_document
+from sds.sds import process_myst_document
 
 class TestProcessMystDocument(unittest.TestCase):
     def test_single_python_block(self):
@@ -79,7 +79,7 @@ a + b
     def test_inline_python_role(self):
         myst_content = '''# Document
 
-Here is an inline role: `x = 42`{py} and some more text.
+Here is an inline role: {py}`x = 42` and some more text.
 '''
         result = process_myst_document(myst_content)
         
@@ -87,7 +87,7 @@ Here is an inline role: `x = 42`{py} and some more text.
         self.assertNotIn("`x = 42`{py}", result)
         
         # Should contain inline span element for the inline role
-        self.assertIn('<span id="inline-1" class="py-inline-result">', result)
+        self.assertIn('<span id="inline-1" class="py-inline-splash">', result)
         
         # Should contain PyScript execution code for the inline expression
         self.assertIn("x = 42", result)
@@ -127,7 +127,7 @@ area = math.pi * radius ** 2
 area
 ```
 
-And inline: `print("Hello")`{py}
+And inline: {py}`print("Hello")`
 
 ```python
 x = [1, 2, 3]
@@ -144,7 +144,7 @@ sum(x)
         self.assertIn('<div id="out-4" class="cell-out"></div>', result)  # Last code block gets cell 4
         
         # Should have span for inline role (cell 3)
-        self.assertIn('<span id="inline-3" class="py-inline-result">', result)
+        self.assertIn('<span id="inline-3" class="py-inline-splash">', result)
         
         # Should have graph divs for code blocks
         self.assertIn('<div id="graph-1" class="cell-graph no-mathjax"></div>', result)

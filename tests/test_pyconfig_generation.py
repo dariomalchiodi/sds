@@ -2,10 +2,7 @@ import unittest
 import sys
 import os
 
-# Add the code directory to the path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'code'))
-
-from code.sds import process_myst_document, _extract_imports
+from sds.sds import process_myst_document, _extract_imports
 
 class TestPyConfigGeneration(unittest.TestCase):
     
