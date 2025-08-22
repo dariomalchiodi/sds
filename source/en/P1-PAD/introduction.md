@@ -9,6 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
+(chap:introduction-p1)=
 # Introduction
 
 The first part of this book introduces some basic tools for the automated

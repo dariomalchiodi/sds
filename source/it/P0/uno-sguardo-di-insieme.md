@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:uno-sguardo-di-insieme)=
+(chap:uno-sguardo-di-insieme)=
 # Uno sguardo di insieme
 
 Lo scopo di questo capitolo è duplice: da una parte, serve a descrivere per

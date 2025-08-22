@@ -150,7 +150,7 @@ fi
 
 # Verify that Python can import the required modules
 log "Verifying Python setup and required modules..."
-if ! $PYTHON_EXEC -c "import sys; sys.path.insert(0, '$CODE_DIR'); import sds" 2>/dev/null; then
+if ! $PYTHON_EXEC -c "import sys; sys.path.insert(0, '$PROJECT_ROOT'); import sds" 2>/dev/null; then
     error "Failed to import sds module. Please ensure dependencies are installed."
     error "If using system Python, run: pip install -r requirements.txt"
     error "If using virtual environment, ensure it's properly set up with dependencies."
@@ -228,10 +228,10 @@ import sys
 import os
 
 # Add the code directory to the path
-sys.path.insert(0, '$CODE_DIR')
+sys.path.insert(0, '$PROJECT_ROOT')
 
 try:
-    from sds import process_myst_file
+    from sds.sds import process_myst_file
     
     # Process the file
     backup_path = process_myst_file('$md_file', include_setup=$PYTHON_INCLUDE_SETUP)

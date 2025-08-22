@@ -47,9 +47,9 @@ inutile; al contrario, è importante analizzarlo, comprenderlo e modificarlo
 codice!)&mdash;insomma, _giocarci_ in un'ottica _hacker_, nel senso originale
 del termine[^hacker]. In realtà è anche possibile giocare con il libro senza
 necessariamente dover comprendere il codice ed eseguirlo: come mostrato nel
-Paragrafo [Uno sguardo d'insieme](uno-sguardo-di-insieme), una parte dei
-contenuti è interattiva, e la sua manipolazione è pensata proprio per
-facilitare la comprensione dei concetti introdotti.
+{ref}`chap:uno-sguardo-di-insieme`, una parte dei contenuti è interattiva, e la
+sua manipolazione è pensata proprio per facilitare la comprensione dei concetti
+introdotti.
 ```{margin}
 Il libro è stato generato utilizzando [MyST](https://mystmd.org/){.external},
 che comprende sia una variante del formato testuale

@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(disegnare-grafici)=
+(sec:disegnare-grafici)=
 # Disegnare grafici
 
 Il modulo `plt` può essere usato per produrre vari tipi di grafici. In generale

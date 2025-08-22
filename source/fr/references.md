@@ -1,3 +1,4 @@
+(app:references)=
 # References
 
 ```{bibliography}
