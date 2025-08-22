@@ -8,10 +8,6 @@ import tempfile
 import os
 from pathlib import Path
 
-# Add the code directory to the path
-import sys
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'code'))
-
 from sds.sds import process_html_py_roles, generate_inline_python
 
 
@@ -26,33 +22,33 @@ class TestProcessHtmlPyRoles(unittest.TestCase):
     <script type="module" src="https://pyscript.net/releases/2025.5.1/core.js"></script>
 </head>
 <body>
-    <p>Test inline: `2 + 3`{py}</p>
-    <p>Another: `len("hello")`{py}</p>
+    <p>Test inline: {py}`2 + 3`</p>
+    <p>Another: {py}`len("hello")`</p>
 </body>
 </html>'''
     
     def test_generate_inline_python_english(self):
         """Test generate_inline_python function with English language."""
         result = generate_inline_python("2 + 3", 1, "en")
-        expected = '<span id="inline-1" class="py-inline-result">Loading...</span>'
+        expected = '<span id="inline-1" class="py-inline-splash">Loading...</span>'
         self.assertEqual(result, expected)
     
     def test_generate_inline_python_italian(self):
         """Test generate_inline_python function with Italian language."""
         result = generate_inline_python("x = 42", 2, "it")
-        expected = '<span id="inline-2" class="py-inline-result">Caricamento...</span>'
+        expected = '<span id="inline-2" class="py-inline-splash">Caricamento...</span>'
         self.assertEqual(result, expected)
     
     def test_generate_inline_python_french(self):
         """Test generate_inline_python function with French language."""
         result = generate_inline_python("len('test')", 3, "fr")
-        expected = '<span id="inline-3" class="py-inline-result">Chargement...</span>'
+        expected = '<span id="inline-3" class="py-inline-splash">Chargement...</span>'
         self.assertEqual(result, expected)
     
     def test_generate_inline_python_spanish(self):
         """Test generate_inline_python function with Spanish language."""
         result = generate_inline_python("3 * 4", 4, "es")
-        expected = '<span id="inline-4" class="py-inline-result">Cargando...</span>'
+        expected = '<span id="inline-4" class="py-inline-splash">Cargando...</span>'
         self.assertEqual(result, expected)
     
     def test_process_html_py_roles_dry_run(self):
@@ -65,7 +61,11 @@ class TestProcessHtmlPyRoles(unittest.TestCase):
             
             # Process in dry run mode
             summary = process_html_py_roles(temp_dir, dry_run=True, language="en")
-            
+
+            print(f'---------------------{test_file}')
+            print(f'Summary: {summary}')
+            print(f'Content: {self.test_html}')
+
             # Check results
             self.assertEqual(summary['files_processed'], 1)
             self.assertEqual(summary['files_modified'], 1)
@@ -99,12 +99,12 @@ class TestProcessHtmlPyRoles(unittest.TestCase):
                 content = f.read()
             
             # Should not contain original {py} roles
-            self.assertNotIn('`2 + 3`{py}', content)
-            self.assertNotIn('`len("hello")`{py}', content)
+            self.assertNotIn('{py}`2 + 3`', content)
+            self.assertNotIn('{py}`len("hello")`', content)
             
             # Should contain inline spans
             self.assertIn('<span id="inline-', content)
-            self.assertIn('class="py-inline-result"', content)
+            self.assertIn('class="py-inline-splash"', content)
             
             # Should contain PyScript execution
             self.assertIn('<py-script>', content)

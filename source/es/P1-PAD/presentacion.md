@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(chap:presentacion)=
+(chap:presentacion-p1)=
 # Presentación
 
 La primera parte de este libro presenta algunas herramientas básicas para el

@@ -6,7 +6,7 @@ on:
     paths:
       - 'source/**'
       - 'locales/**'
-      - 'code/**'
+      - 'sds/**'
       - 'Makefile'
       - 'requirements.txt'
       - '.github/**'

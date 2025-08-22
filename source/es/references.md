@@ -1,5 +1,5 @@
-(chap:bibliografia)=
-# Bibliografía
+(app:bibliografia)=
+# References
 
 ```{bibliography}
 :style: plain

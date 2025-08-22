@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Chiudi il dettaglio rimuovendo l'attributo open
     details.removeAttribute("open");
   });
+
   
   // JavaScript for toggle-code functionality on pre-generated buttons
   function initializeToggleCode() {

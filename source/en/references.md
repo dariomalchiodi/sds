@@ -1,4 +1,4 @@
-(chap:reference)=
+(app:references)=
 # References
 
 ```{bibliography}

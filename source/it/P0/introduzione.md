@@ -112,7 +112,6 @@ concetti e strumenti descritti nel libro.
 fisico francese Jean-Baptiste Le Roy) questa affermazione compare in realtà
 come parte finale della frase: «... in this world nothing can be said to be
 certain, except death and taxes». Va comunque sottolineato che, sebbene la
-paternità di questo detto sia fatta risalire a Benjamin Franklin, esistono
-[fonti
-antecedenti](https://en.wikipedia.org/wiki/Death_and_taxes_(idiom)){,external}
-che ne riportano alcune varianti.
+paternità di questo detto sia fatta risalire a Benjamin Franklin, esistono <a
+href="https://en.wikipedia.org/wiki/Death_and_taxes_(idiom)"
+target="_blank">fonti antecedenti</a> che ne riportano alcune varianti.

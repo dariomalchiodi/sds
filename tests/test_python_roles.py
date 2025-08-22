@@ -60,27 +60,27 @@ plain text
         self.assertEqual(result, [])
 
     def test_inline_python_role(self):
-        source = 'Some text with `x = 42`{py} inline code'
+        source = 'Some text with {py}`x = 42` inline code'
         result = extract_python_roles(source)
         self.assertEqual(result, [('x = 42', None, True)])
 
     def test_multiple_inline_roles(self):
         source = '''
-This is `x = 1`{py} and this is `y = 2`{py}
-More text with `print("Hello")`{py}
+This is {py}`x = 1` and this is {py}`y = 2`
+More text with {py}`print("Hello")`
 '''
         result = extract_python_roles(source)
         self.assertEqual(result, [('x = 1', None, True), ('y = 2', None, True), ('print("Hello")', None, True)])
 
     def test_mixed_blocks_and_roles(self):
         source = '''
-Here is an inline role `x = 1`{py}
+Here is an inline role {py}`x = 1`
 And here is a code block:
 ```python
 y = 2
 z = 3
 ```
-And another inline role `print(x)`{py}
+And another inline role {py}`print(x)`
 '''
         result = extract_python_roles(source)
         self.assertEqual(result, [('x = 1', None, True), ('y = 2\nz = 3', None, False), ('print(x)', None, True)])

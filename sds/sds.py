@@ -1,530 +1,24 @@
-import os
-import re
-import yaml
-import glob
 import argparse
-import ast
-import shutil
+import glob
+import importlib
+import os
 from pathlib import Path
-from collections import OrderedDict
+import re
+import shutil
+import yaml
 
-def generate_toc_dictionary(html_root_dir):
-    """
-    Parse TOC YAML files to extract structure with titles and numbers.
-    
-    Args:
-        html_root_dir (str): Path to the root directory containing HTML files (e.g., 'build/it')
-    
-    Returns:
-        dict: Dictionary mapping titles to (type, number) where:
-              - type is either 'Chapter', 'Section', or 'Appendix'  
-              - number is the chapter/section number as string (e.g., "1", "2.3", "A", "B.1")
-    """
-    import yaml
-    import os
-    from pathlib import Path
-    
-    # Determine language from path
-    language = os.path.basename(html_root_dir)
-    if language not in ['it', 'en', 'fr', 'es']:
-        language = 'it'  # Default to Italian
-    
-    # Find the corresponding _toc.yml file
-    toc_file = f'source/{language}/_toc.yml'
-    if not os.path.exists(toc_file):
-        print(f"TOC file {toc_file} not found, falling back to HTML parsing")
-        return generate_toc_dictionary_from_html(html_root_dir)
-    
-    toc_dict = {}
-    
-    try:
-        with open(toc_file, 'r', encoding='utf-8') as f:
-            toc_data = yaml.safe_load(f)
-    except Exception as e:
-        print(f"Error reading TOC file: {e}")
-        return {}
-    
-    # Function to extract title from markdown file
-    def extract_title_from_file(file_path):
-        """Extract the first heading from a markdown file."""
-        try:
-            with open(file_path, 'r', encoding='utf-8') as f:
-                content = f.read()
-                
-            # Look for the first h1 heading
-            import re
-            # Match # Title or {doc}`<title>` patterns
-            title_match = re.search(r'^#\s+(.+)$', content, re.MULTILINE)
-            if title_match:
-                title = title_match.group(1).strip()
-                # Clean up any MyST/Markdown formatting
-                title = re.sub(r'\*([^*]+)\*', r'\1', title)  # Remove emphasis
-                title = re.sub(r'`([^`]+)`', r'\1', title)    # Remove code formatting
-                return title
-                
-            # Try alternative patterns like MyST title directives
-            title_match = re.search(r'^\s*title:\s*(.+)$', content, re.MULTILINE)
-            if title_match:
-                title = title_match.group(1).strip()
-                # Clean up any MyST/Markdown formatting
-                title = re.sub(r'\*([^*]+)\*', r'\1', title)  # Remove emphasis
-                title = re.sub(r'`([^`]+)`', r'\1', title)    # Remove code formatting
-                return title
-                
-        except Exception as e:
-            print(f"Error reading file {file_path}: {e}")
-        
-        return None
-    
-    # Counters for numbering
-    chapter_counter = 0
-    appendix_counter = 0
-    in_appendices = False
-    
-    # Process parts and chapters
-    for part in toc_data.get('parts', []):
-        caption = part.get('caption', '')
-        chapters = part.get('chapters', [])
-        
-        # Check if this part is for appendices
-        if any(keyword in caption.lower() for keyword in ['appendic', 'annex', 'annexe']):
-            in_appendices = True
-            appendix_counter = 0  # Reset for each appendices part
-        
-        for chapter in chapters:
-            file_path = chapter.get('file', '')
-            title = chapter.get('title')
-            
-            # If no title in YAML, extract from markdown file
-            if not title and file_path:
-                full_file_path = f'source/{language}/{file_path}.md'
-                title = extract_title_from_file(full_file_path)
-            
-            if not title:
-                continue
-            
-            # Skip presentation/introduction files - they don't get numbered
-            if any(keyword in file_path.lower() for keyword in ['presentazione', 'presentation', 'presentacion', 'introduction']):
-                continue
-            
-            # Determine if this is a chapter or appendix
-            if in_appendices:
-                appendix_counter += 1
-                appendix_letter = chr(ord('A') + appendix_counter - 1)  # A, B, C, ...
-                toc_dict[title] = ('Appendix', appendix_letter)
-                current_chapter_num = appendix_letter
-                current_is_appendix = True
-            else:
-                chapter_counter += 1
-                toc_dict[title] = ('Chapter', str(chapter_counter))
-                current_chapter_num = chapter_counter
-                current_is_appendix = False
-            
-            # Process sections within this chapter
-            sections = chapter.get('sections', [])
-            section_counter = 0
-            
-            for section in sections:
-                section_file = section.get('file', '')
-                section_title = section.get('title')
-                
-                # If no title in YAML, extract from markdown file
-                if not section_title and section_file:
-                    full_section_path = f'source/{language}/{section_file}.md'
-                    section_title = extract_title_from_file(full_section_path)
-                
-                if not section_title:
-                    continue
-                
-                section_counter += 1
-                
-                if current_is_appendix:
-                    section_num = f"{current_chapter_num}.{section_counter}"
-                else:
-                    section_num = f"{current_chapter_num}.{section_counter}"
-                
-                toc_dict[section_title] = ('Section', section_num)
-                
-                # Process subsections if they exist
-                subsections = section.get('sections', [])
-                subsection_counter = 0
-                
-                for subsection in subsections:
-                    subsection_file = subsection.get('file', '')
-                    subsection_title = subsection.get('title')
-                    
-                    # If no title in YAML, extract from markdown file
-                    if not subsection_title and subsection_file:
-                        full_subsection_path = f'source/{language}/{subsection_file}.md'
-                        subsection_title = extract_title_from_file(full_subsection_path)
-                    
-                    if not subsection_title:
-                        continue
-                    
-                    subsection_counter += 1
-                    
-                    if current_is_appendix:
-                        subsection_num = f"{current_chapter_num}.{section_counter}.{subsection_counter}"
-                    else:
-                        subsection_num = f"{current_chapter_num}.{section_counter}.{subsection_counter}"
-                    
-                    toc_dict[subsection_title] = ('Section', subsection_num)
-    
-    return toc_dict
+import ast
+import astor
+from bs4 import BeautifulSoup
+from bs4 import NavigableString
 
+from sds.toc import TOC
 
-def generate_toc_dictionary_from_html(html_root_dir):
-    """
-    Parse HTML files to extract TOC structure with titles and numbers (fallback method).
-    
-    Args:
-        html_root_dir (str): Path to the root directory containing HTML files (e.g., 'build/it')
-    
-    Returns:
-        dict: Dictionary mapping titles to (type, number) where:
-              - type is either 'Chapter' or 'Section'  
-              - number is the chapter/section number as string
-    """
-    try:
-        from bs4 import BeautifulSoup
-    except ImportError:
-        print("BeautifulSoup4 is required. Install with: pip install beautifulsoup4")
-        return {}
-    
-    toc_dict = {}
-    
-    # Find an HTML file to parse the sidebar from (avoid landing page)
-    html_files = list(Path(html_root_dir).rglob("*.html"))
-    if not html_files:
-        print(f"No HTML files found in {html_root_dir}")
-        return toc_dict
-    
-    # Prefer a non-landing page for sidebar parsing
-    target_file = None
-    for f in html_files:
-        if 'landing.html' not in str(f) and '_static' not in str(f):
-            target_file = f
-            break
-    
-    if not target_file:
-        target_file = html_files[0]
-    
-    # Use the selected HTML file to get the sidebar structure
-    try:
-        with open(target_file, 'r', encoding='utf-8') as f:
-            content = f.read()
-            soup = BeautifulSoup(content, 'html.parser')
-    except Exception as e:
-        print(f"Error reading HTML file: {e}")
-        return toc_dict
-    
-    # Find the sidebar navigation
-    sidebar = soup.find('nav', class_='bd-links')
-    if not sidebar:
-        print("Sidebar navigation not found")
-        return toc_dict
-    
-    # Initialize counters
-    chapter_counter = 0
-    appendix_counter = 0
-    section_counters = {}  # {chapter_num: section_count}
-    appendix_section_counters = {}  # {appendix_letter: section_count}
-    
-    # Track if we're in the appendices section
-    in_appendices = False
-    
-    # Find all list items in the sidebar
-    all_lis = sidebar.find_all('li', recursive=True)
-    
-    # Track which items we've seen to avoid duplicates (when the same chapter appears in TOC of different pages)
-    seen_titles = set()
-    
-    # First pass: check if we can detect the "Appendici" caption to know when appendices start
-    appendices_start_detected = False
-    for li in all_lis:
-        # Look for caption elements or specific patterns that indicate appendices section
-        caption_elements = li.find_all(class_='caption-text')
-        for caption in caption_elements:
-            if 'Appendici' in caption.get_text(strip=True):
-                appendices_start_detected = True
-                break
-        if appendices_start_detected:
-            break
-    
-    for li in all_lis:
-        classes = li.get('class', [])
-        link = li.find('a')
-        
-        # Check if this li contains a caption indicating start of appendices
-        caption_elements = li.find_all(class_='caption-text')
-        for caption in caption_elements:
-            if 'Appendici' in caption.get_text(strip=True):
-                in_appendices = True
-                continue
-        
-        if not link:
-            continue
-            
-        # Get the clean title text
-        title = link.get_text(strip=True)
-        
-        # Skip the main title and empty entries
-        if not title or 'Superhero Data Science' in title:
-            continue
-        
-        # Skip if we've already processed this title to avoid duplicates
-        if title in seen_titles:
-            continue
-        
-        seen_titles.add(title)
-        
-        # Determine type based on CSS class
-        if 'toctree-l1' in classes:
-            # Skip part-level "Presentazione" entries - they are introductions, not numbered chapters
-            # Also skip the very first "Presentazione" which appears to be a book-level introduction
-            if title in ["Presentazione", "Présentation", "Presentation", "Presentación"]:
-                continue
-            
-            # Check if this is an appendix (either we detected appendices section, or title suggests it's an appendix)
-            if in_appendices or title in ['References', 'Bibliografia', 'Appendix', 'Appendice']:
-                # This is an appendix
-                appendix_counter += 1
-                appendix_letter = chr(ord('A') + appendix_counter - 1)  # A, B, C, ...
-                appendix_section_counters[appendix_letter] = 0
-                toc_dict[title] = ('Appendix', appendix_letter)
-            else:
-                # This is a main chapter
-                chapter_counter += 1
-                section_counters[chapter_counter] = 0
-                toc_dict[title] = ('Chapter', str(chapter_counter))
-            
-        elif 'toctree-l2' in classes:
-            # This is a section
-            if in_appendices and appendix_counter > 0:
-                # This is an appendix section
-                appendix_letter = chr(ord('A') + appendix_counter - 1)
-                appendix_section_counters[appendix_letter] += 1
-                section_num = f"{appendix_letter}.{appendix_section_counters[appendix_letter]}"
-                toc_dict[title] = ('Section', section_num)
-            elif chapter_counter > 0:
-                # This is a regular chapter section
-                section_counters[chapter_counter] += 1
-                section_num = f"{chapter_counter}.{section_counters[chapter_counter]}"
-                toc_dict[title] = ('Section', section_num)
-    
-    return toc_dict
-
-def enumerate_toc(language='it', toc_data=None):
-    """
-    Reads the _toc.yml file for a specified language and creates an OrderedDict
-    with chapter and section numbering.
-    
-    Args:
-        language (str): Language code ('it', 'en', 'fr', 'es')
-        toc_data (dict): Optional TOC data dictionary. If provided, will use this
-                        instead of reading from file.
-    
-    Returns:
-        OrderedDict: Dictionary mapping titles to numbers where:
-                    - chapters get numbers like "1", "2", "3"
-                    - sections get numbers like "1.1", "1.2", "2.1"
-                    - appendix chapters get letters like "A", "B", "C"
-                    - appendix sections get numbers like "A.1", "A.2", "B.1"
-    """
-    # If toc_data is provided, use it directly
-    if toc_data is not None:
-        # Use the provided TOC data for testing
-        pass
-    else:
-        # Find the corresponding _toc.yml file
-        toc_file = f'source/{language}/_toc.yml'
-        if not os.path.exists(toc_file):
-            print(f"TOC file {toc_file} not found")
-            return OrderedDict()
-        
-        try:
-            with open(toc_file, 'r', encoding='utf-8') as f:
-                toc_data = yaml.safe_load(f)
-        except Exception as e:
-            print(f"Error reading TOC file: {e}")
-            return OrderedDict()
-    
-    # Function to extract title and label from markdown file
-    def extract_title_and_label_from_file(file_path):
-        """Extract the first heading and its immediately preceding label from a markdown file."""
-        try:
-            with open(file_path, 'r', encoding='utf-8') as f:
-                lines = f.readlines()
-            label = None
-            title = None
-            for i, line in enumerate(lines):
-                # Look for the first h1 heading
-                title_match = re.match(r'^#\s+(.+)$', line)
-                if title_match:
-                    # Check previous non-empty line for label
-                    j = i - 1
-                    while j >= 0 and lines[j].strip() == '':
-                        j -= 1
-                    if j >= 0:
-                        # Match (label)= format
-                        label_match = re.match(r'^\(([\w\-:]+)\)=\s*$', lines[j].strip())
-                        if label_match:
-                            label = label_match.group(1)
-                    # Clean up title as before
-                    def clean_title(text):
-                        protected = re.sub(r'<span class=\"ast\">\*<\\/span>', '___AST___', text)
-                        protected = re.sub(r'\*([^*]+)\*', r'\1', protected)
-                        protected = re.sub(r'`([^`]+)`', r'\1', protected)
-                        return protected.replace('___AST___', '<span class=\"ast\">*</span>')
-                    title = title_match.group(1).strip()
-                    title = clean_title(title)
-                    title = re.sub(r'<span class=\"ast\">\\*\*</span>', '<span class=\"ast\">*</span>', title)
-                    title = re.sub(r'<span class=\"ast\">\\*</span>', '<span class=\"ast\">*</span>', title)
-                    title = re.sub(r'<span class=\"ast\">\*</span>', '<span class=\"ast\">*</span>', title)
-                    break
-            return title, label
-        except Exception as e:
-            print(f"Error reading file {file_path}: {e}")
-        return None, None
-    
-    toc_ordered = OrderedDict()
-    label_to_caption = OrderedDict()
-    chapter_counter = 0
-    appendix_counter = 0
-    used_labels = set()
-
-    # Localization for 'Capitolo' and 'Paragrafo'
-
-    cap_terms = {
-        'it': ('Capitolo', 'Paragrafo', 'Appendice'),
-        'en': ('Chapter', 'Section', 'Appendix'),
-        'fr': ('Chapitre', 'Paragraphe', 'Annexe'),
-        'es': ('Capítulo', 'Párrafo', 'Apéndice')
-    }
-    cap_word, para_word, appendix_word = cap_terms.get(language, cap_terms['en'])
-
-    # Define appendix keywords for different languages
-    appendix_keywords = {
-        'it': ['appendici', 'appendice'],
-        'en': ['appendices', 'appendix'],
-        'fr': ['annexes', 'annexe'],
-        'es': ['apéndices', 'apéndice', 'anexos', 'anexo']
-    }
-    current_appendix_keywords = appendix_keywords.get(language, appendix_keywords['en'])
-
-    for part in toc_data.get('parts', []):
-        caption = part.get('caption', '').lower()
-        chapters = part.get('chapters', [])
-        is_appendix_part = any(keyword in caption for keyword in current_appendix_keywords)
-
-        for chapter in chapters:
-            file_path = chapter.get('file', '')
-            title = chapter.get('title')
-            label = None
-            # If no title in YAML, extract from markdown file (and get label)
-            if not title and file_path:
-                full_file_path = f'source/{language}/{file_path}.md'
-                title, label = extract_title_and_label_from_file(full_file_path)
-                if not title:
-                    continue
-                if not label:
-                    raise RuntimeError(f"Missing cross-reference label before chapter title in {full_file_path}")
-                if label in used_labels:
-                    raise RuntimeError(f"Duplicate label '{label}' found in {full_file_path}")
-                used_labels.add(label)
-            elif file_path:
-                # If title is present in YAML and toc_data is provided, mock label (for tests)
-                if toc_data is not None:
-                    # Use file_path as a unique label
-                    label = file_path.replace('-', '_').replace('.', '_')
-                else:
-                    # If title is present in YAML, still check for label in file
-                    full_file_path = f'source/{language}/{file_path}.md'
-                    _, label = extract_title_and_label_from_file(full_file_path)
-                    if not label:
-                        raise RuntimeError(f"Missing cross-reference label before chapter title in {full_file_path}")
-                    if label in used_labels:
-                        raise RuntimeError(f"Duplicate label '{label}' found in {full_file_path}")
-                    used_labels.add(label)
-            elif title and not file_path:
-                raise ValueError(f"Chapter '{title}' has a title but no file specified in the TOC.")
-            else:
-                continue
-            # Removed skip logic for presentation/introduction files; these will now be numbered
-            if is_appendix_part:
-                appendix_counter += 1
-                chapter_num = chr(ord('A') + appendix_counter - 1)
-                toc_ordered[title] = chapter_num
-                # Use localized appendix term for appendix chapters
-                label_to_caption[label] = f"{appendix_word} {chapter_num}"
-                current_chapter_num = chapter_num
-            else:
-                chapter_counter += 1
-                toc_ordered[title] = str(chapter_counter)
-                label_to_caption[label] = f"{cap_word} {chapter_counter}"
-                current_chapter_num = str(chapter_counter)
-            # Sections
-            sections = chapter.get('sections', [])
-            section_counter = 0
-            for section in sections:
-                section_file = section.get('file', '')
-                section_title = section.get('title')
-                section_label = None
-                if not section_title and section_file:
-                    full_section_path = f'source/{language}/{section_file}.md'
-                    section_title, section_label = extract_title_and_label_from_file(full_section_path)
-                    if not section_title:
-                        continue
-                    if not section_label:
-                        raise RuntimeError(f"Missing cross-reference label before section title in {full_section_path}")
-                    if section_label in used_labels:
-                        raise RuntimeError(f"Duplicate label '{section_label}' found in {full_section_path}")
-                    used_labels.add(section_label)
-                elif section_file:
-                    # If title is present in YAML and toc_data is provided, mock label (for tests)
-                    if toc_data is not None:
-                        section_label = section_file.replace('-', '_').replace('.', '_')
-                    else:
-                        # If title is present in YAML, still check for label in file
-                        full_section_path = f'source/{language}/{section_file}.md'
-                        _, section_label = extract_title_and_label_from_file(full_section_path)
-                        if not section_label:
-                            raise RuntimeError(f"Missing cross-reference label before section title in {full_section_path}")
-                        if section_label in used_labels:
-                            raise RuntimeError(f"Duplicate label '{section_label}' found in {full_section_path}")
-                        used_labels.add(section_label)
-                else:
-                    continue
-                section_counter += 1
-                section_num = f"{current_chapter_num}.{section_counter}"
-                toc_ordered[section_title] = section_num
-                label_to_caption[section_label] = f"{para_word} {section_num}"
-                # Subsections (no label check for these, as per user request)
-                subsections = section.get('sections', [])
-                subsection_counter = 0
-                for subsection in subsections:
-                    subsection_file = subsection.get('file', '')
-                    subsection_title = subsection.get('title')
-                    if not subsection_title and subsection_file:
-                        full_subsection_path = f'source/{language}/{subsection_file}.md'
-                        subsection_title, _ = extract_title_and_label_from_file(full_subsection_path)
-                        if not subsection_title:
-                            continue
-                    elif subsection_file:
-                        if toc_data is not None:
-                            # Use file name as title if title is missing
-                            subsection_title = subsection_title or subsection_file.replace('-', ' ').replace('_', ' ').title()
-                        else:
-                            full_subsection_path = f'source/{language}/{subsection_file}.md'
-                            subsection_title, _ = extract_title_and_label_from_file(full_subsection_path)
-                            if not subsection_title:
-                                continue
-                    else:
-                        continue
-                    subsection_counter += 1
-                    subsection_num = f"{current_chapter_num}.{section_counter}.{subsection_counter}"
-                    toc_ordered[subsection_title] = subsection_num
-    return toc_ordered, label_to_caption
+def get_root_doc(language):
+    # Build the module path as a string
+    module_path = f"source.{language}.conf"
+    conf = importlib.import_module(module_path)
+    return getattr(conf, "root_doc", None)
 
 def extract_python_roles(source):
     '''Extracts Python code blocks and inline roles from MyST Markdown source.
@@ -535,19 +29,23 @@ def extract_python_roles(source):
         list: A list of tuples (code_content, class_attr, is_inline) where:
               - code_content is the Python code
               - class_attr is the CSS class from :class: directive or None
-              - is_inline is True for inline roles ({py}, {eval-python}), False for code blocks
+              - is_inline is True for inline roles ({py}, {eval-python}), False
+                for code blocks
     '''
-    import re
     
     # Comprehensive pattern to match different Python code block formats
-    # Matches: ```python...``` or ```{python}...``` or ```{code-block} python...``` or `...`{eval-python} or `...`{py}
-    # For code-block format, capture the full block including options
-    pattern = r"(?:```\{code-block\}\s+python\s*([\s\S]*?)```)|(?:```(?:\{?python\}?)\s*([\s\S]*?)```)|(?:`([^`]+)`\{eval-python\})|(?:`([^`]+)`\{py\})"
+    # Matches: ```python...``` or ```{python}...``` or ```{code-block}
+    # python...``` or {eval-python}`...` or {py}`...` For code-block format,
+    # capture the full block including options
+    pattern = r"(?:```\{code-block\}\s+python\s*([\s\S]*?)```)|" \
+              r"(?:```(?:\{?python\}?)\s*([\s\S]*?)```)|" \
+              r"(?:\{eval-python\}`([^`]+)`)|(?:\{py\}`([^`]+)`)"
     matches = re.finditer(pattern, source)
     
     result = []
     for match in matches:
-        # Group 1 is code-block content, group 2 is python content, group 3 is inline eval-python role, group 4 is inline py role
+        # Group 1 is code-block content, group 2 is python content, group 3 is
+        # inline eval-python role, group 4 is inline py role
         if match.group(1) is not None:
             # This is a {code-block} python block
             content = match.group(1)
@@ -583,12 +81,12 @@ def split_code(source):
         source (str): The Python source code as a string.
     Returns:
         tuple: A pair (setup, final) where:
-               - setup: string containing all code except the last statement (or all code if final doesn't produce output)
-               - final: string containing only the last statement if it produces output, empty string otherwise
+               - setup: string containing all code except the last statement
+                 (or all code if final doesn't produce output)
+               - final: string containing only the last statement if it
+                 produces output, empty string otherwise
                If the source is empty, returns ('', '')
     '''
-    import ast
-    import astor
     
     try:
         # Parse the source code into an AST
@@ -642,7 +140,6 @@ def _produces_output(node):
     Returns:
         bool: True if the node would produce output, False otherwise
     '''
-    import ast
     
     # Expressions that are not assignments produce output
     if isinstance(node, ast.Expr):
@@ -705,8 +202,9 @@ def generate_myst_interactive(setup_code, final_code, cell_number):
     return f"{python_block}\n\n{html_block}"
 
 def generate_inline_python(python_code, cell_number, language='en'):
-    '''Generates inline PyScript execution with span element for Python expressions.
-    
+    '''Generates inline PyScript execution with span element for Python
+    expressions.
+
     Args:
         python_code (str): The Python expression to evaluate
         cell_number (int): Progressive number for the cell
@@ -719,13 +217,15 @@ def generate_inline_python(python_code, cell_number, language='en'):
     
     # Create direct HTML content without raw block wrapper
     # The span will show loading text initially, then get updated by PyScript
-    return f'<span id="inline-{cell_number}" class="py-inline-result">{labels["wait"]}</span>'
+    return f'<span id="inline-{cell_number}" ' \
+           f'class="py-inline-splash">{labels["wait"]}</span>'
 
 def generate_pyscript_setup():
     '''Generates the initial PyScript setup with common imports and utilities.
     
     Returns:
-        str: HTML block with PyScript setup that should be included once per document
+        str: HTML block with PyScript setup that should be included once per
+        document
     '''
     return '''```{raw} html
 <py-script>
@@ -893,7 +393,8 @@ try:
     console.log("pydom imported and made available globally")
 except ImportError as e:
     console.log(f"Failed to import pydom: {e}")
-    # Fallback: provide a simple pydom-like interface using PyScript's DOM access
+    # Fallback: provide a simple pydom-like interface using PyScript's DOM
+    # access
     try:
         from js import document
         
@@ -1002,16 +503,18 @@ def get_toggle_labels(language='en'):
     return labels.get(language, labels['en'])
 
 def process_myst_document(myst_content, include_setup=True, language='en'):
-    '''Processes a MyST Markdown document and adds interactive HTML blocks after each Python code block.
+    '''Processes a MyST Markdown document and adds interactive HTML blocks
+    after each Python code block.
     
     Args:
         myst_content (str): The MyST Markdown document content as a string
-        include_setup (bool): Whether to include the initial PyScript setup (default: True)
+        include_setup (bool): Whether to include the initial PyScript setup
+            (default: True)
         language (str): The language code for localization (default: 'en')
     Returns:
-        str: The processed document with interactive HTML blocks added after Python code blocks
+        str: The processed document with interactive HTML blocks added after
+            Python code blocks
     '''
-    import re
     
     # Extract all Python code blocks from the document
     python_codes = extract_python_roles(myst_content)
@@ -1027,16 +530,20 @@ def process_myst_document(myst_content, include_setup=True, language='en'):
     current_pos = 0
     cell_number = 1
     
-    # Pattern to find Python code blocks and their positions
-    # Matches: ```python...``` or ```{python}...``` or ```{code-block} python...``` or `...`{eval-python} or `...`{py}
-    # For code-block format, capture the full block including options
-    pattern = r"(?:```\{code-block\}\s+python\s*([\s\S]*?)```)|(?:```(?:\{?python\}?)\s*([\s\S]*?)```)|(?:`([^`]+)`\{eval-python\})|(?:`([^`]+)`\{py\})"
+    # Pattern to find Python code blocks and their positions Matches:
+    # ```python...``` or ```{python}...``` or ```{code-block} python...``` or
+    # {eval-python}`...` or {py}`...` For code-block format, capture the full
+    # block including options
+    pattern = r"(?:```\{code-block\}\s+python\s*([\s\S]*?)```)|" \
+              r"(?:```(?:\{?python\}?)\s*([\s\S]*?)```)|" \
+              r"(?:\{eval-python\}`([^`]+)`)|(?:\{py\}`([^`]+)`)"
     
     python_code_index = 0
     for match in re.finditer(pattern, myst_content):
         # Check if this code block is already inside a toggle wrapper
         context_before = myst_content[max(0, match.start() - 500):match.start()]
-        context_after = myst_content[match.end():min(len(myst_content), match.end() + 500)]
+        context_after = myst_content[match.end():min(len(myst_content),
+                                                     match.end() + 500)]
         
         # Skip if this code block is already inside a toggle wrapper
         if ('toggle-code-wrapper' in context_before and 
@@ -1050,7 +557,8 @@ def process_myst_document(myst_content, include_setup=True, language='en'):
         # Add content before this Python block
         result_parts.append(myst_content[current_pos:match.start()])
         
-        # Get the Python code content, class, and whether it's inline from our extracted data
+        # Get the Python code content, class, and whether it's inline from our
+        # extracted data
         is_inline = False
         if python_code_index < len(python_codes):
             python_code, class_attr, is_inline = python_codes[python_code_index]
@@ -1066,7 +574,8 @@ def process_myst_document(myst_content, include_setup=True, language='en'):
                     class_match = re.search(r':class:\s*([^\n]+)', python_code)
                     if class_match:
                         class_attr = class_match.group(1).strip()
-                        python_code = re.sub(r':class:\s*[^\n]+\n?', '', python_code)
+                        python_code = re.sub(r':class:\s*[^\n]+\n?', '',
+                                             python_code)
             elif match.group(2) is not None:
                 # This is a regular python block
                 python_code = match.group(2)
@@ -1085,8 +594,10 @@ def process_myst_document(myst_content, include_setup=True, language='en'):
         
         # Handle inline roles differently
         if is_inline:
-            # For inline roles, replace the original role with our generated HTML
-            inline_html = generate_inline_python(python_code.strip(), cell_number, language)
+            # For inline roles, replace the original role with our generated
+            # HTML
+            inline_html = generate_inline_python(python_code.strip(),
+                                                 cell_number, language)
             result_parts.append(inline_html)
             
             # Collect the inline expression to add PyScript code later
@@ -1097,15 +608,18 @@ def process_myst_document(myst_content, include_setup=True, language='en'):
             python_code_index += 1
             continue
         
-        # For code blocks, add the original Python block, with toggle wrapper if needed
+        # For code blocks, add the original Python block, with toggle wrapper
+        # if needed
         original_block = match.group(0)
         
         if class_attr and 'toggle-code' in class_attr:
-            # Remove the toggle-code class from the original block to prevent double wrapping
+            # Remove the toggle-code class from the original block to prevent
+            # double wrapping
             cleaned_block = original_block.replace(':class: toggle-code', '')
             # Remove any empty class attributes that might be left
             cleaned_block = re.sub(r':class:\s*\n', '', cleaned_block)
-            cleaned_block = re.sub(r':class:\s*$', '', cleaned_block, flags=re.MULTILINE)
+            cleaned_block = re.sub(r':class:\s*$', '', cleaned_block,
+                                   flags=re.MULTILINE)
             
             # Get localized labels
             labels = get_toggle_labels(language)
@@ -1114,7 +628,10 @@ def process_myst_document(myst_content, include_setup=True, language='en'):
             result_parts.append(f'''
 ```{{raw}} html
 <div class="toggle-code-wrapper">
-    <button class="toggle-code-button"><span class="triangle">▶</span><span class="button-text"> {labels['show']}</span></button>
+    <button class="toggle-code-button">
+        <span class="triangle">▶</span>
+        <span class="button-text"> {labels['show']}</span>
+    </button>
     <div class="toggle-code-content">
 ```
 
@@ -1153,8 +670,9 @@ def process_myst_document(myst_content, include_setup=True, language='en'):
         # Check if matplotlib is used in this cell
         uses_matplotlib = _uses_matplotlib(python_code)
         
-        # Create the PyScript block to be added later
-        # Add class attribute if present, but NOT for toggle-code (that should only affect visible code)
+        # Create the PyScript block to be added later Add class attribute if
+        # present, but NOT for toggle-code (that should only affect visible
+        # code)
         py_script_class = ""
         if class_attr and 'toggle-code' not in class_attr:
             py_script_class = f' class="{class_attr}"'
@@ -1300,7 +818,8 @@ try:
         traceback.print_exc()
         result = None'''
         else:
-            # Only include matplotlib handling if matplotlib is actually used (setup-only case)
+            # Only include matplotlib handling if matplotlib is actually used
+            # (setup-only case)
             if uses_matplotlib:
                 pyscript_content += '''
     
@@ -1582,8 +1101,10 @@ console.log("Finished executing inline Python expressions");
             result_parts.append(pyscript_block)
             result_parts.append('\n')
         
-        # Add toggle initialization script at the end if any toggle-code blocks exist
-        has_toggle_code = any('class="toggle-code"' in block for block in pyscript_blocks)
+        # Add toggle initialization script at the end if any toggle-code blocks
+        # exist
+        has_toggle_code = any('class="toggle-code"' in block
+                              for block in pyscript_blocks)
         if has_toggle_code:
             result_parts.append('''
 <script>
@@ -1617,22 +1138,21 @@ def _indent_code(code, indent):
     return '\n'.join(indented_lines)
 
 def process_myst_file(file_path, include_setup=True):
-    '''Processes a MyST Markdown file and replaces its contents with interactive HTML blocks.
+    '''Processes a MyST Markdown file and replaces its contents with
+    interactive HTML blocks.
     
     Creates a backup of the original file before processing.
     
     Args:
         file_path (str): Path to the MyST Markdown file to process
-        include_setup (bool): Whether to include the initial PyScript setup (default: True)
+        include_setup (bool): Whether to include the initial PyScript setup
+            (default: True)
     Returns:
         str: Path to the backup file that was created
     Raises:
         FileNotFoundError: If the input file doesn't exist
         IOError: If there are issues reading/writing files
     '''
-    import os
-    import shutil
-    from pathlib import Path
     
     # Convert to Path object for easier manipulation
     file_path = Path(file_path)
@@ -1673,7 +1193,9 @@ def process_myst_file(file_path, include_setup=True):
     
     # Process the content
     try:
-        processed_content = process_myst_document(original_content, include_setup=include_setup, language=language)
+        processed_content = process_myst_document(original_content,
+                                                  include_setup=include_setup,
+                                                  language=language)
     except Exception as e:
         # If processing fails, remove the backup and re-raise
         backup_path.unlink(missing_ok=True)
@@ -1701,8 +1223,6 @@ def _extract_imports(code):
     Returns:
         set: Set of imported package names
     '''
-    import ast
-    import re
     
     if not code.strip():
         return set()
@@ -1739,7 +1259,8 @@ def _extract_imports(code):
                     package = match.group(1).split('.')[0]
                     packages.add(package)
     
-    # Filter out built-in modules and common standard library modules that don't need to be declared
+    # Filter out built-in modules and common standard library modules that
+    # don't need to be declared
     builtin_modules = {
         'sys', 'os', 'io', 'json', 're', 'math', 'random', 'datetime',
         'collections', 'itertools', 'functools', 'operator', 'copy',
@@ -1768,9 +1289,6 @@ def _extract_imports(code):
     
     # Return only packages that are not built-in
     return packages - builtin_modules
-
-import re
-
 
 def _uses_matplotlib(code):
     """Check if code uses matplotlib or pyplot functionality.
@@ -1855,476 +1373,10 @@ def _uses_matplotlib(code):
     
     return False
 
-def replace_crossref_links(html_root_dir, toc_dict=None, dry_run=False, language='it'):
-    """
-    Recursively process HTML files and replace cross-reference link texts with correct type and number.
-    
-    Args:
-        html_root_dir (str): Path to the root directory containing HTML files (e.g., 'build/it')
-        toc_dict (dict): Dictionary mapping titles to (type, number). If None, will generate automatically.
-        dry_run (bool): If True, only analyze and return what would be changed without modifying files
-        language (str): Language code ('it' or 'en') for appropriate translations
-    
-    Returns:
-        dict: Summary of changes made or that would be made
-    """
-    try:
-        from bs4 import BeautifulSoup
-    except ImportError:
-        print("BeautifulSoup4 is required. Install with: pip install beautifulsoup4")
-        return {}
-    
-    # Generate TOC dictionary if not provided
-    if toc_dict is None:
-        toc_dict = generate_toc_dictionary(html_root_dir)
-    
-    if not toc_dict:
-        print("No TOC dictionary available")
-        return {}
-    
-    # Clean numbering without type prefixes
-    
-    changes_summary = {
-        'files_processed': 0,
-        'files_modified': 0,
-        'total_replacements': 0,
-        'replacements_by_file': {},
-        'errors': []
-    }
-    
-    # Find all HTML files
-    html_files = list(Path(html_root_dir).rglob("*.html"))
-    
-    for html_file in html_files:
-        # Skip certain files that shouldn't be modified
-        if any(skip in str(html_file) for skip in ['_static', 'genindex', 'search']):
-            continue
-            
-        changes_summary['files_processed'] += 1
-        file_replacements = []
-        
-        try:
-            # Read and parse the HTML file
-            with open(html_file, 'r', encoding='utf-8') as f:
-                content = f.read()
-                
-            soup = BeautifulSoup(content, 'html.parser')
-            content_modified = False
-            
-            # Find all internal links that could be cross-references
-            # Look for links with class="reference internal" but exclude sidebar navigation
-            internal_links = soup.find_all('a', class_='reference internal')
-            
-            for link in internal_links:
-                # Skip links that are in the sidebar navigation
-                # Check if the link is inside a navigation element or sidebar
-                parent_nav = link.find_parent('nav')
-                parent_sidebar = link.find_parent(class_=['bd-sidebar', 'bd-sidebar-primary', 'bd-sidebar-secondary'])
-                parent_toc = link.find_parent(class_=['toctree-wrapper', 'toctree', 'bd-toc'])
-                
-                # Also check for parent elements with 'sidebar' in their class
-                parent_any_sidebar = link.find_parent(class_=lambda x: x and 'sidebar' in x)
-                
-                if parent_nav or parent_sidebar or parent_toc or parent_any_sidebar:
-                    continue
-                    
-                # Additional check: only process links that are in the main content area
-                main_content = link.find_parent(class_=['bd-main', 'bd-article'])
-                if not main_content:
-                    continue
-                    
-                link_text = link.get_text(strip=True)
-                
-                # Skip if this link already has a number pattern (to avoid double-processing)
-                if language == 'it':
-                    # Check for new format: "Capitolo X", "Paragrafo X.Y", "Appendice A"
-                    if re.match(r'^(Capitolo|Paragrafo|Appendice)\s+[\dA-Z.]+$', link_text):
-                        continue
-                elif language == 'fr':
-                    if re.match(r'^(Chapitre|Section|Annexe)\s+[\dA-Z.]+$', link_text):
-                        continue
-                elif language == 'es':
-                    if re.match(r'^(Capítulo|Sección|Apéndice)\s+[\dA-Z.]+$', link_text):
-                        continue
-                else:  # English
-                    if re.match(r'^(Chapter|Section|Appendix)\s+[\dA-Z.]+$', link_text):
-                        continue
-                
-                # Function to clean and normalize text for matching
-                def normalize_text(text):
-                    """Clean text by removing HTML entities and normalizing formatting."""
-                    import html
-                    # Decode HTML entities
-                    text = html.unescape(text)
-                    # Remove HTML tags
-                    text = re.sub(r'<[^>]+>', '', text)
-                    # Normalize emphasis markers: both *word* and \word\ become word
-                    text = re.sub(r'[\*\\]([^*\\]+)[\*\\]', r'\1', text)
-                    # Normalize common formatting differences
-                    text = re.sub(r'\s+', ' ', text)  # Normalize whitespace
-                    text = text.strip()
-                    return text
-                
-                # Normalize the link text for comparison
-                normalized_link_text = normalize_text(link_text)
-                
-                # Check if the link text matches any title in our TOC dictionary
-                # Try different matching strategies
-                matched_title = None
-                matched_info = None
-                
-                # 1. Direct match with normalized text
-                for toc_title, toc_info in toc_dict.items():
-                    if normalize_text(toc_title) == normalized_link_text:
-                        matched_title = toc_title
-                        matched_info = toc_info
-                        break
-                
-                # 2. If no direct match, try partial matches for formatted titles
-                if not matched_title:
-                    for toc_title, toc_info in toc_dict.items():
-                        normalized_toc_title = normalize_text(toc_title)
-                        # Check if the core text matches (ignoring minor formatting differences)
-                        if normalized_toc_title in normalized_link_text or normalized_link_text in normalized_toc_title:
-                            # Additional check: ensure they're roughly the same length to avoid false positives
-                            if abs(len(normalized_toc_title) - len(normalized_link_text)) <= 5:
-                                matched_title = toc_title
-                                matched_info = toc_info
-                                break
-                
-                if matched_info:
-                    type_name, number = matched_info
-                    
-                    # Format the link text with clean numbering (no prefixes)
-                    if type_name == 'Chapter':
-                        new_text = f"{number}"
-                    elif type_name == 'Section':
-                        new_text = f"{number}"
-                    else:  # Appendix
-                        new_text = f"{number}"
-                    
-                    file_replacements.append({
-                        'original': link_text,
-                        'new': new_text,
-                        'href': link.get('href', ''),
-                        'type': type_name,
-                        'number': number
-                    })
-                    
-                    if not dry_run:
-                        # Replace the link text and add title attribute for hover tooltip
-                        link.string = new_text
-                        link['title'] = normalize_text(matched_title)  # Show original title on hover
-                        content_modified = True
-                        
-                # If no match found, try using the title attribute (for already numbered links)
-                elif link.get('title'):
-                    title_text = normalize_text(link.get('title'))
-                    for toc_title, toc_info in toc_dict.items():
-                        if normalize_text(toc_title) == title_text:
-                            type_name, number = toc_info
-                            
-                            # Format the link text with clean numbering (no prefixes) 
-                            if type_name == 'Chapter':
-                                new_text = f"{number}"
-                            elif type_name == 'Section':
-                                new_text = f"{number}"
-                            else:  # Appendix
-                                new_text = f"{number}"
-                            
-                            file_replacements.append({
-                                'original': link_text,
-                                'new': new_text,
-                                'href': link.get('href', ''),
-                                'type': type_name,
-                                'number': number
-                            })
-                            
-                            if not dry_run:
-                                # Replace the link text and keep title attribute for hover tooltip
-                                link.string = new_text
-                                # Title attribute already exists with the original title
-                                content_modified = True
-                            break
-            
-            # Add numbering to main page titles (h1 elements)
-            # Only process h1 elements that are in the main content area
-            main_content_area = soup.find(class_=['bd-main', 'bd-article'])
-            if main_content_area:
-                main_titles = main_content_area.find_all('h1')
-            else:
-                main_titles = soup.find_all('h1')
-                
-            for h1 in main_titles:
-                # Extract clean text, removing anchor links and extra whitespace
-                h1_text_elements = []
-                for item in h1.contents:
-                    if hasattr(item, 'name') and item.name == 'a':
-                        continue  # Skip anchor links
-                    else:
-                        h1_text_elements.append(str(item))
-                h1_text = ''.join(h1_text_elements).strip()
-                
-                # Skip if already numbered (check new format)
-                if language == 'it':
-                    # Check for new format: "Capitolo X.", "Appendice A.", or just numbers like "3.1."
-                    if (re.match(r'^(Capitolo|Appendice)\s+[\dA-Z]+\.', h1_text) or 
-                        re.match(r'^\d+(\.\d+)*\.', h1_text)):
-                        continue
-                elif language == 'fr':
-                    if (re.match(r'^(Chapitre|Annexe)\s+[\dA-Z]+\.', h1_text) or 
-                        re.match(r'^\d+(\.\d+)*\.', h1_text)):
-                        continue
-                elif language == 'es':
-                    if (re.match(r'^(Capítulo|Apéndice)\s+[\dA-Z]+\.', h1_text) or 
-                        re.match(r'^\d+(\.\d+)*\.', h1_text)):
-                        continue
-                else:  # English
-                    if (re.match(r'^(Chapter|Appendix)\s+[\dA-Z]+\.', h1_text) or 
-                        re.match(r'^\d+(\.\d+)*\.', h1_text)):
-                        continue
-                
-                # Extract original title from already numbered titles
-                original_title = h1_text
-                
-                # If already numbered, extract the original title
-                if language == 'it':
-                    # Check for old format: "Capitolo X: Title" or "Paragrafo X.Y: Title"
-                    colon_match = re.match(r'^(Capitolo|Paragrafo|Appendice)\s+[\dA-Z.]+:\s*(.+)$', h1_text)
-                    if colon_match:
-                        original_title = colon_match.group(2)
-                    # Check for new format: "Capitolo X. Title" or "X.Y. Title"
-                    elif re.match(r'^(Capitolo|Appendice)\s+[\dA-Z]+\.\s*(.+)$', h1_text):
-                        dot_match = re.match(r'^(Capitolo|Appendice)\s+[\dA-Z]+\.\s*(.+)$', h1_text)
-                        original_title = dot_match.group(2)
-                    elif re.match(r'^\d+(\.\d+)*\.\s*(.+)$', h1_text):
-                        num_match = re.match(r'^\d+(\.\d+)*\.\s*(.+)$', h1_text)
-                        original_title = num_match.group(2)
-                
-                # Check if this title (original or extracted) exists in our TOC dictionary
-                if original_title in toc_dict:
-                    type_name, number = toc_dict[original_title]
-                    
-                    # Format the title with clean numbering (no prefixes)
-                    if type_name == 'Chapter':
-                        new_title = f"{number}. {original_title}"
-                    elif type_name == 'Section':
-                        new_title = f"{number}. {original_title}"
-                    else:  # Appendix
-                        new_title = f"{number}. {original_title}"
-                    
-                    if not dry_run:
-                        # Replace the text content while preserving the anchor link
-                        text_replaced = False
-                        for i, content in enumerate(h1.contents):
-                            if hasattr(content, 'name') and content.name == 'a':
-                                continue  # Skip anchor links
-                            elif hasattr(content, 'replace'):
-                                # This is a NavigableString
-                                content.replace_with(new_title)
-                                content_modified = True
-                                text_replaced = True
-                                break
-                            elif isinstance(content, str):
-                                h1.contents[i] = new_title
-                                content_modified = True
-                                text_replaced = True
-                                break
-                        
-                        # If no text content was found, add the numbered title at the beginning
-                        if not text_replaced:
-                            h1.insert(0, new_title)
-                            content_modified = True
-            
-            # Record the replacements for this file and write if modified
-            if file_replacements:
-                changes_summary['replacements_by_file'][str(html_file)] = file_replacements
-                changes_summary['total_replacements'] += len(file_replacements)
-            
-            if content_modified:
-                changes_summary['files_modified'] += 1
-                
-                if not dry_run:
-                    # Write the modified content back to the file
-                    with open(html_file, 'w', encoding='utf-8') as f:
-                        f.write(str(soup))
-                        
-        except Exception as e:
-            error_msg = f"Error processing {html_file}: {e}"
-            changes_summary['errors'].append(error_msg)
-            print(error_msg)
-    
-    return changes_summary
-
-
-def update_sidebar_navigation_numbering(html_root_dir, toc_dict=None, dry_run=False, language='it'):
-    """
-    Update the sidebar navigation to include chapter and section numbers.
-    
-    Args:
-        html_root_dir (str): Path to the root directory containing HTML files
-        toc_dict (dict): Dictionary mapping titles to (type, number)
-        dry_run (bool): If True, only analyze without modifying files
-        language (str): Language code for appropriate translations
-    
-    Returns:
-        dict: Summary of changes made
-    """
-    try:
-        from bs4 import BeautifulSoup
-    except ImportError:
-        print("BeautifulSoup4 is required. Install with: pip install beautifulsoup4")
-        return {}
-    
-    # Generate TOC dictionary if not provided
-    if toc_dict is None:
-        toc_dict = generate_toc_dictionary(html_root_dir)
-    
-    if not toc_dict:
-        print("No TOC dictionary available for sidebar updates")
-        return {}
-    
-    # Clean numbering without type prefixes
-    
-    changes_summary = {
-        'files_processed': 0,
-        'files_modified': 0,
-        'total_replacements': 0,
-        'errors': []
-    }
-    
-    # Find all HTML files
-    html_files = list(Path(html_root_dir).rglob("*.html"))
-    
-    for html_file in html_files:
-        # Skip certain files that shouldn't be modified
-        if any(skip in str(html_file) for skip in ['_static', 'genindex', 'search']):
-            continue
-            
-        changes_summary['files_processed'] += 1
-        
-        try:
-            # Read and parse the HTML file
-            with open(html_file, 'r', encoding='utf-8') as f:
-                content = f.read()
-                
-            soup = BeautifulSoup(content, 'html.parser')
-            content_modified = False
-            
-            # Find sidebar navigation links
-            sidebar_links = []
-            
-            # Look for links in the sidebar/navigation areas
-            nav_areas = soup.find_all('nav', class_='bd-links')
-            for nav in nav_areas:
-                # Find chapter links (toctree-l1) that are not part headers
-                # Search for links that have both 'reference' and 'internal' classes (including current page links)
-                all_links = nav.find_all('a')
-                for link in all_links:
-                    link_classes = link.get('class', [])
-                    if 'reference' in link_classes and 'internal' in link_classes:
-                        # Check if this is a chapter link, not a part header
-                        parent_li = link.find_parent('li')
-                        if parent_li and 'toctree-l1' in parent_li.get('class', []):
-                            sidebar_links.append(link)
-            
-            # Also check for other sidebar structures
-            sidebar_areas = soup.find_all(class_=['bd-sidebar', 'bd-sidebar-primary'])
-            for sidebar in sidebar_areas:
-                # Search for links that have both 'reference' and 'internal' classes (including current page links)
-                all_links = sidebar.find_all('a')
-                for link in all_links:
-                    link_classes = link.get('class', [])
-                    if 'reference' in link_classes and 'internal' in link_classes:
-                        sidebar_links.append(link)
-            
-            # Function to clean and normalize text for matching
-            def normalize_text(text):
-                """Clean text by removing HTML entities and normalizing formatting."""
-                import html
-                # Decode HTML entities
-                text = html.unescape(text)
-                # Remove HTML tags
-                text = re.sub(r'<[^>]+>', '', text)
-                # Normalize emphasis markers: both *word* and \word\ become word
-                text = re.sub(r'[\*\\]([^*\\]+)[\*\\]', r'\1', text)
-                # Normalize common formatting differences
-                text = re.sub(r'\s+', ' ', text)  # Normalize whitespace
-                text = text.strip()
-                return text
-            
-            # Process each sidebar link
-            for link in sidebar_links:
-                link_text = link.get_text(strip=True)
-                
-                # Skip if this link already has a number pattern
-                if language == 'it':
-                    if re.match(r'^(Capitolo|Paragrafo|Appendice)\s+[\dA-Z.]+', link_text):
-                        continue
-                elif language == 'fr':
-                    if re.match(r'^(Chapitre|Section|Annexe)\s+[\dA-Z.]+', link_text):
-                        continue
-                elif language == 'es':
-                    if re.match(r'^(Capítulo|Sección|Apéndice)\s+[\dA-Z.]+', link_text):
-                        continue
-                else:  # English
-                    if re.match(r'^(Chapter|Section|Appendix)\s+[\dA-Z.]+', link_text):
-                        continue
-                
-                # Normalize the link text for comparison
-                normalized_link_text = normalize_text(link_text)
-                
-                # Check if the link text matches any title in our TOC dictionary
-                matched_title = None
-                matched_info = None
-                
-                # Try to find a match in the TOC dictionary
-                for toc_title, toc_info in toc_dict.items():
-                    if normalize_text(toc_title) == normalized_link_text:
-                        matched_title = toc_title
-                        matched_info = toc_info
-                        break
-                
-                if matched_info:
-                    type_name, number = matched_info
-                    
-                    # Format according to type - use clean numbering without prefixes
-                    if type_name == 'Chapter':
-                        new_text = f"{number}. {link_text}"
-                    elif type_name == 'Section':
-                        # For sections in sidebar, just show number
-                        new_text = f"{number}. {link_text}"
-                    else:  # Appendix
-                        new_text = f"{number}. {link_text}"
-                    
-                    if not dry_run:
-                        # Update the link text
-                        link.string = new_text
-                        content_modified = True
-                        changes_summary['total_replacements'] += 1
-            
-            # Save the modified content if changes were made
-            if content_modified and not dry_run:
-                with open(html_file, 'w', encoding='utf-8') as f:
-                    f.write(str(soup))
-                changes_summary['files_modified'] += 1
-                
-        except Exception as e:
-            error_msg = f"Error processing {html_file}: {e}"
-            changes_summary['errors'].append(error_msg)
-            print(error_msg)
-    
-    return changes_summary
-
-
-def make_part_titles_clickable_and_collapsible(html_root_dir, dry_run=False, language='it'):
-    """Add collapsible functionality to part sub-TOCs without making part titles clickable."""
-    
-    try:
-        from bs4 import BeautifulSoup
-    except ImportError:
-        print("BeautifulSoup4 is required. Install with: pip install beautifulsoup4")
-        return
+def make_part_titles_clickable_and_collapsible(html_root_dir, dry_run=False,
+                                               language='it'):
+    """Add collapsible functionality to part sub-TOCs without making part
+    titles clickable."""
     
     # Parse the TOC file to find parts
     toc_file = f'source/{language}/_toc.yml'
@@ -2349,7 +1401,8 @@ def make_part_titles_clickable_and_collapsible(html_root_dir, dry_run=False, lan
         return
         
     print(f"Making part titles collapsible for {language}...")
-    html_files = glob.glob(os.path.join(html_root_dir, '**', '*.html'), recursive=True)
+    html_files = glob.glob(os.path.join(html_root_dir, '**', '*.html'),
+                           recursive=True)
     
     # CSS and JavaScript for collapsible functionality
     collapsible_css = """
@@ -2556,8 +1609,9 @@ document.addEventListener('DOMContentLoaded', function() {
             
             # Process all parts (make them collapsible only, no links)
             for part_caption in part_captions:
-                # Find elements that are ACTUAL part headers, not just any element containing the text
-                # Part headers should be <p> elements with class="caption" and role="heading"
+                # Find elements that are ACTUAL part headers, not just any
+                # element containing the text Part headers should be <p>
+                # elements with class="caption" and role="heading"
                 potential_elements = soup.find_all(lambda tag: 
                     tag.name == 'p' and 
                     'caption' in tag.get('class', []) and
@@ -2568,7 +1622,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     has_parts = True
                 
                 for element in potential_elements:
-                    # Check if this is in the TOC sidebar (has TOC-related classes or parents)
+                    # Check if this is in the TOC sidebar (has TOC-related
+                    # classes or parents)
                     parent_classes = []
                     current = element
                     while current and current.name and len(parent_classes) < 10:
@@ -2576,11 +1631,15 @@ document.addEventListener('DOMContentLoaded', function() {
                             parent_classes.extend(current.get('class'))
                         current = current.parent
                     
-                    # If it's in the TOC, process it regardless of existing classes
-                    if any(cls in parent_classes for cls in ['bd-links', 'bd-docs-nav', 'bd-sidebar', 'toctree', 'sidebar', 'nav']):
-                        
+                    # If it's in the TOC, process it regardless of existing
+                    # classes
+                    classes = ['bd-links', 'bd-docs-nav', 'bd-sidebar',
+                               'toctree', 'sidebar', 'nav']
+                    if any(cls in parent_classes for cls in classes):
+
                         if not dry_run:
-                            # Check if this element contains a link that should be removed
+                            # Check if this element contains a link that should
+                            # be removed
                             existing_link = element.find('a')
                             if existing_link:
                                 # Remove the link but keep the text content
@@ -2588,60 +1647,81 @@ document.addEventListener('DOMContentLoaded', function() {
                                 existing_link.extract()  # Remove the <a> tag
                                 
                                 # If the element is now empty, add the text back
+                                warn = f"Removed link from '{part_caption}'" \
+                                       "but kept collapsible functionality"
                                 if not element.get_text(strip=True):
                                     element.string = link_text
                                     changed = True
                                     if part_caption not in processed_parts:
-                                        print(f"Removed link from '{part_caption}' but kept collapsible functionality")
+                                        print(warn)
                                         processed_parts.add(part_caption)
                                 elif element.get_text(strip=True) != link_text:
-                                    # The element has other content, add back just the text
+                                    # The element has other content, add back
+                                    # just the text
                                     element.append(link_text)
                                     changed = True
                                     if part_caption not in processed_parts:
-                                        print(f"Removed link from '{part_caption}' but kept collapsible functionality")
+                                        print(warn)
                                         processed_parts.add(part_caption)
                             
-                            # Ensure collapsible class is present (add if missing)
-                            if 'part-collapsible' not in element.get('class', []):
-                                element['class'] = element.get('class', []) + ['part-collapsible']
+                            # Ensure collapsible class is present (add if
+                            # missing)
+                            if 'part-collapsible' not in element.get('class',
+                                                                     []):
+                                element['class'] = element.get('class', []) + \
+                                                        ['part-collapsible']
                                 changed = True
+                                warn = "Added collapsible class to " \
+                                       f"'{part_caption}'"
                                 if part_caption not in processed_parts:
-                                    print(f"Added collapsible class to '{part_caption}'")
+                                    print(warn)
                                     processed_parts.add(part_caption)
                             
-                            # Find the following chapters list and ensure it has the right class
+                            # Find the following chapters list and ensure it
+                            # has the right class
                             chapters_container = element.find_next_sibling()
-                            if chapters_container and chapters_container.name in ['ul', 'ol', 'div']:
-                                if 'part-chapters' not in chapters_container.get('class', []):
-                                    chapters_container['class'] = chapters_container.get('class', []) + ['part-chapters']
+                            if chapters_container and chapters_container.name \
+                                    in ['ul', 'ol', 'div']:
+                                if 'part-chapters' not in \
+                                        chapters_container.get('class', []):
+                                    chapters_container['class'] = \
+                                        chapters_container.get('class', []) + \
+                                            ['part-chapters']
                                     changed = True
                         else:
-                            # In dry run, check if there are links that would be removed
+                            # In dry run, check if there are links that would
+                            # be removed
                             existing_link = element.find('a')
                             if existing_link:
                                 changed = True
                     else:
                         pass  # Element not in TOC, skip
 
-            # Convert chapter details elements to use the same custom collapsible approach as parts
+            # Convert chapter details elements to use the same custom
+            # collapsible approach as parts
             if not dry_run:
-                # Clean up: Remove part-collapsible class from elements that shouldn't have it
-                # (regular chapter/section links that were incorrectly classified)
+                # Clean up: Remove part-collapsible class from elements that
+                # shouldn't have it (regular chapter/section links that were
+                # incorrectly classified)
                 incorrect_part_elements = soup.find_all(lambda tag:
                     'part-collapsible' in tag.get('class', []) and
                     tag.name in ['li', 'a'] and
-                    not (tag.name == 'p' and 'caption' in tag.get('class', []) and tag.get('role') == 'heading'))
+                    not (tag.name == 'p' and
+                         'caption' in tag.get('class', []) and
+                         tag.get('role') == 'heading'))
                 
                 incorrect_elements_found = []
                 for element in incorrect_part_elements:
                     element_text = element.get_text(strip=True)[:50]
                     if element_text not in incorrect_elements_found:
                         incorrect_elements_found.append(element_text)
-                        print(f"Removed incorrect part-collapsible class from {element.name} element: {element_text}")
+                        warn = "Removed incorrect part-collapsible class from" \
+                               f" {element.name} element: {element_text}"
+                        print(warn)
                     
                     classes = element.get('class', [])
-                    classes = [cls for cls in classes if cls != 'part-collapsible']
+                    classes = [cls for cls in classes
+                               if cls != 'part-collapsible']
                     element['class'] = classes
                     changed = True
                     
@@ -2650,7 +1730,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 for details in details_elements:
                     # Get the parent li element
                     parent_li = details.find_parent('li')
-                    if parent_li and parent_li.get('class') and 'has-children' in parent_li.get('class', []):
+                    if parent_li and parent_li.get('class') and \
+                            'has-children' in parent_li.get('class', []):
                         # Get the main chapter link (before the details)
                         chapter_link = None
                         for sibling in parent_li.children:
@@ -2660,46 +1741,58 @@ document.addEventListener('DOMContentLoaded', function() {
                         
                         if chapter_link:
                             # Add custom collapsible class to the chapter link
-                            chapter_link['class'] = chapter_link.get('class', []) + ['chapter-collapsible']
+                            chapter_link['class'] = \
+                                chapter_link.get('class', []) + \
+                                    ['chapter-collapsible']
                             
                             # Get the sub-items from details
                             sub_ul = details.find('ul')
                             if sub_ul:
                                 # Add custom class to sub-items
-                                sub_ul['class'] = sub_ul.get('class', []) + ['chapter-sub-items']
+                                sub_ul['class'] = sub_ul.get('class', []) + \
+                                ['chapter-sub-items']
                                 
-                                # Remove the details wrapper and move sub-items after the chapter link
+                                # Remove the details wrapper and move sub-items
+                                # after the chapter link
                                 details.extract()  # Remove details element
                                 parent_li.append(sub_ul)  # Add sub-items directly to parent li
                                 
                                 changed = True
             
-            # Add CSS and JavaScript if we have parts or chapters (regardless of whether we made changes)
+            # Add CSS and JavaScript if we have parts or chapters (regardless
+            # of whether we made changes)
             if (has_parts or soup.find_all('details')):
                 if not dry_run:
                     # Add CSS to head (replace if exists)
                     head = soup.find('head')
                     if head:
-                        # Remove existing part-collapsible styles - find by content
+                        # Remove existing part-collapsible styles - find by
+                        # content
                         for style_tag in head.find_all('style'):
-                            if style_tag.string and 'part-collapsible' in style_tag.string:
+                            if style_tag.string and \
+                                'part-collapsible' in style_tag.string:
                                 style_tag.decompose()
                         
-                        head.append(BeautifulSoup(collapsible_css, 'html.parser'))
+                        head.append(BeautifulSoup(collapsible_css,
+                                                  'html.parser'))
                         changed = True
                     
                     # Add JavaScript before closing body (replace if exists)
                     body = soup.find('body')
                     if body:
-                        # Remove existing part-collapsible script - find by content
+                        # Remove existing part-collapsible script - find by
+                        # content
                         for script_tag in body.find_all('script'):
-                            if script_tag.string and 'part-collapsible' in script_tag.string:
+                            if script_tag.string and \
+                                    'part-collapsible' in script_tag.string:
                                 script_tag.decompose()
                         
-                        body.append(BeautifulSoup(collapsible_js, 'html.parser'))
+                        body.append(BeautifulSoup(collapsible_js,
+                                                  'html.parser'))
                         changed = True
                 else:
-                    # In dry run, still mark that changes would be made for CSS/JS injection
+                    # In dry run, still mark that changes would be made for
+                    # CSS/JS injection
                     head = soup.find('head')
                     body = soup.find('body')
                     if head or body:
@@ -2718,31 +1811,30 @@ document.addEventListener('DOMContentLoaded', function() {
     if not dry_run:
         print(f"Collapsible functionality applied successfully!")
         print(f"  - Modified {files_modified} HTML files")
-        print(f"  - Processed {len(processed_parts)} unique part sections: {', '.join(sorted(processed_parts))}")
+        print(f"  - Processed {len(processed_parts)} unique part sections: "
+              f"{', '.join(sorted(processed_parts))}")
     else:
         print(f"Would modify {files_modified} files")
 
 
 def process_html_py_roles(html_root_dir, dry_run=False, language='en'):
     """
-    Process HTML files to replace any remaining {py} roles with interactive spans.
+    Process HTML files to replace any remaining {py} roles with interactive
+    spans.
     
-    This function handles {py} roles that weren't processed during MyST pre-processing
-    or that were stripped/modified by Sphinx during HTML generation.
+    This function handles {py} roles that weren't processed during MyST
+    pre-processing or that were stripped/modified by Sphinx during HTML
+    generation.
     
     Args:
         html_root_dir (str): Path to the HTML build directory
-        dry_run (bool): If True, show what would be changed without making changes
+        dry_run (bool): If True, show what would be changed without making
+            changes
         language (str): Language code for localization
     
     Returns:
         dict: Summary of changes made
     """
-    try:
-        from bs4 import BeautifulSoup
-    except ImportError:
-        print("BeautifulSoup4 is required. Install with: pip install beautifulsoup4")
-        return {}
     
     changes_summary = {
         'files_processed': 0,
@@ -2760,7 +1852,8 @@ def process_html_py_roles(html_root_dir, dry_run=False, language='en'):
     
     for html_file in html_files:
         # Skip certain files that shouldn't be modified
-        if any(skip in str(html_file) for skip in ['_static', 'genindex', 'search']):
+        if any(skip in str(html_file)
+               for skip in ['_static', 'genindex', 'search']):
             continue
             
         changes_summary['files_processed'] += 1
@@ -2778,21 +1871,27 @@ def process_html_py_roles(html_root_dir, dry_run=False, language='en'):
             # This could appear in various forms after Sphinx processing:
             # 1. As literal text: {py}`code`
             # 2. As code elements: <code>{py}`code`</code>
-            # 3. As spans: <span class="...">code</span>{py}
-            # 4. Remaining MyST format: {py}`code`
+            # 3. Remaining MyST format: {py}`code`
             
             py_role_patterns = [
-                # Main pattern: backticks first, then {py}
-                r'`([^`]+)`\{py\}',
+                # Pattern 1: Direct {py} role syntax
+                r'\{py\}`([^`]+)`',
+                # Pattern 2: Inside code tags
+                r'<code[^>]*>\{py\}`([^`]+)`</code>',
+                # Pattern 3: Sphinx might convert it to emphasis
+                r'<em[^>]*>\{py\}`([^`]+)`</em>',
             ]
             
             for pattern in py_role_patterns:
                 matches = list(re.finditer(pattern, content))
-                for match in reversed(matches):  # Process in reverse to maintain positions
+                # Process in reverse to maintain positions
+                for match in reversed(matches):
                     python_code = match.group(1)
                     
                     # Generate the inline Python HTML
-                    inline_html = generate_inline_python(python_code, cell_counter, language)
+                    inline_html = generate_inline_python(python_code,
+                                                         cell_counter,
+                                                         language)
                     
                     # Store the expression for PyScript execution
                     file_inline_expressions.append((cell_counter, python_code))
@@ -2800,7 +1899,8 @@ def process_html_py_roles(html_root_dir, dry_run=False, language='en'):
                     
                     if not dry_run:
                         # Replace the match with our generated HTML
-                        content = content[:match.start()] + inline_html + content[match.end():]
+                        content = content[:match.start()] + \
+                            inline_html + content[match.end():]
                     
                     file_replacements += 1
                     cell_counter += 1
@@ -2809,7 +1909,8 @@ def process_html_py_roles(html_root_dir, dry_run=False, language='en'):
             if file_replacements > 0:
                 changes_summary['files_modified'] += 1
                 changes_summary['total_replacements'] += file_replacements
-                changes_summary['replacements_by_file'][str(html_file)] = file_replacements
+                changes_summary['replacements_by_file'][str(html_file)] = \
+                    file_replacements
                 
                 if not dry_run:
                     # Create backup
@@ -2821,9 +1922,11 @@ def process_html_py_roles(html_root_dir, dry_run=False, language='en'):
                     with open(html_file, 'w', encoding='utf-8') as f:
                         f.write(content)
                     
-                    print(f"✓ {html_file.relative_to(html_root_dir)}: {file_replacements} {{py}} role(s) replaced")
+                    print(f"✓ {html_file.relative_to(html_root_dir)}: "
+                          f"{file_replacements} {{py}} role(s) replaced")
                 else:
-                    print(f"Would replace {file_replacements} {{py}} role(s) in {html_file.relative_to(html_root_dir)}")
+                    print(f"Would replace {file_replacements} {{py}} role(s) "
+                          f"in {html_file.relative_to(html_root_dir)}")
                     
         except Exception as e:
             error_msg = f"Error processing {html_file}: {e}"
@@ -2832,14 +1935,16 @@ def process_html_py_roles(html_root_dir, dry_run=False, language='en'):
     
     # Add PyScript execution for all inline expressions found
     if all_inline_expressions and not dry_run:
-        _add_pyscript_for_inline_expressions(html_root_dir, all_inline_expressions)
+        _add_pyscript_for_inline_expressions(html_root_dir,
+                                             all_inline_expressions)
     
     return changes_summary
 
 
 def _add_pyscript_for_inline_expressions(html_root_dir, inline_expressions):
     """
-    Add PyScript execution code to the first HTML file to handle inline expressions.
+    Add PyScript execution code to the first HTML file to handle inline
+    expressions.
     
     Args:
         html_root_dir (str): Path to the HTML build directory  
@@ -2851,7 +1956,8 @@ def _add_pyscript_for_inline_expressions(html_root_dir, inline_expressions):
     target_file = None
     
     for html_file in html_files:
-        if not any(skip in str(html_file) for skip in ['_static', 'genindex', 'search']):
+        if not any(skip in str(html_file)
+                   for skip in ['_static', 'genindex', 'search']):
             target_file = html_file
             break
     
@@ -2928,197 +2034,249 @@ console.log("Finished executing inline Python expressions");
         with open(target_file, 'w', encoding='utf-8') as f:
             f.write(content)
         
-        print(f"✓ Added PyScript execution for {len(inline_expressions)} inline expressions to {target_file.relative_to(html_root_dir)}")
+        print(f"✓ Added PyScript execution for {len(inline_expressions)} "
+              f"inline expressions to {target_file.relative_to(html_root_dir)}")
         
     except Exception as e:
         print(f"Error adding PyScript to {target_file}: {e}")
 
+def generate_toc(language='it', toc_data=None, dry_run=False):
+    """
+    Reads the _toc.yml file for a specified language and creates an OrderedDict
+    with chapter and section numbering.
+    
+    Args:
+        language (str): Language code ('it', 'en', 'fr', 'es')
+        toc_data (dict): Optional TOC data dictionary. If provided, will use 
+                        this instead of reading from file.
+    
+    Returns:
+        OrderedDict: Dictionary mapping titles to numbers where:
+                    - chapters get numbers like "1", "2", "3"
+                    - sections get numbers like "1.1", "1.2", "2.1"
+                    - appendix chapters get letters like "A", "B", "C"
+                    - appendix sections get numbers like "A.1", "A.2", "B.1"
+    """
+    appendix_keyword = {'it': 'Appendici', 'en': 'Appendices',
+                        'fr': 'Annexes', 'es': 'Apéndices'}
+
+    # If toc_data is not provided, read from the _toc.yml file
+    if toc_data is None:
+        # Find the corresponding _toc.yml file
+        toc_file = f'source/{language}/_toc.yml'
+        if not os.path.exists(toc_file):
+            raise FileNotFoundError(f"TOC file for language '{language}' "
+                                    f"not found: {toc_file}")
+
+        try:
+            with open(toc_file, 'r', encoding='utf-8') as f:
+                toc_data = yaml.safe_load(f)
+        except Exception as e:
+            raise RuntimeError(f"Error reading TOC file {toc_file}: {e}")
+        
+        mock = False
+    else:
+        mock = True
+    
+    # Function to extract title and label from markdown file
+    def extract_title_and_label_from_file(file_path):
+        """Extract the first heading and its immediately preceding label
+        from a markdown file."""
+
+        if mock:
+            title = file_path.split('/')[-1].split('.')[0].capitalize()
+            label = file_path.replace('/', '_')
+        else:
+            try:
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    lines = f.readlines()
+                label = None
+                title = None
+                for i, line in enumerate(lines):
+                    # Look for the first h1 heading
+                    title_match = re.match(r'^#\s+(.+)$', line)
+                    if title_match:
+                        # Check previous non-empty line for label
+                        j = i - 1
+                        while j >= 0 and lines[j].strip() == '':
+                            j -= 1
+                        if j >= 0:
+                            # Match (label)= format
+                            label_match = re.match(r'^\(([\w\-:]+)\)=\s*$',
+                                                   lines[j].strip())
+                            if label_match:
+                                label = label_match.group(1)
+
+                        title = title_match.group(1).strip()
+                        title = title.replace('<span class=\"ast\">\\*</span>',
+                                              '<span class=\"ast\">*</span>')
+                        break
+
+            except Exception as e:
+                raise RuntimeError(f"Error reading file {file_path}: {e}")
+        return title, label
+
+    toc = TOC(language=language)
+    for part in toc_data.get('parts', []):
+        caption = part.get('caption', '')
+        chapters = part.get('chapters', [])
+
+        if caption == appendix_keyword.get(language, ''):
+            toc.start_appendix()
+
+        for chapter in chapters:
+            file_path = chapter.get('file', '')
+            label = None
+            title = None
+
+            full_file_path = f'source/{language}/{file_path}.md'
+            title, label = extract_title_and_label_from_file(full_file_path)
+            if not title:
+                raise RuntimeError(f"Missing chapter title in {full_file_path}")
+            if not label:
+                raise RuntimeError("Missing cross-reference label before "
+                                   f"chapter title in {full_file_path}")
+            
+            toc.add_chapter(file_path, label, title)
+            
+            # Sections
+            sections = chapter.get('sections', [])
+            for section in sections:
+                section_file = section.get('file', '')
+                section_title = section.get('title')
+                section_label = None
+                section_title = None
+                
+                full_section_path = f'source/{language}/{section_file}.md'
+                section_title, section_label = \
+                    extract_title_and_label_from_file(full_section_path)
+                if not section_title:
+                    raise RuntimeError("Missing section title in "
+                                       f"{full_section_path}")
+                if not section_label:
+                    raise RuntimeError("Missing cross-reference label before "
+                                       f"section title in {full_section_path}")
+            
+                toc.add_section(section_file, section_label, section_title)
+                
+    return toc
+
+def apply_numbering(language):
+    """
+    Recursively list all HTML files in build/sds/<language> and print their
+    paths.
+    
+    Args:
+        language (str): Language code (e.g., 'it', 'en', 'fr', 'es').
+    """
+
+    html_dir = os.path.join('build', 'sds', language)
+    html_files = glob.glob(os.path.join(html_dir, '**', '*.html'),
+                           recursive=True)
+    skip_list = ['genindex.html', get_root_doc(language) + '.html',
+                 'prf-prf.html', 'search.html', 'index.html']
+    
+    numbered_toc = generate_toc(language=language)
+    for file_path in html_files:
+        if file_path in [f'build/sds/{language}/' + f for f in skip_list]:
+            continue
+        if '_static' in file_path or '_sources' in file_path:
+            continue
+
+        print(f"Apply numbering to: {file_path}")
+        if not os.path.exists(file_path):
+            raise FileNotFoundError(f"File not found: {file_path}")
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                html_content = f.read()
+        except Exception as e:
+            raise IOError(f"Error reading file {file_path}: {e}")
+
+        # Try to parse the HTML content into a DOM object
+        try:
+            file_soup = BeautifulSoup(html_content, 'html.parser')
+        except Exception as e:
+            raise RuntimeError("Error parsing HTML content "
+                               f"with BeautifulSoup: {e}")
+        
+        toc_nav = file_soup.find("nav", class_="bd-links")
+        if toc_nav is None:
+            # fallback: try bd-docs-nav
+            toc_nav = file_soup.find("nav", class_="bd-docs-nav")
+        if toc_nav is None:
+            raise ValueError("TOC navigation element not found")
+        
+        def sanitize(text):
+            """Sanitize text to remove unwanted characters."""
+            return text.replace('’', "'").strip()
+        
+        for t, n in zip (toc_nav.find_all('li')[1:], numbered_toc.toc):
+            a_tag = t.find('a')
+            original_title = sanitize(a_tag.decode_contents())
+            if original_title != n['title']:
+                print(f"  - Mismatching TOC item: '{original_title}' "
+                      f"with '{n['title']}'")
+                continue
+            a_tag.insert(0, NavigableString(f"{n['number']}. "))
+
+        title = file_soup.find('h1')
+        
+        relative_file_path = file_path[len(f'build/sds/{language}/'):][:-5]
+        title.insert(0, \
+                NavigableString( \
+                    f"{numbered_toc.file_to_number[relative_file_path]}. "))
+
+        # find all a tags in the file_soup having class "reference internal"
+        for a_tag in file_soup.find_all('a', class_='reference internal'):
+            label = a_tag['href'].split('#')[-1]
+            if label in numbered_toc.label_to_caption:
+                a_tag.string = numbered_toc.label_to_caption[label]
+
+        with open(file_path, 'w', encoding='utf-8') as f:
+            f.write(str(file_soup))
+    return
 
 def main():
     """Command-line interface for sds.py functions."""
     parser = argparse.ArgumentParser(description='Process documentation files')
     subparsers = parser.add_subparsers(dest='command', help='Available commands')
+
+    # Add subparser for chapter-section numbering
+    parser_numbering = subparsers.add_parser('apply-numbering',
+                    help='Apply chapter and section numbering to HTML files')
+    parser_numbering.add_argument('--language', default='it', 
+                    help='Language code (it, en, fr, es)')
     
     # Add subparser for making parts clickable and collapsible
-    parser_clickable = subparsers.add_parser('make-parts-clickable', 
-                                           help='Make part titles clickable and collapsible in TOC')
+    parser_clickable = subparsers.add_parser('make-parts-clickable',
+                    help='Make part titles clickable and collapsible in TOC')
     parser_clickable.add_argument('html_dir', help='HTML build directory')
     parser_clickable.add_argument('--language', default='it', 
-                                help='Language code (it, en, fr, es)')
+                    help='Language code (it, en, fr, es)')
     parser_clickable.add_argument('--dry-run', action='store_true',
-                                help='Show what would be changed without making changes')
+                    help='Show what would be changed without making changes')
     
     # Add subparser for processing py roles in HTML
     parser_py_roles = subparsers.add_parser('process-py-roles',
-                                          help='Process {py} roles in HTML files')
+                    help='Process {py} roles in HTML files')
     parser_py_roles.add_argument('html_dir', help='HTML build directory')
     parser_py_roles.add_argument('--language', default='en',
-                               help='Language code (it, en, fr, es)')
+                    help='Language code (it, en, fr, es)')
     parser_py_roles.add_argument('--dry-run', action='store_true',
-                               help='Show what would be changed without making changes')
-    
-    # Add subparser for testing enumerate_toc function
-    parser_test_toc = subparsers.add_parser('test-enumerate-toc',
-                                          help='Test the enumerate_toc function')
-    parser_test_toc.add_argument('--language', default='it',
-                               help='Language code (it, en, fr, es)')
+                    help='Show what would be changed without making changes')
     
     args = parser.parse_args()
     
     if args.command == 'make-parts-clickable':
-        make_part_titles_clickable_and_collapsible(args.html_dir, args.dry_run, args.language)
+        make_part_titles_clickable_and_collapsible(args.html_dir, 
+                                                   args.dry_run,
+                                                   args.language)
     elif args.command == 'process-py-roles':
         process_html_py_roles(args.html_dir, args.dry_run, args.language)
-    elif args.command == 'test-enumerate-toc':
-        # Test the enumerate_toc function
-        print(f"Testing enumerate_toc function with {args.language} language...")
-        print("=" * 60)
-        
-        toc_dict = enumerate_toc(args.language)
-        
-        if not toc_dict:
-            print(f"No entries found in {args.language} TOC!")
-        else:
-            print(f"Found {len(toc_dict)} entries in the {args.language} TOC:")
-            print()
-            
-            # Iterate through the OrderedDict and print entries
-            for title, number in toc_dict.items():
-                print(f"{number:>8} : {title}")
-        
-        print()
-        print("=" * 60)
-        print("Test completed!")
+    elif args.command == 'apply-numbering':
+        apply_numbering(args.language)
     else:
         parser.print_help()
-
-import os
-from bs4 import BeautifulSoup
-
-def apply_toc_numbering(language, dry_run=False):
-    toc_dict, _ = enumerate_toc(language)
-    toc_items = list(toc_dict.items())
-
-    # Skip the main title ("Superhero Data Science") in any language
-    filtered_toc = [(k, v) for k, v in toc_items if k != "Superhero Data Science"]
-
-    html_dir = os.path.join("build", "sds", language)
-    if not os.path.isdir(html_dir):
-        raise RuntimeError(f"HTML directory not found: {html_dir}")
-
-    # Find all HTML files
-    html_files = []
-    for root, _, files in os.walk(html_dir):
-        for f in files:
-            if f.endswith(".html"):
-                html_files.append(os.path.join(root, f))
-
-    # Use the first HTML file with a TOC as reference
-    ref_file = None
-    for html_file in html_files:
-        with open(html_file, "r", encoding="utf-8") as f:
-            soup = BeautifulSoup(f, "html.parser")
-        toc_div = soup.find("div", class_="bd-toc-item navbar-nav active")
-        if toc_div:
-            ref_file = html_file
-            break
-    if not ref_file:
-        raise RuntimeError("No TOC found in any HTML file.")
-
-    with open(ref_file, "r", encoding="utf-8") as f:
-        soup = BeautifulSoup(f, "html.parser")
-    toc_div = soup.find("div", class_="bd-toc-item navbar-nav active")
-    if toc_div is None:
-        raise RuntimeError("TOC div not found.")
-
-    # Dynamically collect all TOC <a> elements, skipping main title and part names
-    toc_links = []
-    for el in toc_div.children:
-        # Skip whitespace and comments
-        if not hasattr(el, "name"):
-            continue
-        # Skip the main title (first <ul> with home link)
-        if el.name == "ul" and "bd-sidenav__home-link" in el.get("class", []):
-            continue
-        # Skip part captions
-        if el.name == "p" and "caption" in el.get("class", []):
-            continue
-        # For each <ul> (the actual TOC for a part), collect <a> tags
-        if el.name == "ul":
-            for li in el.find_all("li"):
-                a = li.find("a")
-                if a:
-                    toc_links.append(a)
-
-    # Check that the number of items matches
-    if len(toc_links) != len(filtered_toc):
-        print("\n--- HTML TOC items ---")
-        for i, a in enumerate(toc_links):
-            html_content = ''.join(str(x) for x in a.contents).strip()
-            print(f"{i+1:2d}: {html_content}")
-        print("\n--- TOC dictionary entries ---")
-        for i, (dict_title, number) in enumerate(filtered_toc):
-            print(f"{i+1:2d}: {dict_title}")
-        raise RuntimeError(
-            f"TOC mismatch: {len(toc_links)} HTML items vs {len(filtered_toc)} TOC entries"
-        )
-
-    # Check that the titles match
-    def normalize_apostrophes(text):
-        # Replace right/left single quotes and other apostrophe-like chars with ASCII apostrophe
-        return text.replace("’", "'").replace("‘", "'").replace("‛", "'").replace("`", "'")
-
-    for (a, (dict_title, number)) in zip(toc_links, filtered_toc):
-        # Get the HTML content of the <a> tag, preserving <span class="ast"> tags
-        html_content = ''.join(str(x) for x in a.contents).strip()
-        # Normalize apostrophes for comparison
-        html_norm = normalize_apostrophes(html_content)
-        dict_norm = normalize_apostrophes(dict_title)
-        if html_norm != dict_norm:
-            raise RuntimeError(
-                f"TOC mismatch: HTML '{html_content}' != TOC '{dict_title}'"
-            )
-
-    # Prepare the numbered TOC for dry_run
-    numbered_toc = []
-    for (dict_title, number) in filtered_toc:
-        numbered_toc.append(f"{number}. {dict_title}")
-
-    if dry_run:
-        print("Numbered TOC:")
-        for entry in numbered_toc:
-            print(entry)
-        return
-
-    # Apply numbering to all HTML files
-    for html_file in html_files:
-        with open(html_file, "r", encoding="utf-8") as f:
-            soup = BeautifulSoup(f, "html.parser")
-        toc_div = soup.find("div", class_="bd-toc-item navbar-nav active")
-        if toc_div is None:
-            continue
-        toc_links = []
-        for el in toc_div.children:
-            if not hasattr(el, "name"):
-                continue
-            if el.name == "ul" and "bd-sidenav__home-link" in el.get("class", []):
-                continue
-            if el.name == "p" and "caption" in el.get("class", []):
-                continue
-            if el.name == "ul":
-                for li in el.find_all("li"):
-                    a = li.find("a")
-                    if a:
-                        toc_links.append(a)
-        if len(toc_links) != len(filtered_toc):
-            raise RuntimeError(
-                f"TOC mismatch in {html_file}: {len(toc_links)} HTML items vs {len(filtered_toc)} TOC entries"
-            )
-        for a, (dict_title, number) in zip(toc_links, filtered_toc):
-            new_text = f"{number}. {dict_title}"
-            a.string.replace_with(new_text)
-        with open(html_file, "w", encoding="utf-8") as f:
-            f.write(str(soup))
 
 
 if __name__ == '__main__':
