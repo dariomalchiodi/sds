@@ -57,7 +57,7 @@ it:
 	./sds/clean_tmpsource.sh --force --all
 	@echo "Step 9/9: Copying index.html to build root..."
 	@if [ -f "$(SOURCEDIR)/index.html" ]; then \
-		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/"; \
+		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/sds/"; \
 		echo "✓ index.html copied to build directory"; \
 	fi
 	@echo "Italian documentation build complete! Output: $(SDSDIR)/it/"
@@ -87,7 +87,7 @@ en:
 	./sds/clean_tmpsource.sh --force --all
 	@echo "Step 9/9: Copying index.html to build root..."
 	@if [ -f "$(SOURCEDIR)/index.html" ]; then \
-		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/"; \
+		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/sds/"; \
 		echo "✓ index.html copied to build directory"; \
 	fi
 	@echo "English documentation build complete! Output: $(SDSDIR)/en/"
@@ -117,7 +117,7 @@ fr:
 	./sds/clean_tmpsource.sh --force --all
 	@echo "Step 9/9: Copying index.html to build root..."
 	@if [ -f "$(SOURCEDIR)/index.html" ]; then \
-		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/"; \
+		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/sds/"; \
 		echo "✓ index.html copied to build directory"; \
 	fi
 	@echo "French documentation build complete! Output: $(SDSDIR)/fr/"
@@ -147,7 +147,7 @@ es:
 	./sds/clean_tmpsource.sh --force --all
 	@echo "Step 9/9: Copying index.html to build root..."
 	@if [ -f "$(SOURCEDIR)/index.html" ]; then \
-		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/"; \
+		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/sds/"; \
 		echo "✓ index.html copied to build directory"; \
 	fi
 	@echo "Spanish documentation build complete! Output: $(SDSDIR)/es/"
@@ -163,7 +163,7 @@ copy-static:
 	python3 sds/generate-redirect-pages.py $(SDSDIR)
 	@echo "✓ URL shortener validation and generation complete"
 	@if [ -f "$(SOURCEDIR)/index.html" ]; then \
-		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/"; \
+		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/sds/"; \
 		echo "✓ index.html copied to build directory"; \
 	fi
 
