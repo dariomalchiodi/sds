@@ -66,26 +66,26 @@ it:
 # English documentation build target
 en:
 	@echo "Building English documentation..."
-	@echo "Step 0/7: Validating and generating URL shortener..."
+	@echo "Step 1/9: Validating and generating URL shortener..."
 	@python3 sds/validate-shortener.py
 	@python3 sds/generate-redirect-pages.py $(SDSDIR)
-	@echo "Step 1/8: Processing MyST files..."
+	@echo "Step 2/9: Processing MyST files..."
 	./sds/process_myst_batch.sh --clean en
-	@echo "Step 2/8: Copying shared resources..."
+	@echo "Step 3/9: Copying shared resources..."
 	@if [ -d "$(SOURCEDIR)/_static" ]; then cp -r "$(SOURCEDIR)/_static" tmpsource/; fi
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
-	@echo "Step 3/8: Building HTML with Sphinx..."
+	@echo "Step 4/9: Building HTML with Sphinx..."
 	$(SPHINXBUILD) -b html tmpsource/en $(SDSDIR)/en
-	@echo "Step 4/8: Processing remaining {py} roles in HTML..."
-	python3 sds/sds.py process-py-roles $(SDSDIR)/en --language en
-	@echo "Step 5/8: Applying cross-reference improvements..."
-	python3 sds/apply_crossref_improvements.py $(SDSDIR)/en
-	@echo "Step 6/8: Making part titles clickable and collapsible..."
-	python3 sds/sds.py make-parts-clickable $(SDSDIR)/en --language en
-	@echo "Step 7/8: Cleaning temporary files..."
+	@echo "Step 5/9: Processing remaining {py} roles in HTML..."
+	python3 -m sds.sds process-py-roles $(SDSDIR)/en --language en
+	@echo "Step 6/9: Making part titles clickable and collapsible..."
+	python3 -m sds.sds make-parts-clickable $(SDSDIR)/en --language en
+	@echo "Step 7/9: Apply chapter and section numbering..."
+	python3 -m sds.sds apply-numbering --language en
+	@echo "Step 8/9: Cleaning temporary files..."
 	./sds/clean_tmpsource.sh --force --all
-	@echo "Step 8/8: Copying index.html to build root..."
+	@echo "Step 9/9: Copying index.html to build root..."
 	@if [ -f "$(SOURCEDIR)/index.html" ]; then \
 		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/"; \
 		echo "✓ index.html copied to build directory"; \
@@ -96,26 +96,26 @@ en:
 # French documentation build target
 fr:
 	@echo "Building French documentation..."
-	@echo "Step 0/7: Validating and generating URL shortener..."
+	@echo "Step 1/9: Validating and generating URL shortener..."
 	@python3 sds/validate-shortener.py
 	@python3 sds/generate-redirect-pages.py $(SDSDIR)
-	@echo "Step 1/8: Processing MyST files..."
+	@echo "Step 2/9: Processing MyST files..."
 	./sds/process_myst_batch.sh --clean fr
-	@echo "Step 2/8: Copying shared resources..."
+	@echo "Step 3/9: Copying shared resources..."
 	@if [ -d "$(SOURCEDIR)/_static" ]; then cp -r "$(SOURCEDIR)/_static" tmpsource/; fi
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
-	@echo "Step 3/8: Building HTML with Sphinx..."
+	@echo "Step 4/9: Building HTML with Sphinx..."
 	$(SPHINXBUILD) -b html tmpsource/fr $(SDSDIR)/fr
-	@echo "Step 4/8: Processing remaining {py} roles in HTML..."
-	python3 sds/sds.py process-py-roles $(SDSDIR)/fr --language fr
-	@echo "Step 5/8: Applying cross-reference improvements..."
-	python3 sds/apply_crossref_improvements.py $(SDSDIR)/fr
-	@echo "Step 6/8: Making part titles clickable and collapsible..."
-	python3 sds/sds.py make-parts-clickable $(SDSDIR)/fr --language fr
-	@echo "Step 7/8: Cleaning temporary files..."
+	@echo "Step 5/9: Processing remaining {py} roles in HTML..."
+	python3 -m sds.sds process-py-roles $(SDSDIR)/fr --language fr
+	@echo "Step 6/9: Making part titles clickable and collapsible..."
+	python3 -m sds.sds make-parts-clickable $(SDSDIR)/fr --language fr
+	@echo "Step 7/9: Apply chapter and section numbering..."
+	python3 -m sds.sds apply-numbering --language fr
+	@echo "Step 8/9: Cleaning temporary files..."
 	./sds/clean_tmpsource.sh --force --all
-	@echo "Step 8/8: Copying index.html to build root..."
+	@echo "Step 9/9: Copying index.html to build root..."
 	@if [ -f "$(SOURCEDIR)/index.html" ]; then \
 		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/"; \
 		echo "✓ index.html copied to build directory"; \
@@ -126,26 +126,26 @@ fr:
 # Spanish documentation build target
 es:
 	@echo "Building Spanish documentation..."
-	@echo "Step 0/7: Validating and generating URL shortener..."
+	@echo "Step 1/9: Validating and generating URL shortener..."
 	@python3 sds/validate-shortener.py
 	@python3 sds/generate-redirect-pages.py $(SDSDIR)
-	@echo "Step 1/8: Processing MyST files..."
+	@echo "Step 2/9: Processing MyST files..."
 	./sds/process_myst_batch.sh --clean es
-	@echo "Step 2/8: Copying shared resources..."
+	@echo "Step 3/9: Copying shared resources..."
 	@if [ -d "$(SOURCEDIR)/_static" ]; then cp -r "$(SOURCEDIR)/_static" tmpsource/; fi
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
-	@echo "Step 3/8: Building HTML with Sphinx..."
+	@echo "Step 4/9: Building HTML with Sphinx..."
 	$(SPHINXBUILD) -b html tmpsource/es $(SDSDIR)/es
-	@echo "Step 4/8: Processing remaining {py} roles in HTML..."
-	python3 sds/sds.py process-py-roles $(SDSDIR)/es --language es
-	@echo "Step 5/8: Applying cross-reference improvements..."
-	python3 sds/apply_crossref_improvements.py $(SDSDIR)/es
-	@echo "Step 6/8: Making part titles clickable and collapsible..."
-	python3 sds/sds.py make-parts-clickable $(SDSDIR)/es --language es
-	@echo "Step 7/8: Cleaning temporary files..."
+	@echo "Step 5/9: Processing remaining {py} roles in HTML..."
+	python3 -m sds.sds process-py-roles $(SDSDIR)/es --language es
+	@echo "Step 6/9: Making part titles clickable and collapsible..."
+	python3 -m sds.sds make-parts-clickable $(SDSDIR)/es --language es
+	@echo "Step 7/9: Apply chapter and section numbering..."
+	python3 -m sds.sds apply-numbering --language es
+	@echo "Step 8/9: Cleaning temporary files..."
 	./sds/clean_tmpsource.sh --force --all
-	@echo "Step 8/8: Copying index.html to build root..."
+	@echo "Step 9/9: Copying index.html to build root..."
 	@if [ -f "$(SOURCEDIR)/index.html" ]; then \
 		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/"; \
 		echo "✓ index.html copied to build directory"; \
@@ -174,62 +174,9 @@ sync-shortener:
 	@python3 sds/generate-redirect-pages.py $(SDSDIR)
 
 # Build all language versions
-all:
-	@$(MAKE) clean-all
-	@echo "Building all language versions..."
-	@echo "Step 0/23: Validating and generating URL shortener..."
-	@python3 sds/validate-shortener.py
-	@python3 sds/generate-redirect-pages.py $(SDSDIR)
-	@echo "Step 1: Processing Italian MyST files..."
-	./sds/process_myst_batch.sh --clean it
-	@echo "Step 2: Processing English MyST files..."
-	./sds/process_myst_batch.sh en
-	@echo "Step 3: Processing French MyST files..."
-	./sds/process_myst_batch.sh fr
-	@echo "Step 4: Processing Spanish MyST files..."
-	./sds/process_myst_batch.sh es
-	@echo "Step 5: Copying shared resources..."
-	@if [ -d "$(SOURCEDIR)/_static" ]; then cp -r "$(SOURCEDIR)/_static" tmpsource/; fi
-	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
-	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
-	@echo "Step 6: Building Italian HTML..."
-	$(SPHINXBUILD) -b html tmpsource/it $(SDSDIR)/it
-	@echo "Step 7: Processing Italian {py} roles in HTML..."
-	python3 sds/sds.py process-py-roles $(SDSDIR)/it --language it
-	@echo "Step 8: Applying Italian cross-reference improvements..."
-	python3 sds/apply_crossref_improvements.py $(SDSDIR)/it
-	@echo "Step 9: Making Italian part titles clickable and collapsible..."
-	python3 sds/sds.py make-parts-clickable $(SDSDIR)/it --language it
-	@echo "Step 10: Building English HTML..."
-	$(SPHINXBUILD) -b html tmpsource/en $(SDSDIR)/en
-	@echo "Step 11: Processing English {py} roles in HTML..."
-	python3 sds/sds.py process-py-roles $(SDSDIR)/en --language en
-	@echo "Step 12: Applying English cross-reference improvements..."
-	python3 sds/apply_crossref_improvements.py $(SDSDIR)/en
-	@echo "Step 13: Making English part titles clickable and collapsible..."
-	python3 sds/sds.py make-parts-clickable $(SDSDIR)/en --language en
-	@echo "Step 14: Building French HTML..."
-	$(SPHINXBUILD) -b html tmpsource/fr $(SDSDIR)/fr
-	@echo "Step 15: Processing French {py} roles in HTML..."
-	python3 sds/sds.py process-py-roles $(SDSDIR)/fr --language fr
-	@echo "Step 16: Applying French cross-reference improvements..."
-	python3 sds/apply_crossref_improvements.py $(SDSDIR)/fr
-	@echo "Step 17: Making French part titles clickable and collapsible..."
-	python3 sds/sds.py make-parts-clickable $(SDSDIR)/fr --language fr
-	@echo "Step 18: Building Spanish HTML..."
-	$(SPHINXBUILD) -b html tmpsource/es $(SDSDIR)/es
-	@echo "Step 19: Processing Spanish {py} roles in HTML..."
-	python3 sds/sds.py process-py-roles $(SDSDIR)/es --language es
-	@echo "Step 20: Applying Spanish cross-reference improvements..."
-	python3 sds/apply_crossref_improvements.py $(SDSDIR)/es
-	@echo "Step 21: Making Spanish part titles clickable and collapsible..."
-	python3 sds/sds.py make-parts-clickable $(SDSDIR)/es --language es
-	@echo "Step 22: Copying static files..."
-	@$(MAKE) copy-static
-	@echo "Step 23: Cleaning all temporary files..."
-	./sds/clean_tmpsource.sh --force --all
+all: it en fr es copy-static
 	@echo "All language versions built successfully!"
-	@echo "Note: Figure/table numbering (X.Y format) is automatically handled by Sphinx configuration."
+    @echo "Note: Figure/table numbering (X.Y format) is automatically handled by Sphinx configuration."
 
 # Clean all build artifacts and temporary files
 clean-all:

@@ -20,6 +20,7 @@ parts:
       - file: P1-PAD/c1-intro-python/introduction-python
         sections:
         - file: P1-PAD/c1-intro-python/installer-python
+      - file: P1-PAD/c2-pandas/pandas
   - caption: Annexes
     chapters:
     - file: references
