@@ -2173,7 +2173,7 @@ def apply_numbering(language):
     html_dir = os.path.join('build', 'sds', language)
     html_files = glob.glob(os.path.join(html_dir, '**', '*.html'),
                            recursive=True)
-    skip_list = ['genindex.html', get_root_doc(language) + '.html',
+    skip_list = ['genindex.html', # get_root_doc(language) + '.html',
                  'prf-prf.html', 'search.html', 'index.html']
     
     numbered_toc = generate_toc(language=language)
@@ -2222,7 +2222,8 @@ def apply_numbering(language):
         title = file_soup.find('h1')
         
         relative_file_path = file_path[len(f'build/sds/{language}/'):][:-5]
-        title.insert(0, \
+        if relative_file_path != get_root_doc(language):
+            title.insert(0, \
                 NavigableString( \
                     f"{numbered_toc.file_to_number[relative_file_path]}. "))
 
