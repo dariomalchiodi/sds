@@ -92,8 +92,8 @@ Il lavoro è organizzato in quattro parti:
 - la terza descrive i fondamenti del _calcolo delle probabilità_, intesa come
   disciplina che permette di quantificare l'incertezza
   degli eventi;
-- la quarta e ultima parte si concentra sulle basi della _statistica inferenziale_,
-  fornendo strumenti che supportano le decisioni in condizioni
+- la quarta e ultima parte si concentra sulle basi della _statistica
+  inferenziale_, fornendo strumenti che supportano le decisioni in condizioni
   di incertezza, sfruttando gli strumenti introdotti nelle parti precedenti.
 
 Ognuna di queste parti, considerata da sola, riempirebbe un intero libro di
@@ -109,6 +109,7 @@ descritti nei capitoli precedenti.
 fisico francese Jean-Baptiste Le Roy) questa affermazione compare in realtà
 come parte finale della frase: «... in this world nothing can be said to be
 certain, except death and taxes». Va comunque sottolineato che, sebbene la
-paternità di questo aforisma sia attribuita a Benjamin Franklin, esistono <a
-href="https://en.wikipedia.org/wiki/Death_and_taxes_(idiom)"
-target="_blank">fonti antecedenti</a> che ne riportano alcune varianti.
+paternità di questo aforisma sia attribuita a Benjamin Franklin, esistono
+{extlink}`fonti
+antecedenti<https://en.wikipedia.org/wiki/Death_and_taxes_(idiom)>` che ne
+riportano alcune varianti.

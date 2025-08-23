@@ -11,7 +11,6 @@ parts:
         - file: P0/imparare-e-programmare
         - file: P0/statistica-data-science
         - file: P0/convenzioni
-        - file: P0/notazione
         - file: P0/utilizzo-in-insegnamento
       - file: P0/uno-sguardo-di-insieme
   - caption: Programmazione per l'analisi dei dati

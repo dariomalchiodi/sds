@@ -55,16 +55,16 @@ Il lavoro di scrittura è comunuque _in progress_, e verosimilmente lo sarà
 ancora per parecchio tempo. Segnalatemi refusi ed errori, ma anche esempi e
 materiale che possano arricchire il testo, tenendo presente che immagini, dati
 e altri contenuti possono essere pubblicati solo se compatibili con la licenza
- _Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International_ (<a
- href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it"
-target="_blank">CC BY-NC-SA 4.0</a>) con cui il libro è distribuito. Il modo
-più pratico per inviarmi queste segnalazioni è quello di sottoporre _issue_
-(per segnalare errori o suggerire miglioramenti) o _pull request_ (per proporre
-modifiche) al <a href="https://github.com/dariomalchiodi/sds"
-target="_blank">repository</a> nel quale ho organizzato l'intero libro. Ciò
-richiede familiarità con <a href="https://www.git-scm.org"
-target="_blank">git</a>, lo strumento di _source control management_ che
-utilizzo per i miei progetti _software_.
+ _Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International_
+ ({extlink}`CC BY-NC-SA 4.0
+<https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it>`) con cui il libro
+è distribuito. Il modo più pratico per inviarmi queste segnalazioni è quello di
+sottoporre _issue_ (per segnalare errori o suggerire miglioramenti) o _pull
+request_ (per proporre modifiche) al {extlink}`repository
+<https://github.com/dariomalchiodi/sds>` nel quale ho organizzato l'intero
+libro. Ciò richiede familiarità con {extlink}`git <https://www.git-scm.org>`,
+lo strumento di _source control management_ che utilizzo per i miei progetti
+_software_.
 
 
 [^note]: Userò le note a margine per dei commenti che ritengo importanti ma che

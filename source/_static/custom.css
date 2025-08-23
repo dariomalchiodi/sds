@@ -40,6 +40,20 @@ a.headerlink {
   color: var(--visited-link-color);
 }
 
+a.external {
+  white-space: nowrap;
+}
+
+a.external::after {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 0.6em;
+    content: "\00A0\f35d";
+    display: inline-block;
+    margin-left: 0.2em;
+    vertical-align: middle;
+}
+
 .admonition.note {
   background-color: #b3d4fc;
   border-left: 4px solid #006699;

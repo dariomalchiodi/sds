@@ -13,6 +13,11 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
+import os
+import sys
+sys.path.insert(0,
+                os.path.abspath(os.path.join(os.path.dirname(__file__),
+                                             '..', '..')))
 
 
 # -- Project information -----------------------------------------------------
@@ -39,6 +44,7 @@ extensions = [ 'myst_parser',
                'sphinx_external_toc',
                'sphinx_proof',
                'sphinx.ext.autosectionlabel',
+               'sds',
                 ]
 
 # nb_code_cell_render_options = {

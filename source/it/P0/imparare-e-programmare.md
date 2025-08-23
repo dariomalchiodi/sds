@@ -14,16 +14,17 @@ kernelspec:
 
 Come descritto nel paragrafo precedente, introdurrò i concetti affiancandoli, o
 talvolta precedoli, con esempi pratici. Quando possibile, mostrerò anche delle
-_implementazioni_ utilizzando un linguaggio relativamente moderno. Userò <a
-href="https://www.python.org" target="_blank">Python</a> e il relativo _data
-science stack_, costituito dalle librerie principalmente utilizzate dalla
-comunità open source che si concentra sull'analisi dei dati[^librerie] (nel
-momento in cui questo libro è stato scritto). Per seguire efficacemente il
-libro, è quindi altamente consigliata una conoscenza di base della
-programmazione.
+_implementazioni_ utilizzando un linguaggio relativamente moderno. Userò
+{extlink}`Python <https://www.python.org>` e il relativo _data science stack_,
+costituito dalle librerie principalmente utilizzate dalla comunità open source
+che si concentra sull'analisi dei dati[^librerie] (nel momento in cui questo
+libro è stato scritto). Per seguire efficacemente il libro, è quindi altamente
+consigliata una conoscenza di base della programmazione.
 ```{margin}
 Questo libro nasce dall'evoluzione di una serie di dispense pensate per
-studenti del secondo anno dei corsi di laurea triennale in area informatica. Pertanto presuppone come acquisite le competenze di programmazione che vengono acquisite generalmente al primo anno di queste lauree, o in percorsi affini.
+studenti del secondo anno dei corsi di laurea triennale in area informatica.
+Pertanto presuppone come acquisite le competenze di programmazione che vengono
+acquisite generalmente al primo anno di queste lauree, o in percorsi affini.
 ```
 
 Il {ref}`chap:intro-python` fornisce una panoramica a livello medio-alto delle
@@ -47,12 +48,12 @@ contenuti sono interattivi, come mostrato per esempio nel
 analizzare del codice, è pensata proprio per facilitare la comprensione dei
 concetti introdotti.
 ```{margin}
-Le componenti interattive si basano su <a href="https://pyscript.net/"
-target="_blank">PyScript</a>, una tecnologia che consente di eseguire codice
-Python nei moderni browser web. Questa tecnologia ha il vantaggio di non
-richiedere alcuna installazione o configurazione manuale, ma richiede
-una connessione Internet attiva e l'utilizzo di un _browser_ compatibile con
-WebAssembly (come Chrome, Firefox, Edge, Safari e i navigatori basati su
+Le componenti interattive si basano su {extlink}`PyScript
+<https://pyscript.net/>`, una tecnologia che consente di eseguire codice Python
+nei moderni browser web. Questa tecnologia ha il vantaggio di non richiedere
+alcuna installazione o configurazione manuale, ma richiede una connessione
+internet attiva e l'utilizzo di un _browser_ compatibile con WebAssembly (come
+Chrome, Firefox, Edge, Safari e i navigatori basati su
 Chromium).
 ```
 
@@ -96,8 +97,8 @@ _software_, e questa è una competenza che richiede tempo, energia e materiali
 didattici dedicati per essere acquisita. Per chi parte da zero, consiglio
 alcuni testi di riferimento, più o meno recenti:
 
-- <a href="/sds/short/thinkpython-it" target="_blank">Pensare in Python</a>, di
-  Allen B. Downey {cite:p}`downey`,
+- {extlink}`Pensare in Python </sds/short/thinkpython-it>`, di Allen B. Downey
+  {cite:p}`downey`,
 - Programmazione in C, di Kim N. King {cite:p}`king`,
 - Programmare in Go, di Ivo Balbaert {cite:p}`balbaert`.
 
@@ -118,13 +119,12 @@ name: fig-whistle
 height: 100px
 ---
 Un fischietto Cap’n Crunch Bo’sun (immagine del Heinz Nixdorf MuseumsForum,
-distribuita sotto licenza
-<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
-target="_blank">CC BY-NC-SA 4.0</a>)
+distribuita sotto licenza {extlink}`CC BY-NC-SA 4.0
+<https://creativecommons.org/licenses/by-nc-sa/4.0/>`)
 ```
 ````
 
-[^librerie]: Il <a href="https://github.com/dariomalchiodi/sds" target="_blank">repository</a>
+[^librerie]: Il {extlink}`repository <https://github.com/dariomalchiodi/sds>`
 associato a questo libro contiene un file che elenca tutte le librerie
 utilizzate per generare i contenuti, incluse quelle necessarie per eseguire il
 codice.
@@ -144,8 +144,8 @@ cereali, mostrato in {numref}`fig-whistle`) per effettuare chiamate interurbane
 e internazionali gratuite da alcuni telefoni pubblici negli Stati Uniti. Uno
 degli ambienti nei quali la controcultura hacker iniziò a svilupparsi fu il
 Massachusetts Institute of Technology (MIT): la prima traccia scritta del
-termine «hacking» fa riferimento al verbale di una riunione del 1955 del <a
-href="http://tmrc.mit.edu/" target="_blank">Tech Model Railroad Club</a>, un
+termine «hacking» fa riferimento al verbale di una riunione del 1955 del
+{extlink}`Tech Model Railroad Club <http://tmrc.mit.edu/>`,un
 gruppo di studenti appassionati di modellismo ferroviario. L'associazione
 diretta con mondo informatico è arrivata solo più tardi.
 

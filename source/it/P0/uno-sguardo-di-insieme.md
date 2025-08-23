@@ -12,21 +12,20 @@ kernelspec:
 (chap:uno-sguardo-di-insieme)=
 # Uno sguardo di insieme
 
-Lo scopo di questo capitolo è duplice: da una parte, serve a descrivere per
-sommi capi il filo logico che è dietro all'organizzazione dei contenuti e a
-introdurre, in modo relativamente informale, i concetti cardine; dall'altra,
-spiega come utilizzare le componenti interattive del libro. Come indicato nel
-{ref}`chap:approccio`, nel testo farò riferimento a un _dataset_ ottenuto
-modificando un opportuno sottoinsieme del [Superhero
-database](http://www.superherodb.com){.external}. Gli esempi faranno quindi
-riferimento al mondo dei supereroi, ognuno dei quali sarà descritto tramite gli
-_attributi_ indicati nella {numref}`tab:dataset`.
+Lo scopo di questo capitolo è duplice: da una parte, mira a descrivere la
+logica con cui ho organizzato i contenuti e a introdurre, in modo relativamente
+informale, i concetti cardine. Dall'altra, spiega come utilizzare le componenti
+interattive del libro. Come indicato nel {ref}`chap:approccio`, nel testo farò
+riferimento a un _dataset_ ottenuto modificando un sottoinsieme del
+{extlink}`Superhero database <http://www.superherodb.com>`. Gli esempi traggono
+quindi spunto dal mondo dei supereroi, ciascuno dei quali è descritto tramite
+gli _attributi_ indicati nella {numref}`tab:dataset`.
 
 ```{margin}
-Ho scelto di utilizzare la lingua inglese per indicare i nomi degli attributi
-e i valori corrispondenti (quando questi sono descritti tramite stringhe),
-per coerenza rispetto ai contenuti del dataset. Analogamente, il codice Python
-sarà strutturato utilizzando nomi in inglese per variabili, funzioni e così via.
+Ho scelto di mantenere l'inglese per i nomi degli attributi e per i loro valori
+(quando sono descritti tramite stringhe), per coerenza con i contenuti del
+_dataset_. Analogamente, nel codice Python utilizzerò nomi in inglese per
+variabili, funzioni e altri identificatori.
 ```
 
 ```{table} Descrizione del _dataset_ utilizzato negli esempi.
@@ -55,23 +54,22 @@ sarà strutturato utilizzando nomi in inglese per variabili, funzioni e così vi
 ```
 
 ```{margin}
-L'estratto del _dataset_ viene prodotto dinamicamente, e può essere necessario
-attendere alcuni secondi prima che questo venga visualizzato, rimpiazzando
-la scritta `Please wait, loading PyScript... Lo stesso vale per
-tutti i punti nei quali il browser deve eseguire del codice Python.
+L'estratto del _dataset_ viene generato dinamicamente, e può essere necessario
+attendere alcuni secondi prima che compaia, sostituendo il messaggio `Attendere
+il caricamento di PyScript...`. Lo stesso comportamento si verifica in tutti i
+punti in cui il browser esegue codice Python.
 ```
 Il _dataset_ è memorizzato nel file `heroes.csv` contenuto nella directory
-`data` del [repository](https://github.com/dariomalchiodi/sds){.external}
+`data` del {extlink}`repository <https://github.com/dariomalchiodi/sds>`
 associato al libro. Nel codice interattivo, il file è accessibile come
-`data/heroes.csv`. In questo file, i contenuti sono rappresentati utilizzando
-il formato CSV (_comma separated values_), uno degli standard impiegati per
-condividere dati di dimensioni relativamente contenute: ogni riga rappresenta
-un supereroe, e in essa i valori degli attributi nella {numref}`tab:dataset`
-sono indicati separandoli tramite virgole. L'unica eccezione è costituita dalla
-prima riga del file, che contiene i nomi degli attributi, sempre separati
-usando le virgole, come si può vedere visualizzando la parte iniziale del file
-stesso. Qui sotto potete vedere la descrizione di alcuni degli attributi per
-dieci supereroi del _dataset_ considerati a caso.
+`data/heroes.csv`. I suoi contenuti sono rappresentati utilizzando il formato
+CSV (_comma separated values_), uno standard comunemente usato per condividere
+dati di dimensioni relativamente ridotte: ogni riga corrisponde a un supereroe,
+e in essa i valori degli attributi nella {numref}`tab:dataset` sono separati da
+virgole. L'unica eccezione riguarda la prima riga del file, che contiene i nomi
+degli attributi, anch'essi separati da virgole. Qui sotto è riportato une
+stratto con i valori di alcuni attributi per dieci supereroi selezionati
+casualmente.
 
 ```{code-block} python
 :class: toggle-code
@@ -86,36 +84,28 @@ source.index.name = None
 source
 ```
 
-Nel {ref}`chap:pandas` vedremo come caricare in memoria i contenuti di
-questo file e, soprattutto, come elaborarli. Per ora, concentriamoci su
-alcuni semplici esempi che, da una parte, mostrano come utilizzare le parti
-interattive del libro, e, dall'altra, forniscono una panoramica di quelli che
-saranno i concetti che illustrerò.
-
-Quello che segue è un primo esempio di grafico interattivo. Nel diagramma in
-alto sono rappresentati alcuni supereroi, utilizzando dei cerchi in un piano
-cartesiano: le coordinate del centro indicano il peso e l'altezza, mentre il
-raggio esprime la forza. Ogni cerchio è colorato con una sfumatura di
-blu scelta in funzione dell'editore, e posizionandosi sopra di esso viene
-automaticamente visualizzato il nome del supereroe corrispondente. Il
-diagramma in basso mostra invece il numero di supereroi per ogni
-editore/creatore, usando delle barre orizzontali. Selezionando un'area
-rettangolare nel diagramma superiore è possibile concentrarsi su un
-sottoinsieme di supereroi (con l'effetto di colorare in grigio i cerchi
-che indicano i supereroi esclusi): in modo automatico, il diagramma inferiore
-viene rigenerato in modo da riflettere la distribuzione del gruppo selezioato.
-Una volta effettuata, la selezione può essere spostata, e cliccando
-in un punto qualsiasi al di fuori di essa viene ripristinato il grafico
-originale.
+Nel {ref}`chap:pandas` vedremo come caricare in memoria e analizzare i
+contenuti di questo file. Per ora, ci concentreremo su alcuni esempi
+preliminari. Quello che segue è un primo esempio di grafico interattivo. Nel
+diagramma in alto, alcuni supereroi sono rappresentati tramite cerchi in un
+piano cartesiano: le coordinate del centro indicano peso e altezza, mentre il
+raggio esprime la forza. Il colore varia in base all'editore, utilizzando
+diverse sfumature di blu. Posizionando il puntatore su un cercio viene
+visualizzato il nome del supereroe corrispondente. Il diagramma inferiore
+mostra invece delle barre orizzontali che indicano il numero di supereroi per
+ciascun editore o creatore. È possibile selezionare un sottoinsieme di
+supereroi tracciando un rettangolo nel diagramma superiore: gli altri elementi
+del _dataset_ vengono disattivati, colorandoli in grigio, e il grafico
+inferiore viene aggiornato per riflettere la distribuzione del gruppo
+selezionato. La selezione può essere spostata, e facendo clic al suo esterno si
+ripristina la visualizzazione originale.
 ```{margin}
-Il grafico qui accanto è stato realizzato utilizzando
-[altair](https://altair-viz.github.io/){.external}, una libreria che permette
-di utilizzare Python per visualizzare grafici complessi all'interno di pagine
-web, in una forma interattiva che è automaticamente attivata nel momento in cui
-una pagina viene caricata. Per riconoscere se un grafico è stato generato
-tramite altair, è sufficiente controllare se in alto a destra è presente un
-pulsante rotondo che contiene tre punti. Questo pulsante attiva un menu che
-permette, tra le altre cose, di scaricare il grafico.
+Il grafico qui accanto è stato realizzato con
+{extlink}`Altair <https://altair-viz.github.io/>`, una libreria Python
+per la creazione di grafici interattivi in pagine web. Un segno distintivo dei
+grafici Altair è la presenza, in alto a destra, di un pulsante rotondo con tre
+punti: questo attiva un menu che consente, tra le altre funzioni, di scaricare
+il grafico.
 ```
 
 ```{code-block} python
