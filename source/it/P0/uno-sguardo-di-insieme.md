@@ -144,55 +144,48 @@ chart = (points & bars).configure(background='#eaf3f5')
 chart
 ```
 
-Interagendo con il grafico è possibile effettuare un'_analisi esplorativa_ dei
+Interagendo con il grafico è possibile effettuare un’_analisi esplorativa_ dei
 dati, per esempio per rispondere alle domande seguenti.
 
 1. Qual è l'editore/creatore con più supereroi in assoluto?
 2. Quale editore ha il maggior numero di supereroi alti meno di un metro?
-3. Quale editore ha il maggior numero di supereroi che pesano tra 80 e 100 kg.?
-4. Qual è il supererore più alto in assoluto?
+3. Quale editore ha il maggior numero di supereroi con un peso compreso tra 80
+   e 100 kg.?
+4. Qual è il supereroe più alto?
+
+Molti aspetti possono essere analizzati anche senza interagire con il grafico,
+semplicemente osservandolo nella sua forma iniziale, come per le due domande
+qui sotto.
+
+5. Esiste una relazione tendenziale tra peso e altezza dei supereroi?
+6. Questa relazione cambia se consideriamo solo i supereroi di un determinato
+   editore/creatore?
 
 ```{margin}
-In generale, solo una piccola parte dei grafici che vedremo saranno
-interattivi.
+Se tutto questo sembra complicato, non vi preoccupate: i prossimi capitoli
+spiegheranno questi concetti partendo dalle basi.
 ```
-Ci sono ovviamente tanti aspetti che possono essere analizzati preliminarmente
-semplicemente guardando il grafico così come è stato prodotto (cioè senza
-utilizzare le componenti interattive), come per esempio i due indicati
-di seguito.
+Domande come queste si affrontano con gli strumenti della _statistica
+descrittiva_, introdotta dal {ref}`chap:dati-e-informazione` al
+{ref}`chap:analizzare-le-relazioni-tra-i-dati`. Il suo obiettivo è estrarre
+informazioni da un _dataset_ che descrive un insieme di individui, in tutto o
+in parte. Le tecniche impiegate possono essere di due tipi: _qualitative_ o
+_quantitative_.
 
-5. Esiste una relazione di qualche tipo che lega tendenzialmente il peso e
-   l'altezza dei supereroi?
-6. Questa relazione cambia se ci concentriamo sui supereroi che corrispondono
-   a un particolare editore/creatore?
+- L'analisi qualitativa cerca di determinare la natura di un certo fenomeno (ad
+  esempio, per rispondere alle domande 5 e 6 nell'elenco precedente). Spesso si
+  basa su strumenti grafici, i cui risultati devono essere interpretati,
+  introducendo un certo grado di soggettività.
+- L'analisi quantitativa, invece, ha come risultato uno o più valori numerici,
+  che possono essere confrontate in modo oggettivo con altre misure (come i
+  risultati di altre analisi).
 
-La _statistica descrittiva_, introdotta dal {ref}`chap:dati-e-informazione`
-al {ref}`chap:analizzare-le-relazioni-tra-i-dati`, fornisce degli strumenti che
-permettono di rispondere a domande come quelle appena considerate. In generale,
-lo scopo è quello di estrarre informazioni da un _dataset_ che descrive,
-globalmente o parzialmente, un insieme di individui di riferimento, e le
-tecniche utilizzate possono avere una natura sia _qualitativa_, sia
-_quantitativa_. Si parla di analisi qualitativa quando lo scopo è quello di
-determinare la natura di un certo fenomeno (per esempio, per rispondere alle
-domande ai punti 5 o 6 nell'elenco qui sopra). Questo richiede spesso di
-utilizzare degli strumenti, come il grafico precedentemente visualizzato, i cui
-risultati devono essere interpretati, introducendo un certo grado di
-soggettività. Si parla invece di analisi quantitativa quando l'esito
-di quest'ultima è espresso da una o più quantità numeriche, che possono essere
-quindi messe a confronto in modo oggettivo con altre quantità (tipicamente,
-i risultati di altre analisi).
-```{margin}
-Se tutto questo suona complicato, non vi preoccupate: i concetti diventeranno
-più chiari nei capitoli successivi.
-```
-
-Supponiamo ora di volerci concentrare, per semplicità, sul peso dei
-supereroi: il grafico precedente è decisamente pieno di cerchi, e
-mentre è relativamente facile farsi un'idea dell'altezza più piccola e di
-quella più grande, diventa poco chiaro, per esempio, capire se ci sono più
-supereroi «leggeri» che «pesanti». Per capire meglio, riporto qui sotto un
-particolare grafico, chiamato _istogramma_, che evidenzia le frequenze con le
-quali i valori diversi del peso sono presenti nel _dataset_.
+Per semplicità, concentriamoci ora sul peso dei supereroi. Il grafico
+precedente è piuttosto affolalto: se da un lato è facile individuare le altezze
+minima e massima, dall'altro non è immediato capire se prevalgano i supereroi
+«leggeri» o quelli più «pesanti». Per chiarire questo aspetto, si può ricorrere
+a un _istogramma_, un grafico che evidenzia le frequenze con cui i diversi
+valori del peso compaiono nel _dataset_.
 
 ```{code-block} python
 :class: toggle-code
@@ -211,110 +204,102 @@ fig.show()
 ```
 
 ```{margin}
-Non sempre ha senso utilizzare un istogramma per esplorare dei valori in un
-_dataset_, come vedremo nel {ref}`chap:dati-e-informazione`.
+Non sempre l'istogramma è la scelta giusta per esplorare i dati. È utile quando
+abbiamo molte osservazioni numeriche di un attributo continuo; in altri casi,
+può essere fuorviante (ne parleremo nel {ref}`chap:dati-e-informazione`).
 ```
 
 ```{margin}
-Vedremo altresì che il processo di esplorazione non deve
-necessariamente (o esclusivamente) coinvolgere l'uso di metodi grafici, ma può
-essere basato anche sull'utilizzo di strumenti quantitativi (e tipicamente lo
-è).
+L'esplorazione dei dati non implica sempre l'uso di metodi grafici: più avanti
+vedremo che spesso si fonda su strumenti quantitativi.
 ```
-Gli istogrammi sono definiti in dettaglio nel {ref}`sec:istogrammi`, ma per il
-momento ci basta sapere come leggere il risultato ottenuto: in ognuno dei
-rettangoli mostrati, la base individua un intervallo $I$ di possibili valori
-per il peso dei supereroi, e l'altezza è legata alla frazione di supereroi che
-hanno un peso contenuto in $I$ [^histogram]. Il grafico ottenuto mette in
-evidenza alcune cose interessanti: per esempio si vede che i supereroi con un
-peso superiore a 125 kg. sono presenti in numero maggiore rispetto a quelli con
-un peso inferiore a quaranta chili. D'altro canto, se non consideriamo i pesi
-molto grandi o molto piccoli, emerge un'approssimativa simmetria nei valori
-rispetto a un asse centrale, unitamente al fatto che le altezze dei rettangoli
-tendono a crescere, approssimativamente fino ai $70$ kg, per poi diminuire.
-Anche questa è un'esplorazione dei dati, che in questo caso non richiede
-l'utilizzo di grafici interattivi.
+Gli istogrammi sono spiegati in dettaglio nel {ref}`sec:istogrammi`, ma per ora
+su come leggerne uno. Il grafico è composto da tanti rettangoli: ognuno di essi
+ha come base un intervallo $I$ di possibili valori per il peso, e l'altezza è
+legata alla frazione di supereroi il cui peso rientra in quell'intervallo
+[^histogram]. Guardando l'istogramma, notiamo due cose interessanti:
+
+- i supereroi che pesano più di 125 kg. sono più numerosi di quelli sotto i
+  quaranta chili;
+- se escludiamo i pesi estremi, la distribuzione è grossomodo simmetrica, con
+  le altezze dei rettangoli che crescono fino a circa 70 kg. e poi calano.
+
+Questa è una prima forma di analisi esplorativa, anche senza grafici
+interattivi.
 
 ```{margin}
-Se siete attenti avrete notato che l'altezza di un rettangolo non può essere
-uguale al numero di supereroi che hanno un certo peso, perché i valori mostrati
-sull'asse delle ordinate non sono numeri interi. In questo istogramma, infatti,
-il numero di supereroi è legato all'area del rettangolo, cosa che ci
-permetterà tra poco di confrontare il risultato ottenuto con un altro grafico.
-Il motivo di questa scelta è approfondito nel {ref}`sec:istogrammi`.
+Guardando l'asse delle ordinate, vediamo che i valori non sono interi,
+pertanto l'altezza dei rettangoli non può rappresentare il numero di supereroi.In questo istogramma è l'area del rettangolo a essere proporzionale alla
+frequenza. Questa scelta, che ha implicazioni importanti, è spiegata in
+dettaglio nel {ref}`sec:istogrammi`.
 ```
 
-Una volta accumulata conoscenza sui dati a disposizione, il passo successivo
-richiede normalmente di _modellare_ il processo che li ha generati, e per fare
-ciò è necessario cambiare in modo radicale la nostra prospettiva, immaginando
-non in termini dell'intero _dataset_, ma piuttosto ponendoci domande relative
-all'osservazione di uno qualsiasi dei suoi elementi, o di un insieme di
-elementi, nell'ipotesi di non sapere a priori che cosa osserveremo (ricordatevi
-della [Legge di Franklin](#par:franklin-law)), ma assumendo che ogni supereroe
-abbia la stessa possibilità di tutti gli altri di essere osservato. A partire
-dal {ref}`chap:calcolo-combinatorio` e fino al
-{ref}`chap:va-e-modelli-continui`, il libro descrive la _Teoria della
-Probabilità_, fornendo alcuni strumenti formali per gestire
-l'incertezza dovuta al non sapere che cosa verrà di volta in volta osservato.
-Più precisamente, ci concentreremo su degli _eventi_, intesi come affermazioni
-che riguardano l'esito delle osservazioni. Sempre pensando ai supereroi, sono
-ad esempio eventi le seguenti affermazioni:
+Dopo aver raccolto informazioni a partire dai dati, il passo successivo è
+provare a _modellare_ matematicamente il processo che li ha generati. Per farlo
+dobbiamo cambiare: non ragioniamo sull'intero _dataset_, ma immaginiamo di
+poter osservare uno qualsiasi dei suoi elementi, senza sapere in anticipo quale
+sarà (ricordatevi della [Legge di Franklin](#par:franklin-law)). Assumiamo
+semplicemente che ogni supereroe abbia la stessa possibilità di essere
+osservato rispetto a tutti gli altri. A partire dal
+{ref}`chap:calcolo-combinatorio` e fino al {ref}`chap:va-e-modelli-continui`,
+entreremo nella _Teoria della Probabilità_, che ci fornisce strumenti per
+gestire in modo rigoroso l'incertezza dovuta al non sapere quale supereroe
+osserveremo di verrà di volta. Ci concentreremo su degli _eventi_, cioè
+affermazioni che riguardano ciò che potremmo osservare. Per esempio, sono
+eventi le seguenti affermazioni:
 
-1. un supereroe è cattivo (nell'ipotesi che ogni supereroe abbia
-   un'inclinazione morale definita a priori, come misurato nell'attributo
-   `alignement` del _dataset_ che utilizziamo);
-2. un supereroe Marvel è più veloce di un supereroe DC;
-3. due supereroi apparsi per la prima volta nello stesso anno hanno lo stesso
-   indice di intelligenza;
-4. almeno un supereroe in un gruppo di dieci è collocato in uno degli
+1. osserveremo un supereroe cattivo (nell'ipotesi che l'inclinazione morale
+   sia fissa, definita a priori e indicata dall'attributo `alignement` del
+   _dataset_);
+2. se osserviamo un supereroe Marvel e un supereroe DC, il primo è più veloce
+   del secondo;
+3. se osserviamo due supereroi apparsi per la prima volta nello stesso anno,
+   questi hanno lo stesso indice di intelligenza;
+4. se osserviamo dieci supereroi, almeno uno di essi è collocato in uno degli
    universi di _Star Wars_.
 
-Chiaramente, non è noto a priori se l'affermazione che costituisce un evento
-è vera o falsa, perché il valore di verità dipende da quelle che saranno le
-effettive osservazioni. Per questo motivo, viene introdotto il concetto
-cardine di _probabilità_, intesa come quantificazione numerica di questa
-incertezza, utilizzando un numero $p \in [0, 1]$. Senza entrare per ora nei
-dettagli, più tale numero è prossimo a $\frac{1}{2}$ e più l'incertezza è
-elevata; dualmente, quanto più $p$ si avvicina agli estremi, tanto più si
-riduce questa incertezza: al tendere di $p$ a zero, si riduce sempre di
-più la confidenza che l'affermazione sia vera, al punto che, quando la
-probabilità è nulla, l'affermazione diventa sicuramente falsa; analogamente,
-la confidenza aumenta al crescere di $p$, e l'affermazione sarà sicuramente
-vera quando $p = 1$. Come vedremo, il vantaggio di formalizzare matematicamente
-il concetto di probabilità ci permetterà di sviluppare tecniche che consentono
-di calcolare la probabilità di eventi complessi a partire da quella di eventi
-semplici: è questo il caso del punto 4 nell'elenco qui sopra, nel quale la
-probabilità cercata si può ottenere una volta che è nota la probabilità che un
-singolo eroe provenga da un universo _Star Wars_.
+Non sappiamo se queste affermazioni siano vere o false (tecnicamente, se i
+relativi eventi si verificano oppure no): dipende da cosa osserveremo. Qui
+entra in gioco la _probabilità_, che assegna un numero $p \in [0, 1]$ per
+quantificare questa incertezza. Senza entrare, per ora, nei dettagli,
+l'incertezza è massima quando $p$ si avvicina a $\frac{1}{2}$ e diminuisce
+quando $p$ tende ai suoi estremi. In particolare, più $p$ è vicino a zero, meno
+possiamo ritenere veritiera l'affermazione, e se $p = 0$ siamo sicuri che sia
+falsa; analogamente, man mano che $p$ si avvicina a $1$ cresce la confidenza
+che l'affermazione sia vera, cosa che diventa certa quando $p = 1$. Vedremo che
+questa formalizzare ci permetterà di calcolare la probabilità di eventi
+complessi a partire da eventi più semplici. Ad esempio, per calcolare la
+probabilità dell'ultimo evento nell'elenco precedente basta conoscere la
+probabilità di osservare un supereroe proveniente da un universo _Star Wars_.
 
-Molto spesso, gli eventi che vengono considerati fanno riferimento a una o
-più quantità numeriche (come ad esempio negli esempi ai punti 2 e 3 nel
-precedente elenco): ha senso, per esempio, chiedersi se la resistenza di un
-supereroe è massima, o se la sua altezza è compresa in un dato intervallo.
+Molto spesso, gli eventi considerati fanno riferimento a una o più quantità
+numeriche. Pensate, per esempio, alla resistenza di un supereroe o alla sua
+altezza: ha senso chiedersi se sia massima o se rientri in un certo intervallo.
 È importante sottolineare che il fatto che ogni supereroe abbia le stesse
-_chance_ degli altri di essere osservato non implica assolutamente che la
-stessa cosa valga per i valori che queste quantità possono assumere. Potete
-facilmente rendervene conto riguardando il precedente istogramma: un peso tra
-$50$ e $100$ kg. è molto più frequente rispetto a un peso superiore ai cento
-chili. Diventa quindi importante modellare anche queste quantità casuali, e in
-tal senso si introduce il concetto di _variabile aleatoria_ e la relativa
-formalizzazione matematica. Senza entrare per ora nei dettagli, concentriamoci
-sul caso specifico del peso dei supereroi, mettendo in chiaro che in generale
-il procedimento può essere più complicato o semplicemente diverso. L'idea alla 
-base della formalizzazione è quella di individuare una funzione $f$, detta
-_densità di probabilità_, il cui grafico _idealizza_ l'istogramma dei valori
-osservati, pur continuando a rispettarne le proprietà fondamentali. Per
-l'esempio in questione, possiamo identificare queste proprietà come essere
-simmetrico rispetto a un asse centrale e avere un andamento _unimodale_ (cioè
-crescente fino a un valore massimo e decrescente da lì in avanti). Ci sono
-infinite funzioni che esibiscono queste due proprietà, ma per motivi che al
-momento sono troppo difficili da giustificare&mdash;ma che dovrebbero risultare
-chiari una volta letto il resto del libro&mdash;vale la pena concentrarci su
-quella definita da:
+_chance_ degli altri di essere osservato non implica affatto che lo stesso
+valga per i valori che queste quantità possono assumere. Potete facilmente
+rendervene conto riguardando il precedente istogramma: un peso tra $50$ e $100$
+kg. è molto più frequente rispetto a uno superiore ai cento chili. Diventa
+quindi necessario modellare anche queste quantità casuali. A tal fine, si
+introduce il concetto di _variabile aleatoria_ e la relativa formalizzazione
+matematica. Per ora, concentriamoci sul caso specifico del peso dei supereroi,
+ricordando che in generale il procedimento può essere più complicato o
+semplicemente diverso. L'idea alla base della formalizzazione è quella di
+individuare una funzione $f$, detta _densità di probabilità_, il cui grafico
+_idealizza_ l'istogramma dei valori osservati, producendo una curva continua
+che ne mantiene le proprietà principali.
+
+ rispettandone però le proprietà
+principali. Per il nostro esempio, queste proprietà sono la simmetria rispetto
+a un asse centrale l'andamento _unimodale_ (cioè crescente fino a un valore
+massimo e decrescente da lì in avanti). Ci sono infinite funzioni che
+esibiscono queste due proprietà, ma per motivi troppo complessi da
+spiegare&mdash;ma che chiarirò più avanti&mdash;mi concentrerò su quella
+definita da:
 
 ```{margin}
 In questa formula, $\exp(x)$ indica l'elevamento della costante $\mathrm e$
-alla potenza $x$: questa forma è preferibile a $\mathrm e^x$ per evitare la
+alla potenza $x$. Preferisco questa forma a $\mathrm e^x$ per evitare la
 presenza di un esponente frazionario, che risulterebbe meno leggibile.   
 ```
 ```{math}
@@ -323,22 +308,22 @@ f(x; \mu, \sigma) = \frac{1}{\sigma \sqrt{2 \pi}} \;
        \mathrm{exp}\left(-\frac{(x - \mu)^2}{2 \sigma^2}\right) \enspace,
 ```
 
-dove $x$ indica un generico peso e $f(x; \mu, \sigma)$ individua il valore
-dell'altezza corrispondente nell'istogramma idealizzato. È importante
+```{margin}
+La curva che stiamo considerando è informalmente chiamata _campana gaussiana_,
+e il modello che ne deriva è detto _normale_. Come vedremo, questo modello avrà
+un ruolo fondamentale nelle ultime due parti del libro.
+```
+dove $x$ indica un generico peso e $f(x; \mu, \sigma)$ restituisce l'altezza
+corrispondente nell'istogramma idealizzato. È importante
 evidenziare che $f$ ha un solo argomento, denotato da $x$, mentre
-$\mu \in \mathbb R$ e $\sigma \in \mathbb R^+$ vanno intesi come due
-_parametri_: la funzione risulta completamente definita solo quando il loro
-valore è stato fissato. Il punto e virgola nella definizione di $f$ ha appunto
-lo scopo di evidenziare il ruolo differente che hanno l'argomento, da una
-parte, e i parametri, dall'altra. Per la precisione, {eq}`eq:weight_normal`
-definisce, al variare di $\mu$ e $\sigma$, una _famiglia_ di funzioni, ognuna
-delle quali è associata a una variabile aleatoria. Il risultato è una famiglia
-di variabili aleatorie, alla quale ci si riferisce come a un _modello_ di
-variabile aleatoria. Nel diagramma interattivo riportato qui sotto è possibile
-vedere come cambia il grafico di $f$ al variare dei suoi due parametri. Agendo
-sui due selettori, associati rispettivamente a $\mu$ e $\sigma$, è possibile
-cambiare i valori dei parametri corrispondenti e simultaneamente vedere come
-varia il grafico di $f$.
+$\mu \in \mathbb R$ e $\sigma \in \mathbb R^+$ sono due
+_parametri_ che devono essere fissati per definire completamente la funzione. Il punto e virgola serve proprio a distinguere l'argomento dai parametri.
+Per la precisione, al variare di $\mu$ e $\sigma$ {eq}`eq:weight_normal`
+definisce una _famiglia_ di funzioni: ciascuna corrisponde a una variabile aleatoria, e noi ci riferiamo a questa è una famiglia come a un _modello_ di
+variabile aleatoria. Nel diagramma interattivo qui sotto è potete osservare
+come cambia il grafico di $f$ al variare dei suoi parametri. Agendo
+sui due selettori, associati a $\mu$ e $\sigma$, vedrete immediatamente come
+il grafico di $f$ si aggiorna in base alle nuove impostazioni.
 
 ```{code-block} python
 :class: toggle-code 
@@ -416,17 +401,15 @@ plot_pdf(0, 1)
     </div>
 </div>
 ```
-
 Uno dei motivi per i quali si parla di «modello» di variabile aleatoria è
 legato al fatto che è possibile scegliere i valori dei suoi parametri in modo
-da _adattare_ il grafico di $f$, e più in generale la corrispondente variabile
-aleatoria, a dati precedentemente osservati. Nel caso appena visto, ciò
-equivale a scegliere dei valori opportuni per $\mu$ e $\sigma$, facendo sì che
-il grafico di $f$ si sovrapponga qualitativamente con quello dell'istogramma
-inizialmente ottenuto per il peso. Il seguente diagramma interattivo permette
-di eseguire manualmente questa operazione: potete quindi agire sui selettori in
-modo da ottenere una buona sovrapposizione tra l'istogramma e la funzione di
-densità di probabilità.
+da _adattare_ la funzione di densità di probabilità, e più in generale la
+corrispondente variabile aleatoria, a dati precedentemente osservati. Nel caso
+appena visto, ciò equivale a scegliere dei valori opportuni per $\mu$ e
+$\sigma$, facendo sì che il grafico di $f$ si sovrapponga qualitativamente con
+quello dell'istogramma inizialmente ottenuto per il peso. Il seguente diagramma
+interattivo vi permette di eseguire manualmente questa operazione, agendo sui
+selettori al fine di trovare un allineamento qualitativo tra i due grafici.
 
 ```{code-block} python
 :class:  toggle-code
@@ -565,28 +548,27 @@ setup_model_sliders()
 </div>
 ```
 
-Nell'ultima parte del libro, vedremo che esistono vari metodi che permettono di
-determinare in modo automatico i parametri di un modello, al fine di adattarlo
-a un insieme di dati. È questo, tra gli altri, lo scopo della _statistica
+Nell'ultima parte del libro, vedremo che esistono vari metodi per
+determinare automaticamente i parametri di un modello, in modo da adattarlo
+a un insieme di dati. Questo è uno degli scopi della _statistica
 inferenziale_, illustrata a partire dal {ref}`chap:inferential_statistics` e
 fino al {ref}`chap:statistica-non-parametrica`. Il punto di partenza è sempre
 un _dataset_, che in questo contesto rappresenta un _campione_ di osservazioni
 effettuate su una _popolazione_ più ampia. Su questa popolazione vogliamo fare
-delle ipotesi o trarre delle conclusioni, anche se non possiamo osservarla
-direttamente nella sua interezza. In altre parole, useremo il campione per
+delle ipotesi o trarre conclusioni, anche se non possiamo osservarla
+nella sua interezza. In altre parole, useremo il campione per
 ottenere informazioni su ciò che non sappiamo della popolazione. Il caso più
 semplice&mdash;e anche quello su cui ci concentreremo maggiormente&mdash; è
-quello nel quale la popolazione è descritta da una variabile aleatoria,
+quello in cui la popolazione è descritta da una variabile aleatoria,
 associata a un modello che dipende da uno o più parametri sconosciuti.
-L'obiettivo è quello di approssimare questi parametri, o altre quantità di che
-dipendono da essi. Per esempio, immaginiamo che la popolazione sia composta da
-di tutti i supereroi nel nostro _dataset_, e che la quantità che ci interessa
-sia il loro peso medio $p$. Se abbiamo a disposizione solo un campione di
+L'obiettivo è quello di approssimare questi parametri, o altre quantità che
+dipendono da essi. Per esempio, consideriamo la popolazione dei supereroi nel
+nostro _dataset_ e supponiamo di essere interessati al loro peso medio $p$. Se abbiamo a disposizione solo un campione di
 cento supereroi, il buon senso suggerisce di usare la media del loro peso come
-approssimazione di $p$. Si usa in generale il termine _stimatore_ per indicare
+approssimazione di $p$. In generale, chiamiamo _stimatore_
 la funzione che viene applicata al campione per ottenere questo tipo di
 approssimazioni. Nel nostro esempio, lo stimatore utilizzato è la media
-aritmetica dei valori del campione, e viene chiamata _media campionaria_. La
+aritmetica dei valori del campione, detta _media campionaria_. La
 tabella seguente mostra come variano i valori di questo stimatore in seguito
 all'estrazione di dieci campioni differenti.
 
@@ -607,14 +589,14 @@ pd.DataFrame([means],
 
 ```
 
-Come si può osservare, le medie campionarie ottenute dai dieci campioni sono
-diverse tra loro, e non potrebbe essere altrimenti, dal momento che ogni
+È natuarale che le medie campionarie ottenute dai dieci campioni siano
+diverse tra loro, dal momento che ogni
 campione è diverso. Tuttavia, i risultati ottenuti non variano drasticamente e
 tendono a concentrarsi attorno a $79$, che è una buona approssimazione del
 valore  corretto per il peso medio di tutti i supereroi (come potete verificare
 osservando il precedente istogramma). Ma possiamo essere certi che la media
 campionaria sia davvero il miglior stimatore possibile? E, più in generale,
-come possiamo valutare la bontà di uno stimatore, tenendo in conto anche della
+come possiamo valutare la bontà di uno stimatore, considerando anche la
 variabilità intrinseca che abbiamo appena evidenziato? Queste domande
 troveranno risposta nella parte dedicata alla statistica inferenziale. Questa
 parte, in un certo senso, mi permette di terminare il libro «chiudendo il
@@ -646,11 +628,14 @@ un'idea di come varino i valori associati ai singoli attributi.
 ```
 
 ```{margin}
-Essere _data scientist_ significa non solo sapere coniugare le competenze in
-probabilità, statistica e programmazione degli elaboratori, ma anche
-padroneggiare vari strumenti di _scripting_ che permettono di convertire,
-adattare e ripulire i dati: molto spesso, l'uso di questi strumenti è mediato
-da un terminale e dalla relativa _shell_. 
+Essere _data scientist_ significa non solo combinare competenze in
+probabilità, statistica e programmazione, ma anche
+padroneggiare vari strumenti di _scripting_ per convertire,
+adattare e ripulire i dati. Spesso l'uso di questi strumenti avviene tramite
+un terminale e la relativa _shell_. A seconda dell'ambito professionale,
+i dati possono essere disponibili in forma più o meno strutturata, e la loro
+gestione può richiedere procedure complesse, anche tramite formati di
+rappresentazione diversi dal CSV o basi di dati articolate.
 ```
 ```{exercise} •••
 Riconsiderate l'esercizio precedente, guardando i contenuti
@@ -677,7 +662,7 @@ interattivo. Verbalizzate il ragionamento che avete fatto e scrivetelo.
 ```
 
 ```{exercise} ••
-Pensate ad altre domande relative al _dataset_ alle quali si possa trovare
+Formulate altre domande relative al _dataset_ alle quali si possa trovare
 risposta utilizzando il primo grafico interattivo. Anche in questo caso,
 verbalizzate il ragionamento che va fatto per rispondere a queste domande.
 ```
@@ -732,6 +717,6 @@ approssimativamente il valore medio del peso dei supereroi.
 [^histogram]: È possibile scegliere gli intervalli che individuano le basi dei
 rettangoli con un certo grado di libertà. Per semplicità, l'istogramma nel
 testo è stato generato  considerando venticinque intervalli equiampi che
-ricoprono tutti i valori possibili per il peso, ma a seconda dei casi può
+ricoprono tutti i valori possibili per il peso. A seconda dei casi, può
 essere sensato utilizzare un numero maggiore (o minore) di siffatti intervalli,
-oppure considerare un insieme di intervalli di ampiezze diverse.
+oppure usare intervalli di ampiezza diversa.
