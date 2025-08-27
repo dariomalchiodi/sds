@@ -28,11 +28,106 @@ parts:
         - file: P1-PAD/c1-intro-python/disegnare-grafici
         - file: P1-PAD/c1-intro-python/leggere-file
       - file: P1-PAD/c2-pandas/pandas
-
-
+        sections:
+        - file: P1-PAD/c2-pandas/serie
+        - file: P1-PAD/c2-pandas/dataframe
+  - caption: Statistica descrittiva
+    chapters:
+      - file: P2/presentazione
+      # - file: P2/tipi-di-dati
+      # - file: P2/analisi-univariata
+      #   sections:
+      #   - file: P2/analisi-univariata/centralita
+      #   - file: P2/analisi-univariata/dispersione
+      #   - file: P2/analisi-univariata/quantili
+      #   - file: P2/analisi-univariata/skewness-cutosi
+      #   - file: P2/analisi-univariata/eterogeneita
+      #   - file: P2/analisi-univariata/concentrazione
+      #   - file: P2/analisi-univariata/trasformazioni dei dati
+      #   - file: P2/analisi-univariata/anova
+      #   - file: P2/analisi-univariata/classificatori binari
+      #   - file: P2/analisi-univariata/ROC e classificatori a soglia
+      # - file: P2/analisi-bivariata
+      #   sections:
+      #   - file: P2/analisi-bivariata/covarianza
+      #   - file: P2/analisi-bivariata/correlazione
+      #   - file: P2/analisi-bivariata/regressione-lineare
+      #   - file: P2/analisi-bivariata/analisi-multivariata
+  - caption: Calcolo delle probabilità
+    chapters:
+    - file: P3/c1/calcolo-combinatorio
+      sections:
+      - file: P3/c1/principio-fondamentale
+      - file: P3/c1/permutazioni
+  #     - file: p3-CP/c1-calcolo-combinatorio/disposizioni
+  #     - file: p3-CP/c1-calcolo-combinatorio/combinazioni
+  #     - file: p3-CP/c1-calcolo-combinatorio/generazione
+  #     - file: p3-CP/c1-calcolo-combinatorio/esercizi
+  #   - file: p3-CP/c2-teoria-insiemi/teoria-insiemi
+  #     sections:
+  #     - file: p3-CP/c2-teoria-insiemi/concetti-di-base
+  #     - file: p3-CP/c2-teoria-insiemi/insiemi-finiti-e-infiniti
+  #     - file: p3-CP/c2-teoria-insiemi/relazioni-tra-insiemi
+  #     - file: p3-CP/c2-teoria-insiemi/operazioni-tra-insiemi
+  #     - file: p3-CP/c2-teoria-insiemi/insiemi-in-python
+  #   - file: p3-CP/c3-probabilita/calcolo-probabilita
+  #     sections:
+  #     - file: p3-CP/c3-probabilita/concetto-di-probabilita
+  #     - file: p3-CP/c3-probabilita/esperimenti-esiti-eventi
+  #     - file: p3-CP/c3-probabilita/assiomi-kolmogorov
+  #     - file: p3-CP/c3-probabilita/spazi-equiprobabili
+  #     - file: p3-CP/c3-probabilita/probabilita-condizionata
+  #     - file: p3-CP/c3-probabilita/prob-totali-e-naive-bayes
+  #     - file: p3-CP/c3-probabilita/classificatori-naive-bayes
+  #     - file: p3-CP/c3-probabilita/indipendenza
+  #   - file: p3-CP/c4-variabili-aleatorie/intro
+  #     sections:
+  #     - file: p3-CP/c4-variabili-aleatorie/variabili-aleatorie
+  #     - file: p3-CP/c4-variabili-aleatorie/variabili-aleatorie-discrete
+  #     - file: p3-CP/c4-variabili-aleatorie/valore-atteso
+  #     - file: p3-CP/c4-variabili-aleatorie/varianza
+  #     - file: p3-CP/c4-variabili-aleatorie/momenti
+  #     - file: p3-CP/c4-variabili-aleatorie/variabili-multivariate
+  #     - file: p3-CP/c4-variabili-aleatorie/indipendenza
+  #     - file: p3-CP/c4-variabili-aleatorie/disuguaglianze-fondamentali
+  #     - file: p3-CP/c4-variabili-aleatorie/variabili-aleatorie-continue
+  #     - file: p3-CP/c4-variabili-aleatorie/famiglie-di-distribuzioni
+  #   - file: p3-CP/c5-modelli-discreti/modelli-discreti
+  #     sections:
+  #     - file: p3-CP/c5-modelli-discreti/bernoulli
+  #     - file: p3-CP/c5-modelli-discreti/binomiale
+  #     - file: p3-CP/c5-modelli-discreti/uniforme
+  #     - file: p3-CP/c5-modelli-discreti/geometrico
+  #     - file: p3-CP/c5-modelli-discreti/poisson
+  #     - file: p3-CP/c5-modelli-discreti/ipergeometrico
+  #   - file: p3-CP/c6-modelli-continui/va-e-modelli-continui
+  #     sections:
+  #     - file: p3-CP/c6-modelli-continui/dal-discreto-al-continuo
+  #     - file: p3-CP/c6-modelli-continui/va-continue
+  #     - file: p3-CP/c6-modelli-continui/uniforme
+  #     - file: p3-CP/c6-modelli-continui/gaussiano
+  #     - file: p3-CP/c6-modelli-continui/esponenziale
+  #     - file: p3-CP/c6-modelli-continui/altri-modelli
+  # - caption: Statistica inferenziale
+  #   chapters:
+  #   - file: p4-SI/c0-statistica-inferenziale/statistica-inferenziale
+  #   - file: p4-SI/c1-inferenza-puntuale/inferenza-puntuale
+  #     sections:
+  #     - file: p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima
+  #     - file: p4-SI/c1-inferenza-puntuale/media-campionaria
+  #     - file: p4-SI/c1-inferenza-puntuale/varianza-campionaria
+  #     - file: p4-SI/c1-inferenza-puntuale/errore-di-una-stima
+  #     - file: p4-SI/c1-inferenza-puntuale/teorema-centrale-limite
+  #     - file: p4-SI/c1-inferenza-puntuale/leggi-grandi-numeri
+  #     - file: p4-SI/c1-inferenza-puntuale/distribuzioni-campionarie
+  #     - file: p4-SI/c1-inferenza-puntuale/calcolo-dimensione-campione
+  #     - file: p4-SI/c1-inferenza-puntuale/processo-poisson
+  #   - file: p4-SI/c2-stime-per-intervalli/stime-per-intervalli
+  #   - file: p4-SI/c3-statistica-non-parametrica/statistica-non-parametrica
   - caption: Appendici
     chapters:
-    - file: references
+    - file: app/references
+    - file: app/formule-notevoli
 
 
 

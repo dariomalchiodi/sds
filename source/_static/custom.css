@@ -284,6 +284,16 @@ py-script {
   white-space: nowrap;
 }
 
+.myproof.admonition::after {
+  content: "□";
+  display: block;
+  text-align: right;
+  font-size: 1.2em;
+  padding-right: 1em;
+  margin-top: -1em;
+  color: var(--text-primary-color);
+}
+
 .naming.admonition > .admonition-title {
   position: absolute;
   width: 1px;
@@ -338,6 +348,16 @@ table.dataframe {
 table.dataframe th, table.dataframe td {
   text-align: left !important;
   padding-right: 1.5em;
+}
+
+table.centered-content {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+table.centered-content td {
+  text-align: center;
 }
 
 .splash::before {

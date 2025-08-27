@@ -14,6 +14,13 @@ from bs4 import NavigableString
 
 from sds.toc import TOC
 
+LABELS = {'Theorem': {'it': 'Teorema', 'en': 'Theorem',
+                      'fr': 'Théorème', 'es': 'Teorema'},
+          'Definition': {'it': 'Definizione', 'en': 'Definition',
+                        'fr': 'Définition', 'es': 'Definición'},
+          'Example': {'it': 'Esempio', 'en': 'Example',
+                      'fr': 'Exemple', 'es': 'Ejemplo'}}
+
 def get_root_doc(language):
     # Build the module path as a string
     module_path = f"source.{language}.conf"
@@ -228,6 +235,7 @@ def generate_pyscript_setup():
         document
     '''
     return '''```{raw} html
+
 <py-script>
 # Common imports and utilities for interactive Python cells
 import sys
@@ -684,7 +692,7 @@ def process_myst_document(myst_content, include_setup=True, language='en'):
 # Ensure heroes.csv is available in data/ directory before executing any code
 if not hasattr(__builtins__, '_heroes_csv_ready') or not getattr(__builtins__, '_heroes_csv_ready', False):
     # Import required modules for file download and filesystem operations
-    from js import fetch
+    from js import fetch, console
     import asyncio
     import os
     
@@ -2232,6 +2240,18 @@ def apply_numbering(language):
             label = a_tag['href'].split('#')[-1]
             if label in numbered_toc.label_to_caption:
                 a_tag.string = numbered_toc.label_to_caption[label]
+        
+        # for text_node in file_soup.find_all(string=True):
+        #     if "Theorem" in text_node:
+        #         text_node.replace_with(text_node.replace("Theorem", 
+        #                                 LABELS[language]["theorem"]))
+        for text_node in file_soup.find_all(string=True):
+            for key in LABELS:
+                if key in text_node:
+                    text_node.replace_with(text_node.replace(key,
+                                        LABELS[key][language]))
+
+
 
         with open(file_path, 'w', encoding='utf-8') as f:
             f.write(str(file_soup))

@@ -72,6 +72,7 @@ Gli esempi saranno racchiusi di riquadri di questo tipo.
 
 ````{prf:theorem}
 :label: segnaposto-teorema
+:nonumber:
 :class: no-number
 Questo tipo di blocco contiene la tesi di un teorema.
 ````
