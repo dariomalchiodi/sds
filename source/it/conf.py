@@ -72,7 +72,6 @@ extensions = [ 'myst_parser',
                'sphinx.ext.autosectionlabel',
                'sds',
                'sds.sphinx_ext_custom_figure',
-               'sds.sphinx_ext_custom_table',
                 ]
 
 # nb_code_cell_render_options = {

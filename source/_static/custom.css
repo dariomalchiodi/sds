@@ -369,9 +369,16 @@ table.dataframe {
   font-size: 85%;
 }
 
+table.dataframe thead tr {
+    border-bottom: 1px solid steelblue !important;
+}
+
 table.dataframe th, table.dataframe td {
   text-align: left !important;
   padding-right: 1.5em;
+  color: steelblue;
+  font-family: monospace;
+  font-size: 0.75em;
 }
 
 table.centered-content {
