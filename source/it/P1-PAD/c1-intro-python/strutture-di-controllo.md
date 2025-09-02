@@ -31,23 +31,6 @@ years = [1941, 1962, None, None, 1941,
          None, 1963, None, 1963, 1981,
          None, None, 1962, 1979]
 ```
-```{raw} html
-<py-script>
-import io, sys
-from pyscript import display
-
-names = ['Aquaman', 'Ant-Man', 'Batman', 'Black Widow',
-         'Captain America', 'Daredavil', 'Elektra', 'Flash',
-         'Green Arrow', 'Human Torch', 'Hancock', 'Iron Man',
-         'Mystique', 'Professor X', 'Rogue', 'Superman',
-         'Spider-Man', 'Thor', 'Northstar']
-
-years = [1941, 1962, None, None, 1941,
-         1964, None, 1940, 1941, 1961,
-         None, 1963, None, 1963, 1981,
-         None, None, 1962, 1979]
-</py-script>
-```
 
 Il valore speciale `None` è stato utilizzato nei casi in cui non risulta
 disponibile l'anno di prima apparizione di un supereroe. In queste situazioni
@@ -143,27 +126,11 @@ for y in years:
     else:
         counts[y] = 1
 ```
-```{raw} html
-<py-script>
-counts = {}
-for y in years:
-    if y in counts:
-        counts[y] += 1
-    else:
-        counts[y] = 1
-</py-script>
-```
 
 Il risultato è il seguente:
 
 ```python
 counts
-```
-```{raw} html
-<div id="out-3" class="script-output"></div>
-<py-script>
-display(counts, target="out-3")
-</py-script>
 ```
 
 Notate che una coppia fa riferimento alla chiave `None`, che sarà relativa al
@@ -182,11 +149,4 @@ ordinati a partire da quello con il maggior numero di apparizioni.
 ```python
 pairs = list(counts.items())
 sorted(pairs, key=lambda p:p[1], reverse=True)
-```
-```{raw} html
-<div id="out-4" class="script-output"></div>
-<py-script>
-pairs = list(counts.items())
-display(sorted(pairs, key=lambda p:p[1], reverse=True), target="out-4")
-</py-script>
 ```

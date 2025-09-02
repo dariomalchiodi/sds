@@ -30,19 +30,20 @@ caso, le scoperte mediche successive confermarono la correttezza
 dell'intuizione di Snow sulle modalità di trasmissione della malattia.
 ```
 Eppure, alcuni esempi notevoli mostrano che un approccio _data-driven_ esisteva
-già versp la fine del XIX secolo, ben prima che questo termine venisse coniato. Uno dei più noti risale al 1854, durante un'epidemia
-di colera a Londra. Il medico John Snow, convinto che la malattia non si
-trasmettesse per via aerea&mdash;mentre i medici dell'epoca la facevano
-risalire a _miasmi_, o ad _aria cattiva_&mdash; decise di raccogliere prove a
-sostegno di un'ipotesi diversa: la contaminazione dell'acqua. Per farlo,
-sovrappose alla mappa del quartiere di Soho il numero di contagi registrati in
-ciascuna casa[^cartografia]. Il risultato, visibile in {numref}`john-snow`,
-evidenziava che i casi erano concentrati nelle vicinanze di una pompa d'acqua
-situata in Broad Street. Per rafforzare la sua tesi, Snow osservò che i
-ù birrai, che bevevano più birra che acqua&mdash;e quindi consumavano un
-prodotto pastorizzato&mdash; risultavano meno colpiti dalla malattia.
-Grazie a queste evidenze, convinse le autorità a disattivare la pompa,
-contribuendo così a contenere l'epidemia.
+già versp la fine del XIX secolo, ben prima che questo termine venisse coniato.
+Uno dei più noti risale al 1854, durante un'epidemia di colera a Londra. Il
+medico John Snow, convinto che la malattia non si trasmettesse per via
+aerea&mdash;mentre i medici dell'epoca la facevano risalire a _miasmi_, o ad
+_aria cattiva_&mdash; decise di raccogliere prove a sostegno di un'ipotesi
+diversa: la contaminazione dell'acqua. Per farlo, sovrappose alla mappa del
+quartiere di Soho il numero di contagi registrati in ciascuna
+casa[^cartografia]. Il risultato, visibile in {numref}`john-snow`, evidenziava
+che i casi erano concentrati nelle vicinanze di una pompa d'acqua situata in
+Broad Street. Per rafforzare la sua tesi, Snow osservò che i ù birrai, che
+bevevano più birra che acqua&mdash;e quindi consumavano un prodotto
+pastorizzato&mdash; risultavano meno colpiti dalla malattia. Grazie a queste
+evidenze, convinse le autorità a disattivare la pompa, contribuendo così a
+contenere l'epidemia.
 
 ```{figure} https://upload.wikimedia.org/wikipedia/commons/archive/2/27/20201116211939%21Snow-cholera-map-1.jpg
 :width: 60%
@@ -152,11 +153,11 @@ frammentato&mdash;di chi studia informatica. Leggerlo (e, _ça va sans dire_,
 comprenderne i contenuti) non vi trasformerà in _data scientist_, né in persone
 esperte di statistica o matematica. E, a voler essere precisi, nemmeno di
 informatica o di intelligenza artificiale. Ma vi fornirà una base solida, uno
-dei mattoni fondamentali per sviluppare capacità solide e autonomia
-professionale nel campo dell'informatica&mdash; insomma, persone da prendere
-sul serio. In ogni caso, mi preme sottolineare che, alla fine, ciò che conta
-non è l’etichetta professionale che ci viene attribuita, ma ciò che sappiamo
-fare bene.
+dei mattoni fondamentali per acquisire una conoscenza il più possibile completa
+dell'informatica, con la conseguente autonomia professionale&mdash;insomma,
+sviluppare competenze che faranno di voi persone da prendere sul serio. In ogni
+caso, mi preme sottolineare che, alla fine, ciò che conta non è l’etichetta
+professionale che ci viene attribuita, ma ciò che sappiamo fare bene.
 
 
 [^cartografia]: Sebbene l'approccio di Snow sia il più noto, i veri precursori

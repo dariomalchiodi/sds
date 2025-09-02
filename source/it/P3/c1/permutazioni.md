@@ -12,39 +12,54 @@ kernelspec:
 (sec:permutazioni)=
 # Permutazioni
 
-Una permutazione di $n$ oggetti rappresenta un modo possibile di elencare
-questi oggetti in qualche ordine. Pertanto, nel raggruppamento che
-corrisponde alle permutazioni risulta rilevante l'ordine utilizzato, e non è
-possibile utilizzare uno stesso oggetto più di una volta. La costruzione di una
-permutazione equivale all'applicazione di queste regole per inserire gli $n$
-oggetti in altrettanti posti, perché per definizione tutti gli oggetti devono
-essere utilizzati. Come vedremo nei due paragrafi che seguono, il ragionamento
-alla base del calcolo del numero di permutazioni dipende dal fatto che gli
-oggetti siano tra loro distinguibili oppure no.
+Una _permutazione_ di $n$ oggetti non è altro che un loro qualsiasi
+elenco che ne contiene ognuno una e una sola volta. Un modo diverso di vedere
+le cose è il seguente: si stabilisce un criterio per ordinare gli oggetti, e
+li si elencano dal più «piccolo» al più «grande». In italiano, permutare è
+infatti un sinonimo di scambiare, o riordinare. Il raggruppamento che stiamo
+considerando dipende dunque dall'ordine degli elementi, e non è possibile
+utilizzare uno stesso oggetto più di una volta. In altri termini, è necessario
+disporre gli $n$ oggetti in altrettanti posti. Per calcolare il numero di
+permutazioni possibili dobbiamo distinguere tra due situazioni:
 
+- nella prima, gli oggetti sono tutti diversi,
+- nella seconda, esistono più oggetti differenti che sono però indistinguibili
+  tra loro.
+
+A seconda dei due casi, si parla di permutazioni semplici o con ripetizione,
+che approfondiamo di seguito.
 
 ## Permutazioni semplici
 
 Quando gli oggetti da permutare sono gli elementi di un insieme, per
-definizione devono essere tutti diversi (o in altre parole distinguibili) tra
+definizione devono essere tutti diversi (in altre parole, distinguibili) tra
 tra loro, e si parla di _permutazione semplice_, o soltanto di _permutazione_,
 come descritto dalla seguente definizione.
 
 ````{prf:definition} Permutazione semplice
 :label: def-permutazione-semplice
-Consideriamo un insieme $A = \\{ a_1,\dots a_n \\}$ contenente $n$ oggetti.
+
+Consideriamo un insieme $A = \{ a_1,\dots a_n \}$ contenente $n$ oggetti.
 Chiamiamo _permutazione semplice_ (o più brevemente _permutazione_) di questi
-oggetti una qualsiasi sequenza ordinata in cui compaiono tutti e soli gli $n$
-elementi di $A$.
+oggetti una qualsiasi sequenza ordinata
+```{math}
+(a_{i_1}, \dots, a_{i_n}), \quad
+1 \leq a_{i_1} < a_{i_2} < \dots < a_{i_n} \leq n, \quad
+i_j \in \mathbb N \ \forall j \in \{1, \dots, n \}
+```
+
+in cui compaiono tutti e soli gli $n$ elementi di $A$.
 ````
 
 In generale, descriveremo una permutazione elencando i suoi elementi nel
 corrispondente ordine, separandoli con delle virgole e delimitando l'elenco
-con delle parentesi tonde.
+con delle parentesi tonde. È interessante sottolineare che se si considera
+una permutazione semplice di $n$ oggetti e si scambiano tra loro due di essi,
+si ottiene una nuova permutazione semplice. 
 
 ````{prf:example} I Fantastici 4
 :label: ex-fantastic-4
-Consideriamo l'insieme $Q = \\{ f, i, t, c \\}$ dei Fantastici 4: mister
+Consideriamo l'insieme $Q = \{ f, i, t, c \}$ dei Fantastici 4: mister
 fantastic ($f$), la donna invisibile ($i$), la torcia umana ($t$) e la cosa
 ($c$): le possibili permutazioni semplici dei suoi oggetti sono elencate nella
 {numref}`permutazioni-fantastici-quattro`.
@@ -70,8 +85,8 @@ fantastic ($f$), la donna invisibile ($i$), la torcia umana ($t$) e la cosa
 | $(i, c, t, f)$ | $(c, t, i, f)$ |
 ```
 
-Per calcolare in generale il numero $p_n$ di differenti permutazioni di $n$
-oggetti possiamo applicare il principio fondamentale del calcolo combinatorio:
+Il principio fondamentale del calcolo combinatorio ci aiuta a calcolare
+facilmente il numero $p_n$ di differenti permutazioni di $n$ oggetti:
 
 - calcoliamo in quanti modi possiamo selezionare l'oggetto da inserire nella
   prima posizione: avendo a disposizione $n$ oggetti, abbiamo $n$
@@ -99,18 +114,20 @@ $4! = 24$ permutazioni dei 4 oggetti di $Q$.
 
 ## Permutazioni con ripetizione
 
-Quando gli $n$ oggetti da permutare non sono tutti diversi tra loro, non
-possiamo più dire che essi fanno parte di un insieme. In casi come questo
-si parla piuttosto di un _multiinsieme_, inteso come sequenza non ordinata
-in cui ogni elemento può comparire una o più volte. In altre parole, gli $n$
-oggetti non sono a due a due distinguibili, bensì esistono $r \in \mathbb N$
-diversi oggetti, che possiamo indicare come $a_1, \ldots, a_r$, ognuno dei
-quali può occorrere anche più di una volta nella sequenza. Questi oggetti sono
-pertant _distinguibili a gruppi_: indichiamo con $n_1, n_2,\ldots n_k$ le
-numerosità di questi gruppi, a significare che nel multiinsieme vi sono $n_1$
-occorrenze dell'elemento $a_1$, $n_2$ occorrenze di $a_2$ e così via
-(ovviamente con $\sum_{i=1}^k n_i=n$). In altre parole possiamo scrivere gli
-elementi del multiinsieme uno dopo l'altro ottenendo la sequenza
+Consideriamo il caso particolare in cui alcuni tra gli oggetti da permutare
+sono indistinguibili, ma restano _distinguibili a gruppi_: per la precisione,
+
+- esistono $r \in \mathbb N$ versioni possibili per gli oggetti, che possiamo
+  indicare come $a_1, \ldots, a_r$, e
+- per ogni $j = 1, \dots, r$, la versione $a_j$ è ripetuta $n_j$ volte (il che
+  implica $\sum_{j=1}^r n_j = n$).
+
+Pertanto, per ogni versione $a_j$ esiste un gruppo di oggetti indistinguibili
+la cui numerosità è $n_j$, e possiamo dire che tutti questi oggetti compongono
+un _multiinsieme_ (una sequenza non ordinata in cui ogni elemento può comparire
+una o più volte) che contiene $n_1$ occorrenze della versione $a_1$, $n_2$
+occorrenze di $a_2$ e così via. Riassumendo, possiamo scrivere gli elementi
+di questo multiinsieme uno dopo l'altro ottenendo la sequenza
 
 ```{math}
 \underbrace{a_1, \ldots, a_1}_{n_1 \text{volte}},
@@ -120,19 +137,19 @@ elementi del multiinsieme uno dopo l'altro ottenendo la sequenza
 
 Se cambiamo l'ordine degli elementi, non è detto che otterremo una sequenza
 diversa da quella di partenza: potremmo per esempio scambiare tra di loro
-due occorrenze di uno stesso simbolo, ottenendo una sequenza invariata. In
-casi come questo il concetto di permutazione, descritto dalla definizione che
-segue, prende in considerazione solamente le sequenze che sono diverse tra
-loro.
+due oggetti indistinguibili, ottenendo una sequenza invariata. In queste
+situazioni, si considerano solo le permutazioni che portano a sequenze diverse
+tra loro, come descritto dalla definizione che segue.
 
 ````{prf:definition} Permutazione con ripetizione
 :label: def-permutation-repetition
-Consideriamo un multiinsieme $A = \\{ a_1,\dots a_n \\}$ contenente $n$ oggetti
-distinguibili a gruppi di numerosità $n_1, \ldots, n_k$.
+
+Consideriamo un multiinsieme $A = \{ a_1,\dots a_n \}$ contenente $n$ oggetti
+distinguibili a gruppi di numerosità $n_1, \ldots, n_r$.
 Chiamiamo _permutazione di oggetti distinguibili a gruppi_ (più semplicemente
 _permutazione con ripetizione_) di questi oggetti una qualsiasi loro sequenza
 ordinata che sia distinguibile dalle altre, e indichiamo con
-$P_{n; n_1, \ldots, n_k}$ il numero di possibili permutazioni con ripetizione.
+$P_{n; n_1, \ldots, n_r}$ il numero di possibili permutazioni con ripetizione.
 ````
 
 Indicheremo le permutazioni con ripetizione usando la medesima sintassi di
@@ -149,7 +166,7 @@ così che possiamo indicare con $k_1$, $k_2$ e così via le sue varianti
 esistenti in un dato momento. Immaginiamo che lo stesso valga per Multi-Paul,
 le cui repliche indicheremo con $p_1, p_2, \ldots$, e che di fronte a noi ci
 siano due versioni di Kate e tre di Paul, così che il quintetto risultante
-possa essere descritto dal multiinsieme $A= \\{ k_1, k_2, p_1, p_2, p_3 \\}$.
+possa essere descritto dal multiinsieme $A= \{ k_1, k_2, p_1, p_2, p_3 \}$.
 
 Se volessimo calcolare in quanti modi possibili si possono mettere in fila
 queste cinque versioni di Kate e Paul, senza tenere conto del loro numero
@@ -167,10 +184,10 @@ e Paul nel primo caso e da Paul e Kate nel secondo.
 ````
 
 Prima di calcolare il numero totale di permutazioni con ripetizione di $n$
-oggetti distinguibili a gruppi di numerosità $n_1, n_2,\dots n_k$, analizziamo
+oggetti distinguibili a gruppi di numerosità $n_1, n_2,\dots n_r$, analizziamo
 preliminarmente il caso speciale dell’{prf:ref}`dupli-kate-multi-paul`.
 ```{margin}
-in questo caso, avendo solo due gruppi, quando si fissano le posizioni degli
+In questo caso, avendo solo due gruppi, quando si fissano le posizioni degli
 elementi del primo si determinano automaticamente anche quelle degli elementi
 del secondo gruppo
 ```
@@ -228,41 +245,43 @@ testa e in coda e $3!$ modi per riempire le posizioni centrali, alla singola
 configurazione considerata corrispondono $n_1! \cdot n_2! = 2! \cdot 3! = 12$
 permutazioni semplici dei cinque oggetti a disposizione.
 
-Il ragionamento che abbiamo fatto non dipende dalla particolare permutazione
-con ripetizione che abbiamo analizzato, pertanto a ognuna delle
+Questo ragionamento non dipende dalla particolare permutazione
+con ripetizione che abbiamo analizzato: a ognuna delle
 $P_{5; 2,3}$ permutazioni con ripetizione corrispondono $2! \cdot 3! = 12$
 permutazioni semplici, e se consideriamo tutte queste permutazioni con
 ripetizione è facile vedere che esse individuano globalmente tutte le
 permutazioni semplici. Pertanto deve valere l'uguaglianza
 $P_{5; 2,3} \cdot 2! \cdot 3! = 5!$, il che ci permette di ricavare
 
-$$ P_{5; 2,3} = \frac{5!}{2! \cdot 3!} = 10 \enspace. $$
+```{math}
+P_{5; 2,3} = \frac{5!}{2! \cdot 3!} = 10 \enspace.
+```
 
 Va notato che $P_{5; 2,3} = \binom{5}{2}$, e in effetti il numero di
 permutazioni con ripetizione coincide con il numero di modi in cui si
 possono selezionare le due posizioni in cui inserire Kate tra le cinque a
 disposizione.
 
-Nel caso generale, avremo $n$ oggetti divisi in $k$ gruppi di numerosità
-$n_1, \ldots, n_k$, e ripetendo il ragionamento precedente si ottiene
-$n! = P_{n; n_1,\dots, n_k} \cdot n_1! \cdot n_2! \cdot \ldots \cdot n_k!$, che
+Nel caso generale, avremo $n$ oggetti divisi in $r$ gruppi di numerosità
+$n_1, \ldots, n_r$, e ripetendo il ragionamento precedente si ottiene
+$n! = P_{n; n_1,\dots, n_r} \cdot n_1! \cdot n_2! \cdot \ldots \cdot n_r!$, che
 implica
 
-$$
-P_{n; n_1, \dots, n_k} = \frac{n!}{n_1!\cdot n_2! \cdot \ldots \cdot n_k!} \enspace.
-$$
+```{math}
+P_{n; n_1, \dots, n_r} = \frac{n!}{n_1!\cdot n_2! \cdot \ldots \cdot n_r!} \enspace.
+```
 
-La quantità $P_{n; n_1, \dots, n_k}$ è anche detta _coefficiente multinomiale_
+La quantità $P_{n; n_1, \dots, n_r}$ è anche detta _coefficiente multinomiale_
 e indicata come
 
-$$
-P_{n; n_1, \dots, n_k} = \frac{n!}{n_1!\cdot n_2! \cdot \ldots \cdot n_k!}
-                       =: \binom{n}{n_1, n_2, \ldots, n_k} \enspace,
-$$
+```{math}
+P_{n; n_1, \dots, n_r} = \frac{n!}{n_1!\cdot n_2! \cdot \ldots \cdot n_r!}
+                       \triangleq \binom{n}{n_1, n_2, \ldots, n_r} \enspace,
+```
 
 in quanto essa rappresenta una generalizzazione del coefficiente binomiale:
 in effetti, $\binom{n}{k} = \binom{n}{k, n-k}$ indica in quanti modi è
 possibile suddividere $n$ oggetti in due gruppi, rispettivamente contenenti
-$k$ e $n-k$ elementi; analogamente $\binom{n}{n_1, \ldots, n_k}$ indica in
-quanti modi è possibile suddividere $n$ oggetti in $k$ gruppi nei quali il
+$k$ e $n-k$ elementi; analogamente $\binom{n}{n_1, \ldots, n_r}$ indica in
+quanti modi è possibile suddividere $n$ oggetti in $r$ gruppi nei quali il
 primo contiene $n_1$ elementi, il secondo ne contiene $n_2$ e così via.

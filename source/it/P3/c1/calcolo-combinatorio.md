@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(cap:calcolo-combinatorio)=
+(chap:calcolo-combinatorio)=
 # Calcolo combinatorio
 
 Il _calcolo combinatorio_ è la parte della matematica che studia come

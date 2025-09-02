@@ -10,7 +10,7 @@ kernelspec:
 ---
 
 (chap:presentazione-P1)=
-# Presentazione
+# Introduzione
 
 La prima parte del libro introduce alcuni strumenti di base per l’analisi
 automatica di dataset di dimensioni contenute[^big-data], mediante l’uso di un

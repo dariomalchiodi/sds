@@ -28,7 +28,7 @@ anni le loro specifiche vengono aggiornate. Il risultato di questi cambiamenti
 è una serie di _versioni_ del linguaggio. A oggi, per individuare le specifica
 versione di un linguaggio di programmazione (ma anche di una libreria o in
 generale di un prodotto software), è ampiamente utilizzato il cosiddetto schema
-di [versionamento semantico](https://semver.org/lang/it){.external} che, nella
+di [versionamento semantico](https://semver.org/lang/it) che, nella
 sua incarnazione più semplice, descrive una versione tramite una sequenza
 `X.Y.Z` formata da tre numeri interi, inizialmente fissati a zero e
 incrementati ogni volta che vengono effettuati degli aggiornamenti:
@@ -64,13 +64,14 @@ identiche: le specifiche del linguaggio, infatti, non sempre entrano nel
 dettaglio specifico di come certe funzionalità debbano essere realizzate. Per
 esempio, potrebbe essere dipendente dalla particolare implementazione il
 formato di codifica da utilizzare per le stringhe. Per quanto riguarda Python,
-esistono <a href="/sds/short/py-implementations" target="_blank">varie
-implementazioni</a> che differiscono nella particolare tecnologia usata per
-eseguire i programmi: una è basata sulla _Java virtual machine_, un'altra su
-uno strumento analogo basato sul linguaggio C, un'altra ancora è pensata per
-l'esecuzione in un browser Web, e così via. L'implementazione più diffusa (che
-tipicamente viene installata per _default_) viene chiamata _CPython_ e, come
-suggerito dal nome, è stata scritta usando il linguaggio C.
+esistono [varie
+implementazioni](https://malchiodi.com/sds/short/py-implementations) che
+differiscono nella particolare tecnologia usata per eseguire i programmi: una è
+basata sulla _Java virtual machine_, un'altra su uno strumento analogo basato
+sul linguaggio C, un'altra ancora è pensata per l'esecuzione in un browser Web,
+e così via. L'implementazione più diffusa (che tipicamente viene installata per
+_default_) viene chiamata _CPython_ e, come suggerito dal nome, è stata scritta
+usando il linguaggio C.
 
 (sec:download-book)=
 ## Scaricare i contenuti del libro
@@ -92,12 +93,12 @@ la clonazione usando il protocollo HTTPS, semplificando alcuni passi (per
 esempio, non è richiesta la chiave SSH) ma complicandone altri.
 ```
 Il modo consigliato per scaricare il libro è basato sull'utilizzo di
-[git](https://git-scm.com){.external}, un sistema di _source control
+[git](https://git-scm.com), un sistema di _source control
 management_ usato per per organizzare il codice sorgente in un progetto
 software. Per fare questo è sufficiente aprire un terminale, posizionarsi in un
 punto del _file system_ nel quale si vogliono salvare i contenuti ed eseguire
 il comando che segue, che clona localmente il
-[repository](https://github.com/dariomalchiodi/sds){.external} del libro
+[repository](https://github.com/dariomalchiodi/sds) del libro
 inserendolo in una directory `sds` creata appositamente.
 
 ```{eval-rst}
@@ -105,8 +106,8 @@ inserendolo in una directory `sds` creata appositamente.
 
    .. group-tab:: Linux / Mac OS
 
-      Negli esempi seguenti, il simbolo ``$`` indica il _prompt_ di una
-      _shell_, che nel sistema che usate potrebbe essere visualizzato
+      Negli esempi seguenti, il simbolo ``$`` indica il *prompt* di una
+      *shell*, che nel sistema che usate potrebbe essere visualizzato
       diversamente. Solo nell'esempio qui sotto, invece, ``my_parent_dir`` è un
       nome fittizio da sostituire con il percorso nel quale intendete salvare
       la directory del libro.
@@ -117,13 +118,13 @@ inserendolo in una directory `sds` creata appositamente.
          $ git clone git@github.com:dariomalchiodi/sds.git
          $ cd sds
 
-      Nel seguito del paragrafo supporrò che la _shell_ nella quale sono stati
+      Nel seguito del paragrafo supporrò che la *shell* nella quale sono stati
       inseriti questi comandi sia rimasta aperta.
 
    .. group-tab:: Windows
 
-      Negli esempi seguenti, la dicitura ``C:>`` indica il _prompt_ di
-      una _PowerShell_, che nel sistema che usate potrebbe essere visualizzato
+      Negli esempi seguenti, la dicitura ``C:>`` indica il *prompt* di
+      una *PowerShell*, che nel sistema che usate potrebbe essere visualizzato
       diversamente. Solo nell'esempio qui sotto, invece, ``my_parent_dir`` è un
       nome fittizio da sostituire con il percorso nel quale intendete salvare
       la directory del libro.
@@ -255,9 +256,9 @@ maggiormente utilizzata dal software di sistema.
 
 Se dovesse risultare necessario installare Python, è possibile fare riferimento
 alla documentazione ufficiale, che prevede guide separate per sistemi basati su
-[Unix (come Linux)](https://docs.python.org/3/using/unix.html){.external},
-[Mac OS](https://docs.python.org/3/using/mac.html){.external} e
-[Windows](https://docs.python.org/3/using/windows.html){.external}.
+[Unix (come Linux)](https://docs.python.org/3/using/unix.html),
+[Mac OS](https://docs.python.org/3/using/mac.html) e
+[Windows](https://docs.python.org/3/using/windows.html).
 
 
 ## Creare un ambiente virtuale di esecuzione
@@ -381,7 +382,7 @@ prevedono l'utilizzo di un _package manager_, che è uno strumento pensato per
 rilevare e gestire in modo trasparente le dipendenze tra librerie. Come per gli
 ambienti virtuali, esistono differenti _package manager_ associati a
 Python[^package-manager]. Io farò riferimento a
-[pip](https://pip.pypa.io){.external}, che è installato automaticamente insieme
+[pip](https://pip.pypa.io), che è installato automaticamente insieme
 alle versioni recenti di Python.
 
 L'installazione di una libreria, che normalmente viene fatta all'interno di
@@ -389,7 +390,7 @@ un _environment_ virtuale attivato, viene fatta eseguendo il comando `pip`
 in una _shell_, specificando il nome della libreria stessa&mdash;aggiungendo
 eventualmente i caratteri `==` seguiti da uno specifico numero di versione. Se
 volessimo per esempio installare _altair_, la libreria che ho usato nel
-{ref}`sec:uno-sguardo-di-insieme` per produrre grafici interattivi, sarà
+{ref}`chap:uno-sguardo-di-insieme` per produrre grafici interattivi, sarà
 sufficiente eseguire il comando
 
 ```{margin}
@@ -444,7 +445,7 @@ installazioni si possono effettuare eseguendo il comando
 
 ```
 
-Il [repository](https://github.com/dariomalchiodi/sds){.external} associato a
+Il [repository](https://github.com/dariomalchiodi/sds) associato a
 questo libro include il file `requirements.txt` che contiene tutti i
 riferimenti alle librerie necessarie per poter eseguire il codice che troverete
 nei vari capitoli.
@@ -469,22 +470,21 @@ essere di tre tipi differenti:
 ```{margin}
 Quando nel nome di una tecnologia basata su python è contenuta la sillaba «py»,
 questa sillaba è normalmente pronunciata nello stesso modo della parola parola
-«pie», cioè <a href="/sds/short/pie" target="_blank">ˈpī</a>. Jupyter fa
-eccezione, come dichiarato dai suoi creatori[^pronuncia-jupyter], e si
-pronuncia <a href="/sds/short/pee" target="_blank">ˈjü-pə-tər</a>, come il nome
-inglese del pianeta Giove (Jupiter).
+«pie», cioè [ˈpī](https://malchiodi.com/sds/short/pie). Jupyter fa eccezione,
+come dichiarato dai suoi creatori[^pronuncia-jupyter], e si pronuncia
+[ˈjü-pə-tər](https://malchiodi.com/sds/short/pee), come il nome inglese del
+pianeta Giove (Jupiter).
 ```
 Lo standard _de facto_ per i _notebook_ è quello introdotto dal progetto
-[Jupyter](https://jupyter.org). Esiste <a href="/sds/short/py-implementations"
-target="_blank">una pletora di applicazioni</a> che permettono di scrivere,
-leggere e soprattutto eseguire  _notebook_, e tra queste le più comunemente
-utilizzate sono quella distribuita direttamente dal progetto Jupyter e l'IDE
-flagship di Microsoft ([Visual Studio
-Code](https://code.visualstudio.com){.external}). Se avete installato le
-librerie utilizzando il file `requirements.txt` seguendo le istruzioni indicate
-nei paragrafi precedenti, nell'ambiente virtuale che avete creato è già
-disponibile Jupyter, e per lanciarlo è sufficiente eseguire da terminale il
-comando
+[Jupyter](https://jupyter.org). Esiste [una pletora di
+ applicazioni](https://malchiodi.com/sds/short/py-implementations) che
+permettono di scrivere, leggere e soprattutto eseguire  _notebook_, e tra
+queste le più comunemente utilizzate sono quella distribuita direttamente dal
+progetto Jupyter e l'IDE flagship di Microsoft ([Visual Studio
+Code](https://code.visualstudio.com)). Se avete installato le librerie
+utilizzando il file `requirements.txt` seguendo le istruzioni indicate nei
+paragrafi precedenti, nell'ambiente virtuale che avete creato è già disponibile
+Jupyter, e per lanciarlo è sufficiente eseguire da terminale il comando
 
 ```{margin}
 Poco più avanti trovate anche le istruzioni per visualizzare ed eseguire
@@ -740,9 +740,9 @@ di allungare il codice, diminuendone al contempo la leggibilità. È per questo
 motivo che è possibile importare un modulo specificando un nome alternativo,
 più corto detto _alias_, usando la sintassi `import <modulo> as <alias>`. Userò
 questo approccio per le librerie che utilizzo più frequentemente nel libro, che
-sono [numpy](http://www.numpy.org){.external},
-[pandas](http://pandas.pydata.org){.external} e
-[matplotlib](http://matplotlib.org){.external}, che permettono di lavorare
+sono [numpy](http://www.numpy.org),
+[pandas](http://pandas.pydata.org) e
+[matplotlib](http://matplotlib.org), che permettono di lavorare
 rispettivamente con gli _array_, i _dataset_ e i grafici. Farò sempre
 l'importazione nel modo seguente:
 
@@ -783,7 +783,7 @@ sarà eseguito automaticamente ogni volta che si verifica una specifica
 eccezione all'interno di un dato blocco di codice. Per approfondire questo
 argomento, che non tratterò nel libro, è possibile per esempio fare riferimento
 alla [documentazione
-ufficiale](https://docs.python.org/3/tutorial/errors.html){.external}. Detto
+ufficiale](https://docs.python.org/3/tutorial/errors.html). Detto
 questo, esistono delle particolari situazioni di errore che non sono gestibili
 usando le eccezioni: un classico esempio è quello degli errori di sintassi, che
 vengono emessi quando il _parser_ che analizza il codice sorgente non è in
@@ -810,8 +810,8 @@ o se sono meno recenti del relativo sorgente; negli altri casi, il _bytecode_
 già esistente viene direttamente eseguito.
 [^environment]: In realtà esistono alcune alternative per creare e utilizzare
 ambienti virtuali: al momento nel quale scrivo,
-[Anaconda](https://docs.anaconda.com/anaconda/){.external} e
-[Miniconda](https://docs.anaconda.com/miniconda/){.external} rappresentano
+[Anaconda](https://docs.anaconda.com/anaconda/) e
+[Miniconda](https://docs.anaconda.com/miniconda/) rappresentano
 quelle più utilizzate insieme a `venv`.
 [^package-manager]: Anaconda e miniconda, citati nella nota
 precedente, mettono a disposizione anche i relativi _package
@@ -824,11 +824,11 @@ occasionalmente vedremo come lanciare dei comandi di _shell_ senza dover aprire
 un terminale dedicato.
 [^pronuncia-jupyter]: Fernando Perez, uno degli artefici del progetto Jupyter,
 lo pronuncia in questo modo, per esempio, in una sua
-[presentazione](https://www.youtube.com/watch?v=cc2hHjARNTY){.external} alla
+[presentazione](https://www.youtube.com/watch?v=cc2hHjARNTY) alla
 conferenza PLOTCON 2016.
 [^jupytext]: Per questo motivo, inserire dei _notebook_ all'interno di un
 _repository_ git è sconsigliato. Piuttosto, si possono usare tencologie come
-[jupytext](https://jupytext.readthedocs.io/){.external} che sincronizzano
+[jupytext](https://jupytext.readthedocs.io/) che sincronizzano
 automaticamente i _notebook_ con del codice Python equivalente, e provvedono a
 versionare quest'ultimo.
 [^one-liner]: In realtà è possibile usare una sintassi che permette di scrivere

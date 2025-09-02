@@ -12,13 +12,13 @@ kernelspec:
 (sec:dati-strutturati)=
 #  Dati strutturati
 
-Come indicato nel [Tipi di dati](sec:tipi-di-dati), ho deciso di
-definire un tipo di dati come strutturato se i corrispondenti valori
-costituiscono un'aggregazione di più tipi di dati __ed__ è possibile iterare
-automaticamente sui loro contenuti. Dopo aver spiegato meglio questo concetto,
-in questo paragrafo elencherò i tipi strutturati usati maggiormente in Python, 
-descrivendo le corrispondenti classi e alcuni aspetti speciali della sintassi
-che permettono di accedere ai loro contenuti.
+Come indicato nel {ref}`chsecap:tipi-di-dati`, ho deciso di definire un tipo di
+dati come strutturato se i corrispondenti valori costituiscono un'aggregazione
+di più tipi di dati __ed__ è possibile iterare automaticamente sui loro
+contenuti. Dopo aver spiegato meglio questo concetto, in questo paragrafo
+elencherò i tipi strutturati usati maggiormente in Python, descrivendo le
+corrispondenti classi e alcuni aspetti speciali della sintassi che permettono
+di accedere ai loro contenuti.
 
 ```{admonition} Nomenclatura
 Il generico valore di un tipo di dati strutturato è memorizzato appoggiandosi
@@ -131,6 +131,8 @@ elaborare[^foreach], per esempio estraendolo da un _array_, mentre in Python la
 variabile di ciclo contiene direttamente l'elemento in questione.
 
 ````{prf:example}
+:label: ex:string
+
 L'unico tipo di dati strutturato al quale ho accennato finora sono le stringhe:
 eseguire un ciclo for su una di esse equivale a considerare tutti i caratteri
 contenuti, nell'ordine naturale che va dal primo all'ultimo:
@@ -330,6 +332,8 @@ quando la stringa `s` (che può contenere uno o più caratteri) è una
 sottostringa della stringa `t`, e `False` altrimenti.
 
 ````{prf:example}
+:label: ex:string-2
+
 Consideriamo la stringa definita nella cella seguente.
 
 ```python
@@ -339,16 +343,6 @@ s = '''- Spider-Man: Dev'esserci qualcun altro da chiamare... Per esempio Thor?
 - Maria Hill: Indisponibile.
 - Spider-Man: Io sono solo un amichevole Spider-Man di quartiere.
 - Nick Fury: Ma per favore! Sei stato nello spazio!'''
-```
-```{raw} html
-<py-script>
-s = '''- Spider-Man: Dev'esserci qualcun altro da chiamare... Per esempio Thor?
-- Nick Fury: Fuori portata.
-- Spider-Man: Captain Marvel.
-- Maria Hill: Indisponibile.
-- Spider-Man: Io sono solo un amichevole Spider-Man di quartiere.
-- Nick Fury: Ma per favore! Sei stato nello spazio!'''
-</py-script>
 ```
 
 Le istruzioni qui sotto illustrano come
@@ -372,29 +366,6 @@ print(hero, end=' ')
 if hero not in s:
     print('non ', end='')
 print('occorre nella stringa')
-```
-```{raw} html
-<div id="stdout-3" class="script-stdout"></div>
-<py-script>
-output = io.StringIO()
-sys.stdout = output
-
-print('La stringa contiene', len(s), 'caratteri')
-print('inizia per', s[0])
-print('e finisce per', s[-1])
-
-start = 67
-end = 70
-print(s[start:end+1], 'occorre dalla posizione', start, 'alla posizione', end)
-
-hero = 'Aquaman'
-print(hero, end=' ')
-if hero not in s:
-    print('non ', end='')
-print('occorre nella stringa')
-
-display(output.getvalue(), target="stdout-3")
-</py-script>
 ```
 
 
@@ -448,6 +419,8 @@ bibliografia e via discorrendo.
 
 
 ````{prf:example} $\LaTeX$
+:label: ex:latex
+
 $\LaTeX$ è un linguaggio di marcatura che permette di descrivere
 [testi formattati](https://www.latex-project.org/), ampiamente utilizzato in
 ambito scientifico per produrre documentazione. Anche in questo libro ho
@@ -460,36 +433,28 @@ classe `Math` del modulo `IPython.display` vengono utilizzate per visualizzare
 nella cella di output una formula relativamente complicata:
 
 ```python
-from IPython.display import display, Math
-from js import MathJax
+from js import document, katex
 
 s = r'\Phi(x) = \frac{1}{2 \pi} '
-s += r'\int_{-\infty}^{+\infty} \mathrm e^{-\frac{x^2}{2}} \mathrm dx'
+s += r'\int_{-\infty}^{+\infty} \mathrm e^{-\frac{x^2}{2}} \, dx'
 
-display(Math(s))
-
+target = document.getElementById("latex-out")
+katex.render(s, target)
 ```
 ```{raw} html
-<div id="out-4" class="script-output"></div>
-<py-script>
-from pyscript import HTML
-from js import MathJax
-
-s = r'$$\Phi(x) = \frac{1}{2 \pi} \int_{-\infty}^{+\infty} \mathrm e^{-\frac{x^2}{2}} \mathrm dx$$'
-
-display(HTML(s), target='out-4')
-MathJax.typeset()
-</py-script>
+<div id="latex-out"></div>
 ```
 
 che descrive una particolare funzione che studieremo nel Paragrafo
-@sec:modello-normale. Notate come la stringa utilizzata sia stata costruita
-giustapponendo due letterali grezzi tramite l'operatore `+=`, per evitare
-di avere una riga di codice eccedente ottanta caratteri.
+{ref}`sec:modello-normale`. Notate come la stringa utilizzata sia stata
+costruita giustapponendo due letterali grezzi tramite l'operatore `+=`, per
+evitare di avere una riga di codice eccedente ottanta caratteri.
 ````
 
 
 ````{prf:example} Espressioni regolari
+:label: ex:regex
+
 Le [espressioni regolari](https://it.wikipedia.org/wiki/Espressione_regolare)
 sono un formalismo che permette di definire un insieme di stringhe nelle quali
 i caratteri devono soddisfare delle particolari regole. Più precisamente, ci
@@ -528,25 +493,10 @@ p = re.compile(r'\d+')
 p.findall(s)
 ```
 
-```{raw} html
-<div id="out-5" class="script-output"></div>
-<py-script>
-import re
-
-s = "Il superpotere principale di Elastigirl è l'elasticità, che le "
-s += "consente di allungare varie parti del suo corpo fino a 300 piedi "
-s += "(90 metri) e può essere sottile 1 millimetro."
-
-p = re.compile(r'\d+')
-
-display(p.findall(s), target='out-5')
-</py-script>
-```
-
 Dovreste avere notato qualcosa di nuovo nel valore restituito dal metodo
 `findall`: si tratta di un dato strutturato che permette di aggregare
 le varie occorrenze individuate nella stringa di partenza. Studieremo tra
-breve anche il tipo corrispondente, nel Paragrafo [Le liste](sec:liste). 
+breve anche il tipo corrispondente, nel Paragrafo {ref}`sec:liste`. 
 
 ````
 
@@ -563,22 +513,6 @@ year = 1958
 magazine = 'Action Comics'
 num = 242
 print(name, 'ha debuttato nel numero', num, 'di', magazine, 'nel', month, year)
-```
-```{raw} html
-<div id="stdout-6" class="script-stdout"></div>
-<py-script>
-output = io.StringIO()
-sys.stdout = output
-
-name = 'Brainiac'
-month = 'luglio'
-year = 1958
-magazine = 'Action Comics'
-num = 242
-print(name, 'ha debuttato nel numero', num, 'di', magazine, 'nel', month, year)
-
-display(output.getvalue(), target="stdout-6")
-</py-script>
 ```
 
 È importante sottolineare che in molti linguaggi di programmazione
@@ -609,17 +543,6 @@ durante l'esecuzione, tali espressioni vengono valutate, e il loro risultato
 ```python
 print(f'{name} ha debuttato nel numero {num} di {magazine} nel {month} {year}')
 ```
-```{raw} html
-<div id="stdout-7" class="script-stdout"></div>
-<py-script>
-output = io.StringIO()
-sys.stdout = output
-
-print(f'{name} ha debuttato nel numero {num} di {magazine} nel {month} {year}')
-
-display(output.getvalue(), target="stdout-7")
-</py-script>
-```
 
 Il vantaggio nell'uso dei letterali formattati, che nella terminologia inglese
 vengono spesso indicati, per brevità, come _f-string_, sta nella possibilità
@@ -639,19 +562,6 @@ cella seguente
 a = 0.1
 b = 0.2
 print(f'{a+b:.1f}')
-```
-```{raw} html
-<div id="stdout-8" class="script-stdout"></div>
-<py-script>
-output = io.StringIO()
-sys.stdout = output
-
-a = 0.1
-b = 0.2
-print(f'{a+b:.1f}')
-
-display(output.getvalue(), target="stdout-8")
-</py-script>
 ```
 
 `.1f` indica che il valore dell'espressione è di tipo `float`, e va
@@ -752,15 +662,6 @@ e ridurre la possibilità di introdurre _bug_ nel codice.
 ```python
 [i**2 for i in range(4)]
 ```
-```{raw} html
-<div id="out-0" class="script-output"></div>
-<py-script>
-import io, sys
-from pyscript import display
-
-display([i**2 for i in range(4)], target="out-0")
-</py-script>
-```
 
 In una _list comprehension_ è inoltre possibile scartare una parte della
 struttura originale: la sintassi `[f(e) for e in l if g(e)]` specifica che
@@ -769,12 +670,6 @@ l'espressione `g(e)`. Pertanto
 
 ```python
 [i for i in range(1, 6) if i % 2 == 1]
-```
-```{raw} html
-<div id="out-1" class="script-output"></div>
-<py-script>
-display([i for i in range(1, 6) if i % 2 == 1], target="out-1")
-</py-script>
 ```
 
 genera la stessa lista di numeri dispari che ho indicato prima.
@@ -823,22 +718,6 @@ iron_man = ['Iron Man',
             85,
            'high']
 ```
-```{raw} html
-<py-script>
-iron_man = ['Iron Man',
-            'Tony Stark',
-            'Long Island, New York',
-            'Marvel Comics',
-            198.51,
-            191.85,
-            'M',
-            1963,
-            'Blue',
-            'Black',
-            85,
-           'high']
-</py-script>
-```
 
 ```{margin}
 Vedremo più avanti che ci sono modi più interessanti di codificare un
@@ -852,6 +731,8 @@ precisamente, un riferimento a questo oggetto), o uno _slicing_ per individuare
 una sotto-sequenza.
 
 ````{prf:example}
+:label: ex:list
+
 Riconsideriamo la lista memorizzata nella variabile `iron_man`. Valutando le
 espressioni `iron_man[1]` e `iron_man[-2]` si ottengono rispettivamente il
 secondo e il penultimo dei valori memorizzati nella lista, e cioè la stringa
@@ -860,12 +741,6 @@ contenente i colori di occhi e capelli nel modo seguente:
 
 ```python
 iron_man[-4:-2]
-```
-```{raw} html
-<div id="out-3" class="script-output"></div>
-<py-script>
-display(iron_man[-4:-2], target="out-3")
-</py-script>
 ```
 
 ````
@@ -903,24 +778,16 @@ names = ['Aquaman', 'Ant-Man', 'Batman', 'Black Widow',
          'Mystique', 'Professor X', 'Rogue', 'Superman',
          'Spider-Man', 'Thor', 'Northstar']
 ```
-```{raw} html
-<py-script>
-names = ['Aquaman', 'Ant-Man', 'Batman', 'Black Widow',
-         'Captain America', 'Daredavil', 'Elektra', 'Flash',
-         'Green Arrow', 'Human Torch', 'Hancock', 'Iron Man',
-         'Mystique', 'Professor X', 'Rogue', 'Superman',
-         'Spider-Man', 'Thor', 'Northstar']
-</py-script>
-```
 
 
 ### Operatori
 
-Alcuni degli operatori descritti in @dati-semplici mantengono la loro semantica
-quando vengono usate delle liste come operatori: per esempio `==` permette di
-verificare se due liste abbiano uguali contenuti (cioè contengano lo stesso
-numero di elementi, e gli elementi in una stessa posizione siano uguali). Altri
-tra questi operatori assumono invece una semantica diversa: in particolare
+Alcuni degli operatori descritti nel {ref}`sec:dati-semplici` mantengono la loro
+semantica quando vengono usate delle liste come operatori: per esempio `==`
+permette di verificare se due liste abbiano uguali contenuti (cioè contengano
+lo stesso numero di elementi, e gli elementi in una stessa posizione siano
+uguali). Altri tra questi operatori assumono invece una semantica diversa: in
+particolare
 
 - l'operatore `+` permette di concatenare due liste, creando una nuova lista
   che contiene un numero di elementi pari alla somma dei numeri di elementi
@@ -936,27 +803,15 @@ tra questi operatori assumono invece una semantica diversa: in particolare
 Vedremo che `in` e `del` mantengono la loro semantica anche quando vengono
 usati con altri tipi di strutture dati.
 ```
-Sempre in @dati-semplici sono stati introdotti gli operatori speciali `in` e
-`del`. Il primo implementa essenzialmente la relazione di appartenenza: se `e`
-è un'espressione e `l` una lista, l'espressione `e in l` viene valutata come
-logicamente vera se il valore dell'espressione occorre in una posizione
+Sempre nel {ref}`sec:dati-semplici` sono stati introdotti gli operatori speciali
+`in` e `del`. Il primo implementa essenzialmente la relazione di appartenenza:
+se `e` è un'espressione e `l` una lista, l'espressione `e in l` viene valutata
+come logicamente vera se il valore dell'espressione occorre in una posizione
 qualsiasi della lista, e come logicamente falsa altrimenti:
 
 ```python
 print('Thing' in names)
 print('Human Torch' in names)
-```
-```{raw} html
-<div id="stdout-5" class="script-stdout"></div>
-<py-script>
-output = io.StringIO()
-sys.stdout = output
-
-print('Thing' in names)
-print('Human Torch' in names)
-
-display(output.getvalue(), target="stdout-5")
-</py-script>
 ```
 
 L'operatore `del` permette invece di eliminare un elemento da una lista,
@@ -965,11 +820,6 @@ viene cancellata la stringa contenuta nella prima posizione di `names`:
 
 ```python
 del names[0]
-```
-```{raw} html
-<py-script>
-del names[0]
-</py-script>
 ```
 
 Va sottolineato che `del` è un operatore dal comportamento quantomeno
@@ -980,16 +830,8 @@ di questo effetto collaterale, nell'esempio precedente viene eliminato il primo
 elemento della lista, così che quello che prima era il secondo elemento diventa
 ora il primo, e così via, come si può facilmente verificare:
 
-
-
 ```python
 names[0]
-```
-```{raw} html
-<div id="out-8" class="script-output"></div>
-<py-script>
-display(names[0], target="out-8")
-</py-script>
 ```
 
 ```{admonition} Nota
@@ -1015,12 +857,6 @@ nella lista:
 ```python
 len(names)
 ```
-```{raw} html
-<div id="out-9" class="script-output"></div>
-<py-script>
-display(len(names), target="out-9")
-</py-script>
-```
 
 Anche in questo caso, `len` è una funzione di carattere generale pensata per
 calcolare la lunghezza delle varie strutture dati implementate in Python.
@@ -1040,12 +876,6 @@ agli oggetti).
 ```python
 names.sort()
 ```
-```{raw} html
-<py-script>
-names.sort()
-</py-script>
-```
-
 
 Così come l'operatore `del`, questo metodo non restituisce alcun valore, in
 quanto l'ordinamento è eseguito _in place_ [^sorted]: l'invocazione di `sort`
@@ -1056,12 +886,6 @@ elementi di `names`:
 
 ```python
 names[-5:]
-```
-```{raw} html
-<div id="out-11" class="script-output"></div>
-<py-script>
-display(names[-5:], target="out-11")
-</py-script>
 ```
 
 In Python è possibile specificare valori per argomenti _opzionali_ quando si
@@ -1077,16 +901,11 @@ e l'argomento opzionale `reversed` permette di invertire tale verso:
 ```python
 names.sort(reverse=True)
 ```
-```{raw} html
-<py-script>
-names.sort(reverse=True)
-</py-script>
-```
 
 Un'altra caratteristica di python è quella di poter specificare una funzione
 come argomento di un metodo (o di un'altra funzione) [^first-class]; ciò si può
 fare indicando il nome della funzione, oppure usando una _funzione anonima_
-(vedi il Paragrafo [Funzioni anonime](funzioni-anonime)). Consideriamo ad
+(vedi il Paragrafo {ref}`sec:funzioni-anonime`). Consideriamo ad
 esempio l'argomento opzionale `key` del metodo `sort`: esso permette di
 indicare un criterio alternativo per eseguire l'ordinamento, specificando come
 valore una funzione che trasforma gli elementi della lista in quantità
@@ -1097,14 +916,8 @@ valore di questo argomento opzionale il nome di una funzione che trasforma
 stringhe in numeri. Possiamo quindi utilizzare la funzione `len`
 precedentemente introdotta:
 
-
 ```python
 names.sort(key=len)
-```
-```{raw} html
-<py-script>
-names.sort(key=len)
-</py-script>
 ```
 
 Invocare in questo modo il metodo `sort` equivale quindi a:
@@ -1119,12 +932,6 @@ può facilmente verificare:
 ```python
 names
 ```
-```{raw} html
-<div id="out-14" class="script-output"></div>
-<py-script>
-display(names, target="out-14")
-</py-script>
-```
 
 Nel caso in cui si volessero specificare due o più argomenti opzionali all'atto
 dell'invocazione di un metodo, basta separarli usando le virgole esattamente
@@ -1132,11 +939,6 @@ come si procede per gli argomenti non opzionali. Per esempio
 
 ```python
 names.sort(key=lambda n:len(n), reverse=True)
-```
-```{raw} html
-<py-script>
-names.sort(key=lambda n:len(n), reverse=True)
-</py-script>
 ```
 
 riordina le stringhe contenute in `names` dalla più lunga alla più corta. Va
@@ -1179,24 +981,6 @@ rogue = ('Rogue',
          10,
         'good')
 ```
-```{raw} html
-<py-script>
-rogue = ('Rogue',
-         'Anna Marie',
-         'Caldecott County, Mississippi',
-         'Marvel Comics',
-         173.1,
-         54.39,
-         'F',
-         1981,
-         'Green',
-         'Brown / White',
-         10,
-        'good')
-</py-script>
-```
-
-
 
 L'accesso a un elemento di una tupla viene fatto in modo posizionale usando la
 medesima sintassi introdotta per le liste, e anche in questo caso è possibile
@@ -1204,20 +988,8 @@ estrarre delle sotto-tuple utilizzando degli _slicing_. Quando però si tenta di
 modificare un elemento contenuto in una tupla, l'esecuzione verrà bloccata
 emettendo un errore:
 
-```python
-    rogue[-2] = 70
-```
-```{raw} html
-<div id="stderr-17" class="script-stderr"></div>
-<py-script>
-import traceback
-
-try:
-    rogue[-2] = 70
-except Exception:
-    tb = traceback.format_exc()
-    display(tb, target="stderr-17")
-</py-script>
+```{code-block} python
+rogue[-2] = 70
 ```
 
 A seguito di questo errore, la tupla manterrà i suoi valori originali, restando
@@ -1225,12 +997,6 @@ quindi effettivamente invariata:
 
 ```python
 rogue
-```
-```{raw} html
-<div id="out-18" class="script-output"></div>
-<py-script>
-display(rogue, target="out-18")
-</py-script>
 ```
 
 Una tupla può essere utilizzata facendo ri ferimento agli stessi operatori e
@@ -1255,7 +1021,7 @@ collezione finita di elementi tra loro distinguibili e non memorizzati in un
 ordine particolare. A differenza delle liste e delle tuple, gli elementi non
 sono quindi associati a una posizione e non è possibile che un insieme contenga
 più di un'istanza di un medesimo elemento. La descrizione di questo tipo di
-dato è posticipata al Paragrafo @insiemi-in-python, dopo avere richiamato le
+dato è posticipata al {ref}`sec:insiemi-in-python`, dopo avere richiamato le
 proprietà matematiche di base degli insiemi.
 
 
@@ -1270,7 +1036,7 @@ Un letterale di tipo dizionario viene descritto indicando ogni coppia separando
 chiave e valore con il carattere di due punti, separando le coppie con delle
 virgole e racchiudendo l'intero letterale tra parentesi graffe. Possiamo per
 esempio usare un dizionario per rappresentare un _record_ in modo più elegante
-rispetto a quanto fatto nel Paragrafo @liste utilizzando le liste:
+rispetto a quanto fatto nel Paragrafo {ref}`sec:liste` utilizzando le liste:
 
 ```python
 rogue = {'name': 'Rogue',
@@ -1285,22 +1051,6 @@ rogue = {'name': 'Rogue',
          'hair_color': 'Brown / White',
          'strength': 10,
          'intelligence': 'good'}
-```
-```{raw} html
-<py-script>
-rogue = {'name': 'Rogue',
-         'identity': 'Anna Marie',
-         'birth_place': 'Caldecott County, Mississippi',
-         'publisher': 'Marvel Comics',
-         'height': 173.1,
-         'weight': 54.39,
-         'gender': 'F',
-         'first_appearance': 1981,
-         'eye_color': 'Green',
-         'hair_color': 'Brown / White',
-         'strength': 10,
-         'intelligence': 'good'}
-</py-script>
 ```
 
 L'accesso, in lettura o scrittura, agli elementi di un dizionario viene fatto
@@ -1310,12 +1060,6 @@ corrispondente:
 
 ```python
 rogue['identity']
-```
-```{raw} html
-<div id="out-20" class="script-output"></div>
-<py-script>
-display(rogue['identity'], target="out-20")
-</py-script>
 ```
 
 È proprio questa modalità di accesso che fa sì che i dizionari rappresentino
@@ -1384,9 +1128,9 @@ usando parole chiave dedicate come `foreach` o `forall`, oppure introducendo
 una sintassi alternativa.
 
 [^design-pattern]: L'uso del termine _pattern_ può causare confusione con
-l'argomento più generale dei _design pattern_ [@gang-of-four], che descrivono
-degli schemi decisamente più complessi di quelli che descrivono codice
-idiomatico, e che si possono implementare usando diversi linguaggi di
+l'argomento più generale dei _design pattern_ {cite:p}`gang-of-four`, che
+descrivono degli schemi decisamente più complessi di quelli che descrivono
+codice idiomatico, e che si possono implementare usando diversi linguaggi di
 programmazione. Sono esempi di _design pattern_ i singoletti, i _flyweight_ e i
 metodi fabbrica.
 

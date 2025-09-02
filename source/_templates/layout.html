@@ -39,28 +39,11 @@
   {%- endif %}
   <py-config style="display: none;">
     {
-      "packages": ["numpy", "pandas", "matplotlib", "altair", "IPython", "graphviz"]
+      "packages": ["numpy", "pandas", "matplotlib", "altair", "IPython",
+                   "graphviz", "matplotlib_venn", "scikit-learn"]
     }
   </py-config>
   <script type="module" src="https://pyscript.net/releases/2025.5.1/core.js"></script>
-  
-  <script>
-    window.MathJax = {
-      options: {
-        ignoreHtmlClass: 'no-mathjax',
-        processHtmlClass: 'mathjax-process'
-      },
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']]
-      },
-      svg: { fontCache: 'global' }
-    };
-  </script>
-  
-  <script type="text/javascript" id="MathJax-script" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-  </script>
   
   <!-- Vega-Embed for Altair charts -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>

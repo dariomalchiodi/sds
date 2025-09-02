@@ -59,71 +59,71 @@ parts:
       sections:
       - file: P3/c1/principio-fondamentale
       - file: P3/c1/permutazioni
-  #     - file: p3-CP/c1-calcolo-combinatorio/disposizioni
-  #     - file: p3-CP/c1-calcolo-combinatorio/combinazioni
-  #     - file: p3-CP/c1-calcolo-combinatorio/generazione
-  #     - file: p3-CP/c1-calcolo-combinatorio/esercizi
-  #   - file: p3-CP/c2-teoria-insiemi/teoria-insiemi
-  #     sections:
-  #     - file: p3-CP/c2-teoria-insiemi/concetti-di-base
-  #     - file: p3-CP/c2-teoria-insiemi/insiemi-finiti-e-infiniti
-  #     - file: p3-CP/c2-teoria-insiemi/relazioni-tra-insiemi
-  #     - file: p3-CP/c2-teoria-insiemi/operazioni-tra-insiemi
-  #     - file: p3-CP/c2-teoria-insiemi/insiemi-in-python
-  #   - file: p3-CP/c3-probabilita/calcolo-probabilita
-  #     sections:
-  #     - file: p3-CP/c3-probabilita/concetto-di-probabilita
-  #     - file: p3-CP/c3-probabilita/esperimenti-esiti-eventi
-  #     - file: p3-CP/c3-probabilita/assiomi-kolmogorov
-  #     - file: p3-CP/c3-probabilita/spazi-equiprobabili
-  #     - file: p3-CP/c3-probabilita/probabilita-condizionata
-  #     - file: p3-CP/c3-probabilita/prob-totali-e-naive-bayes
-  #     - file: p3-CP/c3-probabilita/classificatori-naive-bayes
-  #     - file: p3-CP/c3-probabilita/indipendenza
-  #   - file: p3-CP/c4-variabili-aleatorie/intro
-  #     sections:
-  #     - file: p3-CP/c4-variabili-aleatorie/variabili-aleatorie
-  #     - file: p3-CP/c4-variabili-aleatorie/variabili-aleatorie-discrete
-  #     - file: p3-CP/c4-variabili-aleatorie/valore-atteso
-  #     - file: p3-CP/c4-variabili-aleatorie/varianza
-  #     - file: p3-CP/c4-variabili-aleatorie/momenti
-  #     - file: p3-CP/c4-variabili-aleatorie/variabili-multivariate
-  #     - file: p3-CP/c4-variabili-aleatorie/indipendenza
-  #     - file: p3-CP/c4-variabili-aleatorie/disuguaglianze-fondamentali
-  #     - file: p3-CP/c4-variabili-aleatorie/variabili-aleatorie-continue
-  #     - file: p3-CP/c4-variabili-aleatorie/famiglie-di-distribuzioni
-  #   - file: p3-CP/c5-modelli-discreti/modelli-discreti
-  #     sections:
-  #     - file: p3-CP/c5-modelli-discreti/bernoulli
-  #     - file: p3-CP/c5-modelli-discreti/binomiale
-  #     - file: p3-CP/c5-modelli-discreti/uniforme
-  #     - file: p3-CP/c5-modelli-discreti/geometrico
-  #     - file: p3-CP/c5-modelli-discreti/poisson
-  #     - file: p3-CP/c5-modelli-discreti/ipergeometrico
-  #   - file: p3-CP/c6-modelli-continui/va-e-modelli-continui
-  #     sections:
-  #     - file: p3-CP/c6-modelli-continui/dal-discreto-al-continuo
-  #     - file: p3-CP/c6-modelli-continui/va-continue
-  #     - file: p3-CP/c6-modelli-continui/uniforme
-  #     - file: p3-CP/c6-modelli-continui/gaussiano
-  #     - file: p3-CP/c6-modelli-continui/esponenziale
-  #     - file: p3-CP/c6-modelli-continui/altri-modelli
-  # - caption: Statistica inferenziale
-  #   chapters:
-  #   - file: p4-SI/c0-statistica-inferenziale/statistica-inferenziale
-  #   - file: p4-SI/c1-inferenza-puntuale/inferenza-puntuale
-  #     sections:
-  #     - file: p4-SI/c1-inferenza-puntuale/popolazione-campione-e-stima
-  #     - file: p4-SI/c1-inferenza-puntuale/media-campionaria
-  #     - file: p4-SI/c1-inferenza-puntuale/varianza-campionaria
-  #     - file: p4-SI/c1-inferenza-puntuale/errore-di-una-stima
-  #     - file: p4-SI/c1-inferenza-puntuale/teorema-centrale-limite
-  #     - file: p4-SI/c1-inferenza-puntuale/leggi-grandi-numeri
-  #     - file: p4-SI/c1-inferenza-puntuale/distribuzioni-campionarie
-  #     - file: p4-SI/c1-inferenza-puntuale/calcolo-dimensione-campione
-  #     - file: p4-SI/c1-inferenza-puntuale/processo-poisson
-  #   - file: p4-SI/c2-stime-per-intervalli/stime-per-intervalli
-  #   - file: p4-SI/c3-statistica-non-parametrica/statistica-non-parametrica
+      - file: P3/c1/disposizioni
+      - file: P3/c1/combinazioni
+      - file: P3/c1/generazione
+      - file: P3/c1/esercizi
+    - file: P3/c2/teoria-insiemi
+      sections:
+      - file: P3/c2/concetti-di-base
+      - file: P3/c2/insiemi-finiti-e-infiniti
+      - file: P3/c2/relazioni-tra-insiemi
+      - file: P3/c2/operazioni-tra-insiemi
+      - file: P3/c2/insiemi-in-python
+    - file: P3/c3/calcolo-probabilita
+      sections:
+      - file: P3/c3/concetto-di-probabilita
+      - file: P3/c3/esperimenti-esiti-eventi
+      - file: P3/c3/assiomi-kolmogorov
+      - file: P3/c3/spazi-equiprobabili
+      - file: P3/c3/probabilita-condizionata
+      - file: P3/c3/prob-totali-e-naive-bayes
+      - file: P3/c3/classificatori-naive-bayes
+      - file: P3/c3/indipendenza
+    - file: P3/c4/intro
+      sections:
+      - file: P3/c4/variabili-aleatorie
+      - file: P3/c4/variabili-aleatorie-discrete
+      - file: P3/c4/valore-atteso
+      - file: P3/c4/varianza
+      - file: P3/c4/momenti
+      - file: P3/c4/variabili-multivariate
+      - file: P3/c4/indipendenza
+      - file: P3/c4/disuguaglianze-fondamentali
+      - file: P3/c4/variabili-aleatorie-continue
+      - file: P3/c4/famiglie-di-distribuzioni
+    - file: P3/c5/modelli-discreti
+      sections:
+      - file: P3/c5/bernoulli
+      - file: P3/c5/binomiale
+      - file: P3/c5/uniforme
+      - file: P3/c5/geometrico
+      - file: P3/c5/poisson
+      - file: P3/c5/ipergeometrico
+    - file: P3/c6/va-e-modelli-continui
+      sections:
+      - file: P3/c6/dal-discreto-al-continuo
+      - file: P3/c6/va-continue
+      - file: P3/c6/uniforme
+      - file: P3/c6/gaussiano
+      - file: P3/c6/esponenziale
+      - file: P3/c6/altri-modelli
+  - caption: Statistica inferenziale
+    chapters:
+    - file: P4/c1/statistica-inferenziale
+    - file: P4/c2/inferenza-puntuale
+      sections:
+      - file: P4/c2/popolazione-campione-e-stima
+      - file: P4/c2/media-campionaria
+      - file: P4/c2/varianza-campionaria
+      - file: P4/c2/errore-di-una-stima
+      - file: P4/c2/teorema-centrale-limite
+      - file: P4/c2/leggi-grandi-numeri
+      - file: P4/c2/distribuzioni-campionarie
+      - file: P4/c2/calcolo-dimensione-campione
+      - file: P4/c2/processo-poisson
+    - file: P4/c3/stime-per-intervalli
+    - file: P4/c4/statistica-non-parametrica
   - caption: Appendici
     chapters:
     - file: app/references

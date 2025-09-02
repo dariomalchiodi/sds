@@ -22,8 +22,12 @@ essere eseguito, lo inserirà all'interno di un riquadro che ricorda una _cella
 di codice_ in un _notebook_. Anche qui utilizzerò un carattere non
 proporzionale, evidenziando con colori diversi particolari elementi nel codice
 (come variabili, letterali o parole chiave) come accade nei moderni IDE.
-Inoltre, il codice risulterà staccato rispetto al testo principale, come
-nell'esempio seguente.
+Per migliorarne la leggibilità, il codice risulterà staccato rispetto al testo
+principale. Infine, visualizzerò l'eventuale output dell'esecuzione all'interno
+di un'apposita _cella di output_, posizionata subito dopo quella di codice,
+come mostrato di seguito, in modo da rendere chiaro il legame tra istruzioni e
+risultati.
+
 ```{margin}
 È pratica comune utilizzare un carattere non proporzionale, in cui ogni glifo
 ha la stessa larghezza, per visualizzare codice, input e output. Questo
@@ -31,17 +35,8 @@ migliora la leggibilità del codice, facilitando l'indentazione delle
 istruzioni e riducendo il rischio di confondere caratteri simili, come 1 e l
 o come O e 0.
 ```
-
 ```python
 age = 24
-print(age <= 42)
-```
-
-Di norma, visualizzerò l'eventuale output dell'esecuzione all'interno di
-un'apposita _cella di output_, posizionata subito dopo quella di codice, come mostrato di seguito, in modo da rendere chiaro il legame tra istruzioni e
-risultati.
-
-```python
 print(age <= 42)
 ```
 

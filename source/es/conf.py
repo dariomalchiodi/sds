@@ -41,6 +41,7 @@ extensions = [ 'myst_parser',
                'sphinxcontrib.bibtex',
                'sphinx_external_toc',
                'sphinx_proof',
+               'sphinx_exercise',
                'sphinx.ext.autosectionlabel',
                 ]
 

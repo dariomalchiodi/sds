@@ -18,7 +18,7 @@ limare la trattazione matematica in alcuni punti. Nicola Ludwig ha arricchito
 una mia incursione nel mondo della fisica. Marco De Petri, Matteo Princisgh e
 Nicolò Rosati hanno accuratamente letto le bozze, individuando tante
 imperfezioni che spero di avere corretto. Ringrazio tutte e tutti per avere
-dedicato un po' del loro tempo e delle loro energie a questo lavoro,
+dedicato una parte del loro tempo e delle loro energie a questo lavoro,
 puntualizzando che che eventuali errori e imprecisioni che rimasti sono da
 attirbuirsi interamente a me.
 

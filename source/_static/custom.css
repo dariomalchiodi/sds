@@ -25,6 +25,7 @@ h1, h2, h3, h4, h5, h6, .admonition-title {
 
 code, pre {
     font-family: var(--tt-font);
+    text-align: left;
 }
 
 a {
@@ -54,6 +55,26 @@ a.external::after {
     vertical-align: middle;
 }
 
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+ul > li > p {
+  position: relative;
+  padding-left: 0;
+  text-indent: -0.9em;
+  margin-left: 1em;
+}
+
+ul > li > p::before {
+  content: "–";
+  display: inline;
+  margin-right: 0.2em;
+  padding-right: 0.1em;
+  color: var(--text-primary-color);
+}
+
 .admonition.note {
   background-color: #b3d4fc;
   border-left: 4px solid #006699;
@@ -74,7 +95,6 @@ aside.margin {
 aside.margin a.footnote-reference {
   font-size: 80%;
 }
-
 
 /* Hide scrollbar unless needed */
 .bd-sidebar-primary {
@@ -131,6 +151,10 @@ div.container.cell + p {
 
 py-script {
   display: none;
+}
+
+span.katex {
+    display: inherit;
 }
 
 .cell-out, .script-output {

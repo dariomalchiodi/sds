@@ -128,8 +128,6 @@ A questo punto è possibile generare il grafico delle frequenze assolute:
 import matplotlib.pyplot as plt
 import numpy as np
 
-plt.style.use('sds.mplstyle')
-
 def get_sorted_counts(sequence):
     counts = {}
 

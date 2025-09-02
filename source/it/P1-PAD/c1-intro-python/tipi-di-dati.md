@@ -106,7 +106,7 @@ un inutile appesantimento.
 Python è un linguaggio che supporta pienamente il paradigma di programmazione
 orientato agli oggetti, che mette in evidenza i concetti di _classe_ e
 _oggetto_ per rappresentare ed elaborare i dati. Semplificando non poco la
-trattazione, una classe identifica un'_astrazione_ rispetto a tutti i dati di
+trattazione, una classe identifica un’_astrazione_ rispetto a tutti i dati di
 un certo tipo. Una classe è, in pratica, l’insieme di tutti i dati di un certo
 tipo. Un singolo elemento di quell’insieme è detto _oggetto_, o _istanza_.
 Entrando un poco più nel dettaglio, una classe definisce non solo che cosa è
@@ -151,7 +151,7 @@ hero = Superhero('Superman', 'Clark Kent')
 In questo caso,
 
 ```{margin}
-Come vedremo nel Paragrafo @sec:stringhe, in Python esistono diversi
+Come vedremo nel Paragrafo {ref}`sec:stringhe`, in Python esistono diversi
 delimitatori per le stringhe, e uno di questi è l'apice singolo.
 ```
 
@@ -209,9 +209,9 @@ modo più coerente possibile delle _regole di stile_, che tra le altre cose
 prevedono delle convenzioni specifiche su come debbano essere formati gli
 identificatori. Non esiste però uno standard unico: io farò riferimento alla
 [Style Guide for Python
-Code](https://www.python.org/dev/peps/pep-0008/){.external}, che contiene anche
+Code](https://www.python.org/dev/peps/pep-0008/), che contiene anche
 un paragrafo [Naming
-conventions](https://peps.python.org/pep-0008/#naming-conventions){.external}.
+conventions](https://peps.python.org/pep-0008/#naming-conventions).
 Per variabili (di istanza e non), funzioni e metodi, queste regole di stile
 prevedono il cosiddetto _snake case_: si usano unicamente i caratteri minuscoli
 e l'_underscore_, impiegando quest'ultimo solo come separatore in un
@@ -225,7 +225,7 @@ da considerare: tra queste, solo due sono rilevanti per i nostri scopi:
 
 - quando risulta particolarmente significativo utilizzare come identificatore
   una parola chiave del linguaggio (come per esempio `lambda`, che utilizzeremo
-  nel Paragrafo @sec:funzioni-anonime, per esprimere concetti matematici o
+  nel Paragrafo {ref}`sec:funzioni-anonime`, per esprimere concetti matematici o
   fisici), è   accettabile aggiungere un underscore al suo termine (ottenendo,
   nel caso precedente, l'identificatore `lambda_`);
 - se è necessario riferirsi esplicitamente a una variabile che viene utilizzata
@@ -292,14 +292,14 @@ Padroneggiare questi concetti, però, è una competenza decisamente attesa per
 ogni professionista dell'informatica, e auspicabile anche per un
 _data scientist_, ma tutto questo è ampiamente al di fuori dello scopo di
 questo libro. Per approfondire questi argomenti si può fare riferimento alla
-[specifica parte](https://docs.python.org/3/tutorial/classes.html){.external}
+[specifica parte](https://docs.python.org/3/tutorial/classes.html)
 della documentazione ufficiale di Python o alla parte IV in {cite:p}`ramalho`.
 ```
 
 (sec:tipi-semplici-e-strutturati)=
 ## Tipi semplici e strutturati
 
-Semplificando un po' il discorso, possiamo suddividere i tipi di dati che
+Semplificando un po’ il discorso, possiamo suddividere i tipi di dati che
 utilizzeremo in due grandi categorie:
 
 - i tipi di dati _semplici_, che servono a definire un'informazione atomica,
@@ -313,7 +313,7 @@ I due paragrafi che seguono descriveranno, rispettivamente, i tipi di dati
 semplici e strutturati che utilizzerò nel libro. Già solo considerando il
 linguaggio base, Python contempla svariati tipi di dati (la documentazione
 ufficiale ne riporta un
-[elenco](https://docs.python.org/3/library/datatypes.html){.external}), ai
+[elenco](https://docs.python.org/3/library/datatypes.html)), ai
 quali vanno aggiunti i tipi implementati dalle librerie di terze parti. La
 trattazione che farò non è sicuramente esaustiva, e, anche se lo fosse, sarebbe
 lungi dall'essere perfetta. Da una parte, non è completa, perché vi sono classi
@@ -345,7 +345,7 @@ delle seguenti affermazioni sono vere e quali sono false:
 
 ```{exercise} •
 Considerate l'ipotetica classe `Superhero` definita nel Paragrafo
-@sec:tipi_classi_oggetti, indicando ulteriori variabili di istanza e metodi
+{ref}`sec:tipi_classi_oggetti`, indicando ulteriori variabili di istanza e metodi
 che è sensato considerare per i relativi oggetti.
 ```
 

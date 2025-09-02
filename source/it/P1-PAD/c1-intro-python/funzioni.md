@@ -49,32 +49,6 @@ years = [1941, 1962, None, None, 1941,
 
 get_sorted_counts(years)
 ```
-```{raw} html
-<div id="out-0" class="script-output"></div>
-<py-script>
-import io, sys
-from pyscript import display
-
-def get_sorted_counts(sequence):
-    counts = {}
-
-    for x in sequence:
-        if x in counts:
-            counts[x] += 1
-        else:
-            counts[x] = 1
-
-    pairs = counts.items()
-    return sorted(pairs, key=lambda p:p[1], reverse=True)
-
-years = [1941, 1962, None, None, 1941,
-         1964, None, 1940, 1941, 1961,
-         None, 1963, None, 1963, 1981,
-         None, None, 1962, 1979]
-
-display(get_sorted_counts(years), target="out-0")
-</py-script>
-```
 
 (sec:funzioni-anonime)=
 ## Funzioni anonime

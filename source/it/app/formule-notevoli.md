@@ -39,34 +39,34 @@ vede facilmente come il risultato di questa somma sia sempre uguale a $n+1$.
 
 <table class="centered-content">
   <tr>
-    <td>$1$</td>
-    <td>$2$</td>
-    <td>$3$</td>
-    <td>$\dots$</td>
-    <td>$n-2$</td>
-    <td>$n-1$</td>
-    <td>$n$</td>
-    <td style="border-left: 1px solid black;">$S$</td>
+    <td>\( 1 \)</td>
+    <td>\( 2 \)</td>
+    <td>\( 3 \)</td>
+    <td>\( \dots \)</td>
+    <td>\( n-2 \)</td>
+    <td>\( n-1 \)</td>
+    <td>\( n \)</td>
+    <td style="border-left: 1px solid black;">\( S \)</td>
   </tr>
   <tr>
-    <td>$n$</td>
-    <td>$n-1$</td>
-    <td>$n-2$</td>
-    <td>$\dots$</td>
-    <td>$3$</td>
-    <td>$2$</td>
-    <td>$1$</td>
-    <td style="border-left: 1px solid black;">$S$</td>
+    <td>\( n \)</td>
+    <td>\( n-1 \)</td>
+    <td>\( n-2 \)</td>
+    <td>\( \dots \)</td>
+    <td>\( 3 \)</td>
+    <td>\( 2 \)</td>
+    <td>\( 1 \)</td>
+    <td style="border-left: 1px solid black;">\( S \)</td>
   </tr>
   <tr style="border-top: 1px solid black;">
-    <td>$n+1$</td>
-    <td>$n+1$</td>
-    <td>$n+1$</td>
-    <td>$\dots$</td>
-    <td>$n+1$</td>
-    <td>$n+1$</td>
-    <td>$n+1$</td>
-    <td style="border-left: 1px solid black;">$2S$</td>
+    <td>\( n+1 \)</td>
+    <td>\( n+1 \)</td>
+    <td>\( n+1 \)</td>
+    <td>\( \dots \)</td>
+    <td>\( n+1 \)</td>
+    <td>\( n+1 \)</td>
+    <td>\( n+1 \)</td>
+    <td style="border-left: 1px solid black;">\( 2S \)</td>
   </tr>
 </table>
 
@@ -159,7 +159,9 @@ dell'uguaglianza vale $1$ e il suo membro destro vale
 $\frac{1 \cdot 2 \cdot 3 \cdot 5}{30} = 1$. Per quanto riguarda il passo
 dell'induzione, vale la pena scriverlo in questo modo: posto
 
-$$ P(n) \triangleq n(n+1)(2n+1)(3n^2 + 3n - 1) \enspace, $$
+```{math}
+P(n) \triangleq n(n+1)(2n+1)(3n^2 + 3n - 1) \enspace,
+```
 
 dobbiamo dimostrare che 
 
@@ -192,10 +194,10 @@ ricavare
 
 ```{math}
 \begin{align*}
-D(n) &= (n + 1)(3n^2 + 3n - 1) \left( (n+2)(n+3) - n(2n+1) \right) + 6 (n+1)^2 (n+2) (2n+3) \\
+D(n) &= (n + 1)(3n^2 + 3n - 1) \left( (n+2)(n+3) - n(2n+1) \right) + \\
+     & \quad\quad 6 (n+1)^2 (n+2) (2n+3) \\
      &= 6 (n+1)^2 (3n^2 + 3n - 1) + 6 (n+1)^2 (n+2) (2n+3) \\
      &= 6 (n+1)^2 (5n^2 + 10n + 5) \\
      &= 30 (n+1)^4 \enspace.
 \end{align*}
-
 ````

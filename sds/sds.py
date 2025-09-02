@@ -16,10 +16,18 @@ from sds.toc import TOC
 
 LABELS = {'Theorem': {'it': 'Teorema', 'en': 'Theorem',
                       'fr': 'Théorème', 'es': 'Teorema'},
+          'Corollary': {'it': 'Corollario', 'en': 'Corollary',  
+                        'fr': 'Corollaire', 'es': 'Corolario'},
+          'Lemma': {'it': 'Lemma', 'en': 'Lemma',
+                    'fr': 'Lemme', 'es': 'Lema'},
+          'Proof': {'it': 'Dimostrazione', 'en': 'Proof',
+                    'fr': 'Démonstration', 'es': 'Demostración'},
           'Definition': {'it': 'Definizione', 'en': 'Definition',
                         'fr': 'Définition', 'es': 'Definición'},
           'Example': {'it': 'Esempio', 'en': 'Example',
-                      'fr': 'Exemple', 'es': 'Ejemplo'}}
+                      'fr': 'Exemple', 'es': 'Ejemplo'},
+          'Exercise': {'it': 'Esercizio', 'en': 'Exercise',
+                       'fr': 'Exercice', 'es': 'Ejercicio'}}
 
 def get_root_doc(language):
     # Build the module path as a string

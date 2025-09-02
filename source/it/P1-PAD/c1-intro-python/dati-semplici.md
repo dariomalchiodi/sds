@@ -83,7 +83,7 @@ particolari librerie.
 ```
 Il formato adottato per memorizzare i valori decimali fa di solito riferimento
 al classico standard a virgola mobile [IEEE
-754](https://en.wikipedia.org/wiki/IEEE_754){.external}, utilizzando $8$
+754](https://en.wikipedia.org/wiki/IEEE_754), utilizzando $8$
 byte[^double]. Questo formato non è a precisione arbitraria: tutti i numeri che
 cadono al di fuori di un prefissato intervallo, i cui estremi corrispondono
 all'incirca a `±1.8E308`, vengono convertiti (a seconda del segno) nel `float`
@@ -196,7 +196,7 @@ quale il metodo è stato invocato:
 
 ```{margin}
 I due valori restituiti dal metodo sono aggregati insieme costruendo una
-tupla, un tipo di dati strutturato che vedremo nel {ref}`sec:tuple`.
+tupla, un tipo di dati strutturato che vedremo nel Paragrafo {ref}`sec:tuple`.
 ```
 
 Per questioni di compatibilità, lo stesso metodo è presente anche in
@@ -218,7 +218,7 @@ la loro esecuzione, questi costruttori _tentano_ di convertire il valore
 attuale dell'argomento nel tipo che rappresentano: se la conversione è
 possibile viene creato un nuovo oggetto, altrimenti viene lanciata
 un'eccezione. Pertanto, la conversione tra i tipi semplici si
-effettua&mdash;ove possibile&mdash; utilizzando il nome del tipo di
+effettua&mdash;ove possibile&mdash;utilizzando il nome del tipo di
 destinazione come funzione di conversione. Per esempio
 
 ```python
@@ -336,15 +336,15 @@ booleano per tutti gli operatori della
 
 È possibile convertire qualsiasi oggetto in un valore di verità: questo si può
 fare esplicitamente passando per il costruttore `bool`, o implicitamente in
-tutti i punti nei quali è richiesto di specificare un valore booleano, come
-per esempio all'interno di un'operazione di selezione (vedi il
-{ref}`sec:strutture-di-controllo`). Diventano `False` i
-letterali `False` (ovviamente) e `None` (vedi il {ref}`sec:none`), i valori
-nulli dei tipi numerici (l'intero `0`, il valore decimale `0.0`, ma anche i
-loro equivalenti per gli altri tipi numerici di Python) e, in generale, tutti
-gli oggetti che si possono pensare come «vuoti» perché non contengono alcunché,
-come la stringa vuota o la lista vuota (vedi i {ref}`sec:stringhe` e
-{ref}`sec:dati-strutturati`).
+tutti i punti nei quali è richiesto di specificare un valore booleano, come per
+esempio all'interno di un'operazione di selezione (vedi il
+{ref}`sec:strutture-di-controllo`). Diventano `False` i letterali `False`
+(ovviamente) e `None` (vedi il Paragrafo {ref}`sec:none`), i valori nulli dei
+tipi numerici (l'intero `0`, il valore decimale `0.0`, ma anche i loro
+equivalenti per gli altri tipi numerici di Python) e, in generale, tutti gli
+oggetti che si possono pensare come «vuoti» perché non contengono alcunché,
+come la stringa vuota o la lista vuota (vedi il Paragrafo {ref}`sec:stringhe` e
+il {ref}`sec:dati-strutturati`).
 
 ### Operatori logici
 La {numref}`elenco-operatori-logici` illustra i principali operatori associati
@@ -496,19 +496,19 @@ contribuisce ad aumentare la leggibilità del codice (cosa che tipicamente
 avviene per le espressioni non particolarmente semplici). Sempre al fine di
 produrre codice facile da leggere, è consigliabile anche inserire gli spazi tra
 operandi e operatori in un modo ragionato e coerente. La [Style Guide for
-Python Code](https://www.python.org/dev/peps/pep-0008/){.external} (introdotta
-nel {ref}`sec:tipi-di-dati`) contiene un <a href="/sds/short/pep-whitespace"
-target="_blank">paragrafo</a> dedicato proprio a questo argomento, e io mi
-atterrò alle indicazioni ivi contenute.
+Python Code](https://www.python.org/dev/peps/pep-0008/) (introdotta nel
+{ref}`sec:tipi-di-dati`) contiene un
+[paragrafo](https://malchiodi.com/sds/short/pep-whitespace) dedicato proprio a
+questo argomento, e io mi atterrò alle indicazioni ivi contenute.
 
 Infine, vale la pena ricordare che la {numref}`regole-precedenza` fa
 riferimento solo agli operatori che abbiamo visto fino a questo momento (per la
 precisione, mancano quelli che operano componente per componente, ai quali ho
 solamente accennato). Per una lista completa, come sempre, il punto migliore al
-quale fare riferimento è la <a href="/sds/short/operator-precedence"
-terget="_blank">documentazione ufficiale</a>. Notate che questa fonte riporta
-le parentesi tonde come un particolare operatore che ha precedenza su tutto il
-resto.
+quale fare riferimento è la [documentazione
+ufficiale](https://malchiodi.com/sds/short/operator-precedence). Notate che
+questa fonte riporta le parentesi tonde come un particolare operatore che ha
+precedenza su tutto il resto.
 
 (sec:altri-tipi)=
 ## Altri tipi
@@ -586,7 +586,7 @@ print(Decimal('15.45') + Decimal('0.05'))
 
 il risultato è stampato indicando comunque due cifre decimali, anche se la
 seconda è uno zero. La [documentazione
-ufficiale](https://docs.python.org/3/library/decimal.html){.external} descrive
+ufficiale](https://docs.python.org/3/library/decimal.html) descrive
 in dettaglio questa classe.
 
 ### Date e istanti
@@ -691,7 +691,7 @@ loro oggetti di tipo `timedelta` o ancora moltiplicarli per un numero. Più in
 generale, le classi del modulo `datetime` permettono di eseguire compiti
 particolarmente articolati, che non vale la pena di approfondire qui. Anche in
 questo caso, la [documentazione
-ufficiale](https://docs.python.org/3/library/datetime.html){.external} è un
+ufficiale](https://docs.python.org/3/library/datetime.html) è un
 ottimo punto di partenza per studiare le funzionalità che esse introducono. Mi
 limito qui a parlare solamente di come gli oggetti di queste classi si possano
 visualizzare con un notevole grado di flessibilità. L'uso di `print` permette
@@ -982,8 +982,8 @@ strutturato che vedremo nel prossimo capitolo.)
 
 ```{exercise} •••
 Riconsiderate l'espressione `print(Decimal('15.45') + Decimal('0.05'))` che
-abbiamo valutato nel Paragrafo @sec:numeri-in-base-dieci, e notate come gli
-argomenti del costruttore `Decimal` siano delle stringhe. Se eliminate gli
+abbiamo valutato nel Paragrafo {ref}`sec:numeri-in-base-dieci`, e notate come
+gli argomenti del costruttore `Decimal` siano delle stringhe. Se eliminate gli
 apici dall'espressione a la rivalutate, otterrete un risultato diverso.
 Descrivete questo risultato e indicate perché, a prima vista, può sembrare
 inatteso. Trovate poi una motivazione di questo comportamento.
@@ -1004,7 +1004,7 @@ l'operazione non possa essere eseguita.
 
 ```{exercise} •••
 Dopo aver letto la
-[documentazione](https://docs.python.org/3/library/locale.html){.external} del
+[documentazione](https://docs.python.org/3/library/locale.html) del
 modulo `locale`, usate il metodo `setlocale` per impostare il locale sulla
 lingua italiana parlata in Italia (la stringa che descrive questo locale è
 `'it_IT'`) e verificate come il comportamento di `strftime` e `strptime` viene
@@ -1034,7 +1034,7 @@ memoria richiesta per generare la stringa da visualizzare.
 rappresentare un valore decimale non è semplice: in teoria, questo numero
 dipende dal tipo di CPU utilizzata e, soprattutto, dalla particolare
 implementazione di Python (se non ricordate che cosa si intende per
-implementazione di un linguaggio, rileggete il
+implementazione di un linguaggio, rileggete il Paragrafo
 {ref}`sec:linguaggi-versioni-implementazioni`). A complicare le cose, anche a
 parità d implementazione ci possono essere delle variazioni: per esempio,
 CPython (l'implementazione di Python probabilmente più utilizzata al momento in
@@ -1068,7 +1068,7 @@ medesimo letterale vengono fatte riferire in alcuni casi a uno stesso oggetto,
 e in altri a oggetti differenti. Una spiegazione detagliata di questo fenomeno
 è ampiamente al di fuori dello scopo di questo libro. Se siete abbastanza
 coraggiosi, l'argomento è stato per esempio affrontato in modo approfondito su
-<a href="/sds/short/is-behaviour" target="blank_">Stack Overflow</a>. La cosa
+[Stack Overflow](https://malchiodi.com/sds/short/is-behaviour). La cosa
 importante è ricordare che `is` è un operatore peculiare che può produrre dei
 comportamenti inattesi, nel caso in cui emergessero dei _bug_ durante
 l'esecuzione di codice che lo utilizza.
@@ -1086,7 +1086,7 @@ appunto cercando di risolverlo che i tecnici si resero conto di che cosa era
 accaduto. Questo fatto venne documentato nel _logbook_ (un registro nel quale
 venivano annotati a mano fatti rilevanti che si verificavano durante l'utilizzo
 del computer) come «First actual case of bug being found», incollando con del
-<a href="/sds/short/real-bug" target="_blank">nastro adesivo</a> la falena
+[nastro adesivo](https://malchiodi.com/sds/short/real-bug) la falena
 incriminata, a testimonianza dell'accaduto. Questa fonte suggerisce dunque come
 _bug_ fosse già usato nell'accezione moderna: risultava particolarmente
 intrigante il fatto che un _bug_ fisico (la falena) avesse causato un _bug_
@@ -1113,7 +1113,7 @@ notazione utilizzata in ambito ingegneristico, nella quale l'unità immaginaria
 è denotata da $j$. Ci sono anche altre motivazioni che hanno portato a
 preferire `j` a `i`: chi è interessato ad approfondirle può fare riferimento a
 una specifica (e lunga)
-[discussione](https://bugs.python.org/issue10562){.external} fatta nel 2010 da
+[discussione](https://bugs.python.org/issue10562) fatta nel 2010 da
 un gruppo di sviluppatori del linguaggio.
 
 [^singoletto]: È questa la situazione tipica di una _classe singoletto_, che si

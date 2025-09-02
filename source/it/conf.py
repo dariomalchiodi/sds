@@ -13,11 +13,34 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
+
+
+
 import os
 import sys
+import logging
+
+# Nuclear option - suppress ALL duplicate label warnings at the logging level
+class DuplicateLabelFilter(logging.Filter):
+    def filter(self, record):
+        if hasattr(record, 'getMessage'):
+            msg = record.getMessage()
+            if 'duplicate label' in msg:
+                return False
+        return True
+
+# Apply to ALL possible loggers that might emit these warnings
+for logger_name in ['sphinx', 'myst_parser', 'docutils', 'sphinx.environment.collectors.asset', '']:
+    logger = logging.getLogger(logger_name)
+    logger.addFilter(DuplicateLabelFilter())
+
+# Apply to root logger as well
+logging.getLogger().addFilter(DuplicateLabelFilter())
+
 sys.path.insert(0,
                 os.path.abspath(os.path.join(os.path.dirname(__file__),
                                              '..', '..')))
+
 
 
 # -- Project information -----------------------------------------------------
@@ -39,12 +62,17 @@ release = '1.0'
 
 extensions = [ 'myst_parser',
                'sphinx_book_theme', 
-               'sphinx.ext.mathjax', 'sphinx_exercise', 'sphinx_tabs.tabs',
+            #    'sphinx.ext.mathjax',
+               'sphinxcontrib.katex',
+               'sphinx_exercise', 'sphinx_tabs.tabs',
                'sphinxcontrib.bibtex',
                'sphinx_external_toc',
                'sphinx_proof',
+               'sphinx_exercise',
                'sphinx.ext.autosectionlabel',
                'sds',
+               'sds.sphinx_ext_custom_figure',
+               'sds.sphinx_ext_custom_table',
                 ]
 
 # nb_code_cell_render_options = {
@@ -66,8 +94,6 @@ bibtex_reference_style = 'author_year'
 #     'tabs'
 # ]
 
-myst_enable_extensions = [ 'deflist' ]
-
 myst_config = {
     "enable_extensions": [
         "amsmath",
@@ -88,6 +114,8 @@ myst_config = {
     "title_to_header": True,
 }
 
+myst_enable_extensions = ["dollarmath", "amsmath"]
+
 
 # myst_heading_start_level = 2
 
@@ -105,12 +133,7 @@ numfig_format = {
     'code-block': 'Algoritmo %s',
     'section': 'Paragrafo %s'
 }
-
-# Figure and table numbering configuration
-# Note: Chapter-relative numbering (X.Y format) is not compatible with current toctree structure
-# where sections are nested under chapters. Using global numbering provides consistent 
-# numbering across the entire document while maintaining proper cross-references.
-numfig_secnum_depth = 0  # Use global numbering (Tabella 1, Tabella 2, Figura 1, etc.)
+numfig_secnum_depth = 1
 
 # Additional numbering and cross-reference settings
 numbered_toctree = True
@@ -185,21 +208,30 @@ html_js_files = [
     # "https://cdn.jsdelivr.net/npm/vega-embed@6",
 ]
 
-mathjax_path = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+# mathjax_path = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 
+# # mathjax3_config = {
+# #     'options': {
+# #        'ignoreHtmlClass': 'no-mathjax',
+# #        'processHtmlClass': 'mathjax_process'},
+# #     'tex': { 'inlineMath': [['$', '$'], ['\\(', '\\)']] }
+# # }
 
-suppress_warnings = [
-    # 'myst-nb.lexer',
-    # 'image.not_readable'
-]
+myst_update_mathjax = False  # evita che MyST riscriva la config
+# mathjax3_config = {
+#   "options": {"ignoreHtmlClass": ".*", "processHtmlClass": "mjx-process"},
+#   "tex": {
+#     "inlineMath": [['$', '$'], ['\\(', '\\)']],
+#     "displayMath": [['$$','$$'], ['\\[','\\]']],
+#   },
+# }
+
 
 
 def setup(app):
     import json
     import os
-    
-    print(">>> sphinx_tabs.tabs extension loaded")
-    
+
     # Load URL mapping for language switching
     mapping_path = os.path.join(os.path.dirname(__file__), '..', '_templates', 'url_mapping.json')
     try:
@@ -212,3 +244,25 @@ def setup(app):
         print(f">>> Warning: Could not load URL mapping: {e}")
         app.config.html_context = getattr(app.config, 'html_context', {})
         app.config.html_context['url_mapping'] = {}
+
+    # Aggiorna le opzioni KaTeX in modo sicuro senza usare add_config_value
+    opts_str = getattr(app.config, 'katex_options', '{}')
+    try:
+        opts_dict = json.loads(opts_str)
+    except json.JSONDecodeError:
+        opts_dict = {}
+
+    opts_dict.update({
+        "throwOnError": False,
+        "processHtmlClass": ".*",
+        "strict": "ignore"  # utile per ignorare simboli non standard LaTeX
+    })
+
+    app.config.katex_options = json.dumps(opts_dict)
+
+    # Carica JS e CSS di KaTeX
+    app.add_js_file('https://cdn.jsdelivr.net/npm/katex@0.18.2/dist/katex.min.js')
+    app.add_css_file('https://cdn.jsdelivr.net/npm/katex@0.18.2/dist/katex.min.css')
+    
+
+    

@@ -10,7 +10,7 @@ kernelspec:
 ---
 
 (sec:principio-fondamentale-combinatorica)=
-# Principio fondamentale del calcolo combinatorio
+# Principio fondamentale
 
 Lo so che può sembrare impossibile, ma in alcuni casi Batman ha scelto
 di indossare dei costumi molto più sgargianti rispetto a quello grigio
@@ -26,7 +26,7 @@ per differenziare ancora maggiormente la varietà dei propri costumi, Batman
 possa contare su di un guardaroba contenente quattro mantelli, rispettivamente
 di colore rosa, verde, rosso e marrone, e tre costumi dei quali il primo è
 giallo, il secondo azzurro e il terzo nero. In quanti modi diversi si possono
-abbinare insieme un costume e un mantello? La {numref}`sh-combinations`
+abbinare insieme un costume e un mantello? La {numref}`fig:principio-fondamentale`
 illustra come rispondere a questa domanda: siccome per ognuno dei quattro
 mantelli è possibile scegliere tre diversi costumi, il numero totale dei
 possibili abbinamenti è $4 \times 3 = 12$.
@@ -34,6 +34,9 @@ possibili abbinamenti è $4 \times 3 = 12$.
 Una semplice illustrazione del principio fondamentale del calcolo combinatorio:
 avendo quattro opzioni possibili per una prima scelta e tre opzioni per una
 seconda scelta, si hanno dodici scelte combinate in tutto.
+
+````{customfigure}
+:name: fig:principio-fondamentale
 
 ```{code-block} python
 :class: toggle-code
@@ -54,6 +57,9 @@ for y, cost_col in enumerate(costume):
 fig.show()
 ```
 
+Illustrazione del principio fondamentale del calcolo combinatorio.
+````
+
 
 Generalizzando questo ragionamento si arriva al cosiddetto
 _principio fondamentale del calcolo combinatorio_: se ci sono $s_1$ modi per
@@ -67,8 +73,11 @@ $$s_1 \cdot \ldots \cdot s_t = \prod_{i=1}^t s_i.$$
 Osserviamo che questo risultato corrisponde a calcolare il numero delle
 foglie di un albero di profondità $t$ il cui primo livello ha $s_1$ nodi,
 ciascuno dei quali ha $s_2$ figli, ciascuno dei quali ha $s_3$ figli e così
-via, come evidenziato nella {numref}`tree`.
-<!-- 
+via, come evidenziato nella {numref}`fig:tree`.
+
+````{customfigure}
+:name: fig:tree
+
 ```{code-block} python
 :class: toggle-code
 
@@ -124,7 +133,11 @@ tree += '}'
 graph = graphviz.Source(tree, format='png')
 
 Image(filename = graph.render('tree'), width=1000, height=100)
-``` -->
+```
+
+L'albero che corrisponde alle scelte possibili nella
+{ref}`fig:principio-fondamentale`.
+````
 
 
 È importante notare come l'applicazione del principio fondamentale del

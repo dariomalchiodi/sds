@@ -106,12 +106,4 @@ in python per la creazione di grafici).
 
 ```python
 import matplotlib.pyplot as plt
-plt.style.use('fivethirtyeight')
-```
-
-```{admonition} Nomenclatura
-:class: naming
-L'invocazione di `plt.style.use` ha uno scopo puramente estetico: serve infatti
-a impostare uno stile per la visualizzazione dei grafici prodotti con
-matplotlib.
 ```

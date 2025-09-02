@@ -3,41 +3,39 @@ from sphinx.util.docutils import SphinxDirective
 
 class CustomFigureDirective(SphinxDirective):
     has_content = True
-    optional_arguments = 1  # optional label for HTML ID
+    option_spec = {
+        'name': lambda x: x,
+    }
 
     def run(self):
-        env = self.state.document.settings.env
-
-        # Standard figure node
         figure_node = nodes.figure()
 
-        # Parse directive content as normal (so your Python blocks still execute)
-        container = nodes.Element()
-        self.state.nested_parse(self.content, self.content_offset, container)
+        temp_node = nodes.Element()
+        self.state.nested_parse(self.content, self.content_offset, temp_node)
 
-        # First paragraph = caption
         caption_node = None
-        if container and isinstance(container[0], nodes.paragraph):
-            caption_node = nodes.caption("", "", *container[0].children)
-            container.pop(0)
+        caption_text = ""
+        if temp_node and isinstance(temp_node[-1], nodes.paragraph):
+            caption_paragraph = temp_node.pop()
+            caption_text = caption_paragraph.astext()
+            caption_node = nodes.caption()
+            caption_node.extend(caption_paragraph.children)
 
-        # Append the remaining processed content
-        for child in container:
-            figure_node += child
-
-        # Append caption at the bottom
+        figure_node.extend(temp_node.children)
         if caption_node:
             figure_node += caption_node
 
-        # Number the figure if numfig is enabled
-        if env.config.numfig:
-            self.add_name(figure_node)
-            self.set_source_info(figure_node)
+        if 'name' in self.options:
+            name = self.options['name']
+            figure_node['ids'].append(name)
+            figure_node['names'].append(name)
 
-        # Optional HTML ID
-        if self.arguments:
-            safe_id = self.arguments[0].strip().replace(":", "-").replace(" ", "_")
-            figure_node['ids'].append(safe_id)
+            # Only register if not already in domain
+            domain = self.env.get_domain('std')
+            if name not in domain.labels:
+                self.state.document.note_explicit_target(figure_node)
+                domain.labels[name] = (self.env.docname, name, caption_text)
+                domain.anonlabels[name] = (self.env.docname, name)
 
         return [figure_node]
 
@@ -45,7 +43,7 @@ class CustomFigureDirective(SphinxDirective):
 def setup(app):
     app.add_directive("customfigure", CustomFigureDirective)
     return {
-        "version": "1.0",
-        "parallel_read_safe": True,
-        "parallel_write_safe": True,
+        'version': '0.1',
+        'parallel_read_safe': True,
+        'parallel_write_safe': True,
     }

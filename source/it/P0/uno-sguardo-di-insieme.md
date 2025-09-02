@@ -67,9 +67,12 @@ CSV (_comma separated values_), uno standard comunemente usato per condividere
 dati di dimensioni relativamente ridotte: ogni riga corrisponde a un supereroe,
 e in essa i valori degli attributi nella {numref}`tab:dataset` sono separati da
 virgole. L'unica eccezione riguarda la prima riga del file, che contiene i nomi
-degli attributi, anch'essi separati da virgole. Qui sotto è riportato une
-stratto con i valori di alcuni attributi per dieci supereroi selezionati
-casualmente.
+degli attributi, anch'essi separati da virgole. La
+{numref}`tab:dataset-excerpt` mostra un estratto del _dataset_, visualizzandone
+i valori di alcuni attributi per dieci supereroi selezionati casualmente.
+
+````{customfigure}
+:name: tab:dataset-excerpt
 
 ```{code-block} python
 :class: toggle-code
@@ -84,29 +87,38 @@ source.index.name = None
 source
 ```
 
+Valori degli attributi `name`, `identity`, `intelligence`, `strength`, `speed`,
+`durability`, `power` e `control` per dieci elementi estratti casualmente dal
+_dataset_ di riferimento.
+
+````
+
 Nel {ref}`chap:pandas` vedremo come caricare in memoria e analizzare i
 contenuti di questo file. Per ora, ci concentreremo su alcuni esempi
-preliminari. Quello che segue è un primo esempio di grafico interattivo. Nel
-diagramma in alto, alcuni supereroi sono rappresentati tramite cerchi in un
-piano cartesiano: le coordinate del centro indicano peso e altezza, mentre il
-raggio esprime la forza. Il colore varia in base all'editore, utilizzando
-diverse sfumature di blu. Posizionando il puntatore su un cercio viene
-visualizzato il nome del supereroe corrispondente. Il diagramma inferiore
-mostra invece delle barre orizzontali che indicano il numero di supereroi per
-ciascun editore o creatore. È possibile selezionare un sottoinsieme di
-supereroi tracciando un rettangolo nel diagramma superiore: gli altri elementi
-del _dataset_ vengono disattivati, colorandoli in grigio, e il grafico
-inferiore viene aggiornato per riflettere la distribuzione del gruppo
+preliminari. Quello contenuto nella {numref}`fig:altair-example` è un primo
+esempio di grafico interattivo. Nel diagramma in alto, alcuni supereroi sono
+rappresentati tramite cerchi in un piano cartesiano: le coordinate del centro
+indicano peso e altezza, mentre il raggio esprime la forza. Il colore varia in
+base all'editore, utilizzando diverse sfumature di blu. Posizionando il
+puntatore su un cercio viene visualizzato il nome del supereroe corrispondente.
+Il diagramma inferiore mostra invece delle barre orizzontali che indicano il
+numero di supereroi per ciascun editore o creatore. È possibile selezionare un
+sottoinsieme di supereroi tracciando un rettangolo nel diagramma superiore: gli
+altri elementi del _dataset_ vengono disattivati, colorandoli in grigio, e il
+grafico inferiore viene aggiornato per riflettere la distribuzione del gruppo
 selezionato. La selezione può essere spostata, e facendo clic al suo esterno si
 ripristina la visualizzazione originale.
 ```{margin}
-Il grafico qui accanto è stato realizzato con
+Il grafico in {numref}`fig:altair-example` è stato realizzato con
 {extlink}`Altair <https://altair-viz.github.io/>`, una libreria Python
 per la creazione di grafici interattivi in pagine web. Un segno distintivo dei
 grafici Altair è la presenza, in alto a destra, di un pulsante rotondo con tre
 punti: questo attiva un menu che consente, tra le altre funzioni, di scaricare
 il grafico.
 ```
+
+````{customfigure}
+:name: fig:altair-example
 
 ```{code-block} python
 :class: toggle-code
@@ -143,6 +155,10 @@ bars = alt.Chart(source).mark_bar().encode(
 chart = (points & bars).configure(background='#eaf3f5')
 chart
 ```
+
+Un esempio di grafico interattivo basato su altair.
+
+````
 
 Interagendo con il grafico è possibile effettuare un’_analisi esplorativa_ dei
 dati, per esempio per rispondere alle domande seguenti.
@@ -187,6 +203,9 @@ minima e massima, dall'altro non è immediato capire se prevalgano i supereroi
 a un _istogramma_, un grafico che evidenzia le frequenze con cui i diversi
 valori del peso compaiono nel _dataset_.
 
+````{customfigure}
+:name: fig:histogram
+
 ```{code-block} python
 :class: toggle-code
 
@@ -202,6 +221,9 @@ data = heroes.weight[heroes.weight < 200]
 ax.hist(data, bins=30, density=True)
 fig.show()
 ```
+
+Un istogramma per il peso dei supereroi.
+````
 
 ```{margin}
 Non sempre l'istogramma è la scelta giusta per esplorare i dati. È utile quando
@@ -229,7 +251,8 @@ interattivi.
 
 ```{margin}
 Guardando l'asse delle ordinate, vediamo che i valori non sono interi,
-pertanto l'altezza dei rettangoli non può rappresentare il numero di supereroi.In questo istogramma è l'area del rettangolo a essere proporzionale alla
+pertanto l'altezza dei rettangoli non può rappresentare il numero di supereroi.
+In questo istogramma è l'area del rettangolo a essere proporzionale alla
 frequenza. Questa scelta, che ha implicazioni importanti, è spiegata in
 dettaglio nel {ref}`sec:istogrammi`.
 ```
@@ -287,15 +310,12 @@ ricordando che in generale il procedimento può essere più complicato o
 semplicemente diverso. L'idea alla base della formalizzazione è quella di
 individuare una funzione $f$, detta _densità di probabilità_, il cui grafico
 _idealizza_ l'istogramma dei valori osservati, producendo una curva continua
-che ne mantiene le proprietà principali.
-
- rispettandone però le proprietà
-principali. Per il nostro esempio, queste proprietà sono la simmetria rispetto
-a un asse centrale l'andamento _unimodale_ (cioè crescente fino a un valore
-massimo e decrescente da lì in avanti). Ci sono infinite funzioni che
-esibiscono queste due proprietà, ma per motivi troppo complessi da
-spiegare&mdash;ma che chiarirò più avanti&mdash;mi concentrerò su quella
-definita da:
+che ne mantiene le proprietà principali. Per il nostro esempio, queste
+proprietà sono la simmetria rispetto a un asse centrale l'andamento _unimodale_
+(cioè crescente fino a un valore massimo e decrescente da lì in avanti). Ci
+sono infinite funzioni che esibiscono queste due proprietà, ma per motivi
+troppo complessi da spiegare&mdash;ma che chiarirò più avanti&mdash;mi
+concentrerò su quella definita da:
 
 ```{margin}
 In questa formula, $\exp(x)$ indica l'elevamento della costante $\mathrm e$
@@ -314,16 +334,21 @@ e il modello che ne deriva è detto _normale_. Come vedremo, questo modello avr�
 un ruolo fondamentale nelle ultime due parti del libro.
 ```
 dove $x$ indica un generico peso e $f(x; \mu, \sigma)$ restituisce l'altezza
-corrispondente nell'istogramma idealizzato. È importante
-evidenziare che $f$ ha un solo argomento, denotato da $x$, mentre
-$\mu \in \mathbb R$ e $\sigma \in \mathbb R^+$ sono due
-_parametri_ che devono essere fissati per definire completamente la funzione. Il punto e virgola serve proprio a distinguere l'argomento dai parametri.
-Per la precisione, al variare di $\mu$ e $\sigma$ {eq}`eq:weight_normal`
-definisce una _famiglia_ di funzioni: ciascuna corrisponde a una variabile aleatoria, e noi ci riferiamo a questa è una famiglia come a un _modello_ di
-variabile aleatoria. Nel diagramma interattivo qui sotto è potete osservare
-come cambia il grafico di $f$ al variare dei suoi parametri. Agendo
-sui due selettori, associati a $\mu$ e $\sigma$, vedrete immediatamente come
-il grafico di $f$ si aggiorna in base alle nuove impostazioni.
+corrispondente nell'istogramma idealizzato. È importante evidenziare che $f$ ha
+un solo argomento, denotato da $x$, mentre $\mu \in \mathbb R$ e $\sigma \in
+\mathbb R^+$ sono due _parametri_ che devono essere fissati per definire
+completamente la funzione. Il punto e virgola serve proprio a distinguere
+l'argomento dai parametri. Per la precisione, al variare di $\mu$ e $\sigma$
+{eq}`eq:weight_normal` definisce una _famiglia_ di funzioni: ciascuna
+corrisponde a una variabile aleatoria, e noi ci riferiamo a questa è una
+famiglia come a un _modello_ di variabile aleatoria. Nella
+{numref}`fig:normal-model` potete osservare come cambia il grafico di $f$ al
+variare dei suoi parametri. Agendo sui due selettori, associati a $\mu$ e
+$\sigma$, vedrete immediatamente come il grafico di $f$ si aggiorna in base
+alle nuove impostazioni.
+
+````{customfigure}
+:name: fig:normal-model
 
 ```{code-block} python
 :class: toggle-code 
@@ -342,7 +367,15 @@ def plot_pdf(mu, sigma):
     ax.fill_between(x, 0, y, alpha=0.5, color='tab:blue')
 
     # Use plain text label to avoid MathJax processing
-    ax.set_xlabel('x', fontsize=12, ha='right')
+    ax.set_xlabel(r'$x$', fontsize=12, ha='right')
+    ax.set_ylabel(r'$f$', fontsize=12, rotation=0)
+    label = ax.yaxis.label
+    label.set_verticalalignment('bottom')
+    bbox = ax.get_position()
+    y_label_x = bbox.x0 + bbox.width / 2
+    label.set_position((y_label_x, 1.02))
+
+
     ax.xaxis.set_label_coords(1.07, 0.03)
     ax.set_xlim(-10, 10)
     ax.set_ylim(0, 1)
@@ -382,34 +415,42 @@ plot_pdf(0, 1)
 
 <div id="plot-container" style="visibility: none;">
     <div class="slider-container" style="float: left;">
-        <label for="mean-slider">$\mu$: </label>
+        <label for="mean-slider">\(\mu\): </label>
         <input type="range" id="mean-slider"
                min="-5" max="5" value="0" step="0.1" />
         <span id="mean-value">0</span>
     </div>
 
     <div class="slider-container" style="float: right;">
-        <label for="std-slider">$\sigma$: </label>
+        <label for="std-slider">\(\sigma\): </label>
         <input type="range" id="std-slider"
                min="0.1" max="5" value="1" step="0.1" />
         <span id="std-value">1.0</span>
     </div>
 
     <div id="pdf-output" class="no-mathjax"
-            style="clear: both; display: flex; justify-content: center; margin-bottom: 2em;">
-        <div class="splash"></div>
+            style="clear: both; display: flex;
+            justify-content: center; margin-bottom: 2em;">
     </div>
 </div>
 ```
+
+Grafico della densità di probabilità descritta da {eq}`eq:weight_normal`.
+````
+
 Uno dei motivi per i quali si parla di «modello» di variabile aleatoria è
 legato al fatto che è possibile scegliere i valori dei suoi parametri in modo
 da _adattare_ la funzione di densità di probabilità, e più in generale la
 corrispondente variabile aleatoria, a dati precedentemente osservati. Nel caso
 appena visto, ciò equivale a scegliere dei valori opportuni per $\mu$ e
 $\sigma$, facendo sì che il grafico di $f$ si sovrapponga qualitativamente con
-quello dell'istogramma inizialmente ottenuto per il peso. Il seguente diagramma
-interattivo vi permette di eseguire manualmente questa operazione, agendo sui
-selettori al fine di trovare un allineamento qualitativo tra i due grafici.
+quello dell'istogramma inizialmente ottenuto per il peso. Il grafico
+interattivo in {numref}`fig:adapt-model` vi permette di eseguire manualmente
+questa operazione, agendo sui selettori al fine di trovare un allineamento
+qualitativo tra i due grafici.
+
+````{customfigure}
+:name: fig:adapt-model
 
 ```{code-block} python
 :class:  toggle-code
@@ -456,7 +497,6 @@ else:
     # Use existing data
     heroes = builtins.heroes
     data = builtins.data
-    print("Using existing heroes and data from builtins")
 
 def model_plot_pdf(mu, sigma):
     x = np.linspace(0, 200, 400)
@@ -481,8 +521,10 @@ def model_plot_pdf(mu, sigma):
     
     # Display in no-mathjax container
     output_html = f'''
-    <div class="no-mathjax" style="display: flex; justify-content: center; margin-bottom: 2em;">
-        <img src="data:image/png;base64,{img_base64}" alt="Model Plot" style="max-width: 100%; height: auto;">
+    <div class="no-mathjax"
+         style="display: flex; justify-content: center; margin-bottom: 2em;">
+        <img src="data:image/png;base64,{img_base64}"
+        alt="Model Plot" style="max-width: 100%; height: auto;">
     </div>
     '''
     
@@ -514,7 +556,6 @@ def setup_model_sliders():
             
             # Initial plot
             model_plot_pdf(150, 33)
-            print("Model sliders setup complete")
         else:
             print("Model slider elements not found, retrying in 100ms...")
             import asyncio
@@ -529,48 +570,57 @@ setup_model_sliders()
 
 <div id="plot-container" style="visibility: none;">
     <div class="model-slider-container" style="float: left;">
-        <label for="model-mean-slider">Mean ($\mu$): </label>
+        <label for="model-mean-slider">\(\mu\): </label>
         <input type="range" id="model-mean-slider"
                min="10" max="200" value="150" step="0.1" />
         <span id="model-mean-value">150</span>
     </div>
 
     <div class="model-slider-container" style="float: right;">
-        <label for="model-std-slider">Standard Deviation ($\sigma$): </label>
+        <label for="model-std-slider">\(\sigma\): </label>
         <input type="range" id="model-std-slider"
                min="0.1" max="50" value="33" step="0.1" />
         <span id="model-std-value">33.0</span>
     </div>
 
-    <div id="model-output" style="clear: both; display: flex; justify-content: center; margin-bottom: 2em;">
-        <div class="splash"></div>
+    <div id="model-output"
+         style="clear: both; display: flex;
+                justify-content: center; margin-bottom: 2em;">
     </div>
 </div>
 ```
 
-Nell'ultima parte del libro, vedremo che esistono vari metodi per
-determinare automaticamente i parametri di un modello, in modo da adattarlo
-a un insieme di dati. Questo è uno degli scopi della _statistica
-inferenziale_, illustrata a partire dal {ref}`chap:inferential_statistics` e
-fino al {ref}`chap:statistica-non-parametrica`. Il punto di partenza è sempre
-un _dataset_, che in questo contesto rappresenta un _campione_ di osservazioni
+Sovrapposizione del grafico della densità descritta da {eq}`eq:weight_normal`
+all'istogramma di {numref}`fig:histogram`. Agendo sui selettori è possibile
+trovare dei valori per i parametri che adattano il modello all'istogramma.
+````
+
+Nell'ultima parte del libro, vedremo che esistono vari metodi per determinare
+automaticamente i parametri di un modello, in modo da adattarlo a un insieme di
+dati. Questo è uno degli scopi della _statistica inferenziale_, illustrata a
+partire dal {ref}`chap:inferential_statistics` e fino al
+{ref}`chap:statistica-non-parametrica`. Il punto di partenza è sempre un
+_dataset_, che in questo contesto rappresenta un _campione_ di osservazioni
 effettuate su una _popolazione_ più ampia. Su questa popolazione vogliamo fare
-delle ipotesi o trarre conclusioni, anche se non possiamo osservarla
-nella sua interezza. In altre parole, useremo il campione per
-ottenere informazioni su ciò che non sappiamo della popolazione. Il caso più
-semplice&mdash;e anche quello su cui ci concentreremo maggiormente&mdash; è
-quello in cui la popolazione è descritta da una variabile aleatoria,
-associata a un modello che dipende da uno o più parametri sconosciuti.
-L'obiettivo è quello di approssimare questi parametri, o altre quantità che
-dipendono da essi. Per esempio, consideriamo la popolazione dei supereroi nel
-nostro _dataset_ e supponiamo di essere interessati al loro peso medio $p$. Se abbiamo a disposizione solo un campione di
-cento supereroi, il buon senso suggerisce di usare la media del loro peso come
-approssimazione di $p$. In generale, chiamiamo _stimatore_
-la funzione che viene applicata al campione per ottenere questo tipo di
-approssimazioni. Nel nostro esempio, lo stimatore utilizzato è la media
-aritmetica dei valori del campione, detta _media campionaria_. La
-tabella seguente mostra come variano i valori di questo stimatore in seguito
-all'estrazione di dieci campioni differenti.
+delle ipotesi o trarre conclusioni, anche se non possiamo osservarla nella sua
+interezza. In altre parole, useremo il campione per ottenere informazioni su
+ciò che non sappiamo della popolazione. Il caso più semplice&mdash;e anche
+quello su cui ci concentreremo maggiormente&mdash; è quello in cui la
+popolazione è descritta da una variabile aleatoria, associata a un modello che
+dipende da uno o più parametri sconosciuti. L'obiettivo è quello di
+approssimare questi parametri, o altre quantità che dipendono da essi. Per
+esempio, consideriamo la popolazione dei supereroi nel nostro _dataset_ e
+supponiamo di essere interessati al loro peso medio $p$. Se abbiamo a
+disposizione solo un campione di cento supereroi, il buon senso suggerisce di
+usare la media del loro peso come approssimazione di $p$. In generale,
+chiamiamo _stimatore_ la funzione che viene applicata al campione per ottenere
+questo tipo di approssimazioni. Nel nostro esempio, lo stimatore utilizzato è
+la media aritmetica dei valori del campione, detta _media campionaria_. La
+{numref}`fig:statistics-variability` mostra come variano i valori di questo
+stimatore in seguito all'estrazione di dieci campioni differenti.
+
+````{customfigure}
+:name: fig:statistics-variability
 
 ```{code-block} python
 :class:  toggle-code
@@ -589,22 +639,26 @@ pd.DataFrame([means],
 
 ```
 
-È natuarale che le medie campionarie ottenute dai dieci campioni siano
-diverse tra loro, dal momento che ogni
-campione è diverso. Tuttavia, i risultati ottenuti non variano drasticamente e
-tendono a concentrarsi attorno a $79$, che è una buona approssimazione del
-valore  corretto per il peso medio di tutti i supereroi (come potete verificare
-osservando il precedente istogramma). Ma possiamo essere certi che la media
-campionaria sia davvero il miglior stimatore possibile? E, più in generale,
-come possiamo valutare la bontà di uno stimatore, considerando anche la
-variabilità intrinseca che abbiamo appena evidenziato? Queste domande
-troveranno risposta nella parte dedicata alla statistica inferenziale. Questa
-parte, in un certo senso, mi permette di terminare il libro «chiudendo il
-cerchio»: sia perché mette in pratica in maniera sinergica
-quello che abbiamo visto nelle parti sulla statistica descrittiva e sul calcolo
-delle probabilità, sia perché permette di comprendere più a fondo la potenza di
-alcuni dei concetti e degli strumenti già incontrati&mdash;magari in modo
-relativamente informale&mdash;nelle parti precedenti.
+Valore della media campionaria per il peso dei supereroi, calcolato su dieci
+diversi campioni estratti dalla popolazione.
+````
+
+È natuarale che le medie campionarie ottenute dai dieci campioni siano diverse
+tra loro, dal momento che ogni campione è diverso. Tuttavia, i risultati
+ottenuti non variano drasticamente e tendono a concentrarsi attorno a $79$, che
+è una buona approssimazione del valore  corretto per il peso medio di tutti i
+supereroi (come potete verificare osservando il precedente istogramma). Ma
+possiamo essere certi che la media campionaria sia davvero il miglior stimatore
+possibile? E, più in generale, come possiamo valutare la bontà di uno
+stimatore, considerando anche la variabilità intrinseca che abbiamo appena
+evidenziato? Queste domande troveranno risposta nella parte dedicata alla
+statistica inferenziale. Questa parte, in un certo senso, mi permette di
+terminare il libro «chiudendo il cerchio»: sia perché mette in pratica in
+maniera sinergica quello che abbiamo visto nelle parti sulla statistica
+descrittiva e sul calcolo delle probabilità, sia perché permette di comprendere
+più a fondo la potenza di alcuni dei concetti e degli strumenti già
+incontrati&mdash;magari in modo relativamente informale&mdash;nelle parti
+precedenti.
 
 Prima però di iniziare con la statistica descrittiva, è importante rivedere
 alcuni concetti fondamentali di programmazione degli elaboratori, e
@@ -619,7 +673,7 @@ di risoluzione è indicata dal numero di pallini racchuso tra parentesi.
 
 ```{exercise} •
 Scaricate il _dataset_ dei supereroi dal
-[repository](https://github.com/dariomalchiodi/sds){.external} del libro e
+[repository](https://github.com/dariomalchiodi/sds) del libro e
 importatelo in un qualsiasi programma che gestisce fogli elettronici (tutti
 quelli più diffusi hanno la capacità di importare file CSV), in modo che ogni
 colonna contenga un diverso attributo. Focalizzatevi, diciamo, sulle prime
@@ -667,10 +721,12 @@ risposta utilizzando il primo grafico interattivo. Anche in questo caso,
 verbalizzate il ragionamento che va fatto per rispondere a queste domande.
 ```
 
-```{exercise} •
+````{exercise} •
 Considerate i seguenti valori
 
-$$ \\{13, 8, 7, 4, 9, 8, 4, 4, 19, 2, 5, 3, 3, 1, 12 \\} $$
+```{math}
+\{13, 8, 7, 4, 9, 8, 4, 4, 19, 2, 5, 3, 3, 1, 12 \}
+```
 
 e disegnate a mano il corrispondente istogramma, calcolando l'altezza di ogni
 rettangolo come il numero di valori che ricadono nell'intervallo
@@ -678,7 +734,7 @@ corrispondente, e utilizzando i seguenti intervalli di riferimento:
 $[0, 5)$, $[5, 10)$, $[10, 15)$, $[15, 20)$.
 Confrontate la forma del grafico ottenuto con quanto mostrato nel testo,
 mettendo in luce le principali differenze.
-```
+````
 
 ```{exercise} •
 Scrivete dieci possibili eventi che riguardano il _dataset_ dei supereroi.
