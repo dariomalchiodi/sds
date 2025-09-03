@@ -9,5 +9,5 @@ kernelspec:
   display_name: Python 3
 ---
 
-(cap:va-e-modelli-continui)=
+(chap:va-e-modelli-continui)=
 # Modelli continui

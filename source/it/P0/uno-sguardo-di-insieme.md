@@ -263,8 +263,8 @@ dobbiamo cambiare: non ragioniamo sull'intero _dataset_, ma immaginiamo di
 poter osservare uno qualsiasi dei suoi elementi, senza sapere in anticipo quale
 sarà (ricordatevi della [Legge di Franklin](#par:franklin-law)). Assumiamo
 semplicemente che ogni supereroe abbia la stessa possibilità di essere
-osservato rispetto a tutti gli altri. A partire dal
-{ref}`chap:calcolo-combinatorio` e fino al {ref}`chap:va-e-modelli-continui`,
+osservato rispetto a tutti gli altri. Nei capitoli da
+{numref}`chap:calcolo-combinatorio` a {numref}`chap:va-e-modelli-continui`,
 entreremo nella _Teoria della Probabilità_, che ci fornisce strumenti per
 gestire in modo rigoroso l'incertezza dovuta al non sapere quale supereroe
 osserveremo di verrà di volta. Ci concentreremo su degli _eventi_, cioè

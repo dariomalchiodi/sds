@@ -25,9 +25,11 @@ convertirli automaticamente in un _dataframe_.
 ```{code-block} python
 import pandas as pd
 
-heroes = (pd.read_csv('data/heroes.csv', index_col=0)
-            .drop(columns=['powers', 'creator', 'universe', 'name',
-                           'place_of_birth', 'full_name']))
+heroes = pd.read_csv('data/heroes.csv', index_col='name',
+                     usecols=['name', 'identity', 'intelligence', 'strength',
+                     'first_appearance', 'alignment', 'height', 'weight',
+                     'eye_color', 'hair_color'])
+            
 ```
 
 Usando lo stesso file a cui abbiamo fatto riferimento nei paragrafi precedenti,
@@ -37,7 +39,7 @@ dataframe viene automaticamente formattata in un formato tabellare facile da
 leggere se si utilizza jupyter:
 
 ```{code-block} python
-:class: full_width
+:class: full-width
 heroes.head()
 ```
 

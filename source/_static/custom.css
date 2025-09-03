@@ -1,14 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Lora&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Lora&family=IBM+Plex+Mono&display=swap');
 
 :root {
   --serif-font: 'Lora', serif;
   --sans-serif-font: 'Oswald', sans;
   --tt-font: 'Source Code Pro', monospace;
+  --dataframe-font: 'IBM Plex Mono', monospace;
   --background-color: #eaf3f5;
   --text-primary-color: #010177;
   --link-color: #006699;
   --visited-link-color: #6085a6;
   --highlight-color: #1b50ebcf;
+  --dataframe-color: steelblue;
   --table-heading: #888;
   --stderr-background: #ffecbb;
 }
@@ -376,9 +378,9 @@ table.dataframe thead tr {
 table.dataframe th, table.dataframe td {
   text-align: left !important;
   padding-right: 1.5em;
-  color: steelblue;
-  font-family: monospace;
-  font-size: 0.75em;
+  color: var(--dataframe-color);
+  font-family: var(--dataframe-font);
+  font-size: 1em;
 }
 
 table.centered-content {

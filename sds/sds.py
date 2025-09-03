@@ -518,6 +518,13 @@ def get_toggle_labels(language='en'):
     
     return labels.get(language, labels['en'])
 
+def _get_div_classes(base_class, class_attr):
+    """Generate CSS classes for output divs based on original code block classes."""
+    classes = [base_class]
+    if class_attr and 'full-width' in class_attr:
+        classes.append('full-width')
+    return ' '.join(classes)
+
 def process_myst_document(myst_content, include_setup=True, language='en'):
     '''Processes a MyST Markdown document and adds interactive HTML blocks
     after each Python code block.
@@ -674,13 +681,12 @@ def process_myst_document(myst_content, include_setup=True, language='en'):
         # Create only the HTML divs (no PyScript yet)
         html_divs = f'''
 ```{{raw}} html
-<div id="splash-{cell_number}" class="splash"></div>
-<div id="out-{cell_number}" class="cell-out"></div>
-<div id="stdout-{cell_number}" class="cell-stdout"></div>
-<div id="stderr-{cell_number}" class="cell-stderr"></div>
-<div id="graph-{cell_number}" class="cell-graph no-mathjax"></div>
+<div id="splash-{cell_number}" class="{_get_div_classes('splash', class_attr)}"></div>
+<div id="out-{cell_number}" class="{_get_div_classes('cell-out', class_attr)}"></div>
+<div id="stdout-{cell_number}" class="{_get_div_classes('cell-stdout', class_attr)}"></div>
+<div id="stderr-{cell_number}" class="{_get_div_classes('cell-stderr', class_attr)}"></div>
+<div id="graph-{cell_number}" class="{_get_div_classes('cell-graph no-mathjax', class_attr)}"></div>
 ```'''
-        
         result_parts.append(html_divs)
         
         # Check if matplotlib is used in this cell
@@ -1028,7 +1034,8 @@ finally:
                 classes='table table-hover table-bordered table-sm',
                 table_id=f'table-{cell_number}',
                 border=0,
-                escape=False
+                escape=False,
+                index_names=False
             )
             Element("graph-{cell_number}").write(html_table)
         else:
@@ -2248,6 +2255,11 @@ def apply_numbering(language):
             label = a_tag['href'].split('#')[-1]
             if label in numbered_toc.label_to_caption:
                 a_tag.string = numbered_toc.label_to_caption[label]
+
+        for a_tag in file_soup.find_all('a', class_='only-number reference internal'):
+            label = a_tag['href'].split('#')[-1]
+            if label in numbered_toc.label_to_caption:
+                a_tag.string = numbered_toc.label_to_caption[label].split(' ')[-1]
         
         # for text_node in file_soup.find_all(string=True):
         #     if "Theorem" in text_node:
