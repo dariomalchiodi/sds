@@ -183,7 +183,7 @@ spiegheranno questi concetti partendo dalle basi.
 ```
 Domande come queste si affrontano con gli strumenti della _statistica
 descrittiva_, introdotta dal {ref}`chap:dati-e-informazione` al
-{ref}`chap:analizzare-le-relazioni-tra-i-dati`. Il suo obiettivo è estrarre
+{ref}`sec:analizzare-relazioni`. Il suo obiettivo è estrarre
 informazioni da un _dataset_ che descrive un insieme di individui, in tutto o
 in parte. Le tecniche impiegate possono essere di due tipi: _qualitative_ o
 _quantitative_.
@@ -235,11 +235,12 @@ può essere fuorviante (ne parleremo nel {ref}`chap:dati-e-informazione`).
 L'esplorazione dei dati non implica sempre l'uso di metodi grafici: più avanti
 vedremo che spesso si fonda su strumenti quantitativi.
 ```
-Gli istogrammi sono spiegati in dettaglio nel {ref}`sec:istogrammi`, ma per ora
-su come leggerne uno. Il grafico è composto da tanti rettangoli: ognuno di essi
-ha come base un intervallo $I$ di possibili valori per il peso, e l'altezza è
-legata alla frazione di supereroi il cui peso rientra in quell'intervallo
-[^histogram]. Guardando l'istogramma, notiamo due cose interessanti:
+Gli istogrammi sono spiegati in dettaglio nel {ref}`chap:dati-e-informazione`,
+ma per ora su come leggerne uno. Il grafico è composto da tanti rettangoli:
+ognuno di essi ha come base un intervallo $I$ di possibili valori per il peso,
+e l'altezza è legata alla frazione di supereroi il cui peso rientra in
+quell'intervallo [^histogram]. Guardando l'istogramma, notiamo due cose
+interessanti:
 
 - i supereroi che pesano più di 125 kg. sono più numerosi di quelli sotto i
   quaranta chili;
@@ -254,7 +255,7 @@ Guardando l'asse delle ordinate, vediamo che i valori non sono interi,
 pertanto l'altezza dei rettangoli non può rappresentare il numero di supereroi.
 In questo istogramma è l'area del rettangolo a essere proporzionale alla
 frequenza. Questa scelta, che ha implicazioni importanti, è spiegata in
-dettaglio nel {ref}`sec:istogrammi`.
+dettaglio nel {ref}`chap:dati-e-informazione`.
 ```
 
 Dopo aver raccolto informazioni a partire dai dati, il passo successivo è
@@ -598,7 +599,7 @@ trovare dei valori per i parametri che adattano il modello all'istogramma.
 Nell'ultima parte del libro, vedremo che esistono vari metodi per determinare
 automaticamente i parametri di un modello, in modo da adattarlo a un insieme di
 dati. Questo è uno degli scopi della _statistica inferenziale_, illustrata a
-partire dal {ref}`chap:inferential_statistics` e fino al
+partire dal {ref}`chap:statistica-inferenziale` e fino al
 {ref}`chap:statistica-non-parametrica`. Il punto di partenza è sempre un
 _dataset_, che in questo contesto rappresenta un _campione_ di osservazioni
 effettuate su una _popolazione_ più ampia. Su questa popolazione vogliamo fare

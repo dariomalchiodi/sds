@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(cap:inferential_statistics)=
+(chap:statistica-inferenziale)=
 # Statistica inferenziale
 
 Nella prima parte di questo libro abbiamo visto come alcuni aspetti di un
@@ -101,7 +101,7 @@ _per intervalli_) e la _statistica non parametrica_ (si omette l'aggettivo
 inferenziale, per non appesantire la trattazione). La prima branca è
 approfondita nel {ref}`sec:stime-puntuali` e nel
 {ref}`sec:stime-per-intervalli`, mentre la seconda viene accennata
-nel {ref}`cap:statistica-non-parametrica`.
+nel {ref}`chap:statistica-non-parametrica`.
 
 
 ## La statistica parametrica
@@ -198,7 +198,7 @@ l'incertezza non sia incentrata solo su uno o più parametri di una
 distribuzione, bensì sia l'intera distribuzione a essere sconosciuta.
 Affrontare questo argomento in modo dettagliato, però, è al di fuori della
 trattazione data in questo libro. Il
-{ref}`cap:statistica-non-parametrica` si limiterà a
+{ref}`chap:statistica-non-parametrica` si limiterà a
 introdurre alcuni aspetti di base di questa branca della statistica, legandoli
 ad alcuni concetti a essi collegati che abbiamo già trattato nella parte sulla
 statistica descrittiva.

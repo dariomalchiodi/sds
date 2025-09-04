@@ -232,7 +232,7 @@ altri è necessario ricorrere alle tecniche di combinatorica che abbiamo visto
 nel {ref}`chap:calcolo-combinatorio`.
 
 ````{prf:example}
-:label: ex:bernoulli
+:label: ex:bernoulli-2
 
 Uno scatolone contiene 50 albi di fumetti, in dodici dei quali compare una e
 una sola storia con Aquaman come protagonista, mentre nei restanti albi

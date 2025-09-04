@@ -12,7 +12,7 @@ kernelspec:
 (sec:dati-strutturati)=
 #  Dati strutturati
 
-Come indicato nel {ref}`chsecap:tipi-di-dati`, ho deciso di definire un tipo di
+Come indicato nel {ref}`sec:tipi-di-dati`, ho deciso di definire un tipo di
 dati come strutturato se i corrispondenti valori costituiscono un'aggregazione
 di più tipi di dati __ed__ è possibile iterare automaticamente sui loro
 contenuti. Dopo aver spiegato meglio questo concetto, in questo paragrafo

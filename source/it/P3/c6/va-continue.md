@@ -134,7 +134,7 @@ densità di $X$ ristretta all'insieme $A$, come esemplificato in
 {numref}`fig:pdf-interpretation`.
 
 ````{customfigure}
-:figwidth: 100%
+:width: 100%
 :name: fig:pdf-interpretation
 
 ```{code-block} python

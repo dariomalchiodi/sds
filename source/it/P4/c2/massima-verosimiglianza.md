@@ -9,5 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:famiglie-di-distribuzioni)=
-# Famiglie di distribuzioni
+(sec:massima-verosimiglianza)=
+# Il metodo della massima verosimiglianza
+
+AGGIUNGERE

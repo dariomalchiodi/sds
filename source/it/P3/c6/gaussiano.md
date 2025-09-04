@@ -120,7 +120,7 @@ particolarmente importante e viene chiamata _distribuzione normale standard_.
 
 ````{customfigure}
 :name: fig:normal-pdf
-:figwidth: 400px
+:width: 400px
 
 ```{code-block} python
 :class: toggle-code
@@ -332,7 +332,7 @@ std_normal_cdf = np.vectorize(std_normal_cdf_scalar)
 
 ````{customfigure}
 :name: fig:normal-cdf
-:figwidth: 400px
+:width: 400px
 
 ```{code-block} python
 :class: toggle-code
@@ -429,7 +429,7 @@ L'estensione ai casi rimanenti è banale.
 
 ````{customfigure}
 :name: fig:normal-symmetry
-:figwidth: 400px
+:width: 400px
 
 ```{code-block} python
 :class: toggle-code
@@ -637,7 +637,7 @@ gaussiana solo a partire dal 1900.
 
 Non è un caso che l'aggettivo _normale_ sia stato usato per definire i dati
 per le cui frequenze vale  la regola empirica introdotta nel
-Paragrafo {ref}`sec:simmetria-e-normalita`. Le percentuali indicate da
+Paragrafo {ref}`sec:indici-di-dispersione`. Le percentuali indicate da
 questa regola, in effetti, corrispondono esattamente alla probabilità di
 osservare un valore della distribuzione normale standard che dista dal suo
 valore atteso al più una, due o tre deviazioni standard, rispettivamente.

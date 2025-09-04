@@ -9,5 +9,5 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:famiglie-di-distribuzioni)=
-# Famiglie di distribuzioni
+(sec:analizzare-relazioni)=
+#  Analizzare le relazioni tra i dati

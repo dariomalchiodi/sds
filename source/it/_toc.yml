@@ -34,7 +34,15 @@ parts:
   - caption: Statistica descrittiva
     chapters:
       - file: P2/presentazione
-      # - file: P2/tipi-di-dati
+      - file: P2/dati-e-informazione
+      - file: P2/indici-di-posizione
+      - file: P2/indici-di-dispersione
+      - file: P2/eterogeneita
+      - file: P2/concentrazione
+      - file: P2/trasformazioni-dei-dati
+      - file: P2/analisi-della-varianza
+      - file: P2/analisi-di-classificatori
+      - file: P2/analizzare-le-relazioni
       # - file: P2/analisi-univariata
       #   sections:
       #   - file: P2/analisi-univariata/centralita
@@ -77,7 +85,6 @@ parts:
       - file: P3/c3/assiomi-kolmogorov
       - file: P3/c3/spazi-equiprobabili
       - file: P3/c3/probabilita-condizionata
-      - file: P3/c3/prob-totali-e-naive-bayes
       - file: P3/c3/classificatori-naive-bayes
       - file: P3/c3/indipendenza
     - file: P3/c4/intro
@@ -107,6 +114,7 @@ parts:
       - file: P3/c6/uniforme
       - file: P3/c6/gaussiano
       - file: P3/c6/esponenziale
+      - file: P3/c6/processo-poisson
       - file: P3/c6/altri-modelli
   - caption: Statistica inferenziale
     chapters:
@@ -121,7 +129,9 @@ parts:
       - file: P4/c2/leggi-grandi-numeri
       - file: P4/c2/distribuzioni-campionarie
       - file: P4/c2/calcolo-dimensione-campione
-      - file: P4/c2/processo-poisson
+      - file: P4/c2/massima-verosimiglianza
+      - file: P4/c2/metodo-plugin
+      - file: P4/c2/metodo-dei-momenti
     - file: P4/c3/stime-per-intervalli
     - file: P4/c4/statistica-non-parametrica
   - caption: Appendici

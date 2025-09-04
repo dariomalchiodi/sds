@@ -643,7 +643,7 @@ istanze, considero il tipo di dati come semplice.
 ```
 
 ```{margin}
-Nel {ref}`sec:parametri-opzionali` vedremo come Python adotti una
+Nel {ref}`sec:funzioni` vedremo come Python adotti una
 sintassi alternativa per l'invocazione di metodi e funzioni, basata su
 parametri opzionali, che permette in situazioni come questa la scrittura di
 codice più snello e più leggibile.

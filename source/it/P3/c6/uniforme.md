@@ -405,7 +405,7 @@ perfettamente simmetrico.
 
 ````{customfigure}
 :name: fig:uniform-continuous-bp
-:figwidth: 100%
+:width: 100%
 
 ```{code-block} python
 :class: toggle-code
@@ -480,7 +480,7 @@ densità di probabilità.
 
 ````{customfigure}
 :name: fig:uniform-implementation
-:figwidth: 100%
+:width: 100%
 
 ```{code-block} python
 :class: toggle-code

@@ -26,7 +26,7 @@ F_{X_i}(x; p_i) = 1 - (1 - p_i)^{\lfloor x \rfloor + 1} \mathrm
 
 ````{customfigure}
 :name: fig:geometric-divergence
-:figwidth: 300px
+:width: 300px
 
 ```{code-block} python
 :class: toggle-code
@@ -260,7 +260,7 @@ esponenziali_.
 
 ````{customfigure}
 :name: fig:negative-exponential
-:figclass: margin
+:class: margin
 
 ```{code-block} python
 :class: toggle-code
@@ -298,7 +298,7 @@ potenza) ha nella definizione delle funzioni di ripartizione e di densità di
 probabilità. Il fatto che l'argomento di questa funzione sia sempre negativo
 in corrispondenza delle specificazioni della distribuzione porta alcuni testi
 a utilizzare il nome «esponenziale negativa». Altre fonti, per esempio
-{citep}`ross`, distinguono invece le distribuzioni esponenziali da quelle
+{cite:p}`ross`, distinguono invece le distribuzioni esponenziali da quelle
 esponenziali negative, usando la prima denominazione esattamente come ho fatto
 io, e la seconda per indicare l'equivalente della distribuzione esponenziale in
 cui però densità e ripartizione sono ribaltate rispetto all'asse delle
@@ -616,7 +616,7 @@ primo quartile:
 
 ````{customfigure}
 :name: fig:exponential-bp
-:figwidth: 100%
+:width: 100%
 
 ```{code-block} python
 :class: toggle-code

@@ -29,7 +29,7 @@ una parte delle librerie alle quali farò riferimento, visto che non sempre
 questo argomento è noto a chi si appresta a imparare i fondamenti della
 _data science_.
 ```{margin}
-Nel {ref}`sec:attributi` vedremo che è importante non confondere
+Nel {ref}`chap:dati-e-informazione` vedremo che è importante non confondere
 il _tipo di un attributo_ all'interno di un _dataset_ con il _tipo di dato_
 utilizzato per memorizzare i valori dell'attributo stesso.
 ```

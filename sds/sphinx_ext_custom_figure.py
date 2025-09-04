@@ -1,14 +1,25 @@
 from docutils import nodes
 from sphinx.util.docutils import SphinxDirective
+from docutils.parsers.rst import directives
 
 class CustomFigureDirective(SphinxDirective):
     has_content = True
     option_spec = {
         'name': lambda x: x,
+        'class': directives.class_option,
+        'width': directives.length_or_percentage_or_unitless,
     }
 
     def run(self):
         figure_node = nodes.figure()
+
+        # Handle class option
+        if 'class' in self.options:
+            figure_node['classes'].extend(self.options['class'])
+
+        # Handle width option
+        if 'width' in self.options:
+            figure_node['width'] = self.options['width']
 
         temp_node = nodes.Element()
         self.state.nested_parse(self.content, self.content_offset, temp_node)

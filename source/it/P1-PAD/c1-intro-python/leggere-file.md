@@ -21,7 +21,7 @@ a un supereroe, separate da virgola. Le prime tre righe del file sono indicate
 di seguito.
 
 ```python
-:tags: [full-width]
+:class: full-width
 !head -3 data/heroes.csv
 ```
 

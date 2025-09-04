@@ -39,11 +39,6 @@ si introduce una variabile aleatoria $X$ che formalizza la misurazione di
 $\mathcal A$ (in altre parole, $X$ è definita da una funzione che ha come
 codominio l'insieme dei valori di $\mathcal A$).
 
-```{margin}
-Questa formalizzazione si concentra sul campionamento aleatorio semplice, ma
-esistono altri schemi di campionamento, come abbiamo visto nel
-{ref}`sec:campionamento-stratificato`.
-```
 Osservare una specificazione
 di $X$ equivale dunque a estrarre a caso un elemento della popolazione e
 misurare su di esso il valore dell'attributo al quale siamo interessati.
@@ -55,7 +50,7 @@ si identifica la variabile aleatoria $X$ direttamente con la popolazione.
 
 
 ```{margin}
-Nel {ref}`sec:inferenza-di-due-parametri` considererò
+Nel {ref}`sec:massima-verosimiglianza` considererò
 brevemente un caso particolare nel quale la distribuzione della popolazione
 coinvolge due parametri ignoti.
 ```
