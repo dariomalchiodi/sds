@@ -11,6 +11,7 @@ import ast
 import astor
 from bs4 import BeautifulSoup
 from bs4 import NavigableString
+from tqdm import tqdm
 
 from sds.toc import TOC
 
@@ -1621,7 +1622,8 @@ document.addEventListener('DOMContentLoaded', function() {
     files_modified = 0
     processed_parts = set()  # Track which parts we've already logged
     
-    for html_file in html_files:
+    print('Add collapsible class to TOC parts')
+    for html_file in tqdm(html_files):
         try:
             with open(html_file, 'r', encoding='utf-8') as f:
                 content = f.read()
@@ -1631,6 +1633,7 @@ document.addEventListener('DOMContentLoaded', function() {
             has_parts = False
             
             # Process all parts (make them collapsible only, no links)
+            
             for part_caption in part_captions:
                 # Find elements that are ACTUAL part headers, not just any
                 # element containing the text Part headers should be <p>
@@ -1643,6 +1646,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if potential_elements:
                     has_parts = True
+                
                 
                 for element in potential_elements:
                     # Check if this is in the TOC sidebar (has TOC-related
@@ -1694,10 +1698,9 @@ document.addEventListener('DOMContentLoaded', function() {
                                 element['class'] = element.get('class', []) + \
                                                         ['part-collapsible']
                                 changed = True
-                                warn = "Added collapsible class to " \
-                                       f"'{part_caption}'"
+                                # warn = "Added collapsible class to " \
+                                #        f"'{part_caption}'"
                                 if part_caption not in processed_parts:
-                                    print(warn)
                                     processed_parts.add(part_caption)
                             
                             # Find the following chapters list and ensure it
@@ -2200,13 +2203,17 @@ def apply_numbering(language):
                  'prf-prf.html', 'search.html', 'index.html']
     
     numbered_toc = generate_toc(language=language)
-    for file_path in html_files:
+    print('Fixing cross-reference numbers and dealing with localization')
+    for file_path in tqdm(html_files):
         if file_path in [f'build/sds/{language}/' + f for f in skip_list]:
             continue
         if '_static' in file_path or '_sources' in file_path:
             continue
 
-        print(f"Apply numbering to: {file_path}")
+        short_path = file_path if len(file_path) < 60 else '...' + file_path[-57:]
+        if len(short_path) < 60:
+            short_path = short_path.ljust(60)
+        # print(f"Apply numbering to: {short_path}", end='\r', flush=True)
         if not os.path.exists(file_path):
             raise FileNotFoundError(f"File not found: {file_path}")
         try:
@@ -2275,6 +2282,7 @@ def apply_numbering(language):
 
         with open(file_path, 'w', encoding='utf-8') as f:
             f.write(str(file_soup))
+    print()
     return
 
 def main():

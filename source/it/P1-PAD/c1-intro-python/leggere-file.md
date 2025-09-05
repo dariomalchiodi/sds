@@ -20,9 +20,17 @@ directory `data`: esso contiene 735 righe, ognuna con le informazioni relative
 a un supereroe, separate da virgola. Le prime tre righe del file sono indicate
 di seguito.
 
-```python
-:class: full-width
-!head -3 data/heroes.csv
+```{raw} html
+<div class="highlight-python notranslate full-width">
+  <div class="highlight">
+    <pre tabindex="-1">!head -3 data/heroes.csv</pre>
+  </div>
+</div>
+<div class="cell-stdout full-width">
+<pre>id,name,identity,intelligence,strength,speed,durability,power,combat,creator,universe,full_name,place_of_birth,first_appearance,alignment,height,weight,eye_color,hair_color,
+Laufey,Laufey,,High,100,100,100,100,100,Sony Interactive Entertainment,GoW - God of War,,Jötunheim,2018,Good,,,Blue,Strawberry Blond,
+Laugh-a-Lot Bear,Laugh-a-Lot Bear,,Average,45,50,40,65,10,,Care Bears - Care Bears Universe,,,,Good,,,Black,Orange,</pre>
+</div>
 ```
 
 Il formato CSV (comma separated values) indica un record su ogni riga,

@@ -210,10 +210,13 @@ log "Found ${#MD_FILES[@]} .md files to process"
 PROCESSED=0
 FAILED=0
 
+total=${#MD_FILES[@]}
+count=0
 # Process each .md file
 for md_file in "${MD_FILES[@]}"; do
+    count=$((count+1))
     rel_path="${md_file#$DEST_LANG_DIR/}"
-    log "Processing: $rel_path"
+    # log "Processing: $rel_path"
     
     # Create Python script to call the function
     # Convert bash boolean to Python boolean
@@ -236,9 +239,9 @@ try:
     # Process the file
     backup_path = process_myst_file('$md_file', include_setup=$PYTHON_INCLUDE_SETUP)
     
-    print(f"SUCCESS: {os.path.basename('$md_file')} processed successfully!")
-    if '$VERBOSE' == 'true':
-        print(f"  Backup created at: {backup_path}")
+    # print(f"SUCCESS: {os.path.basename('$md_file')} processed successfully!")
+    # if '$VERBOSE' == 'true':
+    #     print(f"  Backup created at: {backup_path}")
     
 except FileNotFoundError as e:
     print(f"ERROR: {e}", file=sys.stderr)
@@ -262,7 +265,9 @@ EOF
         error "Failed to process: $rel_path"
         ((FAILED++))
     fi
+    echo -ne "Processing $rel_path $count / $total\033[K\r"
 done
+echo -e "\nDone!"
 
 # Display summary
 echo ""
