@@ -45,7 +45,7 @@ class CustomFigureDirective(SphinxDirective):
             domain = self.env.get_domain('std')
             if name not in domain.labels:
                 self.state.document.note_explicit_target(figure_node)
-                domain.labels[name] = (self.env.docname, name, caption_text)
+                domain.labels[name] = (self.env.docname, name, '')
                 domain.anonlabels[name] = (self.env.docname, name)
 
         return [figure_node]

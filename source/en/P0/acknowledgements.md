@@ -29,4 +29,11 @@ my plan to write a book and who encouraged me to pursue it, for very similar
 unintentionally forgetting, I want to express my gratitude for the support they
 gave me.
 
-
+Writing a book is a process that takes a very long time, and it’s not something
+you can just leave behind at the office when you go home. It stays with you
+almost constantly and inevitably spills over into your private life. The
+support I received from my family has been invaluable—above all from Marcello,
+who stood by me through highs and lows and knew how to give me the space I
+needed to devote myself to this little endeavor. Much of what I wrote was
+conceived, revised, and polished in Nice, where I am lucky enough to have what
+I consider my second family: pour vous tous, issa Nissa, issa 24!

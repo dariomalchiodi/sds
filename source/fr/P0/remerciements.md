@@ -32,3 +32,12 @@ raisons similaires (mais pas tout à fait identiques). À toutes ces personnes,
 ainsi qu’à celles que j’oublie inévitablement, je veux exprimer ma
 reconnaissance pour le soutien qu’elles m’ont apporté.
 
+Écrire un livre est un long cheminement, et ce n’est pas quelque chose qu’on
+peut simplement laisser derrière soi au bureau en rentrant à la maison. Cela
+vous accompagne presque en permanence et finit inévitablement par déborder sur
+la vie privée. Le soutien que j’ai reçu de ma famille a été inestimable —
+surtout celui de Marcello, qui est resté à mes côtés dans les bons comme dans
+les mauvais moments, et qui a su me laisser l’espace nécessaire pour me
+consacrer à cette petite aventure. Une grande partie de ce que j’ai écrit a été
+pensé, relu et peaufiné à Nice, où j’ai la chance d’avoir ce que je considère
+ma seconde famille : pour vous tous, issa Nissa, issa 24 !

@@ -30,3 +30,12 @@ distintos (aunque no tanto)&mdash;en conocer mi idea de escribir un libro, y
 por razones similares (aunque no idénticas) me animaron a hacerlo. A todas
 estas personas, y a quienes inevitablemente estoy olvidando, quiero expresar
 mi gratitud por el apoyo que supieron brindarme.
+
+Escribir un libro es una larga aventura, y no es algo que se pueda simplemente
+dejar en la oficina al volver a casa. Te acompaña casi constantemente e
+inevitablemente se mezcla con la vida privada. El apoyo que recibí de mi
+familia ha sido invaluable, sobre todo el de Marcello, que me ha acompañado en
+los momentos buenos y en los malos, y que supo darme el espacio necesario para
+dedicarme a esta pequeña empresa. Gran parte de lo que he escrito fue
+concebido, revisado y corregido en Niza, donde tengo la suerte de contar con lo
+que considero mi segunda familia: pour vous tous, _issa Nissa, issa 24!_

@@ -30,3 +30,12 @@ realizzarla, per motivi uguali (ma fino a un certo punto). A tutte queste
 persone, e a chi inevitabilmente sto dimenticando, voglio esprimere sincera
 riconoscenza per il supporto che mi hanno saputo dare.
 
+Realizzare un libro è un processo che dura tantissimo e che non si può lasciare
+in ufficio quando si torna a casa. È qualcosa che ti accompagna
+quasi costantemente, e inevitabilmente interferisce con la vita privata. Il
+sostegno che ho ricevuto dalla mia famiglia è stato ineguagliabile,
+soprattutto quello di Marcello, che mi ha costantemente supportato nei momenti
+alti e nei momenti bassi, e ha saputo lasciarmi spazio per potermi dedicare a
+questa piccola impresa. Molto di quello che ho scritto è stato pensato,
+rivisto e corretto a Nizza, dove ho la fortuna di avere quella che considero
+la mia seconda famiglia: pour vous tous, _issa Nissa, issa 24!_

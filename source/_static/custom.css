@@ -10,6 +10,7 @@
   --link-color: #006699;
   --visited-link-color: #6085a6;
   --highlight-color: #1b50ebcf;
+  --hover-highlight-color: #0099cc;
   --dataframe-color: steelblue;
   --table-heading: #888;
   --stderr-background: #ffecbb;
@@ -55,6 +56,10 @@ a.external::after {
     display: inline-block;
     margin-left: 0.2em;
     vertical-align: middle;
+}
+
+li a.external::after {
+    margin-left: 1.5em;
 }
 
 ul {
@@ -265,9 +270,14 @@ span.katex {
   font-family: var(--sans-serif-font);
 }
 
-.prev-next-area a p.prev-next-title:hover {
-  color: var(--highlight-color);
+.prev-next-area a:hover p.prev-next-title,
+.prev-next-area a:visited:hover p.prev-next-title {
+  color: var(--hover-highlight-color);
   text-decoration: none;
+}
+
+a.left-prev:hover, a.right-next:hover {
+  color: var(--hover-highlight-color);
 }
 
 .toc-entry a.nav-link.active:hover {
@@ -499,6 +509,10 @@ py-script.toggle-code.expanded {
 .admonition-title {
   font-size: 1rem !important;
   font-weight: bold !important;
+}
+
+p.component-author {
+  display: none;
 }
 
 /* Ensure navigation links have proper font size */

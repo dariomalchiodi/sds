@@ -265,7 +265,7 @@ EOF
         error "Failed to process: $rel_path"
         ((FAILED++))
     fi
-    echo -ne "Processing $rel_path $count / $total\033[K\r"
+    echo -ne "Processing [$count / $total] \033[33m$rel_path\033[0m\033[K\r"
 done
 echo -e "\nDone!"
 

@@ -40,10 +40,10 @@ target="_blank">CC BY 2.0</a>)
 
 In realtà il concetto di _incertezza_ è difficile da definire, perché presenta
 molte sfaccettature e assume significati diversi a seconda del contesto. In
-questo libro mi concentrerò su una sua specifica accezione,
-spesso indicata con il termine _casualità_. In termini semplici (e quindi
-decisamente perfettibili), possiamo identificare la casualità come la proprietà
-che caratterizza un'esperienza che, anche se ripetuta nelle stesse condizioni,
+questo libro mi concentrerò su una sua specifica accezione, spesso indicata con
+il termine _casualità_. In termini semplici &mdash; e quindi decisamente
+perfettibili &mdash; possiamo identificare la casualità come la proprietà che
+caratterizza un'esperienza che, anche se ripetuta nelle stesse condizioni,
 produce un risultato non prevedibile a priori. In modo (per ora) informale,
 chiamiamo _eventi_ delle affermazioni che riguardano i risultati di queste
 esperienze. Il loro valore di verità sarà dunque incerto. Un esempio classico
@@ -53,10 +53,10 @@ valore di chiusura di un indice di borsa. Ma potremmo aggiungerne molti altri:
 oggi pioverà, se scrutando il cielo al mattino vediamo nuvole all'orizzonte?
 Quanti nipoti avrà la sorella del mio vicino di casa? L'anno prossimo riuscirò
 a superare la stagione influenzare ammalandomi al massimo una volta? In
-effetti, non è difficile rendersi conto del fatto che la casualità (o, se
-preferite, il non-determinismo) permea la nostra vita quotidiana. E ha anche un
-ruolo essenziale nella descrizione di alcuni aspetti fondamentali della Natura,
-come la teoria dell'evoluzione o la meccanica quantistica.
+effetti, non è difficile rendersi conto del fatto che la casualità &mdash; o,
+se preferite, il non-determinismo &mdash; permea la nostra vita quotidiana. E
+ha anche un ruolo essenziale nella descrizione di alcuni aspetti fondamentali
+della Natura, come la teoria dell'evoluzione o la meccanica quantistica.
 
 Nonostante ciò, impariamo presto a convivere abbastanza bene con l'incertezza:
 uscendo di casa, sappiamo quasi sempre se conviene portare con noi un ombrello,
@@ -97,7 +97,7 @@ Il lavoro è organizzato in quattro parti:
   di incertezza, sfruttando gli strumenti introdotti nelle parti precedenti.
 
 Ognuna di queste parti, considerata da sola, riempirebbe un intero libro di
-testo&mdash;anche più di uno! Per questo motivo, mi limiterà ad affrontare i
+testo &mdash; anche più di uno! Per questo motivo, mi limiterà ad affrontare i
 concetti fondamentali delle discipline considerate, limitando gli
 approfondimenti e garantendo comunque che il libro resti fruibile senza
 ricorrere a fonti esterne. Ove possibile, presenterò anche alcuni aspetti

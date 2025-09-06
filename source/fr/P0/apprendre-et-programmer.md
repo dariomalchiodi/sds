@@ -38,8 +38,8 @@ Ce livre a été écrit avec une technologie qui permet d’intégrer du contenu
 généré par l’exécution de code Python. Ce code est caché lorsqu’il sert
 simplement à produire des tableaux ou des graphiques, tandis qu’il est affiché
 de manière explicite quand le lecteur est guidé à travers l’implémentation d’un
-ou plusieurs concepts expliqués dans le texte. Dans ces cas, un lien
-« Afficher le code » permet au lecteur d’afficher ou masquer le code caché.
+ou plusieurs concepts expliqués dans le texte. Dans ces cas, un lien « Afficher
+le code » permet au lecteur d’afficher ou masquer le code caché[^hidden-code].
 Je vous encourage vivement à profiter de cette possibilité : lire un texte de
 manière passive apporte peu de bénéfices, et exécuter du code sans y réfléchir
 n’a pas beaucoup de sens non plus ; ce qui compte, c’est de l’analyser, le
@@ -127,6 +127,14 @@ distribuée sous licence
 [fichier](https://github.com/dariomalchiodi/sds/blob/main/requirements.in)
 qui liste toutes les paquets utilisées pour générer les contenus, y compris
 celles nécessaires à l’exécution du code.
+
+[^hidden-code]: Il est utile de se rappeler que le code caché peut contenir des
+détails techniques liés à la génération de contenu destiné à être affiché dans
+des pages web (comme des éléments HTML ou des styles CSS). Par conséquent, il
+n’est pas écrit de la même manière que du code conçu pour l’analyse de données
+dans des environnements de travail traditionnels : sa structure répond à des
+besoins de présentation et d’interactivité, plutôt qu’à des objectifs
+analytiques.
 
 [^hacker]: Le terme _hacker_ est aujourd’hui souvent utilisé dans le langage
 courant avec une connotation négative, le rapprochant de quelqu’un qui poursuit

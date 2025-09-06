@@ -26,27 +26,12 @@ studenti del secondo anno dei corsi di laurea triennale in area informatica.
 Pertanto presuppone come acquisite le competenze di programmazione che vengono
 acquisite generalmente al primo anno di queste lauree, o in percorsi affini.
 ```
-
 Il {ref}`chap:intro-python` fornisce una panoramica a livello medio-alto delle
 funzionalità di Python che utilizzo nel libro, pensata per consentire a chi sa
 già programmare, ma non conosce questo linguaggio, di mettersi in pari. La
 lettura di questo capitolo è comunque consigliata, perché permette di
 familiarizzare fin da subito con le convenzioni che utilizzo nel codice.
 
-Il libro è scritto utilizzando una tecnologia che permette di inserire
-contenuti generati dall'esecuzione di codice Python. Ogni volta che guido chi
-legge a implementare uno o più concetti, il codice viene mostrato
-esplicitamente. È invece nascosto quando serve solo a produrre elementi come
-tabelle o grafici, ma un link «Mostra codice» consente di visualizzarlo. Invito
-caldamente lettrici e lettori a sfruttare questa possibilità: così come leggere
-passivamente un testo ha poco senso, eseguire questo codice senza riflettere è
-poco utile. Al contrario, è importante analizzarlo, comprenderlo e modificarlo
-per capirne meglio il funzionamento&mdash;insomma, _giocarci_ in un'ottica
-_hacker_, nel senso originale del termine[^hacker]. In ogni caso, alcuni dei
-contenuti sono interattivi, come mostrato per esempio nel
-{ref}`chap:uno-sguardo-di-insieme`: la loro manipolazione, che non richiede di
-analizzare del codice, è pensata proprio per facilitare la comprensione dei
-concetti introdotti.
 ```{margin}
 Le componenti interattive si basano su {extlink}`PyScript
 <https://pyscript.net/>`, una tecnologia che consente di eseguire codice Python
@@ -56,6 +41,20 @@ internet attiva e l'utilizzo di un _browser_ compatibile con WebAssembly (come
 Chrome, Firefox, Edge, Safari e i navigatori basati su
 Chromium).
 ```
+Il libro è scritto utilizzando una tecnologia che permette di inserire
+contenuti generati dall'esecuzione di codice Python. Ogni volta che guido chi
+legge a implementare uno o più concetti, il codice viene mostrato
+esplicitamente. È invece nascosto quando serve solo a produrre elementi come
+tabelle o grafici, ma un link «Mostra codice» consente di
+visualizzarlo[^hidden-code]. Invito caldamente lettrici e lettori a sfruttare
+questa possibilità: così come leggere passivamente un testo ha poco senso,
+eseguire questo codice senza riflettere è poco utile. Al contrario, è
+importante analizzarlo, comprenderlo e modificarlo per capirne meglio il
+funzionamento&mdash;insomma, _giocarci_ in un'ottica _hacker_, nel senso
+originale del termine[^hacker]. In ogni caso, alcuni dei contenuti sono
+interattivi, come mostrato per esempio nel {ref}`chap:uno-sguardo-di-insieme`:
+la loro manipolazione, che non richiede di analizzare del codice, è pensata
+proprio per facilitare la comprensione dei concetti introdotti.
 
 Molto spesso guiderò chi legge nell'implementazione pratica degli strumenti
 fondamentali, soprattutto nella prima parte dedicata alla statistica
@@ -128,6 +127,13 @@ distribuita sotto licenza {extlink}`CC BY-NC-SA 4.0
 associato a questo libro contiene un file che elenca tutte le librerie
 utilizzate per generare i contenuti, incluse quelle necessarie per eseguire il
 codice.
+
+[^hidden-code]: È importante tenere presente che il codice nascosto può
+contenere dettagli tecnici legati alla generazione di contenuti da visualizzare
+nelle pagine web (ad esempio, elementi HTML o stili CSS). Di conseguenza, non è
+scritto nello stesso modo in cui lo si scriverebbe per analizzare dati in un
+ambiente di lavoro tradizionali: la sua struttura risponde a esigenze di
+presentazione e interattività, più che di analisi.
 
 [^hacker]: Il termine _hacker_ è usato nel linguaggio di tutti i giorni con
 un'accezione negativa, riferita a chi persegue intenti dolosi scrivendo o

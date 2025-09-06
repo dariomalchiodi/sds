@@ -18,7 +18,7 @@ anni fa, ho iniziato a insegnare, mi è sembrato naturale adottare lo stesso
 approccio, seguendo in modo inconsapevole un metodo didattico che solo più
 tardi ho scoperto essere codificato nella metodologia del _learning by doing_
 {cite:p}`freire1982`. Questo libro cerca di seguire la stessa filosofia,
-introducendo fin da subito&mdash;ove possibile&mdash;i singoli argomenti
+introducendo fin da subito &mdash; ove possibile &mdash; i singoli argomenti
 all'interno di un contesto applicativo.
 
 ```{margin}
@@ -39,15 +39,15 @@ simularla, così da poterla esplorare usando il metodo scientifico.
 Sperabilmente, ciò dovrebbe permettere di ricavare informazioni, e di usare
 queste ultime per prendere decisioni. Oltre a essere molto divertente,
 riferirsi a un mondo inesistente ha un ulteriore vantaggio: rende più difficile
-stabilire un collegamento diretto tra i problemi del mondo reale e i metodi da
-utilizzare per risolverli, favorendo un apprendimento incentrato sull'uso
-_critico_ di metodi e strumenti.
+stabilire un collegamento diretto tra le _istanze di problemi_ del mondo reale
+e i metodi da utilizzare per risolverli, favorendo un apprendimento incentrato
+sull'uso _critico_ di metodi e strumenti.
 
 
 Nonostante mi sia imbarcato in questa impresa, non sono un esperto di
 supereroi. Chiedo quindi scusa in anticipo a chi ne sa più di me per eventuali
 imprecisioni o errori, sperando che non compromettano la comprensione dei
-concetti esposti. Nonostante io sia un po' più esperto di analisi dei dati,
+concetti esposti. Nonostante io sia un po’ più esperto di analisi dei dati,
 calcolo delle probabilità e statistica, non posso escludere di avere fatto
 errori in generale, anche se confido di non averne fatti troppi.
 

@@ -1,34 +1,74 @@
-from sphinx.transforms import SphinxTransform
-from sphinx.addnodes import pending_xref
-from docutils import nodes
+# ### This works!
+
+# from sphinx.domains.std import StandardDomain
+
+# def setup(app):
+#     """Setup function for the Sphinx extension."""
+    
+#     original_resolve_xref = StandardDomain.resolve_xref
+    
+#     def enhanced_resolve_xref(self, env, fromdocname, builder, typ, target, node, contnode):
+#         if typ == 'numref':
+#             section_patterns = ['chap:', 'sec:', 'section:', 'subsec:', 'part:', 'par:']
+            
+#             if any(target.startswith(pattern) for pattern in section_patterns):
+#                 # For section references, resolve as 'ref' instead
+#                 result = original_resolve_xref(self, env, fromdocname, builder, 'ref', target, node, contnode)
+                
+#                 if result is not None:
+#                     # Add only-number class
+#                     classes = result.get('classes', [])
+#                     if 'only-number' not in classes:
+#                         classes.append('only-number')
+#                         result['classes'] = classes
+#                     return result
+        
+#         # For all other cases, use original method
+#         return original_resolve_xref(self, env, fromdocname, builder, typ, target, node, contnode)
+    
+#     StandardDomain.resolve_xref = enhanced_resolve_xref
+    
+#     return
+
+from sphinx.domains.std import StandardDomain
 
 def setup(app):
     """Setup function for the Sphinx extension."""
     
-    # Add a transform that runs BEFORE reference resolution
-    app.add_transform(NumrefToRefTransform)
+    # Store the original resolve_xref method
+    original_resolve_xref = StandardDomain.resolve_xref
+    
+    def enhanced_resolve_xref(self, env, fromdocname, builder, typ, target, node, contnode):
+        # Handle numref for sections/chapters
+        if typ == 'numref':
+            # Define section/chapter patterns (using colons as they appear in the original labels)
+            section_patterns = [
+                'chap:', 'chapter:',
+                'sec:', 'section:', 'subsec:', 'subsubsec:',
+                'part:', 'par:', 'paragraph:'
+            ]
+            
+            # Check if this is a section/chapter reference
+            if any(target.startswith(pattern) for pattern in section_patterns):
+                # Try to resolve as 'ref' instead of 'numref'
+                result = original_resolve_xref(self, env, fromdocname, builder, 'ref', target, node, contnode)
+                
+                if result is not None:
+                    # Add the only-number class
+                    existing_classes = result.get('classes', [])
+                    if 'only-number' not in existing_classes:
+                        existing_classes.append('only-number')
+                        result['classes'] = existing_classes
+                    return result
+        
+        # For all other cases (including figure/table numref), use original method
+        return original_resolve_xref(self, env, fromdocname, builder, typ, target, node, contnode)
+    
+    # Replace the resolve_xref method
+    StandardDomain.resolve_xref = enhanced_resolve_xref
     
     return {
         'version': '0.1',
         'parallel_read_safe': True,
         'parallel_write_safe': True,
     }
-
-class NumrefToRefTransform(SphinxTransform):
-    """Transform that converts numref to ref with only-number class."""
-    
-    default_priority = 200  # Run BEFORE ReferencesResolver (which is at 210)
-    
-    def apply(self):
-        # Process numref nodes and convert them to ref nodes with only-number class
-        for node in self.document.traverse(pending_xref):
-            if node.get('reftype') == 'numref':
-                # Change reftype to 'ref' so it gets resolved like a ref
-                node['reftype'] = 'ref'
-                # Add a marker to identify this as a converted numref
-                node['converted_numref'] = True
-                # Add the only-number class
-                existing_classes = node.get('classes', [])
-                if 'only-number' not in existing_classes:
-                    existing_classes.append('only-number')
-                    node['classes'] = existing_classes

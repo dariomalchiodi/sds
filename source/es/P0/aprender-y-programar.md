@@ -38,17 +38,17 @@ contenidos generados mediante la ejecución de código Python. Este código se
 muestra explícitamente en todos los casos en los que se guía al lector en la
 implementación de uno o más conceptos explicados en el texto, mientras que se
 oculta cuando sirve, por ejemplo, para generar tablas o gráficos; aunque en
-estos casos siempre hay un link «Mostrar código» que permite visualizarlo.
-Animo a todos a aprovechar esta oportunidad: así como no es muy útil leer un
-texto de forma pasiva, tampoco tiene mucho sentido ejecutar código de forma
-mecánica; al contrario, es importante analizarlo, comprenderlo, modificarlo
-(¡también valen las modificaciones que ayudan a entender mejor cómo
-funciona!)&mdash;en resumen, _jugar_ con él con una mentalidad _hacker_, en el
-sentido original del término[^hacker]. De hecho, también es posible jugar con
-el libro sin necesidad de comprender o ejecutar el código: como se muestra en
-el {ref}`sec:uno-sguardo-di-insieme`, una parte de los contenidos es
-interactiva, y su manipulación está pensada precisamente para facilitar la
-comprensión de los conceptos introducidos.
+estos casos siempre hay un link «Mostrar código» que permite
+visualizarlo[^hidden-code]. Animo a todos a aprovechar esta oportunidad: así
+como no es muy útil leer un texto de forma pasiva, tampoco tiene mucho sentido
+ejecutar código de forma mecánica; al contrario, es importante analizarlo,
+comprenderlo, modificarlo (¡también valen las modificaciones que ayudan a
+entender mejor cómo funciona!)&mdash;en resumen, _jugar_ con él con una
+mentalidad _hacker_, en el sentido original del término[^hacker]. De hecho,
+también es posible jugar con el libro sin necesidad de comprender o ejecutar el
+código: como se muestra en el {ref}`sec:uno-sguardo-di-insieme`, una parte de
+los contenidos es interactiva, y su manipulación está pensada precisamente para
+facilitar la comprensión de los conceptos introducidos.
 ```{margin}
 Las partes interactivas están basadas en PyScript, una tecnología que permite
 ejecutar código Python dentro de navegadores web relativamente modernos. No se
@@ -92,9 +92,11 @@ para enriquecer el proceso de aprendizaje de otra materia. Se dice que uno no
 ha entendido realmente algo si no es capaz de explicárselo a su
 abuela[^cite-granny]: hago mía esta máxima, esperando no distorsionarla
 demasiado al decir que uno no ha entendido realmente un concepto técnico si no
-es capaz de implementarlo escribiendo un programa. Pero si se quiere seguir esta filosofía, hay que haber aprendido ya a escribir software, y esa es una competencia que
-requiere tiempo, energía y material específico para su aprendizaje. También en
-este caso, hay muchos libros que pueden utilizarse con provecho, por ejemplo:
+es capaz de implementarlo escribiendo un programa. Pero si se quiere seguir
+esta filosofía, hay que haber aprendido ya a escribir software, y esa es una
+competencia que requiere tiempo, energía y material específico para su
+aprendizaje. También en este caso, hay muchos libros que pueden utilizarse con
+provecho, por ejemplo:
 
 ```{margin}
 Me habría gustado añadir también un libro introductorio a la programación
@@ -130,6 +132,14 @@ Un silbato Cap’n Crunch Bo’sun (imagen del Heinz Nixdorf MuseumsForum, distr
 [^librerías]: El [repositorio](https://github.com/dariomalchiodi/sds) asociado
 a este libro contiene un archivo que enumera todas las bibliotecas utilizadas
 para generar los contenidos, incluidas las necesarias para ejecutar el código.
+
+[^hidden-code]: Es importante tener en cuenta que el código oculto puede
+contener detalles técnicos relacionados con la generación de contenido
+destinado a ser incluido en páginas web (como elementos HTML o estilos CSS).
+Por lo tanto, no está escrito de la misma manera en que se escribiría código
+para el análisis de datos en entornos de trabajo tradicionales: su estructura
+responde a necesidades de presentación e interactividad, más que a necesidades
+analíticas.
 
 [^hacker]: El término _hacker_ se utiliza hoy en día en el lenguaje común con
 una connotación negativa, que lo asocia esencialmente a quienes persiguen fines

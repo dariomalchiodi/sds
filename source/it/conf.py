@@ -184,7 +184,9 @@ html_theme_options = {
     'pygments_light_style': 'abap',
     'pygments_dark_style': 'native',
     'article_header_end': [],  # Enable article header area for language switcher
-    # "extra_footer": "<p>Footer HTML</p>",
+    'extra_footer': '<p><a rel="license" '
+                    'href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it"'
+                    'target="_blank"> CC BY-NC-SA 4.0</a></p>',
 }
 
 html_context = {

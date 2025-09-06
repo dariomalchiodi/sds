@@ -46,7 +46,7 @@ it:
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
 	@echo "Step 4/9: Building HTML with Sphinx..."
-	$(SPHINXBUILD) -b html tmpsource/it $(SDSDIR)/it
+	$(SPHINXBUILD) -q -b html tmpsource/it $(SDSDIR)/it
 	@echo "Step 5/9: Processing remaining {py} roles in HTML..."
 	python3 -m sds.sds process-py-roles $(SDSDIR)/it --language it
 	@echo "Step 6/9: Making part titles clickable and collapsible..."

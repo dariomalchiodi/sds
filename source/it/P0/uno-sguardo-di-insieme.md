@@ -73,14 +73,13 @@ i valori di alcuni attributi per dieci supereroi selezionati casualmente.
 
 ````{customfigure}
 :name: tab:dataset-excerpt
+:class: full-width
 
 ```{code-block} python
 :class: toggle-code
 import pandas as pd
 
-# Load heroes data only once and persist it
-if 'heroes' not in globals():
-    heroes = pd.read_csv('data/heroes.csv', index_col=0).convert_dtypes()
+heroes = pd.read_csv('data/heroes.csv', index_col=0).convert_dtypes()
     
 source = heroes.sample(10).loc[:,'name':'combat']
 source.index.name = None
@@ -182,11 +181,11 @@ Se tutto questo sembra complicato, non vi preoccupate: i prossimi capitoli
 spiegheranno questi concetti partendo dalle basi.
 ```
 Domande come queste si affrontano con gli strumenti della _statistica
-descrittiva_, introdotta dal {ref}`chap:dati-e-informazione` al
-{ref}`sec:analizzare-relazioni`. Il suo obiettivo è estrarre
-informazioni da un _dataset_ che descrive un insieme di individui, in tutto o
-in parte. Le tecniche impiegate possono essere di due tipi: _qualitative_ o
-_quantitative_.
+descrittiva_, introdotta nei capitoli
+{numref}`chap:dati-e-informazione`&ndash;{numref}`sec:analizzare-relazioni`. Il
+suo obiettivo è estrarre informazioni da un _dataset_ che descrive un insieme
+di individui, in tutto o in parte. Le tecniche impiegate possono essere di due
+tipi: _qualitative_ o _quantitative_.
 
 - L'analisi qualitativa cerca di determinare la natura di un certo fenomeno (ad
   esempio, per rispondere alle domande 5 e 6 nell'elenco precedente). Spesso si
@@ -239,7 +238,7 @@ Gli istogrammi sono spiegati in dettaglio nel {ref}`chap:dati-e-informazione`,
 ma per ora su come leggerne uno. Il grafico è composto da tanti rettangoli:
 ognuno di essi ha come base un intervallo $I$ di possibili valori per il peso,
 e l'altezza è legata alla frazione di supereroi il cui peso rientra in
-quell'intervallo [^histogram]. Guardando l'istogramma, notiamo due cose
+quell'intervallo[^histogram]. Guardando l'istogramma, notiamo due cose
 interessanti:
 
 - i supereroi che pesano più di 125 kg. sono più numerosi di quelli sotto i
@@ -264,8 +263,8 @@ dobbiamo cambiare: non ragioniamo sull'intero _dataset_, ma immaginiamo di
 poter osservare uno qualsiasi dei suoi elementi, senza sapere in anticipo quale
 sarà (ricordatevi della [Legge di Franklin](#par:franklin-law)). Assumiamo
 semplicemente che ogni supereroe abbia la stessa possibilità di essere
-osservato rispetto a tutti gli altri. Nei capitoli da
-{numref}`chap:calcolo-combinatorio` a {numref}`chap:va-e-modelli-continui`,
+osservato rispetto a tutti gli altri. Nei capitoli
+{numref}`chap:calcolo-combinatorio`&ndash;{numref}`chap:va-e-modelli-continui`
 entreremo nella _Teoria della Probabilità_, che ci fornisce strumenti per
 gestire in modo rigoroso l'incertezza dovuta al non sapere quale supereroe
 osserveremo di verrà di volta. Ci concentreremo su degli _eventi_, cioè
@@ -508,7 +507,8 @@ def model_plot_pdf(mu, sigma):
     ax.fill_between(x, 0, y, alpha=0.5, color='tab:blue')
 
     # Use plain text for axis labels to avoid MathJax interference
-    ax.set_xlabel('x', fontsize=12, ha='right')
+    ax.set_xlabel(r'$x$', fontsize=12, ha='right')
+    ax.set_ylabel(r'$f$', fontsize=12, rotation=0)
     ax.xaxis.set_label_coords(1.07, 0.03)
     ax.set_xlim(0, 200)
     ax.set_ylim(0, 0.02)
@@ -598,27 +598,28 @@ trovare dei valori per i parametri che adattano il modello all'istogramma.
 
 Nell'ultima parte del libro, vedremo che esistono vari metodi per determinare
 automaticamente i parametri di un modello, in modo da adattarlo a un insieme di
-dati. Questo è uno degli scopi della _statistica inferenziale_, illustrata a
-partire dal {ref}`chap:statistica-inferenziale` e fino al
-{ref}`chap:statistica-non-parametrica`. Il punto di partenza è sempre un
-_dataset_, che in questo contesto rappresenta un _campione_ di osservazioni
-effettuate su una _popolazione_ più ampia. Su questa popolazione vogliamo fare
-delle ipotesi o trarre conclusioni, anche se non possiamo osservarla nella sua
-interezza. In altre parole, useremo il campione per ottenere informazioni su
-ciò che non sappiamo della popolazione. Il caso più semplice&mdash;e anche
-quello su cui ci concentreremo maggiormente&mdash; è quello in cui la
-popolazione è descritta da una variabile aleatoria, associata a un modello che
-dipende da uno o più parametri sconosciuti. L'obiettivo è quello di
-approssimare questi parametri, o altre quantità che dipendono da essi. Per
-esempio, consideriamo la popolazione dei supereroi nel nostro _dataset_ e
-supponiamo di essere interessati al loro peso medio $p$. Se abbiamo a
-disposizione solo un campione di cento supereroi, il buon senso suggerisce di
-usare la media del loro peso come approssimazione di $p$. In generale,
-chiamiamo _stimatore_ la funzione che viene applicata al campione per ottenere
-questo tipo di approssimazioni. Nel nostro esempio, lo stimatore utilizzato è
-la media aritmetica dei valori del campione, detta _media campionaria_. La
-{numref}`fig:statistics-variability` mostra come variano i valori di questo
-stimatore in seguito all'estrazione di dieci campioni differenti.
+dati. Questo è uno degli scopi della _statistica inferenziale_, illustrata nei
+capitoli
+{ref}`chap:statistica-inferenziale`&ndash;{ref}`chap:statistica-non-parametrica`.
+Il punto di partenza è sempre un _dataset_, che in questo contesto rappresenta
+un _campione_ di osservazioni effettuate su una _popolazione_ più ampia. Su
+questa popolazione vogliamo fare delle ipotesi o trarre conclusioni, anche se
+non possiamo osservarla nella sua interezza. In altre parole, useremo il
+campione per ottenere informazioni su ciò che non sappiamo della popolazione.
+Il caso più semplice &mdash; e anche quello su cui ci concentreremo
+maggiormente &mdash; è quello in cui la popolazione è descritta da una variabile
+aleatoria, associata a un modello che dipende da uno o più parametri
+sconosciuti. L'obiettivo è quello di approssimare questi parametri, o altre
+quantità che dipendono da essi. Per esempio, consideriamo la popolazione dei
+supereroi nel nostro _dataset_ e supponiamo di essere interessati al loro peso
+medio $p$. Se abbiamo a disposizione solo un campione di cento supereroi, il
+buon senso suggerisce di usare la media del loro peso come approssimazione di
+$p$. In generale, chiamiamo _stimatore_ la funzione che viene applicata al
+campione per ottenere questo tipo di approssimazioni. Nel nostro esempio, lo
+stimatore utilizzato è la media aritmetica dei valori del campione, detta
+_media campionaria_. La {numref}`fig:statistics-variability` mostra come
+variano i valori di questo stimatore in seguito all'estrazione di dieci
+campioni differenti.
 
 ````{customfigure}
 :name: fig:statistics-variability
@@ -664,12 +665,12 @@ precedenti.
 Prima però di iniziare con la statistica descrittiva, è importante rivedere
 alcuni concetti fondamentali di programmazione degli elaboratori, e
 soprattutto prendere dimestichezza con gli strumenti computazionali che
-userò in tutto il libro. È questo lo scopo del {ref}`chap:intro-python` e del
-{ref}`chap:pandas`, che aprono la trattazione.
+userò in tutto il libro. È questo lo scopo dei capitoli
+{numref}`chap:intro-python` e {numref}`chap:pandas`, che aprono la trattazione.
 
 ## Esercizi
 
-Al termine di ogni paragrafo sono proposti alcuni esercizi, la cui difficoltà
+Al termine di ogni capitolo sono proposti alcuni esercizi, la cui difficoltà
 di risoluzione è indicata dal numero di pallini racchuso tra parentesi.
 
 ```{exercise} •
