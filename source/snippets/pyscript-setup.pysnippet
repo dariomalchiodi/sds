@@ -1,33 +1,10 @@
 # Common imports and utilities for interactive Python cells
 import asyncio
 from io import StringIO
-from js import console, document, fetch
+from js import console, document, fetch, Uint8Array
 import os
 import sys
 import shutil
-
-def copy_localfs_to_browser(src_root="localfs", dst_root="/home/pyodide"):
-    """
-    Recursively copy all files and directories under `src_root` to `dst_root` in Pyodide.
-    """
-    for root, dirs, files in os.walk(src_root):
-        # Compute the corresponding destination directory
-        relative_path = os.path.relpath(root, src_root)
-        dest_dir = os.path.join(dst_root, relative_path)
-        os.makedirs(dest_dir, exist_ok=True)
-        
-        # Copy all files
-        for fname in files:
-            src_file = os.path.join(root, fname)
-            dst_file = os.path.join(dest_dir, fname)
-            shutil.copy2(src_file, dst_file)
-            console.log(f"Copied {src_file} -> {dst_file}")
-
-copy_localfs_to_browser()
-
-console.log('here are the web fs contents')
-for root, dirs, files in os.walk('/home/pyodide'):
-    console.log(root, dirs, files)
 
 #cache_dir = "/home/pyodide/.cache/matplotlib"
 #os.makedirs(cache_dir, exist_ok=True)
@@ -38,6 +15,47 @@ for root, dirs, files in os.walk('/home/pyodide'):
 #    if os.path.exists(src):
 #        shutil.copy(src, os.path.join(cache_dir, fname))
 #
+
+async def _ensure_localfs():
+    """
+    Recursively download everything under the `localfs` folder of the GitHub repo
+    and replicate it under `/home/pyodide/localfs`.
+    """
+
+    manifest_url = "https://raw.githubusercontent.com/dariomalchiodi/sds/main/localfs/manifest.txt"
+    
+    try:
+        response = await fetch(manifest_url)
+        if not response.ok:
+            console.log(f"Failed to fetch manifest: HTTP {response.status}")
+            return False
+        file_list = (await response.text()).splitlines()
+        
+        for relative_path in file_list:
+            # Compute target path in Pyodide
+            dst_path = os.path.join("/home/pyodide", relative_path)
+            os.makedirs(os.path.dirname(dst_path), exist_ok=True)
+            
+            # Construct raw GitHub URL for the file
+            file_url = f"https://raw.githubusercontent.com/dariomalchiodi/sds/main/localfs/{relative_path}"
+            file_resp = await fetch(file_url)
+            if file_resp.ok:
+                array_buffer = await file_resp.arrayBuffer()
+                py_bytes = bytes(Uint8Array.new(array_buffer))  # <-- convert JS ArrayBuffer to Python bytes
+                with open(dst_path, "wb") as f:
+                    f.write(py_bytes)
+                # console.log(f"Downloaded {relative_path}")
+            else:
+                console.log(f"Failed to fetch {relative_path}: HTTP {file_resp.status}")
+        
+        # console.log("All localfs files downloaded successfully")
+        return True
+    except Exception as e:
+        console.log(f"Error downloading localfs: {e}")
+        return False
+
+# Usage
+await _ensure_localfs()
 
 # Import matplotlib once at the beginning and make it available to all cells
 try:
@@ -179,36 +197,36 @@ def display(obj, target=None, append=True):
 
 # Import required modules for file download and filesystem operations
 
-async def _ensure_heroes_csv():
-    """Ensure heroes.csv is available in data/ directory, always download fresh version"""
-    try:
-        # Create data directory if it doesn't exist
-        os.makedirs("data", exist_ok=True)
-        
-        # console.log("Loading heroes.csv dataset into data/ directory...")
-        
-        # Always fetch fresh CSV content from GitHub to ensure latest version
-        response = await fetch("https://raw.githubusercontent.com/dariomalchiodi/sds/main/data/heroes.csv")
-        
-        if response.ok:
-            csv_content = await response.text()
-            
-            # Write to Pyodide's virtual filesystem in data/ directory
-            with open("data/heroes.csv", "w") as f:
-                f.write(csv_content)
-            
-            console.log("Heroes dataset stored successfully in data/heroes.csv")
-            return True
-        else:
-            console.log(f"Failed to load heroes.csv: HTTP {{response.status}}")
-            return False
-            
-    except Exception as e:
-        console.log(f"Error loading heroes.csv: {{e}}")
-        return False
-
-# Load the file and wait for completion
-await _ensure_heroes_csv()
+#async def _ensure_heroes_csv():
+#    """Ensure heroes.csv is available in data/ directory, always download fresh version"""
+#    try:
+#        # Create data directory if it doesn't exist
+#        os.makedirs("data", exist_ok=True)
+#        
+#        # console.log("Loading heroes.csv dataset into data/ directory...")
+#        
+#        # Always fetch fresh CSV content from GitHub to ensure latest version
+#        response = await fetch("https://raw.githubusercontent.com/dariomalchiodi/sds/main/data/heroes.csv")
+#        
+#        if response.ok:
+#            csv_content = await response.text()
+#            
+#            # Write to Pyodide's virtual filesystem in data/ directory
+#            with open("data/heroes.csv", "w") as f:
+#                f.write(csv_content)
+#            
+#            console.log("Heroes dataset stored successfully in data/heroes.csv")
+#            return True
+#        else:
+#            console.log(f"Failed to load heroes.csv: HTTP {{response.status}}")
+#            return False
+#            
+#    except Exception as e:
+#        console.log(f"Error loading heroes.csv: {{e}}")
+#        return False
+#
+## Load the file and wait for completion
+#await _ensure_heroes_csv()
 
 def render_altair(result, cell_number):
     # This is likely an Altair chart - try different rendering methods
