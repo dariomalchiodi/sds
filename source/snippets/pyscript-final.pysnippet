@@ -1,0 +1,32 @@
+
+    if result is not None:
+        # Check if result is an Altair chart (look for Chart class or specific methods)
+        result_type = str(type(result))
+        # console.log(f"Result type: {{result_type}}")
+        
+        # Check if it's an Altair chart by looking for specific Altair characteristics
+        is_altair = ('altair' in result_type.lower() or 
+                    'chart' in result_type.lower() or 
+                    hasattr(result, 'to_json') and hasattr(result, 'data'))
+        
+        if is_altair:
+            render_altair(result, {cell_number})
+        # Check if result is a pandas DataFrame and render as HTML table
+        elif hasattr(result, 'to_html') and callable(getattr(result, 'to_html')) and hasattr(result, 'index'):
+            # This is likely a pandas DataFrame - display as HTML table in graph div
+            html_table = result.to_html(
+                classes='table table-hover table-bordered table-sm',
+                table_id=f'table-{cell_number}',
+                border=0,
+                escape=False,
+                index_names=False
+            )
+            element = document.getElementById("graph-{cell_number}")
+            if element:
+                element.innerHTML = html_table
+        else:
+            # For other types, convert to string and display in out div
+            # console.log(f"Other result type: {{result_type}}")
+            element = document.getElementById("out-{cell_number}")
+            if element:
+                element.innerHTML = str(result)

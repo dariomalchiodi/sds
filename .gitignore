@@ -74,6 +74,10 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 
+# But do NOT ignore localfs/.cache
+!localfs/.cache/
+!localfs/.cache/**
+
 # -----------------------------------------------------------------------------
 # SPHINX / DOCUMENTATION
 # -----------------------------------------------------------------------------

@@ -224,8 +224,10 @@ numpy==2.3.1
     #   matplotlib
     #   matplotlib-venn
     #   pandas
+    #   patsy
     #   scikit-learn
     #   scipy
+    #   statsmodels
 overrides==7.7.0
     # via jupyter-server
 packaging==25.0
@@ -240,12 +242,17 @@ packaging==25.0
     #   nbconvert
     #   pydata-sphinx-theme
     #   sphinx
+    #   statsmodels
 pandas==2.3.1
-    # via -r requirements.in
+    # via
+    #   -r requirements.in
+    #   statsmodels
 pandocfilters==1.5.1
     # via nbconvert
 parso==0.8.5
     # via jedi
+patsy==1.0.1
+    # via statsmodels
 pexpect==4.9.0
     # via ipython
 pillow==11.3.0
@@ -340,6 +347,7 @@ scipy==1.16.1
     # via
     #   matplotlib-venn
     #   scikit-learn
+    #   statsmodels
 send2trash==1.8.3
     # via jupyter-server
 six==1.17.0
@@ -395,6 +403,8 @@ sphinxcontrib-serializinghtml==2.0.0
     # via sphinx
 stack-data==0.6.3
     # via ipython
+statsmodels==0.14.5
+    # via -r requirements.in
 terminado==0.18.1
     # via
     #   jupyter-server

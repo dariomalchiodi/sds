@@ -1,0 +1,7 @@
+    try:
+        result = {final_code}
+    except Exception as e:
+        sys.stderr.write(f"Error executing code: {{str(e)}}\\n")
+        import traceback
+        traceback.print_exc()
+        result = None

@@ -124,9 +124,7 @@ il grafico.
 
 import altair as alt
 
-# Use cached heroes data if available
-if 'heroes' not in globals():
-    heroes = pd.read_csv('data/heroes.csv', index_col=0).convert_dtypes()
+heroes = pd.read_csv('data/heroes.csv', index_col=0).convert_dtypes()
 
 filter = (heroes['creator'].isin(heroes.creator.value_counts()[:15].index))
 filter &= (heroes['weight']<200)
@@ -209,10 +207,6 @@ valori del peso compaiono nel _dataset_.
 :class: toggle-code
 
 import matplotlib.pyplot as plt
-
-# Use cached heroes data if available
-if 'heroes' not in globals():
-    heroes = pd.read_csv('data/heroes.csv', index_col=0).convert_dtypes()
 
 fig, ax = plt.subplots()
 data = heroes.weight[heroes.weight < 200]
@@ -352,6 +346,7 @@ alle nuove impostazioni.
 
 ```{code-block} python
 :class: toggle-code 
+
 import numpy as np
 from js import document
 from pyodide.ffi import create_proxy
@@ -390,7 +385,10 @@ def plot_pdf(mu, sigma):
     # Display in protected div
     img_html = '<div class="no-mathjax"><img src="data:image/png;base64,' + \
                img_base64 + '" style="max-width: 100%; height: auto;" /></div>'
-    Element("pdf-output").write(img_html)
+    
+    target_element = document.getElementById("pdf-output")
+    if target_element:
+        target_element.innerHTML = img_html
     
     plt.close(fig)
 
@@ -438,6 +436,7 @@ plot_pdf(0, 1)
 Grafico della densità di probabilità descritta da {eq}`eq:weight_normal`.
 ````
 
+
 Uno dei motivi per i quali si parla di «modello» di variabile aleatoria è
 legato al fatto che è possibile scegliere i valori dei suoi parametri in modo
 da _adattare_ la funzione di densità di probabilità, e più in generale la
@@ -457,46 +456,6 @@ qualitativo tra i due grafici.
 
 import base64
 import io
-
-# Use variable persistence - check if heroes/data is already loaded
-if 'heroes' not in builtins.__dict__:
-    # Load heroes data only once per session
-    import pandas as pd
-    import numpy as np
-    import matplotlib.pyplot as plt
-    
-    # Check if heroes.csv exists and download if needed
-    from pathlib import Path
-    heroes_path = Path("data/heroes.csv")
-    if not heroes_path.exists():
-        # Ensure directory exists
-        heroes_path.parent.mkdir(parents=True, exist_ok=True)
-        
-        # Download the file
-        from urllib.request import urlretrieve
-        url = "https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2018/2018-04-23/week4_powerlifting.csv"
-        try:
-            urlretrieve(url, heroes_path)
-            print("Downloaded heroes.csv")
-        except Exception as e:
-            print(f"Error downloading heroes.csv: {e}")
-    
-    # Load the data
-    try:
-        heroes = pd.read_csv(heroes_path)
-        print(f"Loaded heroes data with {len(heroes)} rows")
-    except Exception as e:
-        print(f"Error loading heroes.csv: {e}")
-        heroes = pd.DataFrame()
-    
-    # Store in builtins for persistence
-    builtins.heroes = heroes
-    builtins.data = heroes.weight[heroes.weight < 200]
-    print("Variables stored in builtins for persistence")
-else:
-    # Use existing data
-    heroes = builtins.heroes
-    data = builtins.data
 
 def model_plot_pdf(mu, sigma):
     x = np.linspace(0, 200, 400)

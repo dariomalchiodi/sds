@@ -1,0 +1,14 @@
+# Cell {cell_number}: Execute Python code
+
+# Capture stdout and stderr
+old_stdout = sys.stdout
+old_stderr = sys.stderr
+captured_stdout = StringIO()
+captured_stderr = StringIO()
+
+try:
+    sys.stdout = captured_stdout
+    sys.stderr = captured_stderr
+    
+    # Execute setup code
+{setup_code}

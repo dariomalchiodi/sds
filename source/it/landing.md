@@ -7,21 +7,21 @@
 ### Avvertenza
 
 Questo libro rappresenta un progetto in corso, attualmente in una fase
-preliminare. Il materiale è generato utilizzando
-{extlink}`Sphinx <https://www.sphinx-doc.org>` per la generazione
-delle pagine web, {extlink}`MyST <https://mystmd.org>` (una tecnologia in
-corso di sviluppo all'interno del progetto {extlink}`Executable
-Books <https://github.com/executablebooks>`) per descrivere i
-contenuti e del software che ho sviluppato ad hoc per implementare alcuni
-aspetti importanti legati alla scrittura di un libro, come la personalizzazione
-dei riferimenti incrociati, l'esecuzione automatica del codice o le componenti
-interattive, che non sono adeguatamente supportate dalle tecnologie sopra
-menzionate.
+preliminare. Sconsiglio dunque di usare le informazioni qui riportate come base
+principale per impostare lo studio delle tecniche di analisi dei dati, del
+calcolo delle probabilità o della statistica.
 
-Sconsiglio di usare le informazioni qui riportate come base principale per
-impostare lo studio delle tecniche di analisi dei dati, del calcolo delle
-probabilità o della statistica. Lo stato attuale dei contenuti è riepilogato
-nella lista che segue.
+Il materiale è generato utilizzando {extlink}`Sphinx
+<https://www.sphinx-doc.org>` per la generazione delle pagine web,
+{extlink}`MyST <https://mystmd.org>` (una tecnologia in corso di sviluppo
+all'interno del progetto {extlink}`Executable Books
+<https://github.com/executablebooks>`) per descrivere i contenuti e del
+software che ho sviluppato ad hoc per implementare alcuni aspetti importanti
+legati alla scrittura di un libro, come la personalizzazione dei riferimenti
+incrociati, l'esecuzione automatica del codice o le componenti interattive, che
+non sono adeguatamente supportate dalle tecnologie sopra menzionate.
+
+Lo stato attuale dei contenuti è riepilogato nella lista che segue.
 
 
 

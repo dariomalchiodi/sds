@@ -1,0 +1,46 @@
+# Inline Python expressions execution
+console.log("Executing inline Python expressions");
+
+# Process all inline expressions
+inline_expressions = {inline_expressions!r}
+
+for cell_num, expression in inline_expressions:
+    try:
+        console.log(f"Evaluating inline expression {{cell_num}}: {{expression}}")
+        result = eval(expression)
+        
+        # Convert result to string representation
+        if result is not None:
+            result_str = str(result)
+        else:
+            result_str = "None"
+        
+        # Display the result in the inline span
+        element = document.getElementById(f"inline-{{cell_num}}")
+        if element:
+            element.innerHTML = result_str
+            
+            # Add appropriate CSS classes based on result type
+            element.className = "py-inline-result"
+            
+            # Check if result is numeric for special styling
+            if isinstance(result, (int, float, complex)):
+                element.className += " numeric"
+            
+            # Add title attribute for accessibility (shows on hover)
+            element.title = f"Computed result: {{result_str}}"
+            
+            console.log(f"Updated inline-{{cell_num}} with: {{result_str}}")
+        else:
+            console.log(f"Element inline-{{cell_num}} not found")
+            
+    except Exception as e:
+        console.log(f"Error in inline expression {{cell_num}}: {{str(e)}}")
+        # Display error message in red
+        element = document.getElementById(f"inline-{{cell_num}}")
+        if element:
+            element.innerHTML = f'<span style="color: red; font-style: normal;">Error: {{str(e)}}</span>'
+            element.className = "py-inline-result error"
+            element.title = f"Error evaluating: {{expression}}"
+
+console.log("Finished executing inline Python expressions");

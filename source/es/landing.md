@@ -5,8 +5,12 @@
 
 ### Aviso
 
-Este libro es un trabajo en curso, actualmente en una fase preliminar. Los
-contenidos son generados utilizando
+Este libro es un trabajo en curso, actualmente en una fase preliminar.
+Entonces, No recomiendo utilizar la información presentada aquí como base
+principal para el estudio de técnicas de análisis de datos, teoría de la
+probabilidad o estadística.
+
+Los contenidos son generados utilizando
 [Sphinx](https://www.sphinx-doc.org/en/master/) para la generación de páginas
 web, [MyST](https://mystmd.org/) (una tecnología en desarrollo dentro del
 proyecto [Executable Books](https://github.com/executablebooks)) para describir
@@ -16,9 +20,7 @@ libro, como la personalización de referencias cruzadas, la ejecución automáti
 de código y el uso de componentes interactivos, que no son plenamente admitidas
 por las tecnologías mencionadas.
 
-No recomiendo utilizar la información presentada aquí como base principal para
-el estudio de técnicas de análisis de datos, teoría de la probabilidad o
-estadística. El estado actual del contenido se resume en la siguiente lista.
+El estado actual del contenido se resume en la siguiente lista.
 
 Introducción  
 : A la espera de revisión

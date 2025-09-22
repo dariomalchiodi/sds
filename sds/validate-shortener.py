@@ -130,15 +130,16 @@ def validate_shortener_mappings(filename="shortener-mappings.json"):
     
     return is_valid, errors
 
-def main():
+def main(verbose=False):
     """Main validation function."""
     # Parse command line arguments
     filename = "shortener-mappings.json"
     if len(sys.argv) > 1:
         filename = sys.argv[1]
     
-    print(f"🔍 Validating {filename}...")
-    print("=" * 50)
+    if verbose:
+        print(f"🔍 Validating {filename}...")
+        print("=" * 50)
     
     is_valid, errors = validate_shortener_mappings(filename)
     
@@ -149,28 +150,29 @@ def main():
         print()
     
     if is_valid:
-        print("✅ Validation passed!")
-        
-        # Show summary statistics
-        try:
-            with open(filename, 'r') as f:
-                mappings = json.load(f)
+        if verbose:
+            print("✅ Validation passed!")
             
-            external_urls = sum(1 for url in mappings.values() if url.startswith('http'))
-            internal_urls = sum(1 for url in mappings.values() if url.startswith('/'))
-            
-            print(f"\n📊 Summary:")
-            print(f"  • Total mappings: {len(mappings)}")
-            print(f"  • External URLs: {external_urls}")
-            print(f"  • Internal URLs: {internal_urls}")
-            
-            print(f"\n💡 All short codes:")
-            for code in sorted(mappings.keys()):
-                print(f"  • {code}")
+            # Show summary statistics
+            try:
+                with open(filename, 'r') as f:
+                    mappings = json.load(f)
                 
-        except:
-            pass
-        
+                external_urls = sum(1 for url in mappings.values() if url.startswith('http'))
+                internal_urls = sum(1 for url in mappings.values() if url.startswith('/'))
+                
+                print(f"\n📊 Summary:")
+                print(f"  • Total mappings: {len(mappings)}")
+                print(f"  • External URLs: {external_urls}")
+                print(f"  • Internal URLs: {internal_urls}")
+                
+                print(f"\n💡 All short codes:")
+                for code in sorted(mappings.keys()):
+                    print(f"  • {code}")
+                    
+            except:
+                pass
+            
         sys.exit(0)
     else:
         print("❌ Validation failed!")

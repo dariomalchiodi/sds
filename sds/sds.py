@@ -30,6 +30,8 @@ LABELS = {'Theorem': {'it': 'Teorema', 'en': 'Theorem',
           'Exercise': {'it': 'Esercizio', 'en': 'Exercise',
                        'fr': 'Exercice', 'es': 'Ejercicio'}}
 
+SNIPPETS = 'source/snippets/'
+
 def get_root_doc(language):
     # Build the module path as a string
     module_path = f"source.{language}.conf"
@@ -183,6 +185,7 @@ def generate_myst_interactive(setup_code, final_code, cell_number):
     Returns:
         str: MyST Markdown code with Python role and HTML divs with PyScript
     '''
+
     # Combine all code for the Python role
     if setup_code and final_code:
         all_code = f"{setup_code}\n{final_code}"
@@ -197,22 +200,20 @@ def generate_myst_interactive(setup_code, final_code, cell_number):
     python_block = f"```python\n{all_code}\n```"
     
     # Create the HTML raw block with divs and PyScript
-    html_content = f'''<div id="splash-{cell_number}" class="splash"></div>
-<div id="out-{cell_number}" class="cell-out"></div>
-<div id="stdout-{cell_number}" class="cell-stdout"></div>
-<div id="stderr-{cell_number}" class="cell-stderr"></div>
 
-<py-script>
-{setup_code}
-'''
+    html = f'<div id="splash-{cell_number}" class="splash"></div>\n'
+    html += f'<div id="out-{cell_number}" class="cell-out"></div>\n'
+    html += f'<div id="stdout-{cell_number}" class="cell-stdout"></div>\n'
+    html += f'<div id="stderr-{cell_number}" class="cell-stderr"></div>\n\n'
+    html += f'<py-script>\n{setup_code}\n'
     
     # Add display call if there's a final expression
     if final_code:
-        html_content += f'display({final_code}, target="out-{cell_number}")\n'
+        html += f'display({final_code}, target="out-{cell_number}")\n'
     
-    html_content += '</py-script>'
+    html += '</py-script>'
     
-    html_block = f"```{{raw}} html\n{html_content}\n```"
+    html_block = f'```{{raw}} html\n{html}\n```'
     
     # Combine both blocks
     return f"{python_block}\n\n{html_block}"
@@ -228,6 +229,7 @@ def generate_inline_python(python_code, cell_number, language='en'):
     Returns:
         str: Direct HTML content for inline execution (not wrapped in raw block)
     '''
+
     # Get localized labels
     labels = get_toggle_labels(language)
     
@@ -243,248 +245,11 @@ def generate_pyscript_setup():
         str: HTML block with PyScript setup that should be included once per
         document
     '''
-    return '''```{raw} html
 
-<py-script>
-# Common imports and utilities for interactive Python cells
-import sys
-from io import StringIO
-from js import document, console
-
-# Utility function to hide splash loading indicators
-def hide_splash(target_id):
-    """Hide the splash loading div in the specified target element"""
-    try:
-        target_element = document.getElementById(target_id)
-        if target_element:
-            splash_divs = target_element.getElementsByClassName('splash')
-            for splash in splash_divs:
-                splash.style.display = 'none'
-    except Exception as e:
-        console.log(f"Could not hide splash in {target_id}: {e}")
-
-# Import matplotlib once at the beginning and make it available to all cells
-try:
-    import matplotlib
-    import matplotlib.pyplot as plt
-    import io
-    import base64
-    
-    # Set matplotlib to use Agg backend to prevent auto-display
-    matplotlib.use('Agg')
-    
-    # Apply custom SDS matplotlib style for consistent figure styling
-    import matplotlib.pyplot as plt
-    
-    # Custom SDS style configuration (matching sds.mplstyle file)
-    custom_style = {
-        # Axes settings
-        'axes.axisbelow': True,
-        'axes.facecolor': '#eaf3f5',
-        'axes.edgecolor': 'black',
-        'axes.linewidth': 1.0,
-        'axes.grid': True,
-        'axes.grid.axis': 'both',
-        'axes.labelsize': 10,
-        'axes.labelpad': 10,
-        'axes.spines.top': False,
-        'axes.spines.right': False,
-        'axes.titlesize': 12,
-        
-        # Boxplots settings
-        'boxplot.boxprops.color': 'C0',
-        'boxplot.whiskerprops.color': 'C0',
-        'boxplot.medianprops.linewidth': 2,
-        'boxplot.medianprops.color': 'C1',
-        
-        # Figure settings
-        'figure.dpi': 100,
-        'figure.edgecolor': 'none',
-        'figure.facecolor': '#eaf3f5',
-        'figure.figsize': [4, 3.2],
-        
-        # Grid settings
-        'grid.color': 'lightgray',
-        'grid.linestyle': '-',
-        'grid.linewidth': 0.5,
-        'grid.alpha': 0.7,
-        
-        # Line settings
-        'lines.color': 'C4',
-        'lines.linewidth': 2.0,
-        'lines.markersize': 8,
-        
-        # Font settings
-        'font.size': 12,
-        'font.family': 'sans-serif',
-        'axes.titlesize': 14,
-        'axes.labelsize': 12,
-        'xtick.labelsize': 10,
-        'ytick.labelsize': 10,
-        'legend.fontsize': 11,
-        
-        # Legend
-        'legend.frameon': True,
-        'legend.framealpha': 0.8,
-        'legend.fancybox': True,
-        'legend.shadow': False,
-        
-        # Mathtext settings
-        'mathtext.fontset': 'stix',
-        'mathtext.rm': 'stix',
-        'mathtext.it': 'stix',
-        
-        # Patch settings
-        'patch.facecolor': 'xkcd:baby blue',
-        'patch.edgecolor': 'xkcd:blue gray',
-        'patch.force_edgecolor': True,
-        
-        # Text settings
-        'text.usetex': False,
-        
-        # Savefig settings
-        'savefig.dpi': 100,
-        'savefig.bbox': 'tight',
-        'savefig.facecolor': '#eaf3f5',
-        'savefig.edgecolor': 'none',
-        
-        # Ticks
-        'xtick.direction': 'inout',
-        'ytick.direction': 'inout',
-        'xtick.major.size': 4,
-        'ytick.major.size': 4,
-        'xtick.minor.size': 2,
-        'ytick.minor.size': 2
-    }
-    
-    # Apply the custom style
-    plt.rcParams.update(custom_style)
-    console.log("Custom SDS matplotlib style applied successfully")
-    
-    # Make matplotlib available globally
-    import builtins
-    builtins.plt = plt
-    builtins.matplotlib = matplotlib
-    builtins.io = io
-    builtins.base64 = base64
-    
-    _matplotlib_available = True
-    console.log("Matplotlib loaded successfully")
-except ImportError:
-    _matplotlib_available = False
-    console.log("Matplotlib not available")
-
-# Import pandas and altair globally
-try:
-    import pandas as pd
-    import builtins
-    builtins.pd = pd
-    console.log("Pandas loaded successfully")
-except ImportError:
-    console.log("Pandas not available")
-
-# Install and import altair
-console.log("Installing altair...")
-try:
-    import micropip
-    await micropip.install("altair")
-    console.log("Altair installed via micropip")
-except Exception as e:
-    console.log(f"Error installing altair via micropip: {e}")
-
-try:
-    import altair as alt
-    import builtins
-    builtins.alt = alt
-    console.log("Altair imported and made available globally")
-except ImportError as e:
-    console.log(f"Failed to import altair: {e}")
-except Exception as e:
-    console.log(f"Error with altair: {e}")
-
-# Import pydom for DOM manipulation
-try:
-    from pyweb import pydom
-    import builtins
-    builtins.pydom = pydom
-    console.log("pydom imported and made available globally")
-except ImportError as e:
-    console.log(f"Failed to import pydom: {e}")
-    # Fallback: provide a simple pydom-like interface using PyScript's DOM
-    # access
-    try:
-        from js import document
-        
-        class SimplePydom:
-            def __getitem__(self, selector):
-                if selector.startswith('#'):
-                    # ID selector
-                    element_id = selector[1:]
-                    element = document.getElementById(element_id)
-                    return [element] if element else []
-                elif selector.startswith('.'):
-                    # Class selector
-                    class_name = selector[1:]
-                    elements = document.getElementsByClassName(class_name)
-                    return list(elements)
-                else:
-                    # Tag selector
-                    elements = document.getElementsByTagName(selector)
-                    return list(elements)
-        
-        pydom = SimplePydom()
-        import builtins
-        builtins.pydom = pydom
-        console.log("Simple pydom fallback created and made available globally")
-    except Exception as fallback_error:
-        console.log(f"Error creating pydom fallback: {fallback_error}")
-except Exception as e:
-    console.log(f"Error with pydom: {e}")
-
-def display(obj, target=None, append=True):
-    """Display an object in the specified target div."""
-    if target:
-        element = document.getElementById(target)
-        if element:
-            if append:
-                element.innerHTML += str(obj)
-            else:
-                element.innerHTML = str(obj)
-    else:
-        console.log(str(obj))
-
-def Element(element_id):
-    """Helper class to write to DOM elements."""
-    class ElementWriter:
-        def __init__(self, id):
-            self.id = id
-            
-        def write(self, content):
-            element = document.getElementById(self.id)
-            if element:
-                element.innerHTML = str(content)
-                
-        def append(self, content):
-            element = document.getElementById(self.id)
-            if element:
-                element.innerHTML += str(content)
-                
-        def clear(self):
-            element = document.getElementById(self.id)
-            if element:
-                element.innerHTML = ""
-    
-    return ElementWriter(element_id)
-
-# Make functions available globally (PyScript/Pyodide compatible)
-import builtins
-builtins.display = display
-builtins.Element = Element
-builtins._matplotlib_available = _matplotlib_available
-
-console.log("PyScript utilities loaded successfully")
-</py-script>
-```'''
+    with open(SNIPPETS + 'pyscript-setup.pysnippet',
+              'r', encoding='utf-8') as f:
+        snippet = f.read()
+    return snippet
 
 def get_toggle_labels(language='en'):
     '''Get localized labels for toggle buttons and loading indicators.
@@ -494,6 +259,7 @@ def get_toggle_labels(language='en'):
     Returns:
         dict: Dictionary with 'show', 'hide', and 'wait' keys for the labels
     '''
+
     labels = {
         'en': {
             'show': 'Show code',
@@ -520,13 +286,17 @@ def get_toggle_labels(language='en'):
     return labels.get(language, labels['en'])
 
 def _get_div_classes(base_class, class_attr):
-    """Generate CSS classes for output divs based on original code block classes."""
+    '''Generate CSS classes for output divs based on original code block
+    classes.'''
+
     classes = [base_class]
     if class_attr and 'full-width' in class_attr:
         classes.append('full-width')
     return ' '.join(classes)
 
-def process_myst_document(myst_content, include_setup=True, language='en'):
+def process_myst_document(myst_content, source_file,
+                          include_setup=True, language='en'):
+
     '''Processes a MyST Markdown document and adds interactive HTML blocks
     after each Python code block.
     
@@ -649,23 +419,11 @@ def process_myst_document(myst_content, include_setup=True, language='en'):
             labels = get_toggle_labels(language)
             
             # Wrap the code block in a toggle wrapper
-            result_parts.append(f'''
-```{{raw}} html
-<div class="toggle-code-wrapper">
-    <button class="toggle-code-button">
-        <span class="triangle">▶</span>
-        <span class="button-text"> {labels['show']}</span>
-    </button>
-    <div class="toggle-code-content">
-```
-
-{cleaned_block}
-
-```{{raw}} html
-    </div>
-</div>
-```
-''')
+            with open(SNIPPETS + 'toggle-code-block.md',
+                      'r', encoding='utf-8') as f:
+                toggle_snippet = f.read()
+            result_parts.append(toggle_snippet.format(show=labels['show'],
+                                            cleaned_block=cleaned_block))
         else:
             result_parts.append(original_block)
         
@@ -680,14 +438,17 @@ def process_myst_document(myst_content, include_setup=True, language='en'):
         setup_code, final_code = split_code(python_code)
         
         # Create only the HTML divs (no PyScript yet)
-        html_divs = f'''
-```{{raw}} html
-<div id="splash-{cell_number}" class="{_get_div_classes('splash', class_attr)}"></div>
-<div id="out-{cell_number}" class="{_get_div_classes('cell-out', class_attr)}"></div>
-<div id="stdout-{cell_number}" class="{_get_div_classes('cell-stdout', class_attr)}"></div>
-<div id="stderr-{cell_number}" class="{_get_div_classes('cell-stderr', class_attr)}"></div>
-<div id="graph-{cell_number}" class="{_get_div_classes('cell-graph no-mathjax', class_attr)}"></div>
-```'''
+        with open(SNIPPETS + 'cell-divs.md',
+                  'r', encoding='utf-8') as f:
+            snippet = f.read()
+
+        html_divs = snippet.format(cell_number=cell_number, \
+            splash_class=_get_div_classes('splash', class_attr),
+            out_class=_get_div_classes('cell-out', class_attr),
+            stdout_class=_get_div_classes('cell-stdout', class_attr),
+            stderr_class=_get_div_classes('cell-stderr', class_attr),
+            graph_class=_get_div_classes('cell-graph no-mathjax', class_attr))
+
         result_parts.append(html_divs)
         
         # Check if matplotlib is used in this cell
@@ -699,353 +460,48 @@ def process_myst_document(myst_content, include_setup=True, language='en'):
         py_script_class = ""
         if class_attr and 'toggle-code' not in class_attr:
             py_script_class = f' class="{class_attr}"'
-        
-        pyscript_content = f'''
-<py-script{py_script_class}>
-# Cell {cell_number}: Execute Python code
 
-# Ensure heroes.csv is available in data/ directory before executing any code
-if not hasattr(__builtins__, '_heroes_csv_ready') or not getattr(__builtins__, '_heroes_csv_ready', False):
-    # Import required modules for file download and filesystem operations
-    from js import fetch, console
-    import asyncio
-    import os
-    
-    async def _ensure_heroes_csv():
-        """Ensure heroes.csv is available in data/ directory, always download fresh version"""
-        try:
-            # Create data directory if it doesn't exist
-            os.makedirs("data", exist_ok=True)
-            
-            console.log("Loading heroes.csv dataset into data/ directory...")
-            
-            # Always fetch fresh CSV content from GitHub to ensure latest version
-            response = await fetch("https://raw.githubusercontent.com/dariomalchiodi/sds/main/data/heroes.csv")
-            
-            if response.ok:
-                csv_content = await response.text()
-                
-                # Write to Pyodide's virtual filesystem in data/ directory
-                with open("data/heroes.csv", "w") as f:
-                    f.write(csv_content)
-                
-                console.log("Heroes dataset loaded successfully to data/heroes.csv")
-                return True
-            else:
-                console.log(f"Failed to load heroes.csv: HTTP {{response.status}}")
-                return False
-                
-        except Exception as e:
-            console.log(f"Error loading heroes.csv: {{e}}")
-            return False
-    
-    # Load the file and wait for completion
-    await _ensure_heroes_csv()
-    console.log("Heroes.csv is now available for pd.read_csv('data/heroes.csv')")
-    
-    # Set global flag to avoid repeated downloads
-    import builtins
-    builtins._heroes_csv_ready = True
-
-# Ensure altair is available in this cell
-if not hasattr(__builtins__, 'alt') or not getattr(__builtins__, 'alt', None):
-    console.log("Installing altair in current cell...")
-    try:
-        import micropip
-        await micropip.install("altair")
-        import altair as alt
-        import builtins
-        builtins.alt = alt
-        console.log("Altair installed and available in current cell")
-    except Exception as altair_error:
-        console.log(f"Error installing altair in current cell: {{altair_error}}")
-
-# Load previously stored variables from builtins (for variable persistence across cells)
-import builtins
-builtin_attrs = list(dir(builtins))  # Create a list to avoid "dictionary changed size during iteration"
-for attr_name in builtin_attrs:
-    if not attr_name.startswith('_') and attr_name not in ['display', 'Element', 'plt', 'matplotlib', 'io', 'base64', 'pd', 'alt']:
-        try:
-            attr_value = getattr(builtins, attr_name)
-            # Only load if it's not a built-in function/class
-            if not callable(attr_value) or hasattr(attr_value, '__module__'):
-                globals()[attr_name] = attr_value
-                # Debug: log important variables being loaded
-                if attr_name in ['heroes', 'source', 'data', 'chart', 'filter']:
-                    console.log(f"Loading variable {{attr_name}} from builtins")
-        except:
-            pass  # Skip if there's any issue loading a variable
-
-# Capture stdout and stderr
-old_stdout = sys.stdout
-old_stderr = sys.stderr
-captured_stdout = StringIO()
-captured_stderr = StringIO()
-
-try:
-    sys.stdout = captured_stdout
-    sys.stderr = captured_stderr
-    
-    # Execute setup code
-{_indent_code(setup_code, "    ")}'''
-        
+        with open(SNIPPETS + 'pyscript-initial-content.pysnippet',
+                  'r', encoding='utf-8') as f:
+            snippet = f.read()
+        pyscript_content = snippet.format(cell_number=cell_number,
+                                          setup_code=_indent_code(setup_code,
+                                                                 "    "))
         if final_code:
-            pyscript_content += f'''
-    
-    # Execute final code and capture result
-    result = None'''
+            pyscript_content += f'    # Execute final code and capture result'
+            pyscript_content += '\n    result = None\n'
             
             # Only include matplotlib handling if matplotlib is actually used
             if uses_matplotlib:
-                pyscript_content += f'''
-    
-    # Handle matplotlib plots (before executing final code that might display)
-    matplotlib_handled = False
-    if _matplotlib_available:
-        # Check if there are any figures before final execution
-        if plt.get_fignums():
-            # Get the current figure
-            fig = plt.gcf()
-            
-            # Save plot to base64 string
-            img_buffer = io.BytesIO()
-            fig.savefig(img_buffer, format='png', bbox_inches='tight', dpi=100)
-            img_buffer.seek(0)
-            img_base64 = base64.b64encode(img_buffer.getvalue()).decode('utf-8')
-            img_buffer.close()
-            
-            # Display the image in the graph div
-            img_html = '<div class="no-mathjax"><img src="data:image/png;base64,' + img_base64 + '" style="max-width: 100%; height: auto;" /></div>'
-            Element("graph-{cell_number}").write(img_html)
-            
-            # Clear the figure to prevent it from being shown elsewhere
-            plt.close(fig)
-            matplotlib_handled = True
-    
-    # Execute final code only if it's not plt.show() and matplotlib wasn't handled
-    if not matplotlib_handled:
-        try:
-            result = {final_code}
-        except Exception as e:
-            sys.stderr.write(f"Error executing code: {{str(e)}}\\n")
-            import traceback
-            traceback.print_exc()
-            result = None'''
-            else:
-                pyscript_content += f'''
-    try:
-        result = {final_code}
-    except Exception as e:
-        sys.stderr.write(f"Error executing code: {{str(e)}}\\n")
-        import traceback
-        traceback.print_exc()
-        result = None'''
+                with open(SNIPPETS + 'pyscript-final-matplotlib.pysnippet',
+                  'r', encoding='utf-8') as f:
+                    snippet = f.read()
+                pyscript_content += snippet.format(cell_number=cell_number,
+                                                   final_code=final_code)
+            else: # final-nomatplotlib
+                with open(SNIPPETS + 'pyscript-final-nomatplotlib.pysnippet',
+                  'r', encoding='utf-8') as f:
+                    snippet = f.read()
+                pyscript_content += snippet.format(final_code=final_code)
         else:
             # Only include matplotlib handling if matplotlib is actually used
             # (setup-only case)
             if uses_matplotlib:
-                pyscript_content += '''
-    
-    # Handle matplotlib plots (after setup execution)
-    if _matplotlib_available:
-        # Check if there are any figures
-        if plt.get_fignums():
-            # Get the current figure
-            fig = plt.gcf()
-            
-            # Save plot to base64 string
-            img_buffer = io.BytesIO()
-            fig.savefig(img_buffer, format='png', bbox_inches='tight', dpi=100)
-            img_buffer.seek(0)
-            img_base64 = base64.b64encode(img_buffer.getvalue()).decode('utf-8')
-            img_buffer.close()
-            
-            # Display the image in the graph div
-            img_html = '<div class="no-mathjax"><img src="data:image/png;base64,' + img_base64 + '" style="max-width: 100%; height: auto;" /></div>'
-            Element("graph-{cell_number}").write(img_html)
-            
-            # Clear the figure to prevent it from being shown elsewhere
-            plt.close(fig)
-'''
-        
-        pyscript_content += f'''
-finally:
-    # Restore stdout and stderr
-    sys.stdout = old_stdout
-    sys.stderr = old_stderr
-    
-    # Store variables in builtins for persistence across cells
-    import builtins
-    local_vars = dict(locals())  # Create a copy to avoid iteration issues
-    for var_name, var_value in local_vars.items():
-        if not var_name.startswith('_') and var_name not in ['sys', 'StringIO', 'console', 'document', 'old_stdout', 'old_stderr', 'captured_stdout', 'captured_stderr', 'builtins', 'local_vars']:
-            try:
-                setattr(builtins, var_name, var_value)
-                # Debug: log important variables being saved
-                if var_name in ['heroes', 'source', 'data', 'chart', 'filter']:
-                    console.log(f"Saving variable {{var_name}} to builtins")
-            except:
-                pass  # Skip if there's any issue storing a variable
-    
-    # Display outputs
-    stdout_content = captured_stdout.getvalue()
-    stderr_content = captured_stderr.getvalue()
-    
-    # Hide the splash (loading) div
-    splash_element = document.getElementById("splash-{cell_number}")
-    if splash_element:
-        splash_element.style.display = "none"
-    
-    if stdout_content:
-        Element("stdout-{cell_number}").write(stdout_content)
-    if stderr_content:
-        Element("stderr-{cell_number}").write(stderr_content)'''
+                with open(SNIPPETS + 'pyscript-nofinal-matplotlib.pysnippet',
+                  'r', encoding='utf-8') as f:
+                    snippet = f.read()
+                pyscript_content += snippet.format(cell_number=cell_number)
+
+        with open(SNIPPETS + 'pyscript-middle.pysnippet',
+                  'r', encoding='utf-8') as f:
+            snippet = f.read()
+        pyscript_content += snippet.format(cell_number=cell_number)
         
         if final_code:
-            pyscript_content += f'''
-    if result is not None:
-        # Check if result is an Altair chart (look for Chart class or specific methods)
-        result_type = str(type(result))
-        console.log(f"Result type: {{result_type}}")
-        
-        # Check if it's an Altair chart by looking for specific Altair characteristics
-        is_altair = ('altair' in result_type.lower() or 
-                    'chart' in result_type.lower() or 
-                    hasattr(result, 'to_json') and hasattr(result, 'data'))
-        
-        if is_altair:
-            # This is likely an Altair chart - try different rendering methods
-            try:
-                console.log("Attempting to render Altair chart")
-                
-                # Debug: check available methods
-                methods = [attr for attr in dir(result) if not attr.startswith('_')]
-                console.log(f"Available methods: {{methods[:15]}}")  # Show first 15
-                
-                # Try multiple rendering approaches
-                rendered = False
-                
-                # Method 1: Try to_json() and use Vega-Embed directly (most reliable)
-                if hasattr(result, 'to_json') and not rendered:
-                    try:
-                        console.log("Trying to_json() method with Vega-Embed")
-                        chart_spec = result.to_json()
-                        console.log("Chart spec length:", len(chart_spec))
-                        
-                        # Parse the JSON spec
-                        import json
-                        spec_dict = json.loads(chart_spec)
-                        console.log("Parsed spec successfully")
-                        
-                        # Create a unique div for this chart
-                        chart_div_id = "altair-chart-{cell_number}"
-                        chart_html = '<div id="' + chart_div_id + '" style="width: 100%; height: 400px;"></div>'
-                        Element("graph-{cell_number}").write(chart_html)
-                        
-                        # Use Vega-Embed to render the chart - create JS code safely
-                        # Build JavaScript code line by line to avoid conflicts
-                        js_lines = []
-                        js_lines.append("setTimeout(function() " + "{{")
-                        js_lines.append("try " + "{{")
-                        js_lines.append("const spec = " + chart_spec + ";")
-                        js_lines.append("vegaEmbed('#" + chart_div_id + "', spec).then(function(result) " + "{{")
-                        js_lines.append("console.log('Chart rendered successfully');")
-                        js_lines.append("}}).catch(function(error) " + "{{")
-                        js_lines.append("console.error('Vega-Embed error:', error);")
-                        js_lines.append("}});")
-                        js_lines.append("}} catch(e) " + "{{")
-                        js_lines.append("console.error('Error rendering chart:', e);")
-                        js_lines.append("}}")
-                        js_lines.append("}}, 100);")
-                        
-                        js_code = " ".join(js_lines)
-                        
-                        # Execute the JavaScript code
-                        from js import eval as js_eval
-                        js_eval(js_code)
-                        
-                        rendered = True
-                        console.log("Successfully rendered using to_json() and Vega-Embed")
-                    except Exception as e:
-                        console.log("to_json() with Vega-Embed failed:", str(e))
-                
-                # Method 2: Try to_html() - fallback approach
-                if hasattr(result, 'to_html') and not rendered:
-                    try:
-                        console.log("Trying to_html() method - fallback approach")
-                        html_repr = result.to_html()
-                        console.log(f"HTML repr length: {{len(html_repr)}}")
-                        if len(html_repr) > 100:  # Only use if we got substantial content
-                            console.log("Writing HTML directly to graph container")
-                            
-                            # Simply write the HTML content directly without trying to execute scripts
-                            # The script execution approach is too risky in this context
-                            chart_container = '<div id="altair-fallback-{cell_number}" style="width: 100%; height: 400px; border: 1px solid #ddd; padding: 10px;">' + html_repr + '</div>'
-                            Element("graph-{cell_number}").write(chart_container)
-                            
-                            rendered = True
-                            console.log("Successfully rendered using to_html()")
-                    except Exception as e:
-                        console.log(f"to_html() failed: {{e}}")
-                
-                # Method 2: Try _repr_html_() method
-                if hasattr(result, '_repr_html_') and not rendered:
-                    try:
-                        console.log("Trying _repr_html_() method")
-                        html_repr = result._repr_html_()
-                        console.log(f"HTML repr length: {{len(html_repr)}}")
-                        if len(html_repr) > 100:  # Only use if we got substantial content
-                            Element("graph-{cell_number}").write(html_repr)
-                            rendered = True
-                            console.log("Successfully rendered using _repr_html_()")
-                    except Exception as e:
-                        console.log(f"_repr_html_() failed: {{e}}")
-                
-                # Method 3: Try show() method
-                if hasattr(result, 'show') and not rendered:
-                    try:
-                        console.log("Trying show() method")
-                        result.show()
-                        rendered = True
-                        console.log("Successfully called show() method")
-                    except Exception as e:
-                        console.log(f"show() failed: {{e}}")
-                
-                # Method 4: Fallback - show chart spec as JSON
-                if not rendered:
-                    console.log("Using fallback - showing as JSON")
-                    if hasattr(result, 'to_json'):
-                        try:
-                            chart_spec = result.to_json()
-                            console.log(f"Chart spec length: {{len(chart_spec)}}")
-                            Element("out-{cell_number}").write(f"Chart spec: {{chart_spec[:500]}}...")
-                        except Exception as e:
-                            console.log(f"to_json() failed: {{e}}")
-                            Element("out-{cell_number}").write(f"Altair chart (methods: {{methods[:5]}}): {{str(result)[:200]}}")
-                    else:
-                        Element("out-{cell_number}").write(f"Altair chart (methods: {{methods[:5]}}): {{str(result)[:200]}}")
-                
-            except Exception as e:
-                console.log(f"Error rendering Altair chart: {{e}}")
-                Element("out-{cell_number}").write(f"Error rendering chart: {{str(e)}}")
-        # Check if result is a pandas DataFrame and render as HTML table
-        elif hasattr(result, 'to_html') and callable(getattr(result, 'to_html')) and hasattr(result, 'index'):
-            # This is likely a pandas DataFrame - display as HTML table in graph div
-            html_table = result.to_html(
-                classes='table table-hover table-bordered table-sm',
-                table_id=f'table-{cell_number}',
-                border=0,
-                escape=False,
-                index_names=False
-            )
-            Element("graph-{cell_number}").write(html_table)
-        else:
-            # For other types, convert to string and display in out div
-            console.log(f"Other result type: {{result_type}}")
-            Element("out-{cell_number}").write(str(result))'''
-        
-        pyscript_content += '''
-</py-script>'''
+            with open(SNIPPETS + 'pyscript-final.pysnippet',
+                      'r', encoding='utf-8') as f:
+                snippet = f.read()
+            pyscript_content += snippet.format(cell_number=cell_number)
         
         pyscript_blocks.append(pyscript_content)
         
@@ -1057,89 +513,56 @@ finally:
     
     # Add all PyScript blocks at the end
     if pyscript_blocks or inline_expressions:
-        result_parts.append('\n\n```{raw} html\n')
         
+        # Write the companion .py file for this page
+        source_path = Path(source_file)
+        script_name = source_path.stem + '.py'
+        script_dir = source_path.parent
+        script_path = script_dir / script_name
+
+        all_pyscript_content = []
+
         # Add setup first if requested
         if include_setup:
             setup_content = generate_pyscript_setup()
-            # Extract just the PyScript content from the setup
-            setup_script = setup_content.split('<py-script>')[1].split('</py-script>')[0]
-            result_parts.append(f'<py-script>{setup_script}</py-script>\n')
-        
+            all_pyscript_content.append(f'{setup_content}\n')
+
         # Add PyScript code for inline expressions
         if inline_expressions:
-            inline_pyscript_content = f'''
-<py-script>
-# Inline Python expressions execution
-console.log("Executing inline Python expressions");
+            with open(SNIPPETS + 'inline-python-expressions.pysnippet',
+                      'r', encoding='utf-8') as f:
+                snippet = f.read()
+            
+            inline_pyscript_content = \
+                snippet.format(inline_expressions=inline_expressions)
 
-# Process all inline expressions
-inline_expressions = {inline_expressions!r}
+            all_pyscript_content.append(inline_pyscript_content)
+            all_pyscript_content.append('\n\n')
+            
+        for block in pyscript_blocks:
+            all_pyscript_content.append(block)
+            all_pyscript_content.append('\n\n')
 
-for cell_num, expression in inline_expressions:
-    try:
-        console.log(f"Evaluating inline expression {{cell_num}}: {{expression}}")
-        result = eval(expression)
-        
-        # Convert result to string representation
-        if result is not None:
-            result_str = str(result)
-        else:
-            result_str = "None"
-        
-        # Display the result in the inline span
-        element = document.getElementById(f"inline-{{cell_num}}")
-        if element:
-            element.innerHTML = result_str
-            
-            # Add appropriate CSS classes based on result type
-            element.className = "py-inline-result"
-            
-            # Check if result is numeric for special styling
-            if isinstance(result, (int, float, complex)):
-                element.className += " numeric"
-            
-            # Add title attribute for accessibility (shows on hover)
-            element.title = f"Computed result: {{result_str}}"
-            
-            console.log(f"Updated inline-{{cell_num}} with: {{result_str}}")
-        else:
-            console.log(f"Element inline-{{cell_num}} not found")
-            
-    except Exception as e:
-        console.log(f"Error in inline expression {{cell_num}}: {{str(e)}}")
-        # Display error message in red
-        element = document.getElementById(f"inline-{{cell_num}}")
-        if element:
-            element.innerHTML = f'<span style="color: red; font-style: normal;">Error: {{str(e)}}</span>'
-            element.className = "py-inline-result error"
-            element.title = f"Error evaluating: {{expression}}"
+        all_pyscript_content = '\n\n'.join(all_pyscript_content)
 
-console.log("Finished executing inline Python expressions");
-</py-script>
-'''
-            result_parts.append(inline_pyscript_content)
-        
-        # Add all collected PyScript blocks
-        for pyscript_block in pyscript_blocks:
-            result_parts.append(pyscript_block)
-            result_parts.append('\n')
+        with open(script_path, 'w', encoding='utf-8') as f:
+            f.write(all_pyscript_content)
+
+        result_parts.append('\n\n```{raw} html\n')
+        result_parts.append(f'<script type="py" '
+                            f'src="{script_name}"></script>\n')
+
         
         # Add toggle initialization script at the end if any toggle-code blocks
         # exist
         has_toggle_code = any('class="toggle-code"' in block
                               for block in pyscript_blocks)
         if has_toggle_code:
-            result_parts.append('''
-<script>
-// Initialize toggle code functionality after PyScript execution
-setTimeout(function() {
-    if (typeof window.initializeToggleCode === 'function') {
-        window.initializeToggleCode();
-    }
-}, 100);
-</script>
-''')
+            with open(SNIPPETS + 'toggle-code-script.js',
+                      'r', encoding='utf-8') as f:
+                snippet = f.read()
+            
+            result_parts.append(f'<script>\n{snippet}\n</script>\n')
         
         result_parts.append('```')
     
@@ -1155,7 +578,7 @@ def _indent_code(code, indent):
         str: The indented code
     '''
     if not code:
-        return ""
+        return ''
     
     lines = code.split('\n')
     indented_lines = [indent + line if line.strip() else line for line in lines]
@@ -1218,6 +641,7 @@ def process_myst_file(file_path, include_setup=True):
     # Process the content
     try:
         processed_content = process_myst_document(original_content,
+                                                  source_file=file_path,
                                                   include_setup=include_setup,
                                                   language=language)
     except Exception as e:
@@ -1315,14 +739,15 @@ def _extract_imports(code):
     return packages - builtin_modules
 
 def _uses_matplotlib(code):
-    """Check if code uses matplotlib or pyplot functionality.
+    '''Check if code uses matplotlib or pyplot functionality.
     
     Args:
         code (str): Python source code
         
     Returns:
         bool: True if matplotlib is used, False otherwise
-    """
+    '''
+
     if not code:
         return False
     
@@ -1399,8 +824,8 @@ def _uses_matplotlib(code):
 
 def make_part_titles_clickable_and_collapsible(html_root_dir, dry_run=False,
                                                language='it'):
-    """Add collapsible functionality to part sub-TOCs without making part
-    titles clickable."""
+    '''Add collapsible functionality to part sub-TOCs without making part
+    titles clickable.'''
     
     # Parse the TOC file to find parts
     toc_file = f'source/{language}/_toc.yml'
@@ -1418,7 +843,7 @@ def make_part_titles_clickable_and_collapsible(html_root_dir, dry_run=False,
         caption = part.get('caption', '')
         if caption:
             part_captions.append(caption)
-            print(f"Found part '{caption}' - will be made collapsible")
+            # print(f"Found part '{caption}' - will be made collapsible")
     
     if not part_captions:
         print(f"No parts found for language {language}")
@@ -1427,197 +852,11 @@ def make_part_titles_clickable_and_collapsible(html_root_dir, dry_run=False,
     print(f"Making part titles collapsible for {language}...")
     html_files = glob.glob(os.path.join(html_root_dir, '**', '*.html'),
                            recursive=True)
-    
-    # CSS and JavaScript for collapsible functionality
-    collapsible_css = """
-<style>
-/* Fix alignment of main title with other navigation items */
-.bd-sidenav__home-link {
-    padding-left: 0 !important;
-    margin-left: 0 !important;
-}
 
-.bd-sidenav__home-link .toctree-l1 {
-    padding-left: 0 !important;
-    margin-left: 0 !important;
-}
-
-.bd-sidenav__home-link .toctree-l1 a {
-    padding-left: 0 !important; /* Match padding of other navigation items */
-}
-
-/* Collapsible TOC elements */
-.part-collapsible, .chapter-collapsible {
-    cursor: pointer;
-    position: relative;
-    margin-right: calc(30px + 0.1875rem);
-    padding-top: 0.25rem;
-}
-
-/* Chapter links should show normal link cursor on main area, pointer on chevron */
-.chapter-collapsible {
-    cursor: default; /* Let the link handle its own cursor */
-}
-
-/* Add chevron using FontAwesome (matching pydata-sphinx-theme approach) */
-/* Target part headers and chapter links specifically */
-.part-collapsible::after, .chapter-collapsible::after {
-    content: "\\f078"; /* FontAwesome chevron-down unicode */
-    font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", "FontAwesome";
-    font-weight: 900;
-    font-style: normal;
-    font-size: 0.75rem;
-    position: absolute;
-    right: -calc(30px + 0.1875rem);
-    top: 0;
-    width: 30px;
-    height: 30px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: var(--pst-color-text-muted);
-    transition: transform 0.2s ease;
-    border-radius: 4px;
-}
-
-/* Hover effect for chevron */
-.part-collapsible::after:hover, .chapter-collapsible::after:hover {
-    background-color: var(--pst-color-surface);
-    color: var(--pst-color-text-base);
-}
-
-/* But exclude nested spans to avoid duplicates */
-.part-collapsible span.caption-text::after {
-    display: none;
-}
-
-/* Rotate chevron when collapsed (matching Sphinx behavior: down=expanded, right=collapsed) */
-.part-collapsible.collapsed::after, .chapter-collapsible.collapsed::after {
-    transform: rotate(-90deg);
-}
-
-/* Section transitions */
-.part-chapters, .chapter-sub-items {
-    transition: all 0.3s ease;
-    overflow: hidden;
-}
-
-.part-chapters.collapsed, .chapter-sub-items.collapsed {
-    max-height: 0;
-    opacity: 0;
-}
-
-/* Hide Sphinx default details/summary elements */
-details summary {
-    display: none;
-}
-
-details {
-    summary: none;
-}
-</style>
-"""
-    
-    collapsible_js = """
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Find all part titles with collapsible class
-    const partTitles = document.querySelectorAll('.part-collapsible');
-    partTitles.forEach(function(title) {
-        // Find the chapters container more reliably
-        let chapters = title.nextElementSibling;
-        
-        // Skip any non-ul elements (like whitespace nodes)
-        while (chapters && chapters.nodeType !== 1) {
-            chapters = chapters.nextSibling;
-        }
-        while (chapters && !chapters.classList.contains('part-chapters')) {
-            chapters = chapters.nextElementSibling;
-        }
-        
-        if (!chapters) {
-            console.log('No chapters container found for part:', title.textContent.trim());
-            return;
-        }
-        
-        // Check if this part contains the current page
-        let containsCurrentPage = false;
-        const currentItems = chapters.querySelectorAll('.current, .active');
-        containsCurrentPage = currentItems.length > 0;
-        
-        console.log('Part:', title.textContent.trim(), 'contains current page:', containsCurrentPage);
-        
-        // Initialize parts as collapsed by default, but expand if it contains current page
-        if (!containsCurrentPage) {
-            title.classList.add('collapsed');
-            chapters.classList.add('collapsed');
-        }
-        
-        title.addEventListener('click', function(e) {
-            // Make click work on the entire element, not just chevron area
-            e.preventDefault();
-            console.log('Clicked on part:', title.textContent.trim());
-            
-            title.classList.toggle('collapsed');
-            chapters.classList.toggle('collapsed');
-        });
-    });
-    
-    // Find all chapter titles with collapsible class
-    const chapterTitles = document.querySelectorAll('.chapter-collapsible');
-    
-    chapterTitles.forEach(function(title) {
-        // Initialize chapters as collapsed by default (except current page)
-        const parentLi = title.closest('li');
-        const isCurrentPage = parentLi && (parentLi.classList.contains('current') || parentLi.classList.contains('active'));
-        
-        if (!isCurrentPage) {
-            title.classList.add('collapsed');
-        }
-        
-        const subItems = title.parentElement.querySelector('.chapter-sub-items');
-        if (subItems) {
-            if (!isCurrentPage) {
-                subItems.classList.add('collapsed');
-            }
-        }
-        
-        title.addEventListener('click', function(e) {
-            console.log('Clicked on chapter:', title.textContent.trim());
-            
-            // Check if the click was specifically on the chevron (right side of the element)
-            const rect = title.getBoundingClientRect();
-            const clickX = e.clientX;
-            const chevronArea = rect.right - 40; // Chevron is positioned 30px + padding from right
-            
-            if (clickX >= chevronArea) {
-                // Click was on chevron area - only handle collapse/expand
-                e.preventDefault();
-                if (subItems) {
-                    title.classList.toggle('collapsed');
-                    subItems.classList.toggle('collapsed');
-                }
-            } else {
-                // Click was on the main title area - allow navigation AND handle collapse
-                // Don't prevent default - let the link navigate
-                if (subItems) {
-                    title.classList.toggle('collapsed');
-                    subItems.classList.toggle('collapsed');
-                }
-                // Navigation will happen naturally due to the link
-            }
-        });
-    });
-    
-    // Remove any remaining details elements that might not have been converted
-    const remainingDetails = document.querySelectorAll('details');
-    remainingDetails.forEach(function(detail) {
-        detail.style.display = 'none';
-    });
-});
-</script>
-"""
+    with open(SNIPPETS + 'collapsible.js',
+              'r', encoding='utf-8') as f:
+        snippet = f.read()
+    collapsible_js = f'<script>\n{snippet}\n</script>'
     
     files_modified = 0
     processed_parts = set()  # Track which parts we've already logged
@@ -1741,8 +980,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     element_text = element.get_text(strip=True)[:50]
                     if element_text not in incorrect_elements_found:
                         incorrect_elements_found.append(element_text)
-                        warn = "Removed incorrect part-collapsible class from" \
-                               f" {element.name} element: {element_text}"
+                        warn = 'Removed incorrect part-collapsible class from' \
+                               f' {element.name} element: {element_text}'
                         print(warn)
                     
                     classes = element.get('class', [])
@@ -1781,7 +1020,8 @@ document.addEventListener('DOMContentLoaded', function() {
                                 # Remove the details wrapper and move sub-items
                                 # after the chapter link
                                 details.extract()  # Remove details element
-                                parent_li.append(sub_ul)  # Add sub-items directly to parent li
+                                # Add sub-items directly to parent li
+                                parent_li.append(sub_ul)
                                 
                                 changed = True
             
@@ -1799,8 +1039,6 @@ document.addEventListener('DOMContentLoaded', function() {
                                 'part-collapsible' in style_tag.string:
                                 style_tag.decompose()
                         
-                        head.append(BeautifulSoup(collapsible_css,
-                                                  'html.parser'))
                         changed = True
                     
                     # Add JavaScript before closing body (replace if exists)
@@ -1844,7 +1082,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 def process_html_py_roles(html_root_dir, dry_run=False, language='en'):
-    """
+    '''
     Process HTML files to replace any remaining {py} roles with interactive
     spans.
     
@@ -1860,7 +1098,7 @@ def process_html_py_roles(html_root_dir, dry_run=False, language='en'):
     
     Returns:
         dict: Summary of changes made
-    """
+    '''
     
     changes_summary = {
         'files_processed': 0,
@@ -1968,14 +1206,14 @@ def process_html_py_roles(html_root_dir, dry_run=False, language='en'):
 
 
 def _add_pyscript_for_inline_expressions(html_root_dir, inline_expressions):
-    """
+    '''
     Add PyScript execution code to the first HTML file to handle inline
     expressions.
     
     Args:
         html_root_dir (str): Path to the HTML build directory  
         inline_expressions (list): List of (cell_number, python_code) tuples
-    """
+    '''
     
     # Find the first suitable HTML file (not in _static, genindex, etc.)
     html_files = list(Path(html_root_dir).rglob("*.html"))
@@ -1997,57 +1235,11 @@ def _add_pyscript_for_inline_expressions(html_root_dir, inline_expressions):
             content = f.read()
         
         # Create the PyScript execution code
-        pyscript_code = f'''
-<!-- PyScript execution for inline {len(inline_expressions)} {{py}} roles -->
-<py-script>
-# Inline Python expressions execution
-console.log("Executing {len(inline_expressions)} inline Python expressions");
-
-# Process all inline expressions
-inline_expressions = {inline_expressions!r}
-
-for cell_num, expression in inline_expressions:
-    try:
-        console.log(f"Evaluating inline expression {{cell_num}}: {{expression}}")
-        result = eval(expression)
-        
-        # Convert result to string representation
-        if result is not None:
-            result_str = str(result)
-        else:
-            result_str = "None"
-        
-        # Display the result in the inline span
-        element = document.getElementById(f"inline-{{cell_num}}")
-        if element:
-            element.innerHTML = result_str
-            
-            # Add appropriate CSS classes based on result type
-            element.className = "py-inline-result"
-            
-            # Check if result is numeric for special styling
-            if isinstance(result, (int, float, complex)):
-                element.className += " numeric"
-            
-            # Add title attribute for accessibility (shows on hover)
-            element.title = f"Computed result: {{result_str}}"
-            
-            console.log(f"Updated inline-{{cell_num}} with: {{result_str}}")
-        else:
-            console.log(f"Element inline-{{cell_num}} not found")
-            
-    except Exception as e:
-        console.log(f"Error in inline expression {{cell_num}}: {{str(e)}}")
-        # Display error message in red
-        element = document.getElementById(f"inline-{{cell_num}}")
-        if element:
-            element.innerHTML = f'<span style="color: red; font-style: normal;">Error: {{str(e)}}</span>'
-            element.className = "py-inline-result error"
-            element.title = f"Error evaluating: {{expression}}"
-
-console.log("Finished executing inline Python expressions");
-</py-script>
-'''
+        with open(SNIPPETS + 'pyscript-inline.pysnippet',
+                  'r', encoding='utf-8') as f:
+            snippet = f.read()
+            pyscript_code = snippet.format(
+                inline_expressions=inline_expressions)
         
         # Try to insert the PyScript code before the closing </body> tag
         if '</body>' in content:
@@ -2067,7 +1259,7 @@ console.log("Finished executing inline Python expressions");
         print(f"Error adding PyScript to {target_file}: {e}")
 
 def generate_toc(language='it', toc_data=None, dry_run=False):
-    """
+    '''
     Reads the _toc.yml file for a specified language and creates an OrderedDict
     with chapter and section numbering.
     
@@ -2082,7 +1274,8 @@ def generate_toc(language='it', toc_data=None, dry_run=False):
                     - sections get numbers like "1.1", "1.2", "2.1"
                     - appendix chapters get letters like "A", "B", "C"
                     - appendix sections get numbers like "A.1", "A.2", "B.1"
-    """
+    '''
+
     appendix_keyword = {'it': 'Appendici', 'en': 'Appendices',
                         'fr': 'Annexes', 'es': 'Apéndices'}
 
@@ -2188,13 +1381,13 @@ def generate_toc(language='it', toc_data=None, dry_run=False):
     return toc
 
 def apply_numbering(language):
-    """
+    '''
     Recursively list all HTML files in build/sds/<language> and print their
     paths.
     
     Args:
         language (str): Language code (e.g., 'it', 'en', 'fr', 'es').
-    """
+    '''
 
     html_dir = os.path.join('build', 'sds', language)
     html_files = glob.glob(os.path.join(html_dir, '**', '*.html'),
@@ -2210,7 +1403,8 @@ def apply_numbering(language):
         if '_static' in file_path or '_sources' in file_path:
             continue
 
-        short_path = file_path if len(file_path) < 60 else '...' + file_path[-57:]
+        short_path = file_path if len(file_path) < 60 \
+                               else '...' + file_path[-57:]
         if len(short_path) < 60:
             short_path = short_path.ljust(60)
         # print(f"Apply numbering to: {short_path}", end='\r', flush=True)
@@ -2263,10 +1457,12 @@ def apply_numbering(language):
             if label in numbered_toc.label_to_caption:
                 a_tag.string = numbered_toc.label_to_caption[label]
 
-        for a_tag in file_soup.find_all('a', class_='only-number reference internal'):
+        for a_tag in file_soup.find_all('a',
+                                class_='only-number reference internal'):
             label = a_tag['href'].split('#')[-1]
             if label in numbered_toc.label_to_caption:
-                a_tag.string = numbered_toc.label_to_caption[label].split(' ')[-1]
+                a_tag.string = (numbered_toc.label_to_caption[label]
+                                            .split(' ')[-1])
         
         # for text_node in file_soup.find_all(string=True):
         #     if "Theorem" in text_node:
@@ -2286,9 +1482,11 @@ def apply_numbering(language):
     return
 
 def main():
-    """Command-line interface for sds.py functions."""
+    '''Command-line interface for sds.py functions.'''
+
     parser = argparse.ArgumentParser(description='Process documentation files')
-    subparsers = parser.add_subparsers(dest='command', help='Available commands')
+    subparsers = parser.add_subparsers(dest='command',
+                                       help='Available commands')
 
     # Add subparser for chapter-section numbering
     parser_numbering = subparsers.add_parser('apply-numbering',

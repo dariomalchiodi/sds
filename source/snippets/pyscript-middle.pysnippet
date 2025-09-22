@@ -1,0 +1,23 @@
+
+finally:
+    # Restore stdout and stderr
+    sys.stdout = old_stdout
+    sys.stderr = old_stderr
+    
+    # Display outputs
+    stdout_content = captured_stdout.getvalue()
+    stderr_content = captured_stderr.getvalue()
+    
+    # Hide the splash (loading) div
+    splash_element = document.getElementById("splash-{cell_number}")
+    if splash_element:
+        splash_element.style.display = "none"
+    
+    if stdout_content:
+        element = document.getElementById("stdout-{cell_number}")
+        if element:
+            element.innerHTML = stdout_content
+    if stderr_content:
+        element = document.getElementById("stderr-{cell_number}")
+        if element:
+            element.innerHTML = stderr_content

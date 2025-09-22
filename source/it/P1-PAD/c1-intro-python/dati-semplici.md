@@ -10,26 +10,32 @@ nb_execution: false
 (sec:dati-semplici)=
 # Dati semplici
 
-Come indicato nel precedente paragrafo, i dati semplici permettono di fare
-riferimento a entità che non è particolarmente sensato suddividere, vuoi
-perché questa cosa non è possibile, vuoi perché non risulta interessante per
-i nostri scopi. I tipi di dati semplici sui quali ci concentreremo
-principalmente sono quelli numerici (interi, decimali e booleani) e quello che
-permette di lavorare con le stringhe, sebbene descriverò brevemente anche altri
-tipi di dati.
+Come spiegato nel paragrafo precedente, i dati semplici rappresentano entità
+che non ha senso suddividere ulteriormente, vuoi perché non è possibile farlo,
+vuoi perché non è rilevante per i nostri scopi. I tipi di dati semplici sui
+quali mi concentrerò nel seguito sono quelli numerici &mdash; interi, decimali
+e booleani &mdash; e quello che permette di lavorare con le stringhe, pur
+menzionando brevemente anche altri tipi di dati.
+
 
 ## Tipi numerici
 
-Tra i tipi che si possono utilizzare per esprimere delle quantità numeriche,
-`int` e `float` sono quelli più utilizzati in Python: il primo permette di
-memorizzare numeri interi, il secondo numeri decimali (quelli che comunemente
-chiamiamo «numeri con la virgola»). Come anticipato nel paragrafo precedente,
-`int` e `float` rappresentano due classi, e i numeri corrispondenti ne
-costituiscono gli oggetti. Siccome nella programmazione l'uso di costanti
-numeriche è particolarmente frequente, Python permette di fare riferimento a
-queste costanti senza dover necessariamente creare in modo esplicito i
-corrispondenti oggetti. Come quasi in tutti i linguaggi, questo viene fatto
-tramite la scrittura di _letterali_ di una particolare grammatica.
+Tra i tipi che esprimono quantità numeriche, `int` e `float` sono tra i più
+utilizzati in Python: il primo corrisponde ai numeri interi, il secondo a
+quelli decimali (quelli che comunemente chiamiamo «numeri con la virgola»).
+Come già accennato, `int` e `float` sono classi, i cui oggetti sono i numeri
+sopra menzionati. Siccome nella programmazione è particolarmente frequente
+l'uso di espressioni numeriche costanti, per esempio per riferirsi al numero
+`42`[^42], Python permette di fare riferimento a queste espressioni senza dover
+creare esplicitamente i corrispondenti oggetti. Come nella maggior parte dei
+linguaggi, ciò si realizza scrivendo _letterali_ di una particolare grammatica.
+
+
+
+
+
+
+
 
 ```{admonition} Letterali
  Nell'ambito di un fissato linguaggio di programmazione, il termine
@@ -39,7 +45,7 @@ rispettivamente di tipo intero e decimale, in praticamente tutti i linguaggi di
 programmazione, mentre `'foo'` è un letterale di tipo stringa in Python ma non
 in Java oppure in Go. Non tutti i tipi hanno dei letterali (per esempio, i tipi
 che corrispondono ai file o alle date non hanno dei letterali associati in
-Python&mdash;né probabilmente in alcun altro linguaggio).
+Python &mdash; né probabilmente in alcun altro linguaggio).
 ```
 
 Il modo più naturale di ottenere un letterale di tipo `int` è quello di
@@ -96,6 +102,40 @@ risultato per alcune operazioni aritmetiche indefinite, come calcolare il
 logaritmo di un numero negativo (notate che invece la divisione per zero causa
 l'emissione di un'eccezione), ma può anche essere impiegato per segnalare
 valori mancanti in un _dataset_.
+
+
+
+
+
+
+
+
+
+## Tipi numerici
+
+Tra i tipi numerici disponibili in Python, i più utilizzati sono `int` e `float`: il primo serve a memorizzare numeri interi, il secondo numeri decimali. Come già accennato, `int` e `float` rappresentano due classi, e i valori numerici sono oggetti di queste classi. Poiché l’uso di costanti numeriche è molto frequente, Python permette di scrivere direttamente i valori senza dover creare esplicitamente gli oggetti corrispondenti, tramite i cosiddetti _letterali_.
+
+```{admonition} Letterali
+Un _letterale_ è un valore costante di un dato tipo, espresso secondo una notazione prefissata. Ad esempio, `42` e `3.14` sono letterali interi e decimali rispettivamente in quasi tutti i linguaggi di programmazione, mentre `'foo'` è un letterale di tipo stringa in Python, ma non in Java o Go. Non tutti i tipi hanno letterali: ad esempio, file o date non dispongono di un letterale associato in Python.
+```
+
+Il modo più semplice di ottenere un intero è scrivere una sequenza di cifre, eventualmente preceduta da un segno: il risultato rappresenta un numero in base dieci[^int-prefix]. Gli interi in Python hanno _precisione arbitraria_, quindi non esiste un valore massimo o minimo definito, fatta eccezione per la memoria disponibile[^bigint]. Per migliorare la leggibilità dei numeri grandi, è possibile inserire un carattere di _underscore_ (`_`) tra le cifre, separando ad esempio migliaia o evidenziando componenti logiche diverse (come in un numero di telefono).
+
+Per i numeri decimali (`float`), il letterale è formato da un eventuale segno, dalle cifre della parte intera, dal punto decimale `.` e dalle cifre della parte frazionaria. È obbligatorio specificare almeno una delle due parti, intera o decimale. Anche qui, è possibile usare l’_underscore_ tra cifre. Per numeri molto grandi o piccoli è più pratico usare la notazione scientifica: si scrive la _mantissa_ seguita da `E` o `e` e da un esponente intero; il valore rappresentato è la mantissa moltiplicata per `10` elevato all’esponente. Ad esempio, `1E9` e `1E-9` corrispondono rispettivamente a un miliardo e a un miliardesimo. Python decide automaticamente tra notazione tradizionale e scientifica per ottimizzare la leggibilità del risultato.
+
+```{margin}
+`inf` e `nan` non sono letterali: per ottenerli si deve usare il costruttore della classe (`float('inf')` e `float('nan')`) o librerie specializzate.
+```
+
+I valori decimali sono memorizzati secondo lo standard a virgola mobile [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754), tipicamente su 8 byte[^double]. Questo formato non ha precisione arbitraria: numeri al di fuori dell’intervallo circa `±1.8E308` diventano `inf` o `-inf`. Valori molto vicini a zero (approssimativamente tra `5E-324` e il suo opposto) vengono rappresentati come `0.0`. Inoltre, esiste il valore speciale `nan` ("not a number"), utilizzato per operazioni aritmetiche indefinite, come il logaritmo di un numero negativo, o per indicare valori mancanti in un _dataset_. La divisione per zero invece genera un’eccezione.
+
+
+
+
+
+
+
+
 
 (sec:stranezze)=
 ````{admonition} Stranezze in virgola mobile
@@ -218,7 +258,7 @@ la loro esecuzione, questi costruttori _tentano_ di convertire il valore
 attuale dell'argomento nel tipo che rappresentano: se la conversione è
 possibile viene creato un nuovo oggetto, altrimenti viene lanciata
 un'eccezione. Pertanto, la conversione tra i tipi semplici si
-effettua&mdash;ove possibile&mdash;utilizzando il nome del tipo di
+effettua &mdash; ove possibile &mdash;  utilizzando il nome del tipo di
 destinazione come funzione di conversione. Per esempio
 
 ```python
@@ -536,6 +576,31 @@ Gli operatori elencati nella {numref}`elenco-operatori-per-tipi-numerici` e
 nella {numref}`elenco-operatori-logici` si possono applicare a operandi
 complessi, eccezion fatta per le operazioni che non sono definite in tal senso
 (il confronto, la divisione troncata e il modulo).
+
+````{admonition} Nota
+Non tratterò i numeri complessi nel seguito, ma è utile conoscerli perché
+alcuni _bug_ non producono errori immediati: invece di sollevare un’eccezione,
+possono generare numeri complessi che si propagano silenziosamente fino
+all’output finale. In questi casi è importante saperli riconoscere, per evitare
+di interpretarli come valori reali. Per esempio, l’operazione di elevamento a
+potenza con base negativa ed esponente frazionario produce un risultato
+complesso:
+
+```python
+x = (-4) ** 0.5
+print(x)
+```
+
+Immaginiamo ora un codice più articolato, nel quale la base della
+potenza è il valore di una variabile. Se, in certe situazioni, questo valore
+dovesse risultare per errore negativo, l'esecuzione non genererebbe errori:
+a un primoo sguardo, il risultato potrebbe sembrare valido, ma porterebbe con
+sé una parte immaginaria inattesa. Un segnale  che permette di accorgersi
+di una siffatta situazione è la presenza della lettera `j` nell’output: se
+compare accanto a un numero, significa che una componente immaginaria è entrata
+nei calcoli.
+
+````
 
 (sec:none)=
 ### L'oggetto speciale None
@@ -948,7 +1013,7 @@ intervengono delle conversioni implicite tra tipi di dati:
 - `3 + (4 and 2)`,
 - `'3' + 3`,
 - `3 + 3.`,
-- '3 % True`,
+- `3 % True`,
 - `3 % False`,
 - `'3' and 3`,
 - `'3' or 3`,
@@ -966,9 +1031,21 @@ dei risultati precedentemente ottenuti.
 ```
 
 
-```{exercise} ••
-Scrivete un'espressione che non contiene riferimenti espliciti a valori di tipo
-`complex` ma che produce un valore di questo tipo quando viene valutata.
+````{exercise} ••
+Dovreste sapere che $\sqrt{-4} = 2 \mathrm{i}$, ma questo sembrerebbe essere
+incoerente con il risultato della stessa estrazione di radice fatta in Python:
+
+```python
+(-4)**0.5
+```
+
+Descrivete in che cosa consiste questa incorerenza, e cercate di spiegarla.
+````
+
+```{exercise}
+Valutate l'espressione `-4**0.5` e spiegate il processo che porta al
+corrispondente valore restituito, confrontandolo con l'analogo processo
+dell'espressione indicata nell'esercizio precedente.
 ```
 
 ```{exercise} •
@@ -1105,16 +1182,16 @@ progettazione software, noto come _flyweight_ nella terminologia utilizzata
 dagli ingegneri del software.
 
 [^unita-immaginaria]: La notazione matematica adottata per l'unità immaginaria
-prevede l'utilizzo del simbolo $i$, e dunque ha senso chiedersi come mai i
-letterali complessi si basino su `j` e non su `i`. Questa scelta è stata fatta
-nel 1988, quando la versione 1.5 di Python ha introdotto il tipo di dati che
-corrisponde ai numeri complessi, ed è legata principalmente all'adozione  della
-notazione utilizzata in ambito ingegneristico, nella quale l'unità immaginaria
-è denotata da $j$. Ci sono anche altre motivazioni che hanno portato a
-preferire `j` a `i`: chi è interessato ad approfondirle può fare riferimento a
-una specifica (e lunga)
-[discussione](https://bugs.python.org/issue10562) fatta nel 2010 da
-un gruppo di sviluppatori del linguaggio.
+prevede l'utilizzo del simbolo $\mathrm{i}$, e dunque ha senso chiedersi come
+mai i letterali complessi si basino su `j` e non su `i`. Questa scelta è stata
+fatta nel 1988, quando la versione 1.5 di Python ha introdotto il tipo di dati
+che corrisponde ai numeri complessi, ed è legata principalmente all'adozione
+della notazione utilizzata in ambito ingegneristico, nella quale l'unità
+immaginaria è denotata da $\mathrm{j}$. Ci sono anche altre motivazioni che
+hanno portato a preferire `j` a `i`: chi è interessato ad approfondirle può
+fare riferimento a una specifica (e lunga)
+[discussione](https://bugs.python.org/issue10562) fatta nel 2010 da un gruppo
+di sviluppatori del linguaggio.
 
 [^singoletto]: È questa la situazione tipica di una _classe singoletto_, che si
 studia quando si approcciano le basi dell'ingegneria del software. 

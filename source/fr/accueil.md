@@ -5,21 +5,22 @@
 
 ### Avertissement
 
-Ce livre est un travail en cours, actuellement dans une phase préliminaire. Le
-contenu est généré à l'aide de [Sphinx](https://www.sphinx-doc.org/en/master/)
-pour la génération des pages web, de [MyST](https://mystmd.org/) (une
-technologie en développement au sein du projet
-[Executable Books](https://github.com/executablebooks)) pour décrire le
-contenu, et d’un logiciel personnalisé que j’ai développé spécifiquement
+Ce livre est un travail en cours, actuellement dans une phase préliminaire. Je
+ne recommande donce pas d’utiliser les informations présentées ici comme base
+principale pour l’étude des techniques d’analyse de données, de la théorie des
+probabilités ou de la statistique. 
+
+Le contenu est généré à l'aide de
+[Sphinx](https://www.sphinx-doc.org/en/master/) pour la génération des pages
+web, de [MyST](https://mystmd.org/) (une technologie en développement au sein
+du projet [Executable Books](https://github.com/executablebooks)) pour décrire
+le contenu, et d’un logiciel personnalisé que j’ai développé spécifiquement
 pour mettre en œuvre certains aspects importants liés à la rédaction d’un
 livre, comme la personnalisation des références croisées, l’exécution
 automatique de code ou encore les composants interactifs, qui ne sont pas
 suffisamment pris en charge par les technologies mentionnées ci-dessus.
 
-Je ne recommande pas d’utiliser les informations présentées ici comme base
-principale pour l’étude des techniques d’analyse de données, de la théorie des
-probabilités ou de la statistique. L’état actuel du contenu est résumé dans la
-liste suivante.
+L’état actuel du contenu est résumé dans la liste suivante.
 
 Introduction  
 : À relire

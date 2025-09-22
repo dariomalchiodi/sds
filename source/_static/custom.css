@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Lora&family=IBM+Plex+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Lora&family=IBM+Plex+Mono&Alike&display=swap');
+
 
 :root {
-  --serif-font: 'Lora', serif;
-  --sans-serif-font: 'Oswald', sans;
+  --serif-font: "Alike", "Lora", serif;
+  --sans-serif-font: "Oswald", sans;
   --tt-font: 'Source Code Pro', monospace;
   --dataframe-font: 'IBM Plex Mono', monospace;
   --background-color: #eaf3f5;
@@ -58,6 +59,22 @@ a.external::after {
     vertical-align: middle;
 }
 
+/* Academic-style blockquotes */
+blockquote {
+  font-style: italic;
+  font-family: "Lora", Georgia, serif;
+  border-left: 3px solid #555;
+  margin: 1.5em 2em;
+  padding: 0.5em 1em;
+  background: none;
+  color: #222;
+  border-radius: 0; /* remove rounded corners */
+}
+
+blockquote p {
+  margin: 0.5em 0;
+}
+
 li a.external::after {
     margin-left: 1.5em;
 }
@@ -101,6 +118,10 @@ aside.margin {
 
 aside.margin a.footnote-reference {
   font-size: 80%;
+}
+
+aside.footnote a.footnote-reference {
+  font-size: 75%;
 }
 
 /* Hide scrollbar unless needed */
@@ -171,7 +192,7 @@ span.katex {
   padding-bottom: 0.5em;
   padding-left: 0.7em;
   border-left: 4px solid lightblue;
-  border-top: 1px solid lightgray;
+  /* border-top: 1px solid lightgray; */
   border-right: 1px solid lightgray;
   border-bottom: 1px solid lightgray;
   font-family: var(--tt-font);
@@ -264,6 +285,14 @@ span.katex {
 .highlight {
   background: none;
   color: inherit;
+}
+
+.highlight pre {
+  border-radius: 0;
+}
+
+.highlight-python {
+  margin-bottom: 0 !important;
 }
 
 .prev-next-title {
@@ -730,4 +759,91 @@ nav.bd-links p.caption {
 /* For current/active chapter links: remove bold weight, keep color highlighting */
 nav.bd-links .current > a:not(.bd-sidenav__home-link .toctree-l1 > a) {
   font-weight: normal !important;
+}
+
+/* Fix alignment of main title with other navigation items */
+.bd-sidenav__home-link {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+}
+
+.bd-sidenav__home-link .toctree-l1 {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+}
+
+.bd-sidenav__home-link .toctree-l1 a {
+    padding-left: 0 !important; /* Match padding of other navigation items */
+}
+
+/* Collapsible TOC elements */
+.part-collapsible, .chapter-collapsible {
+    cursor: pointer;
+    position: relative;
+    margin-right: calc(30px + 0.1875rem);
+    padding-top: 0.25rem;
+}
+
+/* Chapter links should show normal link cursor on main area, pointer on chevron */
+.chapter-collapsible {
+    cursor: default; /* Let the link handle its own cursor */
+}
+
+/* Add chevron using FontAwesome (matching pydata-sphinx-theme approach) */
+/* Target part headers and chapter links specifically */
+.part-collapsible::after, .chapter-collapsible::after {
+    content: "\f078"; /* FontAwesome chevron-down unicode */
+    font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", "FontAwesome";
+    font-weight: 900;
+    font-style: normal;
+    font-size: 0.75rem;
+    position: absolute;
+    right: -calc(30px + 0.1875rem);
+    top: 0;
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--pst-color-text-muted);
+    transition: transform 0.2s ease;
+    border-radius: 4px;
+}
+
+/* Hover effect for chevron */
+.part-collapsible::after:hover, .chapter-collapsible::after:hover {
+    background-color: var(--pst-color-surface);
+    color: var(--pst-color-text-base);
+}
+
+/* But exclude nested spans to avoid duplicates */
+.part-collapsible span.caption-text::after {
+    display: none;
+}
+
+/* Rotate chevron when collapsed (matching Sphinx behavior: down=expanded, right=collapsed) */
+.part-collapsible.collapsed::after, .chapter-collapsible.collapsed::after {
+    transform: rotate(-90deg);
+}
+
+/* Section transitions */
+.part-chapters, .chapter-sub-items {
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.part-chapters.collapsed, .chapter-sub-items.collapsed {
+    max-height: 0;
+    opacity: 0;
+}
+
+/* Hide Sphinx default details/summary elements */
+details summary {
+    display: none;
+}
+
+
+.py-error {
+    display: none;
 }

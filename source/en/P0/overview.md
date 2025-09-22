@@ -72,9 +72,7 @@ randomly selected from the dataset.
 :class: toggle-code
 import pandas as pd
 
-# Load heroes data only once and persist it
-if 'heroes' not in globals():
-    heroes = pd.read_csv('data/heroes.csv', index_col=0).convert_dtypes()
+heroes = pd.read_csv('data/heroes.csv', index_col=0).convert_dtypes()
     
 source = heroes.sample(10).loc[:,'name':'combat']
 source.index.name = None
@@ -114,10 +112,6 @@ things, to download the chart.
 :class: toggle-code
 
 import altair as alt
-
-# Use cached heroes data if available
-if 'heroes' not in globals():
-    heroes = pd.read_csv('data/heroes.csv', index_col=0).convert_dtypes()
 
 filter = (heroes['creator'].isin(heroes.creator.value_counts()[:15].index))
 filter &= (heroes['weight']<200)
@@ -198,10 +192,6 @@ values appear in the dataset.
 :class: toggle-code
 
 import matplotlib.pyplot as plt
-
-# Use cached heroes data if available
-if 'heroes' not in globals():
-    heroes = pd.read_csv('data/heroes.csv', index_col=0).convert_dtypes()
 
 fig, ax = plt.subplots()
 data = heroes.weight[heroes.weight < 200]
@@ -422,47 +412,6 @@ function.
 
 import base64
 import io
-
-# Use variable persistence - check if heroes/data is already loaded
-if 'heroes' not in builtins.__dict__:
-    # Load heroes data only once per session
-    import pandas as pd
-    import numpy as np
-    import matplotlib.pyplot as plt
-    
-    # Check if heroes.csv exists and download if needed
-    from pathlib import Path
-    heroes_path = Path("data/heroes.csv")
-    if not heroes_path.exists():
-        # Ensure directory exists
-        heroes_path.parent.mkdir(parents=True, exist_ok=True)
-        
-        # Download the file
-        from urllib.request import urlretrieve
-        url = "https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2018/2018-04-23/week4_powerlifting.csv"
-        try:
-            urlretrieve(url, heroes_path)
-            print("Downloaded heroes.csv")
-        except Exception as e:
-            print(f"Error downloading heroes.csv: {e}")
-    
-    # Load the data
-    try:
-        heroes = pd.read_csv(heroes_path)
-        print(f"Loaded heroes data with {len(heroes)} rows")
-    except Exception as e:
-        print(f"Error loading heroes.csv: {e}")
-        heroes = pd.DataFrame()
-    
-    # Store in builtins for persistence
-    builtins.heroes = heroes
-    builtins.data = heroes.weight[heroes.weight < 200]
-    print("Variables stored in builtins for persistence")
-else:
-    # Use existing data
-    heroes = builtins.heroes
-    data = builtins.data
-    print("Using existing heroes and data from builtins")
 
 def model_plot_pdf(mu, sigma):
     x = np.linspace(0, 200, 400)

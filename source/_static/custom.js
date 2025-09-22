@@ -36,8 +36,6 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     `;
     document.head.appendChild(style);
-    
-    console.log('Splash message set to:', splashMessage);
   }
 
   // Set the splash message immediately
@@ -54,14 +52,11 @@ document.addEventListener("DOMContentLoaded", function() {
   function initializeToggleCode() {
     const toggleButtons = document.querySelectorAll('.toggle-code-button');
     
-    console.log('Found', toggleButtons.length, 'pre-generated toggle-code buttons');
-    
     toggleButtons.forEach(function(button, index) {
-      console.log('Processing toggle button', index + 1, button);
       
       // Skip if already processed
       if (button.dataset.toggleProcessed) {
-        console.log('Button', index + 1, 'already processed');
+        // console.log('Button', index + 1, 'already processed');
         return;
       }
       
@@ -77,8 +72,6 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log('No content found for button', index + 1);
         return;
       }
-      
-      console.log('Toggle button', index + 1, 'initialized - content:', content);
       
       // Add click event listener to the toggle button
       button.addEventListener('click', function(e) {
@@ -124,8 +117,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const currentPath = window.location.pathname;
     const currentPageTitle = document.title;
     
-    console.log('Current path:', currentPath);
-    console.log('Current title:', currentPageTitle);
+    // console.log('Current path:', currentPath);
+    // console.log('Current title:', currentPageTitle);
     
     // Check if current page is an appendix
     if (currentPath.includes('references.html') || 
@@ -135,10 +128,10 @@ document.addEventListener("DOMContentLoaded", function() {
         currentPageTitle.includes('Bibliografia')) {
       
       document.body.classList.add('appendix-page');
-      console.log('Detected appendix page, added appendix-page class');
+      // console.log('Detected appendix page, added appendix-page class');
     } else {
       document.body.classList.add('chapter-page');
-      console.log('Detected chapter page, added chapter-page class');
+      // console.log('Detected chapter page, added chapter-page class');
     }
   }
 
@@ -157,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function() {
     for (let caption of captions) {
       if (caption.textContent.includes('Appendici')) {
         appendiciFound = true;
-        console.log('Found Appendici caption');
+        // console.log('Found Appendici caption');
         
         // Get the parent paragraph
         const captionParagraph = caption.closest('p');
@@ -167,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function() {
           while (nextElement) {
             if (nextElement.tagName === 'UL') {
               nextElement.classList.add('appendix-list');
-              console.log('Added appendix-list class to ul');
+              // console.log('Added appendix-list class to ul');
               
               // Add specific class to each li within this ul
               const appendixItems = nextElement.querySelectorAll('li.toctree-l1');
@@ -219,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // And also try window load event
   window.addEventListener('load', function() {
-    console.log('Window loaded, initializing toggle code');
+    // console.log('Window loaded, initializing toggle code');
     setTimeout(initializeToggleCode, 1000);
   });
   

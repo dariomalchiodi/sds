@@ -19,4 +19,5 @@ sphinx-external-toc
 sphinx-proof
 sphinx-tabs
 sphinxcontrib-katex
+statsmodels
 tqdm

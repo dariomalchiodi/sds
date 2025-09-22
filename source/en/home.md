@@ -6,18 +6,20 @@
 
 ### Disclaimer
 
-This book is a work in progress, currently in a preliminary phase. The contents
-are generated using [Sphinx](https://www.sphinx-doc.org/en/master/) for web
-page generation, [MyST](https://mystmd.org/) (a technology under development
-within the [Executable Books](https://github.com/executablebooks) project) to
-describe the content, and custom software I developed specifically to implement
-some important aspects related to writing a book, such as customizing
+This book is a work in progress, currently in a preliminary phase. Therefore, I
+do not recommend using the information presented here as the primary basis for
+studying data analysis techniques, probability theory, or statistics. 
+
+The contents are generated using
+[Sphinx](https://www.sphinx-doc.org/en/master/) for web page generation,
+[MyST](https://mystmd.org/) (a technology under development within the
+[Executable Books](https://github.com/executablebooks) project) to describe the
+content, and custom software I developed specifically to implement some
+important aspects related to writing a book, such as customizing
 cross-references, automatic code execution, or interactive components, which
 are not adequately supported by the aforementioned technologies.
 
-I do not recommend using the information presented here as the primary basis
-for studying data analysis techniques, probability theory, or statistics. The
-current status of the content is summarized in the following list.
+The current status of the content is summarized in the following list.
 
 Introduction  
 : Awaiting final proofreading

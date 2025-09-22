@@ -12,322 +12,297 @@ kernelspec:
 (sec:tipi-di-dati)=
 # Tipi di dati
 
-Nell'ambito della programmazione dei calcolatori, si utilizza normalmente
-il termine _tipo_ per identificare a quale categoria appartiene un particolare
-_dato_ che può essere associato a una variabile, a un'espressione, a un
-parametro, al valore restituito da una funzione e così via. Associare ogni
-dato a un tipo è importante perché ciò permette di capire quali operazioni si
-possono effettuare su di esso: per esempio, l'elevamento a potenza può avere
-senso quando l'esponente è un numero, ma non, per dire, una stringa. Anche
-Python associa ogni dato a un tipo, ma il meccanismo che utilizza è molto
-diverso da quello dei linguaggi che di solito si incontrano quando si inizia a
-studiare programmazione. Vedremo tra poco come funziona questo meccanismo,
-specificando alcune macro-categorie di tipi che analizzeremo in dettaglio nei
-paragrafi successivi. Questo mi permetterà anche di introdurre alcuni accenni
-alla _programmazione orientata agli oggetti_, necessari per poter utilizzare
-una parte delle librerie alle quali farò riferimento, visto che non sempre
-questo argomento è noto a chi si appresta a imparare i fondamenti della
-_data science_.
 ```{margin}
-Nel {ref}`chap:dati-e-informazione` vedremo che è importante non confondere
-il _tipo di un attributo_ all'interno di un _dataset_ con il _tipo di dato_
-utilizzato per memorizzare i valori dell'attributo stesso.
+Nel {ref}`chap:dati-e-informazione` vedremo che non bisogna confondere il _tipo
+di un attributo_ in un dataset con il _tipo di dato_ usato per memorizzare i
+valori di quell’attributo.
 ```
+Nella programmazione dei calcolatori, il termine _tipo_ indica normalmente la
+categoria a cui appartiene un _dato_ che può essere associato a una variabile,
+a un'espressione, a un parametro, al valore restituito da una funzione e così
+via. Associare ogni dato a un tipo è fondamentale, perché ci dice quali
+operazioni si possono effettuare su di esso. Per esempio, l'elevamento a
+potenza ha senso quando l'esponente è un numero, ma non quando è una stringa.
+Anche Python assegna un tipo a ogni dato, ma lo fa con un meccanismo molto
+diverso rispetto ai linguaggi che si incontrano di solito quando si inizia a
+stuidare programmazione. Tra poco vedremo come funziona questo sistema,
+distinguendo alcune macro-categorie di tipi che analizzeremo in dettaglio nei
+paragrafi successivi. Questo ci permetterà anche di introdurre alcuni aspetti
+della programmazione orientata agli oggetti, indispensabili per usare parte
+delle librerie che incontreremo. Non sempre chi inizia a studiare i fondamenti
+della _data science_ ha già familiarità con questi concetti, quindi li
+tratteremo con la gradualità necessaria.
 
 (sec:tipizzazione-dinamica)=
 ## Tipizzazione dinamica
 
-Nella gran parte dei linguaggi che si studiano quando si impara a programmare
-gli elaboratori (come C, o Java, o Go), l'associazione di un dato al tipo
-corrispondente deve essere fatta in modo esplicito tramite un'opportuna
-_dichiarazione_, che determina che cosa si può fare con quel dato. Ciò permette
-di rilevare eventuali operazioni improprie, come il sopra citato  elevamento
-alla potenza di una lettera, effettuando una preventiva analisi lessicale dei
-contenuti di un programma, e trasformando quest'ultimo in codice eseguibile
-solo se tale analisi ha esito positivo. Si parla quindi di _type checking
-statico_, o di _tipizzazione statica_, riferendosi al fatto che la verifica
-della congruità dei tipi viene fatta «a bocce ferme», leggendo il codice prima
-che questo venga eseguito e dunque stabilendo il tipo di ogni dato una volta
-per tutte.
+Nella maggior parte dei linguaggi che si incontrano quando siinizia a
+programmare (come C, Java o Go), il tipo di un dato deve essere indicato in
+modo esplicito, mediante una _dichiarazione_. Questo permette di analizzare il
+codice e intercettare in anticipo eventuali errori, come il già citato
+tentativo di elevare una lettera a potenza. L’analisi viene normalmente
+eseguita da un compilatore, che se tutto è corretto tradue il codice di
+partenza in un programma eseguibile. Si parla quindi di _type checking
+statico_, o _tipizzazione statica_, perché la verifica della coerenza dei tipi
+avviene «a bocce ferme», fissando una volta per tutte il tipo di ciascun dato,
+indipendentemente da ciò che accade durante l’esecuzione.
 
-In Python si segue invece un approccio differente, eliminando dal linguaggio
-l'obbligo di rendere esplicite le dichiarazioni e affidandosi a
-un _type checking dinamico_ che viene effettuato durante l'esecuzione del
-codice. Senza entrare troppo nei dettagli, prima di effettuare una singola
-operazione si verifica che questa sia possibile in funzione dei valori degli
-operandi coinvolti. Se vengono rilevate delle incongruenze, viene lanciata
-un'eccezione, altrimenti l'esecuzione procede.
-```{margin}
-È interessante sottolineare che Python è un linguaggio _fortemente tipizzato_,
-nel senso che non vengono mai eseguite conversioni implicite (come per esempio
-le promozioni) tra tipi di operandi fondamentalmente diversi, come stringhe
-e interi.
-```
+Python segue invece un approccio diverso. Non obbliga a dichiarare i tipi in
+anticipo, ma si affida a un _type checking dinamico_, che avviene durante
+l’esecuzione del programma. In pratica, prima di eseguire ogni operazione viene
+controllata la coerenza dei tipi di dati coinvolti. Se emergono incongruenze,
+viene sollevata un’eccezione; altrimenti l’esecuzione prosegue normalmente.
 
-L'utilizzo del _type checking_ dinamico semplifica notevolmente la struttura
-del linguaggio di programmazione, che utilizza dei _nomi_ da associare a
-variabili e a parametri formali di funzioni, senza alcuna indicazione dei
-tipi coinvolti. In particolare:
+È utile sottolineare che Python è un linguaggio _fortemente tipizzato_: non
+esegue mai _coercizioni implicite_ tra tipi fondamentalmente diversi, come
+stringhe e interi. Trasformazioni di questo tipo devono essere fatte in modo
+esplicito. Diverso è il caso delle _promozioni_, che avvengono automaticamente
+quando un tipo meno rappresentativo viene convertito in uno più
+rappresentativo. Un esempio classico è la somma tra un intero e un numero
+decimale: in questo caso l’intero viene automaticamente promosso a decimale.
 
-- una variabile viene automaticamente creata in corrispondenza del primo
-  assegnamento che la coinvolge, e il suo tipo è quello del valore assegnato;
-- i parametri formali di metodi e funzioni vengono associati ai tipi che
-  corrispondono ai valori attuali di volta in volta specificati durante le
-  relative invocazioni;
-- il tipo restituito da una funzione è quello dell'espressione di volta in
-  volta restituita al termine dell'invocazione della funzione stessa.
+Il _type checking_ dinamico semplifica notevolmente la struttura del
+linguaggio: si usano semplicemente dei _nomi_ per indicare variabili, parametri
+formali di funzioni e così via, senza dover specificare i tipi. In particolare:
 
-Ciò significa che tecnicamente non ha più senso parlare del tipo di una
-variabile, o di un parametro, o del valore restituito da una funzione come
-di qualcosa di immutabile. La funzione potrebbe ad esempio restituire tipi
-differenti a seconda dei parametri attuali specificati durante la sua
-invocazione; analogamente, è possibile assegnare a una variabile un valore il
-cui tipo è completamente diverso rispetto al valore precedentemente
-memorizzato, e così via. In sintesi, il concetto di tipo in Python è relativo:
-ciò che puoi fare con una variabile o un parametro dipende dal valore che
-contiene in quel momento. A complicare il tutto, a partire dalla versione 3.5
-di Python è possibile effettuare una sorta di dichiarazione, utilizzando un
-formalismo chiamato _type hinting_ che permette di indicare nel codice il
-tipo di alcuni elementi del linguaggio (come ad esempio i parametri formali di
-una funzione, o il valore da essa restituito). Va sottolineato che la
-tipizzazione resta comunque dinamica, ma in questo modo è possibile utilizzare
-degli strumenti esterni per effettuare il cosiddetto _type checking_, che
-consiste nel verificare _staticamente_ (cioè sulla base di quanto scritto nel
-codice) che le variabili vengano utilizzate correttamente. _Editor_ e IDE 
-possono per esempio trarre vantaggio dal _type hinting_ per suggerire come
-completare il codice o per segnalare dei _warning_. Infine, l'uso del _type
-hinting_ rappresenta anche un modo per alleggerire la documentazione del
-software prodotto, pertanto tenderò a utilizzarla ove questo aiuterà a leggere
-meglio il codice, evitando nel contempo di adottarla quando ciò comporti
-un inutile appesantimento.
+- una variabile viene creata automaticamente la prima volta che le viene
+  assegnato un valore, e ciò determina il suo tipo iniziale; quest'ultimo può
+  successivamente cambiare, a seconda di come verrà modificata la variabile;
+- i parametri formali di metodi e funzioni assumono i tipi dei parametri
+  effettivi specificati a ogni invocazione;  
+- il tipo restituito da una funzione è quello dell’espressione effettivamente
+  restituita di volta in volta.
+
+Di conseguenza, non ha più senso parlare del tipo di una variabile, di un
+parametro o del valore restituito da una funzione come se fosse qualcosa di
+immutabile. Al contrario, in Python il concetto di tipo è relativo: una
+funzione può restituire tipi diversi a seconda dei parametri ricevuti; allo
+stesso modo, una variabile può contenere valori di tipi differenti in momenti
+diversi dell’esecuzione.
+
+A complicare il quadro, dalla versione 3.5 di Python è possibile effettuare una
+sorta di dichiarazione, utilizzando un formalismo chiamato _type hinting_, che
+permette di indicare nel codice il tipo di alcuni elementi del linguaggio. Per
+esempio, è possibile indicare un tipo per i parametri formali di una funzione,
+o per il valore che essa restituisce. È però importante chiarire che la
+tipizzazione rimane comunque dinamica: il _type hinting_ non modifica il
+comportamento del linguaggio. Tuttavia, apre la porta a strumenti esterni che
+possono effettuare un _type checking_ statico, basato su ciò che è scritto
+nel codice. Per esempio, _editor_ e IDE possono proporre
+suggerimenti per il completamento del codice o segnalare _warning_.  
+Infine, il _type hinting_ rende più leggibile il codice e permette di scrivere
+documentazione più concisa. Per questo lo utilizzerò quando aumenterà la
+chiarezza del testo, evitando però di introdurlo nei casi in cui
+rappresenterebbe solo un inutile appesantimento.
+
 
 (sec:tipi_classi_oggetti)=
 ## Tipi, classi e oggetti
-Python è un linguaggio che supporta pienamente il paradigma di programmazione
-orientato agli oggetti, che mette in evidenza i concetti di _classe_ e
-_oggetto_ per rappresentare ed elaborare i dati. Semplificando non poco la
-trattazione, una classe identifica un’_astrazione_ rispetto a tutti i dati di
-un certo tipo. Una classe è, in pratica, l’insieme di tutti i dati di un certo
-tipo. Un singolo elemento di quell’insieme è detto _oggetto_, o _istanza_.
-Entrando un poco più nel dettaglio, una classe definisce non solo che cosa è
-necessario memorizzare affinché esista un dato (le informazioni che sono
-descritte dalle sue _variabili di istanza_), ma anche quali sono le operazioni
-che si possono eseguire sull'oggetto corrispondente (i suoi _metodi_) Per
-esempio, un'ipotetica classe `Superhero` potrebbe prevedere
 
-- due variabili di istanza `name` e `secret_identity`, contenenti due stringhe
-  che indicano il nome di un supereroe e la sua identità segreta;
-- due metodi `fly` e `run` che implementano le azioni che corrispondono,
-  rispettivamente, a farlo volare e correre.
+Python supporta pienamente il paradigma di programmazione orientato agli
+oggetti, basato sui concetti di _classe_ e _oggetto_ per rappresentare ed
+elaborare i dati. In parole semplici, per _classe_ si intende un’_astrazione_
+rispetto a tutti i dati di un certo tipo, che considerati singolarmente ne
+costituiscono un _oggetto_, o _istanza_. Più precisamente, una classe definisce
+non solo che cosa è necessario memorizzare affinché esista un dato (le
+informazioni che sono descritte dalle sue _variabili di istanza_), ma anche
+quali sono le operazioni che si possono eseguire sull'oggetto corrispondente (i
+suoi _metodi_). Per esempio, un'ipotetica classe `Superhero` potrebbe prevedere
+
 ```{margin}
 In alcuni linguaggi orientati agli oggetti, i metodi rimpiazzano completamente
 le funzioni. Come vedremo più avanti, in Python i due concetti coesistono.
 ```
+- due variabili di istanza `name` e `secret_identity`, contenenti due stringhe
+  che indicano il nome di un supereroe e la sua identità segreta;
+- due metodi `fly` e `run` che implementano le azioni che corrispondono,
+  rispettivamente, a farlo volare e correre.
 
 Se tutto quello che ci interessa fare con un supereroe è riferirsi al suo nome
 e alla sua identità segreta, nonché farlo volare o correre, la classe
-`Superhero` racchiude tutto quello di cui necessitiamo. Quando vorremo
-ragionare in termini di uno specifico supereroe, diciamo Superman, possiamo
-creare l'oggetto corrispondente invocando un particolare metodo che prende il
-nome di _costruttore_ della classe, e che accetta come parametri le
-informazioni necessarie a inizializzare l'oggetto stesso (spesso, ma non
-sempre, si tratta dei valori per tutte o alcune delle variabili di istanza). Il
-costruttore restituisce un _riferimento_ all'oggetto creato, che di norma viene
-memorizzato in una variabile. In Python, il costruttore si invoca facendo 
-riferimento allo stesso nome della classe, così che la creazione dell'oggetto
-che corrisponde a Superman e la memorizzazione del corrispondente riferimento
-si potrebbe ipoteticamente fare nel modo descritto nella cella seguente.
+`Superhero` racchiude tutto quello di cui necessitiamo. Per ragionare nei
+termini di uno specifico supereroe, diciamo Superman, dobbiamo creare l'oggetto
+corrispondente invocando un metodo speciale che prende il nome di _costruttore_
+della classe [^costruttore]. Questo riceve come parametri le informazioni
+necessarie a inizializzare l'oggetto stesso (spesso, ma non sempre, si tratta
+dei valori per tutte o alcune delle variabili di istanza). Il costruttore
+restituisce un _riferimento_ all'oggetto creato, che di norma viene memorizzato
+in una variabile, così da poterlo succesivamente utilizzare nel codice. In
+Python, il costruttore si invoca facendo riferimento allo stesso nome della
+classe, così che la creazione dell'oggetto che corrisponde a Superman e la
+memorizzazione del corrispondente riferimento si possono fare come nella cella
+seguente.
 
 ```{code}
-# Questo codice è riportato per esemplificare i concetti di classe, costruttore,
-# riferimento e oggetto. Non eseguitelo, perché non funzionerebbe!
+# Questo codice è riportato per esemplificare i concetti di classe,
+# costruttore, riferimento e oggetto. Non eseguitelo, perché non funzionerebbe!
 
 # Notate anche che tutto il testo che segue un carattere di cancelletto (#)
-# viene ignorato durante l'esecuzione rappresenta dunque un commento.
+# viene ignorato durante l'esecuzione, perché rappresenta un commento.
 
 hero = Superhero('Superman', 'Clark Kent')
 ``` 
+
 
 In questo caso,
 
 ```{margin}
 Come vedremo nel Paragrafo {ref}`sec:stringhe`, in Python esistono diversi
-delimitatori per le stringhe, e uno di questi è l'apice singolo.
+delimitatori per le stringhe, uno dei quali è l'apice singolo.
 ```
+- `Superhero` indica la classe, e di conseguenza viene utilizzato come
+  costruttore;  
+- `'Superman'` e `'Clark Kent'` sono le stringhe utilizzate per inizializzare
+  le due variabili di istanza;  
+- `hero` è la variabile che conterrà il riferimento all'oggetto creato.
 
-- `Superhero` indica la classe, dunque anche il costruttore;
-- `'Superman'` e`'Clark Kent'` rappresentano le stringhe utilizzate per
-  inizilizzare le due variabili di istanza;
-- `hero` è il nome della variabile che conterrà il riferimento all'oggetto
-   della classe `Superhero` che modella Superman.
-
-La memorizzazione del riferimento restituito dal costruttore in una variabile
-è necessaria perché nella maggior parte dei casi l'interazione con l'oggetto
-avviene utilizzando una specifica sintassi detta _dot notation_: si fa seguire
-il nome della variabile da un carattere di punto e dal nome di una variabile
-di istanza o di un metodo. Nel primo caso si ottiene un'espressione il cui
-valore corrisponde al contenuto della variabile di istanza, e nel secondo
-il risultato si può usare per invocare il metodo, specificando i valori degli
-eventuali parametri previsti.
 ```{margin}
-In teoria la _dot notation_ si può applicare direttamente al riferimento
+In teoria, la _dot notation_ può essere applicata direttamente al riferimento
 restituito dal costruttore, o perfino ai _letterali_ della classe[^letterali],
-anche se è estremamente raro che questo si renda necessario.
+anche se questo è raramente necessario.
 ```
-Tornando all'esempio precedente, `hero.name` corrisponde a `'Superman'`, ed è
-possibile effettuare l'invocazione `hero.fly()` (se per invocare il metodo non
-è richiesta la specificazione del valore di alcun parametro). Anche in
-questo contesto, il linguaggio è basato su un _type checking_ dinamico:
-indipendentemente dalla classe in gioco,  quando a _runtime_ viene analizzata
-una _dot notation_, se il riferimento individua un oggetto che prevede la
-variabile di istanza o il metodo specificati, l'esecuzione procede senza
-problemi. Negli altri casi viene lanciata un'eccezione `AttributeError`. Questo
-significa che, indipendentemente dalla sua classe, se a partire da un oggetto è
-possibile accedere alle variabili di istanza `name` e `secret_identity`, nonché
-invocare i metodi `fly` e `run`, questo è in tutto e per tutto equivalente a un
-oggetto della classe `Superhero`, e lo si potrà utilizzare in tutti i contesti
+Memorizzare il riferimento restituito in una variabile è importante per poter
+successivamente interagire con l'oggetto. Nella maggior parte dei casi, ciò
+richiede l'utilizzo di una specifica sintassi detta _dot notation_: si scrive
+il nome della variabile, seguito da un punto e dal nome di una variabile di
+istanza o di un metodo. Nel primo caso si ottiene un'espressione il cui valore
+è quello della variabile di istanza, e nel secondo il risultato si può usare
+per invocare il metodo, specificando eventuali parametri effettivi. Tornando
+all’esempio, valutando `hero.name` si ottiene `'Superman'`, mentre `hero.fly()`
+invoca sull'oggetto il metodo `fly` (senza specificare parametri). Anche qui,
+Python applica il _type checking_ dinamico: a _runtime_, se il riferimento
+memorizzato in `hero` punta a un oggetto che contiene la variabile di istanza o
+il metodo indicati, l’esecuzione procede senza problemi. Altrimenti, viene
+sollevata un’eccezione `AttributeError`. Questo comportamento implica che,
+indipendentemente dalla classe, se un oggetto permette di accedere a `name` e
+`secret_identity` e di invocare i metodi `fly` e `run`, esso può essere
+trattato come un oggetto della classe `Superhero`, usandolo in tutti i contesti
 pensati per tale classe[^duck-typing].
 
-(sec:regole-di-stile)=
 ```{admonition} Approfondimento: identificatori e regole di stile
+:name: adm:regole-di-stile
+
 Il termine _identificatore_ indica il nome scelto per riferirsi in modo univoco
-a specifiche entità in un programma, come variabili, variabili di istanza,
-classi, funzioni, metodi, parametri e così via. Io utilizzerò i termini «nome»
-e «identificatore» in modo intercambiabile, sebbene il primo termine si possa
-utilizzare anche in contesti differenti (pensate per esempio al nome di un
-file).
+ad alcuni elementi inun programma, come variabili, variabili di istanza,
+classi, funzioni, metodi e parametri. In questo libro userò i termini «nome» e
+«identificatore» in modo intercambiabile, anche se il primo può comparire in
+altri contesti con un significato differente, ad esempio per riferirsi al
+nome di un file.
 
-Da un punto di vista sintattico, per formare un identificatore in Python si
-possono utilizzare i caratteri alfabetici maiuscoli e minuscoli (tenendo conto
-del fatto che il linguaggio è _case sensitive_: `superman` e `Superman`
-rappresentano due identificatori differenti), le cifre e il carattere di
-_underscore_ (`_`), con l'unico vincolo di non usare una cifra come carattere
-iniziale.
+In Python, per formare un identificatore si possono usare i caratteri che
+corrispondono alle lettere maiuscole e minuscole (il linguaggio è _case
+sensitive_: `superman` e `Superman` sono considerati identificatori diversi),
+all'_underscore_ (`_`) e alle cifre (a patto di non iniziare l'identificatore
+con una di esse). 
 
-Rispettare la sintassi è obbligatorio, ma è anche buona pratica seguire nel
-modo più coerente possibile delle _regole di stile_, che tra le altre cose
-prevedono delle convenzioni specifiche su come debbano essere formati gli
-identificatori. Non esiste però uno standard unico: io farò riferimento alla
-[Style Guide for Python
-Code](https://www.python.org/dev/peps/pep-0008/), che contiene anche
-un paragrafo [Naming
-conventions](https://peps.python.org/pep-0008/#naming-conventions).
-Per variabili (di istanza e non), funzioni e metodi, queste regole di stile
-prevedono il cosiddetto _snake case_: si usano unicamente i caratteri minuscoli
-e l'_underscore_, impiegando quest'ultimo solo come separatore in un
-identificatore composto da più parole (come in `secret_identity` nel precedente
-esempio). L'uso di uno o più _underscore_ all'inizio o alla fine di un nome è
-da evitare, perché può conferire un significato specifico al codice che
-emerge solo in particolari occasioni. Nel libro non affronterò situazioni di
-questo tipo, ma è meglio essere particolarmente attenti a questo aspetto già
-quando si imparano le basi del linguaggio. Ci sono comunque delle eccezioni
-da considerare: tra queste, solo due sono rilevanti per i nostri scopi:
+Rispettare la sintassi è obbligatorio, ma è anche buona pratica seguire in
+modo coerente possibile delle _regole di stile_, che descrivono anche come
+formare gli identificatori. Non esiste uno standard unico: io farò riferimento
+alla [Style Guide for Python Code](https://www.python.org/dev/peps/pep-0008/) e
+in particolare al paragrafo [Naming
+conventions](https://peps.python.org/pep-0008/#naming-conventions). Per
+variabili (di istanza e non), funzioni e metodi, queste regole prevedono
+l'impiego dello _snake case_: si usano solo le lettere minuscole, più
+l'_underscore_ come separatore per gli identficatori che contengono più
+parole (come in `secret_identity` nell'esempio di prima). L'uso di uno o più
+_underscore_ iniziali o finali va evitato, perché può conferire un significato
+particolare al codice. Non approfondiremo questo aspetto, dunque mi limito a
+specificare due eccezioni rilevanti a questa regola:
 
-- quando risulta particolarmente significativo utilizzare come identificatore
-  una parola chiave del linguaggio (come per esempio `lambda`, che utilizzeremo
-  nel Paragrafo {ref}`sec:funzioni-anonime`, per esprimere concetti matematici o
-  fisici), è   accettabile aggiungere un underscore al suo termine (ottenendo,
-  nel caso precedente, l'identificatore `lambda_`);
-- se è necessario riferirsi esplicitamente a una variabile che viene utilizzata
-  in una parte particolarmente limitata del codice, o che non viene utilizzata
-  affatto, al posto di inventare un nome significativo si può usare un unico
-  _underscore_ come identificatore.
+- quando una parola chiave del linguaggio è particolarmente significativa come
+  identificatore (per esempio `lamdba`, che utilizzeremo nel Paragrafo
+  {ref}`sec:funzioni-anonime`, e che può comparire come simbolo in formule
+  matematiche), si può aggiungere a questa parola un _underscore_ finale
+  (ottenendo, nel caso precedente, l'identificatore `lambda_`);
+- se è necessario riferirsi esplicitamente a una variabile temporanea, o che
+  non viene utilizzata affatto, usare un unico _underscore_ come identificatore
+  evita di dover pensare a un nome significativo.
 
-Gli identificatori delle classi andrebbero invece costruiti adottando il
-cosiddetto _upper camel case_, che prevede di utilizzare esclusivamente
-caratteri alfabetici, servendosi delle maiuscole per marcare l'inizio di ogni
-parola (come in `Superhero`). Infine, nonostante Python non preveda il concetto
-di _costante_, è possibile usare la variante dello _snake case_ che utilizza
-solo lettere maiuscole (il cosiddetto _screaming snake case_) per
-suggerire che il contenuto di una variabile non muterà dopo il primo (e unico)
-assegnamento che la riguarda.
+Gli identificatori delle classi dovrebbero invece adottare l'_upper camel
+case_, che si deriva dallo _snake case_ eliminando l'_underscore_ e usando le
+lettere maiuscole per indicare l'inizio di ogni parola (come in `Superhero`).
+Infine, nonostante Python non implementi le _costanti_, è possibile usare lo
+_screaming snake case_ &mdash; la variante dello _snake case_ che utilizza solo
+lettere &mdash; per segnalare che il contenuto di una variabile non muterà dopo
+il primo assegnamento che la riguarda (ma ribadisco che si tratta di una mera
+convenzione stilistica: come detto sopra, Python non prevede le costanti e
+dunque è possibile modificare una siffatta variabile senza che questo causi
+errori a _runtime_[^costanti-type-hint]).
 
 Anche tenendo conto della sintassi e delle regole di stile, vi è ampia
 discrezionalità nella scelta per un identificatore: per esempio, al posto di
-`hero` si sarebbero potuti utilizzare `clark_kent`, `superman`, `s`, `s1` o
-accozzaglie più o meno intelligibili di caratteri. Per aumentare la leggibilità
-del codice è però altamente consigliabile scegliere un nome che sia legato
-al significato dell'identificatore stesso.
+`hero` si potrebbero utilizzare `clark_kent`, `superman`, `s`, `s1` o sequenze
+più o meno intelligibili di caratteri. Per aumentare la leggibilità del codice,
+è però consigliabile scegliere nomi significativi, che riflettano il ruolo
+dell'identificatore.
 ```
 
-Va infine sottolineato che l'unico modo di riferirsi a un tipo di dato in
-Python è attraverso l'utilizzo delle classi: a differenza di Java, non esistono
-«tipi primitivi» che memorizzano interi, decimali e così via come mere sequenze
-di byte. Al contrario, i tipi intero e decimale fanno riferimento alle classi
-`int`[^maxint] e `float`, ognuna caratterizzata dai suoi metodi.
-```{margin}
-Gran parte delle classi che implementano tipi introdotti fin dalle prime
-versioni di Python, come `int` e `float`, sono delle eccezioni alla regola di
-stile che ho precedentemente menzionato: per una serie di motivi legati anche
-alla retrocompatibilità del linguaggio, i loro nomi non iniziano con una
-lettera maiuscola.
-```
+Va sottolineato che, in Python, l’unico modo per riferirsi a un tipo di dato è
+attraverso le classi. A differenza di quanto accade con altri linguaggi, come
+Java, non esistono «tipi primitivi» separati che memorizzano interi, decimali o
+altri valori come mere sequenze di byte. I tipi intero e decimale corrispondono
+infatti alle classi `int` e `float`[^first-letter], ciascuna dotata dei propri
+metodi.
 
-Ricapitolando, quando si parla di una variabile all'interno di codice scritto
-in Python, invece di dire che una variabile contiene un valore di un dato
-tipo, sarebbe più corretto parlare di un _nome_ (o identificatore) associato a
-un _riferimento_ che a sua volta individua univocamente l'oggetto di una
-classe: la seconda individua (temporaneamente, a causa della tipizzazione
-dinamica) il tipo del particolare dato che corrisponde alla variabile (nel
-gergo informatico inglese si usa il verbo _to bind_, che significa «legare»,
-per indicare in modo ancora più forte questa associazione tra il nome e
-l'oggetto). Un discorso analogo si può fare per esempio per i parametri formali
-di una funzione o di un metodo. Oggettivamente, questa nomenclatura tende a
-essere pesante, e infatti nel gergo comune è diffusa l'abitudine di riferirsi a
-una variabile (o un parametro) e all'oggetto&mdash;quando non al
-valore&mdash;in essa contenuto.
+Ricapitolando, quando parliamo di una variabile in Python, non ha molto senso
+parlare del suo tipo. È più corretto ragionare in termini di un _nome_ (o
+identificatore) che è associato a un riferimento, che a sua volta individua
+&mdash; temporaneamente, a causa della tipizzazione dinamica &mdash; un oggetto
+di una certa classe. La classe, infine, determina il tipo dello specifico dato
+memorizzato in quella variabile. Nel gergo inglese si usa spesso il verbo
+_to bind_ («legare») per sottolineare questa associazione tra nome e oggetto.
+Per parametri formali di funzioni o metodi si può fare un discorso analogo.
+Questa terminologia risulta spesso pesante, e infatti nella pratica comune si
+tende a fare un abuso di linguaggio, senza distinguere formalmente tra nome,
+riferimento e oggetto. Più semplicemente, ci si riferisce a una variabile (o a
+un parametro) e all’oggetto, quando non al valore, in essa contenuto. 
 
 
 ```{admonition} Avvertenza
-La programmazione orientata agli oggetti è un argomento molto complesso, e in
-questo paragrafo ne ho solo scalfito la superficie. Mi sono limitato a
-introdurre ciò che è necessario conoscere per poter comprendere il codice che
-che presenterò nel seguito, e imparare a scrivere programmi che automatizzano
-le tecniche di analisi dei dati che introdurrò nei capitoli seguenti. Non ho
-descritto come sia possibile creare delle classi per riferirsi a tipi di dati
-personalizzati, né introdotto argomenti specifici come l'ereditarietà e il
-polimorfismo, perché non è necessario conoscere questi aspetti del linguaggio
-per poter comprendere con profitto il resto di quello che scriverò.
-Padroneggiare questi concetti, però, è una competenza decisamente attesa per
-ogni professionista dell'informatica, e auspicabile anche per un
-_data scientist_, ma tutto questo è ampiamente al di fuori dello scopo di
-questo libro. Per approfondire questi argomenti si può fare riferimento alla
-[specifica parte](https://docs.python.org/3/tutorial/classes.html)
-della documentazione ufficiale di Python o alla parte IV in {cite:p}`ramalho`.
+La programmazione orientata agli oggetti è un argomento molto complesso, e qui
+ne ho solo scalfito la superficie, accennando ai suoi aspetti essenziali. Mi
+sono concentrato su ciò che serve conoscere per comprendere il codice che
+che presenterò nel seguito, e per imparare a scrivere programmi che
+automatizzano le tecniche di analisi dei dati descritte nei capitoli seguenti.
+In particolare, non ho trattato la creazione di classi personalizzate, né 
+concetti come ereditarietà e polimorfismo, perché non sono necessari per
+seguire il resto della trattazione. Padroneggiare questi concetti è però una
+competenza attesa per ogni professionista dell'informatica, e auspicabile anche
+per chi si occupa di _data science_, ma è al di fuori dello scopo di questo
+libro. Per approfondire questi argomenti si può fare riferimento alla
+[documentazione ufficiale di
+Python](https://docs.python.org/3/tutorial/classes.html), o alla parte IV in
+{cite:p}`ramalho`.
 ```
 
 (sec:tipi-semplici-e-strutturati)=
 ## Tipi semplici e strutturati
 
-Semplificando un po’ il discorso, possiamo suddividere i tipi di dati che
-utilizzeremo in due grandi categorie:
+Semplificando, possiamo dividere i tipi di dati che utilizzeremo in due grandi
+categorie:
 
-- i tipi di dati _semplici_, che servono a definire un'informazione atomica,
-  che ha poco senso suddividere ulteriormente, come ad esempio un
-  dato numerico intero o decimale;
-- i tipi di dati _strutturati_, che vengono utilizzati per aggregare insieme
-  più tipi di dati (semplici o strutturati che siano), come gli _array_ o
-  gli insiemi.
+- i tipi di dati _semplici_, che rappresentano un'informazione atomica, che
+  ha poco senso suddividere ulteriormente, come un numero intero o decimale;  
+- i tipi di dati _strutturati_, che aggregano insieme più tipi di dati
+  (semplici o strutturati), come _array_ o insiemi.
 
-I due paragrafi che seguono descriveranno, rispettivamente, i tipi di dati
-semplici e strutturati che utilizzerò nel libro. Già solo considerando il
-linguaggio base, Python contempla svariati tipi di dati (la documentazione
-ufficiale ne riporta un
-[elenco](https://docs.python.org/3/library/datatypes.html)), ai
-quali vanno aggiunti i tipi implementati dalle librerie di terze parti. La
-trattazione che farò non è sicuramente esaustiva, e, anche se lo fosse, sarebbe
-lungi dall'essere perfetta. Da una parte, non è completa, perché vi sono classi
-che implementano tipi che non ricadono naturalmente in nessuna delle due
-categorie introdotte (come quelle che descrivono le funzioni, o gli iteratori,
-o concetti complessi che non corrispondono ad alcun tipo di dati così come lo
-si intende in senso classico); dall'altra, è opinabile associare alcuni tipi a
-una delle due categorie: per esempio, le stringhe possono essere pensate come
-un tipo semplice, ma anche annoverate tra i tipi strutturati, essendo esse
-costituite da una sequenza di caratteri. Per decidere se un tipo di dato è
-semplice oppure strutturato, io mi baserò sul seguente criterio: un dato è di
-tipo strutturato se Python permette di _iterare_ nativamente sui suoi elementi
-usando l'idioma `for` (vedi {ref}`sec:iterare`); in tutti gli altri casi,
-considererò il tipo di dato come semplice.
+Nei due paragrafi successivi descriverò, rispettivamente, i tipi di dati
+semplici e strutturati che utilizzerò nel libro. Anche considerando i soli tipi
+_builtin_, Python offre molti tipi di dati (la [documentazione
+ufficiale](https://docs.python.org/3/library/datatypes.html) ne riporta un
+elenco), ai quali vanno aggiunti i tipi implementati da librerie di terze
+parti. Pertanto non proporrò una trattazione esaustiva. Anche se lo fosse,
+questa sarebbe lungi dall'essere perfetta: non sarebbe completa, perché alcune
+classi implementano tipi che non rientrano naturalmente in nessuna delle due
+categorie (come le classi che si riferiscono a funzioni, iteratori o concetti
+complessi che non corrispondono a un tipo di dato così come lo si intende in
+senso classico). Inoltre, l’assegnazione di alcuni tipi a una categoria può
+essere opinabile: ad esempio, le stringhe possono essere considerate un tipo
+sia semplice che strutturato, perché sono sequenze di caratteri. Per decidere
+se un tipo di dato è semplice o strutturato, adotterò un criterio pratico:
+considero un tipo strutturato se Python permette di _iterare_ nativamente sui
+suoi elementi usando l’idioma `for` (vedi il Paragrafo {ref}`sec:iterare`); in
+tutti gli altri casi, considererò il tipo di dato come semplice.
 
 
 ## Esercizi
@@ -345,8 +320,8 @@ delle seguenti affermazioni sono vere e quali sono false:
 
 ```{exercise} •
 Considerate l'ipotetica classe `Superhero` definita nel Paragrafo
-{ref}`sec:tipi_classi_oggetti`, indicando ulteriori variabili di istanza e metodi
-che è sensato considerare per i relativi oggetti.
+{ref}`sec:tipi_classi_oggetti`, indicando ulteriori variabili di istanza e
+metodi che è sensato considerare per i relativi oggetti.
 ```
 
 ```{exercise} ••
@@ -364,9 +339,16 @@ e quali sono false:
   il corrispondente costruttore.
 ```
 
+```{margin}
+Il fatto che una funzione restituisca una classe potrebbe sembrarvi quantomeno
+strano: risolvendo questo esercizio, riflettete sul significato di questo
+comportamento e sulle sue possibili implicazioni. Più avanti, spiegherò un po'
+più in dettaglio questa particolarità del linguaggio.
+```
 ```{exercise} ••
 La funzione `type` restituisce la classe del valore specificato come argomento.
-Utilizzate questa funzione per capire di che tipo siano le seguenti espressioni:
+Utilizzate questa funzione per capire di che tipo siano le seguenti
+espressioni:
 
 - `42`;
 - `42.`;  
@@ -378,8 +360,8 @@ Utilizzate questa funzione per capire di che tipo siano le seguenti espressioni:
 
 ```{exercise} ••
 Considerate le seguenti sequenze di caratteri, e per ognuna di esse stabilite
-se rappresenta un identificatori valido in Python oppure no. Per ogni
-identificatore valido, indicate se esso rispetta oppure no le convenzioni
+se rappresentano un identificatori valido in Python oppure no. Per ogni
+identificatore valido, indicate anche se esso rispetta le regole di stile
 introdotte nel testo.
 
 - `velocita`;
@@ -417,18 +399,34 @@ ricade nella categoria dei tipi semplici o di quelli strutturati, motivando
 la vostra scelta.
 ```
 
-[^letterali]: Se non sapete (o non ricordate) che cosa si intende per letterale,
-pazientate fino al prossimo paragrafo.
 
-[^duck-typing]: Spesso si utilizza
-il termine _duck typing_ per descrivere questo aspetto della tipizzazione
-dinamica, facendo riferimento a una frase attribuita al poeta americano James
-Whitcomb Riley: «when I see a bird that walks like a duck and swims like a duck
-and quacks like a duck, I call that bird a duck».
+[^costruttore]: In realtà, la costruzione di un oggetto avviene in due fasi
+successive: la _creazione_, intesa come allocazione della memoria necessaria
+per contenerlo, e l'_inizializzazione_, che imposta i valori che definiscono
+l'oggetto nel suo stato iniziale. Se studierete Python in modo più
+approfondito, scoprirete che queste due azioni corrispondono rispettivamente
+ai metodi `__new__` e `__init__`, e comunemente ci si riferisce a quest'ultimo
+come al costruttore della classe, anche se tecnicamente questo è incorretto.
 
-[^maxint]: È anche interessante notare che l'implementazione della classe `int`
-adotta un approccio ad aritmetica con _precisione arbitraria_: il numero di bit
-necessari per memorizzare un valore intero non è prefissato, bensì allocato
-dinamicamente in funzione dei valori di volta in volta assegnati. Ciò implica
-che non esiste un «più grande» o un «più piccolo» intero memorizzabile, come
-in altri linguaggi.
+[^letterali]: Se non ricordate (o non sapete) che cosa si intende per
+letterale, pazientate fino al prossimo paragrafo.
+
+[^duck-typing]: Il termine _duck typing_ descrive questo aspetto della
+tipizzazione dinamica. Il nome trae ispirazione da un detto attribuito al poeta
+americano James Whitcomb Riley: «when I see a bird that walks like a duck and
+swims like a duck and quacks like a duck, I call that bird a duck».
+
+[^costanti-type-hint]: Per la precisione, esistono strumenti che si
+avvantaggiano del _type hinting_ per segnalare che un identificatore deve
+essere trattato come una costante, così come tecniche speciali di
+programmazione che evitano che un identificatore venga modificato, ma si tratta
+di aspetti decisamente avanzati rispetto a quanto affronto in questo libro.
+
+[^first-letter]: Se siete stati attenti, dovreste avere notato una
+contraddizione: nel riquadro [Regole di stile](#adm:regole-di-stile) ho scritto
+che i nomi delle classi dovrebbero utilizzare l'_upper camel case_, ma ciò non
+è vero per `int` e `float`, né per gran parte delle classi dei tipi accessibili
+in Python senza ricorrere a librerie (quelli che vengono chiamati tipi
+_builtin_). Questi tipi usano uno stile separato (come anche specificato nella
+PEP8) per molteplici ragioni, tra cui semplificare il codice, o evidenziare la
+differenza tra le classi _builtin_ e quelle definite dagli utenti. 

@@ -30,7 +30,7 @@ normalmente questo non succede. Anzi, di norma è possibile costruire un
 medesimo tipo di dati strutturato usando strutture dati diverse: per esempio,
 un insieme è un tipo di dati strutturato che può essere basato su un _array_
 così come su un albero (sebbene la scelta tra queste due strutture dati abbia
-un impatto sull'_efficienza_ delle operazioni che si possono eseguire
+un impatto sull’_efficienza_ delle operazioni che si possono eseguire
 sull'insieme). Siccome questo libro non parla delle strutture dati, e tenuto
 conto del fatto che la dicitura «generico valore di un tipo di dati
 strutturato» è decisamente prolissa, al suo posto userò occasionalmente il
@@ -75,6 +75,9 @@ qui sotto.
 - L'omogeneità o eterogeneità dei contenuti, a seconda del fatto che gli
   elementi nella struttura debbano essere tutti dello stesso tipo oppure no.
 
+```{margin}
+Ricordate che `np` è l’_alias_ che viene normalmente usato per importare numpy.
+```
 ```{table} Proprietà dei tipi di dati strutturati
 :name: tab:caratteristiche-dati-strutturati
 :align: center
@@ -87,13 +90,11 @@ qui sotto.
 | [insieme](sec:insiemi)      | `set`      | ✕           | ✓       | ✓        | ✕        |
 | [dizionario](sec:dizionari) | `dict`     | ✕           | ✓       | ✓        | ✕        |
 ```
-```{margin}
-Ricordate che `np` è l'_alias_ che viene normalmente usato per importare numpy.
-```
+
 
 (sec:iterare)=
 ## Accedere a una struttura
-Pur facendo riferimento a concetti altamente diversi tra loro, i tipi di dato
+Pur facendo riferimento a concetti altamente diversi tra loro, i tipi di dati
 strutturati che considererò supportano delle modalità comuni di accesso, e
 Python introduce una sintassi unificata per queste operazioni.
 La prima di queste modalità riguarda l'aspetto che ho scelto per definire i
@@ -227,8 +228,8 @@ nel seguente elenco, e verranno dettagliate nei paragrafi che seguono.
 - La funzione `len` restituisce sempre il numero di elementi contenuti nella
   struttura[^data-model]. Nel gergo informatico, ci si riferisce a questo
   numero come alla sua _lunghezza_, anche nel caso in cui questa denominazione
-  possa risulta impropria (per esempio, si parla della _cardinalità_ di un
-  insieme e non della sua lunghezza).
+  possa risulta impropria (per esempio, si parla normalmente della
+  _cardinalità_ di un insieme piuttosto che della sua lunghezza).
 
 - Sono quasi sempre disponibili uno o più operatori di _accesso_ che permettono
   di ottenere il valore uno specifico elemento contenuto nella struttura e, se
@@ -298,7 +299,7 @@ nessuno il fatto che `len(s)` restituisca il numero di caratteri della stringa
 `s`, né che i letterali `''` e `""` denotino la stringa vuota (la cui
 lunghezza è uguale a zero).
 
-L'operatore di accesso richiede un po' più di dettaglio. Risulta naturale
+L'operatore di accesso richiede un po’ più di dettaglio. Risulta naturale
 accedere in modo posizionale ai singoli caratteri di una stringa,
 specificandone la posizione, pertanto basta specificare dopo una variabile
 che la referenzia (ma ovviamente si potrebbe utilizzare anche un letterale)
@@ -528,7 +529,7 @@ già non sono di questo tipo, pena l'emissione di un'eccezione. Ciò
 renderebbe il codice inutilmente complesso, ed è per ovviare a questo che
 `print` accetta più argomenti. Nella pratica comune, però, quando si vuole
 emettere degli output complessi che mischiano stringhe fisse con il contenuto
-di una o più variabili si preferisce produrre dell'_output formattato_. Questo
+di una o più variabili si preferisce produrre dell’_output formattato_. Questo
 si può fare in tre modi diversi: usando l'operatore `%`, invocando il metodo
 `format` su una stringa oppure utilizzando dei _letterali stringa formattati_.
 Sebbene le prime due modalità siano tutt'ora disponibili, l'ultima (che è
@@ -630,29 +631,30 @@ di tipo `list`, la classe che in Python implementa le liste.
 
 Per esempio, la lista che contiene i quattro quadrati perfetti che si ottengono
 contando a partire da zero corrisponde al letterale `[0, 1, 4, 9]`, così come
-quella formata dai primi tre numeri dispari positivi è indicata da `[1, 3, 5]`;
-analogamente, `[]` rappresenta la lista vuota. Chiaramente, la modalità
-estensiva diventa poco pratica per riferirsi a liste contenenti più di una
-decina di elementi: queste ultime vengono infatti gestite creandole
-dinamicamente, per esempio inserendovi gli elementi via via che essi vengono
-generati all'interno di un ciclo, oppure create da opportune funzioni. È però
-possibile esprimere una lista anche come il risultato di una trasformazione
-applicata agli elementi di un'altra struttura. Tale modalità, che prende il
-nome di _list comprehension_, opera dunque con un approccio _intensivo_,
-perché si basa sulla specificazione di una proprietà che deve essere
-soddisfatta da tutti e soli gli elementi della lista. La sintassi più semplice
-di una _list comprehension_ è `[f(e) for e in l]`, dove `f(e)` indica una
-funzione o un'espressione che dipende dalla variabile muta `e` e `l` è la
-struttura di partenza. Quando l'espressione corrispondente viene valutata, la
-struttura `l` viene attraversata, generando tutti i suoi elementi: ogni volta,
-l'elemento ottenuto viene usato per valutare la funzione o l'espressione `f`.
-Il risultato finale è la lista che aggrega tutti i valori restituti,
-nell'ordine in cui questi sono stati generati (che quindi dipende strettamente
-dalla struttura `l` di partenza). In altre parole, la _list comprehension_
-produce una nuova lista nella quale il primo elemento è il risultato del
-calcolo di `f` sul primo elemento di `l`, il secondo è il risultato di `f`
-secondo elemento di `l` e così via. Pertanto, la lista dei primi quattro
-quadrati perfetti si può esprimere anche come
+quella formata dai nomi dei componenti della _Justice Leage_ nella sua
+formazione originale è indicata da `['Superman', 'Batman', 'Wonder Woman',
+'Flash', 'Green Lantern', 'Aquaman', 'Martian Manhunter']`; analogamente, `[]`
+rappresenta la lista vuota. Chiaramente, la modalità estensiva diventa poco
+pratica per riferirsi a liste contenenti più di una decina di elementi: queste
+ultime vengono infatti gestite creandole dinamicamente, per esempio inserendovi
+gli elementi via via che essi vengono generati all'interno di un ciclo, oppure
+create da opportune funzioni. È però possibile esprimere una lista anche come
+il risultato di una trasformazione applicata agli elementi di un'altra
+struttura. Tale modalità, che prende il nome di _list comprehension_, opera
+dunque con un approccio _intensivo_, perché si basa sulla specificazione di una
+proprietà che deve essere soddisfatta da tutti e soli gli elementi della lista.
+La sintassi più semplice di una _list comprehension_ è `[f(e) for e in l]`,
+dove `f(e)` indica una funzione o un'espressione che dipende dalla variabile
+muta `e` e `l` è la struttura di partenza. Quando l'espressione corrispondente
+viene valutata, la struttura `l` viene attraversata, generando tutti i suoi
+elementi: ogni volta, l'elemento ottenuto viene usato per valutare la funzione
+o l'espressione `f`. Il risultato finale è la lista che aggrega tutti i valori
+restituti, nell'ordine in cui questi sono stati generati (che quindi dipende
+strettamente dalla struttura `l` di partenza). In altre parole, la _list
+comprehension_ produce una nuova lista nella quale il primo elemento è il
+risultato del calcolo di `f` sul primo elemento di `l`, il secondo è il
+risultato di `f` secondo elemento di `l` e così via. Pertanto, la lista dei
+primi quattro quadrati perfetti si può esprimere anche come
 ```{margin}
 Quando una lista è utilizzata per dati di tipo omogeneo, vale la pena
 considerare di sostituirla con un _array_ per diminuire i tempi di esecuzione
@@ -672,7 +674,7 @@ l'espressione `g(e)`. Pertanto
 [i for i in range(1, 6) if i % 2 == 1]
 ```
 
-genera la stessa lista di numeri dispari che ho indicato prima.
+genera la lista dei primi tre numeri dispari, partendo da $1$.
 
 ````{admonition} Range
 In alcuni degli esempi fatti finora, ho utilizzato `range` per ottenere degli
@@ -693,11 +695,11 @@ inefficiente (e potenzialmente inutilizzabile) quando si volevano memorizzare
 sequenze particolarmente lunghe con il solo scopo di iterare sopra di esse, per
 esempio in un ciclo. Chiaramente, per eseguire questo compito è sufficiente
 mantenere in memoria solo il valore corrente della sequenza e il suo limite
-superiore. A partire dalla versione 3 di Python, `range` è diventata una classe
-i cui oggetti rappresentano le sequenze usando proprio questo approccio, e con
-i quali è possibile interagire in modo simile alle liste. In particolare, gli
-oggetti `range` si possono utilizzare in concomitanza con i cicli `for` e
-all'interno di _list comprehension_, come ho fatto negli esempi precedenti.
+superiore. A partire dalla versione 3 di Python, `range` è diventata una classe,
+i cui oggetti rappresentano le sequenze, implementata usando proprio questo
+approccio. Gli oggetti `range` si possono dunque utilizzare per scrivere cicli
+`for` e _list comprehension_ in modo efficiente, come ho fatto negli esempi
+precedenti.
 ````
 
 La proprietà di eterogeneità delle liste ci permette di utilizzarle per
@@ -707,16 +709,22 @@ oggetto complesso o un individuo, come ad esempio un supereroe:
 ```python
 iron_man = ['Iron Man',
             'Tony Stark',
-            'Long Island, New York',
-            'Marvel Comics',
-            198.51,
-            191.85,
-            'M',
-            1963,
-            'Blue',
-            'Black',
+            'High',
+            100,
+            100,
             85,
-           'high']
+            90,
+            80,
+            'Marvel Comics',
+            'Earth-616 - Prime Marvel Universe',
+            'Anthony Edward Stark',
+            'Long Island, New York',
+            1963,
+            'Good',
+            198.1,
+            192.8,
+            'Blue',
+            'Black']
 ```
 
 ```{margin}
@@ -724,11 +732,11 @@ Vedremo più avanti che ci sono modi più interessanti di codificare un
 _record_ di informazioni.
 ```
 
-L'operatore di accesso alle liste segue la stessa semantica vista per gli
-array e per le stringhe: tra parentesi quadre si specifica una posizione che
-individua un oggetto all'interno della sequenza memorizzata nella lista (più
-precisamente, un riferimento a questo oggetto), o uno _slicing_ per individuare
-una sotto-sequenza.
+L'operatore di accesso alle liste segue la stessa semantica vista per le
+stringhe: tra parentesi quadre si specifica una posizione che individua un
+oggetto all'interno della sequenza memorizzata nella lista (più precisamente,
+un riferimento a questo oggetto), o uno _slicing_ per individuare una
+sotto-sequenza.
 
 ````{prf:example}
 :label: ex:list
@@ -744,32 +752,18 @@ iron_man[-4:-2]
 ```
 
 ````
-```{margin}
-Un'altra differenza tra liste e _array_ è legata al fatto che questi ultimi
-rappresentano strutture dati _statiche_, nelle quali non è possibile aggiungere
-o rimuovere elementi, ma solo modificare quelli esistenti.
-```
+
 Dover specificare la posizione del primo elemento da escludere sembra
 controintuitivo rispetto alla scelta più naturale di indicare la posizione
 dell'ultimo elemento da includere. In realtà in questo modo risulta più facile
-scrivere codice che elabora porzioni successive in una lista. Infine, come già
-detto le liste sono strutture dati _dinamiche_, nel senso che oltre a
-modificare gli elementi in essa contenuti è anche possibile rimuovere uno o più
-di tali elementi, oppure aggiungerne di nuovi.
+scrivere codice che elabora porzioni successive in una lista.
+
+
 
 Sono a disposizione varie operazioni che agiscono sulle liste, e queste
 operazioni sono implementate utilizzando diversi elementi del linguaggio:
-gli operatori, le funzioni e i metodi. I paragrafi che seguono, lungi
-dall'essere esaustivi, introducono alcuni esempi: il loro scopo è
-principalmente quello di sottolineare la differenza tra i concetti di
-operatore, funzione e metodo in Python. Per degli approfondimenti è possibile
-consultare la documentazione ufficiale, che contiene un [documento
-introduttivo](https://docs.python.org/3/tutorial/introduction.html#lists) e uno
-[più dettagliato](https://docs.python.org/3/tutorial/datastructures.html#)
-sull'uso delle liste. Per esemplificare l'uso di questi tre tipi di strumenti
-conviene ragionare in termini di una lista utilizzata come se fosse un _array_,
-memorizzando dunque una successione di valori dello stesso tipo, per esempio i
-nomi di alcuni supereroi:
+gli operatori, le funzioni e i metodi. Di seguito, senza alcuna pretesa di
+essere esaustivo, introduco alcuni esempi ragionando sulla seguente lista
 
 ```python
 names = ['Aquaman', 'Ant-Man', 'Batman', 'Black Widow',
@@ -779,11 +773,17 @@ names = ['Aquaman', 'Ant-Man', 'Batman', 'Black Widow',
          'Spider-Man', 'Thor', 'Northstar']
 ```
 
+che contiene i nomi di alcuni supereroi. Come già precedentemente indicato,
+la funzione `len` può essere invocata per calcolare la lunghezza di un
+oggetto, che per quanto riguarda le liste coincide con il numero di elementi
+in essa contenuti:
 
-### Operatori
+```python
+len(names)
+```
 
 Alcuni degli operatori descritti nel {ref}`sec:dati-semplici` mantengono la loro
-semantica quando vengono usate delle liste come operatori: per esempio `==`
+semantica quando vengono usate delle liste come operandi: per esempio `==`
 permette di verificare se due liste abbiano uguali contenuti (cioè contengano
 lo stesso numero di elementi, e gli elementi in una stessa posizione siano
 uguali). Altri tra questi operatori assumono invece una semantica diversa: in
@@ -824,7 +824,7 @@ del names[0]
 
 Va sottolineato che `del` è un operatore dal comportamento quantomeno
 particolare, in quanto esso non restituisce alcun valore; la sua esecuzione ha
-però l'_effetto collaterale_ di eliminare l'elemento nella posizione
+però l’_effetto collaterale_ di eliminare l'elemento nella posizione
 specificata della lista usata come operando [^del-behaviour]. Come conseguenza
 di questo effetto collaterale, nell'esempio precedente viene eliminato il primo
 elemento della lista, così che quello che prima era il secondo elemento diventa
@@ -846,32 +846,20 @@ anche altri elementi del linguaggio che vedremo più avanti, come funzioni e
 moduli.
 ```
 
-
-### Funzioni
-
-Alcune delle funzioni nel linguaggio base di Python sono pensate per elaborare
-liste. Per esempio `len` restituisce la _lunghezza_ della lista specificata
-come argomento, dove per lunghezza si intende il numero di elementi contenuti
-nella lista:
-
-```python
-len(names)
-```
-
-Anche in questo caso, `len` è una funzione di carattere generale pensata per
-calcolare la lunghezza delle varie strutture dati implementate in Python.
-
-### Metodi
-
-Python è un linguaggio di programmazione che implementa (anche) il paradigma
-orientato a oggetti, e come abbiamo già visto le liste (così come gli altri
-tipi di dati) sono a tutti gli effetti oggetti, e quindi su di esse è possibile
-invocare dei metodi. Supponiamo per esempio di voler mettere in ordine
-alfabetico i nomi dei supereroi contenuti in `names` (la lista è quasi in
-ordine, l'unico elemento fuori posto è l'ultimo): uno dei modi in cui è
-possibile eseguire questa operazione è quella di invocare sulla lista il
-metodo `sort` (usando la _dot notation tipica_ della programmazione orientata
-agli oggetti).
+Infine, è possibile usare oggetti della classe `list` invocando su di essi dei
+metodi. Prendiamo ad esempio `sort`, che permette di ordinare gli elementi
+sulla base di una relazione predefinita. Per quanto riguarda le stringhe,
+questa relazione corrisponde all'_ordine lessicografico_, che è una
+generalizzazione dell'ordine alfabetico a parole su un qualsiasi alfabeto di
+simboli ordinati. In Python, la comparazione tra due stringhe viene fatta
+scandendole da da sinistra verso destra, fermandosi alla prima posizione in cui
+si trovano due caratteri diversi, che vengono confrontati secondo la loro
+codifica Unicode: quello che ha un codice più basso individua la stringa «più
+piccola». Se una stringa è un prefisso dell'altra, allora «viene prima»
+nell'ordine. Supponiamo per esempio di voler mettere in ordine i nomi dei
+supereroi contenuti in `names` (la lista è quasi in ordine, l'unico elemento
+fuori posto è l'ultimo): uno dei modi in cui è possibile eseguire questa
+operazione è quella di invocare sulla lista il metodo `sort`.
 
 ```python
 names.sort()
@@ -889,53 +877,50 @@ names[-5:]
 ```
 
 In Python è possibile specificare valori per argomenti _opzionali_ quando si
-invoca un metodo (o una funzione): si tratta di argomenti identificati da un
-nome, che _possono_ essere omessi, e in tal caso assumono un valore predefinito
-[^argomenti-opzionali]. Per poter specificare un valore diverso da quello
-predefinito è necessario indicare, dopo _tutti_ gli eventuali argomenti non
-opzionali, un'espressione del tipo `<nome>=<valore>`, dove `<nome>` indica il
-nome dell'argomento opzionale in questione e `<valore>` è il relativo valore.
-Per esempio, il metodo `sort` effettua l'ordinamento in verso non decrescente,
-e l'argomento opzionale `reversed` permette di invertire tale verso:
+invoca un metodo (o, come vedremo più avanti, una funzione): si tratta di
+argomenti identificati da un nome, che _possono_ essere omessi, e in tal caso
+assumono un valore predefinito [^argomenti-opzionali]. Per poter specificare un
+valore diverso da quello predefinito è necessario indicare, dopo _tutti_ gli
+eventuali argomenti non opzionali, un'espressione del tipo `<nome>=<valore>`,
+dove `<nome>` indica il nome dell'argomento opzionale in questione e `<valore>`
+è il relativo valore. Per esempio, l'argomento opzionale `reversed` del metodo
+`sort` permette di invertire il verso dell'ordinamento:
 
 ```python
 names.sort(reverse=True)
 ```
 
-Un'altra caratteristica di python è quella di poter specificare una funzione
+Un'altra caratteristica di Python è quella di poter specificare una funzione
 come argomento di un metodo (o di un'altra funzione) [^first-class]; ciò si può
 fare indicando il nome della funzione, oppure usando una _funzione anonima_
-(vedi il Paragrafo {ref}`sec:funzioni-anonime`). Consideriamo ad
-esempio l'argomento opzionale `key` del metodo `sort`: esso permette di
-indicare un criterio alternativo per eseguire l'ordinamento, specificando come
-valore una funzione che trasforma gli elementi della lista in quantità
+(vedi il Paragrafo {ref}`sec:funzioni-anonime`). Esemplifico anche questa
+caratteristica usando il metodo `sort`: il suo argomento opzionale `key`
+permette di specificare criteri alternativi per eseguire l'ordinamento,
+indicando una funzione che trasforma gli elementi della lista in quantità
 numeriche su cui basare l'ordinamento (nel senso che elementi trasformati in
 numeri più bassi compariranno prima nella lista ordinata rispetto ad altri
-elementi trasformati in numeri più alti). Dunque è necessario fornire come
-valore di questo argomento opzionale il nome di una funzione che trasforma
-stringhe in numeri. Possiamo quindi utilizzare la funzione `len`
-precedentemente introdotta:
+elementi trasformati in numeri più alti). Nell'invocazione seguente
 
 ```python
 names.sort(key=len)
 ```
 
-Invocare in questo modo il metodo `sort` equivale quindi a:
+l'ordinamento viene fatto:
 
-- associare ogni nome di supereroe alla sua lunghezza,
-- ordinare le coppie ottenute in base alla lunghezza,
-- considerare solo i nomi, mantenendo questo nuovo ordinamento.
+- associando il nome di ogni supereroe nella lista alla sua lunghezza,
+- ordinando le coppie ottenute in base a questa lunghezza,
+- considerando solo i nomi, mantenendo questo nuovo ordinamento,
 
-In parole povere, abbiamo ordinato i nomi dal più breve al più lungo, come si
+che corrisponde a riordinare i nomi dal più breve al più lungo, come si
 può facilmente verificare:
 
 ```python
 names
 ```
 
-Nel caso in cui si volessero specificare due o più argomenti opzionali all'atto
-dell'invocazione di un metodo, basta separarli usando le virgole esattamente
-come si procede per gli argomenti non opzionali. Per esempio
+Nel caso in cui si volessero specificare due o più argomenti opzionali, basta
+separarli usando le virgole esattamente come si procede per gli argomenti non
+opzionali. Per esempio
 
 ```python
 names.sort(key=lambda n:len(n), reverse=True)
@@ -946,6 +931,12 @@ anche notato che essendo gli argomenti opzionali univocamente individuati dal
 loro nome, non è necessario specificarli seguendo un ordine prefissato:
 pertanto si potrebbero scambiare le posizioni di `key` e `reverse`
 nell'invocazione precedente senza modificare la semantica dell'istruzione.
+
+Per degli approfondimenti è possibile
+consultare la documentazione ufficiale, che contiene un [documento
+introduttivo](https://docs.python.org/3/tutorial/introduction.html#lists) e uno
+[più dettagliato](https://docs.python.org/3/tutorial/datastructures.html#)
+sull'uso delle liste.
 
 (sec:tuple)=
 ## Le tuple
@@ -1132,7 +1123,7 @@ l'argomento più generale dei _design pattern_ {cite:p}`gang-of-four`, che
 descrivono degli schemi decisamente più complessi di quelli che descrivono
 codice idiomatico, e che si possono implementare usando diversi linguaggi di
 programmazione. Sono esempi di _design pattern_ i singoletti, i _flyweight_ e i
-metodi fabbrica.
+metodi fabbrica ai quali ho precedentemente accennato.
 
 [^data-model]: Se avete già studiato un linguaggio di programmazione orientato
 agli oggetti, vi starete probabilmente chiedendo perché la lunghezza di una
@@ -1164,7 +1155,7 @@ definisce una nuova classe.
 qualche dubbio sull'utilità di questa pratica, un breve ma particolarmente
 efficace
 [manoscritto](https://www.cs.utexas.edu/~EWD/ewd08xx/EWD831.PDF) di Edsger
-Dijkstra (vedi anche la precedente nota[^var-ciclo]) descrive i suoi vantaggi.
+Dijkstra (già citato in una nota precedente nota) descrive i suoi vantaggi.
 
 [^substring]: Dover specificare la posizione del primo carattere da
 escludere sembra controintuitivo rispetto a indicare la posizione dell'ultimo
@@ -1182,17 +1173,16 @@ che descrive in dettaglio le sequenze di _escaping_.
 
 [^del-behaviour]: I lettori attenti potrebbero avere notato un apparente
 incoerenza tra il modo in cui vengono valutate le espressioni e la semantica
-appena introdotta per l'operatore `del`. Consideriamo l'espressione
-`del names[0]` dell'esempio precedente: se questa fosse valutata in modo
-ususale, verrebbe innanzitutto valutato l'operando, dunque l'espressione
-`names[0]`. L'operatore `del` verrebbe quindi applicato al valore ottenuto, che
-nel nostro caso sarebbe la stringa `'Aquaman'`. Ora, l'istruzione
-`del 'Aquaman'` genererebbe un errore, perché `del` si può applicare solo a
-riferimenti e non a letterali. In realtà la valutazione di espressioni di
-questo tipo viene fatta in un modo diverso, perché `del names[0]` viene i
-plicitamente convertita in un'altra espressione che equivale a invocare un
-particolare metodo dell'oggetto referenziato da `names`, passando il valore `0`
-come argomento. 
+appena introdotta per l'operatore `del`. Consideriamo l'espressione `del
+names[0]` dell'esempio precedente: se questa fosse valutata in modo ususale,
+verrebbe innanzitutto valutato l'operando, dunque l'espressione `names[0]`.
+L'operatore `del` verrebbe quindi applicato al valore ottenuto, che nel nostro
+caso sarebbe la stringa `'Aquaman'`. Ora, l'istruzione `del 'Aquaman'`
+genererebbe un errore, perché `del` si può applicare solo a riferimenti e non a
+letterali. In realtà la valutazione di espressioni di questo tipo viene fatta
+in un modo diverso: a causa del Python data model descritto in una nota
+precedente, `del names[0]` viene implicitamente convertita nell'espressione
+`names.__delitem__(0)`.
 
 [^sorted]: In realtà è disponibile anche la funzione `sorted`, che non modifica
 l'argomento e restituisce una nuova lista.
@@ -1209,8 +1199,8 @@ le stringhe viene utilizzato l'ordinamento lessicografico.
 [^argomenti-opzionali]: Gli argomenti opzionali vengono tipicamente utilizzati
 quando si ha a che fare con metodi o funzioni che implementano operazioni che
 prevedono svariate opzioni, sebbene nella maggior parte dei casi ognuna di
-queste opzioni venga usata sempre nello stesso modo, modificandone al più una
-oppure due. Si pensi al caso della produzione di grafici: sebbene in teoria sia
+queste opzioni venga usata sempre nello stesso modo, modificandone al più un
+numero molto basso. Si pensi al caso della produzione di grafici: sebbene in teoria sia
 possibile cambiare il colore o lo spessore degli assi cartesiani, o il corpo
 dei caratteri usati per etichettare questi ultimi, difficilmente si ricorre a
 tale possibilità. E anche quando si decide di modificare l'aspetto di un

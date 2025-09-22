@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // And also try window load event
   window.addEventListener('load', function() {
-    console.log('Window loaded, initializing toggle code');
+    // console.log('Window loaded, initializing toggle code');
     setTimeout(initializeToggleCode, 1000);
   });
   

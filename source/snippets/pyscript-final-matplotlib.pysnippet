@@ -1,0 +1,33 @@
+    # Handle matplotlib plots (before executing final code that might display)
+    matplotlib_handled = False
+    if _matplotlib_available:
+        # Check if there are any figures before final execution
+        if plt.get_fignums():
+            # Get the current figure
+            fig = plt.gcf()
+            
+            # Save plot to base64 string
+            img_buffer = io.BytesIO()
+            fig.savefig(img_buffer, format='png', bbox_inches='tight', dpi=100)
+            img_buffer.seek(0)
+            img_base64 = base64.b64encode(img_buffer.getvalue()).decode('utf-8')
+            img_buffer.close()
+            
+            # Display the image in the graph div
+            img_html = '<div class="no-mathjax"><img src="data:image/png;base64,' + img_base64 + '" style="max-width: 100%; height: auto;" /></div>'
+            element = document.getElementById("graph-{cell_number}")
+            element.innerHTML = img_html
+            
+            # Clear the figure to prevent it from being shown elsewhere
+            plt.close(fig)
+            matplotlib_handled = True
+    
+    # Execute final code only if it's not plt.show() and matplotlib wasn't handled
+    if not matplotlib_handled:
+        try:
+            result = {final_code}
+        except Exception as e:
+            sys.stderr.write(f"Error executing code: {{str(e)}}\\n")
+            import traceback
+            traceback.print_exc()
+            result = None

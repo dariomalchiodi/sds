@@ -36,26 +36,33 @@ help:
 # Italian documentation build target
 it:
 	@echo "Building Italian documentation..."
-	@echo "Step 1/9: Validating and generating URL shortener..."
+	@echo "Step 1/10: Validating and generating URL shortener..."
 	@python3 sds/validate-shortener.py
 	@python3 sds/generate-redirect-pages.py $(SDSDIR)
-	@echo "Step 2/9: Processing MyST files..."
+	@echo "Step 2/10: Processing MyST files..."
 	./sds/process_myst_batch.sh --clean it
-	@echo "Step 3/9: Copying shared resources..."
+	@echo "Step 3/10: Copying shared resources..."
 	@if [ -d "$(SOURCEDIR)/_static" ]; then cp -r "$(SOURCEDIR)/_static" tmpsource/; fi
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
-	@echo "Step 4/9: Building HTML with Sphinx..."
+	@echo "Step 4/10: Building HTML with Sphinx..."
 	$(SPHINXBUILD) -q -b html tmpsource/it $(SDSDIR)/it
-	@echo "Step 5/9: Processing remaining {py} roles in HTML..."
+	@echo "Step 5/10: Processing remaining {py} roles in HTML..."
 	python3 -m sds.sds process-py-roles $(SDSDIR)/it --language it
-	@echo "Step 6/9: Making part titles clickable and collapsible..."
+	@echo "Step 6/10: Making part titles clickable and collapsible..."
 	python3 -m sds.sds make-parts-clickable $(SDSDIR)/it --language it
-	@echo "Step 7/9: Apply chapter and section numbering..."
+	@echo "Step 7/10: Apply chapter and section numbering..."
 	python3 -m sds.sds apply-numbering --language it
-	@echo "Step 8/9: Cleaning temporary files..."
+	@echo "Step 8/10: Copying generated Python files..."
+	@find tmpsource/it -name "*.py" -type f | while read pyfile; do \
+		relpath=$$(realpath --relative-to=tmpsource/it "$$pyfile"); \
+		targetdir="$(SDSDIR)/it/$$(dirname "$$relpath")"; \
+		mkdir -p "$$targetdir"; \
+		cp "$$pyfile" "$$targetdir/"; \
+	done
+	@echo "Step 9/10: Cleaning temporary files..."
 	./sds/clean_tmpsource.sh --force --all
-	@echo "Step 9/9: Copying index.html to build root..."
+	@echo "Step 10/10: Copying index.html to build root..."
 	@if [ -f "$(SOURCEDIR)/index.html" ]; then \
 		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/sds/"; \
 		echo "✓ index.html copied to build directory"; \

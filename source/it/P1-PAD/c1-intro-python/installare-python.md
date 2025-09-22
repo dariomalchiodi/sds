@@ -286,7 +286,7 @@ _shell_ del paragrafo precedente, controllando di risultare posizionati nella
 directory `sds`, si esegue il comando
 
 ```{margin}
-Scegliere `.venv` come nome della directory per l'_environment_ rappresenta un
+Scegliere `.venv` come nome della directory per l’_environment_ rappresenta un
 uso consolidato, del quale tengono conto per esempio gli IDE. In teoria si può
 usare un nome qualunque, ma è meglio farlo solo se sussistono motivi specifici. 
 L'uso di `--prompt sds` è facoltativo, e quando questa parte di comando viene
@@ -360,7 +360,7 @@ volta che l'ambiente è stato attivato. Eseguendo invece il comando
 
 ```
 
-si disattiva l'_environment_ attivato, e conseguentemente il _prompt_ di
+si disattiva l’_environment_ attivato, e conseguentemente il _prompt_ di
 sistema torna a essere quello originario.
 
 
@@ -387,7 +387,7 @@ alle versioni recenti di Python.
 
 L'installazione di una libreria, che normalmente viene fatta all'interno di
 un _environment_ virtuale attivato, viene fatta eseguendo il comando `pip`
-in una _shell_, specificando il nome della libreria stessa&mdash;aggiungendo
+in una _shell_, specificando il nome della libreria stessa &mdash; aggiungendo
 eventualmente i caratteri `==` seguiti da uno specifico numero di versione. Se
 volessimo per esempio installare _altair_, la libreria che ho usato nel
 {ref}`chap:uno-sguardo-di-insieme` per produrre grafici interattivi, sarà
@@ -542,7 +542,7 @@ semplice, a patto di avere installato l'omonima estensione: basta selezionare
 il file corrispondente dall'IDE, e le sue celle verranno mostrate in un tab.
 Anche in questo caso, è possibile aggiungere codice ed esguirlo esattamente
 come nel caso di Jupyter: l'unica differenza sta nel fatto che la prima volta
-che si esegue una cella potrebbe essere necessario specificare l'_environment_
+che si esegue una cella potrebbe essere necessario specificare l’_environment_
 di riferimento, selezionandolo da un men contestuale.
 
 ```{admonition} Avvertenza
@@ -628,7 +628,7 @@ L'indentazione può essere fatta usando un numero qualsiasi di spazi o di
 tabulazioni, a condizione di non mescolarli e di mantenere la scelta effettuata
 per tutto il blocco di codice. Esistono argomentazioni sia a favore degli spazi
 che delle tabulazioni, così come critiche per entrambi. È una questione che
-divide profondamente gli sviluppatori&mdash;una vera e propria guerra di
+divide profondamente gli sviluppatori &mdash; una vera e propria guerra di
 preferenze. Personalmente, non intendo schierarmi: usate quella che
 preferite (quando ve lo potete permettere: a volte la scelta è imposta
 dall’ambiente di lavoro), ma siate coerenti.

@@ -40,7 +40,8 @@
   <py-config style="display: none;">
     {
       "packages": ["numpy", "pandas", "matplotlib", "altair", "IPython",
-                   "graphviz", "matplotlib_venn", "scikit-learn", "statsmodels"]
+                   "graphviz", "matplotlib_venn", "scikit-learn",
+                   "statsmodels"]
     }
   </py-config>
   <script type="module" src="https://pyscript.net/releases/2025.5.1/core.js"></script>
@@ -55,6 +56,7 @@
   {# set up with scrollspy to update the toc as we scroll #}
   {# ref: https://getbootstrap.com/docs/4.0/components/scrollspy/ #}
   <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="{{ default_mode }}">
+  <div class="sbt-scroll-pixel-helper"></div>
 
   {# A button hidden by default to help assistive devices quickly jump to main content #}
   {# ref: https://www.youtube.com/watch?v=VUR0I5mqq7I #}

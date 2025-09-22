@@ -18,6 +18,7 @@ import json
 import os
 import sys
 from pathlib import Path
+from tabnanny import verbose
 
 def create_redirect_html(short_code, target_url, delay=0):
     """
@@ -127,7 +128,9 @@ def create_redirect_html(short_code, target_url, delay=0):
 </html>"""
     return html_template
 
-def generate_redirect_pages(mappings_file="shortener-mappings.json", build_dir="build"):
+def generate_redirect_pages(mappings_file="shortener-mappings.json",
+                            build_dir="build",
+                            verbose=False):
     """
     Generate redirect pages for all mappings in the JSON file.
     
@@ -158,7 +161,9 @@ def generate_redirect_pages(mappings_file="shortener-mappings.json", build_dir="
     success_count = 0
     total_count = len(mappings)
     
-    print(f"🔗 Generating {total_count} redirect pages in short/ directory...")
+    if verbose:
+        print(f"🔗 Generating {total_count} redirect pages in "
+              "short/ directory...")
     
     for short_code, target_url in mappings.items():
         try:
@@ -169,19 +174,22 @@ def generate_redirect_pages(mappings_file="shortener-mappings.json", build_dir="
             html_file = short_path / f"{short_code}.html"
             with open(html_file, 'w', encoding='utf-8') as f:
                 f.write(html_content)
-            
-            print(f"  ✓ short/{short_code}.html -> {target_url}")
+
+            if verbose:
+                print(f"  ✓ short/{short_code}.html -> {target_url}")
             success_count += 1
             
         except Exception as e:
             print(f"  ❌ Failed to create short/{short_code}.html: {e}")
     
-    print(f"\n📊 Summary:")
-    print(f"  • Generated: {success_count}/{total_count} redirect pages")
-    print(f"  • Output directory: {build_dir}/short/")
+    if verbose:
+        print(f"\n📊 Summary:")
+        print(f"  • Generated: {success_count}/{total_count} redirect pages")
+        print(f"  • Output directory: {build_dir}/short/")
     
     if success_count == total_count:
-        print("✅ All redirect pages generated successfully!")
+        if verbose:
+            print("✅ All redirect pages generated successfully!")
         return True
     else:
         print(f"⚠️  {total_count - success_count} pages failed to generate")
@@ -195,8 +203,9 @@ def main():
     else:
         build_dir = "build"
     
-    print("🚀 SDS Redirect Page Generator")
-    print("=" * 50)
+    if verbose:
+        print("🚀 SDS Redirect Page Generator")
+        print("=" * 50)
     
     # Check if we're in the right directory
     if not os.path.exists("shortener-mappings.json"):
@@ -208,20 +217,21 @@ def main():
     success = generate_redirect_pages(build_dir=build_dir)
     
     if success:
-        print(f"\n🎯 Redirect pages are now available:")
-        print(f"   • Local: http://localhost:8080/short/{{short_code}}.html")
-        print(f"   • GitHub Pages: https://your-username.github.io/sds/short/{{short_code}}.html")
-        print(f"\n💡 Test examples:")
-        
-        # Show a few examples from the mappings
-        try:
-            with open("shortener-mappings.json", 'r') as f:
-                mappings = json.load(f)
-                for i, (short_code, _) in enumerate(mappings.items()):
-                    if i < 3:  # Show first 3 examples
-                        print(f"   • http://localhost:8080/short/{short_code}.html")
-        except:
-            pass
+        if verbose:
+            print(f"\n🎯 Redirect pages are now available:")
+            print(f"   • Local: http://localhost:8080/short/{{short_code}}.html")
+            print(f"   • GitHub Pages: https://your-username.github.io/sds/short/{{short_code}}.html")
+            print(f"\n💡 Test examples:")
+            
+            # Show a few examples from the mappings
+            try:
+                with open("shortener-mappings.json", 'r') as f:
+                    mappings = json.load(f)
+                    for i, (short_code, _) in enumerate(mappings.items()):
+                        if i < 3:  # Show first 3 examples
+                            print(f"   • http://localhost:8080/short/{short_code}.html")
+            except:
+                pass
         
         sys.exit(0)
     else:
