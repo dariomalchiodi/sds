@@ -559,7 +559,7 @@ Nell'ultima parte del libro, vedremo che esistono vari metodi per determinare
 automaticamente i parametri di un modello, in modo da adattarlo a un insieme di
 dati. Questo è uno degli scopi della _statistica inferenziale_, illustrata nei
 capitoli
-{ref}`chap:statistica-inferenziale`&ndash;{ref}`chap:statistica-non-parametrica`.
+{numref}`chap:statistica-inferenziale`&ndash;{numref}`chap:statistica-non-parametrica`.
 Il punto di partenza è sempre un _dataset_, che in questo contesto rappresenta
 un _campione_ di osservazioni effettuate su una _popolazione_ più ampia. Su
 questa popolazione vogliamo fare delle ipotesi o trarre conclusioni, anche se

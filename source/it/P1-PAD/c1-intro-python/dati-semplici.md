@@ -1089,6 +1089,18 @@ influenzato.
 ```
 
 
+[^42]: Gli informatici usano spessissimo il numero 42 come «valore predefinito»
+quando devono esemplificare del codice, attingendo a piene mani da un classico
+della cultura _nerd_. Nel libro «Guida galattica per gli autostoppisti», di
+Douglas Adams {cite:p}`adams-1981`, un calcolatore avanzatissimo impiega
+milioni di anni per determinare che 42 è la risposta alla «Domanda Fondamentale
+sulla Vita, l'Universo e Tutto Quanto», senza però spiegare bene in che cosa
+consista veramente questa domanda. Da allora, questo numero è spesso usato
+ironicamente per dire che, a volte, dietro a rigore e formalismi si nascondono
+delle assurdità. Dunque, dovendo inserire un numero qualsiasi per mostrare
+come funziona del codice, è inutile scervellarsi nella scelta: tanto vale
+usare quello che contiene la risposta a tutto quanto :-) .
+
 [^int-prefix]: La sintassi completa per scrivere un letterale di tipo intero
 è leggermente più complessa: è anche possibile specificare il prefisso `0b`,
 `0o` o `0x` (con il carattere in minuscolo o maiuscolo) per indicare,

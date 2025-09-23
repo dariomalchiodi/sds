@@ -1,8 +1,8 @@
 # Cell {cell_number}: Execute Python code
 
 # Capture stdout and stderr
-old_stdout = sys.stdout
-old_stderr = sys.stderr
+#old_stdout = sys.stdout
+#old_stderr = sys.stderr
 captured_stdout = StringIO()
 captured_stderr = StringIO()
 

@@ -1,8 +1,8 @@
 
 finally:
     # Restore stdout and stderr
-    sys.stdout = old_stdout
-    sys.stderr = old_stderr
+    # sys.stdout = old_stdout
+    # sys.stderr = old_stderr
     
     # Display outputs
     stdout_content = captured_stdout.getvalue()
