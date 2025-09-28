@@ -436,7 +436,13 @@ table.centered-content td {
   text-align: center;
   color: var(--visited-link-color);
   font: var(--fa-font-solid);
-  content: '\f254'; /* hourglass icon */
+  content: '\f254 '; /* hourglass icon */
+}
+
+.splash {
+  display: flex;
+  justify-content: center; /* horizontal centering */
+  align-items: center;    /* vertical centering */
 }
 
 .splash::after {
@@ -846,4 +852,15 @@ details summary {
 
 .py-error {
     display: none;
+}
+
+.plot-container {
+  position: relative;
+  bottom: 250px;
+  left: 650px;
+  max-width: 250px;
+  margin-bottom: -100px;
+  background: white;
+  padding: 15px;
+  border: 1px solid #ddd;
 }

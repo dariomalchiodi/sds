@@ -6,15 +6,8 @@ import os
 import sys
 import shutil
 
-#cache_dir = "/home/pyodide/.cache/matplotlib"
-#os.makedirs(cache_dir, exist_ok=True)
-#
-## Copy both prebuilt caches into place
-#for fname in ["fontlist-v330.json", "fontlist-v390.json"]:
-#    src = f"localfs/{fname}"   # adjust if you put them elsewhere
-#    if os.path.exists(src):
-#        shutil.copy(src, os.path.join(cache_dir, fname))
-#
+from pyscript import display
+from pyodide.http import open_url
 
 async def _ensure_localfs():
     """
@@ -23,39 +16,48 @@ async def _ensure_localfs():
     """
 
     manifest_url = "https://raw.githubusercontent.com/dariomalchiodi/sds/main/localfs/manifest.txt"
-    
+
     try:
-        response = await fetch(manifest_url)
-        if not response.ok:
-            console.log(f"Failed to fetch manifest: HTTP {response.status}")
-            return False
-        file_list = (await response.text()).splitlines()
-        
+        # Download and read manifest file
+        with open_url(manifest_url) as response:
+            manifest_data = response.read()
+
+        # Handle both bytes and string cases
+        if isinstance(manifest_data, bytes):
+            file_list = manifest_data.decode('utf-8').splitlines()
+        else:
+            file_list = manifest_data.splitlines()
+
         for relative_path in file_list:
             # Compute target path in Pyodide
             dst_path = os.path.join("/home/pyodide", relative_path)
             os.makedirs(os.path.dirname(dst_path), exist_ok=True)
-            
+
             # Construct raw GitHub URL for the file
             file_url = f"https://raw.githubusercontent.com/dariomalchiodi/sds/main/localfs/{relative_path}"
-            file_resp = await fetch(file_url)
-            if file_resp.ok:
-                array_buffer = await file_resp.arrayBuffer()
-                py_bytes = bytes(Uint8Array.new(array_buffer))  # <-- convert JS ArrayBuffer to Python bytes
+
+            try:
+                with open_url(file_url) as response:
+                    file_data = response.read()
+
+                # Ensure we always have bytes for writing
+                if isinstance(file_data, str):
+                    file_data = file_data.encode('utf-8')
+
                 with open(dst_path, "wb") as f:
-                    f.write(py_bytes)
-                # console.log(f"Downloaded {relative_path}")
-            else:
-                console.log(f"Failed to fetch {relative_path}: HTTP {file_resp.status}")
-        
+                    f.write(file_data)
+            except Exception as e:
+                console.log(f"Failed to fetch {relative_path}: {e}")
+
         # console.log("All localfs files downloaded successfully")
         return True
+
     except Exception as e:
         console.log(f"Error downloading localfs: {e}")
         return False
 
 # Usage
-await _ensure_localfs()
+await _ensure_localfs() 
 
 # Import matplotlib once at the beginning and make it available to all cells
 try:
@@ -182,103 +184,5 @@ def hide_splash(target_id):
                 splash.style.display = 'none'
     except Exception as e:
         console.log(f"Could not hide splash in {target_id}: {e}")
-
-def display(obj, target=None, append=True):
-    """Display an object in the specified target div."""
-    if target:
-        element = document.getElementById(target)
-        if element:
-            if append:
-                element.innerHTML += str(obj)
-            else:
-                element.innerHTML = str(obj)
-    else:
-        console.log(str(obj))
-
-# Import required modules for file download and filesystem operations
-
-#async def _ensure_heroes_csv():
-#    """Ensure heroes.csv is available in data/ directory, always download fresh version"""
-#    try:
-#        # Create data directory if it doesn't exist
-#        os.makedirs("data", exist_ok=True)
-#        
-#        # console.log("Loading heroes.csv dataset into data/ directory...")
-#        
-#        # Always fetch fresh CSV content from GitHub to ensure latest version
-#        response = await fetch("https://raw.githubusercontent.com/dariomalchiodi/sds/main/data/heroes.csv")
-#        
-#        if response.ok:
-#            csv_content = await response.text()
-#            
-#            # Write to Pyodide's virtual filesystem in data/ directory
-#            with open("data/heroes.csv", "w") as f:
-#                f.write(csv_content)
-#            
-#            console.log("Heroes dataset stored successfully in data/heroes.csv")
-#            return True
-#        else:
-#            console.log(f"Failed to load heroes.csv: HTTP {{response.status}}")
-#            return False
-#            
-#    except Exception as e:
-#        console.log(f"Error loading heroes.csv: {{e}}")
-#        return False
-#
-## Load the file and wait for completion
-#await _ensure_heroes_csv()
-
-def render_altair(result, cell_number):
-    # This is likely an Altair chart - try different rendering methods
-    try:
-        if hasattr(result, 'to_json'):
-            try:
-                # console.log("Trying to_json() method with Vega-Embed")
-                chart_spec = result.to_json()
-                # console.log("Chart spec length:", len(chart_spec))
-                
-                # Parse the JSON spec
-                import json
-                spec_dict = json.loads(chart_spec)
-                # console.log("Parsed spec successfully")
-                
-                # Create a unique div for this chart
-                chart_div_id = f"altair-chart-{cell_number}"
-                chart_html = '<div id="' + chart_div_id + '" style="width: 100%; height: 400px;"></div>'
-                element = document.getElementById(f"graph-{cell_number}")
-                if element:
-                    element.innerHTML = chart_html
-                
-                # Use Vega-Embed to render the chart - create JS code safely
-                # Build JavaScript code line by line to avoid conflicts
-                js_lines = []
-                js_lines.append("setTimeout(function() " + "{{")
-                js_lines.append("try " + "{{")
-                js_lines.append("const spec = " + chart_spec + ";")
-                js_lines.append("vegaEmbed('#" + chart_div_id + "', spec).then(function(result) " + "{{")
-                # js_lines.append("console.log('Chart rendered successfully');")
-                js_lines.append("}}).catch(function(error) " + "{{")
-                js_lines.append("console.error('Vega-Embed error:', error);")
-                js_lines.append("}});")
-                js_lines.append("}} catch(e) " + "{{")
-                js_lines.append("console.error('Error rendering chart:', e);")
-                js_lines.append("}}")
-                js_lines.append("}}, 100);")
-                
-                js_code = " ".join(js_lines)
-                
-                # Execute the JavaScript code
-                from js import eval as js_eval
-                js_eval(js_code)
-
-            except Exception as e:
-                console.log("to_json() with Vega-Embed failed:", str(e))
-        
-                        
-    except Exception as e:
-        console.log(f"Error rendering Altair chart: {{e}}")
-        element = document.getElementById("out-{cell_number}")
-        if element:
-            element.innerHTML = f"Error rendering chart: {{str(e)}}"
 
 console.log("PyScript utilities loaded successfully")

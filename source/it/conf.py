@@ -73,6 +73,7 @@ extensions = [ 'myst_parser',
                'sds',
                'sds.sphinx_ext_custom_figure',
                'sds.numref_to_ref',
+               'sds.sphinx_custom_codeblock',
                 ]
 
 # nb_code_cell_render_options = {

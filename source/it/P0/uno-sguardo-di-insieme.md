@@ -77,6 +77,8 @@ i valori di alcuni attributi per dieci supereroi selezionati casualmente.
 
 ```{code-block} python
 :class: toggle-code
+:height: 300px
+
 import pandas as pd
 
 heroes = pd.read_csv('data/heroes.csv', index_col=0).convert_dtypes()
@@ -121,6 +123,7 @@ il grafico.
 
 ```{code-block} python
 :class: toggle-code
+:height: 600px
 
 import altair as alt
 
@@ -205,6 +208,7 @@ valori del peso compaiono nel _dataset_.
 
 ```{code-block} python
 :class: toggle-code
+:height: 400px
 
 import matplotlib.pyplot as plt
 
@@ -341,101 +345,71 @@ variare dei suoi parametri. Agendo sui due selettori, associati a $\mu$ e
 $\sigma$, vedrete immediatamente come il grafico di $f$ si aggiorna in base
 alle nuove impostazioni.
 
+
 ````{customfigure}
 :name: fig:normal-model
 
 ```{code-block} python
-:class: toggle-code 
+:class:  toggle-code
+:height: 400px
 
 import numpy as np
 from js import document
-from pyodide.ffi import create_proxy
-import pyscript as pys
-import io
-import base64
+from pyscript import display
+from pyscript.web import page, when
 
-def plot_pdf(mu, sigma):
-    x = np.linspace(-10, 10, 400)
-    y = (1 / (sigma * np.sqrt(2*np.pi))) * np.exp(-0.5 * ((x - mu) / sigma)**2)
-    
-    fig, ax = plt.subplots()
-    ax.fill_between(x, 0, y, alpha=0.5, color='tab:blue')
+mu = float(page['#pdf-mu-slider'][0].value)
+sigma = float(page['#pdf-sigma-slider'][0].value)
 
-    # Use plain text label to avoid MathJax processing
-    ax.set_xlabel(r'$x$', fontsize=12, ha='right')
-    ax.set_ylabel(r'$f$', fontsize=12, rotation=0)
-    label = ax.yaxis.label
-    label.set_verticalalignment('bottom')
-    bbox = ax.get_position()
-    y_label_x = bbox.x0 + bbox.width / 2
-    label.set_position((y_label_x, 1.02))
+x = np.linspace(0, 200, 400)
+y = 1 / (sigma * np.sqrt(2 * np.pi)) * np.exp(-0.5 * ((x - mu) / sigma) ** 2)
+
+fig_pdf, ax_pdf = plt.subplots()
+curve_pdf, = ax_pdf.plot(x, y, alpha=0.5, color='tab:blue')
 
 
-    ax.xaxis.set_label_coords(1.07, 0.03)
-    ax.set_xlim(-10, 10)
-    ax.set_ylim(0, 1)
-    
-    # Manual rendering to avoid MathJax processing
-    img_buffer = io.BytesIO()
-    fig.savefig(img_buffer, format='png', bbox_inches='tight', dpi=100)
-    img_buffer.seek(0)
-    img_base64 = base64.b64encode(img_buffer.getvalue()).decode('utf-8')
-    img_buffer.close()
-    
-    # Display in protected div
-    img_html = '<div class="no-mathjax"><img src="data:image/png;base64,' + \
-               img_base64 + '" style="max-width: 100%; height: auto;" /></div>'
-    
-    target_element = document.getElementById("pdf-output")
-    if target_element:
-        target_element.innerHTML = img_html
-    
-    plt.close(fig)
+ax_pdf.set_xlabel('$x$', fontsize=12, ha='right')
+ax.xaxis.set_label_coords(1.07, 0.03)
+ax_pdf.set_ylabel('$f$', fontsize=12, rotation=0)
+ax.yaxis.set_label_coords(0., 1.09)
+ax_pdf.set_xlim(0, 200)
+ax_pdf.set_ylim(0, 0.02)
 
-def update_plot(event=None):
-    mu = float(document.getElementById("mean-slider").value)
-    sigma = float(document.getElementById("std-slider").value)
-    document.getElementById("mean-value").innerText = f"{mu:.1f}"
-    document.getElementById("std-value").innerText = f"{sigma:.1f}"
-    plot_pdf(mu, sigma)
+@when("input", "#pdf-mu-slider, #pdf-sigma-slider")
+def pdf_plot(event):
+    mu = float(page['#pdf-mu-slider'][0].value)
+    sigma = float(page['#pdf-sigma-slider'][0].value)
+    page['#pdf-mu-value'][0].innerHTML = f'{mu:.1f}'
+    page['#pdf-sigma-value'][0].innerHTML = f'{sigma:.1f}'
 
+    y = 1 / (sigma * np.sqrt(2 * np.pi)) * np.exp(-0.5 * ((x - mu) /
+        sigma) ** 2)
+    curve_pdf.set_data(x, y)
+    display(fig_pdf, target='graph-%this%', append=False)
 
-mean_slider = document.getElementById("mean-slider")
-std_slider = document.getElementById("std-slider")
+display(fig_pdf, target='graph-%this%', append=False)
 
-mean_slider.addEventListener("input", create_proxy(update_plot))
-std_slider.addEventListener("input", create_proxy(update_plot))
-
-# Initial plot
-plot_pdf(0, 1)
 ```
 ```{raw} html
-
-<div id="plot-container" style="visibility: none;">
-    <div class="slider-container" style="float: left;">
-        <label for="mean-slider">\(\mu\): </label>
-        <input type="range" id="mean-slider"
-               min="-5" max="5" value="0" step="0.1" />
-        <span id="mean-value">0</span>
+<div class="plot-container">
+    <div class="model-slider-container">
+        <label for="pdf-mu-slider">\(\mu\): </label>
+        <input type="range" id="pdf-mu-slider"
+               min="10" max="200" value="150" step="0.1" />
+        <span id="pdf-mu-value">150</span>
     </div>
 
-    <div class="slider-container" style="float: right;">
-        <label for="std-slider">\(\sigma\): </label>
-        <input type="range" id="std-slider"
-               min="0.1" max="5" value="1" step="0.1" />
-        <span id="std-value">1.0</span>
-    </div>
-
-    <div id="pdf-output" class="no-mathjax"
-            style="clear: both; display: flex;
-            justify-content: center; margin-bottom: 2em;">
+    <div class="model-slider-container">
+        <label for="pdf-sigma-slider">\(\sigma\): </label>
+        <input type="range" id="pdf-sigma-slider"
+               min="0.1" max="50" value="33" step="0.1" />
+        <span id="pdf-sigma-value">33.0</span>
     </div>
 </div>
 ```
 
 Grafico della densità di probabilità descritta da {eq}`eq:weight_normal`.
 ````
-
 
 Uno dei motivi per i quali si parla di «modello» di variabile aleatoria è
 legato al fatto che è possibile scegliere i valori dei suoi parametri in modo
@@ -453,99 +427,53 @@ qualitativo tra i due grafici.
 
 ```{code-block} python
 :class:  toggle-code
+:height: 400px
 
-import base64
-import io
+mu = float(page['#model-mu-slider'][0].value)
+sigma = float(page['#model-sigma-slider'][0].value)
 
-def model_plot_pdf(mu, sigma):
-    x = np.linspace(0, 200, 400)
+x = np.linspace(0, 200, 400)
+y = 1 / (sigma * np.sqrt(2 * np.pi)) * np.exp(-0.5 * ((x - mu) / sigma) ** 2)
+
+fig, ax = plt.subplots()
+ax.hist(data, bins=30, density=True, alpha=0.3, color='tab:blue')
+curve, = ax.plot(x, y, alpha=0.5, color='tab:blue')
+
+ax.set_xlabel(r'$x$', fontsize=12, ha='right')
+ax.xaxis.set_label_coords(1.07, 0.03)
+ax.set_ylabel(r'$f$', fontsize=12, rotation=0)
+ax.yaxis.set_label_coords(0., 1.09)
+ax.set_xlim(0, 200)
+ax.set_ylim(0, 0.02)
+
+@when("input", "#model-mu-slider, #model-sigma-slider")
+def model_plot(event):
+    mu = float(page['#model-mu-slider'][0].value)
+    sigma = float(page['#model-sigma-slider'][0].value)
+    page['#model-mu-value'][0].innerHTML = f'{mu:.1f}'
+    page['#model-sigma-value'][0].innerHTML = f'{sigma:.1f}'
+
     y = (1 / (sigma * np.sqrt(2*np.pi))) * np.exp(-0.5 * ((x - mu) / sigma)**2)
-    
-    fig, ax = plt.subplots()
-    ax.hist(data, bins=30, density=True, alpha=0.3, color='tab:blue')
-    ax.fill_between(x, 0, y, alpha=0.5, color='tab:blue')
+    curve.set_data(x, y)
+    display(fig, target='graph-%this%', append=False)
 
-    # Use plain text for axis labels to avoid MathJax interference
-    ax.set_xlabel(r'$x$', fontsize=12, ha='right')
-    ax.set_ylabel(r'$f$', fontsize=12, rotation=0)
-    ax.xaxis.set_label_coords(1.07, 0.03)
-    ax.set_xlim(0, 200)
-    ax.set_ylim(0, 0.02)
+display(fig, target='graph-%this%', append=False)
     
-    # Convert plot to base64 string for display
-    buffer = io.BytesIO()
-    fig.savefig(buffer, format='png', bbox_inches='tight', dpi=100)
-    buffer.seek(0)
-    img_base64 = base64.b64encode(buffer.read()).decode()
-    plt.close(fig)
-    
-    # Display in no-mathjax container
-    output_html = f'''
-    <div class="no-mathjax"
-         style="display: flex; justify-content: center; margin-bottom: 2em;">
-        <img src="data:image/png;base64,{img_base64}"
-        alt="Model Plot" style="max-width: 100%; height: auto;">
-    </div>
-    '''
-    
-    target_element = document.getElementById("model-output")
-    if target_element:
-        target_element.innerHTML = output_html
-    else:
-        print("Target element 'model-output' not found")
-
-def model_update_plot(event=None):
-    try:
-        mu = float(document.getElementById("model-mean-slider").value)
-        sigma = float(document.getElementById("model-std-slider").value)
-        document.getElementById("model-mean-value").innerText = f"{mu:.1f}"
-        document.getElementById("model-std-value").innerText = f"{sigma:.1f}"
-        model_plot_pdf(mu, sigma)
-    except Exception as e:
-        print(f"Error updating plot: {e}")
-
-# Wait for DOM to be ready
-def setup_model_sliders():
-    try:
-        model_mean_slider = document.getElementById("model-mean-slider")
-        model_std_slider = document.getElementById("model-std-slider")
-        
-        if model_mean_slider and model_std_slider:
-            model_mean_slider.addEventListener("input", create_proxy(model_update_plot))
-            model_std_slider.addEventListener("input", create_proxy(model_update_plot))
-            
-            # Initial plot
-            model_plot_pdf(150, 33)
-        else:
-            print("Model slider elements not found, retrying in 100ms...")
-            import asyncio
-            asyncio.get_event_loop().call_later(0.1, setup_model_sliders)
-    except Exception as e:
-        print(f"Error setting up model sliders: {e}")
-
-# Setup sliders when DOM is ready
-setup_model_sliders()
 ```
 ```{raw} html
-
-<div id="plot-container" style="visibility: none;">
-    <div class="model-slider-container" style="float: left;">
-        <label for="model-mean-slider">\(\mu\): </label>
-        <input type="range" id="model-mean-slider"
+<div class="plot-container">
+    <div class="model-slider-container">
+        <label for="model-mu-slider">\(\mu\): </label>
+        <input type="range" id="model-mu-slider"
                min="10" max="200" value="150" step="0.1" />
-        <span id="model-mean-value">150</span>
+        <span id="model-mu-value">150</span>
     </div>
 
-    <div class="model-slider-container" style="float: right;">
-        <label for="model-std-slider">\(\sigma\): </label>
-        <input type="range" id="model-std-slider"
+    <div class="model-slider-container">
+        <label for="model-sigma-slider">\(\sigma\): </label>
+        <input type="range" id="model-sigma-slider"
                min="0.1" max="50" value="33" step="0.1" />
-        <span id="model-std-value">33.0</span>
-    </div>
-
-    <div id="model-output"
-         style="clear: both; display: flex;
-                justify-content: center; margin-bottom: 2em;">
+        <span id="model-sigma-value">33.0</span>
     </div>
 </div>
 ```
@@ -585,6 +513,7 @@ campioni differenti.
 
 ```{code-block} python
 :class:  toggle-code
+:height: 100px
 
 weights = heroes['weight'][heroes['weight']<200].dropna()
 

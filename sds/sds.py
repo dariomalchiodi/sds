@@ -354,8 +354,15 @@ def process_myst_document(myst_content, source_file,
         # Get the Python code content, class, and whether it's inline from our
         # extracted data
         is_inline = False
+        height_attr = None
         if python_code_index < len(python_codes):
             python_code, class_attr, is_inline = python_codes[python_code_index]
+            if python_code and ':height:' in python_code:
+                    height_match = re.search(r':height:\s*([^\n]+)', python_code)
+                    if height_match:
+                        height_attr = height_match.group(1).strip()
+                        python_code = re.sub(r':height:\s*[^\n]+\n?', '',
+                                             python_code)
         else:
             # Fallback to regex extraction if index is out of bounds
             if match.group(1) is not None:
@@ -369,6 +376,13 @@ def process_myst_document(myst_content, source_file,
                     if class_match:
                         class_attr = class_match.group(1).strip()
                         python_code = re.sub(r':class:\s*[^\n]+\n?', '',
+                                             python_code)
+                if python_code and ':height:' in python_code:
+                    height_match = re.search(r':height:\s*([^\n]+)', python_code)
+                    if height_match:
+                        print('--------------FOUND IT!----------')
+                        height_attr = height_match.group(1).strip()
+                        python_code = re.sub(r':height:\s*[^\n]+\n?', '',
                                              python_code)
             elif match.group(2) is not None:
                 # This is a regular python block
@@ -425,7 +439,7 @@ def process_myst_document(myst_content, source_file,
             result_parts.append(toggle_snippet.format(show=labels['show'],
                                             cleaned_block=cleaned_block))
         else:
-            result_parts.append(original_block)
+            result_parts.append(original_block.replace('%this%', str(cell_number)))
         
         python_code_index += 1
         python_code = python_code.strip()
@@ -436,6 +450,8 @@ def process_myst_document(myst_content, source_file,
         
         # Split the Python code into setup and final parts
         setup_code, final_code = split_code(python_code)
+        setup_code = setup_code.replace('%this%', str(cell_number))
+        final_code = final_code.replace('%this%', str(cell_number))
         
         # Create only the HTML divs (no PyScript yet)
         with open(SNIPPETS + 'cell-divs.md',
@@ -448,6 +464,10 @@ def process_myst_document(myst_content, source_file,
             stdout_class=_get_div_classes('cell-stdout', class_attr),
             stderr_class=_get_div_classes('cell-stderr', class_attr),
             graph_class=_get_div_classes('cell-graph no-mathjax', class_attr))
+        
+        if height_attr is not None:
+            html_divs = html_divs.replace('class="splash"', 
+                            f'class="splash" style="height: {height_attr};"')
 
         result_parts.append(html_divs)
         
