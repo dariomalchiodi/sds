@@ -14,10 +14,12 @@ finally:
         splash_element.style.display = "none"
     
     if stdout_content:
-        element = document.getElementById("stdout-{cell_number}")
-        if element:
-            element.innerHTML = stdout_content
+        # element = document.getElementById("stdout-{cell_number}")
+        # if element:
+        #     element.innerHTML = stdout_content
+        display(stdout_content, target="stdout-{cell_number}", append=False)
     if stderr_content:
-        element = document.getElementById("stderr-{cell_number}")
-        if element:
-            element.innerHTML = stderr_content
+        display(stderr_content, target="stderr-{cell_number}", append=False)
+        # element = document.getElementById("stderr-{cell_number}")
+        # if element:
+        #     element.innerHTML = stderr_content
