@@ -1,6 +1,7 @@
 import argparse
 import glob
 import importlib
+import json
 import os
 from pathlib import Path
 import re
@@ -1044,7 +1045,56 @@ def make_part_titles_clickable_and_collapsible(html_root_dir, dry_run=False,
                                 parent_li.append(sub_ul)
                                 
                                 changed = True
-            
+            # Use only actually needed python packages in py-config
+            if not dry_run:
+                # extract imports from the companion .py file
+                py_source = Path(html_file).with_suffix('.py')
+                if os.path.exists(py_source):
+                    with open(py_source, 'r', encoding='utf-8') as f:
+                        content = f.read()
+                        result = re.search(r'%END global-imports.*', content, flags=re.DOTALL)
+                        if result:
+                            packages = _extract_imports(result.group(0))
+                        else:
+                            msg = 'Could not find %END global-imports marker' \
+                                  f' in {py_source}'
+                            raise ValueError(msg)
+                    if len(packages) == 0:
+                        print(f"No imports found in {html_file}")
+                    else:
+                        print(f"Imports found in {html_file}: ", packages)
+
+                    py_config = soup.find("py-config")
+                    if packages:
+                        custom_packages = sorted(packages)
+                        if 'matplotlib' not in custom_packages:
+                            # remove everything from %BEGIN% import matplotlib
+                            # to %END matplotlib in the .py file
+                            pass
+                        if 'numpy' not in custom_packages:
+                            # remove everything from %BEGIN% import numpy
+                            # to %END numpy in the .py file
+                            pass
+                        if 'pandas' not in custom_packages:
+                            # remove everything from %BEGIN% import pandas
+                            # to %END pandas in the .py file
+                            pass
+                        if 'altair' not in custom_packages:
+                            # remove everything from %BEGIN% import altair
+                            # to %END altair in the .py file
+                            pass
+
+                        # write the modified .py file back
+
+                        config_data = json.loads(py_config.string)
+                        config_data["packages"] = custom_packages
+
+                        py_config.string = json.dumps(config_data, indent=2)
+                    else:
+                        print(f"No custom packages found for {html_file}, removing <py-config>")
+                        py_config.decompose()
+
+
             # Add CSS and JavaScript if we have parts or chapters (regardless
             # of whether we made changes)
             if (has_parts or soup.find_all('details')):

@@ -1,10 +1,8 @@
 # Common imports and utilities for interactive Python cells
 import asyncio
 from io import StringIO
-from js import console, document, fetch, Uint8Array
+from js import console, document
 import os
-import sys
-import shutil
 
 from pyscript import display
 from pyodide.http import open_url
@@ -59,12 +57,11 @@ async def _ensure_localfs():
 # Usage
 await _ensure_localfs() 
 
+%BEGIN% import matplotlib
 # Import matplotlib once at the beginning and make it available to all cells
 try:
     import matplotlib
     import matplotlib.pyplot as plt
-    import io
-    import base64
     
     # Set matplotlib to use Agg backend to prevent auto-display
     matplotlib.use('Agg')
@@ -158,13 +155,17 @@ try:
 except ImportError:
     _matplotlib_available = False
     console.log("Matplotlib not available")
+%END% import matplotlib
 
+%BEGIN% import pandas
 # Import pandas and altair globally
 try:
     import pandas as pd
 except ImportError:
     console.log("Pandas not available")
+%END% import pandas
 
+%BEGIN% import altair
 try:
     import altair as alt
     console.log("Altair imported and made available globally")
@@ -172,6 +173,9 @@ except ImportError as e:
     console.log(f"Failed to import altair: {e}")
 except Exception as e:
     console.log(f"Error with altair: {e}")
+%END% import altair
+
+%END global-imports
 
 # Utility function to hide splash loading indicators
 def hide_splash(target_id):
