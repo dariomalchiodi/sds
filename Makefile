@@ -47,12 +47,6 @@ it:
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
 	@echo "Step 4/10: Building HTML with Sphinx..."
 	$(SPHINXBUILD) -q -b html tmpsource/it $(SDSDIR)/it
-	@echo "Step 5/10: Processing remaining {py} roles in HTML..."
-	python3 -m sds.sds process-py-roles $(SDSDIR)/it --language it
-	@echo "Step 6/10: Making part titles clickable and collapsible..."
-	python3 -m sds.sds make-parts-clickable $(SDSDIR)/it --language it
-	@echo "Step 7/10: Apply chapter and section numbering..."
-	python3 -m sds.sds apply-numbering --language it
 	@echo "Step 8/10: Copying generated Python files..."
 	@find tmpsource/it -name "*.py" -type f | while read pyfile; do \
 		relpath=$$(realpath --relative-to=tmpsource/it "$$pyfile"); \
@@ -60,6 +54,13 @@ it:
 		mkdir -p "$$targetdir"; \
 		cp "$$pyfile" "$$targetdir/"; \
 	done
+	@echo "Step 5/10: Processing remaining {py} roles in HTML..."
+	python3 -m sds.sds process-py-roles $(SDSDIR)/it --language it
+	@echo "Step 6/10: Making part titles clickable and collapsible..."
+	python3 -m sds.sds make-parts-clickable $(SDSDIR)/it --language it
+	@echo "Step 7/10: Apply chapter and section numbering..."
+	python3 -m sds.sds apply-numbering --language it
+
 	@echo "Step 9/10: Cleaning temporary files..."
 	./sds/clean_tmpsource.sh --force --all
 	@echo "Step 10/10: Copying index.html to build root..."
