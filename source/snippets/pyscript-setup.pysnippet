@@ -3,61 +3,12 @@ import asyncio
 from io import StringIO
 from js import console, document
 import os
+import sys
 
 from pyscript import display
 from pyodide.http import open_url
 
-async def _ensure_localfs():
-    """
-    Recursively download everything under the `localfs` folder of the GitHub repo
-    and replicate it under `/home/pyodide/localfs`.
-    """
-
-    manifest_url = "https://raw.githubusercontent.com/dariomalchiodi/sds/main/localfs/manifest.txt"
-
-    try:
-        # Download and read manifest file
-        with open_url(manifest_url) as response:
-            manifest_data = response.read()
-
-        # Handle both bytes and string cases
-        if isinstance(manifest_data, bytes):
-            file_list = manifest_data.decode('utf-8').splitlines()
-        else:
-            file_list = manifest_data.splitlines()
-
-        for relative_path in file_list:
-            # Compute target path in Pyodide
-            dst_path = os.path.join("/home/pyodide", relative_path)
-            os.makedirs(os.path.dirname(dst_path), exist_ok=True)
-
-            # Construct raw GitHub URL for the file
-            file_url = f"https://raw.githubusercontent.com/dariomalchiodi/sds/main/localfs/{relative_path}"
-
-            try:
-                with open_url(file_url) as response:
-                    file_data = response.read()
-
-                # Ensure we always have bytes for writing
-                if isinstance(file_data, str):
-                    file_data = file_data.encode('utf-8')
-
-                with open(dst_path, "wb") as f:
-                    f.write(file_data)
-            except Exception as e:
-                console.log(f"Failed to fetch {relative_path}: {e}")
-
-        # console.log("All localfs files downloaded successfully")
-        return True
-
-    except Exception as e:
-        console.log(f"Error downloading localfs: {e}")
-        return False
-
-# Usage
-await _ensure_localfs() 
-
-%BEGIN% import matplotlib
+#BEGIN# import matplotlib
 # Import matplotlib once at the beginning and make it available to all cells
 try:
     import matplotlib
@@ -155,27 +106,57 @@ try:
 except ImportError:
     _matplotlib_available = False
     console.log("Matplotlib not available")
-%END% import matplotlib
+#END#
 
-%BEGIN% import pandas
-# Import pandas and altair globally
-try:
-    import pandas as pd
-except ImportError:
-    console.log("Pandas not available")
-%END% import pandas
+async def _ensure_localfs():
+    """
+    Recursively download everything under the `localfs` folder of the GitHub repo
+    and replicate it under `/home/pyodide/localfs`.
+    """
 
-%BEGIN% import altair
-try:
-    import altair as alt
-    console.log("Altair imported and made available globally")
-except ImportError as e:
-    console.log(f"Failed to import altair: {e}")
-except Exception as e:
-    console.log(f"Error with altair: {e}")
-%END% import altair
+    manifest_url = "https://raw.githubusercontent.com/dariomalchiodi/sds/main/localfs/manifest.txt"
 
-%END global-imports
+    try:
+        # Download and read manifest file
+        with open_url(manifest_url) as response:
+            manifest_data = response.read()
+
+        # Handle both bytes and string cases
+        if isinstance(manifest_data, bytes):
+            file_list = manifest_data.decode('utf-8').splitlines()
+        else:
+            file_list = manifest_data.splitlines()
+
+        for relative_path in file_list:
+            # Compute target path in Pyodide
+            dst_path = os.path.join("/home/pyodide", relative_path)
+            os.makedirs(os.path.dirname(dst_path), exist_ok=True)
+
+            # Construct raw GitHub URL for the file
+            file_url = f"https://raw.githubusercontent.com/dariomalchiodi/sds/main/localfs/{relative_path}"
+
+            try:
+                with open_url(file_url) as response:
+                    file_data = response.read()
+
+                # Ensure we always have bytes for writing
+                if isinstance(file_data, str):
+                    file_data = file_data.encode('utf-8')
+
+                with open(dst_path, "wb") as f:
+                    f.write(file_data)
+            except Exception as e:
+                console.log(f"Failed to fetch {relative_path}: {e}")
+
+        # console.log("All localfs files downloaded successfully")
+        return True
+
+    except Exception as e:
+        console.log(f"Error downloading localfs: {e}")
+        return False
+
+# Usage
+await _ensure_localfs() 
 
 # Utility function to hide splash loading indicators
 def hide_splash(target_id):

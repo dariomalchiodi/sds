@@ -19,6 +19,3 @@
             # For other types, convert to string and display in out div
             # console.log(f"Other result type: {{result_type}}")
             display(str(result), target="out-{cell_number}", append=False)
-            # element = document.getElementById("out-{cell_number}")
-            # if element:
-            #     element.innerHTML = str(result)
