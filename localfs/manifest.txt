@@ -17,3 +17,6 @@ img/sh-blue-green.png
 img/sh-blue-red.png
 img/sh-yellow-green.png
 img/sh-yellow-red.png
+img/superhero-base.png
+img/superhero-cape.png
+img/superhero-suit.png
