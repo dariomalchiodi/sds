@@ -22,7 +22,7 @@ fig.savefig('superhero-grid.png', dpi=300,
 tree = 'digraph { layout="neato" bgcolor="#00000000"'
 tree += f's[pos="0,0!" image="superhero.png"'
 tree += f'shape=none label="",' +\
-        f'width=.7 height=.7 imagescale="width" fixedsize="true"]\n'
+        f'width=.6 height=.6 imagescale="width" fixedsize="true"]\n'
 
 cape_rho = 1.3
 cape_theta = np.linspace(0, np.pi, len(cape_colors))
@@ -32,7 +32,7 @@ cape_pos = np.array((cape_rho * np.cos(cape_theta),
 suit_rho = 1
 theta_diff = np.pi/2 /(len(suit_colors)+1)
 theta_start = 0
-theta_end = 2 * np.pi/6
+theta_end = 2 * np.pi/5
 theta_gap = (len(suit_colors) + 1) / len(suit_colors) * np.pi/6
 
 for cape_color, (x, y) in zip(cape_colors, cape_pos):
@@ -40,8 +40,8 @@ for cape_color, (x, y) in zip(cape_colors, cape_pos):
             f'image="superhero_{cape_color}.png" label="", ' + \
             'style="invisible" ' +\
             'shape=none ' +\
-            'width=.7 height=.7 imagescale="width" fixedsize="true"]\n'
-    tree += f's -> cap_{cape_color} [color="#01579b", penwidth=1];'
+            'width=.6 height=.6 imagescale="width" fixedsize="true"]\n'
+    tree += f's -> cap_{cape_color} [color="#01579b", penwidth=1, arrowsize=0.4];'
 
 
 
@@ -56,8 +56,8 @@ for cape_color, (x, y) in zip(cape_colors, cape_pos):
                 f'[pos="{x+x_delta:.2f},{y+y_delta:.2f}!", ' +\
                 f'image="superhero-{suit_color}-{cape_color}.png", ' + \
                 'label="", ' + \
-                'shape=none, width=.7 height=.7 imagescale="width" fixedsize="true"]\n'
-        tree += f'cap_{cape_color} -> cap_{cape_color}_costume_{suit_color}  [color="#01579b", penwidth=1];'
+                'shape=none, width=.6 height=.6 imagescale="width" fixedsize="true"]\n'
+        tree += f'cap_{cape_color} -> cap_{cape_color}_costume_{suit_color}  [color="#01579b", penwidth=1, arrowsize=0.4];'
 
 
 tree += '}'
