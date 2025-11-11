@@ -15,7 +15,8 @@ heroes = [f'superhero-{suit}-{cape}.png' for suit in suit_colors
 for ax, hero in zip(axes.flatten(), heroes):
     ax.imshow(Image.open(hero))
     ax.axis('off')
-fig.savefig('superhero-grid.png')
+fig.savefig('superhero-grid.png', dpi=300,
+             bbox_inches='tight', transparent=True)
 
 
 tree = 'digraph { layout="neato" bgcolor="#00000000"'
