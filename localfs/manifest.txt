@@ -1,15 +1,3 @@
 .cache/matplotlib/fontlist-v330.json
 .cache/matplotlib/fontlist-v390.json
 data/heroes.csv
-img/superhero-black-brown.png 
-img/superhero-black-pink.png 
-img/superhero-blue-brown.png 
-img/superhero-blue-pink.png 
-img/superhero-yellow-brown.png 
-img/superhero-yellow-pink.png
-img/superhero-black-green.png 
-img/superhero-black-red.png
-img/superhero-blue-green.png
-img/superhero-blue-red.png
-img/superhero-yellow-green.png
-img/superhero-yellow-red.png
