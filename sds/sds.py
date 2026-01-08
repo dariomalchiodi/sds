@@ -53,20 +53,20 @@ def extract_python_roles(source):
     '''
     
     # Comprehensive pattern to match different Python code block formats
-    # Matches: ```python...``` or ```{python}...``` or ```{code-block}
-    # python...``` or {eval-python}`...` or {py}`...` For code-block format,
+    # Matches: ```python...``` or ```{python}...``` or ```{interactive-code}
+    # python...``` or {eval-python}`...` or {py}`...` For interactive-code format,
     # capture the full block including options
-    pattern = r"(?:```\{code-block\}\s+python\s*([\s\S]*?)```)|" \
+    pattern = r"(?:```\{interactive-code\}\s+python\s*([\s\S]*?)```)|" \
               r"(?:```(?:\{?python\}?)\s*([\s\S]*?)```)|" \
               r"(?:\{eval-python\}`([^`]+)`)|(?:\{py\}`([^`]+)`)"
     matches = re.finditer(pattern, source)
     
     result = []
     for match in matches:
-        # Group 1 is code-block content, group 2 is python content, group 3 is
+        # Group 1 is interactive-code content, group 2 is python content, group 3 is
         # inline eval-python role, group 4 is inline py role
         if match.group(1) is not None:
-            # This is a {code-block} python block
+            # This is a {interactive-code} python block
             content = match.group(1)
             # Check for :class: directive in the content
             class_attr = None
@@ -176,48 +176,49 @@ def _produces_output(node):
     # Default to False for safety
     return False
 
-def generate_myst_interactive(setup_code, final_code, cell_number):
-    '''Generates MyST Markdown code for interactive Python execution.
+# def generate_myst_interactive(setup_code, final_code, cell_number):
+#     '''Generates MyST Markdown code for interactive Python execution.
     
-    Args:
-        setup_code (str): The setup code (from split_code output)
-        final_code (str): The final expression code (from split_code output)
-        cell_number (int): Progressive number for the cell
-    Returns:
-        str: MyST Markdown code with Python role and HTML divs with PyScript
-    '''
+#     Args:
+#         setup_code (str): The setup code (from split_code output)
+#         final_code (str): The final expression code (from split_code output)
+#         cell_number (int): Progressive number for the cell
+#     Returns:
+#         str: MyST Markdown code with Python role and HTML divs with PyScript
+#     '''
 
-    # Combine all code for the Python role
-    if setup_code and final_code:
-        all_code = f"{setup_code}\n{final_code}"
-    elif setup_code:
-        all_code = setup_code
-    elif final_code:
-        all_code = final_code
-    else:
-        all_code = ""
+#     # Combine all code for the Python role
+#     if setup_code and final_code:
+#         all_code = f"{setup_code}\n{final_code}"
+#     elif setup_code:
+#         all_code = setup_code
+#     elif final_code:
+#         all_code = final_code
+#     else:
+#         all_code = ""
     
-    # Create the Python code block
-    python_block = f"```python\n{all_code}\n```"
+#     # Create the Python code block
+#     python_block = f"```python\n{all_code}\n```"
     
-    # Create the HTML raw block with divs and PyScript
+#     # Create the HTML raw block with divs and PyScript
 
-    html = f'<div id="splash-{cell_number}" class="splash"></div>\n'
-    html += f'<div id="out-{cell_number}" class="cell-out"></div>\n'
-    html += f'<div id="stdout-{cell_number}" class="cell-stdout"></div>\n'
-    html += f'<div id="stderr-{cell_number}" class="cell-stderr"></div>\n\n'
-    html += f'<py-script>\n{setup_code}\n'
+#     html = f'<div id="splash-{cell_number}" class="splash"></div>\n'
+#     html += f'<div id="out-{cell_number}" class="cell-out"></div>\n'
+#     html += f'<div id="stdout-{cell_number}" class="cell-stdout"></div>\n'
+#     html += f'<div id="stderr-{cell_number}" class="cell-stderr"></div>\n\n'
+#     html += f'<py-script>\n{setup_code}\n'
     
-    # Add display call if there's a final expression
-    if final_code:
-        html += f'display({final_code}, target="out-{cell_number}")\n'
+#     # Add display call if there's a final expression
+#     if final_code:
+#         html += f'display({final_code}, target="out-{cell_number}")\n'
     
-    html += '</py-script>'
+#     html += '</py-script>'
     
-    html_block = f'```{{raw}} html\n{html}\n```'
+#     html_block = f'```{{raw}} html\n{html}\n```'
     
-    # Combine both blocks
-    return f"{python_block}\n\n{html_block}"
+#     # Combine both blocks
+
+#     return f"{python_block}\n\n{html_block}"
 
 def generate_inline_python(python_code, cell_number, language='en'):
     '''Generates inline PyScript execution with span element for Python
@@ -326,10 +327,10 @@ def process_myst_document(myst_content, source_file,
     cell_number = 1
     
     # Pattern to find Python code blocks and their positions Matches:
-    # ```python...``` or ```{python}...``` or ```{code-block} python...``` or
-    # {eval-python}`...` or {py}`...` For code-block format, capture the full
+    # ```python...``` or ```{python}...``` or ```{interactive-code} python...``` or
+    # {eval-python}`...` or {py}`...` For interactive-code format, capture the full
     # block including options
-    pattern = r"(?:```\{code-block\}\s+python\s*([\s\S]*?)```)|" \
+    pattern = r"(?:```\{interactive-code\}\s+python\s*([\s\S]*?)```)|" \
               r"(?:```(?:\{?python\}?)\s*([\s\S]*?)```)|" \
               r"(?:\{eval-python\}`([^`]+)`)|(?:\{py\}`([^`]+)`)"
     
@@ -347,6 +348,8 @@ def process_myst_document(myst_content, source_file,
             # This code block is already wrapped, skip it
             # Update current_pos to after this match
             current_pos = match.end()
+            cell_number += 1
+            python_code_index += 1
             continue
         
         # Add content before this Python block
@@ -367,7 +370,7 @@ def process_myst_document(myst_content, source_file,
         else:
             # Fallback to regex extraction if index is out of bounds
             if match.group(1) is not None:
-                # This is a {code-block} python block
+                # This is a {interactive-code} python block
                 python_code = match.group(1)
                 class_attr = None
                 is_inline = False
@@ -381,7 +384,6 @@ def process_myst_document(myst_content, source_file,
                 if python_code and ':height:' in python_code:
                     height_match = re.search(r':height:\s*([^\n]+)', python_code)
                     if height_match:
-                        print('--------------FOUND IT!----------')
                         height_attr = height_match.group(1).strip()
                         python_code = re.sub(r':height:\s*[^\n]+\n?', '',
                                              python_code)
@@ -424,8 +426,10 @@ def process_myst_document(myst_content, source_file,
         if class_attr and 'toggle-code' in class_attr:
             # Remove the toggle-code class from the original block to prevent
             # double wrapping
-            cleaned_block = original_block.replace(':class: toggle-code', '')
+            #cleaned_block = original_block.replace(':class: toggle-code', '')
+            cleaned_block = original_block
             # Remove any empty class attributes that might be left
+            cleaned_block = re.sub(r':class:\s*\[toggle-code\]', '', cleaned_block)
             cleaned_block = re.sub(r':class:\s*\n', '', cleaned_block)
             cleaned_block = re.sub(r':class:\s*$', '', cleaned_block,
                                    flags=re.MULTILINE)
@@ -437,8 +441,11 @@ def process_myst_document(myst_content, source_file,
             with open(SNIPPETS + 'toggle-code-block.md',
                       'r', encoding='utf-8') as f:
                 toggle_snippet = f.read()
-            result_parts.append(toggle_snippet.format(show=labels['show'],
-                                            cleaned_block=cleaned_block))
+            
+            content = toggle_snippet.format(show=labels['show'],
+                                            cleaned_block=cleaned_block)
+            result_parts.append(content)
+
         else:
             result_parts.append(original_block.replace('%this%', str(cell_number)))
         
@@ -455,22 +462,23 @@ def process_myst_document(myst_content, source_file,
         final_code = final_code.replace('%this%', str(cell_number))
         
         # Create only the HTML divs (no PyScript yet)
-        with open(SNIPPETS + 'cell-divs.md',
-                  'r', encoding='utf-8') as f:
-            snippet = f.read()
+        # DELETED BECAUSE OF DOUBLE DIV CREATION
+        # with open(SNIPPETS + 'cell-divs.md',
+        #           'r', encoding='utf-8') as f:
+        #     snippet = f.read()
 
-        html_divs = snippet.format(cell_number=cell_number, \
-            splash_class=_get_div_classes('splash', class_attr),
-            out_class=_get_div_classes('cell-out', class_attr),
-            stdout_class=_get_div_classes('cell-stdout', class_attr),
-            stderr_class=_get_div_classes('cell-stderr', class_attr),
-            graph_class=_get_div_classes('cell-graph no-mathjax', class_attr))
+        # html_divs = snippet.format(cell_number=cell_number, \
+        #     splash_class=_get_div_classes('splash', class_attr),
+        #     out_class=_get_div_classes('cell-out', class_attr),
+        #     stdout_class=_get_div_classes('cell-stdout', class_attr),
+        #     stderr_class=_get_div_classes('cell-stderr', class_attr),
+        #     graph_class=_get_div_classes('cell-graph no-mathjax', class_attr))
         
-        if height_attr is not None:
-            html_divs = html_divs.replace('class="splash"', 
-                            f'class="splash" style="height: {height_attr};"')
-
-        result_parts.append(html_divs)
+        # if height_attr is not None:
+        #     html_divs = html_divs.replace('class="splash"', 
+        #                     f'class="splash" style="height: {height_attr};"')
+            
+        # result_parts.append(html_divs)
         
         # Check if matplotlib is used in this cell
         uses_matplotlib = _uses_matplotlib(python_code)
@@ -480,7 +488,8 @@ def process_myst_document(myst_content, source_file,
         # code)
         py_script_class = ""
         if class_attr and 'toggle-code' not in class_attr:
-            py_script_class = f' class="{class_attr}"'
+            pass
+        py_script_class = f' class="{class_attr}"'
 
         with open(SNIPPETS + 'pyscript-initial-content.pysnippet',
                   'r', encoding='utf-8') as f:
@@ -488,7 +497,9 @@ def process_myst_document(myst_content, source_file,
         pyscript_content = snippet.format(cell_number=cell_number,
                                           setup_code=_indent_code(setup_code,
                                                                  "    "))
+
         if final_code:
+            final_code = final_code.replace('%this%', str(cell_number))
             pyscript_content += f'    # Execute final code and capture result'
             pyscript_content += '\n    result = None\n'
             
@@ -523,6 +534,9 @@ def process_myst_document(myst_content, source_file,
                       'r', encoding='utf-8') as f:
                 snippet = f.read()
             pyscript_content += snippet.format(cell_number=cell_number)
+
+        if ':tags:' in pyscript_content:
+            pyscript_content = pyscript_content.replace(':tags:', '#')
         
         pyscript_blocks.append(pyscript_content)
         
@@ -536,10 +550,10 @@ def process_myst_document(myst_content, source_file,
     if pyscript_blocks or inline_expressions:
         
         # Write the companion .py file for this page
-        source_path = Path(source_file)
-        script_name = source_path.stem + '.py'
-        script_dir = source_path.parent
-        script_path = script_dir / script_name
+        # source_path = Path(source_file)
+        # script_name = source_path.stem + '.py'
+        # script_dir = source_path.parent
+        # script_path = script_dir / script_name
 
         all_pyscript_content = []
 
@@ -566,12 +580,15 @@ def process_myst_document(myst_content, source_file,
 
         all_pyscript_content = '\n\n'.join(all_pyscript_content)
 
-        with open(script_path, 'w', encoding='utf-8') as f:
-            f.write(all_pyscript_content)
+        # with open(script_path, 'w', encoding='utf-8') as f:
+        #     f.write(all_pyscript_content)
 
         result_parts.append('\n\n```{raw} html\n')
-        result_parts.append(f'<script type="py" '
-                            f'src="{script_name}"></script>\n')
+        # result_parts.append(f'<script type="py" '
+        #                     f'src="{script_name}"></script>\n')
+        result_parts.append(f'<script type="py">\n')
+        result_parts.append(all_pyscript_content)
+        result_parts.append('\n</script>\n')
 
         
         # Add toggle initialization script at the end if any toggle-code blocks
@@ -753,8 +770,13 @@ def _extract_imports(code):
         'ast', 'symtable', 'symbol', 'token', 'keyword', 'tokenize',
         'tabnanny', 'pyclbr', 'py_compile', 'compileall', 'dis',
         'pickletools', 'formatter', 'warnings', 'contextlib', 'abc',
-        'atexit', 'traceback', 'gc', 'weakref', 'builtins'
+        'atexit', 'traceback', 'gc', 'weakref', 'builtins', 'decimal'
     }
+
+    # fix Pillow package name
+    if 'PIL' in packages:
+        packages.remove('PIL')
+        packages.add('Pillow')
     
     # Return only packages that are not built-in
     return packages - builtin_modules
@@ -1047,53 +1069,110 @@ def make_part_titles_clickable_and_collapsible(html_root_dir, dry_run=False,
                                 changed = True
             # Use only actually needed python packages in py-config
             if not dry_run:
-                # extract imports from the companion .py file
-                py_source = Path(html_file).with_suffix('.py')
-                if os.path.exists(py_source):
-                    with open(py_source, 'r', encoding='utf-8') as f:
-                        content = f.read()
-                        result = re.search(r'%END global-imports.*', content, flags=re.DOTALL)
-                        if result:
-                            packages = _extract_imports(result.group(0))
-                        else:
-                            msg = 'Could not find %END global-imports marker' \
-                                  f' in {py_source}'
-                            raise ValueError(msg)
-                    if len(packages) == 0:
-                        print(f"No imports found in {html_file}")
+
+
+                # # extract imports from the companion .py file
+                # py_source = Path(html_file).with_suffix('.py')
+                # if os.path.exists(py_source):
+                #     with open(py_source, 'r', encoding='utf-8') as f:
+                #         content_all = f.read()
+
+                #     # Regex matches from #BEGIN# import matplotlib to #END#
+                #     pattern = rf"(?ms)^#BEGIN# import {re.escape('matplotlib')}\s*\n.*?^#END#\s*\n?"
+
+                #     match = re.search(pattern, content_all)
+                #     if match:
+                #         block = match.group(0)
+                #         content_no_plt = content_all.replace(block, "", 1)
+                #     else:
+                #         msg = f'Could not find matplotlib import in {py_source}'
+                #         raise ValueError(msg)
+
+                #     needed_packages = _extract_imports(content_no_plt)
+
+                #     if 'matplotlib' not in needed_packages:
+                #         with open(py_source, 'w', encoding='utf-8') as f:
+                #             f.write(content_no_plt)
+
+                #     py_config = soup.find("py-config")
+                #     needed_packages.discard('js')
+                #     needed_packages.discard('pyscript')
+                #     needed_packages.discard('pyodide')
+                #     if needed_packages:
+                #         custom_packages = sorted(needed_packages)
+
+                #         config_data = json.loads(py_config.string)
+                #         config_data["packages"] = custom_packages
+
+                #         py_config.string = json.dumps(config_data, indent=2)
+                #     else:
+                #         # py_config.decompose()
+                #         pass
+                # # Replace %this% placeholders in script tags
+                # script_tags = soup.find_all('script', type='py')
+                # for script in script_tags:
+                #     if script.string and '%this%' in script.string:
+                #         # Generate a unique cell number based on position
+                #         cell_num = len([s for s in soup.find_all('script', type='py') 
+                #                     if s.sourceline < script.sourceline]) + 1
+                #         script.string = script.string.replace('%this%', str(cell_num))
+                #         changed = True
+
+                # # Regex matches from #BEGIN# import matplotlib to #END#
+                # pattern = rf"(?ms)^#BEGIN# import {re.escape('matplotlib')}\s*\n.*?^#END#\s*\n?"
+
+                # match = re.search(pattern, content)
+                # if match:
+                #     block = match.group(0)
+                #     content_no_plt = content.replace(block, "", 1)
+                # else:
+                #     msg = f'Could not find matplotlib import in {py_source}'
+                #     raise ValueError(msg)
+
+                # needed_packages = _extract_imports(content_no_plt)
+
+                # if 'matplotlib' not in needed_packages:
+                #     content = content_no_plt
+
+                # py_config = soup.find("py-config")
+                # needed_packages.discard('js')
+                # needed_packages.discard('pyscript')
+                # needed_packages.discard('pyodide')
+                # if needed_packages:
+                #     custom_packages = sorted(needed_packages)
+
+                #     config_data = json.loads(py_config.string)
+                #     config_data["packages"] = custom_packages
+
+                #     py_config.string = json.dumps(config_data, indent=2)
+                # else:
+                #     # py_config.decompose()
+                #     pass
+
+                # REMOVED 2026-01-04 as double replacement generates errors
+                # script_tags = soup.find_all('script', type='py')
+                # for script in script_tags:
+                #     if not script.string:
+                #         continue
+                #     if '%this%' in script.string:
+                #         # Generate a unique cell number based on position
+                #         cell_num = len([s for s in soup.find_all('script', type='py') 
+                #                     if s.sourceline < script.sourceline]) + 1
+                #         script.string = script.string.replace('%this%', str(cell_num))
+                #         changed = True
+
+                pattern = rf"(?ms)^#BEGIN# import {re.escape('matplotlib')}\s*\n.*?^#END#\s*\n?"
+                if soup.string:
+                    match = re.search(pattern, soup.string)
+                    if match:
+                        block = match.group(0)
+                        content_no_plt = soup.string.replace(block, "", 1)
+                        needed_packages = _extract_imports(content_no_plt)
+                        if 'matplotlib' not in needed_packages:
+                            soup.string.replace_with(content_no_plt)
                     else:
-                        print(f"Imports found in {html_file}: ", packages)
-
-                    py_config = soup.find("py-config")
-                    if packages:
-                        custom_packages = sorted(packages)
-                        if 'matplotlib' not in custom_packages:
-                            # remove everything from %BEGIN% import matplotlib
-                            # to %END matplotlib in the .py file
-                            pass
-                        if 'numpy' not in custom_packages:
-                            # remove everything from %BEGIN% import numpy
-                            # to %END numpy in the .py file
-                            pass
-                        if 'pandas' not in custom_packages:
-                            # remove everything from %BEGIN% import pandas
-                            # to %END pandas in the .py file
-                            pass
-                        if 'altair' not in custom_packages:
-                            # remove everything from %BEGIN% import altair
-                            # to %END altair in the .py file
-                            pass
-
-                        # write the modified .py file back
-
-                        config_data = json.loads(py_config.string)
-                        config_data["packages"] = custom_packages
-
-                        py_config.string = json.dumps(config_data, indent=2)
-                    else:
-                        print(f"No custom packages found for {html_file}, removing <py-config>")
-                        py_config.decompose()
-
+                        msg = f'Could not find matplotlib import in {html_file}'
+                        raise ValueError(msg)
 
             # Add CSS and JavaScript if we have parts or chapters (regardless
             # of whether we made changes)
@@ -1149,6 +1228,123 @@ def make_part_titles_clickable_and_collapsible(html_root_dir, dry_run=False,
               f"{', '.join(sorted(processed_parts))}")
     else:
         print(f"Would modify {files_modified} files")
+
+def replace_mystnb_toggle_divs(html_root_dir, dry_run=False, language='it'):
+    """
+    Replace myst-nb generated toggle code divs with custom toggle structure.
+    
+    Args:
+        html_root_dir (str): Path to the HTML build directory
+        dry_run (bool): If True, don't actually modify files
+        language (str): Language code for localization (default: 'it')
+    """
+    
+    print("Replacing myst-nb toggle code divs...")
+    html_files = list(Path(html_root_dir).rglob("*.html"))
+    
+    # Get localized labels
+    labels = get_toggle_labels(language)
+    
+    files_modified = 0
+    total_replacements = 0
+    
+    for html_file in tqdm(html_files):
+        # Skip certain files
+        if any(skip in str(html_file) 
+               for skip in ['_static', 'genindex', 'search']):
+            continue
+        
+        try:
+            with open(html_file, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            soup = BeautifulSoup(content, 'html.parser')
+            changed = False
+            
+            # Find all details elements with the specific class pattern
+            details_elements = soup.find_all('details', 
+                                            class_='admonition hide above-input')
+            
+            for details in details_elements:
+                # Verify it has the expected structure with summary
+                summary = details.find('summary')
+                if summary and summary.get('aria-label') == 'Toggle hidden content':
+                    # Extract the code content (everything except the summary)
+                    code_content = details.find('div', class_='cell_input')
+                    
+                    if not code_content:
+                        continue
+                    
+                    # Create the wrapper div
+                    wrapper_div = soup.new_tag('div', **{'class': 'toggle-code-wrapper'})
+                    
+                    # Create the button (collapsed state, no 'expanded' class)
+                    button = soup.new_tag('button', **{
+                        'class': 'toggle-code-button',
+                        'data-toggle-processed': 'true'
+                    })
+                    
+                    # Add triangle span
+                    triangle_span = soup.new_tag('span', **{'class': 'triangle'})
+                    triangle_span.string = '▶'
+                    button.append(triangle_span)
+                    
+                    # Add button text span
+                    button_text_span = soup.new_tag('span', **{'class': 'button-text'})
+                    button_text_span.string = f' {labels["show"]}'
+                    button.append(button_text_span)
+                    
+                    wrapper_div.append(button)
+                    
+                    # Create the content div (collapsed state, no 'expanded' class)
+                    content_div = soup.new_tag('div', **{'class': 'toggle-code-content'})
+                    
+                    # Create cell container
+                    cell_div = soup.new_tag('div', **{'class': 'cell docutils container'})
+                    
+                    # Move the code content into the cell div
+                    cell_div.append(code_content.extract())
+                    content_div.append(cell_div)
+                    wrapper_div.append(content_div)
+                    
+                    # Replace the details element with our new structure
+                    details.replace_with(wrapper_div)
+                    changed = True
+                    total_replacements += 1
+            
+            # Add toggle initialization script if we made changes
+            if changed and not dry_run:
+                # Check if toggle script already exists
+                body = soup.find('body')
+                if body:
+                    existing_script = body.find('script', string=lambda s: s and 'toggle-code-button' in s)
+                    if not existing_script:
+                        # Add the toggle script
+                        with open(SNIPPETS + 'toggle-code-script.js', 'r', encoding='utf-8') as f:
+                            toggle_js = f.read()
+                        
+                        script_tag = soup.new_tag('script')
+                        script_tag.string = toggle_js
+                        body.append(script_tag)
+            
+            if changed:
+                files_modified += 1
+                if not dry_run:
+                    with open(html_file, 'w', encoding='utf-8') as f:
+                        f.write(str(soup))
+                else:
+                    print(f"Would modify: {html_file}")
+        
+        except Exception as e:
+            print(f"Error processing {html_file}: {e}")
+            continue
+    
+    print(f"\nSummary:")
+    print(f"  Files modified: {files_modified}")
+    print(f"  Total replacements: {total_replacements}")
+    
+    return files_modified, total_replacements
+
 
 
 def process_html_py_roles(html_root_dir, dry_run=False, language='en'):
@@ -1551,6 +1747,69 @@ def apply_numbering(language):
     print()
     return
 
+def fix_pyscript_dataframe_outputs(html_root_dir, dry_run=False):
+    """
+    Move cell-div-container divs outside toggle-code-wrapper for PyScript cells
+    that output DataFrames.
+    
+    Args:
+        html_root_dir (str): Path to the HTML build directory
+        dry_run (bool): If True, don't actually modify files
+    """
+    
+    print("Fixing PyScript DataFrame outputs in toggle wrappers...")
+    html_files = list(Path(html_root_dir).rglob("*.html"))
+    
+    files_modified = 0
+    total_fixes = 0
+    
+    for html_file in tqdm(html_files):
+        if any(skip in str(html_file) 
+               for skip in ['_static', 'genindex', 'search']):
+            continue
+        
+        try:
+            with open(html_file, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            soup = BeautifulSoup(content, 'html.parser')
+            changed = False
+            
+            # Find all toggle-code-wrapper divs
+            toggle_wrappers = soup.find_all('div', class_='toggle-code-wrapper')
+            
+            for wrapper in toggle_wrappers:
+                # Look for cell-div-container inside the wrapper
+                cell_div_container = wrapper.find('div', class_='cell-div-container')
+                
+                if cell_div_container:
+                    # Extract it from its current position
+                    cell_div_container = cell_div_container.extract()
+                    
+                    # Insert it right after the wrapper
+                    wrapper.insert_after(cell_div_container)
+                    
+                    changed = True
+                    total_fixes += 1
+            
+            if changed:
+                files_modified += 1
+                if not dry_run:
+                    with open(html_file, 'w', encoding='utf-8') as f:
+                        f.write(str(soup))
+                else:
+                    print(f"Would modify: {html_file}")
+        
+        except Exception as e:
+            print(f"Error processing {html_file}: {e}")
+            continue
+    
+    print(f"\nSummary:")
+    print(f"  Files modified: {files_modified}")
+    print(f"  Total fixes: {total_fixes}")
+    
+    return files_modified, total_fixes
+
 def main():
     '''Command-line interface for sds.py functions.'''
 
@@ -1588,8 +1847,13 @@ def main():
         make_part_titles_clickable_and_collapsible(args.html_dir, 
                                                    args.dry_run,
                                                    args.language)
+        replace_mystnb_toggle_divs(args.html_dir, dry_run=args.dry_run)
+        fix_pyscript_dataframe_outputs(args.html_dir, dry_run=args.dry_run)
+
     elif args.command == 'process-py-roles':
-        process_html_py_roles(args.html_dir, args.dry_run, args.language)
+        c = process_html_py_roles(args.html_dir, args.dry_run, args.language)
+        print("\nSummary of changes:")
+        print(c)
     elif args.command == 'apply-numbering':
         apply_numbering(args.language)
     else:

@@ -14,6 +14,7 @@ scikit-learn
 sphinx
 sphinx-book-theme
 sphinxcontrib-bibtex
+sphinxcontrib-mermaid
 sphinx-exercise
 sphinx-external-toc
 sphinx-proof

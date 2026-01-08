@@ -39,7 +39,6 @@ beautifulsoup4==4.13.4
     # via
     #   nbconvert
     #   pydata-sphinx-theme
-    #   sphinx-tippy
 bleach[css]==6.2.0
     # via nbconvert
 certifi==2025.6.15
@@ -118,7 +117,6 @@ jinja2==3.1.6
     #   myst-parser
     #   nbconvert
     #   sphinx
-    #   sphinx-tippy
 joblib==1.5.2
     # via scikit-learn
 json5==0.12.1
@@ -313,6 +311,7 @@ pyyaml==6.0.2
     #   myst-parser
     #   pybtex
     #   sphinx-external-toc
+    #   sphinxcontrib-mermaid
 pyzmq==27.0.2
     # via
     #   ipykernel
@@ -327,7 +326,6 @@ requests==2.32.4
     # via
     #   jupyterlab-server
     #   sphinx
-    #   sphinx-tippy
 rfc3339-validator==0.1.4
     # via
     #   jsonschema
@@ -373,9 +371,9 @@ sphinx==8.2.3
     #   sphinx-external-toc
     #   sphinx-proof
     #   sphinx-tabs
-    #   sphinx-tippy
     #   sphinxcontrib-bibtex
     #   sphinxcontrib-katex
+    #   sphinxcontrib-mermaid
 sphinx-book-theme==1.1.4
     # via
     #   -r requirements.in
@@ -389,8 +387,6 @@ sphinx-proof==0.2.1
     # via -r requirements.in
 sphinx-tabs==3.4.7
     # via -r requirements.in
-sphinx-tippy==0.4.3
-    # via -r requirements.in
 sphinxcontrib-applehelp==2.0.0
     # via sphinx
 sphinxcontrib-bibtex==2.6.5
@@ -402,6 +398,8 @@ sphinxcontrib-htmlhelp==2.1.0
 sphinxcontrib-jsmath==1.0.1
     # via sphinx
 sphinxcontrib-katex==0.9.11
+    # via -r requirements.in
+sphinxcontrib-mermaid==1.0.0
     # via -r requirements.in
 sphinxcontrib-qthelp==2.0.0
     # via sphinx

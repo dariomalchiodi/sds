@@ -9,7 +9,7 @@
     
 #     def enhanced_resolve_xref(self, env, fromdocname, builder, typ, target, node, contnode):
 #         if typ == 'numref':
-#             section_patterns = ['chap:', 'sec:', 'section:', 'subsec:', 'part:', 'par:']
+#             section_patterns = ['chap_', 'sec_', 'section:', 'subsec_', 'part:', 'par_']
             
 #             if any(target.startswith(pattern) for pattern in section_patterns):
 #                 # For section references, resolve as 'ref' instead
@@ -43,9 +43,9 @@ def setup(app):
         if typ == 'numref':
             # Define section/chapter patterns (using colons as they appear in the original labels)
             section_patterns = [
-                'chap:', 'chapter:',
-                'sec:', 'section:', 'subsec:', 'subsubsec:',
-                'part:', 'par:', 'paragraph:'
+                'chap_', 'chapter:',
+                'sec_', 'section:', 'subsec_', 'subsubsec_',
+                'part:', 'par_', 'paragraph:'
             ]
             
             # Check if this is a section/chapter reference
