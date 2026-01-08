@@ -44,6 +44,7 @@ it:
 	@echo "Step 3/10: Copying shared resources..."
 	@if [ -d "$(SOURCEDIR)/_static" ]; then cp -r "$(SOURCEDIR)/_static" tmpsource/; fi
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
+	@if [ -d "$(SOURCEDIR)/data" ]; then cp -r "$(SOURCEDIR)/data" tmpsource/it/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
 	@echo "Step 4/10: Building HTML with Sphinx..."
 	$(SPHINXBUILD) -q -b html tmpsource/it $(SDSDIR)/it

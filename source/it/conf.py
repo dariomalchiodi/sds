@@ -89,7 +89,7 @@ extensions = [ # 'myst_parser',
 # highlight_language = 'python'
 
 nb_execution_mode = "cache"
-nb_execution_timeout = 60
+nb_execution_timeout = 300
 
 # nb_render_priority = ["text/plain", "text/html"]
 nb_mime_priority_overrides = [
