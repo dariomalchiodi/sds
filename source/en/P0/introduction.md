@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(par:franklin-law)=
+(par_franklin-law)=
 # Presentation
 
 > In this world, nothing can be said to be certain,<br/>

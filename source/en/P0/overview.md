@@ -9,21 +9,21 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:overview)=
+(sec_overview)=
 # An Overview
 
 The aim of this chapter is twofold: on the one hand, it serves to broadly
 outline the logical structure behind the organization of the content and to
 introduce the key concepts in a relatively informal way; on the other hand,
 it explains how to use the interactive components of the book. As mentioned
-in {ref}`chap:approach`, throughout the text I will refer to a dataset obtained
+in {ref}`chap_approach`, throughout the text I will refer to a dataset obtained
 by modifying a suitable subset of the
 [Superhero database](http://www.superherodb.com). The examples will therefore
 refer to the world of superheroes, each of whom is described through the
-_attributes_ listed in {numref}`tab:dataset`.
+_attributes_ listed in {numref}`tab_dataset`.
 
 ```{table} Description of the dataset used in the examples.
-:name: tab:dataset
+:name: tab_dataset
 :align: center
 | Attribute           | Meaning                    | Content                                                  |
 |---------------------|----------------------------|----------------------------------------------------------|
@@ -59,7 +59,7 @@ of the [repository](https://github.com/dariomalchiodi/sds) associated with the
 book. In the interactive code, the file can be accessed as `data/heroes.csv`.
 This file uses the CSV (comma-separated values) format, a standard format used
 for sharing relatively small datasets: each line represents a superhero, and
-the values of the attributes listed in {numref}`tab:dataset` are separated by
+the values of the attributes listed in {numref}`tab_dataset` are separated by
 commas. The only exception is the first line of the file, which contains the
 attribute names, also separated by commas, as can be seen when previewing the
 start of the file.
@@ -68,7 +68,7 @@ Below, you can see a description of some of the attributes for ten superheroes
 randomly selected from the dataset.
 
 
-```{code-block} python
+```{interactive-code} python
 :class: toggle-code
 import pandas as pd
 
@@ -79,7 +79,7 @@ source.index.name = None
 source
 ```
 
-In {ref}`chap:pandas`, we will see how to load the contents of this file into
+In {ref}`chap_pandas`, we will see how to load the contents of this file into
 memory and, more importantly, how to process them. For now, let’s focus on a
 few simple examples that, on the one hand, demonstrate how to use the
 interactive parts of the book and, on the other, provide an overview of the
@@ -108,7 +108,7 @@ things, to download the chart.
 ```
 
 
-```{code-block} python
+```{interactive-code} python
 :class: toggle-code
 
 import altair as alt
@@ -161,8 +161,8 @@ such as the two below.
 6. Does this relationship change if we focus on superheroes belonging to a
    particular publisher/creator?
 
-_Descriptive statistics_, introduced from {ref}`chap:dati-e-informazione` to
-{ref}`chap:analizzare-le-relazioni-tra-i-dati`, provides tools to answer
+_Descriptive statistics_, introduced from {ref}`chap_dati-e-informazione` to
+{ref}`chap_analizzare-le-relazioni-tra-i-dati`, provides tools to answer
 questions like those just listed. In general, the goal is to extract
 information from a dataset that describes, either globally or partially, a
 group of reference individuals. The techniques used can be either _qualitative_
@@ -188,7 +188,7 @@ To get a better understanding, I present below a specific chart, called a
 _histogram_, which highlights the frequencies with which different weight
 values appear in the dataset.
 
-```{code-block} python
+```{interactive-code} python
 :class: toggle-code
 
 import matplotlib.pyplot as plt
@@ -202,7 +202,7 @@ fig.show()
 
 ```{margin}
 It doesn’t always make sense to use a histogram to explore values in a
-_dataset_, as we’ll see in {ref}`chap:dati-e-informazione`.
+_dataset_, as we’ll see in {ref}`chap_dati-e-informazione`.
 ```
 
 ```{margin}
@@ -211,7 +211,7 @@ exclusively) involve the use of graphical methods&mdash;it can also be based on
 quantitative tools (and typically is).
 ```
 
-Histograms are defined in detail in {ref}`sec:istogrammi`, but for now it’s
+Histograms are defined in detail in {ref}`sec_istogrammi`, but for now it’s
 enough to understand how to read the result: in each of the shown bars, the
 base identifies an interval $I$ (called a _bin_) of possible weight values for
 superheroes, and the height is related to the fraction of superheroes whose
@@ -229,7 +229,7 @@ can’t be equal to the number of superheroes with a certain weight, because the
 values shown on the y-axis are not integers. In this histogram, in fact, the
 number of superheroes is tied to the area of the bar. This will soon allow us
 to compare the result with another chart. The reason for this choice is
-explained in {ref}`sec:istogrammi`.
+explained in {ref}`sec_istogrammi`.
 ```
 
 Once enough knowledge about the available data has been gathered, the next
@@ -237,10 +237,10 @@ step typically involves _modeling_ the process that generated it. To do this,
 we need to radically shift our perspective: instead of reasoning in terms of
 the entire dataset, we now pose questions about observing one of its elements,
 or a group of elements, under the assumption that we don’t know in advance
-what we’ll observe (remember [Franklin's Law](#par:franklin-law)). We also
+what we’ll observe (remember [Franklin's Law](#par_franklin-law)). We also
 assume that each superhero has the same chance of being observed as any other.
-Starting from {ref}`{chap:calcolo-combinatorio}` through
-{ref}`chap:va-e-modelli-continui`, the book discusses _Probability Theory_,
+Starting from {ref}`{chap_calcolo-combinatorio}` through
+{ref}`chap_va-e-modelli-continui`, the book discusses _Probability Theory_,
 providing formal tools to deal with uncertainty that stems from not knowing
 what will be observed.
 
@@ -300,7 +300,7 @@ $\mathrm e$ raised to the power $x$: this form is preferred over $\mathrm e^x$
 to avoid fractional exponents, which would be harder to read.
 ```
 ```{math}
-:label: eq:weight_normal
+:label: eq_weight_normal
 f(x; \mu, \sigma) = \frac{1}{\sigma \sqrt{2 \pi}} \;
        \mathrm{exp}\left(-\frac{(x - \mu)^2}{2 \sigma^2}\right) \enspace,
 ```
@@ -312,7 +312,7 @@ $\mu \in \mathbb R$ and $\sigma \in \mathbb R^+$ should be understood as two
 _parameters_: the function is fully defined only once their values have been
 set. The semicolon in the definition of $f$ is precisely meant to emphasize the
 different roles of the argument on one hand and the parameters on the other.
-More precisely, {eq}`eq:weight_normal` defines, as $\mu$ and $\sigma$ vary, a
+More precisely, {eq}`eq_weight_normal` defines, as $\mu$ and $\sigma$ vary, a
 _family_ of functions, each of which is associated with a random variable. The
 result is a family of random variables, commonly referred to as a
 _random variable model_. In the interactive diagram shown below, you can
@@ -321,7 +321,7 @@ the two sliders, corresponding to $\mu$ and $\sigma$, you can change the values
 of the respective parameters and simultaneously see how the graph of $f$ is
 affected.
 
-```{code-block} python
+```{interactive-code} python
 :class: toggle-code 
 import numpy as np
 from js import document
@@ -335,7 +335,7 @@ def plot_pdf(mu, sigma):
     y = (1 / (sigma * np.sqrt(2 * np.pi))) * np.exp(-0.5 * ((x - mu) / sigma) ** 2)
     
     fig, ax = plt.subplots()
-    ax.fill_between(x, 0, y, alpha=0.5, color='tab:blue')
+    ax.fill_between(x, 0, y, alpha=0.5, color='tab_blue')
 
     # Use plain text label to avoid MathJax processing
     ax.set_xlabel('x', fontsize=12, ha='right')
@@ -407,7 +407,7 @@ below allows you to perform this operation manually: you can use the sliders to
 achieve a good overlap between the histogram and the probability density
 function.
 
-```{code-block} python
+```{interactive-code} python
 :class:  toggle-code
 
 import base64
@@ -418,8 +418,8 @@ def model_plot_pdf(mu, sigma):
     y = (1 / (sigma * np.sqrt(2 * np.pi))) * np.exp(-0.5 * ((x - mu) / sigma) ** 2)
     
     fig, ax = plt.subplots()
-    ax.hist(data, bins=30, density=True, alpha=0.3, color='tab:blue')
-    ax.fill_between(x, 0, y, alpha=0.5, color='tab:blue')
+    ax.hist(data, bins=30, density=True, alpha=0.3, color='tab_blue')
+    ax.fill_between(x, 0, y, alpha=0.5, color='tab_blue')
 
     # Use plain text for axis labels to avoid MathJax interference
     ax.set_xlabel('x', fontsize=12, ha='right')
@@ -506,8 +506,8 @@ setup_model_sliders()
 In the final part of the book, we’ll explore several methods that allow us to
 automatically determine the parameters of a model, so that it fits a given
 dataset. This is one of the goals of _inferential statistics_, which we’ll
-cover from {ref}`chap:inferential_statistics` through to
-{ref}`chap:statistica-non-parametrica`. The starting point is always a dataset,
+cover from {ref}`chap_inferential_statistics` through to
+{ref}`chap_statistica-non-parametrica`. The starting point is always a dataset,
 which in this context represents a _sample_ of observations taken from a larger
 _population_. Our aim is to formulate hypotheses or draw conclusions about
 this population&mdash;even if we can’t observe it directly in full. In other
@@ -528,7 +528,7 @@ arithmetic mean of the sample values&mdash;what we call the _sample mean_. The
 table below shows how the values of this estimator change across ten different
 random samples.
 
-```{code-block} python
+```{interactive-code} python
 :class:  toggle-code
 
 weights = heroes['weight'][heroes['weight']<200].dropna()
@@ -564,7 +564,7 @@ way&mdash;earlier in the book.
 But before diving into descriptive statistics, it’s important to review some
 key concepts from computer programming, and above all to get comfortable with
 the computational tools I’ll be using throughout the book. That’s the purpose
-of {ref}`chap:intro-python` and {ref}`chap:pandas`, which open the
+of {ref}`chap_intro-python` and {ref}`chap_pandas`, which open the
 discussion.
 
 ## Exercises
@@ -598,7 +598,7 @@ terminal and shell commands.
 Based on the impression you’ve formed of the superhero dataset while solving
 the previous exercises, try grouping the attributes into homogeneous sets, not
 based on the type of data used to represent the corresponding values (as
-indicated in the «Content» column of {numref}`tab:dataset`), but rather on the
+indicated in the «Content» column of {numref}`tab_dataset`), but rather on the
 _nature_ of the attributes themselves.
 ```
 
@@ -639,14 +639,14 @@ $1$.
 
 ```{exercise} ••
 Set $\mu = \sigma = 1$ and study the function described in
-{eq}`eq:weight_normal`, drawing the corresponding graph by hand and verifying
+{eq}`eq_weight_normal`, drawing the corresponding graph by hand and verifying
 that the shape matches what is shown in the second interactive chart.
 ```
 
 ```{exercise} •
 Based on the result of the previous exercise, and taking into account what you
 experienced using the second interactive chart, what is the role of parameters
-$\mu$ and $\sigma$ in the graph of $f$ defined in {eq}`eq:weight_normal`?
+$\mu$ and $\sigma$ in the graph of $f$ defined in {eq}`eq_weight_normal`?
 ```
 
 ```{exercise} •

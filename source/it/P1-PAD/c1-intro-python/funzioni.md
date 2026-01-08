@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:funzioni)=
+(sec_funzioni)=
 # Funzioni
 
 Il calcolo delle frequenze è un'operazione che viene fatta molto spesso, quindi
@@ -29,7 +29,7 @@ mette insieme il codice scritto finora in modo da accettare una generica lista
 e di restituirne le frequenze assolute ordinate dalla più grande alla più
 piccola.
 
-```python
+```{code-cell} python
 def get_sorted_counts(sequence):
     counts = {}
 
@@ -52,7 +52,7 @@ get_sorted_counts(years)
 
 ## Parametri opzionali
 
-(sec:funzioni-anonime)=
+(sec_funzioni-anonime)=
 ## Funzioni anonime
 
 Un'altra caratteristica di python è quella di poter specificare una funzione

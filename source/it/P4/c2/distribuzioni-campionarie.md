@@ -9,5 +9,5 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:distribuzioni-campionarie)=
+(sec_distribuzioni-campionarie)=
 # Distribuzioni campionarie

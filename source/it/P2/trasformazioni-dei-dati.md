@@ -9,7 +9,16 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:trasformazioni-dei-dati)=
+```{code-cell} python
+:tags: [remove-cell]
+
+import matplotlib.pyplot as plt
+plt.style.use('../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+(sec_trasformazioni-dei-dati)=
 # Trasformazione dei dati
 
 Può succedere di avere la necessità di trasformare i dati osservati per
@@ -83,7 +92,7 @@ esso le osservazioni per anno di prima apparizione e indice di forza. Per
 evitare di modificare i dati originali, lavoreremo su delle copie da cui
 elimineremo inoltre i valori mancanti.
 
-```{code-block} python
+```{code-cell} python
 import pandas as pd
 import numpy as np
 
@@ -103,7 +112,7 @@ funzione in modo che i dati trasformati partano da zero. In questo caso, la
 costante $k$ coinciderà con il minimo dei valori osservati e la traslazione
 verrà fatta verso sinistra.
 
-```{code-block} python
+```{code-cell} python
 transformed_year = year - min(year)
 transformed_year.iloc[:10]
 ```
@@ -112,7 +121,7 @@ Analogamente, impostando $k$ alla media campionaria di una serie e traslando
 verso sinistra, i valori trasformati avranno media campionaria nulla. La
 cella seguente effettua tale operazione sugli indici di forza.
 
-```{code-block} python
+```{code-cell} python
 transformed_strength = strength - strength.mean()
 transformed_strength.iloc[:10]
 ```
@@ -122,13 +131,13 @@ i dati osservati varieranno ma le loro frequenze resteranno uguali. Ciò è
 evidente se si visualizzano per esempio le tabelle delle frequenze assolute
 dei dati originali e di quelli trasformati.
 
-```{code-block} python
+```{code-cell} python
 pd.crosstab(index=strength,
             columns=['Abs. freqence'],
             colnames=['Original']).iloc[:10]
 ```
 
-```{code-block} python
+```{code-cell} python
 pd.crosstab(index=transformed_strength,
             columns=['Abs. freqence'],
             colnames=['Transformed']).iloc[:10]
@@ -140,7 +149,7 @@ infatti invariate, e l'unica differenza consisterebbe nei valori riportati
 sull'asse delle ascisse. Lo si vede facilmente affiancando per esempio gli
 istogrammi degli indici di forza originali e trasformati.
 
-```{code-block} python
+```{code-cell} python
 plt.figure(figsize=(10, 3))
 plt.subplot(1, 2, 1)
 strength.plot.hist(bins=20)
@@ -188,7 +197,7 @@ tra i valori originali. Tenuto conto del fatto che questi ultimi sono non
 negativi, ciò implica che i dati trasformati varieranno nell'intervallo
 $[0, 1]$.
 
-```{code-block} python
+```{code-cell} python
 strength = heroes['strength'].copy()
 strength = strength[pd.notnull(strength)]
 
@@ -201,13 +210,13 @@ varia solo relativamente ai valori osservati, così come gli istogrammi
 avranno la medesima forma e gli stessi valori sull'asse delle ordinate, ma
 varieranno su un intervallo diverso se si considera l'asse delle ascisse.
 
-```{code-block} python
+```{code-cell} python
 pd.crosstab(index=transformed_strength,
             columns=['Abs. freqence'],
             colnames=['Transformed']).iloc[:10]
 ```
 
-```{code-block} python
+```{code-cell} python
 plt.figure(figsize=(10, 3))
 plt.subplot(1, 2, 1)
 strength.plot.hist(bins=20)
@@ -241,7 +250,7 @@ scala che va da $-10$ a $10$. La trasformazione relativa corrisponderà ai
 valori $c = -10$, $d = 10$ e rispettivamente al minimo e al massimo dei
 valori originali per quanto riguarda $a$ e $b$.
 
-```{code-block} python
+```{code-cell} python
 strength = heroes['strength'].copy()
 strength = strength[pd.notnull(strength)]
 
@@ -299,7 +308,7 @@ Si controlli che le proprietà sopra menzionate sono soddisfatte.
 L'operazione di standardizzazione dei valori di forza dà luogo alla serie
 seguente:
 
-```{code-block} python
+```{code-cell} python
 transformed_strength = (strength - strength.mean()) / strength.std()
 transformed_strength.iloc[:10]
 ```
@@ -349,7 +358,7 @@ Consideriamo per esempio i primi dieci anni di prima apparizione nel nostro
 dataset e applichiamo loro una trasformazione logaritmica usando 10 come
 base.
 
-```{code-block} python
+```{code-cell} python
 pd.crosstab(index=np.log10(year),
             columns=['Abs. freqence'],
             colnames=['Transformed']).iloc[:10]
@@ -358,7 +367,7 @@ pd.crosstab(index=np.log10(year),
 Anche in questo caso l'iniettività della trasformazione assicura che le
 frequenze di dati originali e dati trasformati coincidono.
 
-```{code-block} python
+```{code-cell} python
 pd.crosstab(index=year,
             columns=['Abs. freqence'],
             colnames=['Original']).iloc[:10]

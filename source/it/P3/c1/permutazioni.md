@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:permutazioni)=
+(sec_permutazioni)=
 # Permutazioni
 
 Una _permutazione_ di $n$ oggetti non è altro che un loro qualsiasi

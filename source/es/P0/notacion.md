@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:notacion)=
+(sec_notacion)=
 # Notación
 
 La {numref}`tab-notacion` recoge las principales notaciones que utilizaré en

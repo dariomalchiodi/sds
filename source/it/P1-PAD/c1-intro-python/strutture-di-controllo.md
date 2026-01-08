@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:strutture-di-controllo)=
+(sec_strutture-di-controllo)=
 # Strutture di controllo
 
 Python gestisce il flusso di esecuzione tramite le tipiche strutture di
@@ -19,7 +19,7 @@ per esempio la cella seguente crea due liste, una con nomi di supereroi e
 un'altra con i corrispondenti anni di prima apparizione, e le memorizza nelle
 variabili `names` e `years`.
 
-```python
+```{code-cell} python
 names = ['Aquaman', 'Ant-Man', 'Batman', 'Black Widow',
          'Captain America', 'Daredavil', 'Elektra', 'Flash',
          'Green Arrow', 'Human Torch', 'Hancock', 'Iron Man',
@@ -118,7 +118,7 @@ permette di identificare quali istruzioni debbano essere eseguite nei due rami
 della selezione. La cella seguente contiene un'implementazione (stavolta
   funzionante) del codice che conteggia le apparizioni per anno.
 
-```python
+```{code-cell} python
 counts = {}
 for y in years:
     if y in counts:
@@ -129,7 +129,7 @@ for y in years:
 
 Il risultato è il seguente:
 
-```python
+```{code-cell} python
 counts
 ```
 
@@ -146,7 +146,7 @@ e una funzione anonima per specificare il criterio su cui basare l'ordinamento.
 L'esempio utilizza anche l'argomento opzionale `reverse` per ottenere gli anni
 ordinati a partire da quello con il maggior numero di apparizioni.
 
-```python
+```{code-cell} python
 pairs = list(counts.items())
 sorted(pairs, key=lambda p:p[1], reverse=True)
 ```

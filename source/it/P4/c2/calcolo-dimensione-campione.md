@@ -9,5 +9,5 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:calcolo-dimensione-campione)=
+(sec_calcolo-dimensione-campione)=
 # Calcolo della dimensione del campione

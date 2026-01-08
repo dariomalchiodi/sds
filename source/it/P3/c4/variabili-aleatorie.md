@@ -9,11 +9,11 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:variabili-aleatorie)=
+(sec_variabili-aleatorie)=
 # Variabili aleatorie
 
 ````{prf:definition} Variabile aleatoria
-:label: def:variabile-aleatoria
+:label: def-variabile-aleatoria
 Fissato uno spazio di probabilità $(\Omega, \mathsf A, \mathbb P)$, una
 _variabile aleatoria_ è definita come una funzione $X: \Omega \rightarrow
 \mathbb R$ tale che, per ogni $a \in \mathbb R$, l'evento
@@ -24,7 +24,7 @@ X^{-1}((-\infty, a]) = \{ w \in \Omega \text{ tale che } X(\omega) \leq a \}
 ````
 
 ````{prf:definition} Dominio di una variabile aleatoria
-:label: def:dominio
+:label: def-dominio
 Il dominio di una variabile aleatoria $X$ è l'insieme delle specificazioni che
 quest'ultima può assumere, e viene normalmente indicato usando il simbolo
 $D_X$.
@@ -35,13 +35,13 @@ La probabilità che una variabile aleatoria $X$ assuma valori in un intervallo
 quest'ultima:
 
 ```{math}
-:label: eq:cdf-e-intervalli
+:label: eq_cdf-e-intervalli
 
 \mathbb P(a < X \leq b) = F_X(b) - F_X(a).
 ```
 
 ````{prf:theorem} Proprietà delle funzioni di distribuzione cumulativa
-:label: teo:proprieta-F
+:label: teo-proprieta-F
 
 Data una qualsiasi variabile aleatoria discreta $X$, la sua funzione di
 distribuzione cumulativa $F_X$ soddisfa le tre seguenti proprietà:

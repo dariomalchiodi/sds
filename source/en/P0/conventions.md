@@ -14,7 +14,7 @@ kernelspec:
 <script type="module" src="https://pyscript.net/releases/2025.5.1/core.js"></script>
 ```
 
-(sec:conventions)=
+(sec_conventions)=
 # Conventions
 
 As mentioned in the previous paragraph, I will often mix the text with code,

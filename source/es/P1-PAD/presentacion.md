@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(chap:presentacion-p1)=
+(chap_presentacion-p1)=
 # Presentación
 
 La primera parte de este libro presenta algunas herramientas básicas para el
@@ -27,7 +27,7 @@ Entre las herramientas esenciales se encuentran:
 - una biblioteca para la gestión estructurada de conjuntos de datos.
 
 En este libro utilizaré Python y Pandas, presentados en
-{ref}`chap:intro-python` y {ref}`chap:pandas`, respectivamente. Aunque
+{ref}`chap_intro-python` y {ref}`chap_pandas`, respectivamente. Aunque
 existen muchas alternativas válidas, estas dos tecnologías representan hoy
 una parte central del ecosistema de análisis de datos, tanto en el ámbito
 académico como en el profesional.

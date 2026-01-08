@@ -9,7 +9,16 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:relazioni-tra-insiemi)=
+```{code-cell} python
+:tags: [remove-cell]
+
+import matplotlib.pyplot as plt
+plt.style.use('../../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+(sec_relazioni-tra-insiemi)=
 # Relazioni tra insiemi
 
 A partire dalla nozione di _sottoinsieme_ è possibile derivare una serie di
@@ -30,13 +39,11 @@ S \subseteq T \leftrightarrow \forall s \in \Omega \;
 ```
 
 Il diagramma di Venn per due siffatti insiemi è illustrato nella
-{numref}`fig:venn-sottoinsiemi`.
+{numref}`fig_venn-sottoinsiemi`.
 
-````{customfigure}
-:name: fig:venn-sottoinsiemi
 
-```{code-block} python
-:class:  toggle-code
+```{code-cell} python
+:tags:  [hide-input]
 
 import matplotlib.pyplot as plt
 from matplotlib_venn import venn2, venn2_circles
@@ -78,8 +85,10 @@ def subset_venn():
     return fig
 
 fig = subset_venn()
-fig.show()
+fig
 ```
+````{customfigure}
+:name: fig_venn-sottoinsiemi
 
 Un diagramma di Venn che illustra due insiemi $S$ e $T$ tali che
 $S \subseteq T$.

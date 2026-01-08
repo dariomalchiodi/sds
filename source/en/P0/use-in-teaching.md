@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:use-in-teaching)=
+(sec_use-in-teaching)=
 # Use in teaching
 
 For a number of years, I have been teaching the course

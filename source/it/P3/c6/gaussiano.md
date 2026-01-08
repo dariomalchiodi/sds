@@ -9,7 +9,16 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:modello-normale)=
+```{code-cell} python
+:tags: [remove-cell]
+
+import matplotlib.pyplot as plt
+plt.style.use('../../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+(sec_modello-normale)=
 # Il modello normale
 
 Fissato $p \in [0, 1]$, per ogni $n \in \mathbb N$ sia
@@ -23,13 +32,10 @@ quanto $\mathbb E(X_n) = np$ e $\mathrm{Var}(X_n) = np(1-p)$ e dunque, man mano
 che $n$ aumenta, da una parte il centro della distribuzione si allontana
 sempre di più dall'origine e dall'altra la varianza aumenta, come si può
 facilmente verificare osservando i grafici delle funzioni di massa di
-probabilità visualizzati nella {numref}`fig:binomial-divergence`.
+probabilità visualizzati nella {numref}`fig_binomial-divergence`.
 
-````{customfigure}
-:name: fig:binomial-divergence
-
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [remove-input]
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -50,8 +56,10 @@ for n, ax in zip(ns, axes):
     ax.set_ylim(0, 0.26)
 
     ax.set_xlabel(rf'$n={n}$')
-plt.show()
+fig
 ```
+````{customfigure}
+:name: fig_binomial-divergence
 
 Grafici della funzione di massa di probabilità di $X_n$ per $n = 10, 25
 \text{ e } 50$.
@@ -68,21 +76,18 @@ Y_n \triangleq \frac{X_n - n p}{\sqrt{n p (1 - p)}} \enspace.
 
 Per le proprietà della trasformazione applicata, indipendentemente dal valore
 di $n$ avremo che $Y_n$ ha valore atteso nullo e varianza unitaria, come
-illustrato nella {numref}`fig:binomial-convergence`. Questa
+illustrato nella {numref}`fig_binomial-convergence`. Questa
 figura mette in evidenza anche il fatto che, al crescere di $n$, da una parte
 le specificazioni di $Y_n$ tendono ad avvicinarsi l'un l'altra, e dall'altra
 il _range_ di questa variabile aleatoria è un intervallo centrato nell'origine
 che diventa sempre più grande, comprendendo sia numeri positivi, sia numeri
 negativi. Diventa quindi ragionevole valutare l'ipotesi che, in analogia a
-quanto visto nel {ref}`sec:modello-esponenziale`, la
+quanto visto nel {ref}`sec_modello-esponenziale`, la
 distribuzione di $Y_n$ tenda a una distribuzione di tipo continuo che ha
 $\mathbb R$ come supporto.
 
-````{customfigure}
-:name: fig:binomial-convergence
-
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 fig, axes = plt.subplots(1, 3, sharey=True, figsize=(15, 5))
 
@@ -97,9 +102,10 @@ for n, ax in zip(ns, axes):
     ax.set_ylim(0, 0.26)
 
     ax.set_xlabel(rf'$n={n}$')
-plt.show()
+fig
 ```
-
+````{customfigure}
+:name: fig_binomial-convergence
 
 Grafici della funzione di massa di probabilità di $Y_n$ per $n = 10, 25
 \text{ e } 50$.
@@ -110,20 +116,16 @@ $Y_n$ tende a seguire una distribuzione continua descritta dalla funzione
 di densità di probabilità
 
 ```{math}
-:label: eq:normal-pdf
+:label: eq_normal-pdf
 \phi(x) \triangleq \frac{1}{\sqrt{2 \pi}} \mathrm e^{-\frac{x^2}{2}} \enspace,
 ```
 
-il cui grafico è visualizzato nella {numref}`fig:normal-pdf`.
+il cui grafico è visualizzato nella {numref}`fig_normal-pdf`.
 Questa distribuzione, che definiremo rigorosamente più avanti, ha un ruolo
 particolarmente importante e viene chiamata _distribuzione normale standard_.
 
-````{customfigure}
-:name: fig:normal-pdf
-:width: 400px
-
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 fig, ax = plt.subplots()
 
@@ -135,15 +137,18 @@ y_gauss = std_normal_pdf(x_gauss)
 
 plt.plot(x_gauss, y_gauss)
 plt.yticks([0, 0.1, 0.2, 0.3, 0.4])
-plt.show()
+fig
 ```
+````{customfigure}
+:name: fig_normal-pdf
+:width: 400px
 
 Grafico della funzione di densità della distribuzione normale
 standard.
 ````
 
 ```{margin}
-Il fatto che le altezze dei bastoncini in {numref}`fig:binomial-convergence`
+Il fatto che le altezze dei bastoncini in {numref}`fig_binomial-convergence`
 sommino a $1$ spiega anche come mai queste stesse altezze tendano a diminuire
 quando $n$ cresce.
 ```
@@ -151,9 +156,9 @@ Per verificare questo fatto è però necessario considerare un ulteriore
 passaggio intermedio: per ogni $n$, $Y_n$ è una variabile aleatoria discreta,
 mentre la distribuzione limite che stiamo considerando è continua. Nel
 primo caso, la somma delle altezze dei bastoncini nella
-{numref}`fig:binomial-convergence` è uguale a $1$, mentre nel
+{numref}`fig_binomial-convergence` è uguale a $1$, mentre nel
 secondo è la regione di piano delimitata dall'asse delle ascisse e dalla curva
-mostrata in {numref}`fig:normal-pdf` ad avere area unitaria.
+mostrata in {numref}`fig_normal-pdf` ad avere area unitaria.
 Per poter confrontare correttamente le distribuzioni in gioco dobbiamo
 pertanto o «trasformare» $Y_n$ in una variabile aleatoria continua, oppure
 al contrario considerare un equivalente discreto della distribuzione normale
@@ -176,7 +181,7 @@ scelta in modo da garantire che la famiglia di questi intervalli sia una
 partizione del range di $Y_n$. In altre parole, indicate con
 $y_1, \dots, y_{n+1}$ le specificazioni di $Y_n$, per ogni $i = 1, \dots, n+1$
 possiamo convertire il bastoncino della
-{numref}`fig:binomial-convergence` posizionato nell'ascissa $y_i$
+{numref}`fig_binomial-convergence` posizionato nell'ascissa $y_i$
 in una barra della medesima altezza la cui base è
 $[(y_{i-1} + y_i)/2, (y_i + y_{i+1})/2)$ (con ovvie estensioni per i casi
 estremi che riguardano $y_1$ e $y_{n+1}$). A questo punto è possibile
@@ -187,15 +192,12 @@ questa funzione e dall'asse delle ascisse non è però uguale a $1$, ma è
 possibile normalizzare la funzione stessa, dividendo ogni valore da essa
 restituito per la somma delle aree delle barre. Il risultato è una funzione
 $f_n$ che può essere interpretata come densità di probabilità e quindi
-confrontata con $\phi$: la {numref}`fig:normal-convergence`
+confrontata con $\phi$: la {numref}`fig_normal-convergence`
 mostra come effettivamente la prima funzione tenda a coincidere con la seconda
 all'aumentare di $n$.
 
-````{customfigure}
-:name: fig:normal-convergence
-
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 def binomial(n, p=0.5):
     B = st.binom(n, p)
@@ -215,8 +217,10 @@ for n, ax in zip([6, 20, 80], axes):
     ax.set_xlim(-6, 6)
 
     ax.set_xlabel(rf'$n={n}$')
-plt.show()
+fig
 ```
+````{customfigure}
+:name: fig_normal-convergence
 
 Convergenza di $f_n$ alla densità $\phi$ della distribuzione normale standard.
 I grafici a barre visualizzano l'area delimitata da $f_n$, per
@@ -227,7 +231,7 @@ Il ragionamento informale seguito finora può essere rivisto in modo formale,
 in particolare considerando il teorema di de Moivre-Laplace.
 
 ````{prf:theorem} Teorema di de Moivre-Laplace
-:label: teo:demoivre-laplace
+:label: teo-demoivre-laplace
 
 Dati $n \in \mathbb N$ e $p \in [0, 1]$, sia $X \sim \mathrm B(n, p)$.
 Definita $Y_n \triangleq (X_n - np) / \sqrt{n p (1-p)}$, quando $n \to +\infty$
@@ -235,12 +239,12 @@ la distribuzione di $Y_n$ tende a quella normale standard.
 ````
 
 La dimostrazione del teorema di de Moivre-Laplace, relativamente complessa,
-è riportata nel Paragrafo {ref}`sec:teo-de-moivre-laplace`.
+è riportata nel Paragrafo {ref}`sec_teo-de-moivre-laplace`.
 In ogni caso, per quanto visto finora ha senso ragionare in termini di una
 variabile aleatoria $X$ che abbia $\phi$ come densità di probabilità, e più in
 generale parlare della distribuzione continua normale standard. Vi sono alcune
 proprietà di questa distribuzione che possiamo ricavare, sempre in modo
-informale. Innanzitutto {eq}`eq:normal-pdf` descrive effettivamente una
+informale. Innanzitutto {eq}`eq_normal-pdf` descrive effettivamente una
 densità di probabilità in quanto $\phi$ è una funzione non negativa il cui
 integrale su $\mathbb R$ è uguale a $1$: dimostrarlo in modo formale richiede
 qualche conoscenza di analisi matematica avanzata (in particolare, la capacità
@@ -270,7 +274,7 @@ ragionamento analogo, è facile convincersi che la varianza e la deviazione
 standard di $X$ sono uguali a $1$. Da qui in avanti supporremo quindi che
 che $\mathbb E(X) = 0$ e $\mathrm{Var}(X) = 1$ (cosa che è effettivamente
 vera, e della quale i lettori interessati troveranno una dimostrazione nel
-Paragrafo {ref}`sec:norm-fgm`). Le cose diventano più
+Paragrafo {ref}`sec_norm-fgm`). Le cose diventano più
 complicate quando si considera la funzione di ripartizione di $X$, che viene
 indicata con il simbolo $\Phi$. Ovviamente vale
 
@@ -283,7 +287,7 @@ ma non è possibile esprimere analiticamente questo integrale in termini di
 funzioni che già conosciamo [^calcolo-cdf-normale]. Per questo motivo $\Phi$
 viene calcolata ricorrendo a processi di approssimazione numerica
 [^approssimazione-integrali]. Vedremo nel 
-Paragrafo {ref}`sec:implementazione-modello-normale` che questo
+Paragrafo {ref}`sec_implementazione-modello-normale` che questo
 processo è fatto in modo trasparente dal modulo Python `scipy.stats`, che vale
 la pena utilizzare nelle applicazioni pratiche. Ma possiamo per il momento
 ottenere i valori di $\Phi$ ricavando direttamente l'approssimazione degli
@@ -297,7 +301,7 @@ La costante `inf` definita in Numpy permette di specificare degli estremi di
 integrazione infiniti. Va notato inoltre come per brevità la funzione
 integranda sia stata specificata utilizzando una funzione anonima.
 ```
-```{code-block} python
+```{code-cell} python
 from scipy.integrate import quad
 
 quad(lambda x: 1/(2*np.pi)**0.5 * np.exp(-x**2 / 2), -np.inf, 0)
@@ -311,7 +315,7 @@ delle ordinate e valendo il suo integrale su $\mathbb R$ esattamente $1$, deve
 necessariamente essere $\Phi(0) = \frac{1}{2}$. Possiamo quindi definire una
 funzione `cdf_normal` che approssima i valori di $\Phi$ e utilizzarla per
 mostrare il suo grafico, sovrapponendolo a quello di $\phi$ per ottenere il
-risultato mostrato nella {numref}`fig:normal-cdf`.
+risultato mostrato nella {numref}`fig_normal-cdf`.
 
 ```{margin}
 In analogia con il codice precedentemente scritto, vogliamo che `cdf_normal`
@@ -322,7 +326,7 @@ incompatibile con `quad`. In casi come questo, si utilizza la funzione Numpy
 vettoriale. 
 
 ```
-```{code-block} python
+```{code-cell} python
 
 def std_normal_cdf_scalar(x):
     return quad(lambda u: 1/(2*np.pi)**0.5 * np.exp(-u**2 / 2), -np.inf, x)[0]
@@ -330,24 +334,23 @@ def std_normal_cdf_scalar(x):
 std_normal_cdf = np.vectorize(std_normal_cdf_scalar)
 ```
 
-````{customfigure}
-:name: fig:normal-cdf
-:width: 400px
-
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 x = np.linspace(-5, 5, 100)
 y_cdf = std_normal_cdf(x)
 y_pdf = std_normal_pdf(x)
 
 fig, ax = plt.subplots()
-plt.plot(x, y_cdf, label=r'$\Phi$')
-plt.plot(x, y_pdf, label=r'$\phi$')
+ax.plot(x, y_cdf, label=r'$\Phi$')
+ax.plot(x, y_pdf, label=r'$\phi$')
 
-plt.legend()
-plt.show()
+ax.legend()
+fig
 ```
+````{customfigure}
+:name: fig_normal-cdf
+:width: 400px
 
 Grafico della funzione di ripartizione della distribuzione normale
 standard (in blu) sovrapposto al grafico della corrispondente funzione
@@ -368,7 +371,7 @@ questa tabella può tornare utile, per esempio nel caso in cui non sia
 possibile accedere a un computer durante un esame scritto. La cella seguente
 mostra come generare una tabulazione di valori approssimati per $\Phi$.
 
-```{code-block} python
+```{code-cell} python
 
 import pandas as pd
 
@@ -412,7 +415,7 @@ Per ogni $x \in \mathbb R$ si ha $\Phi(-x) = 1 - \Phi(x)$.
 Data una variabile aleatoria $X$ con distribuzione normale
 standard, sia $x \in \mathbb R^+$. Dalla simmetria di $\phi$ rispetto
 all'asse delle ordinate, come evidenziato nella
-{numref}`fig:normal-symmetry`, si ottiene
+{numref}`fig_normal-symmetry`, si ottiene
 
 ```{math}
 \begin{align*}
@@ -427,38 +430,37 @@ all'asse delle ordinate, come evidenziato nella
 L'estensione ai casi rimanenti è banale.
 ````
 
-````{customfigure}
-:name: fig:normal-symmetry
-:width: 400px
-
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 fig, ax = plt.subplots()
 
 x_start = 1
 x_fill = np.linspace(-5, -x_start, 50)
 y_fill = std_normal_pdf(x_fill)
-plt.fill_between(x_fill, 0, y_fill, color='lightgray')
+ax.fill_between(x_fill, 0, y_fill, color='lightgray')
 
 x_fill = np.linspace(x_start, 5, 50)
 y_fill = std_normal_pdf(x_fill)
-plt.fill_between(x_fill, 0, y_fill, color='lightgray')
+ax.fill_between(x_fill, 0, y_fill, color='lightgray')
 
-plt.plot(x, y_pdf)
+ax.plot(x, y_pdf)
 
-plt.annotate(r'$=\Phi(-x)$', xy=(-1.5, 0.03), xytext=(-3.5, 0.2),
+ax.annotate(r'$=\Phi(-x)$', xy=(-1.5, 0.03), xytext=(-3.5, 0.2),
             arrowprops={'arrowstyle': '->', 'ec': 'black'},
             va='center', fontsize=14)
 
-plt.annotate(r'$=\Phi(-x)$', xy=(1.5, 0.03), xytext=(2, 0.2),
+ax.annotate(r'$=\Phi(-x)$', xy=(1.5, 0.03), xytext=(2, 0.2),
             arrowprops={'arrowstyle': '->', 'ec':'black'},
             va='center', fontsize=14)
 
-plt.xticks([-x_start, x_start], [r'$-x$', '$x$'], fontsize=14)
-plt.yticks([])
-plt.show()
+ax.set_xticks([-x_start, x_start], [r'$-x$', '$x$'], fontsize=14)
+ax.set_yticks([])
+fig
 ```
+````{customfigure}
+:name: fig_normal-symmetry
+:width: 400px
 
 Relazione che lega la simmetria di $\phi$ rispetto all'asse delle ordinate
 alla proprietà $\Phi(-x) = 1 -\Phi(x)$.
@@ -526,7 +528,7 @@ normali_.
 
 La distribuzione normale standard è una particolare distribuzione normale:
 quella, ovviamente, per la quale $\mu = 0$ e $\sigma = 1$.
-La {numref}`fig:normal-graphs` mostra i grafici delle funzioni di
+La {numref}`fig_normal-graphs` mostra i grafici delle funzioni di
 densità di probabilità e di ripartizione della distribuzione normale per
 $\mu \in \{-5, 0, 5\}$ e $\sigma \in \{1, 2\}$. È possibile notare come
 tutti i grafici su una stessa riga evidenziano la stessa dispersione ma
@@ -536,11 +538,8 @@ destra. Analogamente, i grafici su una stessa colonna hanno la medesima
 centralità ma differenti dispersioni, e la varianza aumenta andando dall'alto
 verso il basso nella figura.
 
-````{customfigure}
-:name: fig:normal-graphs
-
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 def normal_pdf(x, mu, sigma):
     return std_normal_pdf((x - mu) / sigma) / sigma
@@ -568,8 +567,10 @@ for r, (ax_row, param_row) in enumerate(zip(axes, params)):
             ax.set_ylabel(rf'$\sigma={sigma}$')
         if r == 0 and c == 0:
             ax.legend()
-plt.show()
+fig
 ```
+````{customfigure}
+:name: fig_normal-graphs
 
 Grafici delle funzioni di densità di probabilità (in giallo) e di ripartizione
 (in blu) di differenti distribuzioni norali. Gli assi delle ascisse e delle
@@ -586,7 +587,7 @@ nelle quali è possibile utilizzare un computer.
 ```{figure} https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Bendixen_-_Carl_Friedrich_Gau%C3%9F%2C_1828.jpg/211px-Bendixen_-_Carl_Friedrich_Gau%C3%9F%2C_1828.jpg
 ---
 figclass: margin
-name: fig:gauss
+name: fig_gauss
 width: 200px
 align: left
 ---
@@ -610,12 +611,12 @@ normale è un tipo specifico di distribuzione gaussiana, e precisamente quella
 con media nulla e deviazione standard unitaria.
 
 Il termine _gaussiano_ fa riferimento a Carl Friedrich Gauss (di cui la
-{numref}`fig:gauss` mostra un ritratto), una delle figure più
+{numref}`fig_gauss` mostra un ritratto), una delle figure più
 eminenti nella storia della matematica. All'inizio del 1800 Gauss dimostrò,
 tra le altre cose, che la forma analitica della densità normale era l'unica
 che permettesse di risolvere un particolare problema (quello della stima della
 centralità in una popolazione, che affronteremo nel
-{ref}`sec:media-campionaria`), e osservò come questa
+{ref}`sec_media-campionaria`), e osservò come questa
 distribuzione fosse in accordo con gli errori di predizione in ambito
 astronomico. La paternità di questa distribuzione spetta però, come spesso
 accade, a più studiosi: in particolare, le prime osservazioni sul
@@ -637,12 +638,12 @@ gaussiana solo a partire dal 1900.
 
 Non è un caso che l'aggettivo _normale_ sia stato usato per definire i dati
 per le cui frequenze vale  la regola empirica introdotta nel
-Paragrafo {ref}`sec:indici-di-dispersione`. Le percentuali indicate da
+Paragrafo {ref}`sec_indici-di-dispersione`. Le percentuali indicate da
 questa regola, in effetti, corrispondono esattamente alla probabilità di
 osservare un valore della distribuzione normale standard che dista dal suo
 valore atteso al più una, due o tre deviazioni standard, rispettivamente.
 
-```{code-block} python
+```{code-cell} python
 
 def prob_within_std(s):
     return normal_cdf(s, 0, 1) - normal_cdf(-s, 0, 1)
@@ -687,7 +688,7 @@ f_Y(x) = \frac{1}{a} f_X \left( \frac{x-b}{a} \right)
 ```
 
 che implica la tesi. La seconda parte è dimostrata nel
-Paragrafo {ref}`sec:norm-fgm`.
+Paragrafo {ref}`sec_norm-fgm`.
 
 ````
 
@@ -695,7 +696,7 @@ Da questo teorema si ricava un risultato che sarà particolarmente utile
 nella parte di questo libro dedicata alla statistica inferenziale.
 
 ````{prf:corollary}
-:label: cor:normal
+:label: cor-normal
 
 Siano $X_1, \dots, X_n$ delle variabili aleatorie indipendenti, dove per ogni
 $i = 1, \dots, n$ si ha $X_i \sim \mathrm N(\mu_i, \sigma_i)$. Dati
@@ -723,7 +724,7 @@ e deviazione standard
 Segue per induzione dal {prf:ref}`theo-normal`.
 ````
 
-(sec:norm-fgm)=
+(sec_norm-fgm)=
 ## Momenti della distribuzione normale (*)
 
 Calcolare la funzione generatrice dei momenti per la distribuzione normale
@@ -844,7 +845,7 @@ e dall'ultima relazione segue che la curtosi di una qualsiasi distribuzione
 normale è uguale a $\mu_4 / \sigma^4 - 3 = 0$.
 
 La funzione generatrice dei momenti permette di dimostrare facilmente
-anche la seconda parte del {prf:ref}`cor:normal`, in quanto, date due
+anche la seconda parte del {prf:ref}`cor-normal`, in quanto, date due
 variabili aleatorie indipendenti $X \sim \mathrm N(\mu_X, \sigma_X)$ e
 $Y \sim \mathrm N(\mu_Y, \sigma_Y)$ e posto $Z \triangleq X + Y$ si ha
 
@@ -870,11 +871,11 @@ m_Z(t) &= \mathbb E\left(\mathrm e^{t(X + Y)}\right)
 che è la funzione generatrice dei momenti di una distribuzione che ha
 $\mu_X + \mu_Y$ per valore atteso e $\sigma_X^2 + \sigma_Y^2$ per varianza.
 
-(sec:teo-de-moivre-laplace)=
+(sec_teo-de-moivre-laplace)=
 ## Il teorema di de Moivre-Laplace (*)
 
 Dimostrare in modo matematicamente impeccabile il
-{prf:ref}`teo:demoivre-laplace` richiede alcune conoscenze avanzate che vanno
+{prf:ref}`teo-demoivre-laplace` richiede alcune conoscenze avanzate che vanno
 al di fuori dello scopo di questo volume. Di seguito riporto una dimostrazione
 che, pur introducendo delle approssimazioni rilevanti, permette a chi è
 interessato ad approfondire l'argomento di convincersi della validità di
@@ -886,7 +887,7 @@ una specificazione $x \in \{0, \dots n\}$ se e solo se la seconda assume una
 specificazione $y$ tale che
 
 ```{math}
-:label: eq:dML-relation
+:label: eq_dML-relation
 x = np + y \sqrt{n p (1-p)} \enspace,
 ```
 
@@ -929,7 +930,7 @@ radice quadrata al suo logaritmo naturale e sfruttando le proprietà dei
 logaritmi. Semplifichiamo i conti che seguono tralasciando il fattore sotto
 frazione e consideriamo separatamente i termini $A$ e $B$ che occorrono
 all'esponente. Per quanto riguarda il primo, la relazione
-{eq}`eq:dML-relation` implica
+{eq}`eq_dML-relation` implica
 
 ```{math}
 \begin{align*}
@@ -976,7 +977,7 @@ B &= \left( np + y \sqrt{n p (1-p)} - n \right)
 Pertanto, a meno del fattore che abbiamo trascurato,
 
 ```{math}
-:label: eq:approx-dML
+:label: eq_approx-dML
 
 \mathbb P(Y_n = y) \approx \mathrm e^{-y^2/2} \enspace,
 ```
@@ -985,7 +986,7 @@ dove le approssimazioni
 effettuate diventano più precise all'aumentare di $n$. Ora, per
 $n \to +\infty$ possiamo approssimare la distribuzione di $Y_n$ con una
 distribuzione continua, la cui densità si determina normalizzando il
-secondo membro di {eq}`eq:approx-dML`, ovvero dividendolo per il valore
+secondo membro di {eq}`eq_approx-dML`, ovvero dividendolo per il valore
 
 ```{math}
 I = \int_{-\infty}^{+\infty} \mathrm e^{-y^2/2} \; \mathrm d y \enspace.
@@ -998,7 +999,7 @@ che l'integrale di $\phi$ su $\mathbb R$ valga $1$. Possiamo rafforzare
 questa intuizione ricorrendo all'approssimazione di questo integrale usando
 le formule di quadratura.
 
-```{code-block} python
+```{code-cell} python
 quad(lambda u: 1/(2*np.pi)**0.5 * np.exp(-u**2 / 2), -np.inf, np.inf)
 ```
 
@@ -1020,7 +1021,7 @@ f(y) = \frac{1}{\sqrt{2\pi}} \mathrm e^{-y^2/2} \enspace,
 che coincide con la densità $\phi$ della distribuzione normale standard.
 
 
-(sec:implementazione-modello-normale)=
+(sec_implementazione-modello-normale)=
 ## Implementazione del modello normale
 
 La distribuzione normale è implementata in `scipy.stats` dalla funzione

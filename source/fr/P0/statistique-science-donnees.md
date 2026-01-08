@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:statistiques-science-donnees)=
+(sec_statistiques-science-donnees)=
 # Statistiques, science des données et autres étiquettes
 
 Dans le passé, les données étaient généralement considérées comme un

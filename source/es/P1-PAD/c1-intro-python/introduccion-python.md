@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(chap:intro-python)=
+(chap_intro-python)=
 # Procesar datos con Python
 
 > Beautiful is better than ugly.<br/>

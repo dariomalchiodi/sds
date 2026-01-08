@@ -12,7 +12,7 @@ kernelspec:
   name: python3
 ---
 
-(chap:pandas)=
+(chap_pandas)=
 # Pandas
 
 Vedremo come la libreria pandas faciliti le operazioni viste finora per
@@ -20,7 +20,7 @@ caricare dati, organizzarli in opportune strutture e analizzarli. Per poter
 procedere dobbiamo ricaricare le librerie usate finora, nonché il file
 `heroes.csv`.
 
-```{code-block} python
+```{code-cell} python
 import pandas as pd
 ```
 
@@ -33,7 +33,7 @@ meno) recente di quella più aggiornata quando è stato scritto questo documento
 Per verificare quale sia la versione installata è sufficiente accedere alla
 proprietà `pd.__version__`:
 
-```{code-block} python
+```{code-cell} python
 pd.__version__
 ```
 

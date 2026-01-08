@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(chap:teoria-insiemi)=
+(chap_teoria-insiemi)=
 # Teoria degli insiemi
 
 Nel 1895 Georg Cantor ha proposto una definizione che coglie particolarmente

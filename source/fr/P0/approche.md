@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(chap:apprach)=
+(chap_apprach)=
 # Approche
 
 J'ai toujours eu facilité à apprendre de nouveaux concepts en les mettant en

@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(chap:enfoque)=
+(chap_enfoque)=
 # Enfoque
 
 Siempre me ha resultado fácil aprender nuevos conceptos poniéndolos en práctica  

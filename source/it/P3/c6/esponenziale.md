@@ -9,14 +9,23 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:modello-esponenziale)=
+```{code-cell} python
+:tags: [remove-cell]
+
+import matplotlib.pyplot as plt
+plt.style.use('../../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+(sec_modello-esponenziale)=
 # Il modello esponenziale
 
 Data una successione $p_1, p_2, \dots, p_n, \dots$ di valori tali
 che $p_i \in (0, 1]$ per ogni $i \in \mathbb N$, consideriamo la famiglia
 di variabili aleatorie geometirche
 $\{ X_i \sim \mathrm G(p_n), i \in \mathbb N \}$. Per
-quanto abbiamo visto  nel {ref}`sec:modello-geometrico`,
+quanto abbiamo visto  nel {ref}`sec_modello-geometrico`,
 la funzione di ripartizione di ogni $X_i$ sarà
 
 ```{math}
@@ -24,12 +33,8 @@ F_{X_i}(x; p_i) = 1 - (1 - p_i)^{\lfloor x \rfloor + 1} \mathrm
             I_{\mathbb N \cup \{0\}}(x) \enspace.
 ```
 
-````{customfigure}
-:name: fig:geometric-divergence
-:width: 300px
-
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -49,8 +54,11 @@ for i, (ax, X) in enumerate(zip(axes, Xs)):
     ax.plot(x[:10], pdf[:10], 'o')
     ax.set_ylim(0, 0.9)
     ax.set_ylabel(rf'$X_{i+1}$')
-plt.show()
+fig
 ```
+
+````{customfigure}
+:name: fig-geometric-divergence
 
 Grafici della funzione di massa di probabilità di $X_i$ per $i = 1, 2, 3$,
 $p_1 = 0.8$, $p_2 = 0.5$ e $p_3 = 0.2$.
@@ -62,11 +70,8 @@ parole, $Y$ si ottiene scalando $X$ di un fattore opportuno e ciò porta ad
 «addensare» i relativi punti di massa di quest'ultima (che vengono divisi per
 una quantità positiva e moltiplicati per un valore tra zero e uno).
 
-````{customfigure}
-:name: fig:geometric-convergence
-
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 lambdas = [0.4, 1, 3]
 
@@ -87,12 +92,14 @@ for i, (ax, p) in enumerate(zip(axes.T[0], ps)):
 for i, (ax, lambda_) in enumerate(zip(axes[-1], lambdas)):
     ax.set_xlabel(rf'$\lambda = {lambda_}$')
 
-plt.show()
+fig
 ```
+````{customfigure}
+:name: fig_geometric-convergence
 
 Grafici della funzione di massa di probabilità delle variabili aleatorie $Y_i$
 ottenute dalle corrispondenti $X_i$ della
-{numref}`fig:geometric-divergence`. Ogni colonna fa riferimento
+{numref}`fig-geometric-divergence`. Ogni colonna fa riferimento
 a un valore differente per $\lambda$.
 ````
 
@@ -110,7 +117,7 @@ F_{Y_i}(x; p_i, \lambda) = \mathbb P(Y_i \leq x)
 ```{margin}
 In questo caso stiamo sfruttando il fatto che
 $x - 1 \leq \lfloor x \rfloor \leq x$ (vedi
-il {ref}`sec:dal-discreto-al-continuo`) unitamente al fatto che
+il {ref}`sec_dal-discreto-al-continuo`) unitamente al fatto che
 l'elevamentobfatto con base $1 - p$ è un'operazione monotona non crescente.
 ```
 Concentriamoci sulla quantità
@@ -118,7 +125,7 @@ $(1 - p)^{\left\lfloor \frac{\lambda x}{p} \right\rfloor + 1}$, notando che
 vale
 
 ```{math}
-:label: eq:geometric-to-exponential
+:label: eq_geometric-to-exponential
 (1 - p)^{\frac{\lambda x}{p}} \geq
 (1 - p)^{\left\lfloor \frac{\lambda x}{p} \right\rfloor + 1} \geq
 (1 - p)^{\frac{\lambda x}{p} + 1}.
@@ -138,7 +145,7 @@ il teorema di de l'Hôpital.
  = \mathrm e^{-\lambda x} \enspace.
 ```
 D'altra parte, per quanto riguarda la quantità più a destra in
-{eq}`eq:geometric-to-exponential` si ha che
+{eq}`eq_geometric-to-exponential` si ha che
 
 ```{math}
 \lim_{p \to 0}(1 - p)^{\frac{\lambda x}{p} + 1}
@@ -161,7 +168,7 @@ Si verifica facilmente che $F$ soddisfa i requisiti che definiscono una
 funzione di ripartizione continua.
 ```
 ```{math}
-:label: eq:cdf-exponential
+:label: eq_cdf-exponential
 F(x; \lambda) \coloneqq
      \left(1 - \mathrm e^{-\lambda x} \right) \; \mathrm I_{\mathbb R^+}(x)
      \enspace .
@@ -170,7 +177,7 @@ F(x; \lambda) \coloneqq
 e dalla densità che si ottiene derivando questa stessa funzione:
 
 ```{math}
-:label: eq:pdf-exponential
+:label: eq_pdf-exponential
 f(x; \lambda) = F'(x; \lambda) = \lambda \mathrm e^{-\lambda x}
                 \; \mathrm I_{\mathbb R^+}(x) \enspace ,
 ```
@@ -190,11 +197,8 @@ negativo.
       = -0 + 1 = 1 \enspace .
 ```
 
-````{customfigure}
-:name: fig:geometric-convergence-to-exp
-
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 def exponential_pdf(x, lambda_):
     return lambda_ * np.exp(-lambda_ * x)
@@ -213,28 +217,30 @@ for ax, X, p in zip(axes, Xs, ps):
     y_exp = np.linspace(0, 10, 100)
     ax.plot(y_exp, exponential_pdf(y_exp, lambda_))
     ax.set_xlabel(rf'$p_{i+1} = {p}$')
-plt.show()
+fig
 ```
+````{customfigure}
+:name: fig_geometric-convergence-to-exp
 
 Convergenza della distribuzione geometrica a quella esponenziale.
 Le barre grige visualizzano l'area delimitata dalle funzioni di densità
 ottenute convertendo le funzioni di massa di probabilità delle variabili
 aleatorie $Y_i$ mostrate nella colonna centrale della
-{numref}`fig:geometric-convergence`, relative alla scelta
+{numref}`fig_geometric-convergence`, relative alla scelta
 $\lambda = 1$, sovrapposti alla corrispondente funzione di densità di
-probabilità {eq}`eq:pdf-exponential`.
+probabilità {eq}`eq_pdf-exponential`.
 ````
 
-Usando la stessa tecnica della {numref}`fig:normal-convergence`,
-la {numref}`fig:geometric-convergence-to-exp` mostra come
+Usando la stessa tecnica della {numref}`fig_normal-convergence`,
+la {numref}`fig_geometric-convergence-to-exp` mostra come
 le densità ottenute convertendo le funzioni di massa di probabilità
 delle variabili aleatorie $Y_i$ tendano alla funzione definita in
-{eq}`eq:pdf-exponential`. Riassumendo, siamo di fronte a un nuovo tipo di
+{eq}`eq_pdf-exponential`. Riassumendo, siamo di fronte a un nuovo tipo di
 distribuzione continua, che viene chiamata _distribuzione esponenziale_ e che
 è definita formalmente come seuge, unitamente alla corrispondente famiglia.
 
 ````{prf:definition} La famiglia delle distribuzioni esponenziali
-:label: def:exponential_distr_family
+:label: def-exponential_distr_family
 
 Dato $\lambda \in \mathbb R^+$, la  _distribuzione esponenziale_ di parametro
 $\lambda$ è definita dalla funzione di densità di probabilità
@@ -258,12 +264,8 @@ valori per il relativo parametro $\lambda$ _famiglia delle distribuzioni
 esponenziali_.
 ````
 
-````{customfigure}
-:name: fig:negative-exponential
-:class: margin
-
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 lambda_ = 1.3
 fig, axes = plt.subplots(1, 2, sharey=True)
@@ -281,8 +283,10 @@ x = np.linspace(-5, 1, 50)
 y = np.exp(lambda_ * x)
 y[x>0] = 1
 axes[1].plot(x, y)
-plt.show()
+fig
 ```
+````{customfigure}
+:name: fig_negative-exponential
 
 Grafici delle funzioni di densità (sopra) e di ripartizione (sotto) della
 distribuzione esponenziale negativa di parametro $\lambda = 3/2$.
@@ -311,7 +315,7 @@ f_X(x; \lambda) = \lambda \mathrm e^{\lambda x}
                   \mathrm I_{(-\infty, 0]}(x) \enspace.
 ```
 
-La {numref}`fig:negative-exponential` mostra i grafici della funzione di
+La {numref}`fig_negative-exponential` mostra i grafici della funzione di
 densità di probabilità e di ripartizione della distribuzione esponenziale
 negativa che corrisponde al parametro $\lambda = 3/2$.
 
@@ -384,7 +388,7 @@ proprietà di chiusura rispetto alla scalatura delle sue specificazioni,
 come indicato in dettaglio di seguito.
 
 ````{prf:lemma}
-:label: lemma:exponential_scaling
+:label: lemma-exponential_scaling
 Dati $\lambda \in \mathbb R^+$ e $X \sim \mathrm E(\lambda)$, posto
 $c > 0$ e definita $Y \coloneqq X/c$, si ha che $Y \sim \mathrm E(\lambda c)$.
 ````
@@ -404,11 +408,11 @@ ripartizione di una distribuzione esponenziale di parametro $\lambda c$.
 ````
 
 La distribuzione esponenziale gode della proprietà di assenza di memoria
-che abbiamo già visto nel {ref}`sec:modello-geometrico`,
+che abbiamo già visto nel {ref}`sec_modello-geometrico`,
 come dimostrato nel teorema che segue.
 
 `````{prf:theorem}
-:label: teo:exponential-memory-lack
+:label: teo-exponential-memory-lack
 Siano $\lambda \in \mathbb R^+$ e $X \sim \mathrm E(\lambda)$. Per ogni
 $s, t \in \mathbb R^+$, si ha
 
@@ -566,7 +570,7 @@ particolarmente facile da invertire, è possibile ricavare una forma analitica
 per i quantili, come mostrato di seguito.
 
 ````{prf:lemma}
-:label: lemma:exponential-quantile
+:label: lemma-exponential-quantile
 Dati $\lambda \in \mathbb R^+$ e $X \sim \mathrm E(\lambda)$, per ogni
 $q \in [0, 1)$ si ha
 
@@ -595,7 +599,7 @@ $\ln 3 / \lambda$.
 ````{admonition} _
 :class: myproof
 
-Applicando il {prf:ref}`lemma:exponential-quantile` per $q = 1/2, 1/4
+Applicando il {prf:ref}`lemma-exponential-quantile` per $q = 1/2, 1/4
 \text{ e } 3/4$ e utilizzando le proprietà dei logaritmi si ottiene che:
 
 - la mediana della distribuzione è $-\frac{1}{\lambda} \ln \frac{1}{2}
@@ -614,12 +618,8 @@ primo quartile:
 ```
 ````
 
-````{customfigure}
-:name: fig:exponential-bp
-:width: 100%
-
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 fig, ax = plt.subplots(figsize=(6, 0.3))
 
@@ -631,34 +631,37 @@ third_quartile = np.log(4) / lambda_
 lw = 1
 height = 0.2
 
-plt.plot([median, median], [-height, height], c='k', linewidth=1.5)
+ax.plot([median, median], [-height, height], c='k', linewidth=1.5)
 
-plt.plot([0, 0], [-.1, .1], c='k', linewidth=lw)
-plt.plot([0, first_quartile], [0, 0], c='k', linewidth=lw)
+ax.plot([0, 0], [-.1, .1], c='k', linewidth=lw)
+ax.plot([0, first_quartile], [0, 0], c='k', linewidth=lw)
 
-plt.plot([first_quartile, first_quartile], [-height, height],
+ax.plot([first_quartile, first_quartile], [-height, height],
          c='k', linewidth=lw)
 
-plt.plot([third_quartile, third_quartile], [-height, height],
+ax.plot([third_quartile, third_quartile], [-height, height],
          c='k', linewidth=lw)
 
-plt.plot([first_quartile, third_quartile], [height, height],
+ax.plot([first_quartile, third_quartile], [height, height],
          c='k', linewidth=lw)
-plt.plot([first_quartile, third_quartile], [-height, -height],
+ax.plot([first_quartile, third_quartile], [-height, -height],
          c='k', linewidth=lw)
 
-plt.plot([third_quartile, third_quartile*1.2], [0, 0], c='k', linewidth=lw)
-plt.plot([third_quartile*1.2, third_quartile*1.8], [0, 0],
+ax.plot([third_quartile, third_quartile*1.2], [0, 0], c='k', linewidth=lw)
+ax.plot([third_quartile*1.2, third_quartile*1.8], [0, 0],
          'k--', linewidth=lw)
 
-plt.text(0, -0.5, '0', ha='center')
-plt.text(median, -0.5, r'$\ln 2/\lambda$', ha='center')
+ax.text(0, -0.5, '0', ha='center')
+ax.text(median, -0.5, r'$\ln 2/\lambda$', ha='center')
 
-plt.axis('off')
+ax.axis('off')
 pad = 2
-plt.xlim(0-pad, 2.5+pad) 
-plt.show()
+ax.set_xlim(0-pad, 2.5+pad) 
+fig
 ```
+````{customfigure}
+:name: fig_exponential-bp
+:width: 100%
 
 Diagramma a scatola per la distribuzione esponenziale di parametro
 $\lambda = 1$. Il baffo a destra della scatola è parzialmente tratteggiato
@@ -666,7 +669,7 @@ per enfatizzare il fatto che si estende fino a $+\infty$.
 
 ````
 
-(sec:implementazione-modello-esponenziale)=
+(sec_implementazione-modello-esponenziale)=
 ## Implementazione del modello esponenziale
 
 In `scipy.stats` si ottiene un oggetto che descrive una distribuzione

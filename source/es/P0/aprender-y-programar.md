@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:aprender-y-programar)=
+(sec_aprender-y-programar)=
 # Aprender <span class="ast">\*</span>y<span class="ast">\*</span> programar
 
 Como se describió en el párrafo anterior, introduciré los conceptos
@@ -27,7 +27,7 @@ al nivel de conocimientos de programación que se adquiere en el primer año de
 esos mismos grados, o en grados de áreas afines.
 ```
 
-El {ref}`chap:intro-python` contiene una descripción de nivel medio-alto de las
+El {ref}`chap_intro-python` contiene una descripción de nivel medio-alto de las
 funcionalidades de Python que se utilizan, y puede servir para ponerse al día a
 quienes ya saben programar pero no conocen este lenguaje. De todos modos, se
 recomienda la lectura de este capítulo a todo el mundo, para familiarizarse con
@@ -46,7 +46,7 @@ comprenderlo, modificarlo (¡también valen las modificaciones que ayudan a
 entender mejor cómo funciona!)&mdash;en resumen, _jugar_ con él con una
 mentalidad _hacker_, en el sentido original del término[^hacker]. De hecho,
 también es posible jugar con el libro sin necesidad de comprender o ejecutar el
-código: como se muestra en el {ref}`sec:uno-sguardo-di-insieme`, una parte de
+código: como se muestra en el {ref}`sec_uno-sguardo-di-insieme`, una parte de
 los contenidos es interactiva, y su manipulación está pensada precisamente para
 facilitar la comprensión de los conceptos introducidos.
 ```{margin}

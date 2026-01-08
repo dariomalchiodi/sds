@@ -1,19 +1,14 @@
 ---
 jupytext:
-  formats: ipynb,md:myst
+  formats: md:myst
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.10.3
 kernelspec:
-  display_name: Python 3
-  language: python
   name: python3
+  display_name: Python 3
 ---
 
-(sec:stime-per-intervalli)=
+(chap_stime-per-intervalli)=
 # Stime per intervalli
 
-(sec:intervalli-fiduciari)=
-## Intervalli fiduciari

@@ -9,7 +9,16 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:concetti-base-insiemi)=
+```{code-cell} python
+:tags: [remove-cell]
+
+import matplotlib.pyplot as plt
+plt.style.use('../../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+(sec_concetti-base-insiemi)=
 # Concetti di base
 
 In accordo con la definizione sopra riportata, nonché con la comune notazione
@@ -39,11 +48,9 @@ O = \{ k \in \mathbb N \text{ tale che } 1 \leq k \leq 6
   di Venn illustrato qui sotto per descrivere l'insieme
   $O = \{ 1, 3, 5, 6 \}$.
 
-````{customfigure}
-:name: fig:venn-simple
 
-```{code-block} python
-:class:  toggle-code
+```{code-cell} python
+:tags:  [hide-input]
 
 import matplotlib.pyplot as plt
 import math
@@ -95,8 +102,11 @@ def simple_venn(universe=False):
     return fig
 
 fig = simple_venn()
-fig.show()
+fig
 ```
+````{customfigure}
+:name: fig_venn-simple
+
 
 Un diagramma di Venn che descrive l'insieme $O = \{ 1, 3, 5, 6 \}$.
 ````
@@ -107,18 +117,18 @@ parte di un insieme. L'insieme di tutti i possibili elementi si indica in
 genere con il simbolo $\Omega$ che viene chiamato _insieme universo_.
 Nell'esempio precedente facciamo ovviamente riferimento all'universo $\Omega =
 \{ 1, 2, 3, 4, 5, 6 \}$, pertanto il diagramma di Venn che rappresenta $O$ più
-correttamente è quello riportato nella {numref}`fig:venn-universe`.
+correttamente è quello riportato nella {numref}`fig_venn-universe`.
 
-````{customfigure}
-:name: fig:venn-universe
-
-```{code-block} python
-:class:  toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 fig = simple_venn(universe=True)
-plt.show()
+fig
 ```
-Un diagramma di Venn che illustra l'insieme $O$ della {numref}`fig:venn-simple`
+````{customfigure}
+:name: fig_venn-universe
+
+Un diagramma di Venn che illustra l'insieme $O$ della {numref}`fig_venn-simple`
 all'interno dell'universo $\Omega = \{ 1, 2, 3, 4, 5, 6 \}$.
 ````
 

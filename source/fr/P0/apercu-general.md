@@ -9,18 +9,18 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:apercu-general)=
+(sec_apercu-general)=
 # Vue d’ensemble
 
 Ce chapitre a un double objectif : d’un côté, il sert à décrire à grands traits
 la logique suivie dans l’organisation des contenus et à introduire, de façon
 relativement informelle, les concepts fondamentaux ; de l’autre, il explique
 comment utiliser les composants interactifs du livre. Comme indiqué dans le
-{ref}`chap:approche`, je vais faire référence à un jeu de données obtenu en
+{ref}`chap_approche`, je vais faire référence à un jeu de données obtenu en
 modifiant un sous-ensemble approprié du
 [Superhero database](http://www.superherodb.com). Les exemples se rapporteront
 donc à l’univers des super-héros, chacun étant décrit par les _attributs_
-listés dans la {numref}`tab:dataset`.
+listés dans la {numref}`tab_dataset`.
 
 ```{margin}
 J’ai choisi d’utiliser l’anglais pour indiquer les noms des attributs et les
@@ -31,7 +31,7 @@ fonctions, etc.
 ```
 
 ```{table} Description du jeu de données utilisé dans les exemples.
-:name: tab:dataset
+:name: tab_dataset
 :align: center
 | Attribut            | Signification             | Contenu                                                  |
 |---------------------|---------------------------|----------------------------------------------------------|
@@ -68,7 +68,7 @@ associé au livre. Dans le code interactif, le fichier est accessible via le
 chemin `data/heroes.csv`. Le contenu de ce fichier est représenté au format CSV
 (_comma separated values_), un des standards utilisés pour l’échange de données
 de taille modérée : chaque ligne représente un super-héros, et les valeurs des
-attributs listés dans la {numref}`tab:dataset` y sont séparées par des
+attributs listés dans la {numref}`tab_dataset` y sont séparées par des
 virgules. La seule exception est la première ligne, qui contient les noms des
 attributs, eux aussi séparés par des virgules, comme on peut le voir en
 affichant le début du fichier.
@@ -77,7 +77,7 @@ Ci-dessous, vous pouvez voir la description de certains des attributs pour dix
 super-héros du jeu de données, choisis au hasard.  
 
 
-```{code-block} python
+```{interactive-code} python
 :class: toggle-code
 import pandas as pd
 
@@ -88,7 +88,7 @@ source.index.name = None
 source
 ```
 
-Dans le {ref}`chap:pandas`, nous verrons comment charger en mémoire le contenu
+Dans le {ref}`chap_pandas`, nous verrons comment charger en mémoire le contenu
 de ce fichier et, surtout, comment le manipuler. Pour l’instant,
 concentrons-nous sur quelques exemples simples qui, d’un côté, montrent comment
 utiliser les parties interactives du livre, et de l’autre, donnent un aperçu
@@ -119,7 +119,7 @@ un petit bouton rond contenant trois points est visible en haut à droite. Ce
 bouton ouvre un menu qui permet, entre autres, de télécharger le graphique.
 ```  
 
-```{code-block} python
+```{interactive-code} python
 :class: toggle-code
 
 import altair as alt
@@ -174,8 +174,8 @@ deux suivants.
 6. Cette relation change-t-elle si l’on se concentre sur les super-héros d’un
    éditeur/créateur en particulier ?
 
-La _statistique descriptive_, introduite du {ref}`chap:dati-e-informazione` au
-{ref}`chap:analizzare-le-relazioni-tra-i-dati`, fournit des outils permettant
+La _statistique descriptive_, introduite du {ref}`chap_dati-e-informazione` au
+{ref}`chap_analizzare-le-relazioni-tra-i-dati`, fournit des outils permettant
 de répondre à des questions comme celles que l’on vient de considérer. En
 général, l’objectif est d’extraire de l’information à partir d’un jeu de
 données qui décrit, totalement ou partiellement, un ensemble d’individus de
@@ -203,7 +203,7 @@ graphique particulier, appelé _histogramme_, qui met en évidence les fréquenc
 auxquelles apparaissent les différentes valeurs de poids dans le jeu de
 données.
 
-```{code-block} python
+```{interactive-code} python
 :class: toggle-code
 
 import matplotlib.pyplot as plt
@@ -218,7 +218,7 @@ fig.show()
 ```{margin}
 Il n’est pas toujours pertinent d’utiliser un histogramme pour explorer les
 valeurs d’un jeu de données, comme nous le verrons dans le
-{ref}`chap:dati-e-informazione`.
+{ref}`chap_dati-e-informazione`.
 ```
 
 ```{margin}
@@ -227,7 +227,7 @@ nécessairement (ou exclusivement) par des méthodes graphiques, mais peut aussi
 et souvent doit, reposer sur des outils quantitatifs.
 ```
 
-Les histogrammes sont définis en détail dans le {ref}`sec:histogrammes`, mais
+Les histogrammes sont définis en détail dans le {ref}`sec_histogrammes`, mais
 pour le moment, il suffit de savoir comment en lire le résultat : dans chacun
 des rectangles affichés, la base identifie un intervalle $I$ de valeurs
 possibles pour le poids des super-héros, et la hauteur est liée à la fraction
@@ -247,7 +247,7 @@ poids, car les valeurs indiquées sur l’axe des ordonnées ne sont pas entièr
 Dans cet histogramme, en effet, le nombre de super-héros est lié à l’aire du
 rectangle, ce qui nous permettra de comparer ce résultat à un autre graphique
 un peu plus loin. Le choix de cette représentation est détaillé dans le
-{ref}`sec:histogrammes`.
+{ref}`sec_histogrammes`.
 ```
 
 Une fois que l’on a acquis une certaine connaissance sur les données
@@ -256,10 +256,10 @@ qui les a générées. Pour cela, il faut changer radicalement de perspective : 
 ne s’agit plus de considérer le jeu de données dans son ensemble, mais plutôt
 de se poser des questions relatives à l’observation d’un de ses éléments (ou
 d’un groupe d’éléments), sans savoir à l’avance ce que l’on va observer
-(rappelez-vous la [Loi de Franklin](#sec:franklin-law)), tout en supposant que
+(rappelez-vous la [Loi de Franklin](#sec_franklin-law)), tout en supposant que
 chaque super-héros a autant de chances que les autres d’être observé. À partir
-du {ref}`{chap:calcolo-combinatorio}` et jusqu’au
-{ref}`chap:va-e-modelli-continui`, ce livre introduit la _Théorie des
+du {ref}`{chap_calcolo-combinatorio}` et jusqu’au
+{ref}`chap_va-e-modelli-continui`, ce livre introduit la _Théorie des
 Probabilités_, en fournissant des outils formels pour gérer l’incertitude liée
 à cette absence de connaissance préalable sur ce qui sera observé.
 
@@ -326,7 +326,7 @@ afin d’éviter les exposants fractionnaires, moins lisibles.
 ```
 
 ```{math}
-:label: eq:weight_normal
+:label: eq_weight_normal
 f(x; \mu, \sigma) = \frac{1}{\sigma \sqrt{2 \pi}} \;
        \mathrm{exp}\left(-\frac{(x - \mu)^2}{2 \sigma^2}\right) \enspace,
 ```
@@ -338,7 +338,7 @@ et $\sigma \in \mathbb R^+$ doivent être considérés comme deux _paramètres_ 
 la fonction est entièrement définie uniquement lorsque leurs valeurs ont été
 fixées. Le point-virgule dans la définition de $f$ sert justement à mettre en
 évidence le rôle différent de l’argument d’une part, et des paramètres d’autre
-part. Plus précisément, l’{eq}`eq:weight_normal` définit, en faisant varier
+part. Plus précisément, l’{eq}`eq_weight_normal` définit, en faisant varier
 $\mu$ et $\sigma$, une _famille_ de fonctions, chacune étant associée à une
 variable aléatoire. Le résultat est une famille de variables aléatoires, à
 laquelle on fait référence comme à un _modèle_ de variable aléatoire. Dans le
@@ -348,7 +348,7 @@ associés respectivement à $\mu$ et $\sigma$, il est possible de modifier les
 valeurs des paramètres et de visualiser en temps réel la manière dont la courbe
 de $f$ change.
 
-```{code-block} python
+```{interactive-code} python
 :class: toggle-code 
 import numpy as np
 from js import document
@@ -362,7 +362,7 @@ def plot_pdf(mu, sigma):
     y = (1 / (sigma * np.sqrt(2 * np.pi))) * np.exp(-0.5 * ((x - mu) / sigma) ** 2)
     
     fig, ax = plt.subplots()
-    ax.fill_between(x, 0, y, alpha=0.5, color='tab:blue')
+    ax.fill_between(x, 0, y, alpha=0.5, color='tab_blue')
 
     # Use plain text label to avoid MathJax processing
     ax.set_xlabel('x', fontsize=12, ha='right')
@@ -435,7 +435,7 @@ graphique interactif suivant permet de réaliser manuellement cette opération,
 en affichant à la fois l’histogramme et la courbe (variable) de $f$. Vous
 pouvez donc manipuler les curseurs afin d’obtenir une bonne superposition.
 
-```{code-block} python
+```{interactive-code} python
 :class:  toggle-code
 
 import base64
@@ -446,8 +446,8 @@ def model_plot_pdf(mu, sigma):
     y = (1 / (sigma * np.sqrt(2 * np.pi))) * np.exp(-0.5 * ((x - mu) / sigma) ** 2)
     
     fig, ax = plt.subplots()
-    ax.hist(data, bins=30, density=True, alpha=0.3, color='tab:blue')
-    ax.fill_between(x, 0, y, alpha=0.5, color='tab:blue')
+    ax.hist(data, bins=30, density=True, alpha=0.3, color='tab_blue')
+    ax.fill_between(x, 0, y, alpha=0.5, color='tab_blue')
 
     # Use plain text for axis labels to avoid MathJax interference
     ax.set_xlabel('x', fontsize=12, ha='right')
@@ -534,8 +534,8 @@ setup_model_sliders()
 Dans la dernière partie du livre, nous verrons qu’il existe plusieurs méthodes
 permettant de déterminer automatiquement les paramètres d’un modèle afin de
 l’adapter à un ensemble de données. C’est là, entre autres, l’objectif de la
-_statistique inférentielle_, présentée du {ref}`chap:inferential_statistics` au
-{ref}`chap:statistica-non-parametrica`. Le point de départ est toujours un jeu
+_statistique inférentielle_, présentée du {ref}`chap_inferential_statistics` au
+{ref}`chap_statistica-non-parametrica`. Le point de départ est toujours un jeu
 de données, qui représente ici un _échantillon_ d’observations effectuées
 sur une _population_ plus large. Notre objectif est de formuler des hypothèses
 ou de tirer des conclusions sur cette population &mdash; même si nous ne
@@ -557,7 +557,7 @@ utilisé est simplement la moyenne arithmétique des valeurs de l'échantillon
 montre comment les valeurs de cet estimateur varient pour dix échantillons
 tirés au hasard.
 
-```{code-block} python
+```{interactive-code} python
 :class:  toggle-code
 
 weights = heroes['weight'][heroes['weight']<200].dropna()
@@ -594,8 +594,8 @@ puissance de certains concepts et outils que nous avions rencontrés auparavant
 Mais avant de commencer avec la statistique descriptive, il est important de
 revoir certains concepts de base liés à la programmation, et surtout de se
 familiariser avec les outils computationnels que j’utiliserai tout au long du
-livre. C’est justement l’objectif du {ref}`chap:intro-python` et du
-{ref}`chap:pandas`, qui ouvrent notre parcours.
+livre. C’est justement l’objectif du {ref}`chap_intro-python` et du
+{ref}`chap_pandas`, qui ouvrent notre parcours.
 
 ## Exercices
 
@@ -631,7 +631,7 @@ Sur la base de l’idée que vous vous êtes faite du jeu de données des
 super-héros en résolvant les exercices précédents, essayez de regrouper les
 attributs par similarité, non pas en fonction du type de données utilisé pour
 représenter les valeurs (indiqué dans la colonne « Contenu » de la
-{numref}`tab:dataset`), mais selon la _nature_ des attributs eux-mêmes.
+{numref}`tab_dataset`), mais selon la _nature_ des attributs eux-mêmes.
 ```
 
 ```{exercise} •
@@ -674,7 +674,7 @@ la probabilité est égale à $1$.
 
 ```{exercise} ••
 Fixez $\mu = \sigma = 1$ et étudiez la fonction décrite dans
-{eq}`eq:weight_normal`, en dessinant à la main le graphique correspondant et en
+{eq}`eq_weight_normal`, en dessinant à la main le graphique correspondant et en
 vérifiant que celui-ci a la même forme que celle affichée dans le second
 graphique interactif.
 ```
@@ -683,7 +683,7 @@ graphique interactif.
 Sur la base du résultat de l’exercice précédent et en tenant compte de ce que
 vous avez expérimenté avec le second graphique interactif, quel est le rôle des
 paramètres $\mu$ et $\sigma$ sur le graphique de $f$ défini dans
-{eq}`eq:weight_normal` ?
+{eq}`eq_weight_normal` ?
 ```
 
 ```{exercise} •

@@ -12,5 +12,5 @@ kernelspec:
   name: python3
 ---
 
-(sec:indipendenza-va)=
+(sec_indipendenza-va)=
 # Indipendenza di variabili aleatorie

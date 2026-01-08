@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(chap:introduction-p1)=
+(chap_introduction-p1)=
 # Introduction
 
 The first part of this book introduces some basic tools for the automated
@@ -26,7 +26,7 @@ Among the essential tools are:
 - a library for structured management of datasets.
 
 In this book, I will use Python and Pandas, presented in 
-{ref}`chap:intro-python` and {ref}`chap:pandas`, respectively. While there 
+{ref}`chap_intro-python` and {ref}`chap_pandas`, respectively. While there 
 are many valid alternatives, these two technologies currently represent 
 a central part of the data analysis ecosystem, both in academia and in 
 the professional world.

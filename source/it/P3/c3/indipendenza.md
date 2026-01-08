@@ -9,5 +9,5 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:indipendenza-eventi)=
+(sec_indipendenza-eventi)=
 # Indipendenza

@@ -9,5 +9,5 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:teo-centrale-limite)=
+(sec_teo-centrale-limite)=
 # Teorema del limite centrale

@@ -4,10 +4,13 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
-nb_execution: false
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
 ---
 
-(sec:dati-semplici)=
+(sec_dati-semplici)=
 # Dati semplici
 
 Come spiegato nel paragrafo precedente, i dati semplici rappresentano entità
@@ -29,12 +32,6 @@ l'uso di espressioni numeriche costanti, per esempio per riferirsi al numero
 `42`[^42], Python permette di fare riferimento a queste espressioni senza dover
 creare esplicitamente i corrispondenti oggetti. Come nella maggior parte dei
 linguaggi, ciò si realizza scrivendo _letterali_ di una particolare grammatica.
-
-
-
-
-
-
 
 
 ```{admonition} Letterali
@@ -104,42 +101,67 @@ l'emissione di un'eccezione), ma può anche essere impiegato per segnalare
 valori mancanti in un _dataset_.
 
 
-
-
-
-
-
-
-
 ## Tipi numerici
 
-Tra i tipi numerici disponibili in Python, i più utilizzati sono `int` e `float`: il primo serve a memorizzare numeri interi, il secondo numeri decimali. Come già accennato, `int` e `float` rappresentano due classi, e i valori numerici sono oggetti di queste classi. Poiché l’uso di costanti numeriche è molto frequente, Python permette di scrivere direttamente i valori senza dover creare esplicitamente gli oggetti corrispondenti, tramite i cosiddetti _letterali_.
+Tra i tipi numerici disponibili in Python, i più utilizzati sono `int` e
+`float`: il primo serve a memorizzare numeri interi, il secondo numeri
+decimali. Come già accennato, `int` e `float` rappresentano due classi, e i
+valori numerici sono oggetti di queste classi. Poiché l’uso di costanti
+numeriche è molto frequente, Python permette di scrivere direttamente i valori
+senza dover creare esplicitamente gli oggetti corrispondenti, tramite i
+cosiddetti _letterali_.
 
 ```{admonition} Letterali
-Un _letterale_ è un valore costante di un dato tipo, espresso secondo una notazione prefissata. Ad esempio, `42` e `3.14` sono letterali interi e decimali rispettivamente in quasi tutti i linguaggi di programmazione, mentre `'foo'` è un letterale di tipo stringa in Python, ma non in Java o Go. Non tutti i tipi hanno letterali: ad esempio, file o date non dispongono di un letterale associato in Python.
+Un _letterale_ è un valore costante di un dato tipo, espresso secondo una
+notazione prefissata. Ad esempio, `42` e `3.14` sono letterali interi e
+decimali rispettivamente in quasi tutti i linguaggi di programmazione, mentre
+`'foo'` è un letterale di tipo stringa in Python, ma non in Java o Go. Non
+tutti i tipi hanno letterali: ad esempio, file o date non dispongono di un
+letterale associato in Python.
 ```
 
-Il modo più semplice di ottenere un intero è scrivere una sequenza di cifre, eventualmente preceduta da un segno: il risultato rappresenta un numero in base dieci[^int-prefix]. Gli interi in Python hanno _precisione arbitraria_, quindi non esiste un valore massimo o minimo definito, fatta eccezione per la memoria disponibile[^bigint]. Per migliorare la leggibilità dei numeri grandi, è possibile inserire un carattere di _underscore_ (`_`) tra le cifre, separando ad esempio migliaia o evidenziando componenti logiche diverse (come in un numero di telefono).
+Il modo più semplice di ottenere un intero è scrivere una sequenza di cifre,
+eventualmente preceduta da un segno: il risultato rappresenta un numero in base
+dieci[^int-prefix]. Gli interi in Python hanno _precisione arbitraria_, quindi
+non esiste un valore massimo o minimo definito, fatta eccezione per la memoria
+disponibile[^bigint]. Per migliorare la leggibilità dei numeri grandi, è
+possibile inserire un carattere di _underscore_ (`_`) tra le cifre, separando
+ad esempio migliaia o evidenziando componenti logiche diverse (come in un
+numero di telefono).
 
-Per i numeri decimali (`float`), il letterale è formato da un eventuale segno, dalle cifre della parte intera, dal punto decimale `.` e dalle cifre della parte frazionaria. È obbligatorio specificare almeno una delle due parti, intera o decimale. Anche qui, è possibile usare l’_underscore_ tra cifre. Per numeri molto grandi o piccoli è più pratico usare la notazione scientifica: si scrive la _mantissa_ seguita da `E` o `e` e da un esponente intero; il valore rappresentato è la mantissa moltiplicata per `10` elevato all’esponente. Ad esempio, `1E9` e `1E-9` corrispondono rispettivamente a un miliardo e a un miliardesimo. Python decide automaticamente tra notazione tradizionale e scientifica per ottimizzare la leggibilità del risultato.
+Per i numeri decimali (`float`), il letterale è formato da un eventuale segno,
+dalle cifre della parte intera, dal punto decimale `.` e dalle cifre della
+parte frazionaria. È obbligatorio specificare almeno una delle due parti,
+intera o decimale. Anche qui, è possibile usare l’_underscore_ tra cifre. Per
+numeri molto grandi o piccoli è più pratico usare la notazione scientifica: si
+scrive la _mantissa_ seguita da `E` o `e` e da un esponente intero; il valore
+rappresentato è la mantissa moltiplicata per `10` elevato all’esponente. Ad
+esempio, `1E9` e `1E-9` corrispondono rispettivamente a un miliardo e a un
+miliardesimo. Python decide automaticamente tra notazione tradizionale e
+scientifica per ottimizzare la leggibilità del risultato.
 
 ```{margin}
-`inf` e `nan` non sono letterali: per ottenerli si deve usare il costruttore della classe (`float('inf')` e `float('nan')`) o librerie specializzate.
+`inf` e `nan` non sono letterali: per ottenerli si deve usare il costruttore
+della classe (`float('inf')` e `float('nan')`) o librerie specializzate.
 ```
 
-I valori decimali sono memorizzati secondo lo standard a virgola mobile [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754), tipicamente su 8 byte[^double]. Questo formato non ha precisione arbitraria: numeri al di fuori dell’intervallo circa `±1.8E308` diventano `inf` o `-inf`. Valori molto vicini a zero (approssimativamente tra `5E-324` e il suo opposto) vengono rappresentati come `0.0`. Inoltre, esiste il valore speciale `nan` ("not a number"), utilizzato per operazioni aritmetiche indefinite, come il logaritmo di un numero negativo, o per indicare valori mancanti in un _dataset_. La divisione per zero invece genera un’eccezione.
+I valori decimali sono memorizzati secondo lo standard a virgola mobile
+[IEEE 754](https://en.wikipedia.org/wiki/IEEE_754), tipicamente su 8
+byte[^double]. Questo formato non ha precisione arbitraria: numeri al di fuori
+dell’intervallo circa `±1.8E308` diventano `inf` o `-inf`. Valori molto vicini
+a zero (approssimativamente tra `5E-324` e il suo opposto) vengono
+rappresentati come `0.0`. Inoltre, esiste il valore speciale `nan` («not a
+number»), utilizzato per codificare il risultato di un'operazione aritmetica
+quando questo risulta non definito (come nel calcolo del logaritmo di un numero
+negativo, o per indicare valori mancanti in un _dataset_. La divisione per zero
+invece genera un’eccezione.
 
+(adm-stranezze)=
+```{raw} html
+<span id="adm-stranezze"></span>
+```
 
-
-
-
-
-
-
-
-(sec:stranezze)=
-````{admonition} Stranezze in virgola mobile
-:name: adm:stranezze
+<!-- BEGIN-ADMONITION: Stranezze in virgola mobile -->
 
 La rappresentazione dei numeri decimali usando il formato in virgola mobile
 richiede spesso di effettuare delle approssimazioni. Questo fatto è ovvio
@@ -147,7 +169,7 @@ se pensiamo per esempio ai numeri irrazionali, mentre è meno intuitivo quando
 coinvolge numeri con parte decimale finita. Nella cella che segue si può vedere
 un esempio eclatante.
 
-```python
+```{code-cell} python
 print(0.1 + 0.2)
 ```
 
@@ -199,7 +221,7 @@ di approssimazione estremamente minore, dell'ordine di $10^{-17}$.
 In ogni caso, le stranezze non finiscono qui, perché valutando il letterale
 `0.1` si ottiene un risultato incoerente con quanto detto finora:
 
-```python
+```{code-cell} python
 0.1
 ```
 
@@ -222,7 +244,7 @@ Riassumendo, quando viene valutata l'espressione `0.1 + 0.2`, nell'ordine:
   corrispondono alla rappresentazione binaria ottenuta, e questo numero non
   è $0.3$, bensì {py}`0.1 + 0.2`.
 
-````
+<!-- END-ADMONITION -->
 
 Il fatto che ogni letterale identifichi l'oggetto di una classe
 significa che su questi valori è possibile in teoria invocare dei metodi della
@@ -230,19 +252,19 @@ classe stessa. Per esempio, `float` include un metodo `as_integer_ratio` che
 restituisce una coppia di valori interi il cui rapporto è uguale al valore sul
 quale il metodo è stato invocato:
 
-```python
+```{code-cell} python
 3.14.as_integer_ratio()
 ```
 
 ```{margin}
 I due valori restituiti dal metodo sono aggregati insieme costruendo una
-tupla, un tipo di dati strutturato che vedremo nel Paragrafo {ref}`sec:tuple`.
+tupla, un tipo di dati strutturato che vedremo nel Paragrafo {ref}`sec_tuple`.
 ```
 
 Per questioni di compatibilità, lo stesso metodo è presente anche in
 `int`[^int-method]:
 
-```python
+```{code-cell} python
 (3).as_integer_ratio()
 ```
 
@@ -261,7 +283,7 @@ un'eccezione. Pertanto, la conversione tra i tipi semplici si
 effettua &mdash; ove possibile &mdash;  utilizzando il nome del tipo di
 destinazione come funzione di conversione. Per esempio
 
-```python
+```{code-cell} python
 int(3.14)
 ```
 
@@ -348,7 +370,7 @@ Vedremo più avanti che esiste anche uno speciale operatore _ternario_.
   - un valore intero se sia la base che l'esponente sono `int`,
   - un valore decimale se la base o l'esponente sono `float` e la base è
     positiva,
-  - un valore complesso (vedi Paragrafo {ref}`sec:altri-tipi`) se la base è
+  - un valore complesso (vedi Paragrafo {ref}`sec_altri-tipi`) se la base è
     negativa e non intera.
 
 ```{margin}
@@ -378,13 +400,13 @@ booleano per tutti gli operatori della
 fare esplicitamente passando per il costruttore `bool`, o implicitamente in
 tutti i punti nei quali è richiesto di specificare un valore booleano, come per
 esempio all'interno di un'operazione di selezione (vedi il
-{ref}`sec:strutture-di-controllo`). Diventano `False` i letterali `False`
-(ovviamente) e `None` (vedi il Paragrafo {ref}`sec:none`), i valori nulli dei
+{ref}`sec_strutture-di-controllo`). Diventano `False` i letterali `False`
+(ovviamente) e `None` (vedi il Paragrafo {ref}`sec_none`), i valori nulli dei
 tipi numerici (l'intero `0`, il valore decimale `0.0`, ma anche i loro
 equivalenti per gli altri tipi numerici di Python) e, in generale, tutti gli
 oggetti che si possono pensare come «vuoti» perché non contengono alcunché,
-come la stringa vuota o la lista vuota (vedi il Paragrafo {ref}`sec:stringhe` e
-il {ref}`sec:dati-strutturati`).
+come la stringa vuota o la lista vuota (vedi il Paragrafo {ref}`sec_stringhe` e
+il {ref}`sec_dati-strutturati`).
 
 ### Operatori logici
 La {numref}`elenco-operatori-logici` illustra i principali operatori associati
@@ -405,7 +427,7 @@ Rimangono invece invariati i simboli `&` e `|` per riferirsi agli operatori
 di congiunzione e disgiunzione che vengono applicati alle singole componenti
 dei loro operandi, per esempio su ogni bit in un intero o «componente per
 componente» in una struttura dati, come un _array_. A questi si aggiunge
-l'operatore unario `~` per l'analoga negazione. Nel {ref}`chap:pandas`
+l'operatore unario `~` per l'analoga negazione. Nel {ref}`chap_pandas`
 vedremo che, in alcune situazioni, questi operatori risultano particolarmente
 utili da utilizzare per elaborare un _dataset_.
 ```
@@ -439,7 +461,7 @@ all'operatore `==`, coinvolge un confronto tra i valori di due operandi,
 mentre `is` restituisce `True` solo quando i riferimenti indicati come operandi
 puntano al medesimo oggetto. Per esempio, nel codice seguente
 
-```python
+```{code-cell} python
 a = int("10_000")
 b = int("10_000")
 ```
@@ -451,7 +473,7 @@ memorizzati in `a` e `b` saranno diversi, ma questi due oggetti corrispondono
 allo stesso numero decimale. Concludendo, i confronti fatti usando `is` e `==`
 daranno risultati diversi:
 
-```python
+```{code-cell} python
 print('Il confronto per riferimento vale', a is b)
 print('Il confronto per valore vale', a == b)
 ```
@@ -477,7 +499,7 @@ comunità degli sviluppatori e delle sviluppatrici, viene per esempio garantita
 l'esistenza di un unico oggetto per tutti gli interi compresi tra $-5$ e $256$.
 Pertanto 
 
-```python
+```{code-cell} python
 a = 256
 b = 256
 print(a is b)
@@ -537,7 +559,7 @@ avviene per le espressioni non particolarmente semplici). Sempre al fine di
 produrre codice facile da leggere, è consigliabile anche inserire gli spazi tra
 operandi e operatori in un modo ragionato e coerente. La [Style Guide for
 Python Code](https://www.python.org/dev/peps/pep-0008/) (introdotta nel
-{ref}`sec:tipi-di-dati`) contiene un
+{ref}`sec_tipi-di-dati`) contiene un
 [paragrafo](https://malchiodi.com/sds/short/pep-whitespace) dedicato proprio a
 questo argomento, e io mi atterrò alle indicazioni ivi contenute.
 
@@ -550,7 +572,7 @@ ufficiale](https://malchiodi.com/sds/short/operator-precedence). Notate che
 questa fonte riporta le parentesi tonde come un particolare operatore che ha
 precedenza su tutto il resto.
 
-(sec:altri-tipi)=
+(sec_altri-tipi)=
 ## Altri tipi
 Come già accennato, Python supporta un elevato numero di tipi di dati, alcuni
 automaticamente disponibili e altri importabili da moduli di sistema o di
@@ -577,7 +599,8 @@ nella {numref}`elenco-operatori-logici` si possono applicare a operandi
 complessi, eccezion fatta per le operazioni che non sono definite in tal senso
 (il confronto, la divisione troncata e il modulo).
 
-````{admonition} Nota
+<!-- BEGIN-ADMONITION: Nota -->
+
 Non tratterò i numeri complessi nel seguito, ma è utile conoscerli perché
 alcuni _bug_ non producono errori immediati: invece di sollevare un’eccezione,
 possono generare numeri complessi che si propagano silenziosamente fino
@@ -586,7 +609,7 @@ di interpretarli come valori reali. Per esempio, l’operazione di elevamento a
 potenza con base negativa ed esponente frazionario produce un risultato
 complesso:
 
-```python
+```{code-cell} python
 x = (-4) ** 0.5
 print(x)
 ```
@@ -600,9 +623,9 @@ di una siffatta situazione è la presenza della lettera `j` nell’output: se
 compare accanto a un numero, significa che una componente immaginaria è entrata
 nei calcoli.
 
-````
+<!-- END-ADMONITION -->
 
-(sec:none)=
+(sec_none)=
 ### L'oggetto speciale None
 
 Molti linguaggi hanno un costrutto speciale per indicare una sorta di «valore
@@ -633,17 +656,17 @@ se una variabile, diciamo, `a` contiene `None` tramite l'espressione
 cosa simile non sarebbe possibile, per esempio, con `a is 42`, perché possono
 esistere più oggetti della classe `int` uguali a `42`.
 
-(sec:numeri-in-base-dieci)=
+(sec_numeri-in-base-dieci)=
 ### Numeri in base dieci
 Il modulo `decimal` mette a disposizione la classe `Decimal` che implementa
 numeri decimali memorizzati in base dieci. Questa classe non incorre dunque nei
 comportamenti controintuitivi illustrati nel riquadro [Stranezze in virgola
-mobile](#adm:stranezze). Rappresenta dunque una soluzione efficace quando è
+mobile](#adm-stranezze). Rappresenta dunque una soluzione efficace quando è
 necessario fare riferimento a quantità monetarie, anche perché le espressioni
 che coinvolgono oggetti di questa classe venogno valutate preservando tutte le
 cifre significative degli operandi. Per esempio, nella cella seguente
 
-```python
+```{code-cell} python
 from decimal import Decimal
 
 print(Decimal('15.45') + Decimal('0.05'))
@@ -708,7 +731,7 @@ istanze, considero il tipo di dati come semplice.
 ```
 
 ```{margin}
-Nel {ref}`sec:funzioni` vedremo come Python adotti una
+Nel {ref}`sec_funzioni` vedremo come Python adotti una
 sintassi alternativa per l'invocazione di metodi e funzioni, basata su
 parametri opzionali, che permette in situazioni come questa la scrittura di
 codice più snello e più leggibile.
@@ -723,7 +746,7 @@ variabili di istanza verranno impostate a zero, e lo stesso vale per
 `timedelta`. Infine, per quanto riguarda `datetime` è sempre necessario
 specificare anno, mese e giorno. Per esempio
 
-```python
+```{code-cell} python
 import datetime
 
 birth = datetime.date(1912, 6, 23)
@@ -736,7 +759,7 @@ Alan Turing non è nel nostro _dataset_, ma è un supereroe a tutti gli effetti
 memorizza in `birth` l'oggetto che corrisponde alla data di nascita di Alan
 Turing, mentre
 
-```python
+```{code-cell} python
 free = datetime.timedelta(14526)
 ```
 
@@ -746,7 +769,7 @@ processo per «indecenza grave» da parte delle autorità britanniche. È
 interessante sottolineare che si possono scrivere espressioni matematiche che
 hanno oggetti di questo tipo come operandi. Per esempio,
 
-```python
+```{code-cell} python
 birth + free
 ```
 
@@ -764,7 +787,7 @@ di stampare date e istanti temporali usando un formato predefinito, che segue
 gli standard del mondo anglofono, come si verifica per esempio nella cella
 seguente:
 
-```python
+```{code-cell} python
 print(birth)
 ```
 
@@ -772,7 +795,7 @@ Si vede come l'output ottenuto indichi la sequenza anno, mese e giorno. Il
 metodo `strftime` permette di specificare un formato personalizzato per la
 stampa, come nella cella seguente:
 
-```python
+```{code-cell} python
 print(birth.strftime('%d/%m/%Y'))
 ```
 
@@ -791,7 +814,7 @@ mesi) a cui Python fa riferimento. Per impostare il locale di Python si può
 fare riferimento al modulo `locale`.
 ```
 
-```python
+```{code-cell} python
 print(birth.strftime('%A'))
 ```
 
@@ -800,7 +823,7 @@ l'operazione inversa: costruire cioè un oggetto della classe `datetime`
 partendo da una stringa che contiene una data espressa in un certo formato,
 utilizzando il metodo `strptime`[^class-method]:
 
-```python
+```{code-cell} python
 datetime.datetime.strptime('10/05/2024', '%d/%m/%Y')
 ```
 
@@ -1059,7 +1082,7 @@ strutturato che vedremo nel prossimo capitolo.)
 
 ```{exercise} •••
 Riconsiderate l'espressione `print(Decimal('15.45') + Decimal('0.05'))` che
-abbiamo valutato nel Paragrafo {ref}`sec:numeri-in-base-dieci`, e notate come
+abbiamo valutato nel Paragrafo {ref}`sec_numeri-in-base-dieci`, e notate come
 gli argomenti del costruttore `Decimal` siano delle stringhe. Se eliminate gli
 apici dall'espressione a la rivalutate, otterrete un risultato diverso.
 Descrivete questo risultato e indicate perché, a prima vista, può sembrare
@@ -1124,7 +1147,7 @@ rappresentare un valore decimale non è semplice: in teoria, questo numero
 dipende dal tipo di CPU utilizzata e, soprattutto, dalla particolare
 implementazione di Python (se non ricordate che cosa si intende per
 implementazione di un linguaggio, rileggete il Paragrafo
-{ref}`sec:linguaggi-versioni-implementazioni`). A complicare le cose, anche a
+{ref}`sec_linguaggi-versioni-implementazioni`). A complicare le cose, anche a
 parità d implementazione ci possono essere delle variazioni: per esempio,
 CPython (l'implementazione di Python probabilmente più utilizzata al momento in
 cui scrivo) memorizza i valori `float` utilizzando il tipo `double` del

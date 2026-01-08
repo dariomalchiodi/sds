@@ -12,7 +12,7 @@ kernelspec:
   name: python3
 ---
 
-(chap:formule-notevoli)=
+(chap_formule-notevoli)=
 # Formule notevoli
 
 ````{prf:theorem} Somma dei primi $n$ interi
@@ -21,7 +21,7 @@ kernelspec:
 La somma dei primi $n \in \mathbb N$ numeri interi è
 
 ```{math}
-:label: eq:sum-pow-1
+:label: eq_sum-pow-1
 
 \sum_{i=1}^n i = \frac{n(n+1)}{2} \enspace.
 ```
@@ -82,7 +82,7 @@ permette di concludere che $2 S = n (n + 1)$, da cui segue la tesi.
 La somma dei quadrati dei primi $n \in \mathbb N$ numeri interi è
 
 ```{math}
-:label: eq:sum-pow-2
+:label: eq_sum-pow-2
 
 \sum_{i=1}^n i^2 = \frac{n(n+1)(2n+1)}{6} \enspace.
 ```
@@ -114,7 +114,7 @@ dell'induzione,
 La somma dei cubi dei primi $n \in \mathbb N$ numeri interi è
 
 ```{math}
-:label: eq:sum-pow-3
+:label: eq_sum-pow-3
 
 \sum_{i=1}^n i^2 = \frac{n^2(n+1)^2}{4} \enspace.
 ```
@@ -140,12 +140,12 @@ dell'induzione,
 ````
 
 ````{prf:theorem} Somma delle quarte potenze dei primi $n$ interi
-:label: teo:sum-4
+:label: teo-sum-4
 
 La somma delle quarte potenze dei primi $n \in \mathbb N$ numeri interi è
 
 ```{math}
-:label: eq:sum-pow-4
+:label: eq_sum-pow-4
 
 \sum_{i=1}^n i^4 = \frac{n(n+1)(2n+1)(3n^2 + 3n - 1)}{30} \enspace.
 ```

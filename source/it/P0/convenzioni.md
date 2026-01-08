@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:convenzioni)=
+(sec_convenzioni)=
 # Convenzioni e notazione
 
 Per quanto detto nel paragrafo precedente, spesso inframmezzerò il testo con
@@ -35,7 +35,8 @@ migliora la leggibilità del codice, facilitando l'indentazione delle
 istruzioni e riducendo il rischio di confondere caratteri simili, come 1 e l
 o come O e 0.
 ```
-```python
+
+```{code-cell}
 age = 24
 print(age <= 42)
 ```
@@ -97,11 +98,11 @@ mettere in evidenza nel testo, piuttosto che descriverli nelle note a pie' di
 pagina.
 ```
 
-Infine, la {numref}`tab-notazione` elenca le principali notazioni che
+Infine, la {numref}`tab_notazione` elenca le principali notazioni che
 utilizzerò nelle formule matematiche.
 
 ```{table} Notazione utilizzata nel testo per le formule matematiche.
-:name: tab-notazione
+:name: tab_notazione
 :align: center
 :class: [full-width]
 

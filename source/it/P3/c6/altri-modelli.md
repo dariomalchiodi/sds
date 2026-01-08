@@ -9,5 +9,5 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:altri-modelli)=
+(sec_altri-modelli)=
 # Altri modelli continui

@@ -9,7 +9,16 @@ kernelspec:
   display_name: Python 3
 ---
 
-(chap:dati-e-informazione)=
+```{code-cell} python
+:tags: [remove-cell]
+
+import matplotlib.pyplot as plt
+plt.style.use('../../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+(chap_dati-e-informazione)=
 # Dati e informazione
 
 Vedremo come esistano tipi differenti di dati, e come in funzione del loro tipo
@@ -20,7 +29,7 @@ Come sempre, carichiamo le librerie e il dataset dei supereroi. Già che ci
 siamo, escludiamo l'unico record che fa riferimento al 2099 come anno di prima
 apparizione.
 
-```{code-block} python
+```{code-cell} python
 import numpy as np
 import pandas as pd
 
@@ -117,7 +126,7 @@ quantitativi. Prendiamo per esempio in considerazione il carattere _Publisher_,
 e calcoliamone le frequenze assolute usando il già introdotto metodo
 `value_counts`:
 
-```{code-block} python
+```{code-cell} python
 heroes_with_year['creator'].value_counts()
 ```
 
@@ -131,7 +140,7 @@ delle frequenze assolute, anche se è possibile utilizzare la funzione
 `pd.crosstab` per ottenere una visualizzazione più elegante, in quanto tale
 funzione restituisce un _dataframe_:
 
-```{code-block} python
+```{code-cell} python
 publisher_freq = pd.crosstab(index=heroes_with_year['creator'],
                              columns=['Abs. freqence'],
                              colnames=[''])
@@ -162,7 +171,7 @@ calcolano dividendo quelle assolute per il numero totale di casi; quest'ultimo
 è ovviamente uguale alla somma di tutte le frequenze assolute, quindi la
 tabella delle frequenze relative si può ottenere nel modo seguente:
 
-```{code-block} python
+```{code-cell} python
 publisher_abs_freq = pd.crosstab(index=heroes_with_year['creator'],
                                  columns=['Rel. freqence'],
                                  colnames=[''])
@@ -174,7 +183,7 @@ publisher_rel_freq
 In realtà è possibile creare direttamente la tabella delle frequenze relative
 specificando il valore `True` per l'argomento `normalize`:
 
-```{code-block} python
+```{code-cell} python
 publisher_rel_freq = pd.crosstab(index=heroes_with_year['creator'],
                                  columns=['Rel. freqence'],
                                  colnames=[''],
@@ -187,7 +196,7 @@ cifre visualizzate, applicando ai suoi elementi la funzione `np.round` che
 arrotonda un valore floating point mantenendo un numero prefissato di cifre
 decimali:
 
-```{code-block} python
+```{code-cell} python
 publisher_rel_freq.apply(lambda p: 100 * np.round(p, 3))
 ```
 
@@ -198,7 +207,7 @@ si vogliono visualizzare. Nella cella seguente il risultato viene convertito in
 una serie di stringhe, così da poter effettuare un'ultima trasformazione che
 visualizza le percentuali utilizzando il simbolo `%`.
 
-```{code-block} python
+```{code-cell} python
 (publisher_rel_freq.apply(lambda p: np.round(100*p, 2))
                    .astype(str)
                    .apply(lambda s: s + '%'))
@@ -209,7 +218,7 @@ suo indice, che tipicamente è legato all'ordinamento predefinito (non
 decrescente) dei suoi elementi: nel caso di stringhe, quindi, le righe saranno
 ordinate alfabeticamente per i valori della prima colonna.
 
-```{code-block} python
+```{code-cell} python
 gender_freq = pd.crosstab(index=heroes_with_year['creator'],
                           columns=['Abs. frequence'],
                           colnames=[''])
@@ -220,7 +229,7 @@ Volendo modificare tale ordine è possibile accedere al _dataframe_
 corrispondente alla tabella tramite `loc` e specificando come secondo argomento
 una lista dei valori nell'ordine desiderato:
 
-```{code-block} python
+```{code-cell} python
 gender_freq.loc[['Marvel Comics', 'DC Comics']]
 ```
 
@@ -228,7 +237,7 @@ Abbiamo già visto come utilizzando l'attributo `plot` di una serie sia
 possibile visualizzarne graficamente i contenuti. In particolare, per i dati di
 tipo qualitativo è tipicamente sensato utilizzare i grafici a barre:
 
-```{code-block} python
+```{code-cell} python
 heroes_with_year['creator'].value_counts().plot.bar()
 plt.show()
 ```
@@ -236,7 +245,7 @@ plt.show()
 Un grafico analogo si ottiene invocando sempre il metodo `plot.bar` sul
 _dataframe_ corrispondente alla tabella delle frequenze:
 
-```{code-block} python
+```{code-cell} python
 publisher_freq.plot.bar()
 plt.show()
 ```
@@ -252,7 +261,7 @@ Vi sono due principali differenze tra i grafici a barre ottenuti:
 Volendo eliminare la legenda è sufficiente rigenerare il grafico specificando
 il valore `False` per l'argomento `legend`:
 
-```{code-block} python
+```{code-cell} python
 publisher_freq.plot.bar(legend=False)
 plt.show()
 ```
@@ -261,11 +270,10 @@ Volendo visualizzare le barre in un ordine differente è sufficiente riordinare
 il _dataframe_ nello stesso già visto per le tabelle delle frequenze, prima di
 invocare `plt.plot`.
 
-```{code-block} python
-publisher_order = ['Hanna-Barbera', 'ABC Studios', 'Dark Horse Comics',
+```{code-cell} python
+publisher_order = ['Hanna-Barbera', 'Dark Horse Comics',
                    'Image Comics', 'Marvel Comics', 'DC Comics',
-                   'George Lucas', 'Rebellion',
-                   'Star Trek', 'Universal Studios']
+                   'George Lucas', 'Rebellion', 'Universal Studios']
 
 publisher_rel_freq.loc[publisher_order,:].plot.bar(legend=False)
 plt.show()
@@ -282,11 +290,11 @@ il numero di osservazioni è variabile. Se per esempio volessimo comparare le
 frequenze della forza dei supereroi con quelle delle supereroine, ci troveremmo
 con due diversi numeri di osservazioni:
 
-```{code-block} python
-male_strength_freq = pd.crosstab(index=heroes.loc[heroes['creator']=='Marvel comics',
+```{code-cell} python
+male_strength_freq = pd.crosstab(index=heroes.loc[heroes['creator']=='Marvel Comics',
                                                   'strength'],
                                  columns='Abs. freq.')
-female_strength_freq = pd.crosstab(index=heroes.loc[heroes['creator']=='DC comics',
+female_strength_freq = pd.crosstab(index=heroes.loc[heroes['creator']=='DC Comics',
                                                     'strength'],
                                    columns='Abs. freq.')
 
@@ -303,7 +311,7 @@ l'argomento `color` per impostare rispettivamente a blu e rosa i colori dei
 settori che corrispondono a maschi e femmine (è un po' sessista, ma aiuta a
 leggere il grafico a colpo d'occhio).
 
-```{code-block} python
+```{code-cell} python
 male_strength_freq = (pd.crosstab(index=heroes.loc[heroes['creator']=='Marvel Comics',
                                                    'strength'],
                                  columns='Abs. freq.',
@@ -334,7 +342,7 @@ perché per ogni valore della forza ci sarebbero due barre, relative ai due
 generi. Tali barre si sovrapporrebbero, con l'effetto di nascondere
 (parzialmente o totalmente) quella più bassa.
 
-```{code-block} python
+```{code-cell} python
 male_strength_freq.plot.bar(color='blue', legend=False)
 female_strength_freq.plot.bar(color='pink', legend=False)
 plt.show()
@@ -344,7 +352,7 @@ Un'alternativa è quella di specificare il parametro `alpha` nelle funzioni che
 generano i grafici: ciò permette di disegnare delle barre semi-trasparenti che
 evidenziano le loro sovrapposizioni.
 
-```{code-block} python
+```{code-cell} python
 male_strength_freq.plot.bar(color='blue', alpha=.7)
 female_strength_freq.plot.bar(color='pink', alpha=.7)
 plt.show()
@@ -359,7 +367,7 @@ le cui aree sono proporzionali alle frequenze (pertanto il grafico ottenuto
   relative). Per esempio, la cella seguente calcola il diagramma a torta delle
   frequenze relative al genere dei supereroi.
 
-```{code-block} python
+```{code-cell} python
 gender_freq.plot.pie(y='Abs. frequence', colors=['pink', 'blue'])
 plt.show()
 ```
@@ -404,7 +412,7 @@ grafico a barre delle frequenze assolute, è appropriato posizionare le barre
 rispettando la relazione di ordine esistente tra i dati, utilizzando
 direttamente matplotlib come abbiamo visto nella lezione precedente.
 
-```{code-block} python
+```{code-cell} python
 first_app_freq = heroes_with_year['first_appearance'].value_counts()
 plt.bar(first_app_freq.index, first_app_freq.values)
 plt.show()
@@ -420,7 +428,7 @@ piuttosto che da una barra, da un segmento verticale che lo congiunge con
 l'asse delle ascisse (cosa che, peraltro, permette di non scambiare per nulle
   le frequenze relativamente basse):
 
-```{code-block} python
+```{code-cell} python
 plt.vlines(first_app_freq.index, 0, first_app_freq.values)
 plt.show()
 ```
@@ -429,7 +437,7 @@ plt.show()
 identifica un valore e la sua frequenza: basta generare il grafico precedente e
 sovrapporgli i singoli punti.
 
-```{code-block} python
+```{code-cell} python
 plt.vlines(first_app_freq.index, 0, first_app_freq.values)
 plt.plot(first_app_freq.index, first_app_freq.values, 'o')
 plt.show()
@@ -437,8 +445,8 @@ plt.show()
 
 Infine, consideriamo il diagramma a bastoncini relativo al peso dei supereroi.
 
-```{code-block} python
-weight_freq = heroes['Weight'].value_counts()
+```{code-cell} python
+weight_freq = heroes['weight'].value_counts()
 
 plt.vlines(weight_freq.index, 0, weight_freq.values)
 plt.plot(weight_freq.index, weight_freq.values, 'o')
@@ -455,7 +463,7 @@ valori osservabili. Il grafico corrispondente prende il nome di _istogramma_, e
 viene calcolato e visualizzato in pandas invocando il metodo `hist` sulla serie
 corrispondente:
 
-```{code-block} python
+```{code-cell} python
 heroes['weight'].hist()
 plt.show()
 ```
@@ -465,7 +473,7 @@ intervalli su cui calcolare le frequenze. Di norma si divide l'intervallo che
 contiene tutti i dati osservati in sotto-intervalli equiampi, il cui numero è
 individuato dall'argomento `bins`.
 
-```{code-block} python
+```{code-cell} python
 heroes['weight'].hist(bins=50)
 plt.show()
 ```
@@ -476,7 +484,7 @@ possibile utilizzare sotto-intervalli di ampiezze differenti: per esempio,
 ampiezze pari a 20 per i pesi inferiori a 200 kg., pari a 50 per pesi compresi
 tra 200 e 500 kg., e pari a 100 per i valori rimanenti.
 
-```{code-block} python
+```{code-cell} python
 heroes['weight'].hist(bins=np.hstack((np.arange(0, 200, 20),
                                       np.arange(200, 500, 50),
                                       np.arange(500, 1000, 100))))
@@ -516,7 +524,7 @@ Per rispondere alle prime due domande basta selezionare la serie che
 corrisponde al carattere `first_appearance` e calcolarne il minimo e il
 massimo valore:
 
-```{code-block} python
+```{code-cell} python
 (heroes_with_year['first_appearance'].min(), heroes_with_year['first_appearance'].max())
 ```
 
@@ -539,7 +547,7 @@ Risulta invece più comodo calcolare generare il _dataframe_ corrispondente alla
 tabella delle frequenze, che risulta già ordinato nel modo corretto, e su
 questo invocare `cumsum`.
 
-```{code-block} python
+```{code-cell} python
 first_app_freq_cumulate = (pd.crosstab(index=heroes_with_year['first_appearance'],
                                        columns=['Cumulate freq.'],
                                        colnames=[''])
@@ -551,7 +559,7 @@ Il grafico corrispondente mette in evidenza il fatto che le frequenze cumulate
 sono monotone crescenti e variano da 0 al numero totale di casi nel dataset
 considerato:
 
-```{code-block} python
+```{code-cell} python
 first_app_freq_cumulate.plot(marker='o', legend=False)
 plt.show()
 ```
@@ -560,7 +568,7 @@ La frequenza cumulata corrispondente a 1970 rappresenta quindi il numero di
 casi nel dataset in cui l'anno di prima apparizione è minore o uguale al 1970,
 e dunque tale frequenza rappresenta la risposta alla terza domanda:
 
-```{code-block} python
+```{code-cell} python
 first_app_freq_cumulate.at[1970.0, 'Cumulate freq.']
 ```
 
@@ -569,7 +577,7 @@ frequenza cumulata di 1980 corrisponde al numero di casi in cui l'anno di
 apparizione è minore o uguale a 1980, e sottraendo tale valore al numero totale
 di casi si ottiene la risposta:
 
-```{code-block} python
+```{code-cell} python
 first_app_freq_cumulate.iat[-1, 0] - first_app_freq_cumulate.at[1980.0, 'Cumulate freq.']
 ```
 
@@ -580,7 +588,7 @@ aumenteranno da 0 a 1. Nella cella seguente viene calcolata la tabella delle
 frequenze relative cumulate per l'anno di prima apparizione di cui, sempre per
 brevità, vengono mostrate le ultime dieci righe.
 
-```{code-block} python
+```{code-cell} python
 first_app_relfreq_cumulate = (pd.crosstab(index=heroes_with_year['first_appearance'],
                               columns=['Cumulate freq.'],
                               colnames=[''],
@@ -593,7 +601,7 @@ La visualizzazione in forma grafica delle frequenze relative cumulate equivale
 a quella precedente: l'unica differenza consiste nei valori sull'asse delle
 ordinate, che risulteranno ovviamente scalati sull'intervallo $[0, 1]$:
 
-```{code-block} python
+```{code-cell} python
 first_app_relfreq_cumulate.plot(legend=False)
 plt.show()
 ```
@@ -604,7 +612,7 @@ elemento ha l'estremo destro coincidente con quello sinistro del segmento
 successivo. Possiamo evidenziare questa proprietà effettuando uno _zoom_, per
 esempio tra il 1980 e il 1990:
 
-```{code-block} python
+```{code-cell} python
 first_app_relfreq_cumulate[1980:1990].plot(legend=False)
 plt.show()
 ```
@@ -638,7 +646,7 @@ e visualizzare il grafico corrispondente agli anni tra il 1980 e il 1990, così
 da poter effettuare un confronto con l'analogo grafico precedentemente
 generato:
 
-```{code-block} python
+```{code-cell} python
 import statsmodels.api as sm
 
 ecdf = sm.distributions.ECDF(heroes_with_year['first_appearance'])
@@ -664,7 +672,7 @@ utilizzato `plt.plot` per visualizzarlo). Per rendercene conto, possiamo
 visualizzare nuovamente la funzione di ripartizione empirica tenendo però
 conto di tutte le osservazioni per gli anni di prima apparizione.
 
-```{code-block} python
+```{code-cell} python
 min_year = min(heroes_with_year['first_appearance'])
 max_year = max(heroes_with_year['first_appearance'])
 x = np.arange(min_year, max_year+1)
@@ -685,7 +693,7 @@ esempio i colori degli occhi più frequenti nel nostro dataset (definiti per
   comodità come i colori che occorrono con frequenza relativa superiore a
   0.02).
 
-```{code-block} python
+```{code-cell} python
 eye_color = heroes['eye_color']
 eye_color_freq = eye_color.value_counts(normalize=True)
 
@@ -703,7 +711,7 @@ Va notato come la linea spezzata nel precedente diagramma non arrivi
 all'ordinata 1, avendo considerato solo un sottoinsieme dei dati: possiamo
 verificarlo, oltre che visualmente, sommando le frequenze relative:
 
-```{code-block} python
+```{code-cell} python
 sum(eye_color_freq[eye_color_freq>.02])
 ```
 
@@ -713,7 +721,7 @@ frequenze una correzione che fa sì che ora la loro somma sia esattamente uno
 questo tipo). Il diagramma di Pareto per i valori ottenuti considerando questa
 correzione si estende ora fino all'ordinata unitaria.
 
-```{code-block} python
+```{code-cell} python
 norm_eye_color_freq = eye_color_freq[eye_color_freq>.02]/0.92
 norm_eye_color_freq.cumsum().plot()
 norm_eye_color_freq.plot.bar()
@@ -731,7 +739,7 @@ relativa minore di 0.02. Implementiamo una funzione `my_pareto` che permette di
 impostare la soglia sulle frequenze e rigeneriamo il grafico, stavolta
 considerando tutti i dati.
 
-```{code-block} python
+```{code-cell} python
 def my_pareto(data, threshold=0.02, renormalize=False):
     freq = data.value_counts(normalize=True)
     freq = freq[freq > threshold]
@@ -752,14 +760,14 @@ definizione della funzione `my_pareto` evita in effetti di correggere i dati,
 a meno che non venga specificamente indicato tramite l'argomento `renormalize`,
 così da ottenere un grafico più preciso.
 
-```{code-block} python
+```{code-cell} python
 my_pareto(heroes['eye_color'], threshold=0.015)
 ```
 
 Il corrispondente diagramma di Pareto si può generare manualmente oppure
 utilizzando la funzione `pareto` del package `paretochart`:
 
-```{code-block} python
+```{code-cell} python
 #from paretochart import pareto
 
 eye_color = heroes_with_year['eye_color']
@@ -806,9 +814,10 @@ tabella conterranno le frequenze congiunte (assolute o relative). La funzione
 basta indicare le serie corrispondenti ai caratteri considerati come valori
 degli argomenti `index` e `columns`.
 
-```{code-block} python
+```{code-cell} python
+heroes = heroes.dropna()
 int_gender_freq = pd.crosstab(index=heroes['intelligence'],
-                              columns=heroes['creator'])
+                              columns=heroes['alignment'])
 
 int_gender_freq
 ```
@@ -818,9 +827,9 @@ tabelle delle frequenze: per modificare la tabella in modo che risulti
 ordinata per i valori di intelligenza piuttosto che in modo alfabetico sarà
 quindi sufficiente utilizzare in metodo `reindex`.
 
-```{code-block} python
-int_gender_freq = int_gender_freq.reindex(['low', 'moderate',
-                                           'average', 'good', 'high'])
+```{code-cell} python
+int_gender_freq = int_gender_freq.reindex(['Low', 'Moderate',
+                                           'Average', 'Good', 'High'])
 int_gender_freq
 ```
 
@@ -828,15 +837,15 @@ Siccome `crosstab` produce dei dataframe, per riordinare le colonne è
 sufficiente accedere alla tabella tramite `loc` e specificando come secondo
 argomento una lista dei valori nell'ordine desiderato:
 
-```{code-block} python
-int_gender_freq.loc[:,['M', 'F']]
+```{code-cell} python
+int_gender_freq.loc[:,['Bad', 'Good']]
 ```
 
 In modo analogo è possibile visualizzare solo alcune righe oppure solo alcune
 colonne della tabella, come nella cella seguente:
 
-```{code-block} python
-int_gender_freq.loc['moderate':'good', :]
+```{code-cell} python
+int_gender_freq.loc['Moderate':'Good', :]
 ```
 
 ```{admonition} Nomenclatura
@@ -856,16 +865,16 @@ viene normalmente fatto in due possibili modi:
 - invocando il metodo `plot.bar` invocato sulla tabella, in modo che le barre
   relative a uno stesso valore risultino _affiancate_
 
-```{code-block} python
-int_gender_freq.plot.bar(color=['pink', 'blue'])
+```{code-cell} python
+int_gender_freq.plot.bar(color=['red', 'green', 'yellow'])
 plt.show()
 ```
 
 - specificando ulteriormente il valore `True` per l'argomento `stacked`, in
   modo da _sovrapporre_ le barre che si riferiscono a uno stesso valore:
 
-```{code-block} python
-int_gender_freq.plot.bar(color=['pink', 'blue'], stacked=True)
+```{code-cell} python
+int_gender_freq.plot.bar(color=['red', 'green', 'yellow'], stacked=True)
 plt.show()
 ```
 
@@ -874,7 +883,7 @@ caratteri fosse numerico, si rischierebbe di ricadere nello stesso problema
 descritto quando abbiamo parlato degli istogrammi: si consideri per esempio il
 tentativo di calcolare le frequenze congiunte di peso e genere:
 
-```{code-block} python
+```{code-cell} python
 pd.crosstab(index=heroes['weight'], columns=[heroes['creator']]).iloc[:10,:]
 ```
 
@@ -888,7 +897,7 @@ per estremi i valori specificati in corrispondenza dell'argomento `bins`.
 Considerando questa nuova serie è possibile generare una tabella di frequenze
 congiunte più significativa.
 
-```{code-block} python
+```{code-cell} python
 pd.crosstab(index=pd.cut(heroes['weight'],
                          bins=[30, 50, 80, 100, 200, 500, 1000]),
             columns=[heroes['creator']])
@@ -898,7 +907,7 @@ Le impostazioni predefinite di `pd.cut` fanno riferimento a intervalli aperti a
 sinistra e chiusi a destra, ma è possibile invertire l'apertura e la chiusura
 degli estremi utilizzando l'argomento opzionale `right`:
 
-```{code-block} python
+```{code-cell} python
 pd.crosstab(index=pd.cut(heroes['weight'],
                          bins=[30, 50, 80, 100, 200, 500, 1000],
                          right=False),
@@ -913,7 +922,7 @@ colonna che contengono i totali (calcolati rispettivamente sulle singole
   corrispondente. Per esempio, rigenerando la tabella delle frequenze congiunte
   di livello di intelligenza e genere con le colonne dei totali,
 
-```{code-block} python
+```{code-cell} python
 pd.crosstab(index=heroes['intelligence'],
             columns=heroes['creator'], margins=True)
 ```
@@ -932,7 +941,7 @@ però ora ha diversi valori possibili:
 
 - specificando `'all'` vengono effettivamente calcolate le frequenze relative
 
-```{code-block} python
+```{code-cell} python
 pd.crosstab(index=heroes['intelligence'],
             columns=heroes['creator'],
             margins=True,
@@ -942,7 +951,7 @@ pd.crosstab(index=heroes['intelligence'],
 - usando `'index'` si otterrà una tabella in cui i valori su ogni riga sommano
   a 1
 
-```{code-block} python
+```{code-cell} python
 pd.crosstab(index=heroes['intelligence'],
             columns=heroes['creator'],
             margins=True,
@@ -952,7 +961,7 @@ pd.crosstab(index=heroes['intelligence'],
 - indicando invece `columns` viene generata una tabella in cui tutte le colonne
   sommano al valore unitario
 
-```{code-block} python
+```{code-cell} python
 pd.crosstab(index=heroes['intelligence'],
             columns=heroes['creator'],
             margins=True,
@@ -965,7 +974,7 @@ visto, relativo alla forza di supereroi e supereroine. Invocando `plot` o
 `plot.bar` su questa tabella si ottiene in modo semplice un grafico che
 permette di confrontare visualmente tali frequenze.
 
-```{code-block} python
+```{code-cell} python
 pd.crosstab(index=heroes['strength'],
             columns=[heroes['creator']],
             normalize='columns').plot.bar(color=['pink', 'blue'],
@@ -988,8 +997,8 @@ delle ascisse, usando invece quello delle ordinate per il secondo). Per esempio
 nella cella seguente viene visualizzato il diagramma di dispersione dei
 caratteri relativi ad altezza e peso dei supereroi di genere maschile.
 
-```{code-block} python
-heroes[heroes['creator']=='Marvel Comics'].plot.scatter('Height', 'Weight')
+```{code-cell} python
+heroes[heroes['creator']=='Marvel Comics'].plot.scatter('height', 'weight')
 plt.show()
 ```
 
@@ -999,8 +1008,8 @@ precedente si nota come tendenzialmente a un valore alto del peso corrisponda
 un valore alto per l'altezza e viceversa. Volendo è possibile aggiungere al
 grafico una retta che metta in evidenza tale tipo di relazione:
 
-```{code-block} python
-heroes[heroes['creator']=='Marvel Comics'].plot.scatter('Height', 'Weight')
+```{code-cell} python
+heroes[heroes['creator']=='Marvel Comics'].plot.scatter('height', 'weight')
 
 trend = lambda x: -1200 + x * 7
 x_range = [170, 300]
@@ -1019,7 +1028,7 @@ determinare tale retta, avendo cura di lavorare su una copia del _dataframe_
 sulla quale invocare il metodo `dropna` che elimina le righe in cui è presente
 almeno un valore mancante.
 
-```{code-block} python
+```{code-cell} python
 from sklearn import linear_model
 
 regr = linear_model.LinearRegression()
@@ -1047,7 +1056,7 @@ estremi nella parte destra del grafico fa sì che la retta ottenuta sia
 sensibilmente diversa rispetto a quella tracciata a mano. Le cose cambiano se
 non si considerano questi tre valori.
 
-```{code-block} python
+```{code-cell} python
 heroes_with_data = heroes_with_data[heroes_with_data['height']<300]
 
 X = heroes_with_data.loc[:, ['height']]
@@ -1068,12 +1077,12 @@ Va infine notato che le relazioni tra due caratteri non necessariamente hanno
 una forma lineare, ma approfondire questo aspetto esula dal carattere
 introduttivo di questo corso.
 
-```{code-block} python
+```{code-cell} python
 male_heroes = heroes_with_data[heroes_with_data['creator']=='Marvel Comics']
 male_heroes['height'].cov(male_heroes['weight'])
 ```
 
-```{code-block} python
+```{code-cell} python
 male_heroes['height'].corr(male_heroes['weight'])
 ```
 
@@ -1110,14 +1119,14 @@ Questo è quello che succede per esempio quando si invocano i metodi di `plot`
 su una serie: nella cella seguente per esempio vengono affiancati i diagrammi a
 torta relativi alle frequenze di genere e livello di intelligenza.
 
-```{code-block} python
+```{code-cell} python
 plt.figure(figsize=(6, 3))
 plt.subplot(1, 2, 1)
 gender_freq['Abs. frequence'].plot.pie(colors=['pink', 'blue'])
 plt.ylabel('')
 plt.xlabel('Gender')
 plt.subplot(1, 2, 2)
-heroes['Intelligence'].value_counts().plot.pie()
+heroes['intelligence'].value_counts().plot.pie()
 plt.ylabel('')
 plt.xlabel('Intelligence')
 plt.show()
@@ -1146,7 +1155,7 @@ comportamento si ha quando vengono generati dei grafici invocando i metodi di
 `plot` su un _dataframe_ piuttosto che su una serie. I due diagrammi a barre
 non vengono sovrapposti, bensì affiancati uno sopra l'altro.
 
-```{code-block} python
+```{code-cell} python
 male_strength_freq = (pd.crosstab(index=heroes.loc[heroes['creator']=='Marvel Comics','strength'],
                                   columns='Abs. freq.',
                                   normalize=True))
@@ -1166,7 +1175,7 @@ aiuterebbe il confronto) è quindi necessario agire in modo diverso, notando che
 le funzioni di matplotlib accettano generalmente un argomento `ax` a cui
 passare il sistema in cui il risultato deve essere inserito.
 
-```{code-block} python
+```{code-cell} python
 ax = plt.subplot(1, 2, 1)
 male_strength_freq.plot.bar(color='blue', legend=False, ax=ax, figsize=(10, 2))
 plt.ylim((0, 0.4))
@@ -1191,7 +1200,7 @@ Infine, metodi come `plot` restituiscono il riferimento ai sistemi cartesiani
 su cui hanno operato: ciò permette di sovrapporre dei grafici anche invocando
 metodi il cui comportamento predefinito è quello di creare un nuovo sistema.
 
-```{code-block} python
+```{code-cell} python
 ax = male_strength_freq.plot(marker='o', color='blue')
 female_strength_freq.plot(marker='o', color='pink', ax=ax, legend=False)
 ax.legend(['F', 'M'])
@@ -1241,15 +1250,15 @@ interi: già così la costruzione di un diagramma stelo-foglie richiede una cert
 dose di perizia. Innanzitutto è necessario eliminare i valori mancanti dai
 dati:
 
-```{code-block} python
-x = [s for s in heroes_with_year['First appearance'][:50] if not np.isnan(s)]
+```{code-cell} python
+x = [s for s in heroes_with_year['first_appearance'][:50] if not np.isnan(s)]
 ```
 
 È poi necessario indicare il numero di cifre significative che comporranno le
 foglie. Memorizziamo nelle variabili `d` e `signif`, rispettivamente, tale
 numero e la corrispondente potenza di dieci.
 
-```{code-block} python
+```{code-cell} python
 significant_digits = 1
 signif = 10**significant_digits
 ```
@@ -1261,14 +1270,14 @@ operazione richiede di convertire l'elemento in un valore intero e poi
 dividerlo per la potenza di 10 memorizzata in `signif` (che equivale a
   eliminare le `d` cifre meno significative).
 
-```{code-block} python
+```{code-cell} python
 r = np.arange(int(min(x))/signif, (int(max(x))/signif + 1))
 ```
 
 Risulta ora possibile eliminare da `r` tutti i valori che non rappresentano uno
 stelo, che sono quelli in corrispondenza dei quali non vi è alcuna foglia.
 
-```{code-block} python
+```{code-cell} python
 start = [s for s in r
          if len([e for e in x if s*signif <= e < (s+1)*signif])]
 ```
@@ -1278,7 +1287,7 @@ contenente il valore dello stelo e una lista di tutte le foglie corrispondenti.
 Per comodità, convertiremo già le foglie in stringhe, avendo cura di aggiungere
 eventuali zeri iniziali.
 
-```{code-block} python
+```{code-cell} python
 stem = [(s, ['{:0{width}d}'.format(int(i%(s*signif)), width=significant_digits) if s
                                                                                 else str(int(i))
              for i in x if signif*s <= i < signif*s+signif])
@@ -1291,7 +1300,7 @@ stringa di formattazione che ci permette di ottenere i vari rami nel formato
 richiesto e di inserirli in una lista, per poi concatenare gli elementi di
 quest'ultima separandoli tramite un carattere di `a capo`.
 
-```{code-block} python
+```{code-cell} python
 import math
 print('\n'.join(list(map(lambda e: '{:>{width}}|{}'.format(e[0],
                                                            ', '.join(e[1]),
@@ -1302,7 +1311,7 @@ print('\n'.join(list(map(lambda e: '{:>{width}}|{}'.format(e[0],
 Per poter generare velocemente altri diagrammi stelo-foglia, è opportuno
 riscrivere il codice qui sopra organizzandolo all'interno di una funzione.
 
-```{code-block} python
+```{code-cell} python
 def stem_leaf(data, significant_digits=1):
     x = [s for s in data if not np.isnan(s)]
     signif = 10**significant_digits
@@ -1323,7 +1332,7 @@ def stem_leaf(data, significant_digits=1):
 Ciò ci permette, per esempio, di calcolare il diagramma per un numero maggiore
 di osservazioni.
 
-```{code-block} python
+```{code-cell} python
 print(stem_leaf(heroes_with_year['first_appearance'][:150]))
 ```
 

@@ -9,6 +9,6 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:va-discrete)=
+(sec_va-discrete)=
 # Variabili aleatorie discrete
 

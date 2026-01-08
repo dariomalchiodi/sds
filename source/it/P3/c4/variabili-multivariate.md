@@ -9,5 +9,5 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:va-discrete-multivariate)=
+(sec_va-discrete-multivariate)=
 # Variabili aleatorie multivariate

@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(chap:intro-python)=
+(chap_intro-python)=
 # Elaborare i dati con Python
 
 > <span title="Pensate sempre che scrivere codice «bello» è soprattutto un atto

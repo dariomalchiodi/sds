@@ -1,12 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
-  
+    
   // Function to get localized labels - with fallback support
   function getLabels() {
-    console.log('getLabels called');
+    // console.log('getLabels called');
     
     // Try to get labels from Sphinx config first
     if (window.sphinxConfig && window.sphinxConfig.showCodeLabel && window.sphinxConfig.hideCodeLabel) {
-      console.log('Using Sphinx config labels');
       return {
         showCode: window.sphinxConfig.showCodeLabel,
         hideCode: window.sphinxConfig.hideCodeLabel
@@ -75,11 +74,10 @@ document.addEventListener("DOMContentLoaded", function() {
       
       // Add click event listener to the toggle button
       button.addEventListener('click', function(e) {
-        console.log('Button clicked!', index + 1);
         e.preventDefault();
         e.stopPropagation();
         
-        console.log('Current content classes:', content.className);
+        // console.log('Current content classes:', content.className);
         
         const textSpan = button.querySelector('.button-text');
         const labels = getLabels();
@@ -97,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function() {
           button.classList.add('expanded');
           // Only update the text, triangle rotates via CSS
           textSpan.textContent = ' ' + labels.hideCode;
-          console.log('Code expanded for button', index + 1);
+          // console.log('Code expanded for button', index + 1);
         }
       });
       

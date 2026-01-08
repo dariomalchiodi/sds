@@ -9,7 +9,16 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:analisi-di-classificatori)=
+```{code-cell} python
+:tags: [remove-cell]
+
+import matplotlib.pyplot as plt
+plt.style.use('../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+(sec_analisi-di-classificatori)=
 # Analisi di classificatori
 
 
@@ -247,7 +256,7 @@ del quadrato, come mostrato nella figura seguente all'interno della quale è
 stata evidenziata anche la diagonale del quadrato, che ci servirà come punto
 di riferimento.
 
-```{code-block} python
+```{code-cell} python
 import matplotlib.pyplot as plt
 
 plt.axis('equal')
@@ -340,7 +349,7 @@ classificatori ideale ed errato, possiamo aggiornare la rappresentazione sul
 piano cartesiano nel modo che segue.
 
 
-```{code-block} python
+```{code-cell} python
 plt.axis('equal')
 plt.plot([0, 1, 1, 0, 0], [0, 0, 1, 1, 0], color='black')
 plt.plot([0, 1, 0, 1], [0, 1, 1, 0], 'o')
@@ -439,7 +448,7 @@ nell'80% dei casi verrà scelta la classe positiva e nel rimanente 20% gli
 esempi verranno associati a quella negativa.
 
 
-```{code-block} python
+```{code-cell} python
 plt.axis('equal')
 plt.plot([0, 1, 1, 0, 0], [0, 0, 1, 1, 0], color='black')
 plt.plot([0, 1, 0, 1, .5, .8], [0, 1, 1, 0, .5, .8], 'o')
@@ -490,11 +499,9 @@ soglia) e disegnare sul piano cartesiano il punto corrispondente. Il
 risultato è una traiettoria che prende il nome di _curva ROC_, il cui
 andamento tipico è visualizzato nella figura che segue.
 
-```{code-block} python
+```{code-cell} python
 from sklearn.datasets import make_classification
 from sklearn.linear_model import LogisticRegression
-
-plt.style.use('sds.mplstyle')
 
 X, y = make_classification(n_samples=10000, n_features=10, n_classes=2, n_informative=5)
 Xtrain = X[:9000]
@@ -536,7 +543,7 @@ compresa tra l'asse delle ascisse e la curva stessa, area evidenziata nella
 figura che segue.
 
 
-```{code-block} python
+```{code-cell} python
 plt.fill_between(fpr, [0]*len(tpr), tpr, color='lightgray')
 plt.plot(fpr, tpr)
 plt.plot([0, 1], [0, 1], dashes=[3, 3], color='gray')
@@ -695,7 +702,7 @@ La visualizzazione della corrispondente curva ROC può essere effettuata
 considerando i valori nelle due righe di questa tabella rispettivamente come
 ascisse e ordinate di punti che andranno poi uniti.
 
-```{code-block} python
+```{code-cell} python
 plt.plot([1, 1, 0.5, 0, 0, 0], [1, 1, 1, 1, .33, 0])
 plt.plot([0, 1], [0, 1], dashes=[3, 3], color='gray')
 plt.show()
@@ -715,7 +722,7 @@ nostro caso (il simbolo `_` ci permette di non dover creare una variabile
 fittizia che poi non verrebbe utilizzata) permette di ottenere i sopra
 citati valori di soglia selezionati dal metodo.
 ```
-```{code-block} python
+```{code-cell} python
 from sklearn import metrics
 y = [1, 0, 1, 1, 0]
 prob = [.7, .4, .8, .7, .3]
@@ -729,7 +736,7 @@ L'oggetto `metrics` permette anche di calcolare il valore AUC corrispondente
 all'area sotto la curva ROC, invocando il metodo `auc` a cui passare i due
 array precedentemente ottenuti.
 
-```{code-block} python
+```{code-cell} python
 metrics.auc(fpr,tpr)
 ```
 
@@ -743,7 +750,7 @@ $0.4$, $0.8$, $0.7$ e $0.7$ (con una degradazione delle prestazioni
   relativamente al primo e all'ultimo oggetto), si otterrebbe ovviamente una
   diversa curva ROC.
 
-```{code-block} python
+```{code-cell} python
 y = [1, 0, 1, 1, 0]
 prob = [.2, .4, .8, .7, .7]
 fpr, tpr, _ = metrics.roc_curve(y, prob)
@@ -756,7 +763,7 @@ Il decadimento delle prestazioni si può osservare in maniera più diretta
 calcolando il valore per l'AUC, che in questo caso è non molto superiore al
 valore corrispondente a una scelta uniformemente casuale.
 
-```{code-block} python
+```{code-cell} python
 metrics.auc(fpr,tpr)
 ```
 
@@ -766,19 +773,19 @@ eliminando tutti i casi in cui l'editore non è `'Marvel Comics'` oppure
 `'DC Comics'`. Focalizziamo poi l'attenzione su alcune delle colonne,
 trasformando i valori categorici in valori numerici.
 
-```{code-block} python
+```{code-cell} python
 import pandas as pd
 
 heroes = pd.read_csv('data/heroes.csv', index_col=0).dropna()
 heroes = heroes[heroes['creator'].isin(['Marvel Comics', 'DC Comics'])]
 
-features = ['height', 'weight', 'gender', 'first_appearance',
+features = ['height', 'weight', 'creator', 'first_appearance',
             'hair_color', 'eye_color', 'strength', 'intelligence']
 
 from sklearn.preprocessing import LabelEncoder
 
-gender_encoder = LabelEncoder()
-gender_encoder.fit(heroes['creator'])
+creator_encoder = LabelEncoder()
+creator_encoder.fit(heroes['creator'])
 
 eye_col_encoder = LabelEncoder()
 eye_col_encoder.fit(heroes['eye_color'])
@@ -789,7 +796,7 @@ hair_col_encoder.fit(heroes['hair_color'])
 intelligence_encoder = LabelEncoder()
 _ = intelligence_encoder.fit(heroes['intelligence'])
 
-heroes['creator'] = gender_encoder.transform(heroes['creator'])
+heroes['creator'] = creator_encoder.transform(heroes['creator'])
 heroes['eye_color'] = eye_col_encoder.transform(heroes['eye_color'])
 heroes['hair_color'] = hair_col_encoder.transform(heroes['hair_color'])
 heroes['intelligence'] = intelligence_encoder.transform(heroes['intelligence'])
@@ -800,7 +807,7 @@ due case editrici, estraiamo le colonne per ottenere l'insieme degli oggetti
 e parimenti costruiamo la serie delle etichette corrispondenti, i cui valori
 vanno trasformati da categorici a numerici.
 
-```{code-block} python
+```{code-cell} python
 X = heroes[features]
 Y = heroes['creator']
 
@@ -816,7 +823,7 @@ dati nuovi per valutare un classificatore si cattura meglio la sua capacità di
 funzionare correttamente quando questo verrà utilizzato su oggetti di cui non
 si conosce la classe di appartenenza.
 
-```{code-block} python
+```{code-cell} python
 num_train = 90
 X_train = X[:num_train]
 X_test = X[num_train:]
@@ -835,7 +842,7 @@ probabilità di essere editi da Marvel o da DC. Considerando solo il primo
 di questi due valori si può facilmente procedere come prima e tracciare la
 corrispondente curva ROC.
 
-```{code-block} python
+```{code-cell} python
 from sklearn import tree
 
 clf = tree.DecisionTreeClassifier()
@@ -854,7 +861,7 @@ Il risultato ottenuto è relativamente (ma non troppo) lontano dalla diagonale
 associata ai classificatori casuali, così come risulta anche evidenziato dal
 corrispondente valore di AUC.
 
-```{code-block} python
+```{code-cell} python
 auc = metrics.auc(fpr,tpr)
 print(auc)
 ```
@@ -865,6 +872,6 @@ seguente, l'array restituito da questo metodo è stato utilizzato per
 costruire un _DataFrame_, al fine di ottenere una visualizzazione della
 matrice più gradevole.
 
-```{code-block} python
+```{code-cell} python
 pd.DataFrame(metrics.confusion_matrix(Y_test, preds))
 ```

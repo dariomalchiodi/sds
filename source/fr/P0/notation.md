@@ -10,7 +10,7 @@ kernelspec:
 ---
 
 
-(sec:notazione)=
+(sec_notazione)=
 # Notation
 
 La {numref}`tab-notation` répertorie les principales notations que

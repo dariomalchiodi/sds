@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:utilizzo-in-insegnamento)=
+(sec_utilizzo-in-insegnamento)=
 # Utilizzo all'interno di un insegnamento
 Da alcuni anni, sono titolare dell'insegnamento di {extlink}`Statistica e
 analisi dei dati <https://malchiodi.di.unimi.it/teaching/SAD>` per il corso di

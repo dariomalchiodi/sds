@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:disposizioni)=
+(sec_disposizioni)=
 # Disposizioni
 
 Per disposizione di $n$ oggetti distinti in $k$ posti si intende una qualsiasi
@@ -106,7 +106,7 @@ utilizzata per quelle con ripetizione, e dunque è identica a quella utilizzata
 per le permutazioni.
 
 ````{prf:example}
-:label: ex:disposizioni-semplici
+:label: ex-disposizioni-semplici
 TODO Esempio sulle disposizioni semplici
 ````
 

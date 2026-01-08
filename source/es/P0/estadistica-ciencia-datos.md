@@ -1,4 +1,4 @@
-(sec:estadistica-ciencia-datos)=
+(sec_estadistica-ciencia-datos)=
 # Estadística, ciencia de datos y otras etiquetas
 
 En el pasado, los datos eran en su mayoría considerados un subproducto de

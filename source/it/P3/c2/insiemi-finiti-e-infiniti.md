@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:insiemi-finiti-e-infiniti)=
+(sec_insiemi-finiti-e-infiniti)=
 # Insiemi finiti e infiniti
 È abbastanza facile farsi venire in mente degli insiemi che contengono un
 numero finito di elementi, come ad esempio l'insieme dei membri della Justice

@@ -9,5 +9,5 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:modello-ipergeometrico)=
+(sec_modello-ipergeometrico)=
 # Il modello ipergeometrico

@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:concetto-probabilita)=
+(sec_concetto-probabilita)=
 # Il concetto di probabilità
 
 Spostare qui la definizione di esperimento aleatorio e di evento

@@ -9,5 +9,5 @@ kernelspec:
   display_name: Python 3
 ---
 
-(chap:indici-di-posizione)=
+(chap_indici-di-posizione)=
 # Indici di posizione

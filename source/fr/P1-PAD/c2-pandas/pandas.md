@@ -1,4 +1,4 @@
-(chap:pandas)=
+(chap_pandas)=
 # Pandas
 
 AGGIUNGERE

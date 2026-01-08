@@ -133,6 +133,8 @@ parts:
       - file: P4/c2/metodo-plugin
       - file: P4/c2/metodo-dei-momenti
     - file: P4/c3/stime-per-intervalli
+      sections:
+      - file: P4/c3/intervalli-fiduciari
     - file: P4/c4/statistica-non-parametrica
   - caption: Appendici
     chapters:

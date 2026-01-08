@@ -7,7 +7,7 @@ jupytext:
 nb_execution: false
 ---
 
-(sec:installation)=
+(sec_installation)=
 # Installation, configuration et premiers pas
 
 Cette section explique comment installer Python et les bibliothèques auxquelles
@@ -21,7 +21,7 @@ aligner sur la terminologie que j'utiliserai et vérifier qu'aucun problème de
 compatibilité ne survienne avec votre version installée, et que toutes les
 bibliothèques nécessaires soient disponibles.
 
-(sec:langages-versions-implementations)=
+(sec_langages-versions-implementations)=
 ## Langages, versions et implémentations
 
 Les langages de programmation évoluent au fil du temps, à mesure que leurs
@@ -67,7 +67,7 @@ en C, une autre encore s'exécute dans les navigateurs web, etc.
 L'implémentation la plus courante, généralement installée par défaut, s'appelle
 _CPython_ et, comme son nom l'indique, est écrite en C.
 
-(sec:telecharger-livre)=
+(sec_telecharger-livre)=
 ## Télécharger le contenu du livre
 
 Ce livre est conçu pour être utilisé via un serveur web. L'avantage est que les
@@ -96,7 +96,7 @@ dossier `sds` :
 ```{eval-rst}
 .. tabs::
 
-   .. group-tab:: Linux / Mac OS
+   .. group-tab_: Linux / Mac OS
 
       Dans tous les exemples ci-dessous, le symbole ``$`` indique l'invite
       de la ligne de commande. Selon votre configuration, elle peut être
@@ -112,7 +112,7 @@ dossier `sds` :
       Je supposerai, pour la suite, que cette session du terminal reste
       ouverte.
 
-   .. group-tab:: Windows
+   .. group-tab_: Windows
 
       Dans les exemples suivants, ``C:>`` représente l'invite de
       PowerShell. Selon votre configuration, elle peut être différente. Dans
@@ -139,13 +139,13 @@ de mettre à jour le livre en exécutant simplement :
 ```{eval-rst}
 .. tabs::
 
-   .. group-tab:: Linux / Mac OS
+   .. group-tab_: Linux / Mac OS
 
       .. code-block:: bash
 
          $ git pull
 
-   .. group-tab:: Windows
+   .. group-tab_: Windows
 
       .. code-block:: powershell
 
@@ -156,7 +156,7 @@ de mettre à jour le livre en exécutant simplement :
 depuis un terminal après s'être placé dans le dossier `sds` (ou l'un de ses
 sous-dossiers). De plus, git est l'outil utilisé pour signaler des problèmes ou
 proposer des modifications, via des _issues_ ou _pull requests_ comme expliqué
-dans {ref}`chap:approche`. Enfin, se familiariser avec git est quelque chose
+dans {ref}`chap_approche`. Enfin, se familiariser avec git est quelque chose
 que je recommande à toute personne étudiant l'informatique ou, plus largement,
 les disciplines liées à la science des données. En effet, git est utilisé dans
 la grande majorité des projets logiciels, ce qui justifie de l'apprendre dès le
@@ -173,13 +173,13 @@ exécutez :
 ```{eval-rst}
 .. tabs::
 
-   .. group-tab:: Linux / Mac OS
+   .. group-tab_: Linux / Mac OS
 
       .. code-block:: bash
 
          $ python --version
 
-   .. group-tab:: Windows
+   .. group-tab_: Windows
 
       .. code-block:: powershell
 
@@ -262,13 +262,13 @@ définit l'étiquette de l'invite ; sinon, le nom du répertoire sera utilisé.
 ```{eval-rst}
 .. tabs::
 
-   .. group-tab:: Linux / Mac OS
+   .. group-tab_: Linux / Mac OS
 
       .. code-block:: bash
 
          $ python3.11 -m venv .venv --prompt sds
 
-   .. group-tab:: Windows
+   .. group-tab_: Windows
 
       .. code-block:: powershell
 
@@ -283,13 +283,13 @@ futures bibliothèques de cet environnement. Pour l'activer, lancez :
 ```{eval-rst}
 .. tabs::
 
-   .. group-tab:: Linux / Mac OS
+   .. group-tab_: Linux / Mac OS
 
       .. code-block:: bash
 
          $ source .venv/bin/activate
 
-   .. group-tab:: Windows
+   .. group-tab_: Windows
 
       .. code-block:: powershell
 
@@ -305,13 +305,13 @@ bibliothèques après activation. Pour désactiver l'environnement, tapez :
 ```{eval-rst}
 .. tabs::
 
-   .. group-tab:: Linux / Mac OS
+   .. group-tab_: Linux / Mac OS
 
       .. code-block:: bash
 
          (sds) $ deactivate
 
-   .. group-tab:: Windows
+   .. group-tab_: Windows
 
       .. code-block:: powershell
 
@@ -320,7 +320,7 @@ bibliothèques après activation. Pour désactiver l'environnement, tapez :
 
 Cela rétablit l'invite système dans son état initial.
 
-(sec:lib-install)=
+(sec_lib-install)=
 ## Gestion des bibliothèques
 
 En théorie, on peut installer une bibliothèque manuellement en téléchargeant
@@ -342,7 +342,7 @@ L'installation de bibliothèques, généralement effectuée dans un environnemen
 virtuel actif, se fait avec la commande pip dans un shell, en précisant le nom
 de la bibliothèque&mdash;éventuellement suivi de `==version` pour installer une
 version précise. Par exemple, pour installer altair, la bibliothèque utilisée
-dans {ref}`sec:apercu-general` pour les graphiques interactifs, on taperait :
+dans {ref}`sec_apercu-general` pour les graphiques interactifs, on taperait :
 
 ```{margin}
 Nous verrons bientôt comment installer toutes les bibliothèques requises en une
@@ -352,13 +352,13 @@ seule fois, il n'est donc pas nécessaire de lancer cette commande maintenant.
 ```{eval-rst}
 .. tabs::
 
-   .. group-tab:: Linux / Mac OS
+   .. group-tab_: Linux / Mac OS
 
       .. code-block:: bash
 
          (sds) $ pip install altair
 
-   .. group-tab:: Windows
+   .. group-tab_: Windows
 
       .. code-block:: powershell
 
@@ -377,13 +377,13 @@ dans un fichier `requirements.txt`. Pour tout installer d'un coup, tapez :
 ```{eval-rst}
 .. tabs::
 
-   .. group-tab:: Linux / Mac OS
+   .. group-tab_: Linux / Mac OS
 
       .. code-block:: bash
 
          (sds) $ pip install -r requirements.txt
 
-   .. group-tab:: Windows
+   .. group-tab_: Windows
 
       .. code-block:: powershell
 
@@ -394,7 +394,7 @@ Le [dépôt](https://github.com/dariomalchiodi/sds) de ce livre inclut un fichie
 `requirements.txt` listant toutes les bibliothèques nécessaires pour exécuter
 le code des chapitres.
 
-(sec:notebook)=
+(sec_notebook)=
 ## Installation d'un gestionnaire de notebooks
 
 Comme mentionné au début de ce chapitre, je présenterai le code Python de façon
@@ -435,13 +435,13 @@ _notebook_ avec Visual Studio Code.
 ```{eval-rst}
 .. tabs::
 
-   .. group-tab:: Linux / Mac OS
+   .. group-tab_: Linux / Mac OS
 
       .. code-block:: bash
 
          (sds) $ jupyter notebook
 
-   .. group-tab:: Windows
+   .. group-tab_: Windows
 
       .. code-block:: powershell
 
@@ -503,7 +503,7 @@ un programme, comme on le ferait avec d'autres langages tels que Go ou Java.
 
 ## Premiers pas avec Python
 
-Comme discuté dans le {ref}`sec:apprendre-et-programmer`, je pars du principe
+Comme discuté dans le {ref}`sec_apprendre-et-programmer`, je pars du principe
 que vous êtes déjà familier avec au moins un langage de programmation. Dans
 cette section, cependant, nous allons rapidement passer en revue quelques
 opérations de base pour voir comment elles sont réalisées en Python. Cela me
@@ -513,7 +513,7 @@ des concepts que j'expliquerai.
 ### Affectations
 Attribuer une valeur à une variable utilise la même notation que dans la
 plupart des autres langages, avec la syntaxe `variable = valeur`. Dans
-{ref}`sec:typisation-dynamique`, nous verrons que Python ne demande pas de
+{ref}`sec_typisation-dynamique`, nous verrons que Python ne demande pas de
 déclaration de type : les variables sont créées automatiquement lors de la
 première affectation, et cette valeur détermine implicitement leur type. Par
 exemple :
@@ -709,7 +709,7 @@ dépend de l'implémentation, mais la réponse la plus juste est : « ni l'un ni
 l'autre ». Python compile en _bytecode_, comme Java, pour une _machine
 virtuelle_. Avec CPython &mdash; l'implémentation visée par ce livre &mdash; la
 compilation est automatique et transparente à l'import d'un module (voir
-{ref}`sec:importer-modules`) : cela produit des fichiers `.pyc` dans un
+{ref}`sec_importer-modules`) : cela produit des fichiers `.pyc` dans un
 répertoire `__pycache__`, créé s'il n'existe pas ou est plus vieux que le
 source ; sinon, le bytecode est exécuté directement.
 [^environnement]: Il existe plusieurs solutions pour créer et gérer des

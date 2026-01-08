@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(chap:presentation-p1)=
+(chap_presentation-p1)=
 # Introduction
 
 La première partie de ce livre présente quelques outils de base pour l'analyse
@@ -26,7 +26,7 @@ Parmi les outils essentiels, on trouve :
 - une bibliothèque pour la gestion structurée des jeux de données.
 
 Dans ce livre, nous utiliserons Python et Pandas à ces fins, présentés
-respectivement dans le {ref}`chap:intro-python` et le {ref}`chap:pandas`. Bien
+respectivement dans le {ref}`chap_intro-python` et le {ref}`chap_pandas`. Bien
 qu'il existe de nombreuses alternatives valables, ces deux technologies
 constituent aujourd'hui une partie centrale de l'écosystème de l'analyse de
 données, aussi bien dans le monde académique que professionnel.

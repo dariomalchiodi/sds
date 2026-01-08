@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:ringraziamenti)=
+(sec_ringraziamenti)=
 # Ringraziamenti
 
 Alcune persone hanno letto e commentato quello che ho scritto, contribuendo in

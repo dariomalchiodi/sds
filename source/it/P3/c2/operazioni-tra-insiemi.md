@@ -9,7 +9,16 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:operazioni-tra-insiemi)=
+```{code-cell} python
+:tags: [remove-cell]
+
+import matplotlib.pyplot as plt
+plt.style.use('../../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+(sec_operazioni-tra-insiemi)=
 # Operazioni tra insiemi
 
 Oltre alle relazioni descritte nel paragrafo precedente, è possibile costruire
@@ -22,13 +31,10 @@ descritte di seguito.
   S \cup T = \{x \in \Omega
               \text{ tale che } x \in S \vee x \in T \} \enspace,
   ```
-  come illustrato in {numref}`fig:venn-union`.
+  come illustrato in {numref}`fig_venn-union`.
 
-````{customfigure}
-:name: fig:venn-union
-
-```{code-block} python
-:class:  toggle-code
+```{code-cell} python
+:tags:  [hide-input]
 
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
@@ -89,29 +95,30 @@ def venn_operations(operation='union'):
     return fig
 
 fig = venn_operations()
-plt.show()
+fig
 ```
+````{customfigure}
+:name: fig_venn-union
 
 Il diagramma di Venn che illustra l'unione tra due insiemi $S$ e $T$.
 ````
 
 - L’_intersezione_ di due insiemi $S$ e $T$ (vedi
-  {numref}`fig:venn-intersection`) è costituita dall'insieme $S \cap T$
+  {numref}`fig_venn-intersection`) è costituita dall'insieme $S \cap T$
   contenente tutti gli elementi comuni a $S$ e $T$:
   ```{math}
   S \cap T = \{ x \in \Omega
                   \text{ tale che } x \in S \wedge x \in T \} \enspace.
   ```
 
-````{customfigure}
-:name: fig:venn-intersection
-
-```{code-block} python
-:class:  toggle-code
+```{code-cell} python
+:tags:  [hide-input]
 
 fig = venn_operations('intersection')
 plt.show()
 ```
+````{customfigure}
+:name: fig_venn-intersection
 
 Il diagramma di Venn che illustra l'intersezione tra due insiemi $S$ e $T$.
 ````
@@ -123,24 +130,24 @@ Il diagramma di Venn che illustra l'intersezione tra due insiemi $S$ e $T$.
   S \backslash T = \{ x \in \Omega
                   \text{ tale che } x \in S \wedge x \notin T \} \enspace,
   ```
-  come indicato nella {numref}`fig:venn-difference`.
+  come indicato nella {numref}`fig_venn-difference`.
 
-````{customfigure}
-:name: fig:venn-difference
 
-```{code-block} python
-:class:  toggle-code
+```{code-cell} python
+:tags:  [hide-input]
 
 fig = venn_operations('difference')
-plt.show()
+fig
 ```
+````{customfigure}
+:name: fig_venn-difference
 
 Il diagramma di Venn che illustra la differenza tra un insieme $S$ e un insieme
 $T$.
 ````
 
 - La _differenza simmetrica_ tra due insiemi $S$ e $T$, esemplificata in
-  {numref}`fig:venn-symdiff`, è costituita dall'insieme $S \ominus T$
+  {numref}`fig_venn-symdiff`, è costituita dall'insieme $S \ominus T$
   contenente tutti gli elementi che appartengono solamente a $S$ o solamente a
   $T$:
   ```{math}
@@ -149,15 +156,14 @@ $T$.
     \vee ( x \notin S \wedge x \in T) \} \enspace.
   ```
 
-````{customfigure}
-:name: fig:venn-symdiff
-
-```{code-block} python
-:class:  toggle-code
+```{code-cell} python
+:tags:  [hide-input]
 
 fig = venn_operations('symdifference')
-plt.show()
+fig
 ```
+````{customfigure}
+:name: fig_venn-symdiff
 
 Il diagramma di Venn che illustra la differenza simmetrica tra due insiemi $S$
 e $T$.
@@ -170,17 +176,16 @@ e $T$.
   \overline S = \{ x \in \Omega \text{ tale che v} x \notin S \} =
   \Omega \backslash S \enspace,
   ```
-  come mostrato nel diagramma in {numref}`fig:venn-complement`.
+  come mostrato nel diagramma in {numref}`fig_venn-complement`.
 
-````{customfigure}
-:name: fig:venn-complement
-
-```{code-block} python
-:class:  toggle-code
+```{code-cell} python
+:tags:  [hide-input]
 
 fig = venn_operations('complement')
-plt.show()
+fig
 ```
+````{customfigure}
+:name: fig_venn-complement
 
 Il diagramma di Venn che illustra il complemento di un insieme $S$.
 ````

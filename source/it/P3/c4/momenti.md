@@ -9,11 +9,11 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:momenti)=
+(sec_momenti)=
 # Momenti
 
 ````{prf:theorem}
-:label: teo:mgf-method
+:label: teo-mgf-method
 
 Siano date $n$ variabili aleatorie $X_1, \dots, X_n$ tra loro indipendenti e
 ciascuna avente la stessa distribuzione di una variabile aleatoria $X$, della
@@ -43,7 +43,7 @@ $X_1, \dots, X_n$.
 ````
 
 ````{prf:theorem}
-:label: teo:central-moments
+:label: teo-central-moments
 Data una variabile aleatoria $X$ tale con valore atteso finito
 $\mathbb E(X) = \mu$, posto $Y \triangleq X - \mu$ si ha
 

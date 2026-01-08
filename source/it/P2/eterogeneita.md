@@ -9,7 +9,16 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:eterogeneita)=
+```{code-cell} python
+:tags: [remove-cell]
+
+import matplotlib.pyplot as plt
+plt.style.use('../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+(sec_eterogeneita)=
 # Indici di eterogeneità
 Nel caso di variabili qualitative nominali la varianza e gli altri indici da
 essa derivati non si possono calcolare (infatti non sono calcolabili la media
@@ -56,7 +65,7 @@ nel caso di due valori distinti $v_1$ e $v_2$, di cui indicheremo
 rispettivamente con $f$ e $1-f$ le frequenze relative.
 
 
-```{code-block} python
+```{code-cell} python
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -86,7 +95,7 @@ sulla serie delle frequenze il metodo `map` e poi sommare i valori ottenuti e
 sottrarre da 1 il risultato.
 
 
-```{code-block} python
+```{code-cell} python
 def gini(series):
     return 1 - (sum(series.value_counts(normalize=True)
                     .map(lambda f: f**2)))
@@ -98,7 +107,7 @@ valori assunti dagli attributi _Publisher_ (limitatamente a `'Marvel Comics'` e
   i valori mancanti) e per i nomi dei supereroi (ottenuti a partire dall'indice
   del _dataframe_).
 
-```{code-block} python
+```{code-cell} python
 import pandas as pd
 
 heroes = pd.read_csv('data/heroes.csv', index_col=0)
@@ -122,7 +131,7 @@ si tratta di un risultato che ci potevamo aspettare, in quanto è ragionevole
 supporre che i valori assunti dal nome siano univoci. Per avere un quadro più
 preciso, calcoliamo anche la variante normalizzata dell'indice:
 
-```{code-block} python
+```{code-cell} python
 def generalized_gini(series):
     freq = series.value_counts(normalize=True)
     s = len(freq)
@@ -150,7 +159,7 @@ La funzione $p \mapsto \log \frac{1}{p}$ è detta _autoinformazione_, e il suo
 andamento in $(0,1]$ è il seguente
 
 
-```{code-block} python
+```{code-cell} python
 x = np.arange(0.01, 1.01, 0.01)
 y = list(map(lambda f: -1 * np.log2(f), x))
 plt.plot(x, y)
@@ -162,7 +171,7 @@ tende a $0$. Il grafico dell'andamento di un generico addendo dell'entropia è
 il seguente.
 
 
-```{code-block} python
+```{code-cell} python
 x = np.arange(0.001, 1.01, 0.01)
 y = list(map(lambda f: -f * np.log2(f), x))
 plt.plot(x, y)
@@ -199,7 +208,7 @@ l'andamento dell'entropia nel caso di due valori possibili, mettendo in
 evidenza che anche questo indice tende ad aumentare all'aumentare
 dell'eterogeneità e a diminuire al diminuire di quest'ultima.
 
-```{code-block} python
+```{code-cell} python
 def entropy_2_val(f):
     return 0 if f in (0, 1) else - f * np.log2(f) - (1-f) * np.log2(1-f)
 
@@ -214,7 +223,7 @@ Calcolando il valore dell'entropia per gli attributi precedentemente
 considerati si verifica come non cambi il loro rapporto relativo in termini di
 eterogeneità.
 
-```{code-block} python
+```{code-cell} python
 def entropy(series):
     return sum((series.value_counts(normalize=True)
                       .map(lambda f: -f * np.log2(f))))
@@ -227,7 +236,7 @@ print(entropy(heroes.index))
 
 Come nel caso precedente, calcoliamo anche la variante normalizzata dell'indice.
 
-```{code-block} python
+```{code-cell} python
 def entropy(series, normalized=False):
     freq = series.value_counts(normalize=True)
     e = sum((freq.map(lambda f: -f * np.log2(f))))
@@ -269,7 +278,7 @@ viene richiesto di valutare se l'umidità abbia o meno un valore inferiore a 30;
 nel primo caso si potrebbe uscire, altrimenti no. Il processo di
 classificazione funziona in modo analogo nel caso di tempo piovoso (_rain_).
 
-![Esempio di albero di decisione](https://miro.medium.com/max/1400/0*PB7MYQfzyaLaTp1n)
+![Esempio di albero di decisione](../../_static/img/dt-example.png)
 
 La costruzione di un albero di ricerca richiede innanzitutto di individuare un
 indice di eterogeneità. Facciamo un esempio selezioniamo l'indice di Gini e
@@ -286,7 +295,7 @@ numero relativamente basso di supereroi e supercattivi (la scelta è stata
   fatta anche in modo da non avere a che fare con valori mancanti, che
   avrebbero complicato il processo di calcolo dell'albero).
 
-```{code-block} python
+```{code-cell} python
 good_guys = heroes.loc[['Wonder Woman',
                         'Aquaman',
                         'Cyborg',
@@ -295,7 +304,7 @@ bad_guys = heroes.loc[['Black Manta',
                        'The Penguin',
                        'Joker',
                        'Deathstroke',
-                       'Bizarro']]
+                       'Magneto']]
 all_guys = pd.concat([good_guys, bad_guys])
 ```
 
@@ -304,7 +313,7 @@ peso, genere, anno di prima apparizione, colore di occhi e capelli, forza e
 intelligenza, in quanto i rimanenti attributi sono o identici per tutti i casi
 selezionati o rappresentano valori univoci.
 
-```{code-block} python
+```{code-cell} python
 features = ['height', 'weight', 'creator', 'first_appearance',
             'hair_color', 'eye_color', 'strength', 'intelligence']
 X = all_guys[features]
@@ -312,7 +321,7 @@ X = all_guys[features]
 
 Il risultato, memorizzato in `X`, è visualizzato qui sotto.
 
-```{code-block} python
+```{code-cell} python
 X
 ```
 
@@ -325,7 +334,7 @@ quali il primo contiene tante copie dell'etichetta `good_guy` quanti sono i
 supereroi e il secondo è costruito in modo analogo ma considerando i
 supercattivi.
 
-```{code-block} python
+```{code-cell} python
 Y = pd.concat([pd.DataFrame(['good guy'] * len(good_guys),
                             index=good_guys.index),
                pd.DataFrame(['bad guy'] * len(bad_guys),
@@ -340,8 +349,8 @@ Consideriamo, per esempio, una condizione che valuti se l'attributo _Strength_
 assume un valore minore o uguale a 40 e visualizziamo le etichette delle
 osservazioni che soddisfano tale condizione.
 
-```{code-block} python
-Y[X['strength'] <= 40]
+```{code-cell} python
+Y[X['strength'] <= 20]
 ```
 
 Il risultato è molto interessante in quanto le etichette sono tutte uguali, e
@@ -350,8 +359,8 @@ i casi come `bad_guy`. Le cose cambiano, sebbene poco, se consideriamo le
 osservazioni che non soddisfano la condizione.
 
 
-```{code-block} python
-Y[X['strength'] > 40]
+```{code-cell} python
+Y[X['strength'] > 20]
 ```
 
 In questo caso infatti vi è un solo caso di `bad_guy` e tutte le osservazioni
@@ -368,8 +377,8 @@ Gini. Per esempio, concentrandosi sul gruppo di casi per cui la forza è minore
 o uguale a 40 e ragionando in termini della frequenza di `'bad guy'` si
 otterrebbe il risultato seguente.
 
-```{code-block} python
-freq = Y[X['strength'] <= 40][0].value_counts(normalize=True)
+```{code-cell} python
+freq = Y[X['strength'] <= 20][0].value_counts(normalize=True)
 freq_bad = freq['bad guy']
 gini_left = gini_2_val(freq_bad)
 gini_left
@@ -378,8 +387,8 @@ gini_left
 Il valore dell'indice per il rimanente gruppo di casi si ottiene in modo
 analogo.
 
-```{code-block} python
-freq = Y[X['strength'] > 40][0].value_counts(normalize=True)
+```{code-cell} python
+freq = Y[X['strength'] > 20][0].value_counts(normalize=True)
 freq_bad = freq['bad guy']
 gini_right = gini_2_val(freq_bad)
 gini_right
@@ -389,9 +398,9 @@ Per combinare insieme i due indici al fine di esprimere in un unico valore
 l'omogeneità media dei casi suddivisi nei sottogruppi si calcola una loro
 media, pesata in funzione della numerosità dei sottogruppi stessi.
 
-```{code-block} python
-weight_left = len(Y[X['strength'] <= 40]) / len(Y)
-weight_right = len(Y[X['strength'] > 40]) / len(Y)
+```{code-cell} python
+weight_left = len(Y[X['strength'] <= 20]) / len(Y)
+weight_right = len(Y[X['strength'] > 20]) / len(Y)
 gini_left * weight_left + gini_right * weight_right
 ```
 
@@ -404,14 +413,14 @@ quindi corrisponde al caso di migliore omogeneità). Attrezziamoci per
 effettuare questo calcolo indipendentemente dalla scelta dell'attributo, del
 valore di soglia e dell'indice di eterogeneità.
 
-```{code-block} python
+```{code-cell} python
 def split_value(attribute, value, index):
     freq = (Y[X[attribute] <= value])[0].value_counts(normalize=True)
-    freq_bad = freq['bad guy']
+    freq_bad = freq['bad guy'] if 'bad guy' in freq else 0
     index_left = index(freq_bad)
     weight_left = len(Y[X[attribute] <= value]) / len(Y)
     freq = (Y[X[attribute] > value])[0].value_counts(normalize=True)
-    freq_bad = freq['bad guy']
+    freq_bad = freq['bad guy'] if 'bad guy' in freq else 0
     index_right = index(freq_bad)
     weight_right = len(Y[X[attribute] > value]) / len(Y)
     return index_left * weight_left + index_right * weight_right
@@ -421,14 +430,14 @@ Ovviamente utilizzando la funzione `split_value` otteniamo lo stesso risultato
 se riconsideriamo una suddivisione in gruppi basata sulla soglia 40 per la
 forza.
 
-```{code-block} python
-split_value('strength', 40, gini_2_val)
+```{code-cell} python
+split_value('strength', 20, gini_2_val)
 ```
 
 Ora siamo però in grado di effettuare in modo automatico lo stesso calcolo al
 variare dei possibili valori per la soglia.
 
-```{code-block} python
+```{code-cell} python
 x_vals = range(10, 90)
 
 plt.plot(x_vals,
@@ -441,7 +450,7 @@ I risultati ottenuti ci dicono che un qualsiasi valore tra 30 e 49 massimizza
 l'omogeneità dei due sottogruppi generati. Avremmo ottenuto un risultato simile
 se come indice di eterogeneità avessimo utilizzato l'entropia.
 
-```{code-block} python
+```{code-cell} python
 plt.plot(x_vals,
          list(map(lambda v: split_value('strength', v, entropy_2_val),
                   x_vals)))
@@ -462,11 +471,11 @@ classe `LabelEncoder`, che una volta creati generano automaticamente il mapping
 tra etichette e valori numerici utilizzando il metodo `fit` a cui viene passato
 l'insieme delle osservazioni da convertire.
 
-```{code-block} python
+```{code-cell} python
 from sklearn.preprocessing import LabelEncoder
 
-gender_encoder = LabelEncoder()
-gender_encoder.fit(all_guys['creator'])
+creator_encoder = LabelEncoder()
+creator_encoder.fit(all_guys['creator'])
 
 eye_col_encoder = LabelEncoder()
 eye_col_encoder.fit(all_guys['eye_color'])
@@ -481,8 +490,8 @@ _ = intelligence_encoder.fit(all_guys['intelligence'])
 Una volta determinato questo mapping, il metodo `transform` lo utilizza per
 convertire la serie corrispondente.
 
-```{code-block} python
-all_guys['creator'] = gender_encoder.transform(all_guys['creator'])
+```{code-cell} python
+all_guys['creator'] = creator_encoder.transform(all_guys['creator'])
 all_guys['eye_color'] = eye_col_encoder.transform(all_guys['eye_color'])
 all_guys['hair_color'] = hair_col_encoder.transform(all_guys['hair_color'])
 all_guys['intelligence'] = intelligence_encoder.transform(all_guys['intelligence'])
@@ -498,7 +507,7 @@ _aggiungere_ a un _dataframe_ esistente una o più colonne.
 Possiamo ora visualizzare il nuovo _dataframe_, ora composto solo da valori
 numerici, limitatamente agli attributi cui siamo interessati.
 
-```{code-block} python
+```{code-cell} python
 X = all_guys[features]
 X
 ```
@@ -509,7 +518,7 @@ al metodo `fit` i _dataframe_ che descrivono rispettivamente i supereroi e le
 loro etichette.
 
 
-```{code-block} python
+```{code-cell} python
 from sklearn import tree
 
 clf = tree.DecisionTreeClassifier()
@@ -520,7 +529,7 @@ Una volta costruito, sull'oggetto corrispondente all'albero è possibile
 invocare il metodo `predict` per verificare quale etichetta venga associata
 agli oggetti di partenza.
 
-```{code-block} python
+```{code-cell} python
 predictions = clf.predict([X.loc[name] for name in X.index])
 predictions
 ```
@@ -528,40 +537,25 @@ predictions
 È inoltre possibile visualizzare l'albero di decisione in forma grafica,
 utilizzando la libreria `graphviz`.
 
-```{code-block} python
+```{code-cell} python
 import graphviz
 
-graphviz.Source(tree.export_graphviz(clf, out_file=None,
-                                    class_names=['bad guy', 'good guy'],
-                                    feature_names=features))
-```
+dot_data = tree.export_graphviz(clf, out_file=None,
+                                class_names=['bad guy', 'good guy'],
+                                feature_names=features)
+dot_data = dot_data.replace('digraph Tree {',
+                           'digraph Tree {\nbgcolor="#eaf3f5";')
+graphviz.Source(dot_data)
 
-
-
-```{code-block} python
-import graphviz
-from js import document
-
-dot = tree.export_graphviz(
-    clf, out_file=None,
-    class_names=['bad guy', 'good guy'],
-    feature_names=features
-)
-
-viz = js.Viz.new()
-svg_code = viz.renderString(dot).to_py()
-
-container = document.getElementById("graph-output")
-container.innerHTML = svg_code
-```
-```{raw} html
-<div id="graph-output"></div>
 ```
 
 
 
 
-```{code-block} python
+
+
+
+```{code-cell} python
 pd.DataFrame(np.array((X.index, Y[0], predictions)))
 ```
 
@@ -571,10 +565,10 @@ far questo è però necessario tradurre i valori categorici in numeri,
 riutilizzando i `LabelEncoder` precedentemente preparati. Per comodità,
 costruiamo una funzione che si occupi di effettuare questa trasformazione.
 
-```{code-block} python
+```{code-cell} python
 def filter(obj):
-    transformed_obj = obj['height':'intelligence']
-    transformed_obj['creator'] = gender_encoder.transform([transformed_obj['creator']])[0]
+    transformed_obj = obj[features]
+    transformed_obj['creator'] = creator_encoder.transform([transformed_obj['creator']])[0]
     transformed_obj['eye_color'] = eye_col_encoder.transform([transformed_obj['eye_color']])[0]
     transformed_obj['hair_color'] = hair_col_encoder.transform([transformed_obj['hair_color']])[0]
     transformed_obj['intelligence'] = intelligence_encoder.transform([transformed_obj['intelligence']])[0]
@@ -584,7 +578,7 @@ def filter(obj):
 Possiamo quindi trasformare, per esempio, un supereroe e verificare a quale
 etichetta esso viene associato.
 
-```{code-block} python
+```{code-cell} python
 clf.predict([filter(heroes.loc['Professor X'])])
 ```
 
@@ -605,10 +599,14 @@ si ottiene con l'indice di Gini. Per il nostro esempio, l'unica differenza
 risiede nel nodo di scelta al di sotto della radice, che sarebbe basato
 sull'attributo "Intelligence" invece che su "Eye color".
 
-```{code-block} python
+```{code-cell} python
 clf = tree.DecisionTreeClassifier(criterion='entropy')
 clf = clf.fit(X, Y)
-graphviz.Source(tree.export_graphviz(clf, out_file=None,
-                                     class_names=['bad guy', 'good guy'],
-                                     feature_names=features))
+
+dot_data = tree.export_graphviz(clf, out_file=None,
+                                class_names=['bad guy', 'good guy'],
+                                feature_names=features)
+dot_data = dot_data.replace('digraph Tree {',
+                           'digraph Tree {\nbgcolor="#eaf3f5";')
+graphviz.Source(dot_data)
 ```

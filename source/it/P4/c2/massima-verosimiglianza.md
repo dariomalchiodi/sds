@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:massima-verosimiglianza)=
+(sec_massima-verosimiglianza)=
 # Il metodo della massima verosimiglianza
 
 AGGIUNGERE

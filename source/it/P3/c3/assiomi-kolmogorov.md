@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:assiomi-kolmogorov)=
+(sec_assiomi-kolmogorov)=
 # Assiomi di Kolmogorov 
 
 ````{prf:definition} Assiomi di Kolmogorov

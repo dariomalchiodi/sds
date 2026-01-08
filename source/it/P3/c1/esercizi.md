@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:esercizi-combinatorica)=
+(sec_esercizi-combinatorica)=
 # Esercizi
 
 ```{exercise} •

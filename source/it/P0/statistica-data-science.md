@@ -9,11 +9,11 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:statistica-data-science)=
+(sec_statistica-data-science)=
 # Statistica, data science e altre etichette
 
 In passato, molti dati venivano considerati un sottoprodotto di procedure
-operative&mdash;talvolta informatizzate&mdash;destinati principalmente
+operative &mdash; talvolta informatizzate &mdash; destinati principalmente
 all’archiviazione e raramente riutilizzati. L’idea che i dati siano una risorsa
 strategica in quasi ogni ambito della conoscenza umana si è affermata solo
 negli ultimi vent'anni. Oggi è pienamente riconosciuto il fatto che, se
@@ -33,15 +33,15 @@ Eppure, alcuni esempi notevoli mostrano che un approccio _data-driven_ esisteva
 già versp la fine del XIX secolo, ben prima che questo termine venisse coniato.
 Uno dei più noti risale al 1854, durante un'epidemia di colera a Londra. Il
 medico John Snow, convinto che la malattia non si trasmettesse per via
-aerea&mdash;mentre i medici dell'epoca la facevano risalire a _miasmi_, o ad
-_aria cattiva_&mdash; decise di raccogliere prove a sostegno di un'ipotesi
+aerea &mdash; mentre i medici dell'epoca la facevano risalire a _miasmi_, o ad
+_aria cattiva_ &mdash; decise di raccogliere prove a sostegno di un'ipotesi
 diversa: la contaminazione dell'acqua. Per farlo, sovrappose alla mappa del
 quartiere di Soho il numero di contagi registrati in ciascuna
 casa[^cartografia]. Il risultato, visibile in {numref}`john-snow`, evidenziava
 che i casi erano concentrati nelle vicinanze di una pompa d'acqua situata in
 Broad Street. Per rafforzare la sua tesi, Snow osservò che i ù birrai, che
-bevevano più birra che acqua&mdash;e quindi consumavano un prodotto
-pastorizzato&mdash; risultavano meno colpiti dalla malattia. Grazie a queste
+bevevano più birra che acqua &mdash; e quindi consumavano un prodotto
+pastorizzato &mdash; risultavano meno colpiti dalla malattia. Grazie a queste
 evidenze, convinse le autorità a disattivare la pompa, contribuendo così a
 contenere l'epidemia.
 
@@ -97,8 +97,8 @@ Fonte: {extlink}`Wikimedia Commons
 
 I casi di Snow e Nightingale mostrano bene un approccio descrittivo all'analisi
 dei dati: raccogliere presentare le informazioni in modo accurato permette di
-mettere in luce aspetti rilevanti di un fenomeno&mdash;in questi esempi, le
-cause dei contagi di colera e delle morti tra i soldati&mdash;e fornire basi
+mettere in luce aspetti rilevanti di un fenomeno &mdash; in questi esempi, le
+cause dei contagi di colera e delle morti tra i soldati &mdash; e fornire basi
 solide per decisioni informate. A partire dalla fine del XIX secolo, però, la
 statistica comincia anche a svilupparsi sul piano teorico e quantitativo. Senza
 alcuna pretesa di esaustione, cito due figure fondamentali: Ronald A. Fisher,
@@ -110,7 +110,7 @@ Gossett pubblicò i suoi risultati con lo pseudonimo «Student», per evitare ch
 i concorrenti del suo datore di lavoro scoprissero i metodi innovativi usati in
 fabbrica.
 
-Con l’avvento dei computer, a partire dagli anni '40, ci si è presto accorti
+Con l’avvento dei computer, a partire dagli anni ’40, ci si è presto accorti
 che non solo era possibile usarli per meccanizzare delle operazioni, ma anche
 per generare e conservare grandi quantità di dati. Col passare del tempo e lo
 sviluppo delle tecnologie collegate, la potenza di calcolo è aumentata, i costi
@@ -129,8 +129,8 @@ concetti propri dell'informatica, oltre a conoscere almeno le basi della
 statistica e della matematica. Tuttavia, queste figure restano distinte: chi
 opera in informatica non coincide quasi mai con chi invece si occupa di
 statistica o matematica, e viceversa. Per esempio, esistono aree
-dell’informatica&mdash;come lo sviluppo di sistemi operativi o di applicazioni
-per _smartphone_ e dispositivi mobili&mdash;che possono essere tranquillamente
+dell’informatica &mdash; come lo sviluppo di sistemi operativi o di applicazioni
+per _smartphone_ e dispositivi mobili &mdash; che possono essere tranquillamente
 ignorate in ambiti tipici della matematica, della statistica o della data
 science. Allo stesso modo, nel contesto informatico difficilmente ci si spinge
 in campi come la topologia o la verifica d'ipotesi.
@@ -148,13 +148,13 @@ trattamento separato rispetto ai temi affrontati nel testo.
 
 Questo libro si propone di trattare argomenti che spaziano dalla programmazione
 all’analisi dei dati, passando per la probabilità e la statistica. Una
-combinazione impegnativa, ma coerente con il percorso formativo &mdash;spesso
-frammentato&mdash;di chi studia informatica. Leggerlo (e, _ça va sans dire_,
+combinazione impegnativa, ma coerente con il percorso formativo &mdash; spesso
+frammentato &mdash; di chi studia informatica. Leggerlo (e, _ça va sans dire_,
 comprenderne i contenuti) non vi trasformerà in _data scientist_, né in persone
 esperte di statistica o matematica. E, a voler essere precisi, nemmeno di
 informatica o di intelligenza artificiale. Ma vi fornirà una base solida, uno
 dei mattoni fondamentali per acquisire una conoscenza il più possibile completa
-dell'informatica, con la conseguente autonomia professionale&mdash;insomma,
+dell'informatica, con la conseguente autonomia professionale &mdash; insomma,
 sviluppare competenze che faranno di voi persone da prendere sul serio. In ogni
 caso, mi preme sottolineare che, alla fine, ciò che conta non è l’etichetta
 professionale che ci viene attribuita, ma ciò che sappiamo fare bene.

@@ -9,5 +9,5 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:errore-stima)=
+(sec_errore-stima)=
 # Errore di una stima

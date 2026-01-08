@@ -9,5 +9,5 @@ kernelspec:
   display_name: Python 3
 ---
 
-(chap:calcolo-probabilita)=
+(chap_calcolo-probabilita)=
 # Calcolo delle probabilità

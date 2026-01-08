@@ -9,11 +9,11 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:valore-atteso)=
+(sec_valore-atteso)=
 # Valore atteso
 
 ````{prf:definition} Valore atteso di una variabile aleatoria discreta
-:label: def:valore-atteso-discreto
+:label: def-valore-atteso-discreto
 
 ...
 ````

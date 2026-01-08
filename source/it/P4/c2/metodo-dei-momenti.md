@@ -9,5 +9,5 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:metodo-momenti)=
+(sec_metodo-momenti)=
 # Metodo dei momenti

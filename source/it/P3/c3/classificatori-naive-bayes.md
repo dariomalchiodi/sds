@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:naive-bayes)=
+(sec_naive-bayes)=
 # Classificatori naive Bayes
 
 Una semplice applicazione del teorema di Bayes permette di costruire un
@@ -75,7 +75,7 @@ disposizione. In particolare,
 Attrezziamoci quindi per poter calcolare queste frequenze, caricando il dataset
 e importando le librerie che utilizzeremo.
 
-```{code-block} python
+```{code-cell} python
 import pandas as pd
 import numpy as np
 
@@ -86,7 +86,7 @@ Possiamo ora approssimare la probabilità dell'evento $M$ come la frequenza
 relativa del medesimo evento sul dataset, e quindi calcolando il rapporto tra
 il numero di supereroi Marvel e il totale dei supereroi.
 
-```{code-block} python
+```{code-cell} python
 marvel_heroes = heroes[heroes['creator']=='Marvel Comics']
 p_marvel = len(marvel_heroes) / len(heroes)
 p_marvel
@@ -95,7 +95,7 @@ p_marvel
 Allo stesso modo, la probabilità $\mathbb P(N)$ si approssima facilmente
 calcolando la frazione di supereroi del dataset che hanno gli occhi neri.
 
-```{code-block} python
+```{code-cell} python
 black_eyes_heroes = heroes[heroes['eye_color']=='Black']
 p_blackeyes = len(black_eyes_heroes) / len(heroes)
 p_blackeyes
@@ -105,7 +105,7 @@ Infine, una stima della probabilità $\mathbb P(N \mid M)$ si ottiene dividendo 
 numero di supereroi Marvel che hanno gli occhi neri per il numero totale di
 supereroi Marvel.
 
-```{code-block} python
+```{code-cell} python
 blackeyes_and_marvel_heroes = heroes[(heroes['creator']=='Marvel Comics') & \
                                      (heroes['eye_color']=='Black')]
 
@@ -117,7 +117,7 @@ Applicando il teorema di Bayes si ottiene quindi che la probabilità di trovarsi
 di fronte a un supereroe Marvel, dato che questo ha gli occhi neri, può essere
 approssimata come segue.
 
-```{code-block} python
+```{code-cell} python
 p_blackeyes_given_marvel * p_marvel / p_blackeyes
 ```
 
@@ -126,7 +126,7 @@ supereroi **non** Marvel. Ovviamente avremmo ottenuto un risultato coerente se
 avessimo applicato lo stesso procedimento per stimare la probabilità
 $\mathrm(\overline M \mid N)$.
 
-```{code-block} python
+```{code-cell} python
 nonmarvel_heroes = heroes[heroes['creator']!='Marvel Comics']
 blackeyes_and_nonmarvel_heroes = heroes[(heroes['creator']!='Marvel Comics') & \
                                         (heroes['eye_color']=='Black')]
@@ -183,7 +183,7 @@ seguente quelle mancanti sono derivate in modo analogo, ottenendo come
 risultato una bassa probabilità di avere a che fare con un supereroe Marvel se
 i suoi occhi e i suoi capelli sono neri.
 
-```{code-block} python
+```{code-cell} python
 black_eyes_and_hair_heroes = heroes[(heroes['eye_color']=='Black') & \
                                     (heroes['hair_color']=='Black')]
 
@@ -260,7 +260,7 @@ direttamente un classificatore a partire dai dati iniziali. Per esemplificarne
 il funzionamento, estraiamo dal nostro dataset alcune colonne ed eliminiamo
 tutte le righe in cui occorre almeno un valore mancante.
 
-```{code-block} python
+```{code-cell} python
 features = ['height', 'weight', 'first_appearance',
             'hair_color', 'eye_color', 'strength', 'intelligence']
 heroes_cleaned = heroes.dropna()
@@ -280,7 +280,7 @@ operazione viene effettuata automaticamente dalla funzione `pd.qcut`, a cui
 passiamo le osservazioni, il numero di intervalli da considerare e i valori
 numerici da associare a questi ultimi.
 
-```{code-block} python
+```{code-cell} python
 from sklearn.preprocessing import LabelEncoder
 
 hair_encoder = LabelEncoder()
@@ -302,7 +302,7 @@ considerata: anche in questo caso è necessario lavorare con valori numerici,
 quindi costruiamo una serie i cui valori sono `1` in corrispondenza dei
 supereroi Marvel e `0` per tutti gli altri casi.
 
-```{code-block} python
+```{code-cell} python
 Y = (heroes_cleaned['creator']=='Marvel Comics')
 ```
 
@@ -321,7 +321,7 @@ classificatore è necessario utilizzare dati non utilizzati per costruire il
 classificatore stesso, per semplicità limitiamoci a verificare che cosa succeda
 con le osservazioni in `X`.
 
-```{code-block} python
+```{code-cell} python
 from sklearn.naive_bayes import GaussianNB
 
 model = GaussianNB()
@@ -334,11 +334,11 @@ Il risultato non pare molto confortante, in quanto quasi tutti i casi vengono
 associati alla Marvel. Per analizzare meglio i risultati, vediamo separatamente
 come vengono classificati i supereroi delle due classi.
 
-```{code-block} python
+```{code-cell} python
 model.predict(X[Y==0])
 ```
 
-```{code-block} python
+```{code-cell} python
 model.predict(X[Y==1])
 ```
 
@@ -347,7 +347,7 @@ veri positivi, falsi positivi, falsi negativi e veri negativi. È anche
 possibile costruire un dataframe che contenga la corrispondente matrice di
 confusione.
 
-```{code-block} python
+```{code-cell} python
 tp = sum(model.predict(X[Y==1]))
 fn = len(model.predict(X[Y==1])) - tp
 fp = sum(model.predict(X[Y==0]))
@@ -363,7 +363,7 @@ performance molto bassa per quel che riguarda i rimanenti supereroi. Volendo
 riassumere in un unico indice la bontà del risultato ottenuto è possibile
 calcolare la percentuale di dati corretti.
 
-```{code-block} python
+```{code-cell} python
 (tp + tn) / len(X)
 ```
 

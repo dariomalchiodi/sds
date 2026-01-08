@@ -9,7 +9,16 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:modello-uniforme-discreto)=
+```{code-cell} python
+:tags: [remove-cell]
+
+import matplotlib.pyplot as plt
+plt.style.use('../../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+(sec_modello-uniforme-discreto)=
 # Le distribuzioni uniformi discrete
 
 Dopo quello di Bernoulli, l'esperimento casuale più semplice è molto
@@ -25,7 +34,7 @@ partendo da $1$, è caratterizzata da una distribuzione appartenente alla
 famiglia _uniforme discreta_, definita qui di seguito.
 
 ````{prf:definition}
-:label: def:disc-unif-distribution
+:label: def-disc-unif-distribution
 
 Fissato $n \in \mathbb N$, la distribuzione _uniforme discreta_ di parametro
 $n$ è definita dalla funzione di massa di probabilità
@@ -47,7 +56,7 @@ la funzione di ripartizione aumenta in modo costante, tenendo conto del suo
 andamento costante a tratti.
 
 ````{prf:theorem}
-:label: teo:disc-unif-cdf
+:label: teo-disc-unif-cdf
 
 Datpo $n \in \mathbb N$, la funzione di ripartizione di una variabile
 aleatoria $X \sim \mathrm U(n)$ è tale che
@@ -87,7 +96,7 @@ uniforme discreta si calcolano in modo abbastanza semplice, sfruttando alcune
 sommatorie notevoli.
 
 ````{prf:theorem}
-:label: teo:unif-disc-expected-value
+:label: teo-unif-disc-expected-value
 
 Dato $n \in \mathbb N$ e una variabile aleatoria $X \sim \mathrm U(n)$,
 
@@ -108,13 +117,13 @@ Applicando la definizione di valore atteso si ha
              = \frac{n+1}{2} \enspace,
 ```
 
-dove il penultimo passaggio sfrutta la formula nota {eq}`eq:sum-pow-1`.
+dove il penultimo passaggio sfrutta la formula nota {eq}`eq_sum-pow-1`.
 ````
 
 In modo analogo si calcola anche la varianza di questa distribuzione.
 
 ````{prf:theorem}
-:label: teo:unif-disc-var
+:label: teo-unif-disc-var
 
 Dato $n \in \mathbb N$ e una variabile aleatoria $X \sim \mathrm U(n)$,
 
@@ -135,8 +144,8 @@ Il momento secondo si calcola in modo analogo al valore atteso:
                             = \frac{(n+1)(2n + 1)}{6} \enspace,
 ```
 
-dove il penultimo passaggio si basa sull'applicazione di {eq}`eq:sum-pow-2`.
-Applicando a questo punto {eq}`eq:var-alternative` si ottiene
+dove il penultimo passaggio si basa sull'applicazione di {eq}`eq_sum-pow-2`.
+Applicando a questo punto {eq}`eq_var-alternative` si ottiene
 
 ```{math}
 \begin{align*}
@@ -154,72 +163,79 @@ da cui si ottiene la tesi.
 Come nel caso delle altre distribuzioni discrete, i grafici delle funzioni
 di massa di probabilità e di ripartizione corrispondono rispettivamente a
 un grafico a bastoncini e alla visualizzazione di una funzione costante a
-tratti, come mostrato in {numref}`fig:discrete-uniform-pdf-cdf`.
+tratti, come mostrato in {numref}`fig_discrete-uniform-pdf-cdf`.
 Anche in questo caso, è possibile modificare il
 valore di $n$ per visualizzare come cambiano questi due grafici.
 
 ````{customfigure}
-:name: fig:discrete-uniform-pdf-cdf
+:name: fig_discrete-uniform-pdf-cdf
+:class: left-align
 
-```{code-block} python
-:class: toggle-code
+```{interactive-code} python
+:tags: [toggle-code] 
 
+import matplotlib.pyplot as plt
 import numpy as np
-from js import document
-from pyodide.ffi import create_proxy
-import io
-import base64
+from pyscript import display
+from pyscript.web import page, when
 
-def discrete_uniform_pdf_cdf(n):
-    fig, ax = plt.subplots()
-    ax.hlines(np.arange(0, 1.01, 1/n),
-           [-1] + list(np.arange(1, n)) + [n],
-           list(np.arange(1, n+1)) + [20])
 
-    ax.vlines(np.arange(1, n+1), 0, [1/n] * n, color='k')
-    ax.plot(np.arange(1, n+1), [1/n] * n, 'o', color='k')
+n_1 = int(page['#n'][0].value)
 
-    ax.set_title(f'n = {n}')
-    ax.set_xlim(-1, 21)
-    ax.set_ylim(0, 1)
+x_1 = np.arange(1, n_1 + 1)
+y_1 = np.ones(n_1) / n_1
+cdf_1 = y_1.cumsum()
 
-    # Manual rendering to avoid MathJax processing
-    img_buffer = io.BytesIO()
-    fig.savefig(img_buffer, format='png', bbox_inches='tight', dpi=100)
-    img_buffer.seek(0)
-    img_base64 = base64.b64encode(img_buffer.getvalue()).decode('utf-8')
-    img_buffer.close()
+fig_1, ax_1 = plt.subplots()
+
+cdf_y = [0] + list(cdf_1)
+cdf_xmin = list(range(0, n_1 + 1))
+cdf_xmax = list(range(1, n_1 + 1)) + [20]
+cdf = ax_1.hlines(cdf_y, cdf_xmin, cdf_xmax)
+pmf_lines = ax_1.vlines(x_1, 0, y_1, color='k')
+pmf_dots = ax_1.plot(x_1, y_1, 'o')[0]
+
+ax_1.set_xlabel('$x$', fontsize=12, ha='right')
+ax_1.set_ylabel('$f, F$', fontsize=12, rotation=0)
+ax_1.set_xlim(-1, 21)
+ax_1.set_ylim(0, 1.1)
+ax_1.set_xticks(range(0, 21, 2))
+
+@when("input", "#n")
+def uniform_plot(event):
+    n_1 = int(page['#n'][0].value)
+    page['#n-value'][0].innerHTML = f'{n_1}'
+
+    x_1 = np.arange(1, n_1 + 1)
+    y_1 = np.ones(n_1) / n_1
+    cdf_1 = y_1.cumsum()
+
+    cdf_y = [0] + list(cdf_1)
+    cdf_xmin = list(range(0, n_1 + 1))
+    cdf_xmax = list(range(1, n_1 + 1)) + [20]
+    cdf_segments = [[[xmin, y_val], [xmax, y_val]] 
+                    for y_val, xmin, xmax in zip(cdf_y, cdf_xmin, cdf_xmax)]
+
+    cdf.set_segments(cdf_segments)
     
-    # Display in protected div
-    img_html = '<div class="no-mathjax"><img src="data:image/png;base64,' + \
-               img_base64 + '" style="max-width: 100%; height: auto;" /></div>'
-    Element("pdf-cdf-output").write(img_html)
+    # Update PMF vertical lines
+    pmf_segments = [[[xi, 0], [xi, yi]] for xi, yi in zip(x_1, y_1)]
+    pmf_lines.set_segments(pmf_segments)
+
+    pmf_dots.set_data(x_1, y_1)
     
-    plt.close(fig)
+    display(fig_1, target='graph-%this%', append=False)
 
-def update_plot(event=None):
-    n = int(document.getElementById("n-slider").value)
-    document.getElementById("n-value").innerText = f"{n:d}"
-    discrete_uniform_pdf_cdf(n)
-
-n_slider = document.getElementById("n-slider")
-n_slider.addEventListener("input", create_proxy(update_plot))
-
-# Initial plot
-discrete_uniform_pdf_cdf(10)
+display(fig_1, target='graph-%this%', append=False)
 ```
 ```{raw} html
 
-<div id="plot-container" style="visibility: none;">
-    <div class="slider-container" style="float: left;">
-        <label for="n-slider">\( n \): </label>
-        <input type="range" id="n-slider"
-               min="2" max="20" value="10" step="1" />
+<div class="plot-container">
+    <div class="model-slider-container">
+        <label for="n">\( n \): </label>
+        <input type="range" id="n"
+               min="1" max="20" value="10" step="1" />
         <span id="n-value">10</span>
-    </div>
-
-    <div id="pdf-cdf-output" class="no-mathjax"
-            style="clear: both; display: flex; justify-content: center; margin-bottom: 2em;">
     </div>
 </div>
 ```
@@ -275,8 +291,8 @@ categoria di momenti si avrà quindi, per ogni $i \in \mathbb N$,
           = \frac{1}{n} \sum_{x=1}^n x^i \enspace,
 ```
 
-da cui segue immediatamente, ricordando le formule da {eq}`eq:sum-pow-1` a
-{eq}`eq:sum-pow-4`,
+da cui segue immediatamente, ricordando le formule da {eq}`eq_sum-pow-1` a
+{eq}`eq_sum-pow-4`,
 
 ```{math}
 \begin{align*}
@@ -343,17 +359,16 @@ uniformi discrete sono sempre bradicurtiche: se confrontate con una
 distribuzione normale di pari valore atteso e varianza, tendono a produrre meno
 valori fuori scala. Questa cosa è abbastanza ovvia, tenuto conto del fatto che,
 a differenza di quella normale, la distribuzione uniforme discreta ha un
-supporto finito. La figura {numref}`fig:discrete-uniform-sk-graph` mostra il
+supporto finito. La figura {numref}`fig_discrete-uniform-sk-graph` mostra il
 grafico skewness-curtosi per la famiglia delle distribuzioni uniformi discrete.
 
-````{customfigure}
-:name: fig:discrete-uniform-sk-graph
-
-```{code-block} python
-:class: toggle-code
-
+```{code-cell} python
+:tags: [remove-cell]
 import matplotlib.pyplot as plt
 import numpy as np
+```
+```{code-cell} python
+:tags: [hide-input]
 
 fig, ax = plt.subplots()
 
@@ -361,9 +376,11 @@ n = np.arange(2, 10)
 skewness = [0] * len(n)
 kurtosis = -6/5 * (n**2 + 1) / (n**2 - 1)
 
-plt.plot(skewness, kurtosis, 'o')
-plt.show()
+ax.plot(skewness, kurtosis, 'o')
+fig
 ```
+````{customfigure}
+:name: fig_discrete-uniform-sk-graph
 
 Grafico skewness-curtosi per il modello uniforme discreto.
 ````
@@ -405,16 +422,12 @@ x_q = \arg\min_x \left\{ \frac{\lfloor x \rfloor}{n} \geq \frac{i}{n}
 
 Riassumendo, $x_q = \lceil nq \rceil$ per ogni $q \in (1/n, 1]$, mentre in
 tutti gli altri casi il quantile non esiste. La
-{numref}`fig:discrete-uniform-bp-1` e la {numref}`fig:discrete-uniform-bp-2`
+{numref}`fig_discrete-uniform-bp-1` e la {numref}`fig_discrete-uniform-bp-2`
 illustrano i diagrammi a scatola per due distribuzioni uniformi discrete,
 rispettivamente di parametro $n = 40$ e $n = 10$.
 
-````{customfigure}
-:name: fig:discrete-uniform-bp-1
-
-```{code-block} python
-:class: toggle-code
-
+```{code-cell} python
+:tags: [hide-input]
 
 def unif_discr_quantile(q, n):
     if q < 1/n:
@@ -434,69 +447,70 @@ def unif_discr_bp(n):
     lw = 1
     height = 0.2
 
-    plt.plot([median, median], [-height, height], c='k', linewidth=1.5)
+    ax.plot([median, median], [-height, height], c='k', linewidth=1.5)
 
-    plt.plot([1, 1], [-.1, .1], c='k', linewidth=lw)
-    plt.plot([1, first_quartile], [0, 0], c='k', linewidth=lw)
+    ax.plot([1, 1], [-.1, .1], c='k', linewidth=lw)
+    ax.plot([1, first_quartile], [0, 0], c='k', linewidth=lw)
 
-    plt.plot([first_quartile, first_quartile], [-height, height],
+    ax.plot([first_quartile, first_quartile], [-height, height],
             c='k', linewidth=lw)
 
-    plt.plot([third_quartile, third_quartile], [-height, height],
+    ax.plot([third_quartile, third_quartile], [-height, height],
             c='k', linewidth=lw)
 
-    plt.plot([first_quartile, third_quartile], [height, height],
+    ax.plot([first_quartile, third_quartile], [height, height],
             c='k', linewidth=lw)
-    plt.plot([first_quartile, third_quartile], [-height, -height],
+    ax.plot([first_quartile, third_quartile], [-height, -height],
             c='k', linewidth=lw)
 
-    plt.plot([third_quartile, n], [0, 0], c='k', linewidth=lw)
-    plt.plot([n, n], [-.1, .1], c='k', linewidth=lw)
+    ax.plot([third_quartile, n], [0, 0], c='k', linewidth=lw)
+    ax.plot([n, n], [-.1, .1], c='k', linewidth=lw)
 
-    plt.text(1, -0.4, '1', ha='center')
-    plt.text(n, -0.4, f'{n}', ha='center')
+    ax.text(1, -0.4, '1', ha='center')
+    ax.text(n, -0.4, f'{n}', ha='center')
 
-    plt.text(median, -0.5,
+    ax.text(median, -0.5,
             f'{median}',
             ha='center')
 
-    plt.text(first_quartile, 0.4,
+    ax.text(first_quartile, 0.4,
             f'{first_quartile}',
             ha='center')
 
-    plt.text(third_quartile, 0.4,
+    ax.text(third_quartile, 0.4,
             f'{third_quartile}',
             ha='center')
 
-    plt.axis('off')
+    ax.axis('off')
     pad = .5
-    plt.xlim(0-pad, third_quartile*1.5+pad)
+    ax.set_xlim(0-pad, third_quartile*1.5+pad)
 
     return fig
 
 fig = unif_discr_bp(40)
-plt.show()
+fig
 ```
+````{customfigure}
+:name: fig_discrete-uniform-bp-1
 
 Il grafico a scatola per la distribuzione uniforme discreta di parametro
 $n=40$.
 ````
 
-````{customfigure}
-:name: fig:discrete-uniform-bp-2
-
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 fig = unif_discr_bp(10)
-plt.show()
+fig
 ```
+````{customfigure}
+:name: fig_discrete-uniform-bp-2
 
 Il grafico a scatola per la distribuzione uniforme discreta di parametro
 $n=10$.
 ````
 
-(sec:generalized-discrete-uniform)=
+(sec_generalized-discrete-uniform)=
 ## La forma generalizzata della distribuzione uniforme discreta (*)
 
 Nel caso in cui gli $n$ esiti possibili di un esperimento equiprobabile
@@ -546,7 +560,7 @@ insensibile alle traslazioni si avrà che
 L'implementazione delle distribuzioni uniformi discrete in `scipy.stats`
 passa attraverso la funzione `randint`, che in realtà permette di
 fare riferimento alla formulazione descritta nel Paragrafo
-{ref}`sec:generalized-discrete-uniform`. In particolare, l'invocazione
+{ref}`sec_generalized-discrete-uniform`. In particolare, l'invocazione
 di `randint(a, b)` restituisce un oggetto relativo alla
 distribuzione uniforme discreta sull'insieme $\{a, \dots, b-1\}$. Pertanto,
 specificando come argomenti di questa funzione rispettivamente $1$ e $n-1$
@@ -555,7 +569,9 @@ esemplificato nella cella seguente, il cui codice visualizza i grafici
 delle funzioni di massa di probabilità e di ripartizione nel caso $n=7$ già
 illustrato in precedenza.
 
-```python
+```{code-cell} python
+:tags: [hide-input]
+
 import scipy.stats as st
 
 n = 7
@@ -581,10 +597,10 @@ ax_pdf.set_ylabel(r'$f_X$', rotation='horizontal')
 ax_cdf.set_xlim(-1, n+2)
 ax_pdf.set_xlim(0, n+1)
 
-plt.show()
+fig
 ```
 
-La {numref}`fig:discrete-uniform-simulation` mostra inoltre come utilizzare il
+La {numref}`fig_discrete-uniform-simulation` mostra inoltre come utilizzare il
 metodo `rvs` su un oggetto relativo a una distribuzione uniforme discreta, così
 da simulare l'osservazione di $5000$ sue specificazioni, il cui grafico delle
 frequenze relative viene confrontato con quello della rispettiva funzione di
@@ -592,71 +608,54 @@ massa di probabilità. Nella versione interattiva del libro è possibile
 modificare il valore del parametro $n$, preimpostato a $7$.
 
 ````{customfigure}
-:name: fig:discrete-uniform-simulation
+:name: fig_discrete-uniform-simulation
+:class: left-align
 
-```{code-block} python
-:class: toggle-code
+```{interactive-code} python
+:tags: [toggle-code]
 
 import pandas as pd
+import scipy.stats as st
 
-def uniform_discrete_simulation(n, m):
+fig_sim, ax_sim = plt.subplots()
+console.log('uno'
 
-    fig, ax = plt.subplots()
-    X = st.randint(1, n+1)
-    observations = np.arange(1, n+1)
+@when("input", "#n-sim, #m-sim")
+def discrete_uniform_simulation(event):
 
-    x = X.rvs(m)
-    freq = pd.Series(x).value_counts(normalize=True).sort_index()
-    freq = freq.reindex(range(1, n+1), fill_value=0).values
+    n_sim = int(page['#n-sim'][0].value)
+    page['#n-sim-value'][0].innerHTML = f'{n_sim}'
+    m_sim = int(page['#m-sim'][0].value)
 
-    ax.bar(observations, freq, facecolor='lightgray', edgecolor='gray', width=.1)
+    U_sim = st.randint(1, n_sim + 1)
+    x_sim = U_sim.rvs(m_sim)
 
-    ax.vlines(observations, 0, X.pmf(observations))
-    ax.plot(observations, X.pmf(observations), 'o')
+    freq_sim = pd.Series(x_sim).value_counts(normalize=True)
+    freq_sim = freq_sim.reindex(np.arange(1, n_sim + 1), fill_value=0).values
 
-    ax.set_xlim(0, 21)
-    ax.set_ylim(0, 1.1)
-# Manual rendering to avoid MathJax processing
-    img_buffer = io.BytesIO()
-    fig.savefig(img_buffer, format='png', bbox_inches='tight', dpi=100)
-    img_buffer.seek(0)
-    img_base64 = base64.b64encode(img_buffer.getvalue()).decode('utf-8')
-    img_buffer.close()
-    
-    # Display in protected div
-    img_html = '<div class="no-mathjax"><img src="data:image/png;base64,' + \
-               img_base64 + '" style="max-width: 100%; height: auto;" /></div>'
-    Element("simulation-output").write(img_html)
-    
-    plt.close(fig)
+    ax_sim.clear()
+    x_sim = np.arange(1, n_sim + 1)
+    ax_sim.bar(x_sim, freq_sim, facecolor='lightgray', edgecolor='gray', width=.1)
 
-def update_simulation_plot(event=None):
-    n = int(document.getElementById("n-sim-slider").value)
-    document.getElementById("n-sim-value").innerText = f"{n:d}"
-    m = int(document.getElementById("m-sim").value)
+    ax_sim.vlines(x_sim, 0, U_sim.pmf(x_sim))
+    ax_sim.plot(x_sim, U_sim.pmf(x_sim), 'o')
 
-    uniform_discrete_simulation(n, m)
+    ax_sim.set_xlim(-1, 21)
+    ax_sim.set_ylim(0, 1.1)
 
-n_slider = document.getElementById("n-sim-slider")
-n_slider.addEventListener("input", create_proxy(update_simulation_plot))
+    display(fig_sim, target='graph-%this%', append=False)
 
-m_select = document.getElementById("m-sim")
-m_select.addEventListener("change", create_proxy(update_simulation_plot))
-
-# Initial plot
-uniform_discrete_simulation(10, 50)
+discrete_uniform_simulation(None)
 ```
 ```{raw} html
-
-<div id="plot-container" style="visibility: none;">
-    <div class="slider-container" style="float: left;">
-        <label for="n-sim-slider">\( n \): </label>
-        <input type="range" id="n-sim-slider"
-               min="2" max="20" value="10" step="1" />
+<div class="plot-container">
+    <div class="model-slider-container">
+        <label for="n-sim">\( n \): </label>
+        <input type="range" id="n-sim"
+               min="1" max="20" value="10" step="1" />
         <span id="n-sim-value">10</span>
     </div>
-
-    <div class="slider-container" style="float: right;">
+    <div class="model-slider-container">
         <label for="m-sim">\( m \): </label>
         <select id="m-sim">
           <option value="5">5</option>
@@ -664,10 +663,6 @@ uniform_discrete_simulation(10, 50)
           <option value="500">500</option>
           <option value="5000">5000</option>
         </select>
-    </div>
-
-    <div id="simulation-output" class="no-mathjax"
-            style="clear: both; display: flex; justify-content: center; margin-bottom: 2em;">
     </div>
 </div>
 ```

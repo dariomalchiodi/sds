@@ -14,7 +14,7 @@ kernelspec:
 <script type="module" src="https://pyscript.net/releases/2025.5.1/core.js"></script>
 ```
 
-(sec:convenciones)=
+(sec_convenciones)=
 # Convenciones
 
 Como se mencionó en el párrafo anterior, a menudo intercalaré el texto con
@@ -25,7 +25,7 @@ una fuente monoespaciada con un color distinto al del texto principal. En
 cambio, cuando sea necesario mostrar una o más líneas de código pensadas para
 ser ejecutadas por quien lee, presentaré dichas líneas dentro de un recuadro
 que recuerda a la típica _celda de código_ de un _notebook_ (si no sabes qué es
-un _notebook_, no te preocupes: hablaré de ello en la {ref}`sec:notebook`).
+un _notebook_, no te preocupes: hablaré de ello en la {ref}`sec_notebook`).
 También en este caso usaré una fuente monoespaciada, pero la coloración del
 texto destacará ciertos elementos del código (como variables, literales,
 palabras clave, etc., de forma similar a lo que hacen los IDE modernos).

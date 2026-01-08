@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:learning-and-programming)=
+(sec_learning-and-programming)=
 # Learning <span class="ast">\*</span>and<span class="ast">\*</span> programming
 
 As described in the previous section, I will introduce concepts alongside
@@ -27,7 +27,7 @@ level of programming knowledge typically gained in the first year of such
 programs&mdash;or in similar degrees.
 ```
 
-{ref}`chap:introducing-python` provides a mid-to-advanced level overview
+{ref}`chap_introducing-python` provides a mid-to-advanced level overview
 of the Python features that are used throughout the book, and can help readers
 already familiar with programming but new to this language get up to speed.
 Reading this chapter is recommended for everyone, in order to get familiar
@@ -46,7 +46,7 @@ to better grasp how it works are worthwile). In short, _play with it_ in the
 true _hacker_ spirit&mdash; understood in the original sense of the
 word[^hacker]. In fact, the book can be explored even without a full
 understanding of the code or the need to run it: as shown in
-{ref}`sec:overview`, certain sections include interactive elements specifically
+{ref}`sec_overview`, certain sections include interactive elements specifically
 designed to support a clearer grasp of the underlying concepts.
 ```{margin}
 The interactive parts rely on [PyScript](https://pyscript.net/), a technology

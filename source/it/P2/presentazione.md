@@ -9,5 +9,5 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:presentazione-sd)=
+(sec_presentazione-sd)=
 # Presentazione

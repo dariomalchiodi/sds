@@ -7,7 +7,7 @@ jupytext:
 nb_execution: false
 ---
 
-(sec:installazione)=
+(sec_installazione)=
 # Installazione, configurazione e primi passi
 
 Questo paragrafo descrive come installare Python e le librerie utilizzate nel
@@ -21,7 +21,7 @@ lettura, sia per allinearsi con la terminologia che utilizzerò, sia per
 sincerarsi che non vi siano problemi di incompatibilità della versione già
 disponibile e che tutte le librerie necessarie siano già installate.
 
-(sec:linguaggi-versioni-implementazioni)=
+(sec_linguaggi-versioni-implementazioni)=
 ## Linguaggi, versioni e implementazioni
 I linguaggi di programmazione evolvono nel tempo, perché con il passare degli
 anni le loro specifiche vengono aggiornate. Il risultato di questi cambiamenti
@@ -73,7 +73,7 @@ e così via. L'implementazione più diffusa (che tipicamente viene installata pe
 _default_) viene chiamata _CPython_ e, come suggerito dal nome, è stata scritta
 usando il linguaggio C.
 
-(sec:download-book)=
+(sec_download-book)=
 ## Scaricare i contenuti del libro
 Questo libro è pensato per essere fruito tramite la mediazione di un server
 web. Il lato positivo è che le parti interattive possono essere utilizzate
@@ -170,7 +170,7 @@ da un terminale, posizionandosi preventivmente nella directory `sds` creata
 quando è stato clonato il _repository_ del libro (o in una sua sotto-directory).
 Inoltre, git è lo strumento da utilizzare anche per segnalare errori o proporre
 modifiche, inviando _issue_ o _pull request_ come già indicato nel
-{ref}`chap:approccio`. Infine, imparare a usare git è una cosa che raccomando a
+{ref}`chap_approccio`. Infine, imparare a usare git è una cosa che raccomando a
 chiunque approcci lo studio non solo dell'informatica, ma anche di
 tutte le discipline che in qualche modo afferiscono alla _data science_. Di
 fatto, git è lo strumento più utilizzato per la gestione dei progetti software:
@@ -364,7 +364,7 @@ si disattiva l’_environment_ attivato, e conseguentemente il _prompt_ di
 sistema torna a essere quello originario.
 
 
-(sec:lib-install)=
+(sec_lib-install)=
 ## Gestire le librerie
 In teoria, si può installare manualmente una libreria, scaricando il
 corrispondente eseguibile o partendo dal codice sorgente disponibile su fonti
@@ -390,7 +390,7 @@ un _environment_ virtuale attivato, viene fatta eseguendo il comando `pip`
 in una _shell_, specificando il nome della libreria stessa &mdash; aggiungendo
 eventualmente i caratteri `==` seguiti da uno specifico numero di versione. Se
 volessimo per esempio installare _altair_, la libreria che ho usato nel
-{ref}`chap:uno-sguardo-di-insieme` per produrre grafici interattivi, sarà
+{ref}`chap_uno-sguardo-di-insieme` per produrre grafici interattivi, sarà
 sufficiente eseguire il comando
 
 ```{margin}
@@ -451,7 +451,7 @@ riferimenti alle librerie necessarie per poter eseguire il codice che troverete
 nei vari capitoli.
 
 
-(sec:notebook)=
+(sec_notebook)=
 ## Installare un notebook manager
 
 Come indicato all'inizio di questo capitolo, presenterò il codice Python in
@@ -575,7 +575,7 @@ linguaggi come Go o Java.
 
 ## Primi passi con Python
 
-Come motivato nel {ref}`sec:imparare-e-programmare`, suppongo che chi
+Come motivato nel {ref}`sec_imparare-e-programmare`, suppongo che chi
 legge questo libro abbia già imparato a usare un linguaggio di programmazione.
 In questo paragrafo considererò alcuni concetti di base di programmazione,
 mostrandone la sintassi in Python. Questo mi permetterà di introdurre fin da
@@ -586,12 +586,12 @@ nel testo.
 L'assegnamento di un valore a una variabile viene fatto utilizzando la stessa
 notazione che si riscontra nella maggior paerte dei linguaggi di
 programmazione, utilizzando l'idioma `variabile = valore`. Nel Paragrafo
-{ref}`sec:tipizzazione-dinamica` vedremo che Python non richiede la
+{ref}`sec_tipizzazione-dinamica` vedremo che Python non richiede la
 _dichiarazione_ delle variabili: queste ultime sono create automaticamente la
 prima volta che viene assegnato loro un valore, che determina implicitamente
 il tipo della variabile. Per esempio
 
-```python
+```{code-cell}
 age = 42
 ```
 
@@ -606,7 +606,7 @@ scriviamo codice senza utilizzare i _notebook_. In generale, è possibile
 stampare esplicitamente un valore o il contenuto di una variabile, passandoli
 come argomento alla funzione `print`:
 
-```python
+```{code-cell}
 print(age)
 print(3.14)
 ```
@@ -616,7 +616,7 @@ Anche le selezioni (anche note come istruzioni condizionali) si scrivono in
 Python usando una sintassi simile a quella di molti altri linguaggio, sebbene
 con alcune differenze. Considerate per esempio la cella che segue:
 
-```python
+```{code-cell}
 if age >= 18:
   print('È maggiorenne, ha', age, 'anni.')
 else:
@@ -660,7 +660,7 @@ in questo caso, tuttavia, lo faccio per introdurre più concetti importanti con
 un singolo esempio.
 ```
 
-```python
+```{code-cell}
 def check_age(age):
   if age >= 18:
     print('È maggiorenne, ha', age, 'anni.')
@@ -688,7 +688,7 @@ Questo esempio ci permette di osservare che
 Chiaramente, il vantaggio di una funzione è quello di poterla invocare
 più volte, passando diversi argomenti, come nell'esempio che segue:
 
-```python
+```{code-cell}
 check_age(13)
 ```
 
@@ -709,7 +709,7 @@ Va notato come sia possibile usare `import` per importare più elementi da un
 medesimo modulo utilizzando una sola istruzione.
 ```
 
-```python
+```{code-cell}
 from math import factorial, pi
 
 print(pi)
@@ -724,7 +724,7 @@ usando l'istruzione `import <module>`, e si accede poi ai suoi generici
 elementi usando una variante della _dot notation_: si scrive il nome del
 modulo, seguito da un punto e dal nome dell'elemento in questione.
 
-```python
+```{code-cell}
 import math
 
 print(math.pi)
@@ -746,7 +746,7 @@ sono [numpy](http://www.numpy.org),
 rispettivamente con gli _array_, i _dataset_ e i grafici. Farò sempre
 l'importazione nel modo seguente:
 
-```python
+```{code-cell}
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -772,7 +772,8 @@ non dissimile, per esempio, da Java. Nell'esempio seguente si può vedere in
 che modo viene notificata all'utente un'eccezione di tipo `NameError`, dovuta
 al riferimento a una variabile che non è mai stata inizializzata:
 
-```python
+```{code-cell}
+:tags: [raises-exception]
 print(uninitialized_variable)
 ```
 
@@ -803,7 +804,7 @@ Uno specifico software provvede poi a eseguirlo, trasformandolo a sua volta nel
 codice macchina dello specifico computer utilizzato. Quando si utilizza
 CPython, l'implementazione di Python alla quale faccio qui riferimento, il
 processo di compilazione è trasparente, e avviene in modo automatico solo
-quando vengono importati dei moduli (vedi il {ref}`sec:importare-moduli`): in
+quando vengono importati dei moduli (vedi il {ref}`sec_importare-moduli`): in
 questo caso, il risultato della compilazione sono file dall'estensione `.pyc`
 salvati in una directory `__pycache__`, che vengono creati solo se non esistono
 o se sono meno recenti del relativo sorgente; negli altri casi, il _bytecode_

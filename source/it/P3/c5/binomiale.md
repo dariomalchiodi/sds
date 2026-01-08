@@ -9,7 +9,16 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:modello-binomiale)=
+```{code-cell} python
+:tags: [remove-cell]
+
+import matplotlib.pyplot as plt
+plt.style.use('../../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+(sec_modello-binomiale)=
 # Le distribuzioni binomiali
 
 Le Lanterne Verdi sono un gruppo di supereroi, a ognuno dei quali è affidato
@@ -133,13 +142,13 @@ Siamo quindi in grado di definire in modo formale la famiglia delle
 distribuzioni binomiali.
 
 ````{prf:definition} La famiglia delle distribuzioni binomiali
-:label: def:binomial-distribution
+:label: def-binomial-distribution
 
 Fissati $n \in \mathbb N$ e $p \in [0, 1]$, la distribuzione _binomiale_ di
 parametri $n$ e $p$ è definita dalla funzione di massa di probabilità
 
 ```{math}
-:label: eq:binomial-pdf
+:label: eq_binomial-pdf
 
 f(x; n, p) = \binom{n}{x} p^x (1 - p)^{n - x}
              \mathrm{I}_{\{0, 1, \dots, n\}}(x) \enspace.
@@ -156,7 +165,7 @@ di massa di probabilità nei relativi punti di massa cresce inizialmente per
 poi decrescere. Infatti, per un generico $x \in \{0, \dots, n-1\}$ vale
 
 ```{math}
-:label: eq:binomial-pdf-ratio
+:label: eq_binomial-pdf-ratio
 
 \frac{f_X(x+1; n, p)}{f_X(x; n, p)} = \frac{n-x}{x+1} \frac{p}{1-p} \enspace,
 ```
@@ -174,15 +183,13 @@ della distribuzione, avremo che la funzione di massa di probabilità
 Quando invece $(n+1)p - 1$ non è intero, i valori della funzione di massa di
 probabilità crescono strettamente fino alla moda $x = \lfloor (n+1)p \rfloor$,
 per poi decrescere, sempre strettamente, come illustrato nella
-{numref}`fig:binomial-behaviour`, che mostra i grafici della funzione di massa
+{numref}`fig_binomial-behaviour`, che mostra i grafici della funzione di massa
 di probabilità della distribuzione binomiale di parametri $n = 10$ e $p$ uguale
 a $\frac{4}{11} \approx 0.36$ (a sinistra) e $0.4$ (a destra).
 
-````{customfigure}
-:name: fig:binomial-behaviour
 
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -201,8 +208,11 @@ for ax, p in zip(axes, (4 / (n+1), 0.4)):
     ax.plot(x, X.pmf(x), 'o')
     ax.set_xticks(range(0, 11, 2))
 
-plt.show()
+fig
 ```
+````{customfigure}
+:name: fig_binomial-behaviour
+:class: left-align
 
 Grafici della funzione di massa di probabilità della distribuzione binomiale di
 parametri $n = 10$ e $p$ rispettivamente uguale a $\frac{4}{11} \approx 0.36$
@@ -228,7 +238,7 @@ Il modo più semplice per esprimere la forma analitica della funzione di
 ripartizione di $X \sim \mathrm B(n, p)$ è
 
 ```{math}
-:label: eq:binomial-cdf
+:label: eq_binomial-cdf
 
 F_X(x; n, p) = \mathbb P(X \leq x)
              = \sum_{y=0}^{\lfloor x \rfloor} \binom{n}{y} p^y (1 - p)^{n - y}
@@ -246,93 +256,92 @@ sinistra dell'asse di simmetria sarà approssimativamente uguale a
 $\frac{1}{2}$, e lo stesso vale per i valori a destra di questo asse. La
 funzione di ripartizione ha di conseguenza un grafico costante a tratti che è
 approssimativamente simmetrico rispetto a un punto non troppo distante da $(np,
-1/2)$. Ciò è illustrato in {numref}`fig:binomial-pdf-cdf`, nel quale i grafici
+1/2)$. Ciò è illustrato in {numref}`fig_binomial-pdf-cdf`, nel quale i grafici
 delle funzioni di massa di probabilità e di ripartizione vengono sovrapposti,
 evidenziando rispettivamente con un segmento tratteggiato e con un quadrato i
 suddetti asse e punto di simmetria. Modificando i valori dei due parametri si
 può vedere come cambia il grafico prodotto.
 
 ````{customfigure}
-:name: fig:binomial-pdf-cdf
+:name: fig_binomial-pdf-cdf
+:class: left-align
 
-```{code-block} python
-:class: toggle-code 
+```{interactive-code} python
+:tags: [toggle-code] 
 
+import asyncio
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy.stats as st
-from js import document
-from pyodide.ffi import create_proxy
-import io
-import base64
+from js import document, console
+from pyscript import display
+from pyscript.web import page, when
 
-def binomial_pdf_cdf(n, p):
-    fig, ax = plt.subplots()
+n_1 = int(page['#n'][0].value)
+p_1 = float(page['#p'][0].value)
+B_1 = st.binom(n_1, p_1)
 
-    B = st.binom(n, p)
+x_1 = np.arange(0, n_1 + 1)
+y_1 = B_1.pmf(x_1)
 
-    x = np.arange(0, n+1)
-    y = B.pmf(x)
+fig_1, ax_1 = plt.subplots()
 
-    ax.hlines([0] + list(B.cdf(x)), range(-1, n+1), list(range(n+1)) + [20])
+cdf_y = [0] + list(B_1.cdf(x_1))
+cdf_xmin = list(range(-1, n_1 + 1))
+cdf_xmax = list(range(0, n_1 + 1)) + [20]
+cdf = ax_1.hlines(cdf_y, cdf_xmin, cdf_xmax)
+pmf_lines = ax_1.vlines(x_1, 0, y_1, color='k')
+pmf_dots = ax_1.plot(x_1, y_1, 'o')[0]
 
-    ax.vlines(x, 0, y, color='k')
-    ax.plot(x, y, 'o')
+ax_1.set_xlabel('$x$', fontsize=12, ha='right')
+ax_1.set_ylabel('$f, F$', fontsize=12, rotation=0)
+ax_1.set_xlim(-1, 21)
+ax_1.set_ylim(0, 1.1)
+ax_1.set_xticks(range(0, 21, 2))
 
-    ax.set_title(f'n = {n}, p = {p:.2f}')
-    ax.set_xlim(-1, 21)
-    ax.set_ylim(0, 1.1)
-    ax.set_xticks(range(0, 21, 2))
+@when("input", "#p, #n")
+def binomial_plot(event):
+    p_1 = float(page['#p'][0].value)
+    page['#p-value'][0].innerHTML = f'{p_1:.1f}'
+    n_1 = int(page['#n'][0].value)
+    page['#n-value'][0].innerHTML = f'{n_1}'
+
+    B_1 = st.binom(n_1, p_1)
+    x_1 = np.arange(0, n_1 + 1)
+    y_1 = B_1.pmf(x_1)
+
+    cdf_y = [0] + list(B_1.cdf(x_1))
+    cdf_xmin = list(range(-1, n_1 + 1))
+    cdf_xmax = list(range(0, n_1 + 1)) + [20]
+    cdf_segments = [[[xmin, y_val], [xmax, y_val]] 
+                    for y_val, xmin, xmax in zip(cdf_y, cdf_xmin, cdf_xmax)]
+
+    cdf.set_segments(cdf_segments)
     
-    # Manual rendering to avoid MathJax processing
-    img_buffer = io.BytesIO()
-    fig.savefig(img_buffer, format='png', bbox_inches='tight', dpi=100)
-    img_buffer.seek(0)
-    img_base64 = base64.b64encode(img_buffer.getvalue()).decode('utf-8')
-    img_buffer.close()
+    # Update PMF vertical lines
+    pmf_segments = [[[xi, 0], [xi, yi]] for xi, yi in zip(x_1, y_1)]
+    pmf_lines.set_segments(pmf_segments)
+
+    pmf_dots.set_data(x_1, y_1)
     
-    # Display in protected div
-    img_html = '<div class="no-mathjax"><img src="data:image/png;base64,' + \
-               img_base64 + '" style="max-width: 100%; height: auto;" /></div>'
-    Element("pdf-cdf-output").write(img_html)
-    
-    plt.close(fig)
+    display(fig_1, target='graph-%this%', append=False)
 
-def update_plot(event=None):
-    n = int(document.getElementById("n-slider").value)
-    document.getElementById("n-value").innerText = f"{n:d}"
-    p = float(document.getElementById("p-slider").value)
-    document.getElementById("p-value").innerText = f"{p:.1f}"
-    binomial_pdf_cdf(n, p)
-
-
-p_slider = document.getElementById("p-slider")
-p_slider.addEventListener("input", create_proxy(update_plot))
-
-n_slider = document.getElementById("n-slider")
-n_slider.addEventListener("input", create_proxy(update_plot))
-
-# Initial plot
-binomial_pdf_cdf(10, 0.5)
+display(fig_1, target='graph-%this%', append=False)
 ```
 ```{raw} html
 
-<div id="plot-container" style="visibility: none;">
-    <div class="slider-container" style="float: left;">
-        <label for="n-slider">\( n \): </label>
-        <input type="range" id="n-slider"
-               min="2" max="20" value="10" step="1" />
-        <span id="n-value">0</span>
+<div class="plot-container">
+    <div class="model-slider-container">
+        <label for="n">\( n \): </label>
+        <input type="range" id="n"
+               min="1" max="20" value="10" step="1" />
+        <span id="n-value">10</span>
     </div>
-
-    <div class="slider-container" style="float: right;">
-        <label for="p-slider">\( p \): </label>
-        <input type="range" id="p-slider"
-               min="0" max="1" value="0.5" step="0.1" />
+    <div class="model-slider-container">
+        <label for="p">\( p \): </label>
+        <input type="range" id="p"
+               min="0" max="1" value="0.5" step="0.05" />
         <span id="p-value">0.5</span>
-    </div>
-
-    <div id="pdf-cdf-output" class="no-mathjax"
-            style="clear: both; display: flex; justify-content: center; margin-bottom: 2em;">
     </div>
 </div>
 ```
@@ -350,12 +359,12 @@ indipendenti e ognuna distribuita secondo una legge di Bernoulli di parametro
 $p$, vale intuitivamente la relazione
 
 ```{math}
-:label: eq:bernoulli-binomial
+:label: eq_bernoulli-binomial
 
 Y = \sum_{i=1}^n X_i \enspace,
 ```
 
-che dimostreremo in modo formale nel Paragrafo {ref}`sec:binomial-moments`, ma
+che dimostreremo in modo formale nel Paragrafo {ref}`sec_binomial-moments`, ma
 che utilizzeremo già nel prossimo paragrafo per semplificare il calcolo del
 valore atteso e della varianza della distribuzione binomiale. Ragionando in
 modo analogo, date due variabili aleatorie indipendenti
@@ -363,7 +372,7 @@ $X_1 \sim \mathrm B(n_1, p)$ e $X_2 \sim \mathrm B(n_2, p)$, ponendo
 $Y = X_1 + X_2$ si può dimostrare che $Y \sim \mathrm B(n_1 + n_2, p)$.
 
 
-(sec:binomial-expected-val-and-var)=
+(sec_binomial-expected-val-and-var)=
 ## Valore atteso e varianza della distribuzione binomiale
 
 Per quanto visto alla fine del paragrafo precedente, dati $n \in \mathbb N$,
@@ -397,7 +406,7 @@ applicando la relativa definizione, come dimostrato nel seguente teorema.
 
 
 ```{prf:theorem}
-:label: teo:binomial-expected-value
+:label: teo-binomial-expected-value
 Dati $n \in \mathbb N$, $p \in [0, 1]$ e una variabile aleatoria
 $X \sim \mathrm B(n, p)$, $\mathbb E(X) = np$.
 ```
@@ -434,7 +443,7 @@ Similmente, la varianza si può calcolare in modo analogo a quanto fatto finora
 per le altre distribuzioni, come mostrato di seguito.
 
 ```{prf:theorem}
-:label: teo:binomial-variance
+:label: teo-binomial-variance
 
 Dati $n \in \mathbb N$, $p \in [0, 1]$, la varianza di una variabile aleatoria
 $X \sim \mathrm B(n, p)$ è uguale a $np(1-p)$.
@@ -442,7 +451,7 @@ $X \sim \mathrm B(n, p)$ è uguale a $np(1-p)$.
 ````{admonition} _
 :class: myproof
 
-Procedendo in modo analogo al {prf:ref}`teo:binomial-expected-value` si ha
+Procedendo in modo analogo al {prf:ref}`teo-binomial-expected-value` si ha
 
 ```{math}
 \begin{align*}
@@ -462,7 +471,7 @@ così che $\mathrm{Var}(X) = \mathbb E \left( X^2 \right) - \mathbb E(X)^2
 = np - n^2p^2 = n p (1 - p)$.
 ````
 
-(sec:binomial-moments)=
+(sec_binomial-moments)=
 ## Momenti delle distribuzioni binomiali (*)
 
 Fissati $n \in \mathbb N$ e $p \in [0, 1]$, la funzione generatrice dei momenti
@@ -475,10 +484,10 @@ m_X(t) = \mathbb E \left( \mathrm e^{tX} \right)
        = \left( p \mathrm e^t + 1 - p \right)^n
 ```
 
-e permette di dimostrare {eq}`eq:bernoulli-binomial`.
+e permette di dimostrare {eq}`eq_bernoulli-binomial`.
 
 ````{prf:theorem}
-:label: teo:sum-bernoulli
+:label: teo-sum-bernoulli
 
 Dati $n \in \mathbb N$, $p \in [0, 1]$ e una variabile aleatoria
 $X \sim \mathbb B(n, p)$, vale la relazione
@@ -494,7 +503,7 @@ variabili aleatorie sono tra loro indipendenti.
 :class: myproof
 
 L'ipotesi di indipendenza di $X_1, \dots, X_n$ permette di applicare il
-{prf:ref}`teo:mgf-method`: indicando con $m_X$ la funzione generatrice dei
+{prf:ref}`teo-mgf-method`: indicando con $m_X$ la funzione generatrice dei
 momenti della distribuzione $\mathrm B(p)$ si ottiene
 
 ```{math}
@@ -509,7 +518,7 @@ variabili aleatorie binomiali indipendenti e con lo stesso parametro $p$
 segue anch'essa una distribuzione binomiale.
 
 ````{prf:theorem}
-:label: teo:sum-binomial
+:label: teo-sum-binomial
 
 Siano dati $n_1, n_2 \in \mathbb N$, $p \in [0, 1]$ e due variabili aleatorie
 indipendenti $X_1$ e $X_2$ tali che $X_i \sim \mathbb B(n_i, p)$ per
@@ -521,7 +530,7 @@ $Y \sim \mathbb B(n_1+n_2, p)$.
 
 Anche in questo caso, indicando per semplicità con $m_1$ e $m_2$ le funzioni
 generatrici dei momenti di $X_1$ e $X_2$, possiamo applicare il
-{prf:ref}`teo:mgf-method`, ottenendo
+{prf:ref}`teo-mgf-method`, ottenendo
 
 ```{math}
 \begin{align*}
@@ -540,7 +549,7 @@ Derivare la funzione generatrice dei momenti della distribuzione binomiale
 risulta abbastanza intricato. Questo rende più ragionevole il calcolo dei
 momenti della distribuzione applicando direttamente la loro definizione, e
 sfruttando la stessa tecnica utilizzata nel
-Paragrafo {ref}`sec:binomial-expected-val-and-var` per derivare i
+Paragrafo {ref}`sec_binomial-expected-val-and-var` per derivare i
 momenti primo e secondo. Per esempio, il momento terzo si ottiene nel modo
 seguente:
 
@@ -588,17 +597,14 @@ e di conseguenza la skewness vale
 evidenziando come la distribuzione binomiale sia simmetrica quando $p =
 \frac{1}{2}$, asimmetrica a destra quando $p < \frac{1}{2}$ e asimmetrica a
 sinistra nei casi rimanenti, come esemplificato in
-{numref}`fig:binomial-asymmetry`, che mostra il grafico della funzione di
+{numref}`fig_binomial-asymmetry`, che mostra il grafico della funzione di
 massa di probabilità binomiali di parametri $n = 10$ e $p$ rispettivamente
 uguale a $0.3$ (a sinistra), $0.5$ (al centro) e $0.7$ (a destra), evidenziando
 rispettivamente l'asimmetria a destra, la simmetria e l'asimmetria a sinistra
 delle corrispondenti distribuzioni.
 
-````{customfigure}
-:name: fig:binomial-asymmetry
-
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 def binomial_plot(p, ax):
     n = 10
@@ -611,8 +617,10 @@ def binomial_plot(p, ax):
 fig, axes = plt.subplots(1, 3, sharey=True)
 for p, ax in zip((.3, .5, .7), axes):
     binomial_plot(p, ax)
-plt.show()
+fig
 ```
+````{customfigure}
+:name: fig_binomial-asymmetry
 
 Grafico della funzione di massa di probabilità delle distribuioni binomiali
 caratterizzate da $n = 10$ e $p$ rispettivamente
@@ -662,7 +670,7 @@ così che il momento centrale corrispondente è
 Ciò permette di ricavare la curtosi:
 
 ```{math}
-:label: eq:binomial_kurtosis
+:label: eq_binomial_kurtosis
 
 \frac{\mu_4}{\sigma^4} - 3 = \frac{np (1-p) \left( 3p(n-2)(1-p) + 1 \right)}
                                   {\left( np(1-p) \right)^2} - 3
@@ -673,22 +681,19 @@ da cui si verifica che, indipendentemente dal valore di $n$, la distribuzione
 risulta rispettivamente platicurtica, mesocurtica o leptocurtica negli stessi
 casi di una distribuzione di Bernoulli il cui parametro coincide con $p$. Fatto
 salvo tutto ciò, $n$ influisce comunque sulla propensione della distribuzione a
-generare valori fuori scala: {eq}`eq:binomial_kurtosis` mostra infatti che
+generare valori fuori scala: {eq}`eq_binomial_kurtosis` mostra infatti che
 quando $n$ aumenta, se la distribuzione è platicurtica deve aumentare anche la
 curtosi, e ciò è dovuto al fatto che il supporto diventa sempre più grande e
 quindi le specificazioni che si possono considerare dei valori fuori scala
 diventano sempre di più; al contrario, quando la distribuzione è platicurtica
 l'aumentare del supporto tenderà ad accentuare la propensione della
 distribuzione a non generare valori fuori scala. La
-{numref}`fig:binomial-sk-graph` illustra il grafico skewness-curtosi per la
+{numref}`fig_binomial-sk-graph` illustra il grafico skewness-curtosi per la
 famiglia delle distribuzioni di Bernoulli, generando diverse curve per
 differenti valori di $n$.
 
-````{customfigure}
-:name: fig:binomial-sk-graph
-
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 from matplotlib import cm
 
@@ -703,22 +708,24 @@ for n, c in zip(n_values, colors):
     skewness = (1 - 2*p) / (n * p * (1 - p))**0.5
     kurtosis = (1 - 6 * p * (1 - p)) / (n * p * (1 - p))
 
-    plt.plot(skewness, kurtosis, label=n, color=c)
+    ax.plot(skewness, kurtosis, label=n, color=c)
 
-plt.xlim(-3, 3)
-plt.ylim(-2, 2)
-plt.legend()
-plt.show()
+ax.set_xlim(-3, 3)
+ax.set_ylim(-2, 2)
+ax.legend()
+fig
 ```
+````{customfigure}
+:name: fig_binomial-sk-graph
 
 Grafico skewness-curtosi del modello binomiale.
 ````
 
 
-(sec:binomial-quantiles)=
+(sec_binomial-quantiles)=
 ## Quantili della distribuzione binomiale (*)
 
-Analizzando {eq}`eq:binomial-cdf` si vede come determinare in modo esatto un
+Analizzando {eq}`eq_binomial-cdf` si vede come determinare in modo esatto un
 generico quantile per la distribuzione binomiale sia decisamente complesso:
 occorrerebbe, dato $q \in [0, 1]$, determinare $x_q$ tale che
 
@@ -801,7 +808,7 @@ lista di valori che corrispondono ai quantili di una distribuzione binomiale,
 specificando i parametri di quest'ultima e una lista dei livelli
 corrispondenti.
 
-```{code-block} python
+```{code-cell} python
 
 from scipy.special import binom
 
@@ -830,8 +837,8 @@ probabilità della nuova specificazione $x$. In questo modo, l'esecuzione
 richiede meno tempo. C'è un aspetto ancora più importante che coinvolge
 l'efficienza del codice: anche la funzione di massa di probabilità viene
 calcolata accumulandone i valori, sfruttando esplicitamente
-{eq}`eq:binomial-pdf-ratio`. Calcolare la funzione di massa di probabilità
-usando la formula {eq}`eq:binomial-pdf` nella relativa definizione richierebbe
+{eq}`eq_binomial-pdf-ratio`. Calcolare la funzione di massa di probabilità
+usando la formula {eq}`eq_binomial-pdf` nella relativa definizione richierebbe
 ogni volta di valutare tre fattoriali e due elevamenti a potenza, che
 risulterebbero nell'esecuzione di $3n$ moltiplicazioni. In questo modo si
 calcola ogni valore di $f$ partendo da quello precedentemente ottenuto, al
@@ -841,7 +848,7 @@ La funzione `quantiles` si può utilizzare per tabulare i quantili della
 distribuzione binomiale, come fatto per esempio nella cella seguente e
 relativamente al caso $n = 32$ e $p = 0.65$.
 
-```{code-block} python
+```{code-cell} python
 
 import pandas as pd
 
@@ -859,7 +866,7 @@ table = pd.DataFrame.from_records(content)
 table.set_index('Livello')
 ```
 
-Analogamente, la {numref}`fig:binomial-boxplot` mostra il diagramma a scatola
+Analogamente, la {numref}`fig_binomial-boxplot` mostra il diagramma a scatola
 di una generica distribuzione binomiale (e se guardate nel codice nascosto
 scoprirete che per produrlo viene utilizzata proprio la funzione `quantiles`),
 evidenziando i valori numerici di mediana, primo e terzo quartile.Agendo sui
@@ -867,109 +874,67 @@ selettori che corrispondono ai due parametri della distribuzione è possibile
 vedere come cambia il diagramma.
 
 ````{customfigure}
-:name: fig:binomial-boxplot
+:name: fig_binomial-boxplot
+:class: left-align
 
-```{code-block} python
-:class: toggle-code
+```{interactive-code} python
+:tags: [toggle-code] 
 
-def bp_binomial(n, p):
-    fig, ax = plt.subplots(figsize=(6, 2))
+fig_bp, ax_bp = plt.subplots()
 
-    levels = [0.25, 0.5, 0.75]
-    if p < 1:
-      first_quartile, median, third_quartile = quantiles(n, p, levels)
-    else:
-      first_quartile, median, third_quartile = [n, n, n]
+@when("input", "#p-bp, #n-bp")
+def binomial_bp(event):
+    p_bp = float(page['#p-bp'][0].value)
+    page['#p-bp-value'][0].innerHTML = f'{p_bp:.1f}'
+    n_bp = int(page['#n-bp'][0].value)
+    page['#n-bp-value'][0].innerHTML = f'{n_bp}'
 
-    lw = 1
-    height = 0.2
+    B_bp = st.binom(n_bp, p_bp)
+    q1 = B_bp.ppf(0.25)
+    median = B_bp.median()
+    q3 = B_bp.ppf(0.75)
+    stats = [{
+        'med': median,
+        'q1': q1,
+        'q3': q3,
+        'whislo': 0,
+        'whishi': n_bp,
+        'fliers': []
+    }]
 
-    ax.plot([median, median], [-height, height-.01], c='k', linewidth=2)
-
-    ax.plot([0, 0], [-.1, .1], c='k', linewidth=lw)
-    ax.plot([0, first_quartile], [0, 0], c='k', linewidth=lw)
-
-    ax.plot([first_quartile, first_quartile], [-height, height],
-            c='k', linewidth=lw)
-
-    ax.plot([third_quartile, third_quartile], [-height, height],
-            c='k', linewidth=lw)
-
-    ax.plot([first_quartile, third_quartile], [height, height],
-            c='k', linewidth=lw)
-    ax.plot([first_quartile, third_quartile], [-height, -height],
-            c='k', linewidth=lw)
-
-    ax.plot([third_quartile, n], [0, 0], c='k', linewidth=lw)
-    ax.plot([n, n], [-.1, .1], c='k', linewidth=lw)
-
-    if p > 0:
-        ax.text(0, -0.5, 0, ha='center')
-
-    ax.text(median, -0.6, median, ha='center')
-
-    if 0 < p < 1:
-        ax.text(first_quartile, 0.5, first_quartile, ha='center')
-        ax.text(third_quartile, 0.5, third_quartile, ha='center')
-
-    if p < 1:
-        ax.text(n, -0.5, n, ha='center')
-
-    ax.set_xlim(-0.1, 20.1)
-    ax.set_ylim(-1, 1)
-    ax.axis('off')
-
-    # Manual rendering to avoid MathJax processing
-    img_buffer = io.BytesIO()
-    fig.savefig(img_buffer, format='png', bbox_inches='tight', dpi=100)
-    img_buffer.seek(0)
-    img_base64 = base64.b64encode(img_buffer.getvalue()).decode('utf-8')
-    img_buffer.close()
+    # Clear and redraw
+    ax_bp.clear()
+    ax_bp.bxp(stats, vert=False)
+    ax_bp.text(0, 0.9, 0, ha='center', fontsize=8)
+    if p_bp != 0 and p_bp != 1:
+        ax_bp.text(q1, 1.1, int(q1), ha='center', fontsize=8)
+        ax_bp.text(median, 0.85, int(median), ha='center', fontsize=8)
+        ax_bp.text(q3, 1.1, int(q3), ha='center', fontsize=8)
+    ax_bp.text(n_bp, 0.9, n_bp, ha='center', fontsize=8)
+    ax_bp.set_xlim(-0.5, 20.5)
+    ax_bp.set_ylim(0.6, 1.4)
+    ax_bp.axis('off')
     
-    # Display in protected div
-    img_html = '<div class="no-mathjax"><img src="data:image/png;base64,' + \
-               img_base64 + '" style="max-width: 100%; height: auto;" /></div>'
-    Element("bp-output").write(img_html)
-    
-    plt.close(fig)
+    display(fig_bp, target='graph-%this%', append=False)
 
-def update_boxplot(event=None):
-    n = int(document.getElementById("n-bp-slider").value)
-    document.getElementById("n-bp-value").innerText = f"{n:d}"
-    p = float(document.getElementById("p-bp-slider").value)
-    document.getElementById("p-bp-value").innerText = f"{p:.1f}"
-    bp_binomial(n, p)
+binomial_bp(None)
 
-
-p_slider = document.getElementById("p-bp-slider")
-p_slider.addEventListener("input", create_proxy(update_boxplot))
-
-n_slider = document.getElementById("n-bp-slider")
-n_slider.addEventListener("input", create_proxy(update_boxplot))
-
-# Initial plot
-bp_binomial(10, 0.5)
 ```
 ```{raw} html
 
-<div id="boxplot-container" style="visibility: none;">
-    <div class="slider-container" style="float: left;">
-        <label for="n-bp-slider">\( n \): </label>
-        <input type="range" id="n-bp-slider"
-               min="2" max="20" value="10" step="1" />
-        <span id="n-bp-value">10</span>
-    </div>
-
-    <div class="slider-container" style="float: right;">
-        <label for="p-bp-slider">\( p \): </label>
-        <input type="range" id="p-bp-slider"
-               min="0" max="1" value="0.5" step="0.1" />
+<div class="plot-container">
+    <div class="model-slider-container">
+        <label for="p-bp">\( p \): </label>
+        <input type="range" id="p-bp"
+               min="0" max="1" value="0.5" step="0.05" />
         <span id="p-bp-value">0.5</span>
     </div>
+    <div class="model-slider-container">
+        <label for="n-bp">\( n \): </label>
+        <input type="range" id="n-bp"
+               min="1" max="20" value="10" step="1" />
+        <span id="n-bp-value">10</span>
 
-    <div id="bp-output" class="no-mathjax"
-            style="clear: both; display: flex; justify-content: center; margin-bottom: 2em;">
-        
     </div>
 </div>
 ```
@@ -996,7 +961,8 @@ $n = 132$ e $p = 0.73$ (si tratta della stessa distribuzione di cui abbiamo
 tabulato i quantili nel paragrafo precedente, e come si può verificare i
 valori ottenuti coincidono con quelli equivalenti in quella tabulazione).
 
-```{code-block} python
+```{code-cell} python
+:tags: [hide-input]
 
 import scipy.stats as st
 
@@ -1009,7 +975,8 @@ X.ppf(np.arange(0.1, 1, .1))
 Analogamente, è possibile ottenere il grafico delle funzioni di massa di
 probabilità e di ripartizione della stessa distribuzione.
 
-```{code-block} python
+```{code-cell} python
+:tags: [hide-input]
 
 fig, axes = plt.subplots(1, 2, sharey=True)
 
@@ -1026,97 +993,74 @@ axes[1].set_xlim(10, 30)
 
 axes[0].set_ylabel(r'$F_X$', rotation='horizontal')
 axes[1].set_ylabel(r'$f_X$', rotation='horizontal')
-plt.show()
+fig
 ```
 
 Usando le stesse convenzioni grafiche del capitolo precedente, anche in questo
 caso è possibile simulare l'osservazione di un campione di osservazioni da
 una distribuzione binomiale e confrontare il grafico delle sue frequenze
 relative con quello della funzione di massa di probabilità. Nella
-{numref}`fig:binomial-simulation`, questo viene fatto relativamente alla stessa
+{numref}`fig_binomial-simulation`, questo viene fatto relativamente alla stessa
 distribuzione binomiale che abbiamo considerato finora, ma i selettori che
 corrispondono ai due parametri permettono, nella versione interattiva, di
 verificare come il grafico risultante rimanga coerente al variare dei parametri
 coinvolti.
 
 ````{customfigure}
-:name: fig:binomial-simulation
+:name: fig_binomial-simulation
+:class: left-align
 
-```{code-block} python
-:class: toggle-code
+```{interactive-code} python
+:tags: [toggle-code]
 
 import pandas as pd
 
-def binomial_simulation(n, p, m):
+fig_sim, ax_sim = plt.subplots()
 
-    fig, ax = plt.subplots()
-    X = st.binom(n, p)
+@when("input", "#p-sim, #n-sim, #m-sim")
+def binomial_simulation(event):
 
-    x = X.rvs(m)
-    freq = pd.Series(x).value_counts(normalize=True)
-    freq = freq.reindex(np.arange(0, n+1), fill_value=0)
-    ax.bar(freq.index, freq.values, facecolor='lightgray', edgecolor='gray')
+    p_sim = float(page['#p-sim'][0].value)
+    page['#p-sim-value'][0].innerHTML = f'{p_sim:.1f}'
+    n_sim = int(page['#n-sim'][0].value)
+    page['#n-sim-value'][0].innerHTML = f'{n_sim}'
+    m_sim = int(page['#m-sim'][0].value)
 
-    x = np.arange(*X.support())
-    ax.vlines(x, 0, X.pmf(x))
-    ax.plot(x, X.pmf(x), 'o')
+    B_sim = st.binom(n_sim, p_sim)
+    x_sim = B_sim.rvs(m_sim)
 
-    ax.set_xlim(-1, 21)
-    ax.set_ylim(0, 1.1)
-    # Manual rendering to avoid MathJax processing
-    img_buffer = io.BytesIO()
-    fig.savefig(img_buffer, format='png', bbox_inches='tight', dpi=100)
-    img_buffer.seek(0)
-    img_base64 = base64.b64encode(img_buffer.getvalue()).decode('utf-8')
-    img_buffer.close()
-    
-    # Display in protected div
-    img_html = '<div class="no-mathjax"><img src="data:image/png;base64,' + \
-               img_base64 + '" style="max-width: 100%; height: auto;" /></div>'
-    Element("sim-output").write(img_html)
-    
-    plt.close(fig)
+    freq_sim = pd.Series(x_sim).value_counts(normalize=True)
+    freq_sim = freq_sim.reindex(np.arange(0, n_sim + 1), fill_value=0).values
 
-def update_simulation_boxplot(event=None):
-    n = int(document.getElementById("n-sim-slider").value)
-    document.getElementById("n-sim-value").innerText = f"{n:d}"
-    p = float(document.getElementById("p-sim-slider").value)
-    document.getElementById("p-sim-value").innerText = f"{p:.1f}"
-    m = int(document.getElementById("m-sim").value)
+    ax_sim.clear()
+    x_sim = np.arange(n_sim + 1)
+    ax_sim.bar(x_sim, freq_sim, facecolor='lightgray', edgecolor='gray', width=.1)
 
-    binomial_simulation(n, p, m)
+    ax_sim.vlines(x_sim, 0, B_sim.pmf(x_sim))
+    ax_sim.plot(x_sim, B_sim.pmf(x_sim), 'o')
 
+    ax_sim.set_xlim(-1, 21)
+    ax_sim.set_ylim(0, 1.1)
 
-p_slider = document.getElementById("p-sim-slider")
-p_slider.addEventListener("input", create_proxy(update_simulation_boxplot))
+    display(fig_sim, target='graph-%this%', append=False)
 
-n_slider = document.getElementById("n-sim-slider")
-n_slider.addEventListener("input", create_proxy(update_simulation_boxplot))
-
-m_menu = document.getElementById("m-sim")
-m_menu.addEventListener("change", create_proxy(update_simulation_boxplot))
-
-# Initial plot
-binomial_simulation(10, 0.5, 50)
+binomial_simulation(None)
 ```
 ```{raw} html
-
-<div id="boxplot-container" style="visibility: none;">
-    <div class="slider-container" style="float: left;">
-        <label for="n-sim-slider">\( n \): </label>
-        <input type="range" id="n-sim-slider"
-               min="2" max="20" value="10" step="1" />
+<div class="plot-container">
+    <div class="model-slider-container">
+        <label for="n-sim">\( n \): </label>
+        <input type="range" id="n-sim"
+               min="1" max="20" value="10" step="1" />
         <span id="n-sim-value">10</span>
     </div>
-
-    <div class="slider-container" style="float: left; margin-left: 1em;">
-        <label for="p-sim-slider">\( p \): </label>
-        <input type="range" id="p-sim-slider"
-               min="0" max="1" value="0.5" step="0.1" />
+    <div class="model-slider-container">
+        <label for="p-sim">\( p \): </label>
+        <input type="range" id="p-sim"
+               min="0" max="1" value="0.5" step="0.05" />
         <span id="p-sim-value">0.5</span>
     </div>
-
-    <div class="slider-container" style="float: right;">
+    <div class="model-slider-container">
         <label for="m-sim">\( m \): </label>
         <select id="m-sim">
           <option value="5">5</option>
@@ -1124,11 +1068,6 @@ binomial_simulation(10, 0.5, 50)
           <option value="500">500</option>
           <option value="5000">5000</option>
         </select>
-    </div>
-
-    <div id="sim-output" class="no-mathjax"
-            style="clear: both; display: flex; justify-content: center; margin-bottom: 2em;">
-        
     </div>
 </div>
 ```

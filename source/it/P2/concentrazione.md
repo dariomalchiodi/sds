@@ -9,7 +9,16 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:concentrazione)=
+```{code-cell} python
+:tags: [remove-cell]
+
+import matplotlib.pyplot as plt
+plt.style.use('../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+(sec_concentrazione)=
 # Indici di concentrazione
 
 In presenza di variabili che rappresentano beni condivisibili in una
@@ -62,7 +71,7 @@ considerano i punti sul piano che sono identificati da queste coppie:
 retta $F = Q$: possiamo dunque dire che in questo caso $F_i - Q_i = 0$ per ogni
 $i$;
 
-```{code-block} python
+```{code-cell} python
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -84,7 +93,7 @@ plt.show()
   $F_n = Q_n = 1$: dunque in questo caso $F_i - Q_i = F_i$ per
   $i = 1, \dots, n-1$ e $F_n - Q_n = 0$.
 
-```{code-block} python
+```{code-cell} python
 tot = 10
 n = 20
 a = [0] * (n-1) + [tot]
@@ -106,7 +115,7 @@ di appositi rapporti di concentrazione, di cui l'indice di Gini costituisce un
 esempio. Maggiore infatti è la concentrazione osservata, maggiore sarà tale
 area.
 
-```{code-block} python
+```{code-cell} python
 tot = 10
 n = 20
 a = [tot/100]*10 + [tot*4/90]*9 + [tot/2]
@@ -121,14 +130,14 @@ plt.show()
 Verifichiamo quale sia la concentrazione dell'attributo _Strength_, nell'idea
 di verificare se la forza sia più o meno equamente distribuita tra i supereroi.
 
-```{code-block} python
+```{code-cell} python
 strength = heroes[pd.notnull(heroes['strength'])]['strength']
 ```
 
 Le quantità relative cumulate si ottengono ordinando i valori, calcolando le
 corrispondenti somme cumulate e dividendole per la "quantità" totale di forza.
 
-```{code-block} python
+```{code-cell} python
 Q = strength.sort_values().cumsum() / sum(strength)
 ```
 
@@ -136,7 +145,7 @@ Le frequenze relative cumulate sono facili da calcolare: il loro vettore ha
 come componenti i valori che vanno da $\frac{1}{n}$ a $1$, incrementandoli ogni
 volta di $\frac{1}{n}$, dove $n$ indica il numero di valori osservati.
 
-```{code-block} python
+```{code-cell} python
 import numpy as np
 n = len(strength)
 F = np.arange(1, n+1) / n
@@ -147,7 +156,7 @@ causa dell'elevato numero di osservazioni è più opportuno visualizzare le
 quantità relative cumulate (i valori di $Q$) usando una spezzata piuttosto che
 un insieme di punti.
 
-```{code-block} python
+```{code-cell} python
 plt.fill_between(F, F, Q, alpha=0.2)
 plt.plot([0, 1], [0, 1], linestyle='--', linewidth=2, c='gray')
 plt.plot(F, Q, linewidth=2, c='blue')
@@ -185,7 +194,7 @@ quantità cumulate a quello delle frequenze cumulate, sommando i risultati e
 moltiplicando per $\frac{2}{n-1}$ si ottiene il valore dell'indice di
 concentrazione.
 
-```{code-block} python
+```{code-cell} python
 2 * sum(F - Q) / (n-1)
 ```
 

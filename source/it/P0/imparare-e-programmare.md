@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:imparare-e-programmare)=
+(sec_imparare-e-programmare)=
 # Imparare <span class="ast">\*</span>e<span class="ast">\*</span> programmare
 
 Come descritto nel paragrafo precedente, introdurrò i concetti affiancandoli, o
@@ -26,7 +26,7 @@ studenti del secondo anno dei corsi di laurea triennale in area informatica.
 Pertanto presuppone come acquisite le competenze di programmazione che vengono
 acquisite generalmente al primo anno di queste lauree, o in percorsi affini.
 ```
-Il {ref}`chap:intro-python` fornisce una panoramica a livello medio-alto delle
+Il {ref}`chap_intro-python` fornisce una panoramica a livello medio-alto delle
 funzionalità di Python che utilizzo nel libro, pensata per consentire a chi sa
 già programmare, ma non conosce questo linguaggio, di mettersi in pari. La
 lettura di questo capitolo è comunque consigliata, perché permette di
@@ -52,7 +52,7 @@ eseguire questo codice senza riflettere è poco utile. Al contrario, è
 importante analizzarlo, comprenderlo e modificarlo per capirne meglio il
 funzionamento&mdash;insomma, _giocarci_ in un'ottica _hacker_, nel senso
 originale del termine[^hacker]. In ogni caso, alcuni dei contenuti sono
-interattivi, come mostrato per esempio nel {ref}`chap:uno-sguardo-di-insieme`:
+interattivi, come mostrato per esempio nel {ref}`chap_uno-sguardo-di-insieme`:
 la loro manipolazione, che non richiede di analizzare del codice, è pensata
 proprio per facilitare la comprensione dei concetti introdotti.
 
@@ -85,8 +85,8 @@ come:
 
 Voglio mettere in guardia chi pensa di usare questo libro per imparare a
 programmare mentre, nello stesso tempo, impara ad analizzare dati. Questo
-__non è__ un libro per imparare a programmare, ma piuttosto un libro per
-imparare __usando__ la programmazione, scrivendo cioè codice per rendere più
+_non è_ un libro per imparare a programmare, ma piuttosto un libro per
+imparare _usando_ la programmazione, scrivendo cioè codice per rendere più
 solido il processo di apprendimento di un'altra materia. Si dice che si è
 compreso veramente qualcosa solo quando si è in grado di spiegarla alla
 propria nonna[^cite-granny]. Io rilancio, dicendo che non si padroneggia

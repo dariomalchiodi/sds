@@ -9,7 +9,16 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:modello-geometrico)=
+```{code-cell} python
+:tags: [remove-cell]
+
+import matplotlib.pyplot as plt
+plt.style.use('../../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+(sec_modello-geometrico)=
 # Le distribuzioni geometriche
 
 Bruce Banner si trasforma in Hulk ogni volta che non riesce a controllare
@@ -44,7 +53,7 @@ _distribuzione geometrica_, definita di seguito.
 
 
 ````{prf:definition} La famiglia delle distribuzioni geometriche
-:label: def:distribuzione-geometrica
+:label: def-distribuzione-geometrica
 Fissato $p \in (0, 1]$, la distribuzione geometrica di parametro $p$ è
 definita dalla funzione di massa di probabilità
 
@@ -96,7 +105,7 @@ contrario, la possibilità che $p$ sia nullo va esclusa a priori, perché in
 questo caso non sarebbe mai possibile avere come esito un successo, e quindi
 la ripetizione dell'esperimento non terminerebbe mai. Questo implicherebbe
 in un certo qual senso che la specificazione assunta assume un valore
-infinito, cosa che è proibita dalla {prf:ref}`def:variabile-aleatoria`.
+infinito, cosa che è proibita dalla {prf:ref}`def-variabile-aleatoria`.
 
 Si verifica facilmente che sommando i valori di massa di probabilità per tutte
 le specificazioni della distribuzione si ottiene come risultato 1:
@@ -127,13 +136,13 @@ La forma analitica per la funzione di ripartizione di una generica
 distribuzione geometrica si ottiene nel modo seguente:
 
 ````{prf:theorem}
-:label: teo:geometric-cdf
+:label: teo-geometric-cdf
 
 Fissato $p \in (0, 1]$ e data $X \sim \mathrm G(p)$,
 $\forall n \in \mathbb N \cup \{ 0 \}$ e $\forall x \in \mathbb R$ 
 
 ```{math}
-:label: eq:geometric-cdf
+:label: eq_geometric-cdf
 
 F_X(x; p) = \left( 1 - (1 - p)^{\lfloor x \rfloor + 1} \right)
             \mathrm I_{[0, +\infty]}(x) \enspace.
@@ -171,7 +180,7 @@ F_X(x; p) = \left( 1 - (1 - p)^{\lfloor x \rfloor + 1} \right)
 come forma più generale per la funzione di ripartizione.
 ````
 
-La {numref}`fig:geometric-pdf-cdf` mostra i grafici delle funzioni di massa di
+La {numref}`fig-geometric-pdf-cdf` mostra i grafici delle funzioni di massa di
 probabilità e di ripartizione di una generica distribuzione geometrica. Essendo
 in questo caso infinito il supporto della distribuzione, il primo grafico
 contiene in teoria un numero infinito di bastoncini, e solo quelli relativi ai
@@ -180,76 +189,75 @@ possibile modificare il valore del parametro $p$ agendo sul relativo selettore
 e verificare in che modo i grafici vengono modificati.
 
 ````{customfigure}
-:name: fig:geometric-pdf-cdf
+:name: fig-geometric-pdf-cdf
+:class: left-align
 
-```{code-block} python
-:class: toggle-code
+```{interactive-code} python
+:tags: [toggle-code] 
 
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
+import scipy.stats as st
+from pyscript import display
+from pyscript.web import page, when
 
-from pyodide.ffi import create_proxy
-import io
-import base64
+p_1 = float(page['#p'][0].value)
+G_1 = st.geom(p_1, loc=-1)
 
+x_1 = np.arange(0, 11)
+y_1 = G_1.pmf(x_1)
 
-def geometric_pdf_cdf(p):
-    fig, ax = plt.subplots()
+fig_1, ax_1 = plt.subplots()
 
-    x = np.arange(0, 11)
-    pmf = (1-p) ** x * p
-    cdf = 1 - (1-p)**(np.floor(x)+1)
+cdf_y = [0] + list(G_1.cdf(x_1))
+cdf_xmin = list(range(-1, 11))
+cdf_xmax = list(range(0, 11)) + [20]
+cdf = ax_1.hlines(cdf_y, cdf_xmin, cdf_xmax)
+pmf_lines = ax_1.vlines(x_1, 0, y_1, color='k')
+pmf_dots = ax_1.plot(x_1, y_1, 'o')[0]
 
-    ax.vlines(x, 0, pmf, color='k')
-    ax.plot(x, pmf, 'o')
+ax_1.set_xlabel('$x$', fontsize=12, ha='right')
+ax_1.set_ylabel('$f, F$', fontsize=12, rotation=0)
+ax_1.set_xlim(-1, 11)
+ax_1.set_ylim(0, 1.1)
+ax_1.set_xticks(range(0, 12, 2))
+
+@when("input", "#p")
+def geometric_plot(event):
+    p_1 = float(page['#p'][0].value)
+    page['#p-value'][0].innerHTML = f'{p_1:.1f}'
+
+    G_1 = st.geom(p_1, loc=-1)
+
+    x_1 = np.arange(0, 11)
+    y_1 = G_1.pmf(x_1)
+
+    cdf_y = [0] + list(G_1.cdf(x_1))
+    cdf_xmin = list(range(-1, 11))
+    cdf_xmax = list(range(0, 11)) + [20]
+    cdf_segments = [[[xmin, y_val], [xmax, y_val]] 
+                    for y_val, xmin, xmax in zip(cdf_y, cdf_xmin, cdf_xmax)]
+
+    cdf.set_segments(cdf_segments)
     
-    ax.hlines(cdf[:-1], x[:-1], x[1:])
-    ax.vlines(x[:-1], cdf[:-1]-.01, cdf[:-1]+.01)
-    ax.plot([-1, 0], [0, 0], color='C0')
+    # Update PMF vertical lines
+    pmf_segments = [[[xi, 0], [xi, yi]] for xi, yi in zip(x_1, y_1)]
+    pmf_lines.set_segments(pmf_segments)
 
-    ax.set_title(f'p = {p:.2f}')
-    ax.set_ylim(0, 1.1)
-
-    #  Manual rendering to avoid MathJax processing
-    img_buffer = io.BytesIO()
-    fig.savefig(img_buffer, format='png', bbox_inches='tight', dpi=100)
-    img_buffer.seek(0)
-    img_base64 = base64.b64encode(img_buffer.getvalue()).decode('utf-8')
-    img_buffer.close()
+    pmf_dots.set_data(x_1, y_1)
     
-    # Display in protected div
-    img_html = '<div class="no-mathjax"><img src="data:image/png;base64,' + \
-               img_base64 + '" style="max-width: 100%; height: auto;" /></div>'
-    Element("pdf-cdf-output").write(img_html)
-    
-    plt.close(fig)
+    display(fig_1, target='graph-%this%', append=False)
 
-def update_plot(event=None):
-    p = float(document.getElementById("p-slider").value)
-    document.getElementById("p-value").innerText = f"{p:.1f}"
-    geometric_pdf_cdf(p)
-
-
-p_slider = document.getElementById("p-slider")
-p_slider.addEventListener("input", create_proxy(update_plot))
-
-# Initial plot
-geometric_pdf_cdf(0.3)
+display(fig_1, target='graph-%this%', append=False)
 ```
 ```{raw} html
 
-<div id="plot-container" style="visibility: none;">
-
-    <div class="slider-container" style="float: left;">
-        <label for="p-slider">\( p \): </label>
-        <input type="range" id="p-slider"
-               min="0" max="1" value="0.3" step="0.1" />
-        <span id="p-value">0.3</span>
-    </div>
-
-    <div id="pdf-cdf-output" class="no-mathjax"
-            style="clear: both; display: flex; justify-content: center; margin-bottom: 2em;">
+<div class="plot-container">
+    <div class="model-slider-container">
+        <label for="p">\( p \): </label>
+        <input type="range" id="p"
+               min="0" max="1" value="0.5" step="0.05" />
+        <span id="p-value">0.5</span>
     </div>
 </div>
 ```
@@ -266,7 +274,7 @@ richiede tipicamente di valutare il valore di serie infinite. Pertanto
 conviene iniziare dal seguente risultato intermedio.
 
 ````{prf:lemma}
-:label: lemma:geom-ev
+:label: lemma-geom-ev
 Per ogni $\alpha \in (-1, 1)$ valgono le seguenti identità:
 
 ```{math}
@@ -319,7 +327,7 @@ Questo risultato ci permette di calcolare agevolmente il valore atteso della
 distribuzione.
 
 ````{prf:theorem}
-:label: teo:mean-geometric
+:label: teo-mean-geometric
 
 Dati $p \in (0, 1]$, e $X \sim \mathrm G(p)$,
 
@@ -339,7 +347,7 @@ Applicando la definizione di valore atteso si ottiene
 ```
 
 e quindi ponendo $\alpha = 1 - p$ e applicando la prima identità del
-{prf:ref}`lemma:geom-ev` si ottiene
+{prf:ref}`lemma-geom-ev` si ottiene
 
 ```{math}
 \mathbb E(X) = p (1 - p) \frac{1}{p^2} = \frac{1 - p}{p} \enspace.
@@ -348,15 +356,17 @@ e quindi ponendo $\alpha = 1 - p$ e applicando la prima identità del
 che dimostra la proposizione.
 ````
 
-La {numref}`fig:geometric-ev` visualizza graficamente l'andamento del valore
+La {numref}`fig-geometric-ev` visualizza graficamente l'andamento del valore
 atteso della distribuzione geometrica in funzione del corrispondente parametro
 $p$.
 
-````{customfigure}
-:name: fig:geometric-ev
-
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [remove-cell]
+import matplotlib.pyplot as plt
+import numpy as np
+```
+```{code-cell} python
+:tags: [hide-input]
 
 fig, ax = plt.subplots()
 
@@ -365,8 +375,10 @@ e = (1 - p) / p
 
 ax.plot(p, e)
 ax.set_ylim(0, 10)
-fig.show()
+fig
 ```
+````{customfigure}
+:name: fig-geometric-ev
 
 Grafico del valore atteso del modello geometrico in funzione del valore del suo
 parametro $p$.
@@ -385,7 +397,7 @@ Procedendo in modo simile a quanto abbiamo visto per il valore atteso è
 possibile calcolare anche la varianza della distribuzione.
 
 ````{prf:theorem}
-:label: teo:var-geometric
+:label: teo-var-geometric
 
 Data $X \sim \mathrm G(p)$ con $p \in (0, 1]$,
 
@@ -397,7 +409,7 @@ Data $X \sim \mathrm G(p)$ con $p \in (0, 1]$,
 :class: myproof
 
 Il calcolo del momento secondo si ottiene applicando la seconda identità del
-{prf:ref}`lemma:geom-ev`:
+{prf:ref}`lemma-geom-ev`:
 
 ```{math}
 \begin{align*}
@@ -421,15 +433,12 @@ e di conseguenza
 è il valore per la varianza della distribuzione geometrica.
 ````
 
-Come già fatto per il valore atteso, nella {numref}`fig:geometric-variance` è
+Come già fatto per il valore atteso, nella {numref}`fig-geometric-variance` è
 possibile vedere l'andamento della varianza $\mathbb V(X)$ al variare del
 parametro $p \in (0, 1]$ di una variabile aleatoria $X \sim \mathrm G(p)$.
 
-````{customfigure}
-:name: fig:geometric-variance
-
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 fig, ax = plt.subplots()
 
@@ -438,8 +447,10 @@ y = list(map(lambda p: (1-p)/p**2, x))
 
 plt.plot(x, y)
 plt.ylim(0, 50)
-plt.show()
+fig
 ```
+````{customfigure}
+:name: fig-geometric-variance
 
 Grafico della varianza del modello geometrico in funzione del valore del suo
 parametro $p$.
@@ -459,11 +470,11 @@ La distribuzione geometrica gode di una particolare proprietà, descritta
 dal seguente teorema.
 
 ````{prf:theorem}
-:label: teo:memoryless-geo
+:label: teo-memoryless-geo
 
 Dati $p \in (0, 1]$ e $X \sim \mathrm G(p)$, per ogni $x, y \in \mathbb N$
 ```{math}
-:label: eq:memoryless-geo
+:label: eq_memoryless-geo
 
 \mathbb P(X \geq x+y \mid X \geq x)= \mathbb P(X \geq y) \enspace.
 ```
@@ -471,7 +482,7 @@ Dati $p \in (0, 1]$ e $X \sim \mathrm G(p)$, per ogni $x, y \in \mathbb N$
 ````{admonition} _
 :class: myproof
 
-Nella dimostrazione del {prf:ref}`teo:geometric-cdf` abbiamo visto che
+Nella dimostrazione del {prf:ref}`teo-geometric-cdf` abbiamo visto che
 $\mathbb P(X > x) = (1 - p)^{\lfloor x \rfloor +1}$, pertanto
 $\mathbb P(X \geq x) = \mathrm P(X \geq \lfloor x \rfloor) =
 \mathrm P(X > \lfloor x \rfloor - 1) = (1-p)^{\lfloor x \rfloor}$. Sfruttando
@@ -492,7 +503,7 @@ questo risultato otteniamo
 e quindi la tesi è dimostrata.
 ````
 
-La proprietà espressa da {eq}`eq:memoryless-geo` prende il nome di _assenza di
+La proprietà espressa da {eq}`eq_memoryless-geo` prende il nome di _assenza di
 memoria_. Essa indica che durante la ripetizione dell'esperimento bernoulliano
 alla base della distribuzione geomatrica, il fatto che sia avvenuto un numero
 $n$ (anche elevato) di insuccessi consecutivi non permette di dire alcunché sul
@@ -507,7 +518,7 @@ Fissato $p \in (0, 1]$, la funzione generatrice dei momenti per una variabile
 aleatoria $X \sim \mathrm{g}(p)$ ha la seguente forma analitica:
 
 ```{math}
-:label: eq:mgf-geometric
+:label: eq_mgf-geometric
 
 m_X(t) = \mathbb E\left( \mathrm e^{tX} \right)
        = \sum_{x=0}^{+\infty}(1 - p)^x p \mathrm e^{tx}
@@ -516,7 +527,7 @@ m_X(t) = \mathbb E\left( \mathrm e^{tX} \right)
 ```
 
 ed è definita per i valori di $t$ per i quali è garantita la convergenza della
-serie geometrica contenuta in {eq}`eq:mgf-geometric`, cioè quando
+serie geometrica contenuta in {eq}`eq_mgf-geometric`, cioè quando
 $| (1 - p) \mathrm e^t | < 1$, che equivale a $t < - \log(1-p)$. Pertanto le
 prime quattro derivate della funzione generatrice dei momenti saranno
 
@@ -535,15 +546,15 @@ m_X^{\mathrm{IV}}(t) = & \frac{1-p}{p} \mathrm e^t ( m_X(t)^2 + 6 m_X(t) m_X'(t)
 
 Pertanto:
 - $\mathbb E(X) = m_X^\prime(0) = \frac{1-p}{p}$, a conferma di quanto abbiamo
-  ricavato nel {prf:ref}`teo:mean-geometric`;
+  ricavato nel {prf:ref}`teo-mean-geometric`;
 - $\mathbb E(X^2) = m_X^{\prime(0)\prime} = \frac{(1 - p)(2 - p)}{p^2}$, come
-  ottenuto nella dimostrazione del {prf:ref}`teo:var-geometric`;
+  ottenuto nella dimostrazione del {prf:ref}`teo-var-geometric`;
 - i momenti terzo e quarto sono rispettivamente $\mu_3^\prime =
   m_X^{\prime\prime\prime}(0) = \frac{(1-p)(p^2 -6p + 6)}{p^3}$ e $\mu^\prime_4
   = m_X^{\mathrm{IV}}(0) = \frac{1-p}{p} (24 - 36p + 14p^2 - p^3)$. 
 
 Per calcolare i momenti centrali si può utilizzare il
-{prf:ref}`teo:central-moments`: posto $Y \triangleq X - \frac{1-p}{p}$ si ha
+{prf:ref}`teo-central-moments`: posto $Y \triangleq X - \frac{1-p}{p}$ si ha
 
 ```{math}
 \begin{align*}
@@ -558,7 +569,7 @@ m_Y''(t) &= \mathrm e^{-t\frac{1-p}{p}}
 e pertanto i primi due momenti centrali sono $\mu_1 = m_Y^\prime(0) = 0$, come
 deve necessariamente essere, e $\mu_2 = m_Y^{\prime\prime}(0) = \frac{1 -
 p}{p^2}$, che coincide con la varianza della distribuzione geometrica ricavata
-nel {prf:ref}`teo:var-geometric`. Analogamente
+nel {prf:ref}`teo-var-geometric`. Analogamente
 
 ```{math}
 m_Y'''(t) = \mathrm e^{-t\frac{1-p}{p}} \left( m_X'''(t)
@@ -610,14 +621,11 @@ normale con gli stessi valore atteso e deviazione standard. Questo fatto è
 abbastanza ovvio, avendo la distribuzione geometrica una coda a destra. In
 particolare, più $p$ si avvicina a $1$ e più la curtosi aumenta, coerentemente
 con il fatto che in questi casi la distribuzione tende a degenerare alla
-costante $0$. La {numref}`fig:geometric-sc-graph` illustra il grafico
+costante $0$. La {numref}`fig-geometric-sc-graph` illustra il grafico
 skewness-curtosi per la famiglia delle distribuzioni geometriche.
 
-````{customfigure}
-:name: fig:geometric-sc-graph
-
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 fig, ax = plt.subplots()
 
@@ -626,8 +634,11 @@ skewness = (2 - p) / (1 - p)**0.5
 kurtosis = 6 + p**2 / (1 - p)
 
 plt.plot(skewness, kurtosis)
-plt.show()
+fig
 ```
+````{customfigure}
+:name: fig-geometric-sc-graph
+
 
 Il grafico skewness-curtosi del modello geometrico.
 ````
@@ -635,11 +646,11 @@ Il grafico skewness-curtosi del modello geometrico.
 
 ## Quantili della distribuzione geometrica
 
-Abbiamo visto nel {prf:ref}`teo:geometric-cdf` come nella distribuzione geometrica
+Abbiamo visto nel {prf:ref}`teo-geometric-cdf` come nella distribuzione geometrica
 sia possibile semplificare la sommatoria alla base del calcolo della funzione
 di ripartizione. Questo permette di calcolare in modo abbastanza agevole un
 generico quantile della distribuzione. Infatti, dato $p \in (0, 1]$ e
-applicando {eq}`eq:geometric-cdf` a una variabile aleatoria
+applicando {eq}`eq_geometric-cdf` a una variabile aleatoria
 $X \sim \mathrm G(p)$, dato un generico livello $q \in [0, 1]$ si ha
 
 ```{margin}
@@ -672,15 +683,12 @@ x_{3/4} &= \left\lceil \frac{-2}{\log_2 (1 - p)} \right\rceil - 1 \enspace,
 \end{align*}
 ```
 
-come evidenziato nel diagramma a scatola di {numref}`fig:geometric-boxplot`,
+come evidenziato nel diagramma a scatola di {numref}`fig-geometric-boxplot`,
 nel quale ho fissato $p = 0.2$. Il baffo a destra della scatola è parzialmente
 tratteggiato per enfatizzare il fatto che si estende fino a $+\infty$.
 
-````{customfigure}
-:name: fig:geometric-boxplot
-
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 fig, ax = plt.subplots(figsize=(6, 0.3))
 
@@ -692,44 +700,46 @@ first_quartile = np.ceil((np.log2(3) - 2) / np.log2(1 - p)) - 1
 lw = 1
 height = 0.2
 
-plt.plot([median, median], [-height, height], c='k', linewidth=1.5)
+ax.plot([median, median], [-height, height], c='k', linewidth=1.5)
 
-plt.plot([0, 0], [-.1, .1], c='k', linewidth=lw)
-plt.plot([0, first_quartile], [0, 0], c='k', linewidth=lw)
+ax.plot([0, 0], [-.1, .1], c='k', linewidth=lw)
+ax.plot([0, first_quartile], [0, 0], c='k', linewidth=lw)
 
-plt.plot([first_quartile, first_quartile], [-height, height],
+ax.plot([first_quartile, first_quartile], [-height, height],
          c='k', linewidth=lw)
 
-plt.plot([third_quartile, third_quartile], [-height, height],
+ax.plot([third_quartile, third_quartile], [-height, height],
          c='k', linewidth=lw)
 
-plt.plot([first_quartile, third_quartile], [height, height],
+ax.plot([first_quartile, third_quartile], [height, height],
          c='k', linewidth=lw)
-plt.plot([first_quartile, third_quartile], [-height, -height],
+ax.plot([first_quartile, third_quartile], [-height, -height],
          c='k', linewidth=lw)
 
-plt.plot([third_quartile, third_quartile*1.2], [0, 0], c='k', linewidth=lw)
-plt.plot([third_quartile*1.2, third_quartile*1.5], [0, 0],
+ax.plot([third_quartile, third_quartile*1.2], [0, 0], c='k', linewidth=lw)
+ax.plot([third_quartile*1.2, third_quartile*1.5], [0, 0],
          'k--', linewidth=lw)
 
-plt.text(0, -0.5, '0', ha='center')
-plt.text(median+.2, -0.6,
+ax.text(0, -0.5, '0', ha='center')
+ax.text(median+.2, -0.6,
          f'{median}',
          ha='center')
 
-plt.text(first_quartile+.5, 0.6,
+ax.text(first_quartile+.5, 0.6,
          f'{first_quartile}',
          ha='center')
 
-plt.text(third_quartile+.1, 0.6,
+ax.text(third_quartile+.1, 0.6,
          f'{third_quartile}',
          ha='center')
 
-plt.axis('off')
+ax.axis('off')
 pad = .5
-plt.xlim(0-pad, third_quartile*1.5+pad) 
-plt.show()
+ax.set_xlim(0-pad, third_quartile*1.5+pad) 
+fig
 ```
+````{customfigure}
+:name: fig-geometric-boxplot
 
 Diagramma a scatola della distribuzione geometrica di parametro $p = 0.2$.
 ````
@@ -748,7 +758,7 @@ valore del corrispondente parametro come argomento.
 Questa implementazione verifica anche che il valore del parametro della
 distribuzione sia valido.
 ```
-```python
+```{code-cell} python
 from scipy.stats import bernoulli
 
 def geom_rv(p):
@@ -777,88 +787,64 @@ def geom_rv(p):
 Si potrebbe dimostrare che esistono metodi che utilizzano approcci più
 efficienti per simulare la distribuzione geometrica, per esempio evitando l'uso
 di cicli. È questo l'approccio seguito dalla classe `geom` fornita dal package
-`scipy.stats`, che nella {numref}`fig:geometric-simulation` viene utilizzata
+`scipy.stats`, che nella {numref}`fig-geometric-simulation` viene utilizzata
 per generare una sequenza in modo analogo a quanto fatto usando la funzione
 `geom_rv` nell'esempio precedente.
 
-````{customfigure}
-:name: fig:geometric-simulation
-
-```python
+```{code-cell} python
 from scipy.stats import geom
 
 g = geom(.3, loc=-1)
 g.rvs(10)
 ```
 
-```{code-block} python
-:class: toggle-code 
+````{customfigure}
+:name: fig-geometric-simulation
+:class: left-align
 
-from pyodide.ffi import create_proxy
-import io
-import base64
+```{interactive-code} python
+:tags: [toggle-code]
 
-def geometric_simulation(p, m):
-    x_max = 7
-    fig, ax = plt.subplots()
+import pandas as pd
 
-    G = geom(p, loc=-1)
-    x = G.rvs(m)
-    freq = pd.Series(x).value_counts(normalize=True)
-    freq = freq.reindex([0, 1], fill_value=0).values
-    ax.bar([0, 1], freq, facecolor='lightgray', edgecolor='gray', width=.4)
+fig_sim, ax_sim = plt.subplots()
 
-    s = np.arange(0, x_max+1)
-    ax.vlines(s, 0, G.pmf(s))
-    ax.plot(s, G.pmf(s), 'o')
+@when("input", "#p-sim, #m-sim")
+def geometric_simulation(event):
 
-    ax.set_ylim(0, 1.1)
+    p_sim = float(page['#p-sim'][0].value)
+    page['#p-sim-value'][0].innerHTML = f'{p_sim:.1f}'
+    m_sim = int(page['#m-sim'][0].value)
 
-    # Manual rendering to avoid MathJax processing
-    img_buffer = io.BytesIO()
-    fig.savefig(img_buffer, format='png', bbox_inches='tight', dpi=100)
-    img_buffer.seek(0)
-    img_base64 = base64.b64encode(img_buffer.getvalue()).decode('utf-8')
-    img_buffer.close()
-    
-    # Display in protected div
-    img_html = '<div class="no-mathjax"><img src="data:image/png;base64,' + \
-               img_base64 + '" style="max-width: 100%; height: auto;" /></div>'
-    Element("simulation-output").write(img_html)
+    G_sim = st.geom(p_sim, loc=-1)
+    x_sim = G_sim.rvs(m_sim)
 
-    msg = "Campione: {" + ",".join(map(str, x[:30])) + "}"
-    Element("sample-excerpt").write(msg)
-    
-    plt.close(fig)
+    freq_sim = pd.Series(x_sim).value_counts(normalize=True)
+    freq_sim = freq_sim.reindex(np.arange(0, 11), fill_value=0).values
 
-def update_simulation(event=None):
-    p = float(document.getElementById("p-sim-slider").value)
-    document.getElementById("p-sim-value").innerText = f"{p:.1f}"
-    m = int(document.getElementById("m-sim").value)
-    geometric_simulation(p, m)
+    ax_sim.clear()
+    x_sim = np.arange(11)
+    ax_sim.bar(x_sim, freq_sim, facecolor='lightgray', edgecolor='gray', width=.1)
 
+    ax_sim.vlines(x_sim, 0, G_sim.pmf(x_sim))
+    ax_sim.plot(x_sim, G_sim.pmf(x_sim), 'o')
 
-p_slider = document.getElementById("p-sim-slider")
-p_slider.addEventListener("input", create_proxy(update_simulation))
+    ax_sim.set_xlim(-1, 11)
+    ax_sim.set_ylim(0, 1.1)
 
-m_menu = document.getElementById("m-sim")
-m_menu.addEventListener("change", create_proxy(update_simulation))
+    display(fig_sim, target='graph-%this%', append=False)
 
-# Initial plot
-geometric_simulation(0.5, 50)
+geometric_simulation(None)
 ```
 ```{raw} html
-
-<div id="sample-excerpt" float:right;></div>
-<div id="plot-container" style="visibility: none;">
-    <div class="slider-container" style="float: left;">
-        <label for="p-sim-slider">\( p \): </label>
-        <input type="range" id="p-sim-slider"
+<div class="plot-container">
+    <div class="model-slider-container">
+        <label for="p-sim">\( p \): </label>
+        <input type="range" id="p-sim"
                min="0" max="1" value="0.5" step="0.05" />
         <span id="p-sim-value">0.5</span>
     </div>
-
-    <div class="slider-container" style="float: right;">
+    <div class="model-slider-container">
         <label for="m-sim">\( m \): </label>
         <select id="m-sim">
           <option value="5">5</option>
@@ -866,11 +852,6 @@ geometric_simulation(0.5, 50)
           <option value="500">500</option>
           <option value="5000">5000</option>
         </select>
-    </div>
-
-    <div id="simulation-output" class="no-mathjax"
-            style="clear: both; display: flex;
-                   justify-content: center; margin-bottom: 2em;">
     </div>
 </div>
 ```

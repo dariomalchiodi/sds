@@ -9,7 +9,16 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:modello-bernoulliano)=
+```{code-cell} python
+:tags: [remove-cell]
+
+import matplotlib.pyplot as plt
+plt.style.use('../../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+(sec_modello-bernoulliano)=
 # Le distribuzioni di Bernoulli
 
 Il tipo più semplice di modello casuale è quello nel quale l'esecuzione di
@@ -26,7 +35,7 @@ indicati come «successo» e «fallimento», così che lo spazio degli eventi
 risulta essere  $\Omega = \{ \text{fallimento}, \text{successo} \}$. 
 
 ```{prf:example}
-:label: ex:bernoulli
+:label: ex-bernoulli
 
 Le denominazioni «successo» e «fallimento» non hanno generalmente le
 connotazioni positive e negative che diamo loro nel linguaggio comune, ma come
@@ -65,7 +74,7 @@ Chiaramente, gli eventi $X =0$ e $X = 1$ avranno rispettivamente probabilità
 uguali a $1 - p$ e $p$, da cui segue la prossima definizione.
 
 ````{prf:definition} La famiglia delle distribuzioni di Bernoulli
-:label: def:bernoulli-distribution
+:label: def-bernoulli-distribution
 
 Dato $p \in [0, 1]$, la distribuzione di Bernoulli di parametro $p$ è
 definita dalla funzione di massa di probabilità
@@ -92,76 +101,72 @@ unitaria e altezza uguale a $1-p$ e $p$, mentre la funzione di ripartizione
 avrà un grafico costante a tratti, con due salti posizionati nelle stesse
 ascisse: il primo cambierà l'ordinata da $0$ a $1 - p$ e il secondo la
 modificherà da quest'ultimo valore a $1$, come evidenziato nella
-{numref}`fig:bernoulli-pdf-cdf`, nella quale la spezzata blu mostra il grafico
+{numref}`fig_bernoulli-pdf-cdf`, nella quale la spezzata blu mostra il grafico
 della funzione di ripartizione e il grafico a bastoncini indica la funzione di
 massa di probabilità. Modificando il valore del parametro $p$ agendo sul
 relativo selettore si può vedere come cambiano i due grafici.
 
 ````{customfigure}
-:name: fig:bernoulli-pdf-cdf
+:name: fig_bernoulli-pdf-cdf
+:class: left-align
 
-```{code-block} python
-:class: toggle-code 
+```{interactive-code} python
+:tags: [toggle-code]
 
+import asyncio
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy.stats as st
-from js import document
-from pyodide.ffi import create_proxy
-import io
-import base64
+from js import document, console
+from pyscript import display
+from pyscript.web import page, when
 
-def bernoulli_pdf_cdf(p):
-    fig, ax = plt.subplots()
+p_1 = float(page['#p-slider'][0].value)
+B_1 = st.bernoulli(p_1)
 
-    B = st.bernoulli(p)
+fig_1, ax_1 = plt.subplots()
+cdf = ax_1.hlines([0, B_1.pmf(0), 1], [-1, 0, 1], [0, 1, 2])
+pmf = ax_1.vlines([0, 1], 0, [B_1.pmf(0), B_1.pmf(1)], color='k')
 
-    ax.hlines([0, B.pmf(0), 1], [-1, 0, 1], [0, 1, 2])
+ax_1.set_xlabel('$x$', fontsize=12, ha='right')
+ax_1.set_ylabel('$f, F$', fontsize=12, rotation=0)
+ax_1.set_xlim(-1, 2)
+ax_1.set_ylim(0, 1.1)
 
-    ax.vlines([0, 1], 0, [B.pmf(0), B.pmf(1)], color='k')
-    ax.plot([0, 1], [B.pmf(0), B.pmf(1)], 'o')
 
-    ax.set_title(f'p = {p:.2f}')
+@when("input", "#p-slider")
+def bernoulli_plot(event):
+
+    p_1 = float(page['#p-slider'][0].value)
+    page['#p-value'][0].innerHTML = f'{p_1:.1f}'
+
+    B_1 = st.bernoulli(p_1)
+    cdf_segments = [
+        [[-1, 0], [0, 0]],
+        [[0, B_1.pmf(0)], [1, B_1.pmf(0)]],
+        [[1, 1], [2, 1]]
+    ]
+    cdf.set_segments(cdf_segments)
     
-    # Manual rendering to avoid MathJax processing
-    img_buffer = io.BytesIO()
-    fig.savefig(img_buffer, format='png', bbox_inches='tight', dpi=100)
-    img_buffer.seek(0)
-    img_base64 = base64.b64encode(img_buffer.getvalue()).decode('utf-8')
-    img_buffer.close()
+    # Update PMF vertical lines
+    pmf_segments = [
+        [[0, 0], [0, B_1.pmf(0)]],
+        [[1, 0], [1, B_1.pmf(1)]]
+    ]
+    pmf.set_segments(pmf_segments)
     
-    # Display in protected div
-    img_html = '<div class="no-mathjax"><img src="data:image/png;base64,' + \
-               img_base64 + '" style="max-width: 100%; height: auto;" /></div>'
-    Element("pdf-cdf-output").write(img_html)
-    
-    plt.close(fig)
+    display(fig_1, target='graph-%this%', append=False)
 
-def update_plot(event=None):
-    p = float(document.getElementById("p-slider").value)
-    document.getElementById("p-value").innerText = f"{p:.1f}"
-    bernoulli_pdf_cdf(p)
-
-
-p_slider = document.getElementById("p-slider")
-
-p_slider.addEventListener("input", create_proxy(update_plot))
-
-# Initial plot
-bernoulli_pdf_cdf(0.5)
+display(fig_1, target='graph-%this%', append=False)
 ```
 ```{raw} html
 
-<div id="plot-container" style="visibility: none;">
-    <div class="slider-container" style="float: left;">
+<div class="plot-container" style="visibility: none;">
+    <div class="model-slider-container" style="float: left;">
         <label for="p-slider">\( p \): </label>
         <input type="range" id="p-slider"
                min="0" max="1" value="0.5" step="0.05" />
         <span id="p-value">0.5</span>
-    </div>
-
-    <div id="pdf-cdf-output" class="no-mathjax"
-            style="clear: both; display: flex;
-                   justify-content: center; margin-bottom: 2em;">
     </div>
 </div>
 ```
@@ -174,7 +179,7 @@ Bernoulliano.
 ```{figure} https://upload.wikimedia.org/wikipedia/commons/1/19/Jakob_Bernoulli.jpg
 ---
 figclass: margin
-name: fig:jakob-bernoulli
+name: fig_jakob-bernoulli
 width: 200px
 align: left
 ---
@@ -185,7 +190,7 @@ wikimedia).
 :class: naming
 
 Questa distribuzione deve il suo nome allo scienziato svizzero Jakob
-Bernoulli (ritratto nella {numref}`fig:jakob-bernoulli`, e da non
+Bernoulli (ritratto nella {numref}`fig_jakob-bernoulli`, e da non
 confondere con il figlio Daniel, anch'esso noto matematico), che la introduce
 nel suo libro «Ars Conjectandi», considerato una tra le prime  opere che
 trattano della teoria delle probabilità. Nella terminologia comune, e in
@@ -229,10 +234,10 @@ consiste nel determinare correttamente il valore del parametro $p$ partendo
 dalla descrizione dell'esperimento di Bernoulli dal quale si parte. In alcuni
 casi la probabilità di successo si determina in modo elementare, mentre in
 altri è necessario ricorrere alle tecniche di combinatorica che abbiamo visto
-nel {ref}`chap:calcolo-combinatorio`.
+nel {ref}`chap_calcolo-combinatorio`.
 
 ````{prf:example}
-:label: ex:bernoulli-2
+:label: ex-bernoulli-2
 
 Uno scatolone contiene 50 albi di fumetti, in dodici dei quali compare una e
 una sola storia con Aquaman come protagonista, mentre nei restanti albi
@@ -368,14 +373,17 @@ più $p$ si avvicina a $\frac{1}{2}$ e più le due specificazioni diventano
 equiprobabili, così che la distribuzione tenderà sempre di meno a produrre
 valori fuori scala, e quindi a essere leptocurtica. In particolare, si può
 dimostrare che per $p = \frac{1}{2}$ si ottiene la più platicurtica delle
-distribuzioni. La {numref}`fig:bernoulli-sc-graph` illustra il grafico
+distribuzioni. La {numref}`fig_bernoulli-sc-graph` illustra il grafico
 skewness-curtosi per la famiglia delle distribuzioni di Bernoulli.
 
-````{customfigure}
-:name: fig:bernoulli-sc-graph
+```{code-cell}
+:tags: [remove-cell]
 
-```{code-block} python
-:class: toggle-code
+import numpy as np
+```
+
+```{code-cell} python
+:tags: [hide-input]
 
 fig, ax = plt.subplots()
 
@@ -383,14 +391,16 @@ p = np.linspace(0.01, 0.99, 300)
 skewness = (1 - 2*p) / (p * (1 - p))**0.5
 kurtosis = 1 / (p * (1 - p)) - 6
 
-plt.plot(skewness, kurtosis)
-plt.show()
+ax.plot(skewness, kurtosis)
+fig
 ```
+````{customfigure}
+:name: fig_bernoulli-sc-graph
 
 Il grafico skewness-curtosi per il modello di Bernoulli.
 ````
 
-(sec:bernoulli_quantiles)=
+(sec_bernoulli_quantiles)=
 ## Quantili della distribuzione di Bernoulli (*)
 
 La distribuzione di Bernoulli ha solo due specificazioni, e di conseguenza
@@ -461,14 +471,12 @@ si otterrebbe sempre un grafico senza scatola o senza baffi. Più precisamente,
   $1$, quindi la scatola collassa in un segmento verticale sovrapposto
   all'estremo del baffo destro. 
 
-I diagrammi riportati in {numref}`fig:bernoulli-boxplot` riepilogano questi
+I diagrammi riportati in {numref}`fig_bernoulli-boxplot` riepilogano questi
 quattro casi.
 
-````{customfigure}
-:name: fig:bernoulli-boxplot
 
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 lw = 1
 height = 0.1
@@ -511,8 +519,10 @@ bernoulli_bp(1, 1, 1, axes[1, 2], r'$\frac{3}{4} < p < 1$')
 for a in axes.flatten():
     a.axis('off')
 
-plt.show()
+fig
 ```
+````{customfigure}
+:name: fig_bernoulli-boxplot
 
 I quattro possibili boxplot per le distribuzioni di Bernoulli.
 ````
@@ -556,7 +566,7 @@ utilizzato nel resto del libro ho scelto, in casi come questo, di utilizzare
 come nome delle variabili coinvolte delle lettere maiuscole.
 ```
 
-```{code-block} python
+```{code-cell} python
 import scipy.stats as st
 
 X = st.bernoulli(0.7)
@@ -566,7 +576,7 @@ Una volta istanziata una distribuzione discreta, i metodi `pmf` e `cdf`
 permettono di calcolarne le funzioni di massa di probabilità e di
 ripartizione.
 
-```{code-block} python
+```{code-cell} python
 p=0.7
 fig, axes = plt.subplots(1, 2, sharey=True)
 
@@ -583,13 +593,13 @@ for ax in axes:
 
 axes[0].set_ylabel(r'$F_X$', rotation='horizontal')
 axes[1].set_ylabel(r'$f_X$', rotation='horizontal')
-plt.show()
+fig
 ```
 
 Analogamente, i metodi `mean`, `median`, `var` e `std` permettono di calcolare
 valore atteso, mediana, varianza e deviazione standard della distribuzione.
 
-```{code-block} python
+```{code-cell} python
 
 print(f'Per la distribuzione di Bernoulli di parametro {p} si ha')
 print(f'valore atteso {B.mean():.2f}')
@@ -602,9 +612,9 @@ Inoltre, il metodo `ppf` calcola un generico quantile della distribuzione,
 specificando come argomento il livello corrispondente. Per esempio, nella
 cella seguente viene calcolato il range interquartile di una distribuzione di
 Bernoulli di parametro $p = 0.7$ che, come abbiamo visto al termine del
-Paragrafo {ref}`sec:bernoulli_quantiles` vale $1$.
+Paragrafo {ref}`sec_bernoulli_quantiles` vale $1$.
 
-```{code-block} python
+```{code-cell} python
 B.ppf(0.75) - B.ppf(0.25)
 ```
 
@@ -617,11 +627,11 @@ teoriche.
 Infine, il metodo `rvs` permette di simulare l'estrazione di specificazioni
 dalla distribuzione, come nella cella seguente che ne genera $10$:
 
-```{code-block} python
+```{code-cell} python
 B.rvs(10)
 ```
 
-Nella {numref}`fig:bernoulli-simulation` vengono simulate $5000$
+Nella {numref}`fig_bernoulli-simulation` vengono simulate $5000$
 osservazioni di una variabile aleatoria di Bernoulli di parametro
 $\frac{1}{2}$, e il diagramma a barre delle frequenze relative del campione
 ottenuto viene confrontato con il grafico a bastoncini della funzione di massa
@@ -630,78 +640,68 @@ di probabilità. Anche in questo caso, nella versione interattiva del libro
 Bernoulli e vedere come viene modificato il grafico.
 
 ````{customfigure}
-:name: fig:bernoulli-simulation
+:name: fig_bernoulli-simulation
+:class: left-align
 
-```{code-block} python
-:class: toggle-code 
+```{interactive-code} python
+:tags: [toggle-code]
 
-import numpy as np
-import pandas
-import scipy.stats as st
-from js import document
-from pyodide.ffi import create_proxy
-import io
-import base64
+import pandas as pd
 
-def bernoulli_simulation(p, m):
-    fig, ax = plt.subplots()
+p_sim = float(page['#p-sim'][0].value)
+B_sim = st.bernoulli(p_sim)
+m_sim = int(page['#m-sim'][0].value)
 
-    B = st.bernoulli(p)
+fig_sim, ax_sim = plt.subplots()
 
-    x = B.rvs(m)
-    freq = pd.Series(x).value_counts(normalize=True)
-    freq = freq.reindex([0, 1], fill_value=0).values
-    ax.bar([0, 1], freq, facecolor='lightgray', edgecolor='gray', width=.1)
+x_sim = B_sim.rvs(m_sim)
+freq_sim = pd.Series(x_sim).value_counts(normalize=True)
+freq_sim = freq_sim.reindex([0, 1], fill_value=0).values
+bar = ax_sim.bar([0, 1], freq_sim, facecolor='lightgray', edgecolor='gray', width=.1)
 
-    ax.vlines([0, 1], 0, [B.pmf(0), B.pmf(1)])
-    ax.plot([0, 1], [B.pmf(0), B.pmf(1)], 'o')
+vlines = ax_sim.vlines([0, 1], 0, [B_sim.pmf(0), B_sim.pmf(1)])
+plot = ax_sim.plot([0, 1], [B_sim.pmf(0), B_sim.pmf(1)], 'o')[0]
 
-    ax.set_ylim(0, 1.1)
-
-    # Manual rendering to avoid MathJax processing
-    img_buffer = io.BytesIO()
-    fig.savefig(img_buffer, format='png', bbox_inches='tight', dpi=100)
-    img_buffer.seek(0)
-    img_base64 = base64.b64encode(img_buffer.getvalue()).decode('utf-8')
-    img_buffer.close()
-    
-    # Display in protected div
-    img_html = '<div class="no-mathjax"><img src="data:image/png;base64,' + \
-               img_base64 + '" style="max-width: 100%; height: auto;" /></div>'
-    Element("simulation-output").write(img_html)
-
-    msg = "Campione: {" + ",".join(map(str, x[:30])) + "}"
-    Element("sample-excerpt").write(msg)
-    
-    plt.close(fig)
-
-def update_simulation(event=None):
-    p = float(document.getElementById("p-sim-slider").value)
-    document.getElementById("p-sim-value").innerText = f"{p:.1f}"
-    m = int(document.getElementById("m-sim").value)
-    bernoulli_simulation(p, m)
+ax_sim.set_ylim(0, 1.1)
 
 
-p_slider = document.getElementById("p-sim-slider")
-p_slider.addEventListener("input", create_proxy(update_simulation))
+@when("input", "#p-sim, #m-sim")
+def bernoulli_simulation(event):
 
-m_menu = document.getElementById("m-sim")
-m_menu.addEventListener("change", create_proxy(update_simulation))
+    p_sim = float(page['#p-sim'][0].value)
+    page['#p-sim-value'][0].innerHTML = f'{p_sim:.1f}'
+    m_sim = int(page['#m-sim'][0].value)
 
-# Initial plot
-bernoulli_simulation(0.5, 50)
+    B_sim = st.bernoulli(p_sim)
+    x_sim = B_sim.rvs(m_sim)
+
+    freq_sim = pd.Series(x_sim).value_counts(normalize=True)
+    freq_sim = freq_sim.reindex([0, 1], fill_value=0).values
+
+    for i, rect in enumerate(bar):
+        rect.set_height(freq_sim[i])
+
+    vlines_segments = [
+        [[0, 0], [0, B_sim.pmf(0)]],
+        [[1, 0], [1, B_sim.pmf(1)]]
+    ]
+    vlines.set_segments(vlines_segments)
+
+    plot.set_data([0, 1], [B_sim.pmf(0), B_sim.pmf(1)])
+
+    display(fig_sim, target='graph-%this%', append=False)
+
+display(fig_sim, target='graph-%this%', append=False)
 ```
 ```{raw} html
-<div id="sample-excerpt" float:right;></div>
-<div id="plot-container" style="visibility: none;">
-    <div class="slider-container" style="float: left;">
-        <label for="p-sim-slider">\( p \): </label>
-        <input type="range" id="p-sim-slider"
+<div class="plot-container">
+    <div class="model-slider-container">
+        <label for="p-sim">\( p \): </label>
+        <input type="range" id="p-sim"
                min="0" max="1" value="0.5" step="0.05" />
         <span id="p-sim-value">0.5</span>
     </div>
-
-    <div class="slider-container" style="float: right;">
+    <div class="model-slider-container">
         <label for="m-sim">\( m \): </label>
         <select id="m-sim">
           <option value="5">5</option>
@@ -709,11 +709,6 @@ bernoulli_simulation(0.5, 50)
           <option value="500">500</option>
           <option value="5000">5000</option>
         </select>
-    </div>
-
-    <div id="simulation-output" class="no-mathjax"
-            style="clear: both; display: flex;
-                   justify-content: center; margin-bottom: 2em;">
     </div>
 </div>
 ```

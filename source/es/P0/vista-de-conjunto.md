@@ -9,18 +9,18 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:vista-de-conjunto)=
+(sec_vista-de-conjunto)=
 # Una vista de conjunto
 
 El objetivo de este apartado es doble: por un lado, sirve para describir a
 grandes rasgos el hilo lógico que está detrás de la organización de los
 contenidos e introducir, de manera relativamente informal, los conceptos clave;
 por otro lado, explica cómo utilizar los componentes interactivos del libro.
-Como se indica en el {ref}`chap:enfoque`, en el texto haré referencia a un
-{ref}`sec:installacion` conjunto de datos obtenido modificando un subconjunto
+Como se indica en el {ref}`chap_enfoque`, en el texto haré referencia a un
+{ref}`sec_installacion` conjunto de datos obtenido modificando un subconjunto
 adecuado del [Superhero database](http://www.superherodb.com). Los ejemplos
 harán referencia al mundo de los superhéroes, cada uno de los cuales será
-descrito mediante los _atributos_ indicados en la {numref}`tab:dataset`.
+descrito mediante los _atributos_ indicados en la {numref}`tab_dataset`.
 
 ```{margin}
 He optado por utilizar el idioma inglés para indicar los nombres de los
@@ -31,7 +31,7 @@ variables, funciones y demás.
 ```
 
 ```{table} Descripción del conjunto de datos utilizado en los ejemplos.
-:name: tab:dataset
+:name: tab_dataset
 :align: center
 | Atributo           | Significado                | Contenido                       |
 |--------------------|----------------------------|---------------------------------|
@@ -69,14 +69,14 @@ asociado al libro. En el código interactivo, el archivo es accesible como
 utilizando el formato CSV (_comma separated values_), uno de los estándares
 utilizados para compartir datos de tamaño relativamente reducido: cada línea
 representa un superhéroe, y en ella los valores de los atributos indicados en
-la {numref}`tab:dataset` están separados por comas. La única excepción es la
+la {numref}`tab_dataset` están separados por comas. La única excepción es la
 primera línea del archivo, que contiene los nombres de los atributos, también
 separados por comas, como se puede ver visualizando el inicio del archivo
 mismo. A continuación se muestra la descripción de algunos de los atributos
 correspondientes a diez superhéroes del conjunto de datos seleccionados al
 azar.
 
-```{code-block} python
+```{interactive-code} python
 :class: toggle-code
 import pandas as pd
 
@@ -87,7 +87,7 @@ source.index.name = None
 source
 ```
 
-En el {ref}`chap:pandas` veremos cómo cargar en memoria los contenidos de este
+En el {ref}`chap_pandas` veremos cómo cargar en memoria los contenidos de este
 archivo y, sobre todo, cómo procesarlos. Por ahora, centrémonos en algunos
 ejemplos sencillos que, por un lado, muestran cómo utilizar las partes
 interactivas del libro y, por otro, ofrecen una vista de conjunto de los
@@ -119,7 +119,7 @@ puntos. Este botón activa un menú que permite, entre otras cosas, descargar el
 gráfico.
 ```
 
-```{code-block} python
+```{interactive-code} python
 :class: toggle-code
 
 import altair as alt
@@ -176,8 +176,8 @@ continuación.
    editor/creador en particular?
 
 La _estadística descriptiva_, introducida desde el
-{ref}`chap:dati-e-informazione` hasta el
-{ref}`chap:analizzare-le-relazioni-tra-i-dati`, proporciona herramientas que
+{ref}`chap_dati-e-informazione` hasta el
+{ref}`chap_analizzare-le-relazioni-tra-i-dati`, proporciona herramientas que
 permiten responder a preguntas como las que acabamos de considerar. En general,
 su objetivo es extraer información de un conjunto de datos que describe,
 globalmente o parcialmente, un conjunto de individuos de referencia, y las
@@ -205,7 +205,7 @@ Para entenderlo mejor, presento a continuación un gráfico particular, llamado
 _histograma_, que muestra las frecuencias con las que aparecen los distintos
 valores del peso en el conjunto de datos.
 
-```{code-block} python
+```{interactive-code} python
 :class: toggle-code
 
 import matplotlib.pyplot as plt
@@ -219,7 +219,7 @@ fig.show()
 
 ```{margin}
 No siempre tiene sentido usar un histograma para explorar valores en un 
-conjunto de datos, como veremos en el {ref}`chap:dati-e-informazione`.
+conjunto de datos, como veremos en el {ref}`chap_dati-e-informazione`.
 ```
 
 ```{margin}
@@ -228,7 +228,7 @@ También veremos que el proceso de exploración no debe involucrar necesariament
 en herramientas cuantitativas (y típicamente así es).
 ```
 
-Los histogramas se definen en detalle en el {ref}`sec:histogramas`, pero por
+Los histogramas se definen en detalle en el {ref}`sec_histogramas`, pero por
 ahora basta saber cómo interpretar el resultado obtenido: en cada uno de los
 rectángulos mostrados, la base identifica un intervalo $I$ de posibles valores
 para el peso de los superhéroes, y la altura está relacionada con la fracción
@@ -248,7 +248,7 @@ ser igual al número de superhéroes con cierto peso, porque los valores
 mostrados en el eje vertical no son números enteros. En este histograma, de
 hecho, el número de superhéroes está relacionado con el área del rectángulo, lo
 que nos permitirá pronto comparar este resultado con otro gráfico. La razón de
-esta elección se explica en el {ref}`sec:histogramas`.
+esta elección se explica en el {ref}`sec_histogramas`.
 ```
 
 Una vez acumulado conocimiento sobre los datos disponibles, el siguiente paso
@@ -257,9 +257,9 @@ necesario cambiar radicalmente nuestra perspectiva, imaginando no en términos
 del conjunto de datos completo, sino planteándonos preguntas relativas a la
 observación de cualquiera de sus elementos, o de un conjunto de elementos, bajo
 la hipótesis de no saber de antemano qué observaremos (recuerden la
-[Ley de Franklin](#par:franklin-law)), pero asumiendo que cada superhéroe tiene
+[Ley de Franklin](#par_franklin-law)), pero asumiendo que cada superhéroe tiene
 la misma probabilidad que los demás de ser observado. Desde el
-{ref}`{chap:calcolo-combinatorio}` hasta el {ref}`chap:va-e-modelli-continui`,
+{ref}`{chap_calcolo-combinatorio}` hasta el {ref}`chap_va-e-modelli-continui`,
 el libro describe la _Teoría de la Probabilidad_, proporcionando algunas
 herramientas formales para manejar la incertidumbre derivada de no saber qué
 será observado en cada caso. Más concretamente, nos centraremos en _sucesos_,
@@ -324,7 +324,7 @@ presencia de un exponente fraccionario, que resultaría menos legible.
  
 ```
 ```{math}
-:label: eq:weight_normal
+:label: eq_weight_normal
 f(x; \mu, \sigma) = \frac{1}{\sigma \sqrt{2 \pi}} \;
        \mathrm{exp}\left(-\frac{(x - \mu)^2}{2 \sigma^2}\right) \enspace,
 ```
@@ -336,7 +336,7 @@ $\mu \in \mathbb{R}$ y $\sigma \in \mathbb{R}^+$ se entienden como dos
 _parámetros_: la función está completamente definida solo cuando sus valores
 han sido fijados. El punto y coma en la definición de $f$ sirve precisamente
 para destacar el rol diferente que tienen el argumento, por un lado, y los
-parámetros, por otro. Con precisión, {eq}`eq:weight_normal` define, al variar
+parámetros, por otro. Con precisión, {eq}`eq_weight_normal` define, al variar
 $\mu$ y $\sigma$, una _familia_ de funciones, cada una de las cuales está
 asociada a una variable aleatoria. El resultado es una familia de variables
 aleatorias, a la cual se refiere como un _modelo_ de variable aleatoria.
@@ -346,7 +346,7 @@ selectores, asociados respectivamente a $\mu$ y $\sigma$, es posible cambiar
 los valores de los parámetros correspondientes y simultáneamente ver cómo varía
 el gráfico de $f$.
 
-```{code-block} python
+```{interactive-code} python
 :class: toggle-code
  
 import numpy as np
@@ -361,7 +361,7 @@ def plot_pdf(mu, sigma):
     y = (1 / (sigma * np.sqrt(2 * np.pi))) * np.exp(-0.5 * ((x - mu) / sigma) ** 2)
     
     fig, ax = plt.subplots()
-    ax.fill_between(x, 0, y, alpha=0.5, color='tab:blue')
+    ax.fill_between(x, 0, y, alpha=0.5, color='tab_blue')
 
     # Use plain text label to avoid MathJax processing
     ax.set_xlabel('x', fontsize=12, ha='right')
@@ -434,7 +434,7 @@ realizar esta operación manualmente: por lo tanto, pueden actuar sobre los
 selectores para obtener una buena superposición entre el histograma y la
 función de densidad de probabilidad.
 
-```{code-block} python
+```{interactive-code} python
 :class:  toggle-code
 
 import base64
@@ -445,8 +445,8 @@ def model_plot_pdf(mu, sigma):
     y = (1 / (sigma * np.sqrt(2 * np.pi))) * np.exp(-0.5 * ((x - mu) / sigma) ** 2)
     
     fig, ax = plt.subplots()
-    ax.hist(data, bins=30, density=True, alpha=0.3, color='tab:blue')
-    ax.fill_between(x, 0, y, alpha=0.5, color='tab:blue')
+    ax.hist(data, bins=30, density=True, alpha=0.3, color='tab_blue')
+    ax.fill_between(x, 0, y, alpha=0.5, color='tab_blue')
 
     # Use plain text for axis labels to avoid MathJax interference
     ax.set_xlabel('x', fontsize=12, ha='right')
@@ -534,8 +534,8 @@ setup_model_sliders()
 En la última parte del libro, exploraremos varios métodos que permiten
 determinar automáticamente los parámetros de un modelo con el fin de ajustarlo
 a un conjunto de datos. Este es uno de los objetivos de la _estadística
-inferencial_, que se ilustra desde el {ref}`chap:inferential_statistics` hasta
-el {ref}`chap:statistica-non-parametrica`. El punto de partida es siempre un
+inferencial_, que se ilustra desde el {ref}`chap_inferential_statistics` hasta
+el {ref}`chap_statistica-non-parametrica`. El punto de partida es siempre un
 conjunto de datos, que en este contexto representa una _muestra_ de
 observaciones tomadas de una _población_ más grande. Nuestro objetivo es
 formular hipótesis o sacar conclusiones sobre esa población, aunque no podamos
@@ -556,7 +556,7 @@ llamamos la _media muestral_. La tabla siguiente muestra cómo varían los
 valores de este estimador en diez muestras distintas.
 
 
-```{code-block} python
+```{interactive-code} python
 :class:  toggle-code
 
 weights = heroes['weight'][heroes['weight']<200].dropna()
@@ -591,7 +591,7 @@ tal vez de manera más informal &mdash; en las partes anteriores.
 Antes, sin embargo, de comenzar con la estadística descriptiva, es importante
 revisar algunos conceptos calve de programación, y sobre todo familiarizarse
 con las herramientas computacionales que usaré a lo largo del libro. Este es
-justamente el propósito del {ref}`chap:intro-python` y del {ref}`chap:pandas`,
+justamente el propósito del {ref}`chap_intro-python` y del {ref}`chap_pandas`,
 que abren el tratamiento.
 
 ## Ejercicios
@@ -628,7 +628,7 @@ Basándose en la idea que se han hecho sobre el conjunto de datos de superhéroe
 resolviendo los ejercicios anteriores, intenten dividir los atributos en
 grupos homogéneos basándose no en el tipo de dato que se usa para representar
 los valores correspondientes (indicado en la columna «Contenido» de la
-{numref}`tab:dataset`), sino en la _naturaleza_ de los propios atributos.
+{numref}`tab_dataset`), sino en la _naturaleza_ de los propios atributos.
 ```
 
 ```{exercise} •
@@ -673,7 +673,7 @@ suceso con probabilidad $1$.
 
 ```{exercise} ••
 Fijen $\mu = \sigma = 1$ y realicen el estudio de la función descrita en
-{eq}`eq:weight_normal`, dibujando a mano su gráfico y comprobando que tenga una
+{eq}`eq_weight_normal`, dibujando a mano su gráfico y comprobando que tenga una
 forma similar al resultado que se muestra en el segundo diagrama interactivo.
 ```
 
@@ -681,7 +681,7 @@ forma similar al resultado que se muestra en el segundo diagrama interactivo.
 Basándose en el resultado del ejercicio anterior, y teniendo en cuenta lo que
 han experimentado trabajando con el segundo gráfico interactivo, ¿qué rol
 juegan los parámetros $\mu$ y $\sigma$ en el gráfico de $f$ definido en
-{eq}`eq:weight_normal`?
+{eq}`eq_weight_normal`?
 ```
 
 ```{exercise} •

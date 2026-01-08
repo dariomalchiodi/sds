@@ -9,7 +9,16 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:dal-discreto-al-continuo)=
+```{code-cell} python
+:tags: [remove-cell]
+
+import matplotlib.pyplot as plt
+plt.style.use('../../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+(sec_dal-discreto-al-continuo)=
 # Dal discreto al continuo
 
 Dato $n \in \mathbb N$, consideriamo l'insieme $D_n = \{ \frac{i}{n}, i = 0,
@@ -17,7 +26,7 @@ Dato $n \in \mathbb N$, consideriamo l'insieme $D_n = \{ \frac{i}{n}, i = 0,
 di probabilità
 
 ```{math}
-:label: eq:uniform
+:label: eq_uniform
 p_{X_n}(x; n) = \frac{1}{n+1} \mathrm I_{D_n}(x).
 ```
 
@@ -56,7 +65,7 @@ Immaginiamo anche che esista un criterio per scegliere a caso un universo
 all'interno del multiverso. La variabile aleatoria $X_n$ che indica la
 frazione di protagonisti "buoni" nell'universo selezionato è distribuita sul
 dominio $D_{15000}$ secondo la funzione di massa di probabilità
-{eq}`eq:uniform`. Ora, ha poco senso discriminare, per dire, tra le
+{eq}`eq_uniform`. Ora, ha poco senso discriminare, per dire, tra le
 specificazioni $\frac{42}{15000}$, $\frac{43}{15000}$ e $\frac{49}{15000}$,
 perché la loro differenza massima equivale a meno dello $0.05\%$ del totale.
 ````
@@ -65,7 +74,7 @@ Prima di approfondire che cosa succede all'aumentare di $n$, calcoliamo il
 valore atteso e la varianza di $X_n$, perché ci saranno utili in seguito.
 
 ````{prf:lemma}
-:label: lemma:ex_var_uniform
+:label: lemma-ex_var_uniform
 
 Il valore atteso e la varianza di $X_n$ sono rispettivamente uguali a
 $\frac{1}{2}$ e a $\frac{1}{12} + \frac{1}{6 n}$.
@@ -125,7 +134,7 @@ Siccome $n x = i + n \epsilon$ e $0 \leq n \epsilon < 1$, abbiamo
 $i \leq nx < i + 1$ e dunque $i = \lfloor n x \rfloor$.
 ```
 ```{math}
-:label: eq:cdf-discrete-uniform
+:label: eq_cdf-discrete-uniform
 \begin{align*}
 F_{X_n} (x) &= \mathbb P(X_n \leq x)
             = \mathbb P \Big( X_n \leq \frac{i}{n} \Big) \\
@@ -160,11 +169,8 @@ quindi $i -1 \leq na < i$ e $i = \lceil na \rceil$.
 \end{align*}
 ```
 
-````{customfigure}
-:name: fig:discrete-to-continuous
-
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -184,8 +190,10 @@ fig, ax = plt.subplots(1, 3, figsize=(15, 5))
 for i in range(1, 4):
     cdf_graph(10 * i, ax[i-1])
 
-plt.show()
+fig
 ```
+````{customfigure}
+:name: fig_discrete-to-continuous
 
 Le spezzate piene mostrano i grafici della funzione di distribuzione
 cumulativa di $X_n$ per $n$ rispettivamente uguale a $10$, $20$ e $30$
@@ -212,7 +220,7 @@ F(x) = \begin{cases}
 
 ````{margin}
 
-```{code-block} python
+```{interactive-code} python
 :class: toggle-code margin
 
 fig = plt.figure(figsize=(5, 1))
@@ -240,15 +248,15 @@ il fatto che un qualsiasi numero reale è necessariamente maggiore o uguale
 del suo troncamento all'intero inferiore.
 ````
 
-La {numref}`fig:discrete-to-continuous`, che mostra i grafici di $F_{X_{10}}$,
+La {numref}`fig_discrete-to-continuous`, che mostra i grafici di $F_{X_{10}}$,
 $F_{X_{20}}$ e $F_{X_{30}}$ affiancandoli a quello di $F$, suggerisce
 l'intuizione che $F_{X_n}$ tenda a $F$ quando $n \to +\infty$. Non è
 difficile provare formalmente che questa intuizione è corretta: ricordando che
 per ogni $x$ vale $x - 1 \leq \lfloor x \rfloor \leq x$,
-da {eq}`eq:cdf-discrete-uniform` si verifica che 
+da {eq}`eq_cdf-discrete-uniform` si verifica che 
 
 ```{math}
-:label: eq:cdf-continuous-uniform
+:label: eq_cdf-continuous-uniform
 \frac{n x}{n + 1} \leq F_{X_n}(x) \leq \frac{nx + 1}{n + 1},
 ```
 
@@ -264,12 +272,12 @@ $F_{X_n}(x) \to x = F(x)$ per ogni $x \in [0, 1]$. Estendere questo
 risultato a ogni $x \in \mathbb R$ è banale [^convergenza-xn].
 
 Notiamo che $F$ soddisfa tutti i criteri indicati nel
-{prf:ref}`teo:proprieta-F`, dunque essa deve essere la funzione di
+{prf:ref}`teo-proprieta-F`, dunque essa deve essere la funzione di
 distribuzione cumulativa di una qualche variabile aleatoria $X$. Questa
 variabile aleatoria è però completamente diversa da quelle che abbiamo
 finora considerato: il grafico di $F$ non evidenzia discontinuità alle quali
 far corrispondere i punti di massa della distribuzione perché questa funzione
-è continua. D'altronde da {eq}`eq:uniform` si vede facilmente che per ogni
+è continua. D'altronde da {eq}`eq_uniform` si vede facilmente che per ogni
 $x \in \mathbb R$ si ha $\lim_{n \to + \infty} p_{X_n}(x; n) = 0$, o
 equivalentemente $\mathbb P(X = x) = 0$. Analogamente, dato un qualsiasi
 insieme finito $A = \{ a_1, \dots, a_n \} \subseteq [0, 1]$ si avrà 
@@ -303,8 +311,8 @@ continuo. Quando questo succede, si parla di variabili aleatorie aventi una
 distribuzione _continua_, o più brevemente di _variabili aleatorie continue_.
 La formalizzazione di questo tipo di variabili aleatorie e delle relative
 famiglie di distribuzione verrà descritta a partire dal
-{ref}`sec:va-continue`: in particolare, nel
-{ref}`sec:modello-uniforme-continuo` vedremo che $X$ segue una
+{ref}`sec_va-continue`: in particolare, nel
+{ref}`sec_modello-uniforme-continuo` vedremo che $X$ segue una
 distribuzione _uniforme continua_ sull'intervallo $[0, 1]$.
 
 Tornando a concentrarci sul caso che stiamo analizzando, la mancanza di punti
@@ -358,14 +366,14 @@ probabilità che $X$ sia contenuta in un intervallo $(a, b] \subseteq [0, 1]$
 come
 
 ```{math}
-:label: eq:prob-uniform-interval
+:label: eq_prob-uniform-interval
 \mathbb P(X \in (a, b]) = \int_a^b f_X(x) \mathrm d x
                         = \int_a^b \mathrm d x = b - a .
 ```
 
 Questo risultato è coerente con quello che otterremmo ricavando la stessa
 probabilità usando la funzione di ripartizione come indicato in
-{eq}`eq:cdf-e-intervalli`: infatti,
+{eq}`eq_cdf-e-intervalli`: infatti,
 
 ```{math}
 \mathbb P(X \in (a, b]) = \mathbb P(a < X \leq b) = F(b) - F(a)
@@ -376,7 +384,7 @@ Vale la pena osservare una cosa interessante: questo risultato non dipende
 dalla particolare forma dell'intervallo considerato, che può essere aperto,
 semichiuso o chiuso. Infatti, le proprietà dell'integrale di Riemann ci
 assicurano che calcolando, per esempio, $\mathbb P(X \in [a, b])$ in modo
-analogo a quanto fatto in {eq}`eq:prob-uniform-interval`, otterremmo lo stesso
+analogo a quanto fatto in {eq}`eq_prob-uniform-interval`, otterremmo lo stesso
 valore di probabilità. Non c'è alcuna incoerenza in questo risultato, in
 quanto $\mathbb P(X \in [a, b]) = \mathbb P(X \in (a, b]) + \mathbb P(X = a)$
 e l'ultima di queste probabilità è nulla. Con un ragionamento analogo è
@@ -403,7 +411,7 @@ possiamo supporre che la varianza di $X$ si ottenga come
                   \enspace.
 ```
 
-Nel {ref}`sec:modello-uniforme-continuo` vedremo come calcolare questi due
+Nel {ref}`sec_modello-uniforme-continuo` vedremo come calcolare questi due
 valori in modo formale.
 
 

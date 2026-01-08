@@ -12,7 +12,16 @@ kernelspec:
   name: python3
 ---
 
-(sec:serie)=
+```{code-cell} python
+:tags: [remove-cell]
+
+import matplotlib.pyplot as plt
+plt.style.use('../../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+(sec_serie)=
 # Serie
 
 Una delle classi principali implementate in pandas è `Series`. Le sue istanze
@@ -21,7 +30,7 @@ di individui. La cella seguente recupera dalla lista `heroes` precedentemente
 creata i nomi dei supereroi e il loro anno di prima apparizione e li utilizza
 per creare una serie:
 
-```{code-block} python
+```{code-cell} python
 import csv
 import numpy as np
 import matplotlib.pyplot as plt
@@ -31,13 +40,13 @@ with open('data/heroes.csv', 'r') as heroes_file:
   heroes_reader = csv.reader(heroes_file, quotechar='"')
   heroes = list(heroes_reader)[1:]
 
-years = [int(h[7]) if h[7] else None for h in heroes]
+years = [int(h[13]) if h[13] else None for h in heroes]
 names = [h[0] for h in heroes]
 first_appearance = pd.Series(years, index = names)
 ```
 
 Nella creazione della lista `year` è stata utilizzata una list comprehension in
-cui l'espressione `int(h[7]) if h[7] else None` utilizza un operatore ternario
+cui l'espressione `int(h[13]) if h[13] else None` utilizza un operatore ternario
 tramite cui la stringa vuota viene trasformata nel valore speciale `None`,
 mentre tutte le altre vengono convertite nel corrispondente intero.
 
@@ -51,7 +60,7 @@ che in questo caso è la lista dei corrispondenti nomi. Quando si visualizza
 una serie, ogni osservazione viene associata al corrispondente elemento usando
 appunto l'indice:
 
-```{code-block} python
+```{code-cell} python
 first_appearance
 ```
 
@@ -71,14 +80,14 @@ L'accesso ai dati contenuti in una serie può avvenire in due modi:
 - specificando un valore per l'indice tra parentesi quadre dopo la serie o dopo
   la sua proprietà `loc`:
 
-```{code-block} python
+```{code-cell} python
 (first_appearance['Wonder Woman'], first_appearance.loc['Wonder Woman'])
 ```
 
 - indicando un valore per la posizione tra parentesi quadre dopo la serie o
   dopo la sua proprietà `iloc`:
 
-```{code-block} python
+```{code-cell} python
 (first_appearance[128], first_appearance.iloc[128])
 ```
 
@@ -96,20 +105,20 @@ specificando valori dell'indice oppure posizioni. Va però notato che gli
 _slicing_ basati su indice comprenderanno il primo e l'ultimo valore
 specificato:
 
-```{code-block} python
+```{code-cell} python
 first_appearance['Wonder Girl':'Wonder Woman']
 ```
 
 mentre gli _slice_ basati su posizione escluderanno l'ultimo elemento:
 
-```{code-block} python
+```{code-cell} python
 first_appearance[60:63]
 ```
 
 L'accesso posizionale può anche fare riferimento a numeri negativi, contando in
 analogia a liste e tuple a partire dall'ultimo elemento:
 
-```{code-block} python
+```{code-cell} python
 first_appearance[-5:]
 ```
 
@@ -117,7 +126,7 @@ first_appearance[-5:]
 le funzioni `head` e `tail`, che mostrano rispettivamente solo le prime e le
 ultime righe:
 
-```{code-block} python
+```{code-cell} python
 first_appearance.head(7)
 ```
 
@@ -125,7 +134,7 @@ L'accesso alle liste può anche essere fatto specificando una lista (ma non una
 tupla) di posizioni al posto di una sola posizione, con l'effetto di ottenere i
 corrispondenti elementi.
 
-```{code-block} python
+```{code-cell} python
 first_appearance[[1, 42, 709]]
 ```
 
@@ -133,7 +142,7 @@ Questo tipo di accesso può essere fatto anche specificando una lista di valori
 per l'indice. Infine, si può utilizzare una lista di valori booleani in cui
 `True` indica gli elementi da estrarre e `False` quelli da filtrare:
 
-```{code-block} python
+```{code-cell} python
 first_appearance[[1970 <= y <1975 for y in first_appearance]]
 ```
 
@@ -149,7 +158,7 @@ Infine, è possibile effettuare delle _query_ su una serie specificando tra
 parentesi quadre un'espressione logica che indica quali elementi visualizzare,
 utilizzando la serie come simbolo che ne indica un suo generico elemento:
 
-```{code-block} python
+```{code-cell} python
 first_appearance[first_appearance > 2010]
 ```
 
@@ -166,7 +175,7 @@ visualizzare le frequenze assolute: il metodo `value_counts` restituisce
 un'altra serie in cui gli indici sono i valori osservati e i valori le
 corrispondenti frequenze assolute, ordinate in senso non crescente.
 
-```{code-block} python
+```{code-cell} python
 first_appearance.value_counts()
 ```
 
@@ -178,7 +187,7 @@ sufficiente invocare il metodo `sort_index`; già che ci siamo, è un buon
 momento per eliminare i valori fuori scala dal conteggio effettuando una
 _query_ sulla serie:
 
-```{code-block} python
+```{code-cell} python
 first_app_freq = first_appearance[first_appearance < 2090].value_counts().sort_index()
 first_app_freq.head(10)
 ```
@@ -188,7 +197,7 @@ Pandas mette a disposizione l'oggetto `plot` per visualizzare graficamente i
 contenuti di una serie, utilizzando matplotlib dietro le quinte; in
 particolare, il metodo `bar` visualizza un grafico a barre:
 
-```{code-block} python
+```{code-cell} python
 # Don't try this at home (men che meno all'esame!)
 
 first_appearance.plot.bar()
@@ -212,7 +221,7 @@ informazione sulla relazione che lega tra loro le osservazioni.
 Si ottengono dei risultati decisamente più interessanti se si visualizza un
 grafico analogo per le frequenze assolute:
 
-```{code-block} python
+```{code-cell} python
 first_app_freq.plot.bar()
 plt.show()
 ```
@@ -226,7 +235,7 @@ importante capire come venga generato questo grafico, ma se siete curiosi
 potete leggere l'approfondimento che trovate dopo il commento al grafico
 stesso):
 
-```{code-block} python
+```{code-cell} python
 years = np.arange(1945, 2010, 10)
 index_pos = [first_app_freq.index.get_loc(y) for y in years]
 first_app_freq.plot.bar()
@@ -259,7 +268,7 @@ matplotlib, passando al metodo `bar` rispettivamente l'indice e i valori della
 serie, che si ottengono rispettivamente utilizzando la proprietà `index` e
 invocando il metodo `get_values`.
 
-```{code-block} python
+```{code-cell} python
 plt.bar(first_app_freq.index, first_app_freq.values)
 plt.xlim((1935, 2015))
 plt.ylim(0, 18.5)
@@ -280,28 +289,28 @@ che l'indice della serie contiene i valori degli anni; è quindi possibile
 utilizzare l'accesso tramite *list slicing* per recuperare le frequenze degli
 anni di apparizione che vanno dal 1960 in avanti:
 
-```{code-block} python
+```{code-cell} python
 first_app_freq[1960:]
 ```
 
 A questo punto è sufficiente invocare la funzione `sum` sulla sotto-serie
 individuata per ottenere la somma delle frequenze:
 
-```{code-block} python
+```{code-cell} python
 sum(first_app_freq[1960:])
 ```
 
 La seconda domanda trova risposta in modo analogo, filtrando le frequenze degli
 anni di apparizione tra il 1940 e il 1966:
 
-```{code-block} python
+```{code-cell} python
 sum(first_app_freq[1940:1966])
 ```
 
 Analogamente, all'ultima domanda si risponde selezionando gli anni dal 1970 in
 avanti:
 
-```{code-block} python
+```{code-cell} python
 sum(first_app_freq[:1971])
 ```
 
@@ -316,7 +325,7 @@ invocare su di essa l'omonimo metodo `sum`. Le serie sono inoltre in tutto e
 per tutto dei vettori, sui quali è possibile effettuare operazioni algebriche.
 Consideriamo per esempio le due serie contenenti altezza e peso dei supereroi:
 
-```{code-block} python
+```{code-cell} python
 height = pd.Series([float(h[4]) if h[4] else None for h in heroes], index=names)
 weight = pd.Series([float(h[5]) if h[5] else None for h in heroes], index=names)
 ```
@@ -327,7 +336,7 @@ serie ottenuta calcolando l'espressione su tutti gli elementi della serie di
 partenza. Per esempio, la cella seguente crea la serie contenente l'altezza
 degli eroi misurata in metri e ne visualizza i primi dieci elementi:
 
-```{code-block} python
+```{code-cell} python
 (height/100)[:10]
 ```
 
@@ -337,7 +346,7 @@ elementi della serie. Per esempio, nella cella seguente viene creata una nuova
 serie ottenuta esprimendo le altezze dei supereroi in metri e successivamente
 elevando il risultato al quadrato.
 
-```{code-block} python
+```{code-cell} python
 height.apply(lambda h: (h/100)**2)[:10]
 ```
 
@@ -350,7 +359,7 @@ supereroi (ottenuto dividendo il peso specificato in chilogrammi per il
   quadrato dell'altezza misurata in metri), e mostra i quindici supereroi con
   il BMI più elevato.
 
-```{code-block} python
+```{code-cell} python
 bmi = weight / height.apply(lambda h: (h/100)**2)
 bmi.sort_values(ascending=False)[:15]
 ```
@@ -361,7 +370,7 @@ alle serie in base all'indice (e non alla posizione). Consideriamo per esempio
 la seguente cella, in cui vengono selezionati altezze e pesi più o meno
 plausibili per un essere umano, calcolando poi i corrispondenti BMI.
 
-```{code-block} python
+```{code-cell} python
 standard_weight = weight[(weight < 100) & (weight > 40)]
 standard_height = height[(height < 210) & (height > 120)]/100
 (standard_weight / (standard_height**2))[:15]

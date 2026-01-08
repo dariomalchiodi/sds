@@ -12,7 +12,7 @@ kernelspec:
   name: python3
 ---
 
-(sec:dataframe)=
+(sec_dataframe)=
 # Dataframe
 
 Un _dataframe_ è una collezione di serie che hanno lo stesso indice, ed è
@@ -22,7 +22,7 @@ _dataframe_, noi faremo riferimento al metodo `read_csv` della classe
 `pd.DataFrame`, che permette di leggere i contenuti di un file in formato CSV e
 convertirli automaticamente in un _dataframe_.
 
-```{code-block} python
+```{code-cell} python
 import pandas as pd
 
 heroes = pd.read_csv('data/heroes.csv', index_col='name',
@@ -38,7 +38,7 @@ carattere usato per separare i campi in ogni record. La visualizzazione dei
 dataframe viene automaticamente formattata in un formato tabellare facile da
 leggere se si utilizza jupyter:
 
-```{code-block} python
+```{code-cell} python
 :class: full-width
 heroes.head()
 ```
@@ -55,7 +55,7 @@ _dataframe_:
   usando una sintassi simile a quella dei dizionari, specificando il nome del
   carattere come chiave:
 
-```{code-block} python
+```{code-cell} python
 heroes['eye_color']
 ```
 
@@ -74,7 +74,7 @@ notazioni.
   delle serie, l'estremo superiore è incluse se si usano gli indici ed escluso
   se si usano le posizioni):
 
-```{code-block} python
+```{code-cell} python
 :class: full-width
 heroes['Agent 13':'Agent 711']
 ```
@@ -88,11 +88,11 @@ differenza che quando queste sono usate specificando un solo valore, viene
 restituita una serie, e quando sono utilizzate con uno _slice_ o con una lista
 viene restituito un _dataframe_.
 
-```{code-block} python
+```{code-cell} python
 heroes.loc['Professor X']
 ```
 
-```{code-block} python
+```{code-cell} python
 :class: full-width
 heroes.iloc[42:46]
 ```
@@ -102,24 +102,24 @@ sottoinsieme dei caratteri, passando a `loc` o `iloc` un secondo argomento in
 cui si specificano i caratteri da mostrare, utilizzando anche in questo caso un
 valore, una lista di valori oppure uno _slice_:
 
-```{code-block} python
+```{code-cell} python
 heroes.loc['Professor X', 'height':'weight']
 ```
 
 Va notato che `loc` accetta solo valori simbolici, mentre `iloc` solamente
 posizioni, e ciò riguarda anche il loro secondo argomento:
 
-```{code-block} python
+```{code-cell} python
 heroes.iloc[[106, 103], [3, 4]]
 ```
 
 Volendo accedere direttamente a un elemento è possibile utilizzare le proprietà `at` e `iat`:
 
-```{code-block} python
+```{code-cell} python
 heroes.at['Superman', 'strength']
 ```
 
-```{code-block} python
+```{code-cell} python
 heroes.iat[500, -1]
 ```
 
@@ -138,12 +138,12 @@ invece basato sui valori dell'indice. È inoltre possibile indicare un valore
 booleano per l'argomento `ascending` che permette di ordinare in verso
 crescente o decrescente.
 
-```{code-block} python
+```{code-cell} python
 :class: full-width
 heroes.sort_values(by='weight', ascending=False)[:5]
 ```
 
-```{code-block} python
+```{code-cell} python
 :class: full-width
 heroes.sort_index()[-5:]
 ```
@@ -157,7 +157,7 @@ precedentemente introdotte (quella analoga ai dizionari oppure quella basata
 su _dot notation_). Per esempio possiamo selezionare gli eroi per cui l'anno
 di apparizione esiste e rappresenta un valore non fuori scala nel modo seguente:
 
-```{code-block} python
+```{code-cell} python
 :class: full-width
 heroes_with_year = heroes[heroes['first_appearance'] > 1900]
 heroes_with_year.head()

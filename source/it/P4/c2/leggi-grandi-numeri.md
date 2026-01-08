@@ -9,5 +9,5 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:leggi-grandi-numeri)=
+(sec_leggi-grandi-numeri)=
 # Leggi dei grandi numeri

@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:combinazioni)=
+(sec_combinazioni)=
 # Combinazioni
 
 Analogamente alle disposizioni, anche le combinazioni descrivono delle

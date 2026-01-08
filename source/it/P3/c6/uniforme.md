@@ -9,12 +9,21 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:modello-uniforme-continuo)=
+```{code-cell} python
+:tags: [remove-cell]
+
+import matplotlib.pyplot as plt
+plt.style.use('../../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+(sec_modello-uniforme-continuo)=
 # Il modello uniforme continuo
 
 Dati $a, b \in \mathbb R$, con $a < b$, definiamo $Y = a + X (b-a)$, dove $X$
 è la variabile aleatoria introdotta nel
-{ref}`sec:dal-discreto-al-continuo`. Si verifica facilmente
+{ref}`sec_dal-discreto-al-continuo`. Si verifica facilmente
 che $Y$ è una variabile aleatoria avente come supporto $D_Y = [a, b]$, dunque
 una variabile aleatoria continua. Se si considera poi un generico
 $y \in (a, b)$, si ha
@@ -52,11 +61,11 @@ f_Y(y) = \frac{1}{b - a} \; \mathrm I_{[a, b]}(y) \enspace.
 
 Per ogni $a < b$ abbiamo quindi definito una variabile aleatoria
 continua la cui densità è costante nel corrispondente intervallo $[a, b]$.
-Coerentemente con il {ref}`sec:dal-discreto-al-continuo`, ci riferiremo
+Coerentemente con il {ref}`sec_dal-discreto-al-continuo`, ci riferiremo
 a essa come alla _distribuzione uniforme continua_ sull'intervallo $[a, b]$.
 
 ````{prf:definition} La distribuzione uniforme continua
-:label: def:uniform-continuous
+:label: def-uniform-continuous
 Dati $a, b \in \mathbb R$ con $a < b$, la _distribuzione uniforme continua_
 su $[a, b]$ è definita dalla densità
 
@@ -82,15 +91,13 @@ uniforme continua su $[a, b]$.
 Ho scelto questo esempio per sottolineare che non tutte le distribuzioni
 sono definite su supporti che contengono solo numeri non negativi.
 ```
-La {numref}`fig:uniform-continuous` mostra il grafico delle
+La {numref}`fig_uniform-continuous` mostra il grafico delle
 funzioni di densità e di ripartizione per la distribuzione uniforme continua
 su $[-1, 1]$.
 
-````{customfigure}
-:name: fig:uniform-continuous
 
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -120,9 +127,10 @@ for a in axes[1:3]:
 
 axes[0].axis('off')
 axes[3].axis('off')
-plt.show()
-
+fig
 ```
+````{customfigure}
+:name: fig_uniform-continuous
 
 I grafici della funzione di densità (a sinistra) e della funzione di
 ripartizione (a destra) della distribuzione uniforme continua sull'intervallo
@@ -130,7 +138,7 @@ $[-1, 1]$.
 ````
 
 Va notato come la distribuzione derivata nel
-Paragrafo {ref}`sec:dal-discreto-al-continuo` rappresenti la
+Paragrafo {ref}`sec_dal-discreto-al-continuo` rappresenti la
 distribuzione uniforme continua per il caso $a=0$ e $b=1$, e come in generale
 il procedimento seguito per ottenere la distribuzione uniforme continua non
 porta a un risultato diverso nel caso in cui il supporto da cui si parte sia
@@ -145,7 +153,7 @@ _uniforme continua_ per riferirsi alle sole distribuzioni che hanno un
 intervallo come supporto.
 ```
 ````{prf:definition} La famiglia uniforme continua
-:label: def:continuous-uniform-family
+:label: def-continuous-uniform-family
 La _famiglia uniforme continua_ comprende tutte le definizioni uniformi
 continue definite su un intervallo in $\mathbb R$, indipdententemente dalla
 particolare forma di questo intervallo.
@@ -161,7 +169,7 @@ corrispondenti.
 Dati $a, b \in \mathbb R$ con $a < b$, sia $X \sim \mathrm U([a, b])$. Si ha
 
 ```{math}
-:label: eq:uniform-continuous
+:label: eq_uniform-continuous
 \mathbb E(X) = \frac{a + b}{2}
 \quad \text{e} \quad
 \mathrm{Var}(X) = \frac{(b - a)^2}{12} \enspace.
@@ -204,12 +212,12 @@ Si può notare che considerando $X \sim \mathrm U([0, 1])$ e
 $Y \coloneqq a + (b - a) X \sim \mathrm U([a, b])$, come indicato all'inizio di
 questo paragrafo, le proprietà di valore atteso e varianza permettono di
 ottenere in modo alternativo gli stessi risultati partendo da quanto ottenuto
-nel {ref}`sec:dal-discreto-al-continuo` per la distribuzione
+nel {ref}`sec_dal-discreto-al-continuo` per la distribuzione
 uniforme continua in $[0, 1]$: precisamente,
 $\mathbb E(Y) = a + (b - a) \mathbb E(X) = a + \frac{b - a}{2}
 = \frac{a + b}{2}$ e $\mathrm{Var}(Y) = (b - a)^2
 \mathrm{Var}(X) = \frac{(b - a)^2)}{12}$. Inoltre sostituendo $a=0$ e $b=1$
-in {eq}`eq:uniform-continuous` si ottengono la media e la varianza della
+in {eq}`eq_uniform-continuous` si ottengono la media e la varianza della
 distribuzione uniforme continua in $[0, 1]$.
 
 ## Momenti della distribuzione uniforme continua (*)
@@ -220,7 +228,7 @@ funzione di densità di probabilità. Infatti, data $X \sim \mathrm U([a, b])$,
 se $t \neq 0$
 
 ```{math}
-:label: eq:mgf-uniform
+:label: eq_mgf-uniform
 m_X(t) = \mathbb E \left( \mathrm e^{tX} \right)
        = \int_a^b \frac{\mathrm e^{tx}}{b - a} \mathrm d x
        = \frac{1}{t(b - a)} \int_a^b t \mathrm e^{tx} \mathrm d x
@@ -304,14 +312,10 @@ continua tra $a$ e $b$
   il che significa che questa distribuzione è _platicurtica_, nel senso che
   è più piatta rispetto a una distribuzione normale che ha lo stesso valore
   atteso e la stessa varianza, come illustrato nella
-  {numref}`fig:uniform-kurtosis`.
+  {numref}`fig_uniform-kurtosis`.
 
-
-````{customfigure}
-:name: fig:uniform-kurtosis
-
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 from scipy import stats as st
 
@@ -335,9 +339,11 @@ ax.plot([-10, a], [0, 0], c='k')
 ax.plot([a, b], [1/(b-a), 1/(b-a)], c='k')
 ax.plot([b, 10], [0, 0], c='k')
 ax.set_ylim(0, 0.3)
-plt.show()
+fig
 
 ```
+````{customfigure}
+:name: fig_uniform-kurtosis
 
 Grafici delle funzioni di densità di probabilità di due distribuzioni,
 rispettivamente uniforme continua tra -3 e 3 (spezzata nera) e normale avente
@@ -398,17 +404,13 @@ uniforme continua tra $a$ e $b$,
   $\frac{3a + b}{4}$ e $\frac{a + 3b}{4}$; 
 - il range interquartile vale $\frac{a+b}{2}$.
 
-La {numref}`fig:uniform-continuous-bp` evidenzia che, come era
+La {numref}`fig_uniform-continuous-bp` evidenzia che, come era
 pienamente ragionevole aspettarsi tenendo conto della forma della funzione di
 densità di probabilità, il diagramma a scatola per questa distribuzione, è
 perfettamente simmetrico.
 
-````{customfigure}
-:name: fig:uniform-continuous-bp
-:width: 100%
-
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 fig, axes = plt.subplots(1, 3, figsize=(6, 0.3))
 
@@ -453,8 +455,11 @@ ax.text(median, -0.6, r'$\frac{a+b}{2}$', ha='center')
 ax.text(first_quartile, 0.4, r'$\frac{3a + b}{4}$', ha='center')
 ax.text(third_quartile, 0.4, r'$\frac{a + 3b}{4}$', ha='center')
 
-plt.show()
+fig
 ```
+````{customfigure}
+:name: fig_uniform-continuous-bp
+:width: 100%
 
 Diagramma a scatola per la distribuzione uniforme continua tra $a$ e $b$.
 ````
@@ -473,17 +478,13 @@ tra i valori specificati per questi argomenti e il risultato ottenuto cambia
 di caso in caso. Per quanto riguarda una generica distribuzione uniforme
 continua $\mathrm U([a, b])$, il valore di `loc` coincide con $a$, mentre
 quello di `scale` equivale a $b - a$. La
-{numref}`fig:uniform-implementation` mostra l'istogramma che si
+{numref}`fig_uniform-implementation` mostra l'istogramma che si
 ottiene a partire da un campione di valori pseudo-casuali generati da questa
 implementazione, sovrapposto al grafico della corrisondente funzione di
 densità di probabilità.
 
-````{customfigure}
-:name: fig:uniform-implementation
-:width: 100%
-
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 fig, (ax_l, ax, ax_r) = plt.subplots(1, 3,
                               gridspec_kw={'width_ratios': [.15, .2, .15]},
@@ -508,9 +509,11 @@ ax.plot([b, 10], [0, 0], c='C0', zorder=3)
 ax.set_ylim(-.001, .2)
 ax.set_xticks([-10, -7, -4, -1, 2, 5, 8])
 ax.set_yticks([.05, .1, .15, .2])
-plt.show()
-
+fig
 ```
+````{customfigure}
+:name: fig_uniform-implementation
+:width: 100%
 
 Le barre mostrano l'istogramma ottenuto a partire da un insieme di valori
 pseudo-casuali generati a partire da una distribuzione uniforme tra $-4$ e

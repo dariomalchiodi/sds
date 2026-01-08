@@ -10,7 +10,7 @@ kernelspec:
 ---
 
 
-(sec:uso-en-asignatura)=
+(sec_uso-en-asignatura)=
 # Uso dentro de una asignatura
 Desde hace algunos años, soy responsable de la asignatura de Estadística y
 análisis de datos para el grado en Informática, impartida por la Universutà

@@ -9,17 +9,17 @@ kernelspec:
   display_name: Python 3
 ---
 
-(chap:uno-sguardo-di-insieme)=
+(chap_uno-sguardo-di-insieme)=
 # Uno sguardo di insieme
 
 Lo scopo di questo capitolo è duplice: da una parte, mira a descrivere la
 logica con cui ho organizzato i contenuti e a introdurre, in modo relativamente
 informale, i concetti cardine. Dall'altra, spiega come utilizzare le componenti
-interattive del libro. Come indicato nel {ref}`chap:approccio`, nel testo farò
+interattive del libro. Come indicato nel {ref}`chap_approccio`, nel testo farò
 riferimento a un _dataset_ ottenuto modificando un sottoinsieme del
 {extlink}`Superhero database <http://www.superherodb.com>`. Gli esempi traggono
 quindi spunto dal mondo dei supereroi, ciascuno dei quali è descritto tramite
-gli _attributi_ indicati nella {numref}`tab:dataset`.
+gli _attributi_ indicati nella {numref}`tab_dataset`.
 
 ```{margin}
 Ho scelto di mantenere l'inglese per i nomi degli attributi e per i loro valori
@@ -29,7 +29,7 @@ variabili, funzioni e altri identificatori.
 ```
 
 ```{table} Descrizione del _dataset_ utilizzato negli esempi.
-:name: tab:dataset
+:name: tab_dataset
 :align: center
 | Attributo          | Significato               | Contenuto                                                |
 |--------------------|---------------------------|----------------------------------------------------------|
@@ -50,7 +50,7 @@ variabili, funzioni e altri identificatori.
 | `speed`            | velocità                  | numero intero (da `0` a `100`)                           |
 | `durability`       | resistenza                | numero intero (da `0` a `100`)                           |
 | `combat`           | abilità nel combattimento | numero intero (da `0` a `100`)                           |
-| `powers`           | elenco dei superpoteri    | stringa                                                  |
+| `power`           | elenco dei superpoteri    | stringa                                                  |
 ```
 
 ```{margin}
@@ -65,27 +65,30 @@ associato al libro. Nel codice interattivo, il file è accessibile come
 `data/heroes.csv`. I suoi contenuti sono rappresentati utilizzando il formato
 CSV (_comma separated values_), uno standard comunemente usato per condividere
 dati di dimensioni relativamente ridotte: ogni riga corrisponde a un supereroe,
-e in essa i valori degli attributi nella {numref}`tab:dataset` sono separati da
+e in essa i valori degli attributi nella {numref}`tab_dataset` sono separati da
 virgole. L'unica eccezione riguarda la prima riga del file, che contiene i nomi
 degli attributi, anch'essi separati da virgole. La
-{numref}`tab:dataset-excerpt` mostra un estratto del _dataset_, visualizzandone
+{numref}`tab_dataset-excerpt` mostra un estratto del _dataset_, visualizzandone
 i valori di alcuni attributi per dieci supereroi selezionati casualmente.
 
-````{customfigure}
-:name: tab:dataset-excerpt
-:class: full-width
 
-```{code-block} python
-:class: toggle-code
+````{customtable}
+:name: tab_dataset-excerpt
+:class: full-width, left-align
+
+
+```{interactive-code} python
 :height: 300px
+:class: toggle-code
 
 import pandas as pd
 
-heroes = pd.read_csv('data/heroes.csv', index_col=0).convert_dtypes()
+heroes = pd.read_csv('data/heroes.csv', index_col=0)
     
 source = heroes.sample(10).loc[:,'name':'combat']
 source.index.name = None
 source
+
 ```
 
 Valori degli attributi `name`, `identity`, `intelligence`, `strength`, `speed`,
@@ -94,9 +97,9 @@ _dataset_ di riferimento.
 
 ````
 
-Nel {ref}`chap:pandas` vedremo come caricare in memoria e analizzare i
+Nel {ref}`chap_pandas` vedremo come caricare in memoria e analizzare i
 contenuti di questo file. Per ora, ci concentreremo su alcuni esempi
-preliminari. Quello contenuto nella {numref}`fig:altair-example` è un primo
+preliminari. Quello contenuto nella {numref}`fig_altair-example` è un primo
 esempio di grafico interattivo. Nel diagramma in alto, alcuni supereroi sono
 rappresentati tramite cerchi in un piano cartesiano: le coordinate del centro
 indicano peso e altezza, mentre il raggio esprime la forza. Il colore varia in
@@ -110,7 +113,7 @@ grafico inferiore viene aggiornato per riflettere la distribuzione del gruppo
 selezionato. La selezione può essere spostata, e facendo clic al suo esterno si
 ripristina la visualizzazione originale.
 ```{margin}
-Il grafico in {numref}`fig:altair-example` è stato realizzato con
+Il grafico in {numref}`fig_altair-example` è stato realizzato con
 {extlink}`Altair <https://altair-viz.github.io/>`, una libreria Python
 per la creazione di grafici interattivi in pagine web. Un segno distintivo dei
 grafici Altair è la presenza, in alto a destra, di un pulsante rotondo con tre
@@ -118,14 +121,21 @@ punti: questo attiva un menu che consente, tra le altre funzioni, di scaricare
 il grafico.
 ```
 
-````{customfigure}
-:name: fig:altair-example
+```{code-cell} python
+:tags: [remove-cell]
 
-```{code-block} python
-:class: toggle-code
+import matplotlib.pyplot as plt
+plt.style.use('../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+```{code-cell} python
 :height: 600px
+:tags: [hide-input]
 
 import altair as alt
+import pandas as pd
 
 heroes = pd.read_csv('data/heroes.csv', index_col=0).convert_dtypes()
 
@@ -147,14 +157,22 @@ points = alt.Chart(source).mark_point().encode(
 
 bars = alt.Chart(source).mark_bar().encode(
             alt.Y('creator', title='Creator'),
-            alt.X('count(creator)', title='N. of superheroes'),
-            alt.Color('creator', title='Creator').scale(scheme="blues"),
-        ).transform_filter(brush)
-
+            alt.X('count:Q', title='N. of superheroes'),
+            alt.Color('creator:N', title='Creator').scale(scheme="blues"),
+        ).transform_filter(
+            brush
+        ).transform_aggregate(
+            count='count()',
+            groupby=['creator']
+        )
 # Create the final interactive chart
 chart = (points & bars).configure(background='#eaf3f5')
 chart
 ```
+
+````{customfigure}
+:name: fig_altair-example
+:class: left-align
 
 Un esempio di grafico interattivo basato su altair.
 
@@ -183,7 +201,7 @@ spiegheranno questi concetti partendo dalle basi.
 ```
 Domande come queste si affrontano con gli strumenti della _statistica
 descrittiva_, introdotta nei capitoli
-{numref}`chap:dati-e-informazione`&ndash;{numref}`sec:analizzare-relazioni`. Il
+{numref}`chap_dati-e-informazione`&ndash;{numref}`sec_analizzare-relazioni`. Il
 suo obiettivo è estrarre informazioni da un _dataset_ che descrive un insieme
 di individui, in tutto o in parte. Le tecniche impiegate possono essere di due
 tipi: _qualitative_ o _quantitative_.
@@ -203,12 +221,10 @@ minima e massima, dall'altro non è immediato capire se prevalgano i supereroi
 a un _istogramma_, un grafico che evidenzia le frequenze con cui i diversi
 valori del peso compaiono nel _dataset_.
 
-````{customfigure}
-:name: fig:histogram
 
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
 :height: 400px
+:tags: [hide-input]
 
 import matplotlib.pyplot as plt
 
@@ -216,8 +232,11 @@ fig, ax = plt.subplots()
 data = heroes.weight[heroes.weight < 200]
 
 ax.hist(data, bins=30, density=True)
-fig.show()
+fig
 ```
+
+````{customfigure}
+:name: fig_histogram
 
 Un istogramma per il peso dei supereroi.
 ````
@@ -225,14 +244,14 @@ Un istogramma per il peso dei supereroi.
 ```{margin}
 Non sempre l'istogramma è la scelta giusta per esplorare i dati. È utile quando
 abbiamo molte osservazioni numeriche di un attributo continuo; in altri casi,
-può essere fuorviante (ne parleremo nel {ref}`chap:dati-e-informazione`).
+può essere fuorviante (ne parleremo nel {ref}`chap_dati-e-informazione`).
 ```
 
 ```{margin}
 L'esplorazione dei dati non implica sempre l'uso di metodi grafici: più avanti
 vedremo che spesso si fonda su strumenti quantitativi.
 ```
-Gli istogrammi sono spiegati in dettaglio nel {ref}`chap:dati-e-informazione`,
+Gli istogrammi sono spiegati in dettaglio nel {ref}`chap_dati-e-informazione`,
 ma per ora su come leggerne uno. Il grafico è composto da tanti rettangoli:
 ognuno di essi ha come base un intervallo $I$ di possibili valori per il peso,
 e l'altezza è legata alla frazione di supereroi il cui peso rientra in
@@ -252,17 +271,17 @@ Guardando l'asse delle ordinate, vediamo che i valori non sono interi,
 pertanto l'altezza dei rettangoli non può rappresentare il numero di supereroi.
 In questo istogramma è l'area del rettangolo a essere proporzionale alla
 frequenza. Questa scelta, che ha implicazioni importanti, è spiegata in
-dettaglio nel {ref}`chap:dati-e-informazione`.
+dettaglio nel {ref}`chap_dati-e-informazione`.
 ```
 
 Dopo aver raccolto informazioni a partire dai dati, il passo successivo è
 provare a _modellare_ matematicamente il processo che li ha generati. Per farlo
 dobbiamo cambiare: non ragioniamo sull'intero _dataset_, ma immaginiamo di
 poter osservare uno qualsiasi dei suoi elementi, senza sapere in anticipo quale
-sarà (ricordatevi della [Legge di Franklin](#par:franklin-law)). Assumiamo
+sarà (ricordatevi della [Legge di Franklin](#par_franklin-law)). Assumiamo
 semplicemente che ogni supereroe abbia la stessa possibilità di essere
 osservato rispetto a tutti gli altri. Nei capitoli
-{numref}`chap:calcolo-combinatorio`&ndash;{numref}`chap:va-e-modelli-continui`
+{numref}`chap_calcolo-combinatorio`&ndash;{numref}`chap_va-e-modelli-continui`
 entreremo nella _Teoria della Probabilità_, che ci fornisce strumenti per
 gestire in modo rigoroso l'incertezza dovuta al non sapere quale supereroe
 osserveremo di verrà di volta. Ci concentreremo su degli _eventi_, cioè
@@ -321,7 +340,7 @@ alla potenza $x$. Preferisco questa forma a $\mathrm e^x$ per evitare la
 presenza di un esponente frazionario, che risulterebbe meno leggibile.   
 ```
 ```{math}
-:label: eq:weight_normal
+:label: eq_weight_normal
 f(x; \mu, \sigma) = \frac{1}{\sigma \sqrt{2 \pi}} \;
        \mathrm{exp}\left(-\frac{(x - \mu)^2}{2 \sigma^2}\right) \enspace,
 ```
@@ -337,22 +356,25 @@ un solo argomento, denotato da $x$, mentre $\mu \in \mathbb R$ e $\sigma \in
 \mathbb R^+$ sono due _parametri_ che devono essere fissati per definire
 completamente la funzione. Il punto e virgola serve proprio a distinguere
 l'argomento dai parametri. Per la precisione, al variare di $\mu$ e $\sigma$
-{eq}`eq:weight_normal` definisce una _famiglia_ di funzioni: ciascuna
+{eq}`eq_weight_normal` definisce una _famiglia_ di funzioni: ciascuna
 corrisponde a una variabile aleatoria, e noi ci riferiamo a questa è una
 famiglia come a un _modello_ di variabile aleatoria. Nella
-{numref}`fig:normal-model` potete osservare come cambia il grafico di $f$ al
+{numref}`fig_normal-model` potete osservare come cambia il grafico di $f$ al
 variare dei suoi parametri. Agendo sui due selettori, associati a $\mu$ e
 $\sigma$, vedrete immediatamente come il grafico di $f$ si aggiorna in base
 alle nuove impostazioni.
 
 
 ````{customfigure}
-:name: fig:normal-model
+:name: fig_normal-model
+:class: left-align
 
-```{code-block} python
-:class:  toggle-code
-:height: 400px
 
+```{interactive-code} python
+:tags: [toggle-code]
+
+import asyncio
+import matplotlib.pyplot as plt
 import numpy as np
 from js import document
 from pyscript import display
@@ -369,14 +391,15 @@ curve_pdf, = ax_pdf.plot(x, y, alpha=0.5, color='tab:blue')
 
 
 ax_pdf.set_xlabel('$x$', fontsize=12, ha='right')
-ax.xaxis.set_label_coords(1.07, 0.03)
+#ax.xaxis.set_label_coords(1.07, 0.03)
 ax_pdf.set_ylabel('$f$', fontsize=12, rotation=0)
-ax.yaxis.set_label_coords(0., 1.09)
+#ax.yaxis.set_label_coords(0., 1.09)
 ax_pdf.set_xlim(0, 200)
 ax_pdf.set_ylim(0, 0.02)
 
 @when("input", "#pdf-mu-slider, #pdf-sigma-slider")
 def pdf_plot(event):
+
     mu = float(page['#pdf-mu-slider'][0].value)
     sigma = float(page['#pdf-sigma-slider'][0].value)
     page['#pdf-mu-value'][0].innerHTML = f'{mu:.1f}'
@@ -388,8 +411,8 @@ def pdf_plot(event):
     display(fig_pdf, target='graph-%this%', append=False)
 
 display(fig_pdf, target='graph-%this%', append=False)
-
 ```
+
 ```{raw} html
 <div class="plot-container">
     <div class="model-slider-container">
@@ -408,7 +431,7 @@ display(fig_pdf, target='graph-%this%', append=False)
 </div>
 ```
 
-Grafico della densità di probabilità descritta da {eq}`eq:weight_normal`.
+Grafico della densità di probabilità descritta da {eq}`eq_weight_normal`.
 ````
 
 Uno dei motivi per i quali si parla di «modello» di variabile aleatoria è
@@ -418,16 +441,24 @@ corrispondente variabile aleatoria, a dati precedentemente osservati. Nel caso
 appena visto, ciò equivale a scegliere dei valori opportuni per $\mu$ e
 $\sigma$, facendo sì che il grafico di $f$ si sovrapponga qualitativamente con
 quello dell'istogramma inizialmente ottenuto per il peso. Il grafico
-interattivo in {numref}`fig:adapt-model` vi permette di eseguire manualmente
+interattivo in {numref}`fig_adapt-model` vi permette di eseguire manualmente
 questa operazione, agendo sui selettori al fine di trovare un allineamento
 qualitativo tra i due grafici.
 
-````{customfigure}
-:name: fig:adapt-model
+```{interactive-code} python
+:height: 0px
+:class: no-output
 
-```{code-block} python
-:class:  toggle-code
+data = heroes['weight'][heroes['weight'] < 200].dropna()
+```
+
+````{customfigure}
+:name: fig_adapt-model
+:class: left-align
+
+```{interactive-code} python
 :height: 400px
+:class: toggle-code
 
 mu = float(page['#model-mu-slider'][0].value)
 sigma = float(page['#model-sigma-slider'][0].value)
@@ -448,6 +479,7 @@ ax.set_ylim(0, 0.02)
 
 @when("input", "#model-mu-slider, #model-sigma-slider")
 def model_plot(event):
+
     mu = float(page['#model-mu-slider'][0].value)
     sigma = float(page['#model-sigma-slider'][0].value)
     page['#model-mu-value'][0].innerHTML = f'{mu:.1f}'
@@ -460,6 +492,7 @@ def model_plot(event):
 display(fig, target='graph-%this%', append=False)
     
 ```
+
 ```{raw} html
 <div class="plot-container">
     <div class="model-slider-container">
@@ -478,8 +511,8 @@ display(fig, target='graph-%this%', append=False)
 </div>
 ```
 
-Sovrapposizione del grafico della densità descritta da {eq}`eq:weight_normal`
-all'istogramma di {numref}`fig:histogram`. Agendo sui selettori è possibile
+Sovrapposizione del grafico della densità descritta da {eq}`eq_weight_normal`
+all'istogramma di {numref}`fig_histogram`. Agendo sui selettori è possibile
 trovare dei valori per i parametri che adattano il modello all'istogramma.
 ````
 
@@ -487,7 +520,7 @@ Nell'ultima parte del libro, vedremo che esistono vari metodi per determinare
 automaticamente i parametri di un modello, in modo da adattarlo a un insieme di
 dati. Questo è uno degli scopi della _statistica inferenziale_, illustrata nei
 capitoli
-{numref}`chap:statistica-inferenziale`&ndash;{numref}`chap:statistica-non-parametrica`.
+{numref}`chap_statistica-inferenziale`&ndash;{numref}`chap_statistica-non-parametrica`.
 Il punto di partenza è sempre un _dataset_, che in questo contesto rappresenta
 un _campione_ di osservazioni effettuate su una _popolazione_ più ampia. Su
 questa popolazione vogliamo fare delle ipotesi o trarre conclusioni, anche se
@@ -504,16 +537,17 @@ buon senso suggerisce di usare la media del loro peso come approssimazione di
 $p$. In generale, chiamiamo _stimatore_ la funzione che viene applicata al
 campione per ottenere questo tipo di approssimazioni. Nel nostro esempio, lo
 stimatore utilizzato è la media aritmetica dei valori del campione, detta
-_media campionaria_. La {numref}`fig:statistics-variability` mostra come
+_media campionaria_. La {numref}`fig_statistics-variability` mostra come
 variano i valori di questo stimatore in seguito all'estrazione di dieci
 campioni differenti.
 
-````{customfigure}
-:name: fig:statistics-variability
+````{customtable}
+:name: fig_statistics-variability
+:class: left-align
 
-```{code-block} python
-:class:  toggle-code
+```{interactive-code} python
 :height: 100px
+:class: toggle-code
 
 weights = heroes['weight'][heroes['weight']<200].dropna()
 
@@ -554,7 +588,7 @@ Prima però di iniziare con la statistica descrittiva, è importante rivedere
 alcuni concetti fondamentali di programmazione degli elaboratori, e
 soprattutto prendere dimestichezza con gli strumenti computazionali che
 userò in tutto il libro. È questo lo scopo dei capitoli
-{numref}`chap:intro-python` e {numref}`chap:pandas`, che aprono la trattazione.
+{numref}`chap_intro-python` e {numref}`chap_pandas`, che aprono la trattazione.
 
 ## Esercizi
 
@@ -592,7 +626,7 @@ Sulla base dell'idea che vi siete fatti in merito dal _dataset_ dei supereroi
 risolvendo gli esercizi precedenti, provate a suddividere gli attributi in
 gruppi omogenei basandovi non sul tipo di dato che viene utilizzato per
 rappresentare i valori corrispondenti (indicato nella colonna «Contenuto» della
-{numref}`tab:dataset`), bensì sulla _natura_ degli attributi stessi.
+{numref}`tab_dataset`), bensì sulla _natura_ degli attributi stessi.
 ```
 
 ```{exercise} •
@@ -637,7 +671,7 @@ evento avente $1$ come probabilità.
 
 ```{exercise} ••
 Ponete $\mu = \sigma = 1$ ed effettuate lo studio della funzione descritta in
-{eq}`eq:weight_normal`, disegnando a mano il grafico corrispondente e
+{eq}`eq_weight_normal`, disegnando a mano il grafico corrispondente e
 verificando che questo grafico abbia la stessa forma visualizzata nel secondo
 grafico interattivo.
 ```
@@ -646,7 +680,7 @@ grafico interattivo.
 Sulla base del risultato dell'esercizio precedente, e tenuto conto di quanto
 avete sperimentato lavorando sul secondo grafico interattivo, che ruolo hanno i
 parametri $\mu$ e $\sigma$ sul grafico di $f$ definita in
-{eq}`eq:weight_normal`?
+{eq}`eq_weight_normal`?
 ```
 
 ```{exercise} •

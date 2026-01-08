@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:probabilita-condizionata)=
+(sec_probabilita-condizionata)=
 # Probabilità condizionata
 
 Immaginiamo di fissare un esperimento casuale $\mathcal E$ e definire il
@@ -25,14 +25,14 @@ l'incertezza sull'evento originale $E$.
 
 ```{margin}
 Il requisito che impone $\mathbb P(F) \neq 0$, oltre a garantire che il
-rapporto {eq}`eq:prob-cond` non abbia un denominatore nullo e risulti
+rapporto {eq}`eq_prob-cond` non abbia un denominatore nullo e risulti
 indefinito, è strettamente legato al significato di probabilità condizionata:
 l'unico evento con probabilità nulla è quello impossibile, e dunque non ha
 senso ipotizzare che esso si sia verificato. In generale, si dice che la
 probabilità $\mathbb P(E \mid F)$ è indefinita quando $\mathbb P(F) = 0$.
 ```
 ````{prf:definition} Probabilità condizionata
-:label: def:conditional_probability
+:label: def-conditional_probability
 
 Siano $E, F \subseteq \Omega$ due eventi in uno spazio di probabilità
 $(\Omega, \mathbb A, \mathbb P)$: se $\mathbb P(F) \neq 0$ si definisce
@@ -40,7 +40,7 @@ _probabilità condizionata di $E$ dato $F$_ (o, più brevemente, _proababilità 
 $E$ dato $F$_) il rapporto
 
 ```{math}
-:label: eq:prob-cond
+:label: eq_prob-cond
 
 \mathbb P(E \mid F) = \frac{\mathbb P(E \cap F)}{\mathbb P(F)}.
 ```

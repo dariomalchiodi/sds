@@ -41,7 +41,7 @@
     {
       "packages": ["numpy", "pandas", "matplotlib", "altair", "IPython",
                    "graphviz", "matplotlib_venn", "scikit-learn",
-                   "statsmodels"]
+                   "statsmodels", "Pillow"]
     }
   </py-config>
   <script type="module" src="https://pyscript.net/releases/2025.5.1/core.js"></script>
@@ -67,6 +67,8 @@
 {%- block content %}
   {# A tiny helper pixel to detect if we've scrolled #}
   <div id="pst-scroll-pixel-helper"></div>
+
+  <div class="bd-sidebar-secondary"></div>
 
   {%- if theme_back_to_top_button %}
   {# the scroll to top button #}

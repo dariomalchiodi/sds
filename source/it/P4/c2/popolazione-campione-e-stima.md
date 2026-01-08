@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:problema-stima-parametrica)=
+(sec_problema-stima-parametrica)=
 # Il problema della stima parametrica
 
 ## La popolazione
@@ -50,7 +50,7 @@ si identifica la variabile aleatoria $X$ direttamente con la popolazione.
 
 
 ```{margin}
-Nel {ref}`sec:massima-verosimiglianza` considererò
+Nel {ref}`sec_massima-verosimiglianza` considererò
 brevemente un caso particolare nel quale la distribuzione della popolazione
 coinvolge due parametri ignoti.
 ```
@@ -58,7 +58,7 @@ Come indicato nell'introduzione, la statistica inferenziale parametrica si
 basa sul fatto di conoscere la distribuzione della popolazione, a meno di uno
 o più parametri. Più precisamente, considereremo una _famiglia_ di
 distribuzioni di probabilità, come introdotto nel
-{ref}`sec:famiglie-di-distribuzioni`, e nell'ottica di
+{ref}`sec_famiglie-di-distribuzioni`, e nell'ottica di
 semplificare il problema che stiamo studiando, questa famiglia sarà
 caratterizzata da uno e un solo parametro. La distribuzione della popolazione
 apparterrà a questa famiglia, e individuare il corrispondente valore del
@@ -68,7 +68,7 @@ semplice definire in modo formale una popolazione.
 
 
 ````{prf:definition} Popolazione
-:label: def:population-is
+:label: def-population-is
 
 Sia $\mathcal F = \{F_\theta, \theta \in \Theta \subseteq \mathbb R \}$ una
 famiglia di distribuzioni di probabilità indicizzata rispetto a un parametro.
@@ -96,7 +96,7 @@ $\theta$ e $F_\theta$ verranno sostituiti opportunamente.
 
 
 ```{prf:example}
-:label: ex:population-bernoulli
+:label: ex-population-bernoulli
 
 Supponiamo che la popolazione considerata coinvolga tutti i supereroi,
 che l'osservazione di un suo individuo corrisponda a valutare l'attributo che
@@ -119,9 +119,9 @@ popolazione che dipendono da più parametri, dei quali solo uno è ignoto, come
 illustrato nell'esempio che segue.
 
 ```{prf:example}
-:label: ex:population-normal
+:label: ex-population-normal
 
-Come nell'{prf:ref}`ex:population-bernoulli`, consideriamo tutti i supereroi,
+Come nell'{prf:ref}`ex-population-bernoulli`, consideriamo tutti i supereroi,
 ma in questo caso concentriamoci sull'attributo relativo all'altezza, misurata
 in centimetri. Supponiamo che la popolazione sia descritta da una
 distribuzione normale il cui valore atteso è ignoto e la cui deviazione
@@ -143,9 +143,9 @@ La formalizzazione finora introdotta permette di definire in modo preciso
 il concetto di popolazione, al prezzo di una certa complessità nella notazione
 e, più in generale, imponendo un certo grado di verbosità nella descrizione
 dei problemi. Quando il contesto lo permette, la terminologia utilizzata si
-può però semplificare: nell'{prf:ref}`ex:population-bernoulli` si può dire che
+può però semplificare: nell'{prf:ref}`ex-population-bernoulli` si può dire che
 la popolazione $X$ ha una distribuzione di Bernoulli il cui parametro $p$ è
-ignoto; analogamente, la popolazione dell'{prf:ref}`ex:population-normal` si
+ignoto; analogamente, la popolazione dell'{prf:ref}`ex-population-normal` si
 può descrivere più semplicemente dicendo che la sua distribuzione è normale,
 con valore atteso ignoto e deviazione standard uguale a $2$.
 
@@ -154,7 +154,7 @@ legato al fatto che l'estrazione di un campione si lega in modo naturale
 all'osservazione della variabile aleatoria stessa, come dettagliato nel
 paragrafo seguente.
 
-(sec:il-campione)=
+(sec_il-campione)=
 ## Il campione
 
 ```{margin}
@@ -173,8 +173,8 @@ conto di un aspetto importante: consideriamo per esempio il codice che segue,
 che sfrutta il metodo `DataFrame.sample` per estrarre dal _dataset_
 dei supereroi dieci diversi possibili campioni, ognuno di $n = 6$ elementi,
 separatamente per le due popolazioni descritte
-nell'{prf:ref}`ex:population-bernoulli` e
-nell'{prf:ref}`ex:population-normal` e considerando solamente le
+nell'{prf:ref}`ex-population-bernoulli` e
+nell'{prf:ref}`ex-population-normal` e considerando solamente le
 supereroine.
 
 ```{admonition} Note al codice
@@ -207,7 +207,7 @@ supereroine.
   per creare un nuovo _dataframe_, il cui scopo è meramente quello di
   mostrare questi campioni in forma tabulare.
 ```
-```{code-block} python
+```{interactive-code} python
 :class: toggle-code
 
 import pandas as pd
@@ -247,7 +247,7 @@ la bontà di queste conclusioni indipendentemente dal _particolare_ campione
 che è stato osservato. Ipotizziamo, come è naturale pensare, che il nostro
 scopo sia quello di fornire un'approssimazione per il valore del parametro
 sconosciuto $\theta$ (ma vedremo nel
-Paragrafo {ref}`sec:stimatori-e-stime` che questo è solo uno dei
+Paragrafo {ref}`sec_stimatori-e-stime` che questo è solo uno dei
 possibili obiettivi da perseguire). Chiaramente, saremo interessati a fornire
 un'approssimazione numerica per $\theta$, ma vorremo anche poter dire
 qualcosa, indipendentemente dal particolare campione che abbiamo osservato,
@@ -257,7 +257,7 @@ inferenziale, il concetto di campione viene formalizzato utilizzando una
 successione di variabili aleatorie, come nella definizione seguente.
 
 ```{prf:definition}
-:label: def:sample-is
+:label: def-sample-is
 
 Data una popolazione descritta da una variabile aleatoria
 $X$ e un numero intero $n \in \mathbb N$, si definisce
@@ -283,7 +283,7 @@ due modi diversi:
   del punto precedente, utilizzeremo una sequenza $X_1, \dots, X_n$ di
   variabili aleatorie.
 
-La {prf:ref}`def:sample-is` impone tre requisiti alle variabili aleatorie
+La {prf:ref}`def-sample-is` impone tre requisiti alle variabili aleatorie
 utilizzate per desrivere un campione: queste variabili devono
 
 - essere tra loro indipendenti,
@@ -330,7 +330,7 @@ della giornata.
 
 ## Oggetto della stima
 
-Come specificato nella {prf:ref}`def:population-is`, la distribuzione della
+Come specificato nella {prf:ref}`def-population-is`, la distribuzione della
 popolazione è nota a meno del valore di un parametro $\theta \in \Theta$.
 La quantità $\tau$ che si vuole stimare coincide a volte con il parametro
 ignoto. In questi casi avremo dunque $\tau = \theta$, ma più semplicemente
@@ -344,7 +344,7 @@ questa formalizzazione ai singoli esempi specifici, utilizzando i simboli in
 essi adottati.
 
 ```{prf:example}
-:label: ex:populations
+:label: ex-populations
 
 Concentriamoci sulla popolazione dei professionisti in una fissata categoria
 che operano in una certa regione, e supponiamo di essere interessati a stimare
@@ -368,7 +368,7 @@ più marcatamente rispetto al caso precedente, delle complicazioni inutili.
 ```
 
 
-(sec:stimatori-e-stime)=
+(sec_stimatori-e-stime)=
 ## Stimatori e stime
 
 Nei problemi di stima puntuale, il campione estratto dalla popolazione viene
@@ -377,7 +377,7 @@ interessati a valutare. Questo viene fatto usando il campione come argomento
 di una funzione, detta _statistica_.
 
 ```{prf:definition}
-:label: def:statistics-is
+:label: def-statistics-is
 
 Una _statistica_ è una funzione $t$ a valori reali i cui argomenti sono
 gli elementi di un campione, e che non dipende da alcun parametro ignoto.
@@ -386,7 +386,7 @@ gli elementi di un campione, e che non dipende da alcun parametro ignoto.
 Formalizzare il concetto di statistica introdotto nella precedente definizione
 richiede un po' di attenzione, perché la definizione di una funzione richiede
 di fissare il relativo numero di argomenti, mentre un campione può avere un
-generico numero di elementi. Sebbene nella {prf:ref}`def:sample-is` un
+generico numero di elementi. Sebbene nella {prf:ref}`def-sample-is` un
 campione di dimensione $n \in \mathbb N$ sia stato introdotto come una
 sequenza $X_1, \dots, X_n$ di variabili aleatorie, concentriamoci inizialmente
 sulle specificazioni $x_1, \dots, x_n$ di queste variabili aleatorie. Fissato
@@ -397,7 +397,7 @@ statistiche che considereremo sono in un certo senso indipendenti dalla taglia
 del campione che elaborano.
 
 ````{prf:example}
-:label: ex:statistic
+:label: ex-statistic
 
 Fondamentalmente, tutti gli indici che abbiamo visto nella parte sulla
 statistica descrittiva vengono calcolati utilizzando una statistica. Pertanto,
@@ -405,7 +405,7 @@ fissato $n \in \mathbb N$, sono esempi di statistica la media campionaria,
 definita da
 
 ```{math}
-:label: eq:sample-mean
+:label: eq_sample-mean
 t(x_1, \dots, x_n) = \frac{1}{n} \sum_{i=1}^n x_i \enspace, 
 ```
 
@@ -413,7 +413,7 @@ ma anche la la varianza campionaria e la deviazione standard campionaria, per
 le quali la funzione $t$ è definita in modo analogo, e così via.
 ````
 
-Emerge chiaramente da {eq}`eq:sample-mean` che la definizione analitica della
+Emerge chiaramente da {eq}`eq_sample-mean` che la definizione analitica della
 media campionaria è fondamentalmente indipendente dal particolare valore di
 $n$, ed è possibile commutare l'ordine degli argomenti senza che cambi il
 valore restituito dalla statistica. Questa situazione si verificherà sempre
@@ -425,9 +425,9 @@ tramite una _famiglia_ di funzioni, indicizzata rispetto al relativo numero di
 argomenti. Ove opportuno, espliciterò questo indice indicando $n$ come pedice
 nel nome della funzione. Per esempio, la media campionaria può essere
 collegata alla famiglia $\{ t_n: \mathbb R^n \to \mathbb R \}$, dove ogni
-$t_n$ è definita esattamente come in {eq}`eq:sample-mean`.
+$t_n$ è definita esattamente come in {eq}`eq_sample-mean`.
 
-La {prf:ref}`def:statistics-is` richiede esplicitamente che la funzione alla
+La {prf:ref}`def-statistics-is` richiede esplicitamente che la funzione alla
 base di una statistica non dipenda da alcun parametro ignoto. In questo caso,
 il termine _parametro_ si riferisce a eventuali argomenti il cui valore non
 è conosciuto, includendo ovviamente il parametro sconosciuto per la
@@ -461,16 +461,16 @@ opportuno aggiungerò un pedice per evidenziare la dipendenza implicita della
 statistica rispetto alla dimensione del campione.
 
 ````{prf:example}
-:label: ex:statistics-rv
+:label: ex-statistics-rv
 
-Riprendendo l'{prf:ref}`ex:statistic`, il valore della media campionaria
+Riprendendo l'{prf:ref}`ex-statistic`, il valore della media campionaria
 sarà descritto dalla variabile aleatoria
 
 ```{math}
 \overline X = \frac{1}{n} \sum_{i=1}^n X_i \enspace,
 ```
 
-e vedremo nel {ref}`sec:media-campionaria` che questa
+e vedremo nel {ref}`sec_media-campionaria` che questa
 statistica viene tipicamente utilizzata come stimatore per il valore atteso
 di una popolazione, o alternativamente che la sua generica specificazione
 $\overline x$ rappresenta una stima per la medesima quantità.
@@ -481,7 +481,7 @@ modella il fatto che ogni volta che si estrae dalla popolazione un campione
 di dimensione fissata, quest'ultimo contiene valori potenzialmente differenti,
 e quindi anche la statistica può assumere un insieme di differenti valori.
 Riprendendo l'esempio fatto all'inizio del
-Paragrafo {ref}`sec:il-campione`, possiamo evidenziare questo fatto
+Paragrafo {ref}`sec_il-campione`, possiamo evidenziare questo fatto
 considerando tutti i campioni per le altezze e calcolando per ognuno la media
 campionaria.
 
@@ -495,7 +495,7 @@ campionaria.
   è un "trucco" che evita che l'output della cella venga suddiviso su più
   righe.
 ```
-```{code-block} python
+```{interactive-code} python
 :class: toggle-code
 
 import numpy as np
@@ -506,7 +506,7 @@ print(np.array([round(np.mean(s), 2) for s in height_samples]))
 ```{margin}
 L'uso del condizionale in questa frase è dovuto al fatto che i valori
 dell'esempio sono stati generati sulla base del campionamento effettuato
-all'inizio del Paragrafo {ref}`sec:il-campione`, pertanto potrebbe
+all'inizio del Paragrafo {ref}`sec_il-campione`, pertanto potrebbe
 capitare che alcuni dei valori della media campionaria si discostino in modo
 anche sensibile rispetto agli altri. Se questo succede, controllate i valori
 numerici contenuti nei campioni corrispondenti, e provate a determinare la

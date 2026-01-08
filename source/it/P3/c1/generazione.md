@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:generazione-combinatoria)=
+(sec_generazione-combinatoria)=
 # Generazione di disposizioni, permutazioni e combinazioni
 
 In Python è abbastanza facile generare tutte le possibili disposizioni con
@@ -19,7 +19,7 @@ elementi di queste $k$-ple si ottengono iterando $k$ volte sulla lista di
 partenza. Per esempio la cella seguente permette di generare tutte le
 $D'_{3, 2} = 9$ coppie con ripetizione a partire da una lista di tre elementi
 
-```{code-block} python
+```{code-cell} python
 l = range(3)
 
 disp_rep = [(l1, l2) for l1 in l for l2 in l]
@@ -35,7 +35,7 @@ elementi della disposizione stessa. Nella cella seguente utilizziamo questa
 tecnica per ottenere tutte le $D_{3, 2} = 6$ coppie senza ripetizione a
 partire dalla stessa lista precedentemente considerata.
 
-```{code-block} python
+```{code-cell} python
 l = range(3)
 
 disp_rep = [(l1, l2) for l1 in l for l2 in l]
@@ -49,7 +49,7 @@ Pertanto si può adattare facilmente il codice della cella precedente per
 generare, per esempio, tutte le $P_3 = 6$ permutazioni della lista
 considerata.
 
-```{code-block} python
+```{code-cell} python
 l = range(3)
 
 disp_rep = [(l1, l2, l3) for l1 in l for l2 in l for l3 in l]
@@ -69,7 +69,7 @@ non si limita a filtrare le coppie, bensì le trasforma anche in insiemi
   vengono costruite tutte le $C_{4, 2} = 6$ combinazioni di quattro elementi
   in due posti.
 
-```{code-block} python
+```{code-cell} python
 l = range(4)
 
 disp_rep = [(l1, l2) for l1 in l for l2 in l]
@@ -99,24 +99,24 @@ superare questo ostacolo. Nella fattispecie:
   specificando la lista dei valori come primo elemento e il numero di posti
   tramite l'argomento opzionale `repeat`:
 
-```{code-block} python
+```{code-cell} python
 import itertools
 list(itertools.product(range(3), repeat=2))
 ```
 
 - `permutations` genera le disposizioni senza ripetizioni e le permutazioni:
 
-```{code-block} python
+```{code-cell} python
 list(itertools.permutations(range(3), 2))
 ```
 
-```{code-block} python
+```{code-cell} python
 list(itertools.permutations(range(3), 3))
 ```
 
 - `combinations` genera infine le combinazioni:
 
-```{code-block} python
+```{code-cell} python
 list(itertools.combinations(range(4), 2))
 ```
 

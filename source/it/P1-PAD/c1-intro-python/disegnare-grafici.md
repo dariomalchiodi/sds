@@ -9,7 +9,16 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:disegnare-grafici)=
+```{code-cell} python
+:tags: [remove-cell]
+
+import matplotlib.pyplot as plt
+plt.style.use('../../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+(sec_disegnare-grafici)=
 # Disegnare grafici
 
 Il modulo `plt` può essere usato per produrre vari tipi di grafici. In generale
@@ -37,7 +46,7 @@ Va anche notato il fatto che se si tenta di trasporre un array monodimensionale
 `transpose` restituirà una vista identica all'argomento specificato.
 ```
 
-```python
+```{code-cell} python
 import numpy as np
 
 def get_sorted_counts(sequence):
@@ -60,7 +69,7 @@ years = [1941, 1962, None, None, 1941,
 np.array(get_sorted_counts(years)).transpose()
 ```
 
-```python
+```{code-cell} python
 np.array(get_sorted_counts(years)[1:]).transpose()
 ```
 
@@ -70,11 +79,11 @@ anno, perché descrive il numero di casi in cui l'anno è un dato mancante.
 Usando una caratteristica di python è possibile assegnare le due liste ottenute
 direttamente a due variabili `x` e `y`:
 
-```python
+```{code-cell} python
 a, b = (42, 102)
 ```
 
-```python
+```{code-cell} python
 x, y = np.array(get_sorted_counts(years)[1:]).transpose()
 ```
 
@@ -90,7 +99,7 @@ metodo `plt.bar` per produrre un grafico a barre che visualizzi le frequenze
 assolute degli anni di prima apparizione:
 
 
-```python
+```{code-cell} python
 
 import matplotlib.pyplot as plt
 

@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:tipos-de-datos)=
+(sec_tipos-de-datos)=
 # Tipos de datos
 
 En el contexto de la programación, el término _tipo_ se usa comúnmente para
@@ -29,12 +29,12 @@ bibliotecas a las que haré referencia, ya que este tema no siempre es familiar
 para quienes empiezan a aprender los fundamentos de la ciencia de
 datos.
 ```{margin}
-En {ref}`sec:attributos` veremos que es importante no confundir el _tipo de un
+En {ref}`sec_attributos` veremos que es importante no confundir el _tipo de un
 atributo_ dentro de un _conjunto de datos_ con el _tipo de dato_ usado para
 almacenar los valores de ese atributo.
 ```
 
-(sec:tipado-dinamico)=
+(sec_tipado-dinamico)=
 ## Tipado dinámico
 
 En la mayoría de los lenguajes que se estudian al aprender a programar
@@ -92,7 +92,7 @@ modo que tenderé a usarlo cuando facilite la lectura del código, y evitarlo
 cuando solo lo recargue innecesariamente.
 
 
-(sec:typos-clases-objetos)=
+(sec_typos-clases-objetos)=
 ## Tipos, clases y objetos
 
 Python admite plenamente el paradigma de programación orientada a objetos, que
@@ -139,7 +139,7 @@ hero = Superhero('Superman', 'Clark Kent')
 ``` 
 
 ```{margin}
-Como veremos en {numfre}`sec:cadenas`, Python ofrece varios delimitadores de
+Como veremos en {numfre}`sec_cadenas`, Python ofrece varios delimitadores de
 cadenas, uno de los cuales es la comilla simple.
 ```
 Aquí:
@@ -208,7 +208,7 @@ sin embargo, excepciones, y solo dos son relevantes para nuestros fines:
 
 - cuando sea especialmente significativo usar una palabra clave del lenguaje
   como identificador (por ejemplo, `lambda`, que usaremos en
-  {ref}`sec:anonymous-functions`, podría emplearse para expresar un concepto
+  {ref}`sec_anonymous-functions`, podría emplearse para expresar un concepto
   matemático o físico), es aceptable añadirle un guion bajo (dando, en este
   caso, el identificador `lambda_`);
 - si se necesita referirse explícitamente a una variable utilizada en una parte
@@ -273,7 +273,7 @@ del alcance de este libro. Para profundizar en estos temas, puedes consultar la
 la documentación oficial de Python o la Parte IV en {cite:p}`ramalho`.
 ```
 
-(sec:tipos-simples-y-estructurados)=
+(sec_tipos-simples-y-estructurados)=
 ## Tipos simples y estructurados
 
 Para simplificar un poco la discusión, podemos dividir los tipos de datos que
@@ -302,7 +302,7 @@ secuencia de caracteres.
 Para decidir si un tipo de dato es simple o estructurado, usaré el siguiente
 criterio: un dato se considera estructurado si Python permite _iterar_ de forma
 nativa sobre sus elementos usando la _forma idiomática_ `for`
-(véase {ref}`sec:iterar`); en todos los demás casos, trataré el tipo de dato
+(véase {ref}`sec_iterar`); en todos los demás casos, trataré el tipo de dato
 como simple.
 
 ## Ejercicios
@@ -320,7 +320,7 @@ indica cuáles de las siguientes afirmaciones son verdaderas y cuáles falsas:
 
 ```{exercise} •
 Considera la hipotética clase `Superhero` definida en
-{ref}`sec:tipos-clases-objetos`, y sugiere variables de instancia y métodos
+{ref}`sec_tipos-clases-objetos`, y sugiere variables de instancia y métodos
 adicionales que tendrían sentido para sus objetos.
 ```
 

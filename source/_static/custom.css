@@ -160,6 +160,15 @@ aside.footnote a.footnote-reference {
   margin-bottom: 0;
 }
 
+div.cell-div-container {
+  margin-top: 1em;
+  overflow: hidden;
+}
+
+div.cell-div-container:has(+ .plot-container) {
+  float: left;
+}
+
 div.cell_input {
   margin-bottom: 0 !important;
   border-left: 4px solid blue !important;
@@ -177,12 +186,54 @@ div.container.cell + p {
   margin-top: 1em;
 }
 
+figure + * {
+  clear: both;
+}
+
+table + * {
+  clear: both;
+}
+
+figure::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+table::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* ensure caption in tables and figures clears floats */
+
+figcaption {
+  clear: both;
+}
+
+.pst-scrollable-table-container p:first-of-type {
+  clear:both;
+}
+
 py-script {
   display: none;
 }
 
 span.katex {
     display: inherit;
+}
+
+.cell_output, .cell_output .output.stream {
+  margin-top: 0 !important;
+}
+
+.cell_output pre {
+  background-color: var(--background-color);
+}
+
+.admonition .cell_output pre {
+  background-color: white;
 }
 
 .cell-out, .script-output {
@@ -285,10 +336,17 @@ span.katex {
 .highlight {
   background: none;
   color: inherit;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .highlight pre {
   border-radius: 0;
+  width: 100%;
+  min-width: 0;
+  flex: 1;
+  overflow-x: auto;
 }
 
 .highlight-python {
@@ -464,81 +522,100 @@ table.centered-content td {
   display: none !important;
 }
 
-/* Toggle code functionality */
-.toggle-code-wrapper {
-  position: relative;
-  margin: 1em 0;
-  /* Remove all wrapper styling - make it invisible */
-  border: none;
-  background-color: transparent;
-  padding: 0;
-}
-
-.toggle-code-button {
-  position: relative;
-  display: block;
-  margin-bottom: 0.5em;
-  font-size: 0.8em;
-  color: var(--link-color);
-  cursor: pointer;
-  font-family: sans-serif;
-  z-index: 10;
-  user-select: none;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  padding: 2px 6px;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  white-space: nowrap; /* Prevent text wrapping */
-  width: auto;
-  text-align: left;
-}
-
-.toggle-code-button:hover {
-  text-decoration: underline;
-  color: var(--link-color);
-}
-
-/* Triangle rotation animation */
-.toggle-code-button .triangle {
-  display: inline-block;
-  transition: transform 0.3s ease;
-}
-
-.toggle-code-button.expanded .triangle {
-  transform: rotate(90deg);
-}
-
-.toggle-code-content {
-  /* Remove all content wrapper styling */
-  margin: 0;
-  padding: 0;
-  border: none;
-  background-color: transparent;
-  /* Add smooth transition for content visibility */
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease, opacity 0.3s ease;
-}
-
-.toggle-code-content.expanded {
-  max-height: 800px; /* Large enough to accommodate most code blocks */
-  opacity: 1;
-}
-
-/* Make sure code blocks inside toggle content look exactly like normal code blocks */
-/* Let the theme handle the styling - remove overrides */
-
-/* PyScript toggle functionality - only apply to py-script elements */
-py-script.toggle-code:not(.expanded) {
+.no-output + .cell-div-container .splash,
+.no-output + .cell-div-container .splash::before,
+.no-output + .cell-div-container .splash::after {
   display: none !important;
 }
 
-py-script.toggle-code.expanded {
-  display: block !important;
+.left-align {
+  text-align: left
 }
+
+/* Toggle code wrapper - common for both MyST and PyScript cells */
+.toggle-code-wrapper {
+    margin: 0.5rem 0;
+    padding: 0;
+}
+
+/* Toggle button styled as a link */
+.toggle-code-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    color: var(--pst-color-link);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: color 0.2s;
+}
+
+.toggle-code-button:hover {
+    color: var(--pst-color-link-hover);
+}
+
+.toggle-code-button:hover .button-text {
+    text-decoration: underline;  /* Only underline the text on hover */
+}
+
+.toggle-code-button:focus {
+    outline: none;
+}
+
+.toggle-code-button .triangle {
+    /* display: inline-block;
+    transition: transform 0.3s ease;
+    font-size: 0.7em; */
+    display: inline-block;
+    transition: transform 0.3s ease;
+    font-size: 0.7em;
+    transform: rotate(0deg);
+    transform-origin: center center; /* Ensure rotation happens from center */
+    width: 1em; /* Fixed width to prevent size jumps */
+    text-align: center;
+}
+
+.toggle-code-button.expanded .triangle {
+    transform: rotate(90deg);
+}
+
+/* Hidden state - use !important to override MyST styles */
+.toggle-code-content {
+    display: none !important;
+}
+
+/* Expanded state - force visibility */
+.toggle-code-content.expanded {
+    display: block !important;
+    margin-top: 0.5rem;
+}
+
+/* Force nested elements to be visible when parent is expanded */
+/* .toggle-code-content.expanded .cell.docutils.container,
+.toggle-code-content.expanded .cell_input.docutils.container,
+.toggle-code-content.expanded .highlight-ipython3,
+.toggle-code-content.expanded .highlight {
+    display: block !important;
+} */
+
+/* Override tag_hide-input when toggle is expanded */
+.cell.tag_hide-input .toggle-code-content.expanded,
+.cell.tag_hide-input .toggle-code-content.expanded .cell_input {
+    display: block !important;
+}
+
+/* Ensure the code pre element is visible */
+.toggle-code-content.expanded pre {
+    display: block !important;
+}
+
+/* .docutils.container {
+  width: max-content
+} */
 
 /* Ensure admonition titles have proper font size */
 .admonition-title {
@@ -855,12 +932,43 @@ details summary {
 }
 
 .plot-container {
-  position: relative;
-  bottom: 250px;
-  left: 650px;
+  float: right;
   max-width: 250px;
-  margin-bottom: -100px;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  margin-top: 0;
   background: white;
   padding: 15px;
   border: 1px solid #ddd;
+  clear: right;
 }
+
+/* Keep plot-container styling when code is toggled */
+.toggle-code-content.expanded ~ .plot-container,
+.toggle-code-content ~ .plot-container {
+  position: relative;
+  float: right;
+  max-width: 250px;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  margin-top: 0;
+  background: white;
+  padding: 15px;
+  border: 1px solid #ddd;
+  clear: right;
+}
+
+.mermaid {
+  background-color: inherit;
+  border: none;
+  display: flex;
+  justify-content: center;
+}
+.mermaid > svg {
+  width: auto !important;
+  max-width: 100%;
+}
+
+/* .tag_hide-cell .admonition {
+  display: block !important;
+} */

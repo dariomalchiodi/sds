@@ -9,5 +9,5 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:processo-poisson)=
+(sec_processo-poisson)=
 # Processo di poisson

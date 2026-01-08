@@ -9,11 +9,11 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:varianza)=
+(sec_varianza)=
 # Varianza
 
 ```{math}
-:label: eq:var-alternative
+:label: eq_var-alternative
 
 \mathrm{Var}(X) = \mathbb E \left( X^2 \right) - \mathbb E(X)^2 \enspace.
 ```

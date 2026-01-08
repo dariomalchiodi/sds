@@ -9,10 +9,10 @@ kernelspec:
   display_name: Python 3
 ---
 
-(chap:introduzione)=
+(chap_introduzione)=
 # Introduzione
 
-(par:franklin-law)=
+(par_franklin-law)=
 > In questo mondo nulla si può dire certo,<br/>
 > tranne la morte e le tasse
 >

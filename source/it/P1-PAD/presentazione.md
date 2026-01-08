@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(chap:presentazione-P1)=
+(chap_presentazione-P1)=
 # Introduzione
 
 La prima parte del libro introduce alcuni strumenti di base per l’analisi
@@ -26,8 +26,8 @@ Tra gli strumenti indispensabili troviamo:
 - una libreria per la gestione strutturata dei _dataset_.
 
 In questo libro utilizzerò rispettivamente Python e Pandas, presentati
-rispettivamente nei capitoli {numref}`chap:intro-python` e
-{numref}`chap:pandas`. Sebbene esistano molte alternative valide, queste due
+rispettivamente nei capitoli {numref}`chap_intro-python` e
+{numref}`chap_pandas`. Sebbene esistano molte alternative valide, queste due
 tecnologie rappresentano oggi una parte centrale dell'ecosistema per l'analisi
 dei dati, sia in ambito accademico che nel mondo del lavoro.
 

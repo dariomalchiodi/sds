@@ -9,7 +9,16 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:spazi-equiprobabili)=
+```{code-cell} python
+:tags: [remove-cell]
+
+import matplotlib.pyplot as plt
+plt.style.use('../../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+(sec_spazi-equiprobabili)=
 # Spazi equiprobabili
 
 In molte situazioni, l'esperimento casuale alla base di uno spazio di
@@ -71,7 +80,7 @@ Per ogni evento $E \subseteq \Omega$ nello spazio equiprobabile
 $(\Omega, \mathsf A, \mathbb P)$ si ha
 
 ```{math}
-:label: eq:prob-classica
+:label: eq_prob-classica
 
 \mathbb P(E) = \frac{|E|}{n} \enspace.
 ```
@@ -112,8 +121,8 @@ dalla loro effettiva tangibilità.
   inseriti sono stati mescolati.
 
 In casi come questo, le regole del calcolo combinatorio descritte nel
-{ref}`chap:calcolo-combinatorio` sono spesso di aiuto per
-calcolare numeratore e denominatore in {eq}`eq:prob-classica`.
+{ref}`chap_calcolo-combinatorio` sono spesso di aiuto per
+calcolare numeratore e denominatore in {eq}`eq_prob-classica`.
 
 ```{margin}
 Se in questo esempio si sostituiscono gli anni di prima apparizione dei
@@ -164,7 +173,7 @@ La conversione a `int` è necessaria perché la presenza di valori mancanti
 causa un'implicito utilizzo del tipo `float` per l'anno di apparizione quando
 il _dataset_ viene caricato.
 ```
-```{code-block} python
+```{code-cell} python
 import pandas as pd
 
 heroes = pd.read_csv('data/heroes.csv', index_col=0)
@@ -185,7 +194,7 @@ prima apparizione, come indicato nella cella seguente, e graficare il valore
 ottenuto al variare di $n$.
 
 
-```{code-block} python
+```{code-cell} python
 
 import math
 import numpy as np

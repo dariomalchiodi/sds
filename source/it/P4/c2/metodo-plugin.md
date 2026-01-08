@@ -9,5 +9,5 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:metodo-plugin)=
+(sec_metodo-plugin)=
 # Metodo plugin

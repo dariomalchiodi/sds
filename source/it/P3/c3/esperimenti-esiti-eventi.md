@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:concetti-fondamentali)=
+(sec_concetti-fondamentali)=
 # Concetti fondamentali
 
 Come descritto all'inizio di questo capitolo, alla base di ogni ragionamento
@@ -108,7 +108,7 @@ particolarmente rilevanti:
 - al contrario, $\Omega$ contiene tutti i possibili esiti dell'esperimento,
   e quindi è un evento che si verificherà sempre, detto _evento certo_.
 
-Vedremo nel {ref}`sec:assiomi-kolmogorov` che il calcolo della probabilità
+Vedremo nel {ref}`sec_assiomi-kolmogorov` che il calcolo della probabilità
 di un evento è legato alla valutazione di una funzione di cui l'evento stesso
 è un argomento. Il dominio di questa funzione, che raccoglie dunque gli eventi
 di cui vogliamo poter calcolare la probabilità, viene chiamato
@@ -197,7 +197,7 @@ probabilità in modo
 
 - corretto, così da riflettere l'effettiva incertezza degli eventi, e
 ```{margin}
-Vedremo nel {ref}`sec:assiomi-kolmogorov` che il concetto di coerenza è
+Vedremo nel {ref}`sec_assiomi-kolmogorov` che il concetto di coerenza è
 matematicamente catturato dagli assiomi di Kolmogorov.
 ```
 - coerente con le relazioni che esistono tra gli eventi (per esempio, se

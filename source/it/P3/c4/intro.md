@@ -9,5 +9,5 @@ kernelspec:
   display_name: Python 3
 ---
 
-(chap:variabili-aleatorie)=
+(chap_variabili-aleatorie)=
 # Variabili aleatorie

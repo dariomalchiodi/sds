@@ -5,7 +5,8 @@
             # Get the current figure
             fig = plt.gcf()
             display(fig, target='graph-{cell_number}', append=False)
-            plt.close(fig)  
+            #plt.close(fig)
+        result = None
     else:
         try:
             result = {final_code}

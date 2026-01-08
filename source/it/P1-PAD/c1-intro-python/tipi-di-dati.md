@@ -9,11 +9,11 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:tipi-di-dati)=
+(sec_tipi-di-dati)=
 # Tipi di dati
 
 ```{margin}
-Nel {ref}`chap:dati-e-informazione` vedremo che non bisogna confondere il _tipo
+Nel {ref}`chap_dati-e-informazione` vedremo che non bisogna confondere il _tipo
 di un attributo_ in un dataset con il _tipo di dato_ usato per memorizzare i
 valori di quell’attributo.
 ```
@@ -33,7 +33,7 @@ delle librerie che incontreremo. Non sempre chi inizia a studiare i fondamenti
 della _data science_ ha già familiarità con questi concetti, quindi li
 tratteremo con la gradualità necessaria.
 
-(sec:tipizzazione-dinamica)=
+(sec_tipizzazione-dinamica)=
 ## Tipizzazione dinamica
 
 Nella maggior parte dei linguaggi che si incontrano quando siinizia a
@@ -96,7 +96,7 @@ chiarezza del testo, evitando però di introdurlo nei casi in cui
 rappresenterebbe solo un inutile appesantimento.
 
 
-(sec:tipi_classi_oggetti)=
+(sec_tipi_classi_oggetti)=
 ## Tipi, classi e oggetti
 
 Python supporta pienamente il paradigma di programmazione orientato agli
@@ -147,7 +147,7 @@ hero = Superhero('Superman', 'Clark Kent')
 In questo caso,
 
 ```{margin}
-Come vedremo nel Paragrafo {ref}`sec:stringhe`, in Python esistono diversi
+Come vedremo nel Paragrafo {ref}`sec_stringhe`, in Python esistono diversi
 delimitatori per le stringhe, uno dei quali è l'apice singolo.
 ```
 - `Superhero` indica la classe, e di conseguenza viene utilizzato come
@@ -211,7 +211,7 @@ specificare due eccezioni rilevanti a questa regola:
 
 - quando una parola chiave del linguaggio è particolarmente significativa come
   identificatore (per esempio `lamdba`, che utilizzeremo nel Paragrafo
-  {ref}`sec:funzioni-anonime`, e che può comparire come simbolo in formule
+  {ref}`sec_funzioni-anonime`, e che può comparire come simbolo in formule
   matematiche), si può aggiungere a questa parola un _underscore_ finale
   (ottenendo, nel caso precedente, l'identificatore `lambda_`);
 - se è necessario riferirsi esplicitamente a una variabile temporanea, o che
@@ -275,7 +275,7 @@ Python](https://docs.python.org/3/tutorial/classes.html), o alla parte IV in
 {cite:p}`ramalho`.
 ```
 
-(sec:tipi-semplici-e-strutturati)=
+(sec_tipi-semplici-e-strutturati)=
 ## Tipi semplici e strutturati
 
 Semplificando, possiamo dividere i tipi di dati che utilizzeremo in due grandi
@@ -301,7 +301,7 @@ essere opinabile: ad esempio, le stringhe possono essere considerate un tipo
 sia semplice che strutturato, perché sono sequenze di caratteri. Per decidere
 se un tipo di dato è semplice o strutturato, adotterò un criterio pratico:
 considero un tipo strutturato se Python permette di _iterare_ nativamente sui
-suoi elementi usando l’idioma `for` (vedi il Paragrafo {ref}`sec:iterare`); in
+suoi elementi usando l’idioma `for` (vedi il Paragrafo {ref}`sec_iterare`); in
 tutti gli altri casi, considererò il tipo di dato come semplice.
 
 
@@ -320,7 +320,7 @@ delle seguenti affermazioni sono vere e quali sono false:
 
 ```{exercise} •
 Considerate l'ipotetica classe `Superhero` definita nel Paragrafo
-{ref}`sec:tipi_classi_oggetti`, indicando ulteriori variabili di istanza e
+{ref}`sec_tipi_classi_oggetti`, indicando ulteriori variabili di istanza e
 metodi che è sensato considerare per i relativi oggetti.
 ```
 

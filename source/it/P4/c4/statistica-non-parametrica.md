@@ -13,5 +13,5 @@ kernelspec:
 ---
 
 
-(chap:statistica-non-parametrica)=
+(chap_statistica-non-parametrica)=
 # Accenni alla statistica non parametrica

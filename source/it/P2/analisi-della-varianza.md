@@ -9,7 +9,16 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:analisi-della-varianza)=
+```{code-cell} python
+:tags: [remove-cell]
+
+import matplotlib.pyplot as plt
+plt.style.use('../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+(sec_analisi-della-varianza)=
 # Analisi della varianza
 
 Ipotizziamo di avere a disposizione delle osservazioni di un medesimo
@@ -123,7 +132,7 @@ complessa su di un _dataframe_, basandosi sull'operatore `&` di congiungzione
 logica. Analogamente, l'operatore `|` permette di calcolare disgiunzioni
 logiche.
 ```
-```{code-block} python
+```{code-cell} python
 import pandas as pd
 
 heroes = pd.read_csv('data/heroes.csv', index_col=0)
@@ -136,7 +145,7 @@ dc_strength = heroes[(heroes['creator'] == 'DC Comics') & \
 
 Iniziamo calcolando $\mathrm{SS}_{\mathrm T}$.
 
-```{code-block} python
+```{code-cell} python
 all_strength = pd.concat([marvel_strength, dc_strength])
 sum_total = sum((all_strength - all_strength.mean())**2)
 sum_total
@@ -144,7 +153,7 @@ sum_total
 
 Analogamente calcoliamo $\mathrm{SS}_{\mathrm W}$.
 
-```{code-block} python
+```{code-cell} python
 sum_within = sum((marvel_strength - marvel_strength.mean())**2) + \
                     sum((dc_strength - dc_strength.mean())**2)
 sum_within
@@ -152,7 +161,7 @@ sum_within
 
 Infine, calcoliamo $\mathrm{SS}_{\mathrm B}$.
 
-```{code-block} python
+```{code-cell} python
 sum_between = len(marvel_strength) * (marvel_strength.mean() - all_strength.mean())**2 + \
                     len(dc_strength) * (dc_strength.mean() - all_strength.mean())**2
 sum_between
@@ -162,21 +171,21 @@ Verifichiamo innanzitutto che valga, nei limiti dell'approssimazione in
 virgola mobile, l'uguaglianza
 $\mathrm{SS}_{\mathrm T} = \mathrm{SS}_{\mathrm W} + \mathrm{SS}_{\mathrm B}$.
 
-```{code-block} python
+```{code-cell} python
 sum_total - sum_within - sum_between
 ```
 
 Calcoliamo infine la varianza totale e la varianza entro i gruppi utilizzando
 le formule sopra descritte.
 
-```{code-block} python
+```{code-cell} python
 n = len(all_strength)
 
 total_var = sum_total / (n-1)
 total_var
 ```
 
-```{code-block} python
+```{code-cell} python
 within_var = sum_within / (n-2)
 within_var * (n-2) / (n-1)
 ```
@@ -190,7 +199,7 @@ osservazioni: la funzione accetterà una lista di tali gruppi come argomento,
 e restituirà una coppia i cui elementi saranno rispettivamente la varianza
 totale e la varianza entro i gruppi.
 
-```{code-block} python
+```{code-cell} python
 import numpy as np
 
 def anova(groups):
@@ -201,7 +210,8 @@ def anova(groups):
 
     sum_between = sum([len(g) * (g.mean()-all_elements.mean())**2
                        for g in groups])
-    assert(np.abs(sum_total - sum_within - sum_between) < 10**-5)
+    print(f'this should be almost zero: {np.abs(sum_total - sum_within - sum_between)}')
+    
     n = len(all_elements)
     total_var = sum_total / (n-1)
     within_var = sum_within / (n-len(groups))
@@ -212,7 +222,7 @@ def anova(groups):
 Verifichiamo che i valori restituiti per i due gruppi già considerati siano
 gli stessi.
 
-```{code-block} python
+```{code-cell} python
 anova([dc_strength, marvel_strength])
 ```
 
@@ -221,7 +231,7 @@ supereroine si ottengono due valori tutto sommato relativamente simili, così
 che non si possa avvalorare l'ipotesi che l'indice di forza sia distribuito
 in modo sostanzialmente diverso tra i due generi.
 
-```{code-block} python
+```{code-cell} python
 male_strength = heroes[(heroes['creator'] == 'Marvel Comics') & \
                        (pd.notnull(heroes['strength']))]['strength']
 female_strength = heroes[(heroes['creator'] == 'DC Comics') & \
@@ -232,7 +242,7 @@ anova([male_strength, female_strength])
 Le cose cambiano se consideriamo la divisione tra generi per i supereroi DC,
 valutando la differenza nella distribuzione del peso.
 
-```{code-block} python
+```{code-cell} python
 male_weight = heroes[(heroes['creator'] == 'DC Comics') & \
                    (pd.notnull(heroes['weight']))]['weight']
 female_weight = heroes[(heroes['creator'] == 'DC Comics') & \

@@ -9,5 +9,5 @@ kernelspec:
   display_name: Python 3
 ---
 
-(chap:modelli-discreti)=
+(chap_modelli-discreti)=
 # Modelli discreti

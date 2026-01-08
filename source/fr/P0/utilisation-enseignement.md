@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:utilisation-pedagogique)=
+(sec_utilisation-pedagogique)=
 # Utilisation pédagogique
 Depuis plusieurs années, je suis responsable de l’enseignement de [Statistiques
 et analyse des données](https://malchiodi.di.unimi.it/teaching/SAD/fr) dans le

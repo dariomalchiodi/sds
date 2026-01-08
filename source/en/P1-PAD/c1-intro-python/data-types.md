@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:data-types)=
+(sec_data-types)=
 # Data Types
 
 In the context of computer programming, the term _type_ is commonly used to
@@ -27,12 +27,12 @@ briefly introduce some concepts of _object-oriented programming_ that will be
 needed to use certain libraries I'll reference, since this topic is not always
 familiar to those starting to learn the fundamentals of _data science_.
 ```{margin}
-In {ref}`sec:attributes` we'll see that it's important not to confuse the
+In {ref}`sec_attributes` we'll see that it's important not to confuse the
 _type of an attribute_ within a _dataset_ with the _data type_ used to store
 that attribute's values.
 ```
 
-(sec:dynamic-typing)=
+(sec_dynamic-typing)=
 ## Dynamic Typing
 
 In most of the languages studied when learning to program computers (such as C,
@@ -87,7 +87,7 @@ Finally, type hinting also serves as a way to lighten the software's
 documentation, so I'll tend to use it whenever it makes the code easier to
 read, while avoiding it when it would unnecessarily clutter things up.
 
-(sec:types-classes-objects)=
+(sec_types-classes-objects)=
 ## Types, Classes, and Objects
 
 Python fully supports the object-oriented programming paradigm, which uses the
@@ -131,7 +131,7 @@ hero = Superhero('Superman', 'Clark Kent')
 ``` 
 
 ```{margin}
-As we'll see in {numfre}`sec:strings`, Python offers several string delimiters,
+As we'll see in {numfre}`sec_strings`, Python offers several string delimiters,
 one of which is the single quote.
 ```
 Here,
@@ -198,7 +198,7 @@ are, however, exceptions to consider, and only two are relevant for our
 purposes:
 
 - when it is particularly meaningful to use a language keyword as an identifier
-  (for instance `lambda`, which we will use in {ref}`sec:anonymous-functions`,
+  (for instance `lambda`, which we will use in {ref}`sec_anonymous-functions`,
   might be used for expressing a mathematical or physical concept), it is
   acceptable to append an underscore to it (yielding, in the previous case,
   the identifier `lambda_`);
@@ -261,7 +261,7 @@ this book. To explore these topics in more depth, you can refer to the
 official Python documentation or to Part IV in {cite:p}`ramalho`.
 ```
 
-(sec:simple-and-structured-types)=
+(sec_simple-and-structured-types)=
 ## Simple and structured types
 
 To simplify the discussion a bit, we can divide the data types we will use into
@@ -290,7 +290,7 @@ considered structured, since they consist of a sequence of characters.
 To decide whether a data type is simple or structured, I will use the following
 criterion: a piece of data is considered structured if Python natively allows
 you to _iterate_ over its elements using the `for` idiom (see
-{ref}`sec:iterate`); in all other cases, I will treat the data type as simple.
+{ref}`sec_iterate`); in all other cases, I will treat the data type as simple.
 
 ## Exercises
 
@@ -307,7 +307,7 @@ of the following statements are true and which are false:
 
 ```{exercise} •
 Consider the hypothetical `Superhero` class defined in
-{ref}`sec:types-classes-objects`, and suggest additional instance variables
+{ref}`sec_types-classes-objects`, and suggest additional instance variables
 and methods that would make sense for its objects.
 ```
 

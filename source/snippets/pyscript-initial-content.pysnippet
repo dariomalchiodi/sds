@@ -1,5 +1,7 @@
 # Cell {cell_number}: Execute Python code
 
+result = None
+
 # Capture stdout and stderr
 #old_stdout = sys.stdout
 #old_stderr = sys.stderr

@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:disuguaglianze-fondamentali)=
+(sec_disuguaglianze-fondamentali)=
 # Disuguaglianze fondamentali
 
 

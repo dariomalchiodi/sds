@@ -9,7 +9,16 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:indici-di-dispersione)=
+```{code-cell} python
+:tags: [remove-cell]
+
+import matplotlib.pyplot as plt
+plt.style.use('../../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+(sec_indici-di-dispersione)=
 # Indici di dispersione
 
 Gli oggetti di tipo serie messi a disposizione da pandas permettono di
@@ -17,7 +26,7 @@ calcolare facilmente i principali indici di dispersione. Importiamo, come al
 solito, il nostro dataset e impostiamo lo stile per i grafici.
 
 
-```{code-block} python
+```{code-cell} python
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -30,14 +39,14 @@ su quest'ultimo degli appositi metodi. In particolare:
 
 - `var` restituisce la varianza campionaria;
 
-```{code-block} python
+```{code-cell} python
 year = heroes['first_appearance']
 year.var()
 ```
 
 - `std` restituisce la deviazione standard campionaria;
 
-```{code-block} python
+```{code-cell} python
 year.std()
 ```
 
@@ -47,14 +56,14 @@ dispersione (quelli relativi a media, deviazione standard, minimo, primo
   osservazioni nella serie, che utilizza per popolare un nuovo oggetto di
   tipo serie;
 
-```{code-block} python
+```{code-cell} python
 year.describe()
 ```
 
 - `quantile` restituisce il quantile corrispondente al livello specificato
 come argomento.
 
-```{code-block} python
+```{code-cell} python
 year.quantile(.15)
 ```
 
@@ -82,7 +91,7 @@ principali:
 A titolo di esempio la cella seguente visualizza il box plot relativo
 all'anno di prima apparizione.
 
-```{code-block} python
+```{code-cell} python
 year.plot.box(whis=(0, 100))
 plt.show()
 ```
@@ -102,7 +111,7 @@ caso contrario viene visualizzata una versione leggermente diversa di box
 plot, in cui le osservazioni vengono preliminarmente analizzate in modo da
 evidenziare eventuali _outlier_ marcandoli con dei cerchi.
 
-```{code-block} python
+```{code-cell} python
 year.plot.box()
 plt.show()
 ```
@@ -114,7 +123,7 @@ possibile ottenere un diagramma equivalente visualizzando le informazioni
 sull'asse delle ascisse. In questo caso i valori per i quartili si leggeranno
 ovviamente in corrispondenza di segmenti paralleli alle altezze della scatola.
 
-```{code-block} python
+```{code-cell} python
 year.plot.box(vert=False)
 plt.show()
 ```
@@ -139,7 +148,7 @@ DC, escludendo eventuali _outlier_ (limitando per la precisione la scelta a
   valori compresi tra 150 e 200 centimetri), i corrispondenti quantili di
   livello $0.2$ assumeranno i seguenti valori.
 
-```{code-block} python
+```{code-cell} python
 marvel = heroes.loc[(heroes['creator']=='Marvel Comics') & \
                     (heroes['height'].between(150, 200))]
 
@@ -157,7 +166,7 @@ i livelli in una discretizzazione che copra ragionevolmente l'intervallo
 $[0, 1]$ e visualizziamo sul piano cartesiano un punto per ogni coppia di
 quantili campionari che si riferiscono a uno stesso livello.
 
-```{code-block} python
+```{code-cell} python
 levels = np.linspace(0, 1, 100)
 plt.plot(marvel_sample.quantile(levels),
          dc_sample.quantile(levels),
@@ -170,7 +179,7 @@ tra loro fa sì che i punti ottenuti si allineino approssimativamente sulla
 bisettrice del primo e del terzo quadrante. Possiamo evidenziare tale fatto
 sovrapponendo al diagramma il grafico della retta.
 
-```{code-block} python
+```{code-cell} python
 plt.plot([min(dc_sample), max(dc_sample)],
          [min(dc_sample), max(dc_sample)])
 plt.plot(dc_sample.quantile(levels),
@@ -185,7 +194,7 @@ In realtà non è necessario costruire "a mano" i diagrammi Q-Q: il package
 l'argomento opzionale `line='45'` nel caso in cui si vuole tracciare anche
 il riferimento della bisettrice.
 
-```{code-block} python
+```{code-cell} python
 import statsmodels.api as sm
 
 sm.qqplot_2samples(marvel_sample, dc_sample, line='45')
@@ -205,19 +214,14 @@ da DC e Marvel.
 
 Chiaramente, non è detto che due campioni seguano necessariamente una
 medesima distribuzione. In tal caso, i punti ottenuti non si disporranno
-vicino alla bisettrice. È questo il caso della distribuzione del peso tra
-supereroine e supereroi.
+vicino alla bisettrice. È questo il caso del peso e dell'altezza.
 
-```{code-block} python
-female = heroes.loc[(heroes['Gender']=='F') & \
-                    (heroes['Weight'].between(50, 100))]
+```{code-cell} python
+weight = heroes['weight']
 
-male = heroes.loc[(heroes['Gender']=='M') & \
-                (heroes['Weight'].between(50, 100))]
+height = heroes['height']
 
-female_sample = female['Weight'].sample(100)
-male_sample = male['Weight'].sample(100)
-sm.qqplot_2samples(female_sample, male_sample, line='45')
+sm.qqplot_2samples(weight, height, line='45')
 plt.show()
 ```
 
@@ -228,7 +232,7 @@ Si nota infine che una standardizzazione dei dati permette di confinare il
 grafico ottenuto in prossimità dell'origine. In tal modo diventa più facile
 accorgersi di eventuali valori fuori scala.
 
-```{code-block} python
+```{code-cell} python
 sm.qqplot_2samples((marvel_sample-marvel_sample.mean())/marvel_sample.std(),
                    (dc_sample-dc_sample.mean())/dc_sample.std(),
                    line='s',
@@ -236,11 +240,11 @@ sm.qqplot_2samples((marvel_sample-marvel_sample.mean())/marvel_sample.std(),
 plt.show()
 ```
 
-```{code-block} python
-sm.qqplot_2samples((female_sample-female_sample.mean())/female_sample.std(),
-                   (male_sample-male_sample.mean())/male_sample.std(),
+```{code-cell} python
+sm.qqplot_2samples((weight - weight.mean())/ weight.std(),
+                   (height - height.mean())/ height.std(),
                    line='45',
-                   xlabel='Male', ylabel='Female')
+                   xlabel='Weight', ylabel='Height')
 plt.show()
 ```
 
@@ -258,7 +262,7 @@ approssimativamente simmetrico rispetto alla sua parte centrale e nel box
 plot i baffi hanno all'incirca la stessa lunghezza, così come la mediana si
 posiziona verso il centro della scatola.
 
-```{code-block} python
+```{code-cell} python
 from scipy.stats import norm
 sample = pd.Series(norm.rvs(24, 2, size=1000), name='')
 f, (h, b) = plt.subplots(2, 1, gridspec_kw = {'height_ratios':[4, 3]})
@@ -282,7 +286,7 @@ modalità:
   (utilizzando a volte la terminologia inglese e dicendo che è presente uno
     _skew_ a destra);
 
-```{code-block} python
+```{code-cell} python
 from scipy.stats import gamma
 sample = pd.Series(gamma.rvs(2, size=1000), name='')
 f, (h, b) = plt.subplots(2, 1, gridspec_kw = {'height_ratios':[4, 3]})
@@ -298,7 +302,7 @@ plt.show()
   nel grafico sottostante, e quindi si parla di asimmetria (o _skew_) a
   sinistra.
 
-```{code-block} python
+```{code-cell} python
 from scipy.stats import beta
 sample = pd.Series(beta.rvs(20, 2, size=1000), name='')
 f, (h, b) = plt.subplots(2, 1, gridspec_kw = {'height_ratios':[4, 3]})
@@ -315,20 +319,20 @@ Consideriamo per esempio il BMI dei supereroi nei soli casi in cui il
 relativo valore è inferiore a $100$, e visualizziamo separatamente i
 corrispondenti istogramma e box plot.
 
-```{code-block} python
+```{code-cell} python
 sample = heroes['weight'] / (heroes['height']/100) **2
 sample = sample[sample < 100]
 
 sample.name = 'BMI'
 ```
 
-```{code-block} python
+```{code-cell} python
 sample.plot.hist(bins=20)
 plt.ylabel('')
 plt.show()
 ```
 
-```{code-block} python
+```{code-cell} python
 sample.plot.box(vert=False, whis=200, widths=.4)
 plt.show()
 ```
@@ -338,14 +342,14 @@ consideriamo l'altezza, restringendosi ai casi in cui il corrispondente
 valore è compreso tra $150$ e $220$, otteniamo una distribuzione
 approssimativamente simmetrica.
 
-```{code-block} python
+```{code-cell} python
 sample = heroes[(heroes['height'].between(150, 220))]['height']
 sample.plot.hist(bins=20)
 plt.ylabel('')
 plt.show()
 ```
 
-```{code-block} python
+```{code-cell} python
 sample.plot.box(vert=False, whis=20, widths=.4)
 plt.show()
 ```
@@ -367,7 +371,7 @@ Siccome il grafico delle frequenze dell'altezza ha approssimativamente un
 andamento a campana, possiamo controllare numericamente se questa regola
 empirica risulti verificata.
 
-```{code-block} python
+```{code-cell} python
 def check_empirical_rule(n):
     within = len(sample[np.abs(sample - sample.mean()) < n*sample.std()])
     return  within / len(sample)
@@ -397,7 +401,7 @@ questo problema, non introdotta prima per non complicare inutilmente la
 spiegazione, consiste nell'utilizzare come nella cella seguente il metodo
 `plt.subplots`.
 
-```{code-block} python
+```{code-cell} python
 f, (h, b) = plt.subplots(2, 1, gridspec_kw = {'height_ratios':[4, 3]})
 f.set_figheight(6)
 

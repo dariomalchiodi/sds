@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:insiemi-in-python)=
+(sec_insiemi-in-python)=
 # Gli insiemi in Python
 
 Python mette a disposizione il tipo `set` per rappresentare insiemi finiti.
@@ -36,7 +36,7 @@ Pertanto le espressioni `{1, 3, 5}`, `set([1, 3, 5])` e `set((1, 3, 5))`
 corrispondono allo stesso oggetto di tipo insieme. Chiaramente tutte le tre
 espressioni precedenti individuano lo stesso insieme:
 
-```{code-block} python
+```{code-cell} python
 {1, 3, 5} == set([3, 1, 5])
 ```
 

@@ -7,7 +7,7 @@ jupytext:
 nb_execution: false
 ---
 
-(sec:installation)=
+(sec_installation)=
 # Installation, configuration, and first steps
 
 This section explains how to install Python and the libraries I'll refer to
@@ -20,7 +20,7 @@ align with the terminology I'll be using and to ensure there are no
 compatibility issues with your installed version and that all required
 libraries are available.
 
-(sec:languages-versions-implementations)=
+(sec_languages-versions-implementations)=
 ## Languages, versions, and implementations
 
 Programming languages evolve over time, as their specifications get updated.
@@ -61,7 +61,7 @@ machine, another on a C-based runtime, another runs in web browsers, and so on.
 The most common implementation, usually installed by default, is called
 _CPython_, and, as the name suggests, is written in C.
 
-(sec:download-book)=
+(sec_download-book)=
 ## Downloading the book contents
 
 This book is designed to be used through a web server. The benefit is that the
@@ -89,7 +89,7 @@ directory:
 ```{eval-rst}
 .. tabs::
 
-   .. group-tab:: Linux / Mac OS
+   .. group-tab_: Linux / Mac OS
 
       In all the examples below, the symbol ``$`` indicates the shell prompt.
       Depending on your system configuration, your prompt might look different.
@@ -105,7 +105,7 @@ directory:
       I'll assume throughout the rest of this section that the same shell
       session is being used.
 
-   .. group-tab:: Windows
+   .. group-tab_: Windows
 
       In the following examples, ``C:>`` represents the PowerShell prompt. Your
       prompt may vary depending on your system. ``my_parent_dir`` is a
@@ -133,13 +133,13 @@ easy to keep the book up-to-date simply by running the command:
 ```{eval-rst}
 .. tabs::
 
-   .. group-tab:: Linux / Mac OS
+   .. group-tab_: Linux / Mac OS
 
       .. code-block:: bash
 
          $ git pull
 
-   .. group-tab:: Windows
+   .. group-tab_: Windows
 
       .. code-block:: powershell
 
@@ -150,7 +150,7 @@ easy to keep the book up-to-date simply by running the command:
 from a terminal after navigating into the `sds` directory (or any of its
 subdirectories). Additionally, git is the tool used to report issues or propose
 changes, by submitting _issues_ or _pull requests_ as explained in
-{ref}`chap:approccio`. Finally, learning git is something I recommend to anyone
+{ref}`chap_approccio`. Finally, learning git is something I recommend to anyone
 studying not only computer science, but any discipline within the field of data
 science. In fact, git is used in the vast majority of software projects, so
 it's worth learning from the start.
@@ -165,13 +165,13 @@ have Python installed. To check, open a terminal and run:
 ```{eval-rst}
 .. tabs::
 
-   .. group-tab:: Linux / Mac OS
+   .. group-tab_: Linux / Mac OS
 
       .. code-block:: bash
 
          $ python --version
 
-   .. group-tab:: Windows
+   .. group-tab_: Windows
 
       .. code-block:: powershell
 
@@ -252,13 +252,13 @@ directory name is used.
 ```{eval-rst}
 .. tabs::
 
-   .. group-tab:: Linux / Mac OS
+   .. group-tab_: Linux / Mac OS
 
       .. code-block:: bash
 
          $ python3.11 -m venv .venv --prompt sds
 
-   .. group-tab:: Windows
+   .. group-tab_: Windows
 
       .. code-block:: powershell
 
@@ -274,13 +274,13 @@ for this environment. To activate it, run:
 ```{eval-rst}
 .. tabs::
 
-   .. group-tab:: Linux / Mac OS
+   .. group-tab_: Linux / Mac OS
 
       .. code-block:: bash
 
          $ source .venv/bin/activate
 
-   .. group-tab:: Windows
+   .. group-tab_: Windows
 
       .. code-block:: powershell
 
@@ -297,13 +297,13 @@ environment, run:
 ```{eval-rst}
 .. tabs::
 
-   .. group-tab:: Linux / Mac OS
+   .. group-tab_: Linux / Mac OS
 
       .. code-block:: bash
 
          (sds) $ deactivate
 
-   .. group-tab:: Windows
+   .. group-tab_: Windows
 
       .. code-block:: powershell
 
@@ -313,7 +313,7 @@ environment, run:
 
 This returns the system prompt to its original state.
 
-(sec:lib-install)=
+(sec_lib-install)=
 ## Managing libraries
 
 In theory, a library can be installed manually by downloading its executable or
@@ -333,7 +333,7 @@ Python versions.
 Library installation, usually done in an active virtual environment, is done
 with the `pip` command in a shell, specifying the library name&mdash;optionally
 followed by `==version` for installing a specific release. For example, to
-install altair, the library used in {ref}`sec:overview` for interactive plots,
+install altair, the library used in {ref}`sec_overview` for interactive plots,
 you'd run:
 
 ```{margin}
@@ -344,13 +344,13 @@ to run this command now.
 ```{eval-rst}
 .. tabs::
 
-   .. group-tab:: Linux / Mac OS
+   .. group-tab_: Linux / Mac OS
 
       .. code-block:: bash
 
          (sds) $ pip install altair
 
-   .. group-tab:: Windows
+   .. group-tab_: Windows
 
       .. code-block:: powershell
 
@@ -370,13 +370,13 @@ install everything listed there, run:
 ```{eval-rst}
 .. tabs::
 
-   .. group-tab:: Linux / Mac OS
+   .. group-tab_: Linux / Mac OS
 
       .. code-block:: bash
 
          (sds) $ pip install -r requirements.txt
 
-   .. group-tab:: Windows
+   .. group-tab_: Windows
 
       .. code-block:: powershell
 
@@ -388,7 +388,7 @@ The [repository](https://github.com/dariomalchiodi/sds) for this book includes
 a `requirements.txt` file listing all libraries needed to run the code
 throughout the chapters.
 
-(sec:notebook)=
+(sec_notebook)=
 ## Installing a notebook manager
 
 As mentioned at the beginning of this chapter, I will present Python code in a
@@ -432,13 +432,13 @@ notebook using Visual Studio Code.
 ```{eval-rst}
 .. tabs::
 
-   .. group-tab:: Linux / Mac OS
+   .. group-tab_: Linux / Mac OS
 
       .. code-block:: bash
 
          (sds) $ jupyter notebook
 
-   .. group-tab:: Windows
+   .. group-tab_: Windows
 
       .. code-block:: powershell
 
@@ -508,7 +508,7 @@ Go or Java.
 
 ## Getting Started with Python
 
-As discussed in {ref}`sec:learning-and-programming`, I assume you are already
+As discussed in {ref}`sec_learning-and-programming`, I assume you are already
 familiar with at least one programming language. In this section, however,
 we'll take a quick look at some basic programming operations to see how they
 are performed in Python. This will allow me to immediately introduce code
@@ -517,7 +517,7 @@ examples in Python alongside the concepts I'll be explaining.
 ### Assignments
 Assigning a value to a variable uses the same notation as in most other
 programming languages, following the syntax `variable = value`. In
-{ref}`sec:dynamic-tipig`, we'll see that Python doesn't require type
+{ref}`sec_dynamic-tipig`, we'll see that Python doesn't require type
 declarations: variables are automatically created the first time a value is
 assigned to them, and that value implicitly determines their type. For example:
 
@@ -727,7 +727,7 @@ equivalent to binary code but for a _virtual machine_. A specific piece of
 software then executes the bytecode by translating it into the machine code of
 the computer being used. When using CPython&mdash;the Python implementation
 this book refers to&mdash;compilation happens automatically and transparently
-when modules are imported (see {ref}`sec:importing-modules`): the result of
+when modules are imported (see {ref}`sec_importing-modules`): the result of
 compilation is a set of `.pyc` files saved in a `__pycache__` directory,
 generated only if they don't exist or are older than the source file; in other
 cases, the bytecode already existing is executed directly.

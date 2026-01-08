@@ -9,7 +9,16 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:va-continue)=
+```{code-cell} python
+:tags: [remove-cell]
+
+import matplotlib.pyplot as plt
+plt.style.use('../../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+(sec_va-continue)=
 # Variabili aleatorie continue
 
 Di seguito formalizziamo e generalizziamo i nuovi concetti che sono emersi nel
@@ -17,11 +26,11 @@ paragrafo precedente. In particolare, partiamo dalla definizione di _variabile
 aleatoria continua_.
 
 ```{margin}
-Come indicato nella {prf:ref}`def:dominio`, per dominio si intende qui
+Come indicato nella {prf:ref}`def-dominio`, per dominio si intende qui
 l'insieme delle specificazioni di una variabile aleatoria.
 ```
 ````{prf:definition} Variabile aleatoria continua
-:label: def:va-continua
+:label: def-va-continua
 
 Una variabile aleatoria $X$ si dice _continua_ quando il suo dominio $D_X$ è
 un insieme continuo.
@@ -36,7 +45,7 @@ modo più preciso, notiamo innanzitutto che per $x \in \mathbb R$ e
 $\Delta x \in \mathbb R^+$, è sempre possibile considerare l'evento
 $X \in (x, x + \Delta x]$ che si verifica quando $X$ assume valori
 nell'intervallo che ha $x$ come estremo sinistro e $\Delta x$ come ampiezza.
-Infatti, in base alla {prf:ref}`def:variabile-aleatoria` sappiamo che
+Infatti, in base alla {prf:ref}`def-variabile-aleatoria` sappiamo che
 
 ```{math}
 X^{-1}((-\infty, a]) = \{ w \in \Omega \text{ tale che } X(\omega) \leq a \}
@@ -62,7 +71,7 @@ così come il suo limite per $\Delta x \to 0$, che permette di definire la
 la densità di probabilità in $x$.
 
 ````{prf:definition} Funzione di densità
-:label: def:densita
+:label: def-densita
 
 La _funzione di densità_ di una variabile aleatoria continua $X$ è una
 funzione $f_X: \mathbb R \rightarrow \mathbb R^+$ che associa a ogni argomento
@@ -131,14 +140,10 @@ fondamentali effettuate su intervalli, varrà dunque
 e quindi la probabilità $\mathbb P(X \in A)$ è interpretabile in termini
 dell'area contenuta tra l'asse delle ascisse e il grafico della funzione di
 densità di $X$ ristretta all'insieme $A$, come esemplificato in
-{numref}`fig:pdf-interpretation`.
+{numref}`fig_pdf-interpretation`.
 
-````{customfigure}
-:width: 100%
-:name: fig:pdf-interpretation
-
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -175,18 +180,21 @@ ax.spines.top.set_visible(False)
 ax.xaxis.set_major_formatter(plt.NullFormatter())
 ax.yaxis.set_major_formatter(plt.NullFormatter())
 ax.tick_params(axis=u'both', which=u'both',length=0)
-plt.show()
+fig
 ```
+````{customfigure}
+:width: 100%
+:name: fig_pdf-interpretation
 
 Visualizzazione dell'interpretazione geometrica della funzione di
 densità di probabilità di una variabile aleatoria continua.
 ````
 
 Il concetto di valore atteso di una variabile aleatoria continua o di una
-sua funzione si ottiene estendendo la {prf:ref}`def:valore-atteso-discreto`.
+sua funzione si ottiene estendendo la {prf:ref}`def-valore-atteso-discreto`.
 
 ````{prf:definition} Valore atteso di una variabile aleatoria continua
-:label: def:valore-atteso-continuo
+:label: def-valore-atteso-continuo
 
 Il _valore atteso_ di una variabile aleatoria continua $X$ è definito come
 
@@ -249,12 +257,12 @@ Fissato $q \in [0, 1]$, il _quantile di livello q_ di una variabile aleatoria
 continua $X$ è il più piccolo valore $x_q \in \mathbb R$ tale che
 
 ```{math}
-:label: eq:quantile-continuous
+:label: eq_quantile-continuous
 \mathbb P(X \leq x_q) = q \enspace.
 ```
 ````
 
-Come per il caso discreto, {eq}`eq:quantile-continuous` equivale a
+Come per il caso discreto, {eq}`eq_quantile-continuous` equivale a
 $F_X(x_q) = q$. La continuità della funzione di ripartizione ci permette
 però molto spesso di esprime il quantile come $x_q = F_X^{-1}(q)$.
 In alcuni casi, la forma analitica di $F_X$ permette di semplificare

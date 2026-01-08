@@ -17,8 +17,11 @@
 
 
 import os
+import re
+from pathlib import Path
 import sys
 import logging
+import matplotlib.pyplot as plt
 
 # Nuclear option - suppress ALL duplicate label warnings at the logging level
 class DuplicateLabelFilter(logging.Filter):
@@ -60,7 +63,7 @@ release = '1.0'
 # ones.
 
 
-extensions = [ 'myst_parser',
+extensions = [ # 'myst_parser',
                'sphinx_book_theme', 
             #    'sphinx.ext.mathjax',
                'sphinxcontrib.katex',
@@ -70,10 +73,13 @@ extensions = [ 'myst_parser',
                'sphinx_proof',
                'sphinx_exercise',
                'sphinx.ext.autosectionlabel',
+               'myst_nb',
                'sds',
                'sds.sphinx_ext_custom_figure',
+               'sds.sphinx_ext_custom_table',
                'sds.numref_to_ref',
                'sds.sphinx_custom_codeblock',
+               'sphinxcontrib.mermaid',
                 ]
 
 # nb_code_cell_render_options = {
@@ -81,6 +87,23 @@ extensions = [ 'myst_parser',
 # }
 # pygments_style = 'friendly'  # or "friendly", "monokai", etc.
 # highlight_language = 'python'
+
+nb_execution_mode = "cache"
+nb_execution_timeout = 60
+
+# nb_render_priority = ["text/plain", "text/html"]
+nb_mime_priority_overrides = [
+    ("text/html", "text/html", 1),
+    ("text/plain", "text/plain", 2),
+]
+
+nb_execution_allow_errors = False
+nb_execution_raise_on_error = True
+nb_execution_excludepatterns = []
+
+# Allow errors for cells tagged with 'raises-exception'
+nb_merge_streams = True
+
 
 
 bibtex_bibfiles = ['../references.bib']
@@ -181,6 +204,7 @@ html_theme_options = {
     'home_page_in_toc': True,
     'show_toc_level': 3,
     'show_navbar_depth': 3,
+    'secondary_sidebar_items': {},
     # 'number_toc': True,
     'pygments_light_style': 'abap',
     'pygments_dark_style': 'native',
@@ -229,6 +253,53 @@ myst_update_mathjax = False  # evita che MyST riscriva la config
 #   },
 # }
 
+mermaid_version = "10.6.1"  # Use a recent version that supports more features
+
+mermaid_init_js = """
+mermaid.initialize({
+    startOnLoad: true,
+    theme: 'neutral',
+    themeVariables: {
+        primaryColor: '#fff8e1',
+        primaryTextColor: '#333',
+        primaryBorderColor: '#ffb300',
+        lineColor: '#777',
+        secondaryColor: '#e3f2fd',
+        tertiaryColor: '#fff'
+    }
+});
+"""
+
+def wrap_html_sections(app, exception):
+    """Post-process HTML files to wrap marked sections in admonition divs"""
+    if exception or app.builder.name != 'html':
+        return
+    
+    build_dir = Path(app.outdir)
+    
+    for html_file in build_dir.rglob('*.html'):
+        content = html_file.read_text(encoding='utf-8')
+        
+        # Pattern to capture optional MyST anchor span followed by BEGIN-ADMONITION
+        pattern = r'<!--\s*BEGIN-([A-Z]+):\s*(.*?)\s*-->(.*?)<!--\s*END-\1\s*-->'
+        
+        def replace_section(match):
+            container_type = match.group(1).strip().lower()
+            title = match.group(2).strip()
+            body = match.group(3)
+            
+            # Add container type as a CSS class
+            css_class = f"admonition {container_type}"
+            
+            return f'''<div class="{css_class}">
+<p class="admonition-title">{title}</p>
+{body}
+</div>'''
+        
+        new_content = re.sub(pattern, replace_section, content, flags=re.DOTALL)
+        
+        if new_content != content:
+            html_file.write_text(new_content, encoding='utf-8')
 
 
 def setup(app):
@@ -266,6 +337,8 @@ def setup(app):
     # Carica JS e CSS di KaTeX
     app.add_js_file('https://cdn.jsdelivr.net/npm/katex@0.18.2/dist/katex.min.js')
     app.add_css_file('https://cdn.jsdelivr.net/npm/katex@0.18.2/dist/katex.min.css')
-    
 
+    app.add_js_file(f'https://cdn.jsdelivr.net/npm/mermaid@{app.config.mermaid_version}/dist/mermaid.min.js')
     
+    app.connect('build-finished', wrap_html_sections)
+    return {'version': '0.1', 'parallel_read_safe': True}

@@ -9,5 +9,5 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:varianza-campionaria)=
+(sec_varianza-campionaria)=
 # Varianza campionaria

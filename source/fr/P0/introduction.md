@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:franklin-law)=
+(sec_franklin-law)=
 # Présentation
 
 > En ce monde, rien n’est certain<br/>

@@ -9,15 +9,23 @@ kernelspec:
   display_name: Python 3
 ---
 
+```{code-cell} python
+:tags: [remove-cell]
 
-(sec:modello-poisson)=
+import matplotlib.pyplot as plt
+plt.style.use('../../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+(sec_modello-poisson)=
 # Le distribuzioni di Poisson
 
 Consideriamo un esperimento binomiale nel quale il numero $n$ di ripetizioni
 è elevato. Questo fatto non cambia la validità delle formule che descrivono
 la distribuzione della variabile aleatoria $X \sim \mathrm B(n, p)$ che
 conteggia il numero di successi. Consideriamo però il codice che ho introdotto
-nel Paragrafo {ref}`sec:binomial-quantiles` per il calcolo dei
+nel Paragrafo {ref}`sec_binomial-quantiles` per il calcolo dei
 quantili, e che riporto qui di seguito per comodità.
 
 ```python
@@ -143,12 +151,10 @@ così che:
   se e solo se $x = \lambda - 1$,
 - $\rho < 1$ nei casi rimanenti.
 
-````{customfigure}
-:name: fig_poisson_template
+```{code-cell} python
+:tags: [hide-input]
 
-```{code-block} python
-:class: toggle-code
-
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy.stats as st
 
@@ -161,12 +167,15 @@ def poisson_graph(lambda_, ax):
     ax.plot(x, X.pmf(x), 'o')
 
 fig, axes = plt.subplots(1, 3, sharey=True, figsize=(8, 4))
+
 for lambda_, ax in zip([0.9, 2.7, 3], axes):
     poisson_graph(lambda_, ax)
     ax.set_yticks([0.1, 0.2, 0.3, 0.4])
     ax.set_xlabel(fr'$\lambda = {lambda_!r}$')
-plt.show()
+fig
 ```
+````{customfigure}
+:name: fig_poisson_template
 
 Grafici della funzione di massa di probabilità per le distribuzioni di Poisson
 di parametro $0.9$ (sinistra), $2.7$ (centro) e $3$ (destra).
@@ -181,35 +190,39 @@ tre differenti situazioni possibili, illustrate in
   rappresenta il massimo valore di massa di probabilità, la relativa funzione
   è strettamente decrescente e $0$ è la moda della distribuzione;
 
-````{margin}
-
-```{code-block} python
-:class: toggle-code margin
-
-import matplotlib.pyplot as plt
+```{raw} html
+<div class="margin">
+```
+```{code-cell} python
+:tags: [hide-input]
 
 lambda_ = 2.2
 i = 2
 
-fig = plt.figure(figsize=(5, 1))
+fig,ax = plt.subplots(figsize=(5, 1))
 
-plt.plot([i-1.5, i+1.5], [0, 0], 'k')
+ax.plot([i-1.5, i+1.5], [0, 0], 'k')
 
-plt.xticks([])
-plt.yticks([])
+ax.set_xticks([])
+ax.set_yticks([])
 
 s  = -1
 spacing = {-1: -.4, 1: .2}
 for x, l in zip([i-1, lambda_-1, i, lambda_, i+1],
                 [r'$i-1$', r'$\lambda - 1$', r'$i$', r'$\lambda$', r'$i+1$']):
-    plt.plot([x] * 2, [-.1, .1], 'k')
-    plt.text(x, spacing[s], l, ha='center', fontsize=18)
+    ax.plot([x] * 2, [-.1, .1], 'k')
+    ax.text(x, spacing[s], l, ha='center', fontsize=18)
     s *= -1
 
-plt.ylim([-.5, .5])
-plt.axis('off')
-plt.show()
+ax.set_ylim([-.5, .5])
+ax.axis('off')
+fig
 ```
+```{raw} html
+</div>
+```
+````{margin}
+
 L'ultimo valore intero per il quale $\rho > 1$ è
 $i - 1 = \lfloor \lambda -1 \rfloor$, pertanto la moda coincide con l'intero
 successivo, e quest'ultimo è uguale a
@@ -241,73 +254,75 @@ funzioni.
 
 ````{customfigure}
 :name: fig_poisson_pdf_cdf
+:class: left-align
 
-```{code-block} python
-:class: toggle-code
-from pyodide.ffi import create_proxy
-import io
-import base64
+```{interactive-code} python
+:tags: [toggle-code] 
 
-n = 20
+import matplotlib.pyplot as plt
+import numpy as np
+import scipy.stats as st
+from pyscript import display
+from pyscript.web import page, when
 
-def poisson_pdf_cdf(lambda_):
+fig_1, ax_1 = plt.subplots()
 
-    fig, ax = plt.subplots()
-    P = st.poisson(lambda_)
+lambda_1 = float(page['#lambda'][0].value)
+P_1 = st.poisson(lambda_1)
 
-    x = np.arange(0, n+1)
-    y = P.pmf(x)
+x_1 = np.arange(0, 11)
+y_1 = P_1.pmf(x_1)
 
-    ax.hlines([0] + list(P.cdf(x)), range(-1, n+1), list(range(n+1)) + [20])
+cdf_y = [0] + list(P_1.cdf(x_1))
+cdf_xmin = list(range(-1, 11))
+cdf_xmax = list(range(0, 11)) + [20]
+cdf = ax_1.hlines(cdf_y, cdf_xmin, cdf_xmax)
+pmf_lines = ax_1.vlines(x_1, 0, y_1, color='k')
+pmf_dots = ax_1.plot(x_1, y_1, 'o')[0]
 
-    ax.vlines(x, 0, y, color='k')
-    ax.plot(x, y, 'o')
+ax_1.set_xlabel('$x$', fontsize=12, ha='right')
+ax_1.set_ylabel('$f, F$', fontsize=12, rotation=0)
+ax_1.set_xlim(-1, 11)
+ax_1.set_ylim(0, 1.1)
+ax_1.set_xticks(range(0, 12, 2))
 
-    ax.set_title(rf'$\lambda = {lambda_:.2f}$')
-    ax.set_xlim(-1, 21)
-    ax.set_ylim(0, 1.1)
-    ax.set_xticks(range(0, 21, 2))
+@when("input", "#lambda")
+def poisson_plot(event):
+    lambda_1 = float(page['#lambda'][0].value)
+    page['#lambda-value'][0].innerHTML = f'{lambda_1:.1f}'
+
+    P_1 = st.poisson(lambda_1)
+
+    x_1 = np.arange(0, 11)
+    y_1 = P_1.pmf(x_1)
+
+    cdf_y = [0] + list(P_1.cdf(x_1))
+    cdf_xmin = list(range(-1, 11))
+    cdf_xmax = list(range(0, 11)) + [20]
+    cdf_segments = [[[xmin, y_val], [xmax, y_val]] 
+                    for y_val, xmin, xmax in zip(cdf_y, cdf_xmin, cdf_xmax)]
+
+    cdf.set_segments(cdf_segments)
     
-    #  Manual rendering to avoid MathJax processing
-    img_buffer = io.BytesIO()
-    fig.savefig(img_buffer, format='png', bbox_inches='tight', dpi=100)
-    img_buffer.seek(0)
-    img_base64 = base64.b64encode(img_buffer.getvalue()).decode('utf-8')
-    img_buffer.close()
+    # Update PMF vertical lines
+    pmf_segments = [[[xi, 0], [xi, yi]] for xi, yi in zip(x_1, y_1)]
+    pmf_lines.set_segments(pmf_segments)
+
+    pmf_dots.set_data(x_1, y_1)
     
-    # Display in protected div
-    img_html = '<div class="no-mathjax"><img src="data:image/png;base64,' + \
-               img_base64 + '" style="max-width: 100%; height: auto;" /></div>'
-    Element("pdf-cdf-output").write(img_html)
-    
-    plt.close(fig)
+    display(fig_1, target='graph-%this%', append=False)
 
 
-def update_plot(event=None):
-    lambda_ = float(document.getElementById('lambda-slider').value)
-    document.getElementById('lambda-value').innerText = f'{lambda_:.1f}'
-    poisson_pdf_cdf(lambda_)
-
-lambda_slider = document.getElementById("lambda-slider")
-lambda_slider.addEventListener("input", create_proxy(update_plot))
-
-# Initial plot
-poisson_pdf_cdf(0.3)
-
+display(fig_1, target='graph-%this%', append=False)
 ```
 ```{raw} html
 
-<div id="plot-container" style="visibility: none;">
-
-    <div class="slider-container" style="float: left;">
-        <label for="lambda_slider">\( \lambda \): </label>
-        <input type="range" id="lambda-slider"
-               min="0.05" max="15" value="1" step="0.05" />
-        <span id="lambda-value">1</span>
-    </div>
-
-    <div id="pdf-cdf-output"
-            style="clear: both; display: flex; justify-content: center; margin-bottom: 2em;">
+<div class="plot-container">
+    <div class="model-slider-container">
+        <label for="lambda">\( \lambda \): </label>
+        <input type="range" id="lambda"
+               min="0" max="10" value="0.5" step="0.01" />
+        <span id="lambda-value">0.5</span>
     </div>
 </div>
 ```
@@ -319,7 +334,7 @@ di Poisson.
 ```{figure} http://www.sil.si.edu/digitalcollections/hst/scientific-identity/fullsize/SIL14-P005-06a.jpg
 ---
 figclass: margin
-name: fig:simeon-poisson
+name: fig_simeon-poisson
 width: 200px
 align: left
 ---
@@ -331,7 +346,7 @@ wikimedia).
 
 La distribuzione di Poisson prende il suo nome da quello del matematico e
 fisico francese Siméon Denis Poisson, ritratto nella
-{numref}`Figura %s <fig:simeon-poisson>`. In effetti, tale distribuzione è
+{numref}`Figura %s <fig_simeon-poisson>`. In effetti, tale distribuzione è
 descritta nel suo libro «Recherches sur la probabilité des jugements en matière
 criminelle et en matière civile» pubblicato nel 1837, sebbene fosse già
 presente nell'articolo scientifico «Probabilitate Eventuum in Ludis a Casu
@@ -353,7 +368,7 @@ della successione. Ciò è quello che effettivamente accade, come dimostrato
 nel seguente teorema.
 
 ````{prf:theorem}
-:label: teo:poisson-mean
+:label: teo-poisson-mean
 
 Dati $\lambda \in \mathbb R^+$ e $X \sim \mathrm P(\lambda)$,
 $\mathbb E(X) = \lambda$.
@@ -386,7 +401,7 @@ ottenere in modo altrettanto intuitivo, ed è necessario calcolarlo in modo
 formale, per esempio nel modo descritto dal seguente teorema.
 
 ````{prf:theorem}
-:label: teo:poisson-variance
+:label: teo-poisson-variance
 
 Dati $\lambda \in \mathbb R^+$ e $X \sim \mathrm P(\lambda)$,
 $\mathrm{Var}(X) = \lambda$.
@@ -464,7 +479,7 @@ permette di dimostrare che la distribuzione di Poisson è _riproducibile_,
 come dettagliato nel seguente teorema.
 
 ```{prf:theorem}
-:label: teo:poisson-reproducibility
+:label: teo-poisson-reproducibility
 
 Dati $n \in \mathbb N$ e $\lambda_1, \dots, \lambda_n \in \mathbb R^+$,
 per ogni $i = 1, \dots, n$ sia $X_i \sim \mathrm P(\lambda_i)$. Se le
@@ -526,7 +541,7 @@ I successivi due momenti sono
 
 Per calcolare i momenti centrali, introduciamo $Y \coloneqq X - \lambda$ e
 calcoliamo le derivate della funzione generatrice dei momenti di $Y$
-applicando il {prf:ref}`teo:central-moments`:
+applicando il {prf:ref}`teo-central-moments`:
 
 ```{math}
 \begin{align*}
@@ -577,14 +592,11 @@ dunque sempre leptocurtica, e la ragione è dovuta alla presenza della coda a
 destra che non è controbilanciata da un'analoga coda a sinistra. Va anche
 sottolineato che la curtosi è per questa distribuzione sempre uguale al
 quadrato della skewness, e ciò facilita la scrittura del codice alla base
-della {numref}`fig:poisson-sk-plot` che illustra il grafico
+della {numref}`fig_poisson-sk-plot` che illustra il grafico
 skewness-curtosi per la famiglia delle distribuzioni di Poisson.
 
-````{customfigure}
-:name: fig:poisson-sk-plot
-
-```{code-block} python
-:class: toggle-code
+```{code-cell} python
+:tags: [hide-input]
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -594,8 +606,11 @@ fig, ax = plt.subplots()
 skewness = np.linspace(0.001, 10, 500)
 kurtosis = skewness**2
 ax.plot(skewness, kurtosis)
-fig.show()
+fig
 ```
+````{customfigure}
+:name: fig_poisson-sk-plot
+
 
 Il grafico skewness-curtosi per la famiglia delle distribuzioni di Poisson.
 ````

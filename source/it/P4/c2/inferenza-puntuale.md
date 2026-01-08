@@ -9,6 +9,6 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:stime-puntuali)=
+(sec_stime-puntuali)=
 # Stime puntuali
 

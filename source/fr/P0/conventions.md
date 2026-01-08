@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:conventions)=
+(sec_conventions)=
 # Conventions
 
 Comme mentionné dans le paragraphe précédent, je vais souvent insérer du code

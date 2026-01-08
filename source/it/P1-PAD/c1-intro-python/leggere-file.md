@@ -9,7 +9,16 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:leggere-da-file)=
+```{code-cell} python
+:tags: [remove-cell]
+
+import matplotlib.pyplot as plt
+plt.style.use('../../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+(sec_leggere-da-file)=
 # Leggere dati da file
 
 Di solito la quantità di dati da analizzare è tale che non è pensabile di
@@ -45,7 +54,7 @@ nascita nel secondo record).
 La cella seguente legge i contenuti del file e li inserisce nella lista
 `heroes`.
 
-```python
+```{code-cell} python
 import csv
 
 with open('data/heroes.csv', 'r') as heroes_file:
@@ -84,7 +93,7 @@ stringa in intero e `str(42)` effettua la conversione inversa.
 Proviamo a visualizzare i primi due record (che corrispondono alle due righe
 sopra mostrate):
 
-```python
+```{code-cell} python
 heroes[:2]
 ```
 
@@ -115,7 +124,7 @@ possibile utilizzre la sintassi `[f(e) for e in l if g(e)]`, che indica che
 nella creazione della nuova lista bisogna limitarsi a considerare gli elementi
 `e` della lista originale che rendono vera l'espressione `g(e)`. Pertanto
 
-```python
+```{code-cell} python
 years = [int(h[7]) for h in heroes if h[7]]
 ```
 
@@ -132,7 +141,7 @@ Per comodità è riportato anche il codice della funzione `get_sorted_counts`
 ```
 A questo punto è possibile generare il grafico delle frequenze assolute:
 
-```python
+```{code-cell} python
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -163,7 +172,7 @@ avanti vedremo come gestirle. Per ora limitiamoci a vedere quale sia questo
 valore. Possiamo farlo usando una list comprehension appena più complicata di
 quella vista poco fa:
 
-```python
+```{code-cell} python
 [year for year in years if year > 2020]
 ```
 
@@ -177,7 +186,7 @@ con gli estremi di questo intervallo. Già che ci siamo, possiamo anche
 impostare l'ampiezza dell'asse delle ordinate in modo che ci sia un po' di
 spazio sopra la barra che corrisponde alla frequenza massima:
 
-```python
+```{code-cell} python
 plt.bar(x, y)
 plt.xlim((1950, 2015))
 plt.ylim((0, 18.5))

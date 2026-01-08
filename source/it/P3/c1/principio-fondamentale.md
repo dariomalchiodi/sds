@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:principio-fondamentale-combinatorica)=
+(sec_principio-fondamentale-combinatorica)=
 # Principio fondamentale
 
 Lo so che può sembrare impossibile, ma in alcuni casi Batman ha scelto
@@ -26,7 +26,7 @@ per differenziare ancora maggiormente la varietà dei propri costumi, Batman
 possa contare su di un guardaroba contenente quattro mantelli, rispettivamente
 di colore rosa, verde, rosso e marrone, e tre costumi dei quali il primo è
 giallo, il secondo azzurro e il terzo nero. In quanti modi diversi si possono
-abbinare insieme un costume e un mantello? La {numref}`fig:principio-fondamentale`
+abbinare insieme un costume e un mantello? La {numref}`fig_principio-fondamentale`
 illustra come rispondere a questa domanda: siccome per ognuno dei quattro
 mantelli è possibile scegliere tre diversi costumi, il numero totale dei
 possibili abbinamenti è $4 \times 3 = 12$.
@@ -35,30 +35,14 @@ Una semplice illustrazione del principio fondamentale del calcolo combinatorio:
 avendo quattro opzioni possibili per una prima scelta e tre opzioni per una
 seconda scelta, si hanno dodici scelte combinate in tutto.
 
-````{customfigure}
-:name: fig:principio-fondamentale
+```{figure} ../../_static/img/superhero-grid.png
+:width: 50%
+:name: fig_principio-fondamentale
 
-```{code-block} python
-:class: toggle-code
-
-import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
-
-cloak = ['pink', 'green', 'red', 'brown']
-costume = ['yellow', 'blue', 'black']
-
-fig, ax = plt.subplots(len(costume), len(cloak), figsize=(9, 5))
-
-for y, cost_col in enumerate(costume):
-    for x, cloak_col in enumerate(cloak):
-        img = mpimg.imread(f'img/sh-{cost_col}-{cloak_col}.png')
-        ax[y][x].imshow(img)
-        ax[y][x].axis('off')
-fig.show()
+Illustrazione del principio fondamentale del calcolo combinatorio
+(immagine creata ex novo dall'autore tramite IA (ChatGPT) e post-produzione
+grafica).
 ```
-
-Illustrazione del principio fondamentale del calcolo combinatorio.
-````
 
 
 Generalizzando questo ragionamento si arriva al cosiddetto
@@ -73,71 +57,17 @@ $$s_1 \cdot \ldots \cdot s_t = \prod_{i=1}^t s_i.$$
 Osserviamo che questo risultato corrisponde a calcolare il numero delle
 foglie di un albero di profondità $t$ il cui primo livello ha $s_1$ nodi,
 ciascuno dei quali ha $s_2$ figli, ciascuno dei quali ha $s_3$ figli e così
-via, come evidenziato nella {numref}`fig:tree`.
-
-````{customfigure}
-:name: fig:tree
-
-```{code-block} python
-:class: toggle-code
-
-from IPython.display import Image
-import graphviz
-import numpy as np
-
-cap_colors = ['pink', 'green', 'red', 'brown']
-costume_colors = ['black', 'blue', 'yellow']
-
-tree = '''digraph { layout="neato" bgcolor="#00000000"
-                    s[pos="0,0!" label="?"] \n'''
-
-cap_rho = 1.3
-cap_theta = np.linspace(0, np.pi, len(cap_colors))
-cap_pos = np.array((cap_rho * np.cos(cap_theta),
-                    cap_rho * np.sin(cap_theta))).T
-
-costume_rho = 1
-theta_diff = np.pi/2 /(len(costume_colors)+1)
-theta_start = 0
-theta_end = 2 * np.pi/6
-theta_gap = (len(costume_colors) + 1) / len(costume_colors) * np.pi/6
-
-for cap_color, (x, y) in zip(cap_colors, cap_pos):
-    tree += f'cap_{cap_color}[pos="{x:.2f},{y:.2f}!" ' + \
-            f'image="./img/{cap_color}-cap.png" label="", ' + \
-            f'style="invisible" ' +\
-            f'shape=none ' +\
-            f'width=.6 height=.6 fixedsize="true"]\n'
-    tree += f's -> cap_{cap_color};'
+via, come evidenziato nella {numref}`fig_tree`.
 
 
-
-    costume_theta = np.linspace(theta_start, theta_end, len(costume_colors))
-    costume_pos = np.array((costume_rho * np.cos(costume_theta),
-                            costume_rho * np.sin(costume_theta))).T
-    theta_start += theta_gap
-    theta_end += theta_gap
-
-    for costume_color, (x_delta, y_delta) in zip(costume_colors, costume_pos):
-        tree += f'cap_{cap_color}_costume_{costume_color}' +\
-                f'[pos="{x+x_delta:.2f},{y+y_delta:.2f}!", ' +\
-                f'image="./img/sh-{costume_color}-{cap_color}.png", ' + \
-                f'label="", ' + \
-                f'shape=none, width=.6 height=.6, fixedsize="true"]\n'
-        tree += f'cap_{cap_color} -> cap_{cap_color}_costume_{costume_color};'
-
-
-tree += '}'
-
-
-graph = graphviz.Source(tree, format='png')
-
-Image(filename = graph.render('tree'), width=1000, height=100)
-```
+```{figure} ../../_static/img/superhero-tree.png
+:width: 100%
+:name: fig_tree
 
 L'albero che corrisponde alle scelte possibili nella
-{ref}`fig:principio-fondamentale`.
-````
+{numref}`fig_principio-fondamentale` ((immagine creata ex novo dall'autore
+tramite IA (ChatGPT) e post-produzione grafica).
+```
 
 
 È importante notare come l'applicazione del principio fondamentale del

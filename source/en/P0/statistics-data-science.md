@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec:statistics-data-science)=
+(sec_statistics-data-science)=
 # Statistics, data science, and other labels
 
 In the past, data were mostly considered a byproduct of operational
