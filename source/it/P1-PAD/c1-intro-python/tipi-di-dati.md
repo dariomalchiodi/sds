@@ -137,11 +137,6 @@ costruttore si invoca utilizzando lo stesso nome della classe, così che la
 creazione dell'oggetto che corrisponde a Superman e la memorizzazione del
 corrispondente riferimento si possono fare come nella cella seguente.
 
-
-
-
-
-
 ```{code}
 # Questo codice è riportato per esemplificare i concetti di classe,
 # costruttore, riferimento e oggetto. Non eseguitelo, perché non funzionerebbe!
@@ -156,37 +151,37 @@ hero = Superhero('Superman', 'Clark Kent')
 In questo caso,
 
 ```{margin}
-Come vedremo nel Paragrafo {ref}`sec_stringhe`, in Python esistono diversi
-delimitatori per le stringhe, uno dei quali è l'apice singolo.
+Come vedremo nel Paragrafo {ref}`sec_stringhe`, in Python ci sono vari
+delimitatori per le stringhe, tra cui l'apice singolo.
 ```
-- `Superhero` indica la classe, e di conseguenza viene utilizzato come
-  costruttore;  
-- `'Superman'` e `'Clark Kent'` sono le stringhe utilizzate per inizializzare
-  le due variabili di istanza;  
+- `Superhero` rappresenta la classe e viene quindi utilizzato come costruttore;  
+- `'Superman'` e `'Clark Kent'` sono le stringhe impiegate per inizializzare le
+  due variabili di istanza;  
 - `hero` è la variabile che conterrà il riferimento all'oggetto creato.
 
 ```{margin}
-In teoria, la _dot notation_ può essere applicata direttamente al riferimento
-restituito dal costruttore, o perfino ai _letterali_ della classe[^letterali],
-anche se questo è raramente necessario.
+In teoria, è possibile applicare la _dot notation_ direttamente al riferimento
+restituito dal costruttore, o addirittura ai _letterali_ della
+classe[^letterali], anche se nella pratica questo accade raramente.
 ```
 Memorizzare il riferimento restituito in una variabile è importante per poter
 successivamente interagire con l'oggetto. Nella maggior parte dei casi, ciò
 richiede l'utilizzo di una specifica sintassi detta _dot notation_: si scrive
-il nome della variabile, seguito da un punto e dal nome di una variabile di
-istanza o di un metodo. Nel primo caso si ottiene un'espressione il cui valore
-è quello della variabile di istanza, e nel secondo il risultato si può usare
-per invocare il metodo, specificando eventuali parametri effettivi. Tornando
+il nome della variabile, seguito da un punto e dall'identificatore di una
+variabile di istanza o di un metodo. Nel primo caso si ottiene un'espressione
+il cui valore è quello della variabile di istanza, nel secondo il risultato si
+può usare per invocare il metodo, specificando eventuali argomenti. Tornando
 all’esempio, valutando `hero.name` si ottiene `'Superman'`, mentre `hero.fly()`
-invoca sull'oggetto il metodo `fly` (senza specificare parametri). Anche qui,
+invoca sull'oggetto il metodo `fly` (senza specificare argomenti). Anche qui,
 Python applica il _type checking_ dinamico: a _runtime_, se il riferimento
 memorizzato in `hero` punta a un oggetto che contiene la variabile di istanza o
-il metodo indicati, l’esecuzione procede senza problemi. Altrimenti, viene
-sollevata un’eccezione `AttributeError`. Questo comportamento implica che,
-indipendentemente dalla classe, se un oggetto permette di accedere a `name` e
-`secret_identity` e di invocare i metodi `fly` e `run`, esso può essere
-trattato come un oggetto della classe `Superhero`, usandolo in tutti i contesti
-pensati per tale classe[^duck-typing].
+il metodo indicati &mdash; quest'ultimo senza parametri &mdash;, l’esecuzione
+procede senza problemi. Altrimenti, viene sollevata un’eccezione
+`AttributeError`. Questo comportamento implica che, indipendentemente dalla
+classe, se un oggetto permette di accedere a `name` e `secret_identity` e di
+invocare i metodi `fly` e `run`, esso può essere trattato come un oggetto della
+classe `Superhero`, usandolo in tutti i contesti pensati per tale
+classe[^duck-typing].
 
 ```{admonition} Approfondimento: identificatori e regole di stile
 :name: adm:regole-di-stile
@@ -204,8 +199,8 @@ sensitive_: `superman` e `Superman` sono considerati identificatori diversi),
 all'_underscore_ (`_`) e alle cifre (a patto di non iniziare l'identificatore
 con una di esse). 
 
-Rispettare la sintassi è obbligatorio, ma è anche buona pratica seguire in
-modo coerente possibile delle _regole di stile_, che descrivono anche come
+Rispettare la sintassi è obbligatorio, ma è anche buona pratica seguire nel
+modo più coerente possibile delle _regole di stile_, che descrivono anche come
 formare gli identificatori. Non esiste uno standard unico: io farò riferimento
 alla [Style Guide for Python Code](https://www.python.org/dev/peps/pep-0008/) e
 in particolare al paragrafo [Naming
@@ -219,7 +214,7 @@ particolare al codice. Non approfondiremo questo aspetto, dunque mi limito a
 specificare due eccezioni rilevanti a questa regola:
 
 - quando una parola chiave del linguaggio è particolarmente significativa come
-  identificatore (per esempio `lamdba`, che utilizzeremo nel Paragrafo
+  identificatore (per esempio `lamdba`, che utilizzerò nel Paragrafo
   {ref}`sec_funzioni-anonime`, e che può comparire come simbolo in formule
   matematiche), si può aggiungere a questa parola un _underscore_ finale
   (ottenendo, nel caso precedente, l'identificatore `lambda_`);
@@ -232,11 +227,11 @@ case_, che si deriva dallo _snake case_ eliminando l'_underscore_ e usando le
 lettere maiuscole per indicare l'inizio di ogni parola (come in `Superhero`).
 Infine, nonostante Python non implementi le _costanti_, è possibile usare lo
 _screaming snake case_ &mdash; la variante dello _snake case_ che utilizza solo
-lettere &mdash; per segnalare che il contenuto di una variabile non muterà dopo
-il primo assegnamento che la riguarda (ma ribadisco che si tratta di una mera
-convenzione stilistica: come detto sopra, Python non prevede le costanti e
-dunque è possibile modificare una siffatta variabile senza che questo causi
-errori a _runtime_[^costanti-type-hint]).
+lettere maiuscole &mdash; per segnalare che il contenuto di una variabile non
+muterà dopo il primo assegnamento che la riguarda (ma ribadisco che si tratta
+di una mera convenzione stilistica: come detto sopra, Python non prevede le
+costanti e dunque è possibile modificare una siffatta variabile senza che
+questo causi errori a _runtime_[^costanti-type-hint]).
 
 Anche tenendo conto della sintassi e delle regole di stile, vi è ampia
 discrezionalità nella scelta per un identificatore: per esempio, al posto di
@@ -317,8 +312,8 @@ tutti gli altri casi, considererò il tipo di dato come semplice.
 ## Esercizi
 
 ```{exercise} •
-In riferimento alle caratteristiche del _type checking_ dinamico, dite quali
-delle seguenti affermazioni sono vere e quali sono false:
+In riferimento alle caratteristiche del _type checking_ dinamico, stabilite
+quali delle seguenti affermazioni sono vere e quali sono false:
 
 - in momenti diversi dell'esecuzione di un programma, una stessa variabile
   può contenere valori di tipo differente;
@@ -369,8 +364,8 @@ espressioni:
 
 ```{exercise} ••
 Considerate le seguenti sequenze di caratteri, e per ognuna di esse stabilite
-se rappresentano un identificatori valido in Python oppure no. Per ogni
-identificatore valido, indicate anche se esso rispetta le regole di stile
+se rappresentano un identificatore valido in Python oppure no. Quando
+l'identificatore è valido, indicate anche se esso rispetta le regole di stile
 introdotte nel testo.
 
 - `velocita`;

@@ -20,96 +20,16 @@ quali mi concentrerò nel seguito sono quelli numerici &mdash; interi, decimali
 e booleani &mdash; e quello che permette di lavorare con le stringhe, pur
 menzionando brevemente anche altri tipi di dati.
 
-
-## Tipi numerici
-
-Tra i tipi che esprimono quantità numeriche, `int` e `float` sono tra i più
-utilizzati in Python: il primo corrisponde ai numeri interi, il secondo a
-quelli decimali (quelli che comunemente chiamiamo «numeri con la virgola»).
-Come già accennato, `int` e `float` sono classi, i cui oggetti sono i numeri
-sopra menzionati. Siccome nella programmazione è particolarmente frequente
-l'uso di espressioni numeriche costanti, per esempio per riferirsi al numero
-`42`[^42], Python permette di fare riferimento a queste espressioni senza dover
-creare esplicitamente i corrispondenti oggetti. Come nella maggior parte dei
-linguaggi, ciò si realizza scrivendo _letterali_ di una particolare grammatica.
-
-
-```{admonition} Letterali
- Nell'ambito di un fissato linguaggio di programmazione, il termine
-_letterale_ indica un valore costante di un dato tipo, espresso secondo
-una notazione prefissata. Per esempio, `42` e `3.14` sono due letterali,
-rispettivamente di tipo intero e decimale, in praticamente tutti i linguaggi di
-programmazione, mentre `'foo'` è un letterale di tipo stringa in Python ma non
-in Java oppure in Go. Non tutti i tipi hanno dei letterali (per esempio, i tipi
-che corrispondono ai file o alle date non hanno dei letterali associati in
-Python &mdash; né probabilmente in alcun altro linguaggio).
-```
-
-Il modo più naturale di ottenere un letterale di tipo `int` è quello di
-scrivere una sequenza di cifre, eventualmente preceduta da un segno: il
-risultato rappresenterà il corrispondente numero intero in base
-dieci[^int-prefix]. Va sottolineato che gli interi vengono internamente
-rappresentati tramite un formato a _precisione arbitraria_ (o _precisione
-infinita_), nel quale non esiste un valore minimo o massimo memorizzabile,
-fatta ovviamente salva la quantità di memoria centrale disponibile al processo
-in esecuzione[^bigint]. Questo permette di utilizzare numeri
-molto grandi e molto piccoli, dei quali diventa però difficile comprendere
-l'ordine di grandezza a un primo sguardo (in realtà, ciò già capita delle
-decine di migliaia in su). Per aumentare la leggibilità del codice, è
-possibile inserire un carattere di _underscore_ (`_`) tra due cifre in un
-letterale: in questo modo si possono separare terzetti di cifre, ma anche
-evidenziare parti logicamente diverse in una sequenza numerica (come ad
-esempio le componenti di un numero di telefono).
-
-Il modo più semplice per scrivere un letterale di tipo `float` è invece quello
-di indicare un eventuale segno, seguito dalle cifre della parte intera, dal
-carattere `.` e dalle cifre della parte decimale. È obbligatorio specificare
-sempre il carattere di punto decimale e almeno una tra le parti intera e
-decimale, e anche in questo caso è possibile separare due cifre successive
-utilizzando un carattere di _underscore_. Nel caso in cui si debbano
-specificare dei valori molto grandi o molto piccoli risulta però più pratico
-l'utilizzo della notazione _scientifica_: si indica un valore (intero o
-decimale) di _mantissa_, con o senza segno e virgola, seguito da uno dei
-caratteri `E` o `e` e da un letterale intero detto _esponente;_ questa
-espressione genera il valore numerico pari al prodotto della mantissa
-moltiplicato per `10` elevato all'esponente. Pertanto `1E9` e `1E-9` indicano
-rispettivamente un miliardo e un miliardesimo. Va notato come Python scelga
-automaticamente tra la tradizione tradizionale e quella scientifica per
-visualizzare valori `float`, in modo da ottimizzare la leggibilità del
-risultato.
-
-```{margin}
-Va sottolineato che `inf` e `nan` non sono letterali di tipo `float`: per
-riferirsi esplicitamente a essi si deve usare il costruttore della classe
-(`float('inf')` e `float('nan')`, rispettivamente), o utilizzare delle
-particolari librerie.
-```
-Il formato adottato per memorizzare i valori decimali fa di solito riferimento
-al classico standard a virgola mobile [IEEE
-754](https://en.wikipedia.org/wiki/IEEE_754), utilizzando $8$
-byte[^double]. Questo formato non è a precisione arbitraria: tutti i numeri che
-cadono al di fuori di un prefissato intervallo, i cui estremi corrispondono
-all'incirca a `±1.8E308`, vengono convertiti (a seconda del segno) nel `float`
-che viene visualizzato come `inf` o `-inf`, delle espressioni speciali
-utilizzate per modellare $\pm \infty$. Inoltre, tutti i valori compresi in uno
-specifico intorno di zero (approssimativamente tra `5E-324` e il suo opposto)
-vengono rappresentati come `0.0`. Infine, è previsto il valore speciale «not a
-number», che viene visualizzato come `nan` e che viene utilizzato come
-risultato per alcune operazioni aritmetiche indefinite, come calcolare il
-logaritmo di un numero negativo (notate che invece la divisione per zero causa
-l'emissione di un'eccezione), ma può anche essere impiegato per segnalare
-valori mancanti in un _dataset_.
-
-
 ## Tipi numerici
 
 Tra i tipi numerici disponibili in Python, i più utilizzati sono `int` e
 `float`: il primo serve a memorizzare numeri interi, il secondo numeri
 decimali. Come già accennato, `int` e `float` rappresentano due classi, e i
 valori numerici sono oggetti di queste classi. Poiché l’uso di costanti
-numeriche è molto frequente, Python permette di scrivere direttamente i valori
-senza dover creare esplicitamente gli oggetti corrispondenti, tramite i
-cosiddetti _letterali_.
+numeriche è molto frequente, per esempio per riferirsi al numero `42`[^42],
+Python permette di scrivere direttamente i valori senza dover creare
+esplicitamente gli oggetti corrispondenti, tramite i _letterali_ di una
+particolare grammatica.
 
 ```{admonition} Letterali
 Un _letterale_ è un valore costante di un dato tipo, espresso secondo una
@@ -117,44 +37,48 @@ notazione prefissata. Ad esempio, `42` e `3.14` sono letterali interi e
 decimali rispettivamente in quasi tutti i linguaggi di programmazione, mentre
 `'foo'` è un letterale di tipo stringa in Python, ma non in Java o Go. Non
 tutti i tipi hanno letterali: ad esempio, file o date non dispongono di un
-letterale associato in Python.
+letterale associato in Python &mdash; né probabilmente in alcun altro
+linguaggio.
 ```
 
-Il modo più semplice di ottenere un intero è scrivere una sequenza di cifre,
-eventualmente preceduta da un segno: il risultato rappresenta un numero in base
-dieci[^int-prefix]. Gli interi in Python hanno _precisione arbitraria_, quindi
-non esiste un valore massimo o minimo definito, fatta eccezione per la memoria
-disponibile[^bigint]. Per migliorare la leggibilità dei numeri grandi, è
-possibile inserire un carattere di _underscore_ (`_`) tra le cifre, separando
-ad esempio migliaia o evidenziando componenti logiche diverse (come in un
-numero di telefono).
+Il modo più semplice di ottenere un letterale intero è scrivere una sequenza di
+cifre, eventualmente preceduta da un segno: il risultato rappresenta un numero
+in base dieci[^int-prefix]. Gli interi in Python hanno _precisione arbitraria_,
+quindi non esiste un valore massimo o minimo definito, fatta eccezione per la
+memoria disponibile[^bigint]. Per migliorare la leggibilità (non è facile
+comprendere a prima vista l'ordine di grandezza dei numeri già a partire dalle
+decine di migliaia), è possibile inserire un carattere di _underscore_ (`_`)
+tra le cifre, separando ad esempio le migliaia o evidenziando componenti
+logiche diverse (come in un numero di telefono).
 
 Per i numeri decimali (`float`), il letterale è formato da un eventuale segno,
 dalle cifre della parte intera, dal punto decimale `.` e dalle cifre della
 parte frazionaria. È obbligatorio specificare almeno una delle due parti,
 intera o decimale. Anche qui, è possibile usare l’_underscore_ tra cifre. Per
 numeri molto grandi o piccoli è più pratico usare la notazione scientifica: si
-scrive la _mantissa_ seguita da `E` o `e` e da un esponente intero; il valore
-rappresentato è la mantissa moltiplicata per `10` elevato all’esponente. Ad
-esempio, `1E9` e `1E-9` corrispondono rispettivamente a un miliardo e a un
-miliardesimo. Python decide automaticamente tra notazione tradizionale e
-scientifica per ottimizzare la leggibilità del risultato.
+scrive la _mantissa_ (un numero, eventualmente con segno o virgola) seguita da
+`E` o `e` e da un esponente intero; il valore rappresentato è la mantissa
+moltiplicata per `10` elevato all’esponente. Ad esempio, `1E9` e `1E-9`
+corrispondono rispettivamente a un miliardo e a un miliardesimo. È interessante
+sottolineare che, quando deve visualizzare un _float_, Python decide
+automaticamente quale tra le notazioni tradizionale e scientifica ottimizza la
+leggibilità del risultato.
 
 ```{margin}
 `inf` e `nan` non sono letterali: per ottenerli si deve usare il costruttore
 della classe (`float('inf')` e `float('nan')`) o librerie specializzate.
 ```
 
-I valori decimali sono memorizzati secondo lo standard a virgola mobile
-[IEEE 754](https://en.wikipedia.org/wiki/IEEE_754), tipicamente su 8
-byte[^double]. Questo formato non ha precisione arbitraria: numeri al di fuori
-dell’intervallo circa `±1.8E308` diventano `inf` o `-inf`. Valori molto vicini
-a zero (approssimativamente tra `5E-324` e il suo opposto) vengono
-rappresentati come `0.0`. Inoltre, esiste il valore speciale `nan` («not a
-number»), utilizzato per codificare il risultato di un'operazione aritmetica
-quando questo risulta non definito (come nel calcolo del logaritmo di un numero
-negativo, o per indicare valori mancanti in un _dataset_. La divisione per zero
-invece genera un’eccezione.
+I valori decimali sono memorizzati secondo lo standard a virgola mobile [IEEE
+754](https://en.wikipedia.org/wiki/IEEE_754), usando tipicamente 8
+byte[^double]. Questo formato non garantisce precisione arbitraria: numeri al
+di fuori dell’intervallo i cui estremi sono circa `±1.8E308` diventano `inf` o
+`-inf`. Valori molto vicini a zero (approssimativamente tra `5E-324` e il suo
+opposto) vengono codificati come `0.0`. Inoltre, esiste il valore speciale
+`nan` («not a number»), utilizzato per codificare il risultato di un'operazione
+aritmetica quando questo risulta non definita (come nel calcolo del logaritmo
+di un numero negativo, o per indicare valori mancanti in un _dataset_. La
+divisione per zero invece genera un’eccezione.
 
 ````{admonition} Stranezze in virgola mobile
 :name: adm-stranezze
@@ -171,10 +95,9 @@ print(0.1 + 0.2)
 
 Il risultato non è, come sarebbe logico aspettarsi, $0.3$, ma un numero
 leggermente più alto. Questo è dovuto alla differenza tra la base decimale che
-noi abbiamo usato per indicare i due addendi e la base binaria che viene
-utilizzata per rappresentare i corrispondenti valori `float`. Se usiamo la
-notazione $(n)_b$ per indicare la rappresentazione del numero $n$ in base $b$,
-si ha infatti che
+ho usato per indicare i due addendi e la base binaria che viene utilizzata per
+rappresentare i corrispondenti valori `float`. Se usiamo la notazione $(n)_b$
+per indicare la rappresentazione del numero $n$ in base $b$, si ha infatti che
 
 $$(0.1)_{10} = (0.000\overline{1100})_2 \enspace,$$
 
@@ -211,7 +134,7 @@ dopo la virgola, e che corrisponde al valore $0.29931640625$ in base dieci.
 Tenendo conto del fatto che Python utilizza $52$ bit per memorizzare il
 valore assoluto della mantissa (e di altre peculiarità dello standard IEEE per
 la virgola mobile che non approfondisco per brevità), il risultato ottenuto
-eseguendo il codice&mdash;pur non essendo corretto&mdash; presenta un errore
+eseguendo il codice &mdash; pur non essendo corretto &mdash; presenta un errore
 di approssimazione estremamente minore, dell'ordine di $10^{-17}$.
 
 In ogni caso, le stranezze non finiscono qui, perché valutando il letterale
@@ -227,8 +150,7 @@ fissato un numero, la sua rappresentazione è unica, ma a partire da una
 rappresentazione esistono infiniti numeri decimali che le corrispondono.
 Pertanto, quando Python deve visualizzare un valore `float`, deve anche
 scegliere uno tra questi infiniti numeri. La scelta che viene fatta è quella
-ragionevole di considerare quello che ha la rappresentazione più corta in
-base dieci.
+ragionevole di mostrare il numero decimale più conciso tra tutti quelli compatibili con la rappresentazione interna.
 
 Riassumendo, quando viene valutata l'espressione `0.1 + 0.2`, nell'ordine:
 
@@ -241,11 +163,11 @@ Riassumendo, quando viene valutata l'espressione `0.1 + 0.2`, nell'ordine:
   è $0.3$, bensì {py}`0.1 + 0.2`.
 ````
 
-Il fatto che ogni letterale identifichi l'oggetto di una classe
-significa che su questi valori è possibile in teoria invocare dei metodi della
-classe stessa. Per esempio, `float` include un metodo `as_integer_ratio` che 
-restituisce una coppia di valori interi il cui rapporto è uguale al valore sul
-quale il metodo è stato invocato:
+Il fatto che ogni letterale identifichi l'oggetto di una classe significa che
+su questi valori è possibile in teoria invocare dei metodi della classe stessa.
+Per esempio, `float` include un metodo `as_integer_ratio` che restituisce una
+coppia di valori interi il cui rapporto è uguale al valore sul quale il metodo
+è stato invocato:
 
 ```{code-cell} python
 3.14.as_integer_ratio()
@@ -264,28 +186,50 @@ Per questioni di compatibilità, lo stesso metodo è presente anche in
 ```
 
 Nella pratica comune, però, non succede quasi mai di invocare dei metodi
-direttamente su un letterale, e nemmeno di invocare dei metodi su oggetti
-di tipo `int` o `float`. Analogamente, la praticità dell'utilizzo del
-letterali fa sì che i costruttori di queste due classi non vengano di norma
-utilizzati per creare degli oggetti. Vi è però un'importante eccezione:
-tutti i costruttori delle che corrispondono ai tipi semplici accettano un
-argomento il cui tipo può differire da quello che essi implementano: per
-esempio, `int` può ricevere un valore di tipo `float` e viceversa. Durante
-la loro esecuzione, questi costruttori _tentano_ di convertire il valore
-attuale dell'argomento nel tipo che rappresentano: se la conversione è
-possibile viene creato un nuovo oggetto, altrimenti viene lanciata
-un'eccezione. Pertanto, la conversione tra i tipi semplici si
-effettua &mdash; ove possibile &mdash;  utilizzando il nome del tipo di
-destinazione come funzione di conversione. Per esempio
+direttamente su un letterale, e nemmeno di invocare dei metodi su oggetti di
+tipo `int` o `float`. Analogamente, la praticità dell'utilizzo del letterali fa
+sì che i costruttori di queste due classi non vengano di norma utilizzati per
+creare degli oggetti. Vi è però un'importante eccezione: tutti i costruttori
+delle classi che corrispondono ai tipi semplici accettano un parametro il cui
+tipo può differire da quello che essi implementano: per esempio, `int` può
+ricevere un valore di tipo `float` e viceversa. Durante la loro esecuzione,
+questi costruttori _tentano_ di convertire il valore dell'argomento nel tipo
+che rappresentano: se la conversione è possibile viene creato un nuovo oggetto,
+altrimenti viene lanciata un'eccezione. Pertanto, la conversione tra i tipi
+semplici si effettua &mdash; ove possibile &mdash; utilizzando il nome del
+tipo di destinazione come funzione di conversione.
+
+````{prf:example}
+L'invocazione
 
 ```{code-cell} python
 int(3.14)
 ```
 
 effettua una conversione da `float` a `int`, troncando all'intero più vicino da
-sinistra. Nello stesso modo è possibile estrarre il valore numerico, intero o
-decimale, contenuto in una stringa, a patto che i suoi contenuti siano
-interpretabili in tal senso.
+sinistra e dunque causando una (necessaria) perdita di informazione. Ciò non
+capita invece nella conversione in senso inverso
+
+```{code-cell} python
+float(3)
+```
+
+che semplicemente introduce una parte frazionaria nulla. Procedendo in modo
+analogo è possibile estrarre il valore numerico contenuto in una stringa, a
+patto che i suoi contenuti siano interpretabili in tal senso:
+
+```{code-cell} python
+float('3.14')
+```
+
+Altrimenti, viene sollevata un'eccezione:
+
+```{code-cell} python
+:tags: [raises-exception]
+
+float('Python')
+```
+````
 
 ### Operatori per i tipi numerici
 
@@ -293,11 +237,11 @@ A partire da riferimenti a oggetti, espressi usando variabili o letterali, è
 possibile costruire espressioni arbitrariamente complesse utilizzando degli
 _operatori_. Per operatore si intende un tipo particolare di funzione che viene
 espressa utilizzando la _notazione infissa_, nella quale gli argomenti (che in
-questo contesto si chiamano _operandi_) non vengono indicati tra parentesi,
-bensì specificati prima o dopo il simbolo che denota l'operatore/funzione.
-L'uso degli operatori permette di scrivere delle espressioni in modo più
-succinto e più leggibile rispetto a quello che si otterrebbe utilizzando delle
-funzioni, perché si rifà alla notazione aritmetica.
+questo contesto si chiamano _operandi_) non sono  racchiusi tra parentesi, ma
+vengono indicati prima o dopo il simbolo che denota l'operatore stesso. L'uso
+degli operatori consente di scrivere espressioni in modo più conciso e
+leggibile rispetto all'equivalente ottenuto con delle funzioni, perché segue la
+notazione aritmetica comunemente utilizzata.
 
 ```{table} Elenco dei principali operatori per i tipi numerici
 :name: elenco-operatori-per-tipi-numerici
@@ -340,17 +284,18 @@ Vedremo più avanti che esiste anche uno speciale operatore _ternario_.
   per il divisore `b` diventa uguale al dividendo `a`. Va notato che il
   risultato è un `float` anche quando gli operandi sono entrambi interi e il
   dividendo è un multiplo del divisore.
-- La divisione troncata `a // b` restituisce il più grande valore intero che
-  è minore o uguale ad `a / b`. Se gli operandi hanno lo stesso segno, il
+- La divisione troncata `a // b` restituisce il più grande valore intero che è
+  minore o uguale ad `a / b`. Se gli operandi hanno lo stesso segno, il
   risultato è analogo al calcolo della divisione decimale arrotondato per
-  difetto, altrimenti le cose cambiano: per esempio, dividendo $-10$ per $3$
-  il risultato è   $-\frac{10}{3} = -3.\overline{3}$ e dunque `-10 // 3`
+  difetto, altrimenti le cose cambiano: per esempio, dividendo $-10$ per $3$ il
+  risultato è   $-\frac{10}{3} = -3.\overline{3}$ e dunque `-10 // 3`
   restituisce $-4$, che   è il più grande tra gli interi che sono minori o
-  uguali della precedente frazione. Idem per `10 // -3`. Va notato che questo
-  operatore restituisce un valore intero quando entrambi gli operandi sono
-  interi, altrimenti viene restituito un valore `float` (che però è sempre
-  equivalente a un intero, nel senso che la sua parte decimale è nulla).
-- L'operatore `%` denota l'operazione di modulo, definita nel modo seguente: il
+  uguali della precedente frazione. Lo stesso vale per `10 // -3`. Va notato
+  che questo operatore restituisce un valore intero quando entrambi gli
+  operandi sono interi, altrimenti viene restituito un valore `float` (che però
+  è sempre equivalente a un intero, nel senso che la sua parte decimale è
+  nulla).
+- L'operatore `%` denota il _modulo_, definito nel modo seguente: il
   modulo tra due valori $a$ e $b$ è il valore $r \in \mathbb N$ compreso tra
   zero e $b$ tale   che $a = b \cdot q + r$, dove $q$ è il valore della divisone
   troncata tra $a$ e $b$. Se `a` e `b` sono entrambi positivi, allora `a % b`
@@ -379,6 +324,76 @@ del simbolo dell'operazione. La loro semantica è la seguente: dapprima viene
 applicata l'operazione ai due operandi, e il risultato viene assegnato alla
 variabile che compare a sinistra dell'assegnamento. Pertanto `a += 1` equivale
 ad `a = a + 1`, `b %= 2` a `b = b % 2`, `c **= 3` a `c = c ** 3` e così via.
+
+````{prf:example}
+[Captain Atom](https://comicvine.gamespot.com/captain-atom/4005-2050/) è un
+supereroe con una caratteristica peculiare: il suo corpo è in
+grado sia di emettere enormi quantità di energia, sia di assorbirla da fonti
+esterne. Dal punto di vista fisico, l’energia non può assumere valori negativi.
+Tuttavia, per modellare questo comportamento in modo semplice, adotto una
+rappresentazione di tipo contabile: valori positivi indicano che si è emessa
+più energia di quanta ne sia stata assorbita, e valori negativi indicano il
+contrario. Consideriamo una situazione di partenza, in cui Captain Atom dispone
+di una quantità positiva di energia che intende distribuire tra più attacchi
+durante una battaglia, con il vincolo di poter emettere o assorbire solo
+quantità intere di energia.
+
+```{code-cell} python
+energy = 100
+planned_strikes = 6
+```
+
+La divisione decimale permette di calcolare l’energia media associata a ciascun
+attacco, mentre quella troncata indica quanta energia si può spendere in ognuno
+di essi senza andare sotto zero. Tramite il modulo otteniamo invece l’energia
+residua al termine degli attacchi.
+
+```{code-cell} python
+# Distribuzione dell'energia
+mean_energy = energy / planned_strikes
+energy_per_strike = energy // planned_strikes
+residual_energy = energy % planned_strikes
+
+print('unità di energia rimaste:', residual_energy)
+```
+
+Immaginiamo che, dopo aver portato a termine gli attacchi, a seguito di uno
+scontro particolarmente intenso, Captain Atom perda energia:
+
+```{code-cell} python
+energy = residual_energy
+energy -= 10
+print('energia a seguito dello scontro: ', energy)
+```
+
+Dopo lo scontro, Captain Atom si trova dunque in debito energetico. Supponiamo
+che in questa situazione egli possa assorbire energia solo in pacchetti minimi.
+La divisione troncata indica quanti di questi pacchetti dovrà ancora assorbire
+per tornare in bilancio positivo, mentre il modulo mostra l’energia che avrà
+al termine di queste operazioni:
+
+```{code-cell} python
+min_energy = 4
+
+num_absorbtions = energy // min_energy
+residual_energy = energy % min_energy
+print('assorbimenti necessari:', num_absorbtions)
+print('energia finale:', residual_energy)
+```
+
+Il risultato negativo di `//` indica che Captain Atom parte da una situazione
+di debito: il numero rappresenta quante volte è necessario assorbire la
+quantità minima di energia per avere un bilancio positivo.
+
+Anche in presenza di valori negativi, le operazioni restano coerenti: la
+divisione troncata arrotonda verso meno infinito, e il modulo preserva la
+relazione fondamentale
+
+```{code-cell} python
+energy == min_energy * (energy // min_energy) + (energy % min_energy)
+```
+
+````
  
 ## Il tipo booleano
 
