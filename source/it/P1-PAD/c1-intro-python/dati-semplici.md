@@ -156,12 +156,8 @@ quando questo risulta non definito (come nel calcolo del logaritmo di un numero
 negativo, o per indicare valori mancanti in un _dataset_. La divisione per zero
 invece genera un’eccezione.
 
-(adm-stranezze)=
-```{raw} html
-<span id="adm-stranezze"></span>
-```
-
-<!-- BEGIN-ADMONITION: Stranezze in virgola mobile -->
+````{admonition} Stranezze in virgola mobile
+:name: adm-stranezze
 
 La rappresentazione dei numeri decimali usando il formato in virgola mobile
 richiede spesso di effettuare delle approssimazioni. Questo fatto è ovvio
@@ -243,8 +239,7 @@ Riassumendo, quando viene valutata l'espressione `0.1 + 0.2`, nell'ordine:
 - viene visualizzato il numero decimale più corto tra tutti quelli che
   corrispondono alla rappresentazione binaria ottenuta, e questo numero non
   è $0.3$, bensì {py}`0.1 + 0.2`.
-
-<!-- END-ADMONITION -->
+````
 
 Il fatto che ogni letterale identifichi l'oggetto di una classe
 significa che su questi valori è possibile in teoria invocare dei metodi della

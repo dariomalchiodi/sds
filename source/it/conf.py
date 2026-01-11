@@ -270,36 +270,152 @@ mermaid.initialize({
 });
 """
 
-def wrap_html_sections(app, exception):
-    """Post-process HTML files to wrap marked sections in admonition divs"""
+def reinsert_code_cells(app, exception):
+    """Post-process HTML files to move code cells to their placeholder positions"""
     if exception or app.builder.name != 'html':
         return
+    
+    import logging
+    logger = logging.getLogger(__name__)
     
     build_dir = Path(app.outdir)
     
     for html_file in build_dir.rglob('*.html'):
         content = html_file.read_text(encoding='utf-8')
+        original_content = content
         
-        # Pattern to capture optional MyST anchor span followed by BEGIN-ADMONITION
-        pattern = r'<!--\s*BEGIN-([A-Z]+):\s*(.*?)\s*-->(.*?)<!--\s*END-\1\s*-->'
+        # Extract all cells with their IDs and HTML content
+        cell_pattern = r'<!-- CELL-MARKER-(\d+)-START -->(.*?)<!-- CELL-MARKER-\1-END -->\s*'
+        cells = {}
         
-        def replace_section(match):
-            container_type = match.group(1).strip().lower()
-            title = match.group(2).strip()
-            body = match.group(3)
+        for match in re.finditer(cell_pattern, content, re.DOTALL):
+            cell_id = match.group(1)
+            cell_html = match.group(2).strip()
+            cells[cell_id] = cell_html
+        
+        # Remove all cell markers from content
+        content = re.sub(cell_pattern, '', content, flags=re.DOTALL)
+        
+        # Replace placeholders with actual cell HTML
+        def replace_placeholder(match):
+            cell_id = match.group(1)
             
-            # Add container type as a CSS class
-            css_class = f"admonition {container_type}"
+            if cell_id not in cells:
+                error_msg = f"Placeholder {cell_id} found but corresponding cell not extracted"
+                logger.error(f"{html_file.name}: {error_msg}")
+                raise ValueError(error_msg)
             
-            return f'''<div class="{css_class}">
-<p class="admonition-title">{title}</p>
-{body}
-</div>'''
+            return cells[cell_id]
         
-        new_content = re.sub(pattern, replace_section, content, flags=re.DOTALL)
+        placeholder_pattern = r'<!-- CELL-PLACEHOLDER-(\d+) -->'
+        content = re.sub(placeholder_pattern, replace_placeholder, content)
         
-        if new_content != content:
-            html_file.write_text(new_content, encoding='utf-8')
+        # Verify no placeholders remain unreplaced
+        remaining_placeholders = re.findall(placeholder_pattern, content)
+        if remaining_placeholders:
+            error_msg = f"Unreplaced placeholders found: {remaining_placeholders}"
+            logger.error(f"{html_file.name}: {error_msg}")
+            raise ValueError(error_msg)
+        
+        # Write back if changed
+        if content != original_content:
+            html_file.write_text(content, encoding='utf-8')
+            logger.info(f"Post-processed {html_file.relative_to(build_dir)}")
+
+
+def strip_out_code_cells(app, env, docnames):
+    """Extract code-cells from admonitions/examples before Sphinx processes them"""
+    if app.builder.name != 'html':
+        return
+    
+    import logging
+    logger = logging.getLogger(__name__)
+    
+    source_dir = Path(app.srcdir)
+    
+    # If docnames is None, process all documents (full rebuild)
+    if docnames is None:
+        docnames = list(env.found_docs) if hasattr(env, 'found_docs') else []
+    
+    # If still empty, scan all .md files recursively
+    if not docnames:
+        md_files = list(source_dir.rglob('*.md'))
+    else:
+        # Convert docnames to file paths
+        md_files = []
+        for docname in docnames:
+            md_path = source_dir / f"{docname}.md"
+            if md_path.exists():
+                md_files.append(md_path)
+    
+    cell_counter = [0]  # Use list to allow modification in nested function
+    
+    for md_file in md_files:
+        try:
+            content = md_file.read_text(encoding='utf-8')
+            original_content = content
+            
+            # Pattern to match admonitions/examples with N backticks (capture the backticks)
+            directive_pattern = r'(`{3,})\{(admonition|prf:example)([^\}]*)\}([^\n]*)\n(.*?)\n\1(?!`)'
+            
+            def extract_cells(match):
+                outer_backticks = match.group(1)
+                directive_type = match.group(2)
+                directive_args = match.group(3)
+                directive_title = match.group(4)
+                body = match.group(5)
+                
+                # Count outer backticks to determine inner backticks for code-cells
+                outer_count = len(outer_backticks)
+                inner_count = outer_count - 1
+                inner_backticks = '`' * inner_count
+                
+                # Find all code-cells within this directive
+                cell_pattern = rf'{re.escape(inner_backticks)}\{{code-cell\}}[^\n]*\n(.*?)\n{re.escape(inner_backticks)}(?!`)'
+                cells = list(re.finditer(cell_pattern, body, re.DOTALL))
+                
+                if not cells:
+                    return match.group(0)
+                
+                # First pass: assign IDs to cells in forward order
+                cell_data = []
+                for cell_match in cells:
+                    cell_counter[0] += 1
+                    cell_id = cell_counter[0]
+                    cell_data.append((cell_match, cell_id))
+                
+                # Second pass: extract cells and replace with placeholders in reverse order
+                extracted_cells = []
+                modified_body = body
+                
+                for cell_match, cell_id in reversed(cell_data):
+                    # Extract the full cell
+                    cell_content = cell_match.group(0)
+                    
+                    # Replace cell with placeholder in body
+                    placeholder = f'<!-- CELL-PLACEHOLDER-{cell_id} -->'
+                    modified_body = modified_body[:cell_match.start()] + placeholder + modified_body[cell_match.end():]
+                    
+                    # Store extracted cell with markers (prepend to maintain order)
+                    marked_cell = f'<!-- CELL-MARKER-{cell_id}-START -->\n{cell_content}\n<!-- CELL-MARKER-{cell_id}-END -->\n\n'
+                    extracted_cells.insert(0, marked_cell)
+                
+                # Reconstruct: extracted cells + modified directive
+                result = ''.join(extracted_cells)
+                result += f'{outer_backticks}{{{directive_type}{directive_args}}}{directive_title}\n{modified_body}\n{outer_backticks}'
+                
+                return result
+            
+            # Apply the transformation
+            content = re.sub(directive_pattern, extract_cells, content, flags=re.DOTALL)
+            
+            # Write back if changed
+            if content != original_content:
+                md_file.write_text(content, encoding='utf-8')
+                logger.info(f"Preprocessed {md_file.relative_to(source_dir)}: extracted {cell_counter[0]} code-cells")
+        
+        except Exception as e:
+            logger.warning(f"Error processing {md_file}: {e}")
 
 
 def setup(app):
@@ -340,5 +456,6 @@ def setup(app):
 
     app.add_js_file(f'https://cdn.jsdelivr.net/npm/mermaid@{app.config.mermaid_version}/dist/mermaid.min.js')
     
-    app.connect('build-finished', wrap_html_sections)
+    app.connect('env-before-read-docs', strip_out_code_cells)
+    app.connect('build-finished', reinsert_code_cells)
     return {'version': '0.1', 'parallel_read_safe': True}

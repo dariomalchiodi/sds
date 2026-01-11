@@ -131,7 +131,6 @@ ciclo rappresenta un _indice_ usato per accedere all’elemento da elaborare —
 per esempio, prelevandolo da un _array_ &mdash; mentre in Python la variabile
 di ciclo contiene direttamente l’elemento stesso[^foreach].
 
-
 ````{prf:example}
 :label: ex-string
 
@@ -139,8 +138,7 @@ L’unico tipo di dati strutturato di cui ho parlato finora sono le stringhe:
 eseguire un ciclo for su una di esse significa scorrere tutti i suoi caratteri,
 nell’ordine naturale che va dal primo all’ultimo:
 
-```{interactive-code} python
-:height: 100px
+```{code-cell} python
 
 s = 'Wasp'
 for c in s:
