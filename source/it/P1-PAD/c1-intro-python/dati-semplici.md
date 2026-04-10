@@ -236,12 +236,12 @@ float('Python')
 A partire da riferimenti a oggetti, espressi usando variabili o letterali, è
 possibile costruire espressioni arbitrariamente complesse utilizzando degli
 _operatori_. Per operatore si intende un tipo particolare di funzione che viene
-espressa utilizzando la _notazione infissa_, nella quale gli argomenti (che in
-questo contesto si chiamano _operandi_) non sono  racchiusi tra parentesi, ma
-vengono indicati prima o dopo il simbolo che denota l'operatore stesso. L'uso
-degli operatori consente di scrivere espressioni in modo più conciso e
-leggibile rispetto all'equivalente ottenuto con delle funzioni, perché segue la
-notazione aritmetica comunemente utilizzata.
+espressa tramite la _notazione infissa_: gli argomenti (che in questo contesto
+prendono il nome di _operandi_) non sono  racchiusi tra parentesi, ma compaiono
+prima o dopo il simbolo che denota l'operatore stesso. L'uso degli operatori
+consente di scrivere espressioni più concise e, in genere, più leggibili
+rispetto all'equivalente ottenuto con delle funzioni, perché segue la notazione
+aritmetica comunemente utilizzata.
 
 ```{table} Elenco dei principali operatori per i tipi numerici
 :name: elenco-operatori-per-tipi-numerici
@@ -258,43 +258,45 @@ notazione aritmetica comunemente utilizzata.
 ```
 
 La {numref}`elenco-operatori-per-tipi-numerici` elenca i principali operatori
-che si possono applicare a valori numerici, per i quali è importante formulare
-alcune osservazioni.
+per valori numerici. Su questi operatori è opportuno fare alcune
+osservazioni, perché il loro comportamento non è sempre banale.
 
 ```{margin}
-Vedremo più avanti che esiste anche uno speciale operatore _ternario_.
+Più avanti incontreremo anche uno speciale operatore _ternario_.
 ```
-- Gli operatori di addizione e sottrazione funzionano in modo sia _binario_,
-  sia _unario_. Nel primo caso (che è quello maggiormente utilizzato)
-  l'operatore, che serve a denotare la somma o la differenza tra due operandi,
-  viene posizionato tra di essi. Nel secondo caso l'operatore viene posizionato
-  prima dell'unico operando, e serve a denotare un segno: il suo classico
-  utilizzo è quello di cambiare il segno di un valore di un'altra espressione
-  senza ricorrere a un'esplicita moltiplicazione per `-1`. Per esempio,
-  `-valore` viene valutata come l'opposto del contenuto della variabile
-  `valore` (in teoria è possibile usare in modo analogo l'operatore di somma,
-  ma non è una cosa particolarmente informativa).
+- Gli operatori di addizione e sottrazione possono essere usati sia in forma
+  _binaria_, sia in forma _unaria_. Nel primo caso, che è anche il più comune,
+  l'operatore denota la somma o la differenza tra due operandi e viene scritto
+  tra di essi. Nel secondo caso l'operatore precede un unico operando e serve a
+  indicarne il segno. Il suo uso tipico è quello di cambiare il segno del
+  risultato di un'epressione senza ricorrere a un'esplicita moltiplicazione per
+  `-1`. Per esempio, `-valore` viene valutata come l'opposto del contenuto
+  della variabile `valore`. In linea di principio anche l'operatore `è` può
+  essere usato in forma unaria, ma questo suo impiego non è particolarmente
+  informativo.
 - Addizione, sottrazione, moltiplicazione ed elevamento a potenza si applicano
   a tutti gli operandi di tipo numerico. Se gli operandi sono dello stesso
   tipo, questo sarà anche il tipo del risultato, altrimenti avverrà una
-  _promozione_, effettuando la conversione dell'argomento che non comporta
-  una perdita di informazione. Per i tipi numerici che abbiamo visto finora, la
-  sola promozione possibile è quindi quella da `int` a `float`.
-- La divisione decimale `a / b` restituisce il valore `float` che moltiplicato
-  per il divisore `b` diventa uguale al dividendo `a`. Va notato che il
-  risultato è un `float` anche quando gli operandi sono entrambi interi e il
-  dividendo è un multiplo del divisore.
-- La divisione troncata `a // b` restituisce il più grande valore intero che è
-  minore o uguale ad `a / b`. Se gli operandi hanno lo stesso segno, il
-  risultato è analogo al calcolo della divisione decimale arrotondato per
-  difetto, altrimenti le cose cambiano: per esempio, dividendo $-10$ per $3$ il
-  risultato è   $-\frac{10}{3} = -3.\overline{3}$ e dunque `-10 // 3`
-  restituisce $-4$, che   è il più grande tra gli interi che sono minori o
-  uguali della precedente frazione. Lo stesso vale per `10 // -3`. Va notato
-  che questo operatore restituisce un valore intero quando entrambi gli
-  operandi sono interi, altrimenti viene restituito un valore `float` (che però
-  è sempre equivalente a un intero, nel senso che la sua parte decimale è
-  nulla).
+  _promozione_, cioè la conversione del tipo di uno dei due operandi. Più
+  precisamente, verrà applicata la conversione che non comporta perdita di
+  informazione: per i tipi numerici che abbiamo visto finora, la sola
+  promozione possibile è quindi quella da `int` a `float`, nella quale un
+  valore intero diventa l'equivalente decimale con parte frazionaria nulla.
+- La divisione decimale `a / b` restituisce il valore `float`, che moltiplicato
+  per il divisore `b`, fornisce come risultato il dividendo `a`. È importante
+  notare che questa divisione restituisce sempre un `float`, anche quando
+  entrambi gli operandi sono interi e `a` è un multiplo esatto di `b`.
+- La divisione troncata `a // b` restituisce il più grande valore intero minore
+  o uguale ad `a / b`. Se gli operandi hanno lo stesso segno, il risultato è
+  analogo al calcolo della divisione decimale arrotondato per difetto. Se i
+  segni sono diversi, il comportamento può risultare meno intuitivo. Per
+  esempio, dividendo $-10$ per $3$ il risultato è   $-\frac{10}{3} =
+  -3.\overline{3}$, pertanto `-10 // 3` restituisce $-4$, che è il più grande
+  tra gli interi che sono minori o uguali della precedente frazione. Lo stesso
+  vale per `10 // -3`. Il risultato è un intero quando entrambi gli operandi
+  sono interi, altrimenti viene restituito un `float`. Ma anche in questo caso
+  il valore rappresenta comunque un intero, nel senso che la sua parte decimale
+  è nulla.
 - L'operatore `%` denota il _modulo_, definito nel modo seguente: il
   modulo tra due valori $a$ e $b$ è il valore $r \in \mathbb N$ compreso tra
   zero e $b$ tale   che $a = b \cdot q + r$, dove $q$ è il valore della divisone
@@ -305,6 +307,25 @@ Vedremo più avanti che esiste anche uno speciale operatore _ternario_.
   in questo caso, l'operatore restituisce un intero quando lo sono anche gli
   operandi coinvolti, altrimenti restituisce un valore `float` con parte
   decimale nulla.
+
+
+
+
+- L’operatore `%` denota il _modulo_. In Python, dati due valori `a` e `b`, il
+  modulo `a % b` è definito come il valore `r` tale che  
+  \[
+  a = b \cdot q + r,
+  \]
+  dove `q` è il risultato della divisione troncata `a // b`. Se `a` e `b` sono
+  entrambi positivi, questo coincide con il resto della divisione intera
+  tradizionale; in presenza di valori negativi, invece, è necessario prestare
+  attenzione alla definizione adottata dal linguaggio. Riprendendo gli esempi
+  precedenti, `-10 % 3` vale `2`, mentre `10 % -3` vale `-2`. Anche in questo
+  caso, se gli operandi sono interi il risultato è un intero; altrimenti è un
+  `float` con parte decimale nulla.
+
+
+
 - L'elevamento a potenza accetta operandi sia interi che decimali, e
   restituisce:
   - un valore intero se sia la base che l'esponente sono `int`,
@@ -325,6 +346,50 @@ applicata l'operazione ai due operandi, e il risultato viene assegnato alla
 variabile che compare a sinistra dell'assegnamento. Pertanto `a += 1` equivale
 ad `a = a + 1`, `b %= 2` a `b = b % 2`, `c **= 3` a `c = c ** 3` e così via.
 
+
+
+
+
+
+
+
+
+
+
+
+
+- L’operatore di elevamento a potenza accetta operandi sia interi sia decimali e
+  restituisce:
+  - un valore intero se sia la base sia l’esponente sono di tipo `int`;
+  - un valore decimale se almeno uno tra base ed esponente è `float` e la base
+    è positiva;
+  - un valore complesso (si veda il Paragrafo {ref}`sec_altri-tipi`) se la base è
+    negativa e l’esponente non è intero.
+
+```{margin}
+A differenza di altri linguaggi, Python non prevede operatori unari di
+_autoincremento_ e _autodecremento_.
+```
+
+Vale infine la pena ricordare che a ciascuna delle operazioni elencate in
+{numref}`elenco-operatori-per-tipi-numerici` è associata una variante composta
+dell’operatore di assegnamento, ottenuta aggiungendo il simbolo `=`. La
+semantica è sempre la stessa: l’operazione viene prima applicata agli operandi
+e il risultato viene poi assegnato alla variabile che compare a sinistra.
+Pertanto, `a += 1` equivale a `a = a + 1`, `b %= 2` a `b = b % 2`, `c **= 3` a
+`c = c ** 3`, e così via.
+
+
+
+
+
+
+
+
+
+
+
+
 ````{prf:example}
 [Captain Atom](https://comicvine.gamespot.com/captain-atom/4005-2050/) è un
 supereroe con una caratteristica peculiare: il suo corpo è in
@@ -334,19 +399,20 @@ Tuttavia, per modellare questo comportamento in modo semplice, adotto una
 rappresentazione di tipo contabile: valori positivi indicano che si è emessa
 più energia di quanta ne sia stata assorbita, e valori negativi indicano il
 contrario. Consideriamo una situazione di partenza, in cui Captain Atom dispone
-di una quantità positiva di energia che intende distribuire tra più attacchi
-durante una battaglia, con il vincolo di poter emettere o assorbire solo
-quantità intere di energia.
+di una quantità positiva di energia che intende utilizzare per sferrare più
+attacchi durante una battaglia, perdendo quantità intere di energia a ogni
+attacco.
 
 ```{code-cell} python
 energy = 100
 planned_strikes = 6
 ```
 
-La divisione decimale permette di calcolare l’energia media associata a ciascun
-attacco, mentre quella troncata indica quanta energia si può spendere in ognuno
-di essi senza andare sotto zero. Tramite il modulo otteniamo invece l’energia
-residua al termine degli attacchi.
+La divisione decimale permette di calcolare l’energia media da usare per
+ciascun attacco (nell'idea di attaccare sempre con la stessa forza), mentre
+quella troncata indica quanta energia si può spendere in ognuno di essi senza
+andare sotto zero. Tramite il modulo otteniamo invece l’energia residua al
+termine degli attacchi.
 
 ```{code-cell} python
 # Distribuzione dell'energia
@@ -354,11 +420,12 @@ mean_energy = energy / planned_strikes
 energy_per_strike = energy // planned_strikes
 residual_energy = energy % planned_strikes
 
+print('energia a ogni attacco:', energy_per_strike)
 print('unità di energia rimaste:', residual_energy)
 ```
 
 Immaginiamo che, dopo aver portato a termine gli attacchi, a seguito di uno
-scontro particolarmente intenso, Captain Atom perda energia:
+scontro particolarmente intenso, Captain Atom perda dieci unità di energia:
 
 ```{code-cell} python
 energy = residual_energy
@@ -367,10 +434,10 @@ print('energia a seguito dello scontro: ', energy)
 ```
 
 Dopo lo scontro, Captain Atom si trova dunque in debito energetico. Supponiamo
-che in questa situazione egli possa assorbire energia solo in pacchetti minimi.
-La divisione troncata indica quanti di questi pacchetti dovrà ancora assorbire
-per tornare in bilancio positivo, mentre il modulo mostra l’energia che avrà
-al termine di queste operazioni:
+che in questa situazione egli possa assorbire energia solo in pacchetti minimi
+di quattro unità. La divisione troncata indica quanti di questi pacchetti dovrà
+ancora assorbire per tornare in bilancio positivo, mentre il modulo mostra
+l’energia che avrà al termine di queste operazioni:
 
 ```{code-cell} python
 min_energy = 4

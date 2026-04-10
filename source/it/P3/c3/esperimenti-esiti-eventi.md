@@ -108,6 +108,19 @@ particolarmente rilevanti:
 - al contrario, $\Omega$ contiene tutti i possibili esiti dell'esperimento,
   e quindi è un evento che si verificherà sempre, detto _evento certo_.
 
+Il fatto che gli eventi siano definiti come insiemi non è una scelta
+arbitraria: permette di ereditare direttamente il vocabolario e gli strumenti
+della teoria degli insiemi, che nel contesto della probabilità assumono una
+semantica precisa. L'unione corrisponde alla disgiunzione logica: l'evento $E
+\cup F$ si verifica quando si verifica almeno uno dei due tra $E$ ed $F$, così
+come l'intersezione corrisponde alla congiunzione: $E \cap F$ si verifica solo
+al verificarsi di entrambi $E$ ed $F$, con ovvie generalizzazioni al caso di
+operatori $n$-ari. Analogamente, $\Omega$ costituisce l'insieme universo e il
+complemento individua la negazione logica: $\overline E$ si verifica se e solo
+se non si verifica $E$. Infine, la relazione di sottoinsieme cattura
+l'implicazione logica: se $E \subseteq F$, allora ogni esito che realizza $E$
+deve realizzare anche $F$, pertanto $E \rightarrow F$.
+
 Vedremo nel {ref}`sec_assiomi-kolmogorov` che il calcolo della probabilità
 di un evento è legato alla valutazione di una funzione di cui l'evento stesso
 è un argomento. Il dominio di questa funzione, che raccoglie dunque gli eventi

@@ -33,7 +33,8 @@ influisce sull’_efficienza_ delle operazioni eseguibili. Poiché in questo lib
 non entrerò nel merito delle strutture dati, eviterò ove possibile di usare
 l’espressione «valore di un tipo di dati strutturato», che risulta piuttosto
 macchinosa. Adotterò occasionalmente il termine _struttura_ come abbreviazione,
-confidando che il contesto renda chiaro a che cosa mi riferisco.
+confidando che il contesto renda chiaro, di volta in volta, a che cosa mi
+sto riferendo.
 ```
 
 I tipi di dati strutturati che presenterò nei prossimi paragrafi &mdash;
@@ -54,22 +55,23 @@ dei dati si ricorre quasi sempre agli array forniti da `numpy`.
 
 Classificherò questi tipi di dati secondo alcuni criteri, illustrati di seguito.
 
-- La modalità di accesso: quando l'aggregazione è sequenziale, il modo più
-  naturale per riferirsi a un elemento è tramite un _indice_ che ne indica la
-  posizione. È questo il caso di stringhe, liste, _array_ e tuple. Insiemi e
-  dizionari, invece, organizzano i dati in modo non necessariamente ordinato, e
-  l'accesso ai loro elementi segue regole diverse.
+- La modalità di accesso: quando l'aggregazione è di tipo sequenziale, il modo
+  più naturale per riferirsi a un elemento è tramite un _indice_ che ne indica
+  la posizione. Questo tipo di accesso, detto _posizionale_, è supportato
+  dastringhe, liste, _array_ e tuple. Insiemi e dizionari, invece, organizzano
+  i dati in modo non necessariamente ordinato, e l'accesso ai loro elementi
+  segue regole diverse.
 - La staticità o dinamicità della struttura: alcuni tipi di dati strutturati
-  non consentono di aggiungere o rimuovere elementi dopo la creazione della
-  struttura (come stringhe e tuple), mentre altri lo permettono (come liste,
-  insiemi e dizionari).
+  (come stringhe e tuple) non consentono di aggiungere o rimuovere elementi
+  dopo la creazione della struttura, mentre altri (come liste, insiemi e
+  dizionari) lo permettono.
 - La mutabilità degli elementi: alcuni tipi sono _immutabili_, nel senso che
   gli elementi che contengono non possono essere modificati, mentre altri sono
   _mutabili_. Tra i tipi che considererò, stringhe e tuple sono immutabili,
   mentre tutti gli altri sono mutabili. I tipi immutabili sono necessariamente
   statici, ma non sempre vale il contrario.
 - L'omogeneità o eterogeneità dei contenuti: alcune strutture richiedono che
-  tutti gli elementi siano dello stesso, mentre altre accettano elementi
+  tutti gli elementi siano dello stesso tipo, mentre altre accettano elementi
   eterogenei.
 
 La {numref}`tab_caratteristiche-dati-strutturati` riassume i tipi di dati sui
@@ -81,7 +83,7 @@ soddisfatte e quali no.
 Ricordate che `np` è l’_alias_ che viene comunement utilizzato per importare il
 modulo numpy.
 ```
-```{table} Proprietà dei tipi di dati strutturati
+```{table} Proprietà di alcuni tipi di dati strutturati in Pyton.
 :name: tab_caratteristiche-dati-strutturati
 :align: center
 | Tipo strutturato            | Classe     | Posizionale | Dinamico | Mutabile | Omogeneo |
@@ -106,30 +108,26 @@ automaticamente sui contenuti di una struttura.
 
 Molti linguaggi di programmazione di tipo imperativo includono, tra le
 strutture di controllo, il cosiddetto _ciclo enumerativo_, noto ai più come
-«ciclo for», dal nome della parola chiave che lo introduce. Questa forma di
-iterazione si caratterizza per il fatto che il numero di ripetizioni del corpo
-del ciclo è determinato a priori. In genere, tale numero è legato a una
-_variabile di ciclo_[^var-ciclo], che assume tutti i valori in una sequenza
-predefinita &mdash; normalmente, ma non sempre, gli interi da $0$ fino a un
-valore prefissato[^for-caveats].
+«ciclo for», dal nome della parola chiave che lo introduce. Nella sua versione
+originale[^foreach], questa forma di iterazione implica un _conteggio_
+esplicito, nel senso che viene definita una _variabile di ciclo_[^var-ciclo]
+che, durante l'esecuzione assume tutti valori in una sequenza predefinita
+&mdash; normalmente, ma non sempre, gli interi da $0$ fino a un valore
+prefissato[^for-caveats]. 
 ```{margin}
 Vale la pena notare che il termine «struttura di controllo» indica un concetto
 completamente distinto sia da «tipo di dati strutturato», sia da «struttura
 dati».
 ```
 
-Python, invece, adotta un approccio del tutto diverso. Nella forma più
-semplice, un ciclo viene introdotto dall'idioma `for <variabile> in
-<struttura>:`, dove `<variabile>` è il nome assegnato alla variabile di ciclo e
-`<struttura>` è il valore di un tipo di dati strutturato. Il corpo del ciclo
-segue immediatamente dopo, con un livello di indentazione maggiore.
-L’esecuzione procede in modo intuitivo: ciascun elemento contenuto in
-`<struttura>` viene considerato a turno, una sola volta, assegnato alla
-variabile del ciclo ed elaborato dal suo corpo. La differenza fondamentale
-rispetto al ciclo enumerativo classico è che, in quest’ultimo, la variabile di
-ciclo rappresenta un _indice_ usato per accedere all’elemento da elaborare —
-per esempio, prelevandolo da un _array_ &mdash; mentre in Python la variabile
-di ciclo contiene direttamente l’elemento stesso[^foreach].
+Python, invece, adotta un approccio del tutto diverso. La sintassi più semplice
+per questo ciclo è `for <variabile> in <struttura>:`, dove `<variabile>` è il
+nome assegnato alla variabile di ciclo e `<struttura>` è un'espressione che
+restituisce il valore di un tipo di dati strutturato. Il corpo del ciclo segue
+immediatamente dopo, con un livello di indentazione maggiore. L’esecuzione
+procede in modo intuitivo: ciascun elemento contenuto in `<struttura>` viene
+considerato a turno, una sola volta, assegnato alla variabile di ciclo ed
+elaborato dal suo corpo.
 
 ````{prf:example}
 :label: ex-string
@@ -153,40 +151,46 @@ svolge sui caratteri di una stringa.
 
 Nonostante la differenza semantica rispetto ai linguaggi imperativi
 tradizionali, il costrutto `for` di Python appartiene comunque alla categoria
-dei cicli enumerativi. Anche in questo caso, infatti, la variabile di ciclo
-assume, uno dopo l’altro, i valori di una sequenza, che corrispondono agli
-elementi contenuti nella struttura su cui si sta iterando. La descrizione di
-questa semantica non specifica, però, _in quale ordine_ vengano considerati gli
-elementi: ciò dipende dal tipo di dati strutturato utilizzato. In alcuni casi
-&mdash; come per le stringhe o le liste &mdash; l’ordine è determinato in modo
-prevedibile; in altri, come per gli insiemi o i dizionari, non lo è.
+dei cicli enumerativi. _Enumerare_ ha infatti il significato di elencare in
+modo completo gli elementi in un gruppo, senza che questo debba necessariamente
+coinvolgere esplicitamente una numerazione. Effettivamente, la variabile di
+ciclo assume, uno dopo l’altro, i valori di una sequenza, che corrispondono
+agli elementi contenuti nella struttura su cui si sta iterando. È però
+importante sottolineare che la semantica di `for` non specifica _in quale
+ordine_ vengano considerati gli elementi: ciò dipende dal tipo di dati
+utilizzato. In alcuni casi &mdash; come per le stringhe o le liste &mdash;
+l’ordine è determinato in modo prevedibile; in altri, come per gli insiemi o i
+dizionari, potrebbe non esserlo.
 
 
+(pattern)=
 ````{admonition} Pattern e antipattern
 Quando si studia un linguaggio di programmazione, si impara rapidamente a
-riconoscere degli _schemi_ ricorrenti nel codice: piccole sequenze di
-istruzioni la cui struttura è sempre simile, ma che possono riutilizzate in
-molte altre situazioni. Questi schemi vengono chiamati _pattern_ del
+riconoscere degli _schemi_ ricorrenti nel codice sorgente: modalità tipiche di
+combinare istruzioni che si presentano in contesti diversi, perché offrono una
+soluzione efficace per problemi anche diversi tra loro, ma che condividono la
+medesima logica di fondo. Questi schemi vengono chiamati _pattern_ del
 linguaggio, anche se spesso si preferisce parlare di codice _idiomatico_ o, nel
 caso specifico di Python, _pythonico_[^design-pattern]. L’uso del ciclo for
 per iterare su una stringa, mostrato negli esempi precedenti, è un esempio di
 codice pythonico: rappresenta una soluzione generale che va oltre la semplice
-iterazione sui caratteri di una stringa. Come già evidenziato, lo stesso
-approccio permette di iterare su altre strutture dati come le liste o i
-dizionari, aiutando a produrre codice Python generale e a individuare
-rapidamente strategie di soluzione anche quando non si conosce in dettaglio un
-componente del linguaggio.
+iterazione sui caratteri di una stringa, perché si può applicare ogni qual
+volta sia necessario considerare tutti gli elementi in un tipo di dato
+strutturato. Infatti, lo stesso approccio permetterebbe di iterare su altre
+strutture dati come le liste o i dizionari, aiutando a produrre codice Python
+generale e a individuare rapidamente strategie di soluzione anche quando non si
+conosce in dettaglio un componente del linguaggio.
 
 Va però sottolineato che esistono schemi che possono emergere facilmente senza
 rappresentare codice idiomatico. Sono gli _antipattern_: schemi che, appresi
 autonomamente, adattati da altri linguaggi, oppure reperiti su fonti non
-sempre affidabili (come i forum di discussione), producono codice poco
+sempre affidabili (come alcuni forum di discussione), producono codice poco
 efficiente o difficilmente adattabile ad altri problemi. Chi conosce già Java,
 per esempio, potrebbe iterare su una stringa ricalcando l'approccio
 tradizionale che si basa su una variabile di ciclo associata alle posizioni
-dei carateri, scrivendo il codice che segue.
+dei tcarateri, scrivendo il codice che segue.
 
-```{interactive-code} python
+```{code-cell} python
 for i in range(len(s)):
     print(s[i])
 ```
@@ -207,14 +211,18 @@ leggibile. Naturalmente, ci sono situazioni in cui è utile conoscere sia i
 caratteri, sia la loro posizione: in questi casi, il modo pythonico di
 procedere è utilizzare la funzione `enumerate`:
 
-```{interactive-code} python
+```{code-cell} python
 for i, c in enumerate(s):
     print('Il carattere in posizione ', i, 'è', c)
 ```
+
+che permette di iterare su delle coppie che includono la posizione e l'elemento
+della struttura, e che ha il vantaggio di essere applicabile anche a dati
+strutturati che non supportano l'accesso posizionale[^double-index].
 ````
 
-Le altre modalità di accesso comuni ai tipi di dati strutturati sono riassunte
-nel seguente elenco, e verranno approfondite nei prossimi paragrafi.
+Le altre modalità di accesso comuni ai tipi di dati strutturati, che
+approfondirò nei prossimi paragrafi, sono riassunte nel seguente elenco.
 
 - La funzione `len` restituisce sempre il numero di elementi contenuti nella
   struttura[^data-model]. Nel gergo informatico, questo numero è chiamato
@@ -267,8 +275,9 @@ stringa usando la tecnica di _escaping_, tramite le sequenze `\'` e `\"`.
 
 È però necessario chiudere la stringa con lo stesso tipo di delimitatore con
 cui è stata aperta: sempre due apici singoli o due doppi apici. Gli apici
-tripli permettono di utilizzare stringhe che si estendono su più righe, senza
-dover utilizzare sequenze di _escape_ per i caratteri di «a capo». Per esempio:
+tripli hanno un ruolo analogo, ma in più permettono di utilizzare stringhe che
+si estendono su più righe, senza dover utilizzare sequenze di _escape_ per i
+caratteri di «a capo». Per esempio:
 
 ```{code-cell} python
 :tags: [remove-output]
@@ -295,25 +304,26 @@ specificare tra parentesi quadre l’indice del carattere desiderato, a partire
 da `0`[^start-from-zero]. In altre parole, l’operatore di accesso ha la stessa
 semantica degli _array_. Tuttavia, Python ne estende l’uso: se si indica un
 valore negativo come indice, a questo viene automaticamente sommata la
-lunghezza della stringa, così `-1` identifica l’ultimo carattere, `-2` il
-penultimo e così via.
-
-È inoltre possibile indicare un intervallo di posizioni consecutive per
-ottenere una sottostringa. Questa modalità, detta _slicing_, si esprime
-indicando tra parentesi quadre la posizione del primo carattere da includere,
-seguita da due punti e dalla posizione del primo carattere da
+lunghezza della stringa, così che `-1` identifica l’ultimo carattere, `-2` il
+penultimo e così via. È inoltre possibile indicare un intervallo di posizioni
+consecutive per ottenere una sottostringa. Questa modalità, detta _slicing_, si
+esprime indicando tra parentesi quadre la posizione del primo carattere da
+includere, seguita da due punti e dalla posizione del primo carattere da
 escludere[^substring]. Gli _slicing_ possono combinare indici positivi e
 negativi, purché la posizione iniziale preceda quella finale; in caso
-contrario, l’operazione restituisce la stringa vuota.
+contrario, l’operazione restituisce la stringa vuota. Come vedremo nei
+prossimi paragrafi, indici negativi e _slicing_ si utilizzano in modo analogo
+anche in altri tipi di dati strutturati.
 ```{margin}
 Quando si omette la posizione iniziale, la sottostringa parte dall’inizio;
 quando si omette quella finale, prosegue fino alla fine della stringa.
 ```
 
-Infine, l’operatore `in` permette di verificare se un carattere o una
-sottostringa è contenuto all’interno di un’altra stringa. In particolare,
+Infine, l’operatore `in` permette di verificare se una stringa è contenuta
+all’interno di un’altra stringa. In particolare,
 `s in t` restituisce `True` se la stringa `s` è una sottostringa di `t`, e
-`False` altrimenti.
+`False` altrimenti. Chiaramente, questo operatore permette anche di verificare
+facilmente se un carattere occorre o meno in una stringa.
 
 ````{prf:example}
 :label: ex-string-2
@@ -364,7 +374,7 @@ La classe `str` implementa vari metodi e operatori specifici per le stringhe;
 in particolare vale la pena evidenziare che:
 
 - l'operatore `+` concatena due stringhe (e __solo__ due stringhe: è necessario
-  convertire in stringa eventuali operandi di tipo diverso);
+  convertire esplicitamente in stringa eventuali operandi di tipo diverso);
 - la moltiplicazione di una stringa `s` per un numero intero `i` produce una
   nuova stringa ottenuta concatenando `s` con se stessa `i` volte;
 - `s.find(t)` restituisce la posizione iniziale della prima occorrenza della
@@ -396,7 +406,7 @@ Se non conoscete $\LaTeX$, vi consiglio caldamente di imparare a usarlo. Anche
 se all’inizio non è facilissimo da imparare, permette di redigere documenti di
 qualità tipografica, concentrandosi sui loro contenuti e occupandosi solo
 marginalmente dei dettagli relativi alla formattazione. Inoltre, offre
-strumenti che automatizzano l'inserimento di formule matematiche ela gestione
+strumenti che automatizzano l'inserimento di formule matematiche e la gestione
 di indici, riferimenti incrociati, bibliografia e così via.
 ```
 
@@ -410,25 +420,25 @@ scientifico per produrre documentazione e che ho usato anche per generare tutte
 le formule matematiche di questo libro. In $\LaTeX$, i simboli matematici
 vengono descritti tramite una particolare sintassi basata sul carattere di
 _backslash_: ad esempio, `\pi` e `\int` producono rispettivamente $\pi$ e
-l’operatore integrale. Nella cella seguente, la funzione `display` e la classe
-`Math` del modulo `IPython.display` vengono utilizzate per visualizzare nella
-cella di output una formula relativamente complessa.
+l’operatore integrale. Nella cella seguente, gli oggetti `display` e `Math`
+del _package_ `IPython.display` vengono utilizzati per visualizzare nella cella
+di output una formula relativamente complessa, il cui sorgente $\LaTeX$ è
+memorizzato nella stringa `s`, definita tramite un letterale grezzo.
 
-```{interactive-code} python
-from js import document, katex
+```{code-cell} python
+from IPython.display import display, Math
 
 s = r'\Phi(x) = \frac{1}{2 \pi} '
-s += r'\int_{-\infty}^{+\infty} \mathrm e^{-\frac{x^2}{2}} \, dx'
+s += r'\int_{-\infty}^{+\infty} \mathrm e^{-\frac{x^2}{2}} \, \mathrm dx'
 
-target = document.getElementById("latex-out")
-katex.render(s, target)
+display(Math(s))
 ```
 ```{raw} html
 <div id="latex-out"></div>
 ```
 
 Questa formula descrive una particolare funzione che studieremo nel
-Paragrafo {ref}`sec_modello-normale`. Notate che ho costruito la stringa
+{ref}`sec_modello-normale`. Notate come abbia costruito la stringa
 giustapponendo due letterali grezzi tramite l'operatore `+=`, così da evitare
 righe di codice più lunghe di ottanta caratteri[^ottanta].
 ````
@@ -438,17 +448,18 @@ righe di codice più lunghe di ottanta caratteri[^ottanta].
 :label: ex-regex
 
 Le [espressioni regolari](https://it.wikipedia.org/wiki/Espressione_regolare)
-sono un formalismo che permette di definire insiemi di stringhe che soddisfano
-particolari regole. Il punto di partenza di questo formalismo sono dei
+sono un formalismo che permette di definire particolari insiemi di stringhe che
+soddisfano specifiche regole. Il punto di partenza di questo formalismo sono dei
 costrutti fondamentali che esprimono proprietà relativamente semplici di una
 stringa: ad esempio, se ne può fissare la lunghezza, oppure richiedere che essa
 contenga esclusivamente determinati caratteri. Componendo questi costrutti è
 possibile definire regole complesse, in grado di individuare famiglie
 articolate di stringhe &mdash; come tutti gli indirizzi di posta elettronica in
-un certo dominio, o tutte le password di almeno dieci caratteri che contengono
-una cifra e caratteri sia minuscoli che maiuscoli. Tipicamente, data una
-specifica espressione regolare, si vuole valutare se una stringa la soddisfi
-oppure no, o estrarre tutte le sue sottostringhe che la rispettano.
+un certo dominio, i numeri di telefono con prefisso internazionale o tutte le
+password di almeno dieci caratteri che contengono una cifra e lettere sia
+minuscole che maiuscole. Tipicamente, data un'espressione regolare, si vuole
+valutare se una stringa la soddisfi oppure no, o estrarre tutte le sue
+sottostringhe che la rispettano.
 
 Il modulo `re` permette di utilizzare le espressioni regolari in Python,
 definendole tramite una sintassi che fa ampio uso dei caratteri di
@@ -456,14 +467,14 @@ _backslash_. Per esempio, `\d` indica una cifra e `+` descrive una sequenza di
 una o più occorrenze della regola precedente, così che `\d+` corrisponde a una
 sequenza di una o più cifre, e dunque a una stringa che rappresenta un numero
 intero. La funzione `compile`, definita nel modulo, restituisce un oggetto che
-rappresenta un’espressione regolare $s$, costruita a partire da una stringa che
+rappresenta un’espressione regolare $e$, costruita a partire da una stringa che
 ne descrive la sintassi. Su questo oggetto si possono invocare vari metodi,
 come ad esempio `findall`, che accetta una stringa e ne estrae tutte le
-sottostringhe che soddisfano $s$. Per esempio, il codice seguente elenca tutti
+sottostringhe che soddisfano $e$. Per esempio, il codice seguente elenca tutti
 i numeri che compaiono in una descrizione dei superpoteri di Elastigirl, tratta
 dalla relativa pagina su [Wikipedia](https://it.wikipedia.org/wiki/Helen_Parr):
 
-```{interactive-code} python
+```{code-cell} python
 import re
 
 s = "Il superpotere principale di Elastigirl è l'elasticità, che le "
@@ -512,40 +523,35 @@ già di questo tipo, pena l'emissione di un'eccezione. Ciò renderebbe il codice
 inutilmente complesso, ed è per questo motivo che `print` accetta più
 argomenti.
 
-```{code-cell} python
-print(f'{name} ha debuttato nel numero {num} di {magazine} nel {month} {year}')
-```
-
 Nella pratica comune, tuttavia, quando si desidera generare un output complesso
 che combini stringhe fisse con il contenuto di variabili, si preferisce
-produrre un _output formattato_. In Python ciò può essere fatto in tre modi:
-utilizzando l'operatore `%`, invocando il metodo `format` su una stringa oppure
-ricorrendo ai _letterali stringa formattati_. Sebbene le prime due modalità
+produrre un _output formattato_, utilizzando una tecnica nota come «string
+interpolation». In Python ciò può essere fatto in tre modi: utilizzando
+l'operatore `%`, invocando il metodo `format` su una stringa oppure ricorrendo
+ai _letterali stringa formattati_ &mdash; spesso indicati come _f-string_
+nella documentazione, per brevità. Sebbene le prime due modalità
 siano tuttora disponibili, l'ultima &mdash; introdotta più di recente &mdash; è
 quella che fornisce più controllo sul risultato finale e, al tempo stesso,
 semplifica il codice. Un letterale stringa formattato si riconosce perché il
-suo delimitatore iniziale è preceduto da un carattere `f`. Al suo interno è
-possibile inserire arbitrarie espressioni Python racchiuse tra parentesi
+suo delimitatore iniziale è preceduto da un carattere `f`. Al suo interno
+è possibile inserire arbitrarie espressioni Python racchiuse tra parentesi
 graffe: durante l'esecuzione, tali espressioni vengono valutate e il loro
 risultato è inserito nel punto della stringa che corrisponde a queste parentesi
 quadre.
 
 ```{code-cell} python
-print(f'{name} ha debuttato nel numero {num} di {magazine} nel {month} {year}')
+print(f'{name} ha debuttato nel numero {num} di {magazine} nel {month} {year}.')
 ```
 
-Il vantaggio principale dei letterali formattati &mdash; indicati nella
-terminologia inglese, per brevità, come _f-string_ &mdash; consiste nella
-possibilità di controllare con precisione la quantità di spazi da inserire tra
-le varie stringhe ed espressioni che vengono concatenate in modo implicito.
-Per esempio, terminare la stringa nell'ultima cella con un punto è immediato,
-mentre ottenere lo stesso risultato nella cella precedente richiede un po’ di
-attenzione. Inoltre, le _f-string_ consentono di specificare con notevole
-precisione il modo in cui i valori devono essere visualizzati, grazie a un
-_mini linguaggio_ che definisce alcune regole di formattazione.  
+Il vantaggio principale dei letterali formattati consiste nella possibilità di
+specificare con notevole precisione il modo in cui i valori devono essere
+visualizzati. Per esempio, terminare la stringa nell'ultima cella con un punto
+è immediato, mentre ottenere lo stesso risultato nella cella precedente
+richiede un po’ di attenzione. Ma la cosa più importante è la possibilità di
+utilizzare un _mini linguaggio_ che definisce alcune regole di formattazione.
 Più precisamente, prima di chiudere le parentesi graffe è possibile inserire
 un carattere di due punti e indicare il tipo di valore mostrato e la modalità
-di visualizzazione. Per esempio, nella seguente:
+di visualizzazione. Per esempio, nella cella seguente:
 
 ```{code-cell} python
 a = 0.1
@@ -571,21 +577,25 @@ dove:
   anche per i numeri positivi; `-` lo mostra solo per i negativi; `␣`
   visualizza uno spazio per i numeri positivi e `-` per quelli negativi, in
   modo da mantenere un corretto allineamento verticale;
-- `width` imposta la numero totale di caratteri da utilizzare per la
+- `width` imposta il numero totale di caratteri da utilizzare per la
   visualizzazione;
 - `,` o `_` indicano il carattere da usare per separare i gruppi di tre cifre
   nei valori numerici;
 - `precision` definisce il numero di cifre decimali (per i `float`) o di
   caratteri (per le stringhe) da mostrare;
 - `type` specifica la modalità di rappresentazione del valore, scegliendo uno
-  dei caratteri elencati nella {numref}`tab_tipi-formattazione`.
+  dei caratteri elencati nella {numref}`tab_tipi-formattazione`; meritano un
+  po' più di dettaglio gli specificatori `e`, `E` e `g`: i primi due forzano
+  l'utilizzo della notazione scientifica per indicare i valori decimali, mentre
+  il terzo adotta quella tra le notazioni scientifica e a virgola fissa che
+  garantisce l'output più corto.
 
 La sintassi completa del mini linguaggio di formattazione è leggermente più
 complessa, ed è descritta in dettaglio nella
 [documentazione ufficiale](https://docs.python.org/3/library/string.html#format-specification-mini-language).
 
 
-```{table} Modalità di formattazione dei letterali stringa (f-string) e relativi simboli
+```{table} Modalità di formattazione dei letterali stringa (f-string) e relativi simboli.
 :name: tab_tipi-formattazione
 :align: center
 | Carattere | Tipo di visualizzazione             |
@@ -593,12 +603,10 @@ complessa, ed è descritta in dettaglio nella
 | `s`       | Stringa (_default_)                 |
 | `d`       | Intero                              |
 | `f`       | Decimale (notzione a virgola fissa) |
-| `e`       | Decimale (notazione scientifica)    |
-| `E`       | Decimale (notazione scientifica)    |
+| `e`, `E`  | Decimale (notazione scientifica)    |
 | `g`       | Forma compatta                      |
 | `%`       | Percentuale                         |
-| `x`       | Esadecimale                         |
-| `X`       | Esadecimale                         |
+| `x`, `X`  | Esadecimale                         |
 | `b`       | Binario                             |
 | `o`       | Ottale                              |
 ```
@@ -663,19 +671,35 @@ Rappresentazione grafica dei riferimenti contenuti nella lista.
 `l = [0, 1, 4, 9]`.
 ````
 
+L'iterazione svolta su una lista dai cicli for è quella che, intuitivamente,
+rispetta l'ordine degli elementi:
+
+```{code-cell}
+l = [0, 1, 4, 9]
+for i in l:
+    print(i)
+```
+
 ```{admonition} Nomenclatura
 :class: naming
 
-Il termine «lista» può trarre in inganno. In informatica viene spesso usato
-come abbreviazione di «lista collegata» (traduzione dall'inglese «linked
-list»), che è una struttura dati ben precisa. Nella sua forma più semplice,
-ogni elemento è collegato a quello successivo, e per accedere a una specifica
-posizione bisogna attraversare la struttura, partendo dall'inizio e passando
-per tutte le posizioni precedenti. Questo implica che il tempo di accesso ai
-contenuti non sono costanti: gli elementi alla fine della lista richiedono più
-tempo rispetto a quelli iniziali. D'altro canto, questo tipo di organizzazione
-facilita altri tipi di operazioni, come l'inserimento o la cancellazione di un
-elemento.
+Il termine «lista» potrebbe trarvi in inganno, dato che in informatica viene
+a volte usato come abbreviazione di «lista collegata» (traduzione dall'inglese
+«linked list»), che è una struttura dati ben precisa. Nella forma più semplice
+di questa struttura dati, ogni elemento è collegato a quello successivo, e per
+accedere a una specifica posizione bisogna attraversare la struttura, partendo
+dall'inizio e passando per tutte le posizioni precedenti. Questo implica che il
+tempo di accesso ai contenuti non sia costante: gli elementi alla fine della
+lista richiedono più tempo rispetto a quelli iniziali. D'altro canto, questo
+tipo di organizzazione rende più semplice eseguire operazioni di altro tipo,
+come l'inserimento o la cancellazione di un elemento.
+
+Le liste collegate rappresentano uno dei modi possibili di implementare
+il concetto astratto che corrisponde a una sequenza ordinata di elementi,
+che prende appunto il nome di _lista_ e che è fondamentalmente corrisponde a
+ciò che è memorizzato in un oggetto di tipo `list` &mdash; a patto di
+ragionare nei termini di quello a cui puntano i riferimenti memorizzati nella
+lista.
 
 Le specifiche di Python non impongono alcuna rappresentazione interna per gli
 oggetti di tipo `list`. Nella pratica, però, tutte le principali
@@ -688,9 +712,8 @@ elementi.
 È comunque importante ricordare che una lista in Python non è un _array_ nel
 senso tradizionale del termine: infatti, può contenere oggetti eterogenei e
 cresce o si restringe a seconda delle operazioni svolte. Si tratta quindi di
-una struttura più flessibile rispetto agli array statici di molti altri
+una struttura più flessibile rispetto agli _array_ statici di molti altri
 linguaggi.
-
 ```
 
 ```{margin}
@@ -713,63 +736,82 @@ una proprietà che caratterizza gli elementi della lista risultante. Nella sua
 forma più semplice, la sintassi per introdurre una _list comprehension_ è
 `[f(e) for e in l]`, dove`f(e)` è un’espressione nella quale occorre la
 variabile muta `e`, mentre `l` è la struttura di partenza. Durante la
-valutazione della _comprehension_, `l` viene attraversata generando tutti i
-suoi elementi; ciascuno, a turno, viene temporaneamente referenziato da `e`,
-così che risulta possibile valutare `f(e)`. I risultati ottenuti vengono
-raccolti in una nuova lista, mantenendo l’ordine nel quale sono stati generati.
-In altre parole, il primo elemento della lista è il risultato dell’applicazione
-di `f` al primo elemento di `l` che è stato considerato, il secondo è
-il risultato di `f` sul secondo elemento, e così via. Se la struttura di
-partenza è una lista, questa verrà attraversata dalla prima alla ultima
-posizione, e quindi gli elementi di `l` e quelli del risultato ottenuto saranno
-allineati. Per esempio, la lista dei primi quattro quadrati perfetti
-può essere espressa anche come:
+valutazione della _comprehension_, gli elementi di `l` vengono enumerati usando
+l'equivalente di un ciclo for; ciascuno, a turno, viene temporaneamente
+referenziato da `e`, così che risulta possibile valutare `f(e)`. I risultati
+ottenuti vengono raccolti in una nuova lista, mantenendo l’ordine nel quale
+sono stati generati. In altre parole, il primo elemento della lista è il
+risultato dell’applicazione di `f` al primo elemento di `l` che è stato
+considerato, il secondo è il risultato di `f` sul secondo elemento, e così via.
+Se la struttura di partenza è una lista, questa verrà attraversata dalla prima
+alla ultima posizione, e quindi gli elementi di `l` e quelli del risultato
+ottenuto saranno allineati. Per esempio, la lista dei primi quattro quadrati
+perfetti può essere espressa anche come:
 
 ```{margin}
 Quando una lista contiene dati omogenei, è sempre opportuno valutare di
-sostituirla con un _array_, per diminuire i tempi di esecuzione e ridurre il
-rischio di introdurre _bug_ nel codice.
+sostituirla con un [_array_](sec_array), per diminuire i tempi di esecuzione e
+ridurre il rischio di introdurre _bug_ nel codice.
 ```
 
 ```{code-cell} python
 [i**2 for i in range(4)]
 ```
 
+dove `range(4)` restituisce un oggetto che, in questo contesto, equivale alla
+lista `[0, 1, 2, 3]` (ma che non è una lista, come spiego nel riquadro
+[Range](range) qui sotto): i suoi elementi verranno considerati quindi
+nell'ordine nel quale occorrono ed elevati al quadrato.
+
+
 In una _list comprehension_ è possibile non solo trasformare gli elementi di
 una struttura, ma anche scartarne una parte, selezionando solo quelli che
 soddisfano una certa condizione. La sintassi estesa `[f(e) for e in l if g(e)]`
 indica che un elemento `e` della struttura `l` viene considerato (e
-trasformato) se e solo se l’espressione logica `g(e)` risulta vera. Pertanto
+trasformato) se e solo se l’espressione logica `g(e)` risulta vera. Ad esempio,
+la lista dei primi tre numeri dispari si può ottenere nel modo seguente:
 
 ```{code-cell} python
 [i for i in range(1, 6) if i % 2 == 1]
 ```
 
-genera la lista dei primi tre numeri dispari.
-
+(range)=
 ````{admonition} Range
-In alcuni degli esempi fatti finora, ho usato `range` per costruire sequenze di
-numeri interi equispaziati tra due estremi definiti. Più precisamente, dati tre
-valori interi memorizzati in `m`, `n` e `s`:
+In alcuni esempi precedenti ho utilizzato `range` per costruire sequenze di
+numeri interi equispaziati tra due estremi. Più precisamente, dati tre valori
+interi memorizzati nelle variabili `m`, `n` e `s`:
 
-- `range(m)` individua la sequenza degli interi da zero a `m − 1`;  
-- `range(m, n)` rappresenta la sequenza degli interi da `m` a `n − 1`;  
-- `range(m, n, s)` indica la sequenza ottenuta partendo da `m` e applicando
-  successivi incrementi di `s` unità, fino al primo valore che non supera `n`.
+- `range(m)` individua la sequenza degli interi da `0` a `m − 1`;
+- `range(m, n)` rappresenta la sequenza degli interi da `m` a `n − 1`;
+- `range(m, n, s)` descrive la sequenza ottenuta partendo da `m` e applicando
+  successivamente degli incrementi di `s` unità, fino a includere il più grande
+  tra i valori che non superano `n`.
 
-Nelle prime versioni di Python, `range` era una funzione che restituiva la
-lista contenente tutti gli elementi della sequenza generata. Questo approccio
-risultava tuttavia potenzialmente impraticabile per lavorare con sequenze molto
-lunghe. E poteva anche risultare particolarmente inefficiente: era questo il
-caso delle sequenze numeriche generate con il solo scopo di iterarvi sopra.
-Infatti, per eseguire questo compito è sufficiente mantenere in memoria
-soltanto il valore corrente della sequenza, l'incremento e il limite superiore.
-A partire da Python 3, `range` è diventata una classe, i cui oggetti
-rappresentano le sequenze stesse e ne implementano la generazione nel modo
-_pigro_ appena descritto (si parla, in casi come questi, di _lazy evaluation_).
-Gli oggetti restituiti da `range` si comportano come sequenze iterabili, e
-possono essere utilizzati nei cicli for o nelle _list comprehension_ in modo
-estremamente efficiente.
+Nelle prime versioni di Python, `range` era una funzione che restituiva
+esplicitamente la lista contenente tutti gli elementi della sequenza.
+Questo approccio diventava però rapidamente impraticabile quando la sequenza
+era molto lunga, perché richiedeva di mantenere tutti i suoi valori in memoria
+centrale.
+
+Anche quando le sequenze non erano particolarmente grandi, questo modo di
+procedere risultava spesso inefficiente. Un uso molto comune di `range`, per
+esempio, era quello di imitare il comportamento del ciclo `for` presente in
+altri linguaggi, iterando su una sequenza di indici usati per accedere agli
+elementi di una struttura dati. Anche ignorando per un momento il fatto che
+questo stile di programmazione rappresenta un _antipattern_ (come discusso nel
+[riquadro](pattern) corrispondente), per svolgere questo compito non è affatto
+necessario memorizzare l'intera sequenza: è sufficiente conoscere il valore
+corrente, l'incremento e il limite superiore.
+
+Per questo motivo, a partire da Python 3, `range` non è più una funzione che
+produce una lista, ma una classe: i suoi oggetti rappresentano la sequenza in
+modo implicito, memorizzando soltanto i parametri necessari per generarla. I
+valori vengono prodotti solo quando servono, seguendo una strategia nota come
+_lazy evaluation_. Gli oggetti restituiti da `range` si comportano quindi come
+sequenze sulle quali è possibile iterare con un ciclo `for` o con una
+_list comprehension_ --- ma anche effettuare altre operazioni come il calcolo
+della lunghezza o la verifica di appartenenza --- ma con un consumo di memoria
+estremamente ridotto.
 ````
 
 ```{margin}
@@ -778,7 +820,8 @@ ad esempio tramite dizionari o _named tuple_.
 ```
 L’eterogeneità delle liste consente di usarle anche per rappresentare un
 _record_, cioè un'aggregazione di informazioni che descrive un’entità
-complessa, come ad esempio un supereroe nel codice qui di seguito.
+complessa, come ad esempio un supereroe, nei termini degli attributi elencati
+nella {numref}`tab_dataset`:
 
 ```{code-cell} python
 iron_man = ['Iron Man', 'Anthony Edward Stark', 'Tony Stark', 'Good',
@@ -788,39 +831,23 @@ iron_man = ['Iron Man', 'Anthony Edward Stark', 'Tony Stark', 'Good',
 ```
 
 L’operatore di accesso alle liste segue la stessa semantica già vista per le
-stringhe: tra parentesi quadre si specifica una posizione, che individua un
-elemento della sequenza (più precisamente, il riferimento a quell’oggetto),
-oppure uno _slicing_ per ottenere una sotto-sequenza. 
+stringhe: tra parentesi quadre si specifica una posizione, che individua il
+corrispondente elemento della sequenza (più precisamente, il riferimento a
+quell’oggetto), oppure uno _slicing_ per ottenere una sotto-sequenza. 
 
 ````{prf:example}
 :label: ex-list
 
 Se consideriamo la lista memorizzata in `iron_man`, valutando le espressioni
 `iron_man[2]` e `iron_man[-2]` si ottengono rispettivamente il terzo e il
-penultimo dei valori presenti nella lista, ossia la stringa 'Tony Stark' e
+penultimo dei valori presenti nella lista, ossia la stringa `'Tony Stark'` e
 l'intero `80`. Allo stesso modo, si può estrarre la sotto-lista che contiene i
 colori di occhi e capelli usando uno _slicing_ come nella cella che segue.
 
-```{interactive-code} python
-:height: 0px
-:class: no-output
-
-iron_man = ['Iron Man', 'Anthony Edward Stark', 'Tony Stark', 'Good',
-            'Long Island, New York',  'Marvel Comics',
-            'Earth-616 - Prime Marvel Universe', 1963, 'Blue', 'Black',
-            198.1,  192.8,  100,  'High',  100,  85,  80,  90]
-```
-
-```{interactive-code} python
+```{code-cell} python
 iron_man[8:10]
 ```
 ````
-
-Specificare la posizione del primo elemento da escludere può sembrare
-controintuitivo rispetto all’approccio, apparentemente più naturale, di
-indicare l’ultimo elemento da includere. In realtà, questa scelta rende più
-semplice scrivere codice che elabora porzioni successive di una lista in modo
-ordinato ed efficiente.
 
 Sono disponibili diverse operazioni che agiscono sulle liste, implementate
 tramite elementi distinti del linguaggio: operatori, funzioni e metodi.
@@ -853,16 +880,11 @@ diverso. In particolare:
   che contiene tutti gli elementi della prima seguiti da quelli
   della seconda, lasciando inalterato il loro ordine;
 - L’operatore `*` permette di concatenare una lista con se stessa più volte;
-  più precisamente, se `l` e `n` sono rispettivamente una lista e un intero, `l
-  * n` e `n * l` producono una nuova lista formata da `n` ripetizioni dei
-  contenuti di `l`, sempre mantenendone l'ordine.
+  più precisamente, se `l` e `n` sono rispettivamente una lista e un intero,
+  sia `l * n` che `n * l` producono una nuova lista formata da `n` ripetizioni
+  dei contenuti di `l`, sempre mantenendone l'ordine.
 
-```{margin}
-Vedremo che `in` e `del` mantengono la loro semantica anche quando vengono
-usati con altri tipi di strutture dati.
-```
-
-Sempre nel {ref}`sec_dati-semplici` ho introdotto gli operatori `in` e `del`,
+Nel {ref}`sec_dati-strutturati` ho introdotto gli operatori `in` e `del`,
 che si applicano in modo naturale anche alle liste. Il primo implementa la
 relazione di appartenenza: se `e` è un’espressione e `l` una lista,
 l’espressione `e in l` viene valutata come logicamente vera se il valore
@@ -886,8 +908,8 @@ del names[0]
 Va sottolineato che `del` è un operatore dal comportamento peculiare, in quanto
 non restituisce alcun valore; la sua esecuzione ha però l’_effetto collaterale_
 di eliminare il riferimento nella posizione specificata della lista usata come
-operando [^del-behaviour]. Come conseguenza di questo effetto collaterale,
-nell’esempio precedente viene eliminato il primo elemento della lista, così che
+operando[^del-behaviour]. Nell’esempio precedente, la conseguenza di questo
+effetto è quella di eliminare l'elemento all'inizio della lista, così che
 quello che prima era il secondo elemento diventa ora il primo, e così via, come
 si può facilmente verificare:
 
@@ -897,15 +919,14 @@ names[0]
 
 ```{admonition} Nota
 :class: note
-In realtà `del` è un operatore che può essere applicato a una vasta gamma di
-operandi e che consente di eliminare un riferimento a un oggetto. Se dopo
-questa operazione non esistono più riferimenti che puntano all’oggetto,
-questo verrà rimosso dalla memoria, liberando spazio[^garbage-collector]. Il
-fatto che la maggior parte delle componenti di Python accessibili durante
-l’esecuzione di un programma siano, in modo più o meno esplicito, associate a
-degli oggetti, rende possibile eliminare non solo variabili o parti di
-strutture dati, ma anche altri elementi del linguaggio che vedremo più avanti,
-come funzioni e moduli.
+L'operatore `del` può essere applicato a una vasta gamma di operandi, al fine
+di eliminare un riferimento a un oggetto. Se dopo questa operazione non
+esistono più riferimenti che puntano all’oggetto, questo verrà rimosso dalla
+memoria, liberando spazio[^garbage-collector]. Il fatto che la maggior parte
+delle componenti di Python accessibili durante l’esecuzione di un programma
+siano, in modo più o meno esplicito, associate a degli oggetti, rende possibile
+eliminare non solo variabili o parti di strutture dati, ma anche altri elementi
+del linguaggio che vedremo più avanti, come funzioni e moduli.
 ```
 
 
@@ -1196,6 +1217,17 @@ codice idiomatico, e che si possono implementare usando diversi linguaggi di
 programmazione. Sono esempi di _design pattern_ i singoletti, i _flyweight_ e i
 metodi fabbrica ai quali ho precedentemente accennato.
 
+[^double-index]: Se avete letto con attenzione, vi sarete accorti che il ciclo
+for precedente ha una sintassi leggermente diversa rispetto a quella introdotta
+finora. Infatti, contiene due variabili di ciclo (separate da virgola),
+necessarie quando vogliamo ottenere contemporaneamente due informazioni durante
+l’iterazione. Nel caso di `enumerate`, la prima variabile riceve l’indice
+dell’elemento, mentre la seconda riceve il valore vero e proprio, permettendo
+di lavorare con entrambi senza ricorrere a contatori esterni. In generale,
+Python permette di usare più variabili di ciclo ogni volta che le informazioni
+da elaborare sono raggruppate in coppie o tuple, così da scomporle e usarle
+singolarmente all’interno del corpo del ciclo. 
+
 [^data-model]: Se avete già studiato un linguaggio di programmazione orientato
 agli oggetti, vi starete probabilmente chiedendo perché la lunghezza di una
 struttura non si ottenga invocando un metodo su di essa. Questo è in effetti
@@ -1246,7 +1278,7 @@ che descrive in dettaglio le sequenze di _escaping_.
 lunghezza delle righe di codice non ecceda questo limite, così da garantirne
 una visualizzazione leggibile nelle finestre di un terminale, la cui larghezza
 predefinita è, appunto, di ottanta colonne. Questo accorgimento facilita anche
-il confronto tra due file di codice, visualizzandoli in terminali distinti o
+il confronto tra due sorgenti diversi, visualizzandoli in terminali distinti o
 affiancandoli in un IDE. Io aderisco a questa convenzione, ma va detto che non
 esiste un consenso unanime tra gli sviluppatori: i moderni monitor permettono
 infatti di visualizzare e affiancare terminali con righe più lunghe senza
@@ -1254,7 +1286,7 @@ compromettere la chiarezza. In molti progetti si adottano quindi soglie più
 flessibili &mdash; ad esempio 100 o 120 caratteri &mdash; mantenendo però
 l’obiettivo generale di favorire la leggibilità.
 
-[^del-behaviour]: I lettori attenti potrebbero avere notato un apparente
+[^del-behaviour]: Potreste avere notato un apparente
 incoerenza tra il modo in cui vengono valutate le espressioni e la semantica
 appena introdotta per l'operatore `del`. Consideriamo l'espressione `del
 names[0]` dell'esempio precedente: se questa fosse valutata in modo ususale,

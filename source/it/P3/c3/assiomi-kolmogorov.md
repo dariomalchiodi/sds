@@ -126,6 +126,7 @@ modo analogo si dimostra che
 $\mathbb P(F) = \mathbb P(\overline E \cap F) + \mathbb P (E \cap F)$, che
 equivale a
 $\mathbb P(\overline E \cap F) = \mathbb P(F) - \mathbb P (E \cap F)$.
+Vedi {numref}`fig_venn-union-theorem`.
 
 
 Si verifica facilmente che $E \cap \overline F$, $E \cap F$ e
@@ -142,3 +143,88 @@ all'unione di tre insiemi disgiunti si ha
 da cui segue la tesi.
 ````
 
+```{code-cell} python
+:tags:  [hide-input]
+
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+from matplotlib_venn import venn2_circles, venn2
+
+venn_set_edge = '#333333'
+background_color = '#eaf3f5'
+font_size = 9
+
+# Three distinct blue shades
+color_E_only    = '#AED6F1'  # light blue  → E \ F  (region '10')
+color_intersect = '#2E86C1'  # medium blue → E ∩ F  (region '11')
+color_F_only    = '#1A5276'  # dark blue   → F \ E  (region '01')
+
+fig, ax = plt.subplots()
+
+# Set both the axes and figure background
+ax.set_facecolor(background_color)
+fig.patch.set_facecolor(background_color)
+
+# Rectangle for the universal set Ω
+r = patches.Rectangle((-0.75, -0.6), 1.5, 1.1,
+                       edgecolor=venn_set_edge,
+                       facecolor=background_color, alpha=1)
+ax.add_patch(r)
+
+v = venn2(subsets=(3, 3, 1), set_labels=(r'$E$', r'$F$'), ax=ax)
+c = venn2_circles(subsets=(3, 3, 1), ax=ax)
+
+for l in v.set_labels:
+    l.set_fontsize(font_size)
+
+for contour in c:
+    contour.set_lw(1.4)
+    contour.set_edgecolor(venn_set_edge)
+
+# Color each region with a distinct blue shade
+v.get_patch_by_id('10').set_color(color_E_only)     # E \ F
+v.get_patch_by_id('10').set_alpha(1)
+
+v.get_patch_by_id('11').set_color(color_intersect)  # E ∩ F
+v.get_patch_by_id('11').set_alpha(1)
+
+v.get_patch_by_id('01').set_color(color_F_only)     # F \ E
+v.get_patch_by_id('01').set_alpha(1)
+
+v.get_label_by_id('10').set_text(r'$E \cap \overline{F}$')
+v.get_label_by_id('10').set_fontsize(font_size)
+
+v.get_label_by_id('11').set_text(r'$E \cap F$')
+v.get_label_by_id('11').set_fontsize(font_size)
+
+v.get_label_by_id('01').set_text(r'$\overline{E} \cap F$')
+v.get_label_by_id('01').set_fontsize(font_size)
+
+ymin, ymax = ax.get_ylim()
+ax.set_ylim(ymin - 0.1, ymax)
+ax.text(0.55, 0.4, r'$\Omega$', fontsize=font_size)
+
+plt.show()
+```
+````{customfigure}
+:name: fig_venn-union-theorem
+
+Il diagramma di Venn che illustra la scomposizione di $E \cup F$ nell'unione
+disgiunta di $E \cap \overline F$, $E \cap F$ ed $\overline E \cap F$.
+````
+
+````{prf:theorem}
+:label: teo_prob_sottoinsiemi
+
+```{math}
+\forall E, F \subseteq \Omega \quad E \subseteq F \rightarrow
+\mathbb P(E) \leq \mathbb P(F).
+```
+````
+````{admonition} _
+:class: myproof
+
+Siccome $F = E \cup (F \cap \overline E)$ ed $E$ e $F \cap \overline E$ sono
+disgiunti, per il terzo assioma di Kolmogorov si ha
+$\mathbb P(F) = \mathbb P(E) + \mathbb P(F \cap \overline E) \geq \mathbb P(E)$.
+````

@@ -104,6 +104,12 @@ nb_execution_excludepatterns = []
 # Allow errors for cells tagged with 'raises-exception'
 nb_merge_streams = True
 
+nb_execution_init_code = """
+import matplotlib as mpl
+mpl.rcParams['mathtext.fontset'] = 'cm'
+mpl.rcParams['axes.facecolor'] = '#eaf3f5'
+mpl.rcParams['figure.facecolor'] = '#eaf3f5'
+"""
 
 
 bibtex_bibfiles = ['../references.bib']

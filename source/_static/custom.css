@@ -224,6 +224,10 @@ span.katex {
     display: inherit;
 }
 
+.cell_output > .math {
+  margin-bottom: 1em !important;
+}
+
 .cell_output, .cell_output .output.stream {
   margin-top: 0 !important;
 }
