@@ -154,6 +154,14 @@ venn_set_edge = '#333333'
 background_color = '#eaf3f5'
 font_size = 9
 
+plt.rcParams.update({
+    "text.usetex": True,
+    "font.family": "serif",
+    "font.serif": ["Computer Modern Roman"],
+    "figure.dpi": 300,
+    "figure.figsize": (6, 4),
+})
+
 # Three distinct blue shades
 color_E_only    = '#AED6F1'  # light blue  → E \ F  (region '10')
 color_intersect = '#2E86C1'  # medium blue → E ∩ F  (region '11')

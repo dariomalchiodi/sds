@@ -104,14 +104,6 @@ nb_execution_excludepatterns = []
 # Allow errors for cells tagged with 'raises-exception'
 nb_merge_streams = True
 
-nb_execution_init_code = """
-import matplotlib as mpl
-mpl.rcParams['mathtext.fontset'] = 'cm'
-mpl.rcParams['axes.facecolor'] = '#eaf3f5'
-mpl.rcParams['figure.facecolor'] = '#eaf3f5'
-"""
-
-
 bibtex_bibfiles = ['../references.bib']
 bibtex_reference_style = 'author_year'
 
@@ -427,6 +419,17 @@ def strip_out_code_cells(app, env, docnames):
 def setup(app):
     import json
     import os
+
+    import matplotlib
+    matplotlib.rcParams.update({'figure.figsize': (4, 2),
+                                'figure.dpi': 150,
+                                'savefig.dpi': 300,
+                                'font.family': 'serif',
+                                'font.serif': ['Computer Modern Roman'],
+                                'mathtext.fontset': 'cm',
+                                'text.usetex': True,
+                                'axes.facecolor': '#eaf3f5',
+                                'figure.facecolor': '#eaf3f5'})
 
     # Load URL mapping for language switching
     mapping_path = os.path.join(os.path.dirname(__file__), '..', '_templates', 'url_mapping.json')

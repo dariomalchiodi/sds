@@ -171,3 +171,4 @@ test-results/
 
 # Build scripts and utilities
 !code/
+playground/prova.ipynb
