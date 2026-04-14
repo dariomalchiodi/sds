@@ -143,6 +143,8 @@ all'unione di tre insiemi disgiunti si ha
 da cui segue la tesi.
 ````
 
+
+
 ```{code-cell} python
 :tags:  [hide-input]
 
@@ -152,15 +154,9 @@ from matplotlib_venn import venn2_circles, venn2
 
 venn_set_edge = '#333333'
 background_color = '#eaf3f5'
-font_size = 9
+font_size = 7
 
-plt.rcParams.update({
-    "text.usetex": True,
-    "font.family": "serif",
-    "font.serif": ["Computer Modern Roman"],
-    "figure.dpi": 300,
-    "figure.figsize": (6, 4),
-})
+
 
 # Three distinct blue shades
 color_E_only    = '#AED6F1'  # light blue  → E \ F  (region '10')
@@ -176,7 +172,7 @@ fig.patch.set_facecolor(background_color)
 # Rectangle for the universal set Ω
 r = patches.Rectangle((-0.75, -0.6), 1.5, 1.1,
                        edgecolor=venn_set_edge,
-                       facecolor=background_color, alpha=1)
+                       facecolor=background_color, alpha=1, lw=0.7)
 ax.add_patch(r)
 
 v = venn2(subsets=(3, 3, 1), set_labels=(r'$E$', r'$F$'), ax=ax)
@@ -186,7 +182,7 @@ for l in v.set_labels:
     l.set_fontsize(font_size)
 
 for contour in c:
-    contour.set_lw(1.4)
+    contour.set_lw(0.7)
     contour.set_edgecolor(venn_set_edge)
 
 # Color each region with a distinct blue shade

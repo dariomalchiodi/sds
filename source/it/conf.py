@@ -23,6 +23,20 @@ import sys
 import logging
 import matplotlib.pyplot as plt
 
+import shutil
+import matplotlib
+
+# Install the style into the active matplotlib stylelib at build time
+# _stylelib = os.path.join(matplotlib.get_configdir(), 'stylelib')
+# os.makedirs(_stylelib, exist_ok=True)
+# print(os.path.join(os.path.dirname(__file__), 'sds.mplstyle'))
+# shutil.copy(
+#     os.path.join(os.path.dirname(__file__), 'sds.mplstyle'),
+#     os.path.join(_stylelib, 'sds.mplstyle')
+# )
+
+
+
 # Nuclear option - suppress ALL duplicate label warnings at the logging level
 class DuplicateLabelFilter(logging.Filter):
     def filter(self, record):
@@ -80,6 +94,7 @@ extensions = [ # 'myst_parser',
                'sds.numref_to_ref',
                'sds.sphinx_custom_codeblock',
                'sphinxcontrib.mermaid',
+               'sds.prepend_cell',
                 ]
 
 # nb_code_cell_render_options = {
