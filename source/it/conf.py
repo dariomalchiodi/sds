@@ -22,7 +22,10 @@ from pathlib import Path
 import sys
 import logging
 
-os.environ['MPLCONFIGDIR'] = os.path.dirname(os.path.abspath(__file__))
+os.environ['MPLCONFIGDIR'] = \
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')
+
+print(">>> Sphinx configuration: MPLCONFIGDIR set to", os.environ['MPLCONFIGDIR'])
 
 # Nuclear option - suppress ALL duplicate label warnings at the logging level
 class DuplicateLabelFilter(logging.Filter):
