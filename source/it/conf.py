@@ -21,11 +21,21 @@ import re
 from pathlib import Path
 import sys
 import logging
+import shutil
 
-os.environ['MPLCONFIGDIR'] = \
-    os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')
+import matplotlib
 
-print(">>> Sphinx configuration: MPLCONFIGDIR set to", os.environ['MPLCONFIGDIR'])
+_stylelib = os.path.join(matplotlib.get_configdir(), 'stylelib')
+os.makedirs(_stylelib, exist_ok=True)
+shutil.copy(
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'sds.mplstyle'),
+    os.path.join(_stylelib, 'sds.mplstyle')
+)
+
+# os.environ['MPLCONFIGDIR'] = \
+#     os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')
+
+# print(">>> Sphinx configuration: MPLCONFIGDIR set to", os.environ['MPLCONFIGDIR'])
 
 # Nuclear option - suppress ALL duplicate label warnings at the logging level
 class DuplicateLabelFilter(logging.Filter):
