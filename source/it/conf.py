@@ -21,21 +21,8 @@ import re
 from pathlib import Path
 import sys
 import logging
-import matplotlib.pyplot as plt
 
-import shutil
-import matplotlib
-
-# Install the style into the active matplotlib stylelib at build time
-# _stylelib = os.path.join(matplotlib.get_configdir(), 'stylelib')
-# os.makedirs(_stylelib, exist_ok=True)
-# print(os.path.join(os.path.dirname(__file__), 'sds.mplstyle'))
-# shutil.copy(
-#     os.path.join(os.path.dirname(__file__), 'sds.mplstyle'),
-#     os.path.join(_stylelib, 'sds.mplstyle')
-# )
-
-
+os.environ['MPLCONFIGDIR'] = os.path.dirname(os.path.abspath(__file__))
 
 # Nuclear option - suppress ALL duplicate label warnings at the logging level
 class DuplicateLabelFilter(logging.Filter):

@@ -71,7 +71,7 @@ particolare, in tal caso si avrebbe
 $\mathbb P(\Omega) = \sum_{i=1}^n P(\{ w_i \}) = \sum_{i=1}^n 0 = 0$.
 ````
 
-Gli eventi non elementare, in generale, avranno probabilità diverse tra loro.
+Gli eventi non elementari, in generale, avranno probabilità diverse tra loro.
 Ma è facile vedere come anche queste probabilità dipendono da $p$, come
 evidenziato nel seguente teorema.
 

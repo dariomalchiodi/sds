@@ -25,7 +25,7 @@ boxplot.medianprops.color: C1
 figure.dpi: 300
 figure.edgecolor: none
 figure.facecolor : "#eaf3f5"
-figure.figsize: 1, 2/3
+figure.figsize: 1, 0.67 
 
 # Grid settings
 grid.color: lightgray
