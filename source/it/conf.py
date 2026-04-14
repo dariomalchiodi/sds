@@ -106,6 +106,9 @@ nb_execution_excludepatterns = []
 # Allow errors for cells tagged with 'raises-exception'
 nb_merge_streams = True
 
+# ensures verbose error reporting
+nb_execution_show_tb = True
+
 bibtex_bibfiles = ['../references.bib']
 bibtex_reference_style = 'author_year'
 
