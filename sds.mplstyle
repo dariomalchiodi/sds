@@ -13,7 +13,7 @@ axes.labelsize: 10
 axes.labelpad: 10
 axes.spines.top: False
 axes.spines.right: False
-axes.titlesize: 14
+axes.titlesize: 10
 
 # Boxplots settings
 boxplot.boxprops.color: C0
@@ -22,7 +22,7 @@ boxplot.medianprops.linewidth: 2
 boxplot.medianprops.color: C1
 
 # Figure settings
-figure.dpi: 300
+figure.dpi: 100
 figure.edgecolor: none
 figure.facecolor : "#eaf3f5"
 figure.figsize: 1, 0.67 
@@ -39,9 +39,9 @@ lines.linewidth: 2.0
 lines.markersize: 8
 
 # Font settings
-font.size: 10
-xtick.labelsize: 10
-ytick.labelsize: 10
+font.size: 7
+xtick.labelsize: 7
+ytick.labelsize: 7
 legend.fontsize: 11
 
 # Legend

@@ -114,7 +114,7 @@ nell'insieme universo, e come analogamente l'insieme vuoto risulti sempre
 incluso in qualunque insieme:
 
 ```{math}
-\forall S \subseteq \Omega \ \{\} \subseteq S \subseteq \Omega ,
+\forall S \subseteq \Omega \quad \varnothing \subseteq S \subseteq \Omega ,
 ```
 
 e questa relazione continua a valere se si considera la relazione di inclusione

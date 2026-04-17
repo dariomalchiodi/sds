@@ -9,15 +9,6 @@ kernelspec:
   display_name: Python 3
 ---
 
-```{code-cell} python
-:tags: [remove-cell]
-
-import matplotlib.pyplot as plt
-plt.style.use('../../_static/sds.mplstyle')
-%matplotlib inline
-plt.ioff()
-```
-
 (sec_spazi-equiprobabili)=
 # Spazi equiprobabili
 
@@ -41,7 +32,8 @@ esiti, come illustrato nel seguente teorema.
 ````{prf:theorem}
 :label: teo-prob-equiprobabile
 In uno spazio equiprobabile, l'insieme degli esiti deve avere una cardinalità
-finita $n \in \mathbb N$ e $p = \frac{1}{n}$.
+finita $n \in \mathbb N$, e la probabilità di un generico evento elementare
+deve essere uguale a $p = \frac{1}{n}$.
 ````
 ````{admonition} _
 :class: myproof
@@ -69,6 +61,24 @@ all'infinito il valore di $p$ dovrebbe tendere a zero. Ciò non può però
 verificarsi perché andrebbbe a contraddire gli assiomi di Kolmogorov: in
 particolare, in tal caso si avrebbe
 $\mathbb P(\Omega) = \sum_{i=1}^n P(\{ w_i \}) = \sum_{i=1}^n 0 = 0$.
+````
+
+````{prf:example}
+Sia $(\Omega, \mathsf A, \mathbb P)$ lo spazio equiprobabile in cui $\Omega$
+corrisponde all'insieme dei supereroi del nostro dataset. La probabilità di
+un evento elementare si ottiene facilmente calcolando l'inverso del numero di
+supereroi.
+
+```{code-cell} python
+
+import pandas as pd
+
+heroes = pd.read_csv('data/heroes.csv', index_col='name')
+n = len(heroes)
+p = 1/ n
+print(rf'La probabilità di estrarre un supereroe a caso è p = {p:.4f}.')
+```
+
 ````
 
 Gli eventi non elementari, in generale, avranno probabilità diverse tra loro.
@@ -123,6 +133,80 @@ dalla loro effettiva tangibilità.
 In casi come questo, le regole del calcolo combinatorio descritte nel
 {ref}`chap_calcolo-combinatorio` sono spesso di aiuto per
 calcolare numeratore e denominatore in {eq}`eq_prob-classica`.
+
+````{prf:example}
+:label: ex-somma-due-dadi
+Consideriamo il lancio di due dadi bilanciati di colori diversi, diciamo uno
+rosso e uno blu. Lo spazio degli esiti dell'esperimento casuale corrispondente
+è costituito da tutte le coppie ordinate
+$(\omega_\text{rosso}, \omega_\text{blu})$, dove
+$\omega_\text{rosso} \in [1..6]$ indica il risultato del lancio del dado rosso,
+con un'analoga notazione per il dado rimanente. Per il principio fondamentale
+del calcolo combinatorio, il numero totale di esiti possibili è
+$6 \times 6 = 36$. L'ipotesi di bilanciamento dei dadi ci permette di lavorare
+nello spazio equiprobabile in cui
+$\Omega = \{ (\omega_\text{rosso}, \omega_\text{blu}) \mid
+\omega_\text{rosso}, \omega_\text{blu} \in [1..6] \}$ e
+$\mathsf A = 2^\Omega$, e $\mathbb P$ si calcola applicando la regola
+classica delle probabilità. Per esempio, l'evento
+$E = \{ (1, 6), (2, 5), (3, 4), (4, 3), (5, 2), (6, 1) \}$ che si verifica
+quando la somma dei risultati è uguale a $7$, illustrato nella
+{numref}`fig_venn-complement`, avrà probabilità
+
+$$\mathbb P(E) = \frac{|E|}{|\Omega|} = \frac{6}{36} = \frac{1}{6} \enspace.$$
+````
+
+```{code-cell} python
+:tags:  [hide-input]
+
+import matplotlib.pyplot as plt
+from matplotlib.patches import Ellipse
+import numpy as np
+
+x, y = np.meshgrid(range(1, 7), range(1, 7))
+x, y = x.ravel(), y.ravel()
+
+with mpl.rc_context({'figure.figsize': (3, 3),
+                     'figure.titlesize': 8,
+                     'figure.dpi': 150,
+                     'xtick.labelsize': 7,
+                     'ytick.labelsize': 7,
+                     'axes.labelsize': 7,}):
+
+  fig, ax = plt.subplots()
+
+  ellipse = Ellipse((3.5, 3.5), width=8, height=1, angle=-45,
+                    facecolor='lightblue', edgecolor='lightblue', 
+                    linewidth=1, alpha=0.5, zorder=1)
+  ax.add_patch(ellipse)
+
+  ax.scatter(x, y, s=20, c='steelblue', edgecolors='black', linewidths=0.5)
+
+  ax.set_xlabel('Risultato del dado rosso')
+  ax.set_ylabel('Risultato del dado blu')
+  ax.set_title(r'$\Omega = \{ (\omega_\text{rosso}, \omega_\text{blu}) \mid '
+              r'\omega_\text{rosso}, \omega_\text{blu} \in [1..6] \}$')
+  ax.set_xticks(range(1, 7))
+  ax.set_yticks(range(1, 7))
+  ax.set_xlim(0.5, 6.5)
+  ax.set_ylim(0.5, 6.5)
+  ax.grid(True, alpha=0.3)
+  ax.set_aspect('equal')
+  plt.show()
+```
+````{customfigure}
+:name: fig_dice-sum
+
+Il diagramma di Venn che illustra lo spazio degli esiti per il lancio di due dadi distinguibili e l'evento che si verifica quando la somma dei risultati è uguale a $7$.
+````
+
+Nell'esempio precedente, il fatto che i due dadi siano tra loro distinguibili
+è particolarmente importante. In caso contrario, ogni esito sarebbe descritto
+da una coppia _non ordinata_ $\{d_1, d_2 \}$, e $\Omega$ conterrebbe $21$
+coppie siffatte. Ma non sarebbe più vero che tutti gli esiti
+sono equiprobabili: per esempio $\{1, 2\}$ si può realizzare in due modi
+diversi, mentre $\{1, 1\}$ si può ottenere in un unico modo.
+
 
 ```{margin}
 Se in questo esempio si sostituiscono gli anni di prima apparizione dei
@@ -210,3 +294,31 @@ plt.plot(list(x), p1)
 plt.show()
 ```
 
+
+
+## Esercizi
+
+```{exercise} •
+Nell’{prf:ref}`ex-somma-due-dadi`, il numero di esiti in $\Omega$ si poteva
+calcolare anche facendo riferimento a uno dei concetti introdotti nel
+{ref}`chap_calcolo-combinatorio`. Qual è questo concetto e come lo si può
+applicare a questo esempio?
+```
+
+```{exercise} •
+Facendo riferimento allo spazio di probabilità
+dell’{prf:ref}`ex-somma-due-dadi`, calcolate la probabilità dei seguenti
+eventi, visualizzando i corrispondenti diagrammi di Venn:
+
+- il risultato del lancio del dado blu è uguale a $3$;
+- il risultato del lancio del dado blu è minore di $3$;
+- la somma dei risultati dei due lanci è uguale a $9$;
+- la somma dei risultati dei due lanci è maggiore di $9$;
+- la somma dei risultati dei due lanci è minore o uguale di $9$;
+- la differenza dei risultati dei due lanci è uguale a 1.
+```
+
+```{exercise} •
+Motivate il fatto che il numero di esiti in $\Omega$ per l'esperimento casuale
+che consiste nel lanciare due dadi indistinguibili è uguale a $21$.
+```

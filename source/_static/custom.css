@@ -222,6 +222,7 @@ py-script {
 
 span.katex {
     display: inherit;
+    font-size: 1em;
 }
 
 .cell_output > .math {

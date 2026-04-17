@@ -10,35 +10,44 @@ kernelspec:
 ---
 
 (sec_concetti-fondamentali)=
-# Concetti fondamentali
+# Esperimenti, esiti ed eventi
 
-Come descritto all'inizio di questo capitolo, alla base di ogni ragionamento
-di tipo probabilistico si trova un'esperienza non deterministica che chiameremo
-_esperimento casuale_, come formalizzato nella definizione seguente.
+Come ho descritto all'inizio di questo capitolo, alla base di ogni ragionamento
+di tipo probabilistico si trova un _esperimento casuale_: un'esperienza non
+deterministica formalizzata nella definizione seguente.
 
 ```{margin}
-Gli esperimenti casuali saranno indicati utilizzando
-le lettere maiuscole corsive $\mathscr E$, $\mathscr F$ e così via, scegliendo
-possibilmente una lettera legata al significato dell'esperimento stesso.
+Indicherò gli esperimenti casuali utilizzando le lettere maiuscole corsive,
+come $\mathscr E$, $\mathscr F$ e così via, scegliendo ove possibile lettere
+legate al significato dell'esperimento stesso.
 ```
 ```{prf:definition} Esperimento casuale
 :label: def-esperimento-casuale
-Definiamo _esperimento casuale_ (o _aleatorio_) una qualsiasi esperienza che
+Un _esperimento casuale_ (o _aleatorio_) è una qualsiasi esperienza che
 può dare risultati differenti quando essa viene ripetuta più volte partendo da
 condizioni iniziali identiche.
 ```
 
+```{prf:example}
+:label: ex-experiments
+
 Immaginiamo di acquistare tutte le settimane un nuovo numero di un fumetto dei
 Fantastici 4: ogni volta i contenuti saranno diversi, permettendoci di
-considerare per esempio gli esperimenti casuali $\mathscr P =$ controllare se
-il numero totale di occorrenze della Donna invisibile è pari, $\mathscr O =$
-verificare quale sia il colore degli occhi del primo supereroe che compare nel
-numero, $\mathscr C =$ elencare l'ordine di apparizione dei Fantastici 4,
-$\mathscr N =$ contare il numero di diversi supereroi presenti e $\mathscr A =$
-misurare l'altezza (in cm.) dell'ultimo supereroe che compare nel fumetto.
+considerare per esempio gli esperimenti casuali che seguono:
+
+- $\mathscr P$: controllare se il numero totale di occorrenze della Donna
+  invisibile è pari,
+- $\mathscr O$: verificare quale sia il colore degli occhi del primo supereroe
+  che compare nel fumetto,
+- $\mathscr C$ elencare l'ordine di apparizione dei Fantastici 4,
+- $\mathscr N$: contare il numero di diversi supereroi presenti, e
+- $\mathscr A$: misurare l'altezza (in cm.) dell'ultimo supereroe che compare
+  nel fumetto.
+
+```
 
 ```{margin}
-Denoteremo gli esiti usando le lettere minuscole dell'alfabeto greco,
+Denoterò gli esiti usando le lettere minuscole dell'alfabeto greco,
 utilizzando possibilmente $\omega$ (omega minuscola) o alcune sue varianti.
 ```
 ```{prf:definition} Esito
@@ -47,12 +56,18 @@ Ogni possibile risultato $\omega$ di un esperimento casuale $\mathscr E$ prende
 il nome di _esito_.
 ```
 
-Un esempio di esito è $\text{falso}$ per $\mathscr P$, $\text{azzurro}$ per
-$\mathscr O$, $(\text{Torcia umana}, \text{Donna invisibile},
-\text{Mister Fantastic}, \text{Cosa})$ per $\mathscr C$, $3$ per $\mathscr N$ e
-$183$ per $\mathscr A$. L'insieme di tutti gli esiti di un esperimento casuale,
-che rappresenta il punto iniziale della modellazione matematica che useremo per
-il concetto di probabilità, prende il nome di _spazio degli esiti_.
+```{prf:example}
+:label: ex-outcomes
+
+Facendo riferimento agli esperimenti introdotti nell’{prf:ref}`ex-experiments`,
+un esempio di esito è «falso» per $\mathscr P$, «azzurro» per $\mathscr O$,
+«Torcia umana, Donna invisibile, Mister Fantastic, Cosa» per $\mathscr C$,
+$3$ per $\mathscr N$ e $183$ per $\mathscr A$.
+```
+
+L'insieme di tutti gli esiti di un esperimento casuale, che rappresenta il
+punto iniziale della modellazione matematica che userò per introdurre il
+concetto di probabilità, prende il nome di _spazio degli esiti_.
 
 ```{margin}
 Lo spazio degli esiti viene spesso anche chiamato _spazio campionario_ o
@@ -63,17 +78,20 @@ denotano usando per esempio le lettere $S$ e $U$.
 ````{prf:definition} Spazio degli esiti
 :label: def-spazio-esiti
 L'insieme di tutti i possibili esiti di un generico esperimento
-casuale $\mathcal E$ viene chiamato _spazio degli esiti_, e lo si denota
+casuale $\mathscr E$ viene chiamato _spazio degli esiti_, e lo si denota
 usualmente tramite la lettera $\Omega$ (omega maiuscola).
 ````
 
-La {numref}`tab-esempi-spazi-esiti` descrive lo spazio degli esiti per ognuno
-degli esperimenti casuali presi precedentemente in considerazione.
+```{prf:example}
+:label: ex-outcome-spaces
 
-```{margin}
-In questo caso, la scelta per $\Omega_\mathscr O$ è arbitraria.
+La {numref}`tab-esempi-spazi-esiti` descrive lo spazio degli esiti per ognuno
+degli esperimenti casuali presi in considerazione
+nell’{prf:ref}`ex-experiments`. Va notato che la scelta per
+$\Omega_\mathscr O$ è arbitraria.
 ```
-````{table} Esempi di spazi degli esiti per gli esperimenti casuali $\mathscr P$, $\mathscr O$, $\mathscr C$, $\mathscr N$ e $\mathscr A$.
+
+````{table} Esempi di spazi degli esiti per gli esperimenti casuali $\mathscr P$, $\mathscr O$, $\mathscr C$, $\mathscr N$ e $\mathscr A$ precedentemente introdotti.
 :name: tab-esempi-spazi-esiti
 
 | Esperimento | Spazio degli esiti |
@@ -85,9 +103,7 @@ In questo caso, la scelta per $\Omega_\mathscr O$ è arbitraria.
 | $\mathscr A$ | $\Omega_\mathscr A = \mathbb R^+$ |
 ````
 
-```{margin}
-In alcune fonti il termine _evento elementare_ è sinonimo di _esito_.
-```
+
 ````{prf:definition} Evento ed evento elementare
 :label: def-evento
 Fissato uno spazio degli esiti $\Omega$, un _evento_ è un sottoinsieme
@@ -98,11 +114,12 @@ ottenuto un esito $\omega \in E$, si diche che l'evento si è _verificato_.
 In caso contrario si dice che $E$ non si è verificato.
 ````
 
-Nella {prf:ref}`def-evento` il concetto di sottoinsieme è inteso anche in
-senso improprio, includendo cioè $\{\}$ e $\Omega$ tra i possibili
+In questa definizione il concetto di sottoinsieme è inteso anche in senso
+improprio, includendo cioè $\varnothing$ e $\Omega$ tra i possibili
 sottoinsiemi. In realtà questi sottoinsiemi individuano due eventi
 particolarmente rilevanti:
-- $\{\}$ per definizione non contiene alcun esito, dunque rappresenta un
+
+- per definizione, $\varnothing$ non contiene alcun esito, dunque rappresenta un
   evento che, indipendentemente dal risultato dell'esperimento casuale, non
   potrà mai verificarsi, e pertanto è detto _evento impossibile_;
 - al contrario, $\Omega$ contiene tutti i possibili esiti dell'esperimento,
@@ -121,11 +138,17 @@ se non si verifica $E$. Infine, la relazione di sottoinsieme cattura
 l'implicazione logica: se $E \subseteq F$, allora ogni esito che realizza $E$
 deve realizzare anche $F$, pertanto $E \rightarrow F$.
 
-Vedremo nel {ref}`sec_assiomi-kolmogorov` che il calcolo della probabilità
-di un evento è legato alla valutazione di una funzione di cui l'evento stesso
-è un argomento. Il dominio di questa funzione, che raccoglie dunque gli eventi
-di cui vogliamo poter calcolare la probabilità, viene chiamato
-_algebra degli eventi_.
+Nella {prf:ref}`def-evento` ho identificato un evento con un sottoinsieme di
+$\Omega$. Questa scelta appare del tutto naturale e, nel caso in cui lo spazio
+degli esiti sia finito, non crea alcuna difficoltà: tutti i sottoinsiemi di
+$\Omega$ possono essere considerati eventi. Quando però $\Omega$ è infinito
+(come accade per esempio nell'esperimento $\mathscr A$), questo modo di
+procedere non è sempre il più conveniente. Per questo motivo si
+introduce una collezione di sottoinsiemi di $\Omega$, detta _algebra degli
+eventi_, che descrive l’insieme degli eventi ai quali vogliamo assegnare una
+probabilità. Vedremo infatti nel {ref}`sec_assiomi-kolmogorov` che questa
+collezione costituisce il dominio della funzione che associa a ogni evento la
+sua probabilità.
 
 ```{margin}
 $2^\Omega$ denota l'insieme delle parti di $\Omega$, pertanto un'algebra
@@ -134,7 +157,7 @@ $\Omega$.
 ```
 ````{prf:definition} Algebra degli eventi
 :label: def-algebra-degli-eventi
-Fissato uno spazio degli esiti $\Omega$, si definisce _algebra degli eventi_
+Fissato uno spazio degli esiti $\Omega$, un'_algebra degli eventi_ è
 una qualsiasi collezione di eventi $\mathsf A \subseteq 2^\Omega$ che:
 
 1. contiene lo spazio degli esiti ($ \Omega \in \mathsf A$),
@@ -145,9 +168,11 @@ una qualsiasi collezione di eventi $\mathsf A \subseteq 2^\Omega$ che:
 
 ````
 
-Dunque un'algebra degli eventi è una collezione di eventi chiusa rispetto
-alle operazioni di unione e complemento. La {prf:ref}`def-algebra-degli-eventi`
-implica una serie di altre proprietà che sono dimostrate di seguito.
+È lecito chiedersi come mai questa definizione richieda la chiusura rispetto
+alle operazioni di unione e complemento, ma non rispetto all'intersezione. In
+realtà, ciò non è necessario, in quanto è automaticamente implicato dalla
+{prf:ref}`def-algebra-degli-eventi`, unitamente a una serie di altre proprietà,
+dimostrate di seguito.
 
 ````{prf:theorem}
 :label: insieme-vuoto-in-algebra
@@ -158,7 +183,7 @@ Un'algebra degli eventi contiene sempre l'evento impossibile.
 
 Sia $\mathsf A$ un'algebra degli eventi. La {prf:ref}`def-algebra-degli-eventi`
 assicura che $\Omega \in \mathsf A$, e applicando la proprietà di chiusura
-rispetto al complemento si ottiene $\{\} = \overline \Omega \in \mathsf A$.
+rispetto al complemento si ottiene $\varnothing = \overline \Omega \in \mathsf A$.
 ````
 
 ````{prf:theorem}
@@ -196,7 +221,7 @@ $E_1 \cap E_2 \in \mathsf A$. Per estendere questa proprietà all'intersezione
 di un numero finito di eventi si può applicare il principio di induzione in
 modo analogo a quanto fatto nella prima parte della dimostrazione.
 
-Infine,la tesi al terzo piunto si ottiene facilmente notando che
+Infine,la tesi al terzo punto si ottiene facilmente notando che
 $E_1 \backslash E_2 = E_1 \cap \overline E_2$ e ricordando che per quanto
 visto finora $\mathsf A$ è chiuso rispetto al complemento e all'intersezione
 di eventi.
@@ -239,7 +264,7 @@ ipotesi, per ogni $i = 1, \ldots, n$ l'evento elementare $\{ w_i \}$ appartiene
 ad $\mathsf A$ e dunque
 
 ```{math}
-E = \bigcup_{i=1}^n \{ E_i \} \in \mathsf A.
+E = \bigcup_{i=1}^n \{ w_i \} \in \mathsf A.
 ```
 
 Riassumendo, ogni $E \subseteq \Omega$ appartiene ad $\mathsf A$, che quindi
@@ -253,17 +278,17 @@ che questo non significa che in questi casi $2^\Omega$ sia l'unica algebra
 possibile. Per esempio:
 
 ```{margin}
-Come è facilmente intuibile, $\{ \}$ e $\Omega$ sono rispettivamente l'evento
+Come è facilmente intuibile, $\varnothing$ e $\Omega$ sono rispettivamente l'evento
 che non si verifica mai e quello che si verifica sempre.
 ```
-- indipendentemente da $\Omega$, $\mathsf A_0 = \{ \{\}, \Omega \}$ è sempre
+- indipendentemente da $\Omega$, $\mathsf A_0 = \{ \varnothing, \Omega \}$ è sempre
   un'algebra degli eventi, probabilmente poco interessante perché si focalizza
   solo su due eventi particolari, ma essa ha la proprietà di essere contenuta
   in tutte le  possibili algebre, e dunque di essere la più piccola algebra
   costruibile;
 - se consideriamo l'esperimento casuale $\mathscr O$ e il corrispondente
   spazio degli esiti $\Omega = \{ \text{Azzurro}, \text{Marrone}, \text{Nero},
-  \text{Verde}\}$, la collezione di eventi $\mathsf A = \{ \{\},
+  \text{Verde}\}$, la collezione di eventi $\mathsf A = \{ \varnothing,
   \{ \text{Azzurro}, \text{Verde}\}, \{ \text{Marrone}, \text{Nero} \},
   \Omega \}$ è un'algebra, più grande di $\mathsf A_0$ e più piccola di
   $2^\Omega$, che si focalizza sugli eventi relativi a colori chiari e scuri
@@ -272,9 +297,9 @@ che non si verifica mai e quello che si verifica sempre.
 ```{margin}
 Potremmo, per esempio, considerare $2^\Omega$.
 ```
-Le cose si complicano quando lo spazio degli esiti è infinito, perché in
-questo caso è possibile costruire algebre degli eventi che sono anch'esse
-infinite. Abbiamo visto che la
+Come ho già anticipato, le cose si complicano quando lo spazio degli esiti è
+infinito, perché in questo caso è possibile costruire algebre degli eventi che
+sono anch'esse infinite. Abbiamo visto che la
 {prf:ref}`def-algebra-degli-eventi` implica che queste algebre sono chiuse
 rispetto all'unione di un numero finito di eventi, ma la stessa proprietà
 potrebbe non valere quando consideriamo l'unione di una _famiglia infinita_ di
@@ -303,8 +328,8 @@ dettagliato nei punti seguenti.
 1. $\Omega = \mathbb N \in \mathsf A$ in quanto il suo complemento è l'insieme
    vuoto, che è un insieme finito;
 2. Se $E \in \mathsf A$, per definizione deve valere uno dei due casi seguenti:
-   - $E$ è un insieme finito, pertanto il complementare di $\overline E$ è un
-     insieme finito, dunque $\overline E \in \mathsf A$,
+   - $E$ è un insieme finito, dunque $\overline E \in \mathsf A$ (poiché il
+     complementare di quest'ultimo è finito),
    - $\overline E$ è un insieme finito, dunque $\overline E \in \mathsf A$,
 
    dunque $\mathsf A$ è chiusa rispetto all'operazione di complemento.
@@ -314,7 +339,7 @@ dettagliato nei punti seguenti.
    - entrambi gli eventi sono infiniti, ma sia $\overline E$ che $\overline F$
      sono finiti, dunque
      $\overline{E \cup F} = \overline E \cap \overline F$,
-     essendo interzione di due insiemi finiti, è esso stesso finito;
+     essendo intersezione di due insiemi finiti, è esso stesso finito;
    - uno dei due eventi è finito e l'altro è infinito, e senza ledere la
      generalità del ragionamento possiamo supporre che $E$ sia finito e $F$
      sia infinito; $\overline F$ deve però essere finito perché
@@ -338,22 +363,23 @@ quando tale numero è dispari. Dunque sia $P$, sia il suo complemento sono
 infiniti e dunque $P \not\in \mathsf A$.
 ````
 
-Per garantire di poter calcolare la probabilità dell'unione di una quantità
-infinita numerabile di eventi, è necessario estendere l'algebra degli eventi
-in una _sigma-algebra_ come indicato nella definizione che segue.
+L’esempio precedente mostra che la chiusura rispetto a unioni finite non è
+sufficiente quando si considerano famiglie infinite di eventi. Per trattare in
+modo coerente unioni numerabili di eventi, si introduce una struttura più
+ricca, detta _sigma-algebra_.
 
 ````{prf:definition} Sigma-algebra degli eventi
 :label: def-sigma-algebra-degli-eventi
 Ogni algebra degli eventi $\mathsf A$ su uno spazio degli esiti $\Omega$
 è una _sigma-algebra_ se rispetta la seguente proprietà oltre a quelle della
-{prf:ref}`def-algebra-degli-eventi`: per ogni successione infinita
+{prf:ref}`def-algebra-degli-eventi`: per ogni successione numerabile
 $E_1, E_2, \ldots$ di eventi in $\mathsf A$, si verifica
 
 ```{math}
-\bigcup_{n=1}^{+\infty} E_i \in \mathsf A.
+\bigcup_{n=1}^{+\infty} E_n \in \mathsf A.
 ```
 ````
 
 In generale si utilizza il termine _spazio misurabile_ per indicare una
-coppia $(\Omega, \mathsf A)$ in cui $\mathsf A$ indica un'algebra o una
-sigma-algebra degli eventi.
+coppia $(\Omega, \mathsf A)$ in cui $\mathsf A$ indica una
+sigma-algebra di sottoinsiemi di $\Omega$.

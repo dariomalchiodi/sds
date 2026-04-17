@@ -41,7 +41,7 @@ questo tipo vengono descritte e analizzate attraverso il concetto di
 _probabilità_, che è basato su due entità fondamentali, che per il momento
 introduco in modo informale:
 
-- _esperimento aleatorio_, che individua una procedura che, pur essendo
+- _esperimento casuale_, che individua una procedura che, pur essendo
   eseguita sempre nelle stesse condizioni, può produrre risultati diversi (come
   l'ascolto della playlist o la scelta di un fumetto negli esempi precedenti);
 - _evento_, inteso come proprietà che può essere verificata o meno in seguito

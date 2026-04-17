@@ -43,7 +43,7 @@ from matplotlib_venn import venn2_circles, venn2
 venn_set_color = '#00CCFF'
 venn_set_edge= '#333333'
 background_color = '#eaf3f5'
-font_size = 9
+font_size = 14
 
 def venn_operations(operation='union'):
     fig = plt.figure()

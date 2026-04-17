@@ -135,5 +135,5 @@ all'interno dell'universo $\Omega = \{ 1, 2, 3, 4, 5, 6 \}$.
 Così come l'insieme universo è tale da contenere qualunque elemento, è
 matematicamente rilevante pensare ad un insieme che dualmente, non contiene
 alcun elemento. Tale insieme viene chiamato insieme vuoto, e lo indicheremo
-scrivendo $\{\}$ (anche se è comune l'uso del simbolo $\varnothing$), così che
-per ogni $a \in \Omega$ si avrà $a \notin \{\}$.
+scrivendo $\varnothing$ (anche se è comune l'uso del simbolo $\varnothing$), così che
+per ogni $a \in \Omega$ si avrà $a \notin \varnothing$.

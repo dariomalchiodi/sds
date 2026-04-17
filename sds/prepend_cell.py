@@ -8,9 +8,16 @@ import matplotlib.pyplot as plt
 
 plt.style.use('sds')
 mpl.rcParams.update({
-    'figure.dpi': 200,
-    'mathtext.fontset': 'cm',
-    'figure.figsize': (3, 2),
+   'figure.dpi': 150,
+   'mathtext.fontset': 'cm',
+   'figure.figsize': (3, 2),
+   'font.size': 7,
+   'xtick.labelsize': 6,
+   'ytick.labelsize': 6,
+   'legend.fontsize': 7,
+   'axes.labelsize': 7,
+   'axes.labelpad': 2,
+   'axes.titlesize': 8
 })
 """
 
