@@ -76,6 +76,7 @@ docutils==0.21.2
     #   sphinx
     #   sphinx-proof
     #   sphinx-tabs
+    #   sphinx-togglebutton
     #   sphinxcontrib-bibtex
 executing==2.2.0
     # via stack-data
@@ -267,6 +268,7 @@ packaging==25.0
     #   pydata-sphinx-theme
     #   sphinx
     #   statsmodels
+    #   wheel
 pandas==2.3.1
     # via
     #   -r requirements.in
@@ -398,6 +400,7 @@ sphinx==8.2.3
     #   sphinx-external-toc
     #   sphinx-proof
     #   sphinx-tabs
+    #   sphinx-togglebutton
     #   sphinxcontrib-bibtex
     #   sphinxcontrib-katex
     #   sphinxcontrib-mermaid
@@ -413,6 +416,8 @@ sphinx-external-toc==1.0.1
 sphinx-proof==0.2.1
     # via -r requirements.in
 sphinx-tabs==3.4.7
+    # via -r requirements.in
+sphinx-togglebutton==0.4.5
     # via -r requirements.in
 sphinxcontrib-applehelp==2.0.0
     # via sphinx
@@ -499,6 +504,8 @@ webencodings==0.5.1
     #   tinycss2
 websocket-client==1.8.0
     # via jupyter-server
+wheel==0.47.0
+    # via sphinx-togglebutton
 zipp==3.23.0
     # via importlib-metadata
 

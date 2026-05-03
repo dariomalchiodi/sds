@@ -21,6 +21,7 @@ sphinx-exercise
 sphinx-external-toc
 sphinx-proof
 sphinx-tabs
+sphinx-togglebutton
 sphinxcontrib-katex
 statsmodels
 tqdm
