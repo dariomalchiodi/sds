@@ -81,12 +81,12 @@ extensions = [ # 'myst_parser',
                'sphinx_book_theme', 
             #    'sphinx.ext.mathjax',
                'sphinxcontrib.katex',
+               'sphinx.ext.autosectionlabel',
                'sphinx_exercise', 'sphinx_tabs.tabs',
                'sphinxcontrib.bibtex',
                'sphinx_external_toc',
                'sphinx_proof',
-               'sphinx_exercise',
-               'sphinx.ext.autosectionlabel',
+               'sphinx_togglebutton',
                'myst_nb',
                'sds',
                'sds.sphinx_ext_custom_figure',
@@ -182,7 +182,7 @@ myst_number_code_blocks = []
 
 # Enable automatic section labels with numbering
 autosectionlabel_prefix_document = True
-autosectionlabel_maxdepth = None
+autosectionlabel_maxdepth = 3
 
 # Basic settings for cross-references
 html_secnumber_suffix = '. '
@@ -199,6 +199,10 @@ templates_path = ['../_templates']
 language = 'it'
 locale_dirs = ['../locales/'] # Path to your .po/.mo files
 gettext_compact = False
+
+# sphinx-togglebutton: localized labels
+togglebutton_hint = "Clicca per mostrare"
+togglebutton_hint_hide = "Clicca per nascondere"
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -371,8 +375,8 @@ def strip_out_code_cells(app, env, docnames):
             content = md_file.read_text(encoding='utf-8')
             original_content = content
             
-            # Pattern to match admonitions/examples with N backticks (capture the backticks)
-            directive_pattern = r'(`{3,})\{(admonition|prf:example)([^\}]*)\}([^\n]*)\n(.*?)\n\1(?!`)'
+            # Pattern to match admonitions/examples/solutions with N backticks (capture the backticks)
+            directive_pattern = r'(`{3,})\{(admonition|prf:example|solution)([^\}]*)\}([^\n]*)\n(.*?)\n\1(?!`)'
             
             def extract_cells(match):
                 outer_backticks = match.group(1)

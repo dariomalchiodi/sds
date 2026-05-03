@@ -186,7 +186,7 @@ div.container.cell + p {
   margin-top: 1em;
 }
 
-figure + * {
+figure:not(.margin) + * {
   clear: both;
 }
 
@@ -223,6 +223,11 @@ py-script {
 span.katex {
     display: inherit;
     font-size: 1em;
+}
+
+.katex-display {
+    margin-top: 0;
+    margin-bottom: 1rem !important;
 }
 
 .cell_output > .math {
@@ -429,6 +434,15 @@ a.left-prev:hover, a.right-next:hover {
   overflow: hidden;
   clip: rect(1px, 1px, 1px, 1px);
   white-space: nowrap;
+}
+
+.example.admonition {
+  background-color: white;
+  border-left: 4px solid rgb(255, 193, 7);
+}
+
+.example.admonition > .admonition-title {
+  background-color: #fef9e7;
 }
 
 .example.admonition > .admonition-title::after {
@@ -977,3 +991,78 @@ details summary {
 /* .tag_hide-cell .admonition {
   display: block !important;
 } */
+
+/* ==========================================================================
+   Exercise + Solution: unified box layout
+   ========================================================================== */
+
+/* Esercizio seguito da soluzione: rimuovi bordo inferiore e arrotondamento */
+.exercise.admonition:has(+ .solution.admonition) {
+  margin-bottom: 0;
+  border-bottom: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* Soluzione che segue un esercizio: rimuovi bordo superiore e margine */
+.exercise.admonition + .solution.admonition {
+  margin-top: 0;
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  padding-top: 0;
+}
+
+/* Titolo della soluzione: nascondi il testo ma non gli elementi funzionali */
+.exercise.admonition + .solution.admonition > .admonition-title {
+  color: transparent;
+  font-size: 0;
+  background: transparent !important;
+  padding: 0.5em 1em;
+  margin: 0;
+  /* border-top: 1px solid rgba(0, 0, 0, 0.15); */
+  position: relative;
+}
+
+/* Rendi visibile qualsiasi elemento figlio (incluso il toggle button) */
+.exercise.admonition + .solution.admonition > .admonition-title > * {
+  visibility: visible;
+  font-size: 0.9rem;
+  color: var(--link-color, #006699);
+}
+
+/* Ma nascondi il link "Esercizio X" */
+.exercise.admonition + .solution.admonition > .admonition-title > a {
+  display: none !important;
+}
+
+/* Toggle button ::before - reso visibile in TUTTI gli stati */
+.exercise.admonition + .solution.admonition > .admonition-title::before {
+  font-size: 0.9rem !important;
+  color: var(--link-color, #006699) !important;
+  cursor: pointer;
+  visibility: visible !important;
+  display: inline !important;
+}
+
+/* Forza visibilità anche quando toggle-shown è attivo */
+.exercise.admonition + .solution.admonition.toggle-shown > .admonition-title::before,
+.exercise.admonition + .solution.admonition.toggle-hidden > .admonition-title::before,
+.exercise.admonition + .solution.admonition.toggle > .admonition-title::before,
+.exercise.admonition + .solution.dropdown.admonition > .admonition-title::before {
+  font-size: 0.9rem !important;
+  color: var(--link-color, #006699) !important;
+  cursor: pointer;
+  visibility: visible !important;
+  display: inline !important;
+}
+
+/* Aggiungi "Soluzione" visibile dopo il toggle */
+.exercise.admonition + .solution.admonition > .admonition-title::after {
+  content: "Soluzione";
+  font-size: 1rem;
+  color: var(--text-primary-color);
+  font-weight: bold;
+  font-family: var(--sans-serif-font);
+  margin-left: 0.3em;
+}

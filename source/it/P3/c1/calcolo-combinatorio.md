@@ -12,26 +12,28 @@ kernelspec:
 (chap_calcolo-combinatorio)=
 # Calcolo combinatorio
 
-Il _calcolo combinatorio_ è la parte della matematica che studia come
-contare i modi in cui possiamo raggruppare elementi presi da un
-insieme finito. Un fatto interessante che riguarda le formule che useremo è
-che queste non dipendono dalla natura concreta degli elementi che
-consideriamo. Che si tratti di cose tangibili (come abiti, frutti o
-biciclette) o di concetti astratti (come supereroi, abilità di un personaggio
-in un video gioco o software da installare su un computer), il ragionamento
-da fare sarà lo stesso. È invece importante è rispondere alle seguenti
-domande.
+Il _calcolo combinatorio_ è la branca della matematica che si occupa di
+determinare il numero di modi in cui è possibile raggruppare o ordinare gli
+elementi di un insieme finito. Come si può intuire, questo numero non dipende 
+dalla natura degli oggetti considerati: che si tratti di elementi tangibili 
+(come frutti o biciclette) o di entità astratte (come poteri di un supereroe o
+colori per le pareti di un ufficio), la logica necessaria per contarne le
+configurazioni rimane invariata.
 
-- Si può scegliere uno stesso elemento più di una volta?
-- Gli elementi nell'insieme sono tutti diversi tra loro o ce ne sono alcuni
-  _indistinguibili_?
-- Il raggruppamento dipende oppure no dall'ordine degli elementi scelti?
+Per affrontare correttamente un problema di conteggio, è importante rispondere
+a tre domande fondamentali:
 
-Una volta risposto a queste domande, il numero di possibili raggruppamenti
-dipende solamente da pochi parametri. Nei casi che vedremo ne bastano quasi
-sempre due: la quantità $n$ di elementi a disposizione e la lunghezza $k$ del
-raggruppamento (il numero di elementi che contiene). Normalmente si utilizza
-la seguente metafora: $n$ _oggetti_ (indipendentemente dalla loro effettiva
-tangibilità) vanno assegnati a $k$ _posti_. Nei paragrafi seguenti vedremo
-quali sono le principali modalità di raggruppamento e per ognuna di esse
-deriveremo le formule per contare il numero di raggruppamenti possibili.
+- È possibile scegliere uno stesso elemento più di una volta?
+- Gli elementi di partenza sono tutti distinti o alcuni sono _indistinguibili_
+  tra loro?
+- L'ordine in cui gli elementi vengono selezionati è rilevante, oppure no?
+
+Una volta chiariti questi aspetti, il numero di configurazioni possibili 
+dipende in genere da due soli parametri: la numerosità $n$ dell'insieme di 
+partenza e il numero $k$ di elementi che intendiamo selezionare.
+
+Una metafora particolarmente efficace è la seguente: immaginiamo di 
+dover assegnare $n$ _oggetti_ (tangibili oppure no) a $k$ _posti_ disponibili.
+Nei paragrafi che seguono, analizzerò le principali modalità di raggruppamento
+e di ordinamento e, per ciascuna di esse, mostrerò come ricavare la formula
+per calcolare il numero di casi possibili.

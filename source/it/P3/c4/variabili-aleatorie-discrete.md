@@ -12,21 +12,7 @@ kernelspec:
 (sec_va-discrete)=
 # Variabili aleatorie discrete
 
-````{prf:example}
-:label: ex-somma-due-dadi
-Consideriamo il lancio di due dadi bilanciati e calcoliamo la probabilità che
-la somma dei risultati superi una certa soglia.
-
-Lo spazio degli esiti è costituito da tutte le coppie $(d_1, d_2)$ dove
-$d_1$ e $d_2$ rappresentano i risultati dei due dadi. Poiché ognuno può
-assumere 6 valori distinti, il numero totale di esiti possibili è
-$6 \times 6 = 36$. L'ipotesi di bilanciamento dei dadi ci permette di
-lavorare in uno spazio equiprobabile, e quindi di applicare la definizione
-classica di probabilità.
-
-Visualizziamo lo spazio degli esiti nel grafico seguente, dove ogni pallino
-rappresenta una possibile combinazione di risultati.
-
+<!-- CELL-MARKER-26-START -->
 ```{code-cell} python
 import matplotlib.pyplot as plt
 
@@ -51,15 +37,9 @@ ax.grid(True, alpha=0.3)
 ax.set_aspect('equal')
 plt.show()
 ```
+<!-- CELL-MARKER-26-END -->
 
-```{margin}
-La somma minima è 2 (quando entrambi i dadi mostrano 1) e quella massima è 12
-(quando entrambi mostrano 6).
-```
-
-La somma $S = d_1 + d_2$ può assumere valori da 2 a 12. Calcoliamo la
-probabilità associata a ogni possibile valore della somma.
-
+<!-- CELL-MARKER-27-START -->
 ```{code-cell} python
 from collections import Counter
 
@@ -80,10 +60,9 @@ ax.set_title('Distribuzione di probabilità della somma')
 ax.set_xticks(valori)
 plt.show()
 ```
+<!-- CELL-MARKER-27-END -->
 
-Applicando la definizione classica di probabilità, la probabilità che la somma
-sia almeno 9, ovvero che $S \geq 9$, si calcola contando gli esiti favorevoli:
-
+<!-- CELL-MARKER-28-START -->
 ```{code-cell} python
 esiti_favorevoli = sum(1 for d1 in range(1, 7) for d2 in range(1, 7) 
                        if d1 + d2 >= 9)
@@ -91,10 +70,9 @@ prob = esiti_favorevoli / 36
 print(f'Esiti favorevoli: {esiti_favorevoli}')
 print(f'Probabilità che S ≥ 9: {esiti_favorevoli}/36 = {prob:.4f}')
 ```
+<!-- CELL-MARKER-28-END -->
 
-Possiamo visualizzare questi esiti favorevoli evidenziandoli nel grafico dello
-spazio degli esiti.
-
+<!-- CELL-MARKER-29-START -->
 ```{code-cell} python
 fig, ax = plt.subplots(figsize=(6, 6))
 
@@ -118,4 +96,42 @@ ax.grid(True, alpha=0.3)
 ax.set_aspect('equal')
 plt.show()
 ```
+<!-- CELL-MARKER-29-END -->
+
+````{prf:example}
+:label: ex-dist-due-dadi
+Consideriamo il lancio di due dadi bilanciati e calcoliamo la probabilità che
+la somma dei risultati superi una certa soglia.
+
+Lo spazio degli esiti è costituito da tutte le coppie $(d_1, d_2)$ dove
+$d_1$ e $d_2$ rappresentano i risultati dei due dadi. Poiché ognuno può
+assumere 6 valori distinti, il numero totale di esiti possibili è
+$6 \times 6 = 36$. L'ipotesi di bilanciamento dei dadi ci permette di
+lavorare in uno spazio equiprobabile, e quindi di applicare la definizione
+classica di probabilità.
+
+Visualizziamo lo spazio degli esiti nel grafico seguente, dove ogni pallino
+rappresenta una possibile combinazione di risultati.
+
+<!-- CELL-PLACEHOLDER-26 -->
+
+```{margin}
+La somma minima è 2 (quando entrambi i dadi mostrano 1) e quella massima è 12
+(quando entrambi mostrano 6).
+```
+
+La somma $S = d_1 + d_2$ può assumere valori da 2 a 12. Calcoliamo la
+probabilità associata a ogni possibile valore della somma.
+
+<!-- CELL-PLACEHOLDER-27 -->
+
+Applicando la definizione classica di probabilità, la probabilità che la somma
+sia almeno 9, ovvero che $S \geq 9$, si calcola contando gli esiti favorevoli:
+
+<!-- CELL-PLACEHOLDER-28 -->
+
+Possiamo visualizzare questi esiti favorevoli evidenziandoli nel grafico dello
+spazio degli esiti.
+
+<!-- CELL-PLACEHOLDER-29 -->
 ````

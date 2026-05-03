@@ -448,6 +448,7 @@ $\mathrm e^t$. In questo modo si evita di utilizzare un doppio apice, che
 rischia di risultare poco leggibile.
 ```
 ````{prf:theorem}
+:label: teo-poisson-mgf
 Dato $\lambda \in \mathbb R^+$, la funzione generatrice dei momenti di una
 variabile aleatoria $X \sim \mathrm P(\lambda)$ assume la seguente forma:
 

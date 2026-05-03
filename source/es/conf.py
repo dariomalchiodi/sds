@@ -14,6 +14,8 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
+import re
+from pathlib import Path
 
 # -- Project information -----------------------------------------------------
 
@@ -43,6 +45,7 @@ extensions = [ 'myst_parser',
                'sphinx_proof',
                'sphinx_exercise',
                'sphinx.ext.autosectionlabel',
+               'sphinx_togglebutton',
                 ]
 
 # nb_code_cell_render_options = {
@@ -135,6 +138,10 @@ language = 'es'
 locale_dirs = ['../locales/'] # Path to your .po/.mo files
 gettext_compact = False
 
+# sphinx-togglebutton: localized labels
+togglebutton_hint = "Haz clic para mostrar"
+togglebutton_hint_hide = "Haz clic para ocultar"
+
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
@@ -192,6 +199,154 @@ suppress_warnings = [
 ]
 
 
+def reinsert_code_cells(app, exception):
+    """Post-process HTML files to move code cells to their placeholder positions"""
+    if exception or app.builder.name != 'html':
+        return
+    
+    import logging
+    logger = logging.getLogger(__name__)
+    
+    build_dir = Path(app.outdir)
+    
+    for html_file in build_dir.rglob('*.html'):
+        content = html_file.read_text(encoding='utf-8')
+        original_content = content
+        
+        # Extract all cells with their IDs and HTML content
+        cell_pattern = r'<!-- CELL-MARKER-(\d+)-START -->(.*?)<!-- CELL-MARKER-\1-END -->\s*'
+        cells = {}
+        
+        for match in re.finditer(cell_pattern, content, re.DOTALL):
+            cell_id = match.group(1)
+            cell_html = match.group(2).strip()
+            cells[cell_id] = cell_html
+        
+        # Remove all cell markers from content
+        content = re.sub(cell_pattern, '', content, flags=re.DOTALL)
+        
+        # Replace placeholders with actual cell HTML
+        def replace_placeholder(match):
+            cell_id = match.group(1)
+            
+            if cell_id not in cells:
+                error_msg = f"Placeholder {cell_id} found but corresponding cell not extracted"
+                logger.error(f"{html_file.name}: {error_msg}")
+                raise ValueError(error_msg)
+            
+            return cells[cell_id]
+        
+        placeholder_pattern = r'<!-- CELL-PLACEHOLDER-(\d+) -->'
+        content = re.sub(placeholder_pattern, replace_placeholder, content)
+        
+        # Verify no placeholders remain unreplaced
+        remaining_placeholders = re.findall(placeholder_pattern, content)
+        if remaining_placeholders:
+            error_msg = f"Unreplaced placeholders found: {remaining_placeholders}"
+            logger.error(f"{html_file.name}: {error_msg}")
+            raise ValueError(error_msg)
+        
+        # Write back if changed
+        if content != original_content:
+            html_file.write_text(content, encoding='utf-8')
+            logger.info(f"Post-processed {html_file.relative_to(build_dir)}")
+
+
+def strip_out_code_cells(app, env, docnames):
+    """Extract code-cells from admonitions/examples/solutions before Sphinx processes them"""
+    if app.builder.name != 'html':
+        return
+    
+    import logging
+    logger = logging.getLogger(__name__)
+    
+    source_dir = Path(app.srcdir)
+    
+    # If docnames is None, process all documents (full rebuild)
+    if docnames is None:
+        docnames = list(env.found_docs) if hasattr(env, 'found_docs') else []
+    
+    # If still empty, scan all .md files recursively
+    if not docnames:
+        md_files = list(source_dir.rglob('*.md'))
+    else:
+        # Convert docnames to file paths
+        md_files = []
+        for docname in docnames:
+            md_path = source_dir / f"{docname}.md"
+            if md_path.exists():
+                md_files.append(md_path)
+    
+    cell_counter = [0]  # Use list to allow modification in nested function
+    
+    for md_file in md_files:
+        try:
+            content = md_file.read_text(encoding='utf-8')
+            original_content = content
+            
+            # Pattern to match admonitions/examples/solutions with N backticks (capture the backticks)
+            directive_pattern = r'(`{3,})\{(admonition|prf:example|solution)([^\}]*)\}([^\n]*)\n(.*?)\n\1(?!`)'
+            
+            def extract_cells(match):
+                outer_backticks = match.group(1)
+                directive_type = match.group(2)
+                directive_args = match.group(3)
+                directive_title = match.group(4)
+                body = match.group(5)
+                
+                # Count outer backticks to determine inner backticks for code-cells
+                outer_count = len(outer_backticks)
+                inner_count = outer_count - 1
+                inner_backticks = '`' * inner_count
+                
+                # Find all code-cells within this directive
+                cell_pattern = rf'{re.escape(inner_backticks)}\{{code-cell\}}[^\n]*\n(.*?)\n{re.escape(inner_backticks)}(?!`)'
+                cells = list(re.finditer(cell_pattern, body, re.DOTALL))
+                
+                if not cells:
+                    return match.group(0)
+                
+                # First pass: assign IDs to cells in forward order
+                cell_data = []
+                for cell_match in cells:
+                    cell_counter[0] += 1
+                    cell_id = cell_counter[0]
+                    cell_data.append((cell_match, cell_id))
+                
+                # Second pass: extract cells and replace with placeholders in reverse order
+                extracted_cells = []
+                modified_body = body
+                
+                for cell_match, cell_id in reversed(cell_data):
+                    # Extract the full cell
+                    cell_content = cell_match.group(0)
+                    
+                    # Replace cell with placeholder in body
+                    placeholder = f'<!-- CELL-PLACEHOLDER-{cell_id} -->'
+                    modified_body = modified_body[:cell_match.start()] + placeholder + modified_body[cell_match.end():]
+                    
+                    # Store extracted cell with markers (prepend to maintain order)
+                    marked_cell = f'<!-- CELL-MARKER-{cell_id}-START -->\n{cell_content}\n<!-- CELL-MARKER-{cell_id}-END -->\n\n'
+                    extracted_cells.insert(0, marked_cell)
+                
+                # Reconstruct: extracted cells + modified directive
+                result = ''.join(extracted_cells)
+                result += f'{outer_backticks}{{{directive_type}{directive_args}}}{directive_title}\n{modified_body}\n{outer_backticks}'
+                
+                return result
+            
+            # Apply the transformation
+            content = re.sub(directive_pattern, extract_cells, content, flags=re.DOTALL)
+            
+            # Write back if changed
+            if content != original_content:
+                md_file.write_text(content, encoding='utf-8')
+                logger.info(f"Preprocessed {md_file.relative_to(source_dir)}: extracted {cell_counter[0]} code-cells")
+        
+        except Exception as e:
+            logger.warning(f"Error processing {md_file}: {e}")
+
+
 def setup(app):
     import json
     import os
@@ -210,3 +365,7 @@ def setup(app):
         print(f">>> Warning: Could not load URL mapping: {e}")
         app.config.html_context = getattr(app.config, 'html_context', {})
         app.config.html_context['url_mapping'] = {}
+
+    app.connect('env-before-read-docs', strip_out_code_cells)
+    app.connect('build-finished', reinsert_code_cells)
+    return {'version': '0.1', 'parallel_read_safe': True}

@@ -101,6 +101,7 @@ variabile aleatoria continua $X$ coincide con la derivata prima della sua
 funzione di ripartizione.
 
 ````{prf:example}
+:label: ex-pdf-cdf-unif
 Le funzioni di ripartizione e di densità della variabile aleatoria continua
 $X$ introdotta nel paragrafo precedente sono definite rispettivamente nel
 modo seguente:
@@ -222,6 +223,7 @@ continua a essere uguale alla radice quadrata della varianza e così via.
 
 
 ````{prf:example}
+:label: ex-va-uniforme
 Il valore atteso della variabile aleatoria $X$ introdotta nel paragrafo
 precedente è
 
@@ -269,6 +271,7 @@ In alcuni casi, la forma analitica di $F_X$ permette di semplificare
 ulteriormente i conti, come nell'esempio che segue.
 
 ````{prf:example}
+:label: ex-quantile-va
 Sempre considerando la variabile aleatoria $X$ introdotta nel paragrafo
 precedente, per risolvere $F_X(x_q) = q$ quando $q \in (0, 1)$ è
 necessario considerare argomenti della funzione di ripartizione compresi

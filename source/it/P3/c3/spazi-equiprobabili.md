@@ -63,12 +63,7 @@ particolare, in tal caso si avrebbe
 $\mathbb P(\Omega) = \sum_{i=1}^n P(\{ w_i \}) = \sum_{i=1}^n 0 = 0$.
 ````
 
-````{prf:example}
-Sia $(\Omega, \mathsf A, \mathbb P)$ lo spazio equiprobabile in cui $\Omega$
-corrisponde all'insieme dei supereroi del nostro dataset. La probabilità di
-un evento elementare si ottiene facilmente calcolando l'inverso del numero di
-supereroi.
-
+<!-- CELL-MARKER-25-START -->
 ```{code-cell} python
 
 import pandas as pd
@@ -78,6 +73,16 @@ n = len(heroes)
 p = 1/ n
 print(rf'La probabilità di estrarre un supereroe a caso è p = {p:.4f}.')
 ```
+<!-- CELL-MARKER-25-END -->
+
+````{prf:example}
+:label: ex-spazio-equiprobabile
+Sia $(\Omega, \mathsf A, \mathbb P)$ lo spazio equiprobabile in cui $\Omega$
+corrisponde all'insieme dei supereroi del nostro dataset. La probabilità di
+un evento elementare si ottiene facilmente calcolando l'inverso del numero di
+supereroi.
+
+<!-- CELL-PLACEHOLDER-25 -->
 
 ````
 
@@ -86,6 +91,7 @@ Ma è facile vedere come anche queste probabilità dipendono da $p$, come
 evidenziato nel seguente teorema.
 
 ````{prf:theorem}
+:label: teo-regola-classica
 Per ogni evento $E \subseteq \Omega$ nello spazio equiprobabile
 $(\Omega, \mathsf A, \mathbb P)$ si ha
 

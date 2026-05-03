@@ -129,6 +129,15 @@ procede in modo intuitivo: ciascun elemento contenuto in `<struttura>` viene
 considerato a turno, una sola volta, assegnato alla variabile di ciclo ed
 elaborato dal suo corpo.
 
+<!-- CELL-MARKER-12-START -->
+```{code-cell} python
+
+s = 'Wasp'
+for c in s:
+    print(c)
+```
+<!-- CELL-MARKER-12-END -->
+
 ````{prf:example}
 :label: ex-string
 
@@ -136,12 +145,7 @@ L’unico tipo di dati strutturato di cui ho parlato finora sono le stringhe:
 eseguire un ciclo for su una di esse significa scorrere tutti i suoi caratteri,
 nell’ordine naturale che va dal primo all’ultimo:
 
-```{code-cell} python
-
-s = 'Wasp'
-for c in s:
-    print(c)
-```
+<!-- CELL-PLACEHOLDER-12 -->
 ````
 
 Il nome della variabile di ciclo viene di solito scelto rispettando due criteri:  
@@ -164,6 +168,20 @@ dizionari, potrebbe non esserlo.
 
 
 (pattern)=
+<!-- CELL-MARKER-13-START -->
+```{code-cell} python
+for i in range(len(s)):
+    print(s[i])
+```
+<!-- CELL-MARKER-13-END -->
+
+<!-- CELL-MARKER-14-START -->
+```{code-cell} python
+for i, c in enumerate(s):
+    print('Il carattere in posizione ', i, 'è', c)
+```
+<!-- CELL-MARKER-14-END -->
+
 ````{admonition} Pattern e antipattern
 Quando si studia un linguaggio di programmazione, si impara rapidamente a
 riconoscere degli _schemi_ ricorrenti nel codice sorgente: modalità tipiche di
@@ -190,10 +208,7 @@ per esempio, potrebbe iterare su una stringa ricalcando l'approccio
 tradizionale che si basa su una variabile di ciclo associata alle posizioni
 dei tcarateri, scrivendo il codice che segue.
 
-```{code-cell} python
-for i in range(len(s)):
-    print(s[i])
-```
+<!-- CELL-PLACEHOLDER-13 -->
 
 Il risultato è un _antipattern_ che introduce complessità inutile, obbligando
 a:
@@ -211,10 +226,7 @@ leggibile. Naturalmente, ci sono situazioni in cui è utile conoscere sia i
 caratteri, sia la loro posizione: in questi casi, il modo pythonico di
 procedere è utilizzare la funzione `enumerate`:
 
-```{code-cell} python
-for i, c in enumerate(s):
-    print('Il carattere in posizione ', i, 'è', c)
-```
+<!-- CELL-PLACEHOLDER-14 -->
 
 che permette di iterare su delle coppie che includono la posizione e l'elemento
 della struttura, e che ha il vantaggio di essere applicabile anche a dati
@@ -411,6 +423,17 @@ di indici, riferimenti incrociati, bibliografia e così via.
 ```
 
 
+<!-- CELL-MARKER-15-START -->
+```{code-cell} python
+from IPython.display import display, Math
+
+s = r'\Phi(x) = \frac{1}{2 \pi} '
+s += r'\int_{-\infty}^{+\infty} \mathrm e^{-\frac{x^2}{2}} \, \mathrm dx'
+
+display(Math(s))
+```
+<!-- CELL-MARKER-15-END -->
+
 ````{prf:example} $\LaTeX$
 :label: -latex
 
@@ -425,14 +448,7 @@ del _package_ `IPython.display` vengono utilizzati per visualizzare nella cella
 di output una formula relativamente complessa, il cui sorgente $\LaTeX$ è
 memorizzato nella stringa `s`, definita tramite un letterale grezzo.
 
-```{code-cell} python
-from IPython.display import display, Math
-
-s = r'\Phi(x) = \frac{1}{2 \pi} '
-s += r'\int_{-\infty}^{+\infty} \mathrm e^{-\frac{x^2}{2}} \, \mathrm dx'
-
-display(Math(s))
-```
+<!-- CELL-PLACEHOLDER-15 -->
 ```{raw} html
 <div id="latex-out"></div>
 ```
@@ -443,6 +459,19 @@ giustapponendo due letterali grezzi tramite l'operatore `+=`, così da evitare
 righe di codice più lunghe di ottanta caratteri[^ottanta].
 ````
 
+
+<!-- CELL-MARKER-16-START -->
+```{code-cell} python
+import re
+
+s = "Il superpotere principale di Elastigirl è l'elasticità, che le "
+s += "consente di allungare varie parti del suo corpo fino a 300 piedi "
+s += "(90 metri) e può essere sottile 1 millimetro."
+
+p = re.compile(r'\d+')
+p.findall(s)
+```
+<!-- CELL-MARKER-16-END -->
 
 ````{prf:example} Espressioni regolari
 :label: ex-regex
@@ -474,16 +503,7 @@ sottostringhe che soddisfano $e$. Per esempio, il codice seguente elenca tutti
 i numeri che compaiono in una descrizione dei superpoteri di Elastigirl, tratta
 dalla relativa pagina su [Wikipedia](https://it.wikipedia.org/wiki/Helen_Parr):
 
-```{code-cell} python
-import re
-
-s = "Il superpotere principale di Elastigirl è l'elasticità, che le "
-s += "consente di allungare varie parti del suo corpo fino a 300 piedi "
-s += "(90 metri) e può essere sottile 1 millimetro."
-
-p = re.compile(r'\d+')
-p.findall(s)
-```
+<!-- CELL-PLACEHOLDER-16 -->
 
 Dovreste notare qualcosa di nuovo nel valore restituito dal metodo `findall`:
 si tratta di un dato strutturato che aggrega le varie occorrenze individuate
@@ -835,6 +855,12 @@ stringhe: tra parentesi quadre si specifica una posizione, che individua il
 corrispondente elemento della sequenza (più precisamente, il riferimento a
 quell’oggetto), oppure uno _slicing_ per ottenere una sotto-sequenza. 
 
+<!-- CELL-MARKER-17-START -->
+```{code-cell} python
+iron_man[8:10]
+```
+<!-- CELL-MARKER-17-END -->
+
 ````{prf:example}
 :label: ex-list
 
@@ -844,9 +870,7 @@ penultimo dei valori presenti nella lista, ossia la stringa `'Tony Stark'` e
 l'intero `80`. Allo stesso modo, si può estrarre la sotto-lista che contiene i
 colori di occhi e capelli usando uno _slicing_ come nella cella che segue.
 
-```{code-cell} python
-iron_man[8:10]
-```
+<!-- CELL-PLACEHOLDER-17 -->
 ````
 
 Sono disponibili diverse operazioni che agiscono sulle liste, implementate

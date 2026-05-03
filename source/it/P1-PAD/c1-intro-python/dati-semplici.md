@@ -80,6 +80,18 @@ aritmetica quando questo risulta non definita (come nel calcolo del logaritmo
 di un numero negativo, o per indicare valori mancanti in un _dataset_. La
 divisione per zero invece genera un’eccezione.
 
+<!-- CELL-MARKER-1-START -->
+```{code-cell} python
+print(0.1 + 0.2)
+```
+<!-- CELL-MARKER-1-END -->
+
+<!-- CELL-MARKER-2-START -->
+```{code-cell} python
+0.1
+```
+<!-- CELL-MARKER-2-END -->
+
 ````{admonition} Stranezze in virgola mobile
 :name: adm-stranezze
 
@@ -89,9 +101,7 @@ se pensiamo per esempio ai numeri irrazionali, mentre è meno intuitivo quando
 coinvolge numeri con parte decimale finita. Nella cella che segue si può vedere
 un esempio eclatante.
 
-```{code-cell} python
-print(0.1 + 0.2)
-```
+<!-- CELL-PLACEHOLDER-1 -->
 
 Il risultato non è, come sarebbe logico aspettarsi, $0.3$, ma un numero
 leggermente più alto. Questo è dovuto alla differenza tra la base decimale che
@@ -140,9 +150,7 @@ di approssimazione estremamente minore, dell'ordine di $10^{-17}$.
 In ogni caso, le stranezze non finiscono qui, perché valutando il letterale
 `0.1` si ottiene un risultato incoerente con quanto detto finora:
 
-```{code-cell} python
-0.1
-```
+<!-- CELL-PLACEHOLDER-2 -->
 
 e si può verificare che lo stesso accade per $0.2$ e $0.3$. Ciò è dovuto al
 fatto che la rappresentazione in virgola mobile è univoca ma non biunivoca:
@@ -199,36 +207,52 @@ altrimenti viene lanciata un'eccezione. Pertanto, la conversione tra i tipi
 semplici si effettua &mdash; ove possibile &mdash; utilizzando il nome del
 tipo di destinazione come funzione di conversione.
 
-````{prf:example}
-L'invocazione
-
+<!-- CELL-MARKER-3-START -->
 ```{code-cell} python
 int(3.14)
 ```
+<!-- CELL-MARKER-3-END -->
 
-effettua una conversione da `float` a `int`, troncando all'intero più vicino da
-sinistra e dunque causando una (necessaria) perdita di informazione. Ciò non
-capita invece nella conversione in senso inverso
-
+<!-- CELL-MARKER-4-START -->
 ```{code-cell} python
 float(3)
 ```
+<!-- CELL-MARKER-4-END -->
 
-che semplicemente introduce una parte frazionaria nulla. Procedendo in modo
-analogo è possibile estrarre il valore numerico contenuto in una stringa, a
-patto che i suoi contenuti siano interpretabili in tal senso:
-
+<!-- CELL-MARKER-5-START -->
 ```{code-cell} python
 float('3.14')
 ```
+<!-- CELL-MARKER-5-END -->
 
-Altrimenti, viene sollevata un'eccezione:
-
+<!-- CELL-MARKER-6-START -->
 ```{code-cell} python
 :tags: [raises-exception]
 
 float('Python')
 ```
+<!-- CELL-MARKER-6-END -->
+
+````{prf:example}
+L'invocazione
+
+<!-- CELL-PLACEHOLDER-3 -->
+
+effettua una conversione da `float` a `int`, troncando all'intero più vicino da
+sinistra e dunque causando una (necessaria) perdita di informazione. Ciò non
+capita invece nella conversione in senso inverso
+
+<!-- CELL-PLACEHOLDER-4 -->
+
+che semplicemente introduce una parte frazionaria nulla. Procedendo in modo
+analogo è possibile estrarre il valore numerico contenuto in una stringa, a
+patto che i suoi contenuti siano interpretabili in tal senso:
+
+<!-- CELL-PLACEHOLDER-5 -->
+
+Altrimenti, viene sollevata un'eccezione:
+
+<!-- CELL-PLACEHOLDER-6 -->
 ````
 
 ### Operatori per i tipi numerici
@@ -390,6 +414,50 @@ Pertanto, `a += 1` equivale a `a = a + 1`, `b %= 2` a `b = b % 2`, `c **= 3` a
 
 
 
+<!-- CELL-MARKER-7-START -->
+```{code-cell} python
+energy = 100
+planned_strikes = 6
+```
+<!-- CELL-MARKER-7-END -->
+
+<!-- CELL-MARKER-8-START -->
+```{code-cell} python
+# Distribuzione dell'energia
+mean_energy = energy / planned_strikes
+energy_per_strike = energy // planned_strikes
+residual_energy = energy % planned_strikes
+
+print('energia a ogni attacco:', energy_per_strike)
+print('unità di energia rimaste:', residual_energy)
+```
+<!-- CELL-MARKER-8-END -->
+
+<!-- CELL-MARKER-9-START -->
+```{code-cell} python
+energy = residual_energy
+energy -= 10
+print('energia a seguito dello scontro: ', energy)
+```
+<!-- CELL-MARKER-9-END -->
+
+<!-- CELL-MARKER-10-START -->
+```{code-cell} python
+min_energy = 4
+
+num_absorbtions = energy // min_energy
+residual_energy = energy % min_energy
+print('assorbimenti necessari:', num_absorbtions)
+print('energia finale:', residual_energy)
+```
+<!-- CELL-MARKER-10-END -->
+
+<!-- CELL-MARKER-11-START -->
+```{code-cell} python
+energy == min_energy * (energy // min_energy) + (energy % min_energy)
+```
+<!-- CELL-MARKER-11-END -->
+
 ````{prf:example}
 [Captain Atom](https://comicvine.gamespot.com/captain-atom/4005-2050/) è un
 supereroe con una caratteristica peculiare: il suo corpo è in
@@ -403,10 +471,7 @@ di una quantità positiva di energia che intende utilizzare per sferrare più
 attacchi durante una battaglia, perdendo quantità intere di energia a ogni
 attacco.
 
-```{code-cell} python
-energy = 100
-planned_strikes = 6
-```
+<!-- CELL-PLACEHOLDER-7 -->
 
 La divisione decimale permette di calcolare l’energia media da usare per
 ciascun attacco (nell'idea di attaccare sempre con la stessa forza), mentre
@@ -414,24 +479,12 @@ quella troncata indica quanta energia si può spendere in ognuno di essi senza
 andare sotto zero. Tramite il modulo otteniamo invece l’energia residua al
 termine degli attacchi.
 
-```{code-cell} python
-# Distribuzione dell'energia
-mean_energy = energy / planned_strikes
-energy_per_strike = energy // planned_strikes
-residual_energy = energy % planned_strikes
-
-print('energia a ogni attacco:', energy_per_strike)
-print('unità di energia rimaste:', residual_energy)
-```
+<!-- CELL-PLACEHOLDER-8 -->
 
 Immaginiamo che, dopo aver portato a termine gli attacchi, a seguito di uno
 scontro particolarmente intenso, Captain Atom perda dieci unità di energia:
 
-```{code-cell} python
-energy = residual_energy
-energy -= 10
-print('energia a seguito dello scontro: ', energy)
-```
+<!-- CELL-PLACEHOLDER-9 -->
 
 Dopo lo scontro, Captain Atom si trova dunque in debito energetico. Supponiamo
 che in questa situazione egli possa assorbire energia solo in pacchetti minimi
@@ -439,14 +492,7 @@ di quattro unità. La divisione troncata indica quanti di questi pacchetti dovr�
 ancora assorbire per tornare in bilancio positivo, mentre il modulo mostra
 l’energia che avrà al termine di queste operazioni:
 
-```{code-cell} python
-min_energy = 4
-
-num_absorbtions = energy // min_energy
-residual_energy = energy % min_energy
-print('assorbimenti necessari:', num_absorbtions)
-print('energia finale:', residual_energy)
-```
+<!-- CELL-PLACEHOLDER-10 -->
 
 Il risultato negativo di `//` indica che Captain Atom parte da una situazione
 di debito: il numero rappresenta quante volte è necessario assorbire la
@@ -456,9 +502,7 @@ Anche in presenza di valori negativi, le operazioni restano coerenti: la
 divisione troncata arrotonda verso meno infinito, e il modulo preserva la
 relazione fondamentale
 
-```{code-cell} python
-energy == min_energy * (energy // min_energy) + (energy % min_energy)
-```
+<!-- CELL-PLACEHOLDER-11 -->
 
 ````
  

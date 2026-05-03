@@ -64,6 +64,14 @@
   top: 0.4em;
 }
 
+/* .solution > .admonition-title::before {
+  content: "Soluzione";
+  visibility: visible;
+  position: absolute;
+  left: 2em;
+  top: 0.4em;
+} */
+
 /* No automatic numbering - standard MyST/Sphinx behavior with titles only */
 
 /* NUMBERING COMPLETELY DISABLED - All CSS counter rules removed */

@@ -70,7 +70,6 @@ parts:
       - file: P3/c1/disposizioni
       - file: P3/c1/combinazioni
       - file: P3/c1/generazione
-      - file: P3/c1/esercizi
     - file: P3/c2/teoria-insiemi
       sections:
       - file: P3/c2/concetti-di-base

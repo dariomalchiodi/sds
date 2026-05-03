@@ -122,7 +122,7 @@ utilizzerò nelle formule matematiche.
 | $\binom{n}{k}$             | coefficiente binomiale («$n$ su $k$») di $n$ oggetti in $k$ posti              |
 | $p_n$                      | numero di permutazioni semplici di $n$ elementi                                |
 | $P_{n; n_1, \dots, n_k}$   | numero di permutazioni con ripetizione di $n$ elementi distinguibili a gruppi contenenti $n_1, \dots, n_k$ oggetti |
-| $\\{ a_1, \dots, a_n \\}$    | combinazione composta dagli elementi $a_1, \dots, a_n$                       |
+| $\{ a_1, \dots, a_n \}$    | combinazione composta dagli elementi $a_1, \dots, a_n$                       |
 | $D_{n, k}$                 | disposizioni con ripetizione di $n$ oggetti in $k$ posti                       |
 | $d_{n, k}$                 | disposizioni senza ripetizione di $n$ oggetti in $k$ posti                     |
 | $c_{n, k}$                 | combinazioni semplici di $n$ oggetti in $k$ posti                              |
@@ -135,7 +135,7 @@ utilizzerò nelle formule matematiche.
 | $S \cup T$                 | unione degli insiemi/eventi $S$ e $T$                                          |
 | $S \cap T$                 | intersezione degli insiemi/eventi $S$ e $T$                                    |
 | $S \backslash T$           | differenza tra l'insieme/evento $S$ e l'insieme/evento $T$                     |
-| $S \ominus T$              | differenza simmetrica tra gli insiemi/eventi $S$ e $T$                         |
+| $S \Delta T$              | differenza simmetrica tra gli insiemi/eventi $S$ e $T$                         |
 | $A \vee B$                 | disgiunzione logica tra le proposizioni $A$ e $B$                              |
 | $A \wedge B$               | congiunzione logica tra le proposizioni $A$ e $B$                              |
 | $\mathscr E$               | esperimento casuale                                                            |
@@ -143,6 +143,7 @@ utilizzerò nelle formule matematiche.
 | $\\{ \omega \\}$           | evento elementare                                                              |
 | $\mathsf A$                | algebra degli eventi                                                           |
 | $2^A$                      | insieme delle parti dell'insieme $A$                                           |
+| \mathcal P$                | partizione di un insieme                                                       |
 | $\mathbb P$                | funzione di probabilità                                                        |
 | $\mathbb P(E)$             | probabilità dell'evento $E$                                                    |
 | $\mathbb P(E\|F)$          | probabilità condizionata dell'evento $E$ dato l'evento $F$                     |
