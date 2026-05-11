@@ -412,7 +412,7 @@ $1 \leq i \leq j \leq 6$. Lo spazio degli esiti è quindi
 
 ```{margin}
 Per chiarire meglio questo punto, immaginate che i dadi siano colorati come
-nell’{prf:example}`ex-somma-due-dadi`, ma che diventino indistinguibili per un
+nell’{prf:ref}`ex-somma-due-dadi`, ma che diventino indistinguibili per un
 osservatore che soffre di daltonismo: se $i < j$, le due coppie ordinate
 $(i, j)$ e $(j, i)$ vengono percepite dall'osservatore come la coppia non
 ordinata $\{ i, j \}$
@@ -452,56 +452,317 @@ gli esiti, non solo contarli.
 
 ## Esercizi
 
-```{exercise} •
-Nell’{prf:ref}`ex-somma-due-dadi`, il numero di esiti in $\Omega$ si poteva
+````{exercise} •
+:label: ex-spazi-equip-due-dadi-disposizioni
+
+Nell’{prf:ref}`ex-somma-due-dadi`, il numero di esiti in $\Omega$ si può
 calcolare anche facendo riferimento a uno dei concetti introdotti nel
-{ref}`chap_calcolo-combinatorio`. Qual è questo concetto e come lo si può
-applicare a questo esempio?
+{ref}`chap_calcolo-combinatorio`. Qual è questo concetto e come lo si applica
+a questo esempio?
+````
+
+```{solution} ex-spazi-equip-due-dadi-disposizioni
+:class: dropdown
+
+Lo spazio degli esiti del lancio di due dadi distinguibili può essere visto
+come l’insieme delle disposizioni con ripetizione di $6$ simboli in $2$ posti.
+Infatti, per ciascuno dei due dadi si può scegliere liberamente uno qualunque
+dei $6$ risultati possibili, e lo stesso valore può comparire su entrambi.
+
+Il numero totale di esiti è quindi
+
+```{math}
+d_{6, 2} = 6^2 = 36 
+\enspace.
 ```
 
-```{exercise} •
+Questo coincide con il conteggio ottenuto applicando il principio
+fondamentale del calcolo combinatorio: $6$ possibilità per il dado rosso e,
+indipendentemente, $6$ per il dado blu.
+```
+
+````{exercise} •
+:label: ex-spazi-equip-heroes-squadra
+
+Nick Fury osserva una teca con $8$ schede, tutte ugualmente probabili da
+estrarre: Iron Man, Thor, Hulk, Black Widow, Wolverine, Storm, Batman e
+Superman.
+
+1. Qual è la probabilità di estrarre la scheda di Thor?
+2. Qual è la probabilità di estrarre una scheda Marvel?
+3. Qual è la probabilità di non estrarre una scheda DC?
+````
+
+```{solution} ex-spazi-equip-heroes-squadra
+:class: dropdown
+
+Lo spazio degli esiti ha $8$ elementi ed è equiprobabile, quindi possiamo
+usare la regola classica.
+
+1. La scheda di Thor corrisponde a un solo esito favorevole, dunque
+  $\mathbb P(\text{Thor}) = 1/8$.
+2. Le schede Marvel sono $6$: Iron Man, Thor, Hulk, Black Widow, Wolverine e
+  Storm. Quindi
+  $\mathbb P(\text{Marvel}) = 6/8 = 3/4$.
+3. Le schede non DC sono ancora $6$, quindi
+  $\mathbb P(\text{non DC}) = 6/8 = 3/4$.
+```
+
+````{exercise} ••
+:label: ex-spazi-equip-due-dadi-eventi
+
 Facendo riferimento allo spazio di probabilità
 dell’{prf:ref}`ex-somma-due-dadi`, calcolate la probabilità dei seguenti
-eventi, visualizzando i corrispondenti diagrammi di Venn:
+eventi. Se volete, rappresentateli anche con un diagramma sul quadrato
+$[1..6] \times [1..6]$:
 
 - il risultato del lancio del dado blu è uguale a $3$;
 - il risultato del lancio del dado blu è minore di $3$;
 - la somma dei risultati dei due lanci è uguale a $9$;
 - la somma dei risultati dei due lanci è maggiore di $9$;
-- la somma dei risultati dei due lanci è minore o uguale di $9$;
-- la differenza dei risultati dei due lanci è uguale a 1.
+- la somma dei risultati dei due lanci è minore o uguale a $9$;
+- la differenza in valore assoluto dei risultati dei due lanci è uguale a $1$.
+````
+
+```{solution} ex-spazi-equip-due-dadi-eventi
+:class: dropdown
+
+Poiché ci troviamo nello spazio equiprobabile dell’{prf:ref}`ex-somma-due-dadi`,
+ogni esito elementare ha probabilità $1/36$.
+
+1. Se il dado blu vale $3$, gli esiti favorevoli sono
+  $(1, 3), \dots, (6, 3)$, dunque sono $6$. Quindi
+  $\mathbb P(B = 3) = 6/36 = 1/6$.
+2. Se il dado blu è minore di $3$, allora può valere solo $1$ oppure $2$.
+  Gli esiti favorevoli sono quindi $2 \cdot 6 = 12$, da cui
+  $\mathbb P(B < 3) = 12/36 = 1/3$.
+3. La somma è uguale a $9$ negli esiti $(3, 6)$, $(4, 5)$, $(5, 4)$,
+  $(6, 3)$, che sono $4$. Quindi
+  $\mathbb P(R + B = 9) = 4/36 = 1/9$.
+4. La somma è maggiore di $9$ se vale $10$, $11$ oppure $12$. Gli esiti
+  favorevoli sono rispettivamente $3$, $2$ e $1$, per un totale di $6$.
+  Dunque $\mathbb P(R + B > 9) = 6/36 = 1/6$.
+5. L’evento $R + B \leq 9$ è complementare del precedente, quindi
+  $\mathbb P(R + B \leq 9) = 1 - 1/6 = 5/6$.
+6. La condizione $|R - B| = 1$ si verifica negli esiti
+  $(1, 2)$, $(2, 1)$, $(2, 3)$, $(3, 2)$, $(3, 4)$, $(4, 3)$,
+  $(4, 5)$, $(5, 4)$, $(5, 6)$ e $(6, 5)$, cioè in $10$ casi. Pertanto
+  $\mathbb P(|R - B| = 1) = 10/36 = 5/18$.
 ```
 
-```{exercise} •
-:label: ex-dadi-distinguibili-non-indistinguibili
+````{exercise} •
+:label: ex-spazi-equip-shield-dossier
+
+In un archivio della [S.H.I.E.L.D.](https://marvel.fandom.com/wiki/S.H.I.E.L.D.)
+ci sono $12$ dossier, tutti ugualmente probabili da estrarre: $5$ riguardano
+gli Avengers, $4$ gli X-Men e $3$ la Justice League. Si estrae un dossier a
+caso.
+
+1. Qual è la probabilità che il dossier riguardi un gruppo Marvel?
+2. Qual è la probabilità che il dossier non riguardi la Justice League?
+3. Quale proprietà dello spazio di probabilità giustifica il calcolo usato?
+````
+
+```{solution} ex-spazi-equip-shield-dossier
+:class: dropdown
+
+L’insieme dei $12$ dossier è uno spazio equiprobabile, quindi possiamo usare
+la regola classica $\mathbb P(E) = |E| / |\Omega|$.
+
+1. I dossier che riguardano gruppi Marvel sono quelli sugli Avengers e quelli
+  sugli X-Men, cioè $5 + 4 = 9$. Quindi
+  $\mathbb P(\text{gruppo Marvel}) = 9/12 = 3/4$.
+2. I dossier che non riguardano la Justice League sono ancora $9$, dunque
+  $\mathbb P(\text{non Justice League}) = 9/12 = 3/4$.
+3. Il calcolo è giustificato proprio dal fatto che gli esiti elementari sono
+  equiprobabili.
+```
+
+````{exercise} •
+:label: ex-spazi-equip-regola-classica
+
+Per ciascuno dei seguenti esperimenti, stabilite se la formula classica
+$\mathbb P(E) = |E| / |\Omega|$ si può applicare direttamente, e motivate la
+risposta con una frase.
+
+1. Si estrae a caso una carta da un mazzo ben mescolato di $20$ carte tutte
+  diverse, ciascuna dedicata a un supereroe.
+2. Si osserva l’anno di prima apparizione di un personaggio scelto
+  uniformemente dal dataset dei supereroi.
+3. Si osserva il risultato del lancio di due dadi indistinguibili.
+````
+
+```{solution} ex-spazi-equip-regola-classica
+:class: dropdown
+
+1. Sì. Se il mazzo è ben mescolato e ogni carta è equiprobabile, allora gli
+  esiti elementari hanno tutti la stessa probabilità e la formula classica si
+  può usare.
+2. No. Anche se il personaggio è scelto uniformemente, gli anni di prima
+  apparizione non sono in generale equiprobabili, perché più personaggi
+  possono avere lo stesso anno.
+3. No. Lo spazio degli esiti è finito, ma non equiprobabile: gli esiti
+  $\{i, j\}$ con $i < j$ hanno probabilità $2/36$, mentre quelli del tipo
+  $\{i, i\}$ hanno probabilità $1/36$.
+```
+
+````{exercise} ••
+:label: ex-spazi-equip-dadi-indistinguibili-prob
+
+Nel modello dell’{prf:ref}`ex-due-dadi-indistinguibili`, calcolate la
+probabilità dei seguenti eventi:
+
+1. la somma dei due risultati è uguale a $7$;
+2. i due dadi mostrano lo stesso numero.
+
+Spiegate poi perché, pur avendo cardinalità diverse, questi due eventi hanno
+la stessa probabilità.
+````
+
+```{solution} ex-spazi-equip-dadi-indistinguibili-prob
+:class: dropdown
+
+Nel modello con dadi indistinguibili, gli esiti $\{i, j\}$ con $i < j$ hanno
+probabilità $2/36$, mentre quelli del tipo $\{i, i\}$ hanno probabilità
+$1/36$.
+
+1. L’evento “somma uguale a $7$” è
+  $E = \{ \{1, 6\}, \{2, 5\}, \{3, 4\} \}$. Quindi
+
+  ```{math}
+  \mathbb P(E) = \frac{2}{36} + \frac{2}{36} + \frac{2}{36} = \frac{1}{6}
+  \enspace.
+  ```
+
+2. L’evento “esce un doppio” è
+  $D = \{ \{1, 1\}, \{2, 2\}, \dots, \{6, 6\} \}$. Allora
+
+  ```{math}
+  \mathbb P(D) = 6 \cdot \frac{1}{36} = \frac{1}{6} \enspace.
+  ```
+
+I due eventi hanno la stessa probabilità perché nel primo caso ci sono pochi
+esiti favorevoli, ma ciascuno pesa $2/36$, mentre nel secondo ce ne sono di
+più, ma ciascuno pesa soltanto $1/36$. Questo mostra bene che, nel modello non
+equiprobabile, non basta contare gli esiti: bisogna anche pesarli.
+```
+
+````{exercise} ••
+:label: ex-spazi-equip-evento-non-osservabile
 
 Pensate a un evento che abbia senso nello spazio di probabilità
 dell’{prf:ref}`ex-somma-due-dadi`, ma non in quello
 dell’{prf:ref}`ex-due-dadi-indistinguibili`. Descrivetelo esplicitamente e
 spiegate perché, una volta dimenticato l’ordine dei due risultati, non è più
 possibile rappresentarlo come evento del secondo modello.
-```
-```{solution} ex-dadi-distinguibili-non-indistinguibili
+````
+
+```{solution} ex-spazi-equip-evento-non-osservabile
 :class: dropdown
 
-Un esempio naturale è l’evento $A = \{ (i, 2i) \mid i \in [1..3] \}$, cioè
-«il risultato del dado blu è uguale al doppio di quello del dado rosso». Questo
-evento ha perfettamente senso quando i due dadi sono distinguibili, perché le
-due componenti della coppia ordinata rappresentano due dadi diversi. Nel
-modello con dadi indistinguibili, invece, l’esito osservato è una coppia non
-ordinata $\{i, j\}$, quindi si perde l’informazione su quale risultato
-appartenga al dado rosso e quale al dado blu. Per esempio, gli esiti ordinati
-$(3, 6)$ e $(6, 3)$ diventano entrambi l’unico esito non ordinato $\{ 3, 6 \}$,
-ma il primo appartiene ad $A$ mentre il secondo no. In altri termini,
-osservando l’esito non ordinato $\{ 3, 6 \}$ non si può più stabilire se $A$
-si sia verificato oppure no. Per questo motivo $A$ non può essere
-rappresentato come evento nello spazio dei dadi indistinguibili. In generale,
-solo gli eventi che non cambiano scambiando i due dadi possono essere
-interpretati anche nel modello indistinguibile.
+Un esempio naturale è l’evento
+
+```{math}
+A = \{ (i, j) \in [1..6]^2 \mid i > j \} 
+\enspace,
 ```
 
-```{exercise} •
-Motivate il fatto che il numero di esiti in $\Omega$ per l'esperimento casuale
+cioè “il risultato del dado rosso è maggiore di quello del dado blu”. Questo
+evento ha senso nel modello con dadi distinguibili, perché le due componenti
+della coppia ordinata indicano due dadi diversi.
+
+Nel modello con dadi indistinguibili, invece, l’esito osservato è una coppia
+non ordinata $\{i, j\}$, quindi l’informazione su quale numero appartenga al
+dado rosso e quale al dado blu viene perduta. Per esempio, gli esiti $(5, 2)$
+e $(2, 5)$ diventano entrambi l’unico esito non ordinato $\{2, 5\}$, ma solo
+il primo appartiene ad $A$.
+
+Di conseguenza, osservando $\{2, 5\}$ non si può più decidere se l’evento si
+sia verificato oppure no. Per questo motivo $A$ non può essere rappresentato
+come evento nello spazio dei dadi indistinguibili.
+```
+
+````{exercise} •••
+:label: ex-spazi-equip-eventi-simmetrici
+
+Sia
+
+```{math}
+s : [1..6]^2 \to [1..6]^2, \qquad s(i, j) = (j, i)
+```
+
+la funzione che scambia i risultati dei due dadi distinguibili. Dimostrate che
+un evento del modello con dadi distinguibili può essere descritto anche nel
+modello con dadi indistinguibili se e solo se è invariato rispetto a tale
+scambio, cioè se e solo se $s(A) = A$.
+````
+
+```{solution} ex-spazi-equip-eventi-simmetrici
+:class: dropdown
+
+Indichiamo con
+
+```{math}
+\pi(i, j) = \{i, j\}
+```
+
+la funzione che dimentica l’ordine dei due risultati.
+
+Supponiamo anzitutto che un evento $A \subseteq [1..6]^2$ del modello con dadi
+distinguibili possa essere descritto anche nel modello indistinguibile. Allora
+esiste un evento $B$ formato da coppie non ordinate tale che
+$A = \pi^{-1}(B)$. Se $(i, j) \in A$, allora $\{i, j\} \in B$, ma anche
+$\{j, i\} = \{i, j\} \in B$, quindi $(j, i) \in A$. Questo mostra che
+$s(A) = A$.
+
+Viceversa, supponiamo che $A$ sia invariato per scambio, cioè che da
+$(i, j) \in A$ segua sempre $(j, i) \in A$. Definiamo allora
+
+```{math}
+B = \{ \{i, j\} \mid (i, j) \in A \} 
+\enspace.
+```
+
+Per costruzione, $A$ coincide con l’insieme di tutte le coppie ordinate che,
+una volta dimenticato l’ordine, producono un esito di $B$. In altre parole,
+$A = \pi^{-1}(B)$, quindi $A$ può essere rappresentato anche nel modello con
+dadi indistinguibili.
+
+La condizione $s(A) = A$ significa, in termini intuitivi, che l’evento dipende
+solo dai due valori osservati, non da quale dei due dadi li abbia mostrati.
+```
+
+````{exercise} •
+:label: ex-spazi-equip-dadi-indistinguibili-conta
+
+Motivate il fatto che il numero di esiti in $\Omega$ per l’esperimento casuale
 che consiste nel lanciare due dadi indistinguibili è uguale a $21$, e
 spiegate perché lo spazio così ottenuto non è equiprobabile.
+````
+
+```{solution} ex-spazi-equip-dadi-indistinguibili-conta
+:class: dropdown
+
+Gli esiti possibili sono le coppie non ordinate $\{i, j\}$ con
+$1 \leq i \leq j \leq 6$.
+
+- Se i due dadi mostrano lo stesso numero, otteniamo i $6$ esiti
+  $\{1, 1\}, \dots, \{6, 6\}$.
+- Se invece mostrano numeri diversi, basta scegliere quali sono i due numeri,
+  senza preoccuparsi dell’ordine: gli esiti di questo tipo sono quindi
+  $\binom{6}{2} = 15$.
+
+In totale si ottiene
+
+```{math}
+6 + 15 = 21 
+\enspace.
+```
+
+Lo spazio non è equiprobabile perché gli esiti non hanno tutti lo stesso peso.
+Se $i < j$, l’esito $\{i, j\}$ corrisponde infatti a due esiti ordinati del
+modello con dadi distinguibili, cioè $(i, j)$ e $(j, i)$, e ha quindi
+probabilità $2/36$. Invece ciascun esito del tipo $\{i, i\}$ corrisponde a un
+solo esito ordinato e ha probabilità $1/36$. Poiché queste probabilità sono
+diverse, lo spazio non è equiprobabile.
 ```

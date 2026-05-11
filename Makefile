@@ -51,8 +51,8 @@ _it:
 	@echo "Step 1/6: Processing MyST files..."
 	./sds/process_myst_batch.sh it
 	@echo "Step 2/6: Copying shared resources..."
-	@if [ -d "$(SOURCEDIR)/_static" ]; then cp -r "$(SOURCEDIR)/_static" tmpsource/; fi
-	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
+	@if [ -d "$(SOURCEDIR)/_static" ]; then mkdir -p tmpsource/_static && cp -r "$(SOURCEDIR)/_static/." tmpsource/_static/; fi
+	@if [ -d "$(SOURCEDIR)/_templates" ]; then mkdir -p tmpsource/_templates && cp -r "$(SOURCEDIR)/_templates/." tmpsource/_templates/; fi
 	@if [ -d "$(SOURCEDIR)/data" ]; then cp -r "$(SOURCEDIR)/data" tmpsource/it/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
 	@echo "Step 3/6: Building HTML with Sphinx..."
@@ -81,8 +81,8 @@ _en:
 	@echo "Step 1/5: Processing MyST files..."
 	./sds/process_myst_batch.sh en
 	@echo "Step 2/5: Copying shared resources..."
-	@if [ -d "$(SOURCEDIR)/_static" ]; then cp -r "$(SOURCEDIR)/_static" tmpsource/; fi
-	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
+	@if [ -d "$(SOURCEDIR)/_static" ]; then mkdir -p tmpsource/_static && cp -r "$(SOURCEDIR)/_static/." tmpsource/_static/; fi
+	@if [ -d "$(SOURCEDIR)/_templates" ]; then mkdir -p tmpsource/_templates && cp -r "$(SOURCEDIR)/_templates/." tmpsource/_templates/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
 	@echo "Step 3/5: Building HTML with Sphinx..."
 	$(SPHINXBUILD) -b html tmpsource/en $(SDSDIR)/en
@@ -103,8 +103,8 @@ _fr:
 	@echo "Step 1/5: Processing MyST files..."
 	./sds/process_myst_batch.sh fr
 	@echo "Step 2/5: Copying shared resources..."
-	@if [ -d "$(SOURCEDIR)/_static" ]; then cp -r "$(SOURCEDIR)/_static" tmpsource/; fi
-	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
+	@if [ -d "$(SOURCEDIR)/_static" ]; then mkdir -p tmpsource/_static && cp -r "$(SOURCEDIR)/_static/." tmpsource/_static/; fi
+	@if [ -d "$(SOURCEDIR)/_templates" ]; then mkdir -p tmpsource/_templates && cp -r "$(SOURCEDIR)/_templates/." tmpsource/_templates/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
 	@echo "Step 3/5: Building HTML with Sphinx..."
 	$(SPHINXBUILD) -b html tmpsource/fr $(SDSDIR)/fr
@@ -125,8 +125,8 @@ _es:
 	@echo "Step 1/5: Processing MyST files..."
 	./sds/process_myst_batch.sh es
 	@echo "Step 2/5: Copying shared resources..."
-	@if [ -d "$(SOURCEDIR)/_static" ]; then cp -r "$(SOURCEDIR)/_static" tmpsource/; fi
-	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
+	@if [ -d "$(SOURCEDIR)/_static" ]; then mkdir -p tmpsource/_static && cp -r "$(SOURCEDIR)/_static/." tmpsource/_static/; fi
+	@if [ -d "$(SOURCEDIR)/_templates" ]; then mkdir -p tmpsource/_templates && cp -r "$(SOURCEDIR)/_templates/." tmpsource/_templates/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
 	@echo "Step 3/5: Building HTML with Sphinx..."
 	$(SPHINXBUILD) -b html tmpsource/es $(SDSDIR)/es

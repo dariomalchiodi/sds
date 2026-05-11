@@ -1032,6 +1032,330 @@ def _uses_matplotlib(code):
     
     return False
 
+# ── helpers shared across all post-processing passes ──────────────────────────
+
+_SKIP_TOKENS = frozenset(('_static', '_sources', 'genindex', 'search'))
+
+
+def _skip_html_file(path):
+    """Return True if this HTML file should be skipped in post-processing."""
+    return any(tok in str(path) for tok in _SKIP_TOKENS)
+
+
+def _apply_collapsible_parts(soup, html_file, part_captions, collapsible_js,
+                              processed_parts, dry_run):
+    """Apply collapsible-part/chapter transforms to a pre-parsed soup.
+    Returns True if soup was changed."""
+    changed = False
+    has_parts = False
+
+    for part_caption in part_captions:
+        potential_elements = soup.find_all(lambda tag:
+            tag.name == 'p' and
+            'caption' in tag.get('class', []) and
+            tag.get('role') == 'heading' and
+            tag.get_text(strip=True) == part_caption)
+
+        if potential_elements:
+            has_parts = True
+
+        for element in potential_elements:
+            parent_classes = []
+            current = element
+            while current and current.name and len(parent_classes) < 10:
+                if current.get('class'):
+                    parent_classes.extend(current.get('class'))
+                current = current.parent
+
+            toc_classes = ['bd-links', 'bd-docs-nav', 'bd-sidebar',
+                           'toctree', 'sidebar', 'nav']
+            if not any(cls in parent_classes for cls in toc_classes):
+                continue
+
+            if not dry_run:
+                existing_link = element.find('a')
+                if existing_link:
+                    link_text = existing_link.get_text(strip=True)
+                    existing_link.extract()
+                    warn = (f"Removed link from '{part_caption}'"
+                            "but kept collapsible functionality")
+                    if not element.get_text(strip=True):
+                        element.string = link_text
+                        changed = True
+                        if part_caption not in processed_parts:
+                            print(warn)
+                            processed_parts.add(part_caption)
+                    elif element.get_text(strip=True) != link_text:
+                        element.append(link_text)
+                        changed = True
+                        if part_caption not in processed_parts:
+                            print(warn)
+                            processed_parts.add(part_caption)
+
+                if 'part-collapsible' not in element.get('class', []):
+                    element['class'] = (element.get('class', []) +
+                                        ['part-collapsible'])
+                    changed = True
+                    if part_caption not in processed_parts:
+                        processed_parts.add(part_caption)
+
+                chapters_container = element.find_next_sibling()
+                if (chapters_container and
+                        chapters_container.name in ['ul', 'ol', 'div'] and
+                        'part-chapters' not in
+                            chapters_container.get('class', [])):
+                    chapters_container['class'] = (
+                        chapters_container.get('class', []) + ['part-chapters'])
+                    changed = True
+            else:
+                if element.find('a'):
+                    changed = True
+
+    if not dry_run:
+        incorrect = soup.find_all(lambda tag:
+            'part-collapsible' in tag.get('class', []) and
+            tag.name in ['li', 'a'] and
+            not (tag.name == 'p' and
+                 'caption' in tag.get('class', []) and
+                 tag.get('role') == 'heading'))
+        seen = []
+        for element in incorrect:
+            text = element.get_text(strip=True)[:50]
+            if text not in seen:
+                seen.append(text)
+                print(f'Removed incorrect part-collapsible class from '
+                      f'{element.name} element: {text}')
+            element['class'] = [c for c in element.get('class', [])
+                                 if c != 'part-collapsible']
+            changed = True
+
+        for details in soup.find_all('details'):
+            parent_li = details.find_parent('li')
+            if not (parent_li and 'has-children' in parent_li.get('class', [])):
+                continue
+            chapter_link = next(
+                (s for s in parent_li.children
+                 if hasattr(s, 'name') and s.name == 'a'), None)
+            if not chapter_link:
+                continue
+            chapter_link['class'] = (chapter_link.get('class', []) +
+                                     ['chapter-collapsible'])
+            sub_ul = details.find('ul')
+            if sub_ul:
+                sub_ul['class'] = (sub_ul.get('class', []) +
+                                   ['chapter-sub-items'])
+                details.extract()
+                parent_li.append(sub_ul)
+                changed = True
+
+        pattern = (r'(?ms)^#BEGIN# import '
+                   + re.escape('matplotlib') + r'\s*\n.*?^#END#\s*\n?')
+        if soup.string:
+            match = re.search(pattern, soup.string)
+            if match:
+                stripped = soup.string.replace(match.group(0), '', 1)
+                if 'matplotlib' not in _extract_imports(stripped):
+                    soup.string.replace_with(stripped)
+            else:
+                raise ValueError(
+                    f'Could not find matplotlib import in {html_file}')
+
+    if has_parts or soup.find_all('details'):
+        if not dry_run:
+            head = soup.find('head')
+            if head:
+                for st in head.find_all('style'):
+                    if st.string and 'part-collapsible' in st.string:
+                        st.decompose()
+                changed = True
+            body = soup.find('body')
+            if body:
+                for sc in body.find_all('script'):
+                    if sc.string and 'part-collapsible' in sc.string:
+                        sc.decompose()
+                body.append(BeautifulSoup(collapsible_js, 'html.parser'))
+                changed = True
+        else:
+            if soup.find('head') or soup.find('body'):
+                changed = True
+
+    return changed
+
+
+def _apply_toggle_divs(soup, labels, dry_run):
+    """Replace myst-nb toggle details with custom structure.
+    Returns (changed: bool, n_replacements: int)."""
+    changed = False
+    total_replacements = 0
+
+    for details in soup.find_all('details',
+                                  class_='admonition hide above-input'):
+        summary = details.find('summary')
+        if not (summary and
+                summary.get('aria-label') == 'Toggle hidden content'):
+            continue
+        code_content = details.find('div', class_='cell_input')
+        if not code_content:
+            continue
+
+        wrapper_div = soup.new_tag('div', **{'class': 'toggle-code-wrapper'})
+        button = soup.new_tag('button', **{
+            'class': 'toggle-code-button',
+            'data-toggle-processed': 'true'
+        })
+        triangle = soup.new_tag('span', **{'class': 'triangle'})
+        triangle.string = '▶'
+        button.append(triangle)
+        btn_text = soup.new_tag('span', **{'class': 'button-text'})
+        btn_text.string = f' {labels["show"]}'
+        button.append(btn_text)
+        wrapper_div.append(button)
+
+        content_div = soup.new_tag('div', **{'class': 'toggle-code-content'})
+        cell_div = soup.new_tag('div', **{'class': 'cell docutils container'})
+        cell_div.append(code_content.extract())
+        content_div.append(cell_div)
+        wrapper_div.append(content_div)
+
+        details.replace_with(wrapper_div)
+        changed = True
+        total_replacements += 1
+
+    if changed and not dry_run:
+        body = soup.find('body')
+        if body:
+            exists = body.find('script',
+                string=lambda s: s and 'toggle-code-button' in s)
+            if not exists:
+                with open(SNIPPETS + 'toggle-code-script.js',
+                          'r', encoding='utf-8') as f:
+                    toggle_js = f.read()
+                sc = soup.new_tag('script')
+                sc.string = toggle_js
+                body.append(sc)
+
+    return changed, total_replacements
+
+
+def _apply_py_roles(content, cell_counter, inline_expressions, language,
+                    dry_run):
+    """Regex-replace {py} roles in raw HTML string.
+    Appends found (counter, code) pairs to inline_expressions.
+    Returns (new_content: str, new_counter: int, n_replacements: int)."""
+    patterns = [
+        r'\{py\}`([^`]+)`',
+        r'<code[^>]*>\{py\}`([^`]+)`</code>',
+        r'<em[^>]*>\{py\}`([^`]+)`</em>',
+    ]
+    n_replacements = 0
+    for pattern in patterns:
+        for match in reversed(list(re.finditer(pattern, content))):
+            python_code = match.group(1)
+            inline_html = generate_inline_python(python_code, cell_counter,
+                                                 language)
+            inline_expressions.append((cell_counter, python_code))
+            if not dry_run:
+                content = (content[:match.start()] +
+                           inline_html +
+                           content[match.end():])
+            n_replacements += 1
+            cell_counter += 1
+    return content, cell_counter, n_replacements
+
+
+def _apply_pyscript_dataframes(soup, dry_run):
+    """Move cell-div-container divs outside toggle-code-wrappers.
+    Returns (changed: bool, n_fixes: int)."""
+    changed = False
+    total_fixes = 0
+    for wrapper in soup.find_all('div', class_='toggle-code-wrapper'):
+        container = wrapper.find('div', class_='cell-div-container')
+        if container:
+            container = container.extract()
+            wrapper.insert_after(container)
+            changed = True
+            total_fixes += 1
+    return changed, total_fixes
+
+
+def _apply_margin_notes(soup, counter, dry_run):
+    """Relocate margin notes from proof/exercise/solution boxes.
+    Returns (changed: bool, new_counter: int)."""
+    changed = False
+    for proof_div in soup.select('div.proof, div.exercise, div.solution'):
+        for margin in proof_div.find_all(True, class_='margin'):
+            anchor_id = f'margin-anchor-{counter}'
+            counter += 1
+            anchor_span = soup.new_tag('span')
+            anchor_span['class'] = ['margin-anchor']
+            anchor_span['id'] = anchor_id
+            margin.insert_before(anchor_span)
+            margin.extract()
+            margin['data-anchor'] = anchor_id
+            proof_div.insert_before(margin)
+            changed = True
+
+    if changed and not dry_run:
+        script_tag = soup.new_tag('script')
+        script_tag.string = _MARGIN_ANCHOR_JS
+        soup.body.append(script_tag)
+
+    return changed, counter
+
+
+_NUMBERING_SKIP_NAMES = frozenset(
+    ('genindex.html', 'prf-prf.html', 'search.html', 'index.html'))
+
+
+def _apply_numbering(soup, file_path, language, numbered_toc):
+    """Apply chapter/section numbering and label substitution to soup.
+    Returns True (soup is always modified when this is called)."""
+    def sanitize(text):
+        return text.replace('’', "'").strip()
+
+    toc_nav = (soup.find('nav', class_='bd-links') or
+               soup.find('nav', class_='bd-docs-nav'))
+    if toc_nav is None:
+        raise ValueError('TOC navigation element not found')
+
+    for t, n in zip(toc_nav.find_all('li')[1:], numbered_toc.toc):
+        a_tag = t.find('a')
+        original_title = sanitize(a_tag.decode_contents())
+        if original_title != n['title']:
+            print(f"  - Mismatching TOC item: '{original_title}' "
+                  f"with '{n['title']}'")
+            continue
+        a_tag.insert(0, NavigableString(f"{n['number']}. "))
+
+    title = soup.find('h1')
+    prefix = f'build/sds/{language}/'
+    relative_file_path = file_path[len(prefix):][:-5]
+    if relative_file_path != get_root_doc(language):
+        title.insert(0, NavigableString(
+            f"{numbered_toc.file_to_number[relative_file_path]}. "))
+
+    for a_tag in soup.find_all('a', class_='reference internal'):
+        label = a_tag['href'].split('#')[-1]
+        if label in numbered_toc.label_to_caption:
+            a_tag.string = numbered_toc.label_to_caption[label]
+
+    for a_tag in soup.find_all('a', class_='only-number reference internal'):
+        label = a_tag['href'].split('#')[-1]
+        if label in numbered_toc.label_to_caption:
+            a_tag.string = (numbered_toc.label_to_caption[label]
+                            .split(' ')[-1])
+
+    for text_node in soup.find_all(string=True):
+        for key in LABELS:
+            if key in text_node:
+                text_node.replace_with(
+                    text_node.replace(key, LABELS[key][language]))
+
+    return True
+
+
+# ── outer (file-walking) functions – kept for standalone CLI use ───────────────
+
 def make_part_titles_clickable_and_collapsible(html_root_dir, dry_run=False,
                                                language='it'):
     '''Add collapsible functionality to part sub-TOCs without making part
@@ -2015,13 +2339,14 @@ def fix_print_h1_visibility(html_dir, dry_run=False):
 
 
 def post_process(html_dir, language, dry_run=False):
-    '''Run all HTML post-processing steps in a single Python process.
+    '''Run all HTML post-processing steps in a single pass over each file.
 
-    Combines process_html_py_roles, make_part_titles_clickable_and_collapsible,
-    replace_mystnb_toggle_divs, fix_pyscript_dataframe_outputs,
-    fix_margin_notes_in_examples, fix_print_h1_visibility, and apply_numbering
-    into one invocation to avoid redundant interpreter startups and module
-    imports.
+    Each HTML file is read once, all transforms are applied in sequence on the
+    in-memory BeautifulSoup tree, then written back once.  This avoids the
+    k × N parse/write overhead of the previous approach (k passes, each
+    re-reading all N files).
+
+    Non-HTML steps (sphinx-book-theme CSS patch) run separately after the loop.
 
     Args:
         html_dir (str): Path to the HTML build directory
@@ -2029,13 +2354,79 @@ def post_process(html_dir, language, dry_run=False):
         dry_run (bool): If True, show what would be changed without writing
     '''
     print(f'Post-processing {html_dir} (language: {language})')
-    process_html_py_roles(html_dir, dry_run, language)
-    make_part_titles_clickable_and_collapsible(html_dir, dry_run, language)
-    replace_mystnb_toggle_divs(html_dir, dry_run=dry_run)
-    fix_pyscript_dataframe_outputs(html_dir, dry_run=dry_run)
-    fix_margin_notes_in_examples(html_dir, dry_run=dry_run)
+
+    # ── one-time setup ─────────────────────────────────────────────────────────
+    toc_file = f'source/{language}/_toc.yml'
+    if os.path.exists(toc_file):
+        with open(toc_file, 'r', encoding='utf-8') as f:
+            toc_data = yaml.safe_load(f)
+        part_captions = [p.get('caption', '')
+                         for p in toc_data.get('parts', [])
+                         if p.get('caption')]
+    else:
+        part_captions = []
+
+    with open(SNIPPETS + 'collapsible.js', 'r', encoding='utf-8') as f:
+        collapsible_js = f'<script>\n{f.read()}\n</script>'
+
+    toggle_labels = get_toggle_labels(language)
+    numbered_toc = generate_toc(language=language)
+
+    # cross-file state
+    processed_parts = set()
+    margin_counter = 0
+    py_cell_counter = 1
+    all_inline_expressions = []
+
+    # ── single file loop ───────────────────────────────────────────────────────
+    html_files = list(Path(html_dir).rglob('*.html'))
+    print('Applying all transforms (single pass)...')
+    for html_file in tqdm(html_files):
+        if _skip_html_file(html_file):
+            continue
+
+        try:
+            content = html_file.read_text(encoding='utf-8')
+            original_content = content
+
+            # raw-string transforms (must run before BeautifulSoup parse)
+            content, py_cell_counter, py_changes = _apply_py_roles(
+                content, py_cell_counter, all_inline_expressions,
+                language, dry_run)
+
+            # parse once
+            soup = BeautifulSoup(content, 'html.parser')
+
+            # soup-level transforms
+            c1 = _apply_collapsible_parts(
+                soup, html_file, part_captions, collapsible_js,
+                processed_parts, dry_run)
+            c2, _ = _apply_toggle_divs(soup, toggle_labels, dry_run)
+            c3, _ = _apply_pyscript_dataframes(soup, dry_run)
+            c4, margin_counter = _apply_margin_notes(
+                soup, margin_counter, dry_run)
+
+            fname = os.path.basename(str(html_file))
+            if fname not in _NUMBERING_SKIP_NAMES:
+                c5 = _apply_numbering(
+                    soup, str(html_file), language, numbered_toc)
+            else:
+                c5 = False
+
+            if py_changes or c1 or c2 or c3 or c4 or c5:
+                if not dry_run:
+                    if py_changes:
+                        html_file.with_suffix('.html.backup').write_text(
+                            original_content, encoding='utf-8')
+                    html_file.write_text(str(soup), encoding='utf-8')
+
+        except Exception as e:
+            print(f'Error processing {html_file}: {e}')
+
+    # ── post-loop steps ────────────────────────────────────────────────────────
+    if all_inline_expressions and not dry_run:
+        _add_pyscript_for_inline_expressions(html_dir, all_inline_expressions)
     fix_print_h1_visibility(html_dir, dry_run=dry_run)
-    apply_numbering(language)
 
 
 def main():
