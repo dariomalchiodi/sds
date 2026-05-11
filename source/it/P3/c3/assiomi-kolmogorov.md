@@ -76,7 +76,20 @@ La terna $(\Omega, \mathsf A, \mathbb P)$ viene detta _spazio di probabilità_.
 
 ````
 
-<!-- CELL-MARKER-19-START -->
+````{prf:example} Esempio: l'universo dei supereroi
+:label: ex-frequentista
+
+Consideriamo un esperimento casuale in cui si estrae a caso un supereroe dal
+database dei supereroi usato nel libro, considerando solo i personaggi per i
+quali è noto l'allineamento. Lo spazio degli esiti $\Omega$ è l'insieme di
+tutti questi supereroi. Definiamo gli eventi $G$, $b$ e $N$ che si verificano
+rispettivamente quando l'allineamento del supereroe osservato è buono, cattivo
+e neutrale. Consideriamo poi l'algebra $\mathsf A$ indotta su $\Omega$ da
+questi tre eventi, e su questa definiamo inizialmente $\mathbb P$ come la
+funzione che associa a ogni evento la sua probabilità intesa in senso
+frequentistico, cioè espressa dal rapporto tra il numero di casi favorevoli
+nel dataset e il numero totale di casi.
+
 ```{code-cell} python
 
 import pandas as pd
@@ -96,23 +109,6 @@ print(f'- Cattivi (Bad): {bad} → P(B) = {bad}/{n} = {bad/n:.2f}')
 print(f'- Neutrali (Neutral): {neutral} → P(N) = {neutral}/{n} = {neutral/n:.2f}')
 print(f'\nVerifica: P(G) + P(B) + P(N) = {(good+bad+neutral)/n:.2f}')
 ```
-<!-- CELL-MARKER-19-END -->
-
-````{prf:example} Esempio: l'universo dei supereroi
-:label: ex-frequentista
-
-Consideriamo un esperimento casuale in cui si estrae a caso un supereroe dal
-database dei supereroi usato nel libro, considerando solo i personaggi per i
-quali è noto l'allineamento. Lo spazio degli esiti $\Omega$ è l'insieme di
-tutti questi supereroi. Definiamo gli eventi $G$, $b$ e $N$ che si verificano
-rispettivamente quando l'allineamento del supereroe osservato è buono, cattivo
-e neutrale. Consideriamo poi l'algebra $\mathsf A$ indotta su $\Omega$ da
-questi tre eventi, e su questa definiamo inizialmente $\mathbb P$ come la
-funzione che associa a ogni evento la sua probabilità intesa in senso
-frequentistico, cioè espressa dal rapporto tra il numero di casi favorevoli
-nel dataset e il numero totale di casi.
-
-<!-- CELL-PLACEHOLDER-19 -->
 
 Se consideriamo l'unione di due eventi in $\mathsf A$, per esempio $G \cup B$,
 è naturale estendere $\mathbb P$ in modo che l'interpretazione frequentista
@@ -191,7 +187,13 @@ $\mathbb P(\overline E)$.
 
 ````
 
-<!-- CELL-MARKER-20-START -->
+````{prf:example} Esempio: supereroi non Marvel
+:label: ex-non-marvel
+
+Proseguendo l’{prf:ref}`ex-frequentista`, consideriamo l'evento $M$ che
+corrisponde all'osservazione di un supereroe Marvel e calcoliamone la
+probabilità.
+
 ```{code-cell} python
 
 n = len(heroes)
@@ -201,16 +203,6 @@ print(f'Numero di supereroi Marvel: {marvel}')
 print(f'Numero totale di supereroi: {n}')
 print(f'P(M) = {marvel}/{n} = {marvel / n:.2f}')
 ```
-<!-- CELL-MARKER-20-END -->
-
-````{prf:example} Esempio: supereroi non Marvel
-:label: ex-non-marvel
-
-Proseguendo l’{prf:ref}`ex-frequentista`, consideriamo l'evento $M$ che
-corrisponde all'osservazione di un supereroe Marvel e calcoliamone la
-probabilità.
-
-<!-- CELL-PLACEHOLDER-20 -->
 
 L'evento complementare $\overline M$ rappresenta l'osservazione di un
 supereroe non Marvel &mdash; quindi appartenente a un altro universo, come
@@ -360,7 +352,16 @@ Il diagramma di Venn che illustra la scomposizione di $E \cup F$ nell'unione
 disgiunta di $E \cap \overline F$, $E \cap F$ ed $\overline E \cap F$.
 ````
 
-<!-- CELL-MARKER-21-START -->
+````{prf:example} Esempio: supereroi con superforza o superintelligenza
+:label: ex-union
+
+Nel nostro database di supereroi, definiamo due eventi $F$ e $I$, che si
+verificano rispettivamente quando viene osservato un supereroe con un indice di
+forza maggiore o uguale a $80$ (un supereroe «forte») e con un livello di 
+intelligenza uguale a `'High'` (un supereroe «intelligente»). Come nei due
+esempi precedenti, calcoliamo la probabilità di $F$, $I$ e $F \cap I$ usando
+l'interpretazione frequentista.
+
 ```{code-cell} python
 
 strong_filter = (heroes['strength'] >= 80)
@@ -381,30 +382,13 @@ print(f'P(I) = {intelligent / n :.2f}')
 print(f"Numero di supereroi nell'intersezione: {both}")
 print(f'P(F ∩ I) = {both / n :.2f}')
 ```
-<!-- CELL-MARKER-21-END -->
-
-<!-- CELL-MARKER-22-START -->
-```{code-cell} python
-heroes[intersection_filter].sample(5)['name'].tolist()
-```
-<!-- CELL-MARKER-22-END -->
-
-````{prf:example} Esempio: supereroi con superforza o superintelligenza
-:label: ex-union
-
-Nel nostro database di supereroi, definiamo due eventi $F$ e $I$, che si
-verificano rispettivamente quando viene osservato un supereroe con un indice di
-forza maggiore o uguale a $80$ (un supereroe «forte») e con un livello di 
-intelligenza uguale a `'High'` (un supereroe «intelligente»). Come nei due
-esempi precedenti, calcoliamo la probabilità di $F$, $I$ e $F \cap I$ usando
-l'interpretazione frequentista.
-
-<!-- CELL-PLACEHOLDER-21 -->
 
 Vi sono dunque più di tremila supereroi che sono sia forti che intelligenti,
 come esemplificato dal codice seguente.
 
-<!-- CELL-PLACEHOLDER-22 -->
+```{code-cell} python
+heroes[intersection_filter].sample(5)['name'].tolist()
+```
 
 Per calcolare la probabilità che un supereroe estratto a caso sia forte
 oppure intelligente, possiamo applicare il
@@ -533,7 +517,19 @@ Il diagramma di Venn che illustra la scomposizione $F = E \cup (F \cap
 degli eventi $E$ ed $F \cap \overline E$.
 ````
 
-<!-- CELL-MARKER-23-START -->
+````{prf:example} Esempio: X-Men e supereroi Marvel
+:label: ex-prob-subsets
+
+Continuando gli esempi precedenti, consideriamo gli eventi:
+
+- $M$: «il supereroe appartiene all'universo Marvel»,
+- $X$: «il supereroe è un X-Man».
+
+Poiché tutti gli X-Men sono personaggi Marvel, abbiamo $X \subseteq M$.
+Calcoliamo le probabilità usando il dataset: per identificare gli X-Men,
+consideriamo i supereroi Marvel il cui nome corrisponde a uno dei membri
+classici del gruppo.[^xmen-nota]
+
 ```{code-cell} python
 
 import re
@@ -562,22 +558,6 @@ print(f'P(X) = {xmen_count}/{n} = {xmen_count/n:.2f}')
 print()
 print(f'Verifica X ⊆ M: P(X) ≤ P(M)? {xmen_count/n:.3f} ≤ {marvel_count/n:.2f} → {xmen_count <= marvel_count}')
 ```
-<!-- CELL-MARKER-23-END -->
-
-````{prf:example} Esempio: X-Men e supereroi Marvel
-:label: ex-prob-subsets
-
-Continuando gli esempi precedenti, consideriamo gli eventi:
-
-- $M$: «il supereroe appartiene all'universo Marvel»,
-- $X$: «il supereroe è un X-Man».
-
-Poiché tutti gli X-Men sono personaggi Marvel, abbiamo $X \subseteq M$.
-Calcoliamo le probabilità usando il dataset: per identificare gli X-Men,
-consideriamo i supereroi Marvel il cui nome corrisponde a uno dei membri
-classici del gruppo.[^xmen-nota]
-
-<!-- CELL-PLACEHOLDER-23 -->
 
 Per il {prf:ref}`teo_prob_sottoinsiemi`, $\mathbb P(X) \leq \mathbb P(M)$, e
 questo è confermato dai dati. Intuitivamente, la probabilità di estrarre un

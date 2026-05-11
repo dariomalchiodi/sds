@@ -68,6 +68,3 @@ if (document.readyState === 'loading') {
     window.initializeToggleCode();
 }
 
-// Re-initialize after delays for dynamic content
-setTimeout(window.initializeToggleCode, 500);
-setTimeout(window.initializeToggleCode, 1000);

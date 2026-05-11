@@ -9,15 +9,6 @@ kernelspec:
   display_name: Python 3
 ---
 
-````{code-cell} python
-:tags: [remove-cell]
-
-import matplotlib.pyplot as plt
-plt.style.use('../../_static/sds.mplstyle')
-%matplotlib inline
-plt.ioff()
-````
-
 (sec_dal-discreto-al-continuo)=
 # Dal discreto al continuo
 

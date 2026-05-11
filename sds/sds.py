@@ -1,11 +1,13 @@
 import argparse
 import glob
+import hashlib
 import importlib
 import json
 import os
 from pathlib import Path
 import re
 import shutil
+import sys
 import yaml
 
 import ast
@@ -176,50 +178,6 @@ def _produces_output(node):
     # Default to False for safety
     return False
 
-# def generate_myst_interactive(setup_code, final_code, cell_number):
-#     '''Generates MyST Markdown code for interactive Python execution.
-    
-#     Args:
-#         setup_code (str): The setup code (from split_code output)
-#         final_code (str): The final expression code (from split_code output)
-#         cell_number (int): Progressive number for the cell
-#     Returns:
-#         str: MyST Markdown code with Python role and HTML divs with PyScript
-#     '''
-
-#     # Combine all code for the Python role
-#     if setup_code and final_code:
-#         all_code = f"{setup_code}\n{final_code}"
-#     elif setup_code:
-#         all_code = setup_code
-#     elif final_code:
-#         all_code = final_code
-#     else:
-#         all_code = ""
-    
-#     # Create the Python code block
-#     python_block = f"```python\n{all_code}\n```"
-    
-#     # Create the HTML raw block with divs and PyScript
-
-#     html = f'<div id="splash-{cell_number}" class="splash"></div>\n'
-#     html += f'<div id="out-{cell_number}" class="cell-out"></div>\n'
-#     html += f'<div id="stdout-{cell_number}" class="cell-stdout"></div>\n'
-#     html += f'<div id="stderr-{cell_number}" class="cell-stderr"></div>\n\n'
-#     html += f'<py-script>\n{setup_code}\n'
-    
-#     # Add display call if there's a final expression
-#     if final_code:
-#         html += f'display({final_code}, target="out-{cell_number}")\n'
-    
-#     html += '</py-script>'
-    
-#     html_block = f'```{{raw}} html\n{html}\n```'
-    
-#     # Combine both blocks
-
-#     return f"{python_block}\n\n{html_block}"
-
 def generate_inline_python(python_code, cell_number, language='en'):
     '''Generates inline PyScript execution with span element for Python
     expressions.
@@ -287,16 +245,89 @@ def get_toggle_labels(language='en'):
     
     return labels.get(language, labels['en'])
 
-def _get_div_classes(base_class, class_attr):
-    '''Generate CSS classes for output divs based on original code block
-    classes.'''
 
-    classes = [base_class]
-    if class_attr and 'full-width' in class_attr:
-        classes.append('full-width')
-    return ' '.join(classes)
+EXAMPLE_DIRECTIVES = frozenset(['prf:example'])
 
-def process_myst_document(myst_content, source_file,
+_WHITE_RCPARAMS = (
+    "import matplotlib as _mpl_sds\n"
+    "_mpl_sds.rcParams.update({"
+    "'figure.facecolor': 'white', "
+    "'axes.facecolor': 'white', "
+    "'savefig.facecolor': 'white'"
+    "})\n"
+)
+_BLUE_RCPARAMS = (
+    "import matplotlib as _mpl_sds\n"
+    "_mpl_sds.rcParams.update({"
+    "'figure.facecolor': '#eaf3f5', "
+    "'axes.facecolor': '#eaf3f5', "
+    "'savefig.facecolor': '#eaf3f5'"
+    "})\n"
+)
+def _find_box_directive_ranges(content):
+    '''Return (start, end) char ranges of regions inside box directives.'''
+    pattern = re.compile(
+        r'^(`{3,})\{(' + '|'.join(re.escape(d) for d in EXAMPLE_DIRECTIVES) + r')\}',
+        re.MULTILINE
+    )
+    ranges = []
+    for m in pattern.finditer(content):
+        fence = m.group(1)
+        close = re.compile(r'^' + re.escape(fence) + r'\s*$', re.MULTILINE)
+        cm = close.search(content, m.end())
+        if cm:
+            ranges.append((m.start(), cm.end()))
+    return ranges
+
+
+def _inject_mpl_style_into_code_cells(content):
+    '''Insert hidden {code-cell} blocks to set matplotlib rcParams.
+
+    A hidden (remove-cell) cell is inserted immediately before each matplotlib
+    {code-cell}.  Cells inside a prf:example directive receive white background
+    rcParams; all other cells receive the standard #eaf3f5 values so that white
+    set by a previous example cell does not bleed into later output.
+    The original cells are left unchanged.
+    '''
+    box_ranges = _find_box_directive_ranges(content)
+
+    def _in_box(pos):
+        return any(s <= pos <= e for s, e in box_ranges)
+
+    header_re = re.compile(
+        r'^(`{3,})\{code-cell\}\s+python[^\n]*\n(?::[^\n]*\n)*\n?',
+        re.MULTILINE
+    )
+
+    parts = []
+    last = 0
+    for m in header_re.finditer(content):
+        fence = m.group(1)
+        close_re = re.compile(r'^' + re.escape(fence) + r'\s*$', re.MULTILINE)
+        cm = close_re.search(content, m.end())
+        if cm is None:
+            continue
+        body = content[m.end():cm.start()]
+
+        parts.append(content[last:m.start()])
+
+        if _uses_matplotlib(body):
+            rcparams = _WHITE_RCPARAMS if _in_box(m.start()) else _BLUE_RCPARAMS
+            parts.append(
+                fence + "{code-cell} python\n"
+                ":tags: [remove-cell]\n\n"
+                + rcparams +
+                fence + "\n"
+            )
+
+        parts.append(content[m.start():cm.end()])
+        last = cm.end()
+
+    parts.append(content[last:])
+    return ''.join(parts)
+
+
+def process_myst_document(myst_content,
                           include_setup=True, language='en'):
 
     '''Processes a MyST Markdown document and adds interactive HTML blocks
@@ -312,9 +343,13 @@ def process_myst_document(myst_content, source_file,
             Python code blocks
     '''
     
+    # Inject matplotlib style rcParams into {code-cell} blocks before other
+    # processing so Sphinx/myst-nb executes cells with the correct facecolors.
+    myst_content = _inject_mpl_style_into_code_cells(myst_content)
+
     # Extract all Python code blocks from the document
     python_codes = extract_python_roles(myst_content)
-    
+
     if not python_codes:
         return myst_content
     
@@ -322,7 +357,6 @@ def process_myst_document(myst_content, source_file,
     result_parts = []
     pyscript_blocks = []  # Collect all PyScript blocks to add at the end
     inline_expressions = []  # Collect inline Python expressions
-    all_imports = set()  # Collect all imported packages
     current_pos = 0
     cell_number = 1
     
@@ -452,44 +486,15 @@ def process_myst_document(myst_content, source_file,
         python_code_index += 1
         python_code = python_code.strip()
         
-        # Extract imports from this code block
-        imports = _extract_imports(python_code)
-        all_imports.update(imports)
         
         # Split the Python code into setup and final parts
         setup_code, final_code = split_code(python_code)
         setup_code = setup_code.replace('%this%', str(cell_number))
         final_code = final_code.replace('%this%', str(cell_number))
         
-        # Create only the HTML divs (no PyScript yet)
-        # DELETED BECAUSE OF DOUBLE DIV CREATION
-        # with open(SNIPPETS + 'cell-divs.md',
-        #           'r', encoding='utf-8') as f:
-        #     snippet = f.read()
-
-        # html_divs = snippet.format(cell_number=cell_number, \
-        #     splash_class=_get_div_classes('splash', class_attr),
-        #     out_class=_get_div_classes('cell-out', class_attr),
-        #     stdout_class=_get_div_classes('cell-stdout', class_attr),
-        #     stderr_class=_get_div_classes('cell-stderr', class_attr),
-        #     graph_class=_get_div_classes('cell-graph no-mathjax', class_attr))
-        
-        # if height_attr is not None:
-        #     html_divs = html_divs.replace('class="splash"', 
-        #                     f'class="splash" style="height: {height_attr};"')
-            
-        # result_parts.append(html_divs)
-        
         # Check if matplotlib is used in this cell
         uses_matplotlib = _uses_matplotlib(python_code)
         
-        # Create the PyScript block to be added later Add class attribute if
-        # present, but NOT for toggle-code (that should only affect visible
-        # code)
-        py_script_class = ""
-        if class_attr and 'toggle-code' not in class_attr:
-            pass
-        py_script_class = f' class="{class_attr}"'
 
         with open(SNIPPETS + 'pyscript-initial-content.pysnippet',
                   'r', encoding='utf-8') as f:
@@ -549,12 +554,6 @@ def process_myst_document(myst_content, source_file,
     # Add all PyScript blocks at the end
     if pyscript_blocks or inline_expressions:
         
-        # Write the companion .py file for this page
-        # source_path = Path(source_file)
-        # script_name = source_path.stem + '.py'
-        # script_dir = source_path.parent
-        # script_path = script_dir / script_name
-
         all_pyscript_content = []
 
         # Add setup first if requested
@@ -580,12 +579,7 @@ def process_myst_document(myst_content, source_file,
 
         all_pyscript_content = '\n\n'.join(all_pyscript_content)
 
-        # with open(script_path, 'w', encoding='utf-8') as f:
-        #     f.write(all_pyscript_content)
-
         result_parts.append('\n\n```{raw} html\n')
-        # result_parts.append(f'<script type="py" '
-        #                     f'src="{script_name}"></script>\n')
         result_parts.append(f'<script type="py">\n')
         result_parts.append(all_pyscript_content)
         result_parts.append('\n</script>\n')
@@ -679,7 +673,6 @@ def process_myst_file(file_path, include_setup=True):
     # Process the content
     try:
         processed_content = process_myst_document(original_content,
-                                                  source_file=file_path,
                                                   include_setup=include_setup,
                                                   language=language)
     except Exception as e:
@@ -700,6 +693,180 @@ def process_myst_file(file_path, include_setup=True):
         raise IOError(f"Failed to write processed file: {e}")
     
     return str(backup_path)
+
+
+def _compute_file_hash(path):
+    '''Compute SHA-256 hash of a file's content.'''
+    h = hashlib.sha256()
+    with open(path, 'rb') as f:
+        for chunk in iter(lambda: f.read(65536), b''):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def process_myst_batch_dir(dest_dir, include_setup=True, source_dir=None,
+                           force=False):
+    '''Process .md files, optionally syncing from source_dir first.
+
+    When source_dir is given, files are synced from source_dir to dest_dir and
+    only .md files whose content changed since the last run are reprocessed.
+    Unchanged files retain their mtime so Sphinx's incremental build skips them.
+    A cache of source-file SHA-256 hashes is stored in dest_dir/.process_cache.json;
+    the cache is also keyed on a hash of sds.py itself so that changes to the
+    preprocessor trigger a full reprocess automatically.
+
+    When source_dir is None, all .md files in dest_dir are processed (no caching).
+
+    Args:
+        dest_dir (str): Destination directory (e.g. tmpsource/it)
+        include_setup (bool): Whether to include PyScript setup block
+        source_dir (str|None): Source directory to sync from (e.g. source/it)
+        force (bool): Ignore cache and reprocess all files
+    Returns:
+        tuple: (processed_count, skipped_count, failed_count)
+    '''
+    dest_dir = Path(dest_dir)
+    dest_dir.mkdir(parents=True, exist_ok=True)
+
+    if source_dir is None:
+        processed, failed = _process_all_md_files(dest_dir, include_setup)
+        return processed, 0, failed
+
+    return _sync_and_process(Path(source_dir), dest_dir, include_setup, force)
+
+
+def _process_all_md_files(dest_dir, include_setup):
+    '''Process all .md files in dest_dir without caching (legacy path).'''
+    md_files = sorted(dest_dir.rglob('*.md'))
+    total = len(md_files)
+    if total == 0:
+        print(f'No .md files found in {dest_dir}')
+        return 0, 0
+    processed = 0
+    failed = 0
+    for i, md_file in enumerate(md_files, 1):
+        rel = md_file.relative_to(dest_dir)
+        print(f'  [{i}/{total}] {rel}\033[K\r', end='', flush=True)
+        try:
+            process_myst_file(str(md_file), include_setup=include_setup)
+            processed += 1
+        except Exception as e:
+            print(f'\nERROR processing {rel}: {e}', file=sys.stderr)
+            failed += 1
+    print(f'\nDone! {processed}/{total} files processed.')
+    if failed:
+        print(f'WARNING: {failed} file(s) failed.', file=sys.stderr)
+    return processed, failed
+
+
+def _sync_and_process(source_dir, dest_dir, include_setup, force):
+    '''Sync source_dir → dest_dir, reprocessing only changed .md files.'''
+    cache_file = dest_dir / '.process_cache.json'
+    # Hash sds.py itself so any change to the preprocessor invalidates all entries
+    sds_hash = _compute_file_hash(Path(__file__).with_suffix('.py'))
+
+    cache = {}
+    if not force:
+        try:
+            cache = json.loads(cache_file.read_text(encoding='utf-8'))
+        except Exception:
+            pass
+    if cache.get('sds_hash') != sds_hash:
+        cache = {'sds_hash': sds_hash, 'files': {}}
+        print('Preprocessor changed — full reprocess.')
+
+    file_hashes = cache.setdefault('files', {})
+
+    # Walk source without following symlinks so we can detect directory symlinks
+    # (e.g. source/it/_static -> ../_static) and recreate them in dest.
+    source_files = {}
+    dir_symlinks = {}
+    for raw_dir, dirnames, filenames in os.walk(str(source_dir), followlinks=False):
+        cur = Path(raw_dir)
+        rel_dir = cur.relative_to(source_dir)
+        real_subdirs = []
+        for d in list(dirnames):
+            sub = cur / d
+            if sub.is_symlink():
+                dir_symlinks[rel_dir / d] = os.readlink(str(sub))
+            else:
+                real_subdirs.append(d)
+        dirnames[:] = real_subdirs
+        for fname in filenames:
+            rel = rel_dir / fname
+            source_files[rel] = cur / fname
+
+    # Recreate directory symlinks in dest (preserve relative targets)
+    for rel, target in dir_symlinks.items():
+        dst_link = dest_dir / rel
+        if dst_link.is_symlink():
+            if os.readlink(str(dst_link)) != target:
+                dst_link.unlink()
+                os.symlink(target, str(dst_link))
+        elif not dst_link.exists():
+            dst_link.parent.mkdir(parents=True, exist_ok=True)
+            os.symlink(target, str(dst_link))
+
+    # Dirs that are symlinks in dest — don't touch files inside them
+    symlinked_dest_dirs = {dest_dir / rel for rel in dir_symlinks}
+
+    # Remove dest files that no longer exist in source (skip .backup and cache)
+    for dest_file in sorted(dest_dir.rglob('*')):
+        if not dest_file.is_file():
+            continue
+        if any(dest_file.is_relative_to(sd) for sd in symlinked_dest_dirs):
+            continue
+        rel = dest_file.relative_to(dest_dir)
+        if rel.name == '.process_cache.json' or str(rel).endswith('.backup'):
+            continue
+        if rel not in source_files:
+            dest_file.unlink()
+            file_hashes.pop(str(rel), None)
+
+    # Process .md files (hash-aware)
+    md_rels = [r for r in sorted(source_files) if r.suffix == '.md']
+    total = len(md_rels)
+    processed = skipped = failed = 0
+
+    for i, rel in enumerate(md_rels, 1):
+        src_file = source_files[rel]
+        dst_file = dest_dir / rel
+        dst_file.parent.mkdir(parents=True, exist_ok=True)
+        key = str(rel)
+        src_hash = _compute_file_hash(src_file)
+
+        if not force and file_hashes.get(key) == src_hash and dst_file.exists():
+            skipped += 1
+            print(f'  [{i}/{total}] skip  {rel}\033[K\r', end='', flush=True)
+            continue
+
+        print(f'  [{i}/{total}] proc  {rel}\033[K\r', end='', flush=True)
+        shutil.copy2(src_file, dst_file)
+        try:
+            process_myst_file(str(dst_file), include_setup=include_setup)
+            file_hashes[key] = src_hash
+            processed += 1
+        except Exception as e:
+            print(f'\nERROR processing {rel}: {e}', file=sys.stderr)
+            file_hashes.pop(key, None)
+            failed += 1
+
+    # Sync non-.md files (copy when newer or missing)
+    for rel, src_file in sorted(source_files.items()):
+        if rel.suffix == '.md':
+            continue
+        dst_file = dest_dir / rel
+        dst_file.parent.mkdir(parents=True, exist_ok=True)
+        if not dst_file.exists() or src_file.stat().st_mtime > dst_file.stat().st_mtime:
+            shutil.copy2(src_file, dst_file)
+
+    print(f'\nDone! {processed} processed, {skipped} unchanged, {failed} failed.')
+    cache_file.write_text(json.dumps(cache, indent=2), encoding='utf-8')
+
+    if failed:
+        sys.exit(1)
+    return processed, skipped, failed
+
 
 def _extract_imports(code):
     '''Extract imported package names from Python code.
@@ -1067,100 +1234,7 @@ def make_part_titles_clickable_and_collapsible(html_root_dir, dry_run=False,
                                 parent_li.append(sub_ul)
                                 
                                 changed = True
-            # Use only actually needed python packages in py-config
             if not dry_run:
-
-
-                # # extract imports from the companion .py file
-                # py_source = Path(html_file).with_suffix('.py')
-                # if os.path.exists(py_source):
-                #     with open(py_source, 'r', encoding='utf-8') as f:
-                #         content_all = f.read()
-
-                #     # Regex matches from #BEGIN# import matplotlib to #END#
-                #     pattern = rf"(?ms)^#BEGIN# import {re.escape('matplotlib')}\s*\n.*?^#END#\s*\n?"
-
-                #     match = re.search(pattern, content_all)
-                #     if match:
-                #         block = match.group(0)
-                #         content_no_plt = content_all.replace(block, "", 1)
-                #     else:
-                #         msg = f'Could not find matplotlib import in {py_source}'
-                #         raise ValueError(msg)
-
-                #     needed_packages = _extract_imports(content_no_plt)
-
-                #     if 'matplotlib' not in needed_packages:
-                #         with open(py_source, 'w', encoding='utf-8') as f:
-                #             f.write(content_no_plt)
-
-                #     py_config = soup.find("py-config")
-                #     needed_packages.discard('js')
-                #     needed_packages.discard('pyscript')
-                #     needed_packages.discard('pyodide')
-                #     if needed_packages:
-                #         custom_packages = sorted(needed_packages)
-
-                #         config_data = json.loads(py_config.string)
-                #         config_data["packages"] = custom_packages
-
-                #         py_config.string = json.dumps(config_data, indent=2)
-                #     else:
-                #         # py_config.decompose()
-                #         pass
-                # # Replace %this% placeholders in script tags
-                # script_tags = soup.find_all('script', type='py')
-                # for script in script_tags:
-                #     if script.string and '%this%' in script.string:
-                #         # Generate a unique cell number based on position
-                #         cell_num = len([s for s in soup.find_all('script', type='py') 
-                #                     if s.sourceline < script.sourceline]) + 1
-                #         script.string = script.string.replace('%this%', str(cell_num))
-                #         changed = True
-
-                # # Regex matches from #BEGIN# import matplotlib to #END#
-                # pattern = rf"(?ms)^#BEGIN# import {re.escape('matplotlib')}\s*\n.*?^#END#\s*\n?"
-
-                # match = re.search(pattern, content)
-                # if match:
-                #     block = match.group(0)
-                #     content_no_plt = content.replace(block, "", 1)
-                # else:
-                #     msg = f'Could not find matplotlib import in {py_source}'
-                #     raise ValueError(msg)
-
-                # needed_packages = _extract_imports(content_no_plt)
-
-                # if 'matplotlib' not in needed_packages:
-                #     content = content_no_plt
-
-                # py_config = soup.find("py-config")
-                # needed_packages.discard('js')
-                # needed_packages.discard('pyscript')
-                # needed_packages.discard('pyodide')
-                # if needed_packages:
-                #     custom_packages = sorted(needed_packages)
-
-                #     config_data = json.loads(py_config.string)
-                #     config_data["packages"] = custom_packages
-
-                #     py_config.string = json.dumps(config_data, indent=2)
-                # else:
-                #     # py_config.decompose()
-                #     pass
-
-                # REMOVED 2026-01-04 as double replacement generates errors
-                # script_tags = soup.find_all('script', type='py')
-                # for script in script_tags:
-                #     if not script.string:
-                #         continue
-                #     if '%this%' in script.string:
-                #         # Generate a unique cell number based on position
-                #         cell_num = len([s for s in soup.find_all('script', type='py') 
-                #                     if s.sourceline < script.sourceline]) + 1
-                #         script.string = script.string.replace('%this%', str(cell_num))
-                #         changed = True
-
                 pattern = rf"(?ms)^#BEGIN# import {re.escape('matplotlib')}\s*\n.*?^#END#\s*\n?"
                 if soup.string:
                     match = re.search(pattern, soup.string)
@@ -1345,8 +1419,6 @@ def replace_mystnb_toggle_divs(html_root_dir, dry_run=False, language='it'):
     
     return files_modified, total_replacements
 
-
-
 def process_html_py_roles(html_root_dir, dry_run=False, language='en'):
     '''
     Process HTML files to replace any remaining {py} roles with interactive
@@ -1470,7 +1542,6 @@ def process_html_py_roles(html_root_dir, dry_run=False, language='en'):
     
     return changes_summary
 
-
 def _add_pyscript_for_inline_expressions(html_root_dir, inline_expressions):
     '''
     Add PyScript execution code to the first HTML file to handle inline
@@ -1507,12 +1578,14 @@ def _add_pyscript_for_inline_expressions(html_root_dir, inline_expressions):
             pyscript_code = snippet.format(
                 inline_expressions=inline_expressions)
         
-        # Try to insert the PyScript code before the closing </body> tag
+        pyscript_block = f'<script type="py">\n{pyscript_code}\n</script>'
+
+        # Try to insert the PyScript block before the closing </body> tag
         if '</body>' in content:
-            content = content.replace('</body>', pyscript_code + '\n</body>')
+            content = content.replace('</body>', pyscript_block + '\n</body>')
         else:
             # Fallback: append at the end
-            content += pyscript_code
+            content += pyscript_block
         
         # Write the modified content
         with open(target_file, 'w', encoding='utf-8') as f:
@@ -1740,8 +1813,6 @@ def apply_numbering(language):
                     text_node.replace_with(text_node.replace(key,
                                         LABELS[key][language]))
 
-
-
         with open(file_path, 'w', encoding='utf-8') as f:
             f.write(str(file_soup))
     print()
@@ -1810,6 +1881,163 @@ def fix_pyscript_dataframe_outputs(html_root_dir, dry_run=False):
     
     return files_modified, total_fixes
 
+
+_MARGIN_ANCHOR_JS = """
+(function () {
+  function reposition() {
+    document.querySelectorAll('aside.margin[data-anchor]').forEach(function (note) {
+      var anchor = document.getElementById(note.dataset.anchor);
+      if (!anchor) return;
+      note.style.marginTop = '';
+      var offset = anchor.getBoundingClientRect().top
+                 - note.getBoundingClientRect().top;
+      note.style.marginTop = Math.max(0, offset) + 'px';
+    });
+  }
+  window.addEventListener('load', reposition);
+  var _t;
+  new ResizeObserver(function () { clearTimeout(_t); _t = setTimeout(reposition, 50); })
+      .observe(document.documentElement);
+})();
+"""
+
+
+def fix_margin_notes_in_examples(html_root_dir, dry_run=False):
+    '''Move margin notes out of theorem-like boxes and align them vertically.
+
+    sphinx-book-theme margin notes use float + negative-right-margin CSS that
+    only works at the top-level article flow.  When a {margin} directive appears
+    inside a sphinx_proof box (prf:example, prf:theorem, prf:lemma, prf:proof,
+    prf:definition, ...) or a sphinx_exercise box (exercise, solution), this pass:
+
+    1. Inserts a zero-size <span class="margin-anchor" id="margin-anchor-N">
+       placeholder at the exact location of the margin note inside the proof div.
+    2. Moves the <aside class="margin"> element to immediately before the
+       enclosing div.proof element, tagging it with a data-anchor attribute.
+    3. Injects a <script> that resets the note's margin-top, measures the
+       difference between anchor.top and note.top (both via
+       getBoundingClientRect), and applies that as margin-top.  A debounced
+       ResizeObserver recomputes on every window resize so the alignment
+       adapts to reflow.
+
+    Args:
+        html_root_dir (str): Path to the HTML build directory
+        dry_run (bool): If True, report changes without writing files
+    Returns:
+        tuple: (files_modified, notes_relocated)
+    '''
+    html_files = list(Path(html_root_dir).rglob('*.html'))
+    files_modified = 0
+    total_fixes = 0
+    counter = 0
+
+    print('Fixing margin notes inside examples...')
+    for html_file in tqdm(html_files):
+        if any(skip in str(html_file)
+               for skip in ['_static', 'genindex', 'search']):
+            continue
+
+        try:
+            content = html_file.read_text(encoding='utf-8')
+        except Exception as e:
+            print(f'Error reading {html_file}: {e}')
+            continue
+
+        soup = BeautifulSoup(content, 'html.parser')
+        changed = False
+
+        for proof_div in soup.select('div.proof, div.exercise, div.solution'):
+            margins = proof_div.find_all(True, class_='margin')
+            if not margins:
+                continue
+
+            for margin in margins:
+                anchor_id = f'margin-anchor-{counter}'
+                counter += 1
+
+                anchor_span = soup.new_tag('span')
+                anchor_span['class'] = ['margin-anchor']
+                anchor_span['id'] = anchor_id
+                margin.insert_before(anchor_span)
+
+                margin.extract()
+                margin['data-anchor'] = anchor_id
+                proof_div.insert_before(margin)
+
+                total_fixes += 1
+                changed = True
+
+        if changed:
+            script_tag = soup.new_tag('script')
+            script_tag.string = _MARGIN_ANCHOR_JS
+            soup.body.append(script_tag)
+
+            if not dry_run:
+                html_file.write_text(str(soup), encoding='utf-8')
+            files_modified += 1
+
+    print(f'  Files modified: {files_modified}, '
+          f'margin notes relocated: {total_fixes}')
+    return files_modified, total_fixes
+
+
+def fix_print_h1_visibility(html_dir, dry_run=False):
+    '''Patch sphinx-book-theme CSS to show h1 headings when printing.
+
+    sphinx-book-theme hides the first h1 inside .bd-article in print mode,
+    intending a separate #jb-print-docs-body element to supply the title.
+    We don't use that element, so we patch the rule to display:block.
+
+    Args:
+        html_dir (str): Path to the HTML build directory
+        dry_run (bool): If True, show what would be changed without writing
+    '''
+    old_rule = '.bd-main .bd-content .bd-article h1:first-of-type{display:none}'
+    new_rule = '.bd-main .bd-content .bd-article h1:first-of-type{display:block}'
+
+    for root, dirs, files in os.walk(html_dir):
+        dirs[:] = [d for d in dirs if d not in ['_sources']]
+        for fname in files:
+            if fname != 'sphinx-book-theme.css':
+                continue
+            path = os.path.join(root, fname)
+            with open(path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            if old_rule not in content:
+                continue
+            new_content = content.replace(old_rule, new_rule)
+            if dry_run:
+                print(f'Would patch h1 print rule in {path}')
+            else:
+                with open(path, 'w', encoding='utf-8') as f:
+                    f.write(new_content)
+                print(f'Patched h1 print rule in {path}')
+
+
+def post_process(html_dir, language, dry_run=False):
+    '''Run all HTML post-processing steps in a single Python process.
+
+    Combines process_html_py_roles, make_part_titles_clickable_and_collapsible,
+    replace_mystnb_toggle_divs, fix_pyscript_dataframe_outputs,
+    fix_margin_notes_in_examples, fix_print_h1_visibility, and apply_numbering
+    into one invocation to avoid redundant interpreter startups and module
+    imports.
+
+    Args:
+        html_dir (str): Path to the HTML build directory
+        language (str): Language code (it, en, fr, es)
+        dry_run (bool): If True, show what would be changed without writing
+    '''
+    print(f'Post-processing {html_dir} (language: {language})')
+    process_html_py_roles(html_dir, dry_run, language)
+    make_part_titles_clickable_and_collapsible(html_dir, dry_run, language)
+    replace_mystnb_toggle_divs(html_dir, dry_run=dry_run)
+    fix_pyscript_dataframe_outputs(html_dir, dry_run=dry_run)
+    fix_margin_notes_in_examples(html_dir, dry_run=dry_run)
+    fix_print_h1_visibility(html_dir, dry_run=dry_run)
+    apply_numbering(language)
+
+
 def main():
     '''Command-line interface for sds.py functions.'''
 
@@ -1840,11 +2068,33 @@ def main():
                     help='Language code (it, en, fr, es)')
     parser_py_roles.add_argument('--dry-run', action='store_true',
                     help='Show what would be changed without making changes')
-    
+
+    # Add subparser for combined post-processing (replaces the three separate commands)
+    parser_post = subparsers.add_parser('post-process',
+                    help='Run all HTML post-processing steps in one pass')
+    parser_post.add_argument('html_dir', help='HTML build directory')
+    parser_post.add_argument('--language', default='it',
+                    help='Language code (it, en, fr, es)')
+    parser_post.add_argument('--dry-run', action='store_true',
+                    help='Show what would be changed without making changes')
+
+    # Add subparser for batch MyST processing
+    parser_batch = subparsers.add_parser('process-myst-batch',
+                    help='Process all .md files in a directory in one process')
+    parser_batch.add_argument('directory',
+                    help='Destination directory (e.g. tmpsource/it)')
+    parser_batch.add_argument('--source-dir',
+                    help='Source directory to sync from (e.g. source/it); '
+                         'enables hash-based incremental processing')
+    parser_batch.add_argument('--no-setup', action='store_true',
+                    help='Disable PyScript setup block inclusion')
+    parser_batch.add_argument('--force', action='store_true',
+                    help='Ignore cache and reprocess all files')
+
     args = parser.parse_args()
-    
+
     if args.command == 'make-parts-clickable':
-        make_part_titles_clickable_and_collapsible(args.html_dir, 
+        make_part_titles_clickable_and_collapsible(args.html_dir,
                                                    args.dry_run,
                                                    args.language)
         replace_mystnb_toggle_divs(args.html_dir, dry_run=args.dry_run)
@@ -1856,9 +2106,19 @@ def main():
         print(c)
     elif args.command == 'apply-numbering':
         apply_numbering(args.language)
+    elif args.command == 'post-process':
+        post_process(args.html_dir, args.language, args.dry_run)
+    elif args.command == 'process-myst-batch':
+        processed, skipped, failed = process_myst_batch_dir(
+            args.directory,
+            include_setup=not args.no_setup,
+            source_dir=getattr(args, 'source_dir', None),
+            force=getattr(args, 'force', False),
+        )
+        if failed:
+            sys.exit(1)
     else:
         parser.print_help()
-
 
 if __name__ == '__main__':
     main()

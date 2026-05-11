@@ -1,5 +1,6 @@
-import pytest
+import unittest
 from sds.sds import generate_toc
+
 
 def make_mock_toc():
     return {
@@ -43,27 +44,33 @@ def make_mock_toc():
         ]
     }
 
-def test_generate_toc_with_mock():
-    toc_data = make_mock_toc()
-    toc = generate_toc(language='en', toc_data=toc_data)
-    toc_str = toc.get_toc()
-    # Check chapters
-    assert 'Chapter 1: Introduction' in toc_str
-    assert 'Chapter 2: Overview' in toc_str
-    # Check sections
-    assert 'Section 1.1: Approach' in toc_str
-    assert 'Section 1.2: Acknowledgments' in toc_str
-    # Check appendix
-    assert 'Appendix A: References' in toc_str
-    assert 'Section A.1: Python' in toc_str
-    # Check label lookups
-    assert toc.get_caption_by_label('source-en-P0-introduction.md') == 'Chapter 1'
-    assert toc.get_caption_by_label('source-en-P0-approach.md') == 'Section 1.1'
-    assert toc.get_caption_by_label('source-en-references.md') == 'Appendix A'
-    assert toc.get_caption_by_label('source-en-app-python.md') == 'Section A.1'
-    # Check file lookups
-    assert toc.get_caption_by_file('P0/introduction') == '1'
-    assert toc.get_caption_by_file('P0/approach') == '1.1'
-    assert toc.get_caption_by_file('references') == 'A'
-    assert toc.get_caption_by_file('app/python') == 'A.1'
 
+class TestGenerateToc(unittest.TestCase):
+
+    def test_generate_toc_with_mock(self):
+        toc_data = make_mock_toc()
+        toc = generate_toc(language='en', toc_data=toc_data)
+        toc_str = toc.get_toc()
+        # Check chapters
+        self.assertIn('Chapter 1: Introduction', toc_str)
+        self.assertIn('Chapter 2: Overview', toc_str)
+        # Check sections
+        self.assertIn('Section 1.1: Approach', toc_str)
+        self.assertIn('Section 1.2: Acknowledgments', toc_str)
+        # Check appendix
+        self.assertIn('Appendix A: References', toc_str)
+        self.assertIn('Section A.1: Python', toc_str)
+        # Check label lookups
+        self.assertEqual(toc.get_caption_by_label('source-en-P0-introduction.md'), 'Chapter 1')
+        self.assertEqual(toc.get_caption_by_label('source-en-P0-approach.md'), 'Section 1.1')
+        self.assertEqual(toc.get_caption_by_label('source-en-references.md'), 'Appendix A')
+        self.assertEqual(toc.get_caption_by_label('source-en-app-python.md'), 'Section A.1')
+        # Check file lookups
+        self.assertEqual(toc.get_caption_by_file('P0/introduction'), '1')
+        self.assertEqual(toc.get_caption_by_file('P0/approach'), '1.1')
+        self.assertEqual(toc.get_caption_by_file('references'), 'A')
+        self.assertEqual(toc.get_caption_by_file('app/python'), 'A.1')
+
+
+if __name__ == '__main__':
+    unittest.main()

@@ -9,131 +9,123 @@ kernelspec:
   display_name: Python 3
 ---
 
-```{code-cell} python
-:tags: [remove-cell]
-
-import matplotlib.pyplot as plt
-plt.style.use('../../_static/sds.mplstyle')
-%matplotlib inline
-plt.ioff()
-```
-
 (sec_concetti-base-insiemi)=
 # Concetti di base
 
-In accordo con la definizione sopra riportata, nonché con la comune notazione
-matematica, indicheremo di norma gli insiemi utilizzando le lettere maiuscole
-dell'alfabeto latino e i loro elementi usando le corrispondenti lettere
+In accordo con la definizione riportata all'inizio del capitolo, nonché con
+la comune notazione matematica, indicherò di norma gli insiemi con le lettere
+maiuscole dell'alfabeto latino e i loro elementi con le corrispondenti lettere
 minuscole. Per indicare che un elemento $a$ appartiene a un insieme $A$
-scriveremo $a \in A$, mentre per indicare che un elemento $b$ non appartiene
-all'insieme $A$ scriveremo $b \notin A$.
+scriverò $a \in A$, mentre per indicare che $b$ non vi appartiene scriverò
+$b \notin A$.
 
 Un insieme può essere rappresentato:
 
-- _estensivamente_, cioé elencando tutti i suoi elementi tramite una sequenza:
-  per esempio l'insieme $O$ dei possibili esiti del lancio di un dado che
-  corrispondono a un numero dispari si può indicare estensivamente come
-  $O = \{ 1, 3, 5, 6 \}$;
-- _intensivamente_, specificando una proprietà matematica valida per tutti gli
-  elementi dell'insieme: l'insieme descritto al punto precedente ammette la
-  descrizione intensiva
+- _estensivamente_, cioè elencando tutti i suoi elementi: per esempio,
+  l'insieme $O$ dei membri degli
+  [Avengers](https://marvel.fandom.com/wiki/Avengers_(Earth-616)) che hanno
+  una forza sovrumana si può indicare estensivamente come 
+  $O = \{ \text{Capitan America}, \text{Hulk}, \text{Thor} \}$;
+- _intensivamente_, specificando una proprietà che individua tutti e soli gli
+  elementi dell'insieme: l'insieme descritto al punto precedente ammette per
+  esempio la descrizione intensiva
 
 ```{math}
-O = \{ k \in \mathbb N \text{ tale che } 1 \leq k \leq 6
-        \text{ e } k \text{ è pari} \} \enspace;
+O = \{ \text{Componenti degli Avengers con forza sovrumana} \} \enspace;
 ```
 - tramite un _diagramma di Venn_, indicando gli elementi come punti in una
   porzione di piano e racchiudendoli dentro un'ellisse: l'insieme $O$ descritto
-  nei due punti precedenti può anche essere rappresentato tramite il diagramma
-  di Venn illustrato qui sotto per descrivere l'insieme
-  $O = \{ 1, 3, 5, 6 \}$.
+  nei punti precedenti è illustrato nella {numref}`fig_venn-simple`.
 
 
 ```{code-cell} python
 :tags:  [hide-input]
 
 import matplotlib.pyplot as plt
-import math
-import numpy as np
-from matplotlib_venn import venn2_circles, venn2
+from matplotlib.patches import Ellipse, Rectangle
 
-import io, base64
+MATH_SIZE = 9
+TEXT_SIZE = 7
 
-font_size = 9
-venn_set_color = '#00CCFF'
-venn_set_edge= '#333333'
-background_color = '#eaf3f5'
+EDGE_COLOR = '#333333'
+BG_COLOR = '#eaf3f5'
+FILL_COLOR_A = '#d6e4f7'
+FILL_COLOR_O = '#aac5e8'
+DOT_COLOR = '#2255aa'
+
 
 def simple_venn(universe=False):
-    fig, ax = plt.subplots()
-
-    v = venn2(subsets=(3, 3, 0), set_labels=(r'$O$', ''), ax=ax) ##
-    c = venn2_circles(subsets=(3, 3, 0), ax=ax)
-    for _ in c:
-        _.set_linewidth(0.6)
-
-    for l in v.set_labels:
-      l.set_fontsize(font_size)
-
-    for area in ['01', '10', '11']:
-        if area != '11':
-          txt = v.get_label_by_id(area)
-          if txt:
-            txt.set_text('')
-
-    v.get_patch_by_id('10').set_color(venn_set_color)
-    v.get_patch_by_id('10').set_alpha(1)
-
-    v.get_patch_by_id('01').set_color(background_color)
-    c[1].set_edgecolor(background_color)
+    fig, ax = plt.subplots(facecolor=BG_COLOR)
+    ax.set_facecolor(BG_COLOR)
+    ax.set_aspect("equal")
+    ax.axis("off")
+    ax.set_xlim(0, 12)
+    ax.set_ylim(0, 8)
 
     if universe:
-      ax.text(.6, .1, '2', fontsize=font_size)
-      ax.text(.2, -0.1, '4', fontsize=font_size)
-      ax.text(.5, -0.3, '6', fontsize=font_size)
-      ax.text(0.75, 0.45, r'$\Omega$', fontsize=font_size)
-      ax.plot([-1.1, 1.1, 1.1, -1.1, -1.1], [-0.6, -0.6, 0.6, 0.6, -0.6], lw=1)
-    
-    ax.set_ylim(-0.7, 0.7)
-    ax.text(-0.85, 0, '1', fontsize=font_size)
-    ax.text(-0.55, 0.15, '3', fontsize=font_size)
-    ax.text(-0.55, -0.2, '5', fontsize=font_size)
+        rect = Rectangle((0.1, 0.1), 11.8, 7.8,
+                        facecolor=BG_COLOR, edgecolor=EDGE_COLOR,
+                        linewidth=1.1, zorder=0)
+        ax.add_patch(rect)
+        ax.text(11.6, 7.6, r'$\Omega$', fontsize=MATH_SIZE, ha='right', va='top')
+
+        for name, x, y, xof, yof in [('Iron\nMan',    1.7, 5,    0.8, 0),
+                                 ('Black\nWidow', 9.8, 5.5,  0,  -0.9),
+                                 ('Hawkeye',      2.5, 2.6, -0.1, 0.4),
+                                 ('Ant-Man',      9.5, 2.2, -1.1, 0)]:
+            ax.plot(x, y, "o", markersize=4, color=DOT_COLOR, zorder=4)
+            ax.text(x + xof, y + yof, name, ha='center', va='center',
+                    fontsize=TEXT_SIZE, zorder=5)
+
+    ellipse_O = Ellipse(xy=(6, 3.8), width=5.5, height=3.2,
+                        facecolor=FILL_COLOR_O, edgecolor=EDGE_COLOR,
+                        linewidth=1.2, zorder=2)
+    ax.add_patch(ellipse_O)
+    ax.text(3.9, 5.7, r'$O$', fontsize=MATH_SIZE, va='top')
+
+    for name, x, y, xof, yof in [('Thor',             5.2, 4.7, 0.8, 0),
+                                 ('Hulk',             8,   4,  -0.8, 0),
+                                 ('Capitan\nAmerica', 4,   3.3, 1.2, 0)]:
+        ax.plot(x, y, "o", markersize=4, color=DOT_COLOR, zorder=4)
+        ax.text(x + xof, y + yof, name, ha='center', va='center',
+                fontsize=TEXT_SIZE, zorder=5)
 
     return fig
 
 fig = simple_venn()
-fig
+plt.tight_layout()
+plt.show()
 ```
 ````{customfigure}
 :name: fig_venn-simple
 
 
-Un diagramma di Venn che descrive l'insieme $O = \{ 1, 3, 5, 6 \}$.
+Un diagramma di Venn che descrive l'insieme $O = \{ \text{Componenti degli Avengers con forza sovrumana} \}$.
 ````
 
-In particolare, la descrizione tramite i diagrammi di Venn presuppone la
-conoscenza, in linea di principio, di tutti gli elementi che potrebbero far
-parte di un insieme. L'insieme di tutti i possibili elementi si indica in
-genere con il simbolo $\Omega$ che viene chiamato _insieme universo_.
-Nell'esempio precedente facciamo ovviamente riferimento all'universo $\Omega =
-\{ 1, 2, 3, 4, 5, 6 \}$, pertanto il diagramma di Venn che rappresenta $O$ più
-correttamente è quello riportato nella {numref}`fig_venn-universe`.
+La descrizione tramite diagramma di Venn presuppone di conoscere, almeno in
+linea di principio, tutti gli elementi che potrebbero far parte di un insieme.
+L'insieme di tutti i possibili elementi si chiama _insieme universo_ e si
+indica di solito con $\Omega$. Nell'esempio precedente, una scelta ragionevole per l'universo potrebbe far coincidere
+$\Omega$ con l'insieme degli Avengers, quindi un diagramma di Venn più completo
+per $O$ è quello riportato nella {numref}`fig_venn-universe`.
 
 ```{code-cell} python
 :tags: [hide-input]
 
 fig = simple_venn(universe=True)
-fig
+plt.tight_layout()
+plt.show()
 ```
 ````{customfigure}
 :name: fig_venn-universe
 
 Un diagramma di Venn che illustra l'insieme $O$ della {numref}`fig_venn-simple`
-all'interno dell'universo $\Omega = \{ 1, 2, 3, 4, 5, 6 \}$.
+all'interno dell'universo $\Omega$ degli Avengers.
 ````
 
-Così come l'insieme universo è tale da contenere qualunque elemento, è
-matematicamente rilevante pensare ad un insieme che dualmente, non contiene
-alcun elemento. Tale insieme viene chiamato insieme vuoto, e lo indicheremo
-scrivendo $\varnothing$ (anche se è comune l'uso del simbolo $\varnothing$), così che
-per ogni $a \in \Omega$ si avrà $a \notin \varnothing$.
+L'insieme universo contiene qualunque elemento, e &mdash; all'estremo opposto
+&mdash; è utile considerare l'insieme che non ne contiene nessuno: si chiama
+_insieme vuoto_ e lo indicherò con $\varnothing$, in modo che per ogni
+$a \in \Omega$ valga $a \notin \varnothing$.
+

@@ -178,113 +178,25 @@ log "Destination directory: $DEST_LANG_DIR"
 log "Include setup: $INCLUDE_SETUP"
 log "Using Python: $PYTHON_EXEC"
 
-# Copy source directory to tmpsource
-if [ -d "$DEST_LANG_DIR" ]; then
-    warning "Destination directory already exists: $DEST_LANG_DIR"
-    warning "Removing existing directory"
-    rm -rf "$DEST_LANG_DIR"
+# Build flags for Python command
+SETUP_FLAG=""
+if [ "$INCLUDE_SETUP" = "false" ]; then
+    SETUP_FLAG="--no-setup"
 fi
 
-log "Copying $SOURCE_LANG_DIR to $DEST_LANG_DIR"
-cp -r "$SOURCE_LANG_DIR" "$DEST_LANG_DIR"
+FORCE_FLAG=""
+if [ "$CLEAN" = true ]; then
+    FORCE_FLAG="--force"
+fi
 
-if [ $? -ne 0 ]; then
-    error "Failed to copy directory"
+log "Syncing and processing $SOURCE_LANG_DIR → $DEST_LANG_DIR"
+if ! "$PYTHON_EXEC" -m sds.sds process-myst-batch \
+        "$DEST_LANG_DIR" \
+        --source-dir "$SOURCE_LANG_DIR" \
+        $SETUP_FLAG $FORCE_FLAG; then
+    error "Batch processing failed"
     exit 1
 fi
 
-success "Directory copied successfully"
-
-# Find all .md files in the destination directory
-log "Finding .md files in $DEST_LANG_DIR"
-MD_FILES=($(find "$DEST_LANG_DIR" -name "*.md" -type f))
-
-if [ ${#MD_FILES[@]} -eq 0 ]; then
-    warning "No .md files found in $DEST_LANG_DIR"
-    exit 0
-fi
-
-log "Found ${#MD_FILES[@]} .md files to process"
-
-# Initialize counters
-PROCESSED=0
-FAILED=0
-
-total=${#MD_FILES[@]}
-count=0
-# Process each .md file
-for md_file in "${MD_FILES[@]}"; do
-    count=$((count+1))
-    rel_path="${md_file#$DEST_LANG_DIR/}"
-    # log "Processing: $rel_path"
-    
-    # Create Python script to call the function
-    # Convert bash boolean to Python boolean
-    if [ "$INCLUDE_SETUP" = "true" ]; then
-        PYTHON_INCLUDE_SETUP="True"
-    else
-        PYTHON_INCLUDE_SETUP="False"
-    fi
-    
-    PYTHON_SCRIPT=$(cat << EOF
-import sys
-import os
-
-# Add the code directory to the path
-sys.path.insert(0, '$PROJECT_ROOT')
-
-try:
-    from sds.sds import process_myst_file
-    
-    # Process the file
-    backup_path = process_myst_file('$md_file', include_setup=$PYTHON_INCLUDE_SETUP)
-    
-    # print(f"SUCCESS: {os.path.basename('$md_file')} processed successfully!")
-    # if '$VERBOSE' == 'true':
-    #     print(f"  Backup created at: {backup_path}")
-    
-except FileNotFoundError as e:
-    print(f"ERROR: {e}", file=sys.stderr)
-    sys.exit(1)
-except IOError as e:
-    print(f"ERROR: {e}", file=sys.stderr)
-    sys.exit(1)
-except RuntimeError as e:
-    print(f"ERROR: {e}", file=sys.stderr)
-    sys.exit(1)
-except Exception as e:
-    print(f"ERROR: Unexpected error processing '$md_file': {e}", file=sys.stderr)
-    sys.exit(1)
-EOF
-)
-
-    # Execute the Python script
-    if "$PYTHON_EXEC" -c "$PYTHON_SCRIPT"; then
-        ((PROCESSED++))
-    else
-        error "Failed to process: $rel_path"
-        ((FAILED++))
-    fi
-    echo -ne "Processing [$count / $total] \033[33m$rel_path\033[0m\033[K\r"
-done
-echo -e "\nDone!"
-
-# Display summary
-echo ""
-echo "=== Processing Summary ==="
-echo "Language: $LANG"
-echo "Source: $SOURCE_LANG_DIR"
-echo "Destination: $DEST_LANG_DIR"
-echo "Total files found: ${#MD_FILES[@]}"
-echo "Successfully processed: $PROCESSED"
-echo "Failed: $FAILED"
-
-if [ $FAILED -eq 0 ]; then
-    success "All files processed successfully!"
-    echo ""
-    echo "The processed files are available in: $DEST_LANG_DIR"
-    echo "Original files have been backed up with .backup extension"
-else
-    error "$FAILED files failed to process"
-    exit 1
-fi
+success "Sync and processing complete: $DEST_LANG_DIR"
+echo "Original files have been backed up with .backup extension"

@@ -746,15 +746,15 @@ sono [numpy](http://www.numpy.org),
 rispettivamente con gli _array_, i _dataset_ e i grafici. Farò sempre
 l'importazione nel modo seguente:
 
-```{code-cell}
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-```
 ```{margin}
 Come mostrato nella terza riga, alcuni moduli (come matplotlib) sono
 organizzati in strutture gerarchiche chiamate _package_, in modo non dissimile
 a quanto avviene per esempio in Java.
+```
+```{code-cell}
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
 ```
 
 ```{admonition} Nomenclatura

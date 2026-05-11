@@ -615,11 +615,11 @@ i dati possono essere disponibili in forma più o meno strutturata, e la loro
 gestione può richiedere procedure complesse, anche tramite formati di
 rappresentazione diversi dal CSV o basi di dati articolate.
 ```
-```{exercise} •••
+````{exercise} •••
 Riconsiderate l'esercizio precedente, guardando i contenuti
 di ogni singola colonna del file CSV senza utilizzare un elaboratore di fogli
 elettronici, ma usando solamente un terminale e i comandi di _shell_.
-```
+````
 
 ```{exercise} ••
 Sulla base dell'idea che vi siete fatti in merito dal _dataset_ dei supereroi

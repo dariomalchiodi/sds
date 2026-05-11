@@ -1,25 +1,21 @@
 import unittest
 import tempfile
-import os
+import shutil
 from pathlib import Path
-import sys
 
 from sds.sds import process_myst_file
 
+
 class TestProcessMystFile(unittest.TestCase):
-    
+
     def setUp(self):
-        """Set up test fixtures before each test method."""
         self.temp_dir = tempfile.mkdtemp()
-        self.test_file = Path(self.temp_dir) / "test.md"
-        
+        self.test_file = Path(self.temp_dir) / 'test.md'
+
     def tearDown(self):
-        """Clean up after each test method."""
-        import shutil
         shutil.rmtree(self.temp_dir, ignore_errors=True)
-    
+
     def test_process_file_with_python_block(self):
-        """Test processing a file with a Python code block."""
         content = '''# Test Document
 
 Some text before the code.
@@ -31,91 +27,51 @@ x * 2
 
 Some text after the code.
 '''
-        
-        # Write test content to file
         self.test_file.write_text(content, encoding='utf-8')
-        
-        # Process the file
         backup_path = process_myst_file(str(self.test_file))
-        
-        # Check that backup was created
+
         self.assertTrue(Path(backup_path).exists())
-        
-        # Check that backup contains original content
-        backup_content = Path(backup_path).read_text(encoding='utf-8')
-        self.assertEqual(backup_content, content)
-        
-        # Check that original file was modified
-        processed_content = self.test_file.read_text(encoding='utf-8')
-        self.assertNotEqual(processed_content, content)
-        
-        # Check that processed content contains expected elements
-        self.assertIn('# Test Document', processed_content)
-        self.assertIn('```python', processed_content)
-        self.assertIn('<div id="out-1"', processed_content)
-        self.assertIn('<py-script>', processed_content)
-        
+        self.assertEqual(Path(backup_path).read_text(encoding='utf-8'), content)
+
+        processed = self.test_file.read_text(encoding='utf-8')
+        self.assertNotEqual(processed, content)
+        self.assertIn('# Test Document', processed)
+        self.assertIn('```python', processed)
+        self.assertIn('<script type="py">', processed)
+
     def test_process_file_no_python_blocks(self):
-        """Test processing a file with no Python blocks."""
         content = '''# Simple Document
 
 This is just text with no Python code.
 
 Some more text.
 '''
-        
-        # Write test content to file
         self.test_file.write_text(content, encoding='utf-8')
-        
-        # Process the file
         backup_path = process_myst_file(str(self.test_file))
-        
-        # Check that backup was created
+
         self.assertTrue(Path(backup_path).exists())
-        
-        # Check that content is unchanged (no Python blocks to process)
-        processed_content = self.test_file.read_text(encoding='utf-8')
-        self.assertEqual(processed_content, content)
-        
+        self.assertEqual(self.test_file.read_text(encoding='utf-8'), content)
+
     def test_process_file_with_setup_disabled(self):
-        """Test processing a file with setup disabled."""
-        content = '''```python
-print("Hello, World!")
-```'''
-        
-        # Write test content to file
+        content = '```python\nprint("Hello, World!")\n```'
         self.test_file.write_text(content, encoding='utf-8')
-        
-        # Process the file with setup disabled
         backup_path = process_myst_file(str(self.test_file), include_setup=False)
-        
-        # Check that backup was created
+
         self.assertTrue(Path(backup_path).exists())
-        
-        # Check that processed content doesn't contain setup
-        processed_content = self.test_file.read_text(encoding='utf-8')
-        self.assertNotIn('def display(', processed_content)
-        self.assertNotIn('def Element(', processed_content)
-        
+        processed = self.test_file.read_text(encoding='utf-8')
+        self.assertNotIn('PyScript utilities loaded successfully', processed)
+        self.assertNotIn('_ensure_localfs', processed)
+
     def test_file_not_found(self):
-        """Test error handling when file doesn't exist."""
-        non_existent_file = Path(self.temp_dir) / "nonexistent.md"
-        
         with self.assertRaises(FileNotFoundError):
-            process_myst_file(str(non_existent_file))
-    
+            process_myst_file(str(Path(self.temp_dir) / 'nonexistent.md'))
+
     def test_backup_file_path(self):
-        """Test that backup file path is correct."""
-        content = "# Test"
-        self.test_file.write_text(content, encoding='utf-8')
-        
+        self.test_file.write_text('# Test', encoding='utf-8')
         backup_path = process_myst_file(str(self.test_file))
-        
-        expected_backup = str(self.test_file) + '.backup'
-        self.assertEqual(backup_path, expected_backup)
-        
+        self.assertEqual(backup_path, str(self.test_file) + '.backup')
+
     def test_multiple_python_blocks(self):
-        """Test processing a file with multiple Python blocks."""
         content = '''# Multiple Blocks
 
 First block:
@@ -131,17 +87,15 @@ b + 1
 
 The end.
 '''
-        
-        # Write test content to file
         self.test_file.write_text(content, encoding='utf-8')
-        
-        # Process the file
-        backup_path = process_myst_file(str(self.test_file))
-        
-        # Check that processed content contains multiple cells
-        processed_content = self.test_file.read_text(encoding='utf-8')
-        self.assertIn('<div id="out-1"', processed_content)
-        self.assertIn('<div id="out-2"', processed_content)
+        process_myst_file(str(self.test_file))
+
+        processed = self.test_file.read_text(encoding='utf-8')
+        # Both cells' code appear in the single combined PyScript block
+        self.assertIn('a = 1', processed)
+        self.assertIn('result = b + 1', processed)
+        self.assertEqual(processed.count('<script type="py">'), 1)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -187,32 +187,18 @@ document.addEventListener("DOMContentLoaded", function() {
   // Call the detection functions
   detectAppendices();
   
-  // Try to set up sidebar appendix numbering multiple times to ensure it works
-  if (!setupSidebarAppendixNumbering()) {
-    setTimeout(() => {
-      if (!setupSidebarAppendixNumbering()) {
-        setTimeout(setupSidebarAppendixNumbering, 1000);
-      }
-    }, 500);
-  }
-  
   // DISABLED: Add section numbers to cross-references
   // addSectionNumbersToReferences();
-  
-  // Also try on window load
-  window.addEventListener('load', function() {
-    setTimeout(setupSidebarAppendixNumbering, 100);
-  });
 
-  // Also initialize after delays to catch any dynamically loaded content
-  setTimeout(initializeToggleCode, 1000);
-  setTimeout(initializeToggleCode, 3000);
-
-  // And also try window load event
-  window.addEventListener('load', function() {
-    // console.log('Window loaded, initializing toggle code');
-    setTimeout(initializeToggleCode, 1000);
-  });
+  // Try immediately; if the sidebar isn't in the DOM yet, watch for it.
+  if (!setupSidebarAppendixNumbering()) {
+    const sidebarObserver = new MutationObserver(function(mutations, obs) {
+      if (setupSidebarAppendixNumbering()) {
+        obs.disconnect();
+      }
+    });
+    sidebarObserver.observe(document.body, { childList: true, subtree: true });
+  }
   
   // Function to add section numbers to cross-references
   function addSectionNumbersToReferences() {
@@ -301,9 +287,4 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
   
-  // Also try on window load
-  window.addEventListener('load', function() {
-    // DISABLED: setTimeout(addSectionNumbersToReferences, 100);
-    setTimeout(setupSidebarAppendixNumbering, 100);
-  });
 });

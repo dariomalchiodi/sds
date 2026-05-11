@@ -476,7 +476,13 @@ Considerate l'esperimento di scegliere casualmente un colore dei capelli nel
 dataset dei supereroi. Descrivete lo spazio degli esiti $\Omega$ e indicate se
 è finito o infinito.
 ```
-<!-- CELL-MARKER-24-START -->
+````{solution} ex-spazio-esiti-capelli
+:class: dropdown
+
+L'esperimento casuale consiste nella scelta di un colore dei capelli tra
+quelli presenti nel dataset. Analizziamo il dataset per determinare i
+valori distinti dell'attributo `hair_color`:
+
 ```{code-cell} ipython3
 import pandas as pd
 
@@ -485,16 +491,6 @@ colori = heroes['hair_color'].dropna().unique()
 print(f'Numero di colori distinti: {len(colori)}')
 print(f'Colori: {sorted(colori)}')
 ```
-<!-- CELL-MARKER-24-END -->
-
-````{solution} ex-spazio-esiti-capelli
-:class: dropdown
-
-L'esperimento casuale consiste nella scelta di un colore dei capelli tra
-quelli presenti nel dataset. Analizziamo il dataset per determinare i
-valori distinti dell'attributo `hair_color`:
-
-<!-- CELL-PLACEHOLDER-24 -->
 
 Lo spazio degli esiti è dunque l'insieme dei colori trovati, e siccome
 $|\Omega|$ è un numero finito, lo spazio degli esiti è finito.

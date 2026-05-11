@@ -76,7 +76,6 @@ parts:
       - file: P3/c2/insiemi-finiti-e-infiniti
       - file: P3/c2/relazioni-tra-insiemi
       - file: P3/c2/operazioni-tra-insiemi
-      - file: P3/c2/insiemi-in-python
     - file: P3/c3/calcolo-probabilita
       sections:
       - file: P3/c3/concetto-di-probabilita

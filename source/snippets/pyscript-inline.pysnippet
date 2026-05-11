@@ -1,8 +1,8 @@
 
-<!-- PyScript execution for inline {len(inline_expressions)} {{py}} roles -->
+<!-- PyScript execution for inline {{len(inline_expressions)}} {{py}} roles -->
 
 # Inline Python expressions execution
-console.log("Executing {len(inline_expressions)} inline Python expressions");
+console.log("Executing {{len(inline_expressions)}} inline Python expressions");
 
 # Process all inline expressions
 inline_expressions = {inline_expressions!r}

@@ -9,6 +9,9 @@ SOURCEDIR     = source
 BUILDDIR      = build
 SDSDIR        = $(BUILDDIR)/sds
 
+# Detect available CPU count for parallel language builds
+NPROCS := $(shell nproc 2>/dev/null || sysctl -n hw.logicalcpu 2>/dev/null || echo 4)
+
 # Put it first so that "make" without argument is like "make help".
 help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
@@ -19,6 +22,7 @@ help:
 	@echo "  fr          Build French documentation with MyST processing"
 	@echo "  es          Build Spanish documentation with MyST processing"
 	@echo "  all         Build all language versions and copy static files"
+	@echo "  assets      Regenerate superhero images and copy to _static/img/"
 	@echo "  copy-static Copy static files (e.g., index.html) to build directory"
 	@echo "  sync-shortener Sync URL shortener files to all language directories"
 	@echo "  validate-shortener Validate shortener-mappings.json for errors"
@@ -33,144 +37,121 @@ help:
 	@echo "  compile-mo          Compile .po files to .mo files"
 	@echo "  update-translations Complete translation workflow (extract + update + compile)"
 
-# Italian documentation build target
-it:
-	@echo "Building Italian documentation..."
-	@echo "Step 1/10: Validating and generating URL shortener..."
+# Validate and generate URL shortener (runs once even when called from multiple targets)
+shortener:
+	@echo "Validating and generating URL shortener..."
 	@python3 sds/validate-shortener.py
 	@python3 sds/generate-redirect-pages.py $(SDSDIR)
-	@echo "Step 2/10: Processing MyST files..."
-	./sds/process_myst_batch.sh --clean it
-	@echo "Step 3/10: Copying shared resources..."
+
+# Italian documentation build target
+it: shortener _it
+
+_it:
+	@echo "Building Italian documentation..."
+	@echo "Step 1/6: Processing MyST files..."
+	./sds/process_myst_batch.sh it
+	@echo "Step 2/6: Copying shared resources..."
 	@if [ -d "$(SOURCEDIR)/_static" ]; then cp -r "$(SOURCEDIR)/_static" tmpsource/; fi
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
 	@if [ -d "$(SOURCEDIR)/data" ]; then cp -r "$(SOURCEDIR)/data" tmpsource/it/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
-	@echo "Step 4/10: Building HTML with Sphinx..."
+	@echo "Step 3/6: Building HTML with Sphinx..."
 	$(SPHINXBUILD) -q -b html tmpsource/it $(SDSDIR)/it
-	@echo "Step 8/10: Copying generated Python files..."
+	@echo "Step 4/6: Copying generated Python files..."
 	@find tmpsource/it -name "*.py" -type f | while read pyfile; do \
 		relpath=$$(realpath --relative-to=tmpsource/it "$$pyfile"); \
 		targetdir="$(SDSDIR)/it/$$(dirname "$$relpath")"; \
 		mkdir -p "$$targetdir"; \
 		cp "$$pyfile" "$$targetdir/"; \
 	done
-	@echo "Step 5/10: Processing remaining {py} roles in HTML..."
-	python3 -m sds.sds process-py-roles $(SDSDIR)/it --language it
-	@echo "Step 6/10: Making part titles clickable and collapsible..."
-	python3 -m sds.sds make-parts-clickable $(SDSDIR)/it --language it
-	@echo "Step 7/10: Apply chapter and section numbering..."
-	python3 -m sds.sds apply-numbering --language it
-
-	@echo "Step 9/10: Cleaning temporary files..."
-	./sds/clean_tmpsource.sh --force --all
-	@echo "Step 10/10: Copying index.html to build root..."
+	@echo "Step 5/6: Post-processing HTML..."
+	python3 -m sds.sds post-process $(SDSDIR)/it --language it
+	@echo "Step 6/6: Copying index.html to build root..."
 	@if [ -f "$(SOURCEDIR)/index.html" ]; then \
 		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/sds/"; \
 		echo "✓ index.html copied to build directory"; \
 	fi
 	@echo "Italian documentation build complete! Output: $(SDSDIR)/it/"
-	@echo "Note: Figure/table numbering (X.Y format) is automatically handled by Sphinx configuration."
 
 # English documentation build target
-en:
+en: shortener _en
+
+_en:
 	@echo "Building English documentation..."
-	@echo "Step 1/9: Validating and generating URL shortener..."
-	@python3 sds/validate-shortener.py
-	@python3 sds/generate-redirect-pages.py $(SDSDIR)
-	@echo "Step 2/9: Processing MyST files..."
-	./sds/process_myst_batch.sh --clean en
-	@echo "Step 3/9: Copying shared resources..."
+	@echo "Step 1/5: Processing MyST files..."
+	./sds/process_myst_batch.sh en
+	@echo "Step 2/5: Copying shared resources..."
 	@if [ -d "$(SOURCEDIR)/_static" ]; then cp -r "$(SOURCEDIR)/_static" tmpsource/; fi
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
-	@echo "Step 4/9: Building HTML with Sphinx..."
+	@echo "Step 3/5: Building HTML with Sphinx..."
 	$(SPHINXBUILD) -b html tmpsource/en $(SDSDIR)/en
-	@echo "Step 5/9: Processing remaining {py} roles in HTML..."
-	python3 -m sds.sds process-py-roles $(SDSDIR)/en --language en
-	@echo "Step 6/9: Making part titles clickable and collapsible..."
-	python3 -m sds.sds make-parts-clickable $(SDSDIR)/en --language en
-	@echo "Step 7/9: Apply chapter and section numbering..."
-	python3 -m sds.sds apply-numbering --language en
-	@echo "Step 8/9: Cleaning temporary files..."
-	./sds/clean_tmpsource.sh --force --all
-	@echo "Step 9/9: Copying index.html to build root..."
+	@echo "Step 4/5: Post-processing HTML..."
+	python3 -m sds.sds post-process $(SDSDIR)/en --language en
+	@echo "Step 5/5: Copying index.html to build root..."
 	@if [ -f "$(SOURCEDIR)/index.html" ]; then \
 		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/sds/"; \
 		echo "✓ index.html copied to build directory"; \
 	fi
 	@echo "English documentation build complete! Output: $(SDSDIR)/en/"
-	@echo "Note: Figure/table numbering (X.Y format) is automatically handled by Sphinx configuration."
 
 # French documentation build target
-fr:
+fr: shortener _fr
+
+_fr:
 	@echo "Building French documentation..."
-	@echo "Step 1/9: Validating and generating URL shortener..."
-	@python3 sds/validate-shortener.py
-	@python3 sds/generate-redirect-pages.py $(SDSDIR)
-	@echo "Step 2/9: Processing MyST files..."
-	./sds/process_myst_batch.sh --clean fr
-	@echo "Step 3/9: Copying shared resources..."
+	@echo "Step 1/5: Processing MyST files..."
+	./sds/process_myst_batch.sh fr
+	@echo "Step 2/5: Copying shared resources..."
 	@if [ -d "$(SOURCEDIR)/_static" ]; then cp -r "$(SOURCEDIR)/_static" tmpsource/; fi
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
-	@echo "Step 4/9: Building HTML with Sphinx..."
+	@echo "Step 3/5: Building HTML with Sphinx..."
 	$(SPHINXBUILD) -b html tmpsource/fr $(SDSDIR)/fr
-	@echo "Step 5/9: Processing remaining {py} roles in HTML..."
-	python3 -m sds.sds process-py-roles $(SDSDIR)/fr --language fr
-	@echo "Step 6/9: Making part titles clickable and collapsible..."
-	python3 -m sds.sds make-parts-clickable $(SDSDIR)/fr --language fr
-	@echo "Step 7/9: Apply chapter and section numbering..."
-	python3 -m sds.sds apply-numbering --language fr
-	@echo "Step 8/9: Cleaning temporary files..."
-	./sds/clean_tmpsource.sh --force --all
-	@echo "Step 9/9: Copying index.html to build root..."
+	@echo "Step 4/5: Post-processing HTML..."
+	python3 -m sds.sds post-process $(SDSDIR)/fr --language fr
+	@echo "Step 5/5: Copying index.html to build root..."
 	@if [ -f "$(SOURCEDIR)/index.html" ]; then \
 		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/sds/"; \
 		echo "✓ index.html copied to build directory"; \
 	fi
 	@echo "French documentation build complete! Output: $(SDSDIR)/fr/"
-	@echo "Note: Figure/table numbering (X.Y format) is automatically handled by Sphinx configuration."
 
 # Spanish documentation build target
-es:
+es: shortener _es
+
+_es:
 	@echo "Building Spanish documentation..."
-	@echo "Step 1/9: Validating and generating URL shortener..."
-	@python3 sds/validate-shortener.py
-	@python3 sds/generate-redirect-pages.py $(SDSDIR)
-	@echo "Step 2/9: Processing MyST files..."
-	./sds/process_myst_batch.sh --clean es
-	@echo "Step 3/9: Copying shared resources..."
+	@echo "Step 1/5: Processing MyST files..."
+	./sds/process_myst_batch.sh es
+	@echo "Step 2/5: Copying shared resources..."
 	@if [ -d "$(SOURCEDIR)/_static" ]; then cp -r "$(SOURCEDIR)/_static" tmpsource/; fi
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then cp -r "$(SOURCEDIR)/_templates" tmpsource/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
-	@echo "Step 4/9: Building HTML with Sphinx..."
+	@echo "Step 3/5: Building HTML with Sphinx..."
 	$(SPHINXBUILD) -b html tmpsource/es $(SDSDIR)/es
-	@echo "Step 5/9: Processing remaining {py} roles in HTML..."
-	python3 -m sds.sds process-py-roles $(SDSDIR)/es --language es
-	@echo "Step 6/9: Making part titles clickable and collapsible..."
-	python3 -m sds.sds make-parts-clickable $(SDSDIR)/es --language es
-	@echo "Step 7/9: Apply chapter and section numbering..."
-	python3 -m sds.sds apply-numbering --language es
-	@echo "Step 8/9: Cleaning temporary files..."
-	./sds/clean_tmpsource.sh --force --all
-	@echo "Step 9/9: Copying index.html to build root..."
+	@echo "Step 4/5: Post-processing HTML..."
+	python3 -m sds.sds post-process $(SDSDIR)/es --language es
+	@echo "Step 5/5: Copying index.html to build root..."
 	@if [ -f "$(SOURCEDIR)/index.html" ]; then \
 		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/sds/"; \
 		echo "✓ index.html copied to build directory"; \
 	fi
 	@echo "Spanish documentation build complete! Output: $(SDSDIR)/es/"
-	@echo "Note: Figure/table numbering (X.Y format) is automatically handled by Sphinx configuration."
+
+# Regenerate superhero assets (grid and tree images) used in book figures.
+# Requires the graphviz system package (dot) in addition to the Python graphviz package.
+assets:
+	@echo "Generating superhero assets..."
+	@cd support && python3 generate-colored-heroes.py
+	@cp support/superhero-grid.png $(SOURCEDIR)/_static/img/superhero-grid.png
+	@cp support/superhero-tree.png $(SOURCEDIR)/_static/img/superhero-tree.png
+	@echo "✓ Assets copied to $(SOURCEDIR)/_static/img/"
 
 # Copy static files from source to build directory
-copy-static:
+copy-static: shortener
 	@echo "Copying static files..."
 	@mkdir -p $(BUILDDIR)
-	@echo "Validating shortener mappings..."
-	python3 sds/validate-shortener.py
-	@echo "Generating redirect pages..."
-	python3 sds/generate-redirect-pages.py $(SDSDIR)
-	@echo "✓ URL shortener validation and generation complete"
 	@if [ -f "$(SOURCEDIR)/index.html" ]; then \
 		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/sds/"; \
 		echo "✓ index.html copied to build directory"; \
@@ -182,10 +163,15 @@ sync-shortener:
 	@python3 sds/validate-shortener.py
 	@python3 sds/generate-redirect-pages.py $(SDSDIR)
 
-# Build all language versions
-all: it en fr es copy-static
+# Build all language versions (languages build in parallel)
+all:
+	@$(MAKE) shortener
+	@$(MAKE) -j$(NPROCS) _it _en _fr _es
+	@if [ -f "$(SOURCEDIR)/index.html" ]; then \
+		cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/sds/"; \
+		echo "✓ index.html copied to build directory"; \
+	fi
 	@echo "All language versions built successfully!"
-    @echo "Note: Figure/table numbering (X.Y format) is automatically handled by Sphinx configuration."
 
 # Clean all build artifacts and temporary files
 clean-all:
@@ -249,7 +235,7 @@ test:
 	@python3 -m pytest tests/ -v
 	@echo "All tests completed!"
 
-.PHONY: help Makefile it en fr es all copy-static sync-shortener validate-shortener clean clean-all gettext-extract update-po compile-mo update-translations serve test
+.PHONY: help Makefile it en fr es _it _en _fr _es all assets shortener copy-static sync-shortener validate-shortener clean clean-all gettext-extract update-po compile-mo update-translations serve test
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).

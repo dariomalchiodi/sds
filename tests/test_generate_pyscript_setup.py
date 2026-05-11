@@ -1,34 +1,37 @@
 import unittest
 from sds.sds import generate_pyscript_setup
 
+
 class TestGeneratePyscriptSetup(unittest.TestCase):
-    def test_generate_setup(self):
-        result = generate_pyscript_setup()
-        
-        # Should be a raw HTML block
-        self.assertIn("```{raw} html", result)
-        self.assertIn("<py-script>", result)
-        self.assertIn("</py-script>", result)
-        
-        # Should define the display function
-        self.assertIn("def display(obj, target=None, append=True):", result)
-        
-        # Should define the Element helper class
-        self.assertIn("def Element(element_id):", result)
-        self.assertIn("class ElementWriter:", result)
-        
-        # Should have write, append, and clear methods
-        self.assertIn("def write(self, content):", result)
-        self.assertIn("def append(self, content):", result)
-        self.assertIn("def clear(self):", result)
-        
-        # Should make functions globally available (PyScript/Pyodide compatible)
-        self.assertIn("import builtins", result)
-        self.assertIn("builtins.display = display", result)
-        self.assertIn("builtins.Element = Element", result)
-        
-        # Should log success message
-        self.assertIn("PyScript utilities loaded successfully", result)
+    def setUp(self):
+        self.result = generate_pyscript_setup()
+
+    def test_returns_string(self):
+        self.assertIsInstance(self.result, str)
+        self.assertGreater(len(self.result), 0)
+
+    def test_contains_matplotlib_setup(self):
+        self.assertIn('#BEGIN# import matplotlib', self.result)
+        self.assertIn('import matplotlib', self.result)
+        self.assertIn('#END#', self.result)
+
+    def test_contains_pyscript_imports(self):
+        self.assertIn('from pyscript import display', self.result)
+        self.assertIn('from pyodide.http import open_url', self.result)
+
+    def test_contains_localfs_setup(self):
+        self.assertIn('async def _ensure_localfs()', self.result)
+        self.assertIn('await _ensure_localfs()', self.result)
+
+    def test_contains_success_log(self):
+        self.assertIn('PyScript utilities loaded successfully', self.result)
+
+    def test_no_html_wrappers(self):
+        self.assertNotIn('<py-script>', self.result)
+        self.assertNotIn('</py-script>', self.result)
+        self.assertNotIn('<script type="py">', self.result)
+        self.assertNotIn('```{raw} html', self.result)
+
 
 if __name__ == '__main__':
     unittest.main()
