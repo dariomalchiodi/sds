@@ -10,34 +10,35 @@ kernelspec:
 ---
 
 (sec_remerciements)=
-
-# Remerciemetns
+# Remerciements
 
 Certaines personnes ont lu et commenté ce que j’ai écrit, contribuant de
-manière essentielle au résultat final : Alessandro Di Giorgi m’a aidé à affiner
-la présentation mathématique à certains endroits. Nicola Ludwig a enrichi une
-de mes incursions dans le domaine de la physique. Marco De Petri, Matteo
-Princisgh et Nicolò Rosati ont lu les brouillons avec soin et repéré de
-nombreuses imperfections que j’espère avoir corrigées. Je remercie toutes et
-tous d’avoir consacré un peu de leur temps et de leur énergie à ce travail, en
-précisant que les éventuelles erreurs ou imprécisions restantes sont
-entièrement de ma responsabilité.
+manière fondamentale au résultat final : Alessandro Di Giorgi m’a aidé à
+affiner l’exposé mathématique à plusieurs endroits. Nicola Ludwig a enrichi une
+de mes incursions dans le monde de la physique. Marco De Petris, Matteo
+Princisgh et Nicolò Rosati ont relu les brouillons avec soin, y repérant de
+nombreuses imperfections que j’espère avoir corrigées. Je les remercie toutes
+et tous d’avoir consacré une partie de leur temps et de leur énergie à ce
+travail, tout en soulignant que les erreurs et imprécisions qui subsistent
+restent entièrement de ma responsabilité.
 
-Je tiens à remercier Laura Ripamonti, qui m’a transmis, il y a de nombreuses
-années, l’idée d’utiliser les super-héros comme exemples pédagogiques, ainsi
-que Serena Paolo et Paolo Boldi, qui ont été les premiers &mdash; pour des
-raisons très différentes (mais pas si différentes que ça) &mdash; à entendre
-parler de mon projet de livre, et qui m’ont encouragé à le réaliser pour des
-raisons similaires (mais pas tout à fait identiques). À toutes ces personnes,
-ainsi qu’à celles que j’oublie inévitablement, je veux exprimer ma
-reconnaissance pour le soutien qu’elles m’ont apporté.
+Je ne peux manquer de remercier Laura Ripamonti, qui a été la première, il y a
+bien des années, à faire naître en moi l’idée d’utiliser les super-héros comme
+exemples pédagogiques ; Serena Paolo et Paolo Boldi, qui &mdash; pour des
+raisons différentes, quoique pas entièrement sans rapport &mdash; ont été les
+premiers à entendre parler de mon projet d’écrire un livre et m’ont encouragé
+à lui donner vie pour des raisons qui étaient, à bien des égards, semblables,
+mais seulement jusqu’à un certain point. À toutes ces personnes, ainsi qu’à
+celles que j’oublie inévitablement, je voudrais exprimer ma profonde gratitude
+pour le soutien qu’elles m’ont apporté.
 
-Écrire un livre est un long cheminement, et ce n’est pas quelque chose qu’on
-peut simplement laisser derrière soi au bureau en rentrant à la maison. Cela
-vous accompagne presque en permanence et finit inévitablement par déborder sur
-la vie privée. Le soutien que j’ai reçu de ma famille a été inestimable —
-surtout celui de Marcello, qui est resté à mes côtés dans les bons comme dans
-les mauvais moments, et qui a su me laisser l’espace nécessaire pour me
-consacrer à cette petite aventure. Une grande partie de ce que j’ai écrit a été
-pensé, relu et peaufiné à Nice, où j’ai la chance d’avoir ce que je considère
-ma seconde famille : pour vous tous, issa Nissa, issa 24 !
+Écrire un livre est un très long parcours, et ce n’est pas quelque chose que
+l’on peut simplement laisser au bureau quand on rentre chez soi. Cela vous
+accompagne presque constamment, débordant inévitablement sur la vie privée. Le
+soutien que j’ai reçu de ma famille tout au long de ce processus a été sans
+mesure, en particulier celui de Marcello, qui a été à mes côtés dans chaque
+haut et chaque bas, sachant toujours quand m’encourager et quand me laisser
+l’espace nécessaire pour me consacrer à cette entreprise. Une grande partie de
+ce que j’ai écrit a été conçue, relue et corrigée à Nice, où j’ai la chance
+d’avoir ce que je considère comme ma deuxième famille :  vous tous, issa
+Nissa, issa 24 !

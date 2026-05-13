@@ -9,31 +9,34 @@ kernelspec:
   display_name: Python 3
 ---
 
+(sec_acknowledgements)=
 (sec_acknowledgments)=
 # Acknowledgements
 
-Several people read and commented on what I wrote, contributing in a
-fundamental way to the final result: Alessandro Di Giorgi helped me refine the
-mathematical exposition in certain sections. Nicola Ludwig enriched one of my
-excursions into the world of physics. Marco De Petri, Matteo Princisgh, and
-Nicolò Rosati carefully read the drafts and found many imperfections, which I
-hope I have corrected. I thank all of them for devoting some of their time and
-energy to this work, stressing that any remaining mistakes or inaccuracies are
-entirely my responsibility.
+Some people read and commented on what I wrote, contributing in fundamental
+ways to the final result: Alessandro Di Giorgi helped me refine the
+mathematical exposition in several places. Nicola Ludwig enriched one of my
+excursions into the world of physics. Marco De Petris, Matteo Princisgh, and
+Nicolò Rosati carefully read the drafts, identifying many imperfections that I
+hope I have corrected. I thank all of them for devoting part of their time and
+energy to this work, while stressing that any mistakes and inaccuracies that
+remain are entirely my responsibility.
 
-I feel I must also thank Laura Ripamonti, who many years ago spaked the idea to
-me of using superheroes as a teaching example, Serena Paolo and Paolo Boldi,
-who—for very different (though not so different) reasons—first become aware of
-my plan to write a book and who encouraged me to pursue it, for very similar
-(though not so similar) reasons. To all of these people, and to those I may be
-unintentionally forgetting, I want to express my gratitude for the support they
-gave me.
+I cannot fail to thank Laura Ripamonti, who many years ago first sparked in me
+the idea of using superheroes as teaching examples; Serena Paolo and Paolo
+Boldi, who&mdash;for different, though not entirely unrelated,
+reasons&mdash;were the first to hear about my idea of writing a book and
+encouraged me to bring it to life for reasons that were in many ways
+similar, though only up to a point. To all these people, and to those I am
+inevitably forgetting, I would like to express my heartfelt gratitude for the
+support they have given me.
 
-Writing a book is a process that takes a very long time, and it’s not something
-you can just leave behind at the office when you go home. It stays with you
-almost constantly and inevitably spills over into your private life. The
-support I received from my family has been invaluable—above all from Marcello,
-who stood by me through highs and lows and knew how to give me the space I
-needed to devote myself to this little endeavor. Much of what I wrote was
-conceived, revised, and polished in Nice, where I am lucky enough to have what
-I consider my second family: pour vous tous, issa Nissa, issa 24!
+Writing a book is a very long journey, and it is not something you can simply
+leave at the office when you return home. It stays with you almost constantly,
+inevitably spilling over into your private life. The support I received from my
+family throughout this process was beyond measure, especially from Marcello,
+who stood by me through every high and low, always knowing when to encourage me
+and when to give me the space I needed to devote myself to this endeavour.
+Much of what I wrote was conceived, revised, and corrected in Nice, where I am
+fortunate enough to have what I consider my second family:
+_pour vous tous, issa Nissa, issa 24!_

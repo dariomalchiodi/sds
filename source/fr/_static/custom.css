@@ -1,14 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Lora&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Lora&family=IBM+Plex+Mono&Alike&display=swap');
+
 
 :root {
-  --serif-font: 'Lora', serif;
-  --sans-serif-font: 'Oswald', sans;
+  --serif-font: "Alike", "Lora", serif;
+  --sans-serif-font: "Oswald", sans;
   --tt-font: 'Source Code Pro', monospace;
+  --dataframe-font: 'IBM Plex Mono', monospace;
   --background-color: #eaf3f5;
   --text-primary-color: #010177;
   --link-color: #006699;
   --visited-link-color: #6085a6;
   --highlight-color: #1b50ebcf;
+  --hover-highlight-color: #0099cc;
+  --dataframe-color: steelblue;
   --table-heading: #888;
   --stderr-background: #ffecbb;
 }
@@ -25,6 +29,7 @@ h1, h2, h3, h4, h5, h6, .admonition-title {
 
 code, pre {
     font-family: var(--tt-font);
+    text-align: left;
 }
 
 a {
@@ -38,6 +43,60 @@ a:visited {
 
 a.headerlink {
   color: var(--visited-link-color);
+}
+
+a.external {
+  white-space: nowrap;
+}
+
+a.external::after {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 0.6em;
+    content: "\00A0\f35d";
+    display: inline-block;
+    margin-left: 0.2em;
+    vertical-align: middle;
+}
+
+/* Academic-style blockquotes */
+blockquote {
+  font-style: italic;
+  font-family: "Lora", Georgia, serif;
+  border-left: 3px solid #555;
+  margin: 1.5em 2em;
+  padding: 0.5em 1em;
+  background: none;
+  color: #222;
+  border-radius: 0; /* remove rounded corners */
+}
+
+blockquote p {
+  margin: 0.5em 0;
+}
+
+li a.external::after {
+    margin-left: 1.5em;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+ul > li > p {
+  position: relative;
+  padding-left: 0;
+  text-indent: -0.9em;
+  margin-left: 1em;
+}
+
+ul > li > p::before {
+  content: "–";
+  display: inline;
+  margin-right: 0.2em;
+  padding-right: 0.1em;
+  color: var(--text-primary-color);
 }
 
 .admonition.note {
@@ -61,6 +120,9 @@ aside.margin a.footnote-reference {
   font-size: 80%;
 }
 
+aside.footnote a.footnote-reference {
+  font-size: 75%;
+}
 
 /* Hide scrollbar unless needed */
 .bd-sidebar-primary {
@@ -98,6 +160,15 @@ aside.margin a.footnote-reference {
   margin-bottom: 0;
 }
 
+div.cell-div-container {
+  margin-top: 1em;
+  overflow: hidden;
+}
+
+div.cell-div-container:has(+ .plot-container) {
+  float: left;
+}
+
 div.cell_input {
   margin-bottom: 0 !important;
   border-left: 4px solid blue !important;
@@ -115,8 +186,64 @@ div.container.cell + p {
   margin-top: 1em;
 }
 
+figure:not(.margin) + * {
+  clear: both;
+}
+
+table + * {
+  clear: both;
+}
+
+figure::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+table::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* ensure caption in tables and figures clears floats */
+
+figcaption {
+  clear: both;
+}
+
+.pst-scrollable-table-container p:first-of-type {
+  clear:both;
+}
+
 py-script {
   display: none;
+}
+
+span.katex {
+    display: inherit;
+    font-size: 1em;
+}
+
+.katex-display {
+    margin-top: 0;
+    margin-bottom: 1rem !important;
+}
+
+.cell_output > .math {
+  margin-bottom: 1em !important;
+}
+
+.cell_output, .cell_output .output.stream {
+  margin-top: 0 !important;
+}
+
+.cell_output pre {
+  background-color: var(--background-color);
+}
+
+.admonition .cell_output pre {
+  background-color: white;
 }
 
 .cell-out, .script-output {
@@ -126,7 +253,7 @@ py-script {
   padding-bottom: 0.5em;
   padding-left: 0.7em;
   border-left: 4px solid lightblue;
-  border-top: 1px solid lightgray;
+  /* border-top: 1px solid lightgray; */
   border-right: 1px solid lightgray;
   border-bottom: 1px solid lightgray;
   font-family: var(--tt-font);
@@ -160,19 +287,94 @@ py-script {
   display: none;
 }
 
+/* Inline Python result styles - styled to resemble MathJax output */
+.py-inline-result {
+  /* Remove background and borders for seamless integration */
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  
+  /* Use Lora font to match body text */
+  font-family: 'Lora', serif;
+  font-size: 100%;
+  font-style: normal;
+  font-weight: normal;
+  
+  /* Subtle styling to distinguish from regular text while maintaining elegance */
+  color: var(--text-primary-color);
+  letter-spacing: 0.02em;
+  
+  /* Inline display with slight vertical alignment */
+  display: inline;
+  vertical-align: baseline;
+  
+  /* Subtle visual cue on hover to indicate it's dynamic content */
+  transition: color 0.2s ease;
+}
+
+/* Special styling for numeric results to look more mathematical */
+.py-inline-result.numeric {
+  font-variant-numeric: lining-nums;
+}
+
+/* Error state styling */
+.py-inline-result.error {
+  font-style: normal;
+  color: #d32f2f;
+  font-weight: 500;
+}
+
+.py-inline-result:hover {
+  color: var(--link-color);
+  cursor: help;
+}
+
+.py-inline-result:empty {
+  display: none;
+}
+
+/* Inline Python splash style - temporary loading state */
+.py-inline-splash {
+  background-color: #d3d3d3; /* light gray background */
+  font-family: 'Source Code Pro', monospace; /* teletype/monospace font */
+  padding: 2px 4px;
+  border-radius: 3px;
+  display: inline;
+  font-size: 90%;
+}
 
 .highlight {
   background: none;
   color: inherit;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.highlight pre {
+  border-radius: 0;
+  width: 100%;
+  min-width: 0;
+  flex: 1;
+  overflow-x: auto;
+}
+
+.highlight-python {
+  margin-bottom: 0 !important;
 }
 
 .prev-next-title {
   font-family: var(--sans-serif-font);
 }
 
-.prev-next-area a p.prev-next-title:hover {
-  color: var(--highlight-color);
+.prev-next-area a:hover p.prev-next-title,
+.prev-next-area a:visited:hover p.prev-next-title {
+  color: var(--hover-highlight-color);
   text-decoration: none;
+}
+
+a.left-prev:hover, a.right-next:hover {
+  color: var(--hover-highlight-color);
 }
 
 .toc-entry a.nav-link.active:hover {
@@ -215,6 +417,16 @@ py-script {
   white-space: nowrap;
 }
 
+.myproof.admonition::after {
+  content: "□";
+  display: block;
+  text-align: right;
+  font-size: 1.2em;
+  padding-right: 1em;
+  margin-top: -1em;
+  color: var(--text-primary-color);
+}
+
 .naming.admonition > .admonition-title {
   position: absolute;
   width: 1px;
@@ -222,6 +434,15 @@ py-script {
   overflow: hidden;
   clip: rect(1px, 1px, 1px, 1px);
   white-space: nowrap;
+}
+
+.example.admonition {
+  background-color: white;
+  border-left: 4px solid rgb(255, 193, 7);
+}
+
+.example.admonition > .admonition-title {
+  background-color: #fef9e7;
 }
 
 .example.admonition > .admonition-title::after {
@@ -266,16 +487,39 @@ table.dataframe {
   font-size: 85%;
 }
 
+table.dataframe thead tr {
+    border-bottom: 1px solid steelblue !important;
+}
+
 table.dataframe th, table.dataframe td {
   text-align: left !important;
   padding-right: 1.5em;
+  color: var(--dataframe-color);
+  font-family: var(--dataframe-font);
+  font-size: 1em;
+}
+
+table.centered-content {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+table.centered-content td {
+  text-align: center;
 }
 
 .splash::before {
   text-align: center;
   color: var(--visited-link-color);
   font: var(--fa-font-solid);
-  content: '\f254'; /* hourglass icon */
+  content: '\f254 '; /* hourglass icon */
+}
+
+.splash {
+  display: flex;
+  justify-content: center; /* horizontal centering */
+  align-items: center;    /* vertical centering */
 }
 
 .splash::after {
@@ -297,81 +541,100 @@ table.dataframe th, table.dataframe td {
   display: none !important;
 }
 
-/* Toggle code functionality */
-.toggle-code-wrapper {
-  position: relative;
-  margin: 1em 0;
-  /* Remove all wrapper styling - make it invisible */
-  border: none;
-  background-color: transparent;
-  padding: 0;
-}
-
-.toggle-code-button {
-  position: relative;
-  display: block;
-  margin-bottom: 0.5em;
-  font-size: 0.8em;
-  color: var(--link-color);
-  cursor: pointer;
-  font-family: sans-serif;
-  z-index: 10;
-  user-select: none;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  padding: 2px 6px;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  white-space: nowrap; /* Prevent text wrapping */
-  width: auto;
-  text-align: left;
-}
-
-.toggle-code-button:hover {
-  text-decoration: underline;
-  color: var(--link-color);
-}
-
-/* Triangle rotation animation */
-.toggle-code-button .triangle {
-  display: inline-block;
-  transition: transform 0.3s ease;
-}
-
-.toggle-code-button.expanded .triangle {
-  transform: rotate(90deg);
-}
-
-.toggle-code-content {
-  /* Remove all content wrapper styling */
-  margin: 0;
-  padding: 0;
-  border: none;
-  background-color: transparent;
-  /* Add smooth transition for content visibility */
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease, opacity 0.3s ease;
-}
-
-.toggle-code-content.expanded {
-  max-height: 800px; /* Large enough to accommodate most code blocks */
-  opacity: 1;
-}
-
-/* Make sure code blocks inside toggle content look exactly like normal code blocks */
-/* Let the theme handle the styling - remove overrides */
-
-/* PyScript toggle functionality - only apply to py-script elements */
-py-script.toggle-code:not(.expanded) {
+.no-output + .cell-div-container .splash,
+.no-output + .cell-div-container .splash::before,
+.no-output + .cell-div-container .splash::after {
   display: none !important;
 }
 
-py-script.toggle-code.expanded {
-  display: block !important;
+.left-align {
+  text-align: left
 }
+
+/* Toggle code wrapper - common for both MyST and PyScript cells */
+.toggle-code-wrapper {
+    margin: 0.5rem 0;
+    padding: 0;
+}
+
+/* Toggle button styled as a link */
+.toggle-code-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    color: var(--pst-color-link);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: color 0.2s;
+}
+
+.toggle-code-button:hover {
+    color: var(--pst-color-link-hover);
+}
+
+.toggle-code-button:hover .button-text {
+    text-decoration: underline;  /* Only underline the text on hover */
+}
+
+.toggle-code-button:focus {
+    outline: none;
+}
+
+.toggle-code-button .triangle {
+    /* display: inline-block;
+    transition: transform 0.3s ease;
+    font-size: 0.7em; */
+    display: inline-block;
+    transition: transform 0.3s ease;
+    font-size: 0.7em;
+    transform: rotate(0deg);
+    transform-origin: center center; /* Ensure rotation happens from center */
+    width: 1em; /* Fixed width to prevent size jumps */
+    text-align: center;
+}
+
+.toggle-code-button.expanded .triangle {
+    transform: rotate(90deg);
+}
+
+/* Hidden state - use !important to override MyST styles */
+.toggle-code-content {
+    display: none !important;
+}
+
+/* Expanded state - force visibility */
+.toggle-code-content.expanded {
+    display: block !important;
+    margin-top: 0.5rem;
+}
+
+/* Force nested elements to be visible when parent is expanded */
+/* .toggle-code-content.expanded .cell.docutils.container,
+.toggle-code-content.expanded .cell_input.docutils.container,
+.toggle-code-content.expanded .highlight-ipython3,
+.toggle-code-content.expanded .highlight {
+    display: block !important;
+} */
+
+/* Override tag_hide-input when toggle is expanded */
+.cell.tag_hide-input .toggle-code-content.expanded,
+.cell.tag_hide-input .toggle-code-content.expanded .cell_input {
+    display: block !important;
+}
+
+/* Ensure the code pre element is visible */
+.toggle-code-content.expanded pre {
+    display: block !important;
+}
+
+/* .docutils.container {
+  width: max-content
+} */
 
 /* Ensure admonition titles have proper font size */
 .admonition-title {
@@ -379,9 +642,17 @@ py-script.toggle-code.expanded {
   font-weight: bold !important;
 }
 
+p.component-author {
+  display: none;
+}
+
 /* Ensure navigation links have proper font size */
 nav.bd-links li > a {
   font-size: 0.9rem !important;
+}
+
+nav.bd-links p.caption  {
+  margin-top: 0;
 }
 
 /* Ensure theorem type pseudo-elements have proper font size */
@@ -457,4 +728,353 @@ nav.bd-links li > a {
 
 .ast {
   position: relative; top:0.3em;
+}
+
+/* Home page layout styles */
+.main-layout {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin: 50px 0;
+}
+
+.left-section {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+}
+
+.site-logo {
+  width: 200px;
+  height: auto;
+  max-width: 100%;
+}
+
+.right-section {
+  flex: 1;
+  text-align: left;
+  align-self: flex-start;
+}
+
+.right-section h1 {
+  font-size: 2.5em;
+  margin: 0 0 10px 0;
+  color: var(--text-primary-color);
+  font-family: var(--sans-serif-font);
+}
+
+.author {
+  font-size: 1.4em;
+  color: #666;
+  font-weight: normal;
+  margin: 0 0 30px 0;
+  font-family: var(--serif-font);
+}
+
+.language-prompt {
+  margin: 20px 0 30px 0;
+  font-size: 1.1em;
+  color: #555;
+  font-family: var(--serif-font);
+}
+
+.language-links { 
+  display: flex; 
+  gap: 20px; 
+  flex-wrap: wrap;
+}
+
+.lang-card { 
+  background: white; 
+  padding: 20px; 
+  border-radius: 8px; 
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+  text-decoration: none; 
+  color: inherit;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.lang-card:hover { 
+  transform: translateY(-2px); 
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15); 
+}
+
+.lang-card h3 {
+  margin: 0 0 10px 0;
+  color: var(--text-primary-color);
+  font-family: var(--sans-serif-font);
+}
+
+.lang-card p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9em;
+  font-family: var(--serif-font);
+}
+
+/* Responsive design for home page */
+@media (max-width: 768px) {
+  .main-layout {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+    margin: 30px 0;
+  }
+  .right-section {
+    text-align: center;
+  }
+  .site-logo {
+    width: 150px;
+  }
+  .language-links {
+    justify-content: center;
+  }
+}
+
+/* Remove the default vertical border highlighting for current navigation items */
+nav.bd-links .current > a {
+  box-shadow: none !important;
+}
+
+/* Custom current-page class for alternative highlighting */
+.current-page {
+  background-color: var(--pst-color-primary-bg) !important;
+  border-radius: 0.25rem;
+  border-left: 3px solid var(--pst-color-primary) !important;
+  font-weight: 600;
+}
+
+/* Make "Superhero Data Science" title prominent - black and bold */
+.bd-sidenav__home-link .toctree-l1 > a {
+  color: var(--pst-color-text-base) !important;
+  font-weight: bold !important;
+}
+
+/* Make part names (captions) less prominent - gray */
+nav.bd-links p.caption {
+  color: var(--pst-color-text-muted) !important;
+}
+
+/* For current/active chapter links: remove bold weight, keep color highlighting */
+nav.bd-links .current > a:not(.bd-sidenav__home-link .toctree-l1 > a) {
+  font-weight: normal !important;
+}
+
+/* Fix alignment of main title with other navigation items */
+.bd-sidenav__home-link {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+}
+
+.bd-sidenav__home-link .toctree-l1 {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+}
+
+.bd-sidenav__home-link .toctree-l1 a {
+    padding-left: 0 !important; /* Match padding of other navigation items */
+}
+
+/* Collapsible TOC elements */
+.part-collapsible, .chapter-collapsible {
+    cursor: pointer;
+    position: relative;
+    margin-right: calc(30px + 0.1875rem);
+    padding-top: 0.25rem;
+}
+
+/* Chapter links should show normal link cursor on main area, pointer on chevron */
+.chapter-collapsible {
+    cursor: default; /* Let the link handle its own cursor */
+}
+
+/* Add chevron using FontAwesome (matching pydata-sphinx-theme approach) */
+/* Target part headers and chapter links specifically */
+.part-collapsible::after, .chapter-collapsible::after {
+    content: "\f078"; /* FontAwesome chevron-down unicode */
+    font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", "FontAwesome";
+    font-weight: 900;
+    font-style: normal;
+    font-size: 0.75rem;
+    position: absolute;
+    right: -calc(30px + 0.1875rem);
+    top: 0;
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--pst-color-text-muted);
+    transition: transform 0.2s ease;
+    border-radius: 4px;
+}
+
+/* Hover effect for chevron */
+.part-collapsible::after:hover, .chapter-collapsible::after:hover {
+    background-color: var(--pst-color-surface);
+    color: var(--pst-color-text-base);
+}
+
+/* But exclude nested spans to avoid duplicates */
+.part-collapsible span.caption-text::after {
+    display: none;
+}
+
+/* Rotate chevron when collapsed (matching Sphinx behavior: down=expanded, right=collapsed) */
+.part-collapsible.collapsed::after, .chapter-collapsible.collapsed::after {
+    transform: rotate(-90deg);
+}
+
+/* Section transitions */
+.part-chapters, .chapter-sub-items {
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.part-chapters.collapsed, .chapter-sub-items.collapsed {
+    max-height: 0;
+    opacity: 0;
+}
+
+/* Hide Sphinx default details/summary elements */
+details summary {
+    display: none;
+}
+
+
+.py-error {
+    display: none;
+}
+
+.plot-container {
+  float: right;
+  max-width: 250px;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  margin-top: 0;
+  background: white;
+  padding: 15px;
+  border: 1px solid #ddd;
+  clear: right;
+}
+
+/* Keep plot-container styling when code is toggled */
+.toggle-code-content.expanded ~ .plot-container,
+.toggle-code-content ~ .plot-container {
+  position: relative;
+  float: right;
+  max-width: 250px;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  margin-top: 0;
+  background: white;
+  padding: 15px;
+  border: 1px solid #ddd;
+  clear: right;
+}
+
+.mermaid {
+  background-color: inherit;
+  border: none;
+  display: flex;
+  justify-content: center;
+}
+.mermaid > svg {
+  width: auto !important;
+  max-width: 100%;
+}
+
+/* .tag_hide-cell .admonition {
+  display: block !important;
+} */
+
+/* ==========================================================================
+   Exercise + Solution: unified box layout
+   ========================================================================== */
+
+/* Esercizio seguito da soluzione: rimuovi bordo inferiore e arrotondamento */
+.exercise.admonition:has(+ .solution.admonition) {
+  margin-bottom: 0;
+  border-bottom: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* Soluzione che segue un esercizio: rimuovi bordo superiore e margine */
+.exercise.admonition + .solution.admonition {
+  margin-top: 0;
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  padding-top: 0;
+}
+
+/* Titolo della soluzione: nascondi il testo ma non gli elementi funzionali */
+.exercise.admonition + .solution.admonition > .admonition-title {
+  color: transparent;
+  font-size: 0;
+  background: transparent !important;
+  padding: 0.5em 1em;
+  margin: 0;
+  /* border-top: 1px solid rgba(0, 0, 0, 0.15); */
+  position: relative;
+}
+
+/* Rendi visibile qualsiasi elemento figlio (incluso il toggle button) */
+.exercise.admonition + .solution.admonition > .admonition-title > * {
+  visibility: visible;
+  font-size: 0.9rem;
+  color: var(--link-color, #006699);
+}
+
+/* Ma nascondi il link "Esercizio X" */
+.exercise.admonition + .solution.admonition > .admonition-title > a {
+  display: none !important;
+}
+
+/* Toggle button ::before - reso visibile in TUTTI gli stati */
+.exercise.admonition + .solution.admonition > .admonition-title::before {
+  font-size: 0.9rem !important;
+  color: var(--link-color, #006699) !important;
+  cursor: pointer;
+  visibility: visible !important;
+  display: inline !important;
+}
+
+/* Forza visibilità anche quando toggle-shown è attivo */
+.exercise.admonition + .solution.admonition.toggle-shown > .admonition-title::before,
+.exercise.admonition + .solution.admonition.toggle-hidden > .admonition-title::before,
+.exercise.admonition + .solution.admonition.toggle > .admonition-title::before,
+.exercise.admonition + .solution.dropdown.admonition > .admonition-title::before {
+  font-size: 0.9rem !important;
+  color: var(--link-color, #006699) !important;
+  cursor: pointer;
+  visibility: visible !important;
+  display: inline !important;
+}
+
+/* Aggiungi "Soluzione" visibile dopo il toggle */
+.exercise.admonition + .solution.admonition > .admonition-title::after {
+  content: "Soluzione";
+  font-size: 1rem;
+  color: var(--text-primary-color);
+  font-weight: bold;
+  font-family: var(--sans-serif-font);
+  margin-left: 0.3em;
+}
+
+@media print {
+  .bd-article-container h1,
+  .bd-article-container h2,
+  .bd-article-container h3,
+  .bd-article-container h4,
+  .bd-article-container h5,
+  .bd-article-container h6,
+  .bd-article-container p.caption {
+    color: #000 !important;
+  }
 }

@@ -12,103 +12,115 @@ kernelspec:
 (sec_apprendre-et-programmer)=
 # Apprendre <span class="ast">\*</span>et<span class="ast">\*</span> programmer
 
-Comme décrit dans le paragraphe précédent, j’introduirai les concepts en les
-accompagnant (ou en les précédant) d’exemples. Lorsque c’est possible, je
-montrerai aussi des _implémentations_ en utilisant un langage relativement
-moderne : en particulier, je ferai référence à [Python](https://www.python.org)
-et à l’écosystème _data science_ qui lui est associé, composé des paquets
-largement utilisées, au moment où j’écris, par la communauté open source dédiée
-à l’analyse de données[^paquets]. Il est donc fortement recommandé de posséder
-des connaissances de base en programmation.
+Comme indiqué dans la section précédente, j’introduirai les concepts en les
+accompagnant, ou parfois même en les faisant suivre, d’exemples concrets.
+Lorsque cela sera possible, je montrerai aussi des _implémentations_ écrites
+dans un langage relativement moderne. J’utiliserai {extlink}`Python
+<https://www.python.org>` et son _data science stack_, constitué des
+bibliothèques principalement utilisées par la communauté open source qui se
+consacre à l’analyse de données[^paquets] (au moment où ce livre est écrit).
+Pour suivre le livre efficacement, une connaissance de base de la programmation
+est donc vivement recommandée.
+
 ```{margin}
-Ce livre est l’évolution d’une série de notes de cours conçus pour des
-étudiants de deuxième année de licence en informatique ; je ferai donc
-référence au niveau de programmation que l’on acquiert pendant la première
-année dans ces cursus ou dans des cursus similaires.
+Ce livre est l’évolution d’une série de notes de cours conçues pour des
+étudiantes et étudiants de deuxième année de licence en informatique. Il
+suppose donc les compétences en programmation que l’on acquiert généralement en
+première année dans ces cursus, ou dans des parcours similaires.
 ```
 
-Le {ref}`chap_intro-python` contient une description de niveau intermédiaire à
-avancé des fonctionnalités de Python qui sont utilisées, et peut servir de
-remise à niveau pour celles et ceux qui savent déjà programmer mais ne
-connaissent pas ce langage. Une lecture de ce chapitre est toutefois
-recommandée à tout le monde, afin de se familiariser avec les conventions
-adoptées dans le code présenté.
+Le {ref}`chap_introduction-python` fournit une présentation de niveau
+intermédiaire à avancé des fonctionnalités de Python que j’utilise dans le
+livre. Il est conçu pour permettre à celles et ceux qui savent déjà
+programmer, mais ne connaissent pas encore ce langage, de se mettre à niveau.
+La lecture de ce chapitre est de toute façon recommandée, car elle permet de
+se familiariser dès le départ avec les conventions que j’emploie dans le code.
+
+```{margin}
+Les composants interactifs reposent sur {extlink}`PyScript
+<https://pyscript.net/>`, une technologie qui permet d’exécuter du code Python
+dans les navigateurs web modernes. Elle a l’avantage de ne nécessiter aucune
+installation ni configuration manuelle, mais elle requiert une connexion
+internet active et un navigateur compatible avec WebAssembly (comme Chrome,
+Firefox, Edge, Safari et les navigateurs fondés sur Chromium).
+```
 
 Ce livre a été écrit avec une technologie qui permet d’intégrer du contenu
-généré par l’exécution de code Python. Ce code est caché lorsqu’il sert
-simplement à produire des tableaux ou des graphiques, tandis qu’il est affiché
-de manière explicite quand le lecteur est guidé à travers l’implémentation d’un
-ou plusieurs concepts expliqués dans le texte. Dans ces cas, un lien « Afficher
-le code » permet au lecteur d’afficher ou masquer le code caché[^hidden-code].
-Je vous encourage vivement à profiter de cette possibilité : lire un texte de
-manière passive apporte peu de bénéfices, et exécuter du code sans y réfléchir
-n’a pas beaucoup de sens non plus ; ce qui compte, c’est de l’analyser, le
-comprendre et le modifier (même des changements faits uniquement pour mieux en
-saisir le fonctionnement sont utiles). En bref, _jouez avec_, dans le véritable
-esprit _hacker_ &mdash; entendu dans le sens original du terme[^hacker]. En
-réalité, on peut aussi explorer le livre sans forcément tout comprendre du code
-ni devoir l’exécuter : comme montré dans {ref}`sec_apercu-general`, certaines
-paragraphes incluent des éléments interactifs spécialement conçus pour aider à
-mieux saisir les concepts abordés.
+généré par l’exécution de code Python. Lorsque je guide les lectrices et
+lecteurs dans l’implémentation d’un ou plusieurs concepts, le code est montré
+explicitement. En revanche, lorsqu’il sert seulement à produire des éléments
+comme des tableaux ou des graphiques, il est masqué, mais un lien « Afficher le
+code » permet de l’afficher[^hidden-code]. J’encourage fortement à profiter de
+cette possibilité : tout comme lire passivement un texte a peu de sens,
+exécuter du code sans y réfléchir présente un intérêt limité. Ce qui compte,
+c’est de l’analyser, de le comprendre et de le modifier afin d’en saisir plus
+profondément le fonctionnement &mdash; en bref, de _jouer avec_, dans le sens
+originel du terme _hacker_[^hacker]. En tout cas, une partie du contenu est
+interactive, comme on le voit par exemple dans {ref}`sec_apercu-general` :
+manipuler ces éléments, sans même lire le code, est précisément destiné à
+faciliter la compréhension des concepts introduits.
 
-```{margin}
-Les parties interactives s’appuient sur [PyScript](https://pyscript.net/), une
-technologie qui permet d’exécuter du code Python dans les navigateurs web
-modernes. Elle ne nécessite ni installation ni configuration manuelle, mais
-demande une connexion internet active et un navigateur compatible avec
-WebAssembly (comme Chrome, Firefox, Edge, Safari, ou tout navigateur basé sur
-Chromium, à condition qu'ils soient à jour).
-```
+Très souvent, je guiderai les lectrices et lecteurs dans l’implémentation
+pratique des outils fondamentaux, en particulier dans la première partie
+consacrée à la statistique descriptive. Il est important de souligner que ces
+implémentations ne sont pas destinées à remplacer des bibliothèques
+professionnelles. Leur rôle est plutôt d’attirer l’attention sur les aspects
+essentiels d’un ou de plusieurs concepts afin d’en faciliter la compréhension.
+Le raisonnement qui sous-tend cette approche est analogue à l’idée selon
+laquelle les développeuses et développeurs de logiciels devraient avoir appris
+à écrire eux-mêmes les principaux algorithmes de tri (et, si besoin, être
+encore capables de le faire), tout en utilisant dans la pratique
+professionnelle les implémentations disponibles dans des bibliothèques
+optimisées et soigneusement validées, à un niveau qu’il serait difficile
+d’atteindre seul. Dans cet esprit, les implémentations « maison » seront
+immédiatement suivies de l’utilisation de bibliothèques à l’état de l’art.
 
-Très souvent, j’essaie de guider le lecteur dans une implémentation effective
-des outils fondamentaux, surtout dans la première partie, portant sur les
-statistiques descriptives. Le résultat obtenu ne doit pas être considéré comme
-équivalent à celui des paquets professionnelles : d’un côté, l’objectif est de
-se concentrer sur les aspects fondamentaux pour faciliter la compréhension d’un
-ou plusieurs concepts ; de l’autre, ces implémentations ne sont pas destinées à
-un usage professionnel. C’est un peu comme un développeur qui apprend à coder
-les principaux algorithmes de tri à la main (et qui serait capable de le faire
-en cas de besoin), mais qui utilise ensuite des paquets fiables, optimisées et
-bien testées, car cela dépasse ce qu’une personne seule peut raisonnablement
-produire. Dans cet esprit, juste après les implémentations « faites maison »,
-les lecteurs sont orientés vers l’utilisation de paquets à l’état de l’art.
-
-En principe, même ceux qui ne savent pas programmer peuvent lire ce livre, en
-sautant simplement les parties contenant, décrivant ou discutant du code. Mais
-dans ce cas, il faut bien peser le risque de ne pas assimiler les contenus de
-manière optimale, étant donné que le livre mêle texte et code dans une large
-mesure. À ces lecteurs, je conseille d’envisager des ouvrages plus classiques,
-comme :
+Les personnes qui n’ont aucune expérience de la programmation peuvent malgré
+tout lire ce livre, en sautant simplement les parties qui contiennent,
+décrivent ou discutent du code. Dans ce cas, cependant, elles doivent être
+conscientes du risque de ne pas assimiler pleinement le contenu, puisque une
+grande partie de l’exposé alterne entre texte et code. Dans une telle
+situation, je recommande d’envisager des ouvrages adoptant une approche plus
+traditionnelle, comme :
 
 - Statistique et probabilités, de Jean-Pierre Lecoutre {cite:p}`lecoutre`,
 - Mini Manuel de probabilités et statistique : Cours + QCM, de Françoise
   Couty-Fredon, Jean Debord etand Daniel Fredon {cite:p}`coutyfredon`.
 
-J’adresse également un avertissement à ceux qui ne savent pas programmer et
-seraient tentés de lire ce livre pour apprendre à le faire, tout en découvrant
-en même temps l’analyse de données. Ce livre __n’est pas__ un manuel pour
-apprendre à programmer, mais plutôt un livre pour apprendre _en programmant_,
-car il utilise la programmation comme outil pour enrichir l’apprentissage d’une
-autre matière. On dit qu’on ne comprend vraiment quelque chose que lorsqu’on
-est capable de l’expliquer à sa grand-mère[^cite-granny] : je fais mienne cette
-maxime, en espérant ne pas trop la détourner, en disant qu’on ne comprend
-vraiment un concept technique que si on est capable de l’implémenter par un
-programme. Mais pour suivre cette approche, il faut déjà savoir écrire du
-logiciel, ce qui demande du temps, de l’énergie et du matériel dédié. Là
-encore, plusieurs ouvrages peuvent être utiles, comme :
+- Probability and Statistics for Engineering and the Sciences, de Sheldon Ross
+  {cite:p}`ross`,
+- Introduction to Statistics, de Marylin K. Pelosi, Theresa M. Sandifer,
+  Paola Cerchiello et Paolo Giudici {cite:p}`pelosi`.
+
+Je tiens aussi à mettre en garde celles et ceux qui envisagent d’utiliser ce
+livre pour apprendre à programmer tout en découvrant l’analyse de données. Ce
+livre _n’est pas_ un manuel pour apprendre à programmer. C’est plutôt un livre
+pour apprendre _en utilisant_ la programmation, c’est-à-dire en écrivant du
+code afin de rendre plus robuste le processus d’apprentissage d’une autre
+matière. On dit parfois que l’on n’a vraiment compris quelque chose que
+lorsqu’on est capable de l’expliquer à sa grand-mère[^cite-granny]. J’irai un
+pas plus loin en disant qu’on ne maîtrise vraiment un concept technique que si
+l’on est capable de l’implémenter en écrivant un programme. Pour suivre cette
+philosophie, il faut toutefois déjà savoir écrire du logiciel, et c’est une
+compétence qui demande du temps, de l’énergie et des supports pédagogiques
+dédiés. Pour les personnes qui partent de zéro, je recommande quelques textes
+de référence, plus ou moins récents :
 
 - Python 3 &mdash; Les fondamentaux du langage, de Sébastien Chazallet
   {cite:p}`chazallet`,
 - Programmer en langage C : Cours et exercices corrigés, de Claude Delannoy
   {cite:p}`delannoy`.
 
-J’ai délibérément inclus ici deux livres assez récents, chacun dédié à un
-langage différent : l’idée est bien d’apprendre les bases de la programmation,
-pas les subtilités d’un langage en particulier. Enfin, ce paragraphe ne
-mentionne que des livres écrits en français, mais il ne faut pas négliger la
-possibilité d’étudier à partir de la version originale d’un ouvrage, si
-celle-ci est en anglais, ou s’il en existe une version en anglais pensée pour
-des étudiants non natifs anglophones.
+J’ai délibérément choisi des livres consacrés à des langages différents afin de
+souligner que ce qui compte vraiment n’est pas de maîtriser les détails d’un
+langage particulier, mais de comprendre les fondements de la programmation en
+tant que discipline autonome. Enfin, même lorsqu’il existe des traductions, il
+vaut toujours la peine de considérer l’édition originale en anglais : elle est
+souvent plus à jour et écrite en pensant aussi aux personnes non anglophones.
+Cela aide également à se familiariser avec le vocabulaire technique et à
+communiquer plus facilement sur les canaux en ligne consacrés à la
+programmation, qui constituent une ressource précieuse pour résoudre des
+problèmes.
 
 ````{margin}
 ```{figure} ../../_static/img/whistle.jpg
@@ -117,16 +129,16 @@ name: fig-whistle
 height: 100px
 ---
 Un sifflet Cap’n Crunch Bo’sun (image du Heinz Nixdorf MuseumsForum,
-distribuée sous licence
-[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/))
+distribuée sous licence {extlink}`CC BY-NC-SA 4.0
+<https://creativecommons.org/licenses/by-nc-sa/4.0/>`)
 ```
 ````
 
 
 [^paquets]: Le dépôt associé à ce livre contient un
-[fichier](https://github.com/dariomalchiodi/sds/blob/main/requirements.in)
-qui liste toutes les paquets utilisées pour générer les contenus, y compris
-celles nécessaires à l’exécution du code.
+{extlink}`fichier <https://github.com/dariomalchiodi/sds/blob/main/requirements.in>`
+qui répertorie toutes les bibliothèques utilisées pour générer les contenus,
+y compris celles qui sont nécessaires à l’exécution du code.
 
 [^hidden-code]: Il est utile de se rappeler que le code caché peut contenir des
 détails techniques liés à la génération de contenu destiné à être affiché dans
@@ -138,28 +150,31 @@ analytiques.
 
 [^hacker]: Le terme _hacker_ est aujourd’hui souvent utilisé dans le langage
 courant avec une connotation négative, le rapprochant de quelqu’un qui poursuit
-des objectifs malveillants en écrivant ou en modifiant du logiciel, ou plus
-généralement en exploitant des failles de sécurité pour détourner des
-technologies informatiques existantes. En réalité, l’usage moderne du terme en
-anglais remonte aux alentours de 1960, avec une connotation plus neutre, et pas
-forcément liée à l’informatique : il désignait une personne ayant le talent de
-comprendre en profondeur le fonctionnement d’un système, au point de pouvoir le
-contrôler et l’utiliser d’une manière différente de celle pour laquelle il
-avait été conçu. Pour donner un exemple célèbre, l’un des premiers hacks connus 
-&mdash; bien qu’illégal &mdash; consistait à utiliser un « Cap’n Crunch Bo’sun
-Whistle » (un sifflet offert dans les boîtes de céréales d’une marque connue,
-illustré en {numref}`fig-whistle`) pour passer des appels interurbains ou
-internationaux gratuits depuis certains téléphones publics aux États-Unis. L’un
-des premiers foyers de la contre-culture hacker fut le Massachusetts Institute
-of Technology (MIT) : la première trace écrite du terme « hacking » se trouve
-dans le compte rendu d’une réunion de 1955 du
-[Tech Model Railroad Club](http://tmrc.mit.edu/), un club d’étudiants
-passionnés de modélisme ferroviaire. Ce n’est que plus récemment que le terme a
-été pleinement associé au monde de l’informatique.
+des objectifs malveillants en écrivant ou en modifiant du logiciel, ou en
+exploitant des failles de sécurité pour faire un mauvais usage des technologies
+informatiques. À l’origine, pourtant, ce n’était pas le cas. En anglais
+moderne, le terme apparaît autour de 1960 avec une connotation plus neutre,
+pas nécessairement liée à l’informatique : il désignait une personne capable de
+comprendre un système si profondément qu’elle pouvait le contrôler et l’adapter
+à des usages différents de ceux prévus par ses concepteurs. L’un des premiers
+_hacks_ célèbres &mdash; bien qu’illégal &mdash; consistait à utiliser le « Cap’n
+Crunch Bo’sun Whistle » (un sifflet trouvé dans des boîtes d’une célèbre marque
+de céréales, illustré en {numref}`fig-whistle`) pour passer gratuitement des
+appels interurbains et internationaux depuis certains téléphones publics aux
+États-Unis. L’un des lieux où la contre-culture hacker a commencé à se former
+fut le Massachusetts Institute of Technology (MIT) : la plus ancienne trace
+écrite du mot « hacking » apparaît dans le compte rendu d’une réunion de 1955
+du {extlink}`Tech Model Railroad Club <http://tmrc.mit.edu/>`, un groupe
+d’étudiantes et d’étudiants passionnés de modélisme ferroviaire. L’association
+directe avec l’informatique n’est venue que plus tard.
 
 [^cite-granny]: Il est difficile de retracer l’auteur exact de cette maxime :
-certains l’attribuent à Einstein, d’autres à Feynman ou à Rutherford (on dirait
-donc qu’il y a consensus sur le contexte des sciences physiques) ; il existe
-aussi des variantes où la grand-mère est remplacée par un enfant, ou &mdash;
-pour une raison inconnue &mdash; même par un barman.
+certains l’attribuent à Einstein, d’autres à Feynman et d’autres encore à
+Rutherford ; il semble donc y avoir au moins un certain consensus quant à son
+ancrage dans les sciences physiques. Dans sa version la plus connue,
+toutefois, cette formule véhicule une vision assez stéréotypée des
+grand-mères, probablement parce qu’elle circule depuis longtemps. Il en existe
+en réalité plusieurs variantes : certaines tout aussi discutables, où la
+grand-mère est remplacée pour une raison quelconque par un barman, et d’autres
+où c’est un enfant qui prend sa place.
 

@@ -460,8 +460,7 @@ calcolare anche facendo riferimento a uno dei concetti introdotti nel
 {ref}`chap_calcolo-combinatorio`. Qual è questo concetto e come lo si applica
 a questo esempio?
 ````
-
-```{solution} ex-spazi-equip-due-dadi-disposizioni
+````{solution} ex-spazi-equip-due-dadi-disposizioni
 :class: dropdown
 
 Lo spazio degli esiti del lancio di due dadi distinguibili può essere visto
@@ -477,16 +476,19 @@ d_{6, 2} = 6^2 = 36
 ```
 
 Questo coincide con il conteggio ottenuto applicando il principio
-fondamentale del calcolo combinatorio: $6$ possibilità per il dado rosso e,
-indipendentemente, $6$ per il dado blu.
-```
+fondamentale del calcolo combinatorio: sei possibilità per il dado rosso e,
+indipendentemente da queste, sei per il dado blu.
+````
 
 ````{exercise} •
 :label: ex-spazi-equip-heroes-squadra
 
-Nick Fury osserva una teca con $8$ schede, tutte ugualmente probabili da
-estrarre: Iron Man, Thor, Hulk, Black Widow, Wolverine, Storm, Batman e
-Superman.
+[Nick Fury](https://marvel.fandom.com/wiki/Nicholas_Fury_(Earth-616)) osserva
+una teca con nove schede, tutte ugualmente probabili da estrarre: Iron Man,
+Thor, Hulk, Black Widow, Wolverine, Storm (tutti personaggi Marvel), Batman,
+Superman (personaggi DC) e
+[Invincible](https://imagecomics.fandom.com/wiki/Invincible_(Mark_Grayson))
+(Image Comics, quindi né Marvel né DC).
 
 1. Qual è la probabilità di estrarre la scheda di Thor?
 2. Qual è la probabilità di estrarre una scheda Marvel?
@@ -496,16 +498,14 @@ Superman.
 ```{solution} ex-spazi-equip-heroes-squadra
 :class: dropdown
 
-Lo spazio degli esiti ha $8$ elementi ed è equiprobabile, quindi possiamo
-usare la regola classica.
+Lo spazio degli esiti ha nove elementi e il corrispondente spazio di
+probabilità è equiprobabile, quindi possiamo usare la regola classica.
 
 1. La scheda di Thor corrisponde a un solo esito favorevole, dunque
-  $\mathbb P(\text{Thor}) = 1/8$.
-2. Le schede Marvel sono $6$: Iron Man, Thor, Hulk, Black Widow, Wolverine e
-  Storm. Quindi
-  $\mathbb P(\text{Marvel}) = 6/8 = 3/4$.
-3. Le schede non DC sono ancora $6$, quindi
-  $\mathbb P(\text{non DC}) = 6/8 = 3/4$.
+  $\mathbb P(\{ \text{Thor} \}) = 1/9$.
+2. Le schede Marvel sono sei, quindi $\mathbb P(\text{Marvel}) = 6/9 = 2/3$.
+3. Le schede non DC sono sette, perché oltre alle $6$ Marvel c’è anche
+  Invincible. Dunque $\mathbb P(\text{non DC}) = 7/9$.
 ```
 
 ````{exercise} ••
@@ -513,97 +513,107 @@ usare la regola classica.
 
 Facendo riferimento allo spazio di probabilità
 dell’{prf:ref}`ex-somma-due-dadi`, calcolate la probabilità dei seguenti
-eventi. Se volete, rappresentateli anche con un diagramma sul quadrato
-$[1..6] \times [1..6]$:
+eventi. Se volete, rappresentateli anche con un diagramma di Venn sull'universo
+$[1..6]^2$:
 
-- il risultato del lancio del dado blu è uguale a $3$;
-- il risultato del lancio del dado blu è minore di $3$;
-- la somma dei risultati dei due lanci è uguale a $9$;
-- la somma dei risultati dei due lanci è maggiore di $9$;
-- la somma dei risultati dei due lanci è minore o uguale a $9$;
-- la differenza in valore assoluto dei risultati dei due lanci è uguale a $1$.
+1. $A =$ «il risultato del lancio del dado blu è uguale a $3$»;
+2. $B =$ «il risultato del lancio del dado blu è minore di $3$»;
+3. $C =$ «la somma dei risultati dei due lanci è uguale a $9$»;
+4. $D =$ «la somma dei risultati dei due lanci è maggiore di $9$»;
+5. $E =$ «la somma dei risultati dei due lanci è minore o uguale a $9$»;
+6. $F =$ «la differenza in valore assoluto dei risultati dei due lanci è uguale
+   a $1$».
 ````
 
 ```{solution} ex-spazi-equip-due-dadi-eventi
 :class: dropdown
 
 Poiché ci troviamo nello spazio equiprobabile dell’{prf:ref}`ex-somma-due-dadi`,
-ogni esito elementare ha probabilità $1/36$.
+ogni evento elementare ha probabilità $1/36$.
 
-1. Se il dado blu vale $3$, gli esiti favorevoli sono
-  $(1, 3), \dots, (6, 3)$, dunque sono $6$. Quindi
-  $\mathbb P(B = 3) = 6/36 = 1/6$.
-2. Se il dado blu è minore di $3$, allora può valere solo $1$ oppure $2$.
-  Gli esiti favorevoli sono quindi $2 \cdot 6 = 12$, da cui
-  $\mathbb P(B < 3) = 12/36 = 1/3$.
-3. La somma è uguale a $9$ negli esiti $(3, 6)$, $(4, 5)$, $(5, 4)$,
-  $(6, 3)$, che sono $4$. Quindi
-  $\mathbb P(R + B = 9) = 4/36 = 1/9$.
-4. La somma è maggiore di $9$ se vale $10$, $11$ oppure $12$. Gli esiti
-  favorevoli sono rispettivamente $3$, $2$ e $1$, per un totale di $6$.
-  Dunque $\mathbb P(R + B > 9) = 6/36 = 1/6$.
-5. L’evento $R + B \leq 9$ è complementare del precedente, quindi
-  $\mathbb P(R + B \leq 9) = 1 - 1/6 = 5/6$.
-6. La condizione $|R - B| = 1$ si verifica negli esiti
-  $(1, 2)$, $(2, 1)$, $(2, 3)$, $(3, 2)$, $(3, 4)$, $(4, 3)$,
-  $(4, 5)$, $(5, 4)$, $(5, 6)$ e $(6, 5)$, cioè in $10$ casi. Pertanto
-  $\mathbb P(|R - B| = 1) = 10/36 = 5/18$.
+1. Se il risultato per il dado blu è $3$, gli esiti favorevoli sono
+   $(i, 3)$ per $i \in [1..6]$, dunque sono sei, e
+   $\mathbb P(A) = 6/36 = 1/6$.
+2. Se il risultato per il dado blu è minore di $3$, allora può valere solo $1$
+   oppure $2$, dunque ci sono due possibilità, a fronte delle sei per il dado
+   rosso.   Gli esiti favorevoli sono quindi $2 \cdot 6 = 12$, da cui
+   $\mathbb P(B) = 12/36 = 1/3$.
+3. La somma è uguale a nove negli esiti $(3, 6)$, $(4, 5)$, $(5, 4)$ e $(6, 3)$,
+   che sono quattro. Quindi $\mathbb P(C) = 4/36 = 1/9$.
+4. La somma è maggiore di nove se vale $10$, $11$ oppure $12$. Gli esiti
+   favorevoli per i tre valori della somma sono rispettivamente $3$, $2$ e $1$,
+   per un totale di $6$. Dunque $\mathbb P(D) = 6/36 = 1/6$.
+5. Siccome $E = \overline D$, avremo
+   $\mathbb P(E) = 1 - \mathbb P(D) = 1 - 1/6 = 5/6$.
+6. La condizione $|R - B| = 1$ si verifica negli esiti $(i, i+1)$, per
+   $i \in [1..5]$, così come in $(i-1, i)$, per $i \in [2..6]$. In entrambi i
+   casi, si tratta di cinque esiti, per un totale di dieci configurazioni
+   favorevoli. Pertanto $\mathbb P(F) = 10/36 = 5/18$.
 ```
 
 ````{exercise} •
 :label: ex-spazi-equip-shield-dossier
 
 In un archivio della [S.H.I.E.L.D.](https://marvel.fandom.com/wiki/S.H.I.E.L.D.)
-ci sono $12$ dossier, tutti ugualmente probabili da estrarre: $5$ riguardano
-gli Avengers, $4$ gli X-Men e $3$ la Justice League. Si estrae un dossier a
-caso.
+ci sono dodici dossier, tutti ugualmente probabili da estrarre: cinque
+riguardano gli Avengers, quattro gli X-Men e tre la Justice League. Calcolate
+la probabilità degli eventi che seguono.
 
-1. Qual è la probabilità che il dossier riguardi un gruppo Marvel?
-2. Qual è la probabilità che il dossier non riguardi la Justice League?
-3. Quale proprietà dello spazio di probabilità giustifica il calcolo usato?
+1. $A=$ «Si estrae un dossier che riguarda un gruppo Marvel».
+2. $B=$ «Si estrae un dossier che non riguarda gli X-Men».
+
+Quale proprietà dello spazio di probabilità giustifica il calcolo usato?
 ````
 
 ```{solution} ex-spazi-equip-shield-dossier
 :class: dropdown
 
-L’insieme dei $12$ dossier è uno spazio equiprobabile, quindi possiamo usare
-la regola classica $\mathbb P(E) = |E| / |\Omega|$.
+L’insieme dei dodici dossier è uno spazio degli esiti sul quale è stato
+costruito uno spazio equiprobabile di probabilità, quindi possiamo usare
+la regola classica {eq}`eq_prob-classica`.
 
 1. I dossier che riguardano gruppi Marvel sono quelli sugli Avengers e quelli
-  sugli X-Men, cioè $5 + 4 = 9$. Quindi
-  $\mathbb P(\text{gruppo Marvel}) = 9/12 = 3/4$.
-2. I dossier che non riguardano la Justice League sono ancora $9$, dunque
-  $\mathbb P(\text{non Justice League}) = 9/12 = 3/4$.
-3. Il calcolo è giustificato proprio dal fatto che gli esiti elementari sono
-  equiprobabili.
+   sugli X-Men, che sono in tutto nove. Quindi
+   $\mathbb P(A) = 9/12 = 3/4$.
+2. I dossier che non riguardano gli X-Men sono otto, dunque
+  $\mathbb P(B) = 8/12 = 2/3$.
+
+In entrambi i casi, il calcolo è giustificato proprio dal fatto che gli esiti
+sono equiprobabili.
 ```
 
 ````{exercise} •
 :label: ex-spazi-equip-regola-classica
 
 Per ciascuno dei seguenti esperimenti, stabilite se la formula classica
-$\mathbb P(E) = |E| / |\Omega|$ si può applicare direttamente, e motivate la
-risposta con una frase.
+$\mathbb P(E) = |E| / |\Omega|$ si può applicare direttamente, motivando la
+vostra risposta.
 
 1. Si estrae a caso una carta da un mazzo ben mescolato di $20$ carte tutte
   diverse, ciascuna dedicata a un supereroe.
 2. Si osserva l’anno di prima apparizione di un personaggio scelto
   uniformemente dal dataset dei supereroi.
-3. Si osserva il risultato del lancio di due dadi indistinguibili.
+3. Si sceglie uniformemente uno tra questi nove personaggi: Iron Man, Thor,
+   Hulk, Black Widow, Wolverine, Storm, Batman, Superman e Invincible, e si
+   osserva soltanto l’universo editoriale di appartenenza del personaggio
+   estratto.
 ````
 
 ```{solution} ex-spazi-equip-regola-classica
 :class: dropdown
 
 1. Sì. Se il mazzo è ben mescolato e ogni carta è equiprobabile, allora gli
-  esiti elementari hanno tutti la stessa probabilità e la formula classica si
+  eventi elementari hanno tutti la stessa probabilità e la formula classica si
   può usare.
 2. No. Anche se il personaggio è scelto uniformemente, gli anni di prima
-  apparizione non sono in generale equiprobabili, perché più personaggi
-  possono avere lo stesso anno.
-3. No. Lo spazio degli esiti è finito, ma non equiprobabile: gli esiti
-  $\{i, j\}$ con $i < j$ hanno probabilità $2/36$, mentre quelli del tipo
-  $\{i, i\}$ hanno probabilità $1/36$.
+  apparizione non sono in generale equiprobabili, come abbiamo visto nel
+  {numref}`sec_disegnare-grafici`.
+3. No. Lo spazio degli esiti è finito, ma non equiprobabile. Infatti gli
+  esiti possibili sono gli universi editoriali osservati, per esempio Marvel,
+  DC e Image Comics, ma essi non hanno la stessa probabilità: nel campione
+  proposto, Marvel compare per sei personaggi su nove, DC per due su nove e
+  Image Comics per uno su nove. Quindi non si può applicare direttamente la
+  formula classica sullo spazio degli esiti così costruito.
 ```
 
 ````{exercise} ••
@@ -612,40 +622,39 @@ risposta con una frase.
 Nel modello dell’{prf:ref}`ex-due-dadi-indistinguibili`, calcolate la
 probabilità dei seguenti eventi:
 
-1. la somma dei due risultati è uguale a $7$;
-2. i due dadi mostrano lo stesso numero.
+1. $D =$ «la differenza tra il risultato più grande e quello più piccolo è
+   uguale a $4$»;
+2. $G =$ «il risultato più grande è minore o uguale di $2$».
 
 Spiegate poi perché, pur avendo cardinalità diverse, questi due eventi hanno
 la stessa probabilità.
 ````
 
-```{solution} ex-spazi-equip-dadi-indistinguibili-prob
+````{solution} ex-spazi-equip-dadi-indistinguibili-prob
 :class: dropdown
 
 Nel modello con dadi indistinguibili, gli esiti $\{i, j\}$ con $i < j$ hanno
 probabilità $2/36$, mentre quelli del tipo $\{i, i\}$ hanno probabilità
 $1/36$.
 
-1. L’evento “somma uguale a $7$” è
-  $E = \{ \{1, 6\}, \{2, 5\}, \{3, 4\} \}$. Quindi
+1. La descrizione estensiva dell'evento $D$ è $\{ \{1, 5\}, \{2, 6\} \}$, per
+   cui
 
-  ```{math}
-  \mathbb P(E) = \frac{2}{36} + \frac{2}{36} + \frac{2}{36} = \frac{1}{6}
-  \enspace.
-  ```
+   ```{math}
+   \mathbb P(D) = 2 \times \frac{2}{36} = \frac{1}{9} \enspace.
+   ```
 
-2. L’evento “esce un doppio” è
-  $D = \{ \{1, 1\}, \{2, 2\}, \dots, \{6, 6\} \}$. Allora
+2. Analogamente, $G = \{ \{1, 1\}, \{1, 2\}, \{2, 2\} \}$, che comporta
 
-  ```{math}
-  \mathbb P(D) = 6 \cdot \frac{1}{36} = \frac{1}{6} \enspace.
-  ```
+   ```{math}
+   \mathbb P(G) = 2 \times \frac{1}{36} + \frac{2}{36} = \frac{1}{9} \enspace.
+   ```
 
-I due eventi hanno la stessa probabilità perché nel primo caso ci sono pochi
-esiti favorevoli, ma ciascuno pesa $2/36$, mentre nel secondo ce ne sono di
-più, ma ciascuno pesa soltanto $1/36$. Questo mostra bene che, nel modello non
-equiprobabile, non basta contare gli esiti: bisogna anche pesarli.
-```
+I due eventi hanno la stessa probabilità nonostante $|D| \neq |G|$: nel primo
+evento ci sono due esiti, nel secondo tre. Ma tutti gli esiti di $D$ hanno
+probabilità $2/36$, mentre solo uno degli esiti in $G$ ha questa probabilità:
+gli altri due hanno una probabilità dimezzata.
+````
 
 ````{exercise} ••
 :label: ex-spazi-equip-evento-non-osservabile
@@ -657,30 +666,30 @@ spiegate perché, una volta dimenticato l’ordine dei due risultati, non è pi�
 possibile rappresentarlo come evento del secondo modello.
 ````
 
-```{solution} ex-spazi-equip-evento-non-osservabile
+````{solution} ex-spazi-equip-evento-non-osservabile
 :class: dropdown
 
 Un esempio naturale è l’evento
 
 ```{math}
-A = \{ (i, j) \in [1..6]^2 \mid i > j \} 
+A = \{ (i, 2i) \mid i \in [1..3] \} 
 \enspace,
 ```
 
-cioè “il risultato del dado rosso è maggiore di quello del dado blu”. Questo
+cioè «il risultato del dado rosso è la metà di quello del dado blu». Questo
 evento ha senso nel modello con dadi distinguibili, perché le due componenti
 della coppia ordinata indicano due dadi diversi.
 
 Nel modello con dadi indistinguibili, invece, l’esito osservato è una coppia
 non ordinata $\{i, j\}$, quindi l’informazione su quale numero appartenga al
-dado rosso e quale al dado blu viene perduta. Per esempio, gli esiti $(5, 2)$
-e $(2, 5)$ diventano entrambi l’unico esito non ordinato $\{2, 5\}$, ma solo
+dado rosso e quale al dado blu viene perduta. Per esempio, gli esiti $(3, 6)$
+e $(6, 3)$ diventano entrambi l’unico esito non ordinato $\{3, 6\}$, ma solo
 il primo appartiene ad $A$.
 
-Di conseguenza, osservando $\{2, 5\}$ non si può più decidere se l’evento si
+Di conseguenza, osservando $\{3, 6\}$ non si può più decidere se l’evento si
 sia verificato oppure no. Per questo motivo $A$ non può essere rappresentato
-come evento nello spazio dei dadi indistinguibili.
-```
+nello spazio di probabilità che riguarda i dadi indistinguibili.
+````
 
 ````{exercise} •••
 :label: ex-spazi-equip-eventi-simmetrici

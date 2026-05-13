@@ -12,117 +12,132 @@ kernelspec:
 (sec_apercu-general)=
 # Vue d’ensemble
 
-Ce chapitre a un double objectif : d’un côté, il sert à décrire à grands traits
-la logique suivie dans l’organisation des contenus et à introduire, de façon
-relativement informelle, les concepts fondamentaux ; de l’autre, il explique
-comment utiliser les composants interactifs du livre. Comme indiqué dans le
-{ref}`chap_approche`, je vais faire référence à un jeu de données obtenu en
-modifiant un sous-ensemble approprié du
-[Superhero database](http://www.superherodb.com). Les exemples se rapporteront
-donc à l’univers des super-héros, chacun étant décrit par les _attributs_
-listés dans la {numref}`tab_dataset`.
+Le but de ce chapitre est double : d’une part, il vise à décrire la logique
+selon laquelle j’ai organisé les contenus et à introduire les concepts clés de
+manière relativement informelle. D’autre part, il explique comment utiliser les
+composants interactifs du livre. Comme indiqué dans {ref}`chap_approche`, tout
+au long du texte, je ferai référence à un jeu de données obtenu en modifiant
+un sous-ensemble du {extlink}`Superhero database <http://www.superherodb.com>`.
+Les exemples s’appuient donc sur l’univers des super-héros, chacun étant décrit
+au moyen des _attributs_ indiqués dans la {numref}`tab_dataset`.
 
 ```{margin}
-J’ai choisi d’utiliser l’anglais pour indiquer les noms des attributs et les
-valeurs correspondantes (lorsqu’elles sont exprimées sous forme de chaînes),
-afin de rester cohérent avec le contenu du dataset. De la même manière, le code
-Python suivra une convention de nommage en anglais pour les variables,
-fonctions, etc.
+J’ai choisi d’utiliser l’anglais pour désigner les noms des attributs ainsi que
+les valeurs correspondantes (lorsqu’elles sont exprimées sous forme de chaînes
+de caractères), afin de rester cohérent avec le contenu du jeu de données. De
+la même manière, le code Python suivra une convention de nommage en anglais
+pour les variables, les fonctions, etc.
 ```
-
 ```{table} Description du jeu de données utilisé dans les exemples.
 :name: tab_dataset
 :align: center
-| Attribut            | Signification             | Contenu                                                  |
-|---------------------|---------------------------|----------------------------------------------------------|
-| `name`              | identifiant unique        | chaîne                                     |
-| `full_name`         | nom complet               | chaîne                                     |
-| `identity`          | identité secrète          | chaîne                                     |
-| `alignment`         | alignement moral          | `'Good'`, `'Neutral'` ou `'Bad'`                         |
-| `place_of_birth`    | lieu de naissance         | chaîne                                     |
-| `creator`           | éditeur/créateur          | chaîne                                     |
-| `universe`          | univers                   | chaîne                                     |
-| `first_appearance`  | année de première apparition | entier                                                 |
-| `eye_color`         | couleur des yeux          | chaîne                                     |
-| `hair_color`        | couleur des cheveux       | chaîne                                     |
-| `height`            | taille en cm              | nombre flottant                              |
-| `weight`            | poids en kg               | nombre flottante                             |
-| `strength`          | force                     | entier (de `0` à `100`)                                  |
-| `intelligence`      | intelligence              | `'Low'`, `'Moderate'`, `'Average'`, `'Good'` ou `'High'` |
-| `speed`             | vitesse                   | entier (de `0` à `100`)                                  |
-| `durability`        | endurance                 | entier (de `0` à `100`)                                  |
-| `combat`            | aptitude au combat        | entier (de `0` à `100`)                                  |
-| `powers`            | liste des super-pouvoirs  | chaîne                                     |
+| Attribut           | Signification            | Contenu                                                  |
+|--------------------|--------------------------|----------------------------------------------------------|
+| `name`             | identifiant unique       | chaîne de caractères                                     |
+| `full_name`        | nom complet              | chaîne de caractères                                     |
+| `identity`         | identité secrète         | chaîne de caractères                                     |
+| `alignment`        | alignement moral         | `'Good'`, `'Neutral'` ou `'Bad'`                         |
+| `place_of_birth`   | lieu de naissance        | chaîne de caractères                                     |
+| `creator`          | éditeur/créateur         | chaîne de caractères                                     |
+| `universe`         | univers                  | chaîne de caractères                                     |
+| `first_appearance` | année de première apparition | entier                                               |
+| `eye_color`        | couleur des yeux         | chaîne de caractères                                     |
+| `hair_color`       | couleur des cheveux      | chaîne de caractères                                     |
+| `height`           | taille en cm             | nombre à virgule flottante                               |
+| `weight`           | poids en kg              | nombre à virgule flottante                               |
+| `strength`         | force                    | entier (de `0` à `100`)                                  |
+| `intelligence`     | intelligence             | `'Low'`, `'Moderate'`, `'Average'`, `'Good'`, ou `'High'`|
+| `speed`            | vitesse                  | entier (de `0` à `100`)                                  |
+| `durability`       | endurance                | entier (de `0` à `100`)                                  |
+| `combat`           | aptitude au combat       | entier (de `0` à `100`)                                  |
+| `power`            | liste des super-pouvoirs | chaîne de caractères                                     |
 ```
 
 ```{margin}
 L’extrait du jeu de données est généré dynamiquement, et il peut être
-nécessaire d’attendre quelques secondes avant qu’il n’apparaisse à l’écran,
-remplaçant le message `Attendre le chargement de PyScript`. Il en va de même
-pour tous les points où le navigateur exécute du code Python.
+nécessaire d’attendre quelques secondes avant qu’il n’apparaisse, en
+remplaçant le message `Please wait, loading PyScript...`. Le même comportement
+se produit partout où le navigateur exécute du code Python.
 ```
 
 Le jeu de données est stocké dans le fichier `heroes.csv`, situé dans le
-répertoire `data` du [répertoire GitHub](https://github.com/dariomalchiodi/sds)
-associé au livre. Dans le code interactif, le fichier est accessible via le
-chemin `data/heroes.csv`. Le contenu de ce fichier est représenté au format CSV
-(_comma separated values_), un des standards utilisés pour l’échange de données
-de taille modérée : chaque ligne représente un super-héros, et les valeurs des
-attributs listés dans la {numref}`tab_dataset` y sont séparées par des
-virgules. La seule exception est la première ligne, qui contient les noms des
-attributs, eux aussi séparés par des virgules, comme on peut le voir en
-affichant le début du fichier.
+répertoire `data` du {extlink}`dépôt GitHub
+<https://github.com/dariomalchiodi/sds>` associé au livre. Dans le code
+interactif, ce fichier est accessible sous le chemin `data/heroes.csv`. Son
+contenu est représenté au format CSV (_comma separated values_), un format
+standard couramment utilisé pour partager des jeux de données de taille
+relativement modeste : chaque ligne correspond à un super-héros, et les valeurs
+des attributs de la {numref}`tab_dataset` y sont séparées par des virgules. La
+seule exception est la première ligne du fichier, qui contient les noms des
+attributs, eux aussi séparés par des virgules. La {numref}`tab_dataset-excerpt`
+montre un extrait du jeu de données, en affichant les valeurs de certains
+attributs pour dix super-héros choisis aléatoirement.
 
-Ci-dessous, vous pouvez voir la description de certains des attributs pour dix
-super-héros du jeu de données, choisis au hasard.  
+
+````{customtable}
+:name: tab_dataset-excerpt
+:class: full-width, left-align
 
 
 ```{interactive-code} python
+:height: 300px
 :class: toggle-code
+
 import pandas as pd
 
-heroes = pd.read_csv('data/heroes.csv', index_col=0).convert_dtypes()
+heroes = pd.read_csv('data/heroes.csv', index_col=0)
     
 source = heroes.sample(10).loc[:,'name':'combat']
 source.index.name = None
 source
+
 ```
 
-Dans le {ref}`chap_pandas`, nous verrons comment charger en mémoire le contenu
-de ce fichier et, surtout, comment le manipuler. Pour l’instant,
-concentrons-nous sur quelques exemples simples qui, d’un côté, montrent comment
-utiliser les parties interactives du livre, et de l’autre, donnent un aperçu
-des concepts que je vais présenter.
+Extrait du jeu de données de référence.
 
-Ce qui suit est un premier exemple de graphique interactif. Dans le diagramme
-du haut, certains super-héros sont représentés à l’aide de cercles placés sur
-un plan cartésien : les coordonnées du centre indiquent le poids et la taille,
-tandis que le rayon représente la force. Chaque cercle est coloré avec une
-nuance de bleu choisie en fonction de l’éditeur, et en passant la souris
-au-dessus, le nom du super-héros correspondant s’affiche automatiquement. Le
-diagramme du bas montre quant à lui le nombre de super-héros par
-éditeur/créateur, à l’aide de barres horizontales. En sélectionnant une zone
-rectangulaire dans le diagramme supérieur, on peut se concentrer sur un
-sous-ensemble de super-héros (ce qui grise automatiquement les cercles des
-super-héros exclus) : le diagramme inférieur est alors mis à jour
-automatiquement pour refléter la distribution du groupe sélectionné. Une fois
-la sélection effectuée, on peut la déplacer, et un simple clic en dehors de
-cette zone permet de rétablir le graphique initial.
+````
 
+Dans le {numref}`chap_pandas`, nous verrons comment charger le contenu de ce fichier
+en mémoire et l’analyser. Pour l’instant, concentrons-nous sur quelques
+exemples préliminaires. Celui de la {numref}`fig_altair-example` constitue un
+premier exemple de graphique interactif. Dans le diagramme supérieur, certains
+super-héros sont représentés par des cercles dans un plan cartésien : les
+coordonnées de chaque centre indiquent le poids et la taille, tandis que le
+rayon exprime la force. La couleur varie selon l’éditeur, à l’aide de
+différentes nuances de bleu. En déplaçant le pointeur sur un cercle, on fait
+apparaître le nom du super-héros correspondant. Le diagramme inférieur montre,
+quant à lui, des barres horizontales indiquant le nombre de super-héros pour
+chaque éditeur/créateur. Il est possible de sélectionner un sous-ensemble de
+super-héros en traçant un rectangle dans le diagramme supérieur : les autres
+éléments du jeu de données sont désactivés et affichés en gris, tandis que le
+diagramme inférieur est mis à jour afin de refléter la distribution du groupe
+sélectionné. La sélection peut être déplacée, et un clic en dehors de celle-ci
+rétablit la vue initiale.
 ```{margin}
-Le graphique ci-contre a été généré avec
-[altair](https://altair-viz.github.io/), un paquet qui permet d’utiliser Python
-pour créer des visualisations complexes dans des pages web, avec un
-comportement interactif automatiquement activé dès le chargement de la page.
-Pour savoir si un graphique a été généré avec altair, il suffit de vérifier si
-un petit bouton rond contenant trois points est visible en haut à droite. Ce
-bouton ouvre un menu qui permet, entre autres, de télécharger le graphique.
-```  
+Le graphique de la {numref}`fig_altair-example` a été réalisé avec
+{extlink}`Altair <https://altair-viz.github.io/>`, un paquet Python pour
+créer des graphiques interactifs dans des pages web. Un signe distinctif des
+graphiques Altair est le bouton rond à trois points dans le coin supérieur
+droit : il ouvre un menu qui permet, entre autres, de télécharger le graphique.
+```
 
-```{interactive-code} python
-:class: toggle-code
+```{code-cell} python
+:tags: [remove-cell]
+
+import matplotlib.pyplot as plt
+plt.style.use('../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+```{code-cell} python
+:height: 600px
+:tags: [hide-input]
 
 import altair as alt
+import pandas as pd
+
+heroes = pd.read_csv('data/heroes.csv', index_col=0).convert_dtypes()
 
 filter = (heroes['creator'].isin(heroes.creator.value_counts()[:15].index))
 filter &= (heroes['weight']<200)
@@ -142,69 +157,77 @@ points = alt.Chart(source).mark_point().encode(
 
 bars = alt.Chart(source).mark_bar().encode(
             alt.Y('creator', title='Creator'),
-            alt.X('count(creator)', title='N. of superheroes'),
-            alt.Color('creator', title='Creator').scale(scheme="blues"),
-        ).transform_filter(brush)
-
+            alt.X('count:Q', title='N. of superheroes'),
+            alt.Color('creator:N', title='Creator').scale(scheme="blues"),
+        ).transform_filter(
+            brush
+        ).transform_aggregate(
+            count='count()',
+            groupby=['creator']
+        )
 # Create the final interactive chart
 chart = (points & bars).configure(background='#eaf3f5')
 chart
 ```
 
-En interagissant avec le graphique, on peut effectuer une _analyse
+````{customfigure}
+:name: fig_altair-example
+:class: left-align
+
+Un exemple de graphique interactif basé sur Altair.
+
+````
+
+En interagissant avec ce graphique, on peut effectuer une _analyse
 exploratoire_ des données, par exemple pour répondre aux questions suivantes.
 
-1. Quel est l’éditeur/créateur qui compte le plus grand nombre de super-héros ?
-2. Quel éditeur compte le plus de super-héros mesurant moins d’un mètre ?
-3. Quel éditeur a le plus de super-héros pesant entre 80 et 100 kg ?
-4. Quel est le super-héros le plus grand de tous ?
+1. Quel éditeur/créateur compte le plus grand nombre total de super-héros ?
+2. Quel éditeur compte le plus grand nombre de super-héros mesurant moins d’un
+   mètre ?
+3. Quel éditeur compte le plus grand nombre de super-héros pesant entre $80$ et
+   $100$ kg ?
+4. Quel est le super-héros le plus grand ?
 
-```{margin}
-En général, seule une petite partie des graphiques que nous verrons seront
-interactifs.
-```
+De nombreux aspects peuvent aussi être analysés sans interagir avec le
+graphique, simplement en l’observant dans sa forme initiale, comme pour les
+deux questions suivantes.
 
-Il y a évidemment de nombreux aspects que l’on peut analyser de manière
-préliminaire simplement en observant le graphique tel qu’il a été généré
-(c’est-à-dire sans utiliser les composants interactifs), comme par exemple les
-deux suivants.
-
-5. Existe-t-il une relation quelconque entre le poids et la taille des
+5. Existe-t-il une tendance ou une relation entre le poids et la taille des
    super-héros ?
 6. Cette relation change-t-elle si l’on se concentre sur les super-héros d’un
-   éditeur/créateur en particulier ?
-
-La _statistique descriptive_, introduite du {ref}`chap_dati-e-informazione` au
-{ref}`chap_analizzare-le-relazioni-tra-i-dati`, fournit des outils permettant
-de répondre à des questions comme celles que l’on vient de considérer. En
-général, l’objectif est d’extraire de l’information à partir d’un jeu de
-données qui décrit, totalement ou partiellement, un ensemble d’individus de
-référence. Les techniques employées peuvent être de nature _qualitative_ ou
-_quantitative_. On parle d’analyse qualitative lorsque l’objectif est de
-comprendre la nature d’un certain phénomène (comme dans les questions 5 ou 6
-ci-dessus). Cela implique souvent l’utilisation d’outils, comme le graphique
-présenté précédemment, dont les résultats doivent être interprétés, ce qui
-introduit une certaine part de subjectivité. On parle au contraire d’analyse
-quantitative lorsque le résultat s’exprime par une ou plusieurs valeurs
-numériques, que l’on peut alors comparer objectivement à d’autres (typiquement,
-les résultats d’autres analyses).
+   éditeur/créateur particulier ?
 
 ```{margin}
-Si tout cela vous semble compliqué, ne vous inquiétez pas : les concepts
-deviendront plus clairs dans les chapitres suivants.
+Si tout cela vous paraît compliqué, ne vous inquiétez pas : les chapitres
+suivants expliqueront ces concepts en partant des bases.
 ```
+De telles questions se traitent à l’aide des outils de la _statistique
+descriptive_, introduits dans les chapitres
+{numref}`chap_dati-e-informazione`–{numref}`chap_analizzare-le-relazioni-tra-i-dati`. Leur but
+est d’extraire de l’information à partir d’un jeu de données décrivant un
+ensemble d’individus, en tout ou en partie. Les techniques employées peuvent
+être de deux types : _qualitatives_ ou _quantitatives_.
 
-Supposons maintenant que nous voulions nous concentrer, pour faire simple, sur
-le poids des super-héros : le graphique précédent est clairement chargé en
-cercles, et même s’il est relativement facile d’estimer les tailles minimale et
-maximale, il est plus difficile de déterminer, par exemple, s’il y a plus de
-super-héros « légers » que « lourds ». Pour mieux comprendre cela, voici un
-graphique particulier, appelé _histogramme_, qui met en évidence les fréquences
-auxquelles apparaissent les différentes valeurs de poids dans le jeu de
-données.
+- Une analyse qualitative cherche à déterminer la nature d’un phénomène donné
+  (par exemple pour répondre aux questions 5 et 6 de la liste ci-dessus). Elle
+  s’appuie souvent sur des outils graphiques dont les résultats doivent être
+  interprétés, ce qui introduit une certaine part de subjectivité.
+- Une analyse quantitative, en revanche, produit une ou plusieurs valeurs
+  numériques, qui peuvent être comparées de manière objective à d’autres
+  mesures, comme les résultats d’autres analyses.
 
-```{interactive-code} python
-:class: toggle-code
+Pour simplifier, concentrons-nous maintenant sur le poids des super-héros. Le
+graphique précédent est assez chargé : d’un côté, il est facile d’identifier
+les tailles minimale et maximale, mais de l’autre, il n’est pas immédiat de
+savoir si les super-héros « légers » sont plus nombreux que les plus « lourds ».
+Pour clarifier ce point, nous pouvons utiliser un _histogramme_, c’est-à-dire
+un graphique qui met en évidence les fréquences avec lesquelles les différentes
+valeurs du poids apparaissent dans le jeu de données.
+
+
+```{code-cell} python
+:height: 400px
+:tags: [hide-input]
 
 import matplotlib.pyplot as plt
 
@@ -212,353 +235,338 @@ fig, ax = plt.subplots()
 data = heroes.weight[heroes.weight < 200]
 
 ax.hist(data, bins=30, density=True)
-fig.show()
+fig
+```
+
+````{customfigure}
+:name: fig_histogram
+
+Un histogramme des poids des super-héros.
+````
+
+```{margin}
+L’histogramme n’est pas toujours le bon choix pour explorer des données. Il est
+utile lorsque l’on dispose de nombreuses valeurs numériques associées à un
+attribut continu ; dans d’autres cas, il peut être trompeur (comme nous le
+verrons dans le {ref}`chap_dati-e-informazione).
 ```
 
 ```{margin}
-Il n’est pas toujours pertinent d’utiliser un histogramme pour explorer les
-valeurs d’un jeu de données, comme nous le verrons dans le
-{ref}`chap_dati-e-informazione`.
+L’exploration des données n’implique pas toujours l’utilisation de méthodes
+graphiques : nous verrons également qu’elle repose souvent sur des outils
+quantitatifs.
 ```
 
 ```{margin}
-Nous verrons également que l’exploration des données ne passe pas
-nécessairement (ou exclusivement) par des méthodes graphiques, mais peut aussi,
-et souvent doit, reposer sur des outils quantitatifs.
+En regardant l’axe des ordonnées, on constate que les valeurs ne sont pas
+entières, de sorte que la hauteur des rectangles ne peut pas représenter le
+nombre de super-héros. Dans cet histogramme, c’est l’aire de chaque rectangle
+qui est proportionnelle à la fréquence. Ce choix, qui a des implications
+importantes, sera expliqué plus en détail par la suite.
 ```
 
-Les histogrammes sont définis en détail dans le {ref}`sec_histogrammes`, mais
-pour le moment, il suffit de savoir comment en lire le résultat : dans chacun
-des rectangles affichés, la base identifie un intervalle $I$ de valeurs
-possibles pour le poids des super-héros, et la hauteur est liée à la fraction
-de super-héros dont le poids appartient à $I$ [^histogramme]. Le graphique
-obtenu met en lumière quelques éléments intéressants : par exemple, on remarque
-que les super-héros pesant plus de 125 kg sont plus nombreux que ceux pesant
-moins de quarante kilos. D’un autre côté, si l’on exclut les poids très grands
-ou très petits, on observe une certaine symétrie approximative des valeurs par
-rapport à un axe central, et les hauteurs des rectangles ont tendance à
-augmenter jusqu’à environ $70$ kg, puis à diminuer. C’est aussi une forme
-d’exploration des données, qui ici ne nécessite pas de graphiques interactifs.
+Les histogrammes seront expliqués de manière détaillée dans le {ref}`sec_histogrammes`,
+mais pour le moment ce qui importe est de savoir comment les lire. Le graphique
+est constitué de nombreux rectangles : la base de chacun correspond à un
+intervalle $I$ de valeurs possibles du poids, et sa hauteur est liée à la
+fraction de super-héros dont le poids tombe dans cet intervalle[^histogram]. En
+observant cet histogramme, on remarque deux éléments intéressants :
+
+- les super-héros qui pèsent plus de $125$ kg sont plus nombreux que ceux qui
+  pèsent moins de $40$ kg ;
+- si l’on exclut les poids extrêmes, la distribution est approximativement
+  symétrique, les hauteurs des rectangles augmentant jusqu’à environ $70$ kg
+  avant de décroître.
+
+Il s’agit déjà d’une première forme d’analyse exploratoire, même sans
+graphiques interactifs.
 
 ```{margin}
 Si vous êtes attentif, vous aurez remarqué que la hauteur d’un rectangle ne
-peut pas correspondre simplement au nombre de super-héros ayant un certain
+peut pas correspondre directement au nombre de super-héros ayant un certain
 poids, car les valeurs indiquées sur l’axe des ordonnées ne sont pas entières.
-Dans cet histogramme, en effet, le nombre de super-héros est lié à l’aire du
-rectangle, ce qui nous permettra de comparer ce résultat à un autre graphique
-un peu plus loin. Le choix de cette représentation est détaillé dans le
-{ref}`sec_histogrammes`.
+Dans cet histogramme, en effet, le nombre de super-héros est représenté par
+l’aire du rectangle, ce qui nous permettra de comparer cette répresentation à
+une autre un peu plus loin. Le choix de cette représentation est éxpliqué dans
+le {ref}`sec_histogrammes`.
 ```
+Une fois que l’on a accumulé suffisamment d’informations sur les données
+disponibles, l’étape suivante consiste à tenter de _modéliser_ de manière
+mathématique le processus qui les a engendrées. Pour cela, il faut changer de
+perspective : au lieu de raisonner sur l’ensemble du jeu de données, imaginons
+que nous puissions observer n’importe lequel de ses éléments sans savoir à
+l’avance lequel ce sera (rappelons-nous de la [loi de Franklin](#sec_franklin-law)).
+Supposons simplement que chaque super-héros ait autant de chances d’être
+observé que n’importe quel autre. À partir du {ref}`chap_combinatoire`, les
+chapitres consacrés à la _théorie des probabilités_ fournissent des outils
+rigoureux pour traiter l’incertitude due au fait que nous ne savons pas quel
+super-héros sera observé à chaque fois. Nous nous intéresserons aux
+_événements_, c’est-à-dire aux énoncés portant sur ce que nous pourrions
+observer. Par exemple, les affirmations suivantes sont des événements :
 
-Une fois que l’on a acquis une certaine connaissance sur les données
-disponibles, l’étape suivante consiste généralement à _modéliser_ le processus
-qui les a générées. Pour cela, il faut changer radicalement de perspective : il
-ne s’agit plus de considérer le jeu de données dans son ensemble, mais plutôt
-de se poser des questions relatives à l’observation d’un de ses éléments (ou
-d’un groupe d’éléments), sans savoir à l’avance ce que l’on va observer
-(rappelez-vous la [Loi de Franklin](#sec_franklin-law)), tout en supposant que
-chaque super-héros a autant de chances que les autres d’être observé. À partir
-du {ref}`{chap_calcolo-combinatorio}` et jusqu’au
-{ref}`chap_va-e-modelli-continui`, ce livre introduit la _Théorie des
-Probabilités_, en fournissant des outils formels pour gérer l’incertitude liée
-à cette absence de connaissance préalable sur ce qui sera observé.
+1. nous observerons un super-héros malveillant (en supposant que l’alignement
+   moral soit fixé à l’avance et indiqué par l’attribut `alignment` du jeu de
+   données) ;
+2. si nous observons un super-héros Marvel et un super-héros DC, le premier est
+   plus rapide que le second ;
+3. si nous observons deux super-héros apparus pour la première fois la même
+   année, ils ont le même niveau d’intelligence ;
+4. si nous observons dix super-héros, au moins l’un d’eux appartient à l’un des
+   univers _Star Wars_.
 
-Plus précisément, nous nous concentrerons sur les _événements_, entendus comme
-des affirmations portant sur les résultats des observations. En restant dans le
-thème des super-héros, on peut par exemple considérer les événements suivants :
+Nous ne savons pas si ces affirmations sont vraies ou fausses (techniquement,
+si les événements correspondants se réalisent ou non) : tout dépend de ce que
+nous observons. C’est ici qu’intervient la _probabilité_. Elle attribue un
+nombre $p \in [0, 1]$ pour quantifier cette incertitude. Sans entrer pour le
+moment dans les détails, l’incertitude est maximale lorsque $p$ se rapproche de
+$\frac{1}{2}$, et elle diminue lorsque $p$ tend vers les extrêmes. En
+particulier, plus $p$ est proche de zéro, moins il est raisonnable de croire à
+la véracité de l’affirmation, et si $p = 0$, on sait qu’elle est fausse avec
+certitude. De même, lorsque $p$ se rapproche de $1$, la confiance dans la
+vérité de l’affirmation augmente, et si $p = 1$, elle devient certaine. Nous
+verrons que cette formalisation permet de calculer la probabilité d’événements
+complexes à partir d’événements plus simples. Par exemple, pour calculer la
+probabilité du dernier événement de la liste ci-dessus, il suffit de connaître
+la probabilité d’observer un super-héros issu d’un univers _Star Wars_.
 
-1. un super-héros est mauvais (en supposant que chaque super-héros ait une
-   inclination morale bien définie à l’avance, comme mesuré par l’attribut
-   `alignment` dans notre _dataset_) ;
-2. un super-héros Marvel est plus rapide qu’un super-héros DC ;
-3. deux super-héros apparus pour la première fois la même année ont le même
-   indice d’intelligence ;
-4. au moins un super-héros dans un groupe de dix appartient à l’un des univers
-   de _Star Wars_.
-
-Bien entendu, on ne sait pas à l’avance si ces affirmations sont vraies ou
-fausses, car leur valeur dépend des observations effectives. C’est pourquoi on
-introduit la notion centrale de _probabilité_, entendue comme une
-quantification numérique de cette incertitude, au moyen d’un nombre
-$p \in [0, 1]$. Sans entrer dans les détails pour l’instant, plus ce nombre est
-proche de $\frac{1}{2}$, plus l’incertitude est grande ; inversement, plus $p$
-se rapproche de l’un des deux extrêmes, plus l’incertitude diminue : quand $p$
-tend vers zéro, on est de moins en moins enclin à croire que l’affirmation est
-vraie, et si la probabilité est nulle, elle est forcément fausse ; à l’inverse,
-plus $p$ croît, plus la confiance en la plausibilité de l’affirmation augmente,
-et l’affirmation est sûrement vraie lorsque $p = 1$. Comme nous le verrons, le
-fait de formaliser mathématiquement le concept de probabilité nous permettra de
-développer des techniques qui permettent de calculer la probabilité
-d’événements complexes à partir de celle d’événements plus simples : c’est le
-cas du point 4 ci-dessus, où la probabilité cherchée peut être obtenue dès que
-l’on connaît la probabilité qu’un héros donné provienne d’un univers
-_Star Wars_.
-
-Très souvent, les événements que l’on considère font référence à une ou
-plusieurs quantités numériques (comme dans les exemples aux points 2 et 3
-ci-dessus) : on peut par exemple se demander si la résistance d’un super-héros
-est maximale, ou si sa taille se trouve dans un certain intervalle. Il est
-important de souligner que le fait que chaque super-héros ait la même _chance_
-d’être observé que les autres ne signifie absolument pas que cela vaut aussi
-pour les valeurs que peuvent prendre ces quantités. Vous pouvez facilement vous
-en rendre compte en regardant à nouveau l’histogramme précédent : un poids
-entre $50$ et $100$ kg est beaucoup plus fréquent qu’un poids supérieur à cent
-kilos. Il devient donc important de modéliser aussi ces quantités aléatoires,
-ce qui nous conduit à introduire la notion de _variable aléatoire_ et sa
-formalisation mathématique. Sans entrer encore dans les détails,
-concentrons-nous sur le cas spécifique du poids des super-héros, en gardant
-bien à l’esprit que, en général, la démarche peut être plus complexe ou
-simplement différente. L’idée à la base de cette formalisation est de définir
-une fonction $f$, appelée _densité de probabilité_, dont le graphique
-_idéalise_ l’histogramme des valeurs observées, tout en respectant ses
-propriétés fondamentales. Pour l’exemple qui nous intéresse ici, on peut
-résumer ces propriétés comme suit : symétrie par rapport à un axe central et
-comportement _unimodal_ (c’est-à-dire croissant jusqu’à un maximum, puis
-décroissant). Il existe une infinité de fonctions vérifiant ces deux
-propriétés, mais pour des raisons qui seraient trop complexes à justifier à ce
-stade&mdash;mais qui devraient devenir claires à la lecture du reste du
-livre&mdash;, il vaut la peine de se concentrer sur celle définie par :
+Très souvent, les événements que nous considérons font référence à une ou
+plusieurs quantités numériques (pensons, par exemple, à l’endurance ou à la
+taille d’un super-héros : il est naturel de se demander si elle est maximale ou
+si elle appartient à un certain intervalle). Il est important de souligner que
+le fait que chaque super-héros ait la même probabilité d’être observé ne
+signifie pas que la même chose soit vraie pour les valeurs que ces quantités
+peuvent prendre. On s’en rend facilement compte en regardant à nouveau
+l’histogramme précédent : les poids compris entre $50$ et $100$ kg sont bien
+plus fréquents que ceux qui dépassent cent kilos. Il devient donc nécessaire de
+modéliser également ces quantités aléatoires. Pour cela, on introduit le
+concept de _variable aléatoire_ et sa formalisation mathématique. Pour le
+moment, concentrons-nous sur le cas particulier du poids des super-héros, en
+gardant à l’esprit que, de manière générale, la procédure peut être plus
+complexe, ou simplement différente. L’idée à la base de cette formalisation
+consiste à identifier une fonction $f$, appelée _densité de probabilité_, dont
+le graphique _idéalise_ l’histogramme des valeurs observées, en produisant une
+courbe continue qui en conserve les propriétés essentielles. Dans notre
+exemple, ces propriétés sont la symétrie par rapport à un axe central et une
+forme _unimodale_ (c’est-à-dire croissante jusqu’à une valeur maximale puis
+décroissante). Il existe une infinité de fonctions possédant ces deux
+propriétés, mais pour des raisons trop complexes à expliquer à ce stade &mdash;
+que j’éclaircirai toutefois plus tard &mdash; je me concentrerai sur celle qui
+est définie par :
 
 ```{margin}
-Dans cette formule, $\exp(x)$ désigne l’exponentielle de la constante
-$\mathrm e$ à la puissance $x$ : cette notation est préférée à $\mathrm e^x$
-afin d’éviter les exposants fractionnaires, moins lisibles.
+Dans cette formule, $\exp(x)$ désigne la constante $\mathrm e$ élevée à la
+puissance $x$. Je préfère cette notation à $\mathrm e^x$ afin d’éviter un
+exposant fractionnaire, qui serait moins lisible.
 ```
-
 ```{math}
 :label: eq_weight_normal
 f(x; \mu, \sigma) = \frac{1}{\sigma \sqrt{2 \pi}} \;
        \mathrm{exp}\left(-\frac{(x - \mu)^2}{2 \sigma^2}\right) \enspace,
 ```
 
-où $x$ représente un poids quelconque et $f(x; \mu, \sigma)$ donne la valeur de
-la hauteur correspondante dans l’histogramme idéalisé. Il est important de
-souligner que $f$ a un seul argument, noté $x$, tandis que $\mu \in \mathbb R$
-et $\sigma \in \mathbb R^+$ doivent être considérés comme deux _paramètres_ :
-la fonction est entièrement définie uniquement lorsque leurs valeurs ont été
-fixées. Le point-virgule dans la définition de $f$ sert justement à mettre en
-évidence le rôle différent de l’argument d’une part, et des paramètres d’autre
-part. Plus précisément, l’{eq}`eq_weight_normal` définit, en faisant varier
-$\mu$ et $\sigma$, une _famille_ de fonctions, chacune étant associée à une
-variable aléatoire. Le résultat est une famille de variables aléatoires, à
-laquelle on fait référence comme à un _modèle_ de variable aléatoire. Dans le
-diagramme interactif ci-dessous, vous pouvez voir comment le graphique de $f$
-évolue en fonction de ses deux paramètres. En manipulant les deux curseurs,
-associés respectivement à $\mu$ et $\sigma$, il est possible de modifier les
-valeurs des paramètres et de visualiser en temps réel la manière dont la courbe
-de $f$ change.
+```{margin}
+La courbe que nous considérons est souvent appelée, de manière informelle, une
+_courbe en cloche gaussienne_, et le modèle correspondant est qualifié de
+_normal_. Comme nous le verrons, il jouera un rôle fondamental dans les deux
+dernières parties du livre.
+```
+où $x$ désigne un poids quelconque et où $f(x; \mu, \sigma)$ renvoie la hauteur
+correspondante dans l’histogramme idéalisé. Il est important de souligner que
+$f$ n’a qu’un seul argument, noté $x$, tandis que $\mu \in \mathbb R$ et
+$\sigma \in \mathbb R^+$ sont deux _paramètres_ qu’il faut fixer pour définir
+complètement la fonction. Le point-virgule sert précisément à distinguer
+l’argument des paramètres. Plus précisément, lorsque $\mu$ et $\sigma$ varient,
+{eq}`eq_weight_normal` définit une _famille_ de fonctions : chacune correspond
+à une variable aléatoire, et l’on parle alors d’un _modèle de variable
+aléatoire_. Dans {numref}`fig_normal-model`, on peut observer comment le
+graphique de $f$ évolue lorsque ses paramètres changent. En déplaçant les deux
+curseurs associés à $\mu$ et à $\sigma$, on voit immédiatement comment la
+visualisation de $f$ se met à jour.
+
+
+````{customfigure}
+:name: fig_normal-model
+:class: left-align
+
 
 ```{interactive-code} python
-:class: toggle-code 
+:tags: [toggle-code]
+
+import asyncio
+import matplotlib.pyplot as plt
 import numpy as np
 from js import document
-from pyodide.ffi import create_proxy
-import pyscript as pys
-import io
-import base64
+from pyscript import display
+from pyscript.web import page, when
 
-def plot_pdf(mu, sigma):
-    x = np.linspace(-10, 10, 400)
-    y = (1 / (sigma * np.sqrt(2 * np.pi))) * np.exp(-0.5 * ((x - mu) / sigma) ** 2)
-    
-    fig, ax = plt.subplots()
-    ax.fill_between(x, 0, y, alpha=0.5, color='tab_blue')
+mu = float(page['#pdf-mu-slider'][0].value)
+sigma = float(page['#pdf-sigma-slider'][0].value)
 
-    # Use plain text label to avoid MathJax processing
-    ax.set_xlabel('x', fontsize=12, ha='right')
-    ax.xaxis.set_label_coords(1.07, 0.03)
-    ax.set_xlim(-10, 10)
-    ax.set_ylim(0, 1)
-    
-    # Manual rendering to avoid MathJax processing
-    img_buffer = io.BytesIO()
-    fig.savefig(img_buffer, format='png', bbox_inches='tight', dpi=100)
-    img_buffer.seek(0)
-    img_base64 = base64.b64encode(img_buffer.getvalue()).decode('utf-8')
-    img_buffer.close()
-    
-    # Display in protected div
-    img_html = '<div class="no-mathjax"><img src="data:image/png;base64,' + img_base64 + '" style="max-width: 100%; height: auto;" /></div>'
-    Element("pdf-output").write(img_html)
-    
-    plt.close(fig)
+x = np.linspace(0, 200, 400)
+y = 1 / (sigma * np.sqrt(2 * np.pi)) * np.exp(-0.5 * ((x - mu) / sigma) ** 2)
 
-def update_plot(event=None):
-    mu = float(document.getElementById("mean-slider").value)
-    sigma = float(document.getElementById("std-slider").value)
-    document.getElementById("mean-value").innerText = f"{mu:.1f}"
-    document.getElementById("std-value").innerText = f"{sigma:.1f}"
-    plot_pdf(mu, sigma)
+fig_pdf, ax_pdf = plt.subplots()
+curve_pdf, = ax_pdf.plot(x, y, alpha=0.5, color='tab:blue')
 
 
-mean_slider = document.getElementById("mean-slider")
-std_slider = document.getElementById("std-slider")
+ax_pdf.set_xlabel('$x$', fontsize=12, ha='right')
+#ax.xaxis.set_label_coords(1.07, 0.03)
+ax_pdf.set_ylabel('$f$', fontsize=12, rotation=0)
+#ax.yaxis.set_label_coords(0., 1.09)
+ax_pdf.set_xlim(0, 200)
+ax_pdf.set_ylim(0, 0.02)
 
-mean_slider.addEventListener("input", create_proxy(update_plot))
-std_slider.addEventListener("input", create_proxy(update_plot))
+@when("input", "#pdf-mu-slider, #pdf-sigma-slider")
+def pdf_plot(event):
 
-# Initial plot
-plot_pdf(0, 1)
+    mu = float(page['#pdf-mu-slider'][0].value)
+    sigma = float(page['#pdf-sigma-slider'][0].value)
+    page['#pdf-mu-value'][0].innerHTML = f'{mu:.1f}'
+    page['#pdf-sigma-value'][0].innerHTML = f'{sigma:.1f}'
+
+    y = 1 / (sigma * np.sqrt(2 * np.pi)) * np.exp(-0.5 * ((x - mu) /
+        sigma) ** 2)
+    curve_pdf.set_data(x, y)
+    display(fig_pdf, target='graph-%this%', append=False)
+
+display(fig_pdf, target='graph-%this%', append=False)
 ```
+
 ```{raw} html
-
-<div id="plot-container" style="visibility: none;">
-    <div class="slider-container" style="float: left;">
-        <label for="mean-slider">$\mu$: </label>
-        <input type="range" id="mean-slider"
-               min="-5" max="5" value="0" step="0.1" />
-        <span id="mean-value">0</span>
+<div class="plot-container">
+    <div class="model-slider-container">
+        <label for="pdf-mu-slider">\(\mu\): </label>
+        <input type="range" id="pdf-mu-slider"
+               min="10" max="200" value="150" step="0.1" />
+        <span id="pdf-mu-value">150</span>
     </div>
 
-    <div class="slider-container" style="float: right;">
-        <label for="std-slider">$\sigma$: </label>
-        <input type="range" id="std-slider"
-               min="0.1" max="5" value="1" step="0.1" />
-        <span id="std-value">1.0</span>
-    </div>
-
-    <div id="pdf-output" class="no-mathjax"
-            style="clear: both; display: flex; justify-content: center; margin-bottom: 2em;">
-        <div class="splash"></div>
+    <div class="model-slider-container">
+        <label for="pdf-sigma-slider">\(\sigma\): </label>
+        <input type="range" id="pdf-sigma-slider"
+               min="0.1" max="50" value="33" step="0.1" />
+        <span id="pdf-sigma-value">33.0</span>
     </div>
 </div>
 ```
 
-L’une des raisons pour lesquelles on parle de « modèle » de variable aléatoire
-réside dans le fait qu’il est possible de choisir les valeurs de ses paramètres
-de manière à _adapter_ le graphique de $f$, et plus généralement la variable
-aléatoire correspondante, à des données précédemment observées. Dans le cas que
-nous venons de voir, cela revient à choisir des valeurs appropriées pour $\mu$
-et $\sigma$, de façon à ce que le graphique de $f$ se superpose de façon
-qualitative à celui de l’histogramme initialement obtenu pour le poids. Le
-graphique interactif suivant permet de réaliser manuellement cette opération,
-en affichant à la fois l’histogramme et la courbe (variable) de $f$. Vous
-pouvez donc manipuler les curseurs afin d’obtenir une bonne superposition.
+Graphique de la densité de probabilité décrite par {eq}`eq_weight_normal`.
+````
+
+L’une des raisons pour lesquelles on parle de « modèle de variable aléatoire »
+est qu’il est possible de choisir les valeurs de ses paramètres afin
+d’_adapter_ la densité de probabilité, et plus généralement la variable
+aléatoire correspondante, à des données déjà observées. Dans le cas que nous
+venons de voir, cela revient à choisir des valeurs appropriées pour $\mu$ et
+$\sigma$ de sorte que le graphique de $f$ se superpose qualitativement à
+l’histogramme initialement obtenu pour le poids. Le graphique interactif de
+{numref}`fig_adapt-model` vous permet d’effectuer cette opération manuellement,
+en déplaçant les curseurs afin de trouver un ajustement qualitatif entre les
+deux visualisations.
 
 ```{interactive-code} python
-:class:  toggle-code
+:height: 0px
+:class: no-output
 
-import base64
-import io
-
-def model_plot_pdf(mu, sigma):
-    x = np.linspace(0, 200, 400)
-    y = (1 / (sigma * np.sqrt(2 * np.pi))) * np.exp(-0.5 * ((x - mu) / sigma) ** 2)
-    
-    fig, ax = plt.subplots()
-    ax.hist(data, bins=30, density=True, alpha=0.3, color='tab_blue')
-    ax.fill_between(x, 0, y, alpha=0.5, color='tab_blue')
-
-    # Use plain text for axis labels to avoid MathJax interference
-    ax.set_xlabel('x', fontsize=12, ha='right')
-    ax.xaxis.set_label_coords(1.07, 0.03)
-    ax.set_xlim(0, 200)
-    ax.set_ylim(0, 0.02)
-    
-    # Convert plot to base64 string for display
-    buffer = io.BytesIO()
-    fig.savefig(buffer, format='png', bbox_inches='tight', dpi=100)
-    buffer.seek(0)
-    img_base64 = base64.b64encode(buffer.read()).decode()
-    plt.close(fig)
-    
-    # Display in no-mathjax container
-    output_html = f'''
-    <div class="no-mathjax" style="display: flex; justify-content: center; margin-bottom: 2em;">
-        <img src="data:image/png;base64,{img_base64}" alt="Model Plot" style="max-width: 100%; height: auto;">
-    </div>
-    '''
-    
-    target_element = document.getElementById("model-output")
-    if target_element:
-        target_element.innerHTML = output_html
-    else:
-        print("Target element 'model-output' not found")
-
-def model_update_plot(event=None):
-    try:
-        mu = float(document.getElementById("model-mean-slider").value)
-        sigma = float(document.getElementById("model-std-slider").value)
-        document.getElementById("model-mean-value").innerText = f"{mu:.1f}"
-        document.getElementById("model-std-value").innerText = f"{sigma:.1f}"
-        model_plot_pdf(mu, sigma)
-    except Exception as e:
-        print(f"Error updating plot: {e}")
-
-# Wait for DOM to be ready
-def setup_model_sliders():
-    try:
-        model_mean_slider = document.getElementById("model-mean-slider")
-        model_std_slider = document.getElementById("model-std-slider")
-        
-        if model_mean_slider and model_std_slider:
-            model_mean_slider.addEventListener("input", create_proxy(model_update_plot))
-            model_std_slider.addEventListener("input", create_proxy(model_update_plot))
-            
-            # Initial plot
-            model_plot_pdf(150, 33)
-            print("Model sliders setup complete")
-        else:
-            print("Model slider elements not found, retrying in 100ms...")
-            import asyncio
-            asyncio.get_event_loop().call_later(0.1, setup_model_sliders)
-    except Exception as e:
-        print(f"Error setting up model sliders: {e}")
-
-# Setup sliders when DOM is ready
-setup_model_sliders()
+data = heroes['weight'][heroes['weight'] < 200].dropna()
 ```
+
+````{customfigure}
+:name: fig_adapt-model
+:class: left-align
+
+```{interactive-code} python
+:height: 400px
+:class: toggle-code
+
+mu = float(page['#model-mu-slider'][0].value)
+sigma = float(page['#model-sigma-slider'][0].value)
+
+x = np.linspace(0, 200, 400)
+y = 1 / (sigma * np.sqrt(2 * np.pi)) * np.exp(-0.5 * ((x - mu) / sigma) ** 2)
+
+fig, ax = plt.subplots()
+ax.hist(data, bins=30, density=True, alpha=0.3, color='tab:blue')
+curve, = ax.plot(x, y, alpha=0.5, color='tab:blue')
+
+ax.set_xlabel(r'$x$', fontsize=12, ha='right')
+ax.xaxis.set_label_coords(1.07, 0.03)
+ax.set_ylabel(r'$f$', fontsize=12, rotation=0)
+ax.yaxis.set_label_coords(0., 1.09)
+ax.set_xlim(0, 200)
+ax.set_ylim(0, 0.02)
+
+@when("input", "#model-mu-slider, #model-sigma-slider")
+def model_plot(event):
+
+    mu = float(page['#model-mu-slider'][0].value)
+    sigma = float(page['#model-sigma-slider'][0].value)
+    page['#model-mu-value'][0].innerHTML = f'{mu:.1f}'
+    page['#model-sigma-value'][0].innerHTML = f'{sigma:.1f}'
+
+    y = (1 / (sigma * np.sqrt(2*np.pi))) * np.exp(-0.5 * ((x - mu) / sigma)**2)
+    curve.set_data(x, y)
+    display(fig, target='graph-%this%', append=False)
+
+display(fig, target='graph-%this%', append=False)
+    
+```
+
 ```{raw} html
-
-<div id="plot-container" style="visibility: none;">
-    <div class="model-slider-container" style="float: left;">
-        <label for="model-mean-slider">Mean ($\mu$): </label>
-        <input type="range" id="model-mean-slider"
+<div class="plot-container">
+    <div class="model-slider-container">
+        <label for="model-mu-slider">\(\mu\): </label>
+        <input type="range" id="model-mu-slider"
                min="10" max="200" value="150" step="0.1" />
-        <span id="model-mean-value">150</span>
+        <span id="model-mu-value">150</span>
     </div>
 
-    <div class="model-slider-container" style="float: right;">
-        <label for="model-std-slider">Standard Deviation ($\sigma$): </label>
-        <input type="range" id="model-std-slider"
+    <div class="model-slider-container">
+        <label for="model-sigma-slider">\(\sigma\): </label>
+        <input type="range" id="model-sigma-slider"
                min="0.1" max="50" value="33" step="0.1" />
-        <span id="model-std-value">33.0</span>
-    </div>
-
-    <div id="model-output" style="clear: both; display: flex; justify-content: center; margin-bottom: 2em;">
-        <div class="splash"></div>
+        <span id="model-sigma-value">33.0</span>
     </div>
 </div>
 ```
+
+Superposition du graphique de la densité décrite par {eq}`eq_weight_normal` à
+l’histogramme de {numref}`fig_histogram`. En déplaçant les curseurs, il est
+possible de trouver des valeurs de paramètres qui ajustent le modèle à
+l’histogramme.
+````
 
 Dans la dernière partie du livre, nous verrons qu’il existe plusieurs méthodes
 permettant de déterminer automatiquement les paramètres d’un modèle afin de
-l’adapter à un ensemble de données. C’est là, entre autres, l’objectif de la
-_statistique inférentielle_, présentée du {ref}`chap_inferential_statistics` au
-{ref}`chap_statistica-non-parametrica`. Le point de départ est toujours un jeu
-de données, qui représente ici un _échantillon_ d’observations effectuées
-sur une _population_ plus large. Notre objectif est de formuler des hypothèses
-ou de tirer des conclusions sur cette population &mdash; même si nous ne
-pouvons pas l'observer directement dans son ensemble. En d'autres termes, nous
-allons utiliser l'échantillon pour apprendre quelque chose sur ce que nous
-ignorons dans la population. Le cas le plus simple&mdash;et celui que nous
-étudierons plus en détail&mdash;est celui où la population est décrite par une
-variable aléatoire associée à un modèle dont un ou plusieurs paramètres sont
-inconnus. Le but est et d'approximer ces paramètres, ou d’autres quantités
-qui en dépendent. Par exemple, imaginons que la population soit constituée de
-tous les super-héros présents dans notre jeu de données, et que la quantité qui
-nous intéresse soit leur poids moyen $p$. Si nous ne disposons que d'un
-échantillon de cent super-héros, le bon sens nous pousse à utiliser la moyenne
-de leur poids comme approximation de $p$. De manière générale, on utilise le
-terme _estimateur_ pour désigner la fonction qu'on applique à l'échantillon
-pour produire ce genre d'approximation. Dans notre exemple, l'estimateur
-utilisé est simplement la moyenne arithmétique des valeurs de l'échantillon
-&mdash; ce qu'on appelle la _moyenne empirique_. Le tableau ci-dessous
-montre comment les valeurs de cet estimateur varient pour dix échantillons
-tirés au hasard.
+l’adapter à un ensemble de données. C’est l’un des objectifs de la _statistique
+inférentielle_. Le point de départ est toujours un _jeu de données_, qui, dans
+ce contexte, représente un _échantillon_ d’observations issues d’une
+_population_ plus large. Nous voulons formuler des hypothèses sur cette
+population ou tirer des conclusions à son sujet, même si nous ne pouvons pas
+l’observer dans son intégralité. En d’autres termes, nous utilisons
+l’échantillon pour obtenir des informations sur ce que nous ignorons de la
+population. Le cas le plus simple &mdash; et aussi celui sur lequel nous nous
+attarderons le plus &mdash; est celui où la population est décrite par une
+variable aléatoire associée à un modèle dépendant d’un ou de plusieurs
+paramètres inconnus. L’objectif consiste à approximer ces paramètres, ou
+d’autres quantités qui en dépendent. Par exemple, considérons la population des
+super-héros de notre jeu de données et supposons que nous nous intéressions à
+leur poids moyen $p$. Si nous n’avons à disposition qu’un échantillon de cent
+super-héros, le bon sens suggère d’utiliser la moyenne de leurs poids comme une
+approximation de $p$. En général, on appelle _estimateur_ la fonction appliquée
+à l’échantillon pour obtenir ce type d’approximation. Dans notre exemple,
+l’estimateur est simplement la moyenne arithmétique des valeurs de
+l’échantillon, appelée _moyenne d’échantillon_. La
+{numref}`fig_statistics-variability` montre comment les valeurs de cet
+estimateur varient lorsque l’on tire dix échantillons différents.
+
+````{customtable}
+:name: fig_statistics-variability
+:class: left-align
 
 ```{interactive-code} python
-:class:  toggle-code
+:height: 100px
+:class: toggle-code
 
 weights = heroes['weight'][heroes['weight']<200].dropna()
 
@@ -574,133 +582,140 @@ pd.DataFrame([means],
 
 ```
 
-Comme on peut le voir, les moyennes empiriques varient d'un échantillon à
-l'autre, ce qui est tout à fait normal &mdash; chaque échantillon étant
-différent. Cela dit, les résultats ne varient pas de manière extrême : ils ont
-tendance à se regrouper autour de $79$, qui est une bonne estimation du vrai
-poids moyen de tous les super-héros (comme vous pouvez le vérifier en
-observant l'histogramme précédent). Mais peut-on vraiment être sûrs que la
-moyenne échantillonnale est le meilleur estimateur possible ? Et plus
-généralement, comment évaluer si un estimateur est « bon », en tenant compte
-de la variabilité qu'on vient de constater ? Nous répondrons à ce genre de
-questions dans la partie consacrée à la statistique inférentielle. D'une
-certaine manière, cette partie me permet de conclure le livre en « bouclant la
-boucle » : à la fois parce qu’elle met en &oelig;uvre de manière synergique ce
-que nous avons vu dans les parties sur la statistique descriptive et la théorie
-des probabilités, et parce qu’elle permet aussi de mieux comprendre toute la
-puissance de certains concepts et outils que nous avions rencontrés auparavant
-&mdash; parfois de manière relativement informelle.
+Valeur de la moyenne d’échantillon du poids des super-héros, calculée sur dix
+échantillons différents tirés dans la population.
+````
 
-Mais avant de commencer avec la statistique descriptive, il est important de
-revoir certains concepts de base liés à la programmation, et surtout de se
-familiariser avec les outils computationnels que j’utiliserai tout au long du
-livre. C’est justement l’objectif du {ref}`chap_intro-python` et du
-{ref}`chap_pandas`, qui ouvrent notre parcours.
+Il est naturel que les moyennes obtenues à partir des dix échantillons
+diffèrent les unes des autres, puisque chaque échantillon est différent.
+Néanmoins, les résultats ne varient pas de façon drastique et ont tendance à se
+regrouper autour de $79$, qui constitue une bonne approximation de la valeur
+correcte du poids moyen de l’ensemble des super-héros (comme on peut le
+vérifier en observant l’histogramme précédent). Mais peut-on être certain que
+la moyenne d’échantillon soit réellement le meilleur estimateur possible ? Et,
+plus généralement, comment évaluer la qualité d’un estimateur en tenant compte
+de la variabilité intrinsèque que nous venons de mettre en évidence ? Ces
+questions trouveront leur réponse dans la partie consacrée à la statistique
+inférentielle. D’une certaine manière, cette partie me permet de terminer le
+livre en « bouclant la boucle » : non seulement parce qu’elle met en pratique,
+de manière synergique, ce que nous avons vu en statistique descriptive et en
+théorie des probabilités, mais aussi parce qu’elle permet de comprendre plus en
+profondeur la puissance de certains concepts et outils déjà rencontrés &mdash;
+peut-être de façon relativement informelle &mdash; dans les parties précédentes.
+
+Avant de commencer avec la statistique descriptive, il est toutefois important
+de revoir quelques concepts fondamentaux de programmation et, surtout, de se
+familiariser avec les outils computationnels que j’utiliserai dans tout le
+livre. C’est l’objet des chapitres {numref}`chap_intro-python` et
+{numref}`chap_pandas`, qui ouvrent le parcours.
 
 ## Exercices
 
-À la fin de chaque paragraphe, quelques exercices sont proposés, dont le niveau
-de difficulté est indiqué par le nombre de points entre parenthèses.
+À la fin de presque chaque paragraphe, quelques exercices sont proposés. Leur
+difficulté est indiquée par le nombre de points entre parenthèses.
 
 ```{exercise} •
 Téléchargez le jeu de données des super-héros depuis le
-[dépôt](https://github.com/dariomalchiodi/sds) du livre et importez-le dans
-n’importe quel programme de tableur (tous les plus courants peuvent importer
-des fichiers CSV), de façon à ce que chaque colonne contienne un attribut
-différent. Concentrez-vous, disons, sur les trente premières lignes et examinez
-les différentes colonnes séparément, pour vous faire une idée de la manière
+{extlink}`dépôt <https://github.com/dariomalchiodi/sds>` du livre et
+importez-le dans un tableur quelconque (les plus répandus savent importer des
+fichiers CSV), de façon à ce que chaque colonne contienne un attribut
+différent. Concentrez-vous, par exemple, sur les trente premières lignes et
+considérez les colonnes séparément afin de vous faire une idée de la manière
 dont varient les valeurs associées aux différents attributs.
 ```
 
 ```{margin}
-Être _data scientist_ ne signifie pas seulement savoir combiner les compétences
-en probabilités, statistiques et programmation, mais aussi maîtriser différents
-outils de _scripting_ permettant de convertir, adapter et nettoyer les
-données : très souvent, l’utilisation de ces outils passe par un terminal et
-une _shell_.
+Être _data scientist_, ce n’est pas seulement combiner des compétences en
+probabilités, en statistique et en programmation : c’est aussi maîtriser divers
+outils de _scripting_ permettant de convertir, adapter et nettoyer les données.
+Ces outils sont souvent utilisés via un terminal et son _shell_. Selon le
+contexte professionnel, les données peuvent être disponibles sous des formes
+plus ou moins structurées, et leur traitement peut exiger des procédures
+complexes, faisant parfois intervenir des représentations autres que le CSV ou
+des bases de données élaborées.
 ```
-
-```{exercise} •••
-Reprenez l’exercice précédent, en inspectant le contenu de chaque colonne du
+````{exercise} •••
+Reprenez l’exercice précédent en examinant le contenu de chaque colonne du
 fichier CSV sans utiliser de tableur, mais uniquement un terminal et des
-commandes _shell_.
-```
+commandes de _shell_.
+````
 
 ```{exercise} ••
-Sur la base de l’idée que vous vous êtes faite du jeu de données des
-super-héros en résolvant les exercices précédents, essayez de regrouper les
-attributs par similarité, non pas en fonction du type de données utilisé pour
-représenter les valeurs (indiqué dans la colonne « Contenu » de la
-{numref}`tab_dataset`), mais selon la _nature_ des attributs eux-mêmes.
+À partir de l’idée que vous vous êtes faite du jeu de données des super-héros
+en résolvant les exercices précédents, essayez de répartir les attributs en
+groupes homogènes en vous fondant non sur le type de donnée utilisé pour
+représenter les valeurs correspondantes (indiqué dans la colonne « Contenu » de
+la {numref}`tab_dataset`), mais sur la _nature_ même des attributs.
 ```
 
 ```{exercise} •
-Répondez aux questions numérotées de 1 à 4 dans la liste qui suit le premier
-graphique interactif.
+Répondez aux questions 1 à 4 de la liste qui suit le premier graphique
+interactif.
 ```
 
 ```{exercise} ••
-Répondez aux questions 5 et 6 dans la liste qui suit le premier graphique
-interactif. Rédigez le raisonnement que vous avez suivi et mettez-le par écrit.
+Répondez aux questions 5 et 6 de la liste qui suit le premier graphique
+interactif. Mettez par écrit le raisonnement que vous avez suivi.
 ```
 
 ```{exercise} ••
-Formulez d’autres questions relatives au jeu de données auxquelles il serait
-possible de répondre en utilisant le premier graphique interactif. Là aussi,
-expliquez par écrit le raisonnement qui permet d’y répondre.
+Formulez d’autres questions sur le jeu de données auxquelles on peut répondre
+à l’aide du premier graphique interactif. Là encore, mettez par écrit le
+raisonnement nécessaire pour y répondre.
 ```
 
-```{exercise} •
-Considérez les valeurs suivantes :
+````{exercise} •
+Considérez les valeurs suivantes
 
-$$ \\{13, 8, 7, 4, 9, 8, 4, 4, 19, 2, 5, 3, 3, 1, 12 \\} $$
+```{math}
+\{13, 8, 7, 4, 9, 8, 4, 4, 19, 2, 5, 3, 3, 1, 12 \}
+```
 
 et tracez à la main l’histogramme correspondant, en calculant la hauteur de
 chaque rectangle comme le nombre de valeurs qui tombent dans l’intervalle
-correspondant, et en utilisant les intervalles suivants :
-$[0, 5)$, $[5, 10)$, $[10, 15)$, $[15, 20)$.
-Comparez la forme du graphique obtenu à celle montrée dans le texte, en mettant
-en évidence les principales différences.
-```
+considéré, et en utilisant les intervalles de référence suivants : $[0, 5)$,
+$[5, 10)$, $[10, 15)$, $[15, 20)$. Comparez la forme du graphique obtenu avec
+celui présenté dans le texte, en mettant en évidence les principales
+différences.
+````
 
 ```{exercise} •
 Écrivez dix événements possibles concernant le jeu de données des super-héros.
 ```
 
 ```{exercise} ••
-Écrivez un événement dont la probabilité est égale à zéro. Puis un autre dont
-la probabilité est égale à $1$.
+Écrivez un événement dont la probabilité est nulle. Puis écrivez-en un autre
+dont la probabilité vaut $1$.
 ```
 
 ```{exercise} ••
-Fixez $\mu = \sigma = 1$ et étudiez la fonction décrite dans
-{eq}`eq_weight_normal`, en dessinant à la main le graphique correspondant et en
-vérifiant que celui-ci a la même forme que celle affichée dans le second
-graphique interactif.
+Posez $\mu = \sigma = 1$ et étudiez la fonction décrite dans
+{eq}`eq_weight_normal`, en traçant à la main le graphe correspondant et en
+vérifiant que sa forme correspond à celle qui apparaît dans le second graphique
+interactif.
 ```
 
 ```{exercise} •
-Sur la base du résultat de l’exercice précédent et en tenant compte de ce que
-vous avez expérimenté avec le second graphique interactif, quel est le rôle des
-paramètres $\mu$ et $\sigma$ sur le graphique de $f$ défini dans
+À partir du résultat de l’exercice précédent, et en tenant compte de ce que
+vous avez observé en utilisant le second graphique interactif, quel est le rôle
+des paramètres $\mu$ et $\sigma$ dans le graphe de $f$ définie par
 {eq}`eq_weight_normal` ?
 ```
 
 ```{exercise} •
-À l’aide du second graphique interactif, trouvez des valeurs pour $\mu$ et
-$\sigma$ qui permettent de superposer de manière raisonnable le graphique de
-$f$ à l’histogramme du poids des super-héros.
+À l’aide du second graphique interactif, déterminez des valeurs de $\mu$ et
+$\sigma$ qui permettent de superposer raisonnablement le graphe de $f$ à
+l’histogramme des poids des super-héros.
 ```
 
 ```{exercise} ••
-Expliquez par écrit le raisonnement qui vous a permis de conclure que $79$ est
-une bonne approximation du poids moyen des super-héros.
+Mettez par écrit le raisonnement qui vous a convaincu que $79$ est une bonne
+approximation du poids moyen des super-héros.
 ```
 
-[^histogramme]: Il est possible de choisir librement les intervalles
-définissant les bases des rectangles. Pour simplifier, l’histogramme dans le
-texte a été généré en considérant vingt-cinq intervalles de largeur égale
-couvrant toutes les valeurs possibles du poids, mais selon les cas, il peut
-être pertinent d’utiliser un nombre plus (ou moins) élevé d’intervalles, ou
-encore de considérer un ensemble d’intervalles de largeurs différentes.
-
+[^histogram]: Les intervalles définissant les bases des rectangles d’un
+histogramme peuvent être choisis avec une certaine liberté. Par souci de
+simplicité, l’histogramme du texte a été généré à l’aide de trente intervalles
+de même largeur couvrant toutes les valeurs possibles du poids. Selon le
+contexte, il peut être pertinent d’en utiliser davantage (ou moins), ou même
+d’employer des intervalles de largeurs différentes.

@@ -10,50 +10,46 @@ kernelspec:
 ---
 
 (sec_utilisation-pedagogique)=
-# Utilisation pédagogique
-Depuis plusieurs années, je suis responsable de l’enseignement de [Statistiques
-et analyse des données](https://malchiodi.di.unimi.it/teaching/SAD/fr) dans le
-cadre de la Licence en Informatique, proposée par l’Università degli Studi di
-Milano. Ce livre est issu de l’évolution d’un ensemble de notes de cours que
-j’ai utilisées pour compléter la bibliographie adoptée dans cet enseignement,
-dans le but de couvrir à la fois les aspects plus _computationnels_ des cours
-et certains sujets qui ne trouvent pas leur place dans les manuels classiques.
+# Utilisation dans l’enseignement
 
-Dans les cursus en informatique, les bases de l’analyse des données sont
-généralement confiées à un seul enseignement fondamental de deuxième année, qui
-couvre à la fois les aspects théoriques du calcul des probabilités et de la
-statistique mathématique, ainsi que les aspects plus appliqués de la
-statistique descriptive. Il est donc difficile de trouver une bibliographie
-adaptée, car ces disciplines sont souvent traitées séparément, par exemple dans
-les cursus de mathématiques. En cohérence avec cela, le panorama des manuels
-comprend souvent d’excellents ouvrages, mais dédiés à une seule de ces
-disciplines, ou qui se concentrent sur l’une d’elles en négligeant les autres.
-Je n’ai pas encore trouvé de livre qui donne à ces trois domaines le poids
-relatif que je leur attribue dans mes cours.
-
-C’est pour cette raison que, au fil du temps, alors que la « masse critique »
-des notes de cours augmentait, j’ai décidé d’écrire un livre qui évite d’avoir
-à adopter deux ou plusieurs manuels à compléter de toute façon par des notes
-comblant les lacunes restantes.
+Depuis quelques années, je suis responsable de l’enseignement
+{extlink}`Statistiques et analyse des données
+<https://malchiodi.di.unimi.it/teaching/SAD/fr>` dans le cadre de la licence
+d’informatique de l'{extlink}`Université de Milan <https://www.unimi.it>`. Dans
+ce cours, l’apprentissage des fondements de l’analyse de données est confié à
+un enseignement fondamental de deuxième année qui couvre à la fois le versant
+théorique de la théorie des probabilités et de la statistique mathématique, et
+le versant plus pratique de la statistique descriptive. Il est donc difficile
+de trouver un appareil bibliographique complet : beaucoup d’ouvrages excellent
+dans une seule de ces disciplines, ou en privilégient une au détriment des
+autres. En conséquence, je n’ai toujours pas trouvé de livre qui donne à ces
+trois domaines le même poids relatif que celui que je leur accorde dans mes
+cours. Je distribue donc des notes complémentaires couvrant à la fois les
+aspects plus _computationnels_ vus en classe et des sujets qui ne trouvent pas
+leur place dans les manuels adoptés. À mesure que la « masse critique » de ces
+notes grandissait, j’ai décidé d’écrire un livre qui éviterait d’avoir à
+adopter deux ou plusieurs ouvrages différents, qu’il aurait de toute manière
+fallu compléter par des notes venant combler les lacunes restantes.
 
 Le contenu est organisé selon la logique que je suis pendant mes cours. La
-première partie est consacrée aux bases computationnelles, avec une
-introduction à Python et aux paquets utilisées dans le livre. La deuxième
-partie, centrée sur l’analyse des données dans son acception la plus pratique,
-présente les principaux thèmes de la statistique descriptive et les outils
-correspondants dans une optique d’utilisation directe, en écrivant du code
-Python et en analysant un jeu de données de référence. Suit une partie sur le
-calcul des probabilités, consacrée à l’exposition des concepts clés liés à la
-modélisation de l’incertitude de manière probabiliste. Enfin, la dernière
-partie introduit les bases de la statistique inférentielle, avec un focus sur
-l’inférence paramétrique. Dans ce parcours, j’ai tenté de limiter le formalisme
-mathématique au strict nécessaire pour garantir une introduction rigoureuse aux
-concepts. Les paragraphes dont le titre est marqué d’un astérisque contiennent
-des approfondissements et du matériel supplémentaire, que l’on peut
-ignorer &mdash; il s’agit essentiellement de tous les sujets que je n’ai pas le
-temps de traiter en classe, mais que je recommande vivement aux étudiants
-souhaitant approfondir leur compréhension de la matière, notamment en vue de
-poursuivre en master.  
+contenu est organisé selon la progression logique que je suis dans mes cours.
+La première partie est consacrée aux bases computationnelles, avec une
+introduction à Python et aux bibliothèques que j’utilise dans tout le livre. La
+deuxième partie, dédiée à l’analyse de données au sens le plus pratique du
+terme, présente les thèmes et les outils de la statistique descriptive en vue
+de leur utilisation directe, par l’écriture de code Python et l’analyse d’un
+jeu de données de référence. Elle est suivie d’une partie consacrée à la
+théorie des probabilités, destinée à présenter les concepts principaux liés à
+la modélisation probabiliste de l’incertitude. La dernière partie expose les
+fondements de la statistique inférentielle, en se concentrant sur l’inférence
+paramétrique. Tout au long de l’exposé, j’ai essayé de limiter l’usage du
+formalisme mathématique à ce qui est strictement nécessaire pour introduire les
+concepts avec rigueur. Les paragraphes dont le titre est marqué d’un astérisque
+contiennent des développements et des matériaux supplémentaires que l’on peut
+omettre : il s’agit principalement de sujets que, faute de temps, je ne peux
+pas traiter en cours. Je recommande vivement ce contenu aux lectrices et
+lecteurs qui souhaitent approfondir leur connaissance de la discipline,
+notamment dans la perspective de poursuivre leurs études au niveau master.
 
 
 

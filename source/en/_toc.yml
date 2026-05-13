@@ -2,7 +2,7 @@ format: jb-book
 root: home
 
 parts:
-  - caption: Presentation
+  - caption: Introduction
     chapters:
       - file: P0/introduction
         sections:
@@ -11,7 +11,6 @@ parts:
         - file: P0/learning-and-programming
         - file: P0/statistics-data-science
         - file: P0/conventions
-        - file: P0/notation
         - file: P0/use-in-teaching
       - file: P0/overview
   - caption: Programming for data analysis
@@ -21,6 +20,22 @@ parts:
         sections:
         - file: P1-PAD/c1-intro-python/installing-python
         - file: P1-PAD/c1-intro-python/data-types
+
+  - caption: Probability calculus
+    chapters:
+    - file: P3/c1/combinatorics
+      sections:
+      - file: P3/c1/fundamental-principle
+      - file: P3/c1/permutations
+      - file: P3/c1/arrangements
+      - file: P3/c1/combinations
+      - file: P3/c1/enumeration
+    - file: P3/c2/set-theory
+      sections:
+      - file: P3/c2/basic-concepts
+      - file: P3/c2/finite-infinite-sets
+      - file: P3/c2/set-relations
+      - file: P3/c2/set-operations
 
   - caption: Appendices
     chapters:

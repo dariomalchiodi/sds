@@ -5,11 +5,11 @@
     "fr": "accueil",
     "es": "landing"
   },
-  "P0/presentazione": {
-    "it": "P0/presentazione", 
-    "en": "P0/presentation",
-    "fr": "P0/presentation",
-    "es": "P0/presentacion"
+  "P0/introduzione": {
+    "it": "P0/introduzione",
+    "en": "P0/introduction",
+    "fr": "P0/introduction",
+    "es": "P0/introduccion"
   },
   "P0/approccio": {
     "it": "P0/approccio",
@@ -42,8 +42,8 @@
     "es": "P0/convenciones"
   },
   "P0/notazione": {
-    "it": "P0/notazione",
-    "en": "P0/notation",
+    "it": null,
+    "en": null,
     "fr": "P0/notation",
     "es": "P0/notacion"
   },
@@ -130,6 +130,72 @@
     "en": "P1-PAD/c2-pandas/pandas",
     "fr": "P1-PAD/c2-pandas/pandas",
     "es": "P1-PAD/c2-pandas/pandas"
+  },
+  "P3/c1/calcolo-combinatorio": {
+    "it": "P3/c1/calcolo-combinatorio",
+    "en": "P3/c1/combinatorics",
+    "fr": "P3/c1/combinatoire",
+    "es": "P3/c1/combinatoria"
+  },
+  "P3/c1/principio-fondamentale": {
+    "it": "P3/c1/principio-fondamentale",
+    "en": "P3/c1/fundamental-principle",
+    "fr": "P3/c1/principe-fondamental",
+    "es": "P3/c1/principio-fundamental"
+  },
+  "P3/c1/permutazioni": {
+    "it": "P3/c1/permutazioni",
+    "en": "P3/c1/permutations",
+    "fr": "P3/c1/permutations",
+    "es": "P3/c1/permutaciones"
+  },
+  "P3/c1/disposizioni": {
+    "it": "P3/c1/disposizioni",
+    "en": "P3/c1/arrangements",
+    "fr": "P3/c1/arrangements",
+    "es": "P3/c1/variaciones"
+  },
+  "P3/c1/combinazioni": {
+    "it": "P3/c1/combinazioni",
+    "en": "P3/c1/combinations",
+    "fr": "P3/c1/combinaisons",
+    "es": "P3/c1/combinaciones"
+  },
+  "P3/c1/generazione": {
+    "it": "P3/c1/generazione",
+    "en": "P3/c1/enumeration",
+    "fr": "P3/c1/denombrement",
+    "es": "P3/c1/enumeracion"
+  },
+  "P3/c2/teoria-insiemi": {
+    "it": "P3/c2/teoria-insiemi",
+    "en": "P3/c2/set-theory",
+    "fr": "P3/c2/theorie-ensembles",
+    "es": "P3/c2/teoria-conjuntos"
+  },
+  "P3/c2/concetti-di-base": {
+    "it": "P3/c2/concetti-di-base",
+    "en": "P3/c2/basic-concepts",
+    "fr": "P3/c2/concepts-de-base",
+    "es": "P3/c2/conceptos-basicos"
+  },
+  "P3/c2/insiemi-finiti-e-infiniti": {
+    "it": "P3/c2/insiemi-finiti-e-infiniti",
+    "en": "P3/c2/finite-infinite-sets",
+    "fr": "P3/c2/ensembles-finis-infinis",
+    "es": "P3/c2/conjuntos-finitos-infinitos"
+  },
+  "P3/c2/relazioni-tra-insiemi": {
+    "it": "P3/c2/relazioni-tra-insiemi",
+    "en": "P3/c2/set-relations",
+    "fr": "P3/c2/relations-ensembles",
+    "es": "P3/c2/relaciones-conjuntos"
+  },
+  "P3/c2/operazioni-tra-insiemi": {
+    "it": "P3/c2/operazioni-tra-insiemi",
+    "en": "P3/c2/set-operations",
+    "fr": "P3/c2/operations-ensembles",
+    "es": "P3/c2/operaciones-conjuntos"
   },
   "references": {
     "it": "references",

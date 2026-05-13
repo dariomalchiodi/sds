@@ -2,7 +2,7 @@ format: jb-book
 root: accueil
 
 parts:
-  - caption: Presentation
+  - caption: Introduction
     chapters:
       - file: P0/introduction
         sections:
@@ -11,7 +11,6 @@ parts:
         - file: P0/apprendre-et-programmer
         - file: P0/statistique-science-donnees
         - file: P0/conventions
-        - file: P0/notation
         - file: P0/utilisation-enseignement
       - file: P0/apercu-general
   - caption: Programmation pour l'analyse des données
@@ -21,6 +20,22 @@ parts:
         sections:
         - file: P1-PAD/c1-intro-python/installer-python
       - file: P1-PAD/c2-pandas/pandas
+  - caption: Calcul des probabilités
+    chapters:
+    - file: P3/c1/combinatoire
+      sections:
+      - file: P3/c1/principe-fondamental
+      - file: P3/c1/permutations
+      - file: P3/c1/arrangements
+      - file: P3/c1/combinaisons
+      - file: P3/c1/denombrement
+    - file: P3/c2/theorie-ensembles
+      sections:
+      - file: P3/c2/concepts-de-base
+      - file: P3/c2/ensembles-finis-infinis
+      - file: P3/c2/relations-ensembles
+      - file: P3/c2/operations-ensembles
+
   - caption: Annexes
     chapters:
     - file: references

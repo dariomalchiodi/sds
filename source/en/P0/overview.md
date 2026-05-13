@@ -9,109 +9,127 @@ kernelspec:
   display_name: Python 3
 ---
 
+(chap_overview)=
 (sec_overview)=
-# An Overview
+# Overview
 
-The aim of this chapter is twofold: on the one hand, it serves to broadly
-outline the logical structure behind the organization of the content and to
-introduce the key concepts in a relatively informal way; on the other hand,
-it explains how to use the interactive components of the book. As mentioned
-in {ref}`chap_approach`, throughout the text I will refer to a dataset obtained
-by modifying a suitable subset of the
-[Superhero database](http://www.superherodb.com). The examples will therefore
-refer to the world of superheroes, each of whom is described through the
-_attributes_ listed in {numref}`tab_dataset`.
+The purpose of this chapter is twofold: on the one hand, it aims to describe
+the logic with which I have organized the contents and to introduce the key
+concepts in a relatively informal way. On the other hand, it explains how to
+use the interactive components of the book. As stated in
+{ref}`chap_approach`, throughout the text I will refer to a _dataset_ obtained
+by modifying a subset of the {extlink}`Superhero database
+<http://www.superherodb.com>`. The examples therefore draw on the world of
+superheroes, each of whom is described by the _attributes_ listed in
+{numref}`tab_dataset`.
 
 ```{table} Description of the dataset used in the examples.
 :name: tab_dataset
 :align: center
-| Attribute           | Meaning                    | Content                                                  |
-|---------------------|----------------------------|----------------------------------------------------------|
-| `name`              | unique identifier          | string                                                   |
-| `full_name`         | full name                  | string                                                   |
-| `identity`          | secret identity            | string                                                   |
-| `alignment`         | moral alignment            | `'Good'`, `'Neutral'`, or `'Bad'`                        |
-| `place_of_birth`    | place of birth             | string                                                   |
-| `creator`           | publisher/creator          | string                                                   |
-| `universe`          | universe                   | string                                                   |
-| `first_appearance`  | year of first appearance   | integer                                                  |
-| `eye_color`         | eye color                  | string                                                   |
-| `hair_color`        | hair color                 | string                                                   |
-| `height`            | height in cm               | floating-point number                                    |
-| `weight`            | weight in kg               | floating-point number                                    |
-| `strength`          | strength                   | integer (from `0` to `100`)                              |
-| `intelligence`      | intelligence               | `'Low'`, `'Moderate'`, `'Average'`, `'Good'`, or `'High'`|
-| `speed`             | speed                      | integer (from `0` to `100`)                              |
-| `durability`        | durability                 | integer (from `0` to `100`)                              |
-| `combat`            | combat skills              | integer (from `0` to `100`)                              |
-| `powers`            | list of superpowers        | string                                                   |
+| Attribute          | Meaning                  | Content                                                  |
+|--------------------|--------------------------|----------------------------------------------------------|
+| `name`             | unique identifier        | string                                                   |
+| `full_name`        | full name                | string                                                   |
+| `identity`         | secret identity          | string                                                   |
+| `alignment`        | moral alignment          | `'Good'`, `'Neutral'`, or `'Bad'`                        |
+| `place_of_birth`   | place of birth           | string                                                   |
+| `creator`          | publisher/creator        | string                                                   |
+| `universe`         | universe                 | string                                                   |
+| `first_appearance` | year of first appearance | integer                                                  |
+| `eye_color`        | eye color                | string                                                   |
+| `hair_color`       | hair color               | string                                                   |
+| `height`           | height in cm             | floating-point number                                    |
+| `weight`           | weight in kg             | floating-point number                                    |
+| `strength`         | strength                 | integer (from `0` to `100`)                              |
+| `intelligence`     | intelligence             | `'Low'`, `'Moderate'`, `'Average'`, `'Good'`, or `'High'`|
+| `speed`            | speed                    | integer (from `0` to `100`)                              |
+| `durability`       | durability               | integer (from `0` to `100`)                              |
+| `combat`           | combat skill             | integer (from `0` to `100`)                              |
+| `power`            | list of superpowers      | string                                                   |
 ```
 
 ```{margin}
-The dataset excerpt is generated dynamically, and it may take a few seconds for
-it to appear, replacing the message `Please wait, loading PyScript...`. The
-same applies to all other points where the browser needs to execute Python
-code.
+The excerpt from the _dataset_ is generated dynamically, and it may be
+necessary to wait a few seconds before it appears, replacing the message
+`Please wait, loading PyScript...`. The same behavior occurs everywhere the
+browser executes Python code.
 ```
 
 The dataset is stored in the file `heroes.csv` located in the `data` directory
-of the [repository](https://github.com/dariomalchiodi/sds) associated with the
-book. In the interactive code, the file can be accessed as `data/heroes.csv`.
-This file uses the CSV (comma-separated values) format, a standard format used
-for sharing relatively small datasets: each line represents a superhero, and
-the values of the attributes listed in {numref}`tab_dataset` are separated by
-commas. The only exception is the first line of the file, which contains the
-attribute names, also separated by commas, as can be seen when previewing the
-start of the file.
+of the {extlink}`repository <https://github.com/dariomalchiodi/sds>` associated
+with the book. In the interactive code, the file is accessible as
+`data/heroes.csv`. Its contents are represented using CSV (_comma separated
+values_), a standard format commonly used for sharing relatively small datasets:
+each row corresponds to a superhero, and in that row the values of the
+attributes in {numref}`tab_dataset` are separated by commas. The only
+exception is the first row of the file, which contains the names of the
+attributes, also separated by commas. {numref}`tab_dataset-excerpt` shows an
+excerpt from the _dataset_, displaying the values of some attributes for ten
+randomly selected superheroes.
 
-Below, you can see a description of some of the attributes for ten superheroes
-randomly selected from the dataset.
+
+````{customtable}
+:name: tab_dataset-excerpt
+:class: full-width, left-align
 
 
 ```{interactive-code} python
+:height: 300px
 :class: toggle-code
+
 import pandas as pd
 
-heroes = pd.read_csv('data/heroes.csv', index_col=0).convert_dtypes()
+heroes = pd.read_csv('data/heroes.csv', index_col=0)
     
 source = heroes.sample(10).loc[:,'name':'combat']
 source.index.name = None
 source
+
 ```
 
-In {ref}`chap_pandas`, we will see how to load the contents of this file into
-memory and, more importantly, how to process them. For now, let’s focus on a
-few simple examples that, on the one hand, demonstrate how to use the
-interactive parts of the book and, on the other, provide an overview of the
-concepts that will be discussed.
+Excerpt from the reference _dataset_.
 
-What follows is a first example of an interactive chart. In the upper diagram,
-several superheroes are represented using circles on a Cartesian plane: the
-coordinates of the center indicate weight and height, while the radius
-expresses strength. Each circle is shaded in blue according to the publisher,
-and hovering over it automatically displays the corresponding superhero’s name.
-The lower diagram shows the number of superheroes for each publisher/creator
-using horizontal bars. By selecting a rectangular area in the upper diagram,
-you can focus on a subset of superheroes (the circles representing excluded
-superheroes will be grayed out): the lower diagram is automatically regenerated
-to reflect the distribution of the selected group. Once made, the selection can
-be moved, and clicking anywhere outside it will restore the original chart.
+````
 
+Later in the book we will see how to load the contents of this file into
+memory and analyze them. For now, we will focus on a few preliminary examples.
+The one in {numref}`fig_altair-example` is a first example of an interactive
+chart. In the upper diagram, some superheroes are represented by circles on a
+Cartesian plane: the coordinates of each center indicate weight and height,
+while the radius expresses strength. The color varies according to the
+publisher, using different shades of blue. Moving the pointer over a circle
+reveals the name of the corresponding superhero. The lower diagram instead
+shows horizontal bars indicating the number of superheroes for each
+publisher/creator. It is possible to select a subset of superheroes by drawing
+a rectangle in the upper diagram: the other elements of the _dataset_ are
+deactivated and colored gray, and the lower chart is updated to reflect the
+distribution of the selected group. The selection can be moved, and clicking
+outside it restores the original view.
 ```{margin}
-The chart next to this paragraph was created using
-[altair](https://altair-viz.github.io/), a library that allows the use of
-Python to render complex charts within web pages in an interactive format that
-is automatically activated when the page loads. To recognize whether a chart
-was generated with altair, simply check if there’s a round button with three
-dots at the top right. This button opens a menu that allows, among other
-things, to download the chart.
+The chart in {numref}`fig_altair-example` was created with
+{extlink}`Altair <https://altair-viz.github.io/>`, a Python library for
+creating interactive charts in web pages. A distinctive sign of Altair charts
+is the round button with three dots in the top-right corner: it opens a menu
+that, among other things, allows the chart to be downloaded.
 ```
 
+```{code-cell} python
+:tags: [remove-cell]
 
-```{interactive-code} python
-:class: toggle-code
+import matplotlib.pyplot as plt
+plt.style.use('../_static/sds.mplstyle')
+%matplotlib inline
+plt.ioff()
+```
+
+```{code-cell} python
+:height: 600px
+:tags: [hide-input]
 
 import altair as alt
+import pandas as pd
+
+heroes = pd.read_csv('data/heroes.csv', index_col=0).convert_dtypes()
 
 filter = (heroes['creator'].isin(heroes.creator.value_counts()[:15].index))
 filter &= (heroes['weight']<200)
@@ -131,65 +149,72 @@ points = alt.Chart(source).mark_point().encode(
 
 bars = alt.Chart(source).mark_bar().encode(
             alt.Y('creator', title='Creator'),
-            alt.X('count(creator)', title='N. of superheroes'),
-            alt.Color('creator', title='Creator').scale(scheme="blues"),
-        ).transform_filter(brush)
-
+            alt.X('count:Q', title='N. of superheroes'),
+            alt.Color('creator:N', title='Creator').scale(scheme="blues"),
+        ).transform_filter(
+            brush
+        ).transform_aggregate(
+            count='count()',
+            groupby=['creator']
+        )
 # Create the final interactive chart
 chart = (points & bars).configure(background='#eaf3f5')
 chart
 ```
 
+````{customfigure}
+:name: fig_altair-example
+:class: left-align
+
+An example of an interactive chart based on Altair.
+
+````
+
 By interacting with the chart, you can perform an _exploratory analysis_ of
-the data, for instance to answer the following questions.
+the data, for example in order to answer the following questions.
 
 1. Which publisher/creator has the highest number of superheroes overall?
 2. Which publisher has the most superheroes shorter than one meter?
 3. Which publisher has the most superheroes weighing between 80 and 100 kg?
 4. Who is the tallest superhero of all?
 
-```{margin}
-In general, only a small portion of the charts we will see are interactive.
-```
-
-Of course, many aspects can be analyzed preliminarily just by looking at the
-chart as it was generated (i.e., without using the interactive components),
-such as the two below.
+Many aspects can also be analyzed without interacting with the chart, simply by
+looking at it in its initial form, as with the two questions below.
 
 5. Is there some kind of trend or relationship linking the weight and height of
    superheroes?
 6. Does this relationship change if we focus on superheroes belonging to a
    particular publisher/creator?
 
-_Descriptive statistics_, introduced from {ref}`chap_dati-e-informazione` to
-{ref}`chap_analizzare-le-relazioni-tra-i-dati`, provides tools to answer
-questions like those just listed. In general, the goal is to extract
-information from a dataset that describes, either globally or partially, a
-group of reference individuals. The techniques used can be either _qualitative_
-or _quantitative_ in nature. We refer to qualitative analysis when the goal is
-to determine the nature of a certain phenomenon (for example, to answer
-questions 5 or 6 above). This often requires the use of tools—like the chart
-previously shown&mdash;whose results must be interpreted, introducing a certain
-degree of subjectivity. Quantitative analysis, on the other hand, refers to
-cases where the outcome is expressed in one or more numerical values, which can
-then be objectively compared with other quantities (typically, the results of
-other analyses).
-
 ```{margin}
-If all of this sounds complicated, don’t worry: the concepts will become
-clearer in the following chapters.
+If all of this seems complicated, do not worry: the next chapters will explain
+these concepts starting from the basics.
 ```
+Questions like these are addressed with the tools of _descriptive statistics_,
+introduced in the chapters devoted to that topic. Their goal is to extract
+information from a _dataset_ that describes a set of individuals, wholly or in
+part. The techniques used can be of two kinds: _qualitative_ or
+_quantitative_.
 
-Now suppose we want to focus, for simplicity, on the superheroes’ weight: the
-previous chart is quite full of circles, and while it’s relatively easy to get
-a sense of the smallest and largest heights, it becomes less clear, for
-example, whether there are superheroes who wheigh less or more in kilograms.
-To get a better understanding, I present below a specific chart, called a
-_histogram_, which highlights the frequencies with which different weight
-values appear in the dataset.
+- Qualitative analysis seeks to determine the nature of a certain phenomenon
+  (for example, in order to answer questions 5 and 6 in the list above). It
+  often relies on graphical tools, whose results must be interpreted and thus
+  introduce a certain degree of subjectivity.
+- Quantitative analysis, by contrast, produces one or more numerical values,
+  which can be compared objectively with other measurements, such as the
+  results of other analyses.
 
-```{interactive-code} python
-:class: toggle-code
+For simplicity, let us now focus on the weight of superheroes. The previous
+chart is rather crowded: on the one hand it is easy to identify the minimum and
+maximum heights, but on the other hand it is not immediately clear whether
+«light» superheroes or «heavier» ones are more common. To clarify this point,
+we can use a _histogram_, a chart that highlights the frequencies with which
+the different weight values appear in the _dataset_.
+
+
+```{code-cell} python
+:height: 400px
+:tags: [hide-input]
 
 import matplotlib.pyplot as plt
 
@@ -197,107 +222,102 @@ fig, ax = plt.subplots()
 data = heroes.weight[heroes.weight < 200]
 
 ax.hist(data, bins=30, density=True)
-fig.show()
+fig
+```
+
+````{customfigure}
+:name: fig_histogram
+
+A histogram of superhero weights.
+````
+
+```{margin}
+Using a histogram is not always the right choice for exploring data. It is
+useful when we have many numerical observations of a continuous attribute; in
+other cases, it can be misleading.
 ```
 
 ```{margin}
-It doesn’t always make sense to use a histogram to explore values in a
-_dataset_, as we’ll see in {ref}`chap_dati-e-informazione`.
+Looking at the y-axis, we see that the values are not integers, so the height
+of the rectangles cannot represent the number of superheroes. In this histogram
+it is the area of each rectangle that is proportional to the frequency. That
+choice, which has important implications, will be explained in more detail
+later in the book.
 ```
+Histograms are explained in detail later in the book, but for now what matters
+is how to read one. The chart is made up of many rectangles: the base of each
+one corresponds to an interval $I$ of possible weight values, and its height is
+related to the fraction of superheroes whose weight falls inside that interval
+[^histogram]. Looking at the histogram, we notice two interesting things:
 
-```{margin}
-We will also see that the exploration process doesn’t necessarily (or
-exclusively) involve the use of graphical methods&mdash;it can also be based on
-quantitative tools (and typically is).
-```
+- superheroes who weigh more than $125$ kg are more numerous than those who
+  weigh less than $40$ kg;
+- if we exclude extreme weights, the distribution is roughly symmetric, with
+  the rectangle heights increasing up to around $70$ kg and then decreasing.
 
-Histograms are defined in detail in {ref}`sec_istogrammi`, but for now it’s
-enough to understand how to read the result: in each of the shown bars, the
-base identifies an interval $I$ (called a _bin_) of possible weight values for
-superheroes, and the height is related to the fraction of superheroes whose
-weight falls within $I$ [^histogram]. The resulting chart highlights some
-interesting aspects: for example, it shows that there are more superheroes
-weighing over 125 kg than those weighing less than forty kilos. On the other
-hand, if we ignore the very large or very small weights, a rough symmetry
-appears around a central axis, along with the fact that the bar heights tend to
-increase up to approximately $70$ kg and then decrease. This too is a form of
-data exploration, which in this case doesn’t require interactive charts.
+This is already a first form of exploratory analysis, even without interactive
+charts.
 
-```{margin}
-If you’ve been paying attention, you’ll have noticed that the height of a bar
-can’t be equal to the number of superheroes with a certain weight, because the
-values shown on the y-axis are not integers. In this histogram, in fact, the
-number of superheroes is tied to the area of the bar. This will soon allow us
-to compare the result with another chart. The reason for this choice is
-explained in {ref}`sec_istogrammi`.
-```
+Once enough knowledge about the available data has been gathered, the next step
+is to try to _model_ mathematically the process that generated them. To do
+that, we need to change perspective: instead of reasoning about the whole
+_dataset_, let us imagine that we can observe any one of its elements without
+knowing in advance which one it will be (remember [Franklin's
+Law](#par_franklin-law)). Let us simply assume that every superhero has the
+same chance of being observed as every other. Beginning with
+{ref}`chap_combinatorics`, the chapters devoted to _Probability Theory_ provide
+rigorous tools for dealing with the uncertainty caused by not knowing which
+superhero we will observe each time. We will focus on _events_, that is,
+statements about what we might observe. For example, the following are events:
 
-Once enough knowledge about the available data has been gathered, the next
-step typically involves _modeling_ the process that generated it. To do this,
-we need to radically shift our perspective: instead of reasoning in terms of
-the entire dataset, we now pose questions about observing one of its elements,
-or a group of elements, under the assumption that we don’t know in advance
-what we’ll observe (remember [Franklin's Law](#par_franklin-law)). We also
-assume that each superhero has the same chance of being observed as any other.
-Starting from {ref}`{chap_calcolo-combinatorio}` through
-{ref}`chap_va-e-modelli-continui`, the book discusses _Probability Theory_,
-providing formal tools to deal with uncertainty that stems from not knowing
-what will be observed.
-
-More specifically, we will focus on _events_, understood as statements
-concerning the outcome of observations. Still thinking about superheroes, the
-following are examples of events:
-
-1. a superhero is bad (under the assumption that each superhero has a
-   predefined moral alignment, as indicated by the `alignment` attribute in our
+1. we will observe an evil superhero (assuming that moral alignment is fixed,
+   defined a priori, and indicated by the `alignment` attribute of the
    dataset);
-2. a Marvel superhero is faster than a DC superhero;
-3. two superheroes who debuted in the same year have the same intelligence
-   rating;
-4. at least one superhero in a group of ten belongs to a _Star Wars_ universe.
+2. if we observe a Marvel superhero and a DC superhero, the former is faster
+   than the latter;
+3. if we observe two superheroes who first appeared in the same year, they
+   have the same intelligence rating;
+4. if we observe ten superheroes, at least one of them belongs to one of the
+   _Star Wars_ universes.
 
-Clearly, we don’t know in advance whether the statement that constitutes an
-event is true or false, because its truth value depends on what is actually
-observed. For this reason, we introduce the key concept of _probability_,
-understood as a numerical quantification of this uncertainty using a number
-$p \in [0, 1]$. Without going into detail for now, the closer this number is to
-$\frac{1}{2}$, the higher the uncertainty; conversely, the closer $p$ gets to
-the extremes, the lower the uncertainty becomes. As $p$ approaches zero, our
-confidence in the truth of the statement decreases until, when $p = 0$, the
-statement is definitely false. Similarly, as $p$ approaches one, our confidence
-increases, and when $p = 1$, the statement is definitely true. As we’ll see,
-the advantage of mathematically formalizing the concept of probability is that
-it enables us to develop techniques to compute the probability of complex
-events based on the probability of simpler ones. This is the case for item 4
-above, where the desired probability can be determined once we know the
-probability that a single hero comes from a _Star Wars_ universe.
+We do not know whether these statements are true or false (technically,
+whether the corresponding events occur or not): it depends on what we observe.
+This is where _probability_ enters the scene. It assigns a number
+$p \in [0, 1]$ to quantify that uncertainty. Without going into details for the
+moment, uncertainty is greatest when $p$ approaches $\frac{1}{2}$, and it
+decreases as $p$ moves toward the extremes. In particular, the closer $p$ is to
+zero, the less plausible we should consider the statement, and if $p = 0$ we
+know it is false with certainty. Similarly, as $p$ approaches $1$, our
+confidence that the statement is true increases, and if $p = 1$ it becomes
+certain. We will see that this formalization allows us to compute the
+probability of complex events starting from simpler ones. For instance, to
+calculate the probability of the last event in the list above, it is enough to
+know the probability that a superhero from a _Star Wars_ universe is observed.
 
 Very often, the events we consider refer to one or more numerical quantities
-(as in examples 2 and 3 above): it makes sense, for instance, to ask whether
-the durability of a superhero is at its maximum, or whether the height falls
-within a given interval. It’s important to note that the fact that each
-superhero has the same chance of being observed as any other does not mean the
-same applies to the values those quantities can take. You can easily realize
-this by revisiting the earlier histogram: weights between $50$ and $100$ kg are
-much more frequent than weights over one hundred kilos. Therefore, it becomes
-important to model these random quantities as well. To do that, we introduce
-the concept of a _random variable_ and its mathematical formalization. Without
-going into details for now, let’s focus on the specific case of superhero
-weight, keeping in mind that in general the process might be more complex or
-simply different. The underlying idea of the formalization is to identify a
-function $f$, called the _probability density function_, whose graph
-_idealizes_ the histogram of the observed values while preserving its key
-properties. In this case, we can identify those properties as being symmetric
-around a central axis and having a _unimodal_ trend (i.e., increasing up to a
-maximum and decreasing afterwards). There are infinitely many functions that
-display these two properties, but for reasons that are currently too advanced
-to justify&mdash;but which should become clear after reading the rest of the
-book&mdash;it’s worth focusing on the one defined by:
+(think, for instance, of a superhero's durability or height: it makes sense to
+ask whether it is maximal or whether it falls inside a certain interval). It is
+important to stress that the fact that every superhero has the same chance of
+being observed does not imply the same for the values those quantities can
+take. You can see this easily by looking again at the previous histogram:
+weights between $50$ and $100$ kg are much more frequent than weights above one
+hundred kilos. It therefore becomes necessary to model these random quantities
+too. To that end, we introduce the concept of a _random variable_ and its
+mathematical formalization. For now, let us focus on the specific case of
+superhero weight, keeping in mind that in general the procedure may be more
+complex, or simply different. The idea behind the formalization is to identify
+a function $f$, called a _probability density_, whose graph _idealizes_ the
+histogram of the observed values, producing a continuous curve that preserves
+its main properties. In our example, these properties are symmetry with respect
+to a central axis and a _unimodal_ shape (that is, increasing up to a maximum
+value and then decreasing). There are infinitely many functions with those two
+properties, but for reasons too complex to explain at this stage &mdash; but
+which I will clarify later &mdash; I will focus on the one defined by:
 
 ```{margin}
-In this formula, $\exp(x)$ indicates the exponential of the constant
-$\mathrm e$ raised to the power $x$: this form is preferred over $\mathrm e^x$
-to avoid fractional exponents, which would be harder to read.
+In this formula, $\exp(x)$ denotes the constant $\mathrm e$ raised to the
+power $x$. I prefer this notation to $\mathrm e^x$ to avoid a fractional
+exponent, which would be less readable.
 ```
 ```{math}
 :label: eq_weight_normal
@@ -305,231 +325,204 @@ f(x; \mu, \sigma) = \frac{1}{\sigma \sqrt{2 \pi}} \;
        \mathrm{exp}\left(-\frac{(x - \mu)^2}{2 \sigma^2}\right) \enspace,
 ```
 
-where $x$ denotes a generic weight and $f(x; \mu, \sigma)$ identifies the
-corresponding height value in the idealized histogram. It is important to
-highlight that $f$ has a single argument, denoted by $x$, while
-$\mu \in \mathbb R$ and $\sigma \in \mathbb R^+$ should be understood as two
-_parameters_: the function is fully defined only once their values have been
-set. The semicolon in the definition of $f$ is precisely meant to emphasize the
-different roles of the argument on one hand and the parameters on the other.
-More precisely, {eq}`eq_weight_normal` defines, as $\mu$ and $\sigma$ vary, a
-_family_ of functions, each of which is associated with a random variable. The
-result is a family of random variables, commonly referred to as a
-_random variable model_. In the interactive diagram shown below, you can
-observe how the graph of $f$ changes when its two parameters vary. By adjusting
-the two sliders, corresponding to $\mu$ and $\sigma$, you can change the values
-of the respective parameters and simultaneously see how the graph of $f$ is
-affected.
+```{margin}
+The curve we are considering is informally called a _Gaussian bell curve_, and
+the resulting model is called a _normal_ model. As we will see, it will play a
+fundamental role in the last two parts of the book.
+```
+where $x$ denotes a generic weight and $f(x; \mu, \sigma)$ returns the
+corresponding height in the idealized histogram. It is important to stress that
+$f$ has only one argument, denoted by $x$, while $\mu \in \mathbb R$ and
+$\sigma \in \mathbb R^+$ are two _parameters_ that must be fixed to define the
+function completely. The semicolon serves precisely to distinguish the argument
+from the parameters. More precisely, as $\mu$ and $\sigma$ vary,
+{eq}`eq_weight_normal` defines a _family_ of functions: each corresponds to a
+random variable, and we refer to this family as a _random-variable model_. In
+{numref}`fig_normal-model` you can observe how the graph of $f$ changes as its
+parameters vary. By moving the two sliders associated with $\mu$ and $\sigma$,
+you will immediately see how the graph of $f$ updates in response to the new
+settings.
+
+
+````{customfigure}
+:name: fig_normal-model
+:class: left-align
+
 
 ```{interactive-code} python
-:class: toggle-code 
+:tags: [toggle-code]
+
+import asyncio
+import matplotlib.pyplot as plt
 import numpy as np
 from js import document
-from pyodide.ffi import create_proxy
-import pyscript as pys
-import io
-import base64
+from pyscript import display
+from pyscript.web import page, when
 
-def plot_pdf(mu, sigma):
-    x = np.linspace(-10, 10, 400)
-    y = (1 / (sigma * np.sqrt(2 * np.pi))) * np.exp(-0.5 * ((x - mu) / sigma) ** 2)
-    
-    fig, ax = plt.subplots()
-    ax.fill_between(x, 0, y, alpha=0.5, color='tab_blue')
+mu = float(page['#pdf-mu-slider'][0].value)
+sigma = float(page['#pdf-sigma-slider'][0].value)
 
-    # Use plain text label to avoid MathJax processing
-    ax.set_xlabel('x', fontsize=12, ha='right')
-    ax.xaxis.set_label_coords(1.07, 0.03)
-    ax.set_xlim(-10, 10)
-    ax.set_ylim(0, 1)
-    
-    # Manual rendering to avoid MathJax processing
-    img_buffer = io.BytesIO()
-    fig.savefig(img_buffer, format='png', bbox_inches='tight', dpi=100)
-    img_buffer.seek(0)
-    img_base64 = base64.b64encode(img_buffer.getvalue()).decode('utf-8')
-    img_buffer.close()
-    
-    # Display in protected div
-    img_html = '<div class="no-mathjax"><img src="data:image/png;base64,' + img_base64 + '" style="max-width: 100%; height: auto;" /></div>'
-    Element("pdf-output").write(img_html)
-    
-    plt.close(fig)
+x = np.linspace(0, 200, 400)
+y = 1 / (sigma * np.sqrt(2 * np.pi)) * np.exp(-0.5 * ((x - mu) / sigma) ** 2)
 
-def update_plot(event=None):
-    mu = float(document.getElementById("mean-slider").value)
-    sigma = float(document.getElementById("std-slider").value)
-    document.getElementById("mean-value").innerText = f"{mu:.1f}"
-    document.getElementById("std-value").innerText = f"{sigma:.1f}"
-    plot_pdf(mu, sigma)
+fig_pdf, ax_pdf = plt.subplots()
+curve_pdf, = ax_pdf.plot(x, y, alpha=0.5, color='tab:blue')
 
 
-mean_slider = document.getElementById("mean-slider")
-std_slider = document.getElementById("std-slider")
+ax_pdf.set_xlabel('$x$', fontsize=12, ha='right')
+#ax.xaxis.set_label_coords(1.07, 0.03)
+ax_pdf.set_ylabel('$f$', fontsize=12, rotation=0)
+#ax.yaxis.set_label_coords(0., 1.09)
+ax_pdf.set_xlim(0, 200)
+ax_pdf.set_ylim(0, 0.02)
 
-mean_slider.addEventListener("input", create_proxy(update_plot))
-std_slider.addEventListener("input", create_proxy(update_plot))
+@when("input", "#pdf-mu-slider, #pdf-sigma-slider")
+def pdf_plot(event):
 
-# Initial plot
-plot_pdf(0, 1)
+    mu = float(page['#pdf-mu-slider'][0].value)
+    sigma = float(page['#pdf-sigma-slider'][0].value)
+    page['#pdf-mu-value'][0].innerHTML = f'{mu:.1f}'
+    page['#pdf-sigma-value'][0].innerHTML = f'{sigma:.1f}'
+
+    y = 1 / (sigma * np.sqrt(2 * np.pi)) * np.exp(-0.5 * ((x - mu) /
+        sigma) ** 2)
+    curve_pdf.set_data(x, y)
+    display(fig_pdf, target='graph-%this%', append=False)
+
+display(fig_pdf, target='graph-%this%', append=False)
 ```
+
 ```{raw} html
-
-<div id="plot-container" style="visibility: none;">
-    <div class="slider-container" style="float: left;">
-        <label for="mean-slider">$\mu$: </label>
-        <input type="range" id="mean-slider"
-               min="-5" max="5" value="0" step="0.1" />
-        <span id="mean-value">0</span>
-    </div>
-
-    <div class="slider-container" style="float: right;">
-        <label for="std-slider">$\sigma$: </label>
-        <input type="range" id="std-slider"
-               min="0.1" max="5" value="1" step="0.1" />
-        <span id="std-value">1.0</span>
-    </div>
-
-    <div id="pdf-output" class="no-mathjax"
-            style="clear: both; display: flex; justify-content: center; margin-bottom: 2em;">
-        <div class="splash"></div>
-    </div>
-</div>
-```
-
-One of the reasons why we refer to a «random variable model» is that it’s
-possible to choose the values of its parameters in order to _fit_ the graph of
-$f$, and more generally the corresponding random variable, to previously
-observed data. In the case we just saw, this means selecting appropriate values
-for $\mu$ and $\sigma$, so that the graph of $f$ qualitatively overlaps with
-that of the histogram initially obtained for weight. The interactive diagram
-below allows you to perform this operation manually: you can use the sliders to
-achieve a good overlap between the histogram and the probability density
-function.
-
-```{interactive-code} python
-:class:  toggle-code
-
-import base64
-import io
-
-def model_plot_pdf(mu, sigma):
-    x = np.linspace(0, 200, 400)
-    y = (1 / (sigma * np.sqrt(2 * np.pi))) * np.exp(-0.5 * ((x - mu) / sigma) ** 2)
-    
-    fig, ax = plt.subplots()
-    ax.hist(data, bins=30, density=True, alpha=0.3, color='tab_blue')
-    ax.fill_between(x, 0, y, alpha=0.5, color='tab_blue')
-
-    # Use plain text for axis labels to avoid MathJax interference
-    ax.set_xlabel('x', fontsize=12, ha='right')
-    ax.xaxis.set_label_coords(1.07, 0.03)
-    ax.set_xlim(0, 200)
-    ax.set_ylim(0, 0.02)
-    
-    # Convert plot to base64 string for display
-    buffer = io.BytesIO()
-    fig.savefig(buffer, format='png', bbox_inches='tight', dpi=100)
-    buffer.seek(0)
-    img_base64 = base64.b64encode(buffer.read()).decode()
-    plt.close(fig)
-    
-    # Display in no-mathjax container
-    output_html = f'''
-    <div class="no-mathjax" style="display: flex; justify-content: center; margin-bottom: 2em;">
-        <img src="data:image/png;base64,{img_base64}" alt="Model Plot" style="max-width: 100%; height: auto;">
-    </div>
-    '''
-    
-    target_element = document.getElementById("model-output")
-    if target_element:
-        target_element.innerHTML = output_html
-    else:
-        print("Target element 'model-output' not found")
-
-def model_update_plot(event=None):
-    try:
-        mu = float(document.getElementById("model-mean-slider").value)
-        sigma = float(document.getElementById("model-std-slider").value)
-        document.getElementById("model-mean-value").innerText = f"{mu:.1f}"
-        document.getElementById("model-std-value").innerText = f"{sigma:.1f}"
-        model_plot_pdf(mu, sigma)
-    except Exception as e:
-        print(f"Error updating plot: {e}")
-
-# Wait for DOM to be ready
-def setup_model_sliders():
-    try:
-        model_mean_slider = document.getElementById("model-mean-slider")
-        model_std_slider = document.getElementById("model-std-slider")
-        
-        if model_mean_slider and model_std_slider:
-            model_mean_slider.addEventListener("input", create_proxy(model_update_plot))
-            model_std_slider.addEventListener("input", create_proxy(model_update_plot))
-            
-            # Initial plot
-            model_plot_pdf(150, 33)
-            print("Model sliders setup complete")
-        else:
-            print("Model slider elements not found, retrying in 100ms...")
-            import asyncio
-            asyncio.get_event_loop().call_later(0.1, setup_model_sliders)
-    except Exception as e:
-        print(f"Error setting up model sliders: {e}")
-
-# Setup sliders when DOM is ready
-setup_model_sliders()
-```
-```{raw} html
-
-<div id="plot-container" style="visibility: none;">
-    <div class="model-slider-container" style="float: left;">
-        <label for="model-mean-slider">Mean ($\mu$): </label>
-        <input type="range" id="model-mean-slider"
+<div class="plot-container">
+    <div class="model-slider-container">
+        <label for="pdf-mu-slider">\(\mu\): </label>
+        <input type="range" id="pdf-mu-slider"
                min="10" max="200" value="150" step="0.1" />
-        <span id="model-mean-value">150</span>
+        <span id="pdf-mu-value">150</span>
     </div>
 
-    <div class="model-slider-container" style="float: right;">
-        <label for="model-std-slider">Standard Deviation ($\sigma$): </label>
-        <input type="range" id="model-std-slider"
+    <div class="model-slider-container">
+        <label for="pdf-sigma-slider">\(\sigma\): </label>
+        <input type="range" id="pdf-sigma-slider"
                min="0.1" max="50" value="33" step="0.1" />
-        <span id="model-std-value">33.0</span>
-    </div>
-
-    <div id="model-output" style="clear: both; display: flex; justify-content: center; margin-bottom: 2em;">
-        <div class="splash"></div>
+        <span id="pdf-sigma-value">33.0</span>
     </div>
 </div>
 ```
 
-In the final part of the book, we’ll explore several methods that allow us to
-automatically determine the parameters of a model, so that it fits a given
-dataset. This is one of the goals of _inferential statistics_, which we’ll
-cover from {ref}`chap_inferential_statistics` through to
-{ref}`chap_statistica-non-parametrica`. The starting point is always a dataset,
-which in this context represents a _sample_ of observations taken from a larger
-_population_. Our aim is to formulate hypotheses or draw conclusions about
-this population&mdash;even if we can’t observe it directly in full. In other
-words, we’ll use the sample to learn something about what we don’t know about
-the population.
+Graph of the probability density described by {eq}`eq_weight_normal`.
+````
 
-The simplest case&mdash;and the one we’ll focus on the most&mdash;is when the
-population can be described by a random variable, associated with a model that
-depends on one or more unknown parameters. The goal is to estimate these
-parameters, or other quantities that depend on them. For instance, let’s
-imagine that the population consists of all the superheroes in our dataset, and
-the quantity we care about is their average weight $w$. If we only have a
-sample of one hundred superheroes, it makes sense to use the average of their
-weight as an approximation of $w$. In general, we use the term _estimator_ to
-refer to the function that is applied to the sample in order to compute
-approximations of this kind. In our example, the estimator is simply the
-arithmetic mean of the sample values&mdash;what we call the _sample mean_. The
-table below shows how the values of this estimator change across ten different
-random samples.
+One of the reasons we speak of a «model for a random variable» is that it is
+possible to choose the values of its parameters so as to _fit_ the probability
+density function, and more generally the corresponding random variable, to data
+that have already been observed. In the case we have just seen, this means
+choosing suitable values for $\mu$ and $\sigma$ so that the graph of $f$
+qualitatively overlaps the histogram initially obtained for weight. The
+interactive chart in {numref}`fig_adapt-model` allows you to carry out this
+operation manually, by moving the sliders in order to find a qualitative
+alignment between the two graphs.
 
 ```{interactive-code} python
-:class:  toggle-code
+:height: 0px
+:class: no-output
+
+data = heroes['weight'][heroes['weight'] < 200].dropna()
+```
+
+````{customfigure}
+:name: fig_adapt-model
+:class: left-align
+
+```{interactive-code} python
+:height: 400px
+:class: toggle-code
+
+mu = float(page['#model-mu-slider'][0].value)
+sigma = float(page['#model-sigma-slider'][0].value)
+
+x = np.linspace(0, 200, 400)
+y = 1 / (sigma * np.sqrt(2 * np.pi)) * np.exp(-0.5 * ((x - mu) / sigma) ** 2)
+
+fig, ax = plt.subplots()
+ax.hist(data, bins=30, density=True, alpha=0.3, color='tab:blue')
+curve, = ax.plot(x, y, alpha=0.5, color='tab:blue')
+
+ax.set_xlabel(r'$x$', fontsize=12, ha='right')
+ax.xaxis.set_label_coords(1.07, 0.03)
+ax.set_ylabel(r'$f$', fontsize=12, rotation=0)
+ax.yaxis.set_label_coords(0., 1.09)
+ax.set_xlim(0, 200)
+ax.set_ylim(0, 0.02)
+
+@when("input", "#model-mu-slider, #model-sigma-slider")
+def model_plot(event):
+
+    mu = float(page['#model-mu-slider'][0].value)
+    sigma = float(page['#model-sigma-slider'][0].value)
+    page['#model-mu-value'][0].innerHTML = f'{mu:.1f}'
+    page['#model-sigma-value'][0].innerHTML = f'{sigma:.1f}'
+
+    y = (1 / (sigma * np.sqrt(2*np.pi))) * np.exp(-0.5 * ((x - mu) / sigma)**2)
+    curve.set_data(x, y)
+    display(fig, target='graph-%this%', append=False)
+
+display(fig, target='graph-%this%', append=False)
+    
+```
+
+```{raw} html
+<div class="plot-container">
+    <div class="model-slider-container">
+        <label for="model-mu-slider">\(\mu\): </label>
+        <input type="range" id="model-mu-slider"
+               min="10" max="200" value="150" step="0.1" />
+        <span id="model-mu-value">150</span>
+    </div>
+
+    <div class="model-slider-container">
+        <label for="model-sigma-slider">\(\sigma\): </label>
+        <input type="range" id="model-sigma-slider"
+               min="0.1" max="50" value="33" step="0.1" />
+        <span id="model-sigma-value">33.0</span>
+    </div>
+</div>
+```
+
+Superposition of the graph of the density described by
+{eq}`eq_weight_normal` on the histogram in {numref}`fig_histogram`. By moving
+the sliders, it is possible to find parameter values that fit the model to the
+histogram.
+````
+
+In the final part of the book, we will see that there are several methods for
+determining a model's parameters automatically, so as to adapt it to a set of
+data. This is one of the aims of _inferential statistics_. The starting point
+is always a _dataset_, which in this context represents a _sample_ of
+observations taken from a broader _population_. We want to make hypotheses
+about that population or draw conclusions regarding it, even though we cannot
+observe it in its entirety. In other words, we use the sample to obtain
+information about what we do not know about the population. The simplest case
+&mdash; and also the one on which we will focus most &mdash; is the one in which
+the population is described by a random variable associated with a model that
+depends on one or more unknown parameters. The objective is to approximate
+those parameters, or other quantities that depend on them. For example,
+consider the population of superheroes in our _dataset_ and suppose we are
+interested in their average weight $p$. If we have only a sample of one hundred
+superheroes at our disposal, common sense suggests using the average of their
+weights as an approximation of $p$. In general, we call an _estimator_ the
+function applied to the sample to obtain approximations of this kind. In our
+example, the estimator is the arithmetic mean of the sample values, called the
+_sample mean_. {numref}`fig_statistics-variability` shows how the values of
+this estimator vary when ten different samples are drawn.
+
+````{customtable}
+:name: fig_statistics-variability
+:class: left-align
+
+```{interactive-code} python
+:height: 100px
+:class: toggle-code
 
 weights = heroes['weight'][heroes['weight']<200].dropna()
 
@@ -545,60 +538,65 @@ pd.DataFrame([means],
 
 ```
 
-As you can see, the sample means vary from one sample to the next, which is
-expected&mdash;after all, each sample is different. Still, the results aren’t
-all over the place: they tend to cluster around 79, which is a pretty good
-estimate of the true average strength of all superheroes (as you can check by
-looking at the earlier histogram). But can we be sure that the sample mean is
-really the best estimator available? And more generally, how do we evaluate how
-«good» an estimator is, especially considering the kind of variability we just
-observed?
+Value of the sample mean for superhero weight, calculated on ten different
+samples drawn from the population.
+````
 
-We’ll tackle these kinds of questions in the section on inferential statistics.
-In a way, this part lets me wrap up the book and «close the loop»: not only
-does it bring together what we’ve seen in descriptive statistics and
-probability theory, but it also helps us better appreciate the full power of
-some of the concepts and tools we encountered&mdash;perhaps in a more informal
-way&mdash;earlier in the book.
+It is natural that the sample means obtained from the ten samples differ from
+one another, since every sample is different. Nevertheless, the results do not
+vary drastically and tend to cluster around $79$, which is a good
+approximation of the correct value for the mean weight of all superheroes (as
+you can verify by looking at the previous histogram). But can we be certain
+that the sample mean is really the best possible estimator? And, more generally,
+how can we assess the quality of an estimator while taking into account the
+intrinsic variability we have just highlighted? These questions will find their
+answer in the part devoted to inferential statistics. In a certain sense, that
+part allows me to finish the book by «closing the circle»: both because it
+puts into synergistic practice what we have seen in descriptive statistics and
+probability theory, and because it allows us to understand more deeply the
+power of some of the concepts and tools already encountered &mdash; perhaps in
+a relatively informal way &mdash; in the preceding parts.
 
-But before diving into descriptive statistics, it’s important to review some
-key concepts from computer programming, and above all to get comfortable with
-the computational tools I’ll be using throughout the book. That’s the purpose
-of {ref}`chap_intro-python` and {ref}`chap_pandas`, which open the
-discussion.
+Before beginning with descriptive statistics, however, it is important to
+review some fundamental concepts of computer programming and, above all, to
+become comfortable with the computational tools I will use throughout the book.
+That is the purpose of the opening chapters on Python and pandas, with which
+the discussion begins.
 
 ## Exercises
 
-At the end of each paragraph, a few exercises are proposed, with their
-difficulty indicated by the number of dots in parentheses.
+At the end of almost every paragraph, a few exercises are provided. Their
+difficulty is indicated by the number of dots in parentheses.
 
 ```{exercise} •
-Download the superheroes dataset from the book's
-[repository](https://github.com/dariomalchiodi/sds) and import it into any
-spreadsheet application (all major ones support importing CSV files), so that
-each column contains a different attribute. Focus on, say, the first thirty
-rows and examine the individual columns separately to get a sense of how the
-values associated with each attribute vary.
+Download the superhero dataset from the book's
+{extlink}`repository <https://github.com/dariomalchiodi/sds>` and import it
+into any spreadsheet program (all the most common ones can import CSV files),
+so that each column contains a different attribute. Focus on, say, the first
+thirty rows and consider the columns separately, in order to get an idea of
+how the values associated with the individual attributes vary.
 ```
 
 ```{margin}
 Being a _data scientist_ means not only combining skills in probability,
-statistics, and programming, but also mastering various scripting tools that
-allow you to convert, adapt, and clean data: quite often, these tools are
-operated via a terminal and its corresponding shell.
+statistics, and programming, but also mastering various _scripting_ tools for
+converting, adapting, and cleaning data. Those tools are often used via a
+terminal and its shell. Depending on the professional setting, data may be
+available in forms that are more or less structured, and handling them can
+require complex procedures, sometimes involving representations other than CSV
+or articulated databases.
 ```
-
-```{exercise} •••
-Revisit the previous exercise, inspecting the contents of each individual
-column of the CSV file without using a spreadsheet application, but only a
+````{exercise} •••
+Reconsider the previous exercise, looking at the contents of each individual
+column of the CSV file without using a spreadsheet program, but only a
 terminal and shell commands.
-```
+````
 
 ```{exercise} ••
-Based on the impression you’ve formed of the superhero dataset while solving
-the previous exercises, try grouping the attributes into homogeneous sets, not
-based on the type of data used to represent the corresponding values (as
-indicated in the «Content» column of {numref}`tab_dataset`), but rather on the
+Based on the idea you have formed of the superhero dataset while solving the
+previous exercises, try dividing the attributes into homogeneous groups based
+not on the type of data used to represent the corresponding values (as
+indicated in the «Content» column of {numref}`tab_dataset`), but on the
 _nature_ of the attributes themselves.
 ```
 
@@ -608,28 +606,31 @@ Answer questions 1 to 4 in the list that follows the first interactive chart.
 
 ```{exercise} ••
 Answer questions 5 and 6 in the list following the first interactive chart.
-Write down your reasoning.
+Write down the reasoning you followed.
 ```
 
 ```{exercise} ••
-Think of other questions about the dataset that could be answered using the
-first interactive chart. Again, write down the reasoning needed to answer them.
+Formulate other questions about the dataset that can be answered using the
+first interactive chart. Again, write down the reasoning needed to answer
+them.
 ```
 
-```{exercise} •
+````{exercise} •
 Consider the following values
 
-$$ \\{13, 8, 7, 4, 9, 8, 4, 4, 19, 2, 5, 3, 3, 1, 12 \\} $$
-
-and manually draw the corresponding histogram, calculating the height of each
-bar as the number of values that fall within the corresponding interval, using
-the following bins: $[0, 5)$, $[5, 10)$, $[10, 15)$, $[15, 20)$. Compare the
-shape of your graph to what’s shown in the text, highlighting the main
-differences.
+```{math}
+\{13, 8, 7, 4, 9, 8, 4, 4, 19, 2, 5, 3, 3, 1, 12 \}
 ```
 
+and draw the corresponding histogram by hand, calculating the height of each
+rectangle as the number of values that fall in the corresponding interval, and
+using the following reference intervals: $[0, 5)$, $[5, 10)$, $[10, 15)$,
+$[15, 20)$. Compare the shape of the resulting chart with the one shown in the
+text, highlighting the main differences.
+````
+
 ```{exercise} •
-Write ten possible events concerning the superheroes dataset.
+Write ten possible events concerning the superhero dataset.
 ```
 
 ```{exercise} ••
@@ -657,12 +658,11 @@ superhero weights.
 
 ```{exercise} ••
 Write down the reasoning you used to convince yourself that $79$ is
-approximately the average superhero weights.
+approximately the mean superhero weight.
 ```
-
 
 [^histogram]: The bins defining the bases of histogram bars can be chosen with
 some flexibility. For simplicity, the histogram in the text was generated using
-twenty-five equal-width intervals that cover all possible weight values, but
-depending on the context, it may make sense to use more (or fewer) such
-intervals, or even intervals of different widths.
+thirty equal-width intervals covering all possible weight values. Depending on
+the context, it may make sense to use a larger number (or a smaller one) of
+such intervals, or to use intervals with different widths.

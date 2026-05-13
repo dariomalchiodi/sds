@@ -14,8 +14,14 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
+import os
+import sys
 import re
 from pathlib import Path
+
+sys.path.insert(0,
+                os.path.abspath(os.path.join(os.path.dirname(__file__),
+                                             '..', '..')))
 
 # -- Project information -----------------------------------------------------
 
@@ -34,16 +40,29 @@ release = '1.0'
 # ones.
 
 
-extensions = [ 'myst_parser',
-               'sphinx_book_theme', 
-               'sphinx.ext.mathjax', 'sphinx_exercise', 'sphinx_tabs.tabs',
+extensions = [ # 'myst_parser',
+               'myst_nb',
+               'sphinx_book_theme',
+               'sphinxcontrib.katex',
+               'sphinx.ext.autosectionlabel',
+               'sphinx_exercise', 'sphinx_tabs.tabs',
                'sphinxcontrib.bibtex',
                'sphinx_external_toc',
                'sphinx_proof',
-               'sphinx_exercise',
-               'sphinx.ext.autosectionlabel',
                'sphinx_togglebutton',
+               'sds',
+               'sds.sphinx_ext_custom_figure',
+               'sds.sphinx_ext_custom_table',
+               'sds.numref_to_ref',
+               'sds.sphinx_custom_codeblock',
+               'sphinxcontrib.mermaid',
+               'sds.prepend_cell',
                 ]
+
+nb_execution_mode = "cache"
+nb_execution_timeout = 300
+nb_execution_allow_errors = False
+nb_merge_streams = True
 
 # nb_code_cell_render_options = {
 #     'python3': { 'lexer': 'python' }
@@ -64,7 +83,7 @@ bibtex_reference_style = 'author_year'
 #     'tabs'
 # ]
 
-myst_enable_extensions = [ 'deflist' ]
+myst_enable_extensions = ['dollarmath', 'amsmath', 'deflist']
 
 myst_config = {
     "enable_extensions": [
@@ -117,7 +136,7 @@ myst_number_code_blocks = []
 
 # Enable automatic section labels with numbering
 autosectionlabel_prefix_document = True
-autosectionlabel_maxdepth = None
+autosectionlabel_maxdepth = 3
 
 # Basic settings for cross-references
 html_secnumber_suffix = '. '

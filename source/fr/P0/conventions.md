@@ -10,55 +10,49 @@ kernelspec:
 ---
 
 (sec_conventions)=
-# Conventions
+# Conventions et notation
 
-Comme mentionné dans le paragraphe précédent, je vais souvent insérer du code
-dans le texte, non pas tant pour qu’il soit exécuté, mais dans le but 
-d'illustrer des concepts (par exemple, pour montrer que les littéraux `true` et
-`false` sont les seules valeurs possibles du type de données `bool`). Dans ce
-cas, j’utiliserai une police à chasse fixe avec une couleur différente de celle
-du texte principal. Quand il sera nécessaire de montrer une ou plusieurs lignes
-de code destinées à être exécutées lors de la lecture, ces lignes apparaîtront
-dans un encadré qui rappelle une _cellule de code_ typique d’un _notebook_.
-Là encore, j’utiliserai une police à chasse fixe, mais la coloration syntaxique
-mettra en évidence certains éléments du code (comme les variables, les
-littéraux, les mots-clés, etc.), à la manière des éditeurs modernes de type
-IDE. Le code sera aussi visuellement séparé du texte principal, comme dans
-l’exemple suivant.
+Comme indiqué dans la section précédente, j’accompagnerai souvent le texte
+d’exemples de code. Ils ne seront pas toujours destinés à être exécutés : je
+les utiliserai parfois à des fins illustratives, par exemple pour indiquer que
+`True` et `False` sont les seuls littéraux possibles du type de données
+`bool`. Dans ces cas, j’emploierai une police à chasse fixe avec une couleur
+différente de celle du texte principal. Lorsqu’il deviendra nécessaire de
+présenter du code destiné à être exécuté, je l’insérerai dans un encadré qui
+rappelle une _cellule de code_ dans un _notebook_. Là encore, j’utiliserai une
+police à chasse fixe, en mettant en évidence avec des couleurs différentes des
+éléments comme les variables, les littéraux et les mots-clés, un peu à la
+manière des IDE modernes. Pour améliorer la lisibilité, le code sera
+visuellement séparé du texte principal. Lorsqu’il y aura un résultat, je
+l’afficherai dans une _cellule de sortie_ dédiée, placée immédiatement après la
+cellule de code, comme dans l’exemple suivant, afin que le lien entre les
+instructions et les résultats soit clair.
+
 ```{margin}
-Il est courant d’utiliser une police à chasse fixe (où chaque glyphe a la même
-largeur) pour afficher le code, les entrées et les sorties, pour diverses
-raisons qui en améliorent la lisibilité, comme la facilité d’indenter les
-instructions ou la réduction du risque de confondre des caractères similaires
-comme 1 et l.
+Il est courant d’utiliser une police à chasse fixe, dans laquelle chaque glyphe
+a la même largeur, pour afficher le code, les entrées et les sorties. Cela en
+améliore la lisibilité, facilite l’indentation et réduit le risque de
+confondre des caractères similaires comme 1 et l, ou O et 0.
 ```
 
-```python
+```{code-cell}
 age = 24
 print(age <= 42)
 ```
 
-En général, j’afficherai le résultat de l’exécution dans une
-_cellule de sortie_ spécifique, placée juste après celle contenant le code,
-comme ci-dessous.
-
-```python
-print(age <= 42)
-```
-
-Enfin, j’utiliserai un style distinctif pour signaler certains encadrés
-contenant des notions spécifiques, comme illustré ci-dessous.
+Pour mettre en évidence certains éléments du texte, j’utiliserai des encadrés
+spécifiques, chacun avec son propre style.
 
 ```{admonition} _
 :class: naming
-Cet encadrés contient des remarques sur la terminologie utilisée dans un
-domaine particulier, ou des variantes par rapport aux expressions introduites.
+Ce type d’encadré contient des explications sur les termes employés, ou sur des
+formulations alternatives.
 ```
 
 ```{prf:definition}
-:label: marquplace-definition
+:label: placeholder-definition
 :class: no-number
-Cet encadré définit formellement un ou plusieurs concepts.
+Cet encadré introduit un ou plusieurs concepts de manière rigoureuse.
 ```
 ```{margin}
 Les définitions, exemples, etc. seront généralement numérotés, et souvent
@@ -66,38 +60,94 @@ accompagnés d’un nom spécifique entre parenthèses.
 ```
 
 ```{prf:example}
-:label: marquplace-esempio
+:label: placeholder-example
 :class: no-number
-Cet encadré contient un exemple.
+Les exemples apparaîtront dans des encadrés de ce type.
 ```
 
 ````{prf:theorem}
-:label: marquplace-teorema
+:label: placeholder-theorem
+:nonumber:
 :class: no-number
-Cet encadré présente l’énoncé d’un théorème.
+Ce type d’encadré contient l’énoncé d’un théorème.
 ````
 
 ```{prf:corollary}
-:label: marquplace-corollario
+:label: placeholder-corollary
 :class: no-number
-Cet encadré contient l’énoncé d’un corollaire.
+Les corollaires seront présentés dans des encadrés comme celui-ci.
 ```
 
 ```{prf:lemma}
 :class: no-number
-:label: marquplace-lemma
+:label: placeholder-lemma
 Cet encadré contient l’énoncé d’un lemme.
 ```
 
 ```{admonition} _
 :class: myproof
-Cet encadré contient la démonstration d’un théorème, corollaire ou lemme. Dans
-certains cas, je choisirai de ne pas inclure la démonstration, notamment
-lorsque le résultat théorique est important mais que sa présentation nécessite
-des connaissances mathématiques avancées.
+Cet encadré contient les démonstrations des théorèmes, corollaires ou lemmes.
+Je les omettrai lorsqu’il sera important d’introduire un résultat théorique
+dont la preuve exigerait des connaissances mathématiques avancées.
 ```
 
 ```{note}
-Ce type de encadré met en valeur certains aspects secondaires que je préfère
-intégrer dans le texte plutôt que dans des notes de bas de page.
+Ce type d’encadré contient des aspects secondaires que je préfère mettre en
+évidence dans le texte plutôt que dans des notes de bas de page.
+```
+
+(sec_notation)=
+Enfin, la {numref}`tab-notation` répertorie les principales notations que
+j’utiliserai dans les formules mathématiques.
+
+```{table} Notation utilisée dans le texte pour les formules mathématiques.
+:name: tab-notation
+:align: center
+:class: [full-width]
+
+| Symbole                        | Signification                                                               |
+|:-------------------------------|:----------------------------------------------------------------------------|
+| $\mathbb N$                   | ensemble des nombres naturels                                               |
+| $\mathbb Z$                   | ensemble des nombres entiers                                                |
+| $[a..b]$                       | intervalle discret des entiers entre $a$ et $b$ (bornes incluses)          |
+| $\mathbb R$                   | ensemble des nombres réels                                                  |
+| $[a, b]$                       | intervalle fermé des réels entre $a$ et $b$                                 |
+| $(a, b)$                       | intervalle ouvert des réels entre $a$ et $b$                                |
+| $[a, b)$, $(a, b]$             | intervalles semi-ouverts des réels entre $a$ et $b$                         |
+| $A = \\{ a_1, \dots a_n \\}$ | ensemble/événement composé des éléments/résultats $a_1, \dots, a_n$        |
+| $a \in A$                     | élément $a$ de l’ensemble $A$                                               |
+| $(a_1, \dots, a_n)$           | arrangement ou permutation des éléments $a_1, \dots, a_n$                  |
+| $n!$                           | factorielle de l’entier $n$                                                 |
+| $\binom{n}{k}$                | coefficient binomial (« $n$ parmi $k$ ») de $n$ objets dans $k$ positions   |
+| $p_n$                          | nombre de permutations simples de $n$ éléments                              |
+| $P_{n; n_1, \dots, n_k}$      | nombre de permutations avec répétition de $n$ éléments distinguables regroupés en $n_1, \dots, n_k$ objets |
+| $\{ a_1, \dots, a_n \}$      | combinaison composée des éléments $a_1, \dots, a_n$                        |
+| $D_{n, k}$                     | arrangements avec répétition de $n$ objets dans $k$ positions               |
+| $d_{n, k}$                     | arrangements sans répétition de $n$ objets dans $k$ positions               |
+| $c_{n, k}$                     | combinaisons simples de $n$ objets dans $k$ positions                       |
+| $C_{n, k}$                     | combinaisons avec répétition de $n$ objets dans $k$ positions               |
+| $S \subseteq T$               | sous-ensemble/sous-événement $S$ d’un ensemble/événement $T$                |
+| $\Omega$                      | univers / espace des résultats / événement certain                          |
+| $\varnothing$                 | ensemble vide / événement impossible                                        |
+| $A \rightarrow B$             | événement/proposition $A$ implique événement/proposition $B$                |
+| $A \leftrightarrow B$         | événement/proposition $A$ est logiquement équivalent à événement/proposition $B$ |
+| $S \cup T$                    | union des ensembles/événements $S$ et $T$                                   |
+| $S \cap T$                    | intersection des ensembles/événements $S$ et $T$                            |
+| $S \backslash T$              | différence entre l’ensemble/événement $S$ et l’ensemble/événement $T$       |
+| $S \Delta T$                  | différence symétrique entre les ensembles/événements $S$ et $T$             |
+| $A \vee B$                    | disjonction logique des propositions $A$ et $B$                             |
+| $A \wedge B$                  | conjonction logique des propositions $A$ et $B$                             |
+| $\mathscr E$                  | expérience aléatoire                                                        |
+| $\omega \in \Omega$         | issue d’une expérience aléatoire                                            |
+| $\\{ \omega \\}$            | événement élémentaire                                                       |
+| $\mathsf A$                   | algèbre des événements                                                      |
+| $2^A$                          | ensemble des parties de l’ensemble $A$                                      |
+| $\mathcal P$                  | partition d’un ensemble                                                     |
+| $\mathbb P$                   | fonction de probabilité                                                     |
+| $\mathbb P(E)$                | probabilité de l’événement $E$                                              |
+| $\mathbb P(E\|F)$            | probabilité conditionnelle de l’événement $E$ sachant l’événement $F$       |
+| $\mathbb E(X)$                | espérance de la variable aléatoire $X$                                      |
+| $\mathbb E(g(X))$             | espérance de la fonction $g$ de la variable aléatoire $X$                   |
+| $\mathbb E(g(X, Y))$          | espérance de la fonction $g$ des variables aléatoires $X$ et $Y$            |
+| $a \triangleq b$              | $a$ est défini comme égal à $b$                                             |
 ```

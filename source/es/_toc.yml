@@ -23,6 +23,22 @@ parts:
         - file: P1-PAD/c1-intro-python/tipos-de-datos
       - file: P1-PAD/c2-pandas/pandas
 
+  - caption: Cálculo de probabilidades
+    chapters:
+      - file: P3/c1/combinatoria
+        sections:
+        - file: P3/c1/principio-fundamental
+        - file: P3/c1/permutaciones
+        - file: P3/c1/variaciones
+        - file: P3/c1/combinaciones
+        - file: P3/c1/enumeracion
+      - file: P3/c2/teoria-conjuntos
+        sections:
+        - file: P3/c2/conceptos-basicos
+        - file: P3/c2/conjuntos-finitos-infinitos
+        - file: P3/c2/relaciones-conjuntos
+        - file: P3/c2/operaciones-conjuntos
+
   - caption: Apéndices
     chapters:
     - file: references

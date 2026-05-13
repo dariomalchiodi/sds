@@ -1,12 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
-  
+    
   // Function to get localized labels - with fallback support
   function getLabels() {
-    console.log('getLabels called');
+    // console.log('getLabels called');
     
     // Try to get labels from Sphinx config first
     if (window.sphinxConfig && window.sphinxConfig.showCodeLabel && window.sphinxConfig.hideCodeLabel) {
-      console.log('Using Sphinx config labels');
       return {
         showCode: window.sphinxConfig.showCodeLabel,
         hideCode: window.sphinxConfig.hideCodeLabel
@@ -36,8 +35,6 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     `;
     document.head.appendChild(style);
-    
-    console.log('Splash message set to:', splashMessage);
   }
 
   // Set the splash message immediately
@@ -48,19 +45,17 @@ document.addEventListener("DOMContentLoaded", function() {
     // Chiudi il dettaglio rimuovendo l'attributo open
     details.removeAttribute("open");
   });
+
   
   // JavaScript for toggle-code functionality on pre-generated buttons
   function initializeToggleCode() {
     const toggleButtons = document.querySelectorAll('.toggle-code-button');
     
-    console.log('Found', toggleButtons.length, 'pre-generated toggle-code buttons');
-    
     toggleButtons.forEach(function(button, index) {
-      console.log('Processing toggle button', index + 1, button);
       
       // Skip if already processed
       if (button.dataset.toggleProcessed) {
-        console.log('Button', index + 1, 'already processed');
+        // console.log('Button', index + 1, 'already processed');
         return;
       }
       
@@ -77,15 +72,12 @@ document.addEventListener("DOMContentLoaded", function() {
         return;
       }
       
-      console.log('Toggle button', index + 1, 'initialized - content:', content);
-      
       // Add click event listener to the toggle button
       button.addEventListener('click', function(e) {
-        console.log('Button clicked!', index + 1);
         e.preventDefault();
         e.stopPropagation();
         
-        console.log('Current content classes:', content.className);
+        // console.log('Current content classes:', content.className);
         
         const textSpan = button.querySelector('.button-text');
         const labels = getLabels();
@@ -103,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function() {
           button.classList.add('expanded');
           // Only update the text, triangle rotates via CSS
           textSpan.textContent = ' ' + labels.hideCode;
-          console.log('Code expanded for button', index + 1);
+          // console.log('Code expanded for button', index + 1);
         }
       });
       
@@ -123,8 +115,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const currentPath = window.location.pathname;
     const currentPageTitle = document.title;
     
-    console.log('Current path:', currentPath);
-    console.log('Current title:', currentPageTitle);
+    // console.log('Current path:', currentPath);
+    // console.log('Current title:', currentPageTitle);
     
     // Check if current page is an appendix
     if (currentPath.includes('references.html') || 
@@ -134,10 +126,10 @@ document.addEventListener("DOMContentLoaded", function() {
         currentPageTitle.includes('Bibliografia')) {
       
       document.body.classList.add('appendix-page');
-      console.log('Detected appendix page, added appendix-page class');
+      // console.log('Detected appendix page, added appendix-page class');
     } else {
       document.body.classList.add('chapter-page');
-      console.log('Detected chapter page, added chapter-page class');
+      // console.log('Detected chapter page, added chapter-page class');
     }
   }
 
@@ -156,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function() {
     for (let caption of captions) {
       if (caption.textContent.includes('Appendici')) {
         appendiciFound = true;
-        console.log('Found Appendici caption');
+        // console.log('Found Appendici caption');
         
         // Get the parent paragraph
         const captionParagraph = caption.closest('p');
@@ -166,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function() {
           while (nextElement) {
             if (nextElement.tagName === 'UL') {
               nextElement.classList.add('appendix-list');
-              console.log('Added appendix-list class to ul');
+              // console.log('Added appendix-list class to ul');
               
               // Add specific class to each li within this ul
               const appendixItems = nextElement.querySelectorAll('li.toctree-l1');
@@ -195,32 +187,18 @@ document.addEventListener("DOMContentLoaded", function() {
   // Call the detection functions
   detectAppendices();
   
-  // Try to set up sidebar appendix numbering multiple times to ensure it works
-  if (!setupSidebarAppendixNumbering()) {
-    setTimeout(() => {
-      if (!setupSidebarAppendixNumbering()) {
-        setTimeout(setupSidebarAppendixNumbering, 1000);
-      }
-    }, 500);
-  }
-  
   // DISABLED: Add section numbers to cross-references
   // addSectionNumbersToReferences();
-  
-  // Also try on window load
-  window.addEventListener('load', function() {
-    setTimeout(setupSidebarAppendixNumbering, 100);
-  });
 
-  // Also initialize after delays to catch any dynamically loaded content
-  setTimeout(initializeToggleCode, 1000);
-  setTimeout(initializeToggleCode, 3000);
-
-  // And also try window load event
-  window.addEventListener('load', function() {
-    // console.log('Window loaded, initializing toggle code');
-    setTimeout(initializeToggleCode, 1000);
-  });
+  // Try immediately; if the sidebar isn't in the DOM yet, watch for it.
+  if (!setupSidebarAppendixNumbering()) {
+    const sidebarObserver = new MutationObserver(function(mutations, obs) {
+      if (setupSidebarAppendixNumbering()) {
+        obs.disconnect();
+      }
+    });
+    sidebarObserver.observe(document.body, { childList: true, subtree: true });
+  }
   
   // Function to add section numbers to cross-references
   function addSectionNumbersToReferences() {
@@ -309,9 +287,4 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
   
-  // Also try on window load
-  window.addEventListener('load', function() {
-    // DISABLED: setTimeout(addSectionNumbersToReferences, 100);
-    setTimeout(setupSidebarAppendixNumbering, 100);
-  });
 });
