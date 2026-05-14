@@ -54,4 +54,3 @@ ampliaciones y material adicional que pueden omitirse&mdash;básicamente, todos
 aquellos temas que por falta de tiempo no consigo explicar en clase, pero que
 recomiendo encarecidamente a los estudiantes que deseen profundizar en la
 materia, especialmente con vistas a continuar sus estudios a nivel de máster.
-```

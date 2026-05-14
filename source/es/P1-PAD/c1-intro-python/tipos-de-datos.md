@@ -92,7 +92,7 @@ modo que tenderé a usarlo cuando facilite la lectura del código, y evitarlo
 cuando solo lo recargue innecesariamente.
 
 
-(sec_typos-clases-objetos)=
+(sec_tipos-clases-objetos)=
 ## Tipos, clases y objetos
 
 Python admite plenamente el paradigma de programación orientada a objetos, que

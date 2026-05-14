@@ -534,7 +534,7 @@ ejemplos de código en Python junto a los conceptos que voy explicando.
 ### Asignaciones
 Asignar un valor a una variable utiliza la misma notación que en la mayoría de
 los lenguajes de programación, siguiendo la sintaxis `variable = valor`. En
-{ref}`sec_dynamic-tipig`, veremos que Python no requiere declaraciones de tipo:
+{ref}`sec_tipado-dinamico`, veremos que Python no requiere declaraciones de tipo:
 las variables se crean automáticamente la primera vez que se les asigna un
 valor, y ese valor determina implícitamente su tipo. Por ejemplo:
 

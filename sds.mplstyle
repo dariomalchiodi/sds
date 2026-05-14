@@ -13,7 +13,7 @@ axes.labelsize: 10
 axes.labelpad: 10
 axes.spines.top: False
 axes.spines.right: False
-axes.titlesize: 10
+axes.titlesize: 12
 
 # Boxplots settings
 boxplot.boxprops.color: C0
@@ -25,7 +25,7 @@ boxplot.medianprops.color: C1
 figure.dpi: 100
 figure.edgecolor: none
 figure.facecolor : "#eaf3f5"
-figure.figsize: 1, 0.67 
+figure.figsize: 4, 3.2
 
 # Grid settings
 grid.color: lightgray
@@ -39,9 +39,9 @@ lines.linewidth: 2.0
 lines.markersize: 8
 
 # Font settings
-font.size: 7
-xtick.labelsize: 7
-ytick.labelsize: 7
+font.size: 12
+xtick.labelsize: 10
+ytick.labelsize: 10
 legend.fontsize: 11
 
 # Legend
@@ -62,7 +62,7 @@ patch.force_edgecolor: True
 text.usetex: False
 
 # Savefig settings
-savefig.dpi: 300
+savefig.dpi: 100
 savefig.bbox: tight
 savefig.facecolor: "#eaf3f5"
 savefig.edgecolor: none

@@ -697,7 +697,7 @@ nello spazio di probabilità che riguarda i dadi indistinguibili.
 Sia
 
 ```{math}
-s : [1..6]^2 \to [1..6]^2, \qquad s(i, j) = (j, i)
+s : \Omega \to \Omega, \qquad s(i, j) = (j, i)
 ```
 
 la funzione che scambia i risultati dei due dadi distinguibili. Dimostrate che
@@ -706,19 +706,13 @@ modello con dadi indistinguibili se e solo se è invariato rispetto a tale
 scambio, cioè se e solo se $s(A) = A$.
 ````
 
-```{solution} ex-spazi-equip-eventi-simmetrici
+````{solution} ex-spazi-equip-eventi-simmetrici
 :class: dropdown
 
-Indichiamo con
-
-```{math}
-\pi(i, j) = \{i, j\}
-```
-
-la funzione che dimentica l’ordine dei due risultati.
-
-Supponiamo anzitutto che un evento $A \subseteq [1..6]^2$ del modello con dadi
-distinguibili possa essere descritto anche nel modello indistinguibile. Allora
+Indichiamo con $\pi$ la funzione che «dimentica» l'ordine dei due risultati,
+per cui si ha $\pi(i, j) = \{i, j\}$ per ogni $i, j$. Supponiamo anzitutto che
+un evento $A \subseteq \Omega$ del modello con dadi distinguibili possa essere
+descritto anche nel modello indistinguibile. Allora
 esiste un evento $B$ formato da coppie non ordinate tale che
 $A = \pi^{-1}(B)$. Se $(i, j) \in A$, allora $\{i, j\} \in B$, ma anche
 $\{j, i\} = \{i, j\} \in B$, quindi $(j, i) \in A$. Questo mostra che
@@ -739,39 +733,4 @@ dadi indistinguibili.
 
 La condizione $s(A) = A$ significa, in termini intuitivi, che l’evento dipende
 solo dai due valori osservati, non da quale dei due dadi li abbia mostrati.
-```
-
-````{exercise} •
-:label: ex-spazi-equip-dadi-indistinguibili-conta
-
-Motivate il fatto che il numero di esiti in $\Omega$ per l’esperimento casuale
-che consiste nel lanciare due dadi indistinguibili è uguale a $21$, e
-spiegate perché lo spazio così ottenuto non è equiprobabile.
 ````
-
-```{solution} ex-spazi-equip-dadi-indistinguibili-conta
-:class: dropdown
-
-Gli esiti possibili sono le coppie non ordinate $\{i, j\}$ con
-$1 \leq i \leq j \leq 6$.
-
-- Se i due dadi mostrano lo stesso numero, otteniamo i $6$ esiti
-  $\{1, 1\}, \dots, \{6, 6\}$.
-- Se invece mostrano numeri diversi, basta scegliere quali sono i due numeri,
-  senza preoccuparsi dell’ordine: gli esiti di questo tipo sono quindi
-  $\binom{6}{2} = 15$.
-
-In totale si ottiene
-
-```{math}
-6 + 15 = 21 
-\enspace.
-```
-
-Lo spazio non è equiprobabile perché gli esiti non hanno tutti lo stesso peso.
-Se $i < j$, l’esito $\{i, j\}$ corrisponde infatti a due esiti ordinati del
-modello con dadi distinguibili, cioè $(i, j)$ e $(j, i)$, e ha quindi
-probabilità $2/36$. Invece ciascun esito del tipo $\{i, i\}$ corrisponde a un
-solo esito ordinato e ha probabilità $1/36$. Poiché queste probabilità sono
-diverse, lo spazio non è equiprobabile.
-```

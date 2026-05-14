@@ -17,7 +17,7 @@ grandes rasgos el hilo lógico que está detrás de la organización de los
 contenidos e introducir, de manera relativamente informal, los conceptos clave;
 por otro lado, explica cómo utilizar los componentes interactivos del libro.
 Como se indica en el {ref}`chap_enfoque`, en el texto haré referencia a un
-{ref}`sec_installacion` conjunto de datos obtenido modificando un subconjunto
+{ref}`sec_instalacion` conjunto de datos obtenido modificando un subconjunto
 adecuado del [Superhero database](http://www.superherodb.com). Los ejemplos
 harán referencia al mundo de los superhéroes, cada uno de los cuales será
 descrito mediante los _atributos_ indicados en la {numref}`tab_dataset`.
@@ -259,7 +259,7 @@ observación de cualquiera de sus elementos, o de un conjunto de elementos, bajo
 la hipótesis de no saber de antemano qué observaremos (recuerden la
 [Ley de Franklin](#par_franklin-law)), pero asumiendo que cada superhéroe tiene
 la misma probabilidad que los demás de ser observado. Desde el
-{ref}`{chap_calcolo-combinatorio}` hasta el {ref}`chap_va-e-modelli-continui`,
+{ref}`chap_combinatoria` hasta el {ref}`chap_va-e-modelli-continui`,
 el libro describe la _Teoría de la Probabilidad_, proporcionando algunas
 herramientas formales para manejar la incertidumbre derivada de no saber qué
 será observado en cada caso. Más concretamente, nos centraremos en _sucesos_,
@@ -614,14 +614,18 @@ Ser _data scientist_ significa no solo saber conjugar las competencias en
 probabilidad, estadística y programación informática, sino también
 dominar varias herramientas de _scripting_ que permiten convertir,
 adaptar y limpiar los datos: muy a menudo, el uso de estas herramientas es
-mediado por una terminal y su correspondiente _shell_.
+mediado por una terminal y su correspondiente _shell_. Dependiendo del ámbito
+profesional, los datos pueden estar disponibles de forma más o menos
+estructurada, y su gestión puede requerir procedimientos complejos, incluso
+mediante formatos de representación distintos del CSV o bases de datos
+articuladas.
 ```
 
-```{exercise} •••
+````{exercise} •••
 Reconsideren el ejercicio anterior, observando el contenido de cada columna
 del archivo CSV sin utilizar un procesador de hojas de cálculo, sino usando
 solo una terminal y los comandos de _shell_.
-```
+````
 
 ```{exercise} ••
 Basándose en la idea que se han hecho sobre el conjunto de datos de superhéroes

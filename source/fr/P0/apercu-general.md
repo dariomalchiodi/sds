@@ -10,7 +10,7 @@ kernelspec:
 ---
 
 (sec_apercu-general)=
-# Vue d’ensemble
+# Vue d'ensemble
 
 Le but de ce chapitre est double : d’une part, il vise à décrire la logique
 selon laquelle j’ai organisé les contenus et à introduire les concepts clés de

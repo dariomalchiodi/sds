@@ -10,7 +10,7 @@ kernelspec:
 ---
 
 (sec_utilisation-pedagogique)=
-# Utilisation dans l’enseignement
+# Utilisation dans l'enseignement
 
 Depuis quelques années, je suis responsable de l’enseignement
 {extlink}`Statistiques et analyse des données
