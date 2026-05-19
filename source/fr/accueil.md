@@ -1,4 +1,4 @@
-![SDS logo](../_static/img/logo.png)
+![SDS logo](../_static/img/logo.svg)
 
 # Superhero Data Science
 ## Analyse de données, calcul de probabilités et statistique

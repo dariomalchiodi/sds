@@ -87,8 +87,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Remove any remaining details elements that might not have been converted
-    const remainingDetails = document.querySelectorAll('details');
+    // Hide any remaining sidebar details elements that weren't converted to custom collapsibles,
+    // but preserve elements that belong to the UI (e.g. the privacy notice).
+    const remainingDetails = document.querySelectorAll('details:not(.privacy-notice)');
     remainingDetails.forEach(function(detail) {
         detail.style.display = 'none';
     });

@@ -217,7 +217,7 @@ exclude_patterns = []
 #
 html_theme = 'sphinx_book_theme'
 html_title = 'Superhero Data Science'
-html_logo = '../_static/img/logo.png'
+html_logo = '../_static/img/logo.svg'
 html_favicon = '../_static/img/sds.ico'
 
 html_theme_options = {
@@ -229,15 +229,24 @@ html_theme_options = {
     'pygments_light_style': 'abap',
     'pygments_dark_style': 'native',
     'article_header_end': [],  # Enable article header area for language switcher
-    'extra_footer': '<p><a rel="license" '
-                    'href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it"'
-                    'target="_blank"> CC BY-NC-SA 4.0</a></p>',
+    'extra_footer': (
+        '<p><a rel="license" '
+        'href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it"'
+        'target="_blank"> CC BY-NC-SA 4.0</a></p>'
+    ),
 }
 
 html_context = {
     "show_code_label": "Mostra codice",
     "hide_code_label": "Nascondi codice",
     "pyscript_wait_label": "Attendi il caricamento di PyScript",
+    "privacy_notice_label": "Informativa sulla Privacy",
+    "privacy_notice_text": (
+        "Questo sito non utilizza cookie di profilazione, non raccoglie dati "
+        "personali degli utenti e non installa alcun cookie sui dispositivi dei "
+        "visitatori. Non vengono effettuate attività di tracciamento o analisi "
+        "comportamentale."
+    ),
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,

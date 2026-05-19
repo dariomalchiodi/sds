@@ -175,7 +175,7 @@ exclude_patterns = []
 #
 html_theme = 'sphinx_book_theme'
 html_title = 'Superhero Data Science'
-html_logo = '../_static/img/logo.png'
+html_logo = '../_static/img/logo.svg'
 html_favicon = '../_static/img/sds.ico'
 
 html_theme_options = {
@@ -186,13 +186,18 @@ html_theme_options = {
     'pygments_light_style': 'abap',
     'pygments_dark_style': 'native',
     'article_header_end': [],  # Enable article header area for language switcher
-    # "extra_footer": "<p>Footer HTML</p>",
 }
 
 html_context = {
     "show_code_label": "Show code",
     "hide_code_label": "Hide code",
-    "pyscript_wait_label": "Wait for PyScript to load"
+    "pyscript_wait_label": "Wait for PyScript to load",
+    "privacy_notice_label": "Privacy Notice",
+    "privacy_notice_text": (
+        "This site does not use profiling cookies, does not collect personal "
+        "data from users, and does not install any cookies on visitors' devices. "
+        "No tracking or behavioural analysis activities are carried out."
+    ),
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,

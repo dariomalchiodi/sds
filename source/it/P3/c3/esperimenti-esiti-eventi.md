@@ -476,6 +476,7 @@ Considerate l'esperimento di scegliere casualmente un colore dei capelli nel
 dataset dei supereroi. Descrivete lo spazio degli esiti $\Omega$ e indicate se
 è finito o infinito.
 ```
+
 ````{solution} ex-spazio-esiti-capelli
 :class: dropdown
 

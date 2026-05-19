@@ -284,15 +284,40 @@ def _inject_mpl_style_into_code_cells(content):
     '''Insert hidden {code-cell} blocks to set matplotlib rcParams.
 
     A hidden (remove-cell) cell is inserted immediately before each matplotlib
-    {code-cell}.  Cells inside a prf:example directive receive white background
-    rcParams; all other cells receive the standard #eaf3f5 values so that white
-    set by a previous example cell does not bleed into later output.
+    {code-cell}.  A cell receives white background rcParams if either:
+      - the cell itself is inside a prf:example directive, OR
+      - its CELL-PLACEHOLDER-N marker is inside a prf:example directive
+        (covers the common pattern where the code cell is defined before the
+        example block but its output is displayed via a placeholder inside it).
+    All other cells receive the standard #eaf3f5 values so that white set by a
+    previous example cell does not bleed into later output.
     The original cells are left unchanged.
     '''
     box_ranges = _find_box_directive_ranges(content)
 
     def _in_box(pos):
         return any(s <= pos <= e for s, e in box_ranges)
+
+    # Collect cell numbers whose CELL-PLACEHOLDER-N sits inside a box
+    placeholder_re = re.compile(r'<!--\s*CELL-PLACEHOLDER-(\d+)\s*-->')
+    cells_with_box_placeholder = set()
+    for pm in placeholder_re.finditer(content):
+        if _in_box(pm.start()):
+            cells_with_box_placeholder.add(pm.group(1))
+
+    # Build a mapping (marker_start, marker_end) -> cell_number
+    marker_re = re.compile(
+        r'<!--\s*CELL-MARKER-(\d+)-START\s*-->.*?<!--\s*CELL-MARKER-\1-END\s*-->',
+        re.DOTALL
+    )
+    marker_ranges = {(mm.start(), mm.end()): mm.group(1)
+                     for mm in marker_re.finditer(content)}
+
+    def _cell_number_for_pos(pos):
+        for (start, end), num in marker_ranges.items():
+            if start <= pos <= end:
+                return num
+        return None
 
     header_re = re.compile(
         r'^(`{3,})\{code-cell\}\s+python[^\n]*\n(?::[^\n]*\n)*\n?',
@@ -312,7 +337,9 @@ def _inject_mpl_style_into_code_cells(content):
         parts.append(content[last:m.start()])
 
         if _uses_matplotlib(body):
-            rcparams = _WHITE_RCPARAMS if _in_box(m.start()) else _BLUE_RCPARAMS
+            cell_num = _cell_number_for_pos(m.start())
+            use_white = _in_box(m.start()) or (cell_num in cells_with_box_placeholder)
+            rcparams = _WHITE_RCPARAMS if use_white else _BLUE_RCPARAMS
             parts.append(
                 fence + "{code-cell} python\n"
                 ":tags: [remove-cell]\n\n"
@@ -1306,12 +1333,23 @@ def _apply_margin_notes(soup, counter, dry_run):
 _NUMBERING_SKIP_NAMES = frozenset(
     ('genindex.html', 'prf-prf.html', 'search.html', 'index.html'))
 
+# Matches stale number prefixes like "16. " or "16.3. " or "A. " inserted by
+# a previous post-processing run, so the function is idempotent.
+_NUM_PREFIX_RE = re.compile(r'^(?:[A-Z]|\d+(?:\.\d+)*)\.[  ]+')
+
 
 def _apply_numbering(soup, file_path, language, numbered_toc):
     """Apply chapter/section numbering and label substitution to soup.
     Returns True (soup is always modified when this is called)."""
     def sanitize(text):
         return text.replace('’', "'").strip()
+
+    def strip_stale_prefix(tag):
+        """Remove a stale number prefix from the first NavigableString child."""
+        if tag.contents and isinstance(tag.contents[0], NavigableString):
+            cleaned = _NUM_PREFIX_RE.sub('', str(tag.contents[0]))
+            if cleaned != str(tag.contents[0]):
+                tag.contents[0].replace_with(NavigableString(cleaned))
 
     toc_nav = (soup.find('nav', class_='bd-links') or
                soup.find('nav', class_='bd-docs-nav'))
@@ -1320,6 +1358,7 @@ def _apply_numbering(soup, file_path, language, numbered_toc):
 
     for t, n in zip(toc_nav.find_all('li')[1:], numbered_toc.toc):
         a_tag = t.find('a')
+        strip_stale_prefix(a_tag)
         original_title = sanitize(a_tag.decode_contents())
         if original_title != n['title']:
             print(f"  - Mismatching TOC item: '{original_title}' "
@@ -1331,6 +1370,7 @@ def _apply_numbering(soup, file_path, language, numbered_toc):
     prefix = f'build/sds/{language}/'
     relative_file_path = file_path[len(prefix):][:-5]
     if relative_file_path != get_root_doc(language):
+        strip_stale_prefix(title)
         title.insert(0, NavigableString(
             f"{numbered_toc.file_to_number[relative_file_path]}. "))
 
@@ -2096,9 +2136,16 @@ def apply_numbering(language):
         def sanitize(text):
             """Sanitize text to remove unwanted characters."""
             return text.replace('’', "'").strip()
-        
+
+        def strip_stale_prefix(tag):
+            if tag.contents and isinstance(tag.contents[0], NavigableString):
+                cleaned = _NUM_PREFIX_RE.sub('', str(tag.contents[0]))
+                if cleaned != str(tag.contents[0]):
+                    tag.contents[0].replace_with(NavigableString(cleaned))
+
         for t, n in zip (toc_nav.find_all('li')[1:], numbered_toc.toc):
             a_tag = t.find('a')
+            strip_stale_prefix(a_tag)
             original_title = sanitize(a_tag.decode_contents())
             if original_title != n['title']:
                 print(f"  - Mismatching TOC item: '{original_title}' "
@@ -2107,9 +2154,10 @@ def apply_numbering(language):
             a_tag.insert(0, NavigableString(f"{n['number']}. "))
 
         title = file_soup.find('h1')
-        
+
         relative_file_path = file_path[len(f'build/sds/{language}/'):][:-5]
         if relative_file_path != get_root_doc(language):
+            strip_stale_prefix(title)
             title.insert(0, \
                 NavigableString( \
                     f"{numbered_toc.file_to_number[relative_file_path]}. "))

@@ -127,6 +127,7 @@ plt.ioff()
 :tags: [hide-input]
 
 import altair as alt
+from myst_nb import glue
 import pandas as pd
 
 heroes = pd.read_csv('data/heroes.csv', index_col=0).convert_dtypes()
@@ -159,10 +160,10 @@ bars = alt.Chart(source).mark_bar().encode(
         )
 # Create the final interactive chart
 chart = (points & bars).configure(background='#eaf3f5')
-chart
+glue('altair-example', chart)
 ```
 
-````{customfigure}
+````{glue:figure} altair-example
 :name: fig_altair-example
 :class: left-align
 
@@ -222,10 +223,10 @@ fig, ax = plt.subplots()
 data = heroes.weight[heroes.weight < 200]
 
 ax.hist(data, bins=30, density=True)
-fig
+glue('histogram', fig)
 ```
 
-````{customfigure}
+````{glue:figure} histogram
 :name: fig_histogram
 
 A histogram of superhero weights.
@@ -370,9 +371,7 @@ curve_pdf, = ax_pdf.plot(x, y, alpha=0.5, color='tab:blue')
 
 
 ax_pdf.set_xlabel('$x$', fontsize=12, ha='right')
-#ax.xaxis.set_label_coords(1.07, 0.03)
 ax_pdf.set_ylabel('$f$', fontsize=12, rotation=0)
-#ax.yaxis.set_label_coords(0., 1.09)
 ax_pdf.set_xlim(0, 200)
 ax_pdf.set_ylim(0, 0.02)
 

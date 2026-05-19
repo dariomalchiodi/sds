@@ -92,3 +92,8 @@
 /* All appendix and main content numbering rules completely removed */
 
 /* All sidebar TOC numbering completely removed */
+
+/* Italian solution label */
+.exercise.admonition + .solution.admonition > .admonition-title::after {
+  content: "Soluzione";
+}

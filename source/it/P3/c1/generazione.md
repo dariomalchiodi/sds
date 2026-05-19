@@ -176,6 +176,7 @@ pattuglia ai cinque [Teen Titans](https://dc.fandom.com/wiki/Teen_Titans)
 stesso supereroe anche più di un turno. Contate e stampate inoltre il numero
 totale di turnazioni possibili.
 ````
+
 ````{solution} ex-gen-titans-turni
 :class: dropdown
 
@@ -218,6 +219,7 @@ Generate e stampate tutte le possibili coppie formate dai sei membri dei
 [Watchmen](https://dc.fandom.com/wiki/Watchmen) (Rorschach, Nite Owl, Silk
 Spectre, Ozymandias, Dottor Manhattan, Comedian).
 ````
+
 ````{solution} ex-gen-watchmen-coppie
 :class: dropdown
 
@@ -236,6 +238,7 @@ for c in it.combinations(watchmen, 2):
 Calcolate quante tra le combinazioni con ripetizione di Dupli-Kate e Multi-Paul
 in quattro posti contengono almeno un clone di Kate.
 ````
+
 ````{solution} ex-gen-dk-mp-ripetizione
 :class: dropdown
 
@@ -254,6 +257,7 @@ print(f'Esattamente {count} combinazioni contengono almeno un clone di Kate.')
 Riconsiderate l'esercizio precedente, risolvendolo usando una _list
 comprehension_.
 ````
+
 ````{solution} ex-gen-dk-mp-ripetizione-comp
 :class: dropdown
 
@@ -273,6 +277,7 @@ Super-Heroes](https://dc.fandom.com/wiki/Legion_of_Super-Heroes_(Earth-Prime))
 in $3$ posti soddisfano la condizione che il primo e il terzo posto siano
 occupati dallo stesso eroe, senza memorizzare l'intera lista.
 ````
+
 ````{solution} ex-gen-iter-vs-lista
 :class: dropdown
 
@@ -294,6 +299,7 @@ Flight (vedi l’{prf:ref}`ex-disposizioni-con-ripetizione-1`) in tre posti che
 non includono Guardian? Verificate sperimentalmente la risposta a questa
 domanda generando tutte le disposizioni e contando quelle che lo escludono.
 ````
+
 ````{solution} ex-gen-alpha-flight-senza-guardian
 :class: dropdown
 
@@ -320,6 +326,7 @@ alle disposizioni semplici e alle combinazioni. Verificate che la funzione si
 comporti correttamente nel caso in cui gli argomenti `n` e `k` sono
 rispettivamente uguali a $5$ e $3$.
 ````
+
 ````{solution} ex-verifica-formula
 :class: dropdown
 
@@ -364,6 +371,7 @@ Generate tutte le permutazioni degli oggetti nel multiinsieme che contiene
 due cloni di Dupli-Kate e tre di Multi-Paul, inserendo in un insieme tutte
 le permutazioni semplici.
 ````
+
 ````{solution} ex-gen-cloni-dk-anagrammi
 :class: dropdown
 
@@ -410,6 +418,7 @@ solamente dieci permutazioni semplici dei cinque membri dei
 Elasti-Girl, Crazy Jane, Flex Mentallo), senza generare né scorrere le
 restanti $5! - 10 = 110$ permutazioni.
 ````
+
 ````{solution} ex-gen-doom-patrol-islice
 :class: dropdown
 
@@ -434,6 +443,7 @@ invisibilità, psicocinesi, rigenerazione e precognizione, escludendo quelle
 che contengono simultaneamente telepatia e psicocinesi. Quante sono queste
 combinazioni?
 ````
+
 ````{solution} ex-gen-peter-poteri-incompatibili
 :class: dropdown
 
@@ -465,6 +475,7 @@ Hulkling, Wiccan, Speed, Stature, Vision, Kate Bishop, Noh-Varr e Jonas) e
 $k = 2$, tenendo conto che il numero di coppie di squadre &mdash; in questo
 caso &mdash; deve essere uguale a $c_{9,2} \cdot c_{7,2} = 36 \cdot 21 = 756$.
 ````
+
 ````{solution} ex-gen-young-avengers-squadre
 :class: dropdown
 

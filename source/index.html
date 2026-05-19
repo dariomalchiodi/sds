@@ -108,7 +108,7 @@
     }
 
     .brand-logo {
-      width: 110px;
+      width: 200px;
       height: auto;
       filter: drop-shadow(0 4px 12px rgba(1, 1, 119, 0.15));
       animation: a-logo 0.65s var(--ease) both;
@@ -201,6 +201,30 @@
       color: var(--muted);
       margin-bottom: 1.6rem;
       animation: a-fade 0.5s var(--ease) 0.45s both;
+      position: relative;
+      height: 1.1em;
+    }
+
+    .lang-cycle {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      white-space: nowrap;
+      animation: cycle-lang 10s infinite;
+    }
+
+    .lang-cycle:nth-child(1) { animation-delay: 0s;    }
+    .lang-cycle:nth-child(2) { animation-delay: 2.5s;  }
+    .lang-cycle:nth-child(3) { animation-delay: 5s;    }
+    .lang-cycle:nth-child(4) { animation-delay: 7.5s;  }
+
+    @keyframes cycle-lang {
+      0%    { opacity: 0; }
+      4%    { opacity: 1; }
+      21%   { opacity: 1; }
+      25%   { opacity: 0; }
+      100%  { opacity: 0; }
     }
 
     .lang-grid {
@@ -391,7 +415,7 @@
       }
 
       .brand-logo {
-        width: 90px;
+        width: 160px;
       }
 
       .brand-inner {
@@ -422,7 +446,7 @@
       }
 
       .brand-logo {
-        width: 68px;
+        width: 110px;
         flex-shrink: 0;
       }
 
@@ -557,7 +581,7 @@
       <div class="brand-inner">
         <img
           class="brand-logo"
-          src="it/_static/img/logo.png"
+          src="it/_static/img/logo.svg"
           alt="Superhero Data Science logo"
         >
         <div class="brand-copy">
@@ -567,6 +591,13 @@
           <p class="brand-tagline">A data&nbsp;science journey<br>through the world of&nbsp;superheroes</p>
         </div>
       </div>
+      <details class="privacy-notice privacy-notice--sidebar">
+        <summary>Informativa sulla Privacy</summary>
+        <p>Questo sito non utilizza cookie di profilazione, non raccoglie dati
+        personali degli utenti e non installa alcun cookie sui dispositivi dei
+        visitatori. Non vengono effettuate attività di tracciamento o analisi
+        comportamentale.</p>
+      </details>
     </aside>
 
     <!-- ══════════════════════════════
@@ -574,7 +605,12 @@
     ══════════════════════════════ -->
     <main class="panel--select">
       <div class="select-inner">
-        <p class="select-eyebrow" aria-hidden="true">Choose your language</p>
+        <p class="select-eyebrow" aria-label="Choose your language">
+          <span class="lang-cycle" lang="it">Scegli la lingua</span>
+          <span class="lang-cycle" lang="en">Choose your language</span>
+          <span class="lang-cycle" lang="fr">Choisissez votre langue</span>
+          <span class="lang-cycle" lang="es">Elige tu idioma</span>
+        </p>
 
         <nav aria-label="Language selection">
           <ul class="lang-grid">

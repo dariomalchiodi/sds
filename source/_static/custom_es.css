@@ -71,4 +71,9 @@
     color: var(--color-brand-primary);
 }
 
+/* Spanish solution label */
+.exercise.admonition + .solution.admonition > .admonition-title::after {
+  content: "Solución";
+}
+
 

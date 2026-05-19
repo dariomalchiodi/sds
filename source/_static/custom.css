@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Lora&family=IBM+Plex+Mono&Alike&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
 
 :root {
-  --serif-font: "Alike", "Lora", serif;
-  --sans-serif-font: "Oswald", sans;
-  --tt-font: 'Source Code Pro', monospace;
+  --serif-font: "Lora", serif;
+  --sans-serif-font: "Oswald", sans-serif;
+  --tt-font: "IBM Plex Mono", monospace;
   --dataframe-font: 'IBM Plex Mono', monospace;
   --background-color: #eaf3f5;
   --text-primary-color: #010177;
@@ -15,6 +15,26 @@
   --dataframe-color: steelblue;
   --table-heading: #888;
   --stderr-background: #ffecbb;
+  /* Warm accent — antique gold for mathematical structures */
+  --accent-gold: #c17f24;
+  --accent-gold-pale: rgba(193, 127, 36, 0.09);
+  --accent-gold-tint: #faf5ea;
+  --accent-gold-light: #e8d0a0;
+  /* Theorem/lemma cool tint */
+  --theorem-bg: #f0f4f8;
+  --theorem-tint: rgba(1, 1, 119, 0.06);
+}
+
+/* Override sphinx-book-theme's amber #e89217 — must match the theme's selector specificity */
+html[data-theme=light],
+html[data-theme=dark],
+html:not([data-theme]) {
+  --pst-color-link-hover: var(--link-color);
+}
+
+.search-button-field:hover {
+  border-color: var(--link-color) !important;
+  box-shadow: inset 0 0 0 1px rgba(0, 102, 153, 0.4) !important;
 }
 
 body {
@@ -62,12 +82,12 @@ a.external::after {
 /* Academic-style blockquotes */
 blockquote {
   font-style: italic;
-  font-family: "Lora", Georgia, serif;
-  border-left: 3px solid #555;
+  font-family: var(--serif-font);
+  border-left: 3px solid var(--link-color);
   margin: 1.5em 2em;
   padding: 0.5em 1em;
   background: none;
-  color: #222;
+  color: var(--text-primary-color);
   border-radius: 0; /* remove rounded corners */
 }
 
@@ -100,16 +120,32 @@ ul > li > p::before {
 }
 
 .admonition.note {
-  background-color: #b3d4fc;
-  border-left: 4px solid #006699;
+  background-color: #e8f0f8;
+  border-left: 4px solid var(--text-primary-color);
 }
 .admonition.warning {
   background-color: #fef3c7;
-  border-left: 4px solid #92400e;
+  border-left: 4px solid var(--accent-gold);
 }
 
 aside.footnote {
   font-size: 80%;
+}
+
+/* Override Sphinx's yellow :target highlight (basic.css via @import in theme.css)
+   with a palette-consistent teal tint. !important needed because basic.css uses
+   the same specificity and !important wins regardless of load order. */
+.footnote:target {
+  background-color: rgba(0, 102, 153, 0.08) !important;
+  border-left: 2px solid var(--link-color);
+  padding-left: 0.5em;
+  border-radius: 0 3px 3px 0;
+}
+
+dt:target,
+span.highlighted {
+  background-color: rgba(0, 102, 153, 0.12) !important;
+  border-radius: 2px;
 }
 
 aside.margin {
@@ -124,11 +160,26 @@ aside.footnote a.footnote-reference {
   font-size: 75%;
 }
 
-/* Hide scrollbar unless needed */
+/* Compact sidebar logo — brand mark, not a hero image */
+.bd-sidebar-primary .navbar-brand.logo {
+  justify-content: center;
+  padding-top: 0.75rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(1, 1, 119, 0.12);
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.bd-sidebar-primary .navbar-brand.logo .logo__image {
+  width: 100px;
+  height: auto;
+  max-width: 100%;
+}
+
+/* Sidebar base styles — scrollbar hidden, scrolling happens in .bd-sidebar-scroll-area */
 .bd-sidebar-primary {
-    background-color: var(--background);
+    background-color: var(--background-color);
     font-family: var(--sans-serif-font);
-    overflow-y: auto;
     scrollbar-width: none; /* Firefox */
 }
 
@@ -136,8 +187,9 @@ aside.footnote a.footnote-reference {
     display: none; /* Chrome, Safari */
 }
 
+
 .bd-sidebar-secondary {
-    background-color: var(--background);
+    background-color: var(--background-color);
     font-family: var(--sans-serif-font);
 }
 
@@ -171,10 +223,11 @@ div.cell-div-container:has(+ .plot-container) {
 
 div.cell_input {
   margin-bottom: 0 !important;
-  border-left: 4px solid blue !important;
-  border-top: 1px solid lightgray !important;
-  border-right: 1px solid lightgray !important;
-  border-bottom: 1px solid lightgray !important;
+  background-color: rgba(1, 1, 119, 0.025) !important;
+  border-left: 4px solid var(--link-color) !important;
+  border-top: 1px solid rgba(0, 102, 153, 0.18) !important;
+  border-right: 1px solid rgba(0, 102, 153, 0.18) !important;
+  border-bottom: 1px solid rgba(0, 102, 153, 0.18) !important;
   border-radius: 0 !important;
 }
 
@@ -210,6 +263,22 @@ table::after {
 
 figcaption {
   clear: both;
+}
+
+/* Default figure alignment: left-aligned block (overrides theme's margin:auto/center) */
+figure.align-default {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+figure.align-default figcaption {
+  margin-left: 0;
+  margin-right: auto;
+  text-align: left;
+}
+
+.pst-scrollable-table-container {
+  margin-bottom: 2em;
 }
 
 .pst-scrollable-table-container p:first-of-type {
@@ -252,10 +321,9 @@ span.katex {
   padding-top: 0.5em;
   padding-bottom: 0.5em;
   padding-left: 0.7em;
-  border-left: 4px solid lightblue;
-  /* border-top: 1px solid lightgray; */
-  border-right: 1px solid lightgray;
-  border-bottom: 1px solid lightgray;
+  border-left: 4px solid rgba(0, 102, 153, 0.3);
+  border-right: 1px solid rgba(0, 102, 153, 0.12);
+  border-bottom: 1px solid rgba(0, 102, 153, 0.12);
   font-family: var(--tt-font);
   font-size: 90%;
   white-space: pre-wrap;
@@ -294,8 +362,7 @@ span.katex {
   border: none;
   border-radius: 0;
   
-  /* Use Lora font to match body text */
-  font-family: 'Lora', serif;
+  font-family: var(--serif-font);
   font-size: 100%;
   font-style: normal;
   font-weight: normal;
@@ -336,7 +403,7 @@ span.katex {
 /* Inline Python splash style - temporary loading state */
 .py-inline-splash {
   background-color: #d3d3d3; /* light gray background */
-  font-family: 'Source Code Pro', monospace; /* teletype/monospace font */
+  font-family: var(--tt-font);
   padding: 2px 4px;
   border-radius: 3px;
   display: inline;
@@ -365,6 +432,20 @@ span.katex {
 
 .prev-next-title {
   font-family: var(--sans-serif-font);
+}
+
+/* Subtitle ("precedente" / "successivo"): treat as a navigation label —
+   same font family as the title but tiny, fully uppercased, and tracked,
+   so the hierarchy reads as label → destination rather than two body lines. */
+p.prev-next-subtitle {
+  font-family: var(--sans-serif-font);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase !important;
+  color: var(--text-primary-color);
+  opacity: 0.55;
+  margin-bottom: 0.2rem;
 }
 
 .prev-next-area a:hover p.prev-next-title,
@@ -438,11 +519,11 @@ a.left-prev:hover, a.right-next:hover {
 
 .example.admonition {
   background-color: white;
-  border-left: 4px solid rgb(255, 193, 7);
+  border-left: 4px solid var(--accent-gold);
 }
 
 .example.admonition > .admonition-title {
-  background-color: #fef9e7;
+  background-color: var(--accent-gold-pale);
 }
 
 .example.admonition > .admonition-title::after {
@@ -478,6 +559,71 @@ table thead tr {
 
 table tr {
   background-color: inherit !important;
+}
+
+/* Docutils tables (MyST markdown tables) — book design system */
+/* MyST markdown tables — correct selector is table.table (Bootstrap class added by pydata theme) */
+table.table:not(.dataframe) {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0;
+  font-size: 0.92em;
+  /* Kill Bootstrap's outer border; only horizontal rules allowed */
+  border: none !important;
+  --bs-table-border-color: transparent;
+}
+
+table.table:not(.dataframe) thead tr {
+  background-color: var(--text-primary-color) !important;
+  border-bottom: none !important;
+  border-top: none !important;
+}
+
+table.table:not(.dataframe) thead th {
+  padding: 0.55em 1.2em;
+  color: #d4e2f4;
+  font-family: var(--sans-serif-font);
+  font-size: 0.82em;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: none !important;
+}
+
+table.table:not(.dataframe) tbody tr:nth-child(odd) {
+  background-color: #ffffff !important;
+}
+
+table.table:not(.dataframe) tbody tr:nth-child(even) {
+  background-color: var(--background-color) !important;
+}
+
+table.table:not(.dataframe) tbody tr:hover {
+  background-color: rgba(0, 102, 153, 0.08) !important;
+  transition: background-color 0.12s ease;
+}
+
+table.table:not(.dataframe) tbody tr:last-child td {
+  border-bottom: 1.5px solid rgba(1, 1, 119, 0.25) !important;
+}
+
+/* All cells: only horizontal separators, zero vertical lines */
+table.table:not(.dataframe) tbody td,
+table.table:not(.dataframe) tbody th {
+  padding: 0.45em 1.2em;
+  border-top: 1px solid rgba(1, 1, 119, 0.08) !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  color: var(--text-primary-color);
+}
+
+/* Wide display math: scroll horizontally instead of overflowing the article */
+div.math {
+  overflow-x: auto;
+  overflow-y: visible;
+  max-width: 100%;
+  padding-bottom: 4px;
 }
 
 table.dataframe {
@@ -563,7 +709,7 @@ table.centered-content td {
     border: none;
     padding: 0;
     cursor: pointer;
-    font-family: sans-serif;
+    font-family: var(--sans-serif-font);
     font-size: 0.8rem;
     color: var(--pst-color-link);
     text-decoration: none;
@@ -646,13 +792,106 @@ p.component-author {
   display: none;
 }
 
+/* ── Footer colophon ──────────────────────────────────────────────────────────
+   Treat the copyright + license block as a book colophon: horizontal, tight,
+   micro-uppercase Oswald tracking.  Two-column layout: copyright left,
+   CC license right.
+   ──────────────────────────────────────────────────────────────────────────── */
+
+.bd-footer-content__inner.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+/* Hide the empty footer-item */
+.bd-footer-content__inner .footer-item:empty {
+  display: none;
+}
+
+/* Both the copyright text and the CC license share the same colophon style */
+p.copyright,
+.extra_footer p {
+  font-family: var(--sans-serif-font);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-primary-color);
+  opacity: 0.48;
+  margin: 0;
+}
+
+.extra_footer a {
+  font-family: var(--sans-serif-font);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-primary-color) !important;
+  opacity: 0.48;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 0.05em;
+  transition: opacity 0.15s ease;
+}
+
+.extra_footer a:hover {
+  opacity: 0.75;
+}
+
 /* Ensure navigation links have proper font size */
 nav.bd-links li > a {
   font-size: 0.9rem !important;
 }
 
-nav.bd-links p.caption  {
-  margin-top: 0;
+.bd-sidebar nav.bd-links p.caption {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-family: var(--sans-serif-font);
+  color: var(--text-primary-color) !important;
+  opacity: 0.48;
+  margin-top: 1.4rem;
+  margin-bottom: 0.1rem;
+  padding-bottom: 0.35rem;
+  position: relative;
+}
+
+/* Inset underline below each part title — uses ::before because ::after is
+   the chevron. Color is divided by parent opacity (0.12 / 0.48 = 0.25) so
+   the rendered result matches the logo separator rgba(1,1,119,0.12). */
+.bd-sidebar nav.bd-links p.caption::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0.5rem;
+  height: 1px;
+  background-color: rgba(1, 1, 119, 0.25);
+}
+
+/* Spacing above every part caption except the first */
+.bd-sidebar nav.bd-links ul + p.caption {
+  padding-top: 0.55rem;
+  margin-top: 0.8rem;
+}
+
+/* Horizontal separator drawn at the bottom of each part's chapter list.
+   Placed on ul::after (no opacity inheritance) so color and width match
+   the logo separator exactly. Only between parts — not after the last one. */
+.bd-sidebar nav.bd-links p.caption + ul:not(:last-child)::after {
+  content: '';
+  display: block;
+  height: 1px;
+  background-color: rgba(1, 1, 119, 0.12);
+  margin: 0.8rem 0.5rem 0 0;
 }
 
 /* Ensure theorem type pseudo-elements have proper font size */
@@ -669,7 +908,7 @@ nav.bd-links p.caption  {
 .cell-graph table {
   border-collapse: collapse;
   margin: 1em 0;
-  font-family: sans-serif;
+  font-family: var(--sans-serif-font);
   font-size: 0.8em;
   width: 100%;
   /* border-radius: 5px; */
@@ -750,6 +989,14 @@ nav.bd-links p.caption  {
   width: 200px;
   height: auto;
   max-width: 100%;
+}
+
+/* Logo in language landing pages (in-content markdown image) */
+.bd-content img[alt="SDS logo"] {
+  width: 200px;
+  height: auto;
+  display: block;
+  margin: 0 auto 1.5rem;
 }
 
 .right-section {
@@ -881,45 +1128,43 @@ nav.bd-links .current > a:not(.bd-sidenav__home-link .toctree-l1 > a) {
 /* Collapsible TOC elements */
 .part-collapsible, .chapter-collapsible {
     cursor: pointer;
-    position: relative;
-    margin-right: calc(30px + 0.1875rem);
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
     padding-top: 0.25rem;
 }
 
-/* Chapter links should show normal link cursor on main area, pointer on chevron */
+/* Chapter links: force full-width flex so chevron right-aligns correctly */
 .chapter-collapsible {
-    cursor: default; /* Let the link handle its own cursor */
+    cursor: default;
+    display: flex !important;
+    width: 100% !important;
+    box-sizing: border-box;
 }
 
-/* Add chevron using FontAwesome (matching pydata-sphinx-theme approach) */
-/* Target part headers and chapter links specifically */
+/* Chapter chevrons slightly smaller than part chevrons */
+.chapter-collapsible::after {
+    font-size: 0.62rem;
+}
+
+/* Chevron — flex item pushed to the right edge of the sidebar column */
 .part-collapsible::after, .chapter-collapsible::after {
-    content: "\f078"; /* FontAwesome chevron-down unicode */
+    content: "\f078"; /* FontAwesome chevron-down */
     font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", "FontAwesome";
     font-weight: 900;
     font-style: normal;
     font-size: 0.75rem;
-    position: absolute;
-    right: -calc(30px + 0.1875rem);
-    top: 0;
-    width: 30px;
-    height: 30px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    flex-shrink: 0;
+    margin-left: auto;
+    padding-left: 0.5rem;
+    padding-right: 0.4rem;
+    align-self: flex-start;
     cursor: pointer;
     color: var(--pst-color-text-muted);
     transition: transform 0.2s ease;
-    border-radius: 4px;
 }
 
-/* Hover effect for chevron */
-.part-collapsible::after:hover, .chapter-collapsible::after:hover {
-    background-color: var(--pst-color-surface);
-    color: var(--pst-color-text-base);
-}
-
-/* But exclude nested spans to avoid duplicates */
+/* Exclude nested spans to avoid duplicates */
 .part-collapsible span.caption-text::after {
     display: none;
 }
@@ -1057,14 +1302,152 @@ details summary {
   display: inline !important;
 }
 
-/* Aggiungi "Soluzione" visibile dopo il toggle */
+/* Show toggle hint in both hidden and shown states (library only shows it when
+   .toggle-button-hidden is present; this rule covers the visible state too).
+   JS in custom.js swaps data-toggle-hint between the show/hide strings. */
+@media (min-width: 768px) {
+  .exercise.admonition + .solution.admonition button.toggle-button::before {
+    content: attr(data-toggle-hint);
+    font-size: .8em;
+    align-self: center;
+  }
+}
+
+/* Suppress pydata's :focus-visible purple ring on admonition titles.
+   Must cover ::before because pydata colors the pseudo-element's border-bottom
+   (rgb(193,50,175)) when the <p> receives focus. */
+.exercise.admonition > .admonition-title:focus,
+.exercise.admonition > .admonition-title:focus-visible,
+.exercise.admonition > .admonition-title *:focus,
+.exercise.admonition > .admonition-title *:focus-visible,
+.exercise.admonition + .solution.admonition > .admonition-title:focus,
+.exercise.admonition + .solution.admonition > .admonition-title:focus-visible,
+.exercise.admonition + .solution.admonition > .admonition-title *:focus,
+.exercise.admonition + .solution.admonition > .admonition-title *:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+.exercise.admonition > .admonition-title:focus::before,
+.exercise.admonition > .admonition-title:focus-visible::before,
+.exercise.admonition + .solution.admonition > .admonition-title:focus::before,
+.exercise.admonition + .solution.admonition > .admonition-title:focus-visible::before {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+
+/* Solution label after toggle button — default: English/French */
 .exercise.admonition + .solution.admonition > .admonition-title::after {
-  content: "Soluzione";
+  content: "Solution";
   font-size: 1rem;
   color: var(--text-primary-color);
   font-weight: bold;
   font-family: var(--sans-serif-font);
   margin-left: 0.3em;
+}
+
+/* ==========================================================================
+   Heading type scale
+   ========================================================================== */
+
+.bd-article-container h1 {
+  font-size: 2.0rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+
+.bd-article-container h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.bd-article-container h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.bd-article-container h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Section number styling — JS wraps numbers in .sec-num, titles in .sec-title */
+.bd-article-container h1 .sec-num,
+.bd-article-container h2 .sec-num,
+.bd-article-container h3 .sec-num {
+  font-size: 0.88em;
+  font-weight: 400;
+  opacity: 0.55;
+  margin-right: 0.3em;
+}
+
+.bd-article-container h1 .sec-title,
+.bd-article-container h2 .sec-title,
+.bd-article-container h3 .sec-title {
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   Mathematical admonition boxes — warm (definitions, examples) vs cool (theorems)
+   ========================================================================== */
+
+/* Definitions — warm cream, gold border */
+.definition.admonition {
+  background-color: var(--accent-gold-tint);
+  border-left: 4px solid var(--accent-gold);
+}
+
+.definition.admonition > .admonition-title {
+  background-color: var(--accent-gold-pale);
+}
+
+/* Theorems, lemmas, corollaries — cool navy tint */
+.theorem.admonition,
+.lemma.admonition,
+.corollary.admonition {
+  background-color: var(--theorem-bg);
+  border-left: 4px solid var(--text-primary-color);
+}
+
+.theorem.admonition > .admonition-title,
+.lemma.admonition > .admonition-title,
+.corollary.admonition > .admonition-title {
+  background-color: var(--theorem-tint);
+}
+
+/* Theorem + proof compound block
+   When a proof immediately follows a theorem/lemma/corollary, fuse the two
+   into one compound shape: no gap, dashed internal separator, subordinate
+   proof left border, outer-only border-radius. Standalone theorems unchanged. */
+.theorem.admonition:has(+ .myproof.admonition),
+.lemma.admonition:has(+ .myproof.admonition),
+.corollary.admonition:has(+ .myproof.admonition) {
+  margin-bottom: 0;
+  border-bottom: 1px dashed rgba(1, 1, 119, 0.25);
+  border-radius: 3px 3px 0 0;
+}
+
+.theorem.admonition + .myproof.admonition,
+.lemma.admonition + .myproof.admonition,
+.corollary.admonition + .myproof.admonition {
+  margin-top: 0;
+  border-top: none;
+  border-left: 4px solid var(--text-primary-color);
+  background-color: white;
+  border-radius: 0 0 3px 3px;
+}
+
+/* Naming — neutral, subtle */
+.naming.admonition {
+  background-color: #f5f5f5;
+  border-left: 4px solid var(--visited-link-color);
 }
 
 @media print {
@@ -1077,4 +1460,66 @@ details summary {
   .bd-article-container p.caption {
     color: #000 !important;
   }
+}
+/* Privacy notice in footer — unobtrusive details/summary toggle */
+.privacy-notice {
+  font-size: 0.78rem;
+  color: var(--visited-link-color);
+  margin-top: 0.4rem;
+}
+
+.privacy-notice summary {
+  cursor: pointer;
+  display: inline;
+  color: var(--visited-link-color);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  list-style: none;
+}
+
+.privacy-notice summary::-webkit-details-marker { display: none; }
+
+.privacy-notice[open] summary {
+  color: var(--text-primary-color);
+}
+
+.privacy-notice p {
+  margin-top: 0.35rem;
+  max-width: 52ch;
+  line-height: 1.5;
+  color: var(--visited-link-color);
+}
+
+/* Sidebar layout: grid row 1 (1fr) = scrollable TOC, row 2 (auto) = notice.
+   Grid arithmetic guarantees the two rows fill exactly 100vh so scrollTop
+   is always clamped to 0, making the notice immune to any JS scrollTop call. */
+.bd-sidebar-primary {
+  display: grid !important;
+  grid-template-rows: 1fr auto;
+  height: 100vh !important;
+  overflow: hidden !important;
+}
+
+.bd-sidebar-scroll-area {
+  flex: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-right: 1rem; /* counteracts .bd-links { margin-right: -1rem } from theme */
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  /* Hide scrollbar (same policy as the original sidebar) */
+  scrollbar-width: none;
+}
+
+.bd-sidebar-scroll-area::-webkit-scrollbar {
+  display: none;
+}
+
+/* Privacy notice always visible at the bottom of the sidebar */
+.privacy-notice--sidebar {
+  flex-shrink: 0;
+  background: var(--background-color);
+  padding: 0.6rem 1rem 0.8rem;
+  border-top: 1px solid rgba(1, 1, 119, 0.1);
 }

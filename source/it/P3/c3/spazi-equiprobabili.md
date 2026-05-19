@@ -322,6 +322,7 @@ personaggi con il giorno di nascita di un gruppo di persone presenti in una
 stanza, si ottiene il cosiddetto [paradosso del
 compleanno](https://it.wikipedia.org/wiki/Paradosso_del_compleanno).
 ```
+
 ````{prf:example}
 :label: ex-problema-compleanni
 Supponiamo che l'anno di prima apparizione di un personaggio sia distribuito
@@ -356,6 +357,7 @@ La conversione a `int` è necessaria perché la presenza di valori mancanti
 causa un'implicito utilizzo del tipo `float` per l'anno di apparizione quando
 il _dataset_ viene caricato.
 ```
+
 ```{code-cell} python
 import pandas as pd
 
@@ -385,8 +387,10 @@ def prob_no_common_year(n, a):
 x = range(1, a//3)
 p1 = [prob_no_common_year(n, a) for n in x]
 
-plt.plot(list(x), p1)
+fig, ax = plt.subplots()
+ax.plot(x, p1)
 plt.show()
+
 ```
 ````
 
@@ -689,48 +693,4 @@ il primo appartiene ad $A$.
 Di conseguenza, osservando $\{3, 6\}$ non si può più decidere se l’evento si
 sia verificato oppure no. Per questo motivo $A$ non può essere rappresentato
 nello spazio di probabilità che riguarda i dadi indistinguibili.
-````
-
-````{exercise} •••
-:label: ex-spazi-equip-eventi-simmetrici
-
-Sia
-
-```{math}
-s : \Omega \to \Omega, \qquad s(i, j) = (j, i)
-```
-
-la funzione che scambia i risultati dei due dadi distinguibili. Dimostrate che
-un evento del modello con dadi distinguibili può essere descritto anche nel
-modello con dadi indistinguibili se e solo se è invariato rispetto a tale
-scambio, cioè se e solo se $s(A) = A$.
-````
-
-````{solution} ex-spazi-equip-eventi-simmetrici
-:class: dropdown
-
-Indichiamo con $\pi$ la funzione che «dimentica» l'ordine dei due risultati,
-per cui si ha $\pi(i, j) = \{i, j\}$ per ogni $i, j$. Supponiamo anzitutto che
-un evento $A \subseteq \Omega$ del modello con dadi distinguibili possa essere
-descritto anche nel modello indistinguibile. Allora
-esiste un evento $B$ formato da coppie non ordinate tale che
-$A = \pi^{-1}(B)$. Se $(i, j) \in A$, allora $\{i, j\} \in B$, ma anche
-$\{j, i\} = \{i, j\} \in B$, quindi $(j, i) \in A$. Questo mostra che
-$s(A) = A$.
-
-Viceversa, supponiamo che $A$ sia invariato per scambio, cioè che da
-$(i, j) \in A$ segua sempre $(j, i) \in A$. Definiamo allora
-
-```{math}
-B = \{ \{i, j\} \mid (i, j) \in A \} 
-\enspace.
-```
-
-Per costruzione, $A$ coincide con l’insieme di tutte le coppie ordinate che,
-una volta dimenticato l’ordine, producono un esito di $B$. In altre parole,
-$A = \pi^{-1}(B)$, quindi $A$ può essere rappresentato anche nel modello con
-dadi indistinguibili.
-
-La condizione $s(A) = A$ significa, in termini intuitivi, che l’evento dipende
-solo dai due valori osservati, non da quale dei due dadi li abbia mostrati.
 ````

@@ -171,7 +171,7 @@ exclude_patterns = []
 #
 html_theme = 'sphinx_book_theme'
 html_title = 'Superhero Data Science'
-html_logo = '../_static/img/logo.png'
+html_logo = '../_static/img/logo.svg'
 html_favicon = '../_static/img/sds.ico'
 
 html_theme_options = {
@@ -182,12 +182,18 @@ html_theme_options = {
     'pygments_light_style': 'abap',
     'pygments_dark_style': 'native',
     'article_header_end': [],  # Enable article header area for language switcher
-    # "extra_footer": "<p>Footer HTML</p>",
 }
 
 html_context = {
     "show_code_label": "Afficher le code",
     "hide_code_label": "Masquer le code",
+    "privacy_notice_label": "Politique de confidentialité",
+    "privacy_notice_text": (
+        "Ce site n'utilise pas de cookies de profilage, ne collecte pas de "
+        "données personnelles des utilisateurs et n'installe aucun cookie sur "
+        "les appareils des visiteurs. Aucune activité de suivi ou d'analyse "
+        "comportementale n'est effectuée."
+    ),
     "pyscript_wait_label": "Attendre le chargement de PyScript"
 }
 

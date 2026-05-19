@@ -678,7 +678,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-**5.** $M \cup D = M \cup (\overline{M} \cap D)$
+5. $M \cup D = M \cup (\overline{M} \cap D)$
 
 Nel diagramma qui sotto, viene utilizzato un tipo di tratteggio per mettere in
 evidenza $\overline{M} \cap D$, che contiene tutti i punti che si trovano

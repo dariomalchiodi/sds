@@ -106,9 +106,74 @@ document.addEventListener("DOMContentLoaded", function() {
   
   // Make the function globally available
   window.initializeToggleCode = initializeToggleCode;
-  
+
   // Initialize immediately
   initializeToggleCode();
+
+  // Prevent focus ring on exercise/solution title clicks by blocking the
+  // mousedown default (which is what causes the browser to focus the element).
+  // The click event still fires, so togglebutton.js works normally.
+  document.querySelectorAll(
+    '.exercise.admonition > .admonition-title, ' +
+    '.exercise.admonition + .solution.admonition > .admonition-title'
+  ).forEach(function(title) {
+    title.addEventListener('mousedown', function(e) {
+      e.preventDefault();
+    });
+  });
+
+  // Solution toggle hint: swap data-toggle-hint between show/hide strings so the
+  // CSS ::before always reflects the current state (library only sets it once at init).
+  document.querySelectorAll('.exercise.admonition + .solution.admonition').forEach(function(solution) {
+    var title = solution.querySelector('.admonition-title');
+    if (!title) return;
+    title.addEventListener('click', function() {
+      setTimeout(function() {
+        var btn = solution.querySelector('.toggle-button');
+        if (!btn) return;
+        btn.setAttribute('data-toggle-hint',
+          solution.classList.contains('toggle-hidden') ? toggleHintShow : toggleHintHide
+        );
+      }, 0);
+    });
+  });
+
+  // Chapter chevron toggle: clicking the rightmost ~36px of a chapter-collapsible
+  // link toggles its sub-items without navigating.
+  document.querySelectorAll('.chapter-collapsible').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var subItems = link.parentElement.querySelector('.chapter-sub-items');
+      if (!subItems) return;
+      var rect = link.getBoundingClientRect();
+      if (e.clientX >= rect.right - 36) {
+        e.preventDefault();
+        e.stopPropagation();
+        link.classList.toggle('collapsed');
+        subItems.classList.toggle('collapsed');
+      }
+    });
+  });
+
+  // Wrap section numbers in <span class="sec-num"> so CSS can style them
+  // separately from the heading title text.
+  (function styleHeadingNumbers() {
+    document.querySelectorAll(
+      '.bd-article-container h1, .bd-article-container h2, .bd-article-container h3'
+    ).forEach(function(h) {
+      var node = h.childNodes[0];
+      if (!node || node.nodeType !== 3) return;
+      var m = node.textContent.match(/^(\d+(?:\.\d+)*\.\s+)([\s\S]*)/);
+      if (!m) return;
+      var numSpan = document.createElement('span');
+      numSpan.className = 'sec-num';
+      numSpan.textContent = m[1];
+      var titleSpan = document.createElement('span');
+      titleSpan.className = 'sec-title';
+      titleSpan.textContent = m[2];
+      h.replaceChild(titleSpan, node);
+      h.insertBefore(numSpan, titleSpan);
+    });
+  })();
 
   // Function to detect and mark appendices
   function detectAppendices() {
@@ -286,5 +351,22 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     }
   }
-  
+
+  // Sidebar uses display:grid so the outer sidebar cannot scroll (scrollTop always 0).
+  // PyData's active-link scroll targets the outer sidebar and is therefore a no-op.
+  // We replicate it here, targeting the inner scroll area instead.
+  (function scrollTocToActiveLink() {
+    var scrollArea = document.querySelector('.bd-sidebar-scroll-area');
+    if (!scrollArea) return;
+    var docsNav = scrollArea.querySelector('.bd-docs-nav');
+    if (!docsNav) return;
+    var activeLinks = docsNav.querySelectorAll('.active');
+    if (!activeLinks.length) return;
+    var lastActive = activeLinks[activeLinks.length - 1];
+    if (lastActive.getBoundingClientRect().y > 0.5 * window.innerHeight) {
+      var r = lastActive.getBoundingClientRect().y - scrollArea.getBoundingClientRect().y;
+      scrollArea.scrollTop = r - scrollArea.clientHeight * 0.25;
+    }
+  })();
+
 });

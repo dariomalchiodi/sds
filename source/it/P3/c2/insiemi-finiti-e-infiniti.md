@@ -77,6 +77,7 @@ uguale a $1$ se l'$i$-esimo membro (nell'ordine precedente) è operativo, e $0$ 
 3. Sia $B$ l'insieme degli stati in cui i membri $1$ e $3$ sono entrambi fuori
    combattimento. Quanti elementi contiene $B$?
 ````
+
 ````{solution} ex-suicide-squad
 :class: dropdown
 
@@ -164,6 +165,7 @@ l'insieme di tutte le possibili assegnazioni di ruoli.
 3. Scrivete del codice Python che elenca tutti gli elementi di $R$ e verificate
    i risultati dei punti 1 e 2.
 ````
+
 ````{solution} ex-great-lakes-avengers
 :class: dropdown
 
@@ -181,7 +183,6 @@ l'insieme di tutte le possibili assegnazioni di ruoli.
    (Grasshopper). Usando `it.permutations' si possono generare tutte le
    disposizioni che corrispondono agli elementi di $R$, e selezionare tutte
    quelle che individuano le assegnazioni in $D$, stamparle e contarle.
-
 
 ```{code-cell} python
 import itertools as it

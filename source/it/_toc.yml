@@ -83,7 +83,6 @@ parts:
       - file: P3/c3/assiomi-kolmogorov
       - file: P3/c3/spazi-equiprobabili
       - file: P3/c3/probabilita-condizionata
-      - file: P3/c3/classificatori-naive-bayes
       - file: P3/c3/indipendenza
     - file: P3/c4/intro
       sections:

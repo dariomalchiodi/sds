@@ -109,7 +109,15 @@
         {% set sidebars = sidebars | reject("in", "sidebar-nav-bs.html") | list %}
       {% endif %}
       <div class="bd-sidebar-primary bd-sidebar{% if not sidebars %} hide-on-wide{% endif %}">
-        {% include "sections/sidebar-primary.html" %}
+        <div class="bd-sidebar-scroll-area">
+          {% include "sections/sidebar-primary.html" %}
+        </div>
+        {% if privacy_notice_label is defined %}
+        <details class="privacy-notice privacy-notice--sidebar">
+          <summary>{{ privacy_notice_label }}</summary>
+          <p>{{ privacy_notice_text }}</p>
+        </details>
+        {% endif %}
       </div>
       {# Using an ID here so that the skip-link works #}
       <main id="main-content" class="bd-main" role="main">
