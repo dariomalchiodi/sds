@@ -1218,6 +1218,8 @@ maggiore o minore compatibilità dell'evidenza con le ipotesi in gioco.
 
 
 ````{prf:example}
+:label: ex-carol-danvers
+
 {extlink}`Carol Danvers
 <https://marvel.fandom.com/wiki/Carol_Danvers_(Earth-616)>` rileva un segnale
 di soccorso Kree di origine incerta. Potrebbe provenire da uno di tre pianeti,

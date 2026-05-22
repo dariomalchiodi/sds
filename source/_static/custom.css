@@ -50,6 +50,7 @@ h1, h2, h3, h4, h5, h6, .admonition-title {
 code, pre {
     font-family: var(--tt-font);
     text-align: left;
+    line-height: 1.5;
 }
 
 a {
@@ -424,6 +425,13 @@ span.katex {
   min-width: 0;
   flex: 1;
   overflow-x: auto;
+}
+
+/* Override pygments.css "html[data-theme] .highlight pre { line-height: 125% }"
+   Same specificity (0,2,2), custom.css loads later so this wins. */
+html[data-theme="light"] .highlight pre,
+html[data-theme="dark"]  .highlight pre {
+  line-height: 1.5;
 }
 
 .highlight-python {

@@ -138,6 +138,18 @@ se non si verifica $E$. Infine, la relazione di sottoinsieme cattura
 l'implicazione logica: se $E \subseteq F$, allora ogni esito che realizza $E$
 deve realizzare anche $F$, pertanto $E \rightarrow F$.
 
+````{prf:definition} Eventi mutuamente esclusivi
+:label: def-eventi-disgiunti
+
+Due eventi $E, F \in \mathsf A$ si dicono _mutuamente esclusivi_ o
+_disgiunti_ se non possono verificarsi contemporaneamente, cioè se
+$E \cap F = \varnothing$.
+
+In altre parole, il verificarsi di $E$ esclude il verificarsi di $F$, e
+viceversa. Nel linguaggio della probabilità si parla anche di eventi
+_incompatibili_.
+````
+
 Nella {prf:ref}`def-evento` ho identificato un evento con un sottoinsieme di
 $\Omega$. Questa scelta appare del tutto naturale e, nel caso in cui lo spazio
 degli esiti sia numerabile, non crea alcuna difficoltà: tutti i sottoinsiemi di

@@ -146,7 +146,6 @@ myst_config = {
         "linkify",
         "replacements",
         "substitution",
-        "smartquotes",
         "tasklist",
     ],
     "heading_anchors": 3,
@@ -199,6 +198,7 @@ templates_path = ['../_templates']
 language = 'it'
 locale_dirs = ['../locales/'] # Path to your .po/.mo files
 gettext_compact = False
+smartquotes = False  # Italian words ending in apostrophe (po', c', dell') confuse the typographer
 
 # sphinx-togglebutton: localized labels
 togglebutton_hint = "Clicca per mostrare"

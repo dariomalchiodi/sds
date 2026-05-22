@@ -16,6 +16,12 @@ Oltre a utilizzare le relazioni descritte nel paragrafo precedente, è possibile
 costruire nuovi insiemi a partire da insiemi esistenti utilizzando le
 operazioni descritte di seguito.
 
+````{prf:definition} Operazioni tra insiemi
+:label: def-operazioni-tra-insiemi
+
+Dati due insiemi $S$ e $T$ contenuti nell'universo $\Omega$, si definiscono le
+seguenti operazioni.
+
 - L’_unione_ di due insiemi $S$ e $T$ è l'insieme $S \cup T$ di tutti gli
   elementi che appartengono ad almeno uno di essi. Formalmente,
   $S \cup T = \{x \in \Omega \mid x \in S \vee x \in T \}$.
@@ -32,6 +38,22 @@ operazioni descritte di seguito.
 - Il _complemento_ di un insieme $S$ è l'insieme $\overline S$ degli elementi
   dell'universo che non appartengono a $S$, così che
   $\overline S = \{ x \in \Omega \mid x \notin S \} = \Omega \setminus S$.
+````
+
+````{prf:definition} Insiemi disgiunti
+:label: def-insiemi-disgiunti
+
+Due insiemi $S$ e $T$ si dicono _disgiunti_ se non hanno elementi in comune,
+cioè se
+
+```{math}
+S \cap T = \varnothing \enspace.
+```
+
+Più in generale, gli insiemi in una famiglia $\{S_i\}_{i \in I}$ si dicono
+_a due a due disgiunti_ se $S_i \cap S_j = \varnothing$ per ogni coppia di
+indici distinti $i \neq j$.
+````
 
 
 ```{code-cell} python

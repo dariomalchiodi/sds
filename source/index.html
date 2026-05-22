@@ -77,9 +77,9 @@
       background-color: var(--panel-bg);
       position: relative;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 3.5rem 3rem;
+      padding: 3.5rem 3rem 0;
       overflow: hidden;
     }
 
@@ -102,9 +102,11 @@
       z-index: 1;
       display: flex;
       flex-direction: column;
+      justify-content: center;
       gap: 2rem;
       max-width: 340px;
       width: 100%;
+      flex: 1;
     }
 
     .brand-logo {
@@ -351,6 +353,105 @@
     }
 
     /* ════════════════════════════════════════════
+       PRIVACY NOTICE — bottom of brand panel (desktop)
+                        bottom of select panel (mobile)
+    ════════════════════════════════════════════ */
+
+    /* Select-panel copy hidden on desktop */
+    .panel--select .privacy-notice { display: none; }
+
+    .panel--brand .privacy-notice {
+      width: 100%;
+      flex-shrink: 0;
+      padding: 0.65rem 0 0.9rem;
+      border-top: 1px solid rgba(1, 1, 119, 0.12);
+    }
+
+    .panel--brand .privacy-notice summary {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(1, 1, 119, 0.38);
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 0.35em;
+    }
+
+    .panel--brand .privacy-notice summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .panel--brand .privacy-notice summary::before {
+      content: '›';
+      font-size: 0.95rem;
+      line-height: 1;
+      transition: transform 0.18s ease;
+    }
+
+    .panel--brand .privacy-notice[open] summary::before {
+      transform: rotate(90deg);
+    }
+
+    .panel--brand .privacy-notice p {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.7rem;
+      line-height: 1.6;
+      color: rgba(1, 1, 119, 0.45);
+      margin-top: 0.5rem;
+    }
+
+    /* Select-panel version — same typographic style, adapted for sky bg */
+    .panel--select .privacy-notice {
+      width: 100%;
+      flex-shrink: 0;
+      padding: 0.65rem 0 0.5rem;
+      border-top: 1px solid rgba(1, 1, 119, 0.1);
+    }
+
+    .panel--select .privacy-notice summary {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(1, 1, 119, 0.42);
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 0.35em;
+    }
+
+    .panel--select .privacy-notice summary::-webkit-details-marker { display: none; }
+
+    .panel--select .privacy-notice summary::before {
+      content: '›';
+      font-size: 0.95rem;
+      line-height: 1;
+      transition: transform 0.18s ease;
+    }
+
+    .panel--select .privacy-notice[open] summary::before {
+      transform: rotate(90deg);
+    }
+
+    .panel--select .privacy-notice p {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.7rem;
+      line-height: 1.6;
+      color: rgba(1, 1, 119, 0.5);
+      margin-top: 0.5rem;
+    }
+
+    /* ════════════════════════════════════════════
        ANIMATIONS
     ════════════════════════════════════════════ */
     @keyframes a-logo {
@@ -438,6 +539,10 @@
         justify-content: flex-start;
       }
 
+      .panel--brand .privacy-notice {
+        display: none;
+      }
+
       .brand-inner {
         flex-direction: row;
         align-items: center;
@@ -465,13 +570,19 @@
 
       .panel--select {
         flex: 1;
-        padding: 1.8rem 1.2rem 2rem;
+        flex-direction: column;
+        padding: 1.8rem 1.2rem 1.2rem;
         align-items: flex-start;
         justify-content: flex-start;
       }
 
       .select-inner {
         max-width: 100%;
+        flex: 1;
+      }
+
+      .panel--select .privacy-notice {
+        display: block;
       }
 
       .lang-card {
@@ -544,6 +655,10 @@
       .panel--select {
         padding: 1.5rem 1.5rem;
         overflow-y: auto;
+      }
+
+      .panel--select .privacy-notice {
+        display: none;
       }
 
       .lang-card {
@@ -670,6 +785,13 @@
           </ul>
         </nav>
       </div>
+      <details class="privacy-notice" aria-hidden="true">
+        <summary>Informativa sulla Privacy</summary>
+        <p>Questo sito non utilizza cookie di profilazione, non raccoglie dati
+        personali degli utenti e non installa alcun cookie sui dispositivi dei
+        visitatori. Non vengono effettuate attività di tracciamento o analisi
+        comportamentale.</p>
+      </details>
     </main>
 
   </div>

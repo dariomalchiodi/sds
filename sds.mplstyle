@@ -24,7 +24,7 @@ boxplot.medianprops.color: C1
 # Figure settings
 figure.dpi: 100
 figure.edgecolor: none
-figure.facecolor : "#eaf3f5"
+figure.facecolor : white
 figure.figsize: 4, 3.2
 
 # Grid settings
@@ -64,7 +64,7 @@ text.usetex: False
 # Savefig settings
 savefig.dpi: 100
 savefig.bbox: tight
-savefig.facecolor: "#eaf3f5"
+savefig.facecolor: white
 savefig.edgecolor: none
 
 # Ticks

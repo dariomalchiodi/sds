@@ -250,6 +250,7 @@ print(entropy(hair_color, normalized=True))
 print(entropy(heroes.index, normalized=True))
 ```
 
+(sec_alberi-di-decisione)=
 ## Alberi di decisione
 
 
