@@ -56,7 +56,7 @@ _it:
 	@if [ -d "$(SOURCEDIR)/data" ]; then cp -r "$(SOURCEDIR)/data" tmpsource/it/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
 	@echo "Step 3/6: Building HTML with Sphinx..."
-	$(SPHINXBUILD) -q -b html tmpsource/it $(SDSDIR)/it
+	$(SPHINXBUILD) -b html tmpsource/it $(SDSDIR)/it
 	@echo "Step 4/6: Copying generated Python files..."
 	@find tmpsource/it -name "*.py" -type f | while read pyfile; do \
 		relpath=$$(realpath --relative-to=tmpsource/it "$$pyfile"); \
