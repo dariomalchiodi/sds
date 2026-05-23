@@ -56,7 +56,7 @@ _it:
 	@if [ -d "$(SOURCEDIR)/data" ]; then cp -r "$(SOURCEDIR)/data" tmpsource/it/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
 	@echo "Step 3/6: Building HTML with Sphinx..."
-	$(SPHINXBUILD) -b html tmpsource/it $(SDSDIR)/it
+	$(SPHINXBUILD) -D nb_execution_cache_path=$(CURDIR)/$(SDSDIR)/it/.jupyter_cache -b html tmpsource/it $(SDSDIR)/it
 	@echo "Step 4/6: Copying generated Python files..."
 	@find tmpsource/it -name "*.py" -type f | while read pyfile; do \
 		relpath=$$(realpath --relative-to=tmpsource/it "$$pyfile"); \
@@ -85,7 +85,7 @@ _en:
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then mkdir -p tmpsource/_templates && cp -r "$(SOURCEDIR)/_templates/." tmpsource/_templates/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
 	@echo "Step 3/5: Building HTML with Sphinx..."
-	$(SPHINXBUILD) -b html tmpsource/en $(SDSDIR)/en
+	$(SPHINXBUILD) -D nb_execution_cache_path=$(CURDIR)/$(SDSDIR)/en/.jupyter_cache -b html tmpsource/en $(SDSDIR)/en
 	@echo "Step 4/5: Post-processing HTML..."
 	python3 -m sds.sds post-process $(SDSDIR)/en --language en
 	@echo "Step 5/5: Copying index.html to build root..."
@@ -107,7 +107,7 @@ _fr:
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then mkdir -p tmpsource/_templates && cp -r "$(SOURCEDIR)/_templates/." tmpsource/_templates/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
 	@echo "Step 3/5: Building HTML with Sphinx..."
-	$(SPHINXBUILD) -b html tmpsource/fr $(SDSDIR)/fr
+	$(SPHINXBUILD) -D nb_execution_cache_path=$(CURDIR)/$(SDSDIR)/fr/.jupyter_cache -b html tmpsource/fr $(SDSDIR)/fr
 	@echo "Step 4/5: Post-processing HTML..."
 	python3 -m sds.sds post-process $(SDSDIR)/fr --language fr
 	@echo "Step 5/5: Copying index.html to build root..."
@@ -129,7 +129,7 @@ _es:
 	@if [ -d "$(SOURCEDIR)/_templates" ]; then mkdir -p tmpsource/_templates && cp -r "$(SOURCEDIR)/_templates/." tmpsource/_templates/; fi
 	@if [ -f "$(SOURCEDIR)/references.bib" ]; then cp "$(SOURCEDIR)/references.bib" tmpsource/; fi
 	@echo "Step 3/5: Building HTML with Sphinx..."
-	$(SPHINXBUILD) -b html tmpsource/es $(SDSDIR)/es
+	$(SPHINXBUILD) -D nb_execution_cache_path=$(CURDIR)/$(SDSDIR)/es/.jupyter_cache -b html tmpsource/es $(SDSDIR)/es
 	@echo "Step 4/5: Post-processing HTML..."
 	python3 -m sds.sds post-process $(SDSDIR)/es --language es
 	@echo "Step 5/5: Copying index.html to build root..."
