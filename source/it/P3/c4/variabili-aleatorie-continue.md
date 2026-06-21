@@ -10,4 +10,4 @@ kernelspec:
 ---
 
 (sec-va-continue)=
-# Variabili aleatorie continue
+# Variabili aleatorie continue e miste

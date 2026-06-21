@@ -26,9 +26,7 @@ La somma dei primi $n \in \mathbb N$ numeri interi è
 \sum_{i=1}^n i = \frac{n(n+1)}{2} \enspace.
 ```
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Sia $S = \sum_{i=1}^n i$: lo schema seguente elenca nella prima riga tutti
 gli addendi della somma in $S$ dal primo all'ultimo, e nella seconda gli
 stessi addendi nell'ordine inverso. In fondo a ognuna di queste due righe
@@ -73,7 +71,6 @@ vede facilmente come il risultato di questa somma sia sempre uguale a $n+1$.
 Pertanto, $2 S$ è uguale alla somma di tutti gli altri elementi sull'ultima
 riga, ma questi sono sempre uguali a $n + 1$, e sono $n$ in tutto. Il che ci
 permette di concludere che $2 S = n (n + 1)$, da cui segue la tesi.
-
 ````
 
 ````{prf:theorem} Somma dei quadrati dei primi $n$ interi
@@ -87,9 +84,7 @@ La somma dei quadrati dei primi $n \in \mathbb N$ numeri interi è
 \sum_{i=1}^n i^2 = \frac{n(n+1)(2n+1)}{6} \enspace.
 ```
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Applicando la tecnica di dimostrazione per induzione su $n$, il caso base
 $n=1$ si verifica banalmente per ispezione: il membro sinistro
 dell'uguaglianza vale $1$ e il suo membro destro vale
@@ -105,7 +100,6 @@ dell'induzione,
                      &= (n+1) \frac{(n + 2)(2n + 3)}{6} \enspace.
 \end{align*}
 ```
-
 ````
 
 ````{prf:theorem} Somma dei cubi dei primi $n$ interi
@@ -119,9 +113,7 @@ La somma dei cubi dei primi $n \in \mathbb N$ numeri interi è
 \sum_{i=1}^n i^2 = \frac{n^2(n+1)^2}{4} \enspace.
 ```
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Applicando la tecnica di dimostrazione per induzione su $n$, il caso base
 $n=1$ si verifica banalmente per ispezione: il membro sinistro
 dell'uguaglianza vale $1$ e il suo membro destro vale
@@ -150,9 +142,7 @@ La somma delle quarte potenze dei primi $n \in \mathbb N$ numeri interi è
 \sum_{i=1}^n i^4 = \frac{n(n+1)(2n+1)(3n^2 + 3n - 1)}{30} \enspace.
 ```
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Applicando la tecnica di dimostrazione per induzione su $n$, il caso base
 $n=1$ si verifica banalmente per ispezione: il membro sinistro
 dell'uguaglianza vale $1$ e il suo membro destro vale

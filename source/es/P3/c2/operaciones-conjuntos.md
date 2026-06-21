@@ -248,9 +248,7 @@ de De Morgan_:
 1. $\overline{\left( S \cup T \right)} = \overline S \cap \overline T$;
 2. $\overline{\left( S \cap T \right)} = \overline S \cup \overline T$.
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Demostramos la primera ley. Fijemos $x \in \overline{\left( S \cup T \right)}$;
 por definición de complemento, $x \notin \left( S \cup T \right)$, lo que
 implica $x \notin S$ y $x \notin T$. Usando de nuevo la definición de
@@ -283,9 +281,7 @@ Dados dos conjuntos $S, T \subseteq \Omega$:
 1. $S \ominus T = (S \setminus T) \cup (T \setminus S)$,
 2. $S \ominus T = (S \cup T) \setminus (S \cap T)$.
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 La primera relación es consecuencia directa de la definición de diferencia
 simétrica: en efecto, para todo $x \in \Omega$,
 

@@ -229,6 +229,77 @@ C_{n, k} = c_{n + k - 1, k} = \binom{n+k-1}{k} \enspace.
 [superherodb](https://www.superherodb.com/powers/).
 
 
+### Vero o falso?
+
+Analizzate ciascuna delle seguenti affermazioni, che riguardano le
+combinazioni, e dite se è vera o falsa, motivando il vostro ragionamento.
+Cliccate su di essa per visualizzare la risposta corretta.
+
+````{tf-item}
+In una combinazione, due selezioni che contengono gli stessi elementi in ordine
+diverso sono considerate la stessa combinazione.
++++
+**Vera**. Le combinazioni sono tuple _non ordinate_: l'ordine degli elementi
+non è rilevante. Come illustrato nell'{prf:ref}`ex-peter-petrelli`,
+$\{\text{psicocinesi}, \text{telepatia}, \text{invisibilità}\}$ e
+$\{\text{telepatia}, \text{invisibilità}, \text{psicocinesi}\}$ indicano la
+medesima terna di superpoteri e dunque una sola combinazione semplice.
+Questa è la differenza fondamentale rispetto alle disposizioni.
+````
+
+````{tf-item}
+Il numero di combinazioni semplici di $n$ oggetti in $k$ posti coincide con il
+numero di disposizioni semplici degli stessi oggetti negli stessi posti.
++++
+**Falsa**. Le disposizioni tengono conto dell'ordine, le combinazioni no.
+Ogni combinazione di $k$ oggetti corrisponde a $k!$ disposizioni distinte
+(le permutazioni dei suoi elementi), per cui $d_{n,k} = c_{n,k} \cdot k!$,
+ovvero $c_{n,k} = d_{n,k}/k!$. Le combinazioni sono quindi sempre in numero
+minore (o uguale, per $k \leq 1$) rispetto alle disposizioni.
+````
+
+````{tf-item}
+Il numero di combinazioni semplici di $n$ oggetti in $k$ posti è
+$\binom{n}{k}$.
++++
+**Vera**. Dalla relazione $d_{n,k} = c_{n,k} \cdot k!$ si ricava
+$c_{n,k} = d_{n,k}/k! = \frac{n!}{(n-k)!\,k!} = \binom{n}{k}$. Il
+coefficiente binomiale conta esattamente il numero di sottoinsiemi di
+cardinalità $k$ che si possono formare a partire da un insieme di $n$ elementi.
+````
+
+````{tf-item}
+Se $k = n$, il numero di combinazioni semplici di $n$ oggetti è $n!$.
++++
+**Falsa**. Quando $k = n$, l'unica combinazione possibile è l'intero insieme
+di partenza: $c_{n,n} = \binom{n}{n} = 1$. Scegliere tutti gli $n$ oggetti da
+un insieme di $n$ elementi si può fare in un solo modo, indipendentemente da
+$n$. Il valore $n!$ è invece il numero di _permutazioni_ (o di disposizioni
+semplici con $k = n$), nelle quali l'ordine è rilevante.
+````
+
+````{tf-item}
+Ogni combinazione semplice di $k$ oggetti corrisponde a esattamente $k!$
+disposizioni semplici.
++++
+**Vera**. Fissata una combinazione $\{a_{i_1}, \dots, a_{i_k}\}$, si possono
+ottenere tutte le sequenze ordinate dei suoi $k$ elementi permutandoli in tutti
+i modi possibili: le permutazioni di $k$ oggetti sono $k!$, e ognuna dà una
+disposizione semplice distinta. È proprio partendo da questa relazione
+($d_{n,k} = c_{n,k} \cdot k!$) che si ricava la formula di $c_{n,k}$.
+````
+
+````{tf-item}
+Le combinazioni con ripetizione di $n$ oggetti in $k$ posti si contano come
+$\binom{n+k-1}{k}$.
++++
+**Vera**. Ogni combinazione con ripetizione di $n$ oggetti in $k$ posti può
+essere messa in corrispondenza biunivoca con un sottoinsieme di cardinalità $k$
+dell'insieme $\{1, \ldots, n+k-1\}$. Il numero di tali sottoinsiemi è
+$c_{n+k-1,\,k} = \binom{n+k-1}{k}$, da cui $C_{n,k} = \binom{n+k-1}{k}$.
+````
+
+
 ## Esercizi
 
 ````{exercise} ••
@@ -395,4 +466,22 @@ sottrarre le configurazioni non permesse. In tali configurazioni, due scelte
 sono già occupate dalla granata e dal visore, quindi il loro numero coincide
 con il numero di combinazioni dei sei gadget residui in gruppi di due, cioè
 $c_{6, 2} = \binom{6}{2} = 15$. Il totale valido è quindi $70 - 15 = 55$.
+````
+
+
+## Concetti fondamentali
+
+Pensate ai concetti fondamentali illustrati in questo paragrafo ed elencateli.
+Nella lista qui sotto sono già presenti gli stessi concetti, ma nascosti.
+Cliccate sul pulsante per mostrarli sotto forma di parole chiave, quindi
+confrontateli con la vostra lista. Provate infine a descrivere ciascun concetto
+con parole vostre.
+
+````{sds-wordcloud}
+Oggetti
+Posti
+Combinazione semplice
+Sottoinsieme
+Coefficiente binomiale
+Combinazione con ripetizione
 ````

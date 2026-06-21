@@ -246,7 +246,7 @@ def get_toggle_labels(language='en'):
     return labels.get(language, labels['en'])
 
 
-EXAMPLE_DIRECTIVES = frozenset(['prf:example'])
+EXAMPLE_DIRECTIVES = frozenset(['prf:example', 'exercise', 'solution'])
 
 _WHITE_RCPARAMS = (
     "import matplotlib as _mpl_sds\n"
@@ -354,6 +354,27 @@ def _inject_mpl_style_into_code_cells(content):
     return ''.join(parts)
 
 
+_DOUBLE_STRUCK_DIGITS = {
+    '0': '\U0001D7D8', '1': '\U0001D7D9', '2': '\U0001D7DA',
+    '3': '\U0001D7DB', '4': '\U0001D7DC', '5': '\U0001D7DD',
+    '6': '\U0001D7DE', '7': '\U0001D7DF', '8': '\U0001D7E0',
+    '9': '\U0001D7E1',
+}
+_MATHBB_DIGIT_RE = re.compile(
+    r'\\mathbb\s*\{([0-9])\}|\\mathbb(?=\s+([0-9]))\s+([0-9])')
+
+
+def _replace_mathbb_digits(content):
+    '''Replace \\mathbb{d} and \\mathbb d (d a digit) with the Unicode
+    Mathematical Double-Struck digit.  KaTeX's AMS-Regular font has no
+    metrics for digits, so \\mathbb{1} renders as a plain 1.  The Unicode
+    characters (𝟘–𝟡) render correctly from the system math-font fallback.'''
+    def _sub(m):
+        digit = m.group(1) or m.group(3)
+        return _DOUBLE_STRUCK_DIGITS[digit]
+    return _MATHBB_DIGIT_RE.sub(_sub, content)
+
+
 def process_myst_document(myst_content,
                           include_setup=True, language='en'):
 
@@ -373,6 +394,9 @@ def process_myst_document(myst_content,
     # Inject matplotlib style rcParams into {code-cell} blocks before other
     # processing so Sphinx/myst-nb executes cells with the correct facecolors.
     myst_content = _inject_mpl_style_into_code_cells(myst_content)
+
+    # Replace \mathbb{d} / \mathbb d (digit) with Unicode double-struck digits.
+    myst_content = _replace_mathbb_digits(myst_content)
 
     # Extract all Python code blocks from the document
     python_codes = extract_python_roles(myst_content)
@@ -1306,20 +1330,29 @@ def _apply_pyscript_dataframes(soup, dry_run):
 
 
 def _apply_margin_notes(soup, counter, dry_run):
-    """Relocate margin notes from proof/exercise/solution boxes.
+    """Relocate margin notes from proof/exercise/solution/admonition boxes.
     Returns (changed: bool, new_counter: int)."""
     changed = False
-    for proof_div in soup.select('div.proof, div.exercise, div.solution'):
+    for proof_div in soup.select(
+            'div.proof, div.exercise, div.solution, div.admonition'):
         for margin in proof_div.find_all(True, class_='margin'):
             anchor_id = f'margin-anchor-{counter}'
             counter += 1
             anchor_span = soup.new_tag('span')
             anchor_span['class'] = ['margin-anchor']
             anchor_span['id'] = anchor_id
+            anchor_span['style'] = 'display:block;height:0;'
             margin.insert_before(anchor_span)
             margin.extract()
             margin['data-anchor'] = anchor_id
-            proof_div.insert_before(margin)
+            # For solutions, preserve the `.exercise + .solution` CSS adjacency
+            # by inserting before the preceding exercise rather than between them.
+            insertion_target = proof_div
+            if 'solution' in proof_div.get('class', []):
+                prev = proof_div.find_previous_sibling()
+                if prev and 'exercise' in prev.get('class', []):
+                    insertion_target = prev
+            insertion_target.insert_before(margin)
             changed = True
 
     if changed and not dry_run:
@@ -1375,12 +1408,12 @@ def _apply_numbering(soup, file_path, language, numbered_toc):
             f"{numbered_toc.file_to_number[relative_file_path]}. "))
 
     for a_tag in soup.find_all('a', class_='reference internal'):
-        label = a_tag['href'].split('#')[-1]
+        label = a_tag['href'].split('#')[-1].lower()
         if label in numbered_toc.label_to_caption:
             a_tag.string = numbered_toc.label_to_caption[label]
 
     for a_tag in soup.find_all('a', class_='only-number reference internal'):
-        label = a_tag['href'].split('#')[-1]
+        label = a_tag['href'].split('#')[-1].lower()
         if label in numbered_toc.label_to_caption:
             a_tag.string = (numbered_toc.label_to_caption[label]
                             .split(' ')[-1])
@@ -2164,13 +2197,13 @@ def apply_numbering(language):
 
         # find all a tags in the file_soup having class "reference internal"
         for a_tag in file_soup.find_all('a', class_='reference internal'):
-            label = a_tag['href'].split('#')[-1]
+            label = a_tag['href'].split('#')[-1].lower()
             if label in numbered_toc.label_to_caption:
                 a_tag.string = numbered_toc.label_to_caption[label]
 
         for a_tag in file_soup.find_all('a',
                                 class_='only-number reference internal'):
-            label = a_tag['href'].split('#')[-1]
+            label = a_tag['href'].split('#')[-1].lower()
             if label in numbered_toc.label_to_caption:
                 a_tag.string = (numbered_toc.label_to_caption[label]
                                             .split(' ')[-1])
@@ -2256,8 +2289,19 @@ def fix_pyscript_dataframe_outputs(html_root_dir, dry_run=False):
 
 _MARGIN_ANCHOR_JS = """
 (function () {
+  function syncMarginVisibility() {
+    document.querySelectorAll('aside.margin[data-anchor]').forEach(function (note) {
+      var anchor = document.getElementById(note.dataset.anchor);
+      if (!anchor) return;
+      var solution = anchor.closest('.solution.admonition');
+      if (!solution) return;
+      note.style.display = solution.classList.contains('toggle-hidden') ? 'none' : '';
+    });
+  }
+
   function reposition() {
     document.querySelectorAll('aside.margin[data-anchor]').forEach(function (note) {
+      if (note.style.display === 'none') return;
       var anchor = document.getElementById(note.dataset.anchor);
       if (!anchor) return;
       note.style.marginTop = '';
@@ -2266,7 +2310,26 @@ _MARGIN_ANCHOR_JS = """
       note.style.marginTop = Math.max(0, offset) + 'px';
     });
   }
-  window.addEventListener('load', reposition);
+
+  function update() {
+    syncMarginVisibility();
+    reposition();
+  }
+
+  update();
+  window.addEventListener('load', update);
+
+  new MutationObserver(function (mutations) {
+    for (var i = 0; i < mutations.length; i++) {
+      var m = mutations[i];
+      if (m.type === 'attributes' && m.attributeName === 'class' &&
+          m.target.classList && m.target.classList.contains('solution')) {
+        update();
+        return;
+      }
+    }
+  }).observe(document.body, { attributes: true, subtree: true, attributeFilter: ['class'] });
+
   var _t;
   new ResizeObserver(function () { clearTimeout(_t); _t = setTimeout(reposition, 50); })
       .observe(document.documentElement);
@@ -2280,7 +2343,8 @@ def fix_margin_notes_in_examples(html_root_dir, dry_run=False):
     sphinx-book-theme margin notes use float + negative-right-margin CSS that
     only works at the top-level article flow.  When a {margin} directive appears
     inside a sphinx_proof box (prf:example, prf:theorem, prf:lemma, prf:proof,
-    prf:definition, ...) or a sphinx_exercise box (exercise, solution), this pass:
+    prf:definition, ...), a sphinx_exercise box (exercise, solution), or a plain
+    Sphinx admonition ({admonition}, {note}, {tip}, {warning}, ...), this pass:
 
     1. Inserts a zero-size <span class="margin-anchor" id="margin-anchor-N">
        placeholder at the exact location of the margin note inside the proof div.
@@ -2318,7 +2382,8 @@ def fix_margin_notes_in_examples(html_root_dir, dry_run=False):
         soup = BeautifulSoup(content, 'html.parser')
         changed = False
 
-        for proof_div in soup.select('div.proof, div.exercise, div.solution'):
+        for proof_div in soup.select(
+                'div.proof, div.exercise, div.solution, div.admonition'):
             margins = proof_div.find_all(True, class_='margin')
             if not margins:
                 continue
@@ -2330,6 +2395,7 @@ def fix_margin_notes_in_examples(html_root_dir, dry_run=False):
                 anchor_span = soup.new_tag('span')
                 anchor_span['class'] = ['margin-anchor']
                 anchor_span['id'] = anchor_id
+                anchor_span['style'] = 'display:block;height:0;'
                 margin.insert_before(anchor_span)
 
                 margin.extract()

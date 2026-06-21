@@ -84,12 +84,11 @@ Les corollaires seront présentés dans des encadrés comme celui-ci.
 Cet encadré contient l’énoncé d’un lemme.
 ```
 
-```{admonition} _
-:class: myproof
+````{sds-proof}
 Cet encadré contient les démonstrations des théorèmes, corollaires ou lemmes.
 Je les omettrai lorsqu’il sera important d’introduire un résultat théorique
 dont la preuve exigerait des connaissances mathématiques avancées.
-```
+````
 
 ```{note}
 Ce type d’encadré contient des aspects secondaires que je préfère mettre en

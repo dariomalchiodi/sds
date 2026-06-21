@@ -148,9 +148,7 @@ F_X(x; p) = \left( 1 - (1 - p)^{\lfloor x \rfloor + 1} \right)
             \mathrm I_{[0, +\infty]}(x) \enspace.
 ```
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Indipendentemente dal valore di $n$ si ha che
 
 ```{math}
@@ -289,9 +287,7 @@ Per ogni $\alpha \in (-1, 1)$ valgono le seguenti identità:
 Nel secondo passaggio ho sfruttato la linearità dell'operatore di derivata
 prima, scambiandolo con la sommatoria.
 ```
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Osservando che $i \alpha^{i - 1}$ è la derivata prima di $\alpha^i$
 rispetto ad $\alpha$, otteniamo:
 ```{math}
@@ -335,9 +331,7 @@ Dati $p \in (0, 1]$, e $X \sim \mathrm G(p)$,
 \mathbb E(X) = \frac{1 - p}{p} \enspace.
 ```
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Applicando la definizione di valore atteso si ottiene
 
 ```{math}
@@ -405,9 +399,7 @@ Data $X \sim \mathrm G(p)$ con $p \in (0, 1]$,
 \mathbb V(X) = \frac{1 - p}{p^2} \enspace.
 ```
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Il calcolo del momento secondo si ottiene applicando la seconda identità del
 {prf:ref}`lemma-geom-ev`:
 
@@ -479,9 +471,7 @@ Dati $p \in (0, 1]$ e $X \sim \mathrm G(p)$, per ogni $x, y \in \mathbb N$
 \mathbb P(X \geq x+y \mid X \geq x)= \mathbb P(X \geq y) \enspace.
 ```
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Nella dimostrazione del {prf:ref}`teo-geometric-cdf` abbiamo visto che
 $\mathbb P(X > x) = (1 - p)^{\lfloor x \rfloor +1}$, pertanto
 $\mathbb P(X \geq x) = \mathrm P(X \geq \lfloor x \rfloor) =

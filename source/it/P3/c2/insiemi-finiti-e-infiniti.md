@@ -57,6 +57,68 @@ estensive non riescono a cogliere la complessità degli insiemi infiniti non
 numerabili, per i quali sono generalmente utilizzabili solo descrizioni di tipo
 intensivo.
 
+
+## Vero o falso?
+
+Analizzate ciascuna delle seguenti affermazioni, che riguardano gli insiemi
+finiti e infiniti, e dite se è vera o falsa, motivando il vostro ragionamento.
+Cliccate su di essa per visualizzare la risposta corretta.
+
+````{tf-item}
+Un insieme finito può sempre essere descritto in forma estensiva.
++++
+**Vera**. Se un insieme è finito, in linea di principio è sempre possibile elencare tutti i suoi elementi, cioè descriverlo in forma estensiva. Dal punto di vista pratico, però, questa descrizione è utile solo quando il numero di elementi non è troppo grande: per insiemi molto grandi, scrivere o leggere l’elenco completo può richiedere troppo tempo e troppo spazio, e spesso elaborarne tutti gli elementi richiede ancora più tempo.
+````
+
+````{tf-item}
+Una descrizione estensiva con i puntini di sospensione identifica un insieme in modo univoco.
++++
+**Falsa**. Come osservato nel testo, una sequenza parziale non può
+identificare un insieme in modo univoco. Per esempio, i termini
+$1, 3, 5, 7, 9, \dots$ potrebbero riferirsi all'insieme dei numeri dispari,
+all'insieme dei dispari minori di $100$, o a qualsiasi altra successione che
+coincide con quella dei dispari sui primi elementi e poi diverge. I puntini
+suggeriscono uno schema, ma non lo definiscono in modo rigoroso.
+````
+
+````{tf-item}
+Un insieme infinito è necessariamente non numerabile.
++++
+**Falsa**. Esistono insiemi infiniti numerabili, ovvero insiemi per i quali è
+possibile costruire una sequenza infinita che ne elenca tutti gli elementi.
+L'insieme dei numeri dispari $D = \{1, 3, 5, 7, \dots\}$ e l'insieme
+$\mathbb N$ dei numeri naturali ne sono esempi. «Infinito» e «non numerabile»
+non sono sinonimi: la non numerabilità è una condizione più forte.
+````
+
+````{tf-item}
+L'insieme dei numeri reali $\mathbb{R}$ è infinito numerabile.
++++
+**Falsa**. L'insieme dei numeri reali è un controesempio: si può dimostrare
+che non esiste alcuna sequenza $x_1, x_2, x_3, \dots$ che riesca a elencare
+tutti i numeri reali in qualche posizione. L'insieme $\mathbb R$ è quindi
+infinito e non numerabile.
+````
+
+````{tf-item}
+Gli insiemi infiniti non numerabili non possono essere descritti in forma estensiva.
++++
+**Vera**. Non essendo possibile costruire una sequenza che elenca tutti gli
+elementi dell'insieme la descrizione estensiva — anche con i
+puntini di sospensione — non è applicabile.
+````
+
+````{tf-item}
+L'insieme $\mathbb{N}$ dei numeri naturali è un esempio di insieme infinito numerabile.
++++
+**Vera**. Tecnicamente parlando, un insieme è infinito numerabile se e solo
+se i suoi elementi possono essere messi in corrispondenza biunivoca con
+quelli di $\mathbb{N}$: ciò definisce implicitamente una sequenza nella quale
+elencare questi elementi. Chiaramente, stabilire una corrispondenza biunivoca
+tra $\mathbb N$ ed esso stesso è banale.
+````
+
+
 ## Esercizi
 
 ````{exercise}
@@ -316,3 +378,21 @@ descrizione intensiva equivalente.
    $D = \{ x \in \mathbb R \mid x^2 = x \}$, o più semplicemente
    $D = \{ x \in \mathbb R \mid x = 0 \vee x = 1 \}$.
 ````
+
+## Concetti fondamentali
+
+Pensate ai concetti fondamentali illustrati in questo paragrafo ed elencateli.
+Nella lista qui sotto sono già presenti gli stessi concetti, ma nascosti.
+Cliccate sul pulsante per mostrarli sotto forma di parole chiave, quindi
+confrontateli con la vostra lista. Provate infine a descrivere ciascun concetto
+con parole vostre.
+
+````{sds-wordcloud}
+Insieme finito
+Insieme infinito numerabile
+Insieme infinito non numerabile
+Descrizione estensiva
+Descrizione intensiva
+Sequenza
+````
+

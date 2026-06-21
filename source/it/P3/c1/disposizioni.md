@@ -183,6 +183,80 @@ Quando $k=n$, per formare una disposizione bisogna utilizzare tutti gli
 elementi di $A$, quindi le permutazioni semplici sono un caso particolare di
 disposizioni semplici. Coerentemente, si ha che $d_{n, n} = n!/0! = n! = p_n$.
 
+
+### Vero o falso?
+
+Analizzate ciascuna delle seguenti affermazioni, che riguardano le
+disposizioni, e dite se è vera o falsa, motivando il vostro ragionamento.
+Cliccate su di essa per visualizzare la risposta corretta.
+
+````{tf-item}
+Nelle disposizioni, due sequenze con gli stessi elementi in ordine diverso sono 
+considerate distinte.
++++
+**Vera**. Le disposizioni sono sequenze ordinate: l'ordine degli elementi è
+parte integrante della configurazione. Nell'
+{prf:ref}`ex-disposizioni-con-ripetizione-1`, per esempio, $(G, S, N)$ e
+$(S, N, G)$ descrivono pianificazioni diverse perché assegnano i turni in
+ordine differente, sebbene coinvolgano gli stessi tre eroi. Questa dipendenza
+dall'ordine distingue le disposizioni dalle combinazioni.
+````
+
+````{tf-item}
+Il numero di disposizioni con ripetizione di $n$ oggetti in $k$ posti è $n^k$.
++++
+**Vera**. Per il principio fondamentale del calcolo combinatorio, ogni posto
+può essere riempito in $n$ modi indipendenti (la ripetizione consente di
+riutilizzare qualunque oggetto). Il numero totale di sequenze è quindi
+$\underbrace{n \cdot n \cdots n}_{k} = n^k$. Nell'
+{prf:ref}`ex-disposizioni-con-ripetizione-1`, $4$ eroi in $3$ turni producono
+$D_{4,3} = 4^3 = 64$ pianificazioni distinte.
+````
+
+````{tf-item}
+Per le disposizioni semplici è necessario che il numero di posti non superi il
+numero di oggetti disponibili ($k \leq n$).
++++
+**Vera**. Nelle disposizioni semplici ogni oggetto può comparire al più una
+volta nella sequenza. Una volta inseriti tutti gli $n$ oggetti, non ve ne sono
+altri da selezionare, quindi non è possibile riempire più di $n$ posizioni. La
+{prf:ref}`def-disposizioni-semplici` impone esplicitamente $k \leq n$.
+````
+
+````{tf-item}
+Il numero di disposizioni con ripetizione di $n$ oggetti in $k$ posti è
+$n \cdot k$.
++++
+**Falsa**. La formula corretta è $D_{n,k} = n^k$, non $n \cdot k$. Per il
+principio fondamentale, si moltiplicano le $k$ scelte indipendenti (ognuna con
+$n$ opzioni), ottenendo $n^k$. La formula $n \cdot k$ sarebbe la somma di $k$
+copie di $n$, che non ha corrispondenza con il conteggio delle sequenze. Ad
+esempio, $D_{4,3} = 4^3 = 64 \neq 4 \cdot 3 = 12$.
+````
+
+````{tf-item}
+Con $4$ oggetti e $3$ posti, le disposizioni con ripetizione e quelle semplici
+producono lo stesso numero di sequenze.
++++
+**Falsa**. Con $n = 4$ e $k = 3$: le disposizioni con ripetizione sono
+$D_{4,3} = 4^3 = 64$, mentre quelle semplici sono $d_{4,3} = 4 \cdot 3 \cdot 2
+= 24$. Come mostrato nella {numref}`tab-disposizioni-con-ripetizione`, le $64$
+righe della tabella includono le $24$ disposizioni semplici (in grassetto) più
+$40$ sequenze aggiuntive che contengono almeno una ripetizione.
+````
+
+````{tf-item}
+Le permutazioni semplici di $n$ oggetti sono un caso particolare di
+disposizioni semplici, ottenuto ponendo $k = n$.
++++
+**Vera**. Quando $k = n$, una disposizione semplice deve usare tutti gli $n$
+oggetti disponibili senza ripetizioni, cioè è esattamente una permutazione
+semplice. Coerentemente, si ha $d_{n,n} = n!/(n-n)! = n!/0! = n! = p_n$: la
+formula delle disposizioni semplici con $k = n$ coincide con quella delle
+permutazioni.
+````
+
+
 ## Esercizi
 
 ```{exercise} •
@@ -301,4 +375,22 @@ posizioni.
   assegnato all'ultima missione.
 
 Pertanto, le pianificazioni valide sono $24 + 24 = 48$.
+````
+
+
+## Concetti fondamentali
+
+Pensate ai concetti fondamentali illustrati in questo paragrafo ed elencateli.
+Nella lista qui sotto sono già presenti gli stessi concetti, ma nascosti.
+Cliccate sul pulsante per mostrarli sotto forma di parole chiave, quindi
+confrontateli con la vostra lista. Provate infine a descrivere ciascun concetto
+con parole vostre.
+
+````{sds-wordcloud}
+Simboli
+Oggetti
+Posti
+Disposizioni con ripetizione
+Disposizioni senza ripetizione
+Scelte
 ````

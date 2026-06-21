@@ -373,8 +373,7 @@ nel seguente teorema.
 Dati $\lambda \in \mathbb R^+$ e $X \sim \mathrm P(\lambda)$,
 $\mathbb E(X) = \lambda$.
 ````
-````{admonition} _
-:class: myproof
+````{sds-proof}
 Applicando la definizione di valore atteso di variabile aleatoria si ottiene
 
 ```{math}
@@ -406,8 +405,7 @@ formale, per esempio nel modo descritto dal seguente teorema.
 Dati $\lambda \in \mathbb R^+$ e $X \sim \mathrm P(\lambda)$,
 $\mathrm{Var}(X) = \lambda$.
 ````
-````{admonition} _
-:class: myproof
+````{sds-proof}
 Il momento secondo della distribuzione è uguale a
 
 ```{math}
@@ -457,8 +455,7 @@ m_X(t) = \mathrm e^{-\lambda} \mathrm{exp}\left( \lambda \mathrm e^t \right)
          \enspace.
 ```
 ````
-````{admonition} _
-:class: myproof
+````{sds-proof}
 Dalla definizione di funzione generatrice dei momenti si ottiene
 
 ```{math}
@@ -487,8 +484,7 @@ per ogni $i = 1, \dots, n$ sia $X_i \sim \mathrm P(\lambda_i)$. Se le
 variabili aleatorie appena definite sono tra loro indipendenti, allora
 $Y \coloneqq \sum_{i=1}^n X_i \sim \mathrm P(\sum_{i=1}^n \lambda_i)$.
 ```
-````{admonition} _
-:class: myproof
+````{sds-proof}
 L'indipendenza delle $X_i$ permette di esprimere la funzione generatrice dei
 momenti di $Y$ come prodotto di quelle delle $X_i$:
 

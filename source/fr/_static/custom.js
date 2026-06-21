@@ -110,6 +110,18 @@ document.addEventListener("DOMContentLoaded", function() {
   // Initialize immediately
   initializeToggleCode();
 
+  // Expose myproof subtitle: when the admonition title is not the placeholder
+  // '_', set data-proof-subtitle so CSS can append it in parentheses after the
+  // localized "Dimostrazione / Proof / ..." label via attr().
+  document.querySelectorAll('.myproof.admonition').forEach(function(proof) {
+    var title = proof.querySelector('.admonition-title');
+    if (!title) return;
+    var text = title.textContent.trim();
+    if (text && text !== '_') {
+      proof.setAttribute('data-proof-subtitle', text);
+    }
+  });
+
   // Prevent focus ring on exercise/solution title clicks by blocking the
   // mousedown default (which is what causes the browser to focus the element).
   // The click event still fires, so togglebutton.js works normally.
@@ -351,5 +363,90 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     }
   }
-  
+
+  // True/false (Vero o falso) question cards.
+  // Each .vf-item.admonition has the question as its title and the answer as
+  // its body. Clicking the title toggles .vf-open; CSS handles show/hide.
+  document.querySelectorAll('.vf-item.admonition').forEach(function(item) {
+    var title = item.querySelector('.admonition-title');
+    if (!title) return;
+
+    // Click on the question text toggles the answer
+    title.addEventListener('click', function() {
+      item.classList.toggle('vf-open');
+    });
+
+    // Detect verdict from the first non-title paragraph.
+    // Accept all four languages: it=Vera/Falsa, en=True/False, fr=Vrai/Faux,
+    // es=Verdadero/Verdadera/Falso/Falsa.
+    var allP = item.querySelectorAll('p');
+    var firstP = null;
+    for (var i = 0; i < allP.length; i++) {
+      if (!allP[i].classList.contains('admonition-title')) {
+        firstP = allP[i];
+        break;
+      }
+    }
+    if (!firstP) return;
+
+    var strong = firstP.querySelector('strong');
+    if (!strong) return;
+    var verdict = strong.textContent.trim();
+    var v = verdict.toLowerCase();
+    var isVera  = v === 'vera'  || v === 'vrai'  || v === 'vraie'  || v === 'true'
+               || v === 'verdadero' || v === 'verdadera';
+    var isFalsa = v === 'falsa' || v === 'faux'  || v === 'fausse' || v === 'false'
+               || v === 'falso';
+    if (!isVera && !isFalsa) return;
+
+    // Tag the container so CSS can apply the right background on reveal
+    item.classList.add(isVera ? 'vf-vera' : 'vf-falsa');
+
+    // Move ALL body nodes (every sibling after the title) into .vf-verdict so
+    // that multi-paragraph answers and display-math blocks are included.
+    var verdictDiv = document.createElement('div');
+    verdictDiv.className = 'vf-verdict ' + (isVera ? 'vf-verdict-vera' : 'vf-verdict-falsa');
+    var siblings = [];
+    var node = title.nextSibling;
+    while (node) { siblings.push(node); node = node.nextSibling; }
+    siblings.forEach(function(n) { verdictDiv.appendChild(n); });
+    item.appendChild(verdictDiv);
+  });
+
+  // Prevent line break between inline math spans and following punctuation.
+  // Word Joiner (U+2060) doesn't survive CSS overflow-wrap overrides, so we
+  // wrap math + punctuation in a nowrap span, which bypasses the Unicode LBA.
+  document.querySelectorAll('span.math').forEach(function(span) {
+    var next = span.nextSibling;
+    if (next && next.nodeType === 3 && /^[,\.;:!?…\)]/.test(next.textContent)) {
+      var wrapper = document.createElement('span');
+      wrapper.style.whiteSpace = 'nowrap';
+      span.parentNode.insertBefore(wrapper, span);
+      wrapper.appendChild(span);
+      var punct = next.textContent[0];
+      next.textContent = next.textContent.slice(1);
+      wrapper.appendChild(document.createTextNode(punct));
+      if (next.textContent === '') {
+        next.parentNode.removeChild(next);
+      }
+    }
+  });
+
+  // Sidebar uses display:grid so the outer sidebar cannot scroll (scrollTop always 0).
+  // PyData's active-link scroll targets the outer sidebar and is therefore a no-op.
+  // We replicate it here, targeting the inner scroll area instead.
+  (function scrollTocToActiveLink() {
+    var scrollArea = document.querySelector('.bd-sidebar-scroll-area');
+    if (!scrollArea) return;
+    var docsNav = scrollArea.querySelector('.bd-docs-nav');
+    if (!docsNav) return;
+    var activeLinks = docsNav.querySelectorAll('.active');
+    if (!activeLinks.length) return;
+    var lastActive = activeLinks[activeLinks.length - 1];
+    if (lastActive.getBoundingClientRect().y > 0.5 * window.innerHeight) {
+      var r = lastActive.getBoundingClientRect().y - scrollArea.getBoundingClientRect().y;
+      scrollArea.scrollTop = r - scrollArea.clientHeight * 0.25;
+    }
+  })();
+
 });

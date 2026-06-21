@@ -77,7 +77,7 @@ class TOC:
             ValueError: If validation fails.
         """
         self._validate_entry(file, label, title)
-        label = re.sub(r'[:_]', '-', label)
+        label = re.sub(r'[:_]', '-', label).lower()
         self.current_chapter_num += 1
         self.current_section_num = 0
         key = 'appendix' if self.is_appendix_part else 'chapter'
@@ -115,7 +115,7 @@ class TOC:
         if self.current_chapter_num == 0 and not self.is_appendix_part:
             raise ValueError("Cannot add a section before a chapter.")
         self._validate_entry(file, label, title)
-        label = re.sub(r'[:_]', '-', label)
+        label = re.sub(r'[:_]', '-', label).lower()
         self.current_section_num += 1
         caption = LABELS[self.language]['section']
         if self.is_appendix_part:

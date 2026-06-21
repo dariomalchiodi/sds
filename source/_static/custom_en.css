@@ -24,6 +24,10 @@
   margin-top: 0.4em;
 }
 
+.myproof.admonition[data-proof-subtitle]::before {
+  content: "Proof (" attr(data-proof-subtitle) ")";
+}
+
 .naming.admonition::before {
   content: "Notation";
   display: block;

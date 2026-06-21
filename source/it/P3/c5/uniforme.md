@@ -67,9 +67,7 @@ F_X(x; n) = \frac{\lfloor x \rfloor}{n} \mathrm I_{[1, n)}(x) +
             \enspace.
 ```
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Chiaramente, per ogni $x < 1 $ si ha $F_X(x; n) = 0$ in quanto l'evento
 $X \leq x$ ha probabilità nulla, tenuto conto del fatto che le specificazioni
 della distribuzione uniforme discreta partono da $1$. Sempre a causa del fatto
@@ -104,9 +102,7 @@ Dato $n \in \mathbb N$ e una variabile aleatoria $X \sim \mathrm U(n)$,
 \mathbb E(X) = \frac{n+1}{2} \enspace.
 ```
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Applicando la definizione di valore atteso si ha
 
 ```{math}
@@ -131,9 +127,7 @@ Dato $n \in \mathbb N$ e una variabile aleatoria $X \sim \mathrm U(n)$,
 \mathrm{Var}(X) = \frac{n^2-1}{12} \enspace.
 ```
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Il momento secondo si calcola in modo analogo al valore atteso:
 
 ```{math}

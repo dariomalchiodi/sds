@@ -392,9 +392,7 @@ come indicato in dettaglio di seguito.
 Dati $\lambda \in \mathbb R^+$ e $X \sim \mathrm E(\lambda)$, posto
 $c > 0$ e definita $Y \coloneqq X/c$, si ha che $Y \sim \mathrm E(\lambda c)$.
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 La funzione di ripartizione di $Y$ è tale che per ogni $x \in \mathbb R$,
 tenuto conto del fatto che $c$ è positivo,
 
@@ -420,9 +418,7 @@ $s, t \in \mathbb R^+$, si ha
 \mathbb P(X > s+t \mid X > s) = \mathbb P(X > s) \enspace.
 ```
 `````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Ricordando che $\mathbb P(X > s) = 1 - F_X(s) = \mathrm e^{-\lambda s}$,
 dalla definizione di probabilità condizionata si ottiene
 
@@ -578,8 +574,7 @@ $q \in [0, 1)$ si ha
 \xi_X^q = -\frac{1}{\lambda} \ln (1 - q) \enspace.
 ```
 ````
-````{admonition} _
-:class: myproof
+````{sds-proof}
 Risolvendo $F_X(\xi_X^q) = q$ rispetto a $\xi_X^q$ si ottiene
 
 ```{math}
@@ -596,9 +591,7 @@ quartile della stessa distribuzione valgono rispettivamente  $(\ln 4 - \ln 3)
 / \lambda$ e $\ln 4 / \lambda$, mentre il suo range interquartile è uguale a
 $\ln 3 / \lambda$.
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Applicando il {prf:ref}`lemma-exponential-quantile` per $q = 1/2, 1/4
 \text{ e } 3/4$ e utilizzando le proprietà dei logaritmi si ottiene che:
 

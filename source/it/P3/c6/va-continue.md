@@ -26,8 +26,8 @@ paragrafo precedente. In particolare, partiamo dalla definizione di _variabile
 aleatoria continua_.
 
 ```{margin}
-Come indicato nella {prf:ref}`def-dominio`, per dominio si intende qui
-l'insieme delle specificazioni di una variabile aleatoria.
+Come indicato nella {prf:ref}`def-dominio-va`, per dominio si intende qui
+l'insieme dei valori che una variabile aleatoria può assumere.
 ```
 ````{prf:definition} Variabile aleatoria continua
 :label: def-va-continua

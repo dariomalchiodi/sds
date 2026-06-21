@@ -135,3 +135,225 @@ e questa relazione continua a valere se si considera la relazione di inclusione
 in senso stretto, a patto che $S$ sia diverso dall'insieme vuoto (affinché
 valga la prima parte della relazione) e dall'insieme universo (affinché possa
 valere la sua seconda parte).
+
+## Vero o falso?
+
+Analizzate ciascuna delle seguenti affermazioni, che riguardano le relazioni
+tra insiemi, e dite se è vera o falsa, motivando il vostro ragionamento.
+Cliccate su di essa per visualizzare la risposta corretta.
+
+````{tf-item}
+Se $S \subseteq T$, allora ogni elemento di $S$ appartiene anche a $T$.
++++
+**Vera**. Questa è esattamente la definizione di sottoinsieme: $S \subseteq T$
+significa che per ogni $s \in \Omega$, se $s \in S$ allora $s \in T$. In altri
+termini, $T$ contiene almeno tutti gli elementi di $S$ (e possibilmente altri).
+````
+
+````{tf-item}
+Se $S \subset T$, allora $S$ e $T$ non possono essere uguali.
++++
+**Vera**. La definizione di inclusione in senso stretto richiede esplicitamente
+che $S \subseteq T$ e che $S \neq T$. L'uguaglianza è quindi esclusa per
+costruzione: $S \subset T$ garantisce che $T$ contiene almeno un elemento che
+non appartiene a $S$.
+````
+
+````{tf-item}
+Se $S \subseteq T$, allora necessariamente $S \neq T$.
++++
+**Falsa**. L'inclusione $S \subseteq T$ ammette anche il caso $S = T$: due
+insiemi uguali si includono sempre mutuamente, quindi in particolare
+$S \subseteq S$ è sempre vera. Quando si vuole escludere l'uguaglianza si
+deve usare la relazione di inclusione in senso stretto $S \subset T$.
+````
+
+````{tf-item}
+Due insiemi sono uguali se e solo se si includono mutuamente.
++++
+**Vera**. Questa è la definizione di uguaglianza tra insiemi: $S = T$ se e
+solo se $S \subseteq T$ e $T \subseteq S$. La condizione è bidirezionale:
+ogni elemento di $S$ appartiene a $T$ e viceversa, quindi i due insiemi
+contengono esattamente gli stessi elementi.
+````
+
+````{tf-item}
+L'insieme vuoto $\varnothing$ è un sottoinsieme di qualunque insieme.
++++
+**Vera**. Da un punto di vista logico, $\varnothing \subseteq S$ equivale alla
+proposizione $\forall \omega \in \Omega \quad \omega \in \varnothing
+\rightarrow \omega in S$.  Questo è un esempio di «verità vacua»: nella logica
+classica, un'implicazione $P \rightarrow Q$ è considerata vera ogni volta che
+$P$ è falsa, indipendentemente dal valore di verità di $Q$. Poiché nessun
+elemento appartiene all'insieme vuoto, l'antecedente $x \in \varnothing$ è
+sempre falso e quindi l'implicazione risulta automaticamente vera.
+````
+
+````{tf-item}
+L'insieme vuoto $\varnothing$ è un sottoinsieme stretto di qualunque insieme.
++++
+**Falsa**. L'inclusione stretta $\varnothing \subset S$ richiede che
+$\varnothing \subseteq S$ e che $\varnothing \neq S$. La seconda condizione
+non vale quando $S = \varnothing$: in quel caso i due insiemi sono uguali, e
+l'inclusione stretta non sussiste.
+````
+
+
+## Esercizi
+
+````{exercise}
+:label: ex-alpha-flight-inclusioni
+
+Considerate i seguent universo composto da membri della
+[Alpha flight](https://marvel.fandom.com/wiki/Alpha_Flight_(Canada)):
+
+```{math}
+\Omega = \{ \text{Guardian}, \text{Sasquatch}, \text{Snowbird}, \text{Puck}, \text{Shaman} \} .
+```
+
+Siano inoltre
+
+- $A = \{ \text{Guardian}, \text{Sasquatch}, \text{Snowbird}, \text{Puck} \}$,
+- $B = \{ \text{Guardian}, \text{Sasquatch} \}$,
+- $C = \{ \text{Sasquatch}, \text{Guardian} \}$,
+- $D = \{ \text{Guardian}, \text{Puck}, \text{Shaman} \}$.
+
+1. Stabilite quali tra le relazioni seguenti sono vere:
+  $B \subseteq A$, $A \subseteq B$, $B = C$, $D \subseteq A$, $D \subset A$.
+2. Trovate un insieme $E$ tale che $B \subset E \subset A$.
+3. Trovate un insieme $F$ tale che $A \subset F \subseteq \Omega$.
+````
+
+````{solution} ex-alpha-flight-inclusioni
+:class: dropdown
+
+1. Sono vere $B \subseteq A$ e $B = C$. Infatti tutti gli elementi di $B$
+   appartengono ad $A$, mentre $B$ e $C$ contengono esattamente gli stessi
+   elementi, solo in ordine diverso. Sono invece false $A \subseteq B$ (in
+   quanto vale $B \subseteq A$ e i due insiemi sono diversi),
+   $D \subseteq A$ e a maggior ragione $D \subset A$ (perché Shaman appartiene
+   a $D$ ma non ad $A$).
+2. Si può scegliere $E = \{ \text{Guardian}, \text{Sasquatch}, \text{Puck} \}$
+   oppure $E = \{ \text{Guardian}, \text{Sasquatch}, \text{Snowbird} \}$.
+3. L'unica scelta possibile è $F = \Omega$.
+````
+
+````{exercise}
+:label: ex-guardiani-badge
+
+In un archivio dei [Guardiani della
+Galassia](https://marvel.fandom.com/wiki/Guardians_of_the_Galaxy_(Earth-616)),
+sia $\Omega$ l'insieme di tutti gli eroi registrati. Si considerano i due
+insiemi
+
+```{math}
+S = \{ x \in \Omega \mid x \text{ ha partecipato alla missione su Knowhere} \}
+```
+
+e
+
+```{math}
+T = \{ x \in \Omega \mid x \text{ ha ricevuto un badge per la missione su Knowhere} \} .
+```
+
+Sapendo che ogni eroe che ha partecipato alla missione ha ricevuto un badge e
+che ogni eroe con badge ha effettivamente partecipato:
+
+1. Scrivete le due inclusioni che legano $S$ e $T$.
+2. Deducete la relazione tra $S$ e $T$.
+3. Spiegate perché conoscere soltanto $S \subseteq T$ non basterebbe per
+  concludere che $S = T$.
+````
+
+````{solution} ex-guardiani-badge
+:class: dropdown
+
+1. Le ipotesi si traducono nelle inclusioni $S \subseteq T$ e $T \subseteq S$.
+2. Poiché i due insiemi si includono mutuamente, si conclude che $S = T$.
+3. La sola inclusione $S \subseteq T$ garantisce soltanto che ogni elemento di
+  $S$ appartiene anche a $T$, ma non esclude che $T$ contenga elementi in più.
+  Per ottenere l'uguaglianza serve anche l'inclusione opposta $T \subseteq S$.
+````
+
+````{exercise}
+:label: ex-teen-titans-python
+
+Considerate gli insiemi
+
+```{math}
+\begin{align*}
+A &= \{ \text{Robin}, \text{Starfire}, \text{Raven} \} \enspace, \\
+B &= \{ \text{Robin}, \text{Starfire}, \text{Raven}, \text{Beast Boy} \}
+     \enspace, \\
+C &= \{ \text{Starfire}, \text{Robin}, \text{Raven} \} \enspace.
+\end{align*}
+```
+
+Con riferimento alla parte del {ref}`sec_dati-strutturati` che descrive
+gli insiemi in Python, e in particolare alla {ref}`table-set-operators`:
+
+1. costruite gli oggetti python corrispondenti ad $A$, $B$ e $C$ e
+   memorizzateli nelle variabili `a`, `b` e `c`;
+2. determinate, senza eseguire codice, il valore delle espressioni `a <= b`,
+   `a < b`, `a == c` e `b <= c`;
+2. scrivete uno script che stampi il valore di verità di ciascuna di
+   queste espressioni, ed eseguitelo, verificando che i risultati siano
+   coerenti con i risultati del punto precedente;
+3. modificate $A$ aggiungendo un elemento, in modo che il nuovo insieme non
+   sia più un sottoinsieme di $B$.
+````
+
+````{solution} ex-teen-titans-python
+:class: dropdown
+
+1. Se identifichiamo ogni eroe con una stringa che ne descrive il nome, il modo
+   più semplice di procedere è quello di utilizzare dei letterali di tipo
+   `set`.
+
+```{code-cell} python
+a = {'Robin', 'Starfire', 'Raven'}
+b = {'Robin', 'Starfire', 'Raven', 'Beast Boy'}
+c = {'Starfire', 'Robin', 'Raven'}
+```
+2. Tutte le espressioni devono essere vere, a parte `b <= c`. Le prime due sono
+   vere perché $A \subset B$, e dunque $A \subseteq B$; la terza è vera perché
+   le descrizioni estensive dei due insiemi si equivalgono, a meno di una
+   permutazione degli elementi; infine, Beasty Boy appartiene a $B$ ma non a
+   $C$.
+2. Un possibile script è il seguente.
+
+```{code-cell} python
+
+expr = { 'A <= B': a <= b,
+        'A < B': a < b,
+        'A == C': a == c,
+        'B <= C': b <= c }
+
+for e, v in expr.items():
+    print(f'{e}: {v}')
+```
+
+3. Nessuno tra i supereroi indicati può essere utilizzato, perché $A = C$;
+   risulta dunque necessario aggiungere ad $A$ un nuovo supereroe. Siccome
+   tutti i personaggi sono membri dei [Teen
+   Titans](https://dc.fandom.com/wiki/Teen_Titans_(New_Earth)), possiamo ad
+   esempio considerare $A' = A \cup \{ \text{Cyborg} \}$, ottenendo un insieme
+   che non è più contenuto in $B$.
+````
+
+
+## Concetti fondamentali
+
+Pensate ai concetti fondamentali illustrati in questo paragrafo ed elencateli.
+Nella lista qui sotto sono già presenti gli stessi concetti, ma nascosti.
+Cliccate sul pulsante per mostrarli sotto forma di parole chiave, quindi
+confrontateli con la vostra lista. Provate infine a descrivere ciascun concetto
+con parole vostre.
+
+````{sds-wordcloud}
+Sottoinsieme
+Sovrainsieme
+Inclusione
+Inclusione stretta
+Uguaglianza tra insiemi
+````

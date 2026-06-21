@@ -31,8 +31,8 @@ grid.alpha: 0.7
 
 # Lines
 lines.color: C4
-lines.linewidth: 2.0
-lines.markersize: 8
+lines.linewidth: 1.0
+lines.markersize: 3
 
 # Font
 font.family: sans-serif

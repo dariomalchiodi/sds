@@ -165,6 +165,77 @@ il modulo `sympy.utilities.iterables` contiene il generatore
 `multiset_permutations` che enumera efficientemente solo le permutazioni
 distinte.
 
+
+### Vero o falso?
+
+Analizzate ciascuna delle seguenti affermazioni, che riguardano le
+combinazioni, e dite se è vera o falsa, motivando il vostro ragionamento.
+Cliccate su di essa per visualizzare la risposta corretta.
+
+````{tf-item}
+`itertools.permutations(A)` genera tutte le permutazioni semplici degli
+elementi di `A`.
++++
+**Vera**. `itertools.permutations(A)` produce tutte le sequenze ordinate degli
+elementi di `A` senza ripetizioni, che corrispondono esattamente alle
+permutazioni semplici. Per un insieme di $n$ oggetti, il numero di sequenze
+generate è $p_n = n!$, come verificato nell'
+{ref}`ex-gen-titans-conta`.
+````
+
+````{tf-item}
+`itertools.product(A, repeat=k)` genera le disposizioni con ripetizione di
+$k$ elementi scelti da `A`.
++++
+**Vera**. `itertools.product(A, repeat=k)` restituisce il prodotto cartesiano
+$A^k$, ovvero tutte le sequenze ordinate di lunghezza $k$ con possibilità di
+ripetere gli elementi. Questo corrisponde esattamente alle disposizioni con
+ripetizione $D_{n,k} = n^k$, come mostrato nell'
+{ref}`ex-gen-dk-mp-ripetizione`.
+````
+
+````{tf-item}
+`itertools.combinations(A, k)` restituisce sequenze ordinate di $k$ elementi
+di `A`.
++++
+**Falsa**. `itertools.combinations(A, k)` genera sottoinsiemi non ordinati di
+$k$ elementi: due sequenze con gli stessi elementi in ordine diverso
+corrispondono alla stessa combinazione e vengono restituite una sola volta.
+Per generare sequenze ordinate bisogna usare `itertools.permutations(A, k)`,
+che produce le disposizioni semplici.
+````
+
+````{tf-item}
+I generatori di `itertools` mantengono in memoria tutti gli elementi generati
+per poterli restituire su richiesta.
++++
+**Falsa**. I generatori di `itertools` producono un elemento alla volta senza
+memorizzare quelli precedenti, occupando quindi memoria costante indipendentemente
+dal numero totale di elementi. Questo li rende efficienti anche quando il numero
+combinatorio è molto grande, come discusso nell'
+{ref}`ex-gen-iter-vs-lista`.
+````
+
+````{tf-item}
+`itertools.permutations(A, k)` con $k < |A|$ genera le disposizioni semplici
+di $k$ elementi scelti da `A`.
++++
+**Vera**. Quando si passa un secondo argomento $k$, `itertools.permutations(A, k)`
+produce tutte le sequenze ordinate di $k$ elementi distinti scelti da `A`,
+senza ripetizioni. Il numero di tali sequenze è $d_{n,k} = n!/(n-k)!$, che
+corrisponde esattamente alla formula delle disposizioni semplici.
+````
+
+````{tf-item}
+`itertools` fornisce una funzione dedicata per generare direttamente le
+permutazioni con ripetizione di un multiinsieme.
++++
+**Falsa**. `itertools` non offre una funzione specifica per le permutazioni
+con ripetizione. Per ottenerle bisogna generare tutte le permutazioni con
+`itertools.permutations` e filtrare i duplicati tramite un insieme, come
+mostrato nell'{ref}`ex-gen-cloni-dk-anagrammi`.
+````
+
 ## Esercizi
 
 ````{exercise} •
@@ -491,4 +562,18 @@ young_avengers = ['Patriot', 'Hulkling', 'Wiccan', 'Speed',
 num_pairs = sum(1 for _ in disjoint_teams(young_avengers, 2))
 assert num_pairs == 756
 ```
+````
+
+
+## Concetti fondamentali
+
+Pensate ai concetti fondamentali illustrati in questo paragrafo ed elencateli.
+Nella lista qui sotto sono già presenti gli stessi concetti, ma nascosti.
+Cliccate sul pulsante per mostrarli sotto forma di parole chiave, quindi
+confrontateli con la vostra lista. Provate infine a descrivere ciascun concetto
+con parole vostre.
+
+````{sds-wordcloud}
+Iteratore
+`itertools`
 ````

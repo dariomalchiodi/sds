@@ -289,6 +289,85 @@ $k$ e $n-k$ elementi; analogamente $\binom{n}{n_1, \ldots, n_r}$ indica in
 quanti modi è possibile suddividere $n$ oggetti in $r$ gruppi nei quali il
 primo contiene $n_1$ elementi, il secondo ne contiene $n_2$ e così via.
 
+
+## Vero o falso?
+
+Analizzate ciascuna delle seguenti affermazioni, che riguardano le
+permutazioni, e dite se è vera o falsa, motivando il vostro ragionamento.
+Cliccate su di essa per visualizzare la risposta corretta.
+
+````{tf-item}
+Scambiare due elementi qualsiasi in una permutazione semplice produce sempre
+una nuova permutazione.
++++
+**Vera**. Nelle permutazioni semplici, si considerano elementi di un insieme,
+che sono quindi tutti distinti tra loro. Poiché l'ordine è significativo in una
+permutazione, qualsiasi scambio altera la sequenza e produce una configurazione
+diversa.
+````
+
+````{tf-item}
+Il numero di permutazioni semplici di $n$ oggetti è $n!$.
++++
+**Vera**. Applicando il principio fondamentale del calcolo combinatorio: la
+prima posizione può essere occupata da $n$ oggetti, la seconda da $n-1$, e
+così via fino all'ultima posizione, che può essere riempita con il solo oggetto
+rimasto. Il numero totale di permutazioni è quindi
+$n \cdot (n-1) \cdot \ldots \cdot 1 = n!$
+````
+
+````{tf-item}
+In una permutazione con ripetizione, è possibile usare un oggetto quante volte
+si vuole.
++++
+**Falsa**. Nelle permutazioni con ripetizione le molteplicità degli oggetti
+sono fissate dal multiinsieme di partenza: la versione $a_j$ compare
+esattamente $n_j$ volte, dove $\sum_{j} n_j = n$ è il numero totale di
+posizioni. Non si può scegliere liberamente quante volte usare ciascun oggetto.
+Questa libertà caratterizza invece le _disposizioni_ con ripetizione (nelle
+quali in ogni caso è possibile utilizzare un oggetto al più per un numero di
+volte uguale al numero di posti considerati). 
+````
+
+````{tf-item}
+Le permutazioni di $\{1, 2, 3, 4\}$ e di $\{a, b, c, d\}$ sono in numero
+uguale, perché i due insiemi hanno la stessa cardinalità.
++++
+**Vera**. Il numero di permutazioni semplici di $n$ oggetti è $p_n = n!$ e
+dipende solo dalla cardinalità $n$, non dalla natura degli elementi. Come
+sottolineato a proposito del principio fondamentale, i risultati del calcolo
+combinatorio dipendono dalla numerosità degli oggetti considerati. Entrambi
+gli insiemi hanno $n = 4$ elementi, quindi in entrambi i casi vi sono
+$4! = 24$ permutazioni semplici.
+````
+
+````{tf-item}
+Se tutti gli $n$ oggetti di un multiinsieme appartengono allo stesso gruppo
+(sono cioè tutti indistinguibili tra loro), le permutazioni con ripetizione
+sono esattamente $1$.
++++
+**Vera**. Se esiste un unico gruppo di numerosità $n_1 = n$, applicando
+{eq}`eq-permutazioni-ripetizione` si ottiene $P_{n;\,n} = n!/n! = 1$.
+Intuitivamente, se tutti gli oggetti sono indistinguibili l'uno dall'altro,
+qualsiasi riorganizzazione produce la stessa sequenza visibile e si conta come
+un'unica permutazione con ripetizione.
+````
+
+````{tf-item}
+Per calcolare il numero di anagrammi di una parola con alcune lettere ripetute
+si usa la formula delle permutazioni semplici $p_n = n!$.
++++
+**Falsa**. La formula $n!$ vale solo quando tutte le lettere sono distinte
+(come per SUPERMAN nell'{ref}`%s <ex-perm-anagrammi-superman>`). Quando almeno
+una lettera si ripete, le permutazioni semplici sovrastimano il numero di
+anagrammi distinti, contando più volte le sequenze che differiscono solo per lo
+scambio di copie indistinguibili. In quel caso si usa la formula delle
+permutazioni con ripetizione: per ANTMAN ({ref}`ex-perm-anagrammi-antman`), con
+A e N ripetute due volte ciascuna, si ottiene
+$P_{6;\,2,2,1,1} = 6!/(2!\cdot 2!) = 180$, non $6! = 720$.
+````
+
+
 ## Esercizi
 
 ````{exercise} ••
@@ -459,6 +538,23 @@ diversi modi di fare intervenire i membri della Justice Society, uno dopo
 l'altro.
 ````
 
+## Concetti fondamentali
 
+Pensate ai concetti fondamentali illustrati in questo paragrafo ed elencateli.
+Nella lista qui sotto sono già presenti gli stessi concetti, ma nascosti.
+Cliccate sul pulsante per mostrarli sotto forma di parole chiave, quindi
+confrontateli con la vostra lista. Provate infine a descrivere ciascun concetto
+con parole vostre.
 
+````{sds-wordcloud}
+Oggetti
+Posti
+Permutazioni
+Scambi
+Fattoriale
+Permutazioni semplici
+Permutazioni con ripetizione
+Multiinsieme
+Coefficiente multinomiale
+````
 

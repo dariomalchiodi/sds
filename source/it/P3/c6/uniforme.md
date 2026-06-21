@@ -175,9 +175,7 @@ Dati $a, b \in \mathbb R$ con $a < b$, sia $X \sim \mathrm U([a, b])$. Si ha
 \mathrm{Var}(X) = \frac{(b - a)^2}{12} \enspace.
 ```
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Il valore atteso si calcola sfruttando il prodotto notevole legato alla
 differenza di quadrati:
 
@@ -379,9 +377,7 @@ Dati $a, b \in \mathbb R$ con $a < b$, una variabile aleatoria
 $X \sim \mathrm U([a, b])$ e $q \in [0, 1]$, il quantile di livello $q$ di
 $X$ è $x_q = a + q (b - a)$.
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 La tesi è banale quando $q=0$ perché in questo caso il quantile è la più
 piccola specificazione di $X$ e dunque $x_0 = a = a + 0 (b - a)$. Un
 ragionamento analogo vale nel caso $q =1 $. Concentriamoci dunque sul caso

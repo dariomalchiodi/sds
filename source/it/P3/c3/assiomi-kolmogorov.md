@@ -171,9 +171,7 @@ probabilità.
 \forall E \subseteq \Omega \quad \mathbb P(\overline E) = 1 - \mathbb P(E).
 ```
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Dato un generico $E \subseteq \Omega$, si ha $E \cup \overline E = \Omega$ e
 $E \cap \overline E = \varnothing$, pertanto
 
@@ -184,7 +182,6 @@ $E \cap \overline E = \varnothing$, pertanto
 dove il primo e l'ultimo passaggio sono basati sul secondo e terzo assioma di
 Kolmogorov, rispettivamente. La tesi si ottiene ricavando
 $\mathbb P(\overline E)$.
-
 ````
 
 ````{prf:example} Esempio: supereroi non Marvel
@@ -224,9 +221,7 @@ che non appartenga all'universo Marvel.
 \mathbb P(\varnothing) = 0
 ```
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 La tesi si ottiene dal {prf:ref}`probabilita-evento-complementare`,
 quando $E = \Omega$.
 ````
@@ -239,9 +234,7 @@ quando $E = \Omega$.
 \mathbb P(E) + \mathbb P(F) - \mathbb P(E \cap F).
 ```
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Per la distributività dell'intersezione rispetto all'unione si ha
 
 ```{math}
@@ -434,9 +427,7 @@ Più in generale, dati $n$ eventi $E_1, \dots, E_n$,
 \mathbb P\left(\bigcap_{i \in S} E_i\right) \enspace.
 ```
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 La prima formula è un caso particolare della seconda, che si può dimostrare
 usando il procedimento di induzione matematica (vedi
 {ref}`ex-inclusione-esclusione`).
@@ -450,9 +441,7 @@ usando il procedimento di induzione matematica (vedi
 \mathbb P(E) \leq \mathbb P(F).
 ```
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Siccome $F = E \cup (F \cap \overline E)$ ed $E$ e $F \cap \overline E$ sono
 disgiunti, come evidenziato nella {numref}`fig_venn-subset-theorem`, per il terzo
 assioma di Kolmogorov si ha
@@ -583,6 +572,78 @@ versione in inglese, Andreï Nikolaïevitch Kolmogorov in quella francese, Andre
 Nikolajewitsch Kolmogorow in quella tedesca e Andrej Nikolaevič Kolmogorov in
 quella italiana.
 
+
+## Vero o falso?
+
+Analizzate ciascuna delle seguenti affermazioni, che riguardano gli assiomi di
+Kolmogorov e i concetti da essi derivati, e dite se è vera o falsa, motivando
+il vostro ragionamento. Cliccate su di essa per visualizzare la risposta
+corretta.
+
+````{tf-item}
+La probabilità di qualsiasi evento è un numero compreso tra $0$ e $1$.
++++
+**Vera**. Il primo assioma di Kolmogorov garantisce $\mathbb P(E) \geq 0$.
+Per il {prf:ref}`probabilita-evento-complementare`,
+$\mathbb P(E) = 1 - \mathbb P(\overline{E}) \leq 1$, dato che
+$\mathbb P(\overline{E}) \geq 0$. Combinando le due disuguaglianze si ottiene
+$0 \leq \mathbb P(E) \leq 1$.
+````
+
+````{tf-item}
+Per ogni coppia di eventi $E$ ed $F$, si ha
+$\mathbb P(E \cup F) = \mathbb P(E) + \mathbb P(F)$.
++++
+**Falsa**. Questa uguaglianza vale solo quando $E$ e $F$ sono mutuamente
+esclusivi (terzo assioma di Kolmogorov). In generale, per il
+{prf:ref}`probabilita-unione-eventi`,
+
+$$\mathbb P(E \cup F) = \mathbb P(E) + \mathbb P(F) - \mathbb P(E \cap F) \enspace:$$
+
+il termine $\mathbb P(E \cap F)$ viene sottratto per evitare di considerare due
+volte gli esiti che appartengono a entrambi gli eventi. Se $E$ e $F$ sono
+disgiunti, $\mathbb P(E \cap F) = 0$ e la formula si riduce alla somma
+semplice.
+````
+
+````{tf-item}
+Se $\mathbb P(E) = \mathbb P(F)$, allora $E = F$.
++++
+**Falsa**. La funzione di probabilità associa a ogni evento un numero reale,
+ma gli assiomi di Kolmogorov non implicano che questa funzione sia iniettiva.
+È molto facile trovare dei controesempi: uno dei più banali riguarda il lancio
+di una moneta bilanciata, nei quali gli eventi «testa» e «croce» &mdash; che
+sono chiaramente distinti &mdash; hanno entrambi probabilità $\tfrac{1}{2}$.
+````
+
+````{tf-item}
+Se $E \subseteq F$, allora $\mathbb P(E) \leq \mathbb P(F)$.
++++
+**Vera**. È l'enunciato del {prf:ref}`teo_prob_sottoinsiemi`: poiché
+$F = E \cup (F \cap \overline{E})$ con i due insiemi disgiunti, per il terzo
+assioma di Kolmogorov si ha $\mathbb P(F) = \mathbb P(E) +
+\mathbb P(F \cap \overline{E}) \geq \mathbb P(E)$.
+````
+
+````{tf-item}
+Per ogni coppia di eventi $E$ ed $F$, si ha $\mathbb P(E \cup F) \leq \mathbb P(E) + \mathbb P(F)$.
++++
+**Vera**. Dal {prf:ref}`probabilita-unione-eventi` si ha
+$\mathbb P(E \cup F) = \mathbb P(E) + \mathbb P(F) - \mathbb P(E \cap F)$.
+Poiché $\mathbb P(E \cap F) \geq 0$ per il primo assioma di Kolmogorov,
+sottrarlo non può che ridurre (o al limite lasciare invariata) la somma
+$\mathbb P(E) + \mathbb P(F)$, da cui segue la disuguaglianza.
+````
+
+````{tf-item}
+Se $\mathbb P(E) + \mathbb P(F) > 1$, allora $E$ e $F$ non possono essere mutuamente esclusivi.
++++
+**Vera**. Se $E$ e $F$ fossero disgiunti, per il terzo assioma di Kolmogorov
+varrebbe $\mathbb P(E \cup F) = \mathbb P(E) + \mathbb P(F) > 1$.
+Ma $E \cup F \subseteq \Omega$, quindi per il {prf:ref}`teo_prob_sottoinsiemi`
+si avrebbe $\mathbb P(E \cup F) \leq \mathbb P(\Omega) = 1$: una
+contraddizione. Dunque $E$ e $F$ non possono essere mutuamente esclusivi.
+````
 
 
 ## Esercizi
@@ -1042,3 +1103,24 @@ Applicando questi due limiti al caso descritto, si ottiene che:
 - il valore minimo per $\mathbb P(V \cap M)$ è $\max(0, 0.4 + 0.5 - 1) = 0$,
 - il suo valore massimo è invece $\min(0.4, 0.5) = 0.4$.
 ````
+
+
+## Concetti fondamentali
+
+Pensate ai concetti fondamentali illustrati in questo paragrafo ed elencateli.
+Nella lista qui sotto sono già presenti gli stessi concetti, ma nascosti.
+Cliccate sul pulsante per mostrarli sotto forma di parole chiave, quindi
+confrontateli con la vostra lista. Provate infine a descrivere ciascun concetto
+con parole vostre.
+
+````{sds-wordcloud}
+Assiomi di Kolmogorov
+Funzione di probabilità
+Spazio di probabilità
+Probabilità dell'evento complementare
+Probabilità dell'evento impossibile
+Probabilità dell'unione di eventi
+Principio di inclusione-esclusione
+Monotonicità della probabilità
+````
+

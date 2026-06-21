@@ -14,6 +14,7 @@ axes.labelpad: 10
 axes.spines.top: False
 axes.spines.right: False
 axes.titlesize: 12
+xaxis.labellocation: right
 
 # Boxplots settings
 boxplot.boxprops.color: C0
@@ -35,8 +36,8 @@ grid.alpha: 0.7
 
 # Line settings
 lines.color: C4
-lines.linewidth: 2.0
-lines.markersize: 8
+lines.linewidth: 1.0
+lines.markersize: 3
 
 # Font settings
 font.size: 12

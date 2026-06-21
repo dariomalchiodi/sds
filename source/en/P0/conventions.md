@@ -81,12 +81,11 @@ Corollaries will be presented in areas like this.
 This area contains the statement of a lemma.
 ```
 
-```{admonition} _
-:class: myproof
+````{sds-proof}
 This block contains proofs of theorems, corollaries, or lemmas. I will omit
 them whenever it is important to introduce a theoretical result whose proof
 would require advanced mathematical knowledge.
-```
+````
 
 ```{note}
 This type of box contains secondary aspects that I prefer to emphasize in the

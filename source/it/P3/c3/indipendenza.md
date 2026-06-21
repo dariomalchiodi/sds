@@ -143,9 +143,7 @@ Siano $E, F \in \mathsf A$. Le seguenti condizioni sono equivalenti:
 3. $\mathbb P(F \mid E) = \mathbb P(F)$ quando $\mathbb P(E) > 0$.
 ````
 
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Supponiamo vera la prima condizione e mostriamo che questa implica la
 seconda. Se $\mathbb P(F) > 0$, è possibile ragionare in termini della
 probabilità condizionata $\mathbb P(E \mid F)$, e
@@ -286,9 +284,7 @@ Se $E$ e $F$ sono indipendenti, allora $E$ e $\overline F$ sono
 indipendenti.
 ````
 
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Poiché $E = (E \cap F) \cup (E \cap \overline F)$ è un'unione disgiunta (vedi
 {numref}`fig-prob-totali-binario`), il terzo assioma di Kolmogorov assicura che
 $\mathbb P(E) = \mathbb P(E \cap F) + \mathbb P(E \cap \overline F)$, per cui
@@ -1263,6 +1259,78 @@ soprattutto per illustrare il funzionamento della libreria e del modello, più
 che per formulare un giudizio conclusivo sulla sua qualità predittiva.
 ````
 
+
+## Vero o falso?
+
+Analizzate ciascuna delle seguenti affermazioni sul concetto di indipendenza,
+e dite se è vera o falsa, motivando il vostro ragionamento. Cliccate su di essa
+per visualizzare la risposta corretta.
+
+````{tf-item}
+Se $\mathbb P(F) > 0$, allora $E$ e $F$ sono indipendenti se e solo se $\mathbb P(E \mid F) = \mathbb P(E)$.
++++
+**Vera**. Questa è una delle condizioni equivalenti alla definizione
+$\mathbb P(E \cap F) = \mathbb P(E) \mathbb P(F)$, come mostrato nel
+{prf:ref}`lemma-indipendenza-condizioni-equivalenti`. Quando $\mathbb P(F) > 0$,
+dividere entrambi i membri per $\mathbb P(F)$ trasforma la definizione
+nell'uguaglianza $\mathbb P(E \mid F) = \mathbb P(E)$: conoscere $F$ non
+modifica la probabilità di $E$.
+````
+
+````{tf-item}
+Due eventi non banali mutuamente esclusivi sono sempre indipendenti.
++++
+**Falsa**. È vero il contrario: se $E$ e $F$ sono disgiunti e
+$\mathbb P(E) > 0$, $\mathbb P(F) > 0$, allora $\mathbb P(E \cap F) = 0$
+mentre $\mathbb P(E) \mathbb P(F) > 0$, quindi la definizione di indipendenza
+non è soddisfatta. In altri termini, sapere che $F$ si è verificato esclude
+completamente $E$, rendendo i due eventi fortemente dipendenti.
+````
+
+````{tf-item}
+Se $E$ e $F$ sono indipendenti, allora $E$ e $\bar F$ sono indipendenti.
++++
+**Vera**. Il {prf:ref}`thm-indip-complemento` garantisce che l'indipendenza è
+stabile rispetto alla complementazione: se $\mathbb P(E \cap F) = \mathbb P(E)
+\mathbb P(F)$, allora anche $\mathbb P(E \cap \bar F) = \mathbb P(E)
+\mathbb P(\bar F)$. La dimostrazione sfrutta la decomposizione
+$E = (E \cap F) \cup (E \cap \bar F)$ e la $\sigma$-additività.
+````
+
+````{tf-item}
+L'indipendenza a coppie implica l'indipendenza mutua.
++++
+**Falsa**. L'{prf:ref}`ex-indip-coppie-dadi` mostra un controesempio esplicito:
+gli eventi $E$ (somma 7), $F$ (dado rosso mostra 4) e $G$ (dado blu mostra 3)
+sono a due a due indipendenti, ma non sono mutuamente indipendenti perché
+$\mathbb P(E \mid F \cap G) = 1 \neq \frac{1}{6} = \mathbb P(E)$. Per
+l'indipendenza mutua occorre che la proprietà di fattorizzazione valga per
+tutti i sottoinsiemi di eventi, non solo per le coppie.
+````
+
+````{tf-item}
+In un sistema parallelo di $m$ componenti indipendenti, la probabilità di funzionamento aumenta al crescere di $m$.
++++
+**Vera**. La probabilità di funzionamento di un sistema parallelo è
+$1 - \prod_{i=1}^m (1-p_i)$. Aggiungere un nuovo componente con probabilità
+$p_{m+1} \in (0, 1)$ moltiplica il prodotto per $(1-p_{m+1}) < 1$, riducendo
+$\prod_{i=1}^{m+1}(1-p_i)$ e quindi aumentando $1 - \prod_{i=1}^{m+1}(1-p_i)$.
+Il sistema funziona finché almeno una componente funziona, quindi più componenti
+ci sono, maggiore è la ridondanza.
+````
+
+````{tf-item}
+Se $\mathbb P(E \cap F) = 0$, $\mathbb P(E) > 0$ e $\mathbb P(F) > 0$, allora $E$ e $F$ sono indipendenti.
++++
+**Falsa**. L'indipendenza richiede $\mathbb P(E \cap F) = \mathbb P(E)
+\mathbb P(F)$. Se $\mathbb P(E) > 0$ e $\mathbb P(F) > 0$, allora
+$\mathbb P(E) \mathbb P(F) > 0$, ma per ipotesi $\mathbb P(E \cap F) = 0$.
+I due valori sono diversi, quindi $E$ e $F$ sono dipendenti. In realtà
+$\mathbb P(E \cap F) = 0$ con entrambe le probabilità positive è il caso di
+eventi disgiunti non banali, che — come visto sopra — sono sempre dipendenti.
+````
+
+
 ## Esercizi
 
 ````{exercise} ••
@@ -1476,3 +1544,23 @@ attributi: è utile come semplificazione, e facilita i conti, ma è
 oggettivamente poco verosimile quando la classe è associata a combinazioni
 caratteristiche di più proprietà.
 ````
+
+
+## Concetti fondamentali
+
+Pensate ai concetti fondamentali illustrati in questo paragrafo ed elencateli.
+Nella lista qui sotto sono già presenti gli stessi concetti, ma nascosti.
+Cliccate sul pulsante per mostrarli sotto forma di parole chiave, quindi
+confrontateli con la vostra lista. Provate infine a descrivere ciascun concetto
+con parole vostre.
+
+````{sds-wordcloud}
+Eventi indipendenti
+Eventi dipendenti
+Indipendenza mutua
+Indipendenza a coppie
+Sistemi in serie
+Sistemi in parallelo
+Classificatore naive Bayes
+````
+

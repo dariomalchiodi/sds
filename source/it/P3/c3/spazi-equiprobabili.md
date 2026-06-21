@@ -54,9 +54,7 @@ equivalenti:
 Quindi, su uno spazio degli esiti finito, una probabilità è completamente
 determinata dai valori che assume per gli eventi elementari.
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Supponiamo che $\mathbb P$ sia una funzione di probabilità su $\mathsf A$, e
 poniamo $p_i = \mathbb P(\{\omega_i\})$ per ogni $i = 1, \ldots, n$.
 
@@ -149,9 +147,7 @@ $|\Omega| = n$. Allora, per ogni $\omega \in \Omega$,
 \mathbb P(\{\omega\}) = \frac{1}{n} \enspace.
 ```
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Senza ledere la generalità del ragionamento, poniamo
 $\Omega = \{ \omega_1, \dots \omega_n \}$. Se ogni evento elementare ha
 probabilità $p$, applicando gli assiomi di Kolmogorov si ottiene
@@ -182,9 +178,7 @@ $|\Omega| = n$. Per ogni evento $E \in \mathsf A$, si ha
 ```
 ````
 
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Assumiamo, senza ledere la generalità, che $E$ contenga esattamente $k$ esiti
 elementari. Allora,
 
@@ -296,8 +290,8 @@ with mpl.rc_context({'figure.figsize': (3, 3),
 
   ax.scatter(x, y, s=20, c='steelblue', edgecolors='black', linewidths=0.5)
 
-  ax.set_xlabel('Risultato del dado rosso')
-  ax.set_ylabel('Risultato del dado blu')
+  ax.set_xlabel('Risultato del dado rosso', loc='default')
+  ax.set_ylabel('Risultato del dado blu', loc='default')
   ax.set_title(r'$\Omega = \{ (\omega_\text{rosso}, \omega_\text{blu}) \mid '
               r'\omega_\text{rosso}, \omega_\text{blu} \in [1..6] \}$')
   ax.set_xticks(range(1, 7))
@@ -453,6 +447,72 @@ gli esiti, non solo contarli.
 ````
 
 
+### Vero o falso?
+
+Analizzate ciascuna delle seguenti affermazioni, che riguardano gli spazi degli
+esiti finiti, e dite se è vera o falsa, motivando il vostro ragionamento.
+Cliccate su di essa per visualizzare la risposta corretta.
+
+````{tf-item}
+In uno spazio equiprobabile con $n$ esiti, ogni evento elementare ha
+probabilità $\frac{1}{n}$.
++++
+**Vera**. È l’enunciato del {prf:ref}`teo-prob-equiprobabile`: poiché tutti
+gli $n$ eventi elementari hanno la stessa probabilità $p$ e la loro
+unione è $\Omega$, il secondo assioma di Kolmogorov impone $np = 1$, da cui
+$p = \frac{1}{n}$.
+````
+
+````{tf-item}
+In qualsiasi spazio degli esiti finito, la probabilità di un evento $E$ vale
+$\frac{|E|}{|\Omega|}$.
++++
+**Falsa**. La formula $\mathbb P(E) = \frac{|E|}{|\Omega|}$ del
+{prf:ref}`teo-regola-classica` vale _soltanto_ negli spazi equiprobabili. In
+uno spazio finito non equiprobabile, non basta contare il numero di esiti
+favorevoli, bensì pesarli con le rispettive probabilità.
+````
+
+````{tf-item}
+In uno spazio degli esiti finito, la funzione di probabilità è completamente determinata dalle probabilità degli eventi elementari.
++++
+**Vera**. Per il {prf:ref}`teo-prob-spazio-finito`, basta assegnare un valore
+$p_i = \mathbb P(\{\omega_i\}) \geq 0$ a ciascun evento elementare, con
+$\sum_i p_i = 1$, per ricavare la probabilità di qualsiasi evento $E$:
+basta sommare le $p_i$ relative agli esiti contenuti in $E$.
+````
+
+````{tf-item}
+Se le probabilità degli eventi elementari di uno spazio a tre esiti valgono
+$0.5$, $0.3$ e $0.1$, esse definiscono una funzione di probabilità.
++++
+**Falsa**. Per il {prf:ref}`teo-prob-spazio-finito`, le probabilità degli
+eventi elementari devono sommare a $1$. In questo caso
+$0.5 + 0.3 + 0.1 = 0.9 \neq 1$, quindi la seconda condizione del teorema non
+è soddisfatta e la funzione considerata non è una funzione di probabilità.
+````
+
+````{tf-item}
+Qualunque spazio degli esiti finito ammette una sola funzione di probabilità.
++++
+**Falsa**. Su uno stesso spazio $\Omega$ finito si possono costruire infinite
+funzioni di probabilità diverse, a seconda di come si distribuisce il valore
+$1$ tra gli eventi elementari. Per esempio, su $\Omega = \{1, 2, 3, 4, 5, 6\}$
+sia la distribuzione uniforme $p_i = \frac{1}{6}$ sia la distribuzione
+$p_1 = \frac{1}{2},\, p_2 = \frac{1}{4},\, p_3 = \cdots = p_6 = \frac{1}{16}$
+soddisfano gli assiomi di Kolmogorov.
+````
+
+````{tf-item}
+In uno spazio non equiprobabile, due eventi con lo stesso numero di esiti
+favorevoli hanno necessariamente la stessa probabilità.
++++
+**Falsa**. Quando uno spazio degli esiti finito è non equiprobabile, la
+probabilità di un evento dipende dalle probabilità associate agli esiti che lo
+compongono, non dalla loro numerosità. L'affermazione sarebbe vera se lo
+spazio in questione fosse equiprobabile, perché in questo caso la probabilità
+dipende solo dalle cardinalità dell'evento e dello spazio degli esiti.
+````
 
 ## Esercizi
 
@@ -694,3 +754,23 @@ Di conseguenza, osservando $\{3, 6\}$ non si può più decidere se l’evento si
 sia verificato oppure no. Per questo motivo $A$ non può essere rappresentato
 nello spazio di probabilità che riguarda i dadi indistinguibili.
 ````
+
+
+## Concetti fondamentali
+
+Pensate ai concetti fondamentali illustrati in questo paragrafo ed elencateli.
+Nella lista qui sotto sono già presenti gli stessi concetti, ma nascosti.
+Cliccate sul pulsante per mostrarli sotto forma di parole chiave, quindi
+confrontateli con la vostra lista. Provate infine a descrivere ciascun concetto
+con parole vostre.
+
+````{sds-wordcloud}
+Spazio degli esiti finito
+Probabilità su uno spazio finito
+Spazio equiprobabile
+Regola classica della probabilità
+Esiti favorevoli
+Esiti possibili
+Spazio non equiprobabile
+````
+

@@ -85,12 +85,11 @@ Le proposizioni di un corollario saranno inserite in aree come questa.
 Questa area contiene la proposizione di un lemma.
 ```
 
-```{admonition} _
-:class: myproof
+````{sds-proof}
 In questo blocco vengono inserite le dimostrazioni di teoremi, corollari o
 lemma. Le ometterò ogni volta che sarà importante introdurre un risultato
 teorico la cui dimostrazione richiede conoscenze matematiche avanzate.
-```
+````
 
 ```{note}
 Questo tipo di riquadro contiene alcuni aspetti secondari che preferisco

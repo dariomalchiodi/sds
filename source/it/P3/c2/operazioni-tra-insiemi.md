@@ -272,9 +272,7 @@ Morgan_:
 1. $\overline{\left( S \cup T \right)} = \overline S \cap \overline T$;
 2. $\overline{\left( S \cap T \right)} = \overline S \cup \overline T$.
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Dimostriamo la prima delle due leggi. Se fissiamo
 $x \in \overline{\left( S \cup T \right)}$, per definizione di complemento
 si ha che $x \notin \left( S \cup T \right)$, il che implica
@@ -308,18 +306,15 @@ Dati due insiemi $S, T \subseteq \Omega$:
 1. $S \ominus T = (S \backslash T) \cup (T \backslash S)$,
 2. $S \ominus T = (S \cup T) \backslash (S \cap T)$.
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 La prima relazione è una conseguenza diretta della definizione di differenza
-simmetrica: infatti, per ogni $x \in \Omega$,
+simmetrica: infatti, per ogni $x \in \Omega$, le seguenti affermazioni sono
+logicamente equivalenti:
 
-```{math}
-x \in S \ominus T \leftrightarrow
-(x \in S \vee x \notin T) \wedge (x \notin S \vee x \in T) \leftrightarrow
-(x \in S \backslash T) \wedge (x \in T \backslash S) \leftrightarrow
-x \in (S \backslash T) \cup (T \backslash S) \enspace.
-```
+- $x \in S \ominus T$,
+- $(x \in S \vee x \notin T) \wedge (x \notin S \vee x \in T)$,
+- $(x \in S \backslash T) \wedge (x \in T \backslash S)$,
+- $x \in (S \backslash T) \cup (T \backslash S)$.
 
 Per quanto riguarda invece la seconda relazione, se
 $x \in (S \cup T) \backslash (S \cap T)$, allora
@@ -392,6 +387,76 @@ $\bigl\{ \{s\} \mid s \in S \bigr\}$. Infine, una partizione di un insieme $S$
 in due blocchi è strettamente legata all'operazione di complemento: se
 $A \subseteq S$ è un sottoinsieme non vuoto e diverso da $S$, allora
 $\{A,\, S \setminus A\}$ è una partizione di $S$ in due blocchi.
+
+
+## Vero o falso?
+
+Analizzate ciascuna delle seguenti affermazioni, che riguardano le operazioni
+tra insiemi, e dite se è vera o falsa, motivando il vostro ragionamento.
+Cliccate su di essa per visualizzare la risposta corretta.
+
+````{tf-item}
+La differenza tra insiemi è commutativa: $S \setminus T = T \setminus S$ per ogni scelta di $S$ e $T$.
++++
+**Falsa**. In generale $S \setminus T$ contiene elementi di $S$ che non si
+trovano in $T$, mentre $T \setminus S$ contiene gli elementi di $T$ che non
+sono membri di $S$. Pertanto la differenza non è commutativa, come confermato
+nell'{prf:ref}`ex-set-operations`:  prendendo $O = \{\text{Capitan America},
+\text{Hulk}, \text{Thor}\}$ e $V = \{\text{Thor}, \text{Iron Man}\}$ si ha
+$O \setminus V = \{\text{Capitan America}, \text{Hulk}\}$ mentre
+$V \setminus O = \{\text{Iron Man}\}$: i due risultati sono diversi.
+
+````
+
+````{tf-item}
+Il complemento $\overline S$ coincide con la differenza $\Omega \setminus S$.
++++
+**Vera**. L'insieme complemento viene introdotto nella
+{prf:ref}`def-operazioni-tra-insiemi` esattamente in questo modo:
+$\overline S = \{ x \in \Omega \mid x \notin S \} = \Omega \setminus S$.
+Il complemento di $S$ è quindi la differenza tra l'universo e $S$: tutti gli
+elementi dell'universo che non appartengono a $S$.
+````
+
+````{tf-item}
+Per le leggi di De Morgan, $\overline{S \cup T} = \overline S \cup \overline T$.
++++
+**Falsa**. Il {prf:ref}`teo-de-morgan` stabilisce che
+$\overline{S \cup T} = \overline S \cap \overline T$, non l'unione. Passare al
+complemento di un'unione equivale a fare l'intersezione dei complementi (e
+viceversa: $\overline{S \cap T} = \overline S \cup \overline T$). L'errore
+comune è «portare la barra dentro» senza cambiare l'operazione, mentre le
+leggi di De Morgan richiedono sempre di scambiare $\cup$ con $\cap$ e viceversa.
+````
+
+````{tf-item}
+Se $S \cap T = \varnothing$, allora $S \ominus T = S \cup T$.
++++
+**Vera**. Il {prf:ref}`teo-set-difference` garantisce che
+$S \ominus T = (S \cup T) \setminus (S \cap T)$. Se $S$ e $T$ sono disgiunti,
+$S \cap T = \varnothing$, e quindi $S \ominus T = (S \cup T) \setminus
+\varnothing = S \cup T$. Intuitivamente: la differenza simmetrica esclude gli
+elementi comuni ai due insiemi, ma se non ce ne sono, coincide con l'unione.
+````
+
+````{tf-item}
+In una partizione, due blocchi distinti possono condividere elementi.
++++
+**Falsa**. La {prf:ref}`def-partizione` richiede esplicitamente che
+$P_i \cap P_j = \varnothing$ per ogni coppia di indici distinti $i \neq j$:
+i blocchi devono essere a due a due disgiunti. Come illustrato nell'
+{prf:ref}`ex-partizioni`, la famiglia $\mathcal{P}_2$ — in cui Thor compare
+in due blocchi — non è una partizione proprio per questa ragione.
+````
+
+````{tf-item}
+L'uguaglianza $S \cap (T \cup U) = (S \cap T) \cup (S \cap U)$ è vera.
++++
+**Vera**. Lpuguaglianza sancisce la proprietà distributiva dell'intersezione
+rispetto all'unione, che abbiamo visto valere sempre. In modo analogo, l'unione
+distribuisce rispetto all'intersezione:
+$S \cup (T \cap U) = (S \cup T) \cap (S \cup U)$.
+````
 
 
 ## Esercizi
@@ -817,5 +882,25 @@ C &= \{\text{Batman}, \text{Deadpool}, \text{Cyborg}\}.
 ```{math}
 \bigl\{ A \ominus B, \{\text{Thor}\} \bigr\}.
 ```
+````
+
+
+## Concetti fondamentali
+
+Pensate ai concetti fondamentali illustrati in questo paragrafo ed elencateli.
+Nella lista qui sotto sono già presenti gli stessi concetti, ma nascosti.
+Cliccate sul pulsante per mostrarli sotto forma di parole chiave, quindi
+confrontateli con la vostra lista. Provate infine a descrivere ciascun concetto
+con parole vostre.
+
+````{sds-wordcloud}
+Unione
+Intersezione
+Differenza
+Differenza simmetrica
+Complemento
+Insiemi disgiunti
+Leggi di De Morgan
+Partizione
 ````
 

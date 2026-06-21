@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec_concetti-fondamentali)=
+(sec-concetti-fondamentali)=
 # Esperimenti, esiti ed eventi
 
 Come ho descritto all'inizio di questo capitolo, alla base di ogni ragionamento
@@ -176,7 +176,7 @@ menzionata proprietà di additività valga sempre.
 
 ```{margin}
 $2^\Omega$ denota l'insieme delle parti di $\Omega$, pertanto un'algebra
-è un insieme di eventi, o equivalentemente un insieme di sottoinsiemi di
+è un insieme di sottoinsiemi di
 $\Omega$.
 ```
 ````{prf:definition} Algebra degli eventi
@@ -209,9 +209,7 @@ di seguito.
 :label: insieme-vuoto-in-algebra
 Un'algebra degli eventi contiene sempre l'evento impossibile.
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Sia $\mathsf A$ un'algebra degli eventi. La {prf:ref}`def-algebra-degli-eventi`
 assicura che $\Omega \in \mathsf A$, e applicando la proprietà di chiusura
 rispetto al complemento si ottiene $\varnothing = \overline \Omega \in \mathsf A$.
@@ -225,9 +223,7 @@ Un'algebra degli eventi è chiusa rispetto:
 2. all'intersezione di un numero finito di eventi, e
 3. alla differenza tra due eventi.
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Fissato $n \in \mathbb N$, sia $E_1, \ldots, E_n$ una successione di $n$
 eventi nell'algebra $\mathsf A$ considerata.
 
@@ -272,9 +268,7 @@ Sia $\mathsf A$ un'algebra degli eventi per uno spazio degli esiti finito
 $\Omega$. Se $\mathsf A$ contiene tutti gli eventi elementari, allora
 $\mathsf A = 2^\Omega$.
 ```
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Un generico evento $E \subseteq \Omega$ deve essere un insieme finito, essendo
 $\Omega$ stesso finito. Quindi devono esistere $n$ esiti
 $w_1, \ldots, w_n \in \Omega$ tali che $E = \{ w_1, \ldots, w_n \}$. Per
@@ -416,7 +410,7 @@ probabilità sia ben definita in modo coerente con la proprietà di additività.
 Per trattare in modo sistematico unioni numerabili di eventi, si introduce una
 struttura più ricca, detta $\sigma$-algebra.
 
-````{prf:definition} $\sigma$-algebra degli eventi e spazio misurabile
+````{prf:definition} $\sigma$-algebra degli eventi
 :label: def-sigma-algebra-degli-eventi
 Ogni algebra degli eventi $\mathsf A$ su uno spazio degli esiti $\Omega$
 è una _$\sigma$-algebra_ se, oltre a rispettare le proprietà indicate nella
@@ -427,9 +421,6 @@ eventi in $\mathsf A$, si ha
 ```{math}
 \bigcup_{n=1}^{+\infty} E_n \in \mathsf A.
 ```
-
-una coppia $(\Omega, \mathsf A)$ in cui $\mathsf A$ indica una $\sigma$-algebra
-di sottoinsiemi di $\Omega$ viene detta _spazio misurabile_.
 ````
 
 Ogni algebra di sottoinsiemi può essere estesa a una $\sigma$-algebra.
@@ -437,7 +428,112 @@ Intuitivamente, partendo da una famiglia di insiemi chiusa rispetto a un numero
 finito di operazioni, è sempre possibile «completarla» aggiungendo tutti gli
 insiemi necessari per garantire la chiusura anche rispetto a unioni numerabili.
 Il risultato è la più piccola $\sigma$-algebra che contiene la famiglia di
-partenza.
+partenza[^estensione-algebra].
+
+
+Possiamo ora tornare sulla definizione di evento e rifinirla. All'inizio del
+paragrafo ho introdotto gli eventi dicendo che erano sottoinsiemi di $\Omega$,
+ma sono stato attento a non affermare che _ogni_ sottoinsieme di $\Omega$ fosse
+automaticamente un evento: come abbiamo visto subito dopo, ciò non è in
+generale vero. La formulazione corretta richiede infatti di fissare, insieme a
+$\Omega$, una famiglia di sottoinsiemi misurabili: prima un'algebra, e da
+questo punto in poi, più precisamente, una $\sigma$-algebra $\mathsf A$. 
+
+````{prf:definition} Spazio misurabile e insieme misurabile
+:label: def-misurabile
+
+Una coppia $(\Omega, \mathsf A)$ in cui $\mathsf A$ indica una $\sigma$-algebra
+di sottoinsiemi di $\Omega$ viene detta _spazio misurabile_, e ogni insieme
+$A \in \mathsf A$ viene detto _insieme misurabile_, o _evento_.
+````
+
+In modo informale, un insieme misurabile è un sottoinsieme di $\Omega$ per cui
+ha senso decidere se l'evento corrispondente si è verificato e a cui possiamo
+assegnare una probabilità in modo coerente con le regole del calcolo delle
+probabilità. Da questo momento in avanti, dunque, chiamerò _evento_ ogni
+elemento di $\mathsf A$; equivalentemente, un sottoinsieme $E \subseteq \Omega$
+sarà un evento se e solo se è misurabile nel senso della definizione
+precedente. Manterrò implicita questa precisazione nel seguito.
+
+
+[^estensione-algebra]: L'estensione di un'algebra a una $\sigma$-algebra si può
+formalizzare in modo preciso considerando l'intersezione di tutte le
+$\sigma$-algebre che contengono la famiglia di partenza. In questo modo si
+ottiene la più piccola $\sigma$-algebra che la contiene, detta
+_$\sigma$-algebra generata_. Per i nostri scopi, però, basta sapere che questo
+completamento esiste; i dettagli tecnici della costruzione sono fuori dallo
+scopo di questo libro.
+
+
+## Vero o falso?
+
+Analizzate ciascuna delle seguenti affermazioni, che riguardano i concetti di
+esperimento, esito ed evento, e dite se è vera o falsa, motivando il vostro
+ragionamento. Cliccate su di essa per visualizzare la risposta corretta.
+
+````{tf-item}
+Se $E \subseteq F$, allora ogni esito che realizza $F$ realizza necessariamente anche $E$.
++++
+**Falsa**. È il contrario: se $E \subseteq F$, allora ogni esito che
+realizza $E$ realizza anche $F$, non viceversa. Nel linguaggio probabilistico,
+$E \subseteq F$ significa che $E$ _implica_ $F$, cioè il verificarsi di $E$
+garantisce il verificarsi di $F$, ma non è detto che il verificarsi di $F$
+porti con sé il verificarsi di $E$.
+````
+
+````{tf-item}
+Un’algebra degli eventi è chiusa rispetto all’intersezione di due eventi.
++++
+**Vera**. Sebbene la {prf:ref}`def-algebra-degli-eventi` non lo richieda
+esplicitamente, per il {prf:ref}`teo-chiusura-algebra-eventi` la chiusura
+rispetto all’intersezione è automaticamente garantita tramite la legge di De
+Morgan: $E \cap F = \overline{\overline{E} \cup \overline{F}}$, e le
+proprietà di chiusura rispetto a unione e complemento bastano per concludere
+che $E \cap F \in \mathsf{A}$.
+````
+
+````{tf-item}
+L’insieme $\{ \varnothing, \Omega \}$ è un’algebra degli eventi per qualunque spazio degli esiti $\Omega$.
++++
+**Vera**. Come mostrato nell’{prf:ref}`ex-algebra-min`, si tratta della più
+piccola algebra possibile: contiene $\Omega$ ed è chiusa rispetto alle
+operazioni di complemento e di unione. Eliminare uno dei due elementi di
+questa algebra porta necessariamente a non rispettare uno di questi due
+requisiti.
+````
+
+````{tf-item}
+Ogni $\sigma$-algebra è anche un’algebra degli eventi.
++++
+**Vera**. La {prf:ref}`def-sigma-algebra-degli-eventi` definisce la
+$\sigma$-algebra come un’algebra che soddisfa _in aggiunta_ la chiusura
+rispetto a unioni numerabili. Una $\sigma$-algebra rispetta quindi tutte le
+proprietà di un’algebra degli eventi, e in più questa proprietà aggiuntiva.
+````
+
+````{tf-item}
+Un’algebra degli eventi è sempre chiusa rispetto all’unione di una famiglia numerabile di eventi.
++++
+**Falsa**. L’{prf:ref}`ex-controesempio-sigma-algebra` mostra
+esplicitamente un’algebra che non gode di questa proprietà: la collezione
+degli insiemi finiti o cofiniti di $\mathbb{N}$ è un’algebra, ma l’unione
+numerabile degli insiemi $P_n = \{2, 4, \ldots, 2n\}$ — che fornisce
+l’insieme di tutti i numeri pari — non vi appartiene. La chiusura rispetto
+alle unioni numerabili è la proprietà aggiuntiva che distingue le
+$\sigma$-algebre dalle semplici algebre.
+````
+
+````{tf-item}
+Se $E$ e $F$ sono mutuamente esclusivi, allora anche $\overline{E}$ e $\overline{F}$ lo sono.
++++
+**Falsa**. Per esempio, con $\Omega = \{1, 2, 3\}$, $E = \{1\}$ e $F = \{2\}$
+si ha $E \cap F = \varnothing$, ma $\overline{E} \cap \overline{F} = \{2, 3\}
+\cap \{1, 3\} = \{3\} \neq \varnothing$. Più in generale, per una delle leggi
+di De Morgan, $\overline{E} \cap \overline{F} = \overline{E \cup F}$, che è
+vuoto se e solo se $E \cup F = \Omega$. In tutti gli altri casi i complementi
+non sono mutuamente esclusivi. 
+````
+
 
 ## Esercizi
 
@@ -513,7 +609,7 @@ $|\Omega|$ è un numero finito, lo spazio degli esiti è finito.
 :label: ex-eventi-elementari-jl
 
 Riferendoti allo spazio degli esiti al primo punto
-dell’{numref}`ex-shield-esperimenti`, indicate quali tra i seguenti eventi sono
+dell’{numref}`%s <ex-shield-esperimenti>`, indicate quali tra i seguenti eventi sono
 elementari e quali non lo sono:
 
 - $E_1$: «risponde per primo Iron Man,
@@ -780,11 +876,37 @@ con l'insieme delle parti di $\Omega$. Infatti:
 - $\mathsf{A}$ è finita, quindi le unioni numerabili sono sempre composte da
   un numero finito di eventi, e quindi appartengono sempre ad $\mathsf{A}$.
 
-In altre parole, l'insieme delle parti di un insieme finito è sempre una
+In altre parole, l’insieme delle parti di un insieme finito è sempre una
 $\sigma$-algebra (anzi, è la più grande $\sigma$-algebra possibile su
-quell'insieme). Il problema nell’{prf:ref}`ex-controesempio-sigma-algebra`
+quell’insieme). Il problema nell’{prf:ref}`ex-controesempio-sigma-algebra`
 sorge proprio perché $\Omega = \mathbb{N}$ è infinito: esistono sottoinsiemi
-infiniti (come l'insieme dei numeri pari) il cui complemento è anch'esso
-infinito, e tali insiemi non appartengono all'algebra degli insiemi finiti o
+infiniti (come l’insieme dei numeri pari) il cui complemento è anch’esso
+infinito, e tali insiemi non appartengono all’algebra degli insiemi finiti o
 cofiniti. Quando $\Omega$ è finito, questa situazione non può verificarsi.
 ```
+
+
+## Concetti fondamentali
+
+Pensate ai concetti fondamentali illustrati in questo paragrafo ed elencateli.
+Nella lista qui sotto sono già presenti gli stessi concetti, ma nascosti.
+Cliccate sul pulsante per mostrarli sotto forma di parole chiave, quindi
+confrontateli con la vostra lista. Provate infine a descrivere ciascun concetto
+con parole vostre.
+
+````{sds-wordcloud}
+Esperimento casuale
+Esito
+Spazio degli esiti
+Evento
+Evento elementare
+Evento impossibile
+Evento certo
+Eventi mutuamente esclusivi
+Algebra degli eventi
+Algebra indotta da una partizione
+Sigma-algebra degli eventi
+Spazio misurabile
+Insieme misurabile
+````
+

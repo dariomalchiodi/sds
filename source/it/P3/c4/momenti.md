@@ -24,9 +24,7 @@ $Y \triangleq \sum_{i=1}^n X_i$, si ha
 m_Y(t) = \left( m_X(t) \right)^n \enspace.
 ```
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 La funzione generatrice dei momenti di $Y$ è tale che
 
 ```{math}

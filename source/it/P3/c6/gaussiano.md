@@ -409,9 +409,7 @@ sfruttando il seguente risultato.
 ````{prf:lemma}
 Per ogni $x \in \mathbb R$ si ha $\Phi(-x) = 1 - \Phi(x)$.
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Data una variabile aleatoria $X$ con distribuzione normale
 standard, sia $x \in \mathbb R^+$. Dalla simmetria di $\phi$ rispetto
 all'asse delle ordinate, come evidenziato nella
@@ -667,9 +665,7 @@ e $a, b \in \mathbb R$.
    vale $Z \sim \mathrm N \left(\mu_X + \mu_Y, \sqrt{\sigma_X^2 + \sigma_Y^2}
    \right)$.
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Per quanto riguarda la prima parte, vale
 
 ```{math}
@@ -689,7 +685,6 @@ f_Y(x) = \frac{1}{a} f_X \left( \frac{x-b}{a} \right)
 
 che implica la tesi. La seconda parte è dimostrata nel
 Paragrafo {ref}`sec_norm-fgm`.
-
 ````
 
 Da questo teorema si ricava un risultato che sarà particolarmente utile
@@ -718,9 +713,7 @@ e deviazione standard
 \sigma_Y = \sqrt{\sum_{i=1}^n a_i^2 \sigma_i^2} \enspace.
 ```
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Segue per induzione dal {prf:ref}`theo-normal`.
 ````
 

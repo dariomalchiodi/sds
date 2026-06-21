@@ -564,9 +564,7 @@ $i = 1, \dots, n$. Fissato un generico $E \in \mathsf A$, vale
 \mathbb P(E) = \sum_{i=1}^n \mathbb P(E \mid F_i) \mathbb P(F_i) \enspace.
 ```
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Come si evince anche dalla {numref}`fig-prob-totali-partizione`, per ogni
 $i \neq j$ si ha $(E \cap F_i) \cap (E \cap F_j) = E \cap (F_i \cap F_j)
 = E \cap \varnothing = \varnothing$, tenuto conto dell'associativitià e della
@@ -899,9 +897,7 @@ $0 < \mathbb P(F) < 1$. Allora
 ```
 ````
 
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Dalla definizione di probabilità condizionata, applicando la regola di
 fattorizzazione si ottiene
 
@@ -1070,9 +1066,7 @@ $i = 1, \dots, n$ vale
 ```
 ````
 
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Partendo dalla definizione di probabilità condizionata, sfruttando la
 commutatività dell'intersezione e applicando la regola di fattorizzazione si ha
 
@@ -1298,6 +1292,93 @@ con quelli tipici di un ministro dissenziente inglese della prima metà del
 Settecento. Per questo motivo, oggi il ritratto è generalmente considerato di
 autenticità incerta.
 
+## Vero o falso?
+
+Analizzate ciascuna delle seguenti affermazioni sulla probabilità condizionata,
+e dite se è vera o falsa, motivando il vostro ragionamento. Cliccate su di essa
+per visualizzare la risposta corretta.
+
+````{tf-item}
+Per qualunque coppia di eventi con probabilità non nulla,
+$\mathbb P(E \mid F) = \mathbb P(F \mid E)$.
++++
+**Falsa**. In generale le due quantità sono diverse: dalla
+{prf:ref}`def-conditional_probability` è facile verificare che le due
+probabilità coincidono solo quando $\mathbb P(E) = \mathbb P(F)$.
+````
+
+````{tf-item}
+Se $E$ e $F$ sono mutuamente esclusivi e $\mathbb P(F) \neq 0$, allora
+$\mathbb P(E \mid F) = 0$.
++++
+**Vera**. Se $E \cap F = \varnothing$, allora $\mathbb P(E \cap F) = 0$ e
+dunque, per la {prf:ref}`def-conditional_probability`,
+
+$$\mathbb P(E \mid F) = \frac{\mathbb P(E \cap F)}{\mathbb P(F)}
+= \frac{0}{\mathbb P(F)} = 0 \enspace.$$
+
+Intuitivamente, sapere che $F$ si è verificato riduce l’universo di
+riferimento a $F$, e se $E$ e $F$ non hanno esiti in comune, in questo nuovo
+universo $E$ risulta impossibile.
+````
+
+````{tf-item}
+Fissato un evento $F$ con $\mathbb P(F) \neq 0$, la funzione
+$E \mapsto \mathbb P(E \mid F)$ è una funzione di probabilità su
+$(\Omega, \mathsf A)$.
++++
+**Vera**. Come mostrato nella nota al paragrafo sulla probabilità condizionata,
+$\mathbb P(\cdot \mid F)$ soddisfa tutti e tre gli assiomi di Kolmogorov:
+la non-negatività segue da quella di $\mathbb P$, la normalizzazione vale
+perché $\mathbb P(\Omega \mid F) = \mathbb P(\Omega \cap F) / \mathbb P(F) = 1$
+e l’additività per eventi disgiunti si trasferisce in modo diretto dalla
+probabilità originale.
+````
+
+````{tf-item}
+La probabilità condizionata $\mathbb P(E \mid F)$ è definita anche quando
+$\mathbb P(F) = 0$.
++++
+**Falsa**. La {prf:ref}`def-conditional_probability` richiede esplicitamente
+$\mathbb P(F) \neq 0$, perché altrimenti il rapporto in {eq}`eq-prob-cond`
+avrebbe denominatore nullo. Dietro questo problema formale si nasconde il fatto
+che la definizione di probabilità condizionata consiste nel restringere la
+probabilità all'evento $F$ e poi rinormalizzarla dividendo per $\mathbb P(F)$.
+Se $\mathbb P(F)=0$, tale rinormalizzazione non è possibile.
+````
+
+````{tf-item}
+Il teorema delle probabilità totali richiede che ogni blocco della partizione
+abbia probabilità non nulla.
++++
+**Vera**. Il {prf:ref}`teo-total-probability` richiede esplicitamente
+$\mathbb P(F_i) \neq 0$ per ogni $i$. Questa ipotesi è necessaria perché la
+dimostrazione si basa sulla regola di fattorizzazione
+$\mathbb P(E \cap F_i) = \mathbb P(E \mid F_i)\mathbb P(F_i)$, che richiede a
+sua volta che la probabilità condizionata $\mathbb P(E \mid F_i)$ sia definita.
+````
+
+````{tf-item}
+Conoscere $\mathbb P(E \mid F)$ e $\mathbb P(F)$ è sufficiente per calcolare
+$\mathbb P(E)$.
++++
+**Falsa**. La regola di fattorizzazione (introdotta nel
+{prf:ref}`teo-factorization`) permette di ricavare
+$\mathbb P(E \cap F) = \mathbb P(E \mid F)\mathbb P(F)$, ma per ottenere
+$\mathbb P(E)$ serve anche il contributo di $E$ al di fuori di $F$. Ciò è
+evidente, per esempio, nella forma del teorema delle probabilità totali
+espressa in {eq}`eq-prob-totali-2`:
+
+```{math}
+\mathbb P(E) = \mathbb P(E \mid F)\mathbb P(F)
+        + \mathbb P(E \mid \overline{F})\mathbb P(\overline{F}) \enspace,
+```
+
+cioè occorre conoscere anche
+$\mathbb P(E \mid \overline{F})$ e $\mathbb P(\overline{F})$.
+````
+
+
 ## Esercizi
 
 ````{exercise} •
@@ -1489,7 +1570,7 @@ che la scheda appartenga a un personaggio non Marvel.
 ````{exercise} •••
 :label: ex-prob-cond-bayes-generale-dadi
 
-Riconsiderate l’{numref}`ex-prob-cond-prob-totali-dadi`, e calcolate
+Riconsiderate l’{numref}`%s <ex-prob-cond-prob-totali-dadi>`, e calcolate
 
 1. $\mathbb P(F_1 \mid E)$,
 2. $\mathbb P(F_2 \mid E)$,
@@ -1538,3 +1619,27 @@ Sommando le tre probabilità si ottiene
 = 0 + \frac{3}{10} + \frac{7}{10} = 1 \enspace.
 ```
 ````
+
+
+## Concetti fondamentali
+
+Pensate ai concetti fondamentali illustrati in questo paragrafo ed elencateli.
+Nella lista qui sotto sono già presenti gli stessi concetti, ma nascosti.
+Cliccate sul pulsante per mostrarli sotto forma di parole chiave, quindi
+confrontateli con la vostra lista. Provate infine a descrivere ciascun concetto
+con parole vostre.
+
+````{sds-wordcloud}
+Probabilità condizionata
+Evento condizionante
+Evento condizionato
+Regola di fattorizzazione
+Teorema delle probabilità totali
+Partizione dello spazio degli esiti
+Teorema di Bayes
+Probabilità a priori
+Verosimiglianza
+Probabilità a posteriori
+Evidenza
+````
+

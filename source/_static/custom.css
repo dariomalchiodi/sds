@@ -292,7 +292,7 @@ py-script {
 
 span.katex {
     display: inherit;
-    font-size: 1em;
+    font-size: 1.1em;
 }
 
 .katex-display {
@@ -497,22 +497,27 @@ a.left-prev:hover, a.right-next:hover {
     content: "\f19C";  /* Font Awesome icon code */
 }
 
-.myproof.admonition > .admonition-title {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-  white-space: nowrap;
+/* ── Proof block ({sds-proof} directive) ───────────────────────────────── */
+
+.sds-proof {
+  margin: 0.75em 0;
 }
 
-.myproof.admonition::after {
+/* "Dimostrazione." header — italic, as in traditional mathematical typesetting */
+.sds-proof-header {
+  font-family: var(--serif-font);
+  font-style: italic;
+  font-size: 1em;
+  line-height: 1.5;
+  margin: 0 0 0.3em 0;
+}
+
+/* QED tombstone */
+.sds-proof::after {
   content: "□";
   display: block;
   text-align: right;
-  font-size: 1.2em;
-  padding-right: 1em;
-  margin-top: -1em;
+  font-size: 1.1em;
   color: var(--text-primary-color);
 }
 
@@ -1434,22 +1439,22 @@ details summary {
    When a proof immediately follows a theorem/lemma/corollary, fuse the two
    into one compound shape: no gap, dashed internal separator, subordinate
    proof left border, outer-only border-radius. Standalone theorems unchanged. */
-.theorem.admonition:has(+ .myproof.admonition),
-.lemma.admonition:has(+ .myproof.admonition),
-.corollary.admonition:has(+ .myproof.admonition) {
+.theorem.admonition:has(+ .sds-proof),
+.lemma.admonition:has(+ .sds-proof),
+.corollary.admonition:has(+ .sds-proof) {
   margin-bottom: 0;
   border-bottom: 1px dashed rgba(1, 1, 119, 0.25);
   border-radius: 3px 3px 0 0;
 }
 
-.theorem.admonition + .myproof.admonition,
-.lemma.admonition + .myproof.admonition,
-.corollary.admonition + .myproof.admonition {
+.theorem.admonition + .sds-proof,
+.lemma.admonition + .sds-proof,
+.corollary.admonition + .sds-proof {
   margin-top: 0;
-  border-top: none;
   border-left: 4px solid var(--text-primary-color);
   background-color: white;
   border-radius: 0 0 3px 3px;
+  padding: 0.4rem 0.75em 0.5rem;
 }
 
 /* Naming — neutral, subtle */
@@ -1501,6 +1506,127 @@ details summary {
 /* Sidebar layout: grid row 1 (1fr) = scrollable TOC, row 2 (auto) = notice.
    Grid arithmetic guarantees the two rows fill exactly 100vh so scrollTop
    is always clamped to 0, making the notice immune to any JS scrollTop call. */
+/* ── True/false (Vero o falso) question cards ───────────────────────────── */
+
+/* Counter: restart at the first item of each consecutive run */
+.tf-item:not(.tf-item + .tf-item) {
+  counter-reset: tf-question;
+  margin-top: 1em;
+}
+
+.tf-item {
+  counter-increment: tf-question;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+}
+
+/* Hairline separator between consecutive items */
+.tf-item + .tf-item {
+  border-top: 1px solid rgba(0, 0, 0, 0.09);
+}
+
+/* Question row: flex so the badge sits to the left of the text */
+.tf-item > .tf-question {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75em;
+  font-family: var(--serif-font);
+  font-weight: normal;
+  font-size: 1em;
+  line-height: 1.5;
+  cursor: pointer;
+  padding: 0.65em 0.5em;
+  user-select: none;
+  color: var(--text-primary-color);
+  margin: 0;
+  transition: background 0.15s ease;
+}
+
+.tf-item > .tf-question:hover {
+  background: rgba(0, 0, 0, 0.025);
+}
+
+/* Numbered badge */
+.tf-item > .tf-question::before {
+  content: counter(tf-question);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.55em;
+  height: 1.55em;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0, 0, 0, 0.22);
+  font-family: var(--sans-serif-font);
+  font-size: 0.75em;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.3);
+  margin-top: 0.07em;        /* optical alignment with cap-height */
+  line-height: 1;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Badge turns coloured the first time the answer is revealed */
+.tf-item.tf-seen.tf-vera  > .tf-question::before {
+  color: #1a6b35;
+  border-color: #1a6b35;
+}
+.tf-item.tf-seen.tf-falsa > .tf-question::before {
+  color: #8b1c24;
+  border-color: #8b1c24;
+}
+
+.tf-item > .tf-question p {
+  margin: 0;
+}
+
+/* Answer slab: hidden by default, slides down on .tf-open */
+.tf-verdict {
+  display: block;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding-top 0.3s ease, padding-bottom 0.3s ease;
+  font-family: var(--serif-font);
+  font-size: 1em;
+  font-weight: normal;
+  line-height: 1.5;
+  padding: 0 1rem;
+  border-radius: 0;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  color: var(--text-primary-color);
+}
+
+.tf-item.tf-open .tf-verdict {
+  max-height: 60em;
+  padding-top: 0.65em;
+  padding-bottom: 0.75em;
+}
+
+.tf-item.tf-vera  .tf-verdict { background-color: #cce8d4; }
+.tf-item.tf-falsa .tf-verdict { background-color: #f2cdd1; }
+
+/* Verdict word — uppercase sans, colour-coded */
+.tf-verdict > p:first-child > strong:first-child {
+  font-family: var(--sans-serif-font);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.88em;
+}
+
+.tf-item.tf-vera  .tf-verdict > p:first-child > strong:first-child { color: #1a6b35; }
+.tf-item.tf-falsa .tf-verdict > p:first-child > strong:first-child { color: #8b1c24; }
+
+/* ── Sidebar primary grid ──────────────────────────────────────────────── */
+
 .bd-sidebar-primary {
   display: grid !important;
   grid-template-rows: 1fr auto;
@@ -1522,6 +1648,117 @@ details summary {
 
 .bd-sidebar-scroll-area::-webkit-scrollbar {
   display: none;
+}
+
+/* ── Keyword reveal grid ({sds-wordcloud} directive) ───────────────────────── */
+
+@keyframes sds-cell-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes sds-term-in {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.sds-wordcloud {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  padding: 10px;
+  margin: 0 0 0.75em;
+  background: rgba(1, 1, 119, 0.02);
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.sds-ptable-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  padding: 12px 14px;
+  background: #d8eef5;
+  border: 1.5px solid #5599b5;
+  border-radius: 4px;
+  cursor: default;
+  opacity: 0;
+  animation: sds-cell-in 0.35s ease forwards;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  box-sizing: border-box;
+}
+
+.sds-ptable-cell:hover {
+  transform: scale(1.04) translateY(-2px);
+  box-shadow: 0 4px 14px rgba(1, 1, 119, 0.18);
+  z-index: 1;
+}
+
+/* Term text: invisible initially, revealed per-cell with staggered animation */
+.sds-ptable-name {
+  font-family: var(--serif-font, Lora, Georgia, serif);
+  font-size: 16px;
+  line-height: 1.4;
+  text-align: center;
+  color: var(--text-primary-color, #010177);
+  opacity: 0;
+}
+
+.sds-ptable-cell--revealed .sds-ptable-name {
+  animation: sds-term-in 0.38s ease forwards;
+}
+
+.sds-ptable-name code {
+  font-family: var(--tt-font, "IBM Plex Mono", monospace);
+  font-size: 0.88em;
+  background: rgba(1, 1, 119, 0.08);
+  border-radius: 3px;
+  padding: 0.05em 0.35em;
+  color: inherit;
+}
+
+/* Reveal / hide button — sits above the grid */
+.sds-reveal-wrap {
+  text-align: center;
+  margin: 1em 0 0;
+  padding-bottom: 8px;
+}
+
+.sds-reveal-btn {
+  font-family: var(--sans-serif-font, Oswald, sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--link-color, #006699);
+  border: 1.5px solid transparent;
+  border-radius: 3px;
+  padding: 7px 22px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease,
+              border-color 0.15s ease, transform 0.12s ease;
+  outline: none;
+}
+
+.sds-reveal-btn:hover {
+  background: #004d73;
+  transform: translateY(-1px);
+}
+
+.sds-reveal-btn:active {
+  transform: translateY(0);
+}
+
+.sds-reveal-btn--reset {
+  background: transparent;
+  color: var(--link-color, #006699);
+  border-color: var(--link-color, #006699);
+}
+
+.sds-reveal-btn--reset:hover {
+  background: rgba(0, 102, 153, 0.07);
 }
 
 /* Privacy notice always visible at the bottom of the sidebar */

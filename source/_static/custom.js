@@ -110,6 +110,18 @@ document.addEventListener("DOMContentLoaded", function() {
   // Initialize immediately
   initializeToggleCode();
 
+  // Expose myproof subtitle: when the admonition title is not the placeholder
+  // '_', set data-proof-subtitle so CSS can append it in parentheses after the
+  // localized "Dimostrazione / Proof / ..." label via attr().
+  document.querySelectorAll('.myproof.admonition').forEach(function(proof) {
+    var title = proof.querySelector('.admonition-title');
+    if (!title) return;
+    var text = title.textContent.trim();
+    if (text && text !== '_') {
+      proof.setAttribute('data-proof-subtitle', text);
+    }
+  });
+
   // Prevent focus ring on exercise/solution title clicks by blocking the
   // mousedown default (which is what causes the browser to focus the element).
   // The click event still fires, so togglebutton.js works normally.
@@ -351,6 +363,149 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     }
   }
+
+  // True/false (Vero o falso) question cards — rendered by the {tf-item}
+  // directive. The HTML structure is pre-built: div.tf-item > (div.tf-question
+  // + div.tf-verdict). JS only wires the click toggle and detects the verdict.
+  document.querySelectorAll('.tf-item').forEach(function(item) {
+    var question = item.querySelector('.tf-question');
+    var verdict  = item.querySelector('.tf-verdict');
+    if (!question || !verdict) return;
+
+    question.addEventListener('click', function() {
+      item.classList.toggle('tf-open');
+      item.classList.add('tf-seen'); // permanent once revealed; drives badge colour
+    });
+
+    // Detect vera/falsa from the first <strong> in the answer.
+    // Accept all four languages: it=Vera/Falsa, en=True/False, fr=Vrai/Faux,
+    // es=Verdadero/Verdadera/Falso/Falsa.
+    var strong = verdict.querySelector('p:first-child > strong:first-child');
+    if (!strong) return;
+    var v = strong.textContent.trim().toLowerCase();
+    var isVera  = v === 'vera'  || v === 'vrai'  || v === 'vraie'  || v === 'true'
+               || v === 'verdadero' || v === 'verdadera';
+    var isFalsa = v === 'falsa' || v === 'faux'  || v === 'fausse' || v === 'false'
+               || v === 'falso';
+    if (isVera)  item.classList.add('tf-vera');
+    if (isFalsa) item.classList.add('tf-falsa');
+  });
+
+  // Keyword reveal grid for {sds-wordcloud} containers.
+  // Cells start visually empty; a button above the grid reveals all terms
+  // with a staggered fade-in. Clicking again re-hides them.
+  document.querySelectorAll('.sds-wordcloud').forEach(function(container) {
+    var raw = container.getAttribute('data-words');
+    if (!raw) return;
+    var words;
+    try { words = JSON.parse(raw); } catch(e) { return; }
+    if (!words.length) return;
+
+    var allCells = [];
+
+    // Render a term string: backtick spans → <code>, plain text HTML-escaped.
+    function renderTerm(text) {
+      var html = '';
+      var parts = text.split('`');
+      for (var i = 0; i < parts.length; i++) {
+        var escaped = parts[i]
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;');
+        if (i % 2 === 0) {
+          html += escaped;
+        } else {
+          html += '<code>' + escaped + '</code>';
+        }
+      }
+      return html;
+    }
+
+    words.forEach(function(w, idx) {
+      var cell = document.createElement('div');
+      cell.className            = 'sds-ptable-cell';
+      cell.style.animationDelay = (idx * 0.04) + 's';
+
+      var name = document.createElement('span');
+      name.className = 'sds-ptable-name';
+      name.innerHTML = renderTerm(w.term);
+
+      cell.appendChild(name);
+      container.appendChild(cell);
+      allCells.push(cell);
+    });
+
+    // Button label by document language
+    var lang = (document.documentElement.lang || 'it').slice(0, 2).toLowerCase();
+    var LBLS = {
+      it: ['Scopri i termini',      'Nascondi i termini'],
+      en: ['Reveal terms',          'Hide terms'],
+      fr: ['Révéler les termes',    'Masquer les termes'],
+      es: ['Revelar los términos',  'Ocultar los términos']
+    };
+    var lbls = LBLS[lang] || LBLS['it'];
+
+    var wrap = document.createElement('div');
+    wrap.className = 'sds-reveal-wrap';
+
+    var btn = document.createElement('button');
+    btn.className   = 'sds-reveal-btn';
+    btn.textContent = lbls[0];
+    wrap.appendChild(btn);
+    container.parentNode.insertBefore(wrap, container);
+
+    var revealed = false;
+
+    btn.addEventListener('click', function() {
+      if (!revealed) {
+        revealed = true;
+        btn.textContent = lbls[1];
+        btn.classList.add('sds-reveal-btn--reset');
+        allCells.forEach(function(cell, i) {
+          setTimeout(function() {
+            cell.classList.add('sds-ptable-cell--revealed');
+          }, i * 60);
+        });
+      } else {
+        revealed = false;
+        btn.textContent = lbls[0];
+        btn.classList.remove('sds-reveal-btn--reset');
+        allCells.forEach(function(cell) {
+          cell.classList.remove('sds-ptable-cell--revealed');
+        });
+      }
+    });
+  });
+
+  // Prevent line break between inline math spans and adjacent brackets/punctuation.
+  // Handles: "( math", "math )", and combined "( math )".
+  document.querySelectorAll('span.math').forEach(function(span) {
+    var prev = span.previousSibling;
+    var next = span.nextSibling;
+    var leadChar  = (prev && prev.nodeType === 3 && /\($/.test(prev.textContent)) ? '(' : null;
+    var trailChar = (next && next.nodeType === 3 && /^[,\.;:!?…\)]/.test(next.textContent))
+                    ? next.textContent[0] : null;
+
+    if (!leadChar && !trailChar) return;
+
+    var wrapper = document.createElement('span');
+    wrapper.style.whiteSpace = 'nowrap';
+    span.parentNode.insertBefore(wrapper, span);
+
+    if (leadChar) {
+      prev.textContent = prev.textContent.slice(0, -1);
+      wrapper.appendChild(document.createTextNode(leadChar));
+      if (prev.textContent === '') prev.parentNode.removeChild(prev);
+    }
+
+    wrapper.appendChild(span);
+
+    if (trailChar) {
+      next.textContent = next.textContent.slice(1);
+      wrapper.appendChild(document.createTextNode(trailChar));
+      if (next.textContent === '') next.parentNode.removeChild(next);
+    }
+  });
 
   // Sidebar uses display:grid so the outer sidebar cannot scroll (scrollTop always 0).
   // PyData's active-link scroll targets the outer sidebar and is therefore a no-op.

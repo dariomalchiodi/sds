@@ -76,9 +76,7 @@ Il valore atteso e la varianza di $X_n$ sono rispettivamente uguali a
 $\frac{1}{2}$ e a $\frac{1}{12} + \frac{1}{6 n}$.
 ````
 
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Applicando le formule per il calcolo di valore atteso e varianza si
 ottiene:
 
@@ -112,7 +110,6 @@ centralità della distribuzione deve coincidere con il baricentro delle
 osservazioni. Per quanto riguarda invece la varianza, è presente un
 termine che dipende da $n$ ma il cui contributo tende a diventare
 trascurabile man mano che questo parametro cresce.
-
 ````
 
 
@@ -292,7 +289,7 @@ $F_{X_n}(x) \to x = F(x)$ per ogni $x \in [0, 1]$. Estendere questo
 risultato a ogni $x \in \mathbb R$ è banale [^convergenza-xn].
 
 Notiamo che $F$ soddisfa tutti i criteri indicati nel
-{prf:ref}`teo-proprieta-F`, dunque essa deve essere la funzione di
+{prf:ref}`thm-caratterizzazione-ripartizione`, dunque essa deve essere la funzione di
 distribuzione cumulativa di una qualche variabile aleatoria $X$.
 Questa variabile aleatoria è però completamente diversa da quelle che
 abbiamo finora considerato: il grafico di $F$ non evidenzia
@@ -464,7 +461,7 @@ contenuta in un intervallo $(a, b] \subseteq [0, 1]$:
 
 Questo risultato è coerente con quello che otterremmo ricavando la
 stessa probabilità usando la funzione di ripartizione come indicato
-in {eq}`eq_cdf-e-intervalli`: infatti,
+in {eq}`eq-ripartizione-intervallo`: infatti,
 
 ````{math}
 \mathbb P(X \in (a, b]) = \mathbb P(a < X \leq b) = F(b) - F(a)

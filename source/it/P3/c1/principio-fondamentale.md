@@ -52,6 +52,8 @@ $s_1$ modi, la seconda in $s_2$ modi, la terza in $s_3$ modi, e così via,
 allora il numero totale delle sequenze di scelta è pari a
 
 ```{math}
+:label: eq-pf-comb
+
 s_1 \cdot \ldots \cdot s_t = \prod_{i=1}^t s_i \enspace.
 ```
 
@@ -84,6 +86,73 @@ _combinazioni_ di $n$ oggetti in $k$ posti, utilizzando astrattamente i termini
 riferimento a degli oggetti specifici, per esemplificare i concetti che
 verranno via via esposti.
 
+
+## Vero o falso?
+
+Analizzate ciascuna delle seguenti affermazioni, che riguardano il principio
+fondamentale del calcolo combinatorio, e dite se è vera o falsa, motivando il
+vostro ragionamento. Cliccate su di essa per visualizzare la risposta corretta.
+
+````{tf-item}
+Il principio fondamentale si applica solo a sequenze di esattamente due scelte.
++++
+**Falsa**. Il principio si generalizza a qualsiasi numero $t$ di scelte, come
+formalizzato in {eq}`eq-pf-comb`. Vedremo due esempi specifici negli Esercizi
+{numref}`%s <ex-pfc-xmen-pericolo>`  e {numref}`%s <ex-pfc-avengers-turni>`.
+````
+
+````{tf-item}
+Abbinando un elemento di un insieme da $m$ oggetti a uno di un insieme da $n$,
+si ottengono $m + n$ abbinamenti possibili.
++++
+**Falsa**. Il principio fondamentale prescrive di moltiplicare, non di sommare:
+gli abbinamenti possibili sono $m \times n$. Nel testo, $4$ mantelli e
+$3$ costumi producono $4 \times 3 = 12$ abbinamenti, non $4 + 3 = 7$.
+La somma si userebbe se le due scelte fossero alternative (o un mantello o un
+costume), mentre qui si fanno entrambe in sequenza.
+````
+
+````{tf-item}
+Il principio fondamentale vale anche quando il numero di opzioni è diverso da
+una fase all'altra.
++++
+**Vera**. Nell'esempio del testo le due fasi hanno un numero diverso di opzioni
+($s_1 = 4$ mantelli, $s_2 = 3$ costumi), eppure il principio si applica
+direttamente: $4 \times 3 = 12$. La formula $\prod_{i=1}^t s_i$ ammette un
+numero $s_i$ di valori distinti a ogni scelta, senza alcuna restrizione.
+````
+
+````{tf-item}
+In un albero di decisione, il numero di foglie corrisponde al numero totale di
+sequenze di scelta.
++++
+**Vera**. Il testo afferma esplicitamente che «il numero di modi possibili di
+fare le $t$ scelte è uguale al numero delle foglie di un albero di profondità
+$t$». Ogni percorso dalla radice a una foglia rappresenta una specifica
+sequenza di scelte, e le foglie sono in tutto $\prod_{i=1}^t s_i$, quante le
+sequenze calcolate dal principio fondamentale.
+````
+
+````{tf-item}
+Invertire l'ordine delle scelte (prima il costume, poi il mantello) cambia il
+numero totale di abbinamenti.
++++
+**Falsa**. Per la commutatività della moltiplicazione, $s_1 \times s_2 =
+s_2 \times s_1$: l'ordine in cui si effettuano le scelte non influisce sul
+prodotto. Riprendendo l'esempio del testo, scegliere prima il costume ($3$
+modi) e poi il mantello ($4$ modi) dà $3 \times 4 = 12$, lo stesso di
+$4 \times 3 = 12$.
+````
+
+````{tf-item}
+Il numero di abbinamenti dipende dalla natura degli oggetti (mantelli, costumi,
+bat-mobili...) e non solo dalla loro numerosità.
++++
+**Falsa**. Nel calcolo combinatorio ciò che conta è solo la numerosità degli
+insiemi, non la natura dei loro elementi. Abbinare $4$ mantelli a $3$ costumi
+porta allo stesso numero di scelte che abbinare $4$ colori a $3$ modelli di
+bat-mobile.
+````
 
 ## Esercizi
 
@@ -167,4 +236,21 @@ modi diversi. Nel secondo caso, vi sono solo sei candidati per i tre ruoli,
 per cui ci sono $d_{6, 3}$ modi di procedere. Sommando i due risultati, le
 assegnalzioni possibili sono quindi $d_{6, 2} + d_{6, 3} = 6 \cdot 5 + 6 \cdot
 5 \cdot 4 = 30 + 120 = 150$.
+````
+
+## Concetti fondamentali
+
+Pensate ai concetti fondamentali illustrati in questo paragrafo ed elencateli.
+Nella lista qui sotto sono già presenti gli stessi concetti, ma nascosti.
+Cliccate sul pulsante per mostrarli sotto forma di parole chiave, quindi
+confrontateli con la vostra lista. Provate infine a descrivere ciascun concetto
+con parole vostre.
+
+````{sds-wordcloud}
+Calcolo combinatorio
+Numerosità
+Albero di decisione
+Principio fondamentale
+Scelte
+Sequenze
 ````

@@ -57,6 +57,9 @@ extensions = [ # 'myst_parser',
                'sds.sphinx_custom_codeblock',
                'sphinxcontrib.mermaid',
                'sds.prepend_cell',
+               'sds.sphinx_ext_tf',
+               'sds.sphinx_ext_proof',
+               'sds.sphinx_ext_wordcloud',
                 ]
 
 nb_execution_mode = "cache"
@@ -118,9 +121,10 @@ html_link_suffix = ''
 numfig = True
 numfig_format = {
     'figure': 'Figure %s',
-    'table': 'Tableau %s', 
+    'table': 'Tableau %s',
     'code-block': 'Algorithme %s',
-    'section': 'Paragraphe %s'
+    'section': 'Paragraphe %s',
+    'exercise': 'Exercice %s',
 }
 
 # Figure and table numbering configuration
@@ -307,7 +311,7 @@ def strip_out_code_cells(app, env, docnames):
             original_content = content
             
             # Pattern to match admonitions/examples/solutions with N backticks (capture the backticks)
-            directive_pattern = r'(`{3,})\{(admonition|prf:example|solution)([^\}]*)\}([^\n]*)\n(.*?)\n\1(?!`)'
+            directive_pattern = r'(`{3,})\{(admonition|prf:example|solution|exercise)([^\}]*)\}([^\n]*)\n(.*?)\n\1(?!`)'
             
             def extract_cells(match):
                 outer_backticks = match.group(1)
@@ -354,7 +358,7 @@ def strip_out_code_cells(app, env, docnames):
                 # Reconstruct: extracted cells + modified directive
                 result = ''.join(extracted_cells)
                 result += f'{outer_backticks}{{{directive_type}{directive_args}}}{directive_title}\n{modified_body}\n{outer_backticks}'
-                
+
                 return result
             
             # Apply the transformation
@@ -387,6 +391,14 @@ def setup(app):
         print(f">>> Warning: Could not load URL mapping: {e}")
         app.config.html_context = getattr(app.config, 'html_context', {})
         app.config.html_context['url_mapping'] = {}
+
+    opts_str = getattr(app.config, 'katex_options', '{}')
+    try:
+        opts_dict = json.loads(opts_str)
+    except json.JSONDecodeError:
+        opts_dict = {}
+    opts_dict.setdefault('macros', {})['\\nicefrac'] = '{}^{#1}\\!/_{#2}'
+    app.config.katex_options = json.dumps(opts_dict)
 
     app.connect('env-before-read-docs', strip_out_code_cells)
     app.connect('build-finished', reinsert_code_cells)

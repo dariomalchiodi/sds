@@ -410,9 +410,7 @@ applicando la relativa definizione, come dimostrato nel seguente teorema.
 Dati $n \in \mathbb N$, $p \in [0, 1]$ e una variabile aleatoria
 $X \sim \mathrm B(n, p)$, $\mathbb E(X) = np$.
 ```
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Applicando la definizione di valore atteso si ha
 
 ```{math}
@@ -448,9 +446,7 @@ per le altre distribuzioni, come mostrato di seguito.
 Dati $n \in \mathbb N$, $p \in [0, 1]$, la varianza di una variabile aleatoria
 $X \sim \mathrm B(n, p)$ è uguale a $np(1-p)$.
 ```
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Procedendo in modo analogo al {prf:ref}`teo-binomial-expected-value` si ha
 
 ```{math}
@@ -499,9 +495,7 @@ Y = \sum_{i=1}^n X_i \enspace,
 dove per ogni $i = 1, \dots, n$ si ha $X_i \sim \mathrm B(p)$, e queste $n$
 variabili aleatorie sono tra loro indipendenti.
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 L'ipotesi di indipendenza di $X_1, \dots, X_n$ permette di applicare il
 {prf:ref}`teo-mgf-method`: indicando con $m_X$ la funzione generatrice dei
 momenti della distribuzione $\mathrm B(p)$ si ottiene
@@ -525,9 +519,7 @@ indipendenti $X_1$ e $X_2$ tali che $X_i \sim \mathbb B(n_i, p)$ per
 $i = 1, 2$. Definita $Y \triangleq X_1 + X_2$, si ha
 $Y \sim \mathbb B(n_1+n_2, p)$.
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Anche in questo caso, indicando per semplicità con $m_1$ e $m_2$ le funzioni
 generatrici dei momenti di $X_1$ e $X_2$, possiamo applicare il
 {prf:ref}`teo-mgf-method`, ottenendo

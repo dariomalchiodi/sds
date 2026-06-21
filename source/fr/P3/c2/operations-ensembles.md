@@ -250,9 +250,7 @@ Morgan_ sont valables :
 1. $\overline{\left( S \cup T \right)} = \overline S \cap \overline T$ ;
 2. $\overline{\left( S \cap T \right)} = \overline S \cup \overline T$.
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Nous démontrons la première loi. Fixons
 $x \in \overline{\left( S \cup T \right)}$ ; par définition du
 complémentaire, $x \notin \left( S \cup T \right)$, ce qui implique
@@ -286,9 +284,7 @@ l'intersection et la différence entre ensembles.
 1. $S \ominus T = (S \setminus T) \cup (T \setminus S)$,
 2. $S \ominus T = (S \cup T) \setminus (S \cap T)$.
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 La première relation est une conséquence directe de la définition de la
 différence symétrique : en effet, pour tout $x \in \Omega$,
 

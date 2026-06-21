@@ -115,6 +115,7 @@ sarebbe questo il caso dei caratteri _Height_, _Weight_ e _Strength_ nel nostro
 dataset.
 
 
+(sec-frequenze-visualizzazione)=
 ## Frequenze assolute e relative e loro visualizzazione
 
 Abbiamo già incontrato il concetto di _frequenza assoluta_: si tratta del

@@ -95,6 +95,9 @@ extensions = [ # 'myst_parser',
                'sds.sphinx_custom_codeblock',
                'sphinxcontrib.mermaid',
                'sds.prepend_cell',
+               'sds.sphinx_ext_tf',
+               'sds.sphinx_ext_proof',
+               'sds.sphinx_ext_wordcloud',
                 ]
 
 # nb_code_cell_render_options = {
@@ -168,9 +171,10 @@ html_link_suffix = ''
 numfig = True
 numfig_format = {
     'figure': 'Figura %s',
-    'table': 'Tabella %s', 
+    'table': 'Tabella %s',
     'code-block': 'Algoritmo %s',
-    'section': 'Paragrafo %s'
+    'section': 'Paragrafo %s',
+    'exercise': 'Esercizio %s',
 }
 numfig_secnum_depth = 1
 
@@ -385,7 +389,7 @@ def strip_out_code_cells(app, env, docnames):
             original_content = content
             
             # Pattern to match admonitions/examples/solutions with N backticks (capture the backticks)
-            directive_pattern = r'(`{3,})\{(admonition|prf:example|solution)([^\}]*)\}([^\n]*)\n(.*?)\n\1(?!`)'
+            directive_pattern = r'(`{3,})\{(admonition|prf:example|solution|exercise)([^\}]*)\}([^\n]*)\n(.*?)\n\1(?!`)'
             
             def extract_cells(match):
                 outer_backticks = match.group(1)
@@ -432,7 +436,7 @@ def strip_out_code_cells(app, env, docnames):
                 # Reconstruct: extracted cells + modified directive
                 result = ''.join(extracted_cells)
                 result += f'{outer_backticks}{{{directive_type}{directive_args}}}{directive_title}\n{modified_body}\n{outer_backticks}'
-                
+
                 return result
             
             # Apply the transformation
@@ -485,14 +489,13 @@ def setup(app):
     opts_dict.update({
         "throwOnError": False,
         "processHtmlClass": ".*",
-        "strict": "ignore"  # utile per ignorare simboli non standard LaTeX
+        "strict": "ignore",  # utile per ignorare simboli non standard LaTeX
+        "macros": {
+            "\\nicefrac": "{}^{#1}\\!/_{#2}"
+        }
     })
 
     app.config.katex_options = json.dumps(opts_dict)
-
-    # Carica JS e CSS di KaTeX
-    app.add_js_file('https://cdn.jsdelivr.net/npm/katex@0.18.2/dist/katex.min.js')
-    app.add_css_file('https://cdn.jsdelivr.net/npm/katex@0.18.2/dist/katex.min.css')
 
     app.add_js_file(f'https://cdn.jsdelivr.net/npm/mermaid@{app.config.mermaid_version}/dist/mermaid.min.js')
     

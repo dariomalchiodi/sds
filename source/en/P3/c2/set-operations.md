@@ -245,9 +245,7 @@ For every pair of sets $S, T \subseteq \Omega$, _De Morgan's laws_ hold:
 1. $\overline{\left( S \cup T \right)} = \overline S \cap \overline T$;
 2. $\overline{\left( S \cap T \right)} = \overline S \cup \overline T$.
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 We prove the first law. Fix $x \in \overline{\left( S \cup T \right)}$; by
 definition of complement, $x \notin \left( S \cup T \right)$, which implies
 $x \notin S$ and $x \notin T$. Using the definition of complement again, we
@@ -277,9 +275,7 @@ Given two sets $S, T \subseteq \Omega$:
 1. $S \ominus T = (S \setminus T) \cup (T \setminus S)$,
 2. $S \ominus T = (S \cup T) \setminus (S \cap T)$.
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 The first relation follows directly from the definition of symmetric
 difference: indeed, for every $x \in \Omega$,
 

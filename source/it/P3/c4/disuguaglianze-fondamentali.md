@@ -25,9 +25,7 @@ $a \geq 0$ si ha
 \mathbb P(X \leq a) \geq \frac{\mathbb E(X)}{a} \enspace.
 ```
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Ipotizziamo che $X$ sia una variabile aleataoria continua, e indichiamo con
 $f$ la sua funzione di densità di probabilità. Non avendo $X$ specificazioni
 positive, è possibile esprimere il suo valore atteso come segue:
@@ -70,9 +68,7 @@ $\epsilon \geq 0$
 ```
 
 ````
-````{admonition} _
-:class: myproof
-
+````{sds-proof}
 Definiamo $Y \triangleq (X - \mu)^2$, e notiamo che per costruzione $Y$ non
 assume mai specificazioni negative e il suo valore atteso è $\mathbb E(Y) =
 \sigma^2$, che per ipotesi esiste ed è finito. Essendo $\epsilon \geq 0$, gli

@@ -85,13 +85,12 @@ Esta área contiene el enunciado de un corolario.
 Esta área contiene el enunciado de un lema.
 ```
 
-```{admonition} _
-:class: myproof
+````{sds-proof}
 En esta área se incluye la demostración de un teorema, corolario o lema. En
 algunos casos omitiré las demostraciones, limitándome a escribir el enunciado.
 Esto ocurrirá cuando sea importante introducir un resultado teórico relevante,
 aunque su demostración requiera conocimientos matemáticos avanzados.
-```
+````
 
 ```{note}
 Este tipo de área recoge algunos aspectos secundarios que prefiero destacar en
