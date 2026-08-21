@@ -33,6 +33,9 @@ construct new sets from existing ones using the operations described below.
   $\overline S = \{ x \in \Omega \mid x \notin S \} = \Omega \setminus S$.
 
 
+````{customfigure}
+:name: fig_en-venn-union-intersection
+
 ```{code-cell} python
 :tags:  [hide-input]
 
@@ -118,8 +121,6 @@ venn_intersection(ax2, s=2)
 plt.tight_layout()
 plt.show()
 ```
-````{customfigure}
-:name: fig_en-venn-union-intersection
 
 Venn diagrams for the union $O \cup V$ (left) and the intersection
 $O \cap V$ (right), where $O$ is the set of Avengers with superhuman strength
@@ -127,7 +128,6 @@ and $V$ is the set of Avengers who can fly. In both cases, the darker blue
 region describes the set of interest and the lighter region indicates the
 parts of $O$ or $V$ that do not belong to it.
 ````
-
 ````{prf:example}
 :label: ex-en-set-operations
 
@@ -153,6 +153,9 @@ Finally, the complement $\overline O$ corresponds to the set of Avengers
 without superhuman strength: Iron Man, Black Widow, Hawkeye, and Ant-Man, as
 illustrated in {numref}`fig_en-venn-complement`.
 ````
+
+````{customfigure}
+:name: fig_en-venn-difference
 
 ```{code-cell} python
 :tags:  [hide-input]
@@ -181,15 +184,13 @@ venn_symdiff(ax2, s=2)
 plt.tight_layout()
 plt.show()
 ```
-````{customfigure}
-:name: fig_en-venn-difference
 
 Venn diagrams for the difference $O \setminus V$ (left) and the symmetric
 difference $O \ominus V$ (right). Same notation as in
 {numref}`fig_en-venn-union-intersection`.
 ````
-
-
+````{customfigure}
+:name: fig_en-venn-complement
 
 ```{code-cell} python
 :tags:  [hide-input]
@@ -214,14 +215,11 @@ venn_complement(ax)
 plt.tight_layout()
 plt.show()
 ```
-````{customfigure}
-:name: fig_en-venn-complement
 
 Venn diagram for the complement $\overline O$: the highlighted region
 contains all Avengers that do not belong to $O$. Same notation as in
 {numref}`fig_en-venn-union-intersection`.
 ````
-
 It is straightforward to verify that union and intersection are
 
 - commutative: $S \cup T = T \cup S$ and $S \cap T = T \cap S$ always hold,

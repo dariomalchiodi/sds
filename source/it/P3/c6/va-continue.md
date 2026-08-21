@@ -143,6 +143,10 @@ dell'area contenuta tra l'asse delle ascisse e il grafico della funzione di
 densità di $X$ ristretta all'insieme $A$, come esemplificato in
 {numref}`fig_pdf-interpretation`.
 
+````{customfigure}
+:width: 100%
+:name: fig_pdf-interpretation
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -183,14 +187,10 @@ ax.yaxis.set_major_formatter(plt.NullFormatter())
 ax.tick_params(axis=u'both', which=u'both',length=0)
 fig
 ```
-````{customfigure}
-:width: 100%
-:name: fig_pdf-interpretation
 
 Visualizzazione dell'interpretazione geometrica della funzione di
 densità di probabilità di una variabile aleatoria continua.
 ````
-
 Il concetto di valore atteso di una variabile aleatoria continua o di una
 sua funzione si ottiene estendendo la {prf:ref}`def-valore-atteso-discreto`.
 

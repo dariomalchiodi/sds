@@ -29,7 +29,7 @@
 }
 
 .naming.admonition::before {
-  content: "Notation";
+  content: "Terminology and notation";
   display: block;
   font-weight: bold;
   font-family: var(--sans-serif-font);

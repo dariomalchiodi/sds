@@ -24,6 +24,9 @@ verificato un altro evento $F$, e &mdash; sulla base di questa informazione
 influenzata.
 
 
+````{customfigure}
+:name: fig-prob-cond-dadi-venn
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -98,15 +101,12 @@ with mpl.rc_context({'figure.figsize': (3, 3),
   ax.set_aspect("equal")
   plt.show()
 ```
-````{customfigure}
-:name: fig-prob-cond-dadi-venn
 
 Rappresentazione cartesiana degli eventi $E =$ «la somma dei due dadi è almeno
 $8$» e $F =$ «il dado blu mostra almeno $4$» nel lancio di due dadi
 distinguibili. I $36$ punti della griglia rappresentano gli esiti elementari di
 $[1 .. 6]^2$.
 ````
-
 ```{prf:example}
 :label: ex-prob-cond-justif
 

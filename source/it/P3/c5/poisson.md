@@ -25,7 +25,7 @@ Consideriamo un esperimento binomiale nel quale il numero $n$ di ripetizioni
 è elevato. Questo fatto non cambia la validità delle formule che descrivono
 la distribuzione della variabile aleatoria $X \sim \mathrm B(n, p)$ che
 conteggia il numero di successi. Consideriamo però il codice che ho introdotto
-nel Paragrafo {ref}`sec_binomial-quantiles` per il calcolo dei
+nel {ref}`sec_binomial-quantiles` per il calcolo dei
 quantili, e che riporto qui di seguito per comodità.
 
 ```python
@@ -151,6 +151,9 @@ così che:
   se e solo se $x = \lambda - 1$,
 - $\rho < 1$ nei casi rimanenti.
 
+````{customfigure}
+:name: fig_poisson_template
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -174,13 +177,10 @@ for lambda_, ax in zip([0.9, 2.7, 3], axes):
     ax.set_xlabel(fr'$\lambda = {lambda_!r}$')
 fig
 ```
-````{customfigure}
-:name: fig_poisson_template
 
 Grafici della funzione di massa di probabilità per le distribuzioni di Poisson
 di parametro $0.9$ (sinistra), $2.7$ (centro) e $3$ (destra).
 ````
-
 Tenuto conto del fatto che le specificazioni $x$ assumono valori interi non
 negativi, da queste relazioni si ricava che in funzione di $\lambda$ si hanno
 tre differenti situazioni possibili, illustrate in
@@ -592,6 +592,9 @@ quadrato della skewness, e ciò facilita la scrittura del codice alla base
 della {numref}`fig_poisson-sk-plot` che illustra il grafico
 skewness-curtosi per la famiglia delle distribuzioni di Poisson.
 
+````{customfigure}
+:name: fig_poisson-sk-plot
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -605,9 +608,6 @@ kurtosis = skewness**2
 ax.plot(skewness, kurtosis)
 fig
 ```
-````{customfigure}
-:name: fig_poisson-sk-plot
-
 
 Il grafico skewness-curtosi per la famiglia delle distribuzioni di Poisson.
 ````

@@ -35,6 +35,9 @@ utilizando las operaciones que se describen a continuación.
   $\overline S = \{ x \in \Omega \mid x \notin S \} = \Omega \setminus S$.
 
 
+````{customfigure}
+:name: fig_es-venn-union-interseccion
+
 ```{code-cell} python
 :tags:  [hide-input]
 
@@ -119,8 +122,6 @@ venn_intersection(ax2, s=2)
 plt.tight_layout()
 plt.show()
 ```
-````{customfigure}
-:name: fig_es-venn-union-interseccion
 
 Diagramas de Venn para la unión $O \cup V$ (izquierda) y la intersección
 $O \cap V$ (derecha), donde $O$ es el conjunto de los Avengers con fuerza
@@ -128,7 +129,6 @@ sobrehumana y $V$ el de los Avengers que pueden volar. En ambos casos, la
 región azul más oscura describe el conjunto de interés y la región más
 clara indica las partes de $O$ o $V$ que no pertenecen a él.
 ````
-
 ````{prf:example}
 :label: ex-es-operaciones-conjuntos
 
@@ -155,6 +155,9 @@ Finalmente, el complemento $\overline O$ corresponde al conjunto de los
 Avengers sin fuerza sobrehumana: Iron Man, Black Widow, Hawkeye y Ant-Man,
 como se ilustra en la {numref}`fig_es-venn-complemento`.
 ````
+
+````{customfigure}
+:name: fig_es-venn-diferencia
 
 ```{code-cell} python
 :tags:  [hide-input]
@@ -183,15 +186,13 @@ venn_symdiff(ax2, s=2)
 plt.tight_layout()
 plt.show()
 ```
-````{customfigure}
-:name: fig_es-venn-diferencia
 
 Diagramas de Venn para la diferencia $O \setminus V$ (izquierda) y la
 diferencia simétrica $O \ominus V$ (derecha). Misma notación que en
 la {numref}`fig_es-venn-union-interseccion`.
 ````
-
-
+````{customfigure}
+:name: fig_es-venn-complemento
 
 ```{code-cell} python
 :tags:  [hide-input]
@@ -216,14 +217,11 @@ venn_complement(ax)
 plt.tight_layout()
 plt.show()
 ```
-````{customfigure}
-:name: fig_es-venn-complemento
 
 Diagrama de Venn para el complemento $\overline O$: la región resaltada
 contiene todos los Avengers que no pertenecen a $O$. Misma notación que en
 la {numref}`fig_es-venn-union-interseccion`.
 ````
-
 Es fácil verificar que las operaciones de unión e intersección son
 
 - conmutativas: $S \cup T = T \cup S$ y $S \cap T = T \cap S$ siempre se

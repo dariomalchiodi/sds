@@ -130,6 +130,10 @@ plt.style.use('../_static/sds.mplstyle')
 plt.ioff()
 ```
 
+````{customfigure}
+:name: fig_altair-example
+:class: left-align
+
 ```{code-cell} python
 :height: 600px
 :tags: [hide-input]
@@ -170,14 +174,8 @@ chart = (points & bars).configure(background='#eaf3f5')
 chart
 ```
 
-````{customfigure}
-:name: fig_altair-example
-:class: left-align
-
 Un esempio di grafico interattivo basato su altair.
-
 ````
-
 Interagendo con il grafico è possibile effettuare un’_analisi esplorativa_ dei
 dati, per esempio per rispondere alle domande seguenti.
 
@@ -222,6 +220,9 @@ a un _istogramma_, un grafico che evidenzia le frequenze con cui i diversi
 valori del peso compaiono nel _dataset_.
 
 
+````{customfigure}
+:name: fig_histogram
+
 ```{code-cell} python
 :height: 400px
 :tags: [hide-input]
@@ -235,12 +236,8 @@ ax.hist(data, bins=30, density=True)
 fig
 ```
 
-````{customfigure}
-:name: fig_histogram
-
 Un istogramma per il peso dei supereroi.
 ````
-
 ```{margin}
 Non sempre l'istogramma è la scelta giusta per esplorare i dati. È utile quando
 abbiamo molte osservazioni numeriche di un attributo continuo; in altri casi,

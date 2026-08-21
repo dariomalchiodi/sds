@@ -263,6 +263,9 @@ nella {numref}`fig_dice-sum`. La sua probabilità è
 ```
 ````
 
+````{customfigure}
+:name: fig_dice-sum
+
 ```{code-cell} python
 :tags:  [hide-input]
 
@@ -302,14 +305,11 @@ with mpl.rc_context({'figure.figsize': (3, 3),
   ax.set_aspect('equal')
   plt.show()
 ```
-````{customfigure}
-:name: fig_dice-sum
 
 Rappresentazione dello spazio degli esiti per il lancio di due dadi
 distinguibili (cerchi blu) e dell'evento in cui la somma dei risultati è uguale
 a $7$ (ellisse azzurra).
 ````
-
 ```{margin}
 Se in questo esempio si sostituiscono gli anni di prima apparizione dei
 personaggi con il giorno di nascita di un gruppo di persone presenti in una

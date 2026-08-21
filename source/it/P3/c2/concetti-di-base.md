@@ -38,6 +38,9 @@ O = \{ \text{Componenti degli Avengers con forza sovrumana} \} \enspace;
   nei punti precedenti è illustrato nella {numref}`fig_venn-simple`.
 
 
+````{customfigure}
+:name: fig_venn-simple
+
 ```{code-cell} python
 :tags:  [hide-input]
 
@@ -96,19 +99,18 @@ fig = simple_venn()
 plt.tight_layout()
 plt.show()
 ```
-````{customfigure}
-:name: fig_venn-simple
-
 
 Un diagramma di Venn che descrive l'insieme $O = \{ \text{Componenti degli Avengers con forza sovrumana} \}$.
 ````
-
 La descrizione tramite diagramma di Venn presuppone di conoscere, almeno in
 linea di principio, tutti gli elementi che potrebbero far parte di un insieme.
 L'insieme di tutti i possibili elementi si chiama _insieme universo_ e si
 indica di solito con $\Omega$. Nell'esempio precedente, una scelta ragionevole per l'universo potrebbe far coincidere
 $\Omega$ con l'insieme degli Avengers, quindi un diagramma di Venn più completo
 per $O$ è quello riportato nella {numref}`fig_venn-universe`.
+
+````{customfigure}
+:name: fig_venn-universe
 
 ```{code-cell} python
 :tags: [hide-input]
@@ -117,13 +119,10 @@ fig = simple_venn(universe=True)
 plt.tight_layout()
 plt.show()
 ```
-````{customfigure}
-:name: fig_venn-universe
 
 Un diagramma di Venn che illustra l'insieme $O$ della {numref}`fig_venn-simple`
 all'interno dell'universo $\Omega$ degli Avengers.
 ````
-
 L'insieme universo contiene qualunque elemento, e &mdash; all'estremo opposto
 &mdash; è utile considerare l'insieme che non ne contiene nessuno: si chiama
 _insieme vuoto_ e lo indicherò con $\varnothing$, in modo che per ogni

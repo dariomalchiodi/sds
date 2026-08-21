@@ -56,6 +56,9 @@ indici distinti $i \neq j$.
 ````
 
 
+````{customfigure}
+:name: fig_venn-union-intersection
+
 ```{code-cell} python
 :tags:  [hide-input]
 
@@ -141,8 +144,6 @@ venn_intersection(ax2, s=2)
 plt.tight_layout()
 plt.show()
 ```
-````{customfigure}
-:name: fig_venn-union-intersection
 
 Diagrammi di Venn per l'unione $O \cup V$ (a sinistra) e l'intersezione
 $O \cap V$ (a destra), dove $O$ è l'insieme degli Avengers con forza sovrumana
@@ -150,7 +151,6 @@ e $V$ quello degli Avengers in grado di volare. In entrambi i casi, il colore
 azzurro scuro descrive l'insieme di interesse e quello chiaro indica le parti
 di $O$ o $V$ che non ne fanno parte.
 ````
-
 ````{prf:example}
 :label: ex-set-operations  
 
@@ -177,6 +177,9 @@ Infine, il complemento $\overline O$ corrisponde all'insieme degli Avengers
 privi di forza sovrumana: Iron Man, Black Widow, Hawkeye ed Ant-Man, come
 illustrato nella {numref}`fig_venn-complement`.
 ````
+
+````{customfigure}
+:name: fig_venn-difference
 
 ```{code-cell} python
 :tags:  [hide-input]
@@ -205,15 +208,13 @@ venn_symdiff(ax2, s=2)
 plt.tight_layout()
 plt.show()
 ```
-````{customfigure}
-:name: fig_venn-difference
 
 Diagrammi di Venn per la differenza $O \setminus V$ (a sinistra) e la
 differenza simmetrica $O \ominus V$ (a destra). Stesse notazioni della
 {numref}`fig_venn-union-intersection`.
 ````
-
-
+````{customfigure}
+:name: fig_venn-complement
 
 ```{code-cell} python
 :tags:  [hide-input]
@@ -238,14 +239,11 @@ venn_complement(ax)
 plt.tight_layout()
 plt.show()
 ```
-````{customfigure}
-:name: fig_venn-complement
 
 Diagramma di Venn per il complemento $\overline O$: la regione evidenziata
 contiene tutti gli Avengers che non appartengono a $O$. Stesse notazioni della
 {numref}`fig_venn-union-intersection`.
 ````
-
 Si verifica facilmente come le operazioni di unione e intersezione siano
 
 - commutative: vale sempre $S \cup T = T \cup S$ e $S \cap T = T \cap S$, e

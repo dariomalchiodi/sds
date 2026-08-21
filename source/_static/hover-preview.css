@@ -1,0 +1,194 @@
+/* ── Hover preview popover (source/_static/hover-preview.js) ───────────────
+ *
+ * Design: "a framed viewport onto the page". The popover adopts the book's
+ * page background, blue-tinted shadow and small radius, so a cloned block
+ * (definition, figure, table, section, …) reads exactly as it does in the
+ * text — just floating in a card. Scrollbars are slimmed and themed to match.
+ */
+
+.sds-preview {
+  position: absolute;
+  z-index: 1080;
+  display: none;
+  box-sizing: border-box;
+  max-width: 420px;
+  max-height: 58vh;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 0.55rem 0.6rem;
+  background: var(--background-color, #eaf3f5);
+  color: var(--text-primary-color, inherit);
+  border: 1px solid rgba(1, 1, 119, 0.16);
+  border-radius: 4px;
+  /* Soft, blue-tinted shadow — the book's shadows are tinted, not neutral. */
+  box-shadow: 0 8px 28px rgba(1, 1, 119, 0.18),
+              0 2px 6px rgba(1, 1, 119, 0.10);
+  font-family: var(--serif-font, serif);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.14s ease, transform 0.14s ease;
+}
+
+.sds-preview--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sds-preview {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* ── Slim, themed scrollbars (outer popover + any nested scroller) ─────────
+ * Nested scrollers exist: wide tables (.pst-scrollable-table-container) and
+ * code/output blocks (.cell_output). Theme them all for a consistent look. */
+.sds-preview,
+.sds-preview * {
+  scrollbar-width: thin;                                  /* Firefox */
+  scrollbar-color: rgba(1, 1, 119, 0.32) transparent;
+}
+.sds-preview::-webkit-scrollbar,
+.sds-preview ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.sds-preview::-webkit-scrollbar-track,
+.sds-preview ::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sds-preview::-webkit-scrollbar-thumb,
+.sds-preview ::-webkit-scrollbar-thumb {
+  background: rgba(1, 1, 119, 0.32);
+  border-radius: 8px;
+  border: 2px solid transparent;       /* inset the thumb from the edge */
+  background-clip: padding-box;
+}
+.sds-preview::-webkit-scrollbar-thumb:hover,
+.sds-preview ::-webkit-scrollbar-thumb:hover {
+  background: rgba(1, 1, 119, 0.45);
+  background-clip: padding-box;
+}
+.sds-preview::-webkit-scrollbar-corner,
+.sds-preview ::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* ── Collapse stray margins so content is evenly inset by the card padding ── */
+.sds-preview-inner > *:first-child { margin-top: 0 !important; }
+.sds-preview-inner > *:last-child  { margin-bottom: 0 !important; }
+.sds-preview-inner > div > *:first-child { margin-top: 0 !important; }
+.sds-preview-inner > div > *:last-child  { margin-bottom: 0 !important; }
+
+.sds-preview img {
+  max-width: 100%;
+  height: auto;
+}
+
+.sds-preview table {
+  max-width: 100%;
+}
+
+/* ── Cloned cards keep their identity, lose only the page-level chrome ────── */
+.sds-preview .admonition,
+.sds-preview .sds-proof {
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+/* Clip the admonition's own title bar / accent to a tidy mini-card. */
+.sds-preview .admonition {
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.sds-preview figure {
+  margin: 0;
+}
+.sds-preview figcaption {
+  margin-top: 0.35rem;
+}
+
+/* Figure previews: the cloned plot cell carries a (non-functional here) code
+   toggle — hide it so the preview shows only plot + caption, and cap a tall
+   plot so the caption stays in view. */
+.sds-preview .toggle-code-button,
+.sds-preview .toggle-code-wrapper > button {
+  display: none;
+}
+.sds-preview-figure img {
+  max-height: 40vh;
+  width: auto;
+}
+.sds-preview-figure .cell,
+.sds-preview-figure .cell_output {
+  margin: 0 auto;
+}
+
+/* The QED tombstone adds little in a small preview. */
+.sds-preview .sds-proof::after {
+  display: none;
+}
+
+/* ── Section previews: tame heading sizes, keep it compact ────────────────── */
+.sds-preview-section h1,
+.sds-preview-section h2,
+.sds-preview-section h3,
+.sds-preview-section h4,
+.sds-preview-section h5,
+.sds-preview-section h6 {
+  font-family: var(--sans-serif-font, sans-serif);
+  font-size: 1.02rem;
+  line-height: 1.25;
+  margin: 0 0 0.4rem;
+}
+
+.sds-preview-more {
+  margin: 0.3rem 0 0;
+  color: var(--visited-link-color, #6085a6);
+  letter-spacing: 0.15em;
+}
+
+/* Numbered-equation previews: show the formula with its "(n)" number, and let
+   the formula scroll rather than overflow the popover on wide displays. */
+.sds-preview-equation {
+  overflow-x: auto;
+}
+.sds-preview-equation .math {
+  margin: 0;
+}
+.sds-preview-equation .eqno {
+  float: right;
+  margin-left: 0.6em;
+}
+.sds-preview-equation .eqno .headerlink {
+  display: none;
+}
+
+/* Footnote previews: keep the "[1]" label on the left, like on the page. */
+.sds-preview aside.footnote {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+.sds-preview-footnote .label {
+  float: left;
+  margin-right: 0.4em;
+  font-weight: 700;
+}
+.sds-preview-footnote p {
+  margin: 0;
+}
+.sds-preview-footnote > * > :last-child,
+.sds-preview-footnote > :last-child {
+  margin-bottom: 0;
+}
+
+/* Belt-and-suspenders: never show on touch-only devices. */
+@media (hover: none) {
+  .sds-preview {
+    display: none !important;
+  }
+}

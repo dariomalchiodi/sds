@@ -358,7 +358,7 @@ Per calcolare il numero di anagrammi di una parola con alcune lettere ripetute
 si usa la formula delle permutazioni semplici $p_n = n!$.
 +++
 **Falsa**. La formula $n!$ vale solo quando tutte le lettere sono distinte
-(come per SUPERMAN nell'{ref}`%s <ex-perm-anagrammi-superman>`). Quando almeno
+(come per SUPERMAN nell'{ref}`ex-perm-anagrammi-superman`). Quando almeno
 una lettera si ripete, le permutazioni semplici sovrastimano il numero di
 anagrammi distinti, contando più volte le sequenze che differiscono solo per lo
 scambio di copie indistinguibili. In quel caso si usa la formula delle

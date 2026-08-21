@@ -182,7 +182,10 @@ aleatoria cada nell'intervallo $[a, b]$ tende alla sua semplice
 _ampiezza_. Questo risultato sarà il filo conduttore per capire come
 si calcolano le probabilità nel caso continuo.
 
-````{code-cell} python
+````{customfigure}
+:name: fig_discrete-to-continuous
+
+```{code-cell} python
 :tags: [hide-input]
 
 import matplotlib.pyplot as plt
@@ -205,16 +208,13 @@ for i in range(1, 4):
     cdf_graph(10 * i, ax[i-1])
 
 fig
-````
-````{customfigure}
-:name: fig_discrete-to-continuous
+```
 
 Le spezzate piene mostrano i grafici della funzione di distribuzione
 cumulativa di $X_n$ per $n$ rispettivamente uguale a $10$, $20$ e
 $30$ (da sinistra verso destra); la spezzata tratteggiata evidenzia
 il grafico di $F_X$.
 ````
-
 ````{margin}
 In altre parole, $F_{X_n}$ è una _successione di funzioni_ della
 quale consideriamo il limite in senso _puntuale_, mostrando che per

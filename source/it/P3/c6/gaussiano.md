@@ -34,6 +34,9 @@ sempre di più dall'origine e dall'altra la varianza aumenta, come si può
 facilmente verificare osservando i grafici delle funzioni di massa di
 probabilità visualizzati nella {numref}`fig_binomial-divergence`.
 
+````{customfigure}
+:name: fig_binomial-divergence
+
 ```{code-cell} python
 :tags: [remove-input]
 
@@ -58,13 +61,10 @@ for n, ax in zip(ns, axes):
     ax.set_xlabel(rf'$n={n}$')
 fig
 ```
-````{customfigure}
-:name: fig_binomial-divergence
 
 Grafici della funzione di massa di probabilità di $X_n$ per $n = 10, 25
 \text{ e } 50$.
 ````
-
 Possiamo però considerare una trasformazione di $X_n$ che renda la
 distribuzione del risultato indipendente da $n$ relativamente alla sua
 centralità e alla sua dispersione. Definiamo quindi $Y_n$ come la versione
@@ -86,6 +86,9 @@ quanto visto nel {ref}`sec_modello-esponenziale`, la
 distribuzione di $Y_n$ tenda a una distribuzione di tipo continuo che ha
 $\mathbb R$ come supporto.
 
+````{customfigure}
+:name: fig_binomial-convergence
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -104,13 +107,10 @@ for n, ax in zip(ns, axes):
     ax.set_xlabel(rf'$n={n}$')
 fig
 ```
-````{customfigure}
-:name: fig_binomial-convergence
 
 Grafici della funzione di massa di probabilità di $Y_n$ per $n = 10, 25
 \text{ e } 50$.
 ````
-
 Possiamo verificare empiricamente come, in effetti, man mano che $n$ cresce
 $Y_n$ tende a seguire una distribuzione continua descritta dalla funzione
 di densità di probabilità
@@ -123,6 +123,10 @@ di densità di probabilità
 il cui grafico è visualizzato nella {numref}`fig_normal-pdf`.
 Questa distribuzione, che definiremo rigorosamente più avanti, ha un ruolo
 particolarmente importante e viene chiamata _distribuzione normale standard_.
+
+````{customfigure}
+:name: fig_normal-pdf
+:width: 400px
 
 ```{code-cell} python
 :tags: [hide-input]
@@ -139,14 +143,10 @@ plt.plot(x_gauss, y_gauss)
 plt.yticks([0, 0.1, 0.2, 0.3, 0.4])
 fig
 ```
-````{customfigure}
-:name: fig_normal-pdf
-:width: 400px
 
 Grafico della funzione di densità della distribuzione normale
 standard.
 ````
-
 ```{margin}
 Il fatto che le altezze dei bastoncini in {numref}`fig_binomial-convergence`
 sommino a $1$ spiega anche come mai queste stesse altezze tendano a diminuire
@@ -196,6 +196,9 @@ confrontata con $\phi$: la {numref}`fig_normal-convergence`
 mostra come effettivamente la prima funzione tenda a coincidere con la seconda
 all'aumentare di $n$.
 
+````{customfigure}
+:name: fig_normal-convergence
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -219,14 +222,11 @@ for n, ax in zip([6, 20, 80], axes):
     ax.set_xlabel(rf'$n={n}$')
 fig
 ```
-````{customfigure}
-:name: fig_normal-convergence
 
 Convergenza di $f_n$ alla densità $\phi$ della distribuzione normale standard.
 I grafici a barre visualizzano l'area delimitata da $f_n$, per
 $n = 10, 100 \text{ e } 250$, mentre la curva blu indica il grafico di $\phi$.
 ````
-
 Il ragionamento informale seguito finora può essere rivisto in modo formale,
 in particolare considerando il teorema di de Moivre-Laplace.
 
@@ -239,7 +239,7 @@ la distribuzione di $Y_n$ tende a quella normale standard.
 ````
 
 La dimostrazione del teorema di de Moivre-Laplace, relativamente complessa,
-è riportata nel Paragrafo {ref}`sec_teo-de-moivre-laplace`.
+è riportata nel {ref}`sec_teo-de-moivre-laplace`.
 In ogni caso, per quanto visto finora ha senso ragionare in termini di una
 variabile aleatoria $X$ che abbia $\phi$ come densità di probabilità, e più in
 generale parlare della distribuzione continua normale standard. Vi sono alcune
@@ -274,7 +274,7 @@ ragionamento analogo, è facile convincersi che la varianza e la deviazione
 standard di $X$ sono uguali a $1$. Da qui in avanti supporremo quindi che
 che $\mathbb E(X) = 0$ e $\mathrm{Var}(X) = 1$ (cosa che è effettivamente
 vera, e della quale i lettori interessati troveranno una dimostrazione nel
-Paragrafo {ref}`sec_norm-fgm`). Le cose diventano più
+{ref}`sec_norm-fgm`). Le cose diventano più
 complicate quando si considera la funzione di ripartizione di $X$, che viene
 indicata con il simbolo $\Phi$. Ovviamente vale
 
@@ -287,7 +287,7 @@ ma non è possibile esprimere analiticamente questo integrale in termini di
 funzioni che già conosciamo [^calcolo-cdf-normale]. Per questo motivo $\Phi$
 viene calcolata ricorrendo a processi di approssimazione numerica
 [^approssimazione-integrali]. Vedremo nel 
-Paragrafo {ref}`sec_implementazione-modello-normale` che questo
+{ref}`sec_implementazione-modello-normale` che questo
 processo è fatto in modo trasparente dal modulo Python `scipy.stats`, che vale
 la pena utilizzare nelle applicazioni pratiche. Ma possiamo per il momento
 ottenere i valori di $\Phi$ ricavando direttamente l'approssimazione degli
@@ -334,6 +334,10 @@ def std_normal_cdf_scalar(x):
 std_normal_cdf = np.vectorize(std_normal_cdf_scalar)
 ```
 
+````{customfigure}
+:name: fig_normal-cdf
+:width: 400px
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -348,15 +352,11 @@ ax.plot(x, y_pdf, label=r'$\phi$')
 ax.legend()
 fig
 ```
-````{customfigure}
-:name: fig_normal-cdf
-:width: 400px
 
 Grafico della funzione di ripartizione della distribuzione normale
 standard (in blu) sovrapposto al grafico della corrispondente funzione
 di densità di probabilità (in verde).
 ````
-
 Nelle appendici di molti libri di testo di probabilità e statistica,
 soprattutto in quelli più datati, è inclusa una tabella che contiene le
 approssimazioni di $\Phi$ per dei particolari valori del suo argomento.
@@ -428,6 +428,10 @@ all'asse delle ordinate, come evidenziato nella
 L'estensione ai casi rimanenti è banale.
 ````
 
+````{customfigure}
+:name: fig_normal-symmetry
+:width: 400px
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -456,14 +460,10 @@ ax.set_xticks([-x_start, x_start], [r'$-x$', '$x$'], fontsize=14)
 ax.set_yticks([])
 fig
 ```
-````{customfigure}
-:name: fig_normal-symmetry
-:width: 400px
 
 Relazione che lega la simmetria di $\phi$ rispetto all'asse delle ordinate
 alla proprietà $\Phi(-x) = 1 -\Phi(x)$.
 ````
-
 Fissiamo ora $\mu, \sigma \in \mathbb R$, con $\sigma > 0$, e definiamo
 $Y \triangleq \mu + \sigma X$. Sfruttando le proprietà di valore atteso e
 varianza e ricordando quanto appena ricavato, si verifica facilmente che
@@ -536,6 +536,9 @@ destra. Analogamente, i grafici su una stessa colonna hanno la medesima
 centralità ma differenti dispersioni, e la varianza aumenta andando dall'alto
 verso il basso nella figura.
 
+````{customfigure}
+:name: fig_normal-graphs
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -567,14 +570,11 @@ for r, (ax_row, param_row) in enumerate(zip(axes, params)):
             ax.legend()
 fig
 ```
-````{customfigure}
-:name: fig_normal-graphs
 
 Grafici delle funzioni di densità di probabilità (in giallo) e di ripartizione
 (in blu) di differenti distribuzioni norali. Gli assi delle ascisse e delle
 ordinate indicano rispettivamente i valori dei parametri $\mu$ e $\sigma$.
 ````
-
 Va notato che anche il calcolo della ripartizione di una generica
 distribuzione normale richiede di valutare un integrale di cui non si
 conosce la forma analitica, ma applicando {eq}`eq-normal-standardization`
@@ -684,7 +684,7 @@ f_Y(x) = \frac{1}{a} f_X \left( \frac{x-b}{a} \right)
 ```
 
 che implica la tesi. La seconda parte è dimostrata nel
-Paragrafo {ref}`sec_norm-fgm`.
+{ref}`sec_norm-fgm`.
 ````
 
 Da questo teorema si ricava un risultato che sarà particolarmente utile

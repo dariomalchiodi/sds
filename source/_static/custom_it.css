@@ -29,7 +29,7 @@
 }
 
 .naming.admonition::before {
-  content: "Nomenclatura";
+  content: "Nomenclatura e notazione";
   display: block;
   font-weight: bold;
   font-family: var(--sans-serif-font);

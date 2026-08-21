@@ -191,3 +191,168 @@ D(n) &= (n + 1)(3n^2 + 3n - 1) \left( (n+2)(n+3) - n(2n+1) \right) + \\
      &= 30 (n+1)^4 \enspace.
 \end{align*}
 ````
+
+La _serie geometrica_ è una serie numerica fondamentale, nota fin
+dall'antichità. Si chiama così perché originariamente era usata per risolvere
+problemi geometrici, come il calcolo della somma di aree o volumi in una
+progressione in cui ogni termine è una frazione costante di quello precedente.
+Oltre che al calcolo delle probabilità, viene applicata per esempio in fisica
+ed economia, ma anche per analizzare altre serie. I prossimi risultati
+mostrano come ricavare la formula della somma finita e della serie infinita,
+in due varianti.
+
+````{prf:definition} Serie geometrica
+Dato $q \in \mathbb R$, la somma
+
+```{math}
+\sum_n q^n \enspace,
+```
+
+contata a partire da $n = 0$, viene detta _serie geometrica_ di _ragione_ $q$.
+````
+
+````{prf:theorem}
+:label: teo-sum-geometrica
+
+Per ogni $q \in \mathbb R$ e per ogni $n \in \mathbb N$ si ha
+
+```{math}
+:label: eq-sum-geometrica
+
+\sum_{i=0}^n q^i =
+\begin{cases}
+n+1 & \text{se } q = 1 \\
+\dfrac{1-q^{n+1}}{1-q} & \text{se } q \neq 1
+\end{cases}
+\enspace.
+```
+````
+````{sds-proof}
+Se $q = 1$, allora tutti gli addendi sono uguali a $1$, quindi la somma vale
+immediatamente $n+1$.
+
+Supponiamo ora $q \neq 1$ e poniamo
+
+```{math}
+S_n = \sum_{i=0}^n q^i = 1 + q + q^2 + \dots + q^n \enspace.
+```
+
+Moltiplicando entrambi i membri per $q$, otteniamo
+
+```{math}
+q S_n = q + q^2 + \dots + q^n + q^{n+1} \enspace.
+```
+
+Sottraendo membro a membro la seconda uguaglianza dalla prima, tutti i termini
+intermedi si cancellano e rimane
+
+```{math}
+S_n - q S_n = 1 - q^{n+1} \enspace.
+```
+
+Raccogliendo $S_n$ al primo membro, si ricava quindi
+
+```{math}
+(1-q) S_n = 1 - q^{n+1} \enspace.
+```
+
+Poiché $q \neq 1$, possiamo dividere per $1-q$ e ottenere
+
+```{math}
+S_n = \frac{1-q^{n+1}}{1-q} \enspace,
+```
+
+che conclude la dimostrazione.
+````
+
+````{prf:theorem}
+:label: teo-sum-geometrica-infinita
+
+Se $q \in \mathbb R$ soddisfa $\lvert q \rvert < 1$, allora la serie geometrica infinita
+
+```{math}
+:label: eq-sum-geometrica-infinita
+
+\sum_{i=0}^{+\infty} q^i
+```
+
+converge e la sua somma è uguale a
+
+```{math}
+:label: eq-lim-geometrica
+
+\sum_{i=0}^{+\infty} q^i = \frac{1}{1-q} \enspace.
+```
+````
+````{sds-proof}
+Per il {prf:ref}`teo-sum-geometrica`, la somma parziale dei primi $n+1$ termini
+è data da
+
+```{math}
+S_n = \sum_{i=0}^n q^i = \frac{1-q^{n+1}}{1-q} \enspace.
+```
+
+Se $|q| < 1$, allora $q^{n+1} \to 0$ per $n \to +\infty$. Passando quindi al
+limite nelle somme parziali, si ottiene
+
+```{math}
+\sum_{i=0}^{+\infty} q^i = \lim_{n \to +\infty} S_n
+= \lim_{n \to +\infty} \frac{1-q^{n+1}}{1-q}
+= \frac{1}{1-q} \enspace.
+```
+````
+
+````{prf:corollary}
+Se $q \in \mathbb R$ soddisfa $|q| < 1$, allora
+
+```{math}
+:label: eq-serie-geometrica-da-uno
+\sum_{i=1}^{+\infty} q^i = \frac{q}{1-q} \enspace.
+```
+````
+````{sds-proof}
+Per il {prf:ref}`teo-sum-geometrica-infinita`, si ha
+
+```{math}
+\sum_{i=0}^{+\infty} q^i = 1 + \sum_{i=1}^{+\infty} q^i = \frac{1}{1-q}
+\enspace,
+```
+
+quindi
+
+```{math}
+\sum_{i=1}^{+\infty} q^i = \frac{1}{1-q} - 1 = \frac{q}{1-q} \enspace.
+```
+
+````
+
+````{prf:theorem}
+:label: thm-serie-e
+
+Per ogni $x \in \mathbb R$ vale l'identità
+
+```{math}
+:label: eq-e-mclaurin
+\sum_{n=0}^{\infty} \frac{x^n}{n!} = \mathrm e^x.
+```
+````
+````{sds-proof}
+Sia $f(x) \triangleq \mathrm e^n$. Questa funzione coincide con la sua derivata
+di un ordine qualsiasi, per cui $f^{(n)}(0) = e^0 = 1$. Applicando lo sviluppo
+in serie di Maclaurin si ottiene pertanto
+
+```{math}
+\mathrm e^x = \sum_{n=0}^{\infty} \frac{f^{(n)}(0) x^n}{n!}
+= \sum_{n=0}^{\infty} \frac{x^n}{n!} \enspace.
+```
+
+Inoltre, per ogni $x \in mathbb R$ si ha
+
+```{math}
+\lim_{n \to +\infty} \left\lvert \frac{x^{n+1}/(n+1)!}{x^n/n!} \right\rvert
+= \lim_{n \to +\infty} \frac{\lvert x \rvert}{n+1} = 0  1 \enspace.
+```
+
+Per il criterio del rapporto, la serie {eq}`eq-e-mclaurin` ha un raggio di
+convergenza infinito.
+````

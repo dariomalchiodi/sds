@@ -130,6 +130,10 @@ plt.style.use('../_static/sds.mplstyle')
 plt.ioff()
 ```
 
+````{customfigure}
+:name: fig_altair-example
+:class: left-align
+
 ```{code-cell} python
 :height: 600px
 :tags: [hide-input]
@@ -170,14 +174,8 @@ chart = (points & bars).configure(background='#eaf3f5')
 chart
 ```
 
-````{customfigure}
-:name: fig_altair-example
-:class: left-align
-
 Un exemple de graphique interactif basé sur Altair.
-
 ````
-
 En interagissant avec ce graphique, on peut effectuer une _analyse
 exploratoire_ des données, par exemple pour répondre aux questions suivantes.
 
@@ -225,6 +223,9 @@ un graphique qui met en évidence les fréquences avec lesquelles les différent
 valeurs du poids apparaissent dans le jeu de données.
 
 
+````{customfigure}
+:name: fig_histogram
+
 ```{code-cell} python
 :height: 400px
 :tags: [hide-input]
@@ -238,12 +239,8 @@ ax.hist(data, bins=30, density=True)
 fig
 ```
 
-````{customfigure}
-:name: fig_histogram
-
 Un histogramme des poids des super-héros.
 ````
-
 ```{margin}
 L’histogramme n’est pas toujours le bon choix pour explorer des données. Il est
 utile lorsque l’on dispose de nombreuses valeurs numériques associées à un

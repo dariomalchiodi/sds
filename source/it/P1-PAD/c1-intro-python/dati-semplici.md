@@ -173,7 +173,7 @@ coppia di valori interi il cui rapporto è uguale al valore sul quale il metodo
 
 ```{margin}
 I due valori restituiti dal metodo sono aggregati insieme costruendo una
-tupla, un tipo di dati strutturato che vedremo nel Paragrafo {ref}`sec_tuple`.
+tupla, un tipo di dati strutturato che vedremo nel {ref}`sec_tuple`.
 ```
 ```{code-cell} python
 3.14.as_integer_ratio()
@@ -333,7 +333,7 @@ Più avanti incontreremo anche uno speciale operatore _ternario_.
   - un valore intero se sia la base che l'esponente sono `int`,
   - un valore decimale se la base o l'esponente sono `float` e la base è
     positiva,
-  - un valore complesso (vedi Paragrafo {ref}`sec_altri-tipi`) se la base è
+  - un valore complesso (vedi {ref}`sec_altri-tipi`) se la base è
     negativa e non intera.
 
 ```{margin}
@@ -365,7 +365,7 @@ ad `a = a + 1`, `b %= 2` a `b = b % 2`, `c **= 3` a `c = c ** 3` e così via.
   - un valore intero se sia la base sia l’esponente sono di tipo `int`;
   - un valore decimale se almeno uno tra base ed esponente è `float` e la base
     è positiva;
-  - un valore complesso (si veda il Paragrafo {ref}`sec_altri-tipi`) se la base è
+  - un valore complesso (si veda il {ref}`sec_altri-tipi`) se la base è
     negativa e l’esponente non è intero.
 
 ```{margin}
@@ -473,7 +473,7 @@ esempio all'interno di un'operazione di selezione (vedi il
 tipi numerici (l'intero `0`, il valore decimale `0.0`, ma anche i loro
 equivalenti per gli altri tipi numerici di Python) e, in generale, tutti gli
 oggetti che si possono pensare come «vuoti» perché non contengono alcunché,
-come la stringa vuota o la lista vuota (vedi il Paragrafo {ref}`sec_stringhe` e
+come la stringa vuota o la lista vuota (vedi il {ref}`sec_stringhe` e
 il {ref}`sec_dati-strutturati`).
 
 ### Operatori logici
@@ -1214,7 +1214,7 @@ memoria richiesta per generare la stringa da visualizzare.
 rappresentare un valore decimale non è semplice: in teoria, questo numero
 dipende dal tipo di CPU utilizzata e, soprattutto, dalla particolare
 implementazione di Python (se non ricordate che cosa si intende per
-implementazione di un linguaggio, rileggete il Paragrafo
+implementazione di un linguaggio, rileggete il
 {ref}`sec_linguaggi-versioni-implementazioni`). A complicare le cose, anche a
 parità d implementazione ci possono essere delle variazioni: per esempio,
 CPython (l'implementazione di Python probabilmente più utilizzata al momento in

@@ -188,6 +188,10 @@ di probabilità della distribuzione binomiale di parametri $n = 10$ e $p$ uguale
 a $\frac{4}{11} \approx 0.36$ (a sinistra) e $0.4$ (a destra).
 
 
+````{customfigure}
+:name: fig_binomial-behaviour
+:class: left-align
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -210,15 +214,11 @@ for ax, p in zip(axes, (4 / (n+1), 0.4)):
 
 fig
 ```
-````{customfigure}
-:name: fig_binomial-behaviour
-:class: left-align
 
 Grafici della funzione di massa di probabilità della distribuzione binomiale di
 parametri $n = 10$ e $p$ rispettivamente uguale a $\frac{4}{11} \approx 0.36$
 (a sinistra) e $0.4$ (a destra).
 ````
-
 Va notato come le due distribuzioni mostrate in questa figura sono
 _approssimativamente_ simmetriche rispetto all'asse che coincide con il suo
 valore massimo (o che è posto esattamente a metà tra i due massimi). Si ha
@@ -364,7 +364,7 @@ $p$, vale intuitivamente la relazione
 Y = \sum_{i=1}^n X_i \enspace,
 ```
 
-che dimostreremo in modo formale nel Paragrafo {ref}`sec_binomial-moments`, ma
+che dimostreremo in modo formale nel {ref}`sec_binomial-moments`, ma
 che utilizzeremo già nel prossimo paragrafo per semplificare il calcolo del
 valore atteso e della varianza della distribuzione binomiale. Ragionando in
 modo analogo, date due variabili aleatorie indipendenti
@@ -541,7 +541,7 @@ Derivare la funzione generatrice dei momenti della distribuzione binomiale
 risulta abbastanza intricato. Questo rende più ragionevole il calcolo dei
 momenti della distribuzione applicando direttamente la loro definizione, e
 sfruttando la stessa tecnica utilizzata nel
-Paragrafo {ref}`sec_binomial-expected-val-and-var` per derivare i
+{ref}`sec_binomial-expected-val-and-var` per derivare i
 momenti primo e secondo. Per esempio, il momento terzo si ottiene nel modo
 seguente:
 
@@ -595,6 +595,9 @@ uguale a $0.3$ (a sinistra), $0.5$ (al centro) e $0.7$ (a destra), evidenziando
 rispettivamente l'asimmetria a destra, la simmetria e l'asimmetria a sinistra
 delle corrispondenti distribuzioni.
 
+````{customfigure}
+:name: fig_binomial-asymmetry
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -611,8 +614,6 @@ for p, ax in zip((.3, .5, .7), axes):
     binomial_plot(p, ax)
 fig
 ```
-````{customfigure}
-:name: fig_binomial-asymmetry
 
 Grafico della funzione di massa di probabilità delle distribuioni binomiali
 caratterizzate da $n = 10$ e $p$ rispettivamente
@@ -620,7 +621,6 @@ uguale a $0.3$ (a sinistra), $0.5$ (al centro) e $0.7$ (a destra); i tre casi
 esemplificano, nell'ordine, il concetto di distribuzione asimmetrica a destra,
 simmetrica e asimmetrica a sinistra.
 ````
-
 Va notato come i due parametri influenzino in modo diverso questo coefficiente:
 infatti, indipendentemente da $n$ il suo valore tende a infinito tanto più $p$
 si avvicina a $0$ oppure a $1$, e ciò è dovuto al fatto che la distribuzione
@@ -684,6 +684,9 @@ distribuzione a non generare valori fuori scala. La
 famiglia delle distribuzioni di Bernoulli, generando diverse curve per
 differenti valori di $n$.
 
+````{customfigure}
+:name: fig_binomial-sk-graph
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -707,13 +710,9 @@ ax.set_ylim(-2, 2)
 ax.legend()
 fig
 ```
-````{customfigure}
-:name: fig_binomial-sk-graph
 
 Grafico skewness-curtosi del modello binomiale.
 ````
-
-
 (sec_binomial-quantiles)=
 ## Quantili della distribuzione binomiale (*)
 

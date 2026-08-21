@@ -198,5 +198,17 @@ if ! "$PYTHON_EXEC" -m sds.sds process-myst-batch \
     exit 1
 fi
 
+# Mirror the shared static assets into the per-language tree. Notebook code
+# cells load the plot style with a path relative to their own location — e.g.
+# plt.style.use('../_static/sds.mplstyle') in P0, '../../_static/…' in deeper
+# chapters — all of which resolve to tmpsource/<lang>/_static at execution time.
+# The assets now live in the shared source/_static, so replicate them here (the
+# Sphinx HTML build uses tmpsource/_static via html_static_path separately).
+if [ -d "$SOURCE_DIR/_static" ]; then
+    log "Mirroring shared _static into $DEST_LANG_DIR/_static"
+    mkdir -p "$DEST_LANG_DIR/_static"
+    cp -r "$SOURCE_DIR/_static/." "$DEST_LANG_DIR/_static/"
+fi
+
 success "Sync and processing complete: $DEST_LANG_DIR"
 echo "Original files have been backed up with .backup extension"

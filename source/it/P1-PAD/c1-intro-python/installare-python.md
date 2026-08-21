@@ -585,7 +585,7 @@ nel testo.
 ### Assegnamenti
 L'assegnamento di un valore a una variabile viene fatto utilizzando la stessa
 notazione che si riscontra nella maggior paerte dei linguaggi di
-programmazione, utilizzando l'idioma `variabile = valore`. Nel Paragrafo
+programmazione, utilizzando l'idioma `variabile = valore`. Nel
 {ref}`sec_tipizzazione-dinamica` vedremo che Python non richiede la
 _dichiarazione_ delle variabili: queste ultime sono create automaticamente la
 prima volta che viene assegnato loro un valore, che determina implicitamente

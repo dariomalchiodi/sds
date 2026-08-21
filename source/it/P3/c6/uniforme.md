@@ -96,6 +96,9 @@ funzioni di densità e di ripartizione per la distribuzione uniforme continua
 su $[-1, 1]$.
 
 
+````{customfigure}
+:name: fig_uniform-continuous
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -129,14 +132,11 @@ axes[0].axis('off')
 axes[3].axis('off')
 fig
 ```
-````{customfigure}
-:name: fig_uniform-continuous
 
 I grafici della funzione di densità (a sinistra) e della funzione di
 ripartizione (a destra) della distribuzione uniforme continua sull'intervallo
 $[-1, 1]$.
 ````
-
 Va notato come la distribuzione derivata nel
 Paragrafo {ref}`sec_dal-discreto-al-continuo` rappresenti la
 distribuzione uniforme continua per il caso $a=0$ e $b=1$, e come in generale
@@ -312,6 +312,9 @@ continua tra $a$ e $b$
   atteso e la stessa varianza, come illustrato nella
   {numref}`fig_uniform-kurtosis`.
 
+````{customfigure}
+:name: fig_uniform-kurtosis
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -340,8 +343,6 @@ ax.set_ylim(0, 0.3)
 fig
 
 ```
-````{customfigure}
-:name: fig_uniform-kurtosis
 
 Grafici delle funzioni di densità di probabilità di due distribuzioni,
 rispettivamente uniforme continua tra -3 e 3 (spezzata nera) e normale avente
@@ -349,8 +350,6 @@ lo stesso valore atteso e la stessa varianza di quella uniforme (curva blu).
 Il secondo grafico evidenzia un picco più alto rispetto al primo, essendo
 l'uniforme continua una distribuzione platicurtica.
 ````
-
-
 ## Quantili della distribuzione uniforme continua (*)
 
 ```{margin}
@@ -405,6 +404,10 @@ pienamente ragionevole aspettarsi tenendo conto della forma della funzione di
 densità di probabilità, il diagramma a scatola per questa distribuzione, è
 perfettamente simmetrico.
 
+````{customfigure}
+:name: fig_uniform-continuous-bp
+:width: 100%
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -453,13 +456,9 @@ ax.text(third_quartile, 0.4, r'$\frac{a + 3b}{4}$', ha='center')
 
 fig
 ```
-````{customfigure}
-:name: fig_uniform-continuous-bp
-:width: 100%
 
 Diagramma a scatola per la distribuzione uniforme continua tra $a$ e $b$.
 ````
-
 ## Implementazione del modello uniforme continuo
 
 Per quanto rigaurda le distribuzioni discrete, `scipy.stats` mette
@@ -478,6 +477,10 @@ quello di `scale` equivale a $b - a$. La
 ottiene a partire da un campione di valori pseudo-casuali generati da questa
 implementazione, sovrapposto al grafico della corrisondente funzione di
 densità di probabilità.
+
+````{customfigure}
+:name: fig_uniform-implementation
+:width: 100%
 
 ```{code-cell} python
 :tags: [hide-input]
@@ -507,9 +510,6 @@ ax.set_xticks([-10, -7, -4, -1, 2, 5, 8])
 ax.set_yticks([.05, .1, .15, .2])
 fig
 ```
-````{customfigure}
-:name: fig_uniform-implementation
-:width: 100%
 
 Le barre mostrano l'istogramma ottenuto a partire da un insieme di valori
 pseudo-casuali generati a partire da una distribuzione uniforme tra $-4$ e

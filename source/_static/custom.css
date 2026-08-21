@@ -153,6 +153,25 @@ aside.margin {
   font-size: 70%;
 }
 
+/* Let margin notes float into the gutter (theme default) but sit ABOVE the
+   pinned "On this page" (secondary) sidebar when they overlap. The theme pushes
+   margin content into the same band as `.bd-sidebar-secondary`, whose opaque
+   background would otherwise hide a note placed next to the top of the page.
+   Raising the note's stacking context above the sidebar, plus giving it an
+   opaque background, makes the note cleanly cover the TOC where they coincide
+   instead of being hidden behind it. */
+.bd-content aside.margin,
+.bd-content div.margin,
+.bd-content figure.margin,
+.bd-content .margin.docutils.container,
+.bd-content .cell.tag_margin,
+.bd-content .cell.tag_popout,
+.bd-content figure.margin-caption figcaption,
+.bd-content div.figure.margin-caption figcaption {
+  z-index: 1056 !important; /* above .bd-sidebar-secondary, below the page header */
+  background-color: var(--background-color) !important;
+}
+
 aside.margin a.footnote-reference {
   font-size: 80%;
 }
@@ -596,11 +615,18 @@ table.table:not(.dataframe) thead th {
   padding: 0.55em 1.2em;
   color: #d4e2f4;
   font-family: var(--sans-serif-font);
-  font-size: 0.82em;
+  font-size: 1em;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   border: none !important;
+}
+
+/* Math in a header must keep its case and metrics — the uppercasing and
+   letter-spacing above would otherwise turn e.g. $x$ into "X". */
+table.table:not(.dataframe) thead th .katex {
+  text-transform: none;
+  letter-spacing: normal;
 }
 
 table.table:not(.dataframe) tbody tr:nth-child(odd) {
@@ -1216,7 +1242,9 @@ details summary {
   margin-top: 0;
   background: white;
   padding: 15px;
-  border: 1px solid #ddd;
+  border: 1px solid rgba(1, 1, 119, 0.15);
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(1, 1, 119, 0.07);
   clear: right;
 }
 
@@ -1231,8 +1259,58 @@ details summary {
   margin-top: 0;
   background: white;
   padding: 15px;
-  border: 1px solid #ddd;
+  border: 1px solid rgba(1, 1, 119, 0.15);
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(1, 1, 119, 0.07);
   clear: right;
+}
+
+/* ── Interactive graph controls (.plot-container widgets) ──────────────────
+   Centre the control row and give the action button an on-brand look in place
+   of the raw browser default. */
+.model-slider-container {
+  text-align: center;
+  line-height: 2;
+}
+
+.model-slider-container input[type="range"] {
+  accent-color: var(--text-primary-color);
+  vertical-align: middle;
+}
+
+.model-slider-container button,
+.plot-container button {
+  display: block;
+  margin: 0.7rem auto 0;
+  font-family: var(--sans-serif-font);
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  color: #fff;
+  background-color: var(--text-primary-color);
+  border: none;
+  border-radius: 5px;
+  padding: 0.34rem 1.05rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease,
+              transform 0.06s ease;
+}
+
+.model-slider-container button:hover,
+.plot-container button:hover {
+  background-color: var(--link-color);
+  box-shadow: 0 3px 10px rgba(1, 1, 119, 0.22);
+}
+
+.model-slider-container button:active,
+.plot-container button:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 4px rgba(1, 1, 119, 0.22);
+}
+
+.model-slider-container button:focus-visible,
+.plot-container button:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 2px;
 }
 
 .mermaid {

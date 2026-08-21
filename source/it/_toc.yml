@@ -87,8 +87,8 @@ parts:
       sections:
       - file: P3/c4/concetti-fondamentali
       - file: P3/c4/variabili-aleatorie-discrete
-      - file: P3/c4/valore-atteso
-      - file: P3/c4/varianza
+      - file: P3/c4/misure-di-centralita
+      - file: P3/c4/misure-di-dispersione
       - file: P3/c4/momenti
       - file: P3/c4/variabili-multivariate
       - file: P3/c4/indipendenza
@@ -134,8 +134,8 @@ parts:
     - file: P4/c4/statistica-non-parametrica
   - caption: Appendici
     chapters:
-    - file: app/references
     - file: app/formule-notevoli
+    - file: app/references
 
 
 

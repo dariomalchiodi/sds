@@ -26,6 +26,16 @@ from pygments.formatters import HtmlFormatter
             
 #         return result
 
+# Localized "show code" label for the toggle button (the click handler in
+# custom.js swaps it to the "hide code" label on expand).
+_SHOW_CODE_LABELS = {
+    'it': 'Mostra codice',
+    'en': 'Show code',
+    'fr': 'Afficher le code',
+    'es': 'Mostrar código',
+}
+
+
 class InteractiveCodeBlock(CodeBlock):
     option_spec = CodeBlock.option_spec.copy()
     option_spec['height'] = directives.unchanged
@@ -66,10 +76,12 @@ class InteractiveCodeBlock(CodeBlock):
         html = ''
 
         if 'toggle-code' in tags:
+            lang = (getattr(env.config, 'language', None) or 'en')[:2]
+            show_label = _SHOW_CODE_LABELS.get(lang, _SHOW_CODE_LABELS['en'])
             html = '<div class="toggle-code-wrapper">\n'
             html += '  <button class="toggle-code-button">'
             html += '    <span class="triangle">▶</span>'
-            html += '    <span class="button-text"> AAAA</span>'
+            html += f'    <span class="button-text"> {show_label}</span>'
             html += '  </button>'
             html += '  <div class="toggle-code-content">'
 

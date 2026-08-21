@@ -129,6 +129,20 @@ class TOC:
         self.label_to_caption[label] = f'{caption} {section_num}'
         self.file_to_number[file] = section_num
     
+    def subsection_caption(self, number):
+        """
+        Build the localized caption for a second-level ('##') heading.
+
+        Second-level headings share the 'section' label with the pages they
+        live in, so "4.4.5" becomes e.g. "Paragrafo 4.4.5" in Italian.
+
+        Args:
+            number (str): The heading number, e.g. '4.4.5' or 'A.1.2'.
+        Returns:
+            str: Caption and number.
+        """
+        return f"{LABELS[self.language]['section']} {number}"
+
     def get_caption_by_label(self, label):
         """
         Get the caption and number for a given label.

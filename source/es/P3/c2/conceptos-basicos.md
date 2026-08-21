@@ -38,6 +38,9 @@ O = \{ \text{Avengers con fuerza sobrehumana} \} \enspace;
   $O$ descrito anteriormente está ilustrado en la {numref}`fig_es-venn-simple`.
 
 
+````{customfigure}
+:name: fig_es-venn-simple
+
 ```{code-cell} python
 :tags:  [hide-input]
 
@@ -96,13 +99,9 @@ fig = simple_venn()
 plt.tight_layout()
 plt.show()
 ```
-````{customfigure}
-:name: fig_es-venn-simple
-
 
 Un diagrama de Venn que describe el conjunto $O = \{ \text{Avengers con fuerza sobrehumana} \}$.
 ````
-
 La representación mediante diagrama de Venn presupone conocer, al menos en
 principio, todos los elementos que podrían pertenecer a un conjunto.
 El conjunto de todos los elementos posibles se llama el _universo_ y se
@@ -111,6 +110,9 @@ natural para el universo haría coincidir $\Omega$ con el conjunto de los
 Avengers, por lo que un diagrama de Venn más completo para $O$ es el que
 se muestra en la {numref}`fig_es-venn-universo`.
 
+````{customfigure}
+:name: fig_es-venn-universo
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -118,13 +120,10 @@ fig = simple_venn(universe=True)
 plt.tight_layout()
 plt.show()
 ```
-````{customfigure}
-:name: fig_es-venn-universo
 
 Un diagrama de Venn que ilustra el conjunto $O$ de la {numref}`fig_es-venn-simple`
 dentro del universo $\Omega$ de los Avengers.
 ````
-
 El universo contiene cualquier elemento, y — en el extremo opuesto — es
 útil considerar el conjunto que no contiene ningún elemento: se llama
 el _conjunto vacío_ y lo denotaré por $\varnothing$, de modo que para

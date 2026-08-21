@@ -27,7 +27,11 @@
     window.sphinxConfig = {
       showCodeLabel: "{{ show_code_label }}",
       hideCodeLabel: "{{ hide_code_label }}",
-      pyscriptWaitLabel: "{{ pyscript_wait_label }}"
+      pyscriptWaitLabel: "{{ pyscript_wait_label }}",
+      hoverPreview: {
+        enabled: {{ hover_preview_enabled | default(true) | tojson }},
+        types: {{ hover_preview_types | default(["definition", "theorem", "lemma", "corollary", "proposition", "example", "exercise", "figure", "table", "section", "footnote", "equation"]) | tojson }}
+      }
     };
   </script>
 {%- endblock css %}

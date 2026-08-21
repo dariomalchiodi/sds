@@ -56,6 +56,9 @@ sous-ensemble de $A = \{ \text{membres des Avengers} \}$, tous deux inclus
 dans l'univers $\Omega$ de tous les super-héros.
 ````
 
+````{customfigure}
+:name: fig_fr-venn-sous-ensembles
+
 ```{code-cell} python
 :tags:  [hide-input]
 
@@ -114,16 +117,12 @@ fig = subset_venn()
 plt.tight_layout()
 plt.show()
 ```
-````{customfigure}
-:name: fig_fr-venn-sous-ensembles
 
 Un diagramme de Venn illustrant deux ensembles $O$ et $A$ tels que
 $O \subseteq A$ : $O$ est l'ensemble des Avengers dotés d'une force
 surhumaine (Thor, Hulk et Captain America), $A$ est l'ensemble de tous
 les Avengers, et $\Omega$ est l'univers de tous les super-héros.
 ````
-
-
 Il est facile de vérifier que tout ensemble est toujours inclus dans
 l'univers, et que l'ensemble vide est toujours inclus dans tout ensemble :
 

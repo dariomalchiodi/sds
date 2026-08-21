@@ -382,6 +382,9 @@ skewness-curtosi per la famiglia delle distribuzioni di Bernoulli.
 import numpy as np
 ```
 
+````{customfigure}
+:name: fig_bernoulli-sc-graph
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -394,12 +397,9 @@ kurtosis = 1 / (p * (1 - p)) - 6
 ax.plot(skewness, kurtosis)
 fig
 ```
-````{customfigure}
-:name: fig_bernoulli-sc-graph
 
 Il grafico skewness-curtosi per il modello di Bernoulli.
 ````
-
 (sec_bernoulli_quantiles)=
 ## Quantili della distribuzione di Bernoulli (*)
 
@@ -475,6 +475,9 @@ I diagrammi riportati in {numref}`fig_bernoulli-boxplot` riepilogano questi
 quattro casi.
 
 
+````{customfigure}
+:name: fig_bernoulli-boxplot
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -521,12 +524,9 @@ for a in axes.flatten():
 
 fig
 ```
-````{customfigure}
-:name: fig_bernoulli-boxplot
 
 I quattro possibili boxplot per le distribuzioni di Bernoulli.
 ````
-
 Nella figura non sono contemplati i casi $p = 0$ e $p = 1$, per i quali la
 distribuzione è degenere e le variabili aleatorie corrispondenti vanno
 rispettivamente a coincidere con le costanti $0$ e $1$, e dunque i primi tre
@@ -612,7 +612,7 @@ Inoltre, il metodo `ppf` calcola un generico quantile della distribuzione,
 specificando come argomento il livello corrispondente. Per esempio, nella
 cella seguente viene calcolato il range interquartile di una distribuzione di
 Bernoulli di parametro $p = 0.7$ che, come abbiamo visto al termine del
-Paragrafo {ref}`sec_bernoulli_quantiles` vale $1$.
+{ref}`sec_bernoulli_quantiles` vale $1$.
 
 ```{code-cell} python
 B.ppf(0.75) - B.ppf(0.25)

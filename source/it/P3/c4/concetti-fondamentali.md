@@ -29,6 +29,29 @@ $X^{-1}(x) = \{\omega \in \Omega : X(\omega) \leq x\}$ appartiene a
 $\mathsf A$, ed è quindi un evento.
 ````
 
+In linea di principio, il passaggio logico corretto consiste nell'eseguire
+l'esperimento casuale, osservarne l'esito e applicare a quest'ultimo la
+funzione $X$, ottenendo così un numero reale. Le variabili aleatorie presentano
+però un importante vantaggio pratico: una volta definita la corrispondenza tra
+esiti e valori numerici, spesso non è più necessario fare esplicito riferimento
+all'esperimento casuale sottostante. Possiamo invece concentrarci direttamente
+sulla variabile aleatoria stessa, immaginando di _osservarla_ e di ottenere
+come risultato un valore $x \in \mathbb{R}$. In questo senso, la variabile
+aleatoria diventa l'oggetto principale di studio, mentre i dettagli
+dell'esperimento che l'ha generata passano in secondo piano.
+
+```{admonition} _
+:class: naming
+
+Per convenzione, le variabili aleatorie sono indicate con lettere maiuscole,
+come $X$, $Y$ e $Z$, mentre i valori da esse assunti, che per brevità vengono
+spesso detti _realizzazioni_ o _osservazioni, sono indicati con le
+corrispondenti lettere minuscole, come $x$, $y$ e $z$. Ciò permette di
+ragionare su espressioni come $X = x$, $X \leq x$ e così via. Questa
+distinzione tra lettere maiuscole e minuscole è uno standard quasi universale
+nella teoria della probabilità e nella statistica.
+```
+
 La condizione richiesta dalla definizione precedente, detta _di misurabilità_,
 garantisce che a ogni domanda della forma «$X$ è minore o uguale di $x$?»
 corrisponda un evento ben definito, e quindi una probabilità. Più precisamente,
@@ -42,7 +65,7 @@ precedenti potrebbero anche apparire indicati come $\{ X = x \}$,
 $\{ X > 4 \}$ e $\{ X \text{ è primo} \}$ ); ciò mi permetterà di essere più
 preciso quando costruirò degli eventi complessi, ma anche quando vorrò dare
 enfasi al fatto che queste espressioni rappresentano in tutto e per tutto degli
-eventi.
+eventi, dei quali può essere interessante calcolare la probabilità.
 
 ````{admonition} Sulla condizione di misurabilità
 :class: note
@@ -66,7 +89,7 @@ perché non tutte le funzioni $X \colon \Omega \to \mathbb R$ sono _misurabili_
 &mdash; è questo il nome che si dà alle funzioni che soddisfano la condizione
 &mdash; ed è per questo motivo che la {prf:ref}`def-variabile-aleatoria` lo
 richiede esplicitamente (riprenderò brevemente questo concetto nel
-{ref}`sec_valore-atteso`).
+{ref}`sec-valore-atteso`).
 
 In pratica, esibire una funzione non misurabile richiede costruzioni piuttosto
 artificiose, che esulano dal livello di questo libro[^funzioni-patologiche].
@@ -105,6 +128,9 @@ minaccia in più del secondo sarà $\mathbb P(X < 2) = 1 - \mathbb P(X \geq 2)
 = \frac{13}{18}$.
 ````
 
+````{customfigure}
+:name: fig-va-scoiattoli-griglia
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -140,14 +166,11 @@ with mpl.rc_context({'figure.figsize': (4, 3),
    ax.set_aspect('equal')
    plt.show()
 ```
-````{customfigure}
-:name: fig-va-scoiattoli-griglia
 
 Spazio degli esiti dell'{prf:ref}`ex-va-scoiattoli`: i punti colorati in blu
 sono quelli per cui $X \geq 2$, cioè quelli in cui il primo gruppo segnala
 almeno due minacce in più del secondo.
 ````
-
 Nell'esempio precedente ci siamo posti due domande &mdash; quanto vale
 $\mathbb P(X \geq 2)$ e quanto $\mathbb P(X < 2)$ &mdash; che, a ben vedere,
 erano della stessa natura: chiedevano la probabilità che $X$ apartenesse a un
@@ -247,6 +270,9 @@ Per esempio, si ha $F_Y(3) = \mathbb P(Y \leq 3) = \frac{3}{6} = \frac{1}{2}$,
 perché tre dei sei valori possibili di $Y$ non superano la soglia $3$.
 ````
 
+````{customfigure}
+:name: fig-ripartizione-primo-gruppo
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -276,13 +302,10 @@ ax.set_xlabel(r'$x$')
 ax.set_ylabel(r'$F_X(x)$')
 plt.show()
 ```
-````{customfigure}
-:name: fig-ripartizione-primo-gruppo
 
 Funzione di ripartizione della variabile $Y$ definita
 nell'{prf:ref}`ex-ripartizione-primo-gruppo`.
 ````
-
 ````{prf:example} La ripartizione della differenza tra i gruppi
 :label: ex-ripartizione-scoiattoli
 
@@ -325,6 +348,9 @@ Non è un caso che, in entrambi gli esempi, si sia ottenuta una funzione di
 ripartizione costante a tratti: vedremo che è una peculiarità delle variabili
 aleatorie discrete.
 ```
+````{customfigure}
+:name: fig-ripartizione-scoiattoli
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -351,13 +377,10 @@ ax.set_yticklabels(labels)
 
 plt.show()
 ```
-````{customfigure}
-:name: fig-ripartizione-scoiattoli
 
 Funzione di ripartizione della variabile $X$ descritta
 nell'{prf:ref}`ex-ripartizione-scoiattoli`.
 ````
-
 La funzione di ripartizione codifica per intero il comportamento probabilistico
 di una variabile aleatoria $X$, nel senso che a partire da questa funzione si
 possono calcolare le probabilità di tutti gli eventi che coinvolgono $X$. Il
@@ -513,6 +536,9 @@ perché $180$ si trova esattamente a metà dell'intervallo in cui la funzione
 cresce da $0$ a $1$.
 ````
 
+````{customfigure}
+:name: fig-ripartizione-altezza
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -529,15 +555,12 @@ ax.set_yticks([0, 1 / 2, 1])
 ax.set_yticklabels(['0', '1/2', '1'])
 plt.show()
 ```
-````{customfigure}
-:name: fig-ripartizione-altezza
 
 Grafico della funzione $F_H$ dell'{prf:ref}`ex-ripartizione-altezza`: la
 funzione è non decrescente, continua e ha i limiti corretti agli estremi,
 quindi soddisfa le condizioni del
 {prf:ref}`thm-caratterizzazione-ripartizione`.
 ````
-
 La funzione di ripartizione visualizzata in {numref}`fig-ripartizione-altezza`
 esibisce un comportamento che la distingue rispetto a quelle viste
 precedentemente: a differenza di queste ultime, che sono costanti a tratti
@@ -1445,8 +1468,6 @@ Variabile aleatoria
 Misurabilità
 Distribuzione di una variabile aleatoria
 Funzione di ripartizione
-Continuità da destra
-Salti della ripartizione
 Distribuzione discreta
 Distribuzione continua
 Caratterizzazione delle funzioni di ripartizione

@@ -38,6 +38,9 @@ uguale a $3$, sia nel caso di incertezza completa (la probabilità non
 condizionata), sia quando si è verificato $F$.
 ````
 
+````{customfigure}
+:name: fig-indipendenza-dadi-venn
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -101,15 +104,12 @@ with mpl.rc_context({'figure.figsize': (3, 3),
    ax.set_aspect('equal')
    plt.show()
 ```
-````{customfigure}
-:name: fig-indipendenza-dadi-venn
 
 Diagramma di Venn degli eventi $E =$ «il dado blu mostra un risultato minore di
 $4$» e $F =$ «il dado rosso mostra un risultato minore di $4$» nel lancio di
 due dadi distinguibili. I $36$ punti della griglia rappresentano gli elementi
 dello spazio degli esiti $[1 .. 6]^2$.
 ````
-
 La definizione seguente introduce la nozione di _indipendenza_ tra eventi,
 che formalizza le situazioni, come quella appena vista, in cui il
 condizionamento rispetto a un evento non cambia la probabilità risultante.
@@ -352,6 +352,9 @@ trasmettere. Quindi i tre eventi non si possono considerare congiuntamente
 indipendenti.
 ````
 
+````{customfigure}
+:name: fig-indip-coppie-dadi-venn
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -440,15 +443,12 @@ with mpl.rc_context({'figure.figsize': (3.4, 3.4),
    ax.set_aspect('equal')
    plt.show()
 ```
-````{customfigure}
-:name: fig-indip-coppie-dadi-venn
 
 Diagramma di Venn degli eventi $E =$ «la somma dei due risultati è $7$», $F =$
 «il primo dado mostra $4$» e $G =$ «il secondo dado mostra $3$» nel lancio di
 due dadi distinguibili. Il punto in blu scuro corrisponde all'unico esito che
 appartiene contemporaneamente a tutti e tre gli eventi.
 ````
-
 L'esempio precedente mostra come l'estensione del concetto di indipendenza a
 più di due eventi non possa essere ingenuamente fatta solo considerando le
 coppie di questi eventi. La definizione corretta, formalizzata qui sotto,
@@ -589,6 +589,9 @@ Quindi $E$ è indipendente da $F \cup \overline G$.
 
 ````
 
+````{customfigure}
+:name: fig-indip-ef-partizione-g
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -659,15 +662,12 @@ if label_111 is not None:
 
 plt.show()
 ```
-````{customfigure}
-:name: fig-indip-ef-partizione-g
 
 Diagramma di Venn di tre insiemi $E$, $F$ e $G$. Le due regioni evidenziate
 corrispondono a $E \cap F \cap \overline G$ e a $E \cap F \cap G$: sono
 disgiunte e, prese insieme, ricostruiscono esattamente l'intersezione
 $E \cap F$.
 ````
-
 Un'applicazione classica dell'indipendenza tra più eventi riguarda
 l’_affidabilità_ di sistemi composti da più componenti. In particolare,
 supponiamo che un sistema contenga $m$ componenti che funzionano ognuno in modo indipendente dagli altri, e per $i = 1, \dots, m$ indichiamo con $p_i$ la
@@ -698,6 +698,9 @@ due architetture più semplici per questi sistemi:
 
 In entrambi i casi, la condizione di indipendenza è fondamentale per ricavare
 in modo semplice la probabilità di funzionamento del sistema.
+
+````{customfigure}
+:name: fig-sistemi-serie-parallelo
 
 ```{code-cell} python
 :tags: [hide-input]
@@ -774,15 +777,11 @@ with mpl.rc_context({'figure.figsize': (7.2, 2.8),
    plt.tight_layout(w_pad=1.2)
    plt.show()
 ```
-````{customfigure}
-:name: fig-sistemi-serie-parallelo
 
 Schematizzazione delle architetture in serie (a sinistra) e in parallelo (a
 destra) di un sistema contenente tre componenti, per i quali gli eventi $C_1$,
 $C_2$, e $C_3$ si verificano quando essi funzionano.
 ````
-
-
 ````{prf:example} La squadra dei Thunderbolts
 :label: ex-indip-thunderbolts
 
@@ -1150,7 +1149,7 @@ modo per semplicità, non volendo distogliere l'attenzione dai concetti che
 riguardano i classificatori naive Bayes. Mi preme però sottolineare che questo
 modo di procedere introduce un ordinamento artificiale tra categorie che, in generale, non ha un significato effettivo.
 ```
-Come già visto per gli alberi di decisione (vedi il Paragrafo
+Come già visto per gli alberi di decisione (vedi il
 {ref}`sec_alberi-di-decisione`), il package `sklearn` mette a disposizione
 classi che permettono di costruire direttamente un classificatore naive Bayes.
 Per illustrarne l'uso, estraiamo dal _dataset_ le colonne di interesse ed

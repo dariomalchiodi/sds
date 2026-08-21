@@ -38,6 +38,9 @@ O = \{ \text{Avengers members with superhuman strength} \} \enspace;
   illustrated in {numref}`fig_en-venn-simple`.
 
 
+````{customfigure}
+:name: fig_en-venn-simple
+
 ```{code-cell} python
 :tags:  [hide-input]
 
@@ -96,19 +99,18 @@ fig = simple_venn()
 plt.tight_layout()
 plt.show()
 ```
-````{customfigure}
-:name: fig_en-venn-simple
-
 
 A Venn diagram describing the set $O = \{ \text{Avengers members with superhuman strength} \}$.
 ````
-
 The Venn diagram representation presupposes knowing, at least in principle,
 all the elements that could belong to a set. The set of all possible elements
 is called the _universe_ and is usually denoted by $\Omega$. In the previous
 example, a natural choice for the universe would make $\Omega$ coincide with
 the set of all Avengers, so a more complete Venn diagram for $O$ is the one
 shown in {numref}`fig_en-venn-universe`.
+
+````{customfigure}
+:name: fig_en-venn-universe
 
 ```{code-cell} python
 :tags: [hide-input]
@@ -117,13 +119,10 @@ fig = simple_venn(universe=True)
 plt.tight_layout()
 plt.show()
 ```
-````{customfigure}
-:name: fig_en-venn-universe
 
 A Venn diagram illustrating the set $O$ from {numref}`fig_en-venn-simple`
 within the universe $\Omega$ of the Avengers.
 ````
-
 The universe contains every element, and — at the opposite extreme — it is
 useful to consider the set that contains no elements at all: it is called the
 _empty set_ and I will denote it by $\varnothing$, so that for every

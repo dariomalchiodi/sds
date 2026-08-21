@@ -53,6 +53,9 @@ $A = \{ \text{Avengers members} \}$, both contained within the universe
 $\Omega$ of all superheroes.
 ````
 
+````{customfigure}
+:name: fig_en-venn-subsets
+
 ```{code-cell} python
 :tags:  [hide-input]
 
@@ -111,16 +114,12 @@ fig = subset_venn()
 plt.tight_layout()
 plt.show()
 ```
-````{customfigure}
-:name: fig_en-venn-subsets
 
 A Venn diagram illustrating two sets $O$ and $A$ such that $O \subseteq A$:
 $O$ is the set of Avengers with superhuman strength (Thor, Hulk, and Captain
 America), $A$ is the set of all Avengers, and $\Omega$ is the universe of all
 superheroes.
 ````
-
-
 It is straightforward to verify that every set is always contained in the
 universe, and that the empty set is always contained in every set:
 

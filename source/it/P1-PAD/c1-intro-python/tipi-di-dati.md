@@ -151,7 +151,7 @@ hero = Superhero('Superman', 'Clark Kent')
 In questo caso,
 
 ```{margin}
-Come vedremo nel Paragrafo {ref}`sec_stringhe`, in Python ci sono vari
+Come vedremo nel {ref}`sec_stringhe`, in Python ci sono vari
 delimitatori per le stringhe, tra cui l'apice singolo.
 ```
 - `Superhero` rappresenta la classe e viene quindi utilizzato come costruttore;  
@@ -214,7 +214,7 @@ particolare al codice. Non approfondiremo questo aspetto, dunque mi limito a
 specificare due eccezioni rilevanti a questa regola:
 
 - quando una parola chiave del linguaggio è particolarmente significativa come
-  identificatore (per esempio `lamdba`, che utilizzerò nel Paragrafo
+  identificatore (per esempio `lamdba`, che utilizzerò nel
   {ref}`sec_funzioni-anonime`, e che può comparire come simbolo in formule
   matematiche), si può aggiungere a questa parola un _underscore_ finale
   (ottenendo, nel caso precedente, l'identificatore `lambda_`);
@@ -305,7 +305,7 @@ essere opinabile: ad esempio, le stringhe possono essere considerate un tipo
 sia semplice che strutturato, perché sono sequenze di caratteri. Per decidere
 se un tipo di dato è semplice o strutturato, adotterò un criterio pratico:
 considero un tipo strutturato se Python permette di _iterare_ nativamente sui
-suoi elementi usando l’idioma `for` (vedi il Paragrafo {ref}`sec_iterare`); in
+suoi elementi usando l’idioma `for` (vedi il {ref}`sec_iterare`); in
 tutti gli altri casi, considererò il tipo di dato come semplice.
 
 
@@ -323,7 +323,7 @@ quali delle seguenti affermazioni sono vere e quali sono false:
 ```
 
 ```{exercise} •
-Considerate l'ipotetica classe `Superhero` definita nel Paragrafo
+Considerate l'ipotetica classe `Superhero` definita nel
 {ref}`sec_tipi_classi_oggetti`, indicando ulteriori variabili di istanza e
 metodi che è sensato considerare per i relativi oggetti.
 ```

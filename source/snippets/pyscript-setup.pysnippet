@@ -50,10 +50,10 @@ try:
         'grid.linewidth': 0.5,
         'grid.alpha': 0.7,
         
-        # Line settings
+        # Line settings (match sds.mplstyle; these had drifted from it)
         'lines.color': 'C4',
-        'lines.linewidth': 2.0,
-        'lines.markersize': 8,
+        'lines.linewidth': 1.0,
+        'lines.markersize': 3,
         
         # Font settings
         'font.size': 12,
@@ -100,8 +100,147 @@ try:
     
     # Apply the custom style
     plt.rcParams.update(custom_style)
+
+    # Match the static (notebook) figures: prepend_cell.py layers exactly these
+    # overrides on top of sds.mplstyle, so applying them here gives interactive
+    # (PyScript) figures the same dimensions, fonts and marker sizes.
+    plt.rcParams.update({
+        'figure.figsize': (3, 2),
+        'figure.dpi': 150,
+        'savefig.dpi': 150,
+        'mathtext.fontset': 'cm',
+        'font.size': 7,
+        'axes.labelsize': 7,
+        'axes.labelpad': 2,
+        'axes.titlesize': 8,
+        'xtick.labelsize': 6,
+        'ytick.labelsize': 6,
+        'legend.fontsize': 7,
+    })
     console.log("Custom SDS matplotlib style applied successfully")
-    
+
+    # SDS axis labels: position the ylabel just above the top arrow and the
+    # xlabel just past the right arrow (as prepend_cell.py does for the notebook
+    # figures), so interactive figures can use plain set_xlabel/set_ylabel and
+    # get the same placement. The axis _update_label_position hooks are patched
+    # because matplotlib recomputes the label position at draw time; opt out of
+    # a given label with loc='default'.
+    from matplotlib.axes import Axes as _SdsAxes
+    from matplotlib.axis import YAxis as _SdsYAxis, XAxis as _SdsXAxis
+
+    _sds_orig_ylabel_update = _SdsYAxis._update_label_position
+    def _sds_ylabel_update(self, renderer):
+        if not getattr(self.axes, '_sds_ylabel_at_top', True):
+            _sds_orig_ylabel_update(self, renderer)
+        else:
+            self.label.set_clip_on(False)
+            self.label.set_transform(self.axes.transAxes)
+            self.label.set_position((0.02, 1.06))
+            self.label.set_ha('left')
+            self.label.set_va('bottom')
+    _SdsYAxis._update_label_position = _sds_ylabel_update
+
+    _sds_orig_xlabel_update = _SdsXAxis._update_label_position
+    def _sds_xlabel_update(self, renderer):
+        if not getattr(self.axes, '_sds_xlabel_at_end', True):
+            _sds_orig_xlabel_update(self, renderer)
+        else:
+            self.label.set_clip_on(False)
+            self.label.set_transform(self.axes.transAxes)
+            self.label.set_position((1.06, 0))
+            self.label.set_ha('left')
+            self.label.set_va('center')
+    _SdsXAxis._update_label_position = _sds_xlabel_update
+
+    _sds_orig_set_ylabel = _SdsAxes.set_ylabel
+    def _sds_set_ylabel(self, ylabel, fontdict=None, labelpad=None, *, loc=None, **kwargs):
+        if loc == 'default':
+            self._sds_ylabel_at_top = False
+            return _sds_orig_set_ylabel(self, ylabel, fontdict, labelpad, loc=None, **kwargs)
+        self._sds_ylabel_at_top = True
+        if labelpad is None:
+            labelpad = 1
+        kwargs.setdefault('rotation', 0)
+        kwargs.setdefault('fontsize', plt.rcParams['axes.labelsize'] + 1)
+        ha = kwargs.pop('ha', kwargs.pop('horizontalalignment', 'left'))
+        va = kwargs.pop('va', kwargs.pop('verticalalignment', 'bottom'))
+        result = _sds_orig_set_ylabel(self, ylabel, fontdict, labelpad, loc=loc, **kwargs)
+        self.yaxis.label.set_ha(ha)
+        self.yaxis.label.set_va(va)
+        return result
+    _SdsAxes.set_ylabel = _sds_set_ylabel
+
+    _sds_orig_set_xlabel = _SdsAxes.set_xlabel
+    def _sds_set_xlabel(self, xlabel, fontdict=None, labelpad=None, *, loc=None, **kwargs):
+        if loc == 'default':
+            self._sds_xlabel_at_end = False
+            loc = 'center'
+            ha = kwargs.pop('ha', kwargs.pop('horizontalalignment', 'center'))
+            va = kwargs.pop('va', kwargs.pop('verticalalignment', 'top'))
+        else:
+            self._sds_xlabel_at_end = True
+            if loc is None:
+                loc = 'right'
+            if labelpad is None:
+                labelpad = 1
+            kwargs.setdefault('fontsize', plt.rcParams['axes.labelsize'] + 1)
+            ha = kwargs.pop('ha', kwargs.pop('horizontalalignment', 'left'))
+            va = kwargs.pop('va', kwargs.pop('verticalalignment', 'center'))
+        result = _sds_orig_set_xlabel(self, xlabel, fontdict, labelpad, loc=loc, **kwargs)
+        self.xaxis.label.set_ha(ha)
+        self.xaxis.label.set_va(va)
+        return result
+    _SdsAxes.set_xlabel = _sds_set_xlabel
+
+    # SDS arrow-style axes: hide the bottom/left spines and draw axis arrows,
+    # so interactive (pyscript) figures match the notebook ones produced via
+    # prepend_cell.py. Figure.add_subplot is patched because plt.subplots()
+    # routes through it.
+    from matplotlib.axes import Axes as _SdsAxes
+    from matplotlib.figure import Figure as _SdsFigure
+
+    def _sds_setup_arrow_axes(ax):
+        if getattr(ax, '_sds_arrows_added', False):
+            return
+        ax._sds_arrows_added = True
+        c = plt.rcParams.get('axes.edgecolor', 'black')
+        # Interactive figures render into a smaller pane than the notebook
+        # figures, so nudge the arrow weight up a little so they don't look
+        # thin (mutation_scale keeps the notebook's 8:1 head-to-line ratio).
+        lw = plt.rcParams.get('axes.linewidth', 1.0) * 1.5
+        kw = dict(xycoords='axes fraction', textcoords='axes fraction',
+                  arrowprops=dict(arrowstyle='->', color=c, lw=lw,
+                                  mutation_scale=12),
+                  annotation_clip=False)
+        ax.spines['bottom'].set_visible(False)
+        ax.spines['left'].set_visible(False)
+        ann_x = ax.annotate('', xy=(1.04, 0), xytext=(-0.02, 0), **kw)
+        ann_y = ax.annotate('', xy=(0, 1.04), xytext=(0, -0.02), **kw)
+        ax._sds_arrow_annots = [ann_x, ann_y]
+
+    _sds_orig_axis_off = _SdsAxes.set_axis_off
+    def _sds_set_axis_off(self, *a, **k):
+        _sds_orig_axis_off(self, *a, **k)
+        for ann in getattr(self, '_sds_arrow_annots', []):
+            ann.set_visible(False)
+    _SdsAxes.set_axis_off = _sds_set_axis_off
+
+    _sds_orig_axis_on = _SdsAxes.set_axis_on
+    def _sds_set_axis_on(self, *a, **k):
+        _sds_orig_axis_on(self, *a, **k)
+        for ann in getattr(self, '_sds_arrow_annots', []):
+            ann.set_visible(True)
+    _SdsAxes.set_axis_on = _sds_set_axis_on
+
+    if not getattr(_SdsFigure, '_sds_patched', False):
+        _SdsFigure._sds_patched = True
+        _sds_orig_add_subplot = _SdsFigure.add_subplot
+        def _sds_add_subplot(self, *a, **k):
+            ax = _sds_orig_add_subplot(self, *a, **k)
+            _sds_setup_arrow_axes(ax)
+            return ax
+        _SdsFigure.add_subplot = _sds_add_subplot
+
     _matplotlib_available = True
 except ImportError:
     _matplotlib_available = False

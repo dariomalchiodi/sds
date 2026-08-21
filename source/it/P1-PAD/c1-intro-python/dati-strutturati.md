@@ -484,7 +484,7 @@ p.findall(s)
 Dovreste notare qualcosa di nuovo nel valore restituito dal metodo `findall`:
 si tratta di un dato strutturato che aggrega le varie occorrenze individuate
 nella stringa di partenza. Studieremo tra breve anche il tipo corrispondente,
-nel Paragrafo {ref}`sec_liste`.
+nel {ref}`sec_liste`.
 ````
 
 (sec_f-string)=
@@ -979,7 +979,7 @@ names.sort(reverse=True)
 Un'altra caratteristica di Python è quella di poter specificare una funzione
 come argomento di un metodo (o di un'altra funzione) [^first-class]; ciò si può
 fare indicando il nome della funzione, oppure usando una _funzione anonima_
-(vedi il Paragrafo {ref}`sec_funzioni-anonime`). Esemplifico anche questa
+(vedi il {ref}`sec_funzioni-anonime`). Esemplifico anche questa
 caratteristica usando il metodo `sort`: il suo argomento opzionale `key`
 permette di specificare criteri alternativi per eseguire l'ordinamento,
 indicando una funzione che trasforma gli elementi della lista in quantità
@@ -1192,7 +1192,7 @@ Un letterale di tipo dizionario viene descritto indicando ogni coppia separando
 chiave e valore con il carattere di due punti, separando le coppie con delle
 virgole e racchiudendo l'intero letterale tra parentesi graffe. Possiamo per
 esempio usare un dizionario per rappresentare un _record_ in modo più elegante
-rispetto a quanto fatto nel Paragrafo {ref}`sec_liste` utilizzando le liste:
+rispetto a quanto fatto nel {ref}`sec_liste` utilizzando le liste:
 
 ```{code-cell} python
 rogue = {'name': 'Rogue',

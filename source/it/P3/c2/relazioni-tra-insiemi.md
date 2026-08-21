@@ -55,6 +55,9 @@ sottoinsieme di $A = \{ \text{membri degliAvengers} \}$, entrambi inclusi
 nell'universo $\Omega$ di tutti i supereroi.
 ````
 
+````{customfigure}
+:name: fig_venn-sottoinsiemi
+
 ```{code-cell} python
 :tags:  [hide-input]
 
@@ -113,16 +116,12 @@ fig = subset_venn()
 plt.tight_layout()
 plt.show()
 ```
-````{customfigure}
-:name: fig_venn-sottoinsiemi
 
 Un diagramma di Venn che illustra due insiemi $O$ e $A$ tali che $O \subseteq
 A$: $O$ è l'insieme degli Avengers con forza sovrumana (Thor, Hulk e Capitan 
 America), $A$ è l'insieme di tutti gli Avengers e $\Omega$ è l'insieme universo
 di tutti i supereroi.
 ````
-
-
 Si verifica facilmente come qualunque insieme risulti sempre incluso
 nell'insieme universo, e come analogamente l'insieme vuoto risulti sempre
 incluso in qualunque insieme:

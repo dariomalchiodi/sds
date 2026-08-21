@@ -247,7 +247,7 @@ la bontà di queste conclusioni indipendentemente dal _particolare_ campione
 che è stato osservato. Ipotizziamo, come è naturale pensare, che il nostro
 scopo sia quello di fornire un'approssimazione per il valore del parametro
 sconosciuto $\theta$ (ma vedremo nel
-Paragrafo {ref}`sec_stimatori-e-stime` che questo è solo uno dei
+{ref}`sec_stimatori-e-stime` che questo è solo uno dei
 possibili obiettivi da perseguire). Chiaramente, saremo interessati a fornire
 un'approssimazione numerica per $\theta$, ma vorremo anche poter dire
 qualcosa, indipendentemente dal particolare campione che abbiamo osservato,
@@ -481,7 +481,7 @@ modella il fatto che ogni volta che si estrae dalla popolazione un campione
 di dimensione fissata, quest'ultimo contiene valori potenzialmente differenti,
 e quindi anche la statistica può assumere un insieme di differenti valori.
 Riprendendo l'esempio fatto all'inizio del
-Paragrafo {ref}`sec_il-campione`, possiamo evidenziare questo fatto
+{ref}`sec_il-campione`, possiamo evidenziare questo fatto
 considerando tutti i campioni per le altezze e calcolando per ognuno la media
 campionaria.
 
@@ -506,7 +506,7 @@ print(np.array([round(np.mean(s), 2) for s in height_samples]))
 ```{margin}
 L'uso del condizionale in questa frase è dovuto al fatto che i valori
 dell'esempio sono stati generati sulla base del campionamento effettuato
-all'inizio del Paragrafo {ref}`sec_il-campione`, pertanto potrebbe
+all'inizio del {ref}`sec_il-campione`, pertanto potrebbe
 capitare che alcuni dei valori della media campionaria si discostino in modo
 anche sensibile rispetto agli altri. Se questo succede, controllate i valori
 numerici contenuti nei campioni corrispondenti, e provate a determinare la

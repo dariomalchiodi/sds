@@ -361,6 +361,9 @@ grafico skewness-curtosi per la famiglia delle distribuzioni uniformi discrete.
 import matplotlib.pyplot as plt
 import numpy as np
 ```
+````{customfigure}
+:name: fig_discrete-uniform-sk-graph
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -373,12 +376,9 @@ kurtosis = -6/5 * (n**2 + 1) / (n**2 - 1)
 ax.plot(skewness, kurtosis, 'o')
 fig
 ```
-````{customfigure}
-:name: fig_discrete-uniform-sk-graph
 
 Grafico skewness-curtosi per il modello uniforme discreto.
 ````
-
 ## Quantili della distribuzione uniforme discreta (*)
 
 A partire dalla forma analitica per la funzione di ripartizione ottenuta
@@ -419,6 +419,9 @@ tutti gli altri casi il quantile non esiste. La
 {numref}`fig_discrete-uniform-bp-1` e la {numref}`fig_discrete-uniform-bp-2`
 illustrano i diagrammi a scatola per due distribuzioni uniformi discrete,
 rispettivamente di parametro $n = 40$ e $n = 10$.
+
+````{customfigure}
+:name: fig_discrete-uniform-bp-1
 
 ```{code-cell} python
 :tags: [hide-input]
@@ -484,12 +487,12 @@ def unif_discr_bp(n):
 fig = unif_discr_bp(40)
 fig
 ```
-````{customfigure}
-:name: fig_discrete-uniform-bp-1
 
 Il grafico a scatola per la distribuzione uniforme discreta di parametro
 $n=40$.
 ````
+````{customfigure}
+:name: fig_discrete-uniform-bp-2
 
 ```{code-cell} python
 :tags: [hide-input]
@@ -497,13 +500,10 @@ $n=40$.
 fig = unif_discr_bp(10)
 fig
 ```
-````{customfigure}
-:name: fig_discrete-uniform-bp-2
 
 Il grafico a scatola per la distribuzione uniforme discreta di parametro
 $n=10$.
 ````
-
 (sec_generalized-discrete-uniform)=
 ## La forma generalizzata della distribuzione uniforme discreta (*)
 
@@ -553,7 +553,7 @@ insensibile alle traslazioni si avrà che
 
 L'implementazione delle distribuzioni uniformi discrete in `scipy.stats`
 passa attraverso la funzione `randint`, che in realtà permette di
-fare riferimento alla formulazione descritta nel Paragrafo
+fare riferimento alla formulazione descritta nel
 {ref}`sec_generalized-discrete-uniform`. In particolare, l'invocazione
 di `randint(a, b)` restituisce un oggetto relativo alla
 distribuzione uniforme discreta sull'insieme $\{a, \dots, b-1\}$. Pertanto,

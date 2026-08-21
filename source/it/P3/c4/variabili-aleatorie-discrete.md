@@ -28,7 +28,8 @@ specificità.
 :label: def-va-discreta
 
 Una variabile aleatoria $X$ si dice _discreta_ se l'insieme $S_X$ dei valori
-che essa può assumere, detto _supporto_, è finito oppure infinito numerabile.
+che essa può assumere con probabilità strettamente positiva[^misura-nulla],
+detto _supporto_, è finito oppure infinito numerabile.
 ````
 
 Chiaramente, il supporto di una variabile aleatoria discreta è un insieme
@@ -56,7 +57,7 @@ p_X(x) = \mathbb P(X = x) \enspace.
 dominio l'intera retta reale: assume valori positivi solo nei punti di massa
 della distribuzione, mentre per ogni $x \notin S_X$ vale $p_X(x) = 0$. Per
 questo motivo il suo grafico viene spesso tracciato in modo analogo a quanto
-visto nel Paragrafo {ref}`sec-frequenze-visualizzazione` per le frequenze di un
+visto nel {ref}`sec-frequenze-visualizzazione` per le frequenze di un
 attributo discreto, cioè mediante un grafico a bastoncini: in corrispondenza di
 ciascun punto di massa si disegna un segmento verticale di altezza pari alla
 probabilità assegnata, mentre altrove il grafico resta sull'asse delle ascisse.
@@ -88,6 +89,10 @@ nella {numref}`fig-va-discreta-scoiattoli-massa`.
 
 ````
 
+````{customfigure}
+:name: fig-va-discreta-scoiattoli-massa
+:class: left-align
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -107,13 +112,9 @@ ax.set_ylim(0, 0.18)
 plt.show()
 ```
 
-````{customfigure}
-:name: fig-va-discreta-scoiattoli-massa
-
 Grafico a bastoncini della funzione di massa di probabilità della variabile
 $X$ introdotta nell'{prf:ref}`ex-va-scoiattoli`.
 ````
-
 ````{prf:example} I sottosistemi di un'armatura
 :label: ex-va-mach-x
 
@@ -290,6 +291,10 @@ La funzione di massa di probabilità di $X$ è dunque quella rappresentata nella
 {numref}`fig-va-doorman-massa`.
 ````
 
+````{customfigure}
+:name: fig-va-doorman-massa
+:class: left-align
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -307,13 +312,35 @@ ax.set_xticks(mass_points)
 ax.set_ylim(0, 0.6)
 plt.show()
 ```
-````{customfigure}
-:name: fig-va-doorman-massa
 
 Funzione di massa di probabilità del piano di arrivo $X$
 nell'{prf:ref}`ex-va-doorman`.
 ````
 
+````{prf:example}
+:label: ex-va-geometrica-inf
+
+Consideriamo una sequenza di lanci indipendenti di una moneta bilanciata, e sia
+$X$ la variabile aleatoria che indica il numero di lanci necessari per ottenere
+testa per la prima volta. Il supporto di $X$ è $\mathbb N$, perché in linea di
+principio si potrebbe ottenere croce per un qualsiasi numero di lanci.
+Pertanto, $X$ è una variabile aleatoria discreta con supporto infinito
+numerabile. La sua funzione di massa di probabilità è definita da
+
+```{math}
+p_X(k) = \mathbb P(X = x) = \left(\frac{1}{2}\right)^x \mathbb 1_\mathbb N(x)
+\enspace.
+```
+
+In effetti, affinché si verifichi l'evento $X = x$, si deve ottenere croce
+nelle prime $x-1$ volte e testa in quella successiva; per l'indipendenza dei
+lanci, la probabilità corrispondente è proprio
+$\left(\tfrac{1}{2}\right)^{x-1} \cdot \tfrac{1}{2} =
+\left(\tfrac{1}{2}\right)^x$. Si verifica facilmente che $p_X$ soddisfa le
+proprietà del {prf:ref}`teo-proprieta-massa`: $p_X(x)$ non è mai un numero
+negativo, e sommando tutti i valori di massa si ottiene la serie geometrica di
+ragione $\tfrac{1}{2}$, che converge a $1$.
+````
 
 La funzione di massa di probabilità definisce in modo completo la
 distribuzione di una variabile aleatoria discreta. Infatti, qualunque evento
@@ -441,6 +468,10 @@ inoltre, l'altezza di ciascun salto è esattamente la massa $p_X(x)$ del valore
 $x$ che individua il salto stesso.
 ````
 
+````{customfigure}
+:name: fig-va-doorman-ripartizione
+:class: left-align
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -471,11 +502,9 @@ ax.set_xlabel(r'$x$')
 ax.set_ylabel(r'$F_X$')
 plt.show()
 ```
-````{customfigure}
-:name: fig-va-doorman-ripartizione
 
 Funzione di ripartizione $F_X$ della variabile aleatoria che descrive il piano
-di arrivo nell'{prf:ref}`ex-va-doorman`. 
+di arrivo nell'{prf:ref}`ex-va-doorman`.
 ````
 
 Il teorema precedente mostra che la funzione di massa di probabilità determina
@@ -512,6 +541,59 @@ $F$ coincide con i valori di $p$, che è dunque la funzione di massa di
 probabilità di $X$.
 ````
 
+````{prf:example}
+:label: ex-va-infinita
+Consideriamo la funzione $p \colon \mathbb R \to \mathbb R$ definita da
+
+```{math}
+p(i) = \frac{1}{5} \left(\frac{4}{5}\right)^i
+\mathbb 1_{\mathbb N \cup \{ 0 \}}(i) \enspace,
+```
+
+il cui grafico è mostrato nella {numref}`fig-va-infinita`. Si verifica
+immediatamente che $p$ assume valori non nulli nell'insieme
+$S = \mathbb N \cup \{ 0 \}$ e che $p(x) \geq 0$ per ogni argomento reale $x$.
+Inoltre, per {eq}`eq-lim-geometrica`,
+
+```{math}
+\sum_{x \in S}p(x) = \frac{1}{5} \sum_{i=0}^{+\infty}\left(\frac{4}{5}\right)^i
+ = \frac{1}{5}\frac{1}{1 - 4/5} = 1 \enspace.
+```
+
+Per il {prf:ref}`thm-caratterizzazione-massa`, esiste dunque una variabile
+aleatoria $X$ che ha $S$ come supporto e $p$ come funzione di massa di
+probabilità.
+````
+
+````{customfigure}
+:name: fig-va-infinita
+:class: left-align
+
+```{code-cell} python
+:tags: [hide-input]
+
+import matplotlib.pyplot as plt
+import scipy.stats as st
+
+p = 1/5
+
+X = st.geom(p, loc=-1)
+
+fig, ax = plt.subplots()
+
+x_plot = np.arange(0,X.ppf(0.99)+1)
+y_plot = X.pmf(x_plot)
+ax.vlines(x_plot, 0, y_plot)
+ax.plot(x_plot, y_plot, 'o', color='C0')
+
+ax.set_xlabel(r'$x$')
+ax.set_ylabel(r'$p$')
+plt.show()
+```
+
+Grafico della funzione $p$ descritta nell'{prf:ref}`ex-va-infinita`.
+````
+
 A questo punto disponiamo dei due strumenti fondamentali per descrivere una
 variabile aleatoria discreta $X$: la funzione di massa di probabilità $p_X$,
 che indica quanta probabilità è concentrata in ciascun valore, e la funzione di
@@ -520,6 +602,24 @@ equivalenti da un punto di vista matematico, nel senso che da ciascuna si
 ricava l'altra. Nel seguito userò l'una o l'altra di queste funzioni,
 scegliendo ogni volta quella che rende più naturale sviluppare un ragionamento
 o risolvere un problema.
+
+[^misura-nulla]: In teoria è possibile includere nel supporto anche valori che
+$X$ assume con probabilità nulla. Ciò è necessario quando lo spazio degli esiti
+$\Omega$ è fissato a priori, e a partire da esso si vogliono costruire più
+variabili aleatorie, ognuna delle quali deve essere definita su tutto $\Omega$,
+anche in corrispondenza di esiti che hanno probabilità nulla. Si tratta però di
+valori che, dal punto di vista probabilistico, sono sostanzialmente
+inosservabili. Tenere conto anche di questi valori costringerebbe inoltre a
+formulare molte proprietà della variabile aleatoria a meno di insiemi di
+probabilità nulla, perché alcune di queste proprietà finirebbero per dipendere
+anche dal modo in cui $X$ è definita su tali insiemi, anziché soltanto dalla
+sua distribuzione. Ho dunque preferito evitarlo, richiedendo che ogni valore
+del supporto sia assunto con probabilità strettamente positiva, per
+semplificare la trattazione e in linea con la convenzione adottata in molti
+libri di testo, soprattutto nel caso discreto. Per le variabili aleatorie
+continue, invece, il concetto di supporto richiede una definizione
+significativamente diversa, che verrà introdotta nel {ref}`sec_va-continue`.
+
 
 
 ## Vero o falso?

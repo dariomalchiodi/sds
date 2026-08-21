@@ -359,6 +359,9 @@ $p$.
 import matplotlib.pyplot as plt
 import numpy as np
 ```
+````{customfigure}
+:name: fig-geometric-ev
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -371,13 +374,10 @@ ax.plot(p, e)
 ax.set_ylim(0, 10)
 fig
 ```
-````{customfigure}
-:name: fig-geometric-ev
 
 Grafico del valore atteso del modello geometrico in funzione del valore del suo
 parametro $p$.
 ````
-
 Il risultato è coerente con il significato dato a questo parametro: più il suo
 valore si avvicina a $1$, più è probabile che si ottenga un successo nel primo
 esperimento bernoulliano alla base della distribuzione geometrica, così che il
@@ -429,6 +429,9 @@ Come già fatto per il valore atteso, nella {numref}`fig-geometric-variance` è
 possibile vedere l'andamento della varianza $\mathbb V(X)$ al variare del
 parametro $p \in (0, 1]$ di una variabile aleatoria $X \sim \mathrm G(p)$.
 
+````{customfigure}
+:name: fig-geometric-variance
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -441,13 +444,10 @@ plt.plot(x, y)
 plt.ylim(0, 50)
 fig
 ```
-````{customfigure}
-:name: fig-geometric-variance
 
 Grafico della varianza del modello geometrico in funzione del valore del suo
 parametro $p$.
 ````
-
 Anche in questo caso il grafico ottenuto è coerente con l'esperimento casuale
 alla base della distribuzione: al diminuire di $p$ la massa di probabilità si
 concentra su un insieme sempre più grande di valori, dunque la varianza
@@ -614,6 +614,9 @@ con il fatto che in questi casi la distribuzione tende a degenerare alla
 costante $0$. La {numref}`fig-geometric-sc-graph` illustra il grafico
 skewness-curtosi per la famiglia delle distribuzioni geometriche.
 
+````{customfigure}
+:name: fig-geometric-sc-graph
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -626,14 +629,9 @@ kurtosis = 6 + p**2 / (1 - p)
 plt.plot(skewness, kurtosis)
 fig
 ```
-````{customfigure}
-:name: fig-geometric-sc-graph
-
 
 Il grafico skewness-curtosi del modello geometrico.
 ````
-
-
 ## Quantili della distribuzione geometrica
 
 Abbiamo visto nel {prf:ref}`teo-geometric-cdf` come nella distribuzione geometrica
@@ -676,6 +674,9 @@ x_{3/4} &= \left\lceil \frac{-2}{\log_2 (1 - p)} \right\rceil - 1 \enspace,
 come evidenziato nel diagramma a scatola di {numref}`fig-geometric-boxplot`,
 nel quale ho fissato $p = 0.2$. Il baffo a destra della scatola è parzialmente
 tratteggiato per enfatizzare il fatto che si estende fino a $+\infty$.
+
+````{customfigure}
+:name: fig-geometric-boxplot
 
 ```{code-cell} python
 :tags: [hide-input]
@@ -728,12 +729,9 @@ pad = .5
 ax.set_xlim(0-pad, third_quartile*1.5+pad) 
 fig
 ```
-````{customfigure}
-:name: fig-geometric-boxplot
 
 Diagramma a scatola della distribuzione geometrica di parametro $p = 0.2$.
 ````
-
 ## Implementazione della distribuzione geometrica
 
 Un modo intuitivo di simulare l'estrazione di valori da una distribuzione

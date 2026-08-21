@@ -57,6 +57,7 @@ extensions = [ # 'myst_parser',
                'sds.sphinx_ext_custom_figure',
                'sds.sphinx_ext_custom_table',
                'sds.numref_to_ref',
+               'sds.sphinx_ext_prf_numref',
                'sds.sphinx_custom_codeblock',
                'sphinxcontrib.mermaid',
                'sds.prepend_cell',
@@ -136,6 +137,17 @@ numfig_format = {
 # numbering across the entire document while maintaining proper cross-references.
 numfig_secnum_depth = 0  # Use global numbering (Tabella 1, Tabella 2, Figura 1, etc.)
 
+# When True, also number the '##' (h2) headings within a page, e.g. a section
+# numbered "1.1" gets sub-headings "1.1.1", "1.1.2", … (applied in the sds.py
+# post-processing step). Default False = only chapters/sections are numbered.
+number_subsections = True
+
+# Number every display equation as X.Y, where X is the chapter number (body) or
+# appendix letter and Y runs per chapter across its section pages (applied in
+# sds.py post-processing via _apply_equation_numbering). False keeps Sphinx's
+# global (1), (2), … numbering.
+number_equations_by_chapter = True
+
 # Additional numbering and cross-reference settings
 numbered_toctree = True
 myst_heading_anchors = 3
@@ -185,6 +197,7 @@ html_theme_options = {
     'home_page_in_toc': True,
     'show_toc_level': 3,
     'show_navbar_depth': 3,
+    'secondary_sidebar_items': ['page-toc'],  # on-page "On this page" index
     'number_toc': True,
     'pygments_light_style': 'abap',
     'pygments_dark_style': 'native',
@@ -192,6 +205,14 @@ html_theme_options = {
 }
 
 html_context = {
+    # Hover-preview feature (see source/_static/hover-preview.js):
+    # master switch + which target kinds get a preview popover on hover.
+    "hover_preview_enabled": True,
+    "hover_preview_types": [
+        "definition", "theorem", "lemma", "corollary", "proposition",
+        "example", "exercise", "figure", "table", "section", "footnote",
+        "equation",
+    ],
     "show_code_label": "Mostrar código",
     "hide_code_label": "Ocultar código",
     "privacy_notice_label": "Política de privacidad",
@@ -207,11 +228,13 @@ html_context = {
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
-html_css_files = ['custom.css', 'custom_es.css']
+# Shared static assets live in source/_static (see also en/it/fr conf.py).
+html_static_path = ['../_static']
+html_css_files = ['custom.css', 'custom_es.css', 'hover-preview.css']
 
 html_js_files = [
     'custom.js',
+    'hover-preview.js',
     # 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
     # 'https://pyscript.net/releases/2025.5.1/core.js'
     # "https://cdn.jsdelivr.net/npm/vega@5",

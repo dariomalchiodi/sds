@@ -375,6 +375,319 @@ def _replace_mathbb_digits(content):
     return _MATHBB_DIGIT_RE.sub(_sub, content)
 
 
+_CUSTOMFIGURE_OPEN_RE = re.compile(
+    r'^(`{3,})\{customfigure\}[^\n]*\n', re.MULTILINE)
+_CODECELL_OPEN_RE = re.compile(
+    r'^(`{3,})\{code-cell\}[^\n]*\n', re.MULTILINE)
+
+
+def _add_marker_class_to_figure_body(body, marker):
+    '''Add `marker` (space-separated class names) to the `:class:` option of a
+    customfigure body, merging with any existing value or inserting a new line.'''
+    lines = body.split('\n')
+    # Options are the contiguous leading lines starting with ':'.
+    opt_end = 0
+    class_idx = None
+    while opt_end < len(lines) and lines[opt_end].startswith(':'):
+        if lines[opt_end].startswith(':class:'):
+            class_idx = opt_end
+        opt_end += 1
+    if class_idx is not None:
+        existing = lines[class_idx][len(':class:'):].strip()
+        merged = (existing + ' ' + marker).strip()
+        lines[class_idx] = ':class: ' + merged
+    else:
+        lines.insert(opt_end, ':class: ' + marker)
+    return '\n'.join(lines)
+
+
+def _lift_code_cells_from_customfigure(content):
+    '''Lift {code-cell} blocks nested inside a {customfigure} out to top level,
+    immediately before the figure, so myst-nb executes them normally.
+
+    MyST-NB requires code cells at document top level, so they cannot live
+    inside a directive.  Authors nest the cell inside the figure for clean
+    source; this pass moves it out (unchanged, to the same place it would sit
+    if hand-written before the figure) and tags the figure with marker classes
+    `sds-figbody sds-figcells-N` (N = number of lifted cells).  The companion
+    post-processing pass `_apply_figure_content` later moves the rendered cell
+    node(s) back inside the <figure>.
+    '''
+    out = []
+    last = 0
+    for m in _CUSTOMFIGURE_OPEN_RE.finditer(content):
+        fence = m.group(1)
+        close_re = re.compile(r'^' + re.escape(fence) + r'\s*$', re.MULTILINE)
+        cm = close_re.search(content, m.end())
+        if cm is None:
+            continue
+        body = content[m.end():cm.start()]
+
+        # Find nested code-cell fences (shorter than the outer figure fence).
+        lifted = []
+        kept = []
+        bpos = 0
+        for cell_m in _CODECELL_OPEN_RE.finditer(body):
+            cfence = cell_m.group(1)
+            if len(cfence) >= len(fence):
+                continue
+            cclose = re.compile(r'^' + re.escape(cfence) + r'\s*$', re.MULTILINE)
+            ccm = cclose.search(body, cell_m.end())
+            if ccm is None:
+                continue
+            lifted.append(body[cell_m.start():ccm.end()])
+            kept.append(body[bpos:cell_m.start()])
+            bpos = ccm.end()
+        kept.append(body[bpos:])
+
+        if not lifted:
+            continue  # nothing to lift; leave this figure as-is
+
+        new_body = ''.join(kept)
+        new_body = re.sub(r'\n{3,}', '\n\n', new_body)
+        new_body = _add_marker_class_to_figure_body(
+            new_body, 'sds-figbody sds-figcells-%d' % len(lifted))
+
+        out.append(content[last:m.start()])
+        for cell in lifted:
+            out.append(cell.rstrip('\n') + '\n\n')
+        out.append(content[m.start():m.end()])   # ```{customfigure} line
+        out.append(new_body)
+        out.append(content[cm.start():cm.end()]) # closing fence line
+        last = cm.end()
+
+    out.append(content[last:])
+    return ''.join(out)
+
+
+_MARGIN_OPEN_RE = re.compile(r'^(`{3,})\{margin\}[^\n]*\n', re.M)
+
+_DIRECTIVE_OPEN_RE = re.compile(r'^(`{3,})\{[\w:.-]+\}', re.M)
+
+# Raw-HTML markers pairing a code cell lifted out of a {margin} with the place
+# inside the margin where its output belongs.  Written by
+# _lift_code_cells_from_margin, consumed (and removed) by _apply_margin_cells.
+_MARGIN_CELL_SRC_TMPL = (
+    '```{{raw}} html\n'
+    '<span class="sds-margin-cell-src" data-margin-cell="{n}"></span>\n'
+    '```\n\n'
+)
+_MARGIN_CELL_SLOT_TMPL = (
+    '```{{raw}} html\n'
+    '<span class="sds-margin-cell-slot" data-margin-cell="{n}"></span>\n'
+    '```\n'
+)
+
+
+def _enclosing_directive_start(content, pos):
+    '''Offset of the outermost fenced directive containing pos, or None.
+
+    Used to find document top level: a code cell has to be lifted past every
+    directive it is nested in, not just the innermost one.
+    '''
+    outermost = None
+    for m in _DIRECTIVE_OPEN_RE.finditer(content):
+        if m.start() >= pos:
+            break
+        close_re = re.compile(r'^' + re.escape(m.group(1)) + r'\s*$', re.M)
+        cm = close_re.search(content, m.end())
+        if cm is not None and m.start() < pos < cm.end():
+            if outermost is None or m.start() < outermost:
+                outermost = m.start()
+    return outermost
+
+
+def _lift_code_cells_from_margin(content):
+    '''Lift {code-cell} blocks nested inside a {margin} out to top level.
+
+    MyST-NB only converts code cells written at document top level: nested ones
+    are dropped with an "unexpected `code-cell`" warning, which is why a plot
+    written straight into a {margin} produced an empty note.  This pass moves
+    each nested cell out — past the margin and past any box ({prf:example},
+    {exercise}, …) the margin lives in, since "top level" means no enclosing
+    directive at all — and leaves a raw-HTML slot behind at the exact spot the
+    cell occupied.  The companion post-processing pass `_apply_margin_cells`
+    moves the rendered cell into that slot, so a margin can interleave text and
+    graphics in any order.
+
+    Cells keep their tags (e.g. hide-input) and are lifted in document order.
+    Nothing is done to margins without nested code cells.
+
+    One combination is not handled: a {margin} inside a {customfigure}, whose
+    cells `_lift_code_cells_from_customfigure` claims first (it runs earlier and
+    does not look for nested margins).  No page does that today.
+    '''
+    edits = []          # (start, end, replacement) applied in one pass
+    lifted_blocks = {}  # insertion offset -> list of markdown blocks
+    cell_number = 0
+
+    for m in _MARGIN_OPEN_RE.finditer(content):
+        fence = m.group(1)
+        close_re = re.compile(r'^' + re.escape(fence) + r'\s*$', re.M)
+        cm = close_re.search(content, m.end())
+        if cm is None:
+            continue
+        body = content[m.end():cm.start()]
+
+        # Nested cells only: a fence at least as long as the margin's would have
+        # closed it instead of opening a cell inside it.
+        new_body = []
+        blocks = []
+        bpos = 0
+        for cell_m in _CODECELL_OPEN_RE.finditer(body):
+            cfence = cell_m.group(1)
+            if len(cfence) >= len(fence):
+                continue
+            cclose = re.compile(r'^' + re.escape(cfence) + r'\s*$', re.M)
+            ccm = cclose.search(body, cell_m.end())
+            if ccm is None:
+                continue
+            cell_number += 1
+            blocks.append(
+                _MARGIN_CELL_SRC_TMPL.format(n=cell_number)
+                + body[cell_m.start():ccm.end()].rstrip('\n') + '\n\n')
+            new_body.append(body[bpos:cell_m.start()])
+            new_body.append(_MARGIN_CELL_SLOT_TMPL.format(n=cell_number))
+            bpos = ccm.end()
+        if not blocks:
+            continue
+        new_body.append(body[bpos:])
+
+        # Top level is outside every enclosing directive, so the cells go before
+        # the outermost one; a margin already at top level keeps them adjacent.
+        insert_at = _enclosing_directive_start(content, m.start())
+        if insert_at is None:
+            insert_at = m.start()
+        lifted_blocks.setdefault(insert_at, []).extend(blocks)
+        edits.append((m.end(), cm.start(),
+                      re.sub(r'\n{3,}', '\n\n', ''.join(new_body))))
+
+    if not edits:
+        return content
+
+    points = sorted(set(lifted_blocks) | {e[0] for e in edits})
+    body_edits = {start: (end, text) for start, end, text in edits}
+    out = []
+    pos = 0
+    for point in points:
+        out.append(content[pos:point])
+        pos = point
+        for block in lifted_blocks.get(point, ()):
+            out.append(block)
+        if point in body_edits:
+            end, text = body_edits[point]
+            out.append(text)
+            pos = end
+    out.append(content[pos:])
+    return ''.join(out)
+
+
+def _mark_inline_margins(content):
+    '''Tag a {margin} that sits in the middle of a paragraph — i.e. with no
+    blank line immediately before the opening fence nor after the closing one
+    — with ``:class: margin-inline``.  The post-processing pass then folds it
+    back into the paragraph (instead of letting the block directive split it)
+    and anchors the floated note to the insertion point.  A {margin} flanked by
+    a blank line keeps the normal (paragraph-breaking) behaviour.'''
+    out = []
+    last = 0
+    for m in _MARGIN_OPEN_RE.finditer(content):
+        fence = m.group(1)
+        close_re = re.compile(r'^' + re.escape(fence) + r'\s*$', re.M)
+        cm = close_re.search(content, m.end())
+        if cm is None:
+            continue
+        before = content[:m.start()]
+        after = content[cm.end():]            # starts at the closing fence's '\n'
+        blank_before = (m.start() == 0) or before.endswith('\n\n')
+        blank_after = (after == '') or after.startswith('\n\n') or after == '\n'
+        out.append(content[last:m.end()])
+        if not blank_before and not blank_after:
+            out.append(':class: margin-inline\n\n')
+        last = m.end()
+    out.append(content[last:])
+    return ''.join(out)
+
+
+_FOOTNOTE_DEF_RE = re.compile(r'^\[\^[^\]]+\]:')
+
+
+def _reindent_footnote_body(body):
+    '''Rewrite a contiguous footnote body (the ``[^x]:`` line plus its lazy,
+    blank-line-terminated continuation) that contains an unindented fence into
+    the indented multi-block form: the first paragraph stays on the definition
+    line, and every following block is preceded by a blank line and indented by
+    four spaces so markdown keeps it inside the footnote.'''
+    m = re.match(r'^(\[\^[^\]]+\]:)[ \t]?(.*)$', body[0])
+    marker, first = m.group(1), m.group(2)
+    rest = body[1:]
+    segments = []                                   # ('prose'|'fence', [lines])
+    if first != '':
+        segments.append(('prose', [first]))
+    k = 0
+    while k < len(rest):
+        fm = re.match(r'^(`{3,})', rest[k])
+        if fm:
+            fence = fm.group(1)
+            blk = [rest[k]]
+            k += 1
+            while k < len(rest):
+                blk.append(rest[k])
+                closed = re.match(r'^' + re.escape(fence) + r'\s*$', rest[k])
+                k += 1
+                if closed:
+                    break
+            segments.append(('fence', blk))
+        else:
+            pl = []
+            while k < len(rest) and not re.match(r'^`{3,}', rest[k]):
+                pl.append(rest[k])
+                k += 1
+            segments.append(('prose', pl))
+
+    res = []
+    idx = 0
+    if segments and segments[0][0] == 'prose':
+        res.append(marker + ' ' + segments[0][1][0])
+        res.extend(segments[0][1][1:])              # first paragraph stays lazy
+        idx = 1
+    else:
+        res.append(marker)
+    for _stype, slines in segments[idx:]:
+        res.append('')
+        res.extend(('    ' + sl) if sl != '' else sl for sl in slines)
+    return res
+
+
+def _indent_footnote_directives(content):
+    '''Let a footnote definition hold a block directive — e.g. a centered
+    ``{math}`` equation.  Markdown keeps a footnote's block content only when it
+    is indented, but the book writes footnotes unindented, so a ```` ```{...} ````
+    fence inside one would otherwise pop out of the note.  When a footnote's
+    contiguous body contains an unindented fence, reflow it (see
+    ``_reindent_footnote_body``); footnotes without a fence, and those already
+    written in the indented form, are left untouched.'''
+    lines = content.split('\n')
+    out = []
+    i = 0
+    n = len(lines)
+    while i < n:
+        if _FOOTNOTE_DEF_RE.match(lines[i]):
+            j = i + 1
+            while j < n and lines[j].strip() != '':
+                j += 1
+            body = lines[i:j]
+            if any(re.match(r'^`{3,}', b) for b in body[1:]):
+                out.extend(_reindent_footnote_body(body))
+            else:
+                out.extend(body)
+            i = j
+        else:
+            out.append(lines[i])
+            i += 1
+    return '\n'.join(out)
+
+
 def process_myst_document(myst_content,
                           include_setup=True, language='en'):
 
@@ -391,6 +704,24 @@ def process_myst_document(myst_content,
             Python code blocks
     '''
     
+    # Lift {code-cell}s nested inside {customfigure} out to top level (myst-nb
+    # needs code cells at top level) before any cell-based processing runs.
+    myst_content = _lift_code_cells_from_customfigure(myst_content)
+
+    # Tag mid-paragraph {margin} directives so post-processing can fold them
+    # back into the paragraph instead of breaking it.  Runs before the margin
+    # cells are lifted, while the original blank lines around the fence are
+    # still there to be inspected.
+    myst_content = _mark_inline_margins(myst_content)
+
+    # Lift {code-cell}s nested inside a {margin} out to top level too, leaving a
+    # slot marker where their output belongs inside the note.
+    myst_content = _lift_code_cells_from_margin(myst_content)
+
+    # Indent block directives (e.g. a centered {math}) inside unindented
+    # footnotes so markdown keeps them inside the note.
+    myst_content = _indent_footnote_directives(myst_content)
+
     # Inject matplotlib style rcParams into {code-cell} blocks before other
     # processing so Sphinx/myst-nb executes cells with the correct facecolors.
     myst_content = _inject_mpl_style_into_code_cells(myst_content)
@@ -815,6 +1146,12 @@ def _sync_and_process(source_dir, dest_dir, include_setup, force):
     cache_file = dest_dir / '.process_cache.json'
     # Hash sds.py itself so any change to the preprocessor invalidates all entries
     sds_hash = _compute_file_hash(Path(__file__).with_suffix('.py'))
+    # Fold in the .pysnippet templates too: they are injected during
+    # preprocessing, so editing one must also invalidate the cache.
+    _combined = hashlib.sha256(sds_hash.encode())
+    for _snip in sorted(Path(SNIPPETS).glob('*.pysnippet')):
+        _combined.update(_compute_file_hash(_snip).encode())
+    sds_hash = _combined.hexdigest()
 
     cache = {}
     if not force:
@@ -1356,11 +1693,130 @@ def _apply_margin_notes(soup, counter, dry_run):
             changed = True
 
     if changed and not dry_run:
-        script_tag = soup.new_tag('script')
-        script_tag.string = _MARGIN_ANCHOR_JS
-        soup.body.append(script_tag)
+        _ensure_margin_anchor_script(soup)
 
     return changed, counter
+
+
+def _ensure_margin_anchor_script(soup):
+    '''Append the margin-anchor repositioning script once per page.'''
+    if soup.find('script', attrs={'data-margin-anchor': True}):
+        return
+    script_tag = soup.new_tag('script')
+    script_tag['data-margin-anchor'] = '1'
+    script_tag.string = _MARGIN_ANCHOR_JS
+    if soup.body is not None:
+        soup.body.append(script_tag)
+
+
+def _apply_inline_margins(soup, counter, dry_run):
+    '''Fold a mid-paragraph {margin} (tagged margin-inline in preprocessing)
+    back into its paragraph.  MyST renders the block directive as
+    <p>before</p><aside class="margin">…</aside><p>after</p>; here we merge the
+    two paragraphs into one, drop a zero-size anchor at the insertion point, and
+    move the floated note just before the merged paragraph with a data-anchor,
+    so the margin-anchor JS aligns it vertically with that point.
+    Returns (changed, counter).'''
+    changed = False
+    box = ('proof', 'exercise', 'solution', 'admonition')
+    for aside in soup.select('aside.margin.margin-inline'):
+        # margins inside theorem-like boxes are handled by _apply_margin_notes
+        if aside.find_parent(lambda t: t.name == 'div'
+                             and any(c in (t.get('class') or []) for c in box)):
+            continue
+        prev = aside.find_previous_sibling()
+        if prev is None or prev.name != 'p':
+            continue
+        nxt = aside.find_next_sibling()
+        anchor_id = f'margin-anchor-{counter}'
+        counter += 1
+        anchor = soup.new_tag('span')
+        anchor['class'] = ['margin-anchor']
+        anchor['id'] = anchor_id
+        anchor['style'] = 'display:inline-block;width:0;height:0;'
+        prev.append(anchor)                  # insertion point = end of text-before
+        if nxt is not None and nxt.name == 'p':
+            prev.append(' ')
+            for child in list(nxt.children):
+                prev.append(child.extract())
+            nxt.extract()
+        prev.insert_before(aside)            # note floats; the anchor pulls it down
+        aside['data-anchor'] = anchor_id
+        changed = True
+    if changed and not dry_run:
+        _ensure_margin_anchor_script(soup)
+    return changed, counter
+
+
+def _apply_margin_cells(soup, dry_run):
+    '''Move each code cell lifted out of a {margin} into its slot in the note.
+
+    Companion to the preprocessing pass `_lift_code_cells_from_margin`: the
+    rendered cell follows its `sds-margin-cell-src` marker at top level, and the
+    matching `sds-margin-cell-slot` marker sits inside the <aside> exactly where
+    the author wrote the cell.  Replacing the slot with the cell keeps text and
+    graphics interleaved in the order they were written.  Both markers are
+    removed, which also makes the pass idempotent.
+    '''
+    changed = False
+    for slot in soup.select('span.sds-margin-cell-slot[data-margin-cell]'):
+        number = slot['data-margin-cell']
+        src = soup.select_one(
+            f'span.sds-margin-cell-src[data-margin-cell="{number}"]')
+        if src is None:
+            continue
+        # The hidden rcParams cell is remove-cell, so it leaves no node behind:
+        # the next cell div is the author's.
+        cell = src.find_next_sibling(
+            lambda t: t.name == 'div' and 'cell' in (t.get('class') or []))
+        if cell is None:
+            continue
+        slot.replace_with(cell.extract())
+        src.decompose()
+        changed = True
+    return changed
+
+
+_FIGCELLS_RE = re.compile(r'^sds-figcells-(\d+)$')
+
+
+def _apply_figure_content(soup, dry_run):
+    '''Move the lifted code-cell node(s) back inside their <figure>.
+
+    Companion to the preprocessing pass `_lift_code_cells_from_customfigure`:
+    a figure tagged `sds-figbody sds-figcells-N` is immediately preceded by the
+    N rendered `div.cell` plot blocks (the hidden mpl-style cell is
+    `remove-cell`, so it leaves no node).  Move them to the front of the
+    <figure>, before <figcaption>, so the figure actually contains its plot
+    (and figure previews work).  Idempotent.'''
+    changed = False
+    for fig in soup.select('figure.sds-figbody'):
+        if fig.find('div', class_='cell'):
+            continue  # already populated (idempotency)
+        n = 1
+        for cls in fig.get('class', []):
+            mobj = _FIGCELLS_RE.match(cls)
+            if mobj:
+                n = int(mobj.group(1))
+                break
+        cells = []
+        sib = fig.find_previous_sibling()
+        while (sib is not None and len(cells) < n
+               and sib.name == 'div' and 'cell' in sib.get('class', [])):
+            cells.append(sib)
+            sib = sib.find_previous_sibling()
+        if not cells:
+            continue
+        cells.reverse()  # restore document order
+        figcaption = fig.find('figcaption')
+        for cell in cells:
+            cell.extract()
+            if figcaption is not None:
+                figcaption.insert_before(cell)
+            else:
+                fig.append(cell)
+        changed = True
+    return changed
 
 
 _NUMBERING_SKIP_NAMES = frozenset(
@@ -1370,10 +1826,161 @@ _NUMBERING_SKIP_NAMES = frozenset(
 # a previous post-processing run, so the function is idempotent.
 _NUM_PREFIX_RE = re.compile(r'^(?:[A-Z]|\d+(?:\.\d+)*)\.[  ]+')
 
+# Matches the (regular) space between a reference label and its number, e.g.
+# "Definizione 5", "Paragrafo 4.1", "Figura 2", "Appendice A", so it can be
+# replaced by a non-breaking space and never wrap apart.
+_REF_NBSP_RE = re.compile(r'([^\s ]) (\d[\d.]*|[A-Z](?:\.\d+)*)(?![A-Za-z])')
 
-def _apply_numbering(soup, file_path, language, numbered_toc):
+# Matches the opening of a second-level ('##') heading section as Sphinx writes
+# it, i.e. the <section> wrapper, the docutils target spans holding the labels
+# declared with "(label)=", and the <h2> itself:
+#
+#   <section id="le-liste"><span id="sec-liste"></span><h2>Le liste…
+#
+# Only the target spans are captured: their ids are the labels cross-references
+# point at, and they are unique across the whole build.  The id on the <section>
+# is a slug derived from the title, which repeats from page to page ("esercizi",
+# "vero-o-falso", …) and can therefore not be used to identify a heading.
+_H2_ANCHOR_RE = re.compile(
+    r'<section\b[^>]*>'
+    r'(?P<targets>\s*(?:<span\b[^>]*></span>\s*)*)'
+    r'<h2\b', re.I)
+
+_HTML_ID_RE = re.compile(r'\bid="([^"]*)"')
+
+# Class added by sds.numref_to_ref to the section cross-references written
+# without an explicit caption ({ref}`sec_liste`), the only ones whose text may
+# be replaced by "Paragrafo X.Y.Z".  References carrying a caption of their own
+# — {ref}`text <sec_liste>` or [text](sec_liste) — never get it.
+_SECREF_CLASS = 'sds-secref'
+
+
+def _read_conf_bool(language, name, default=False):
+    """Read a top-level boolean assignment from source/<language>/conf.py
+    without executing it (post-processing runs decoupled from Sphinx)."""
+    path = os.path.join('source', language, 'conf.py')
+    try:
+        with open(path, encoding='utf-8') as f:
+            tree = ast.parse(f.read())
+    except (OSError, SyntaxError):
+        return default
+    for node in tree.body:
+        if isinstance(node, ast.Assign):
+            for tgt in node.targets:
+                if isinstance(tgt, ast.Name) and tgt.id == name:
+                    try:
+                        return bool(ast.literal_eval(node.value))
+                    except (ValueError, TypeError, SyntaxError):
+                        return default
+    return default
+
+
+def _collect_subsection_numbers(html_dir, numbered_toc):
+    '''Map the label of every second-level ('##') heading to its number.
+
+    Second-level headings are numbered "<page number>.<k>" (e.g. "4.4.3" for the
+    third '##' of the page numbered 4.4), exactly as _apply_numbering does when
+    it prefixes them.  A reference to one of them can sit on any page, so the map
+    is built up front, in one cheap raw-text scan of the whole build, before the
+    per-file post-processing loop starts rewriting reference texts.
+
+    Args:
+        html_dir (str): Path to the HTML build directory
+        numbered_toc (TOC): The TOC carrying the page numbers
+    Returns:
+        dict: label (lowercased) -> heading number, e.g. 'sec-liste' -> '4.4.3'
+    '''
+    label_to_number = {}
+    for rel_path, page_number in numbered_toc.file_to_number.items():
+        page = Path(html_dir) / (rel_path + '.html')
+        if not page.exists():
+            continue
+        content = page.read_text(encoding='utf-8')
+        for k, match in enumerate(_H2_ANCHOR_RE.finditer(content), start=1):
+            for label in _HTML_ID_RE.findall(match.group('targets')):
+                label_to_number[label.lower()] = f'{page_number}.{k}'
+    return label_to_number
+
+
+def _h2_labels(h2):
+    """Return the labels declared with '(label)=' right before a '##' heading.
+
+    docutils writes them as empty <span id="…"> targets sitting between the
+    <section> wrapper and the <h2>.
+    """
+    labels = []
+    for sibling in h2.previous_siblings:
+        if getattr(sibling, 'name', None) is None:   # whitespace between tags
+            continue
+        if sibling.name != 'span':
+            break
+        if sibling.get('id'):
+            labels.append(sibling['id'])
+    return labels
+
+
+def _apply_reference_captions(soup, numbered_toc, subsection_numbers):
+    '''Write the number of its target into every section cross-reference.
+
+    Sphinx renders a reference to a heading as the heading's title; the numbers
+    only exist after post-processing, so the text is replaced here:
+
+      {ref}    -> "Paragrafo 4.4" (a page) or "Paragrafo 4.4.3" (a '##' heading)
+      {numref} -> "4.4" / "4.4.3"
+
+    References written with a caption of their own are left alone: they reach
+    this point without the sds-secref class that sds.numref_to_ref puts on the
+    implicit ones.  References to a page keep the older, laxer behaviour and are
+    replaced whatever they look like.
+
+    Args:
+        soup (BeautifulSoup): The page being post-processed
+        numbered_toc (TOC): The TOC carrying page numbers and their captions
+        subsection_numbers (dict): label -> number, from
+            _collect_subsection_numbers
+    '''
+    # CSS selectors are used instead of find_all(class_=…) so that references
+    # carrying extra classes (only-number, sds-secref) are matched as well.
+    for a_tag in soup.select('a.reference.internal'):
+        if 'only-number' in a_tag.get('class', []):
+            continue
+        label = a_tag['href'].split('#')[-1].lower()
+        if label in numbered_toc.label_to_caption:
+            a_tag.string = numbered_toc.label_to_caption[label]
+        elif (label in subsection_numbers
+                and _SECREF_CLASS in a_tag.get('class', [])):
+            a_tag.string = numbered_toc.subsection_caption(
+                subsection_numbers[label])
+
+    for a_tag in soup.select('a.only-number.reference.internal'):
+        label = a_tag['href'].split('#')[-1].lower()
+        if label in numbered_toc.label_to_caption:
+            a_tag.string = (numbered_toc.label_to_caption[label]
+                            .split(' ')[-1])
+        elif label in subsection_numbers:
+            a_tag.string = subsection_numbers[label]
+
+
+def _apply_numbering(soup, file_path, language, numbered_toc,
+                     number_subsections=False, subsection_numbers=None):
     """Apply chapter/section numbering and label substitution to soup.
-    Returns True (soup is always modified when this is called)."""
+
+    Returns True when the soup was modified, False for a page the TOC knows
+    nothing about (nothing to number there)."""
+    subsection_numbers = subsection_numbers or {}
+    prefix = f'build/sds/{language}/'
+    relative_file_path = file_path[len(prefix):][:-5]
+    page_number = numbered_toc.file_to_number.get(relative_file_path)
+    if page_number is None and relative_file_path != get_root_doc(language):
+        # Sphinx does not delete the HTML it wrote for a source file that has
+        # since been renamed or removed from _toc.yml.  Such a page has no
+        # number to receive: say so and leave it alone, instead of failing the
+        # whole file on a KeyError.
+        print(f'  - Skipping {relative_file_path}: not in _toc.yml (stale '
+              f'page from a renamed or deleted source file? delete '
+              f'{file_path} or run make clean)')
+        return False
+
     def sanitize(text):
         return text.replace('’', "'").strip()
 
@@ -1400,29 +2007,66 @@ def _apply_numbering(soup, file_path, language, numbered_toc):
         a_tag.insert(0, NavigableString(f"{n['number']}. "))
 
     title = soup.find('h1')
-    prefix = f'build/sds/{language}/'
-    relative_file_path = file_path[len(prefix):][:-5]
-    if relative_file_path != get_root_doc(language):
+    if page_number is not None:
         strip_stale_prefix(title)
-        title.insert(0, NavigableString(
-            f"{numbered_toc.file_to_number[relative_file_path]}. "))
+        title.insert(0, NavigableString(f'{page_number}. '))
 
-    for a_tag in soup.find_all('a', class_='reference internal'):
-        label = a_tag['href'].split('#')[-1].lower()
-        if label in numbered_toc.label_to_caption:
-            a_tag.string = numbered_toc.label_to_caption[label]
+    # Optionally number the '##' (h2) headings within the page, e.g. a section
+    # numbered "1.1" gets sub-headings "1.1.1", "1.1.2", … Controlled by the
+    # `number_subsections` flag in conf.py.
+    if number_subsections and page_number is not None:
+        article = soup.find('article') or soup
+        page_toc = soup.select_one('.bd-sidebar-secondary.bd-toc')
+        sub = 0
+        for h2 in article.select('section > h2'):
+            sub += 1
+            number = f"{page_number}.{sub}"
+            num = f"{number}. "
+            strip_stale_prefix(h2)
+            h2.insert(0, NavigableString(num))
+            # Mirror the number into the on-page TOC entry, if present, so
+            # the "On this page" index matches the numbered headings.
+            sec_id = h2.parent.get('id') if h2.parent else None
+            if page_toc and sec_id:
+                toc_link = page_toc.find('a', href='#' + sec_id)
+                if toc_link:
+                    strip_stale_prefix(toc_link)
+                    toc_link.insert(0, NavigableString(num))
+            # The numbers references use come from _collect_subsection_numbers,
+            # which scans the raw HTML: warn if the two disagree rather than let
+            # headings and references drift apart silently.
+            for label in _h2_labels(h2):
+                expected = subsection_numbers.get(label.lower())
+                if expected is not None and expected != number:
+                    print(f"  - Subsection numbered {number} in "
+                          f"{relative_file_path} is referenced as "
+                          f"{expected} ({label})")
 
-    for a_tag in soup.find_all('a', class_='only-number reference internal'):
-        label = a_tag['href'].split('#')[-1].lower()
-        if label in numbered_toc.label_to_caption:
-            a_tag.string = (numbered_toc.label_to_caption[label]
-                            .split(' ')[-1])
+    _apply_reference_captions(soup, numbered_toc, subsection_numbers)
 
     for text_node in soup.find_all(string=True):
         for key in LABELS:
             if key in text_node:
                 text_node.replace_with(
                     text_node.replace(key, LABELS[key][language]))
+
+    # Use a non-breaking space between a reference label and its number so
+    # "Definizione 5", "Paragrafo 4.1", "Figura 2", … never wrap on the space.
+    # Scoped to reference links / numref spans / caption numbers, whose text is
+    # always a label + number.
+    def _nbsp_fix(node):
+        if (len(node.contents) == 1
+                and isinstance(node.contents[0], NavigableString)):
+            s = str(node.contents[0])
+            new = _REF_NBSP_RE.sub(
+                lambda m: m.group(1) + '\u00a0' + m.group(2), s)
+            if new != s:
+                node.contents[0].replace_with(NavigableString(new))
+
+    for node in soup.select('a.reference.internal'):
+        _nbsp_fix(node)
+    for node in soup.select('span.std-numref, span.caption-number'):
+        _nbsp_fix(node)
 
     return True
 
@@ -2452,6 +3096,72 @@ def fix_print_h1_visibility(html_dir, dry_run=False):
                 print(f'Patched h1 print rule in {path}')
 
 
+# Display-equation numbering (X.Y) — see _apply_equation_numbering. The number
+# lives in an "eqno" span that also carries the permalink to the equation id:
+#   <span class="eqno">(57)<a class="headerlink" href="#equation-…" …>#</a></span>
+_EQNO_NUM_RE = re.compile(
+    r'(<span class="eqno">)\(\d+\)'
+    r'(<a class="headerlink" href="#(equation-[^"]+)")')
+# A cross-reference to an equation, on any page:
+#   <a class="reference internal" href="…#equation-…">(57)</a>
+_EQ_REF_RE = re.compile(
+    r'(<a class="reference internal" href="[^"]*#(equation-[^"]+)"[^>]*>)'
+    r'\(\d+\)(</a>)')
+
+
+def _apply_equation_numbering(html_dir, language, numbered_toc, dry_run=False):
+    '''Renumber display equations as X.Y and update every reference to them.
+
+    X is the chapter number (body) or appendix letter, taken from
+    numbered_toc.file_to_number; Y is a per-chapter counter that runs across all
+    of a chapter's section pages, in reading order. Gated by the
+    number_equations_by_chapter flag in source/<language>/conf.py; when off (the
+    default) Sphinx's global (1), (2), … numbering is left untouched.
+    '''
+    if not _read_conf_bool(language, 'number_equations_by_chapter', False):
+        return
+
+    # Pass 1 — assign labels in reading order (file_to_number is insertion-
+    # ordered to mirror the toctree), one running counter per chapter X.
+    id_to_label = {}
+    chapter_count = {}
+    for rel_path, page_number in numbered_toc.file_to_number.items():
+        chapter = page_number.split('.')[0]   # "3.2" -> "3", "A.2" -> "A"
+        page = Path(html_dir) / (rel_path + '.html')
+        if not page.exists():
+            continue
+
+        def relabel(m):
+            chapter_count[chapter] = chapter_count.get(chapter, 0) + 1
+            label = f'{chapter}.{chapter_count[chapter]}'
+            id_to_label[m.group(3)] = label
+            return f'{m.group(1)}({label}){m.group(2)}'
+
+        content = page.read_text(encoding='utf-8')
+        new_content = _EQNO_NUM_RE.sub(relabel, content)
+        if new_content != content and not dry_run:
+            page.write_text(new_content, encoding='utf-8')
+
+    if not id_to_label:
+        return
+
+    # Pass 2 — rewrite every reference to a renumbered equation, wherever it
+    # appears (a reference can point into a chapter/appendix from any page).
+    def reref(m):
+        label = id_to_label.get(m.group(2))
+        if label is None:
+            return m.group(0)
+        return f'{m.group(1)}({label}){m.group(3)}'
+
+    for html_file in Path(html_dir).rglob('*.html'):
+        if _skip_html_file(html_file):
+            continue
+        content = html_file.read_text(encoding='utf-8')
+        new_content = _EQ_REF_RE.sub(reref, content)
+        if new_content != content and not dry_run:
+            html_file.write_text(new_content, encoding='utf-8')
+
+
 def post_process(html_dir, language, dry_run=False):
     '''Run all HTML post-processing steps in a single pass over each file.
 
@@ -2485,6 +3195,11 @@ def post_process(html_dir, language, dry_run=False):
 
     toggle_labels = get_toggle_labels(language)
     numbered_toc = generate_toc(language=language)
+    number_subsections = _read_conf_bool(language, 'number_subsections', False)
+    # Numbers of the '##' headings, needed to resolve references to them from
+    # any page: collected before the loop starts rewriting the pages.
+    subsection_numbers = (_collect_subsection_numbers(html_dir, numbered_toc)
+                          if number_subsections else {})
 
     # cross-file state
     processed_parts = set()
@@ -2517,17 +3232,24 @@ def post_process(html_dir, language, dry_run=False):
                 processed_parts, dry_run)
             c2, _ = _apply_toggle_divs(soup, toggle_labels, dry_run)
             c3, _ = _apply_pyscript_dataframes(soup, dry_run)
+            # Cells go back into their margins before the margins are relocated,
+            # so a note travels complete with its graphics.
+            c8 = _apply_margin_cells(soup, dry_run)
             c4, margin_counter = _apply_margin_notes(
                 soup, margin_counter, dry_run)
+            c7, margin_counter = _apply_inline_margins(
+                soup, margin_counter, dry_run)
+            c6 = _apply_figure_content(soup, dry_run)
 
             fname = os.path.basename(str(html_file))
             if fname not in _NUMBERING_SKIP_NAMES:
                 c5 = _apply_numbering(
-                    soup, str(html_file), language, numbered_toc)
+                    soup, str(html_file), language, numbered_toc,
+                    number_subsections, subsection_numbers)
             else:
                 c5 = False
 
-            if py_changes or c1 or c2 or c3 or c4 or c5:
+            if py_changes or c1 or c2 or c3 or c4 or c5 or c6 or c7 or c8:
                 if not dry_run:
                     if py_changes:
                         html_file.with_suffix('.html.backup').write_text(
@@ -2535,9 +3257,12 @@ def post_process(html_dir, language, dry_run=False):
                     html_file.write_text(str(soup), encoding='utf-8')
 
         except Exception as e:
-            print(f'Error processing {html_file}: {e}')
+            print(f'Error processing {html_file}: {type(e).__name__}: {e}')
 
     # ── post-loop steps ────────────────────────────────────────────────────────
+    # Equation X.Y renumbering runs after the per-file loop: it needs the whole
+    # build present (references span pages) and reading order (per-chapter Y).
+    _apply_equation_numbering(html_dir, language, numbered_toc, dry_run)
     if all_inline_expressions and not dry_run:
         _add_pyscript_for_inline_expressions(html_dir, all_inline_expressions)
     fix_print_h1_visibility(html_dir, dry_run=dry_run)

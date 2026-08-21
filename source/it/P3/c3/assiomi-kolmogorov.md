@@ -76,6 +76,24 @@ La terna $(\Omega, \mathsf A, \mathbb P)$ viene detta _spazio di probabilità_.
 
 ````
 
+```{admonition} _
+:class: naming
+
+La funzione che associa a un evento $A$ la sua probabilità non segue una
+notazione del tutto uniforme. Nei testi moderni le scelte più comuni sono
+$P(A)$, $\mathrm P(A)$, $\operatorname{Pr}(A)$, $\mathbf P(A)$ e
+$\mathbb P(A)$, e anche le parentesi che delimitano gli eventi possono essere
+tonde, quadre o graffe. Optare per una di queste possibilità dipende da tanti
+fattori, e in particolare dal gusto personale di chi scrive e dagli strumenti
+tipografici a disposizione[^mathbb-font]. All'inizio del novecento, Andrej
+Andreevič Markov indicava con $(A)$ la probabilità di $A$, e l'utilizzo di un
+simbolo dedicato si fa anch'esso risalire ad Andrej Nikolaevič Kolmogorov, che
+nel 1933 adottò proprio $\mathbf P(A)$ nell'opera che introduce
+gli assiomi di probabilità, e la notazione si diffuse anche grazie a influenti
+manuali come {cite:p}`feller`, che inizialmente preferì
+$\operatorname{Pr}\{A\}$ ma successivamente utilizzò $\mathbf P\{A\}$.
+```
+
 ````{prf:example} Esempio: l'universo dei supereroi
 :label: ex-frequentista
 
@@ -126,6 +144,24 @@ Questa costruzione garantisce la validità degli assiomi di Kolmogorov:
   definizione;
 - sempre per definizione, la probabilità dell'unione di eventi disgiunti in
   $\mathsf A$ è uguale alla somma della probabilità dei singoli eventi.
+````
+
+````{admonition} Probabilità e frequenza
+:class: tip
+
+L'esempio precedente mette in luce una relazione importante tra probabilità e
+frequenza relativa: quando un fenomeno viene osservato ripetutamente, la
+probabilità di un evento può essere letta come il valore verso cui tende la
+sua frequenza empirica. A partire da questo capitolo, userò questa idea in
+forma intuitiva, per arrivare a formalizzarla nel {prf:ref}`chap-grandi-numeri`
+introducendo la legge dei grandi numeri.
+
+Questa corrispondenza è anche il primo ponte tra statistica descrittiva e
+calcolo delle probabilità: da un lato le frequenze osservate suggeriscono come
+modellare probabilisticamente un fenomeno, dall'altro i modelli probabilistici
+aiutano a interpretare e organizzare i dati. È una connessione che riemergerà
+più volte nel seguito, ogni volta da un punto di vista diverso.
+
 ````
 
 Grazie agli assiomi di Kolmogorov, $\mathbb P$ viene caratterizzata
@@ -273,6 +309,9 @@ all'unione di tre insiemi disgiunti si ha
 da cui segue la tesi.
 ````
 
+````{customfigure}
+:name: fig_venn-union-theorem
+
 ```{code-cell} python
 :tags:  [hide-input]
 
@@ -338,13 +377,10 @@ ax.text(0.55, 0.4, r'$\Omega$', fontsize=font_size)
 
 plt.show()
 ```
-````{customfigure}
-:name: fig_venn-union-theorem
 
 Il diagramma di Venn che illustra la scomposizione di $E \cup F$ nell'unione
 disgiunta di $E \cap \overline F$, $E \cap F$ ed $\overline E \cap F$.
 ````
-
 ````{prf:example} Esempio: supereroi con superforza o superintelligenza
 :label: ex-union
 
@@ -448,6 +484,9 @@ assioma di Kolmogorov si ha
 $\mathbb P(F) = \mathbb P(E) + \mathbb P(F \cap \overline E) \geq \mathbb P(E)$.
 ````
 
+````{customfigure}
+:name: fig_venn-subset-theorem
+
 ```{code-cell} python
 :tags:  [hide-input]
 
@@ -498,14 +537,11 @@ ax.axis('off')
 
 plt.show()
 ```
-````{customfigure}
-:name: fig_venn-subset-theorem
 
 Il diagramma di Venn che illustra la scomposizione $F = E \cup (F \cap
 \overline E)$ quando $E \subseteq F$: l'evento $F$ è l'unione disgiunta
 degli eventi $E$ ed $F \cap \overline E$.
 ````
-
 ````{prf:example} Esempio: X-Men e supereroi Marvel
 :label: ex-prob-subsets
 
@@ -521,8 +557,6 @@ classici del gruppo.[^xmen-nota]
 
 ```{code-cell} python
 
-import re
-
 xmen_names = ['Wolverine', 'Cyclops', 'Storm', 'Beast', 'Rogue', 'Gambit', 
               'Nightcrawler', 'Colossus', 'Iceman', 'Angel', 'Jean Grey', 
               'Professor X', 'Magneto', 'Mystique', 'Psylocke', 'Jubilee',
@@ -530,13 +564,11 @@ xmen_names = ['Wolverine', 'Cyclops', 'Storm', 'Beast', 'Rogue', 'Gambit',
               'Polaris', 'Emma Frost', 'X-23', 'Banshee', 'Phoenix',
               'Marvel Girl', 'Apocalypse', 'Mister Sinister']
 
-pattern = '|'.join([f'^{re.escape(name)}' for name in xmen_names])
-
 marvel_filter = (heroes['creator'] == 'Marvel Comics')
-xmen_filter = marvel_filter & heroes['name'].str.match(pattern, case=False, na=False)
+xmen_filter = marvel_filter & heroes['name'].isin(xmen_names)
 
-marvel_count = len(heroes[marvel_filter])
-xmen_count = len(heroes[xmen_filter])
+marvel_count = marvel_filter.sum()
+xmen_count = xmen_filter.sum()
 
 print(f'Supereroi Marvel: {marvel_count}')
 print(f'X-Men: {xmen_count}')
@@ -545,7 +577,7 @@ print()
 print(f'P(M) = {marvel_count}/{n} = {marvel_count/n:.2f}')
 print(f'P(X) = {xmen_count}/{n} = {xmen_count/n:.2f}')
 print()
-print(f'Verifica X ⊆ M: P(X) ≤ P(M)? {xmen_count/n:.3f} ≤ {marvel_count/n:.2f} → {xmen_count <= marvel_count}')
+print(f'Verifica X ⊆ M: P(X) ≤ P(M)? {xmen_count/n:.2f} ≤ {marvel_count/n:.2f} → {xmen_count <= marvel_count}')
 ```
 
 Per il {prf:ref}`teo_prob_sottoinsiemi`, $\mathbb P(X) \leq \mathbb P(M)$, e
@@ -553,11 +585,6 @@ questo è confermato dai dati. Intuitivamente, la probabilità di estrarre un
 X-Man non può superare quella di estrarre un supereroe Marvel, perché ogni
 X-Man è un supereroe Marvel.
 ````
-
-[^xmen-nota]: Questa identificazione è necessariamente approssimativa: il
-dataset non contiene un campo esplicito per l'appartenenza agli X-Men, e
-alcuni nomi (come Storm o Angel) potrebbero corrispondere a personaggi
-non correlati al gruppo mutante.
 
 [^kolmogorov]: Ho scelto di fare riferimento allo standard [ISO
 9](https://it.wikipedia.org/wiki/Traslitterazione_scientifica_del_cirillico)
@@ -571,6 +598,30 @@ per esempio, nel momento in cui scrivo questa nota (aprile 2026),
 versione in inglese, Andreï Nikolaïevitch Kolmogorov in quella francese, Andrei
 Nikolajewitsch Kolmogorow in quella tedesca e Andrej Nikolaevič Kolmogorov in
 quella italiana.
+
+[^mathbb-font]: La grafia utilizzata per produrre il simbolo $\mathbb P$ deriva
+da una convenzione nata nella scrittura a mano e alla lavagna e solo
+successivamente trasferita alla pratica tipografica. Le lettere che nei testi
+stampati comparivano in grassetto, come $\mathbf P$, erano infatti difficili da
+riprodurre con il gesso o con una penna senza perdere la distinzione rispetto
+alle lettere ordinarie. Per ovviare a questo inconveniente, tra la fine degli
+anni Cinquanta e l'inizio degli anni Sessanta sembra essersi diffusa in ambito
+accademico la pratica di raddoppiare alcuni tratti delle lettere, simulando
+così visivamente il maggior peso del carattere. Questa grafia, che prese il
+nome di _blackboard bold_, si diffuse rapidamente sulle lavagne e cominciò a
+comparire anche nei testi stampati già dalla metà degli anni Sessanta. Nel 1985
+l'American Mathematical Society realizzò un apposito alfabeto tipografico
+da utilizzare con il sistema di impaginazione $\TeX$, e successivamente con
+$\LaTeX$, a tutt'oggi ampiamente utilizzato per la produzione di documentazione
+scientifica. In questo senso, simboli come $\mathbb N$, $\mathbb R$ o
+$\mathbb P$ conservano nella loro forma tipografica la traccia di un espediente
+nato originariamente per «scrivere in grassetto» quando gli strumenti
+disponibili non permettevano di farlo direttamente.
+
+[^xmen-nota]: Questa identificazione è necessariamente approssimativa: il
+dataset non contiene un campo esplicito per l'appartenenza agli X-Men, e
+alcuni nomi (come Storm o Angel) potrebbero corrispondere a personaggi
+non correlati al gruppo mutante.
 
 
 ## Vero o falso?

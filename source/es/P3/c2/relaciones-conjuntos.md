@@ -54,6 +54,9 @@ subconjunto de $A = \{ \text{miembros de los Avengers} \}$, ambos
 contenidos en el universo $\Omega$ de todos los superhéroes.
 ````
 
+````{customfigure}
+:name: fig_es-venn-subconjuntos
+
 ```{code-cell} python
 :tags:  [hide-input]
 
@@ -112,16 +115,12 @@ fig = subset_venn()
 plt.tight_layout()
 plt.show()
 ```
-````{customfigure}
-:name: fig_es-venn-subconjuntos
 
 Un diagrama de Venn que ilustra dos conjuntos $O$ y $A$ tales que
 $O \subseteq A$: $O$ es el conjunto de los Avengers con fuerza sobrehumana
 (Thor, Hulk y Captain America), $A$ es el conjunto de todos los Avengers,
 y $\Omega$ es el universo de todos los superhéroes.
 ````
-
-
 Es fácil verificar que todo conjunto está siempre contenido en el universo,
 y que el conjunto vacío está siempre contenido en cualquier conjunto:
 

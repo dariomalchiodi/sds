@@ -33,6 +33,9 @@ F_{X_i}(x; p_i) = 1 - (1 - p_i)^{\lfloor x \rfloor + 1} \mathrm
             I_{\mathbb N \cup \{0\}}(x) \enspace.
 ```
 
+````{customfigure}
+:name: fig-geometric-divergence
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -57,18 +60,17 @@ for i, (ax, X) in enumerate(zip(axes, Xs)):
 fig
 ```
 
-````{customfigure}
-:name: fig-geometric-divergence
-
 Grafici della funzione di massa di probabilità di $X_i$ per $i = 1, 2, 3$,
 $p_1 = 0.8$, $p_2 = 0.5$ e $p_3 = 0.2$.
 ````
-
 Dato $\lambda \in [0, +\infty)$, definiamo $Y_i = \frac{p_i}{\lambda} X_i$ per
 ogni $i \in \mathbb N$. In altre
 parole, $Y$ si ottiene scalando $X$ di un fattore opportuno e ciò porta ad
 «addensare» i relativi punti di massa di quest'ultima (che vengono divisi per
 una quantità positiva e moltiplicati per un valore tra zero e uno).
+
+````{customfigure}
+:name: fig_geometric-convergence
 
 ```{code-cell} python
 :tags: [hide-input]
@@ -94,15 +96,12 @@ for i, (ax, lambda_) in enumerate(zip(axes[-1], lambdas)):
 
 fig
 ```
-````{customfigure}
-:name: fig_geometric-convergence
 
 Grafici della funzione di massa di probabilità delle variabili aleatorie $Y_i$
 ottenute dalle corrispondenti $X_i$ della
 {numref}`fig-geometric-divergence`. Ogni colonna fa riferimento
 a un valore differente per $\lambda$.
 ````
-
 La funzione di ripartizione delle $Y_i$ è nulla per ogni argomento negativo.
 Concentrandosi invece sugli argomenti non negativi, si ha
 
@@ -197,6 +196,9 @@ negativo.
       = -0 + 1 = 1 \enspace .
 ```
 
+````{customfigure}
+:name: fig_geometric-convergence-to-exp
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -219,8 +221,6 @@ for ax, X, p in zip(axes, Xs, ps):
     ax.set_xlabel(rf'$p_{i+1} = {p}$')
 fig
 ```
-````{customfigure}
-:name: fig_geometric-convergence-to-exp
 
 Convergenza della distribuzione geometrica a quella esponenziale.
 Le barre grige visualizzano l'area delimitata dalle funzioni di densità
@@ -230,7 +230,6 @@ aleatorie $Y_i$ mostrate nella colonna centrale della
 $\lambda = 1$, sovrapposti alla corrispondente funzione di densità di
 probabilità {eq}`eq_pdf-exponential`.
 ````
-
 Usando la stessa tecnica della {numref}`fig_normal-convergence`,
 la {numref}`fig_geometric-convergence-to-exp` mostra come
 le densità ottenute convertendo le funzioni di massa di probabilità
@@ -264,6 +263,9 @@ valori per il relativo parametro $\lambda$ _famiglia delle distribuzioni
 esponenziali_.
 ````
 
+````{customfigure}
+:name: fig_negative-exponential
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -285,14 +287,10 @@ y[x>0] = 1
 axes[1].plot(x, y)
 fig
 ```
-````{customfigure}
-:name: fig_negative-exponential
 
 Grafici delle funzioni di densità (sopra) e di ripartizione (sotto) della
 distribuzione esponenziale negativa di parametro $\lambda = 3/2$.
 ````
-
-
 ````{admonition} Nomenclatura
 :class: naming
 
@@ -611,6 +609,10 @@ primo quartile:
 ```
 ````
 
+````{customfigure}
+:name: fig_exponential-bp
+:width: 100%
+
 ```{code-cell} python
 :tags: [hide-input]
 
@@ -652,16 +654,11 @@ pad = 2
 ax.set_xlim(0-pad, 2.5+pad) 
 fig
 ```
-````{customfigure}
-:name: fig_exponential-bp
-:width: 100%
 
 Diagramma a scatola per la distribuzione esponenziale di parametro
 $\lambda = 1$. Il baffo a destra della scatola è parzialmente tratteggiato
 per enfatizzare il fatto che si estende fino a $+\infty$.
-
 ````
-
 (sec_implementazione-modello-esponenziale)=
 ## Implementazione del modello esponenziale
 

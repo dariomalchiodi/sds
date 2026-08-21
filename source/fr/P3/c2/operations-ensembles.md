@@ -35,6 +35,9 @@ existants en utilisant les opérations décrites ci-dessous.
   $\overline S = \{ x \in \Omega \mid x \notin S \} = \Omega \setminus S$.
 
 
+````{customfigure}
+:name: fig_fr-venn-union-intersection
+
 ```{code-cell} python
 :tags:  [hide-input]
 
@@ -119,8 +122,6 @@ venn_intersection(ax2, s=2)
 plt.tight_layout()
 plt.show()
 ```
-````{customfigure}
-:name: fig_fr-venn-union-intersection
 
 Diagrammes de Venn pour l'union $O \cup V$ (à gauche) et l'intersection
 $O \cap V$ (à droite), où $O$ est l'ensemble des Avengers dotés d'une
@@ -128,7 +129,6 @@ force surhumaine et $V$ celui des Avengers capables de voler. Dans les
 deux cas, la région bleu foncé décrit l'ensemble d'intérêt et la région
 claire indique les parties de $O$ ou $V$ qui n'en font pas partie.
 ````
-
 ````{prf:example}
 :label: ex-fr-operations-ensembles
 
@@ -155,6 +155,9 @@ Enfin, le complémentaire $\overline O$ correspond à l'ensemble des Avengers
 sans force surhumaine : Iron Man, Black Widow, Hawkeye et Ant-Man, comme
 illustré dans la {numref}`fig_fr-venn-complement`.
 ````
+
+````{customfigure}
+:name: fig_fr-venn-difference
 
 ```{code-cell} python
 :tags:  [hide-input]
@@ -183,15 +186,13 @@ venn_symdiff(ax2, s=2)
 plt.tight_layout()
 plt.show()
 ```
-````{customfigure}
-:name: fig_fr-venn-difference
 
 Diagrammes de Venn pour la différence $O \setminus V$ (à gauche) et la
 différence symétrique $O \ominus V$ (à droite). Mêmes notations que dans
 la {numref}`fig_fr-venn-union-intersection`.
 ````
-
-
+````{customfigure}
+:name: fig_fr-venn-complement
 
 ```{code-cell} python
 :tags:  [hide-input]
@@ -216,14 +217,11 @@ venn_complement(ax)
 plt.tight_layout()
 plt.show()
 ```
-````{customfigure}
-:name: fig_fr-venn-complement
 
 Diagramme de Venn pour le complémentaire $\overline O$ : la région mise en
 évidence contient tous les Avengers qui n'appartiennent pas à $O$. Mêmes
 notations que dans la {numref}`fig_fr-venn-union-intersection`.
 ````
-
 Il est facile de vérifier que les opérations d'union et d'intersection sont
 
 - commutatives : $S \cup T = T \cup S$ et $S \cap T = T \cap S$ sont

@@ -1,3 +1,5 @@
+/* French-specific CSS customizations */
+
 /* French-specific labels and content */
 
 .lemma.no-number > .admonition-title::before {
@@ -6,6 +8,7 @@
   position: absolute;
   left: 2em;
   top: 0.4em;
+  font-weight: bold;
 }
 
 .corollary.no-number > .admonition-title::before {
@@ -14,6 +17,7 @@
   position: absolute;
   left: 2em;
   top: 0.4em;
+  font-weight: bold;
 }
 
 .myproof.admonition::before {
@@ -24,12 +28,8 @@
   margin-top: 0.4em;
 }
 
-.myproof.admonition[data-proof-subtitle]::before {
-  content: "Démonstration (" attr(data-proof-subtitle) ")";
-}
-
 .naming.admonition::before {
-  content: "Nomenclature";
+  content: "Terminologie et notation";
   display: block;
   font-weight: bold;
   font-family: var(--sans-serif-font);
@@ -42,6 +42,7 @@
   position: absolute;
   left: 2em;
   top: 0.4em;
+  font-weight: bold;
 }
 
 .example.no-number > .admonition-title::before {
@@ -50,6 +51,7 @@
   position: absolute;
   left: 2em;
   top: 0.4em;
+  font-weight: bold;
 }
 
 .definition.no-number > .admonition-title::before {
@@ -58,19 +60,22 @@
   position: absolute;
   left: 2em;
   top: 0.4em;
+  font-weight: bold;
 }
 
-/* No automatic numbering - standard MyST/Sphinx behavior with titles only */
-
-/* Style for current page in sidebar */
-.bd-sidebar nav.bd-links li.current > a {
-    font-weight: bold;
+/* Hide the original English titles for no-number proof elements */
+.lemma.no-number > .admonition-title,
+.corollary.no-number > .admonition-title,
+.theorem.no-number > .admonition-title,
+.example.no-number > .admonition-title,
+.definition.no-number > .admonition-title {
+  font-size: 0;
+  position: relative;
+  height: 1.5em;
 }
 
-/* Part captions styling */
-.bd-sidebar .caption {
-    font-weight: bold;
-    margin-top: 1em;
-    margin-bottom: 0.5em;
-    color: var(--color-brand-primary);
+/* French typography and language-specific styles */
+body {
+    /* French text tends to be longer, so we might need slightly different spacing */
+    line-height: 1.6;
 }
