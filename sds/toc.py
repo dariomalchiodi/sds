@@ -13,6 +13,16 @@ LABELS = {'it': {'chapter': 'Capitolo',
                  'section': 'Párrafo',
                  'appendix': 'Apéndice'}}
 
+def _normalise_label(label):
+    """Normalise a label the way docutils normalises an HTML id: ':' and '_'
+    become '-' and the result is lower-cased.  Entries are keyed on the
+    normalised form, so that a reference reaches its entry however the label
+    was spelled in the source ('sec_momenti', 'appA', …) and so that a lookup
+    from the built HTML — where docutils has already normalised the id —
+    matches too."""
+    return re.sub(r'[:_]', '-', label).lower()
+
+
 class TOC:
     """
     Table of Contents (TOC) manager for documents with chapters, sections,
@@ -60,7 +70,7 @@ class TOC:
             raise ValueError("File must be a non-empty string.")
         if not title or not isinstance(title, str):
             raise ValueError("Title must be a non-empty string.")
-        if label in self.label_to_caption:
+        if _normalise_label(label) in self.label_to_caption:
             raise ValueError(f"Duplicate label: {label}")
         if file in self.file_to_number:
             raise ValueError(f"Duplicate file: {file}")
@@ -77,7 +87,7 @@ class TOC:
             ValueError: If validation fails.
         """
         self._validate_entry(file, label, title)
-        label = re.sub(r'[:_]', '-', label).lower()
+        label = _normalise_label(label)
         self.current_chapter_num += 1
         self.current_section_num = 0
         key = 'appendix' if self.is_appendix_part else 'chapter'
@@ -115,7 +125,7 @@ class TOC:
         if self.current_chapter_num == 0 and not self.is_appendix_part:
             raise ValueError("Cannot add a section before a chapter.")
         self._validate_entry(file, label, title)
-        label = re.sub(r'[:_]', '-', label).lower()
+        label = _normalise_label(label)
         self.current_section_num += 1
         caption = LABELS[self.language]['section']
         if self.is_appendix_part:
@@ -152,7 +162,7 @@ class TOC:
         Returns:
             str or None: Caption and number if found, else None.
         """
-        return self.label_to_caption.get(label, None)
+        return self.label_to_caption.get(_normalise_label(label), None)
     
     def get_caption_by_file(self, file):
         """

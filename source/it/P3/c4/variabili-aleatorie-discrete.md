@@ -14,7 +14,7 @@ kernelspec:
 
 ```{margin}
 Ho anche brevemente parlato delle variabili di tipo _misto_, che vedremo nel
-{ref}`sec-va-continue`.
+{ref}`sec-va-continue-miste`.
 ```
 All'inizio del capitolo e nel {ref}`sec-concetti-fondamentali-VA` ho anticipato
 che le variabili aleatorie che considereremo possono essere di tipo _discreto_

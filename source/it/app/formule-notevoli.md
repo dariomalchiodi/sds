@@ -346,13 +346,134 @@ in serie di Maclaurin si ottiene pertanto
 = \sum_{n=0}^{\infty} \frac{x^n}{n!} \enspace.
 ```
 
-Inoltre, per ogni $x \in mathbb R$ si ha
+Inoltre, per ogni $x \in \mathbb R$ si ha
 
 ```{math}
 \lim_{n \to +\infty} \left\lvert \frac{x^{n+1}/(n+1)!}{x^n/n!} \right\rvert
-= \lim_{n \to +\infty} \frac{\lvert x \rvert}{n+1} = 0  1 \enspace.
+= \lim_{n \to +\infty} \frac{\lvert x \rvert}{n+1} = 0 < 1 \enspace.
 ```
 
 Per il criterio del rapporto, la serie {eq}`eq-e-mclaurin` ha un raggio di
 convergenza infinito.
 ````
+
+````{prf:theorem} Formula del binomio di Newton
+:label: teo-binomio-newton
+
+Dati $a, b \in \mathbb R$ e $n \in \mathbb N$, vale l'identità
+
+```{math}
+:label: eq-binomio-newton
+
+(a+b)^n = \sum_{i=0}^{n} \binom{n}{i}a^i b^{n-i} \enspace,
+```
+
+detta _formula del binomio di Newton_[^binomio-newton].
+````
+````{sds-proof}
+Fissando $a$ e $b$ e procedendo per induzione su $n$, il caso base è banalmente
+vero:
+
+```{math}
+(a+b)^0 = 1 = \binom{0}{0}a^0b^0 = \sum_{i=0}^{0} \binom{0}{i}a^i b^{0-i}
+\enspace.
+```
+
+Per quanto riguarda il passo induttivo, supponendo {eq}`eq-binomio-newton`
+vera per un dato $n$, si ha
+
+```{math}
+\begin{align}
+(a+b)^{n+1} &= (a+b) \sum_{i=0}^{n} \binom{n}{i}a^i b^{n-i} \notag \\
+&= \sum_{i=0}^{n} \binom{n}{i}a^{i+1}b^{n-i}
++ \sum_{i=0}^{n} \binom{n}{i}a^i b^{n+1-i}  \notag\\
+&= \sum_{j=1}^{n+1} \binom{n}{j-1}a^j b^{n+1-j}
++ \sum_{i=0}^{n} \binom{n}{i}a^i b^{n+1-i} \tag*{($i \mapsto j-1$)}\\
+&= \sum_{i=1}^{n+1} \binom{n}{i-1}a^i b^{n+1-i}
++ \sum_{i=0}^{n} \binom{n}{i}a^i b^{n+1-i} \tag*{($j \mapsto i$)}
+\end{align}
+```
+
+Estrando l'ultimo termine della prima sommatoria e il primo della seconda,
+è possibile raccogliere $a^i b^{n+1-i}$ a fattore comune:
+
+```{math}
+:label: eq-tartaglia-ind
+
+(a+b)^{n+1} = a^{n+1} + \sum_{i=1}^{n}\left[\binom{n}{i-1}+\binom{n}{i}\right]
+a^i b^{n+1-i} + b^{n+1} \enspace.
+```
+
+Siccome
+
+```{margin}
+Questa formula è anche nota come _identità di Pascal_, ed è alla base della
+creazione del famoso
+[triangolo di Tartaglia](https://it.wikipedia.org/wiki/Triangolo_di_Tartaglia),
+una disposizione grafica che permette di calcolare ricorsivamente i
+coefficienti binomiali[^triangolo-tartaglia].
+```
+```{math}
+\begin{aligned}
+\binom{n}{i-1} + \binom{n}{i}
+&= \frac{n!}{(i-1)! (n-i+1)!} + \frac{n!}{i! (n-i)!}
+= \frac{i n! + (n-i+1) n!}{i! (n-i+1)!} \\
+&= \frac{(n+1)!}{i! (n+1 - i)!}
+= \binom{n+1}{i} \enspace,
+\end{aligned}
+```
+
+è possibile riformulare {eq}`eq-tartaglia-ind` nel modo seguente:
+
+```{math}
+\begin{aligned}
+(a+b)^{n+1} &= \binom{n+1}{0} b^{n+1} + \sum_{i=1}^{n}\binom{n+1}{i}
+a^i b^{n+1-i} + \binom{n+1}{n+1} a^{n+1} \\
+&= \sum_{i=0}^{n+1} \binom{n+1}{i}a^i b^{n+1-i} \enspace.
+\end{aligned}
+```
+
+La formula è quindi vera per $n+1$ e, per il principio di induzione, per
+ogni intero $n\geq 0$.
+````
+
+````{prf:theorem} Formula del binomio di Newton
+:label: teo-binomio-newton
+
+Per ogni $a, x \in \mathbb R$, con $a > 0$, vale l'identità
+
+```{math}
+:label: eq-doppia-exp
+
+\mathrm e^{a \lvert x \rvert} \leq \mathrm e^{a x} + \mathrm e^{-a x} \enspace.
+```
+
+````
+````{sds-proof}
+Quando $x \geq 0$, l'identità assume la forma
+$\mathrm e^{a x } \leq \mathrm e^{a x} + \mathrm e^{-a x}$, che equivale a
+$\mathrm e^{-2ax} \geq 0$, che è banalmente vera. Analogamente, è facile
+verificare che per $x < 0$ l'identità equivale a $\mathrm e^{2ax} \geq 0$.
+````
+
+[^binomio-newton]: In realtà, la forma dell'identità {eq}`eq-binomio-newton`
+che coinvolge esponenti interi non negativi era già nota in Europa almeno dal
+XVI secolo, e ancora prima nella tradizione matematica indiana, islamica e
+cinese. Tra il 1664 e il 1665, tuttavia, Isaac Newton estese lo sviluppo del
+binomio agli esponenti frazionari e negativi, ottenendo una serie generalmente
+infinita. È principalmente a questa generalizzazione che si deve il nome
+tradizionale di formula del binomio di Newton, applicato poi anche al caso
+finito.
+
+[^triangolo-tartaglia]: È interessante notare che, nel resto del mondo
+occidentale, lo stesso schema è noto come _triangolo di Pascal_, sebbene, come
+il binomio di Newton, sia stato utilizzato antecedentemente da altri matematici
+europei (tra cui Tartaglia), e prima ancora cinesi, persiani e arabi. Un
+contributo originale di Pascal è invece legato alla dimostrazione della
+correttezza della procedura, fatta in modo combinatorio e organizzata nel modo
+seguente. Partendo da un insieme $S$ di $n+1$ oggetti, sia $s$ uno di questi.
+Un generico sottoinsieme di $S$ contenente $i$ elementi deve contenere $s$
+oppure escluderlo. Quindi il numero di possibili sottoinsiemi di $i$ oggetti
+(che è uguale a $\binom{n+1}{i}$) si ottiene sommando il numero di quelli che
+includono $s$ (pari a $\binom{n}{i-1}$) a quello dei rimanenti sottoinsiemi
+(che sono $\binom{n}{i}$).

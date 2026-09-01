@@ -127,6 +127,37 @@
   margin: 0 auto;
 }
 
+/* A target that lives in the margin (figure, note, cell) carries the theme's
+   gutter positioning: float right, one third of the width and a negative right
+   margin that pushes it into the gutter. The popover has no gutter, so that
+   layout leaves a wide empty strip on the left with the content squeezed to the
+   right. Inside a preview these are plain blocks. */
+.sds-preview .margin,
+.sds-preview aside.margin,
+.sds-preview div.margin,
+.sds-preview figure.margin,
+.sds-preview .margin.docutils.container,
+.sds-preview .cell.tag_margin,
+.sds-preview .cell.tag_popout,
+.sds-preview figure.margin-caption figcaption,
+.sds-preview div.figure.margin-caption figcaption,
+.sds-preview figure.margin-caption p.caption {
+  float: none;
+  clear: none;
+  position: static;
+  width: auto;
+  max-width: 100%;
+  margin: 0;
+  font-size: inherit;
+}
+
+/* Same reasoning for the alignment classes docutils puts on floated images. */
+.sds-preview img.align-left,
+.sds-preview img.align-right {
+  float: none;
+  margin: 0 auto;
+}
+
 /* The QED tombstone adds little in a small preview. */
 .sds-preview .sds-proof::after {
   display: none;

@@ -24,4 +24,5 @@ sphinx-tabs
 sphinx-togglebutton
 sphinxcontrib-katex
 statsmodels
+sympy
 tqdm

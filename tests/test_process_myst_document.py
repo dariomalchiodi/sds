@@ -1,5 +1,5 @@
 import unittest
-from sds.sds import process_myst_document
+from sds.sds import _indent_footnote_directives, process_myst_document
 
 
 class TestProcessMystDocument(unittest.TestCase):
@@ -183,6 +183,42 @@ x = 42
         python_block_pos = result.find('```python')
         setup_pos = result.find('PyScript utilities loaded successfully')
         self.assertLess(python_block_pos, setup_pos)
+
+
+class TestFootnoteTargets(unittest.TestCase):
+    '''A ``(label)=`` target opening a footnote must end up inside the note:
+    unindented, markdown closes the definition on it, leaving an empty note and
+    spilling its text into the page.'''
+
+    def test_target_on_definition_line_indents_body(self):
+        content = '''[^nota]: (lab-nota)=
+Prima riga della nota,
+seconda riga della nota.
+'''
+        self.assertIn('[^nota]: (lab-nota)=\n'
+                      '    Prima riga della nota,\n'
+                      '    seconda riga della nota.',
+                      _indent_footnote_directives(content))
+
+    def test_target_on_its_own_line_moves_up(self):
+        content = '''[^nota]:
+(lab-nota)=
+Testo della nota.
+'''
+        self.assertIn('[^nota]: (lab-nota)=\n    Testo della nota.',
+                      _indent_footnote_directives(content))
+
+    def test_body_already_indented_is_left_alone(self):
+        content = '''[^nota]: (lab-nota)=
+    Testo della nota.
+'''
+        self.assertEqual(content, _indent_footnote_directives(content))
+
+    def test_footnote_without_target_is_left_alone(self):
+        content = '''[^nota]: Testo della nota,
+su due righe.
+'''
+        self.assertEqual(content, _indent_footnote_directives(content))
 
 
 if __name__ == '__main__':

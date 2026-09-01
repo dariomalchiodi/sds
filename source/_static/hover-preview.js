@@ -122,10 +122,28 @@
   }
 
   // Try each URL in turn; resolve with the first successful body, or null.
+  // A target on another page can only be previewed if it can be fetched, which
+  // fails silently when the book is opened from disk (file:// blocks fetch) or
+  // served without clean-URL resolution. Warn once, so the cause is visible:
+  // same-page previews keep working, which makes the failure look selective —
+  // cross-page references, such as those to other sections, are the ones lost.
+  var fetchWarned = false;
   function fetchFirst(urls) {
     var i = 0;
     function attempt() {
-      if (i >= urls.length) return Promise.resolve(null);
+      if (i >= urls.length) {
+        if (!fetchWarned) {
+          fetchWarned = true;
+          console.warn(
+            "[sds hover-preview] impossibile recuperare " + urls[0] +
+            ": le anteprime dei riferimenti a un'altra pagina richiedono che " +
+            "il sito sia servito via http(s) (per esempio con `make serve`); " +
+            "aprendo i file direttamente da disco (file://) il browser blocca " +
+            "la richiesta. Le anteprime interne alla pagina continuano a " +
+            "funzionare.");
+        }
+        return Promise.resolve(null);
+      }
       return fetch(urls[i++], { credentials: "same-origin" })
         .then(function (res) { return res.ok ? res.text() : attempt(); })
         .catch(function () { return attempt(); });

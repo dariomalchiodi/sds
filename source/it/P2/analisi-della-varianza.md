@@ -251,7 +251,7 @@ anova([male_weight, female_weight])
 ```
 
 
-## Dimostrazione <sup>*</sup>
+## Dimostrazione *
 
 Innanzitutto notiamo che per ogni $g = 1, \dots, G$,
 

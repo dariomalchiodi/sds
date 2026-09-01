@@ -9,5 +9,5 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec-va-continue)=
+(sec-va-continue-miste)=
 # Variabili aleatorie continue e miste

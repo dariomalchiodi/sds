@@ -89,7 +89,7 @@ perché non tutte le funzioni $X \colon \Omega \to \mathbb R$ sono _misurabili_
 &mdash; è questo il nome che si dà alle funzioni che soddisfano la condizione
 &mdash; ed è per questo motivo che la {prf:ref}`def-variabile-aleatoria` lo
 richiede esplicitamente (riprenderò brevemente questo concetto nel
-{ref}`sec-valore-atteso`).
+{ref}`sec-misure-di-centralita`).
 
 In pratica, esibire una funzione non misurabile richiede costruzioni piuttosto
 artificiose, che esulano dal livello di questo libro[^funzioni-patologiche].

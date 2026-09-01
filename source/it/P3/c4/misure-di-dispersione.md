@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec_varianza)=
+(sec-misure-di-dispersione)=
 # Misure di dispersione
 
 Come abbiamo visto nel paragrafo precedente, la centralità è solo uno degli
@@ -27,7 +27,7 @@ distribuzione.
 
 ## Dispersione rispetto a un valore centrale
 
-Nel {ref}`sec-valore-atteso` abbiamo visto che il valore atteso individua il
+Nel {ref}`sec-misure-di-centralita` abbiamo visto che il valore atteso individua il
 _baricentro_ di una variabile aleatoria, specificando che la sua distribuzione
 è descritta solo parzialmente da questo indice. In altre parole, possono
 esistere variabili aleatorie diverse che hanno uno stesso valore atteso, e un
@@ -710,7 +710,59 @@ Varianza e deviazione standard sono spesso usate in parallelo: la prima perché
 trasformazioni e con le somme di variabili aleatorie; la seconda perché è più
 immediata da interpretare e da comunicare.
 
-Più in generale, si può studiare la dispersione di $X$ attorno a un qualsiasi
+Nell'{prf:ref}`ex-ea-centratura` abbiamo visto che è possibile centrare una
+variabile aleatoria, sottraendole il suo valore atteso. Applicando
+successivamente un'opportuna scalatura, si ottiene una trasformazione di
+particolare importanza per lo studio delle distribuzioni.
+
+````{prf:definition} Standardizzazione di una variabile aleatoria
+:label: def-standardizzazione-va
+
+```{margin}
+Si usa il termine _standardizzazione_ anche per indicare più in generale la
+trasformazione che sottrae il valore atteso e divide per la deviazione
+standard.
+```
+Sia $X$ una variabile aleatoria che ammette valore atteso $\mu$ e varianza
+$\sigma^2$. La variabile aleatoria
+
+```{math}
+X' = \frac{X-\mu}{\sigma}
+```
+
+viene detta _standardizzazione_ di $X$.
+````
+
+````{prf:corollary}
+:label: cor-standardizzazione-va
+
+Sia $X$ una variabile aleatoria che ammette varianza. La sua standardizzazione
+$X'$ è tale che
+
+```{math}
+\begin{aligned}
+\mathbb E(X')          &= 0 \enspace,
+\operatorname{Var}(X') &= 1 \enspace.
+\end{aligned}
+```
+````
+````{sds-proof}
+Sia $\sigma^2$ la varianza di $X$, e sia $\mu$ il suo valore atteso, che
+deve necessariamente esistere perché esiste la varianza. Applicando il
+{prf:ref}`teo-valore-atteso-trasf-affini` si ottiene immediatamente
+
+```{math}
+\mathbb E(X') = \frac{1}{\sigma} \, \mathbb E(X - \mu) = 0 \enspace.
+```
+Analogamente, il {prf:ref}`teo-var-trasf-affini` assicura che
+
+```{math}
+\operatorname{Var}(X') = \frac{1}{\sigma^2}\operatorname{Var}(X - \mu)
+= \frac{\operatorname{Var}(X)}{\sigma^2} = 1 \enspace.
+```
+````
+
+In generale, si può studiare la dispersione di $X$ attorno a un qualsiasi
 valore $c \in \mathbb R$. Se si continuano a utilizzare gli scarti quadratici,
 ciò equivale a considerare il valore atteso $\mathbb E\left((X-c)^2\right)$. La
 varianza, che corrisponde al caso particolare in cui $c = \mathbb E(X)$,
@@ -1745,6 +1797,8 @@ $\lvert x \rvert \leq (1 + x^2)/2$, da cui segue
 $\mathbb E(\lvert X \rvert) \leq (1 + \mathbb E(X^2))/2$ (vedi
 {ref}`ex-monotonicita-e`). Pertanto, se $X^2$ ammette valore atteso allora
 anche la sommatoria alla base di $\mathbb E(X)$ deve convergere assolutamente.
+In una {ref}`nota <nota-esistenza-momenti>` del {ref}`sec_momenti` è illustrata
+un'estensione di questo risultato.
 
 [^mae-mediana]: In modo del tutto analogo a quanto accade per gli scarti
 quadratici, anche la quantità $\mathbb E(\lvert X-c \rvert)$ può essere vista

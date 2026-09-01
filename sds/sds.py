@@ -659,14 +659,46 @@ def _reindent_footnote_body(body):
     return res
 
 
+_MYST_TARGET_RE = re.compile(r'^\(([^)]+)\)=[ \t]*$')
+
+
+def _footnote_body_target(body):
+    '''Return the MyST target (``(label)=``) that opens a footnote body, written
+    either on the ``[^x]:`` line or on the line right below it, or None when the
+    note does not start with one.'''
+    first = body[0][_FOOTNOTE_DEF_RE.match(body[0]).end():].strip()
+    if _MYST_TARGET_RE.match(first):
+        return first
+    if first == '' and len(body) > 1 and _MYST_TARGET_RE.match(body[1].strip()):
+        return body[1].strip()
+    return None
+
+
+def _reindent_targeted_footnote_body(body, target):
+    '''Keep a ``(label)=`` target inside the footnote it labels: the target goes
+    on the definition line and the note's text is indented by four spaces, so
+    the label lands on the first paragraph of the note and cross-references to
+    it reach the note itself.  Left unindented, the target would instead close
+    the definition, emptying the note and spilling its text into the page.'''
+    marker = _FOOTNOTE_DEF_RE.match(body[0]).group(0)
+    rest = body[1:]
+    if body[0][len(marker):].strip() == '' and rest and rest[0].strip() == target:
+        rest = rest[1:]
+    if rest and all(line.startswith('    ') for line in rest if line.strip()):
+        return list(body)                           # already indented by hand
+    return [f'{marker} {target}'] + ['    ' + line for line in rest]
+
+
 def _indent_footnote_directives(content):
     '''Let a footnote definition hold a block directive — e.g. a centered
-    ``{math}`` equation.  Markdown keeps a footnote's block content only when it
-    is indented, but the book writes footnotes unindented, so a ```` ```{...} ````
+    ``{math}`` equation — or a ``(label)=`` target making the note itself
+    referenceable.  Markdown keeps a footnote's block content only when it is
+    indented, but the book writes footnotes unindented, so a ```` ```{...} ````
     fence inside one would otherwise pop out of the note.  When a footnote's
-    contiguous body contains an unindented fence, reflow it (see
-    ``_reindent_footnote_body``); footnotes without a fence, and those already
-    written in the indented form, are left untouched.'''
+    contiguous body opens with a target, reflow it (see
+    ``_reindent_targeted_footnote_body``); when it contains an unindented fence,
+    reflow it as well (see ``_reindent_footnote_body``).  Plain footnotes, and
+    those already written in the indented form, are left untouched.'''
     lines = content.split('\n')
     out = []
     i = 0
@@ -677,7 +709,10 @@ def _indent_footnote_directives(content):
             while j < n and lines[j].strip() != '':
                 j += 1
             body = lines[i:j]
-            if any(re.match(r'^`{3,}', b) for b in body[1:]):
+            target = _footnote_body_target(body)
+            if target is not None:
+                out.extend(_reindent_targeted_footnote_body(body, target))
+            elif any(re.match(r'^`{3,}', b) for b in body[1:]):
                 out.extend(_reindent_footnote_body(body))
             else:
                 out.extend(body)

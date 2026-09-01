@@ -9,7 +9,7 @@ kernelspec:
   display_name: Python 3
 ---
 
-(sec-valore-atteso)=
+(sec-misure-di-centralita)=
 # Misure di centralità
 
 Nel {ref}`sec_va-discrete` abbiamo visto che la funzione di massa di
@@ -115,7 +115,7 @@ introdotto da Karl Pearson nella fine del $1800$ per indicare i momenti
 di una distribuzione (vedi {ref}`sec_momenti`), presumibilmente per
 assonanza tra la lettera greca e l'iniziale di _moment_, e solo verso la metà
 del $1900$ si iniziò a diffondere il suo uso specificamente per indicare il
-valore atteso (che è un particolare momento). 
+valore atteso (che, come vedremo, è un particolare momento). 
 ```
 
 ````{admonition} Valore atteso e misurabilità
@@ -328,7 +328,7 @@ di probabilità può essere interpretata come una distribuzione di massa
 totale unitaria, il cui baricentro coincide con il valore atteso.
 ```{margin}
 Vale la pena notare che questa interpretazione non si limita alle variabili
-aleatorie discrete, come vedremo nel {ref}`sec-va-continue`.
+aleatorie discrete, come vedremo nel {ref}`sec_va-continue`.
 ```
 Il grafico nella {numref}`fig_ex-barycenter-balance` rende visibile un altro
 aspetto di questa corrispondenza, concentrandosi su una variabile aleatoria $X$
@@ -1681,7 +1681,7 @@ Verificate il funzionamento di questa funzione su:
 
 La cella seguente contiene una possibile implementazione della funzione, che
 verifica i prerequisiti indicati e che applica successivamente la
-{prf-ref}`def-valore-atteso-discreto`. Vengono poi eseguiti i test indicati.
+{prf:ref}`def-valore-atteso-discreto`. Vengono poi eseguiti i test indicati.
 
 ```{code-cell} python
 import numpy as np

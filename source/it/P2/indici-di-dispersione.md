@@ -385,7 +385,7 @@ indicate, e quindi l'ipotesi iniziale che le altezze considerate fossero
 distribuite in modo approssimativamente normale risulta validata.
 
 
-## Una nota sulla produzione dei grafici <sup>*</sup>
+## Una nota sulla produzione dei grafici *
 
 I lettori più curiosi si saranno probabilmente chiesti come mai gli esempi
 riportati all'inizio del paragrafo precedente affiancassero istogrammi e box

@@ -1087,7 +1087,7 @@ male_heroes['height'].cov(male_heroes['weight'])
 male_heroes['height'].corr(male_heroes['weight'])
 ```
 
-## Alcuni approfondimenti sulla generazione dei grafici <sup>*</sup>
+## Alcuni approfondimenti sulla generazione dei grafici *
 
 ```{admonition} Nomenclatura
 :class: naming
@@ -1214,7 +1214,7 @@ Nella cella precedente è stato utilizzando il metodo `legend` per modificare le
 etichette indicate nella legenda.
 ```
 
-## I diagrammi stelo-foglia <sup>*</sup>
+## I diagrammi stelo-foglia *
 Un _diagramma stelo-foglia_ (o _diagramma ramo-foglia_, o secondo la
 terminologia inglese _diagramma stem and leaf_) si ottiene considerando delle
 osservazioni a valori numerici, ordinandole e suddividendo ogni osservazione in

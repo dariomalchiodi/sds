@@ -232,7 +232,7 @@ serve:
 # Test target - run unit tests
 test:
 	@echo "Running unit tests..."
-	@python3 -m pytest tests/ -v
+	@python -m unittest discover -s tests -t . -v
 	@echo "All tests completed!"
 
 .PHONY: help Makefile it en fr es _it _en _fr _es all assets shortener copy-static sync-shortener validate-shortener clean clean-all gettext-extract update-po compile-mo update-translations serve test

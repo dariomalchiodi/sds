@@ -319,8 +319,34 @@ span.katex {
     margin-bottom: 1rem !important;
 }
 
+/* KaTeX gives the vlist wrapper a -2px right margin, which makes the 2px
+   .vlist-s spacer stick out of the shrink-to-fit box of a tag positioned at
+   right: 0. Inside .katex-html (made overflow-x: auto by katex-math.css) those
+   2px are enough to trigger a spurious horizontal scrollbar on every tagged
+   equation, e.g. the align environment in the proof of Newton's binomial
+   formula. Dropping the negative margin keeps the tag flush right without
+   overflowing. */
+.katex-display > .katex > .katex-html > .tag > .vlist-t2 {
+    margin-right: 0;
+}
+
+/* A LaTeX result (a sympy expression, say) is rendered as a .math child of the
+   cell output, whose own top margin is zeroed just below.  Without a margin of
+   its own the equation would sit flush against the bottom of the code box, so
+   it gets the same 1em above as below. */
 .cell_output > .math {
+  margin-top: 1em;
   margin-bottom: 1em !important;
+}
+
+/* …and it is left-aligned, like the code that produced it, rather than centred
+   the way KaTeX sets display math (katex.css centres both .katex-display and
+   the .katex inside it).  The `.output.text_latex` class is what myst-nb puts
+   on a cell output carrying a text/latex mime bundle — a sympy expression, in
+   practice — so prose equations and {math} directives keep their centring. */
+.cell_output .output.text_latex .katex-display,
+.cell_output .output.text_latex .katex-display > .katex {
+  text-align: left;
 }
 
 .cell_output, .cell_output .output.stream {
