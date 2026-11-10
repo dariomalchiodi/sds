@@ -259,6 +259,31 @@ div.container.cell + p {
   margin-top: 1em;
 }
 
+/* A cell whose code returns nothing produces no .cell_output, so the following
+   prose leans directly against the input box.  The rule above normally gives
+   it 1em, but it needs the paragraph to be the immediate sibling: a margin
+   note in between — which is floated, hence invisible in the flow — makes the
+   spacing collapse to zero.  Restore it for cells without output, the only
+   ones where it disappears. */
+div.cell:not(:has(.cell_output)) + aside.margin + p,
+div.cell:not(:has(.cell_output)) + p {
+  margin-top: 1em;
+}
+
+/* A code cell nested in a list item (a solution that walks through the points
+   of an exercise, say) leans directly against the item's text above it, so it
+   needs the same 1em the rules above give to prose after a cell.  When the
+   cell produces no output it is also the last thing in the item, and the
+   `+ p` rules cannot reach the next item's text — it is not a sibling — so
+   the gap below has to come from the cell itself. */
+li > div.container.cell {
+  margin-top: 1em;
+}
+
+li > div.container.cell:not(:has(.cell_output)) {
+  margin-bottom: 1em;
+}
+
 figure:not(.margin) + * {
   clear: both;
 }

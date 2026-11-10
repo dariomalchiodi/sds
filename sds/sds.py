@@ -319,16 +319,20 @@ def _inject_mpl_style_into_code_cells(content):
                 return num
         return None
 
+    # The fence may be indented (a cell nested in a list item); the indentation
+    # is captured so that the closing fence is matched at the same depth and
+    # the injected cell is written at the same depth.
     header_re = re.compile(
-        r'^(`{3,})\{code-cell\}\s+python[^\n]*\n(?::[^\n]*\n)*\n?',
+        r'^([ \t]*)(`{3,})\{code-cell\}\s+python[^\n]*\n(?:[ \t]*:[^\n]*\n)*\n?',
         re.MULTILINE
     )
 
     parts = []
     last = 0
     for m in header_re.finditer(content):
-        fence = m.group(1)
-        close_re = re.compile(r'^' + re.escape(fence) + r'\s*$', re.MULTILINE)
+        indent, fence = m.group(1), m.group(2)
+        close_re = re.compile(r'^' + re.escape(indent) + re.escape(fence)
+                              + r'\s*$', re.MULTILINE)
         cm = close_re.search(content, m.end())
         if cm is None:
             continue
@@ -340,12 +344,17 @@ def _inject_mpl_style_into_code_cells(content):
             cell_num = _cell_number_for_pos(m.start())
             use_white = _in_box(m.start()) or (cell_num in cells_with_box_placeholder)
             rcparams = _WHITE_RCPARAMS if use_white else _BLUE_RCPARAMS
-            parts.append(
+            injected = (
                 fence + "{code-cell} python\n"
                 ":tags: [remove-cell]\n\n"
                 + rcparams +
                 fence + "\n"
             )
+            if indent:
+                injected = ''.join(
+                    (indent + line if line.strip() else line) + '\n'
+                    for line in injected.split('\n')[:-1]) + '\n'
+            parts.append(injected)
 
         parts.append(content[m.start():cm.end()])
         last = cm.end()

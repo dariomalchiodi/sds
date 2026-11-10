@@ -75,7 +75,6 @@ stessa centralità possa accompagnarsi a diversi gradi di dispersione.
 
 import matplotlib.pyplot as plt
 import numpy as np
-from matplotlib.patches import FancyArrowPatch
 from pyscript import display
 from pyscript.web import page, when
 

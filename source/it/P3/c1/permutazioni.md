@@ -459,8 +459,10 @@ Risulta perciò possibile stilare la classifica in quattro modi distinti.
 :label: ex-perm-invincible-multiinsieme
 
 Iron Man, Capitan America e la Donna Invisibile hanno un'identità che è nota a
-tutti; al contrario, Daredavil, Spider-Man e Ant-Man operano nell'anonimato.
-Se consideriamo indistinguibili tra loro i supereroi con identità pubblica, e analogamente quelli con identità segreta, in quanti modi distinti è possibile ordinarli?
+tutti; al contrario, Daredevil, Spider-Man, Ant-Man e Batgirl operano
+nell'anonimato. Se consideriamo indistinguibili tra loro i supereroi con
+identità pubblica, e analogamente quelli con identità segreta, in quanti modi
+distinti è possibile ordinarli?
 ````
 ````{solution} ex-perm-invincible-multiinsieme
 :class: dropdown

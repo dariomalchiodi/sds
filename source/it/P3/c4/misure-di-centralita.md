@@ -251,8 +251,8 @@ trasformazione $n \mapsto m + 1$, che equivale a $m \mapsto n - 1$.
 ```{math}
 \mathbb E(N) = \sum_{n=0}^{+\infty} \frac{n}{\mathrm e n!}
 = \sum_{n=1}^{+\infty} \frac{n}{\mathrm e n!}
-= \mathrm e \sum_{n=1}^{+\infty} \frac{1}{(n-1)!}
-= \mathrm e \sum_{m=0}^{+\infty} \frac{1}{m!} = 1 \enspace.
+= \frac{1}{\mathrm e} \sum_{n=1}^{+\infty} \frac{1}{(n-1)!}
+= \frac{1}{\mathrm e} \sum_{m=0}^{+\infty} \frac{1}{m!} = 1 \enspace.
 ```
 
 ````

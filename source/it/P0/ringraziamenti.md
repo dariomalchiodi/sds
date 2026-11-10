@@ -15,12 +15,16 @@ kernelspec:
 Alcune persone hanno letto e commentato quello che ho scritto, contribuendo in
 modo fondamentale al risultato finale: Alessandro Di Giorgi mi ha aiutato a
 limare la trattazione matematica in alcuni punti. Nicola Ludwig ha arricchito
-una mia incursione nel mondo della fisica. Marco De Petri, Matteo Princisgh e
-Nicolò Rosati hanno accuratamente letto le bozze, individuando tante
-imperfezioni che spero di avere corretto. Ringrazio tutte e tutti per avere
-dedicato una parte del loro tempo e delle loro energie a questo lavoro,
-puntualizzando che che eventuali errori e imprecisioni che rimasti sono da
-attirbuirsi interamente a me.
+una mia incursione nel mondo della fisica. Alcuni degli studenti dei miei corsi
+hanno letto delle versioni preliminari di questo libro, individuando tante
+imperfezioni che spero di avere corretto. Sperando di non dimenticare nessuno,
+li cito in ordine sparso: Marco De Petri, Matteo Princisgh e Nicolò Rosati.
+In alcuni casi, ho ricevuto segnalazioni sotto forma di _issue_ nel _repository_
+associato al libro, da parte di utenti di cui conosco solo il _nickname_. Anche
+in questo caso, li elenco senza un particolare ordine: blinnen.
+Ringrazio tutte e tutti per avere dedicato una parte del loro tempo e delle loro
+energie a questo lavoro, puntualizzando che che eventuali errori e imprecisioni
+che dovessero essere rimasti sono da attirbuirsi interamente a me.
 
 È poi doveroso ringraziare Laura Ripamonti, che tanti anni fa ha instillato in
 me l'idea di usare i supereroi come esempio didattico; Serena Paolo e Paolo

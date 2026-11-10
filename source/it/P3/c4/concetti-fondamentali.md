@@ -130,6 +130,7 @@ minaccia in più del secondo sarà $\mathbb P(X < 2) = 1 - \mathbb P(X \geq 2)
 
 ````{customfigure}
 :name: fig-va-scoiattoli-griglia
+:class: left-align
 
 ```{code-cell} python
 :tags: [hide-input]
@@ -270,12 +271,17 @@ Per esempio, si ha $F_Y(3) = \mathbb P(Y \leq 3) = \frac{3}{6} = \frac{1}{2}$,
 perché tre dei sei valori possibili di $Y$ non superano la soglia $3$.
 ````
 
+```{margin}
+Nei grafici delle funzioni costanti a tratti, seguirò la convenzione standard
+che prevede, in corrispondenza di un punto di salto, di usare un pallino pieno per indicare il valore assunto dalla funzione e un pallino vuoto per segnalare l’estremo escluso del tratto adiacente.
+
+```
 ````{customfigure}
 :name: fig-ripartizione-primo-gruppo
+:class: left-align
 
 ```{code-cell} python
 :tags: [hide-input]
-
 
 from fractions import Fraction
 import scipy.stats as st
@@ -287,11 +293,13 @@ X = st.rv_discrete(values=(v, p))
 fig, ax = plt.subplots()
 
 x_plot = np.concatenate(([v[0] - 2], v, [v[-1] + 2]))
-y_plot = np.concatenate(([0], X.cdf(v), [1]))
-ax.step(x_plot, y_plot, where='post', color='C0')
+cdf = X.cdf(v)
+for left, right, level in zip(x_plot[:-1], x_plot[1:], np.concatenate(([0], cdf))):
+   ax.hlines(level, left, right, color='C0')
 
-prev = np.concatenate(([0.0], X.cdf(v)[:-1]))
-ax.plot(v, X.cdf(v), 'o', color='C0', zorder=3)
+prev = np.concatenate(([0.0], cdf[:-1]))
+ax.plot(v, prev, 'o', markerfacecolor='white', markeredgecolor='C0', zorder=3)
+ax.plot(v, cdf, 'o', color='C0', zorder=4)
 
 ticks = np.arange(1, 7) / 6
 labels = [str(Fraction(t).limit_denominator(36)) for t in ticks]
@@ -350,6 +358,7 @@ aleatorie discrete.
 ```
 ````{customfigure}
 :name: fig-ripartizione-scoiattoli
+:class: left-align
 
 ```{code-cell} python
 :tags: [hide-input]
@@ -361,11 +370,13 @@ X = st.rv_discrete(values=(v, p))
 fig, ax = plt.subplots()
 
 x_plot = np.concatenate(([v[0] - 1], v, [v[-1] + 1]))
-y_plot = np.concatenate(([0], X.cdf(v), [1]))
-ax.step(x_plot, y_plot, where='post', color='C0')
+cdf = X.cdf(v)
+for left, right, level in zip(x_plot[:-1], x_plot[1:], np.concatenate(([0], cdf))):
+   ax.hlines(level, left, right, color='C0')
 
-prev = np.concatenate(([0.0], X.cdf(v)[:-1]))
-ax.plot(v, X.cdf(v), 'o', color='C0', zorder=3)
+prev = np.concatenate(([0.0], cdf[:-1]))
+ax.plot(v, prev, 'o', markerfacecolor='white', markeredgecolor='C0', zorder=3)
+ax.plot(v, cdf, 'o', color='C0', zorder=4)
 
 ax.set_xlabel(r'$x$')
 ax.set_ylabel(r'$F_X(x)$')
@@ -538,6 +549,7 @@ cresce da $0$ a $1$.
 
 ````{customfigure}
 :name: fig-ripartizione-altezza
+:class: left-align
 
 ```{code-cell} python
 :tags: [hide-input]
@@ -583,22 +595,28 @@ approfondirò questa distinzione, a partire dal caso discreto.
 
 Il modulo `scipy.stats` fornisce due classi base per rappresentare variabili
 aleatorie: `rv_discrete` per distribuzioni discrete e `rv_continuous` per
-quelle continue. Una volta costruiti gli oggetti corrispondenti, la funzione di
-ripartizione &mdash; così come altri oggetti matematici legati alla
-distribuzione &mdash; è disponibile invocando il metodo `cdf`, senza che vi sia
-bisogno di implementarla a mano.
+quelle continue. Quando si ha a che fare con distribuzioni discrete con
+supporto relativamente piccolo, il modo più immediato per costruire l'oggetto
+corrispondente è quello di invocare il costruttore passando l'insieme dei
+valori e le probabilità corrispondenti. Per esempio, nella cella seguente
+viene istanziata la classe per creare l'equivalente di una variabile aleatoria
+$X$ che descrive l'esito del lancio di un dado bilanciato.
 
-Per costruire l'oggetto che corrisponde a una distribuzione discreta, è
-sufficiente passare l'insieme dei valori e le probabilità corrispondenti:
-
+```{margin}
+Usare `X` come nome della variabile che fa riferimento all'oggetto creato
+viola la regola di stile che richiederebbe di usare una lettera minuscola, ma
+preferisco adottare questa convenzione, perché ricorda il simbolo $X$ che
+denota la variabile aleatoria corrispondente. Inoltre, permette di usare `x`
+come variabile legata ai valori che $X$ assume.
+```
 ```{code-cell} python
 import numpy as np
-import scipy.stats as st
+import scipy.stats as scst
 
 v = np.arange(1, 7)
 p = np.array([1/6] * 6)
 
-X = st.rv_discrete(values=(v, p))
+X = scst.rv_discrete(values=(v, p))
 ```
 
 ```{margin}
@@ -607,35 +625,58 @@ un'espressione che viene valutata al valore di un tipo di dati semplice. In
 casi come questo, tale valore viene automaticamente convertito in un array
 di un elemento.
 ```
-Come sopra indicato, su `X` è possibile invocare il metodo `cdf` per ottenere
-i valori della funzione di ripartizione. È importante sottolineare che `cdf` è
-una funzione _vettoriale_, che accetta come argomenti liste, vettori o altri
-oggetti ad accesso posizionale[^nested-sequence] e restituisce un array NumPy
-della stessa forma, applicando in modo efficiente il calcolo elemento per
-elemento, senza cicli Python espliciti. Ciò comporta che invocare `cdf` su un
-vettore di, diciamo $n$ elementi, è tendenzialmente più veloce che invocarlo
-per $n$ volte sui singoli elementi.
+Una volta costruito l'oggetto che denota una distribuzione, è possibile
+invocare su di esso metodi che implementano i principali costrutti matematici
+corrispondenti, senza che vi sia dunque bisogno di farlo a mano. Per esempio,
+la funzione di ripartizione è disponibile invocando il metodo `cdf`. È
+importante sottolineare che questo metodo è _vettoriale_, cioè accetta come
+argomenti liste, vettori o altri oggetti ad accesso posizionale[^nested-sequence] e restituisce un array NumPy della stessa forma,
+applicando in modo efficiente il calcolo elemento per elemento, senza cicli
+Python espliciti. Ciò comporta che invocare `cdf` su un vettore di $n$
+elementi è tendenzialmente più veloce che invocarlo per $n$ volte, passando
+ogni volta un singolo elemento.
 
 ```{code-cell} python
 X.cdf([-4, 1, 1.1, 5, 7])
 ```
 
-Uno dei modi più agevoli per disegnare il grafico delle funzioni di
-ripartizione di variabili aleatorie discrete è quello di usare `ax.step`, che
-è appunto pensato per le funzioni costanti a tratti. I pallini che evidenziano
-la continuità da destra si aggiungono separatamente usando `ax.plot`.
+Come precedentemente osservato, uno dei modi convenzionali di disegnare il
+delle funzioni di ripartizione di variabili aleatorie discrete è quello di
+tracciare esplicitamente i segmenti orizzontali su cui la funzione resta
+costante, aggiungendo poi i pallini vuoti e pieni che evidenziano
+rispettivamente, il limite sinistro e il valore effettivo della funzione nel
+punto di salto. Per ottenere questo tipo di grafico in Python è necessaria una
+certa perizia, come mostrato nella cella che segue, in cui:
 
+- un ciclo invoca `ax.hlines` per tracciare ciascun segmento orizzontale,
+- successivamente vengono disegnati i pallini vuoti, e quelli pieni,
+  utilizzando `ax.plot` e avendo cura di specificare correttamente i loro
+  colori,
+- infine vengono aggiunti i rimanenti dettagli, come i valori da evidenziare
+  sugli assi e le relative etichette.
+
+```{margin}
+Esistono anche altri modi per disegnare il grafico di una funzione costante a
+tratti. Una soluzione particolarmente concisa consiste nell’utilizzare il
+metodo `step` di un oggetto `Axes`. Questo metodo, tuttavia, collega
+automaticamente i tratti orizzontali mediante segmenti verticali in
+corrispondenza dei salti. Oltre a essere esteticamente poco belli, questi
+segmenti non appartengono al grafico della funzione e possono suggerire erroneamente che essa assuma anche i valori intermedi.  
+```
 ```{code-cell} python
 import matplotlib.pyplot as plt
 
 fig, ax = plt.subplots()
 
 x_plot = np.concatenate(([v[0] - 2], v, [v[-1] + 2]))
-y_plot = np.concatenate(([0], X.cdf(v), [1]))
-ax.step(x_plot, y_plot, where='post', color='C0')
+cdf_val = X.cdf(v)
+for l, r, level in zip(x_plot[:-1], x_plot[1:],
+                       np.concatenate(([0], cdf_val))):
+   ax.hlines(level, l, r, color='C0')
 
-prev = np.concatenate(([0.0], X.cdf(v)[:-1]))
-ax.plot(v, X.cdf(v), 'o', color='C0', zorder=3)
+prev = np.concatenate(([0.0], cdf_val[:-1]))
+ax.plot(v, prev, 'o', markerfacecolor='white')
+ax.plot(v, cdf_val, 'o', color='C0')
 
 ticks = np.arange(1, 7) / 6
 labels = [str(Fraction(t).limit_denominator(36)) for t in ticks]
@@ -647,27 +688,262 @@ ax.set_ylabel(r'$F_X(x)$')
 plt.show()
 ```
 
-Nell'invocazione di `ax.step` è importante specificare l'argomento opzionale
-`where="post"`, per riprodurre correttamente la continuità da destra: in questo
-modo, ogni segmento orizzontale parte dal valore a destra del salto, in accordo
-con la definizione $F(x) = P(X \leq x)$.
+```{margin}
+Vedremo più avanti che e
+per le famiglie di distribuzioni che studieremo nei Capitoli
+{numref}`chap_modelli-discreti` e {numref}`chap_va-e-modelli-continui`.
+```
 
-In generale, userò `rv_discrete` solo per distribuzioni molto specifiche, che
-individuano variabili aleatorie con pochi valori, così che la loro
-distribuzione si possa descrivere in modo estensivo, specificando ogni valore
-insieme alla relativa probabilità. All'atto pratico, vedremo nel
-{ref}`chap_modelli-discreti` che si utilizzano dei particolari modelli di
-distribuzione, per ognuno dei quali si utilizzano delle classi Python dedicate,
-derivate da `rv_discrete`. Il caso delle distribuzioni continue è meno agevole
-da trattare: sebbene `scipy.stats` metta a disposizione la classe
-`rv_continuous`, le variabili aleatorie corrispondenti hanno infiniti valori
-possibili, dunque non ha senso pensare di istanziare questa classe in modo
-analogo all'esempio appena visto. Infatti, `rv_continuous` è normalmente usata
-come base per derivare modelli di variabili aleatorie, tra cui quelli che
-vedremo nel {ref}`chap_va-e-modelli-continui`[^st.cdf]. Per creare delle
-variabili aleatorie che non sono annoverate in questi modelli è necessaria una
-conoscenza sulla creazione di classi in Python, che in questo libro non
-approfondirò.
+In generale, si usa `rv_discrete` solo quando il supporto include pochi valori,
+così che la distribuzione si possa descrivere in modo estensivo, specificando
+ogni valore insieme alla relativa probabilità. Più spesso, però, si fa
+riferimento a specifiche famiglie di distribuzioni per variabili aleatorie
+discrete, che approfondiremo nel {ref}`chap_modelli-discreti` e per le quali
+`scipy.stats` mette a disposizioni sottoclassi specializzate di `rv_discrete`.
+
+Il caso delle distribuzioni continue è meno agevole da trattare: sebbene esista
+la classe `rv_continuous`, le variabili aleatorie corrispondenti hanno infiniti
+valori possibili, dunque non ha senso pensare di istanziare questa classe in
+modo estensivo come nell'esempio appena visto. Come per il caso discreto,
+`rv_continuous` è  usata come base per derivare sottoclassi che fanno
+riferimento a specifiche famiglie di variabili aleatorie, tra cui quelle che
+studieremo nel {ref}`chap_va-e-modelli-continui`[^st.cdf]. Per specializzare
+`rv_continuous` a variabili aleatorie la cui distribuzione non è già annoverata
+in `scipy.stats` è necessario sapere come creare di classi in Python, ma questa
+è una conoscenza che in questo libro non approfondirò.
+
+In `scipy.stats` il calcolo è essenzialmente numerico. Non è possibile avere
+quantità indeterminate, associate a simboli lasciati indeterminati anche quando
+si invocano i metodi degli oggetti che descrivono una distribuzione. Inoltre, i
+calcoli vengono fatti utilizzando i tipi numerici di Python e NumPy, basati
+sull'aritmetica in virgola mobile per memorizzare i numeri razionali e reali.
+Come illustrato nel {ref}`sec-tipi-numerici`, questo tipo di
+rappresentazione può comportare degli errori di approssimazione, che tendono a
+propagarsi quando si effettuano operazioni aritmetiche. Il _package_ `sympy`,
+come abbiamo visto, introduce la possibilità di utilizzare invece
+rappresentazioni _simboliche_; in particolare, il modulo `sympy.stats`
+permette, tra le altre cose, di
+
+- rappresentare esattamente numeri razionali e molte costanti reali,
+  rimandando l'approssimazione numerica a quando essa risulta effettivamente
+  necessaria;
+- descrivere intere famiglie di distribuzioni mediante parametri che possono
+  rimanere indeterminati;
+- esprimere probabilità e altre quantità mediante una notazione vicina a
+  quella matematica.
+
+Le funzionalità generali del _package_ consentono inoltre di manipolare
+algebricamente i risultati ottenuti. Si possono eseguire semplificazioni,
+applicare sostituzioni a parametri oppure calcolanre limiti, somme o integrali,
+mantenendo l'espressione espressa in forma simbolica quando non è possibile
+ricavare una forma chiusa. Questa flessibilità comporta generalmente tempi di
+calcolo maggiori rispetto a `scipy.stats`: effettuare operazioni in virgola
+mobile è molto più veloce che manipolare espressioni simboliche e, per
+distribuzioni con supporti costituiti da molti valori, la differenza può
+diventare significativa.
+
+
+La classe `FiniteRV` permette di creare un oggetto in `sympy` che definisce una
+distribuzione con un numero finito di valori. In tal senso, è molto simile a
+`rv_discrete` (che però permette, in linea di principio, di lavorare anche con
+supporti infiniti). Per istanziare la classe, si specifica un dizionario che
+associa a ciascun valore del supporto la relativa probabilità.
+
+```{code-cell} python
+import sympy as sp
+import sympy.stats as syst
+
+X = syst.FiniteRV('X', {v: sp.Rational(1, 6) for v in range(1, 7)})
+```
+
+```{margin}
+Inoltre, `sympy.stats` utilizza per queste funzioni una notazione che risulta
+poco intuitiva per le variabili aleatorie discrete.
+```
+In teoria è possibile ragionare in termini della funzione di massa di
+probabilità o della funzione di ripartizione della distribuzione, ma per
+quanto detto sopra è sicuramente più efficiente utilizzare `scipy.stats` per
+questo genere di cose. Le potenzialità di `sympy.stats` emergono invece quando
+si vuole calcolare la probabilità di eventi che coinvolgono la variabile
+aleatoria. Il modulo, infatti, mette a disposizione una funzione `P` che
+accetta questi eventi come argomenti, specificati in modo altamente
+reminiscente di quanto si fa scrivendo le corrispondenti espressioni
+matematiche. Per esempio, nella cella seguente vengono calcolate le probabilità
+degli eventi $X = 3$, $X \leq 3$ e $(X > 2) \cap (X \leq 5)$.
+
+```{margin}
+Gli operatori `&` e `|` corrispondono all'intersezione e all'unione di eventi;
+l'uguaglianza va invece scritta con `sp.Eq(X, 3)`, perché in Python `X == 3`
+verrebbe valutato come un normale confronto tra oggetti.
+```
+```{code-cell} python
+syst.P(sp.Eq(X, 3)), syst.P(X <= 3), syst.P((X > 2) & (X <= 5))
+```
+
+Il confronto con `scipy.stats` è immediato: dove quest'ultimo restituirebbe
+`0.5`, qui si ottiene $\tfrac{1}{2}$.
+
+```{admonition} _
+:class: naming
+
+Dovendo importare simultaneamente `scipy.stats` e `sympy.stats`, ho optato
+per utilizzare rispettivamente gli _alias_ `scst` e `syst`, il cui nome
+contiene un riferimento mnemonico al package di origine. Chiaramente, ci sono
+molti altri possibili modi di procedere: per esempio, è possibile importare
+globalmente solo il primo modulo, eventualmente con un _alias_, mentre gli
+elementi specifici del secondo modulo possono venire importati a uno a uno;
+un'altra possibilità consiste nel non utilizzare del tutto gli _alias_. Come
+sempre, non ci sono soluzioni «ufficiali», e, nel momento in cui scrivo,
+nemmeno pratiche consolidate tra gli sviluppatori. È quindi importante sapere
+valutare i pro e i contro di ogni opzione, così da scegliere di volta in volta
+quella più opportuna. 
+```
+
+````{prf:example} Gli scoiattoli, in forma simbolica
+:label: ex-sympy-scoiattoli
+
+Nell'{prf:ref}`ex-va-scoiattoli` abbiamo calcolato a mano la probabilità che il
+primo gruppo di scoiattoli segnali almeno due minacce in più del secondo,
+contando dieci esiti favorevoli su trentasei. Rappresentando il numero di
+minacce segnalate dai due gruppi con altrettante variabili aleatorie $G_1$ e
+$G_2$, `sympy` permette di arrivare allo stesso risultato in modo automatico,
+costruendo la distribuzione della differenza a partire da $G_1$ e $G_2$.
+
+```{code-cell} python
+G1 = syst.FiniteRV('G1', {v: sp.Rational(1, 6) for v in range(1, 7)})
+G2 = syst.FiniteRV('G2', {v: sp.Rational(1, 6) for v in range(1, 7)})
+
+D = G1 - G2
+syst.P(D >= 2)
+```
+
+Il risultato è $\tfrac{5}{18}$, cioè proprio il valore ottenuto contando gli
+esiti nella {numref}`fig-va-scoiattoli-griglia`.
+````
+
+Come già accennato, un altro evidente vantaggio di questo approccio emerge
+quando la distribuzione studiata dipende da uno o più parametri che non sono
+fissati a priori.
+
+````{prf:example}
+:label: ex-sympy-param
+
+{extlink}`Hiro Nakamura <https://heroes.fandom.com/wiki/Hiro_Nakamura>` ha il
+potere di piegare lo spazio-tempo, dunque può in teoria viaggiare
+istantaneamente in qualsiasi luogo e in qualunque momento. Però non sempre gli
+riesce: alcune volte sono necessari più tentativi, e ogni tanto Hiro
+desiste. Modelliamo il numero di tentativi come una variabile aleatoria $T$
+con supporto $S_T = [1 .. 6]$ e
+
+```{math}
+p_T(t) =
+\begin{cases}
+\frac{p^t}{t}           & \text{se $t \in [1 .. 5]$,} \\
+1 - \sum_{t=1}^5 p_T(t) & \text{se $t=6$,} \\
+0                       & \text{altrimenti,}
+\end{cases}
+```
+
+dove $p \in (0, 1)$ è un parametro non specificato. La cella seguente
+costruisce l'oggetto `FiniteRV` che corrisponde a $T$ e lo utilizza per
+calcolare la probabilità $\mathbb P(T > 3)$, esprimendola in funzione di $p$.
+
+```{code-cell} python
+import sympy as sp
+import sympy.stats as syst
+p = sp.Symbol('p', positive=True)
+pmf = {t: p**t / t for t in range(1, 6)}
+pmf[6] = 1 - sum(pmf[t] for t in pmf)
+
+T = syst.FiniteRV('T', pmf)
+prob = sp.simplify(syst.P(T > 3))
+prob
+```
+
+Chiaramente, $\mathbb P(T > 3)$ è stata determinata calcolando la probabilità
+del suo evento complementare, e a questo risultato saremmo potuti arrivare
+facilmente anche in modo analitico. Supponiamo però di volere determinare il
+valore di $p$ che rende la probabilità appena trovata esattamente uguale a
+$\tfrac{1}{10}$. Per farlo, dobbiamo risolvere un'equazione di terzo grado,
+cosa che con `sympy` risulta particolarmente agevole. 
+
+```{code-cell} python
+sol = sp.solveset(sp.Eq(prob, sp.Rational(1, 10)), p, domain=sp.Reals)
+feasible_sol = [s for s in sol if 0 < sp.N(s) < 1]
+print(len(feasible_sol))
+```
+
+La cella precedente evidenzia che vi è un'unica soluzione compatibile con il
+fatto che $p \in (0, 1)$, e tale soluzione è mostrata in forma esatta qui
+sotto.
+
+```{code-cell} python
+feasible_sol[0]
+```
+
+L'espressione ottenuta è particolarmente complicata, quindi vale la pena
+calcolarne un'approssimazione numerica, per esempio per capire se $p$ deve
+essere più vicino a zero piuttosto che a uno.
+
+```{code-cell} python
+sp.N(feasible_sol[0])
+```
+````
+
+Come in `scipy.stats`, lavorare con distribuzioni continue richiede un
+appproccio differente, a causa della presenza di un supporto infinito.
+Anche in questo caso, useremo direttamente delle classi che implementano le
+distribuzioni appartenenti alle famiglie descritte nel
+{ref}`chap_va-e-modelli-continui`, sebbene in linea di principio sia possibile
+istanziare la classe `ContinuousRV` per aggiungere distribuzioni non annoverate
+in `sympy.stats`.
+
+Riassumendo, `scipy.stats` e `sympy.stats` rappresentano due approcci
+complementari per affrontare in modo computazionale problemi che riguardano
+le distribuzioni di variabili aleatorie: il primo permette di lavorare in
+modo efficiente su distribuzioni completamente note, a patto di introdurre
+delle approssimazioni numeriche, mentre il secondo permette di affrontare
+problemi nei quali alcuni aspetti della distribuzione non sono noti a priori e
+devono essere ricavati. Normalmente, una volta che ciò è stato fatto, risulta
+conveniente elaborare la distribuzione ottenuta con `scipy.stats`, come
+nell'esempio che segue.
+
+````{prf:example}
+:label: ex-sympy-scipy
+
+Immaginiamo di voler visualizzare il grafico della funzione di ripartizione
+della variabile aleatoria $T$ dell'{prf:ref}`ex-sympy-param`, una volta
+sostituito al parametro $p$ il valore determinato alla fine del medesimo
+esercizio. La funzione `density` definita in `sympy.stats` restituisce un
+oggetto da cui è possibile ottenere un dizionario che associa a ogni valore di
+$T$ la corrispondente massa di probabilità. La cella seguente invoca questa
+funzione dopo avere effettuato la sostituzione direttamente sull'oggetto che
+individua $T$. Il dizionario ottenuto viene utilizzato per costruire
+l'equivalente di $T$ in `scipy.stats`, e da quest'ultimo generare il grafico.
+
+```{code-cell} python
+
+pmf = syst.density(T.subs(p, feasible_sol[0])).dict
+v = np.asarray(list(pmf), dtype=float)
+p = np.asarray(list(pmf.values()), dtype=float)
+T_scipy = scst.rv_discrete(name=T.name, values=(v, p))
+
+fig, ax = plt.subplots()
+x_plot = np.concatenate(([v[0] - 2], v, [v[-1] + 2]))
+cdf_val = T_scipy.cdf(v)
+for l, r, lev in zip(x_plot[:-1], x_plot[1:],
+                    np.concatenate(([0], cdf_val))):
+   ax.hlines(lev, l, r, color='C0')
+
+prev = np.concatenate(([0.0], cdf_val[:-1]))
+ax.plot(v, prev, 'o', markerfacecolor='white')
+ax.plot(v, cdf_val, 'o', color='C0')
+
+ax.set_xlabel(r'$t$')
+ax.set_ylabel(r'$F_T$')
+plt.show()
+```
+````
 
 
 [^boreliani]: Si parla di «insieme misurabile» perché non è possibile
@@ -708,8 +984,8 @@ abbiano la stessa lunghezza. Una lista di liste con lunghezze diverse è ad
 accesso posizionale ma non soddisfa questo requisito, e `np.asarray` produce in
 quel caso un array di oggetti Python invece che un array numerico. Dire che
 `cdf` è vettoriale significa che i calcoli che essa effettua sono delegati a
-codice nativo precompilat. Il costo fisso della chiamata &mdash; conversione
-dell'input, allocazione dell'output &mdash; si paga una volta sola
+codice nativo precompilato. Il costo fisso della chiamata (che comprende
+conversione dell'input e allocazione dell'output) si paga una volta sola
 indipendentemente dalla dimensione dell'array; il costo per elemento è quindi
 decrescente all'aumentare dell'input. Il confronto rilevante non è tra `cdf(x)`
 con `x` scalare e `cdf(x)` con `x` array di mille elementi, ma tra quest'ultimo
@@ -957,11 +1233,13 @@ X = st.rv_discrete(values=(v, p))
 fig, ax = plt.subplots()
 
 x_plot = np.concatenate(([v[0] - 1], v, [v[-1] + 1]))
-y_plot = np.concatenate(([0], X.cdf(v), [1]))
-ax.step(x_plot, y_plot, where='post', color='C0')
+cdf = X.cdf(v)
+for left, right, level in zip(x_plot[:-1], x_plot[1:], np.concatenate(([0], cdf))):
+   ax.hlines(level, left, right, color='C0')
 
-prev = np.concatenate(([0.0], X.cdf(v)[:-1]))
-ax.plot(v, X.cdf(v), 'o', color='C0', zorder=3)
+prev = np.concatenate(([0.0], cdf[:-1]))
+ax.plot(v, prev, 'o', markerfacecolor='white', markeredgecolor='C0', zorder=3)
+ax.plot(v, cdf, 'o', color='C0', zorder=4)
 
 ticks = np.array([1, 3, 7, 8]) / 8
 labels = [str(Fraction(t)) for t in ticks]
@@ -1049,11 +1327,13 @@ X = st.rv_discrete(values=(v, p))
 fig, ax = plt.subplots()
 
 x_plot = np.concatenate(([v[0] - 1], v, [v[-1] + 1]))
-y_plot = np.concatenate(([0], X.cdf(v), [1]))
-ax.step(x_plot, y_plot, where='post', color='C0')
+cdf = X.cdf(v)
+for left, right, level in zip(x_plot[:-1], x_plot[1:], np.concatenate(([0], cdf))):
+   ax.hlines(level, left, right, color='C0')
 
-prev = np.concatenate(([0.0], X.cdf(v)[:-1]))
-ax.plot(v, X.cdf(v), 'o', color='C0', zorder=3)
+prev = np.concatenate(([0.0], cdf[:-1]))
+ax.plot(v, prev, 'o', markerfacecolor='white', markeredgecolor='C0', zorder=3)
+ax.plot(v, cdf, 'o', color='C0', zorder=4)
 
 ticks = np.arange(1, 5) / 4
 labels = [str(Fraction(t)) for t in ticks]
@@ -1452,6 +1732,132 @@ delle seguenti affermazioni è vera o falsa, motivando brevemente la risposta.
    continua da destra; se è anche continua da sinistra in ogni punto, allora i
    due limiti laterali coincidono con il valore della funzione ovunque, ed è
    dunque continua.
+````
+
+
+````{exercise} •
+:label: esercizio-sympy-moon-girl
+
+Riprendete la variabile aleatoria $X$ dell'{numref}`esercizio-moon-girl`,
+che conta le classificazioni corrette fornite dal dispositivo di Moon Girl.
+
+1. Costruite l'equivalente di $X$ con `sympy.stats`, descrivendone la
+   distribuzione in modo estensivo a partire dalle probabilità ottenute.
+2. Estraete dall'oggetto creato al punto precedente una descrizione della
+   funzione di ripartizione e confrontatela con quella che ricavereste a mano.
+3. Invocando `P`, verificate che le probabilità $\mathbb P(X \geq 2)$,
+   $\mathbb P(X \leq 1)$ e $\mathbb P(X \in \{0, 2\})$ coincidano con quelle
+   determinate nell'esercizio citato.
+````
+
+````{solution} esercizio-sympy-moon-girl
+:class: dropdown
+
+1. Nell'esercizio di partenza si è ricavato che i valori di $X$ sono $0$, $1$,
+   $2$ e $3$, e assumono rispettivamente le probabilità $\tfrac{1}{8}$,
+   $\tfrac{3}{8}$, $\tfrac{3}{8}$. Questi dati descrivono completamente
+   la distribuzione di $X$ e possono essere utilizzate per creare l'oggetto
+   corrispondente in `sympy`.
+
+   ```{code-cell} python
+   X = syst.FiniteRV('X', {0: sp.Rational(1, 8),
+                           1: sp.Rational(3, 8),
+                           2: sp.Rational(3, 8),
+                           3: sp.Rational(1, 8)})
+   ```
+
+2. La fuznione `syst.cdf` restituisce
+
+   ```{code-cell} python
+   syst.cdf(X)
+   ```
+
+   La funzione di ripartizione vale dunque $\tfrac{1}{8}$, $\tfrac{1}{2}$,
+   $\tfrac{7}{8}$ e $1$ nei quattro valori del supporto, in accordo con il
+   calcolo diretto: ogni valore aggiunge la propria probabilità a quella dei
+   precedenti.
+
+3. Avendo memorizzato in `X` l'oggetto che descrive la variabile aleatoria $X$,
+   calcolare la probabilità tramite la funzione `P` è particolarmente
+   semplice, come indicato nella cella che segue.
+
+   ```{code-cell} python
+   (syst.P(X >= 2), syst.P(X <= 1),
+    syst.P(sp.Eq(X, 0)) + syst.P(sp.Eq(X, 2)))
+   ```
+
+   Le tre probabilità valgono tutte $\tfrac{1}{2}$, e coincidono con quanto
+   ricavato nell'esercizio di partenza.
+````
+
+````{exercise} ••
+:label: esercizio-sympy-parametro
+
+Un sensore progettato da {extlink}`Atomic Robo
+<https://atomicrobo.fandom.com/wiki/Atomic_Robo>` segnala correttamente
+un'anomalia con probabilità $q$, e viene interrogato due volte in modo
+indipendente. Sia $Z$ il numero di segnalazioni corrette.
+
+1. Descrivete la distribuzione di $Z$ in funzione di $q$ e create l'oggetto
+   corrispondente in `sympy.stats`.
+2. Esprimete $\mathbb P(Z \geq 1)$ in funzione di $q$.
+3. Determinate per quale valore di $q$ si ha $\mathbb P(Z \geq 1) =
+   \tfrac{3}{4}$, scartando le eventuali soluzioni non accettabili.
+4. Verificate che il valore trovato, sostituito nell'espressione ottenuta al
+   punto precedente, restituisca effettivamente $\tfrac{3}{4}$.
+````
+
+````{solution} esercizio-sympy-parametro
+:class: dropdown
+
+1. Siccome vengono eseguite due interrogazioni, ci possono essere zero, uno o
+   due segnalazioni corrette. La probabilità di non avere alcuna segnalazione
+   corretta è $(1 - q)^2$, perché entrambe le volte l'anomalia non deve essere
+   segnalata; analogamente, $Z = 2$ con probabilità $q^2$, perché entrambe le
+   rilevazioni devono avere successo. Infine la probabilità di una sola
+   segnalazione fatta in modo corretto è $2q(1-q)$ e $q^2$, perché sono
+   possibili due alternative (la prima segnalazione è corretta ma la seconda è
+   sbagliata, o viceversa), ed entrambe hanno probabilità $q (1 - q)$. Dopo
+   avere introdotto il simbolo che corrisponde a $q$, la distribuzione di $Z$
+   si può descrivere come un'istanza di `FiniteRV` che associa ai tre valori le
+   relative probabilità.
+
+   ```{code-cell} python
+   q = sp.Symbol('q', positive=True)
+
+   Z = syst.FiniteRV('Z', {0: (1 - q)**2, 1: 2 * q * (1 - q), 2: q**2})
+   ```
+
+2. Chiaramente,
+   $\mathbb P(Z \geq 1) = \mathbb P(Z=0) + \mathbb P(Z=1) = q (2-q)$, perché
+   $\{Z \geq 1\} = \{Z=1\} \cup \{Z=2\}$, e i due eventi nell'unione sono
+   disgiunti. Lo stesso risultato si ottiene utilizzando l'oggetto `Z` creato
+   al punto precedente.
+
+   ```{code-cell} python
+   sp.simplify(syst.P(Z >= 1))
+   ```
+
+3. Imponendo $\mathbb P(Z \geq 1) = \tfrac{3}{4}$ si ottiene l'equazione di
+   secondo grado $4q^2 -8q +3 = 0$, che ha le radici $\tfrac{1}{2}$ e
+   $\tfrac{3}{2}$. Solo la prima va considerata, perché esprimendo $q$ una
+   probabilità, il suo valore deve essere in $[0, 1]$. Risolvendo
+   automaticamente la stessa equazione e filtrando le radici, si ricava lo
+   stesso risultato.
+
+   ```{code-cell} python
+   sol = sp.solve(sp.Eq(syst.P(Z >= 1), sp.Rational(3, 4)), q)
+   [s for s in sol if 0 <= s <= 1]
+   ```
+
+4. Quando $q \tfrac{1}{2}$, si ha
+   $q(2-q) = \tfrac{1}{2} \cdot \tfrac{3}{2} = \tfrac{3}{4}$; chiaramente, si
+   ottiene lo stesso risultato effettuando la sostituzione in modo automatico.
+
+   ```{code-cell} python
+   sp.simplify(syst.P(Z >= 1)).subs(q, sol[0])
+   ```
+
 ````
 
 

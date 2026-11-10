@@ -1037,7 +1037,7 @@ distribuzione a due valori.
 
 ## Funzione generatrice dei momenti
 
-Negli esempi precedenti i momenti di una distribuzione sono stati calcolati
+Negli esempi precedenti, i momenti di una distribuzione sono stati calcolati
 separatamente, uno per uno. Ciò può risultare scomodo, perché per ogni
 momento bisogna considerare una somma o una serie diversa. Molto spesso, è
 più pratico considerare una particolare funzione che permette di ricavare
@@ -1152,93 +1152,6 @@ m_X^{(n)}(0) = \mathbb E \left( X^n \right) = \mu'_n \enspace.
 ```
 ````
 
-Il nome della funzione è dunque pienamente giustificato: i momenti di $X$ sono
-i coefficienti che si leggono derivando $m_X$ nell'origine. In modo del tutto
-equivalente, i momenti sono, a meno del fattoriale, i coefficienti dello
-sviluppo in serie di Maclaurin della funzione generatrice dei momenti. Infatti,
-
-```{math}
-:label: eq-maclaurin-mgf
-m_X(t) = \sum_{n=0}^{+\infty}\frac{m_X^{(n)}(0)}{n!} t^n
-= \sum_{n=0}^{+\infty}\frac{\mu'_n}{n!} t^n \enspace.
-```
-
-La {numref}`fig-momenti-maclaurin` rende visibile questa affermazione:
-aggiungendo un momento alla volta, i polinomi che si ottengono troncando la
-serie si avvicinano progressivamente al grafico di $m_X$, che viene quindi
-ricostruito dalla successione dei momenti.
-
-````{customfigure}
-:name: fig-momenti-maclaurin
-:class: left-align
-
-```{interactive-code} python
-:tags: [toggle-code]
-
-import matplotlib.pyplot as plt
-import numpy as np
-from math import factorial
-from pyscript import display
-from pyscript.web import page, when
-
-
-values_mgf = np.array([0.0, 1.0, 2.0])
-probabilities_mgf = np.array([0.25, 0.5, 0.25])
-moments_mgf = [probabilities_mgf @ values_mgf ** k for k in range(11)]
-
-t_mgf = np.linspace(-1.5, 1.5, 300)
-generating_mgf = probabilities_mgf @ np.exp(np.outer(values_mgf, t_mgf))
-
-fig_mgf, ax_mgf = plt.subplots()
-ax_mgf.plot(t_mgf, generating_mgf, color='C0', label=r'$m_X$')
-approximation_mgf, = ax_mgf.plot(t_mgf, np.ones_like(t_mgf), color='C1',
-                                 linestyle='--', label='sviluppo troncato')
-
-ax_mgf.set_xlabel(r'$t$')
-ax_mgf.set_ylabel(r'$m_X$')
-ax_mgf.set_xlim(-1.5, 1.5)
-ax_mgf.set_ylim(0, 8)
-ax_mgf.legend(loc='upper left')
-
-
-def render_mgf_plot():
-  degree = int(float(page['#mgf-degree'][0].value))
-  approximation = sum(moments_mgf[k] * t_mgf ** k / factorial(k)
-                      for k in range(degree + 1))
-  approximation_mgf.set_ydata(approximation)
-
-  page['#mgf-degree-value'][0].innerHTML = f'{degree}'
-
-  display(fig_mgf, target='graph-%this%', append=False)
-
-
-@when('input', '#mgf-degree')
-def update_mgf_plot(event):
-  render_mgf_plot()
-
-
-render_mgf_plot()
-```
-
-```{raw} html
-<div class="plot-container">
-   <div class="model-slider-container" style="white-space: nowrap;">
-      <label for="mgf-degree">\(N\): </label>
-      <input type="range" id="mgf-degree" min="1" max="10" value="1"
-             step="1" style="width: 110px;" />
-      <span id="mgf-degree-value">1</span>
-   </div>
-</div>
-```
-
-La funzione generatrice dei momenti della variabile aleatoria
-dell'{prf:ref}`ex-mom-multiple-man` (curva blu) e la sua approssimazione
-polinomiale ottenuta troncando il suo sviluppo di Maclaurin (curva
-tratteggiata). In particolare, $N$ sostituisce $+\infty$ in
-{eq}`eq-maclaurin-mgf`, così che il selettore permette di controllare il numero
-di momenti utilizzati per costruire l'approssimazione.
-````
-
 ````{prf:example}
 :label: ex-mgf-speedball
 
@@ -1316,6 +1229,94 @@ una forma particolare: è il quadrato della funzione generatrice comune a
 $X_1$ e $X_2$. Ciò non è casuale, ed è legato alla particolare relazione che
 lega le tre variabili aleatorie, come chiarirà il {prf:ref}`teo-mgf-method`.
 
+Il nome dato a $m_X$ è dunque pienamente giustificato: i momenti di $X$ sono
+i coefficienti che si leggono derivando $m_X$ nell'origine. In modo del tutto
+equivalente, i momenti sono, a meno del fattoriale, i coefficienti dello
+sviluppo in serie di Maclaurin della funzione generatrice dei momenti. Infatti,
+
+```{math}
+:label: eq-maclaurin-mgf
+m_X(t) = \sum_{n=0}^{+\infty}\frac{m_X^{(n)}(0)}{n!} t^n
+= \sum_{n=0}^{+\infty}\frac{\mu'_n}{n!} t^n \enspace.
+```
+
+La {numref}`fig-momenti-maclaurin` rende visibile questa affermazione:
+troncando la serie ottenuta in {eq}`eq-maclaurin-mgf` ai suoi primi $N$ addendi,
+si ottiene un polinomio: al crescere di $N$, questo polinomio approssima sempre
+meglio $m_X$, che si può quindi ricostruire partendo dalla successione dei
+momenti di $X$.
+
+````{customfigure}
+:name: fig-momenti-maclaurin
+:class: left-align
+
+```{interactive-code} python
+:tags: [toggle-code]
+
+import matplotlib.pyplot as plt
+import numpy as np
+from math import factorial
+from pyscript import display
+from pyscript.web import page, when
+
+
+values_mgf = np.array([0.0, 1.0, 2.0])
+probabilities_mgf = np.array([0.25, 0.5, 0.25])
+moments_mgf = [probabilities_mgf @ values_mgf ** k for k in range(11)]
+
+t_mgf = np.linspace(-1.5, 1.5, 300)
+generating_mgf = probabilities_mgf @ np.exp(np.outer(values_mgf, t_mgf))
+
+fig_mgf, ax_mgf = plt.subplots()
+ax_mgf.plot(t_mgf, generating_mgf, color='C0', label=r'$m_X$')
+approximation_mgf, = ax_mgf.plot(t_mgf, np.ones_like(t_mgf), color='C1',
+                                 linestyle='--', label='sviluppo troncato')
+
+ax_mgf.set_xlabel(r'$t$')
+ax_mgf.set_ylabel(r'$m_X$')
+ax_mgf.set_xlim(-1.5, 1.5)
+ax_mgf.set_ylim(0, 8)
+ax_mgf.legend(loc='upper left')
+
+
+def render_mgf_plot():
+  degree = int(float(page['#mgf-degree'][0].value))
+  approximation = sum(moments_mgf[k] * t_mgf ** k / factorial(k)
+                      for k in range(degree + 1))
+  approximation_mgf.set_ydata(approximation)
+
+  page['#mgf-degree-value'][0].innerHTML = f'{degree}'
+
+  display(fig_mgf, target='graph-%this%', append=False)
+
+
+@when('input', '#mgf-degree')
+def update_mgf_plot(event):
+  render_mgf_plot()
+
+
+render_mgf_plot()
+```
+
+```{raw} html
+<div class="plot-container">
+   <div class="model-slider-container" style="white-space: nowrap;">
+      <label for="mgf-degree">\(N\): </label>
+      <input type="range" id="mgf-degree" min="1" max="10" value="1"
+             step="1" style="width: 110px;" />
+      <span id="mgf-degree-value">1</span>
+   </div>
+</div>
+```
+
+La funzione generatrice dei momenti della variabile aleatoria
+dell'{prf:ref}`ex-mom-multiple-man` (curva blu) e la sua approssimazione
+polinomiale ottenuta troncando il suo sviluppo di Maclaurin (curva
+tratteggiata). In particolare, $N$ sostituisce $+\infty$ in
+{eq}`eq-maclaurin-mgf`, così che il selettore permette di controllare il numero
+di momenti utilizzati per costruire l'approssimazione.
+````
+
 La funzione generatrice dei momenti si può facilmente collegare anche ai
 momenti centrali, come evidenziato dal prossimo teorema e, soprattutto dal
 corollario che ne segue. 
@@ -1333,7 +1334,7 @@ m_Y(t) = \mathrm e^{bt} \, m_X(at) \enspace,
 per tutti i $t$ tali che $at$ appartenga al dominio di $m_X$.
 ````
 ````{sds-proof}
-Applicando la {prf:ref}`def-mgf` definizione si ottiene direttamente
+Applicando la {prf:ref}`def-mgf` si ottiene direttamente
 
 ```{math}
 m_Y(t) = \mathbb E \left( \mathrm e^{t(aX + b)} \right)
@@ -1370,6 +1371,10 @@ m_Y(t) = \mathrm e^{\mu t} m_X(t) \enspace,
 da cui segue la tesi.
 ````
 
+Abbiamo visto che media e varianza, considerate congiuntamente, non definiscono
+in modo univoco una distribuzione. Questo risultato non cambia se si includono
+anche l'asimmetria e la curtosi, come evidenziato nell'esempio che segue.
+
 ````{prf:example}
 :label: ex-quattro-momenti
 
@@ -1390,9 +1395,7 @@ si ottiene
 
 ```{math}
 \begin{aligned}
-\mathbb E(X)   &= \mathbb E(Y)=0 \enspace, \\
 \mathbb E(X^2) &= \mathbb E(Y^2)=\frac{3}{2} \enspace, \\
-\mathbb E(X^3) &= \mathbb E(Y^3)=0 \enspace, \\
 \mathbb E(X^4) &= \mathbb E(Y^4)=6 \enspace.
 \end{aligned}
 ```
@@ -1464,7 +1467,7 @@ Il momento centrale di ordine $1$ coincide con il valore atteso di $X$.
 +++
 **Falsa**. Il momento centrale di ordine $1$ è sempre nullo, qualunque sia la
 distribuzione: $\mu_1 = \mathbb E(X - \mu) = \mathbb E(X) - \mu = 0$. È invece
-il momento centrale di ordine $1$ a coincidere con il valore atteso.
+il momento di ordine $1$ a coincidere con il valore atteso.
 ````
 
 ````{tf-item}

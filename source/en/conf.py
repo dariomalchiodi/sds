@@ -350,9 +350,16 @@ def strip_out_code_cells(app, env, docnames):
                 inner_count = outer_count - 1
                 inner_backticks = '`' * inner_count
                 
-                # Find all code-cells within this directive
-                cell_pattern = rf'{re.escape(inner_backticks)}\{{code-cell\}}[^\n]*\n(.*?)\n{re.escape(inner_backticks)}(?!`)'
-                cells = list(re.finditer(cell_pattern, body, re.DOTALL))
+                # Find all code-cells within this directive.  The fence may be
+                # indented (a cell nested in a list item); the indentation is
+                # captured so that the closing fence is matched at the same
+                # depth, the placeholder keeps it and the lifted cell is
+                # dedented back to column 0.
+                cell_pattern = (rf'^([ \t]*){re.escape(inner_backticks)}'
+                                rf'\{{code-cell\}}[^\n]*\n(.*?)\n'
+                                rf'\1{re.escape(inner_backticks)}(?!`)')
+                cells = list(re.finditer(cell_pattern, body,
+                                         re.DOTALL | re.MULTILINE))
                 
                 if not cells:
                     return match.group(0)
@@ -369,11 +376,20 @@ def strip_out_code_cells(app, env, docnames):
                 modified_body = body
                 
                 for cell_match, cell_id in reversed(cell_data):
-                    # Extract the full cell
+                    # Extract the full cell, dedented to column 0 so that it is
+                    # a valid top-level {code-cell} once lifted out
+                    indent = cell_match.group(1)
                     cell_content = cell_match.group(0)
+                    if indent:
+                        cell_content = '\n'.join(
+                            line[len(indent):] if line.startswith(indent)
+                            else line.lstrip()
+                            for line in cell_content.split('\n'))
                     
-                    # Replace cell with placeholder in body
-                    placeholder = f'<!-- CELL-PLACEHOLDER-{cell_id} -->'
+                    # Replace cell with placeholder in body, at the same
+                    # indentation, so that the cell HTML is spliced back inside
+                    # the list item the cell was written in
+                    placeholder = f'{indent}<!-- CELL-PLACEHOLDER-{cell_id} -->'
                     modified_body = modified_body[:cell_match.start()] + placeholder + modified_body[cell_match.end():]
                     
                     # Store extracted cell with markers (prepend to maintain order)

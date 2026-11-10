@@ -20,6 +20,7 @@ quali mi concentrerò nel seguito sono quelli numerici &mdash; interi, decimali
 e booleani &mdash; e quello che permette di lavorare con le stringhe, pur
 menzionando brevemente anche altri tipi di dati.
 
+(sec-tipi-numerici)=
 ## Tipi numerici
 
 Tra i tipi numerici disponibili in Python, i più utilizzati sono `int` e
@@ -87,7 +88,9 @@ La rappresentazione dei numeri decimali usando il formato in virgola mobile
 richiede spesso di effettuare delle approssimazioni. Questo fatto è ovvio
 se pensiamo per esempio ai numeri irrazionali, mentre è meno intuitivo quando
 coinvolge numeri con parte decimale finita. Nella cella che segue si può vedere
-un esempio eclatante.```{code-cell} python
+un esempio eclatante.
+
+```{code-cell} python
 0.1
 ```
 

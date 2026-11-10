@@ -145,6 +145,10 @@ tmp/
 test-output/
 test-results/
 
+# Scratch/experimental datasets, not meant for versioning
+data/heroes-all.csv
+data/heroes_rearranged.csv
+
 # -----------------------------------------------------------------------------
 # KEEP THESE FILES (important for the project)
 # -----------------------------------------------------------------------------
