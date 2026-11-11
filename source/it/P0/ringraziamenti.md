@@ -21,7 +21,7 @@ imperfezioni che spero di avere corretto. Sperando di non dimenticare nessuno,
 li cito in ordine sparso: Marco De Petri, Matteo Princisgh e Nicolò Rosati.
 In alcuni casi, ho ricevuto segnalazioni sotto forma di _issue_ nel _repository_
 associato al libro, da parte di utenti di cui conosco solo il _nickname_. Anche
-in questo caso, li elenco senza un particolare ordine: blinnen.
+in questo caso, li elenco senza un particolare ordine: blinnen e AndrewRed99.
 Ringrazio tutte e tutti per avere dedicato una parte del loro tempo e delle loro
 energie a questo lavoro, puntualizzando che che eventuali errori e imprecisioni
 che dovessero essere rimasti sono da attirbuirsi interamente a me.

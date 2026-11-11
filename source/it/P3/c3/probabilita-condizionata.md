@@ -1470,7 +1470,7 @@ F_3 &= \{ \text{il dado blu vale } 5 \text{ oppure } 6 \} \enspace.
 Sia inoltre $E$ l'evento «la somma dei due risultati è almeno $9$».
 
 1. Mostrate che $\mathcal P = \{ F_1, F_2, F_3 \}$ è una partizione dello
-   spazio degliesiti.
+   spazio degli esiti.
 2. Calcolate $\mathbb P(E \mid F_1)$, $\mathbb P(E \mid F_2)$ e
   $\mathbb P(E \mid F_3)$.
 3. Usate il teorema delle probabilità totali per ricavare $\mathbb P(E)$.
@@ -1570,7 +1570,7 @@ che la scheda appartenga a un personaggio non Marvel.
 ````{exercise} •••
 :label: ex-prob-cond-bayes-generale-dadi
 
-Riconsiderate l’{numref}`%s <ex-prob-cond-prob-totali-dadi>`, e calcolate
+Riconsiderate l’{ref}`ex-prob-cond-prob-totali-dadi`, e calcolate
 
 1. $\mathbb P(F_1 \mid E)$,
 2. $\mathbb P(F_2 \mid E)$,

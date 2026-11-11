@@ -1485,7 +1485,7 @@ $\mathbb P(A_i) = p$, e questi eventi sono indipendenti per ipotesi.
    succede con probabilità $\mathbb P(A_1 \cap A_2 \cap A_3) = p^3$), oppure
    quando ne funzionano esattamente due (e questo evento ha probabilità
    $\mathbb P((A_1 \cap A_2) \cup (A_1 \cap A_3) \cup (A_2 \cap A_3))
-   = 3 p^2(1-p$)$). Mettendo insieme questi risultati si ottiene
+   = 3 p^2(1-p)$). Mettendo insieme questi risultati si ottiene
 
 ```{math}
 \mathbb P(\text{la tuta è operativa}) = 3p^2 - 2p^3 \enspace.
